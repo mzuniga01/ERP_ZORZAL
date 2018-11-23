@@ -179,7 +179,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\tbCargosController.cs" />
+    <Compile Include="Controllers\tbCategoriasController.cs" />
     <Compile Include="Controllers\tbEstadosController.cs" />
+    <Compile Include="Controllers\tbSubcategoriasController.cs" />
     <Compile Include="Controllers\tbTiposBodegasController.cs" />
     <Compile Include="Controllers\tbTiposEntradasController.cs" />
     <Compile Include="Controllers\tbTiposInventariosController.cs" />
@@ -212,6 +214,9 @@
     <Compile Include="Models\tbCargos.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbCategoria.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbDepartamentos.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -225,6 +230,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbMunicipios.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbSubcategoria.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbTasasCambio.cs">
@@ -658,6 +666,22 @@
     <Content Include="Views\tbUnidadesMedidas\Details.cshtml" />
     <Content Include="Views\tbUnidadesMedidas\Edit.cshtml" />
     <Content Include="Views\tbUnidadesMedidas\Index.cshtml" />
+    <Content Include="Views\tbCategorias\CrearPrueba.cshtml" />
+    <Content Include="Views\tbCategorias\Create.cshtml" />
+    <Content Include="Views\tbCategorias\Delete.cshtml" />
+    <Content Include="Views\tbCategorias\Details.cshtml" />
+    <Content Include="Views\tbCategorias\DetailsPrueba.cshtml" />
+    <Content Include="Views\tbCategorias\Edit.cshtml" />
+    <Content Include="Views\tbCategorias\EditarPrueba.cshtml" />
+    <Content Include="Views\tbCategorias\Index.cshtml" />
+    <Content Include="Views\tbSubcategorias\CrearPrueba.cshtml" />
+    <Content Include="Views\tbSubcategorias\Create.cshtml" />
+    <Content Include="Views\tbSubcategorias\Delete.cshtml" />
+    <Content Include="Views\tbSubcategorias\Details.cshtml" />
+    <Content Include="Views\tbSubcategorias\DetallesPrueba.cshtml" />
+    <Content Include="Views\tbSubcategorias\Edit.cshtml" />
+    <Content Include="Views\tbSubcategorias\EditarPrueba.cshtml" />
+    <Content Include="Views\tbSubcategorias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

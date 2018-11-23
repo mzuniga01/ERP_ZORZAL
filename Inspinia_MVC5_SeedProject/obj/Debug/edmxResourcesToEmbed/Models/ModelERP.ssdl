@@ -15,6 +15,13 @@
     <Property Name="cgo_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="cgo_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
+  <EntityType Name="tbCategoria">
+    <Key>
+      <PropertyRef Name="Categ_IDCategoria" />
+    </Key>
+    <Property Name="Categ_IDCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Categ_Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
   <EntityType Name="tbDepartamentos">
     <Key>
       <PropertyRef Name="dpto_Codigo" />
@@ -53,6 +60,14 @@
     <Property Name="mpio_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="dpto_Codigo" Type="char" MaxLength="2" Nullable="false" />
   </EntityType>
+  <EntityType Name="tbSubcategoria">
+    <Key>
+      <PropertyRef Name="SubCateg_IDSubCategoria" />
+    </Key>
+    <Property Name="SubCateg_IDSubCategoria" Type="int" Nullable="false" />
+    <Property Name="SubCateg_IDCategoria" Type="int" Nullable="false" />
+    <Property Name="SubCateg_Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
   <EntityType Name="tbTasasCambio">
     <Key>
       <PropertyRef Name="tcam_Codigo" />
@@ -66,7 +81,7 @@
     <Key>
       <PropertyRef Name="tpbdg_Codigo" />
     </Key>
-    <Property Name="tpbdg_Codigo" Type="int" Nullable="false" />
+    <Property Name="tpbdg_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tpbdg_Descripcion" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="tbTiposDocumento">
@@ -114,11 +129,13 @@
   <EntityContainer Name="ERP_ZORZALModelStoreContainer">
     <EntitySet Name="tbCajas" EntityType="Self.tbCajas" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbCargos" EntityType="Self.tbCargos" Schema="Gral" store:Type="Tables" />
+    <EntitySet Name="tbCategoria" EntityType="Self.tbCategoria" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbDepartamentos" EntityType="Self.tbDepartamentos" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbEstados" EntityType="Self.tbEstados" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbLineasPago" EntityType="Self.tbLineasPago" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbMonedas" EntityType="Self.tbMonedas" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbMunicipios" EntityType="Self.tbMunicipios" Schema="Gral" store:Type="Tables" />
+    <EntitySet Name="tbSubcategoria" EntityType="Self.tbSubcategoria" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbTasasCambio" EntityType="Self.tbTasasCambio" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbTiposBodega" EntityType="Self.tbTiposBodega" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbTiposDocumento" EntityType="Self.tbTiposDocumento" Schema="Gral" store:Type="Tables" />

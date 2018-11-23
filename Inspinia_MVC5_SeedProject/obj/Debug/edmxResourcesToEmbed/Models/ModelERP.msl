@@ -127,5 +127,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbCategoria">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCategoria">
+        <MappingFragment StoreEntitySet="tbCategoria">
+          <ScalarProperty Name="Categ_Descripcion" ColumnName="Categ_Descripcion" />
+          <ScalarProperty Name="Categ_IDCategoria" ColumnName="Categ_IDCategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbSubcategoria">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSubcategoria">
+        <MappingFragment StoreEntitySet="tbSubcategoria">
+          <ScalarProperty Name="SubCateg_Descripcion" ColumnName="SubCateg_Descripcion" />
+          <ScalarProperty Name="SubCateg_IDCategoria" ColumnName="SubCateg_IDCategoria" />
+          <ScalarProperty Name="SubCateg_IDSubCategoria" ColumnName="SubCateg_IDSubCategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

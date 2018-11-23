@@ -12,9 +12,10 @@ namespace Inspinia_MVC5_SeedProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbEstados
+    public partial class tbSubcategoria
     {
-        public string estad_Codigo { get; set; }
-        public string estad_Descripcion { get; set; }
+        public int SubCateg_IDSubCategoria { get; set; }
+        public int SubCateg_IDCategoria { get; set; }
+        public string SubCateg_Descripcion { get; set; }
     }
 }

@@ -23,6 +23,8 @@
     <EntitySet Name="tbTiposInventario" EntityType="ERP_ZORZALModel.tbTiposInventario" />
     <EntitySet Name="tbTiposSalida" EntityType="ERP_ZORZALModel.tbTiposSalida" />
     <EntitySet Name="tbUnidadesMedida" EntityType="ERP_ZORZALModel.tbUnidadesMedida" />
+    <EntitySet Name="tbCategoria" EntityType="ERP_ZORZALModel.tbCategoria" />
+    <EntitySet Name="tbSubcategoria" EntityType="ERP_ZORZALModel.tbSubcategoria" />
   </EntityContainer>
   <EntityType Name="tbCajas">
     <Key>
@@ -127,5 +129,20 @@
     </Key>
     <Property Name="udsm_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="udsm_DESCRIPCION" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbCategoria">
+    <Key>
+      <PropertyRef Name="Categ_IDCategoria" />
+    </Key>
+    <Property Name="Categ_IDCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Categ_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbSubcategoria">
+    <Key>
+      <PropertyRef Name="SubCateg_IDSubCategoria" />
+    </Key>
+    <Property Name="SubCateg_IDSubCategoria" Type="Int32" Nullable="false" />
+    <Property Name="SubCateg_IDCategoria" Type="Int32" Nullable="false" />
+    <Property Name="SubCateg_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>
