@@ -20,7 +20,9 @@ namespace Inspinia_MVC5_SeedProject
             "~/Scripts/jquery.validate.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.min.js"));
+                      "~/Scripts/bootstrap.min.js",
+                      "~/Scripts/dataTables/jquery.dataTables.min.js",
+                      "~/Scripts/dataTables/dataTables.bootstrap.min.js"));
 
             // Inspinia script
             bundles.Add(new ScriptBundle("~/bundles/inspinia").Include(
@@ -41,7 +43,20 @@ namespace Inspinia_MVC5_SeedProject
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/animate.css",
+                      "~/Content/DataTables/css/jquery.dataTables.min.css",
+                      "~/Content/DataTables/css/jquery.dataTables.css",
                       "~/Content/style.css"));
+
+            bundles.Add(new StyleBundle("~/Content/DataTables")
+                .Include("~/Content/DataTables/css/dataTables.bootstrap.css")
+                );
+
+            bundles.Add(new ScriptBundle("~/Scripts/DataTables")
+                      .Include(
+                            "~/Scripts/DataTables/jquery.dataTables.js",
+                            "~/Scripts/DataTables/dataTables.responsive.js",
+                            "~/Scripts/DataTables/dataTables.bootstrap.js"
+                ));
 
             // Font Awesome icons
             bundles.Add(new StyleBundle("~/font-awesome/css").Include(

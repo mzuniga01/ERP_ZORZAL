@@ -2,7 +2,7 @@
 
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Inicio";
 
     Layout = "~/Views/Shared/_Layout.cshtml";
 
@@ -23,7 +23,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Tipos de Bodega</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Nuevo", "Crear", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -57,16 +57,19 @@
 }
 
 </table>*@
-            <table class="table table-striped">
-                <tr>
-                    <th>
-                        Código
-                    </th>
-                    <th>
-                        Descripción
-                    </th>
-                    <th></th>
-                </tr>
+            <table class="table table-striped" id="datatables">
+                <thead>
+                    <tr>
+                        <th>
+                            Código
+                        </th>
+                        <th>
+                            Descripción
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
                     <tr>
                         <td>
                             1
@@ -75,11 +78,14 @@
                             Central
                         </td>
                         <td>
+
+
                             <bu>
-                            @Html.ActionLink("Detalles", "Details", new { @class = "btn btn-primary btn-sm" })
-                            @Html.ActionLink("Editar", "Edit", new { @class = "btn btn-white btn-sm" })
+                                @Html.ActionLink("Detalles", "Detalle", new { @class = "btn btn-primary btn-sm" })
+                                @Html.ActionLink("Editar", "Editar", new { @class = "btn btn-white btn-sm" })
                         </td>
                     </tr>
+                </tbody>
             </table>
 
                 </div>
@@ -88,6 +94,33 @@
     </div>
  </div>
 
+@section scripts{
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.responsive.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    <script>
+    $(document).ready(function () {
+    $('#datatables').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+        },
+
+    });
+
+    });
+
+    </script>
+}
 
 
 

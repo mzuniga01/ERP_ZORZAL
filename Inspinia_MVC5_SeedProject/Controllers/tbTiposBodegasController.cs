@@ -49,6 +49,15 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             }
             return View(tbTiposBodega);
         }
+        public ActionResult Details()
+        {
+            return View();
+        }
+        public ActionResult Detalle()
+        {
+            return View();
+        }
+
 
         // GET: /tbTiposBodegas/Create
         public ActionResult Create()
@@ -56,6 +65,14 @@ namespace Inspinia_MVC5_SeedProject.Controllers
 
             return View();
         }
+
+        public ActionResult Crear()
+        {
+
+            return View();
+        }
+
+       
 
         // POST: /tbTiposBodegas/Create
 
@@ -83,6 +100,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             return View(tbTiposBodega);
         }
 
+        
+
         // GET: /tbTiposBodegas/Edit/5
 
         public ActionResult Edit(int? id)
@@ -103,6 +122,11 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             return View(tbTiposBodega);
         }
 
+        public ActionResult Editar()
+        {
+
+            return View();
+        }
         // POST: /tbTiposBodegas/Edit/5
 
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 

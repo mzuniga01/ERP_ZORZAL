@@ -1,0 +1,77 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbTiposEntrada
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Detalles</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("Lista", "Index")
+            </li>
+            <li class="active">
+                <strong>Detalles</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalles tipos de entrada.</h5>
+                </div>
+                <div class="ibox-content">
+
+        <dl class="dl-horizontal">
+            <dt>
+                <label class="control-label col-md-2">Codigo.</label>
+            </dt>
+
+            <dd>
+                1
+            </dd>
+
+        </dl>
+
+				    <dl class="dl-horizontal">
+        <dt>
+            <label class="control-label col-md-2">Descripcion</label>
+        </dt>
+
+        <dd>
+            Compra.
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Editar", "Editar", null, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Regresar a lista.", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
