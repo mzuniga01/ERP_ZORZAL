@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ERP_ZORZALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbEstados">
+    <Key>
+      <PropertyRef Name="estad_Codigo" />
+    </Key>
+    <Property Name="estad_Codigo" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="estad_Descripcion" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ERP_ZORZALModelStoreContainer">
+    <EntitySet Name="tbEstados" EntityType="Self.tbEstados" Schema="Gral" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

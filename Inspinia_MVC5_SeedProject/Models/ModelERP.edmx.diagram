@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e3cdae754a7b458288829a69167bdea2" Name="Diagram1">
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbEstados" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbCajas" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbDepartamentos" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbLineasPago" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbMonedas" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbMunicipios" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTiposDocumento" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTiposPago" Width="1.5" PointX="2.75" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

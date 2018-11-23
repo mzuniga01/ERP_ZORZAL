@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ERP_ZORZALModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbEstados">
+    <Key>
+      <PropertyRef Name="estad_Codigo" />
+    </Key>
+    <Property Name="estad_Codigo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="estad_Descripcion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ERP_ZORZALEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbEstados" EntityType="Self.tbEstados" />
+  </EntityContainer>
+</Schema>

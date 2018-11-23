@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ERP_ZORZALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbCajas">
+          <Key>
+            <PropertyRef Name="ca_CodCaja" />
+          </Key>
+          <Property Name="ca_CodCaja" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="ca_Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ca_CodSucursal" Type="varchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbDepartamentos">
+          <Key>
+            <PropertyRef Name="dpto_Codigo" />
+          </Key>
+          <Property Name="dpto_Codigo" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="dpto_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbEstados">
+          <Key>
+            <PropertyRef Name="estad_Codigo" />
+          </Key>
+          <Property Name="estad_Codigo" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="estad_Descripcion" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbLineasPago">
+          <Key>
+            <PropertyRef Name="lnpago_Codigo" />
+          </Key>
+          <Property Name="lnpago_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lnpago_Plazo" Type="nvarchar" MaxLength="25" />
+          <Property Name="lnpago_Monto" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="tbMonedas">
+          <Key>
+            <PropertyRef Name="mnda_ISO" />
+          </Key>
+          <Property Name="mnda_ISO" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="mnda_Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="mnda_Pais" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbMunicipios">
+          <Key>
+            <PropertyRef Name="mpio_Codigo" />
+          </Key>
+          <Property Name="mpio_Codigo" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="mpio_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="dpto_Codigo" Type="char" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbTiposDocumento">
+          <Key>
+            <PropertyRef Name="docCodTipoDocumento" />
+          </Key>
+          <Property Name="docCodTipoDocumento" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="docNombreDocumento" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbTiposPago">
+          <Key>
+            <PropertyRef Name="tpago_Codigo" />
+          </Key>
+          <Property Name="tpago_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tpago_Descripcion" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ERP_ZORZALModelStoreContainer">
+          <EntitySet Name="tbCajas" EntityType="Self.tbCajas" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbDepartamentos" EntityType="Self.tbDepartamentos" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbEstados" EntityType="Self.tbEstados" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbLineasPago" EntityType="Self.tbLineasPago" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbMonedas" EntityType="Self.tbMonedas" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbMunicipios" EntityType="Self.tbMunicipios" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbTiposDocumento" EntityType="Self.tbTiposDocumento" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbTiposPago" EntityType="Self.tbTiposPago" Schema="Gral" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ERP_ZORZALModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbEstados">
+          <Key>
+            <PropertyRef Name="estad_Codigo" />
+          </Key>
+          <Property Name="estad_Codigo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="estad_Descripcion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ERP_ZORZALEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbEstados" EntityType="Self.tbEstados" />
+          <EntitySet Name="tbCajas" EntityType="ERP_ZORZALModel.tbCajas" />
+          <EntitySet Name="tbDepartamentos" EntityType="ERP_ZORZALModel.tbDepartamentos" />
+          <EntitySet Name="tbLineasPago" EntityType="ERP_ZORZALModel.tbLineasPago" />
+          <EntitySet Name="tbMonedas" EntityType="ERP_ZORZALModel.tbMonedas" />
+          <EntitySet Name="tbMunicipios" EntityType="ERP_ZORZALModel.tbMunicipios" />
+          <EntitySet Name="tbTiposDocumento" EntityType="ERP_ZORZALModel.tbTiposDocumento" />
+          <EntitySet Name="tbTiposPago" EntityType="ERP_ZORZALModel.tbTiposPago" />
+        </EntityContainer>
+        <EntityType Name="tbCajas">
+          <Key>
+            <PropertyRef Name="ca_CodCaja" />
+          </Key>
+          <Property Name="ca_CodCaja" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="ca_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ca_CodSucursal" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbDepartamentos">
+          <Key>
+            <PropertyRef Name="dpto_Codigo" />
+          </Key>
+          <Property Name="dpto_Codigo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="dpto_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbLineasPago">
+          <Key>
+            <PropertyRef Name="lnpago_Codigo" />
+          </Key>
+          <Property Name="lnpago_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lnpago_Plazo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="lnpago_Monto" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="tbMonedas">
+          <Key>
+            <PropertyRef Name="mnda_ISO" />
+          </Key>
+          <Property Name="mnda_ISO" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="mnda_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mnda_Pais" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbMunicipios">
+          <Key>
+            <PropertyRef Name="mpio_Codigo" />
+          </Key>
+          <Property Name="mpio_Codigo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="mpio_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dpto_Codigo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbTiposDocumento">
+          <Key>
+            <PropertyRef Name="docCodTipoDocumento" />
+          </Key>
+          <Property Name="docCodTipoDocumento" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="docNombreDocumento" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbTiposPago">
+          <Key>
+            <PropertyRef Name="tpago_Codigo" />
+          </Key>
+          <Property Name="tpago_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tpago_Descripcion" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ERP_ZORZALModelStoreContainer" CdmEntityContainer="ERP_ZORZALEntities">
+          <EntitySetMapping Name="tbEstados">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEstados">
+              <MappingFragment StoreEntitySet="tbEstados">
+                <ScalarProperty Name="estad_Codigo" ColumnName="estad_Codigo" />
+                <ScalarProperty Name="estad_Descripcion" ColumnName="estad_Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbCajas">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCajas">
+              <MappingFragment StoreEntitySet="tbCajas">
+                <ScalarProperty Name="ca_CodSucursal" ColumnName="ca_CodSucursal" />
+                <ScalarProperty Name="ca_Descripcion" ColumnName="ca_Descripcion" />
+                <ScalarProperty Name="ca_CodCaja" ColumnName="ca_CodCaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbDepartamentos">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDepartamentos">
+              <MappingFragment StoreEntitySet="tbDepartamentos">
+                <ScalarProperty Name="dpto_Descripcion" ColumnName="dpto_Descripcion" />
+                <ScalarProperty Name="dpto_Codigo" ColumnName="dpto_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbLineasPago">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbLineasPago">
+              <MappingFragment StoreEntitySet="tbLineasPago">
+                <ScalarProperty Name="lnpago_Monto" ColumnName="lnpago_Monto" />
+                <ScalarProperty Name="lnpago_Plazo" ColumnName="lnpago_Plazo" />
+                <ScalarProperty Name="lnpago_Codigo" ColumnName="lnpago_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbMonedas">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbMonedas">
+              <MappingFragment StoreEntitySet="tbMonedas">
+                <ScalarProperty Name="mnda_Pais" ColumnName="mnda_Pais" />
+                <ScalarProperty Name="mnda_Nombre" ColumnName="mnda_Nombre" />
+                <ScalarProperty Name="mnda_ISO" ColumnName="mnda_ISO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbMunicipios">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbMunicipios">
+              <MappingFragment StoreEntitySet="tbMunicipios">
+                <ScalarProperty Name="dpto_Codigo" ColumnName="dpto_Codigo" />
+                <ScalarProperty Name="mpio_Descripcion" ColumnName="mpio_Descripcion" />
+                <ScalarProperty Name="mpio_Codigo" ColumnName="mpio_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbTiposDocumento">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposDocumento">
+              <MappingFragment StoreEntitySet="tbTiposDocumento">
+                <ScalarProperty Name="docNombreDocumento" ColumnName="docNombreDocumento" />
+                <ScalarProperty Name="docCodTipoDocumento" ColumnName="docCodTipoDocumento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbTiposPago">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposPago">
+              <MappingFragment StoreEntitySet="tbTiposPago">
+                <ScalarProperty Name="tpago_Descripcion" ColumnName="tpago_Descripcion" />
+                <ScalarProperty Name="tpago_Codigo" ColumnName="tpago_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
