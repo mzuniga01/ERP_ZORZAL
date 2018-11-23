@@ -1,0 +1,57 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbCargos
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Detalles de Cargos</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("Cargos", "Index")
+            </li>
+            <li class="active">
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalles de Cargos</h5>
+                </div>
+                <div class="ibox-content">
+
+       <label>Codigo: 1</label><br/>
+       <label>Descripcion: Jefe de Bodega</label><br/>
+
+
+
+        @Html.ActionLink("Regresar a la lista", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

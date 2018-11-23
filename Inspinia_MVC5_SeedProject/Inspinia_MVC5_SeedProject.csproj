@@ -178,9 +178,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\tbCargosController.cs" />
     <Compile Include="Controllers\tbEstadosController.cs" />
     <Compile Include="Controllers\tbTiposBodegasController.cs" />
+    <Compile Include="Controllers\tbTiposEntradasController.cs" />
+    <Compile Include="Controllers\tbTiposInventariosController.cs" />
     <Compile Include="Controllers\tbTiposSalidaController.cs" />
+    <Compile Include="Controllers\tbUnidadesMedidasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -635,6 +639,25 @@
     <Content Include="Views\tbTiposBodegas\Crear.cshtml" />
     <Content Include="Views\tbTiposBodegas\Detalle.cshtml" />
     <Content Include="Views\tbTiposBodegas\Editar.cshtml" />
+    <Content Include="Views\tbCargos\Create.cshtml" />
+    <Content Include="Views\tbCargos\Delete.cshtml" />
+    <Content Include="Views\tbCargos\Details.cshtml" />
+    <Content Include="Views\tbCargos\Detalles.cshtml" />
+    <Content Include="Views\tbCargos\Edit.cshtml" />
+    <Content Include="Views\tbCargos\Editar.cshtml" />
+    <Content Include="Views\tbCargos\Index.cshtml" />
+    <Content Include="Views\tbTiposInventarios\Create.cshtml" />
+    <Content Include="Views\tbTiposInventarios\Delete.cshtml" />
+    <Content Include="Views\tbTiposInventarios\Details.cshtml" />
+    <Content Include="Views\tbTiposInventarios\detalles.cshtml" />
+    <Content Include="Views\tbTiposInventarios\Edit.cshtml" />
+    <Content Include="Views\tbTiposInventarios\edtar.cshtml" />
+    <Content Include="Views\tbTiposInventarios\Index.cshtml" />
+    <Content Include="Views\tbUnidadesMedidas\Create.cshtml" />
+    <Content Include="Views\tbUnidadesMedidas\Delete.cshtml" />
+    <Content Include="Views\tbUnidadesMedidas\Details.cshtml" />
+    <Content Include="Views\tbUnidadesMedidas\Edit.cshtml" />
+    <Content Include="Views\tbUnidadesMedidas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
