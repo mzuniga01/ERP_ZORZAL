@@ -179,6 +179,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\tbEstadosController.cs" />
+    <Compile Include="Controllers\tbTiposBodegasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,7 +201,49 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbCajas.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbCargos.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbDepartamentos.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbEstados.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbLineasPago.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbMonedas.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbMunicipios.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbTasasCambio.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbTiposBodega.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbTiposDocumento.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbTiposEntrada.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbTiposInventario.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbTiposPago.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbTiposSalida.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbUnidadesMedida.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -331,6 +374,11 @@
     <Content Include="Views\tbEstados\Details.cshtml" />
     <Content Include="Views\tbEstados\Edit.cshtml" />
     <Content Include="Views\tbEstados\Index.cshtml" />
+    <Content Include="Views\tbTiposBodegas\Create.cshtml" />
+    <Content Include="Views\tbTiposBodegas\Delete.cshtml" />
+    <Content Include="Views\tbTiposBodegas\Details.cshtml" />
+    <Content Include="Views\tbTiposBodegas\Edit.cshtml" />
+    <Content Include="Views\tbTiposBodegas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

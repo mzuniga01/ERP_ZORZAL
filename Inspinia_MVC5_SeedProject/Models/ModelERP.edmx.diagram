@@ -13,6 +13,13 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbMunicipios" Width="1.5" PointX="5.75" PointY="0.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbTiposDocumento" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbTiposPago" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbCargos" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTasasCambio" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTiposBodega" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTiposEntrada" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTiposInventario" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTiposSalida" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbUnidadesMedida" Width="1.5" PointX="9.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

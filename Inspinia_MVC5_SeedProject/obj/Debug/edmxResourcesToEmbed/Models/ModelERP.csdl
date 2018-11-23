@@ -9,5 +9,123 @@
   </EntityType>
   <EntityContainer Name="ERP_ZORZALEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="tbEstados" EntityType="Self.tbEstados" />
+    <EntitySet Name="tbCajas" EntityType="ERP_ZORZALModel.tbCajas" />
+    <EntitySet Name="tbDepartamentos" EntityType="ERP_ZORZALModel.tbDepartamentos" />
+    <EntitySet Name="tbLineasPago" EntityType="ERP_ZORZALModel.tbLineasPago" />
+    <EntitySet Name="tbMonedas" EntityType="ERP_ZORZALModel.tbMonedas" />
+    <EntitySet Name="tbMunicipios" EntityType="ERP_ZORZALModel.tbMunicipios" />
+    <EntitySet Name="tbTiposDocumento" EntityType="ERP_ZORZALModel.tbTiposDocumento" />
+    <EntitySet Name="tbTiposPago" EntityType="ERP_ZORZALModel.tbTiposPago" />
+    <EntitySet Name="tbCargos" EntityType="ERP_ZORZALModel.tbCargos" />
+    <EntitySet Name="tbTasasCambio" EntityType="ERP_ZORZALModel.tbTasasCambio" />
+    <EntitySet Name="tbTiposBodega" EntityType="ERP_ZORZALModel.tbTiposBodega" />
+    <EntitySet Name="tbTiposEntrada" EntityType="ERP_ZORZALModel.tbTiposEntrada" />
+    <EntitySet Name="tbTiposInventario" EntityType="ERP_ZORZALModel.tbTiposInventario" />
+    <EntitySet Name="tbTiposSalida" EntityType="ERP_ZORZALModel.tbTiposSalida" />
+    <EntitySet Name="tbUnidadesMedida" EntityType="ERP_ZORZALModel.tbUnidadesMedida" />
   </EntityContainer>
+  <EntityType Name="tbCajas">
+    <Key>
+      <PropertyRef Name="ca_CodCaja" />
+    </Key>
+    <Property Name="ca_CodCaja" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="ca_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ca_CodSucursal" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbDepartamentos">
+    <Key>
+      <PropertyRef Name="dpto_Codigo" />
+    </Key>
+    <Property Name="dpto_Codigo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="dpto_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbLineasPago">
+    <Key>
+      <PropertyRef Name="lnpago_Codigo" />
+    </Key>
+    <Property Name="lnpago_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="lnpago_Plazo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="lnpago_Monto" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tbMonedas">
+    <Key>
+      <PropertyRef Name="mnda_ISO" />
+    </Key>
+    <Property Name="mnda_ISO" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="mnda_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mnda_Pais" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbMunicipios">
+    <Key>
+      <PropertyRef Name="mpio_Codigo" />
+    </Key>
+    <Property Name="mpio_Codigo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="mpio_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="dpto_Codigo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbTiposDocumento">
+    <Key>
+      <PropertyRef Name="docCodTipoDocumento" />
+    </Key>
+    <Property Name="docCodTipoDocumento" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="docNombreDocumento" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbTiposPago">
+    <Key>
+      <PropertyRef Name="tpago_Codigo" />
+    </Key>
+    <Property Name="tpago_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tpago_Descripcion" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbCargos">
+    <Key>
+      <PropertyRef Name="cgo_Codigo" />
+    </Key>
+    <Property Name="cgo_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cgo_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbTasasCambio">
+    <Key>
+      <PropertyRef Name="tcam_Codigo" />
+    </Key>
+    <Property Name="tcam_Codigo" Type="Int32" Nullable="false" />
+    <Property Name="mnda_ISO" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="tcam_ISOMonedaDestino" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="tcam_FechaTasasCambio" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbTiposBodega">
+    <Key>
+      <PropertyRef Name="tpbdg_Codigo" />
+    </Key>
+    <Property Name="tpbdg_Codigo" Type="Int32" Nullable="false" />
+    <Property Name="tpbdg_Descripcion" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbTiposEntrada">
+    <Key>
+      <PropertyRef Name="tpde_Codigo" />
+    </Key>
+    <Property Name="tpde_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tpde_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbTiposInventario">
+    <Key>
+      <PropertyRef Name="tpinv_Codigo" />
+    </Key>
+    <Property Name="tpinv_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tpinv_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbTiposSalida">
+    <Key>
+      <PropertyRef Name="tpds_Codigo" />
+    </Key>
+    <Property Name="tpds_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tpds_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbUnidadesMedida">
+    <Key>
+      <PropertyRef Name="udsm_Codigo" />
+    </Key>
+    <Property Name="udsm_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="udsm_DESCRIPCION" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

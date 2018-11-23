@@ -9,5 +9,123 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbCajas">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCajas">
+        <MappingFragment StoreEntitySet="tbCajas">
+          <ScalarProperty Name="ca_CodSucursal" ColumnName="ca_CodSucursal" />
+          <ScalarProperty Name="ca_Descripcion" ColumnName="ca_Descripcion" />
+          <ScalarProperty Name="ca_CodCaja" ColumnName="ca_CodCaja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbDepartamentos">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDepartamentos">
+        <MappingFragment StoreEntitySet="tbDepartamentos">
+          <ScalarProperty Name="dpto_Descripcion" ColumnName="dpto_Descripcion" />
+          <ScalarProperty Name="dpto_Codigo" ColumnName="dpto_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbLineasPago">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbLineasPago">
+        <MappingFragment StoreEntitySet="tbLineasPago">
+          <ScalarProperty Name="lnpago_Monto" ColumnName="lnpago_Monto" />
+          <ScalarProperty Name="lnpago_Plazo" ColumnName="lnpago_Plazo" />
+          <ScalarProperty Name="lnpago_Codigo" ColumnName="lnpago_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbMonedas">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbMonedas">
+        <MappingFragment StoreEntitySet="tbMonedas">
+          <ScalarProperty Name="mnda_Pais" ColumnName="mnda_Pais" />
+          <ScalarProperty Name="mnda_Nombre" ColumnName="mnda_Nombre" />
+          <ScalarProperty Name="mnda_ISO" ColumnName="mnda_ISO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbMunicipios">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbMunicipios">
+        <MappingFragment StoreEntitySet="tbMunicipios">
+          <ScalarProperty Name="dpto_Codigo" ColumnName="dpto_Codigo" />
+          <ScalarProperty Name="mpio_Descripcion" ColumnName="mpio_Descripcion" />
+          <ScalarProperty Name="mpio_Codigo" ColumnName="mpio_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbTiposDocumento">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposDocumento">
+        <MappingFragment StoreEntitySet="tbTiposDocumento">
+          <ScalarProperty Name="docNombreDocumento" ColumnName="docNombreDocumento" />
+          <ScalarProperty Name="docCodTipoDocumento" ColumnName="docCodTipoDocumento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbTiposPago">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposPago">
+        <MappingFragment StoreEntitySet="tbTiposPago">
+          <ScalarProperty Name="tpago_Descripcion" ColumnName="tpago_Descripcion" />
+          <ScalarProperty Name="tpago_Codigo" ColumnName="tpago_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbCargos">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCargos">
+        <MappingFragment StoreEntitySet="tbCargos">
+          <ScalarProperty Name="cgo_Descripcion" ColumnName="cgo_Descripcion" />
+          <ScalarProperty Name="cgo_Codigo" ColumnName="cgo_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbTasasCambio">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTasasCambio">
+        <MappingFragment StoreEntitySet="tbTasasCambio">
+          <ScalarProperty Name="tcam_FechaTasasCambio" ColumnName="tcam_FechaTasasCambio" />
+          <ScalarProperty Name="tcam_ISOMonedaDestino" ColumnName="tcam_ISOMonedaDestino" />
+          <ScalarProperty Name="mnda_ISO" ColumnName="mnda_ISO" />
+          <ScalarProperty Name="tcam_Codigo" ColumnName="tcam_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbTiposBodega">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposBodega">
+        <MappingFragment StoreEntitySet="tbTiposBodega">
+          <ScalarProperty Name="tpbdg_Descripcion" ColumnName="tpbdg_Descripcion" />
+          <ScalarProperty Name="tpbdg_Codigo" ColumnName="tpbdg_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbTiposEntrada">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposEntrada">
+        <MappingFragment StoreEntitySet="tbTiposEntrada">
+          <ScalarProperty Name="tpde_Descripcion" ColumnName="tpde_Descripcion" />
+          <ScalarProperty Name="tpde_Codigo" ColumnName="tpde_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbTiposInventario">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposInventario">
+        <MappingFragment StoreEntitySet="tbTiposInventario">
+          <ScalarProperty Name="tpinv_Descripcion" ColumnName="tpinv_Descripcion" />
+          <ScalarProperty Name="tpinv_Codigo" ColumnName="tpinv_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbTiposSalida">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposSalida">
+        <MappingFragment StoreEntitySet="tbTiposSalida">
+          <ScalarProperty Name="tpds_Descripcion" ColumnName="tpds_Descripcion" />
+          <ScalarProperty Name="tpds_Codigo" ColumnName="tpds_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbUnidadesMedida">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbUnidadesMedida">
+        <MappingFragment StoreEntitySet="tbUnidadesMedida">
+          <ScalarProperty Name="udsm_DESCRIPCION" ColumnName="udsm_DESCRIPCION" />
+          <ScalarProperty Name="udsm_Codigo" ColumnName="udsm_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

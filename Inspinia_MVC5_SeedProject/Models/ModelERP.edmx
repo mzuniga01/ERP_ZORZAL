@@ -13,6 +13,13 @@
           <Property Name="ca_Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ca_CodSucursal" Type="varchar" MaxLength="8" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbCargos">
+          <Key>
+            <PropertyRef Name="cgo_Codigo" />
+          </Key>
+          <Property Name="cgo_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cgo_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="tbDepartamentos">
           <Key>
             <PropertyRef Name="dpto_Codigo" />
@@ -51,12 +58,42 @@
           <Property Name="mpio_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="dpto_Codigo" Type="char" MaxLength="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbTasasCambio">
+          <Key>
+            <PropertyRef Name="tcam_Codigo" />
+          </Key>
+          <Property Name="tcam_Codigo" Type="int" Nullable="false" />
+          <Property Name="mnda_ISO" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="tcam_ISOMonedaDestino" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="tcam_FechaTasasCambio" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbTiposBodega">
+          <Key>
+            <PropertyRef Name="tpbdg_Codigo" />
+          </Key>
+          <Property Name="tpbdg_Codigo" Type="int" Nullable="false" />
+          <Property Name="tpbdg_Descripcion" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="tbTiposDocumento">
           <Key>
             <PropertyRef Name="docCodTipoDocumento" />
           </Key>
           <Property Name="docCodTipoDocumento" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="docNombreDocumento" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbTiposEntrada">
+          <Key>
+            <PropertyRef Name="tpde_Codigo" />
+          </Key>
+          <Property Name="tpde_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tpde_Descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbTiposInventario">
+          <Key>
+            <PropertyRef Name="tpinv_Codigo" />
+          </Key>
+          <Property Name="tpinv_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tpinv_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="tbTiposPago">
           <Key>
@@ -65,15 +102,36 @@
           <Property Name="tpago_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tpago_Descripcion" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbTiposSalida">
+          <Key>
+            <PropertyRef Name="tpds_Codigo" />
+          </Key>
+          <Property Name="tpds_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tpds_Descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbUnidadesMedida">
+          <Key>
+            <PropertyRef Name="udsm_Codigo" />
+          </Key>
+          <Property Name="udsm_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="udsm_DESCRIPCION" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="ERP_ZORZALModelStoreContainer">
           <EntitySet Name="tbCajas" EntityType="Self.tbCajas" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbCargos" EntityType="Self.tbCargos" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbDepartamentos" EntityType="Self.tbDepartamentos" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbEstados" EntityType="Self.tbEstados" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbLineasPago" EntityType="Self.tbLineasPago" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbMonedas" EntityType="Self.tbMonedas" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbMunicipios" EntityType="Self.tbMunicipios" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbTasasCambio" EntityType="Self.tbTasasCambio" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbTiposBodega" EntityType="Self.tbTiposBodega" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbTiposDocumento" EntityType="Self.tbTiposDocumento" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbTiposEntrada" EntityType="Self.tbTiposEntrada" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbTiposInventario" EntityType="Self.tbTiposInventario" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbTiposPago" EntityType="Self.tbTiposPago" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbTiposSalida" EntityType="Self.tbTiposSalida" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbUnidadesMedida" EntityType="Self.tbUnidadesMedida" Schema="Gral" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -95,6 +153,13 @@
           <EntitySet Name="tbMunicipios" EntityType="ERP_ZORZALModel.tbMunicipios" />
           <EntitySet Name="tbTiposDocumento" EntityType="ERP_ZORZALModel.tbTiposDocumento" />
           <EntitySet Name="tbTiposPago" EntityType="ERP_ZORZALModel.tbTiposPago" />
+          <EntitySet Name="tbCargos" EntityType="ERP_ZORZALModel.tbCargos" />
+          <EntitySet Name="tbTasasCambio" EntityType="ERP_ZORZALModel.tbTasasCambio" />
+          <EntitySet Name="tbTiposBodega" EntityType="ERP_ZORZALModel.tbTiposBodega" />
+          <EntitySet Name="tbTiposEntrada" EntityType="ERP_ZORZALModel.tbTiposEntrada" />
+          <EntitySet Name="tbTiposInventario" EntityType="ERP_ZORZALModel.tbTiposInventario" />
+          <EntitySet Name="tbTiposSalida" EntityType="ERP_ZORZALModel.tbTiposSalida" />
+          <EntitySet Name="tbUnidadesMedida" EntityType="ERP_ZORZALModel.tbUnidadesMedida" />
         </EntityContainer>
         <EntityType Name="tbCajas">
           <Key>
@@ -148,6 +213,57 @@
           </Key>
           <Property Name="tpago_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tpago_Descripcion" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbCargos">
+          <Key>
+            <PropertyRef Name="cgo_Codigo" />
+          </Key>
+          <Property Name="cgo_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cgo_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbTasasCambio">
+          <Key>
+            <PropertyRef Name="tcam_Codigo" />
+          </Key>
+          <Property Name="tcam_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="mnda_ISO" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="tcam_ISOMonedaDestino" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="tcam_FechaTasasCambio" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbTiposBodega">
+          <Key>
+            <PropertyRef Name="tpbdg_Codigo" />
+          </Key>
+          <Property Name="tpbdg_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="tpbdg_Descripcion" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbTiposEntrada">
+          <Key>
+            <PropertyRef Name="tpde_Codigo" />
+          </Key>
+          <Property Name="tpde_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tpde_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbTiposInventario">
+          <Key>
+            <PropertyRef Name="tpinv_Codigo" />
+          </Key>
+          <Property Name="tpinv_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tpinv_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbTiposSalida">
+          <Key>
+            <PropertyRef Name="tpds_Codigo" />
+          </Key>
+          <Property Name="tpds_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tpds_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbUnidadesMedida">
+          <Key>
+            <PropertyRef Name="udsm_Codigo" />
+          </Key>
+          <Property Name="udsm_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="udsm_DESCRIPCION" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -220,6 +336,64 @@
               <MappingFragment StoreEntitySet="tbTiposPago">
                 <ScalarProperty Name="tpago_Descripcion" ColumnName="tpago_Descripcion" />
                 <ScalarProperty Name="tpago_Codigo" ColumnName="tpago_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbCargos">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCargos">
+              <MappingFragment StoreEntitySet="tbCargos">
+                <ScalarProperty Name="cgo_Descripcion" ColumnName="cgo_Descripcion" />
+                <ScalarProperty Name="cgo_Codigo" ColumnName="cgo_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbTasasCambio">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTasasCambio">
+              <MappingFragment StoreEntitySet="tbTasasCambio">
+                <ScalarProperty Name="tcam_FechaTasasCambio" ColumnName="tcam_FechaTasasCambio" />
+                <ScalarProperty Name="tcam_ISOMonedaDestino" ColumnName="tcam_ISOMonedaDestino" />
+                <ScalarProperty Name="mnda_ISO" ColumnName="mnda_ISO" />
+                <ScalarProperty Name="tcam_Codigo" ColumnName="tcam_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbTiposBodega">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposBodega">
+              <MappingFragment StoreEntitySet="tbTiposBodega">
+                <ScalarProperty Name="tpbdg_Descripcion" ColumnName="tpbdg_Descripcion" />
+                <ScalarProperty Name="tpbdg_Codigo" ColumnName="tpbdg_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbTiposEntrada">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposEntrada">
+              <MappingFragment StoreEntitySet="tbTiposEntrada">
+                <ScalarProperty Name="tpde_Descripcion" ColumnName="tpde_Descripcion" />
+                <ScalarProperty Name="tpde_Codigo" ColumnName="tpde_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbTiposInventario">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposInventario">
+              <MappingFragment StoreEntitySet="tbTiposInventario">
+                <ScalarProperty Name="tpinv_Descripcion" ColumnName="tpinv_Descripcion" />
+                <ScalarProperty Name="tpinv_Codigo" ColumnName="tpinv_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbTiposSalida">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposSalida">
+              <MappingFragment StoreEntitySet="tbTiposSalida">
+                <ScalarProperty Name="tpds_Descripcion" ColumnName="tpds_Descripcion" />
+                <ScalarProperty Name="tpds_Codigo" ColumnName="tpds_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbUnidadesMedida">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbUnidadesMedida">
+              <MappingFragment StoreEntitySet="tbUnidadesMedida">
+                <ScalarProperty Name="udsm_DESCRIPCION" ColumnName="udsm_DESCRIPCION" />
+                <ScalarProperty Name="udsm_Codigo" ColumnName="udsm_Codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

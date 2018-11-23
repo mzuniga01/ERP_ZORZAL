@@ -33,5 +33,12 @@ namespace Inspinia_MVC5_SeedProject.Models
         public virtual DbSet<tbMunicipios> tbMunicipios { get; set; }
         public virtual DbSet<tbTiposDocumento> tbTiposDocumento { get; set; }
         public virtual DbSet<tbTiposPago> tbTiposPago { get; set; }
+        public virtual DbSet<tbCargos> tbCargos { get; set; }
+        public virtual DbSet<tbTasasCambio> tbTasasCambio { get; set; }
+        public virtual DbSet<tbTiposBodega> tbTiposBodega { get; set; }
+        public virtual DbSet<tbTiposEntrada> tbTiposEntrada { get; set; }
+        public virtual DbSet<tbTiposInventario> tbTiposInventario { get; set; }
+        public virtual DbSet<tbTiposSalida> tbTiposSalida { get; set; }
+        public virtual DbSet<tbUnidadesMedida> tbUnidadesMedida { get; set; }
     }
 }
