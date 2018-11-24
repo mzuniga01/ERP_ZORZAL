@@ -1,0 +1,152 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de municipios</h5>
+                </div>
+                <div class="ibox-title">
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ingresarmunicipio">
+                        Ingresar nuevo registro
+                    </button>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                Código
+                            </th>
+                            <th>
+                                Municipio
+                            </th>
+                            <th>
+                                Departamento
+                            </th>
+                            <th>
+                                Acción
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                0101
+                            </td>
+                            <td>
+                                La Ceiba
+                            </td>
+                            <td>
+                                Atlántida
+                            </td>
+                            <td> <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#exampleModal">
+                                    Editar
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                0102
+                            </td>
+                            <td>
+                                El Porvenir
+                            </td>
+                            <td>
+                                Atlántida
+                            </td>
+                            <td>
+
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#exampleModal">
+                                    Editar
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                0103
+                            </td>
+                            <td>
+                                Esparta
+                            </td>
+                            <td>
+                                Atlántida
+                            </td>
+                            <td>
+
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#exampleModal">
+                                    Editar
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                0201
+                            </td>
+                            <td>
+                                Trujillo
+                            </td>
+                            <td>
+                                Colón
+                            </td>
+                            <td>
+
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#exampleModal">
+                                    Editar
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<!-- Editar municipio -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Municipio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_EditMunicipios")
+            </div>
+            <div class="modal-footer">
+                @Html.ActionLink("Guardar", "EditD", null, new { @class = "btn btn-primary" })
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<!-- Ingresar municipio -->
+<div class="modal fade" id="ingresarmunicipio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Municipio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_CreateMunicipios")
+            </div>         
+            <div class="modal-footer">
+                @Html.ActionLink("Guardar", "EditD", null, new { @class = "btn btn-primary" })
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

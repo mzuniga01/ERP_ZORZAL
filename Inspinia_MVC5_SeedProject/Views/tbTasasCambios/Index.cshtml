@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Inspinia_MVC5_SeedProject.Models.tbTasasCambio>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Tasa de Cambio</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>List of tbTasasCambio</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs" })
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                Fecha
+                            </th>
+                            <th>
+                                Moneda de Orgen
+                            </th>
+                            <th>
+                                Moneda Destino
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                23/11/2018
+                            </td>
+                            <td>
+                                HNL
+                            </td>
+                            <td>
+                                USD
+                            </td>
+                            <td>
+                                <input type="button" class="btn btn-primary btn-sm" value="Modificar"></input>
+                                @*@Html.ActionLink("Details", "Details", new { id=item.tcam_Codigo }, new { @class = "btn btn-primary btn-sm"})
+                                    @Html.ActionLink("Edit", "Edit", new { id=item.tcam_Codigo }, new { @class = "btn btn-white btn-sm"})
+                                    @Html.ActionLink("Delete", "Delete", new { id=item.tcam_Codigo }, new { @class = "btn btn-white btn-sm"})*@
+                            </td>
+                        </tr>
+
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

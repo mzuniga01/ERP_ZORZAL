@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Inspinia_MVC5_SeedProject.Models.tbTiposPago>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Tipos de Pago</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Tipos de Pago</h5>
+					<div class="ibox-tools">
+                        <button class="btn btn-primary btn-xs">Crear Nuevo</button>
+						@*@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})*@
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            Codigo
+            @*@Html.DisplayNameFor(model => model.tpago_Descripcion)*@
+        </th>
+        <th>
+            Descripción
+            @*@Html.DisplayNameFor(model => model.tpago_Descripcion)*@
+        </th>
+
+        <th></th>
+        
+    </tr>
+
+@*@foreach (var item in Model) {*@
+    <tr>
+        <td>
+           1
+            @*@Html.DisplayFor(modelItem => item.tpago_Descripcion)*@
+        </td>
+        <td>
+            Crédito
+            @*@Html.DisplayFor(modelItem => item.tpago_Descripcion)*@
+        </td>
+     
+        <td>
+            <button class="btn btn-primary btn-xs"  href="Views/tbTiposPagoes/Edit.cshtml">Editar</button>
+            <button class="btn btn-primary btn-xs">Inactivar</button>
+			@*@Html.ActionLink("Details", "Details", new { id=item.tpago_Codigo }, new { @class = "btn btn-primary btn-sm"})
+
+            @Html.ActionLink("Edit", "Edit", new { id=item.tpago_Codigo }, new { @class = "btn btn-white btn-sm"})
+            @Html.ActionLink("Delete", "Delete", new { id=item.tpago_Codigo }, new { @class = "btn btn-white btn-sm"})*@
+        </td>
+    </tr>
+    <tr>
+
+        <td>
+            2
+            @*@Html.DisplayFor(modelItem => item.tpago_Descripcion)*@
+        </td>
+        <td>
+            Contado
+            @*@Html.DisplayFor(modelItem => item.tpago_Descripcion)*@
+        </td>
+
+
+        <td>
+            <button class="btn btn-primary btn-xs">Editar</button>
+            <button class="btn btn-primary btn-xs">Inactivar</button>
+            @*@Html.ActionLink("Details", "Details", new { id=item.tpago_Codigo }, new { @class = "btn btn-primary btn-sm"})
+
+            @Html.ActionLink("Edit", "Edit", new { id=item.tpago_Codigo }, new { @class = "btn btn-white btn-sm"})
+            @Html.ActionLink("Delete", "Delete", new { id=item.tpago_Codigo }, new { @class = "btn btn-white btn-sm"})*@
+        </td>
+
+    </tr>
+
+
+
+@*}*@
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Inspinia_MVC5_SeedProject.Models.tbMonedas>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Monedas</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Ingresar nuevo registro", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+@*<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.mnda_Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mnda_Pais)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.mnda_Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mnda_Pais)
+        </td>
+        <td>
+			@Html.ActionLink("Details", "Details", new { id=item.mnda_ISO }, new { @class = "btn btn-primary btn-sm"})
+            @Html.ActionLink("Edit", "Edit", new { id=item.mnda_ISO }, new { @class = "btn btn-white btn-sm"})
+            @Html.ActionLink("Delete", "Delete", new { id=item.mnda_ISO }, new { @class = "btn btn-white btn-sm"})
+        </td>
+    </tr>
+}
+
+</table>*@
+                                <table class="table table-striped">
+                        <tr>
+                            <th>
+                               Código de Moneda 
+                            </th>
+                            <th>
+                              Moneda
+                            </th>
+                            <th>
+                                País
+                            </th>
+                            <th>
+                                Acciones
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                HNL
+                            </td>
+                            <td>
+                                Lempira hondureño
+                            </td>
+                              
+                            <td>
+                                Honduras
+                            </td>
+                            <td>
+                                @Html.ActionLink("Detalle", "Details1", null, new { @class = "btn btn-primary btn-xs" })
+                                @Html.ActionLink("Editar", "EditM", null, new { @class = "btn btn-primary btn-xs" })
+                            </td>
+                        </tr>
+ 
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
