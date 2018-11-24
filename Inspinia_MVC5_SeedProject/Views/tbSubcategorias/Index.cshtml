@@ -11,86 +11,81 @@
     </div>
 </div>
 
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Subcategoria</h5>
-					<div class="ibox-tools">
-						@Html.ActionLink("Nuevo", "CrearPrueba", null, new { @class = "btn btn-primary btn-xs"})
-					</div>
+                    <h5>Listado de  SubCategoria</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Crear Nuevo", "CrearPrueba", null, new { @class = "btn btn-primary btn-xs" })
+                    </div>
                 </div>
                 <div class="ibox-content">
 
-@*<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SubCateg_IDCategoria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SubCateg_Descripcion)
-        </th>
-        <th></th>
-    </tr>
+                    @*<table class="table table-striped">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Categ_Descripcion)
+                                </th>
+                                <th></th>
+                            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubCateg_IDCategoria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubCateg_Descripcion)
-        </td>
-        <td>
-			@Html.ActionLink("Details", "Details", new { id=item.SubCateg_IDSubCategoria }, new { @class = "btn btn-primary btn-sm"})
-            @Html.ActionLink("Edit", "Edit", new { id=item.SubCateg_IDSubCategoria }, new { @class = "btn btn-white btn-sm"})
-            @Html.ActionLink("Delete", "Delete", new { id=item.SubCateg_IDSubCategoria }, new { @class = "btn btn-white btn-sm"})
-        </td>
-    </tr>
-}
+                        @foreach (var item in Model) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Categ_Descripcion)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Details", "Details", new { id=item.Categ_IDCategoria }, new { @class = "btn btn-primary btn-sm"})
+                                    @Html.ActionLink("Edit", "Edit", new { id=item.Categ_IDCategoria }, new { @class = "btn btn-white btn-sm"})
+                                    @Html.ActionLink("Delete", "Delete", new { id=item.Categ_IDCategoria }, new { @class = "btn btn-white btn-sm"})
+                                </td>
+                            </tr>
+                        }
 
-</table>*@
+                        </table>*@
 
-                    <table class="table table-striped" id="tblSubCategoria">
-                        <thead>                                                        
-                        <tr>
-                            <th>
-                                Id Subcategoria
-                            </th>
-                            <th>
-                                Id Categoria
-                            </th>
-                            <th>
-                                Descripcion
-                            </th>                   
-                        </tr>
+                    <table class="table table-striped" id="SubCategoria">
+                        <thead>
+                            <tr>
+                                <th>
+                                    ID SubCategoria
+                                </th>
+                                <th>
+                                    ID Categoria
+                                </th>
+                                <th>
+                                    Descripcion
+                                </th>
+                                <th>
+                                    Actiones
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                    <td>
-                                        1
-                                    </td>
-                                    <td>
-                                        Ropa
-                                    </td>
-                                    <td>
-                                        Pantalon Jeans
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Detalles", "DetallesPrueba", new { @class = "btn btn-primary btn-sm" })
-                                        @Html.ActionLink("Editar", "EditarPrueba", new { @class = "btn btn-white btn-sm" })
-                                    </td>
-                                </tr>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    Ropa
+                                </td>
+                                <td>
+                                    Pantalon Jean
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Detalles", "DetailsPrueba", new { @class = "btn btn-primary btn-sm" })
+                                    @Html.ActionLink("Editar", "EditarPrueba", new { @class = "btn btn-white btn-sm" })
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
     </div>
- </div>
+</div>
 @section scripts{
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
@@ -98,7 +93,7 @@
     <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
     <script>
     $(document).ready(function () {
-        $('#tblSubCategoria').DataTable({
+        $('#SubCategoria').DataTable({
 
         "searching": true,
         "oLanguage": {
@@ -109,13 +104,12 @@
             "sSearch": "Buscar",
             "sLengthMenu": "Mostrar _MENU_Registros Por Página",
             "sInfo": "Mostrando _START_ a _END_ Entradas"
-
         },
-
     });
-
     });
-
     </script>
 }
+
+
+
 

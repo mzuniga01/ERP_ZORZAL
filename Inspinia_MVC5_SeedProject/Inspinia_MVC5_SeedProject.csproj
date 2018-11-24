@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -180,6 +181,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\tbCargosController.cs" />
     <Compile Include="Controllers\tbCategoriasController.cs" />
+    <Compile Include="Controllers\tbEntradasController.cs" />
     <Compile Include="Controllers\tbEstadosController.cs" />
     <Compile Include="Controllers\tbSubcategoriasController.cs" />
     <Compile Include="Controllers\tbTiposBodegasController.cs" />
@@ -208,6 +210,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Productos.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbCajas.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -218,6 +223,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbDepartamentos.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbEntrada.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbEstados.cs">
@@ -682,6 +690,13 @@
     <Content Include="Views\tbSubcategorias\Edit.cshtml" />
     <Content Include="Views\tbSubcategorias\EditarPrueba.cshtml" />
     <Content Include="Views\tbSubcategorias\Index.cshtml" />
+    <Content Include="Views\tbEntradas\Create.cshtml" />
+    <Content Include="Views\tbEntradas\Delete.cshtml" />
+    <Content Include="Views\tbEntradas\Details.cshtml" />
+    <Content Include="Views\tbEntradas\Edit.cshtml" />
+    <Content Include="Views\tbEntradas\Index.cshtml" />
+    <Content Include="Views\tbEntradas\Editar_prueba.cshtml" />
+    <Content Include="Views\tbEntradas\Crear_prueba.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

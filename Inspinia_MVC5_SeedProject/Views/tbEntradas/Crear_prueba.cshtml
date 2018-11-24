@@ -1,0 +1,104 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbEntrada
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Crear Nueva Entrada</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.E_IdEntrada, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.E_IdEntrada)
+                @Html.ValidationMessageFor(model => model.E_IdEntrada)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.E_IdInvetario, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.E_IdInvetario)
+                @Html.ValidationMessageFor(model => model.E_IdInvetario)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.E_IdProducto, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.E_IdProducto)
+                @Html.ValidationMessageFor(model => model.E_IdProducto)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.E_IdUnidad, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.E_IdUnidad)
+                @Html.ValidationMessageFor(model => model.E_IdUnidad)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.E_PrecioUnitario, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.E_PrecioUnitario)
+                @Html.ValidationMessageFor(model => model.E_PrecioUnitario)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.E_FechaEntrada, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.E_FechaEntrada)
+                @Html.ValidationMessageFor(model => model.E_FechaEntrada)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.E_IdBodega, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.E_IdBodega)
+                @Html.ValidationMessageFor(model => model.E_IdBodega)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.E_IdUsuario, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.E_IdUsuario)
+                @Html.ValidationMessageFor(model => model.E_IdUsuario)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -144,5 +144,33 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Productos">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.Productos">
+        <MappingFragment StoreEntitySet="Productos">
+          <ScalarProperty Name="estad_prod_Codigo" ColumnName="estad_prod_Codigo" />
+          <ScalarProperty Name="SubCateg_prod_IDSubCategoria" ColumnName="SubCateg_prod_IDSubCategoria" />
+          <ScalarProperty Name="Categ_prod_IDCategoria" ColumnName="Categ_prod_IDCategoria" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_PrecioCompraVenta" ColumnName="prod_PrecioCompraVenta" />
+          <ScalarProperty Name="prod_FechaCreacion" ColumnName="prod_FechaCreacion" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbEntrada">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEntrada">
+        <MappingFragment StoreEntitySet="tbEntrada">
+          <ScalarProperty Name="E_IdUsuario" ColumnName="E_IdUsuario" />
+          <ScalarProperty Name="E_IdBodega" ColumnName="E_IdBodega" />
+          <ScalarProperty Name="E_FechaEntrada" ColumnName="E_FechaEntrada" />
+          <ScalarProperty Name="E_PrecioUnitario" ColumnName="E_PrecioUnitario" />
+          <ScalarProperty Name="E_IdUnidad" ColumnName="E_IdUnidad" />
+          <ScalarProperty Name="E_IdProducto" ColumnName="E_IdProducto" />
+          <ScalarProperty Name="E_IdInvetario" ColumnName="E_IdInvetario" />
+          <ScalarProperty Name="E_IdEntrada" ColumnName="E_IdEntrada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

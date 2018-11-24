@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e3cdae754a7b458288829a69167bdea2" Name="Diagram1">
+      <Diagram DiagramId="e3cdae754a7b458288829a69167bdea2" Name="Diagram1" ZoomLevel="94">
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbEstados" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbCajas" Width="1.5" PointX="3.75" PointY="0.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbDepartamentos" Width="1.5" PointX="0.75" PointY="3.75" />
@@ -22,6 +22,8 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbUnidadesMedida" Width="1.5" PointX="9.75" PointY="3.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbCategoria" Width="1.5" PointX="5.375" PointY="9.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbSubcategoria" Width="1.5" PointX="7.375" PointY="9.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.Productos" Width="1.5" PointX="9.375" PointY="9.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbEntrada" Width="1.5" PointX="10.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
