@@ -1,0 +1,173 @@
+﻿@model IEnumerable<Inspinia_MVC5_SeedProject.Models.tbCredito>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Crédito</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de cliente con crédito</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Solicitar Crédito", "CreateSolicitud", null, new { @class = "btn btn-primary btn-xs" })
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table id="ListaCliente" class="table table-striped table-bordered table-hover">
+    @*<tr>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_RTNCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lnpago_Codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.edo_Codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cred_FechaSolicitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cred_FechaAprobacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cred_MontoSolicitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cred_MontoCredito)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cred_LimiteCredito)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_RTNCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lnpago_Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.edo_Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cred_FechaSolicitud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cred_FechaAprobacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cred_MontoSolicitud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cred_MontoCredito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cred_LimiteCredito)
+        </td>
+        <td>
+			@Html.ActionLink("Details", "Details", new { id=item.cred_Codigo }, new { @class = "btn btn-primary btn-sm"})
+            @Html.ActionLink("Edit", "Edit", new { id=item.cred_Codigo }, new { @class = "btn btn-white btn-sm"})
+            @Html.ActionLink("Delete", "Delete", new { id=item.cred_Codigo }, new { @class = "btn btn-white btn-sm"})
+        </td>
+    </tr>
+}*@
+   <thead>
+       <tr>
+           <th>
+               RTN
+           </th>
+           <th>
+               Nombre del Cliente
+           </th>
+           <th>
+               Teléfono
+           </th>
+           <th>
+               Monto
+           </th>
+           <th>
+               Línea de Crédito
+           </th>
+           <th>Acción</th>
+       </tr>
+   </thead> 
+            
+    <tbody>
+        <tr>
+            <td>
+                0501199812172
+            </td>
+            <td>
+                Luis Barahona
+            </td>
+            <td>
+                31546227
+            </td>
+            <td>
+                6,0000
+            </td>
+            <td>
+                12-24 meses
+            </td>
+            <td>
+               @Html.ActionLink("Detalle", "Details1", null, new { @class = "btn btn-primary btn-xs" })
+            </td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td>
+                04081999012062
+            </td>
+            <td>
+                La Curacao
+            </td>
+            <td>
+                25572856
+            </td>
+            <td>
+                10,000
+            </td>
+            <td>
+                12-24 meses
+            </td>
+            <td>
+                @Html.ActionLink("Detalle", "Details1", null, new { @class = "btn btn-primary btn-xs" })
+            </td>
+        </tr>
+    </tbody>
+           
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+
+
+
+

@@ -7,52 +7,64 @@
                         <span class="clear">
                             <span class="block m-t-xs">
                                 <strong class="font-bold">Tiendas García Medina</strong>
-                            </span> <span class="text-muted text-xs block">Menú Desplazable <b class="caret"></b></span>
+                            </span> <span class="text-muted text-xs block">Catálogos<b class="caret"></b></span>
                         </span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a href="#">Clientes</a></li>
-                        <li><a href="#">Facturas</a></li>
-                        <li><a href="#">Créditos</a></li>
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "tbDepartamentos")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Departamentos</span> </a>
+                        </li>
+
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "tbArqueoCajas")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Arqueo de caja</span> </a>
+                        </li>
+
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "tbMonedas")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Monedas</span> </a>
+                        </li>
+
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "tbTiposDocumentoes")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Tipo Documento</span> </a>
+                        </li>
+
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "tbTasasCambios")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Tasa De Cambio</span> </a>
+                        </li>
+
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "tbLineasPagoes")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Lineas De Pago</span> </a>
+                        </li>
+
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "tbTiposPagoes")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Tipos De Pago</span> </a>
+                        </li>
+
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "tbCajas")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Cajas</span> </a>
+                        </li>
+
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "tbEstados")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Estados</span> </a>
+                        </li>
                     </ul>
-                    </div>
+                <li class="@Html.IsSelected(action: "Index")">
+                    <a href="@Url.Action("Index", "tbClientes")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Clientes</span> </a>
+                </li>
+                <li class="@Html.IsSelected(action: "Index")">
+                    <a href="@Url.Action("Index", "tbPedidos")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Pedidos</span> </a>
+                </li>
+                <li class="@Html.IsSelected(action: "Index")">
+                    <a href="@Url.Action("Index", "tbDetallesFacturas")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Factura</span> </a>
+                </li>
+                 <li class="@Html.IsSelected(action: "Index")">
+                    <a href="@Url.Action("Index", "tbCredito")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Crédito</span> </a>
+                </li>
+            <li class="@Html.IsSelected(action: "Index")">
+                <a href="@Url.Action("Index", "tbPagos")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Pagos</span> </a>
+            </li>
                 <div class="logo-element">
                     GM
                 </div>
-            </li>
-
-
-
-            <li class="@Html.IsSelected(action: "Index")">
-                <a href="@Url.Action("Index", "tbDepartamentos")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Departamentos</span> </a>
-            </li>
-
-            <li class="@Html.IsSelected(action: "Index")">
-                <a href="@Url.Action("Index", "tbTiposPagoes")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Cajas</span> </a>
-            </li>
-
-            <li class="@Html.IsSelected(action: "Index")">
-                <a href="@Url.Action("Index", "tbMonedas")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Monedas</span> </a>
-            </li>
-
-            <li class="@Html.IsSelected(action: "Index")">
-                <a href="@Url.Action("Index", "tbTiposDocumentos")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Tipo Documento</span> </a>
-            </li>
-
-            <li class="@Html.IsSelected(action: "Index")">
-                <a href="@Url.Action("Index", "tbTasasCambios")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Tasa De Cambio</span> </a>
-            </li>
-
-            <li class="@Html.IsSelected(action: "Index")">
-                <a href="@Url.Action("Index", "tbLineasPagoes")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Lineas De Pago</span> </a>
-            </li>
-
-            <li class="@Html.IsSelected(action: "Index")">
-                <a href="@Url.Action("Index", "tbTiposPagoes")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Tipos De Pago</span> </a>
-            </li>
-
-
-          
         </ul>
     </div>
 </nav>

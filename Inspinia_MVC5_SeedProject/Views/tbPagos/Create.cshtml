@@ -1,0 +1,115 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbPagos
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Nuevo Pago</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Nuevo</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5></h5>
+                    <input id="Text1" type="text" placeholder="RTN de Cliente" class="col-md-10"/><input id="Button1" type="button" value="Buscar Cliente" />
+                </div>
+                <div class="ibox-content">
+                    
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pgCodPago, "Código Págo", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="Text1" type="text" value="00125" readonly="readonly" class="col-md-10"/>
+                @*@Html.EditorFor(model => model.pgCodPago)
+                @Html.ValidationMessageFor(model => model.pgCodPago)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fact_Codigo, "No. Factura", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="Text1" type="text" value="001-002-01-00001569" class="col-md-10" />
+                @*@Html.EditorFor(model => model.fact_Codigo)
+                @Html.ValidationMessageFor(model => model.fact_Codigo)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pgFechaPago, "Fecha Pago", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="Text1" type="date" value="" class="col-md-10" />
+                @*@Html.EditorFor(model => model.pgFechaPago)
+                @Html.ValidationMessageFor(model => model.pgFechaPago)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pgMonto, "Monto a Pagar", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="Text1" type="text" value="56,000.00" class="col-md-10" />
+                @*@Html.EditorFor(model => model.pgMonto)
+                @Html.ValidationMessageFor(model => model.pgMonto)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tcam_Codigo,"Código Tasa Cambio", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="Select1" class="col-md-10">
+                    <option>HND</option>
+                    <option>USD</option>
+                    <option>EUR</option>
+                    
+                </select>
+                @*@Html.EditorFor(model => model.tcam_Codigo)
+                @Html.ValidationMessageFor(model => model.tcam_Codigo)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

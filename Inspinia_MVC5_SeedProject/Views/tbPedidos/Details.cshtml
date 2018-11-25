@@ -1,0 +1,91 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbPedidos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Details</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Details tbPedidos</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.su_CodSucursal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.su_CodSucursal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ped_FechaPedido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ped_FechaPedido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ped_FechaEntrega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ped_FechaEntrega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ctle_RTN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ctle_RTN)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Edit", "Edit", new { id = Model.ped_CodPedido }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
