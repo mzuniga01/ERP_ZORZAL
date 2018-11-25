@@ -7,76 +7,140 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Details</h2>
+        <h2>Detalles Pedidos</h2>
         <ol class="breadcrumb">
             <li>
-                @Html.ActionLink("List", "Index")
-            </li>
+                    @Html.ActionLink("List", "Index")
+                </li>
             <li class="active">
                 <strong>Details</strong>
             </li>
         </ol>
     </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
 </div>
-
-
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Details tbPedidos</h5>
+                    <h5>Detalle Pedidos</h5>
                 </div>
                 <div class="ibox-content">
 
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Codigo Pedido
+                        </dt>
+                         <dd>
+                            00002
+                        </dd>
 
-				    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.su_CodSucursal)
-        </dt>
+                        <dt>
+                            N° Sucursal
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.su_CodSucursal)
-        </dd>
+                        <dd>
+                            San Pedro Sula
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ped_FechaPedido)
-        </dt>
+                        <dt>
+                            ID Cliente
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ped_FechaPedido)
-        </dd>
+                        <dd>
+                            0610-2000-00081
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ped_FechaEntrega)
-        </dt>
+                        <dt>
+                            Nombre Cliente
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ped_FechaEntrega)
-        </dd>
+                        <dd>
+                            Francisco Morazán
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ctle_RTN)
-        </dt>
+                        <dt>
+                            Fecha Pedido
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ctle_RTN)
-        </dd>
+                        <dd>
+                            21/11/2018
+                        </dd>
+                        <dt>
+                            Fecha Entrega
+                        </dt>
 
-    </dl>
+                        <dd>
+                            15/12/2018
+                        </dd>
 
+                    </dl>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                Cantidad
+                            </th>
+                            <th>
+                                Descripcion
+                            </th>
+                            <th>
+                                Precio Producto
+                            </th>
+                        </tr>
 
-	    @Html.ActionLink("Edit", "Edit", new { id = Model.ped_CodPedido }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+                        <tr>
+                            <td>
+                                3
+                            </td>
+                            <td>
+                                Vestidos
+                            </td>
+                            <td>
+                                800
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                2
+                            </td>
+                            <td>
+                                Camisas
+                            </td>
+                            <td>
+                                200
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                3
+                            </td>
+                            <td>
+                                Sandalias
+                            </td>
+                            <td>
+                                1000
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.ped_CodPedido }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white" })
 
                 </div>
             </div>
         </div>
     </div>
- </div>
-
+</div>
 
 
 

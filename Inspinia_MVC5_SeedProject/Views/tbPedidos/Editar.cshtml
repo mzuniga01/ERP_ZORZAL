@@ -7,7 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Actualizar</h2>
+        <h2>Editar</h2>
         <ol class="breadcrumb">
             <li>
                 @Html.ActionLink("Lista", "Index")
@@ -28,7 +28,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Actualizar Pedido</h5>
+                    <h5>Editar Pedido</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -93,7 +93,7 @@
                                     @*@Html.ValidationMessageFor(model => model.mnda_ISO)*@
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-xs-6">
                                 <label class="control-label">Seleccionar Producto</label>
                                 <select class="form-control" id="sel1">
                                     <option>Pantalones</option>
@@ -101,8 +101,9 @@
                                     <option>Camisas</option>
                                     <option>Tennis</option>
                                 </select>
-                            </div>
-                            @Html.ActionLink("Agregar Productos", "Index", null, new { @class = "btn btn-primary btn-xs" })
+
+                            </div> <br><br />
+                            <div class="col-md-6"> @Html.ActionLink("Agregar Productos", "Index", null, new { @class = "btn btn-primary btn-xs" })</div>
 
                             <table class="table table-striped">
                                 <tr>

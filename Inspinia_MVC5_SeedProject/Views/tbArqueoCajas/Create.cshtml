@@ -7,19 +7,19 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Create</h2>
+        <h2>Nuevo</h2>
         <ol class="breadcrumb">
             <li>
-                @Html.ActionLink("List", "Index")
+                @Html.ActionLink("Lista", "Index")
             </li>
             <li class="active">
-                <strong>Create</strong>
+                <strong>Nuevo</strong>
             </li>
         </ol>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+			@Html.ActionLink("Regresar a Lista", "Index", null, new { @class = "btn btn-primary"})
         </div>
     </div>
 </div>
@@ -119,8 +119,9 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+                @Html.ActionLink("Registrar", "Index", null, new { @class = "btn btn-primary" })
+                @*<input type="submit" value="Create" class="btn btn-primary" />*@
+				@Html.ActionLink("Anular", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>

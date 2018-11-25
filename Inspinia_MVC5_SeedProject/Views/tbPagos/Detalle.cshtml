@@ -1,0 +1,153 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbPagos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Detalle Pago</h2>
+        <ol class="breadcrumb">
+            @*<li>
+                @Html.ActionLink("List", "Index")
+            </li>*@
+            @*<li class="active">
+                <strong>Details</strong>
+            </li>*@
+        </ol>
+    </div>
+</div>
+
+
+
+
+@*<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fact_Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fact_Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pgFechaPago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pgFechaPago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pgMonto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pgMonto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tcam_Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tcam_Codigo)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Edit", "Edit", new { id = Model.pgCodPago }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>*@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle</h5>
+                </div>
+                <div class="ibox-content">
+
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                          No. Factura
+                        </dt>
+
+                        <dd>
+                            001-002-01-00001569
+                        </dd>
+
+                        <dt>
+                           Fecha Pago
+                        </dt>
+
+                        <dd>
+                            2018/11/24
+                        </dd>
+
+                        <dt>
+                            Monto a Pagar
+                        </dt>
+
+                        <dd>
+                            85,750.00
+                        </dd>
+
+                        <dt>
+                            Tasa de Cambio
+                        </dt>
+
+                        <dd>
+                            HNL
+                        </dd>
+                        <dt>
+                            Tipo de Pago
+                        </dt>
+
+                        <dd>
+                            Efectivo
+                        </dd>
+
+                    </dl>
+
+
+                    @*@Html.ActionLink("Edit", "Edit", new { id = Model.pgCodPago }, new { @class = "btn btn-primary" })*@
+                    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white" })
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

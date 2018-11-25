@@ -4,20 +4,19 @@
     ViewBag.Title = "EditD";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-            </li>
-        </ol>*@
+                <li>
+                    @Html.ActionLink("List", "Index")
+                </li>
+                <li class="active">
+                </li>
+            </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})
+            @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary" })
         </div>
     </div>
 </div>
@@ -33,37 +32,37 @@
                 </div>
                 <div class="ibox-content">
 
-				@*@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true)
+                    @*@using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.dpto_Codigo, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.dpto_Codigo)
-                @Html.ValidationMessageFor(model => model.dpto_Codigo)
-            </div>
-        </div>
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.dpto_Descripcion, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.dpto_Descripcion)
-                @Html.ValidationMessageFor(model => model.dpto_Descripcion)
-            </div>
-        </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.dpto_Codigo, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.dpto_Codigo)
+                                        @Html.ValidationMessageFor(model => model.dpto_Codigo)
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}*@
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.dpto_Descripcion, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.dpto_Descripcion)
+                                        @Html.ValidationMessageFor(model => model.dpto_Descripcion)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+                                    </div>
+                                </div>
+                            </div>
+                        }*@
                     <form>
                         <div class="form-group">
                             <label for="formGroupExampleInput">Código</label>
@@ -74,8 +73,8 @@
                             <input type="text" class="form-control" id="formGroupExampleInput2" value="Atlántida">
                         </div>
                         <div class="form-group">
-                                @Html.ActionLink("Guardar", "Index", null, new { @class = "btn btn-primary" })
-                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })                     
+                            @Html.ActionLink("Guardar", "Index", null, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                         </div>
                     </form>
                     <div class="form-group">
@@ -85,8 +84,7 @@
             </div>
         </div>
     </div>
- </div>
-
+</div>
  
 
 @section Scripts {

@@ -10,7 +10,7 @@
         <h2>Nuevo Pago</h2>
         <ol class="breadcrumb">
             <li>
-                @Html.ActionLink("List", "Index")
+                @Html.ActionLink("Listado", "Index")
             </li>
             <li class="active">
                 <strong>Nuevo</strong>
@@ -19,7 +19,7 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+			@Html.ActionLink("Regresar a Lista", "Index", null, new { @class = "btn btn-primary"})
         </div>
     </div>
 </div>
@@ -32,7 +32,10 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5></h5>
-                    <input id="Text1" type="text" placeholder="RTN de Cliente" class="col-md-10"/><input id="Button1" type="button" value="Buscar Cliente" />
+                    <input id="Text1" type="text" placeholder="Buscar" class="col-md-5"/><select id="Select1" class="">
+    <option>Cliente</option>
+    <option>Factura</option>
+</select><input id="Button1" type="button" value="Buscar " />
                 </div>
                 <div class="ibox-content">
                     
@@ -92,11 +95,27 @@
                 @Html.ValidationMessageFor(model => model.tcam_Codigo)*@
             </div>
         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.tcam_Codigo, "Tipo de Pago", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="Select1" class="col-md-10">
+                    <option>Efectivo</option>
+                    <option>Tarjeta Debito/Crédito</option>
+                    <option>Cheque</option>
+                    <option>Nota de Crédito</option>
+                    <option>Transferencia ACH</option>
+
+                </select>
+                @*@Html.EditorFor(model => model.tcam_Codigo)
+                @Html.ValidationMessageFor(model => model.tcam_Codigo)*@
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+                @Html.ActionLink("Registrar Pago", "Index", null, new { @class = "btn btn-primary" })
+                @*<input type="submit" value="Create" class="btn btn-primary" />*@
+				@Html.ActionLink("Anular Pago", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>

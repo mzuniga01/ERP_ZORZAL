@@ -85,7 +85,7 @@
             @*@Html.DisplayFor(modelItem => item.VentasDias)*@
         </td>
         <td>
-            <button class = "btn btn-primary btn-sm">Detalle</button>
+            @Html.ActionLink("Detalle", "DetailsAC", null, new { @class = "btn btn-primary btn-xs" })
 			@*@Html.ActionLink("Details", "Details", new { id=item.arcj_Codigo }, new { @class = "btn btn-primary btn-sm"})
             @Html.ActionLink("Edit", "Edit", new { id=item.arcj_Codigo }, new { @class = "btn btn-white btn-sm"})
             @Html.ActionLink("Delete", "Delete", new { id=item.arcj_Codigo }, new { @class = "btn btn-white btn-sm"})*@
@@ -117,7 +117,7 @@
             @*@Html.DisplayFor(modelItem => item.VentasDias)*@
         </td>
         <td>
-            <button class="btn btn-primary btn-sm">Detalle</button>
+            @Html.ActionLink("Detalle", "DetailsAC", null, new { @class = "btn btn-primary btn-xs" })
             @*@Html.ActionLink("Details", "Details", new { id=item.arcj_Codigo }, new { @class = "btn btn-primary btn-sm"})
                 @Html.ActionLink("Edit", "Edit", new { id=item.arcj_Codigo }, new { @class = "btn btn-white btn-sm"})
                 @Html.ActionLink("Delete", "Delete", new { id=item.arcj_Codigo }, new { @class = "btn btn-white btn-sm"})*@

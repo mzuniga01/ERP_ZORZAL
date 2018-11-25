@@ -43,49 +43,135 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ped_CodPedido, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-9">Buscar</label>
+            <div class="col-md-3">
+                <input type="search" class="form-control input-sm " placeholder="" aria-controls="Pedidos">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">N° Pedido</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ped_CodPedido)
-                @Html.ValidationMessageFor(model => model.ped_CodPedido)
+                <input type="text" class="form-control" value="00002" readonly />
+                @*@Html.ValidationMessageFor(model => model.mnda_ISO)*@
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2">N° Sucursal</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" value="San Pedro Sula" readonly/>
+                @*@Html.ValidationMessageFor(model => model.mnda_ISO)*@
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.su_CodSucursal, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">ID Cliente</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.su_CodSucursal)
-                @Html.ValidationMessageFor(model => model.su_CodSucursal)
+                <input type="text" class="form-control" value="0610-2000-00081" readonly />
+                @*@Html.ValidationMessageFor(model => model.mnda_ISO)*@
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ped_FechaPedido, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Nombre Cliente</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ped_FechaPedido)
-                @Html.ValidationMessageFor(model => model.ped_FechaPedido)
+                <input type="text" class="form-control" value="Francisco Morazán" readonly />
+                @*@Html.ValidationMessageFor(model => model.mnda_ISO)*@
             </div>
         </div>
 
+       
         <div class="form-group">
-            @Html.LabelFor(model => model.ped_FechaEntrega, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Fecha Pedido</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ped_FechaEntrega)
-                @Html.ValidationMessageFor(model => model.ped_FechaEntrega)
+                <input type="text" class="form-control" value="21/11/2018"  />
+                @*@Html.ValidationMessageFor(model => model.mnda_ISO)*@
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.ctle_RTN, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Fecha Entrega</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ctle_RTN)
-                @Html.ValidationMessageFor(model => model.ctle_RTN)
+                <input type="text" class="form-control" value="15/12/2018"  />
+                @*@Html.ValidationMessageFor(model => model.mnda_ISO)*@
             </div>
         </div>
+        <div class="form-group col-xs-6">
+            <label class="control-label">Seleccionar Producto</label>
+             <select class="form-control"  id="sel1"> 
+                <option>Pantalones</option>
+                <option>Vestidos</option>
+                <option>Camisas</option>
+                <option>Tennis</option>
+            </select>
+           
+        </div> <br><br />
+<div class="col-md-6"> @Html.ActionLink("Agregar Productos", "Index", null, new { @class = "btn btn-primary btn-xs" })</div>
 
+        <table class="table table-striped">
+            <tr>
+                <th>
+                   Cantidad
+                </th>
+                <th>
+                    Descripcion
+                </th>
+                <th>
+                    Precio Producto
+                </th>
+                <th></th>
+               
+            </tr>
+
+            <tr>
+                <td>
+                   3
+                </td>
+                <td>
+                    Vestidos
+                </td>
+                <td>
+                   800
+                </td>
+                <td>
+                    @Html.ActionLink("Quitar", "Delete", null, new { @class = "btn btn-primary btn-xs" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    2
+                </td>
+                <td>
+                    Camisas
+                </td>
+                <td>
+                    200
+                </td>
+                <td>
+                    @Html.ActionLink("Quitar", "Delete", null, new { @class = "btn btn-primary btn-xs" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    3
+                </td>
+                <td>
+                    Sandalias
+                </td>
+                <td>
+                    1000
+                </td>
+                <td>
+                    @Html.ActionLink("Quitar", "Delete", null, new { @class = "btn btn-primary btn-xs" })
+                </td>
+            </tr>
+
+        </table>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Crear" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-primary" })
             </div>
         </div>
     </div>

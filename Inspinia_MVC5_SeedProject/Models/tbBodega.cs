@@ -12,15 +12,16 @@ namespace Inspinia_MVC5_SeedProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Productos
+    public partial class tbBodega
     {
-        public int prod_Codigo { get; set; }
-        public string prod_Descripcion { get; set; }
-        public System.DateTime prod_FechaCreacion { get; set; }
-        public decimal prod_PrecioCompraVenta { get; set; }
-        public string prod_Marca { get; set; }
-        public Nullable<int> Categ_prod_IDCategoria { get; set; }
-        public Nullable<int> SubCateg_prod_IDSubCategoria { get; set; }
-        public string estad_prod_Codigo { get; set; }
+        public int Bdga_Codigo { get; set; }
+        public string Bdga_Encargado { get; set; }
+        public string Bdga_Contacto { get; set; }
+        public string estad_Codigo { get; set; }
+        public string dpto_Codigo { get; set; }
+        public string mpio_Codigo { get; set; }
+        public string Bdga_Capacidad { get; set; }
+        public string Bdga_Zona { get; set; }
+        public int tpbdga_Codigo { get; set; }
     }
 }

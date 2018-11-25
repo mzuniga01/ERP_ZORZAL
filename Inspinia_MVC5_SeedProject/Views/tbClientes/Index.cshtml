@@ -7,13 +7,12 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2> Clientes</h2>
-        @*<h2>Index</h2>*@
-        <ol class="breadcrumb">
+        <h2>Registar Clientes</h2>
+        @*<ol class="breadcrumb">
             <li class="active">
-                @*<strong>tbClientes</strong>*@
+                <strong>tbClientes</strong>
             </li>
-        </ol>
+        </ol>*@
     </div>
 </div>
 
@@ -23,10 +22,11 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Clientes</h5>
+                    <h5>Listas de Clientes</h5>
 					<div class="ibox-tools">
-                        @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs" })
-						@*@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})*@
+                        <input type="search">
+                        <button class="btn btn">Buscar</button>
+						@Html.ActionLink("Registrar", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -34,58 +34,88 @@
 <table class="table table-striped">
     <tr>
         <th>
-            Identidad
+            Código
+            @*@Html.DisplayNameFor(model => model.tbPersonasJuridicas.clte_RazonSocial)*@
         </th>
-
         <th>
             Nombre
         </th>
         <th>
-            Teléfono
+            Telefono
         </th>
         <th>
-            Exoneracion
+            Exoneración
         </th>
         <th>
             Acción
         </th>
-
-        @*<th>
-            @Html.DisplayNameFor(model => model.tbPersonasJuridicas.clte_RazonSocial)
-        </th>*@
-        <th></th>
     </tr>
 
 @*@foreach (var item in Model) {*@
     <tr>
         <td>
-            0402199800298
+            0501-1998-20121
             @*@Html.DisplayFor(modelItem => item.tbPersonasJuridicas.clte_RazonSocial)*@
         </td>
         <td>
-            Marvin David Carrasco Sambrano
+            Wilson Alexander Pineda
+        </td>
+        <td>
+            8984-7845
+        </td>
+        <td>
+            <input type="checkbox" value="true" checked />
+            @*@Html.ActionLink("Details", "Details", new { id=item.clte_RTN }, new { @class = "btn btn-primary btn-sm"})
+                @Html.ActionLink("Edit", "Edit", new { id=item.clte_RTN }, new { @class = "btn btn-white btn-sm"})
+                @Html.ActionLink("Delete", "Delete", new { id=item.clte_RTN }, new { @class = "btn btn-white btn-sm"})*@
+        </td>
+        <td>
+            <button class="btn btn-primary btn-xs">Editar</button>
+        </td>
+        @*----------------------------------------------*@
+        @*@foreach (var item in Model) {*@
+    <tr>
+        <td>
+            0610-2000-00093
+            @*@Html.DisplayFor(modelItem => item.tbPersonasJuridicas.clte_RazonSocial)*@
+        </td>
+        <td>
+            Joshua Aguilar
+        </td>
+        <td>
+            3323-0908
+        </td>
+        <td>
+            <input type="checkbox" checked />
+            @*@Html.ActionLink("Details", "Details", new { id=item.clte_RTN }, new { @class = "btn btn-primary btn-sm"})
+                @Html.ActionLink("Edit", "Edit", new { id=item.clte_RTN }, new { @class = "btn btn-white btn-sm"})
+                @Html.ActionLink("Delete", "Delete", new { id=item.clte_RTN }, new { @class = "btn btn-white btn-sm"})*@
+        </td>
+        <td>
+            <button class="btn btn-primary btn-xs">Editar</button>
+        </td>
+        @*----------------------------------------------*@
+<tr>
+        <td>
+            0501-1845-1129
+            @*@Html.DisplayFor(modelItem => item.tbPersonasJuridicas.clte_RazonSocial)*@
+        </td>
+        <td>
+            SULA
 
         </td>
 
         <td>
-            98342456
+            2534-0000
         </td>
 
         <td>
-            <input type="checkbox" value="true" checked/>
-            </td>
-        <td>
-            <button class="btn btn-primary btn-xs">Editar</button> 
+            <input type="checkbox" value="true" checked />
         </td>
-        
-        
-        <td>      
-			@*@Html.ActionLink("Details", "Details", new { id=item.clte_RTN }, new { @class = "btn btn-primary btn-sm"})
-            @Html.ActionLink("Edit", "Edit", new { id=item.clte_RTN }, new { @class = "btn btn-white btn-sm"})
-            @Html.ActionLink("Delete", "Delete", new { id=item.clte_RTN }, new { @class = "btn btn-white btn-sm"})*@
+        <td>
+            <button class="btn btn-primary btn-xs">Editar</button>
         </td>
     </tr>
-
 @*}*@
 
 </table>
