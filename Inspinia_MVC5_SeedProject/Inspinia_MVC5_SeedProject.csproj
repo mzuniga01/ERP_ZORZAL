@@ -202,6 +202,7 @@
     <Compile Include="Controllers\tbPedidosController.cs" />
     <Compile Include="Controllers\tbPersonasJuridicasController.cs" />
     <Compile Include="Controllers\tbProductosController.cs" />
+    <Compile Include="Controllers\tbSalidasController.cs" />
     <Compile Include="Controllers\tbSubcategoriasController.cs" />
     <Compile Include="Controllers\tbTasasCambiosController.cs" />
     <Compile Include="Controllers\tbTiposBodegasController.cs" />
@@ -892,9 +893,18 @@
     <Content Include="Views\tbTiposPagoes\Details.cshtml" />
     <Content Include="Views\tbTiposPagoes\Edit.cshtml" />
     <Content Include="Views\tbTiposPagoes\Index.cshtml" />
+    <Content Include="Views\tbSalidas\Crear.cshtml" />
+    <Content Include="Views\tbSalidas\Create.cshtml" />
+    <Content Include="Views\tbSalidas\Delete.cshtml" />
+    <Content Include="Views\tbSalidas\Details.cshtml" />
+    <Content Include="Views\tbSalidas\Detalles.cshtml" />
+    <Content Include="Views\tbSalidas\Edit.cshtml" />
+    <Content Include="Views\tbSalidas\Editar.cshtml" />
+    <Content Include="Views\tbSalidas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\tbSalida\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

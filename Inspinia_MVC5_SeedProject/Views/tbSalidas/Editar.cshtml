@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <ol class="breadcrumb">
+            <li>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-primary" })
+            @*<a href="~/Views/tbSalidas/Index.cshtml" class = "btn btn-primary">Volver al listado</a>*@
+        </div>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Registrar Salida</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+
+
+                        <div class="col-md-2">
+                            Fecha de Salida
+                            <br />
+                            <input class="form-control" type="datetime" value="25/11/2018" />
+                            <br /><br />
+                            Bodega
+                            <br />
+                            <select class="form-control">
+                                <option value="1" selected>Bodega 1</option>
+                                <option value="2">Bodega 2</option>
+                                <option value="3">Bodega 3</option>
+                                <option value="3">Bodega 4</option>
+                            </select>
+                            <br /><br />
+                            Inventario
+                            <br />
+                            <select class="form-control">
+                                <option value="1" selected>Inventario 1</option>
+                                <option value="2">Inventario 2</option>
+                                <option value="3">Inventario 3</option>
+                                <option value="3">Inventario 4</option>
+                            </select>
+                            <br /><br />
+                            Transporte
+                            <br />
+                            <select class="form-control">
+                                <option value="1" selected>Propio</option>
+                                <option value="2">Empresa de Tercero</option>
+                            </select>
+                            <br /><br />
+                            Tipo de Salida
+                            <br />
+                            <select class="form-control">
+                                <option value="1" selected>Venta</option>
+                                <option value="2">Translado</option>
+                            </select>
+                            <br /><br />
+                            Estado
+                            <br />
+                            <select class="form-control">
+                                <option value="1" selected>Realizado</option>
+                                <option value="2">Cancelado</option>
+                            </select>
+                        </div>
+                        <br /><br />
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                @Html.ActionLink("Guardar", "Index", null, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-primary" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

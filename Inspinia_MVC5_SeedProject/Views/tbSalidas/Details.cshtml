@@ -1,0 +1,141 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbSalida
+
+
+@{
+    ViewBag.Title = "Details";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Detalles</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Details tbSalida</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+
+
+        <dt>
+            Fecha de Salida
+            @*@Html.DisplayNameFor(model => model.slda_FechadeSalida)*@
+        </dt>
+
+        <dd>
+            25/11/2018
+            @*@Html.DisplayFor(model => model.slda_FechadeSalida)*@
+        </dd>
+
+
+
+        <dt>
+            Bodega 
+            @*@Html.DisplayNameFor(model => model.bdg_Codigo)*@
+        </dt>
+
+        <dd>
+            Bodega 1
+            @*@Html.DisplayFor(model => model.bdg_Codigo)*@
+        </dd>
+
+
+
+        <dt>
+            Inventario
+            @*@Html.DisplayNameFor(model => model.inv_Codigo)*@
+        </dt>
+
+        <dd>
+            Inventario 1
+            @*@Html.DisplayFor(model => model.inv_Codigo)*@
+        </dd>
+
+
+
+        <dt>
+            Transporte
+            @*@Html.DisplayNameFor(model => model.sld_Transporte)*@
+        </dt>
+
+        <dd>
+            Propio
+            @*@Html.DisplayFor(model => model.sld_Transporte)*@
+        </dd>
+
+
+
+        <dt>
+            Tipo de Salida
+            @*@Html.DisplayNameFor(model => model.tpds_Codigo)*@
+        </dt>
+
+        <dd>
+            Venta
+            @*@Html.DisplayFor(model => model.tpds_Codigo)*@
+        </dd>
+
+
+
+        <dt>
+            Estado
+            @*@Html.DisplayNameFor(model => model.std_Codigo)*@
+        </dt>
+
+        <dd>
+            Realizado
+            @*@Html.DisplayFor(model => model.std_Codigo)*@
+        </dd>
+
+
+    </dl>
+
+
+	
+    @Html.ActionLink("Editar", "Editar", null, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-white"})
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

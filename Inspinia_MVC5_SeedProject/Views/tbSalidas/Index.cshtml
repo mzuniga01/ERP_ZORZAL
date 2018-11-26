@@ -1,0 +1,144 @@
+﻿@model IEnumerable<Inspinia_MVC5_SeedProject.Models.tbSalida>
+
+
+@{
+    ViewBag.Title = "Editar";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <ol class="breadcrumb">
+            <li class="active">
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <div class="ibox-tools">
+                        @*@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})*@
+                        @Html.ActionLink("Registrar", "Crear", null, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped" id="datatables">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Fecha de Salida
+                                    @*@Html.DisplayNameFor(model => model.slda_FechadeSalida)*@
+                                </th>
+                                <th>
+                                    Bodega
+                                    @*@Html.DisplayNameFor(model => model.bdg_Codigo)*@
+                                </th>
+                                <th>
+                                    Inventario
+                                    @*@Html.DisplayNameFor(model => model.inv_Codigo)*@
+                                </th>
+                                <th>
+                                    Transporte
+                                    @*@Html.DisplayNameFor(model => model.sld_Transporte)*@
+                                </th>
+                                <th>
+                                    Tipo de Salida
+                                    @*@Html.DisplayNameFor(model => model.tpds_Codigo)*@
+                                </th>
+                                <th>
+                                    Estado
+                                    @*@Html.DisplayNameFor(model => model.std_Codigo)*@
+                                </th>
+                                <th>
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+                        @*@foreach (var item in Model) {
+
+        }*@
+                        <tbody>
+                            <tr>
+
+                                <td>
+                                    25/11/2018
+                                    @*@Html.DisplayFor(modelItem => item.slda_FechadeSalida)*@
+                                </td>
+                                <td>
+                                    Bodega 1
+                                    @*@Html.DisplayFor(modelItem => item.bdg_Codigo)*@
+                                </td>
+                                <td>
+                                    Inventario 1
+                                    @*@Html.DisplayFor(modelItem => item.inv_Codigo)*@
+                                </td>
+                                <td>
+                                    Propio
+                                    @*@Html.DisplayFor(modelItem => item.sld_Transporte)*@
+                                </td>
+                                <td>
+                                    Venta
+                                    @*@Html.DisplayFor(modelItem => item.tpds_Codigo)*@
+                                </td>
+                                <td>
+                                    Realizado
+                                    @*@Html.DisplayFor(modelItem => item.std_Codigo)*@
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink("Details", "Details", new { id=item.slda_Codigo }, new { @class = "btn btn-primary btn-sm"})
+                @Html.ActionLink("Edit", "Edit", new { id=item.slda_Codigo }, new { @class = "btn btn-white btn-sm"})
+                @Html.ActionLink("Delete", "Delete", new { id=item.slda_Codigo }, new { @class = "btn btn-white btn-sm"})*@
+                                    @Html.ActionLink("Detalles", "Detalles", new { @class = "btn btn-primary btn-sm" })
+                                    @Html.ActionLink("Editar", "Editar", new { @class = "btn btn-white btn-sm" })
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.responsive.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    <script>
+    $(document).ready(function () {
+    $('#datatables').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+        },
+
+    });
+
+    });
+
+    </script>
+}
+
+
+
