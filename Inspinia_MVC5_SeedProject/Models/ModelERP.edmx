@@ -5,6 +5,19 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ERP_ZORZALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_ZORZAL.Gral. tbPersonasNaturales' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name=" tbPersonasNaturales">
+          <Key>
+            <PropertyRef Name="clte_RTN" />
+            <PropertyRef Name="clte_Nombre" />
+            <PropertyRef Name="clte_Direccion" />
+          </Key>
+          <Property Name="clte_RTN" Type="nvarchar" MaxLength="14" Nullable="false" />
+          <Property Name="clte_Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="clte_Apellido" Type="nvarchar" MaxLength="100" />
+          <Property Name="clte_Direccion" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="tbCajas">
           <Key>
             <PropertyRef Name="ca_CodCaja" />
@@ -27,6 +40,12 @@
           <Property Name="Categ_IDCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Categ_Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbClientes">
+          <Key>
+            <PropertyRef Name="clte_RTN" />
+          </Key>
+          <Property Name="clte_RTN" Type="nvarchar" MaxLength="14" Nullable="false" />
+        </EntityType>
         <EntityType Name="tbDepartamentos">
           <Key>
             <PropertyRef Name="dpto_Codigo" />
@@ -34,12 +53,34 @@
           <Property Name="dpto_Codigo" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="dpto_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbEmpaqueCaja">
+          <Key>
+            <PropertyRef Name="EmpCaja_IDEmpaqueCaja" />
+          </Key>
+          <Property Name="EmpCaja_IDEmpaqueCaja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpCaja_BodegaDespacho" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="EmpCaja_BodegaRecibe" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="EmpCaja_NombreProducto" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="EmpCaja_Cantidad" Type="int" Nullable="false" />
+          <Property Name="EmpCaja_Observaciones" Type="varchar" MaxLength="150" />
+        </EntityType>
         <EntityType Name="tbEstados">
           <Key>
             <PropertyRef Name="estad_Codigo" />
           </Key>
           <Property Name="estad_Codigo" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="estad_Descripcion" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbExoneraciones">
+          <Key>
+            <PropertyRef Name="ex_Codigo" />
+          </Key>
+          <Property Name="ex_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clte_RTN" Type="nvarchar" MaxLength="14" Nullable="false" />
+          <Property Name="ex_FechaEmision" Type="datetime" Nullable="false" />
+          <Property Name="ex_FechaInicial" Type="datetime" Nullable="false" />
+          <Property Name="ex_FechaFinal" Type="datetime" Nullable="false" />
+          <Property Name="ex_Imagen" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tbLineasPago">
           <Key>
@@ -65,6 +106,16 @@
           <Property Name="mpio_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="dpto_Codigo" Type="char" MaxLength="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbPersonasJuridicas">
+          <Key>
+            <PropertyRef Name="clte_RTN" />
+          </Key>
+          <Property Name="clte_RTN" Type="nvarchar" MaxLength="14" Nullable="false" />
+          <Property Name="clte_RazonSocial" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="clte_RazonComercial" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="clte_Telefono" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="clte_Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="tbSubcategoria">
           <Key>
             <PropertyRef Name="SubCateg_IDSubCategoria" />
@@ -72,6 +123,16 @@
           <Property Name="SubCateg_IDSubCategoria" Type="int" Nullable="false" />
           <Property Name="SubCateg_IDCategoria" Type="int" Nullable="false" />
           <Property Name="SubCateg_Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbSucursal">
+          <Key>
+            <PropertyRef Name="su_CodSucursal" />
+          </Key>
+          <Property Name="su_CodSucursal" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="mpio_Codigo" Type="int" Nullable="false" />
+          <Property Name="su_Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="su_Direccion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="su_Telefono" Type="nvarchar" MaxLength="9" Nullable="false" />
         </EntityType>
         <EntityType Name="tbTasasCambio">
           <Key>
@@ -171,16 +232,168 @@
           <Property Name="SubCateg_prod_IDSubCategoria" Type="int" />
           <Property Name="estad_prod_Codigo" Type="nvarchar" MaxLength="4" />
         </EntityType>
+        <EntityType Name="tbSalida">
+          <Key>
+            <PropertyRef Name="slda_Codigo" />
+          </Key>
+          <Property Name="slda_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="slda_FechadeSalida" Type="datetime" />
+          <Property Name="bdg_Codigo" Type="int" Nullable="false" />
+          <Property Name="inv_Codigo" Type="int" Nullable="false" />
+          <Property Name="sld_Transporte" Type="varchar" MaxLength="200" />
+          <Property Name="tpds_Codigo" Type="int" />
+          <Property Name="std_Codigo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbArqueoCaja">
+          <Key>
+            <PropertyRef Name="arcj_Codigo" />
+          </Key>
+          <Property Name="arcj_Codigo" Type="int" Nullable="false" />
+          <Property Name="cjs_Codigo" Type="int" Nullable="false" />
+          <Property Name="arcj_FechaArqueo" Type="datetime" Nullable="false" />
+          <Property Name="arcj_AperturaCaja" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="arcj_CierreCaja" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="suc_Codigo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="VentasDias" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbAvales">
+          <Key>
+            <PropertyRef Name="aval_Codigo" />
+          </Key>
+          <Property Name="aval_Codigo" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="aval_Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="aval_Apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="aval_Telefono" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="aval_Direccion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="aval_Parentesco" Type="varchar" MaxLength="100" />
+          <Property Name="aval_LugardeTrabajo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="aval_Cargo" Type="varchar" MaxLength="100" />
+          <Property Name="aval_DireccionTrabajo" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbCredito">
+          <Key>
+            <PropertyRef Name="cred_Codigo" />
+          </Key>
+          <Property Name="cred_Codigo" Type="int" Nullable="false" />
+          <Property Name="clte_RTNCliente" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="lnpago_Codigo" Type="int" Nullable="false" />
+          <Property Name="edo_Codigo" Type="int" Nullable="false" />
+          <Property Name="cred_FechaSolicitud" Type="date" Nullable="false" />
+          <Property Name="cred_FechaAprobacion" Type="date" />
+          <Property Name="cred_MontoSolicitud" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="cred_MontoCredito" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="cred_LimiteCredito" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbDetallePedidos">
+          <Key>
+            <PropertyRef Name="dped_CodDetallePedido" />
+          </Key>
+          <Property Name="dped_CodDetallePedido" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="dped_Cantidad" Type="int" Nullable="false" />
+          <Property Name="dep_CodPedido" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="prod_Codigo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbDetallesFactura">
+          <Key>
+            <PropertyRef Name="fact_Codigo" />
+          </Key>
+          <Property Name="fact_Codigo" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="prod_Codigo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="dfact_Cantidad" Type="int" Nullable="false" />
+          <Property Name="dfact_Descuento" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbFacturas">
+          <Key>
+            <PropertyRef Name="fact_Codigo" />
+          </Key>
+          <Property Name="fact_Codigo" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="clte_Rtn" Type="nvarchar" MaxLength="14" Nullable="false" />
+          <Property Name="tpago_Codigo" Type="int" Nullable="false" />
+          <Property Name="fpago_Codigo" Type="int" Nullable="false" />
+          <Property Name="scs_Codigo" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Usuario_Nombre" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="tcam_Codigo" Type="int" Nullable="false" />
+          <Property Name="fact_Fecha" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_ZORZAL.Vntas.tbPagos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbPagos">
+          <Key>
+            <PropertyRef Name="pgCodPago" />
+            <PropertyRef Name="fact_Codigo" />
+            <PropertyRef Name="pgFechaPago" />
+            <PropertyRef Name="pgMonto" />
+            <PropertyRef Name="tcam_Codigo" />
+            <PropertyRef Name="tpago_Codigo" />
+          </Key>
+          <Property Name="pgCodPago" Type="int" Nullable="false" />
+          <Property Name="fact_Codigo" Type="nvarchar" MaxLength="14" Nullable="false" />
+          <Property Name="pgFechaPago" Type="datetime" Nullable="false" />
+          <Property Name="pgMonto" Type="decimal" Precision="16" Scale="4" Nullable="false" />
+          <Property Name="tcam_Codigo" Type="int" Nullable="false" />
+          <Property Name="tpago_Codigo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbPedidos">
+          <Key>
+            <PropertyRef Name="ped_CodPedido" />
+          </Key>
+          <Property Name="ped_CodPedido" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="su_CodSucursal" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="ped_FechaPedido" Type="datetime" Nullable="false" />
+          <Property Name="ped_FechaEntrega" Type="datetime" Nullable="false" />
+          <Property Name="ctle_RTN" Type="nvarchar" MaxLength="14" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__ tbPerson__clte___40058253">
+          <End Role="tbClientes" Type="Self.tbClientes" Multiplicity="1" />
+          <End Role=" tbPersonasNaturales" Type="Self. tbPersonasNaturales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbClientes">
+              <PropertyRef Name="clte_RTN" />
+            </Principal>
+            <Dependent Role=" tbPersonasNaturales">
+              <PropertyRef Name="clte_RTN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbDetalle__fact___1AD3FDA4">
+          <End Role="tbFacturas" Type="Self.tbFacturas" Multiplicity="1" />
+          <End Role="tbDetallesFactura" Type="Self.tbDetallesFactura" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbFacturas">
+              <PropertyRef Name="fact_Codigo" />
+            </Principal>
+            <Dependent Role="tbDetallesFactura">
+              <PropertyRef Name="fact_Codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbPersona__clte___3E1D39E1">
+          <End Role="tbClientes" Type="Self.tbClientes" Multiplicity="1" />
+          <End Role="tbPersonasJuridicas" Type="Self.tbPersonasJuridicas" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbClientes">
+              <PropertyRef Name="clte_RTN" />
+            </Principal>
+            <Dependent Role="tbPersonasJuridicas">
+              <PropertyRef Name="clte_RTN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ERP_ZORZALModelStoreContainer">
           <EntitySet Name="tbCajas" EntityType="Self.tbCajas" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbCargos" EntityType="Self.tbCargos" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbCategoria" EntityType="Self.tbCategoria" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbClientes" EntityType="Self.tbClientes" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbDepartamentos" EntityType="Self.tbDepartamentos" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbEmpaqueCaja" EntityType="Self.tbEmpaqueCaja" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbEstados" EntityType="Self.tbEstados" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbExoneraciones" EntityType="Self.tbExoneraciones" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbLineasPago" EntityType="Self.tbLineasPago" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbMonedas" EntityType="Self.tbMonedas" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbMunicipios" EntityType="Self.tbMunicipios" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbPersonasJuridicas" EntityType="Self.tbPersonasJuridicas" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbSubcategoria" EntityType="Self.tbSubcategoria" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbSucursal" EntityType="Self.tbSucursal" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbTasasCambio" EntityType="Self.tbTasasCambio" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbTiposBodega" EntityType="Self.tbTiposBodega" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbTiposDocumento" EntityType="Self.tbTiposDocumento" Schema="Gral" store:Type="Tables" />
@@ -192,39 +405,97 @@
           <EntitySet Name="tbBodega" EntityType="Self.tbBodega" Schema="Inv" store:Type="Tables" />
           <EntitySet Name="tbEntrada" EntityType="Self.tbEntrada" Schema="Inv" store:Type="Tables" />
           <EntitySet Name="tbProductos" EntityType="Self.tbProductos" Schema="Inv" store:Type="Tables" />
+          <EntitySet Name="tbSalida" EntityType="Self.tbSalida" Schema="Inv" store:Type="Tables" />
+          <EntitySet Name="tbArqueoCaja" EntityType="Self.tbArqueoCaja" Schema="Vntas" store:Type="Tables" />
+          <EntitySet Name="tbAvales" EntityType="Self.tbAvales" Schema="Vntas" store:Type="Tables" />
+          <EntitySet Name="tbCredito" EntityType="Self.tbCredito" Schema="Vntas" store:Type="Tables" />
+          <EntitySet Name="tbDetallePedidos" EntityType="Self.tbDetallePedidos" Schema="Vntas" store:Type="Tables" />
+          <EntitySet Name="tbDetallesFactura" EntityType="Self.tbDetallesFactura" Schema="Vntas" store:Type="Tables" />
+          <EntitySet Name="tbFacturas" EntityType="Self.tbFacturas" Schema="Vntas" store:Type="Tables" />
+          <EntitySet Name="tbPedidos" EntityType="Self.tbPedidos" Schema="Vntas" store:Type="Tables" />
+          <EntitySet Name=" tbPersonasNaturales" EntityType="Self. tbPersonasNaturales" store:Type="Tables" store:Schema="Gral">
+            <DefiningQuery>SELECT 
+    [ tbPersonasNaturales].[clte_RTN] AS [clte_RTN], 
+    [ tbPersonasNaturales].[clte_Nombre] AS [clte_Nombre], 
+    [ tbPersonasNaturales].[clte_Apellido] AS [clte_Apellido], 
+    [ tbPersonasNaturales].[clte_Direccion] AS [clte_Direccion]
+    FROM [Gral].[ tbPersonasNaturales] AS [ tbPersonasNaturales]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbPagos" EntityType="Self.tbPagos" store:Type="Tables" store:Schema="Vntas">
+            <DefiningQuery>SELECT 
+    [tbPagos].[pgCodPago] AS [pgCodPago], 
+    [tbPagos].[fact_Codigo] AS [fact_Codigo], 
+    [tbPagos].[pgFechaPago] AS [pgFechaPago], 
+    [tbPagos].[pgMonto] AS [pgMonto], 
+    [tbPagos].[tcam_Codigo] AS [tcam_Codigo], 
+    [tbPagos].[tpago_Codigo] AS [tpago_Codigo]
+    FROM [Vntas].[tbPagos] AS [tbPagos]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__ tbPerson__clte___40058253" Association="Self.FK__ tbPerson__clte___40058253">
+            <End Role="tbClientes" EntitySet="tbClientes" />
+            <End Role=" tbPersonasNaturales" EntitySet=" tbPersonasNaturales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbDetalle__fact___1AD3FDA4" Association="Self.FK__tbDetalle__fact___1AD3FDA4">
+            <End Role="tbFacturas" EntitySet="tbFacturas" />
+            <End Role="tbDetallesFactura" EntitySet="tbDetallesFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbPersona__clte___3E1D39E1" Association="Self.FK__tbPersona__clte___3E1D39E1">
+            <End Role="tbClientes" EntitySet="tbClientes" />
+            <End Role="tbPersonasJuridicas" EntitySet="tbPersonasJuridicas" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ERP_ZORZALModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="tbEstados">
-          <Key>
-            <PropertyRef Name="estad_Codigo" />
-          </Key>
-          <Property Name="estad_Codigo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="estad_Descripcion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="ERP_ZORZALEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tbEstados" EntityType="Self.tbEstados" />
           <EntitySet Name="tbCajas" EntityType="ERP_ZORZALModel.tbCajas" />
+          <EntitySet Name="tbCargos" EntityType="ERP_ZORZALModel.tbCargos" />
+          <EntitySet Name="tbCategoria" EntityType="ERP_ZORZALModel.tbCategoria" />
+          <EntitySet Name="tbClientes" EntityType="ERP_ZORZALModel.tbClientes" />
           <EntitySet Name="tbDepartamentos" EntityType="ERP_ZORZALModel.tbDepartamentos" />
+          <EntitySet Name="tbEmpaqueCaja" EntityType="ERP_ZORZALModel.tbEmpaqueCaja" />
+          <EntitySet Name="tbEstados" EntityType="ERP_ZORZALModel.tbEstados" />
+          <EntitySet Name="tbExoneraciones" EntityType="ERP_ZORZALModel.tbExoneraciones" />
           <EntitySet Name="tbLineasPago" EntityType="ERP_ZORZALModel.tbLineasPago" />
           <EntitySet Name="tbMonedas" EntityType="ERP_ZORZALModel.tbMonedas" />
           <EntitySet Name="tbMunicipios" EntityType="ERP_ZORZALModel.tbMunicipios" />
-          <EntitySet Name="tbTiposDocumento" EntityType="ERP_ZORZALModel.tbTiposDocumento" />
-          <EntitySet Name="tbTiposPago" EntityType="ERP_ZORZALModel.tbTiposPago" />
-          <EntitySet Name="tbCargos" EntityType="ERP_ZORZALModel.tbCargos" />
+          <EntitySet Name="tbPersonasJuridicas" EntityType="ERP_ZORZALModel.tbPersonasJuridicas" />
+          <EntitySet Name="tbSubcategoria" EntityType="ERP_ZORZALModel.tbSubcategoria" />
+          <EntitySet Name="tbSucursal" EntityType="ERP_ZORZALModel.tbSucursal" />
           <EntitySet Name="tbTasasCambio" EntityType="ERP_ZORZALModel.tbTasasCambio" />
           <EntitySet Name="tbTiposBodega" EntityType="ERP_ZORZALModel.tbTiposBodega" />
+          <EntitySet Name="tbTiposDocumento" EntityType="ERP_ZORZALModel.tbTiposDocumento" />
           <EntitySet Name="tbTiposEntrada" EntityType="ERP_ZORZALModel.tbTiposEntrada" />
           <EntitySet Name="tbTiposInventario" EntityType="ERP_ZORZALModel.tbTiposInventario" />
+          <EntitySet Name="tbTiposPago" EntityType="ERP_ZORZALModel.tbTiposPago" />
           <EntitySet Name="tbTiposSalida" EntityType="ERP_ZORZALModel.tbTiposSalida" />
           <EntitySet Name="tbUnidadesMedida" EntityType="ERP_ZORZALModel.tbUnidadesMedida" />
-          <EntitySet Name="tbCategoria" EntityType="ERP_ZORZALModel.tbCategoria" />
-          <EntitySet Name="tbSubcategoria" EntityType="ERP_ZORZALModel.tbSubcategoria" />
-          <EntitySet Name="tbEntrada" EntityType="ERP_ZORZALModel.tbEntrada" />
           <EntitySet Name="tbBodega" EntityType="ERP_ZORZALModel.tbBodega" />
+          <EntitySet Name="tbEntrada" EntityType="ERP_ZORZALModel.tbEntrada" />
           <EntitySet Name="tbProductos" EntityType="ERP_ZORZALModel.tbProductos" />
+          <EntitySet Name="tbSalida" EntityType="ERP_ZORZALModel.tbSalida" />
+          <EntitySet Name="tbArqueoCaja" EntityType="ERP_ZORZALModel.tbArqueoCaja" />
+          <EntitySet Name="tbAvales" EntityType="ERP_ZORZALModel.tbAvales" />
+          <EntitySet Name="tbCredito" EntityType="ERP_ZORZALModel.tbCredito" />
+          <EntitySet Name="tbDetallePedidos" EntityType="ERP_ZORZALModel.tbDetallePedidos" />
+          <EntitySet Name="tbDetallesFactura" EntityType="ERP_ZORZALModel.tbDetallesFactura" />
+          <EntitySet Name="tbFacturas" EntityType="ERP_ZORZALModel.tbFacturas" />
+          <EntitySet Name="tbPedidos" EntityType="ERP_ZORZALModel.tbPedidos" />
+          <EntitySet Name="C_tbPersonasNaturales" EntityType="ERP_ZORZALModel.C_tbPersonasNaturales" />
+          <EntitySet Name="tbPagos" EntityType="ERP_ZORZALModel.tbPagos" />
+          <AssociationSet Name="FK___tbPerson__clte___40058253" Association="ERP_ZORZALModel.FK___tbPerson__clte___40058253">
+            <End Role="tbClientes" EntitySet="tbClientes" />
+            <End Role="C_tbPersonasNaturales" EntitySet="C_tbPersonasNaturales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbPersona__clte___3E1D39E1" Association="ERP_ZORZALModel.FK__tbPersona__clte___3E1D39E1">
+            <End Role="tbClientes" EntitySet="tbClientes" />
+            <End Role="tbPersonasJuridicas" EntitySet="tbPersonasJuridicas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbDetalle__fact___1AD3FDA4" Association="ERP_ZORZALModel.FK__tbDetalle__fact___1AD3FDA4">
+            <End Role="tbFacturas" EntitySet="tbFacturas" />
+            <End Role="tbDetallesFactura" EntitySet="tbDetallesFactura" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tbCajas">
           <Key>
@@ -234,12 +505,63 @@
           <Property Name="ca_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ca_CodSucursal" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="tbCargos">
+          <Key>
+            <PropertyRef Name="cgo_Codigo" />
+          </Key>
+          <Property Name="cgo_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cgo_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbCategoria">
+          <Key>
+            <PropertyRef Name="Categ_IDCategoria" />
+          </Key>
+          <Property Name="Categ_IDCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Categ_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbClientes">
+          <Key>
+            <PropertyRef Name="clte_RTN" />
+          </Key>
+          <Property Name="clte_RTN" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="C_tbPersonasNaturales" Relationship="ERP_ZORZALModel.FK___tbPerson__clte___40058253" FromRole="tbClientes" ToRole="C_tbPersonasNaturales" />
+          <NavigationProperty Name="tbPersonasJuridicas" Relationship="ERP_ZORZALModel.FK__tbPersona__clte___3E1D39E1" FromRole="tbClientes" ToRole="tbPersonasJuridicas" />
+        </EntityType>
         <EntityType Name="tbDepartamentos">
           <Key>
             <PropertyRef Name="dpto_Codigo" />
           </Key>
           <Property Name="dpto_Codigo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="dpto_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbEmpaqueCaja">
+          <Key>
+            <PropertyRef Name="EmpCaja_IDEmpaqueCaja" />
+          </Key>
+          <Property Name="EmpCaja_IDEmpaqueCaja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpCaja_BodegaDespacho" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EmpCaja_BodegaRecibe" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EmpCaja_NombreProducto" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EmpCaja_Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="EmpCaja_Observaciones" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbEstados">
+          <Key>
+            <PropertyRef Name="estad_Codigo" />
+          </Key>
+          <Property Name="estad_Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="estad_Descripcion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbExoneraciones">
+          <Key>
+            <PropertyRef Name="ex_Codigo" />
+          </Key>
+          <Property Name="ex_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clte_RTN" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="ex_FechaEmision" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ex_FechaInicial" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ex_FechaFinal" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ex_Imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbLineasPago">
           <Key>
@@ -265,26 +587,34 @@
           <Property Name="mpio_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="dpto_Codigo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
         </EntityType>
-        <EntityType Name="tbTiposDocumento">
+        <EntityType Name="tbPersonasJuridicas">
           <Key>
-            <PropertyRef Name="docCodTipoDocumento" />
+            <PropertyRef Name="clte_RTN" />
           </Key>
-          <Property Name="docCodTipoDocumento" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
-          <Property Name="docNombreDocumento" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="clte_RTN" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="clte_RazonSocial" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clte_RazonComercial" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clte_Telefono" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="clte_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbClientes" Relationship="ERP_ZORZALModel.FK__tbPersona__clte___3E1D39E1" FromRole="tbPersonasJuridicas" ToRole="tbClientes" />
         </EntityType>
-        <EntityType Name="tbTiposPago">
+        <EntityType Name="tbSubcategoria">
           <Key>
-            <PropertyRef Name="tpago_Codigo" />
+            <PropertyRef Name="SubCateg_IDSubCategoria" />
           </Key>
-          <Property Name="tpago_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tpago_Descripcion" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="SubCateg_IDSubCategoria" Type="Int32" Nullable="false" />
+          <Property Name="SubCateg_IDCategoria" Type="Int32" Nullable="false" />
+          <Property Name="SubCateg_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="tbCargos">
+        <EntityType Name="tbSucursal">
           <Key>
-            <PropertyRef Name="cgo_Codigo" />
+            <PropertyRef Name="su_CodSucursal" />
           </Key>
-          <Property Name="cgo_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cgo_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="su_CodSucursal" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="mpio_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="su_Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="su_Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="su_Telefono" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbTasasCambio">
           <Key>
@@ -299,8 +629,15 @@
           <Key>
             <PropertyRef Name="tpbdg_Codigo" />
           </Key>
-          <Property Name="tpbdg_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="tpbdg_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tpbdg_Descripcion" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbTiposDocumento">
+          <Key>
+            <PropertyRef Name="docCodTipoDocumento" />
+          </Key>
+          <Property Name="docCodTipoDocumento" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="docNombreDocumento" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tbTiposEntrada">
           <Key>
@@ -316,6 +653,13 @@
           <Property Name="tpinv_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tpinv_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="tbTiposPago">
+          <Key>
+            <PropertyRef Name="tpago_Codigo" />
+          </Key>
+          <Property Name="tpago_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tpago_Descripcion" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="tbTiposSalida">
           <Key>
             <PropertyRef Name="tpds_Codigo" />
@@ -329,34 +673,6 @@
           </Key>
           <Property Name="udsm_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="udsm_DESCRIPCION" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="tbCategoria">
-          <Key>
-            <PropertyRef Name="Categ_IDCategoria" />
-          </Key>
-          <Property Name="Categ_IDCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Categ_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="tbSubcategoria">
-          <Key>
-            <PropertyRef Name="SubCateg_IDSubCategoria" />
-          </Key>
-          <Property Name="SubCateg_IDSubCategoria" Type="Int32" Nullable="false" />
-          <Property Name="SubCateg_IDCategoria" Type="Int32" Nullable="false" />
-          <Property Name="SubCateg_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="tbEntrada">
-          <Key>
-            <PropertyRef Name="E_IdEntrada" />
-          </Key>
-          <Property Name="E_IdEntrada" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="E_IdInvetario" Type="Int32" Nullable="false" />
-          <Property Name="E_IdProducto" Type="Int32" Nullable="false" />
-          <Property Name="E_IdUnidad" Type="Int32" Nullable="false" />
-          <Property Name="E_PrecioUnitario" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="E_FechaEntrada" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="E_IdBodega" Type="Int32" Nullable="false" />
-          <Property Name="E_IdUsuario" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="tbBodega">
           <Key>
@@ -372,6 +688,19 @@
           <Property Name="Bdga_Zona" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="tpbdga_Codigo" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbEntrada">
+          <Key>
+            <PropertyRef Name="E_IdEntrada" />
+          </Key>
+          <Property Name="E_IdEntrada" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="E_IdInvetario" Type="Int32" Nullable="false" />
+          <Property Name="E_IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="E_IdUnidad" Type="Int32" Nullable="false" />
+          <Property Name="E_PrecioUnitario" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="E_FechaEntrada" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="E_IdBodega" Type="Int32" Nullable="false" />
+          <Property Name="E_IdUsuario" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="tbProductos">
           <Key>
             <PropertyRef Name="prod_Codigo" />
@@ -385,20 +714,171 @@
           <Property Name="SubCateg_prod_IDSubCategoria" Type="Int32" />
           <Property Name="estad_prod_Codigo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
         </EntityType>
-      </Schema>
+        <EntityType Name="tbSalida">
+          <Key>
+            <PropertyRef Name="slda_Codigo" />
+          </Key>
+          <Property Name="slda_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="slda_FechadeSalida" Type="DateTime" Precision="3" />
+          <Property Name="bdg_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="inv_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="sld_Transporte" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="tpds_Codigo" Type="Int32" />
+          <Property Name="std_Codigo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbArqueoCaja">
+          <Key>
+            <PropertyRef Name="arcj_Codigo" />
+          </Key>
+          <Property Name="arcj_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="cjs_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="arcj_FechaArqueo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="arcj_AperturaCaja" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="arcj_CierreCaja" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="suc_Codigo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VentasDias" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="tbAvales">
+          <Key>
+            <PropertyRef Name="aval_Codigo" />
+          </Key>
+          <Property Name="aval_Codigo" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="aval_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="aval_Apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="aval_Telefono" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="aval_Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="aval_Parentesco" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="aval_LugardeTrabajo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="aval_Cargo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="aval_DireccionTrabajo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbCredito">
+          <Key>
+            <PropertyRef Name="cred_Codigo" />
+          </Key>
+          <Property Name="cred_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="clte_RTNCliente" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="lnpago_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="edo_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="cred_FechaSolicitud" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="cred_FechaAprobacion" Type="DateTime" Precision="0" />
+          <Property Name="cred_MontoSolicitud" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cred_MontoCredito" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="cred_LimiteCredito" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="tbDetallePedidos">
+          <Key>
+            <PropertyRef Name="dped_CodDetallePedido" />
+          </Key>
+          <Property Name="dped_CodDetallePedido" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="dped_Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="dep_CodPedido" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="prod_Codigo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbDetallesFactura">
+          <Key>
+            <PropertyRef Name="fact_Codigo" />
+          </Key>
+          <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="dfact_Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="dfact_Descuento" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="tbFacturas" Relationship="ERP_ZORZALModel.FK__tbDetalle__fact___1AD3FDA4" FromRole="tbDetallesFactura" ToRole="tbFacturas" />
+        </EntityType>
+        <EntityType Name="tbFacturas">
+          <Key>
+            <PropertyRef Name="fact_Codigo" />
+          </Key>
+          <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="clte_Rtn" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="tpago_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="fpago_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="scs_Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Usuario_Nombre" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="tcam_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="fact_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tbDetallesFactura" Relationship="ERP_ZORZALModel.FK__tbDetalle__fact___1AD3FDA4" FromRole="tbFacturas" ToRole="tbDetallesFactura" />
+        </EntityType>
+        <EntityType Name="tbPedidos">
+          <Key>
+            <PropertyRef Name="ped_CodPedido" />
+          </Key>
+          <Property Name="ped_CodPedido" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="su_CodSucursal" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="ped_FechaPedido" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ped_FechaEntrega" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ctle_RTN" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="C_tbPersonasNaturales">
+          <Key>
+            <PropertyRef Name="clte_RTN" />
+            <PropertyRef Name="clte_Nombre" />
+            <PropertyRef Name="clte_Direccion" />
+          </Key>
+          <Property Name="clte_RTN" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="clte_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clte_Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clte_Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbClientes" Relationship="ERP_ZORZALModel.FK___tbPerson__clte___40058253" FromRole="C_tbPersonasNaturales" ToRole="tbClientes" />
+        </EntityType>
+        <EntityType Name="tbPagos">
+          <Key>
+            <PropertyRef Name="pgCodPago" />
+            <PropertyRef Name="fact_Codigo" />
+            <PropertyRef Name="pgFechaPago" />
+            <PropertyRef Name="pgMonto" />
+            <PropertyRef Name="tcam_Codigo" />
+            <PropertyRef Name="tpago_Codigo" />
+          </Key>
+          <Property Name="pgCodPago" Type="Int32" Nullable="false" />
+          <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="pgFechaPago" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="pgMonto" Type="Decimal" Nullable="false" Precision="16" Scale="4" />
+          <Property Name="tcam_Codigo" Type="Int32" Nullable="false" />
+          <Property Name="tpago_Codigo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK___tbPerson__clte___40058253">
+          <End Type="ERP_ZORZALModel.tbClientes" Role="tbClientes" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.C_tbPersonasNaturales" Role="C_tbPersonasNaturales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbClientes">
+              <PropertyRef Name="clte_RTN" />
+            </Principal>
+            <Dependent Role="C_tbPersonasNaturales">
+              <PropertyRef Name="clte_RTN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbPersona__clte___3E1D39E1">
+          <End Type="ERP_ZORZALModel.tbClientes" Role="tbClientes" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbPersonasJuridicas" Role="tbPersonasJuridicas" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbClientes">
+              <PropertyRef Name="clte_RTN" />
+            </Principal>
+            <Dependent Role="tbPersonasJuridicas">
+              <PropertyRef Name="clte_RTN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbDetalle__fact___1AD3FDA4">
+          <End Type="ERP_ZORZALModel.tbFacturas" Role="tbFacturas" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbDetallesFactura" Role="tbDetallesFactura" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbFacturas">
+              <PropertyRef Name="fact_Codigo" />
+            </Principal>
+            <Dependent Role="tbDetallesFactura">
+              <PropertyRef Name="fact_Codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ERP_ZORZALModelStoreContainer" CdmEntityContainer="ERP_ZORZALEntities">
-          <EntitySetMapping Name="tbEstados">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEstados">
-              <MappingFragment StoreEntitySet="tbEstados">
-                <ScalarProperty Name="estad_Codigo" ColumnName="estad_Codigo" />
-                <ScalarProperty Name="estad_Descripcion" ColumnName="estad_Descripcion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbCajas">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCajas">
               <MappingFragment StoreEntitySet="tbCajas">
@@ -408,11 +888,66 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbCargos">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCargos">
+              <MappingFragment StoreEntitySet="tbCargos">
+                <ScalarProperty Name="cgo_Descripcion" ColumnName="cgo_Descripcion" />
+                <ScalarProperty Name="cgo_Codigo" ColumnName="cgo_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbCategoria">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCategoria">
+              <MappingFragment StoreEntitySet="tbCategoria">
+                <ScalarProperty Name="Categ_Descripcion" ColumnName="Categ_Descripcion" />
+                <ScalarProperty Name="Categ_IDCategoria" ColumnName="Categ_IDCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbClientes">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbClientes">
+              <MappingFragment StoreEntitySet="tbClientes">
+                <ScalarProperty Name="clte_RTN" ColumnName="clte_RTN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbDepartamentos">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDepartamentos">
               <MappingFragment StoreEntitySet="tbDepartamentos">
                 <ScalarProperty Name="dpto_Descripcion" ColumnName="dpto_Descripcion" />
                 <ScalarProperty Name="dpto_Codigo" ColumnName="dpto_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbEmpaqueCaja">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEmpaqueCaja">
+              <MappingFragment StoreEntitySet="tbEmpaqueCaja">
+                <ScalarProperty Name="EmpCaja_Observaciones" ColumnName="EmpCaja_Observaciones" />
+                <ScalarProperty Name="EmpCaja_Cantidad" ColumnName="EmpCaja_Cantidad" />
+                <ScalarProperty Name="EmpCaja_NombreProducto" ColumnName="EmpCaja_NombreProducto" />
+                <ScalarProperty Name="EmpCaja_BodegaRecibe" ColumnName="EmpCaja_BodegaRecibe" />
+                <ScalarProperty Name="EmpCaja_BodegaDespacho" ColumnName="EmpCaja_BodegaDespacho" />
+                <ScalarProperty Name="EmpCaja_IDEmpaqueCaja" ColumnName="EmpCaja_IDEmpaqueCaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbEstados">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEstados">
+              <MappingFragment StoreEntitySet="tbEstados">
+                <ScalarProperty Name="estad_Descripcion" ColumnName="estad_Descripcion" />
+                <ScalarProperty Name="estad_Codigo" ColumnName="estad_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbExoneraciones">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbExoneraciones">
+              <MappingFragment StoreEntitySet="tbExoneraciones">
+                <ScalarProperty Name="ex_Imagen" ColumnName="ex_Imagen" />
+                <ScalarProperty Name="ex_FechaFinal" ColumnName="ex_FechaFinal" />
+                <ScalarProperty Name="ex_FechaInicial" ColumnName="ex_FechaInicial" />
+                <ScalarProperty Name="ex_FechaEmision" ColumnName="ex_FechaEmision" />
+                <ScalarProperty Name="clte_RTN" ColumnName="clte_RTN" />
+                <ScalarProperty Name="ex_Codigo" ColumnName="ex_Codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -443,27 +978,34 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbTiposDocumento">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposDocumento">
-              <MappingFragment StoreEntitySet="tbTiposDocumento">
-                <ScalarProperty Name="docNombreDocumento" ColumnName="docNombreDocumento" />
-                <ScalarProperty Name="docCodTipoDocumento" ColumnName="docCodTipoDocumento" />
+          <EntitySetMapping Name="tbPersonasJuridicas">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPersonasJuridicas">
+              <MappingFragment StoreEntitySet="tbPersonasJuridicas">
+                <ScalarProperty Name="clte_Email" ColumnName="clte_Email" />
+                <ScalarProperty Name="clte_Telefono" ColumnName="clte_Telefono" />
+                <ScalarProperty Name="clte_RazonComercial" ColumnName="clte_RazonComercial" />
+                <ScalarProperty Name="clte_RazonSocial" ColumnName="clte_RazonSocial" />
+                <ScalarProperty Name="clte_RTN" ColumnName="clte_RTN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbTiposPago">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposPago">
-              <MappingFragment StoreEntitySet="tbTiposPago">
-                <ScalarProperty Name="tpago_Descripcion" ColumnName="tpago_Descripcion" />
-                <ScalarProperty Name="tpago_Codigo" ColumnName="tpago_Codigo" />
+          <EntitySetMapping Name="tbSubcategoria">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSubcategoria">
+              <MappingFragment StoreEntitySet="tbSubcategoria">
+                <ScalarProperty Name="SubCateg_Descripcion" ColumnName="SubCateg_Descripcion" />
+                <ScalarProperty Name="SubCateg_IDCategoria" ColumnName="SubCateg_IDCategoria" />
+                <ScalarProperty Name="SubCateg_IDSubCategoria" ColumnName="SubCateg_IDSubCategoria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbCargos">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCargos">
-              <MappingFragment StoreEntitySet="tbCargos">
-                <ScalarProperty Name="cgo_Descripcion" ColumnName="cgo_Descripcion" />
-                <ScalarProperty Name="cgo_Codigo" ColumnName="cgo_Codigo" />
+          <EntitySetMapping Name="tbSucursal">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSucursal">
+              <MappingFragment StoreEntitySet="tbSucursal">
+                <ScalarProperty Name="su_Telefono" ColumnName="su_Telefono" />
+                <ScalarProperty Name="su_Direccion" ColumnName="su_Direccion" />
+                <ScalarProperty Name="su_Correo" ColumnName="su_Correo" />
+                <ScalarProperty Name="mpio_Codigo" ColumnName="mpio_Codigo" />
+                <ScalarProperty Name="su_CodSucursal" ColumnName="su_CodSucursal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -485,6 +1027,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbTiposDocumento">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposDocumento">
+              <MappingFragment StoreEntitySet="tbTiposDocumento">
+                <ScalarProperty Name="docNombreDocumento" ColumnName="docNombreDocumento" />
+                <ScalarProperty Name="docCodTipoDocumento" ColumnName="docCodTipoDocumento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbTiposEntrada">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposEntrada">
               <MappingFragment StoreEntitySet="tbTiposEntrada">
@@ -498,6 +1048,14 @@
               <MappingFragment StoreEntitySet="tbTiposInventario">
                 <ScalarProperty Name="tpinv_Descripcion" ColumnName="tpinv_Descripcion" />
                 <ScalarProperty Name="tpinv_Codigo" ColumnName="tpinv_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbTiposPago">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposPago">
+              <MappingFragment StoreEntitySet="tbTiposPago">
+                <ScalarProperty Name="tpago_Descripcion" ColumnName="tpago_Descripcion" />
+                <ScalarProperty Name="tpago_Codigo" ColumnName="tpago_Codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -517,20 +1075,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbCategoria">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCategoria">
-              <MappingFragment StoreEntitySet="tbCategoria">
-                <ScalarProperty Name="Categ_Descripcion" ColumnName="Categ_Descripcion" />
-                <ScalarProperty Name="Categ_IDCategoria" ColumnName="Categ_IDCategoria" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbSubcategoria">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSubcategoria">
-              <MappingFragment StoreEntitySet="tbSubcategoria">
-                <ScalarProperty Name="SubCateg_Descripcion" ColumnName="SubCateg_Descripcion" />
-                <ScalarProperty Name="SubCateg_IDCategoria" ColumnName="SubCateg_IDCategoria" />
-                <ScalarProperty Name="SubCateg_IDSubCategoria" ColumnName="SubCateg_IDSubCategoria" />
+          <EntitySetMapping Name="tbBodega">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbBodega">
+              <MappingFragment StoreEntitySet="tbBodega">
+                <ScalarProperty Name="tpbdga_Codigo" ColumnName="tpbdga_Codigo" />
+                <ScalarProperty Name="Bdga_Zona" ColumnName="Bdga_Zona" />
+                <ScalarProperty Name="Bdga_Capacidad" ColumnName="Bdga_Capacidad" />
+                <ScalarProperty Name="mpio_Codigo" ColumnName="mpio_Codigo" />
+                <ScalarProperty Name="dpto_Codigo" ColumnName="dpto_Codigo" />
+                <ScalarProperty Name="estad_Codigo" ColumnName="estad_Codigo" />
+                <ScalarProperty Name="Bdga_Contacto" ColumnName="Bdga_Contacto" />
+                <ScalarProperty Name="Bdga_Encargado" ColumnName="Bdga_Encargado" />
+                <ScalarProperty Name="Bdga_Codigo" ColumnName="Bdga_Codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -548,21 +1104,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbBodega">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbBodega">
-              <MappingFragment StoreEntitySet="tbBodega">
-                <ScalarProperty Name="tpbdga_Codigo" ColumnName="tpbdga_Codigo" />
-                <ScalarProperty Name="Bdga_Zona" ColumnName="Bdga_Zona" />
-                <ScalarProperty Name="Bdga_Capacidad" ColumnName="Bdga_Capacidad" />
-                <ScalarProperty Name="mpio_Codigo" ColumnName="mpio_Codigo" />
-                <ScalarProperty Name="dpto_Codigo" ColumnName="dpto_Codigo" />
-                <ScalarProperty Name="estad_Codigo" ColumnName="estad_Codigo" />
-                <ScalarProperty Name="Bdga_Contacto" ColumnName="Bdga_Contacto" />
-                <ScalarProperty Name="Bdga_Encargado" ColumnName="Bdga_Encargado" />
-                <ScalarProperty Name="Bdga_Codigo" ColumnName="Bdga_Codigo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbProductos">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProductos">
               <MappingFragment StoreEntitySet="tbProductos">
@@ -574,6 +1115,129 @@
                 <ScalarProperty Name="prod_FechaCreacion" ColumnName="prod_FechaCreacion" />
                 <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
                 <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbSalida">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSalida">
+              <MappingFragment StoreEntitySet="tbSalida">
+                <ScalarProperty Name="std_Codigo" ColumnName="std_Codigo" />
+                <ScalarProperty Name="tpds_Codigo" ColumnName="tpds_Codigo" />
+                <ScalarProperty Name="sld_Transporte" ColumnName="sld_Transporte" />
+                <ScalarProperty Name="inv_Codigo" ColumnName="inv_Codigo" />
+                <ScalarProperty Name="bdg_Codigo" ColumnName="bdg_Codigo" />
+                <ScalarProperty Name="slda_FechadeSalida" ColumnName="slda_FechadeSalida" />
+                <ScalarProperty Name="slda_Codigo" ColumnName="slda_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbArqueoCaja">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbArqueoCaja">
+              <MappingFragment StoreEntitySet="tbArqueoCaja">
+                <ScalarProperty Name="VentasDias" ColumnName="VentasDias" />
+                <ScalarProperty Name="suc_Codigo" ColumnName="suc_Codigo" />
+                <ScalarProperty Name="arcj_CierreCaja" ColumnName="arcj_CierreCaja" />
+                <ScalarProperty Name="arcj_AperturaCaja" ColumnName="arcj_AperturaCaja" />
+                <ScalarProperty Name="arcj_FechaArqueo" ColumnName="arcj_FechaArqueo" />
+                <ScalarProperty Name="cjs_Codigo" ColumnName="cjs_Codigo" />
+                <ScalarProperty Name="arcj_Codigo" ColumnName="arcj_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbAvales">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbAvales">
+              <MappingFragment StoreEntitySet="tbAvales">
+                <ScalarProperty Name="aval_DireccionTrabajo" ColumnName="aval_DireccionTrabajo" />
+                <ScalarProperty Name="aval_Cargo" ColumnName="aval_Cargo" />
+                <ScalarProperty Name="aval_LugardeTrabajo" ColumnName="aval_LugardeTrabajo" />
+                <ScalarProperty Name="aval_Parentesco" ColumnName="aval_Parentesco" />
+                <ScalarProperty Name="aval_Direccion" ColumnName="aval_Direccion" />
+                <ScalarProperty Name="aval_Telefono" ColumnName="aval_Telefono" />
+                <ScalarProperty Name="aval_Apellido" ColumnName="aval_Apellido" />
+                <ScalarProperty Name="aval_Nombre" ColumnName="aval_Nombre" />
+                <ScalarProperty Name="aval_Codigo" ColumnName="aval_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbCredito">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCredito">
+              <MappingFragment StoreEntitySet="tbCredito">
+                <ScalarProperty Name="cred_LimiteCredito" ColumnName="cred_LimiteCredito" />
+                <ScalarProperty Name="cred_MontoCredito" ColumnName="cred_MontoCredito" />
+                <ScalarProperty Name="cred_MontoSolicitud" ColumnName="cred_MontoSolicitud" />
+                <ScalarProperty Name="cred_FechaAprobacion" ColumnName="cred_FechaAprobacion" />
+                <ScalarProperty Name="cred_FechaSolicitud" ColumnName="cred_FechaSolicitud" />
+                <ScalarProperty Name="edo_Codigo" ColumnName="edo_Codigo" />
+                <ScalarProperty Name="lnpago_Codigo" ColumnName="lnpago_Codigo" />
+                <ScalarProperty Name="clte_RTNCliente" ColumnName="clte_RTNCliente" />
+                <ScalarProperty Name="cred_Codigo" ColumnName="cred_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbDetallePedidos">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDetallePedidos">
+              <MappingFragment StoreEntitySet="tbDetallePedidos">
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="dep_CodPedido" ColumnName="dep_CodPedido" />
+                <ScalarProperty Name="dped_Cantidad" ColumnName="dped_Cantidad" />
+                <ScalarProperty Name="dped_CodDetallePedido" ColumnName="dped_CodDetallePedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbDetallesFactura">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDetallesFactura">
+              <MappingFragment StoreEntitySet="tbDetallesFactura">
+                <ScalarProperty Name="dfact_Descuento" ColumnName="dfact_Descuento" />
+                <ScalarProperty Name="dfact_Cantidad" ColumnName="dfact_Cantidad" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbFacturas">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbFacturas">
+              <MappingFragment StoreEntitySet="tbFacturas">
+                <ScalarProperty Name="fact_Fecha" ColumnName="fact_Fecha" />
+                <ScalarProperty Name="tcam_Codigo" ColumnName="tcam_Codigo" />
+                <ScalarProperty Name="Usuario_Nombre" ColumnName="Usuario_Nombre" />
+                <ScalarProperty Name="scs_Codigo" ColumnName="scs_Codigo" />
+                <ScalarProperty Name="fpago_Codigo" ColumnName="fpago_Codigo" />
+                <ScalarProperty Name="tpago_Codigo" ColumnName="tpago_Codigo" />
+                <ScalarProperty Name="clte_Rtn" ColumnName="clte_Rtn" />
+                <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbPedidos">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPedidos">
+              <MappingFragment StoreEntitySet="tbPedidos">
+                <ScalarProperty Name="ctle_RTN" ColumnName="ctle_RTN" />
+                <ScalarProperty Name="ped_FechaEntrega" ColumnName="ped_FechaEntrega" />
+                <ScalarProperty Name="ped_FechaPedido" ColumnName="ped_FechaPedido" />
+                <ScalarProperty Name="su_CodSucursal" ColumnName="su_CodSucursal" />
+                <ScalarProperty Name="ped_CodPedido" ColumnName="ped_CodPedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_tbPersonasNaturales">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.C_tbPersonasNaturales">
+              <MappingFragment StoreEntitySet=" tbPersonasNaturales">
+                <ScalarProperty Name="clte_Direccion" ColumnName="clte_Direccion" />
+                <ScalarProperty Name="clte_Apellido" ColumnName="clte_Apellido" />
+                <ScalarProperty Name="clte_Nombre" ColumnName="clte_Nombre" />
+                <ScalarProperty Name="clte_RTN" ColumnName="clte_RTN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbPagos">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPagos">
+              <MappingFragment StoreEntitySet="tbPagos">
+                <ScalarProperty Name="tpago_Codigo" ColumnName="tpago_Codigo" />
+                <ScalarProperty Name="tcam_Codigo" ColumnName="tcam_Codigo" />
+                <ScalarProperty Name="pgMonto" ColumnName="pgMonto" />
+                <ScalarProperty Name="pgFechaPago" ColumnName="pgFechaPago" />
+                <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+                <ScalarProperty Name="pgCodPago" ColumnName="pgCodPago" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

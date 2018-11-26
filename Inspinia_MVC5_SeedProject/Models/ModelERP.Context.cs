@@ -25,25 +25,40 @@ namespace Inspinia_MVC5_SeedProject.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tbEstados> tbEstados { get; set; }
         public virtual DbSet<tbCajas> tbCajas { get; set; }
+        public virtual DbSet<tbCargos> tbCargos { get; set; }
+        public virtual DbSet<tbCategoria> tbCategoria { get; set; }
+        public virtual DbSet<tbClientes> tbClientes { get; set; }
         public virtual DbSet<tbDepartamentos> tbDepartamentos { get; set; }
+        public virtual DbSet<tbEmpaqueCaja> tbEmpaqueCaja { get; set; }
+        public virtual DbSet<tbEstados> tbEstados { get; set; }
+        public virtual DbSet<tbExoneraciones> tbExoneraciones { get; set; }
         public virtual DbSet<tbLineasPago> tbLineasPago { get; set; }
         public virtual DbSet<tbMonedas> tbMonedas { get; set; }
         public virtual DbSet<tbMunicipios> tbMunicipios { get; set; }
-        public virtual DbSet<tbTiposDocumento> tbTiposDocumento { get; set; }
-        public virtual DbSet<tbTiposPago> tbTiposPago { get; set; }
-        public virtual DbSet<tbCargos> tbCargos { get; set; }
+        public virtual DbSet<tbPersonasJuridicas> tbPersonasJuridicas { get; set; }
+        public virtual DbSet<tbSubcategoria> tbSubcategoria { get; set; }
+        public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTasasCambio> tbTasasCambio { get; set; }
         public virtual DbSet<tbTiposBodega> tbTiposBodega { get; set; }
+        public virtual DbSet<tbTiposDocumento> tbTiposDocumento { get; set; }
         public virtual DbSet<tbTiposEntrada> tbTiposEntrada { get; set; }
         public virtual DbSet<tbTiposInventario> tbTiposInventario { get; set; }
+        public virtual DbSet<tbTiposPago> tbTiposPago { get; set; }
         public virtual DbSet<tbTiposSalida> tbTiposSalida { get; set; }
         public virtual DbSet<tbUnidadesMedida> tbUnidadesMedida { get; set; }
-        public virtual DbSet<tbCategoria> tbCategoria { get; set; }
-        public virtual DbSet<tbSubcategoria> tbSubcategoria { get; set; }
-        public virtual DbSet<tbEntrada> tbEntrada { get; set; }
         public virtual DbSet<tbBodega> tbBodega { get; set; }
+        public virtual DbSet<tbEntrada> tbEntrada { get; set; }
         public virtual DbSet<tbProductos> tbProductos { get; set; }
+        public virtual DbSet<tbSalida> tbSalida { get; set; }
+        public virtual DbSet<tbArqueoCaja> tbArqueoCaja { get; set; }
+        public virtual DbSet<tbAvales> tbAvales { get; set; }
+        public virtual DbSet<tbCredito> tbCredito { get; set; }
+        public virtual DbSet<tbDetallePedidos> tbDetallePedidos { get; set; }
+        public virtual DbSet<tbDetallesFactura> tbDetallesFactura { get; set; }
+        public virtual DbSet<tbFacturas> tbFacturas { get; set; }
+        public virtual DbSet<tbPedidos> tbPedidos { get; set; }
+        public virtual DbSet<C_tbPersonasNaturales> C_tbPersonasNaturales { get; set; }
+        public virtual DbSet<tbPagos> tbPagos { get; set; }
     }
 }
