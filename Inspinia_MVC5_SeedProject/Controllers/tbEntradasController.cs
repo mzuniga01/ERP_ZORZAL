@@ -134,5 +134,62 @@ namespace Inspinia_MVC5_SeedProject.Controllers
 
             return View();
         }
+        public ActionResult IndexCompra()
+        {
+            return View(db.tbEntrada.ToList());
+        }
+        public ActionResult DetalleCompra()
+        {
+
+            return View();
+        }
+        public ActionResult DetalleCompra2()
+        {
+
+            return View();
+        }
+        public ActionResult DetalleTraslado()
+        {
+
+            return View();
+        }
+        public ActionResult DetalleTraslado2()
+        {
+
+            return View();
+        }
+        public ActionResult CreateCompra()
+        {
+
+            return View();
+        }
+        public ActionResult DetallesCompra_Factura()
+        {
+
+            return View();
+        }
+
+        // POST: /tbEntradas/Traslado/--------------
+        public ActionResult EditarTraslado_prueba()
+        {
+
+            return View();
+        }
+        public ActionResult CrearTraslado_prueba()
+        {
+
+            return View();
+        }
+        public ActionResult DetallesTraslado_prueba()
+        {
+
+            return View();
+        }
+        public ActionResult DetallesTraslado_Factura()
+        {
+
+            return View();
+        }
+
     }
 }

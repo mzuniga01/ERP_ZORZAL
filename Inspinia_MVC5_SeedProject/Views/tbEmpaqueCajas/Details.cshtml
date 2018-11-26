@@ -1,0 +1,99 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbEmpaqueCaja
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Details</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Details tbEmpaqueCaja</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpCaja_BodegaDespacho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpCaja_BodegaDespacho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpCaja_BodegaRecibe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpCaja_BodegaRecibe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpCaja_NombreProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpCaja_NombreProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpCaja_Cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpCaja_Cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpCaja_Observaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpCaja_Observaciones)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Edit", "Edit", new { id = Model.EmpCaja_IDEmpaqueCaja }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

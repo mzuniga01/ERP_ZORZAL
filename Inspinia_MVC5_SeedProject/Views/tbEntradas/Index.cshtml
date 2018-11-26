@@ -22,80 +22,101 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Entradas Por Traslado<</h5>
+                    @*<h5>Entradas Por Traslado</h5>*@
+
+                    <ol class="breadcrumb">
+                        <li>
+                            <strong>Entradas Por Traslado</strong>
+
+                        </li>
+                        <li class="active">
+                            @Html.ActionLink("Regresar", "IndexCompra")
+                        </li>
+                    </ol>
+
                     <div class="ibox-tools">
-                        @Html.ActionLink("Registrar", "Crear_Prueba", null, new { @class = "btn btn-primary btn-xs" })
+                        <div class="form-group">
+                            <label class="control-label col-md-6">Nº Entrada</label>
+                            <div class="col-md-1">
+                                <input type="text" class="text-danger" readonly="readonly" value="15610200" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Detalle Factura", "DetallesTraslado_Factura", null, new { @class = "btn btn-primary btn-xs" })
+                        @Html.ActionLink("Registrar", "CrearTraslado_Prueba", null, new { @class = "btn btn-primary btn-xs" })
                     </div>
                 </div>
+
                 <div class="ibox-content">
 
                     @*<table class="table table-striped">
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.E_IdInvetario)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.E_IdProducto)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.E_IdUnidad)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.E_PrecioUnitario)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.E_FechaEntrada)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.E_IdBodega)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.E_IdUsuario)
-                                </th>
-                                <th></th>
-                            </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.E_IdInvetario)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.E_IdProducto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.E_IdUnidad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.E_PrecioUnitario)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.E_FechaEntrada)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.E_IdBodega)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.E_IdUsuario)
+                    </th>
+                    <th></th>
+                </tr>
 
-                        @foreach (var item in Model) {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.E_IdInvetario)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.E_IdProducto)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.E_IdUnidad)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.E_PrecioUnitario)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.E_FechaEntrada)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.E_IdBodega)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.E_IdUsuario)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-primary btn-sm"})
-                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-white btn-sm"})
-                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-white btn-sm"})
-                                </td>
-                            </tr>
-                        }
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.E_IdInvetario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.E_IdProducto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.E_IdUnidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.E_PrecioUnitario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.E_FechaEntrada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.E_IdBodega)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.E_IdUsuario)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-primary btn-sm"})
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-white btn-sm"})
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-white btn-sm"})
+                    </td>
+                </tr>
+            }
 
-                        </table>*@
+            </table>*@
 
-                    <table class="table table-striped" id="datatables">
+                    <table class="table table-striped" id="tbEntrada">
                         <thead>
                             <tr>
                                 <th>
                                     Id Iventario
                                 </th>
                                 <th>
-                                    Producto
+                                    Productos
                                 </th>
                                 <th>
                                     Unidad De Medida
@@ -107,10 +128,13 @@
                                     Fecha Entrada
                                 </th>
                                 <th>
-                                    Bodega Remitente
+                                    Bodega Descpacho
                                 </th>
                                 <th>
-                                    Bodega Resepcion
+                                    Bodega Recibe
+                                </th>
+                                <th>
+                                    Observación
                                 </th>
                                 <th>
                                     Usuario
@@ -142,11 +166,14 @@
                                     Bodega S.P.S
                                 </td>
                                 <td>
+                                    Aqui va una observacion
+                                </td>
+                                <td>
                                     Juan Perez
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Detalles", "Details", new { @class = "btn btn-primary btn-sm" })
-                                    @Html.ActionLink("Editar", "Editar_Prueba", new { @class = "btn btn-white btn-sm" })
+                                    @Html.ActionLink("Detalles", "DetallesTraslado_prueba", new { @class = "btn btn-primary btn-sm" })
+                                    @Html.ActionLink("Editar", "EditarTraslado_Prueba", new { @class = "btn btn-white btn-sm" })
                                 </td>
                             </tr>
                             <tr>
@@ -172,11 +199,14 @@
                                     Bodega S.P.S
                                 </td>
                                 <td>
-                                    Juan Perez
+                                    Aqui va una observacion
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Detalles", "Details", new { @class = "btn btn-primary btn-sm" })
-                                    @Html.ActionLink("Editar", "Editar_Prueba", new { @class = "btn btn-white btn-sm" })
+                                    Oscar Paz
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Detalles", "DetallesTraslado_prueba", new { @class = "btn btn-primary btn-sm" })
+                                    @Html.ActionLink("Editar", "EditarTraslado_Prueba", new { @class = "btn btn-white btn-sm" })
                                 </td>
                             </tr>
                         </tbody>
@@ -188,31 +218,29 @@
     </div>
 </div>
 
+
+
 @section scripts{
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
     <script src="~/Scripts/DataTables/dataTables.responsive.js"></script>
     <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
     <script>
-    $(document).ready(function () {
-    $('#datatables').DataTable({
+        $(document).ready(function () {
+            $('#tbEntrada').DataTable({
 
-        "searching": true,
-        "oLanguage": {
-            "oPaginate": {
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior",
-            },
-            "sSearch": "Buscar",
-            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
-            "sInfo": "Mostrando _START_ a _END_ Entradas"
-
-        },
-
-    });
-
-    });
-
+                "searching": true,
+                "oLanguage": {
+                    "oPaginate": {
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior",
+                    },
+                    "sSearch": "Buscar",
+                    "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+                    "sInfo": "Mostrando _START_ a _END_ Entradas"
+                },
+            });
+        });
     </script>
 }
 

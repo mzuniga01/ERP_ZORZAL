@@ -144,20 +144,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Productos">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.Productos">
-        <MappingFragment StoreEntitySet="Productos">
-          <ScalarProperty Name="estad_prod_Codigo" ColumnName="estad_prod_Codigo" />
-          <ScalarProperty Name="SubCateg_prod_IDSubCategoria" ColumnName="SubCateg_prod_IDSubCategoria" />
-          <ScalarProperty Name="Categ_prod_IDCategoria" ColumnName="Categ_prod_IDCategoria" />
-          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
-          <ScalarProperty Name="prod_PrecioCompraVenta" ColumnName="prod_PrecioCompraVenta" />
-          <ScalarProperty Name="prod_FechaCreacion" ColumnName="prod_FechaCreacion" />
-          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbEntrada">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEntrada">
         <MappingFragment StoreEntitySet="tbEntrada">
@@ -169,6 +155,35 @@
           <ScalarProperty Name="E_IdProducto" ColumnName="E_IdProducto" />
           <ScalarProperty Name="E_IdInvetario" ColumnName="E_IdInvetario" />
           <ScalarProperty Name="E_IdEntrada" ColumnName="E_IdEntrada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbBodega">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbBodega">
+        <MappingFragment StoreEntitySet="tbBodega">
+          <ScalarProperty Name="tpbdga_Codigo" ColumnName="tpbdga_Codigo" />
+          <ScalarProperty Name="Bdga_Zona" ColumnName="Bdga_Zona" />
+          <ScalarProperty Name="Bdga_Capacidad" ColumnName="Bdga_Capacidad" />
+          <ScalarProperty Name="mpio_Codigo" ColumnName="mpio_Codigo" />
+          <ScalarProperty Name="dpto_Codigo" ColumnName="dpto_Codigo" />
+          <ScalarProperty Name="estad_Codigo" ColumnName="estad_Codigo" />
+          <ScalarProperty Name="Bdga_Contacto" ColumnName="Bdga_Contacto" />
+          <ScalarProperty Name="Bdga_Encargado" ColumnName="Bdga_Encargado" />
+          <ScalarProperty Name="Bdga_Codigo" ColumnName="Bdga_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbProductos">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProductos">
+        <MappingFragment StoreEntitySet="tbProductos">
+          <ScalarProperty Name="estad_prod_Codigo" ColumnName="estad_prod_Codigo" />
+          <ScalarProperty Name="SubCateg_prod_IDSubCategoria" ColumnName="SubCateg_prod_IDSubCategoria" />
+          <ScalarProperty Name="Categ_prod_IDCategoria" ColumnName="Categ_prod_IDCategoria" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_PrecioCompraVenta" ColumnName="prod_PrecioCompraVenta" />
+          <ScalarProperty Name="prod_FechaCreacion" ColumnName="prod_FechaCreacion" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

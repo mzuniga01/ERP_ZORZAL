@@ -47,24 +47,33 @@
                             <a href="@Url.Action("Index", "tbEstados")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Estados</span> </a>
                         </li>
                     </ul>
-                <li class="@Html.IsSelected(action: "Index")">
-                    <a href="@Url.Action("Index", "tbClientes")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Clientes</span> </a>
-                </li>
-                <li class="@Html.IsSelected(action: "Index")">
-                    <a href="@Url.Action("Index", "tbPedidos")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Pedidos</span> </a>
-                </li>
-                <li class="@Html.IsSelected(action: "Index")">
-                    <a href="@Url.Action("Index", "tbDetallesFacturas")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Factura</span> </a>
-                </li>
-                 <li class="@Html.IsSelected(action: "Index")">
-                    <a href="@Url.Action("Index", "tbCredito")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Crédito</span> </a>
-                </li>
+            <li class="@Html.IsSelected(action: "Index")">
+                <a href="@Url.Action("Index", "tbClientes")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Clientes</span> </a>
+            </li>
+            <li class="@Html.IsSelected(action: "Index")">
+                <a href="@Url.Action("Index", "tbPedidos")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Pedidos</span> </a>
+            </li>
+            <li class="@Html.IsSelected(action: "Index")">
+                <a href="@Url.Action("Index", "tbDetallesFacturas")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Factura</span> </a>
+            </li>
+            <li class="@Html.IsSelected(action: "Index")">
+                <a href="@Url.Action("Index", "tbCredito")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Crédito</span> </a>
+            </li>
             <li class="@Html.IsSelected(action: "Index")">
                 <a href="@Url.Action("Index", "tbPagos")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Pagos</span> </a>
             </li>
-                <div class="logo-element">
-                    GM
-                </div>
+            <li class="@Html.IsSelected(action: "IndexCompra")">
+                <a href="@Url.Action("IndexCompra", "tbEntradas")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Entradas</span> </a>
+            </li>
+            <li class="@Html.IsSelected(action: "Index")">
+                <a href="@Url.Action("Index", "tbEmpaqueCajas")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Empaque Cajas</span> </a>
+            </li>
+            <li class="@Html.IsSelected(action: "Index")">
+                <a href="@Url.Action("Index", "tbProductos")"><i class="fa fa-book fa-fw"></i> <span class="nav-label">Productos</span> </a>
+            </li>
+            <div class="logo-element">
+                GM
+            </div>
         </ul>
     </div>
 </nav>

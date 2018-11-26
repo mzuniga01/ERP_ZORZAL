@@ -25,8 +25,9 @@
     <EntitySet Name="tbUnidadesMedida" EntityType="ERP_ZORZALModel.tbUnidadesMedida" />
     <EntitySet Name="tbCategoria" EntityType="ERP_ZORZALModel.tbCategoria" />
     <EntitySet Name="tbSubcategoria" EntityType="ERP_ZORZALModel.tbSubcategoria" />
-    <EntitySet Name="Productos" EntityType="ERP_ZORZALModel.Productos" />
     <EntitySet Name="tbEntrada" EntityType="ERP_ZORZALModel.tbEntrada" />
+    <EntitySet Name="tbBodega" EntityType="ERP_ZORZALModel.tbBodega" />
+    <EntitySet Name="tbProductos" EntityType="ERP_ZORZALModel.tbProductos" />
   </EntityContainer>
   <EntityType Name="tbCajas">
     <Key>
@@ -147,19 +148,6 @@
     <Property Name="SubCateg_IDCategoria" Type="Int32" Nullable="false" />
     <Property Name="SubCateg_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityType Name="Productos">
-    <Key>
-      <PropertyRef Name="prod_Codigo" />
-    </Key>
-    <Property Name="prod_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="prod_FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="prod_PrecioCompraVenta" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Categ_prod_IDCategoria" Type="Int32" />
-    <Property Name="SubCateg_prod_IDSubCategoria" Type="Int32" />
-    <Property Name="estad_prod_Codigo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="tbEntrada">
     <Key>
       <PropertyRef Name="E_IdEntrada" />
@@ -172,5 +160,32 @@
     <Property Name="E_FechaEntrada" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="E_IdBodega" Type="Int32" Nullable="false" />
     <Property Name="E_IdUsuario" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbBodega">
+    <Key>
+      <PropertyRef Name="Bdga_Codigo" />
+    </Key>
+    <Property Name="Bdga_Codigo" Type="Int32" Nullable="false" />
+    <Property Name="Bdga_Encargado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Bdga_Contacto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estad_Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="dpto_Codigo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="mpio_Codigo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="Bdga_Capacidad" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Bdga_Zona" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="tpbdga_Codigo" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbProductos">
+    <Key>
+      <PropertyRef Name="prod_Codigo" />
+    </Key>
+    <Property Name="prod_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="prod_PrecioCompraVenta" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Categ_prod_IDCategoria" Type="Int32" />
+    <Property Name="SubCateg_prod_IDSubCategoria" Type="Int32" />
+    <Property Name="estad_prod_Codigo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

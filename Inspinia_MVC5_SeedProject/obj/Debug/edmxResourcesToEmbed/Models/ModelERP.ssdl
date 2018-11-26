@@ -126,18 +126,19 @@
     <Property Name="udsm_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="udsm_DESCRIPCION" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
-  <EntityType Name="Productos">
+  <EntityType Name="tbBodega">
     <Key>
-      <PropertyRef Name="prod_Codigo" />
+      <PropertyRef Name="Bdga_Codigo" />
     </Key>
-    <Property Name="prod_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="prod_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="prod_FechaCreacion" Type="date" Nullable="false" />
-    <Property Name="prod_PrecioCompraVenta" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="prod_Marca" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Categ_prod_IDCategoria" Type="int" />
-    <Property Name="SubCateg_prod_IDSubCategoria" Type="int" />
-    <Property Name="estad_prod_Codigo" Type="nvarchar" MaxLength="4" />
+    <Property Name="Bdga_Codigo" Type="int" Nullable="false" />
+    <Property Name="Bdga_Encargado" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Bdga_Contacto" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="estad_Codigo" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="dpto_Codigo" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="mpio_Codigo" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="Bdga_Capacidad" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="Bdga_Zona" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="tpbdga_Codigo" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="tbEntrada">
     <Key>
@@ -151,6 +152,19 @@
     <Property Name="E_FechaEntrada" Type="date" Nullable="false" />
     <Property Name="E_IdBodega" Type="int" Nullable="false" />
     <Property Name="E_IdUsuario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbProductos">
+    <Key>
+      <PropertyRef Name="prod_Codigo" />
+    </Key>
+    <Property Name="prod_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="prod_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="prod_FechaCreacion" Type="date" Nullable="false" />
+    <Property Name="prod_PrecioCompraVenta" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="prod_Marca" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Categ_prod_IDCategoria" Type="int" />
+    <Property Name="SubCateg_prod_IDSubCategoria" Type="int" />
+    <Property Name="estad_prod_Codigo" Type="nvarchar" MaxLength="4" />
   </EntityType>
   <EntityContainer Name="ERP_ZORZALModelStoreContainer">
     <EntitySet Name="tbCajas" EntityType="Self.tbCajas" Schema="Gral" store:Type="Tables" />
@@ -170,7 +184,8 @@
     <EntitySet Name="tbTiposPago" EntityType="Self.tbTiposPago" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbTiposSalida" EntityType="Self.tbTiposSalida" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbUnidadesMedida" EntityType="Self.tbUnidadesMedida" Schema="Gral" store:Type="Tables" />
-    <EntitySet Name="Productos" EntityType="Self.Productos" Schema="Inv" store:Type="Tables" />
+    <EntitySet Name="tbBodega" EntityType="Self.tbBodega" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbEntrada" EntityType="Self.tbEntrada" Schema="Inv" store:Type="Tables" />
+    <EntitySet Name="tbProductos" EntityType="Self.tbProductos" Schema="Inv" store:Type="Tables" />
   </EntityContainer>
 </Schema>

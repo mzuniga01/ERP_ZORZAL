@@ -42,7 +42,8 @@ namespace Inspinia_MVC5_SeedProject.Models
         public virtual DbSet<tbUnidadesMedida> tbUnidadesMedida { get; set; }
         public virtual DbSet<tbCategoria> tbCategoria { get; set; }
         public virtual DbSet<tbSubcategoria> tbSubcategoria { get; set; }
-        public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<tbEntrada> tbEntrada { get; set; }
+        public virtual DbSet<tbBodega> tbBodega { get; set; }
+        public virtual DbSet<tbProductos> tbProductos { get; set; }
     }
 }

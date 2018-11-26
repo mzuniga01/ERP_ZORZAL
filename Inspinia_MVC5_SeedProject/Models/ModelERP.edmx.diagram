@@ -22,8 +22,9 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbUnidadesMedida" Width="1.5" PointX="9.75" PointY="3.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbCategoria" Width="1.5" PointX="5.375" PointY="9.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbSubcategoria" Width="1.5" PointX="7.375" PointY="9.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.Productos" Width="1.5" PointX="9.375" PointY="9.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbEntrada" Width="1.5" PointX="10.375" PointY="6.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbBodega" Width="1.5" PointX="9.375" PointY="10.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbProductos" Width="1.5" PointX="11.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

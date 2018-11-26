@@ -1,20 +1,19 @@
 ﻿@model Inspinia_MVC5_SeedProject.Models.tbEntrada
-
-
-
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Entrada Por Compra</h2>
+        <h2>Entrada Por Traslado</h2>
         <ol class="breadcrumb">
             <li>
-                @Html.ActionLink("Volver", "IndexCompra")
+                @Html.ActionLink("Lista", "Index")
+            </li>
+            <li class="active">
+                <strong>Editar</strong>
             </li>
         </ol>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            @Html.ActionLink("Regresar", "IndexCompra", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary" })
         </div>
     </div>
 </div>
@@ -30,77 +29,67 @@
                     <h5>Editar</h5>
                 </div>
                 <div class="ibox-content">
+
+
+
                     <div class="form-horizontal">
+
+
                         <div class="form-group">
+
                             <div class="col-md-10">
-                                <label class="control-label col-md-2">Productos</label>
-                                <div class="col-md-6">
+                                <label class="control-label col-md-2">Producto</label>
+                                <div class="col-md-10">
                                     <input class="text-box single-line" value="Camisas" />
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="col-md-10">
                                 <label class="control-label col-md-2">Unidad De medida</label>
-                                <div class="col-md-6">
-                                    <select class="form-control" id="" name="">
-                                        <option>Seleccione Unidad De Medida</option>
-                                        <option>Docena</option>
-                                        <option>Media docena</option>
-                                        <option>Kilogramos</option>
-                                        <option>Libras</option>
-                                        <option>Gramos</option>
-                                        <option>Unidades</option>
-                                        <option>Litros</option>
-                                        <option>Galones</option>
-                                        <option>Barriles</option>
-                                        <option>Latas</option>
-                                        <option>Cajas</option>
-                                    </select>
+                                <div class="col-md-10">
+                                    <input class="text-box single-line" value="80" />
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-10">
                                 <label class="control-label col-md-2">Precio Unitario</label>
-                                <div class="col-md-6">
-                                    <input class="text-box single-line" value="500.00" />
+                                <div class="col-md-10">
+                                    <input class="text-box single-line" value="150.00" />
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-10">
                                 <label class="control-label col-md-2">Fecha Entrada</label>
-                                <div class="col-md-6">
+                                <div class="col-md-10">
                                     <input class="text-box single-line" value="24/11/2018" />
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-10">
-                                <label class="control-label col-md-2">Proveedor</label>
-                                <div class="col-md-6">
-                                    <select class="form-control" id="" name="">
-                                        <option>Seleccione Proveedoro</option>
-                                        <option>Pepes</option>
-                                        <option>Lolita</option>
-                                    </select>
+                                <label class="control-label col-md-2">Bodega Remitente</label>
+                                <div class="col-md-10">
+                                    <input class="text-box single-line" value="Bodega S.P.S" />
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-10">
-                                <label class="control-label col-md-2">Cantidad</label>
-                                <div class="col-md-6">
-                                    <input class="text-box single-line" value="100" />
+                                <label class="control-label col-md-2">Bodega Recepcion</label>
+                                <div class="col-md-10">
+                                    <input class="text-box single-line" value="Bodega central" />
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-10">
                                 <label class="control-label col-md-2">Usuario</label>
-                                <div class="col-md-6">
-                                    <input class="text-box single-line" value="Juan Perez" />
+                                <div class="col-md-10">
+                                    <input class="text-box single-line" value="Juanito Alcachofaz" />
                                 </div>
                             </div>
                         </div>

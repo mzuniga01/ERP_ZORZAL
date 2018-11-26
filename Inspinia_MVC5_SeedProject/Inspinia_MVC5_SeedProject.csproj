@@ -183,6 +183,7 @@
     <Compile Include="Controllers\tbCategoriasController.cs" />
     <Compile Include="Controllers\tbEntradasController.cs" />
     <Compile Include="Controllers\tbEstadosController.cs" />
+    <Compile Include="Controllers\tbProductosController.cs" />
     <Compile Include="Controllers\tbSubcategoriasController.cs" />
     <Compile Include="Controllers\tbTiposBodegasController.cs" />
     <Compile Include="Controllers\tbTiposEntradasController.cs" />
@@ -210,7 +211,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Productos.cs">
+    <Compile Include="Models\tbBodega.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbCajas.cs">
@@ -238,6 +239,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbMunicipios.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbProductos.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbSubcategoria.cs">
@@ -695,8 +699,26 @@
     <Content Include="Views\tbEntradas\Details.cshtml" />
     <Content Include="Views\tbEntradas\Edit.cshtml" />
     <Content Include="Views\tbEntradas\Index.cshtml" />
+    <Content Include="Views\tbEntradas\CreateCompra.cshtml" />
+    <Content Include="Views\tbEntradas\DetalleCompra2.cshtml" />
+    <Content Include="Views\tbEntradas\DetalleTraslado.cshtml" />
+    <Content Include="Views\tbEntradas\DetalleTraslado2.cshtml" />
+    <Content Include="Views\tbEntradas\EditarCompra1.cshtml" />
+    <Content Include="Views\tbEntradas\EditarCompra2.cshtml" />
+    <Content Include="Views\tbEntradas\IndexCompra.cshtml" />
+    <Content Include="Views\tbEntradas\DetallesTraslado_prueba.cshtml" />
+    <Content Include="Views\tbEntradas\EditarTraslado_prueba.cshtml" />
+    <Content Include="Views\tbEntradas\CrearTraslado_prueba.cshtml" />
+    <Content Include="Views\tbEntradas\DetallesTraslado_Factura.cshtml" />
     <Content Include="Views\tbEntradas\Editar_prueba.cshtml" />
-    <Content Include="Views\tbEntradas\Crear_prueba.cshtml" />
+    <Content Include="Views\tbEntradas\DetallesCompra_Factura.cshtml" />
+    <Content Include="Views\tbProductos\Create.cshtml" />
+    <Content Include="Views\tbProductos\Delete.cshtml" />
+    <Content Include="Views\tbProductos\Details.cshtml" />
+    <Content Include="Views\tbProductos\Detalles.cshtml" />
+    <Content Include="Views\tbProductos\Edit.cshtml" />
+    <Content Include="Views\tbProductos\Editar.cshtml" />
+    <Content Include="Views\tbProductos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
