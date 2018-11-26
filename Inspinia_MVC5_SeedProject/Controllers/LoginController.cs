@@ -19,7 +19,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         public ActionResult Index(tbTiposPago Login)
         {
             string user = Login.tpago_Codigo.ToString();
-            if (user == "admin" && Login.tpago_Descripcion == "Admin")
+            if (Login.tpago_Descripcion == "Admin")
             {
                 return RedirectToAction("Index", "Home");
             }
