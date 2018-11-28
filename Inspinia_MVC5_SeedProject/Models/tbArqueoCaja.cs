@@ -14,12 +14,24 @@ namespace Inspinia_MVC5_SeedProject.Models
     
     public partial class tbArqueoCaja
     {
-        public int arcj_Codigo { get; set; }
-        public int cjs_Codigo { get; set; }
-        public System.DateTime arcj_FechaArqueo { get; set; }
-        public decimal arcj_AperturaCaja { get; set; }
-        public decimal arcj_CierreCaja { get; set; }
-        public string suc_Codigo { get; set; }
-        public decimal VentasDias { get; set; }
+        public int aqcja_Codigo { get; set; }
+        public string sucur_Codigo { get; set; }
+        public string cja_Codigo { get; set; }
+        public System.DateTime aqcja_Fecha { get; set; }
+        public System.DateTime aqcja_HoraInicio { get; set; }
+        public System.DateTime aqcja_HoraFinal { get; set; }
+        public decimal aqcja_SaldoInicial { get; set; }
+        public decimal aqcja_SaldoFinal { get; set; }
+        public decimal aqcja_MontoEfectivo { get; set; }
+        public decimal aqcja_MontoCheque { get; set; }
+        public decimal aqcja_Total { get; set; }
+        public decimal aqcja_Diferencia { get; set; }
+        public string aqcja_UsuarioCrea { get; set; }
+        public Nullable<System.DateTime> aqcja_FechaCrea { get; set; }
+        public string aqcja_UsuarioModifica { get; set; }
+        public System.DateTime aqcja_FechaModifico { get; set; }
+    
+        public virtual tbSucursal tbSucursal { get; set; }
+        public virtual tbCaja tbCaja { get; set; }
     }
 }

@@ -5,44 +5,62 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e3cdae754a7b458288829a69167bdea2" Name="Diagram1" ZoomLevel="39">
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbCajas" Width="1.5" PointX="5.75" PointY="4.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbCargos" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbCategoria" Width="1.5" PointX="2.75" PointY="6.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbClientes" Width="1.5" PointX="0.75" PointY="2.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbDepartamentos" Width="1.5" PointX="7.75" PointY="4.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbEmpaqueCaja" Width="1.5" PointX="4.75" PointY="7.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbEstados" Width="1.5" PointX="6.75" PointY="7.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbExoneraciones" Width="1.5" PointX="8.75" PointY="7.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbLineasPago" Width="1.5" PointX="0.75" PointY="9.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbMonedas" Width="1.5" PointX="9.75" PointY="4.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbMunicipios" Width="1.5" PointX="10.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbPersonasJuridicas" Width="1.5" PointX="3" PointY="1.125" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbSubcategoria" Width="1.5" PointX="2.75" PointY="10.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbSucursal" Width="1.5" PointX="4.75" PointY="10.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTasasCambio" Width="1.5" PointX="6.75" PointY="10.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTiposBodega" Width="1.5" PointX="10.75" PointY="7.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTiposDocumento" Width="1.5" PointX="8.75" PointY="10.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTiposEntrada" Width="1.5" PointX="10.75" PointY="10.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTiposInventario" Width="1.5" PointX="11.75" PointY="3.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTiposPago" Width="1.5" PointX="12.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTiposSalida" Width="1.5" PointX="12.75" PointY="6.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbUnidadesMedida" Width="1.5" PointX="12.75" PointY="9.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbBodega" Width="1.5" PointX="12.75" PointY="12.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbEntrada" Width="1.5" PointX="0.75" PointY="13.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbProductos" Width="1.5" PointX="2.75" PointY="13.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbSalida" Width="1.5" PointX="4.75" PointY="13.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbArqueoCaja" Width="1.5" PointX="6.75" PointY="13.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbAvales" Width="1.5" PointX="8.75" PointY="13.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbCredito" Width="1.5" PointX="14.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbDetallePedidos" Width="1.5" PointX="14.75" PointY="4.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbDetallesFactura" Width="1.5" PointX="8" PointY="1.375" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbFacturas" Width="1.5" PointX="5.75" PointY="1" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbPedidos" Width="1.5" PointX="14.75" PointY="7.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.C_tbPersonasNaturales" Width="1.5" PointX="3" PointY="4" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbPagos" Width="1.5" PointX="14.75" PointY="10.75" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK___tbPerson__clte___40058253" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK__tbPersona__clte___3E1D39E1" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK__tbDetalle__fact___1AD3FDA4" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbActividadEconomica" Width="1.5" PointX="12.75" PointY="2.5" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbBanco" Width="1.5" PointX="7.75" PointY="24.5" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbCuentasBanco" Width="1.5" PointX="10" PointY="2.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbDocumentoFiscal" Width="1.5" PointX="12.75" PointY="5.5" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbMoneda" Width="1.5" PointX="7.75" PointY="3.5" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTipoIdentificacion" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbArqueoCaja" Width="1.5" PointX="8.25" PointY="14.25" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbCaja" Width="1.5" PointX="3" PointY="12.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbCliente" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbCuponDescuento" Width="1.5" PointX="3" PointY="29.625" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbDetalleFactura" Width="1.5" PointX="12.75" PointY="13.5" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbDevolucion" Width="1.5" PointX="7.5" PointY="9.875" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbDevolucionDetalle" Width="1.5" PointX="14.75" PointY="2.5" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbEstadoFactura" Width="1.5" PointX="3" PointY="21.5" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbEstadoSolicitudCredito" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbExoneracion" Width="1.5" PointX="5.25" PointY="9" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbFactura" Width="1.5" PointX="5.25" PointY="13" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbListadoPrecioDetalle" Width="1.5" PointX="14" PointY="8.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbListaPrecio" Width="1.5" PointX="11.75" PointY="9.25" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbNotaCredito" Width="1.5" PointX="9.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbPago" Width="1.5" PointX="10.5" PointY="14.375" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbPedido" Width="1.5" PointX="3" PointY="16.625" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbPedidoDetalle" Width="1.5" PointX="14.75" PointY="13.5" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbPuntoEmision" Width="1.5" PointX="3" PointY="25.875" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbPuntoEmisionDetalle" Width="1.5" PointX="5.25" PointY="25.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbSolicitudCredito" Width="1.5" PointX="5.25" PointY="4" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbSolicitudEfectivo" Width="1.5" PointX="5.25" PointY="18.625" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbSucursal" Width="1.5" PointX="0.75" PointY="16.25" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbTipoPago" Width="1.5" PointX="8.25" PointY="19.875" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbBanco_tbCuentasBanco_ban_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbArqueoCaja_sucur_Codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbtbCaja_tbArqueoCaja_cja_Codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSolicitudEfectivo_tbCaja_cja_Codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_sucur_codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbExoneracion_clte_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbPedido_clte_id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSolicitudCredito_tbCliente_clte_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_sucur_Codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK__tbDevoluc__fact___155B1B70" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK__tbDevoluc__fact___5728DECD" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSolicitudCredito_tbEstadoSolicitudCredito_escre_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK__tbPago__fact_Cod__5634BA94" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPago_tbFactura_pago_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_sucur_Codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK__tbListado__listp__702996C1" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK__tbPago__tpa_Id__2685A772" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbPedido_sucur_Codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbPuntoEmision_pe_Codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbPuntoEmision_Sucur_Codigo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

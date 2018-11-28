@@ -178,48 +178,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\C_tbPersonasNaturalesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\tbArqueoCajasController.cs" />
-    <Compile Include="Controllers\tbBodegasController.cs" />
-    <Compile Include="Controllers\tbCajasController.cs" />
-    <Compile Include="Controllers\tbCargosController.cs" />
-    <Compile Include="Controllers\tbCategoriasController.cs" />
-    <Compile Include="Controllers\tbClientes1Controller.cs" />
-    <Compile Include="Controllers\tbClientesController.cs" />
-    <Compile Include="Controllers\tbCreditoController.cs" />
-    <Compile Include="Controllers\tbDepartamentosController.cs" />
-    <Compile Include="Controllers\tbDetallesFacturasController.cs" />
-    <Compile Include="Controllers\tbEmpaqueCajasController.cs" />
-    <Compile Include="Controllers\tbEntradasController.cs" />
-    <Compile Include="Controllers\tbEstadosController.cs" />
-    <Compile Include="Controllers\tbExoneracionesController.cs" />
-    <Compile Include="Controllers\tbFacturasController.cs" />
-    <Compile Include="Controllers\tbLineasPagoesController.cs" />
-    <Compile Include="Controllers\tbMonedasController.cs" />
-    <Compile Include="Controllers\tbPagosController.cs" />
-    <Compile Include="Controllers\tbPedidosController.cs" />
-    <Compile Include="Controllers\tbPersonasJuridicasController.cs" />
-    <Compile Include="Controllers\tbProductosController.cs" />
-    <Compile Include="Controllers\tbSalidasController.cs" />
-    <Compile Include="Controllers\tbSubcategoriasController.cs" />
-    <Compile Include="Controllers\tbTasasCambiosController.cs" />
-    <Compile Include="Controllers\tbTiposBodegasController.cs" />
-    <Compile Include="Controllers\tbTiposDocumentoesController.cs" />
-    <Compile Include="Controllers\tbTiposEntradasController.cs" />
-    <Compile Include="Controllers\tbTiposInventariosController.cs" />
-    <Compile Include="Controllers\tbTiposPagoesController.cs" />
-    <Compile Include="Controllers\tbTiposSalidaController.cs" />
-    <Compile Include="Controllers\tbUnidadesMedidasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\C_tbPersonasNaturales.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
       <AutoGen>True</AutoGen>
@@ -236,109 +201,93 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbActividadEconomica.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbArqueoCaja.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbAvales.cs">
+    <Compile Include="Models\tbBanco.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbBodega.cs">
+    <Compile Include="Models\tbCaja.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbCajas.cs">
+    <Compile Include="Models\tbCliente.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbCargos.cs">
+    <Compile Include="Models\tbCuentasBanco.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbCategoria.cs">
+    <Compile Include="Models\tbCuponDescuento.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbClientes.cs">
+    <Compile Include="Models\tbDetalleFactura.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbCredito.cs">
+    <Compile Include="Models\tbDevolucion.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbDepartamentos.cs">
+    <Compile Include="Models\tbDevolucionDetalle.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbDetallePedidos.cs">
+    <Compile Include="Models\tbDocumentoFiscal.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbDetallesFactura.cs">
+    <Compile Include="Models\tbEstadoFactura.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbEmpaqueCaja.cs">
+    <Compile Include="Models\tbEstadoSolicitudCredito.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbEntrada.cs">
+    <Compile Include="Models\tbExoneracion.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbEstados.cs">
+    <Compile Include="Models\tbFactura.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbExoneraciones.cs">
+    <Compile Include="Models\tbListadoPrecioDetalle.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbFacturas.cs">
+    <Compile Include="Models\tbListaPrecio.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbLineasPago.cs">
+    <Compile Include="Models\tbMoneda.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbMonedas.cs">
+    <Compile Include="Models\tbNotaCredito.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbMunicipios.cs">
+    <Compile Include="Models\tbPago.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbPagos.cs">
+    <Compile Include="Models\tbPedido.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbPedidos.cs">
+    <Compile Include="Models\tbPedidoDetalle.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbPersonasJuridicas.cs">
+    <Compile Include="Models\tbPuntoEmision.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbProductos.cs">
+    <Compile Include="Models\tbPuntoEmisionDetalle.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbSalida.cs">
+    <Compile Include="Models\tbSolicitudCredito.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbSubcategoria.cs">
+    <Compile Include="Models\tbSolicitudEfectivo.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbSucursal.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbTasasCambio.cs">
+    <Compile Include="Models\tbTipoIdentificacion.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbTiposBodega.cs">
+    <Compile Include="Models\tbTipoPago.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbTiposDocumento.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbTiposEntrada.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbTiposInventario.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbTiposPago.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbTiposSalida.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbUnidadesMedida.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\_Departamentos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -702,209 +651,10 @@
     <Content Include="Views\Shared\_TopNavbar.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-    <Content Include="Views\tbEstados\Create.cshtml" />
-    <Content Include="Views\tbEstados\Delete.cshtml" />
-    <Content Include="Views\tbEstados\Details.cshtml" />
-    <Content Include="Views\tbEstados\Edit.cshtml" />
-    <Content Include="Views\tbEstados\Index.cshtml" />
-    <Content Include="Views\tbTiposBodegas\Create.cshtml" />
-    <Content Include="Views\tbTiposBodegas\Delete.cshtml" />
-    <Content Include="Views\tbTiposBodegas\Details.cshtml" />
-    <Content Include="Views\tbTiposBodegas\Edit.cshtml" />
-    <Content Include="Views\tbTiposBodegas\Index.cshtml" />
-    <Content Include="Views\tbTiposSalida\Create.cshtml" />
-    <Content Include="Views\tbTiposSalida\Delete.cshtml" />
-    <Content Include="Views\tbTiposSalida\Details.cshtml" />
-    <Content Include="Views\tbTiposSalida\Edit.cshtml" />
-    <Content Include="Views\tbTiposSalida\Index.cshtml" />
-    <Content Include="Views\tbTiposSalida\DetallePrueba.cshtml" />
-    <Content Include="Views\tbTiposSalida\CrearPrueba.cshtml" />
-    <Content Include="Views\tbTiposSalida\EditarPrueba.cshtml" />
-    <Content Include="Views\tbTiposEntradas\Crear.cshtml" />
-    <Content Include="Views\tbTiposEntradas\Create.cshtml" />
-    <Content Include="Views\tbTiposEntradas\Delete.cshtml" />
-    <Content Include="Views\tbTiposEntradas\Details.cshtml" />
-    <Content Include="Views\tbTiposEntradas\Detalles.cshtml" />
-    <Content Include="Views\tbTiposEntradas\Edit.cshtml" />
-    <Content Include="Views\tbTiposEntradas\Editar.cshtml" />
-    <Content Include="Views\tbTiposEntradas\Index.cshtml" />
-    <Content Include="Views\tbTiposBodegas\Crear.cshtml" />
-    <Content Include="Views\tbTiposBodegas\Detalle.cshtml" />
-    <Content Include="Views\tbTiposBodegas\Editar.cshtml" />
-    <Content Include="Views\tbCargos\Create.cshtml" />
-    <Content Include="Views\tbCargos\Delete.cshtml" />
-    <Content Include="Views\tbCargos\Details.cshtml" />
-    <Content Include="Views\tbCargos\Detalles.cshtml" />
-    <Content Include="Views\tbCargos\Edit.cshtml" />
-    <Content Include="Views\tbCargos\Editar.cshtml" />
-    <Content Include="Views\tbCargos\Index.cshtml" />
-    <Content Include="Views\tbTiposInventarios\Create.cshtml" />
-    <Content Include="Views\tbTiposInventarios\Delete.cshtml" />
-    <Content Include="Views\tbTiposInventarios\Details.cshtml" />
-    <Content Include="Views\tbTiposInventarios\detalles.cshtml" />
-    <Content Include="Views\tbTiposInventarios\Edit.cshtml" />
-    <Content Include="Views\tbTiposInventarios\edtar.cshtml" />
-    <Content Include="Views\tbTiposInventarios\Index.cshtml" />
-    <Content Include="Views\tbUnidadesMedidas\Create.cshtml" />
-    <Content Include="Views\tbUnidadesMedidas\Delete.cshtml" />
-    <Content Include="Views\tbUnidadesMedidas\Details.cshtml" />
-    <Content Include="Views\tbUnidadesMedidas\Edit.cshtml" />
-    <Content Include="Views\tbUnidadesMedidas\Index.cshtml" />
-    <Content Include="Views\tbCategorias\CrearPrueba.cshtml" />
-    <Content Include="Views\tbCategorias\Create.cshtml" />
-    <Content Include="Views\tbCategorias\Delete.cshtml" />
-    <Content Include="Views\tbCategorias\Details.cshtml" />
-    <Content Include="Views\tbCategorias\DetailsPrueba.cshtml" />
-    <Content Include="Views\tbCategorias\Edit.cshtml" />
-    <Content Include="Views\tbCategorias\EditarPrueba.cshtml" />
-    <Content Include="Views\tbCategorias\Index.cshtml" />
-    <Content Include="Views\tbSubcategorias\CrearPrueba.cshtml" />
-    <Content Include="Views\tbSubcategorias\Create.cshtml" />
-    <Content Include="Views\tbSubcategorias\Delete.cshtml" />
-    <Content Include="Views\tbSubcategorias\Details.cshtml" />
-    <Content Include="Views\tbSubcategorias\DetallesPrueba.cshtml" />
-    <Content Include="Views\tbSubcategorias\Edit.cshtml" />
-    <Content Include="Views\tbSubcategorias\EditarPrueba.cshtml" />
-    <Content Include="Views\tbSubcategorias\Index.cshtml" />
-    <Content Include="Views\tbEntradas\Create.cshtml" />
-    <Content Include="Views\tbEntradas\Delete.cshtml" />
-    <Content Include="Views\tbEntradas\Details.cshtml" />
-    <Content Include="Views\tbEntradas\Edit.cshtml" />
-    <Content Include="Views\tbEntradas\Index.cshtml" />
-    <Content Include="Views\tbEntradas\CreateCompra.cshtml" />
-    <Content Include="Views\tbEntradas\DetalleCompra2.cshtml" />
-    <Content Include="Views\tbEntradas\DetalleTraslado.cshtml" />
-    <Content Include="Views\tbEntradas\DetalleTraslado2.cshtml" />
-    <Content Include="Views\tbEntradas\EditarCompra1.cshtml" />
-    <Content Include="Views\tbEntradas\EditarCompra2.cshtml" />
-    <Content Include="Views\tbEntradas\IndexCompra.cshtml" />
-    <Content Include="Views\tbEntradas\DetallesTraslado_prueba.cshtml" />
-    <Content Include="Views\tbEntradas\EditarTraslado_prueba.cshtml" />
-    <Content Include="Views\tbEntradas\CrearTraslado_prueba.cshtml" />
-    <Content Include="Views\tbEntradas\DetallesTraslado_Factura.cshtml" />
-    <Content Include="Views\tbEntradas\Editar_prueba.cshtml" />
-    <Content Include="Views\tbEntradas\DetallesCompra_Factura.cshtml" />
-    <Content Include="Views\tbProductos\Create.cshtml" />
-    <Content Include="Views\tbProductos\Delete.cshtml" />
-    <Content Include="Views\tbProductos\Details.cshtml" />
-    <Content Include="Views\tbProductos\Detalles.cshtml" />
-    <Content Include="Views\tbProductos\Edit.cshtml" />
-    <Content Include="Views\tbProductos\Editar.cshtml" />
-    <Content Include="Views\tbProductos\Index.cshtml" />
-    <Content Include="Views\tbArqueoCajas\Create.cshtml" />
-    <Content Include="Views\tbArqueoCajas\Delete.cshtml" />
-    <Content Include="Views\tbArqueoCajas\Details.cshtml" />
-    <Content Include="Views\tbArqueoCajas\DetailsAC.cshtml" />
-    <Content Include="Views\tbArqueoCajas\Edit.cshtml" />
-    <Content Include="Views\tbArqueoCajas\Index.cshtml" />
-    <Content Include="Views\tbCajas\Create.cshtml" />
-    <Content Include="Views\tbCajas\Delete.cshtml" />
-    <Content Include="Views\tbCajas\Details.cshtml" />
-    <Content Include="Views\tbCajas\Edit.cshtml" />
-    <Content Include="Views\tbCajas\Index.cshtml" />
-    <Content Include="Views\tbClientes\Create.cshtml" />
-    <Content Include="Views\tbClientes\Create1-.cshtml" />
-    <Content Include="Views\tbClientes\Delete.cshtml" />
-    <Content Include="Views\tbClientes\Details.cshtml" />
-    <Content Include="Views\tbClientes\Edit.cshtml" />
-    <Content Include="Views\tbClientes\Index.cshtml" />
-    <Content Include="Views\tbCredito\Create.cshtml" />
-    <Content Include="Views\tbCredito\CreateSolicitud.cshtml" />
-    <Content Include="Views\tbCredito\CreateSolicitud2.cshtml" />
-    <Content Include="Views\tbCredito\Delete.cshtml" />
-    <Content Include="Views\tbCredito\Details.cshtml" />
-    <Content Include="Views\tbCredito\Details1.cshtml" />
-    <Content Include="Views\tbCredito\Details2.cshtml" />
-    <Content Include="Views\tbCredito\Edit.cshtml" />
-    <Content Include="Views\tbCredito\Index.cshtml" />
-    <Content Include="Views\tbCredito\ListadoGerenteCredito.cshtml" />
-    <Content Include="Views\C_tbPersonasNaturales\Create.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\tbDepartamentos\Create.cshtml" />
-    <Content Include="Views\tbDepartamentos\Delete.cshtml" />
-    <Content Include="Views\tbDepartamentos\Details.cshtml" />
-    <Content Include="Views\tbDepartamentos\Edit.cshtml" />
-    <Content Include="Views\tbDepartamentos\EditD.cshtml" />
-    <Content Include="Views\tbDepartamentos\Index.cshtml" />
-    <Content Include="Views\tbDepartamentos\_CreateMunicipios.cshtml" />
-    <Content Include="Views\tbDepartamentos\_EditMunicipios.cshtml" />
-    <Content Include="Views\tbDepartamentos\_IndexMunicipios.cshtml" />
-    <Content Include="Views\tbDetallesFacturas\Create.cshtml" />
-    <Content Include="Views\tbDetallesFacturas\Delete.cshtml" />
-    <Content Include="Views\tbDetallesFacturas\Details.cshtml" />
-    <Content Include="Views\tbDetallesFacturas\Edit.cshtml" />
-    <Content Include="Views\tbDetallesFacturas\Editar.cshtml" />
-    <Content Include="Views\tbDetallesFacturas\Index.cshtml" />
-    <Content Include="Views\tbEmpaqueCajas\CrearPrueba.cshtml" />
-    <Content Include="Views\tbEmpaqueCajas\Create.cshtml" />
-    <Content Include="Views\tbEmpaqueCajas\Delete.cshtml" />
-    <Content Include="Views\tbEmpaqueCajas\Details.cshtml" />
-    <Content Include="Views\tbEmpaqueCajas\DetailsPrueba.cshtml" />
-    <Content Include="Views\tbEmpaqueCajas\Edit.cshtml" />
-    <Content Include="Views\tbEmpaqueCajas\EditarPrueba.cshtml" />
-    <Content Include="Views\tbEmpaqueCajas\Index.cshtml" />
-    <Content Include="Views\tbExoneraciones\Create.cshtml" />
-    <Content Include="Views\tbExoneraciones\Delete.cshtml" />
-    <Content Include="Views\tbExoneraciones\Details.cshtml" />
-    <Content Include="Views\tbExoneraciones\Edit.cshtml" />
-    <Content Include="Views\tbExoneraciones\Index.cshtml" />
-    <Content Include="Views\tbFacturas\Create.cshtml" />
-    <Content Include="Views\tbFacturas\Delete.cshtml" />
-    <Content Include="Views\tbFacturas\Details.cshtml" />
-    <Content Include="Views\tbFacturas\Edit.cshtml" />
-    <Content Include="Views\tbFacturas\Index.cshtml" />
-    <Content Include="Views\tbLineasPagoes\Create.cshtml" />
-    <Content Include="Views\tbLineasPagoes\Delete.cshtml" />
-    <Content Include="Views\tbLineasPagoes\Details.cshtml" />
-    <Content Include="Views\tbLineasPagoes\Edit.cshtml" />
-    <Content Include="Views\tbLineasPagoes\Index.cshtml" />
-    <Content Include="Views\tbMonedas\Create.cshtml" />
-    <Content Include="Views\tbMonedas\Details.cshtml" />
-    <Content Include="Views\tbMonedas\Details1.cshtml" />
-    <Content Include="Views\tbMonedas\Edit.cshtml" />
-    <Content Include="Views\tbMonedas\EditM.cshtml" />
-    <Content Include="Views\tbMonedas\Index.cshtml" />
-    <Content Include="Views\tbPagos\Create.cshtml" />
-    <Content Include="Views\tbPagos\Delete.cshtml" />
-    <Content Include="Views\tbPagos\Details.cshtml" />
-    <Content Include="Views\tbPagos\Detalle.cshtml" />
-    <Content Include="Views\tbPagos\Edit.cshtml" />
-    <Content Include="Views\tbPagos\Index.cshtml" />
-    <Content Include="Views\tbPedidos\Create.cshtml" />
-    <Content Include="Views\tbPedidos\Delete.cshtml" />
-    <Content Include="Views\tbPedidos\Details.cshtml" />
-    <Content Include="Views\tbPedidos\Detalle.cshtml" />
-    <Content Include="Views\tbPedidos\Edit.cshtml" />
-    <Content Include="Views\tbPedidos\Editar.cshtml" />
-    <Content Include="Views\tbPedidos\Index.cshtml" />
-    <Content Include="Views\tbPersonasJuridicas\Create.cshtml" />
-    <Content Include="Views\tbTasasCambios\Create.cshtml" />
-    <Content Include="Views\tbTasasCambios\Delete.cshtml" />
-    <Content Include="Views\tbTasasCambios\Details.cshtml" />
-    <Content Include="Views\tbTasasCambios\Edit.cshtml" />
-    <Content Include="Views\tbTasasCambios\Index.cshtml" />
-    <Content Include="Views\tbTiposDocumentoes\Create.cshtml" />
-    <Content Include="Views\tbTiposDocumentoes\Delete.cshtml" />
-    <Content Include="Views\tbTiposDocumentoes\Details.cshtml" />
-    <Content Include="Views\tbTiposDocumentoes\Edit.cshtml" />
-    <Content Include="Views\tbTiposDocumentoes\Index.cshtml" />
-    <Content Include="Views\tbTiposPagoes\Create.cshtml" />
-    <Content Include="Views\tbTiposPagoes\Delete.cshtml" />
-    <Content Include="Views\tbTiposPagoes\Details.cshtml" />
-    <Content Include="Views\tbTiposPagoes\Edit.cshtml" />
-    <Content Include="Views\tbTiposPagoes\Index.cshtml" />
-    <Content Include="Views\tbSalidas\Crear.cshtml" />
-    <Content Include="Views\tbSalidas\Create.cshtml" />
-    <Content Include="Views\tbSalidas\Delete.cshtml" />
-    <Content Include="Views\tbSalidas\Details.cshtml" />
-    <Content Include="Views\tbSalidas\Detalles.cshtml" />
-    <Content Include="Views\tbSalidas\Edit.cshtml" />
-    <Content Include="Views\tbSalidas\Editar.cshtml" />
-    <Content Include="Views\tbSalidas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\tbSalida\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

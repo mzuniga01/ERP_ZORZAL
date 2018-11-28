@@ -16,10 +16,10 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(tbTiposPago Login)
+        public ActionResult Index(tbPago Login)
         {
-            string user = Login.tpago_Codigo.ToString();
-            if (Login.tpago_Descripcion == "Admin")
+            string user = Login.fact_Codigo.ToString();
+            if (Login.fact_Codigo == "Admin")
             {
                 return RedirectToAction("Index", "Home");
             }
