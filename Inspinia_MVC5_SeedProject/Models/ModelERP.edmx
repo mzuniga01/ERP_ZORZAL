@@ -205,7 +205,7 @@
             <PropertyRef Name="uni_Id" />
           </Key>
           <Property Name="uni_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="uni_Descrpcion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="uni_Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="uni_Abreviacion" Type="char" MaxLength="5" />
           <Property Name="uni_UsuarioCrea" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="uni_FechaCrea" Type="datetime" Nullable="false" />
@@ -2430,7 +2430,7 @@
             <PropertyRef Name="uni_Id" />
           </Key>
           <Property Name="uni_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="uni_Descrpcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="uni_Abreviacion" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
           <Property Name="uni_UsuarioCrea" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="uni_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
@@ -4116,7 +4116,7 @@
                 <ScalarProperty Name="uni_FechaCrea" ColumnName="uni_FechaCrea" />
                 <ScalarProperty Name="uni_UsuarioCrea" ColumnName="uni_UsuarioCrea" />
                 <ScalarProperty Name="uni_Abreviacion" ColumnName="uni_Abreviacion" />
-                <ScalarProperty Name="uni_Descrpcion" ColumnName="uni_Descrpcion" />
+                <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
                 <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
               </MappingFragment>
             </EntityTypeMapping>

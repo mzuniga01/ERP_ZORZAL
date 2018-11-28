@@ -21,7 +21,7 @@ namespace Inspinia_MVC5_SeedProject.Models
         }
     
         public int uni_Id { get; set; }
-        public string uni_Descrpcion { get; set; }
+        public string uni_Descripcion { get; set; }
         public string uni_Abreviacion { get; set; }
         public string uni_UsuarioCrea { get; set; }
         public System.DateTime uni_FechaCrea { get; set; }
