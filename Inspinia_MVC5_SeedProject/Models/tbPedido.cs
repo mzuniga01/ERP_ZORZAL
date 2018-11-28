@@ -15,13 +15,13 @@ namespace Inspinia_MVC5_SeedProject.Models
     public partial class tbPedido
     {
         public int ped_Codigo { get; set; }
-        public Nullable<System.DateTime> ped_Fecha { get; set; }
-        public Nullable<System.DateTime> ped_FechaEntrega { get; set; }
-        public Nullable<int> clte_id { get; set; }
+        public System.DateTime ped_Fecha { get; set; }
+        public System.DateTime ped_FechaEntrega { get; set; }
+        public int clte_id { get; set; }
         public string sucur_Codigo { get; set; }
         public string ped_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> ped__FechaCrea { get; set; }
-        public string ped__UsuarioModifica { get; set; }
+        public System.DateTime ped_FechaCrea { get; set; }
+        public string ped_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> ped_FechaModica { get; set; }
     
         public virtual tbCliente tbCliente { get; set; }

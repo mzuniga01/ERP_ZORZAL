@@ -12,18 +12,20 @@ namespace Inspinia_MVC5_SeedProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbDevolucionDetalle
+    public partial class tbBodegaDetalle
     {
-        public string ddv_Codigo { get; set; }
-        public string dev_Codigo { get; set; }
+        public int bodde_Id { get; set; }
         public string prod_Codigo { get; set; }
-        public int ddv_CantidadProducto { get; set; }
-        public string ddv_Descripcion { get; set; }
-        public string ddv_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> ddv_FechaCrea { get; set; }
-        public string ddv_UsuarioModifa { get; set; }
-        public Nullable<System.DateTime> ddv_FechaModifa { get; set; }
+        public int bod_Id { get; set; }
+        public decimal bodde_CantidadMinima { get; set; }
+        public decimal bodde_CantidadMaxima { get; set; }
+        public decimal bodde_PuntoReorden { get; set; }
+        public Nullable<int> bodde_UsuarioCrea { get; set; }
+        public System.DateTime bodde_FechaCrea { get; set; }
+        public Nullable<int> bodde_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> bodde_FechaModifica { get; set; }
     
+        public virtual tbBodega tbBodega { get; set; }
         public virtual tbProducto tbProducto { get; set; }
     }
 }

@@ -12,24 +12,23 @@ namespace Inspinia_MVC5_SeedProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbCaja
+    public partial class tbProductoCategoria
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbCaja()
+        public tbProductoCategoria()
         {
-            this.tbSalida = new HashSet<tbSalida>();
+            this.tbProductoSubcategoria = new HashSet<tbProductoSubcategoria>();
         }
     
-        public int cja_Id { get; set; }
-        public string cja_Descripcion { get; set; }
-        public int cja_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> cja_FechaCrea { get; set; }
-        public int cja_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> cja_FechaModifica { get; set; }
-        public int sald_Id { get; set; }
+        public int pcat_Id { get; set; }
+        public string pcat_Nombre { get; set; }
+        public int pcat_UsuarioCrea { get; set; }
+        public System.DateTime pcat_FechaCrea { get; set; }
+        public Nullable<int> pcat_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> pcat_FechaModifica { get; set; }
+        public decimal sal_Cantidad { get; set; }
     
-        public virtual tbSalidaDetalle tbSalidaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSalida> tbSalida { get; set; }
+        public virtual ICollection<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }
     }
 }

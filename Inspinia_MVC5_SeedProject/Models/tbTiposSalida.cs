@@ -12,16 +12,13 @@ namespace Inspinia_MVC5_SeedProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbSolicitudEfectivo
+    public partial class tbTiposSalida
     {
-        public int solef_Id { get; set; }
-        public string cja_Codigo { get; set; }
-        public decimal solef_MontoSolicitud { get; set; }
-        public string solef_UsuarioCrea { get; set; }
-        public System.DateTime solef_FechaCrea { get; set; }
-        public string solef_UsuarioModifica { get; set; }
-        public System.DateTime solef_FechaModifica { get; set; }
-    
-        public virtual tbCaja1 tbCaja1 { get; set; }
+        public byte tsal_Id { get; set; }
+        public string tsal_Descripcion { get; set; }
+        public int tsal_UsuarioCrea { get; set; }
+        public System.DateTime tsal_FechaCrea { get; set; }
+        public Nullable<int> tsal_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> tsal_FechaModifica { get; set; }
     }
 }

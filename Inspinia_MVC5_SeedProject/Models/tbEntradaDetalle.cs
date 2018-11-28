@@ -12,17 +12,16 @@ namespace Inspinia_MVC5_SeedProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbDevolucionDetalle
+    public partial class tbEntradaDetalle
     {
-        public string ddv_Codigo { get; set; }
-        public string dev_Codigo { get; set; }
+        public int entd_Codigo { get; set; }
+        public int ent_Codigo { get; set; }
         public string prod_Codigo { get; set; }
-        public int ddv_CantidadProducto { get; set; }
-        public string ddv_Descripcion { get; set; }
-        public string ddv_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> ddv_FechaCrea { get; set; }
-        public string ddv_UsuarioModifa { get; set; }
-        public Nullable<System.DateTime> ddv_FechaModifa { get; set; }
+        public Nullable<decimal> entd_Cantidad { get; set; }
+        public string entd_UsuarioCrea { get; set; }
+        public System.DateTime entd_FechaCrea { get; set; }
+        public string entd_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> entd_FechaModifica { get; set; }
     
         public virtual tbProducto tbProducto { get; set; }
     }

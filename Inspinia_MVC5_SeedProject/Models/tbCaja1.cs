@@ -12,24 +12,30 @@ namespace Inspinia_MVC5_SeedProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbCaja
+    public partial class tbCaja1
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbCaja()
+        public tbCaja1()
         {
-            this.tbSalida = new HashSet<tbSalida>();
+            this.tbArqueoCaja = new HashSet<tbArqueoCaja>();
+            this.tbFactura = new HashSet<tbFactura>();
+            this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
         }
     
-        public int cja_Id { get; set; }
+        public string cja_Codigo { get; set; }
         public string cja_Descripcion { get; set; }
-        public int cja_UsuarioCrea { get; set; }
+        public string sucur_Codigo { get; set; }
+        public string cja_UsuarioCrea { get; set; }
         public Nullable<System.DateTime> cja_FechaCrea { get; set; }
-        public int cja_UsuarioModifica { get; set; }
+        public string cja_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> cja_FechaModifica { get; set; }
-        public int sald_Id { get; set; }
     
-        public virtual tbSalidaDetalle tbSalidaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSalida> tbSalida { get; set; }
+        public virtual ICollection<tbArqueoCaja> tbArqueoCaja { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFactura> tbFactura { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
+        public virtual tbSucursal tbSucursal { get; set; }
     }
 }

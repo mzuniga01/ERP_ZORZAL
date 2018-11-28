@@ -12,24 +12,23 @@ namespace Inspinia_MVC5_SeedProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbCaja
+    public partial class tbUnidadesMedida
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbCaja()
+        public tbUnidadesMedida()
         {
-            this.tbSalida = new HashSet<tbSalida>();
+            this.tbInventarioFisicoDetalle = new HashSet<tbInventarioFisicoDetalle>();
         }
     
-        public int cja_Id { get; set; }
-        public string cja_Descripcion { get; set; }
-        public int cja_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> cja_FechaCrea { get; set; }
-        public int cja_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> cja_FechaModifica { get; set; }
-        public int sald_Id { get; set; }
+        public int uni_Id { get; set; }
+        public string uni_Descrpcion { get; set; }
+        public string uni_Abreviacion { get; set; }
+        public string uni_UsuarioCrea { get; set; }
+        public System.DateTime uni_FechaCrea { get; set; }
+        public string uni_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> uni_FechaModifica { get; set; }
     
-        public virtual tbSalidaDetalle tbSalidaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSalida> tbSalida { get; set; }
+        public virtual ICollection<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
     }
 }

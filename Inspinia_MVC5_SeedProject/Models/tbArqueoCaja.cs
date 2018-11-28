@@ -32,6 +32,6 @@ namespace Inspinia_MVC5_SeedProject.Models
         public System.DateTime aqcja_FechaModifico { get; set; }
     
         public virtual tbSucursal tbSucursal { get; set; }
-        public virtual tbCaja tbCaja { get; set; }
+        public virtual tbCaja1 tbCaja1 { get; set; }
     }
 }

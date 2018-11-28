@@ -18,7 +18,7 @@ namespace Inspinia_MVC5_SeedProject.Models
         public tbSucursal()
         {
             this.tbArqueoCaja = new HashSet<tbArqueoCaja>();
-            this.tbCaja = new HashSet<tbCaja>();
+            this.tbCaja1 = new HashSet<tbCaja1>();
             this.tbCuponDescuento = new HashSet<tbCuponDescuento>();
             this.tbFactura = new HashSet<tbFactura>();
             this.tbPedido = new HashSet<tbPedido>();
@@ -35,10 +35,11 @@ namespace Inspinia_MVC5_SeedProject.Models
         public string sucur_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> sucur_FechaModifica { get; set; }
     
+        public virtual tbMunicipio tbMunicipio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbArqueoCaja> tbArqueoCaja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCaja> tbCaja { get; set; }
+        public virtual ICollection<tbCaja1> tbCaja1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCuponDescuento> tbCuponDescuento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

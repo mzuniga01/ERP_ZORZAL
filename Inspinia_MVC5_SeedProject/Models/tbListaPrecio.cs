@@ -22,6 +22,7 @@ namespace Inspinia_MVC5_SeedProject.Models
         public string listp_UsuarioModifica { get; set; }
         public System.DateTime listp_FechaModifica { get; set; }
     
+        public virtual tbProducto tbProducto { get; set; }
         public virtual tbListadoPrecioDetalle tbListadoPrecioDetalle { get; set; }
     }
 }

@@ -17,8 +17,9 @@ namespace Inspinia_MVC5_SeedProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbFactura()
         {
+            this.tbEntrada = new HashSet<tbEntrada>();
+            this.tbSalida = new HashSet<tbSalida>();
             this.tbDevolucion = new HashSet<tbDevolucion>();
-            this.tbDevolucion1 = new HashSet<tbDevolucion>();
             this.tbPago = new HashSet<tbPago>();
         }
     
@@ -35,12 +36,14 @@ namespace Inspinia_MVC5_SeedProject.Models
         public string fact__UsuarioModifica { get; set; }
         public Nullable<System.DateTime> fact_FechaModica { get; set; }
     
-        public virtual tbCaja tbCaja { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbEntrada> tbEntrada { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSalida> tbSalida { get; set; }
+        public virtual tbCaja1 tbCaja1 { get; set; }
         public virtual tbCliente tbCliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbDevolucion> tbDevolucion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbDevolucion> tbDevolucion1 { get; set; }
         public virtual tbEstadoFactura tbEstadoFactura { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPago> tbPago { get; set; }

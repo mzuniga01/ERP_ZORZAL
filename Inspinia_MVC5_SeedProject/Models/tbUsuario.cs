@@ -12,24 +12,27 @@ namespace Inspinia_MVC5_SeedProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbCaja
+    public partial class tbUsuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbCaja()
+        public tbUsuario()
         {
-            this.tbSalida = new HashSet<tbSalida>();
+            this.tbBodega = new HashSet<tbBodega>();
         }
     
-        public int cja_Id { get; set; }
-        public string cja_Descripcion { get; set; }
-        public int cja_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> cja_FechaCrea { get; set; }
-        public int cja_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> cja_FechaModifica { get; set; }
-        public int sald_Id { get; set; }
+        public int usu_Id { get; set; }
+        public string usu_NombreUsuario { get; set; }
+        public int rolusu_Id { get; set; }
+        public string usu_Password { get; set; }
+        public string usu_Nombre { get; set; }
+        public string usu_Apellido { get; set; }
+        public string usu_Correo { get; set; }
+        public bool edo_IdEstado { get; set; }
+        public string usu_RazonEstado { get; set; }
+        public bool usu_EsAdministrador { get; set; }
     
-        public virtual tbSalidaDetalle tbSalidaDetalle { get; set; }
+        public virtual tbRolesUsuario tbRolesUsuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSalida> tbSalida { get; set; }
+        public virtual ICollection<tbBodega> tbBodega { get; set; }
     }
 }

@@ -29,8 +29,8 @@ namespace Inspinia_MVC5_SeedProject.Models
         public string dev_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> dev_FechaModifica { get; set; }
     
+        public virtual tbCliente tbCliente { get; set; }
         public virtual tbFactura tbFactura { get; set; }
-        public virtual tbFactura tbFactura1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbNotaCredito> tbNotaCredito { get; set; }
     }

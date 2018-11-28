@@ -23,5 +23,7 @@ namespace Inspinia_MVC5_SeedProject.Models
         public System.DateTime dfact_FechaCrea { get; set; }
         public string dfact_UsuarioModifica { get; set; }
         public System.DateTime dfact_FechaModifica { get; set; }
+    
+        public virtual tbProducto tbProducto { get; set; }
     }
 }

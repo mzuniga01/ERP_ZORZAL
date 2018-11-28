@@ -27,6 +27,7 @@ namespace Inspinia_MVC5_SeedProject.Models
         public string lispd_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> lispd_FechaModifica { get; set; }
     
+        public virtual tbProducto tbProducto { get; set; }
         public virtual tbListaPrecio tbListaPrecio { get; set; }
     }
 }

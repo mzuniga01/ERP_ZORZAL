@@ -12,24 +12,27 @@ namespace Inspinia_MVC5_SeedProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbCaja
+    public partial class tbProveedor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbCaja()
+        public tbProveedor()
         {
-            this.tbSalida = new HashSet<tbSalida>();
+            this.tbEntrada = new HashSet<tbEntrada>();
         }
     
-        public int cja_Id { get; set; }
-        public string cja_Descripcion { get; set; }
-        public int cja_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> cja_FechaCrea { get; set; }
-        public int cja_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> cja_FechaModifica { get; set; }
-        public int sald_Id { get; set; }
+        public int prov_Id { get; set; }
+        public string prov_NombreContacto { get; set; }
+        public string prov_Direccion { get; set; }
+        public string prov_Email { get; set; }
+        public string prov_Telefono { get; set; }
+        public string prov_UsuarioCrea { get; set; }
+        public System.DateTime prov_FechaCrea { get; set; }
+        public string prov_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> prov_FechaModifica { get; set; }
+        public string mun_Codigo { get; set; }
     
-        public virtual tbSalidaDetalle tbSalidaDetalle { get; set; }
+        public virtual tbMunicipio tbMunicipio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSalida> tbSalida { get; set; }
+        public virtual ICollection<tbEntrada> tbEntrada { get; set; }
     }
 }

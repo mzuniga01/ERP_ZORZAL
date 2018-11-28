@@ -24,5 +24,7 @@ namespace Inspinia_MVC5_SeedProject.Models
         public System.DateTime pdet_FechaCrea { get; set; }
         public string pdet_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> pdet_FechaModifica { get; set; }
+    
+        public virtual tbProducto tbProducto { get; set; }
     }
 }
