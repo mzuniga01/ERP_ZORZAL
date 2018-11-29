@@ -30,67 +30,67 @@
                 <div class="ibox-content">
 
 
-<table class="table table-striped table-bordered" style="width:100%" id="DataTable">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ban_Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ban_NombreContacto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ban_TelefonoContacto)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.ban_UsuarioCrea)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ban_FechaCrea)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ban_UsuarioModifica)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ban_FechaModifica)
-                </th>*@
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ban_Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ban_NombreContacto)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ban_TelefonoContacto)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.ban_UsuarioCrea)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ban_FechaCrea)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ban_UsuarioModifica)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ban_FechaModifica)
-                    </td>*@
-                <td>
-                    @Html.ActionLink("Detalles", "Details", new { id = item.ban_Id }, new { @class = "btn btn-primary btn-sm" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.ban_Id }, new { @class = "btn btn-white btn-sm" })
-                    @*@Html.ActionLink("Delete", "Delete", new { id=item.ban_Id }, new { @class = "btn btn-white btn-sm"})*@
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                    <table class="table table-striped table-hover table-bordered" style="width:100%" id="tblBancos">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ban_Nombre)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ban_NombreContacto)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ban_TelefonoContacto)
+                                </th>
+                                @*<th>
+                                        @Html.DisplayNameFor(model => model.ban_UsuarioCrea)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ban_FechaCrea)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ban_UsuarioModifica)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ban_FechaModifica)
+                                    </th>*@
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ban_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ban_NombreContacto)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ban_TelefonoContacto)
+                                    </td>
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.ban_UsuarioCrea)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ban_FechaCrea)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ban_UsuarioModifica)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ban_FechaModifica)
+                                        </td>*@
+                                    <td>
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.ban_Id }, new { @class = "btn btn-primary btn-sm" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.ban_Id }, new { @class = "btn btn-white btn-sm" })
+                                        @*@Html.ActionLink("Delete", "Delete", new { id=item.ban_Id }, new { @class = "btn btn-white btn-sm"})*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
 
 
                 </div>
@@ -99,6 +99,24 @@
     </div>
  </div>
  
-<script src="~/Scripts/app/DataTable.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tblBancos').DataTable(
+        {
+            "searching": true,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_ registros por página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+            }
+        });
+    });
+</script>
 
 

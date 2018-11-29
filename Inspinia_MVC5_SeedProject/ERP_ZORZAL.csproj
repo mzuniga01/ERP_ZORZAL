@@ -262,6 +262,12 @@
     <Compile Include="Models\Pedidos.cs" />
     <Compile Include="Models\SolicitudCreditos.cs" />
     <Compile Include="Models\SolicitudesEfectivo.cs" />
+    <Compile Include="Models\Banco.cs" />
+    <Compile Include="Models\Clientes.cs" />
+    <Compile Include="Models\CuentasBanco.cs" />
+    <Compile Include="Models\EstadoFactura.cs" />
+    <Compile Include="Models\Factura.cs" />
+    <Compile Include="Models\PuntoEmision.cs" />
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -424,12 +430,6 @@
     <Compile Include="Models\tbUsuario.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Banco.cs" />
-    <Compile Include="Models\Clientes.cs" />
-    <Compile Include="Models\CuentasBanco.cs" />
-    <Compile Include="Models\EstadoFactura.cs" />
-    <Compile Include="Models\Factura.cs" />
-    <Compile Include="Models\PuntoEmision.cs" />
     <Compile Include="Models\TipoIdentificaciones.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -1124,7 +1124,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59911</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

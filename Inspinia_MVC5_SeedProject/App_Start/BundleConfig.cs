@@ -43,19 +43,16 @@ namespace Inspinia_MVC5_SeedProject
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/animate.css",
-                      "~/Content/DataTables/css/jquery.dataTables.min.css",
-                      "~/Content/DataTables/css/jquery.dataTables.css",
                       "~/Content/style.css"));
 
             bundles.Add(new StyleBundle("~/Content/DataTables")
-                .Include("~/Content/DataTables/css/dataTables.bootstrap.css")
-                );
+                .Include("~/Content/DataTables/css/dataTables.bootstrap.css"));
 
             bundles.Add(new ScriptBundle("~/Scripts/DataTables")
                       .Include(
-                            "~/Scripts/DataTables/jquery.dataTables.js",
-                            "~/Scripts/DataTables/dataTables.responsive.js",
-                            "~/Scripts/DataTables/dataTables.bootstrap.js"
+                            "~/Scripts/DataTables/jquery.dataTables.min.js",
+                            "~/Scripts/DataTables/dataTables.responsive.min.js",
+                            "~/Scripts/DataTables/dataTables.bootstrap.min.js"
                 ));
 
             // Font Awesome icons
