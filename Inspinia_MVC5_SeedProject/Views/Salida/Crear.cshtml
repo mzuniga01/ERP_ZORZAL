@@ -1,0 +1,84 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbSalida
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Registrar</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("Listado", "Index_Salida")
+            </li>
+            <li class="active">
+                <strong>Registrar</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index_Salida", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-content">
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Codigo Salida</label>
+                            <div class="col-md-10">
+                                <input type="text" class="text-box single-line" readonly="readonly" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Bodega</label>
+                            <div class="col-md-10">
+                                <input type="text" class="text-box single-line" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Codigo Factura</label>
+                            <div class="col-md-10">
+                                <input type="text" class="text-box single-line" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Fecha Salida</label>
+                            <div class="col-md-10">
+                                <input type="text" class="text-box single-line" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Estado Movimiento</label>
+                            <div class="col-md-10">
+                                <input type="text" class="text-box single-line" value=" " />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Destino Salida</label>
+                            <div class="col-md-10">
+                                <input type="text" class="text-box single-line" value=" " />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Id Caja</label>
+                            <div class="col-md-10">
+                                <input type="text" class="text-box single-line" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Registrar" class="btn btn-primary" />
+                                @Html.ActionLink("Cancelar", "Index_Salida", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

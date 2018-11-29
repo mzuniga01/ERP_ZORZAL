@@ -1,0 +1,147 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbSalida
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Details</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Details tbSalida</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.sal_FechaSalida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sal_FechaSalida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estm_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estm_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sal_Destino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sal_Destino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sal_UsuarioCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sal_UsuarioCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sal_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sal_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sal_UsuarioModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sal_UsuarioModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sal_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sal_FechaModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbBodega.bod_ResponsableBodega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbBodega1.bod_ResponsableBodega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbBodega1.bod_ResponsableBodega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbCaja.cja_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbCaja.cja_Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbFactura.cja_Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbFactura.cja_Codigo)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Edit", "Edit", new { id = Model.sal_Codigo }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

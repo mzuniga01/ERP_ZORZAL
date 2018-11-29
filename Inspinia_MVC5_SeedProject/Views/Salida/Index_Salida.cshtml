@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Inspinia_MVC5_SeedProject.Models.tbSalida>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Nuevo Registro", "Crear", null, new { @class = "btn btn-primary btn-xs" })
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped" id="tabla">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Codigo Salida
+                                </th>
+                                <th>
+                                    Bodega
+                                </th>
+                                <th>
+                                    Codigo Factura
+                                </th>
+                                <th>
+                                    Fecha Salida
+                                </th>
+                                <th>
+                                    Estado Movimiento
+                                </th>
+                                <th>
+                                    Destino Salida
+                                </th>
+                                <th>
+                                    Id Caja
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    0000
+                                </td>
+                                <td>
+                                    12/12/12
+                                </td>
+                                <td>
+                                    Activo
+                                </td>
+                                <td>
+                                    La Ceiba
+                                </td>
+                                <td>
+                                    000
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Detalles", "Detalles", new { @class = "btn btn-primary btn-sm" })
+                                    @Html.ActionLink("Editar", "Editar", new { @class = "btn btn-white btn-sm" })
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.responsive.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tabla').DataTable({
+
+            "searching": true,
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas"
+            },
+        });
+        });
+    </script>
+}

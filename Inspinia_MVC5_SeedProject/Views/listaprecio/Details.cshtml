@@ -1,0 +1,115 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbListaPrecio
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Details</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Details tbListaPrecio</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prod_Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.listp_Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.listp_Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.listp_UsuarioCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.listp_UsuarioCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.listp_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.listp_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.listp_UsuarioModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.listp_UsuarioModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.listp_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.listp_FechaModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbListadoPrecioDetalle.prod_Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbListadoPrecioDetalle.prod_Codigo)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Edit", "Edit", new { id = Model.listp_Id }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

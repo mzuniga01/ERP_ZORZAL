@@ -1,0 +1,155 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbListadoPrecioDetalle
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Details</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Details tbListadoPrecioDetalle</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prod_Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lispd_PrecioMayorista)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lispd_PrecioMayorista)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lispd_Preciominorista)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lispd_Preciominorista)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lispd_Fechainiciovigencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lispd_Fechainiciovigencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lispd_Fechaifinalvigencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lispd_Fechaifinalvigencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lispd_DescCaja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lispd_DescCaja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lispd_DescGerente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lispd_DescGerente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lispd_UsuarioCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lispd_UsuarioCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lispd_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lispd_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lispd_UsuarioModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lispd_UsuarioModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lispd_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lispd_FechaModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbListaPrecio.prod_Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbListaPrecio.prod_Codigo)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Edit", "Edit", new { id = Model.listp_Id }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

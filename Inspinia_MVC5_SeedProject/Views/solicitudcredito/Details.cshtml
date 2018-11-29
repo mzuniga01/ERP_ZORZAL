@@ -1,0 +1,155 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbSolicitudCredito
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Details</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Details tbSolicitudCredito</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cred_FechaSolicitud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cred_FechaSolicitud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cred_FechaAprobacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cred_FechaAprobacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cred_MontoSolicitud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cred_MontoSolicitud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cred_MontoAprobacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cred_MontoAprobacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cred_DiasSolicitud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cred_DiasSolicitud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cred_DiasAprobacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cred_DiasAprobacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cred_UsuarioCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cred_UsuarioCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cred_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cred_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cred_UsuarioModicacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cred_UsuarioModicacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cred_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cred_FechaModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbCliente.clte_RTN_IDT_PASSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbCliente.clte_RTN_IDT_PASSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbEstadoSolicitudCredito.escre_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbEstadoSolicitudCredito.escre_Descripcion)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Edit", "Edit", new { id = Model.cred_Id }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
