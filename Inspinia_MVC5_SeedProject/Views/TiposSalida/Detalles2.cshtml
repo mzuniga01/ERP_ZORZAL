@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Tipo de Salida</h2>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Tipo de Salida</h5>
+                </div>
+                <div class="ibox-content">
+
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Tipo de Salida
+                        </dt>
+
+                        <dd>
+                            Venta
+                        </dd>
+
+                        <dt>
+                            Usuario Crea
+                        </dt>
+
+                        <dd>
+                            Administrador
+                        </dd>
+
+                        <dt>
+                            Fecha Crea
+                        </dt>
+
+                        <dd>
+                            28/11/2018 07:35:50 A.M
+                        </dd>
+
+                        <dt>
+                            Usuario Modifica
+                        </dt>
+
+                        <dd>
+                            Administrador
+                        </dd>
+
+                        <dt>
+                            Fecha Modifica
+                        </dt>
+
+                        <dd>
+                            30/11/2018 07:35:50 A.M
+                        </dd>
+
+                    </dl>
+
+
+                    @Html.ActionLink("Editar", "Editar", new { @class = "btn btn-success" })
+                    @Html.ActionLink("Regresar al Listado", "Index2", null, new { @class = "btn btn-white" })
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

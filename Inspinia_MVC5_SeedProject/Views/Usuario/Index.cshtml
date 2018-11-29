@@ -1,0 +1,132 @@
+﻿@model IEnumerable<Inspinia_MVC5_SeedProject.Models.tbUsuario>
+
+@{
+    ViewBag.Title = "Listado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Listado</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>Usuario</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Usuario</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Crear Nuevo", "CrearPrueba", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped" id="tbUsuario">
+    <thead>
+        <tr>
+            <th>
+                Nombre Usuario
+            </th>
+            <th>
+                Password
+            </th>
+            <th>
+                Nombre Usuario
+            </th>
+            <th>
+                Apellido Usuario
+            </th>
+            <th>
+                Correo
+            </th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Razon Estado
+            </th>
+            <th>
+                Administrador
+            </th>
+            <th>
+                Roles Usuario
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                Mafer
+            </td>
+            <td>
+                *************
+            </td>
+            <td>
+                Maria Fernanda
+            </td>
+            <td>
+                Sosa Caliz
+            </td>
+            <td>
+                mafer@bi-dss.com
+            </td>
+            <td>
+                Activo
+            </td>
+            <td>
+                Laborando
+            </td>
+            <td>
+                Mirian Deras
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+			    @Html.ActionLink("Detalles", "DetallePrueba", new { @class = "btn btn-primary btn-sm"})
+                @Html.ActionLink("Editar", "EditarPrueba", new { @class = "btn btn-white btn-sm"})
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+@section scripts{
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.responsive.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#tbUsuario').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+        },
+    });
+    });
+    </script>
+}

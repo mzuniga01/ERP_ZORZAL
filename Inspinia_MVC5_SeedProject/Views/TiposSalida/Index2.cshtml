@@ -1,0 +1,129 @@
+﻿@model IEnumerable<Inspinia_MVC5_SeedProject.Models.tbTiposSalida>
+
+@{
+    ViewBag.Title = "Index2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Index</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>Tipos de Salida</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Tipos deSalida</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Crear Nuevo", "Crear", null, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped" id="datatables">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
+                                    Descripcion
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
+                                    Usuario Crea
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
+                                    Fecha Crea
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tsal_UsuarioModifica)*@
+                                    Usuario Modifica
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tsal_FechaModifica)*@
+                                    Fecha Modifica
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        @*@foreach (var item in Model)
+                            { }*@
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
+                                    Venta
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
+                                    Administrador
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tsal_FechaCrea)*@
+                                    28/11/2018 07:35:50 A.M
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tsal_UsuarioModifica)*@
+                                    Administrador
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tsal_FechaModifica)*@
+                                    30/11/2018 07:35:50 A.M
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink("Details", "Details", new { id = item.tsal_Id }, new { @class = "btn btn-primary btn-sm" })
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.tsal_Id }, new { @class = "btn btn-white btn-sm" })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.tsal_Id }, new { @class = "btn btn-white btn-sm" })*@
+                                    @Html.ActionLink("Detalles", "Detalles2", new { @class = "btn btn-primary btn-sm" })
+                                    @Html.ActionLink("Editar", "Editar", new { @class = "btn btn-white btn-sm" })
+                                </td>
+                            </tr>
+                        </tbody>
+
+
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.responsive.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    <script>
+    $(document).ready(function () {
+    $('#datatables').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+        },
+
+    });
+
+    });
+
+    </script>
+}

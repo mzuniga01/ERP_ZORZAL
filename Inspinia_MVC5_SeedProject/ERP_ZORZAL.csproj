@@ -207,10 +207,13 @@
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\PedidoDetalleController.cs" />
     <Compile Include="Controllers\ProductoCategoriaController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\ProductoSubcategoriaController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\PuntoEmisionController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SalidaController.cs" />
+    <Compile Include="Controllers\SalidaDetalleController.cs" />
     <Compile Include="Controllers\SolicitudCreditoController.cs" />
     <Compile Include="Controllers\SucursalsController.cs" />
     <Compile Include="Controllers\tbArqueoCajasController.cs" />
@@ -220,6 +223,8 @@
     <Compile Include="Controllers\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\TipoPagoController.cs" />
     <Compile Include="Controllers\TiposEntradaController.cs" />
+    <Compile Include="Controllers\TiposSalidaController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1055,6 +1060,46 @@
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Editar.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Producto\Crear.cshtml" />
+    <Content Include="Views\Producto\Create.cshtml" />
+    <Content Include="Views\Producto\Delete.cshtml" />
+    <Content Include="Views\Producto\Details.cshtml" />
+    <Content Include="Views\Producto\Detalles.cshtml" />
+    <Content Include="Views\Producto\Edit.cshtml" />
+    <Content Include="Views\Producto\Editar.cshtml" />
+    <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\SalidaDetalle\Create.cshtml" />
+    <Content Include="Views\SalidaDetalle\Delete.cshtml" />
+    <Content Include="Views\SalidaDetalle\Details.cshtml" />
+    <Content Include="Views\SalidaDetalle\Edit.cshtml" />
+    <Content Include="Views\SalidaDetalle\Index.cshtml" />
+    <Content Include="Views\Salida\Crear.cshtml" />
+    <Content Include="Views\Salida\Create.cshtml" />
+    <Content Include="Views\Salida\Delete.cshtml" />
+    <Content Include="Views\Salida\Details.cshtml" />
+    <Content Include="Views\Salida\Detalles.cshtml" />
+    <Content Include="Views\Salida\Edit.cshtml" />
+    <Content Include="Views\Salida\Editar.cshtml" />
+    <Content Include="Views\Salida\Index.cshtml" />
+    <Content Include="Views\Salida\Index_Salida.cshtml" />
+    <Content Include="Views\TiposSalida\Crear.cshtml" />
+    <Content Include="Views\TiposSalida\Create.cshtml" />
+    <Content Include="Views\TiposSalida\Delete.cshtml" />
+    <Content Include="Views\TiposSalida\Details.cshtml" />
+    <Content Include="Views\TiposSalida\Detalles.cshtml" />
+    <Content Include="Views\TiposSalida\Detalles2.cshtml" />
+    <Content Include="Views\TiposSalida\Edit.cshtml" />
+    <Content Include="Views\TiposSalida\Editar.cshtml" />
+    <Content Include="Views\TiposSalida\Index.cshtml" />
+    <Content Include="Views\TiposSalida\Index2.cshtml" />
+    <Content Include="Views\Usuario\CrearPrueba.cshtml" />
+    <Content Include="Views\Usuario\Create.cshtml" />
+    <Content Include="Views\Usuario\Delete.cshtml" />
+    <Content Include="Views\Usuario\Details.cshtml" />
+    <Content Include="Views\Usuario\DetallePrueba.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Usuario\EditarPrueba.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
