@@ -1,0 +1,101 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbBodega
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Nuevo Registro</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("Listado", "Index_Bodega")
+            </li>
+            <li class="active">
+                <strong>Registrar</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index_Bodega", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-content">
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Bodega Id</label>
+                            <div class="col-md-10">
+                                <input type="text" class="text-box single-line" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Responsable bodega</label>
+                            <div class="col-md-10">
+                                <input type="text" class="text-box single-line" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Direccioin</label>
+                            <div class="col-md-10">
+                                <input type="text" class="text-box single-line" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Bodega Correo</label>
+                            <div class="col-md-10">
+                                <input type="text" class="text-box single-line" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Bodega Telefono</label>
+                            <div class="col-md-10">
+                                <input type="text" class="text-box single-line" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Usuario</label>
+                            <div class="col-md-10">
+                                <input type="text" class="text-box single-line" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Municipio</label>
+                            <div class="col-md-10">
+                                <select class="form-control" id="" name="">
+                                    <option>Seleccione un Municipio</option>
+                                    <option>San Pedro Sula </option>
+                                    <option>Choloma</option>
+                                    <option>La Ceiba</option>
+                                    <option>Tegucigalpa</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Estado Movimiento</label>
+                            <div class="col-md-10">
+                                <select class="form-control" id="" name="">
+                                    <option>Seleccione un Estado</option>
+                                    <option>Activo</option>
+                                    <option>Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Registrar" class="btn btn-primary" />
+                                @Html.ActionLink("Cancelar", "Index_Bodega", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
