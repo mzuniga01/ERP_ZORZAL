@@ -8,7 +8,7 @@ namespace Inspinia_MVC5_SeedProject.Models
 {
 
     [MetadataType(typeof(tbPedidoDetalleMetaData))]
-    public partial class DetallesPedidos
+    public partial class tbPedidoDetalle
     {
     }
 
@@ -45,7 +45,7 @@ namespace Inspinia_MVC5_SeedProject.Models
         public string pdet_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> pdet_FechaModifica { get; set; }
 
-        public virtual tbProducto tbProducto { get; set; }
+        //public virtual tbProducto tbProducto { get; set; }
 
 
     }

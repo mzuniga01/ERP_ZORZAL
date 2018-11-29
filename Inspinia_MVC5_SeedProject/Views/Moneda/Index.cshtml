@@ -41,22 +41,22 @@
             <th>
                 @Html.DisplayNameFor(model => model.mnda_Nombre)
             </th>
-            <th>
-                Usuario Crea
+            @*<th>*@
+                @*Usuario Crea*@
                 @*@Html.DisplayNameFor(model => model.mnda_UsuarioCrea)*@
-            </th>
-            <th>
-                Fecha Crea
+            @*</th>
+            <th>*@
+                @*Fecha Crea*@
                 @*@Html.DisplayNameFor(model => model.mnda_FechaCrea)*@
-            </th>
-            <th>
-                Usuario Modifica
+            @*</th>
+            <th>*@
+                @*Usuario Modifica*@
                 @*@Html.DisplayNameFor(model => model.mnda_UsuarioModifica)*@
-            </th>
-            <th>
-                Fecha Modifica
+            @*</th>
+            <th>*@
+                @*Fecha Modifica*@
                 @*@Html.DisplayNameFor(model => model.mnda_FechaModifica)*@
-            </th>
+            @*</th>*@
 
             <th></th>
         </tr>
@@ -74,18 +74,18 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.mnda_Nombre)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.mnda_UsuarioCrea)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.mnda_FechaCrea)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.mnda_UsuarioModifica)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.mnda_FechaModifica)
-                </td>
+                 @*<td>
+                @Html.DisplayFor(modelItem => item.mnda_UsuarioCrea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mnda_FechaCrea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mnda_UsuarioModifica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mnda_FechaModifica)
+            </td>*@
                 <td>
                     @Html.ActionLink("Detalles", "Details", new { id = item.mnda_Id }, new { @class = "btn btn-primary btn-sm" })
                     @Html.ActionLink("Editar", "Edit", new { id = item.mnda_Id }, new { @class = "btn btn-primary btn-sm" })

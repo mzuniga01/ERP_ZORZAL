@@ -14,10 +14,10 @@ namespace Inspinia_MVC5_SeedProject.Models
     public class MonedasMetaData
     {
         [Display(Name = "Id Moneda")]
-        [Required]
+        [Required ]
         public int mnda_Id { get; set; }
         [Display(Name = "Código ISO")]
-        [Required]
+        [Required ]
         public string mnda_Iso { get; set; }
         [Display(Name = "Nombre")]
         [Required]

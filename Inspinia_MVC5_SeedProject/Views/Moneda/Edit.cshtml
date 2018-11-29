@@ -19,7 +19,7 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})
+			@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary btn-sm" })
         </div>
     </div>
 </div>
@@ -71,8 +71,8 @@
         </div>
 
         <div class="form-group">
-            
-            @Html.LabelFor(model => model.mnda_UsuarioCrea, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Usuario Crea</label>
+            @*@Html.LabelFor(model => model.mnda_UsuarioCrea, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.mnda_UsuarioCrea)
                 @Html.ValidationMessageFor(model => model.mnda_UsuarioCrea)
@@ -80,7 +80,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mnda_FechaCrea, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Usuario Crea</label>
+            @*@Html.LabelFor(model => model.mnda_FechaCrea, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.mnda_FechaCrea)
                 @Html.ValidationMessageFor(model => model.mnda_FechaCrea)
@@ -88,7 +89,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mnda_UsuarioModifica, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Usuario Modifica</label>
+            @*@Html.LabelFor(model => model.mnda_UsuarioModifica, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.mnda_UsuarioModifica)
                 @Html.ValidationMessageFor(model => model.mnda_UsuarioModifica)
@@ -96,8 +98,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mnda_FechaModifica, new { @class = "control-label col-md-2" })
-   
+            <label class="control-label col-md-2">Fecha Modifica</label>
+            @*@Html.LabelFor(model => model.mnda_FechaModifica, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.mnda_FechaModifica)
                 @Html.ValidationMessageFor(model => model.mnda_FechaModifica)
