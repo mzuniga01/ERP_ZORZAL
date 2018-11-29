@@ -32,8 +32,31 @@
                 <a href="#"><i class="fa fa-tag"></i><span class="nav-label">Inventario</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "")"><i class="fa fa-users fa-fw"></i> <span class="nav-label"></span> </a>
+                        <a href="@Url.Action("Index", "Entrada")"><i class="fa fa-users fa-fw"></i>Entradas<span class="nav-label"></span> </a>
                      </li>
+
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index_Salida", "Salidas")"><i class="fa fa-users fa-fw"></i>Salidas<span class="nav-label"></span> </a>
+                    </li>
+
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index_Bodega", "Bodega")"><i class="fa fa-users fa-fw"></i>Bodegas<span class="nav-label"></span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Cajas")"><i class="fa fa-users fa-fw"></i>Cajas<span class="nav-label"></span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "EstadoMovimiento")"><i class="fa fa-users fa-fw"></i>Estado Movimiento<span class="nav-label"></span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "InventarioFisico")"><i class="fa fa-users fa-fw"></i>Inventario Fisico<span class="nav-label"></span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Producto")"><i class="fa fa-users fa-fw"></i>Producto <span class="nav-label"></span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Proveedor")"><i class="fa fa-users fa-fw"></i>Proveedor <span class="nav-label"></span> </a>
+                    </li>
                 </ul>
             </li>
             
@@ -45,6 +68,27 @@
                         <a href="@Url.Action("Index", "Banco")"><i class="fa fa-cc-visa fa-fw"></i> <span class="nav-label">Banco</span> </a>
                     </li>
 
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Departamento")"><i class="fa fa-cc-visa fa-fw"></i>Departamento<span class="nav-label">Banco</span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Municipio")"><i class="fa fa-cc-visa fa-fw"></i>Municipio<span class="nav-label">Banco</span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Index_Tent")"><i class="fa fa-cc-visa fa-fw"></i>Tipos Entrada<span class="nav-label">Banco</span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i>Tipos Salidas<span class="nav-label">Banco</span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i>Unidades De Medida<span class="nav-label">Banco</span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i>Objeto<span class="nav-label">Banco</span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i>Estado Inventario Fisico<span class="nav-label">Banco</span> </a>
+                    </li>
                 </ul>
             </li>
 
@@ -64,10 +108,16 @@
                 <a href="#"><i class="fa fa-lock"></i><span class="nav-label">Seguridad</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "")"><i class="fa fa-users fa-fw"></i> <span class="nav-label"></span> </a>
+                        <a href="@Url.Action("Index", "Usuario")"><i class="fa fa-users fa-fw"></i>Usuario <span class="nav-label"></span> </a>
 
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label"></span> </a>
+                        <a href="@Url.Action("Index", "AccesoRol")"><i class="fa fa-ticket fa-fw"></i> Acceso Rol<span class="nav-label"></span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Roles")"><i class="fa fa-ticket fa-fw"></i>Roles<span class="nav-label"></span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "RolesUsuario")"><i class="fa fa-ticket fa-fw"></i>Roles Usuario<span class="nav-label"></span> </a>
                     </li>
                 </ul>
             </li>
