@@ -21,13 +21,13 @@ namespace Inspinia_MVC5_SeedProject.Models
         [Display(Name = "RTN/Identidad")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public string clte_RTN_IDT_PASSP { get; set; }
-        [Display(Name = "Persona natural")]
+        [Display(Name = "¿Es Persona natural?")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public bool clte_EsPersonaNatural { get; set; }
-        [Display(Name = "Nombre")]
+        [Display(Name = "Nombres")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public string clte_Nombre { get; set; }
-        [Display(Name = "Apellido")]
+        [Display(Name = "Apellidos")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public string clte_Apellido { get; set; }
         [Display(Name = "Fecha Nacimiento")]
@@ -41,7 +41,7 @@ namespace Inspinia_MVC5_SeedProject.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public string clte_Sexo { get; set; }
 
-        [Display(Name = "Telefono")]
+        [Display(Name = "Teléfono")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public string clte_Telefono { get; set; }
 
@@ -58,44 +58,44 @@ namespace Inspinia_MVC5_SeedProject.Models
         [Display(Name = "Correo contacto")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public string clte_ContactoEmail { get; set; }
-        [Display(Name = "Telefono contacto")]
+        [Display(Name = "Teléfono contacto")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public string clte_ContactoTel { get; set; }
-        [Display(Name = "Fecha Constitucion")]
+        [Display(Name = "Fecha Constitución")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public System.DateTime clte_FechaConstitusion { get; set; }
         [Display(Name = "Municipio")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public string mun_Id { get; set; }
-        [Display(Name = "Direccion")]
+        [Display(Name = "Dirección")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public string clte_Direccion { get; set; }
-        [Display(Name = "Correo Electronico")]
+        [Display(Name = "Correo Electrónico")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public string clte_CorreoElectronico { get; set; }
         [Display(Name = "Estado cliente")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public string clte_EsActivo { get; set; }
-        [Display(Name = "Razon Inactivo")]
+        [Display(Name = "Razón Inactivo")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public string clte_RazonInactivo { get; set; }
-        [Display(Name = "Credito")]
+        [Display(Name = "Crédito")]
         public bool clte_ConCredito { get; set; }
-        [Display(Name = "Minorista")]
+        [Display(Name = "¿Es Minorista?")]
         public bool clte_EsMinorista { get; set; }
         [Display(Name = "Observaciones")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public string clte_Observaciones_ { get; set; }
-        [Display(Name = "Usuario Creacion")]
+        [Display(Name = "Usuario Crea")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public string clte_UsuarioCrea { get; set; }
-        [Display(Name = "Fecha Creacion")]
+        [Display(Name = "Fecha Crea")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public System.DateTime clte_FechaCrea { get; set; }
-        [Display(Name = "Usuario Modifico")]
+        [Display(Name = "Usuario Modifica")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public string clte_UsuarioModifica { get; set; }
-        [Display(Name = "Fecha Modifico")]
+        [Display(Name = "Fecha Modifica")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido ")]
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
     }

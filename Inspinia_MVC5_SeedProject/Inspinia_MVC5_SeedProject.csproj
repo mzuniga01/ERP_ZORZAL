@@ -386,12 +386,12 @@
     <Compile Include="Models\tbUsuario.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\_Banco.cs" />
-    <Compile Include="Models\_Clientes.cs" />
-    <Compile Include="Models\_CuentasBanco.cs" />
-    <Compile Include="Models\_EstadoFactura.cs" />
-    <Compile Include="Models\_Factura.cs" />
-    <Compile Include="Models\_PuntoEmision.cs" />
+    <Compile Include="Models\Banco.cs" />
+    <Compile Include="Models\Clientes.cs" />
+    <Compile Include="Models\CuentasBanco.cs" />
+    <Compile Include="Models\EstadoFactura.cs" />
+    <Compile Include="Models\Factura.cs" />
+    <Compile Include="Models\PuntoEmision.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -590,6 +590,7 @@
     </Content>
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\inspinia.js" />
+    <Content Include="Scripts\app\PersonaNatural.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap.css.map" />
@@ -774,7 +775,6 @@
     <Content Include="Views\Banco\Edit.cshtml" />
     <Content Include="Views\Banco\Index.cshtml" />
     <Content Include="Views\Clientes\Create.cshtml" />
-    <Content Include="Views\Clientes\Delete.cshtml" />
     <Content Include="Views\Clientes\Details.cshtml" />
     <Content Include="Views\Clientes\Edit.cshtml" />
     <Content Include="Views\Clientes\Index.cshtml" />

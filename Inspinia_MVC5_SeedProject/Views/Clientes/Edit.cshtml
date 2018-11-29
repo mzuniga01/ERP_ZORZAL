@@ -7,15 +7,15 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Editar</h2>
-        <ol class="breadcrumb">
+        <h2>Clientes</h2>
+        @*<ol class="breadcrumb">
             <li>
                 @Html.ActionLink("Lista", "Index")
             </li>
             <li class="active">
                 <strong>Editar</strong>
             </li>
-        </ol>
+        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -46,9 +46,10 @@
         @Html.HiddenFor(model => model.clte_Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tpi_Id, "tpi_Id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tpi_Id, "Tipo Identificación", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("tpi_Id", String.Empty)
+                @*@Html.DropDownList("tpi_Id", String.Empty)*@
+                @Html.DropDownList("tpi_Id", null, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.tpi_Id)
             </div>
         </div>
