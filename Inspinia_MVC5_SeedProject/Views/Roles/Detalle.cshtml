@@ -1,0 +1,166 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbRoles
+
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Roles</h2>
+        <ol class="breadcrumb">
+          
+        </ol>
+    </div>
+</div>
+
+
+
+
+@*<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Details tbRoles</h5>
+                </div>
+                <div class="ibox-content">
+
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.rol_Descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.rol_Descripcion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.rol_UsuarioCrea)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.rol_UsuarioCrea)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.rol_FechaCrea)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.rol_FechaCrea)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.rol_UsuarioModifica)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.rol_UsuarioModifica)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.rol_FechaModifica)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.rol_FechaModifica)
+                        </dd>
+
+                    </dl>
+
+
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.rol_Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white" })
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Roles</h5>
+                </div>
+                <div class="ibox-content">
+
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            <label class="control-label col-md-2">Descripcion</label>
+                        </dt>
+
+                        <dd>
+                           Encargado de Bodega
+                        </dd>
+
+                        <dt>
+                            <label class="control-label col-md-2">Usuario Crea</label>
+                        </dt>
+
+                        <dd>
+                            Keilin_R
+                        </dd>
+
+                        <dt>
+                            <label class="control-label col-md-2">Fecha Crea</label>
+                        </dt>
+
+                        <dd>
+                            28/11/2018
+                        </dd>
+
+                        <dt>
+                            <label class="control-label col-md-2">Usuario Modifica</label>
+                        </dt>
+
+                        <dd>
+                            BR
+                        </dd>
+
+                        <dt>
+                            <label class="control-label col-md-2">Fecha Modifica</label>
+                        </dt>
+
+                        <dd>
+                           28/11/2018
+                        </dd>
+
+                    </dl>
+
+
+                    @Html.ActionLink("Editar", "Editar", new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "" })
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

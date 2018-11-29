@@ -1,0 +1,91 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbAccesoRol
+
+@{
+    ViewBag.Title = "DetallePrueba";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Acceso Rol</h2>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Acceso Rol</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            Acceso Rol
+        </dt>
+
+        <dd>
+            Solo Lectura
+        </dd>
+
+        <dt>
+            Usuario Crea
+        </dt>
+
+        <dd>
+            Test_2018
+        </dd>
+
+        <dt>
+            Fecha Crea
+        </dt>
+
+        <dd>
+            27/11/2018
+        </dd>
+
+        <dt>
+            Usuario Modifica
+        </dt>
+
+        <dd>
+            DB2018
+        </dd>
+
+        <dt>
+            Fecha Modifica
+        </dt>
+
+        <dd>
+            28/11/2018
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Editar", "EditarPrueba", null, new { @class = "btn btn-primary"})
+        @Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

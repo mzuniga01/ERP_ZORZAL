@@ -1,0 +1,137 @@
+﻿@model IEnumerable<Inspinia_MVC5_SeedProject.Models.tbProveedor>
+
+@{
+    ViewBag.Title = "Listado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Proveedor</h2>
+        <ol class="breadcrumb">
+            
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Proveedor</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped" id="datatables">
+    <thead>
+        <tr>
+            <th>
+                Nombre Contacto
+            </th>
+            <th>
+                Direccion
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Telefono
+            </th>
+            <th>
+                Usuario Crea
+            </th>
+            <th>
+                Fecha Crea
+            </th>
+            <th>
+                Usuario Modifica
+            </th>
+            <th>
+                Fecha Modifica
+            </th>
+            <th>
+                Codigo del Municipio
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>
+                Keilin Robles
+            </td>
+            <td>
+                San Pedro Sula
+            </td>
+            <td>
+                keilinrobles@gmail.com
+            </td>
+            <td>
+                8955-6549
+            </td>
+            <td>
+                Keilin_R
+            </td>
+            <td>
+                28/11/2018
+            </td>
+            <td>
+                BR
+            </td>
+            <td>
+                28/11/2018
+            </td>
+            <td>
+                0501
+            </td>
+            <td>
+                @Html.ActionLink("Detalle", "Detalle", new { @class = "" })
+                @Html.ActionLink("Editar", "Editar", new { @class = "" })
+            </td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+@section scripts{
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.responsive.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    <script>
+    $(document).ready(function () {
+    $('#datatables').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+        },
+
+    });
+
+    });
+
+    </script>
+}
+
+

@@ -1,0 +1,174 @@
+﻿@model IEnumerable<Inspinia_MVC5_SeedProject.Models.tbDepartamento>
+
+@{
+    ViewBag.Title = "Departamento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Departamento</h2>
+        <ol class="breadcrumb">
+        </ol>
+    </div>
+</div>
+
+
+@*<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>List of tbDepartamento</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.dep_Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dep_UsuarioCrea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dep_FechaCrea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dep_UsuarioModifica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dep_FechaModifica)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dep_Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dep_UsuarioCrea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dep_FechaCrea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dep_UsuarioModifica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dep_FechaModifica)
+        </td>
+        <td>
+			@Html.ActionLink("Details", "Details", new { id=item.dep_Codigo }, new { @class = "btn btn-primary btn-sm"})
+            @Html.ActionLink("Edit", "Edit", new { id=item.dep_Codigo }, new { @class = "btn btn-white btn-sm"})
+            @Html.ActionLink("Delete", "Delete", new { id=item.dep_Codigo }, new { @class = "btn btn-white btn-sm"})
+        </td>
+    </tr>
+}
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>*@
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Departamento</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs" })
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    
+                        <table class="table table-striped" id="datatables">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Nombre
+                                    </th>
+                                    <th>
+                                        Usuario Crea
+                                    </th>
+                                    <th>
+                                        Fecha Crea
+                                    </th>
+                                    <th>
+                                        Usuario Modifica
+                                    </th>
+                                    <th>
+                                        Fecha Modifica
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Cortes
+                                    </td>
+                                    <td>
+                                        Keilin_R
+                                    </td>
+                                    <td>
+                                        28/11/2018
+                                    </td>
+                                    <td>
+                                        BR
+                                    </td>
+                                    <td>
+                                        28/11/2018
+                                    </td>
+                                    <td>
+
+                                        @Html.ActionLink("Detalle", "Detalle", new { @class = "" })
+                                        @Html.ActionLink("Editar", "Editar", new { @class = "" })
+                                    </td>
+                                </tr>
+                                </tbody>
+</table>
+
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.responsive.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    <script>
+    $(document).ready(function () {
+    $('#datatables').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+        },
+
+    });
+
+    });
+
+    </script>
+}
