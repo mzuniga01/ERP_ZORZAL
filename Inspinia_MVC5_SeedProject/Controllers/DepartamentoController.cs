@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Inspinia_MVC5_SeedProject.Models;
+using ERP_ZORZAL.Models;
 
 namespace Inspinia_MVC5_SeedProject.Controllers
 {
