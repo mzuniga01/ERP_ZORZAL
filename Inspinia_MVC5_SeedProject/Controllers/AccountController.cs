@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-using Inspinia_MVC5_SeedProject.Models;
+using ERP_ZORZAL.Models;
 
 namespace Inspinia_MVC5_SeedProject.Controllers
 {

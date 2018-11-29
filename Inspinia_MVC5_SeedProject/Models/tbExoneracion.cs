@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Inspinia_MVC5_SeedProject.Models
+namespace ERP_ZORZAL.Models
 {
     using System;
     using System.Collections.Generic;

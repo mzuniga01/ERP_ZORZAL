@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Inspinia_MVC5_SeedProject.Models
+namespace ERP_ZORZAL.Models
 
 {
     [MetadataType(typeof(cDevolucionesMetaData))]
