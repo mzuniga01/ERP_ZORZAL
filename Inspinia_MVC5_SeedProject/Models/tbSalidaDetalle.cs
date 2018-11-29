@@ -32,5 +32,6 @@ namespace Inspinia_MVC5_SeedProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCaja> tbCaja { get; set; }
         public virtual tbProducto tbProducto { get; set; }
+        public virtual tbBodega tbBodega { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace Inspinia_MVC5_SeedProject.Models
         public tbUnidadesMedida()
         {
             this.tbInventarioFisicoDetalle = new HashSet<tbInventarioFisicoDetalle>();
+            this.tbProducto = new HashSet<tbProducto>();
         }
     
         public int uni_Id { get; set; }
@@ -30,5 +31,7 @@ namespace Inspinia_MVC5_SeedProject.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbProducto> tbProducto { get; set; }
     }
 }

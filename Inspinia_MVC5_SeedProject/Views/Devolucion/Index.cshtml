@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Inspinia_MVC5_SeedProject.Models.tbDevolucion>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Devolución</h2>
+        <ol class="breadcrumb">
+            @*<li class="active">
+                    <strong>tbDevolucion</strong>
+                </li>*@
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Lista de Devolución</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs" })
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.dev_Fecha)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.clte_id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.tbFactura.cja_Codigo )
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.dev_Fecha)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.clte_id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbFactura.cja_Codigo )
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Detalle", "Details", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-sm" })
+                                    @Html.ActionLink("Editar", "Edit", new { id = item.dev_Id }, new { @class = "btn btn-white btn-sm" })
+                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.dev_Id }, new { @class = "btn btn-white btn-sm" })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

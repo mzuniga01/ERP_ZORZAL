@@ -1,0 +1,107 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbDetalleFactura
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>_CreateDetalleFactura tbDetalleFactura</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fact_Codigo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fact_Codigo)
+                @Html.ValidationMessageFor(model => model.fact_Codigo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.prod_Codigo)
+                @Html.ValidationMessageFor(model => model.prod_Codigo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dfact_CantidadProducto, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dfact_CantidadProducto)
+                @Html.ValidationMessageFor(model => model.dfact_CantidadProducto)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dfact_Descuento, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dfact_Descuento)
+                @Html.ValidationMessageFor(model => model.dfact_Descuento)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dfact_Impuesto, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dfact_Impuesto)
+                @Html.ValidationMessageFor(model => model.dfact_Impuesto)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dfact_UsuarioCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dfact_UsuarioCrea)
+                @Html.ValidationMessageFor(model => model.dfact_UsuarioCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dfact_FechaCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dfact_FechaCrea)
+                @Html.ValidationMessageFor(model => model.dfact_FechaCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dfact_UsuarioModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dfact_UsuarioModifica)
+                @Html.ValidationMessageFor(model => model.dfact_UsuarioModifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dfact_FechaModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dfact_FechaModifica)
+                @Html.ValidationMessageFor(model => model.dfact_FechaModifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+

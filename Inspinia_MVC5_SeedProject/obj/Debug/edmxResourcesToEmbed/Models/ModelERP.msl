@@ -220,7 +220,7 @@
           <ScalarProperty Name="uni_FechaCrea" ColumnName="uni_FechaCrea" />
           <ScalarProperty Name="uni_UsuarioCrea" ColumnName="uni_UsuarioCrea" />
           <ScalarProperty Name="uni_Abreviacion" ColumnName="uni_Abreviacion" />
-          <ScalarProperty Name="uni_Descrpcion" ColumnName="uni_Descrpcion" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
           <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -294,20 +294,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbEntradaDetalle">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEntradaDetalle">
-        <MappingFragment StoreEntitySet="tbEntradaDetalle">
-          <ScalarProperty Name="entd_FechaModifica" ColumnName="entd_FechaModifica" />
-          <ScalarProperty Name="entd_UsuarioModifica" ColumnName="entd_UsuarioModifica" />
-          <ScalarProperty Name="entd_FechaCrea" ColumnName="entd_FechaCrea" />
-          <ScalarProperty Name="entd_UsuarioCrea" ColumnName="entd_UsuarioCrea" />
-          <ScalarProperty Name="entd_Cantidad" ColumnName="entd_Cantidad" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="ent_Codigo" ColumnName="ent_Codigo" />
-          <ScalarProperty Name="entd_Codigo" ColumnName="entd_Codigo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbEstadoMovimiento">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEstadoMovimiento">
         <MappingFragment StoreEntitySet="tbEstadoMovimiento">
@@ -317,22 +303,6 @@
           <ScalarProperty Name="estm_UsuarioCrea" ColumnName="estm_UsuarioCrea" />
           <ScalarProperty Name="estm_Descripcion" ColumnName="estm_Descripcion" />
           <ScalarProperty Name="estm_Id" ColumnName="estm_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbInventarioFisico">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbInventarioFisico">
-        <MappingFragment StoreEntitySet="tbInventarioFisico">
-          <ScalarProperty Name="invf_FechaModifica" ColumnName="invf_FechaModifica" />
-          <ScalarProperty Name="invf_UsuarioModifica" ColumnName="invf_UsuarioModifica" />
-          <ScalarProperty Name="invf_FechaCrea" ColumnName="invf_FechaCrea" />
-          <ScalarProperty Name="invf_UsuarioCrea" ColumnName="invf_UsuarioCrea" />
-          <ScalarProperty Name="invf_FechaInventario" ColumnName="invf_FechaInventario" />
-          <ScalarProperty Name="estif_Id" ColumnName="estif_Id" />
-          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
-          <ScalarProperty Name="invf_ResponsableBodega" ColumnName="invf_ResponsableBodega" />
-          <ScalarProperty Name="invf_Descripcion" ColumnName="invf_Descripcion" />
-          <ScalarProperty Name="invf_Id" ColumnName="invf_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

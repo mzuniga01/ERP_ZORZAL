@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Inspinia_MVC5_SeedProject.Models.tbSucursal>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Index</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>Sucursal</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>List of tbSucursal</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Crear nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.mun_Id)*@
+
+            Municipio Id
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.sucur_Correo)*@
+            Correo
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.sucur_Direccion)*@
+            Direccion
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.sucur_Telefono)*@
+            Telefono
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.sucur_UsuarioCrea)*@
+
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.sucur_FechaCrea)*@
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.sucur_UsuarioModifica)*@
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.sucur_FechaModifica)*@
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.mun_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sucur_Correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sucur_Direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sucur_Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sucur_UsuarioCrea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sucur_FechaCrea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sucur_UsuarioModifica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sucur_FechaModifica)
+        </td>
+        <td>
+			@Html.ActionLink("Details", "Details", new { id=item.sucur_Codigo }, new { @class = "btn btn-primary btn-sm"})
+            @Html.ActionLink("Edit", "Edit", new { id=item.sucur_Codigo }, new { @class = "btn btn-white btn-sm"})
+        </td>
+    </tr>
+}
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+

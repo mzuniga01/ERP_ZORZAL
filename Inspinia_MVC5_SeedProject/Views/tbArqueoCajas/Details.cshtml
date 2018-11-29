@@ -1,0 +1,179 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbArqueoCaja
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Details</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Details tbArqueoCaja</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.aqcja_Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aqcja_Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aqcja_HoraInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aqcja_HoraInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aqcja_HoraFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aqcja_HoraFinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aqcja_SaldoInicial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aqcja_SaldoInicial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aqcja_SaldoFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aqcja_SaldoFinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aqcja_MontoEfectivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aqcja_MontoEfectivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aqcja_MontoCheque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aqcja_MontoCheque)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aqcja_Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aqcja_Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aqcja_Diferencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aqcja_Diferencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aqcja_UsuarioCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aqcja_UsuarioCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aqcja_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aqcja_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aqcja_UsuarioModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aqcja_UsuarioModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aqcja_FechaModifico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aqcja_FechaModifico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbSucursal.mun_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbSucursal.mun_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbCaja.cja_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbCaja.cja_Descripcion)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Edit", "Edit", new { id = Model.aqcja_Codigo }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

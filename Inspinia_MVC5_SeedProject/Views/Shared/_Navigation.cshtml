@@ -13,19 +13,19 @@
                 <a href="#"><i class="fa fa-shopping-bag fa-fw"></i><span class="nav-label">Ventas</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "tbClientes")"><i class="fa fa-users fa-fw"></i> <span class="nav-label">Clientes</span> </a>
+                        <a href="@Url.Action("Index", "Clientes")"><i class="fa fa-users fa-fw"></i> <span class="nav-label">Clientes</span> </a>
                     </li>
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "tbPedidos")"><i class="fa fa-list-alt fa-fw"></i> <span class="nav-label">Pedidos</span> </a>
+                        <a href="@Url.Action("Index", "PedidoDetalle")"><i class="fa fa-list-alt fa-fw"></i> <span class="nav-label">Pedidos</span> </a>
                     </li>
                     <li class="@Html.IsSelected(action: "Create")">
-                        <a href="@Url.Action("Create", "tbFacturas")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Facturas</span> </a>
+                        <a href="@Url.Action("Create", "Factura")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Facturas</span> </a>
                     </li>
                     <li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "tbCredito")"><i class="fa fa-credit-card fa-fw"></i> <span class="nav-label">Crédito</span> </a>
                     </li>
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "tbPagos")"><i class="fa fa-money fa-fw"></i> <span class="nav-label">Pagos</span> </a>
+                        <a href="@Url.Action("Index", "Pago")"><i class="fa fa-money fa-fw"></i> <span class="nav-label">Pagos</span> </a>
                     </li>
                 </ul>
             </li>
@@ -42,11 +42,11 @@
                     </li>
 
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "tbMonedas")"><i class="fa fa-money fa-fw"></i> <span class="nav-label">Monedas</span> </a>
+                        <a href="@Url.Action("Index", "Moneda")"><i class="fa fa-money fa-fw"></i> <span class="nav-label">Monedas</span> </a>
                     </li>
 
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "tbTiposDocumentoes")"><i class="fa fa-file-text fa-fw"></i> <span class="nav-label">Tipo Documento</span> </a>
+                        <a href="@Url.Action("Index", "tbDocumentoFiscals")"><i class="fa fa-file-text fa-fw"></i> <span class="nav-label">Tipo Documento</span> </a>
                     </li>
 
                     <li class="@Html.IsSelected(action: "Index")">

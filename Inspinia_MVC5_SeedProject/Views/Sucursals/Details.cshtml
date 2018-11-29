@@ -1,0 +1,123 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbSucursal
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Details</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Details tbSucursal</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.mun_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mun_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sucur_Correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sucur_Correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sucur_Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sucur_Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sucur_Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sucur_Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sucur_UsuarioCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sucur_UsuarioCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sucur_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sucur_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sucur_UsuarioModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sucur_UsuarioModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sucur_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sucur_FechaModifica)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Edit", "Edit", new { id = Model.sucur_Codigo }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

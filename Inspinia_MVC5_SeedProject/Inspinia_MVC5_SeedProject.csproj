@@ -178,13 +178,40 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BancoController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\CuentasBancoController.cs" />
+    <Compile Include="Controllers\DevolucionController.cs" />
+    <Compile Include="Controllers\DevolucionDetallesController.cs" />
+    <Compile Include="Controllers\EstadoFacturaController.cs" />
+    <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListaPrecioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MonedaController.cs" />
+    <Compile Include="Controllers\PagoController.cs" />
+    <Compile Include="Controllers\PedidoDetalleController.cs" />
+    <Compile Include="Controllers\PuntoEmisionController.cs" />
+    <Compile Include="Controllers\SolicitudCreditoController.cs" />
+    <Compile Include="Controllers\SucursalsController.cs" />
+    <Compile Include="Controllers\tbArqueoCajasController.cs" />
+    <Compile Include="Controllers\tbCajasController.cs" />
+    <Compile Include="Controllers\tbDocumentoFiscalsController.cs" />
+    <Compile Include="Controllers\tbSolicitudEfectivoesController.cs" />
+    <Compile Include="Controllers\TipoPagoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ArqueoCaja.cs" />
+    <Compile Include="Models\cDetalleDevolucion.cs" />
+    <Compile Include="Models\cDetallePedido.cs" />
+    <Compile Include="Models\cDevolucion.cs" />
+    <Compile Include="Models\cExoneracion.cs" />
+    <Compile Include="Models\cPago.cs" />
+    <Compile Include="Models\cTipoPago.cs" />
+    <Compile Include="Models\DocumentoFiscal.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
       <AutoGen>True</AutoGen>
@@ -201,6 +228,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Monedas.cs" />
+    <Compile Include="Models\SolicitudesEfectivo.cs" />
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -252,9 +281,6 @@
     <Compile Include="Models\tbEntrada.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbEntradaDetalle.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tbEstadoFactura.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -271,9 +297,6 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbFactura.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbInventarioFisico.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbInventarioFisicoDetalle.cs">
@@ -363,6 +386,12 @@
     <Compile Include="Models\tbUsuario.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\_Banco.cs" />
+    <Compile Include="Models\_Clientes.cs" />
+    <Compile Include="Models\_CuentasBanco.cs" />
+    <Compile Include="Models\_EstadoFactura.cs" />
+    <Compile Include="Models\_Factura.cs" />
+    <Compile Include="Models\_PuntoEmision.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -559,6 +588,7 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
       <LastGenOutput>ModelERP.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -727,6 +757,107 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\EstadoFactura\Create.cshtml" />
+    <Content Include="Views\EstadoFactura\Delete.cshtml" />
+    <Content Include="Views\EstadoFactura\Details.cshtml" />
+    <Content Include="Views\EstadoFactura\Edit.cshtml" />
+    <Content Include="Views\EstadoFactura\Index.cshtml" />
+    <Content Include="Views\Factura\Create.cshtml" />
+    <Content Include="Views\Factura\Details.cshtml" />
+    <Content Include="Views\Factura\Edit.cshtml" />
+    <Content Include="Views\Factura\Index.cshtml" />
+    <Content Include="Views\Factura\_CreateDetalleFactura.cshtml" />
+    <Content Include="Views\Factura\_EditarDetalleFactura.cshtml" />
+    <Content Include="Views\Factura\_IndexDetalleFactura.cshtml" />
+    <Content Include="Views\Banco\Create.cshtml" />
+    <Content Include="Views\Banco\Details.cshtml" />
+    <Content Include="Views\Banco\Edit.cshtml" />
+    <Content Include="Views\Banco\Index.cshtml" />
+    <Content Include="Views\Clientes\Create.cshtml" />
+    <Content Include="Views\Clientes\Delete.cshtml" />
+    <Content Include="Views\Clientes\Details.cshtml" />
+    <Content Include="Views\Clientes\Edit.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\CuentasBanco\Create.cshtml" />
+    <Content Include="Views\CuentasBanco\Details.cshtml" />
+    <Content Include="Views\CuentasBanco\Edit.cshtml" />
+    <Content Include="Views\CuentasBanco\Index.cshtml" />
+    <Content Include="Views\Devolucion\Create.cshtml" />
+    <Content Include="Views\Devolucion\Delete.cshtml" />
+    <Content Include="Views\Devolucion\Details.cshtml" />
+    <Content Include="Views\Devolucion\Edit.cshtml" />
+    <Content Include="Views\Devolucion\Index.cshtml" />
+    <Content Include="Views\DevolucionDetalles\Create.cshtml" />
+    <Content Include="Views\DevolucionDetalles\Delete.cshtml" />
+    <Content Include="Views\DevolucionDetalles\Details.cshtml" />
+    <Content Include="Views\DevolucionDetalles\Edit.cshtml" />
+    <Content Include="Views\DevolucionDetalles\Index.cshtml" />
+    <Content Include="Views\Moneda\Create.cshtml" />
+    <Content Include="Views\Moneda\Delete.cshtml" />
+    <Content Include="Views\Moneda\Details.cshtml" />
+    <Content Include="Views\Moneda\Edit.cshtml" />
+    <Content Include="Views\Moneda\Index.cshtml" />
+    <Content Include="Views\Pago\Create.cshtml" />
+    <Content Include="Views\Pago\Delete.cshtml" />
+    <Content Include="Views\Pago\Details.cshtml" />
+    <Content Include="Views\Pago\Edit.cshtml" />
+    <Content Include="Views\Pago\Index.cshtml" />
+    <Content Include="Views\PedidoDetalle\Create.cshtml" />
+    <Content Include="Views\PedidoDetalle\Delete.cshtml" />
+    <Content Include="Views\PedidoDetalle\Details.cshtml" />
+    <Content Include="Views\PedidoDetalle\Edit.cshtml" />
+    <Content Include="Views\PedidoDetalle\Index.cshtml" />
+    <Content Include="Views\PuntoEmision\Create.cshtml" />
+    <Content Include="Views\PuntoEmision\Delete.cshtml" />
+    <Content Include="Views\PuntoEmision\Details.cshtml" />
+    <Content Include="Views\PuntoEmision\Edit.cshtml" />
+    <Content Include="Views\PuntoEmision\Index.cshtml" />
+    <Content Include="Views\PuntoEmision\_PuntoEmisionDetalle.cshtml" />
+    <Content Include="Views\Sucursals\Create.cshtml" />
+    <Content Include="Views\Sucursals\Delete.cshtml" />
+    <Content Include="Views\Sucursals\Details.cshtml" />
+    <Content Include="Views\Sucursals\Edit.cshtml" />
+    <Content Include="Views\Sucursals\Index.cshtml" />
+    <Content Include="Views\tbArqueoCajas\Create.cshtml" />
+    <Content Include="Views\tbArqueoCajas\Delete.cshtml" />
+    <Content Include="Views\tbArqueoCajas\Details.cshtml" />
+    <Content Include="Views\tbArqueoCajas\Edit.cshtml" />
+    <Content Include="Views\tbArqueoCajas\Index.cshtml" />
+    <Content Include="Views\tbCajas\Create.cshtml" />
+    <Content Include="Views\tbCajas\Delete.cshtml" />
+    <Content Include="Views\tbCajas\Details.cshtml" />
+    <Content Include="Views\tbCajas\Edit.cshtml" />
+    <Content Include="Views\tbCajas\Index.cshtml" />
+    <Content Include="Views\tbDocumentoFiscals\Create.cshtml" />
+    <Content Include="Views\tbDocumentoFiscals\Delete.cshtml" />
+    <Content Include="Views\tbDocumentoFiscals\Details.cshtml" />
+    <Content Include="Views\tbDocumentoFiscals\Edit.cshtml" />
+    <Content Include="Views\tbDocumentoFiscals\Index.cshtml" />
+    <Content Include="Views\tbSolicitudEfectivoes\Create.cshtml" />
+    <Content Include="Views\tbSolicitudEfectivoes\Delete.cshtml" />
+    <Content Include="Views\tbSolicitudEfectivoes\Details.cshtml" />
+    <Content Include="Views\tbSolicitudEfectivoes\Edit.cshtml" />
+    <Content Include="Views\tbSolicitudEfectivoes\Index.cshtml" />
+    <Content Include="Views\TipoPago\Create.cshtml" />
+    <Content Include="Views\TipoPago\Delete.cshtml" />
+    <Content Include="Views\TipoPago\Details.cshtml" />
+    <Content Include="Views\TipoPago\Edit.cshtml" />
+    <Content Include="Views\TipoPago\Index.cshtml" />
+    <Content Include="Views\viewlistaprecio\Create.cshtml" />
+    <Content Include="Views\viewlistaprecio\Delete.cshtml" />
+    <Content Include="Views\viewlistaprecio\Details.cshtml" />
+    <Content Include="Views\viewlistaprecio\Edit.cshtml" />
+    <Content Include="Views\viewlistaprecio\Index.cshtml" />
+    <Content Include="Views\viewMoneda\Create.cshtml" />
+    <Content Include="Views\viewMoneda\Delete.cshtml" />
+    <Content Include="Views\viewMoneda\Details.cshtml" />
+    <Content Include="Views\viewMoneda\Edit.cshtml" />
+    <Content Include="Views\viewMoneda\Index.cshtml" />
+    <Content Include="Views\Viewssolicitud credito\Create.cshtml" />
+    <Content Include="Views\Viewssolicitud credito\Delete.cshtml" />
+    <Content Include="Views\Viewssolicitud credito\Details.cshtml" />
+    <Content Include="Views\Viewssolicitud credito\Edit.cshtml" />
+    <Content Include="Views\Viewssolicitud credito\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

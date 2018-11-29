@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Inspinia_MVC5_SeedProject.Models.tbPago>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Pago</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>Pago</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Lista de Pagos</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pago_Totalpagos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pago_Totalcambio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pago_Emisor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pago_Cuenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pago_FechaVencimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pago_Titular_)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbFactura.cja_Codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbTipoPago.tpa_Descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pago_Totalpagos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pago_Totalcambio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pago_Emisor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pago_Cuenta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pago_FechaVencimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pago_Titular_)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbFactura.cja_Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbTipoPago.tpa_Descripcion)
+        </td>
+        <td>
+			@Html.ActionLink("Detalle", "Details", new { id=item.pago_Id }, new { @class = "btn btn-primary btn-sm"})
+            @Html.ActionLink("Editar", "Edit", new { id=item.pago_Id }, new { @class = "btn btn-white btn-sm"})
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.pago_Id }, new { @class = "btn btn-white btn-sm"})
+        </td>
+    </tr>
+}
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+

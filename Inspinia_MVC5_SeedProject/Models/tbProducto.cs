@@ -18,7 +18,6 @@ namespace Inspinia_MVC5_SeedProject.Models
         public tbProducto()
         {
             this.tbBodegaDetalle = new HashSet<tbBodegaDetalle>();
-            this.tbEntradaDetalle = new HashSet<tbEntradaDetalle>();
             this.tbInventarioFisicoDetalle = new HashSet<tbInventarioFisicoDetalle>();
             this.tbListadoPrecioDetalle = new HashSet<tbListadoPrecioDetalle>();
             this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
@@ -42,8 +41,6 @@ namespace Inspinia_MVC5_SeedProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodegaDetalle> tbBodegaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbEntradaDetalle> tbEntradaDetalle { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
@@ -58,5 +55,6 @@ namespace Inspinia_MVC5_SeedProject.Models
         public virtual ICollection<tbPedidoDetalle> tbPedidoDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
+        public virtual tbUnidadesMedida tbUnidadesMedida { get; set; }
     }
 }

@@ -1,0 +1,107 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbPuntoEmision
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Detalles</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("Listado", "Index")
+            </li>
+            <li class="active">
+                <strong>Detalles</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalles Punto Emision</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pe_NumeroCAI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pe_NumeroCAI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pe_UsuarioCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pe_UsuarioCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pe_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pe_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pe_UsuarioModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pe_UsuarioModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pe_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pe_FechaModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbSucursal.mun_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbSucursal.mun_Id)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.pe_Codigo }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

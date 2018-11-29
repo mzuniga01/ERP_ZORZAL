@@ -25,7 +25,6 @@ namespace Inspinia_MVC5_SeedProject.Models
         public Nullable<System.DateTime> invfd_FechaModifica { get; set; }
     
         public virtual tbUnidadesMedida tbUnidadesMedida { get; set; }
-        public virtual tbInventarioFisico tbInventarioFisico { get; set; }
         public virtual tbProducto tbProducto { get; set; }
     }
 }

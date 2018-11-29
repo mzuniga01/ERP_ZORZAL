@@ -1,7 +1,8 @@
 ﻿$(document).ready(function () {
-    $('#ListaCliente').DataTable(
+    $('#DataTable').DataTable(
     {
         "searching": true,
+        "scrollX": true,
 
         "oLanguage": {
             "oPaginate": {

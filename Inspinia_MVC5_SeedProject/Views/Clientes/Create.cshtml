@@ -1,0 +1,286 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbCliente
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+</style>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Crear</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("Listado", "Index")
+            </li>
+            <li class="active">
+                <strong>Crear</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+			@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Cliente</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tpi_Id, "tpi_Id", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("tpi_Id", String.Empty)
+                <label class="validation-error"> @Html.ValidationMessageFor(model => model.tpi_Id)</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_RTN_IDT_PASSP, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_RTN_IDT_PASSP)
+                <label class="validation-error"> @Html.ValidationMessageFor(model => model.clte_RTN_IDT_PASSP)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_EsPersonaNatural, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_EsPersonaNatural)
+                <label class="validation-error">  @Html.ValidationMessageFor(model => model.clte_EsPersonaNatural)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_Nombre, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_Nombre)
+                <label class="validation-error">  @Html.ValidationMessageFor(model => model.clte_Nombre)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_Apellido, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_Apellido)
+                <label class="validation-error">  @Html.ValidationMessageFor(model => model.clte_Apellido)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_FechaNacimiento, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_FechaNacimiento)
+                <label class="validation-error">  @Html.ValidationMessageFor(model => model.clte_FechaNacimiento)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_Nacionalidad, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_Nacionalidad)
+                <label class="validation-error">  @Html.ValidationMessageFor(model => model.clte_Nacionalidad)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_Sexo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_Sexo)
+                <label class="validation-error">  @Html.ValidationMessageFor(model => model.clte_Sexo)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_Telefono, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_Telefono)
+                <label class="validation-error">  @Html.ValidationMessageFor(model => model.clte_Telefono)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_NombreComercial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_NombreComercial)
+                <label class="validation-error">  @Html.ValidationMessageFor(model => model.clte_NombreComercial)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_RazonSocial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_RazonSocial)
+                <label class="validation-error">@Html.ValidationMessageFor(model => model.clte_RazonSocial)</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_ContactoNombre, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_ContactoNombre)
+                <label class="validation-error">  @Html.ValidationMessageFor(model => model.clte_ContactoNombre)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_ContactoEmail, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_ContactoEmail)
+                <label class="validation-error">    @Html.ValidationMessageFor(model => model.clte_ContactoEmail)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_ContactoTel, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_ContactoTel)
+                <label class="validation-error">    @Html.ValidationMessageFor(model => model.clte_ContactoTel)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_FechaConstitusion, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_FechaConstitusion)
+                <label class="validation-error">  @Html.ValidationMessageFor(model => model.clte_FechaConstitusion)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mun_Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mun_Id)
+                <label class="validation-error">    @Html.ValidationMessageFor(model => model.mun_Id)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_Direccion, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_Direccion)
+                <label class="validation-error">   @Html.ValidationMessageFor(model => model.clte_Direccion)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_CorreoElectronico, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_CorreoElectronico)
+                <label class="validation-error">  @Html.ValidationMessageFor(model => model.clte_CorreoElectronico)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_EsActivo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_EsActivo)
+                <label class="validation-error">  @Html.ValidationMessageFor(model => model.clte_EsActivo)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_RazonInactivo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_RazonInactivo)
+                <label class="validation-error"> @Html.ValidationMessageFor(model => model.clte_RazonInactivo)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_ConCredito, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_ConCredito)
+                <label class="validation-error">@Html.ValidationMessageFor(model => model.clte_ConCredito)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_EsMinorista, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_EsMinorista)
+                <label class="validation-error">@Html.ValidationMessageFor(model => model.clte_EsMinorista)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_Observaciones_, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_Observaciones_)
+                <label class="validation-error">@Html.ValidationMessageFor(model => model.clte_Observaciones_)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_UsuarioCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_UsuarioCrea)
+                <label class="validation-error"> @Html.ValidationMessageFor(model => model.clte_UsuarioCrea)</label>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_FechaCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_FechaCrea)
+                @Html.ValidationMessageFor(model => model.clte_FechaCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_UsuarioModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_UsuarioModifica)
+                @Html.ValidationMessageFor(model => model.clte_UsuarioModifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_FechaModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_FechaModifica)
+                @Html.ValidationMessageFor(model => model.clte_FechaModifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

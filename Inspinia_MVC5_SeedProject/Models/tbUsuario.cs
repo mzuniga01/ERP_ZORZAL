@@ -18,6 +18,7 @@ namespace Inspinia_MVC5_SeedProject.Models
         public tbUsuario()
         {
             this.tbBodega = new HashSet<tbBodega>();
+            this.tbRolesUsuario1 = new HashSet<tbRolesUsuario>();
         }
     
         public int usu_Id { get; set; }
@@ -34,5 +35,7 @@ namespace Inspinia_MVC5_SeedProject.Models
         public virtual tbRolesUsuario tbRolesUsuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodega> tbBodega { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbRolesUsuario> tbRolesUsuario1 { get; set; }
     }
 }
