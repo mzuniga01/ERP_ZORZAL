@@ -36,15 +36,15 @@
                      </li>
 
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index_Salida", "Salidas")"><i class="fa fa-users fa-fw"></i>Salidas<span class="nav-label"></span> </a>
+                        <a href="@Url.Action("Index_Salida", "Salida")"><i class="fa fa-users fa-fw"></i>Salidas<span class="nav-label"></span> </a>
                     </li>
 
                     <li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index_Bodega", "Bodega")"><i class="fa fa-users fa-fw"></i>Bodegas<span class="nav-label"></span> </a>
                     </li>
-                    <li class="@Html.IsSelected(action: "Index")">
+                    @*<li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "Cajas")"><i class="fa fa-users fa-fw"></i>Cajas<span class="nav-label"></span> </a>
-                    </li>
+                    </li>*@
                     <li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "EstadoMovimiento")"><i class="fa fa-users fa-fw"></i>Estado Movimiento<span class="nav-label"></span> </a>
                     </li>
@@ -69,26 +69,26 @@
                     </li>
 
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Departamento")"><i class="fa fa-cc-visa fa-fw"></i>Departamento<span class="nav-label">Banco</span> </a>
+                        <a href="@Url.Action("Index", "Departamento")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Departamento</span> </a>
                     </li>
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Municipio")"><i class="fa fa-cc-visa fa-fw"></i>Municipio<span class="nav-label">Banco</span> </a>
+                        <a href="@Url.Action("Index", "Municipio")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Municipio</span> </a>
                     </li>
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Index_Tent")"><i class="fa fa-cc-visa fa-fw"></i>Tipos Entrada<span class="nav-label">Banco</span> </a>
+                        <a href="@Url.Action("index_Tent", "TiposEntrada")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Tipos Entrada</span> </a>
                     </li>
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i>Tipos Salidas<span class="nav-label">Banco</span> </a>
+                        <a href="@Url.Action("Index", "TiposSalida")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Tipos Salidas</span> </a>
                     </li>
+                    @*<li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Unidades De Medida</span> </a>
+                    </li>*@
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i>Unidades De Medida<span class="nav-label">Banco</span> </a>
+                        <a href="@Url.Action("Index", "Objeto")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Objeto</span> </a>
                     </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i>Objeto<span class="nav-label">Banco</span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i>Estado Inventario Fisico<span class="nav-label">Banco</span> </a>
-                    </li>
+                    @*<li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Estado Inventario Fisico</span> </a>
+                    </li>*@
                 </ul>
             </li>
 
@@ -116,9 +116,9 @@
                     <li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "Roles")"><i class="fa fa-ticket fa-fw"></i>Roles<span class="nav-label"></span> </a>
                     </li>
-                    <li class="@Html.IsSelected(action: "Index")">
+                    @*<li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "RolesUsuario")"><i class="fa fa-ticket fa-fw"></i>Roles Usuario<span class="nav-label"></span> </a>
-                    </li>
+                    </li>*@
                 </ul>
             </li>
 
