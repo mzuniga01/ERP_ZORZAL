@@ -22,6 +22,7 @@ namespace ERP_ZORZAL.Models
             this.tbSalida = new HashSet<tbSalida>();
             this.tbSalida1 = new HashSet<tbSalida>();
             this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
+            this.tbInventarioFisico = new HashSet<tbInventarioFisico>();
         }
     
         public int bod_Id { get; set; }
@@ -50,5 +51,7 @@ namespace ERP_ZORZAL.Models
         public virtual ICollection<tbSalida> tbSalida1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbInventarioFisico> tbInventarioFisico { get; set; }
     }
 }

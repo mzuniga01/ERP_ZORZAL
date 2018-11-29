@@ -23,9 +23,9 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> acrol_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> acrol_FechaModifica { get; set; }
     
-        public virtual tbObjeto tbObjeto { get; set; }
-        public virtual tbObjeto tbObjeto1 { get; set; }
         public virtual tbRoles tbRoles { get; set; }
         public virtual tbRolesUsuario tbRolesUsuario { get; set; }
+        public virtual tbObjeto tbObjeto { get; set; }
+        public virtual tbObjeto tbObjeto1 { get; set; }
     }
 }

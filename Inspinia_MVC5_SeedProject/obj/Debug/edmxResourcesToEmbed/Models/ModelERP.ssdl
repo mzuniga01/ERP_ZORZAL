@@ -157,9 +157,9 @@
     </Key>
     <Property Name="obj_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="obj_Pantalla" Type="nvarchar" MaxLength="15" />
-    <Property Name="obj_UsuarioCrea" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="obj_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="obj_FechaCrea" Type="datetime" Nullable="false" />
-    <Property Name="obj_UsuarioModifica" Type="varchar" MaxLength="50" />
+    <Property Name="obj_UsuarioModifica" Type="int" />
     <Property Name="obj_FechaModifica" Type="datetime" />
   </EntityType>
   <EntityType Name="tbTipoIdentificacion">
@@ -272,6 +272,19 @@
     <Property Name="ent_UsuarioModifica" Type="int" />
     <Property Name="ent_FechaModifica" Type="datetime" />
   </EntityType>
+  <EntityType Name="tbEntradaDetalle">
+    <Key>
+      <PropertyRef Name="entd_Id" />
+    </Key>
+    <Property Name="entd_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ent_Id" Type="int" Nullable="false" />
+    <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="entd_Cantidad" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="entd_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="entd_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="entd_UsuarioModifica" Type="int" />
+    <Property Name="entd_FechaModifica" Type="datetime" />
+  </EntityType>
   <EntityType Name="tbEstadoMovimiento">
     <Key>
       <PropertyRef Name="estm_Id" />
@@ -282,6 +295,21 @@
     <Property Name="estm_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="estm_UsuarioModifica" Type="int" />
     <Property Name="estm_FechaModifica" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbInventarioFisico">
+    <Key>
+      <PropertyRef Name="invf_Id" />
+    </Key>
+    <Property Name="invf_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="invf_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="invf_ResponsableBodega" Type="varchar" MaxLength="150" />
+    <Property Name="bod_Id" Type="int" Nullable="false" />
+    <Property Name="estif_Id" Type="tinyint" Nullable="false" />
+    <Property Name="invf_FechaInventario" Type="datetime" Nullable="false" />
+    <Property Name="invf_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="invf_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="invf_UsuarioModifica" Type="int" Nullable="false" />
+    <Property Name="invf_FechaModifica" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="tbInventarioFisicoDetalle">
     <Key>
@@ -1083,6 +1111,66 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbEntradaDetalle_tbEntrada_ent_Id">
+    <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="1" />
+    <End Role="tbEntradaDetalle" Type="Self.tbEntradaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbEntrada">
+        <PropertyRef Name="ent_Id" />
+      </Principal>
+      <Dependent Role="tbEntradaDetalle">
+        <PropertyRef Name="ent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbEntradaDetalle_tbProducto_prod_Codigo">
+    <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="1" />
+    <End Role="tbEntradaDetalle" Type="Self.tbEntradaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbProducto">
+        <PropertyRef Name="prod_Codigo" />
+      </Principal>
+      <Dependent Role="tbEntradaDetalle">
+        <PropertyRef Name="prod_Codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbInventarioFisico_tbBodega_bod_Id">
+    <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
+    <End Role="tbInventarioFisico" Type="Self.tbInventarioFisico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbBodega">
+        <PropertyRef Name="bod_Id" />
+      </Principal>
+      <Dependent Role="tbInventarioFisico">
+        <PropertyRef Name="bod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbInventarioFisico_tbEstadoInventarioFisico_estif_Id">
+    <End Role="tbEstadoInventarioFisico" Type="Self.tbEstadoInventarioFisico" Multiplicity="1" />
+    <End Role="tbInventarioFisico" Type="Self.tbInventarioFisico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbEstadoInventarioFisico">
+        <PropertyRef Name="estif_Id" />
+      </Principal>
+      <Dependent Role="tbInventarioFisico">
+        <PropertyRef Name="estif_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbInventarioFisicoDetalle_tbInventarioFisico_invf_Id">
+    <End Role="tbInventarioFisico" Type="Self.tbInventarioFisico" Multiplicity="1" />
+    <End Role="tbInventarioFisicoDetalle" Type="Self.tbInventarioFisicoDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbInventarioFisico">
+        <PropertyRef Name="invf_Id" />
+      </Principal>
+      <Dependent Role="tbInventarioFisicoDetalle">
+        <PropertyRef Name="invf_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbInventarioFisicoDetalle_tbProducto_prod_Codigo">
     <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="1" />
     <End Role="tbInventarioFisicoDetalle" Type="Self.tbInventarioFisicoDetalle" Multiplicity="*" />
@@ -1549,7 +1637,9 @@
     <EntitySet Name="tbBodegaDetalle" EntityType="Self.tbBodegaDetalle" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbCaja" EntityType="Self.tbCaja" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbEntrada" EntityType="Self.tbEntrada" Schema="Inv" store:Type="Tables" />
+    <EntitySet Name="tbEntradaDetalle" EntityType="Self.tbEntradaDetalle" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbEstadoMovimiento" EntityType="Self.tbEstadoMovimiento" Schema="Inv" store:Type="Tables" />
+    <EntitySet Name="tbInventarioFisico" EntityType="Self.tbInventarioFisico" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbInventarioFisicoDetalle" EntityType="Self.tbInventarioFisicoDetalle" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbProducto" EntityType="Self.tbProducto" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbProductoCategoria" EntityType="Self.tbProductoCategoria" Schema="Inv" store:Type="Tables" />
@@ -1695,6 +1785,26 @@
     <AssociationSet Name="FK_Inv_tbEntrada_tbTiposEntrada_tent_Id" Association="Self.FK_Inv_tbEntrada_tbTiposEntrada_tent_Id">
       <End Role="tbTiposEntrada" EntitySet="tbTiposEntrada" />
       <End Role="tbEntrada" EntitySet="tbEntrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbEntradaDetalle_tbEntrada_ent_Id" Association="Self.FK_Inv_tbEntradaDetalle_tbEntrada_ent_Id">
+      <End Role="tbEntrada" EntitySet="tbEntrada" />
+      <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbEntradaDetalle_tbProducto_prod_Codigo" Association="Self.FK_Inv_tbEntradaDetalle_tbProducto_prod_Codigo">
+      <End Role="tbProducto" EntitySet="tbProducto" />
+      <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbInventarioFisico_tbBodega_bod_Id" Association="Self.FK_Inv_tbInventarioFisico_tbBodega_bod_Id">
+      <End Role="tbBodega" EntitySet="tbBodega" />
+      <End Role="tbInventarioFisico" EntitySet="tbInventarioFisico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbInventarioFisico_tbEstadoInventarioFisico_estif_Id" Association="Self.FK_Inv_tbInventarioFisico_tbEstadoInventarioFisico_estif_Id">
+      <End Role="tbEstadoInventarioFisico" EntitySet="tbEstadoInventarioFisico" />
+      <End Role="tbInventarioFisico" EntitySet="tbInventarioFisico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbInventarioFisicoDetalle_tbInventarioFisico_invf_Id" Association="Self.FK_Inv_tbInventarioFisicoDetalle_tbInventarioFisico_invf_Id">
+      <End Role="tbInventarioFisico" EntitySet="tbInventarioFisico" />
+      <End Role="tbInventarioFisicoDetalle" EntitySet="tbInventarioFisicoDetalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbInventarioFisicoDetalle_tbProducto_prod_Codigo" Association="Self.FK_Inv_tbInventarioFisicoDetalle_tbProducto_prod_Codigo">
       <End Role="tbProducto" EntitySet="tbProducto" />

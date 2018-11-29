@@ -14,6 +14,12 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbEntrada
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbEntrada()
+        {
+            this.tbEntradaDetalle = new HashSet<tbEntradaDetalle>();
+        }
+    
         public int ent_Id { get; set; }
         public string ent_NumeroFormato { get; set; }
         public System.DateTime ent_Fecha { get; set; }
@@ -36,5 +42,7 @@ namespace ERP_ZORZAL.Models
         public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }
         public virtual tbFactura tbFactura { get; set; }
         public virtual tbProveedor tbProveedor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbEntradaDetalle> tbEntradaDetalle { get; set; }
     }
 }

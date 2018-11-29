@@ -12,20 +12,18 @@ namespace ERP_ZORZAL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbInventarioFisicoDetalle
+    public partial class tbEntradaDetalle
     {
-        public int invfd_Id { get; set; }
-        public int invf_Id { get; set; }
+        public int entd_Id { get; set; }
+        public int ent_Id { get; set; }
         public string prod_Codigo { get; set; }
-        public decimal invfd_Cantidad { get; set; }
-        public int uni_Id { get; set; }
-        public int invfd_UsuarioCrea { get; set; }
-        public System.DateTime invfd_FechaCrea { get; set; }
-        public Nullable<int> invfd_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> invfd_FechaModifica { get; set; }
+        public Nullable<decimal> entd_Cantidad { get; set; }
+        public int entd_UsuarioCrea { get; set; }
+        public System.DateTime entd_FechaCrea { get; set; }
+        public Nullable<int> entd_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> entd_FechaModifica { get; set; }
     
-        public virtual tbUnidadesMedida tbUnidadesMedida { get; set; }
+        public virtual tbEntrada tbEntrada { get; set; }
         public virtual tbProducto tbProducto { get; set; }
-        public virtual tbInventarioFisico tbInventarioFisico { get; set; }
     }
 }

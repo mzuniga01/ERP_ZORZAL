@@ -37,7 +37,6 @@ namespace ERP_ZORZAL.Models
         public virtual DbSet<tbEstadoInventarioFisico> tbEstadoInventarioFisico { get; set; }
         public virtual DbSet<tbMoneda> tbMoneda { get; set; }
         public virtual DbSet<tbMunicipio> tbMunicipio { get; set; }
-        public virtual DbSet<tbObjeto> tbObjeto { get; set; }
         public virtual DbSet<tbTipoIdentificacion> tbTipoIdentificacion { get; set; }
         public virtual DbSet<tbTiposEntrada> tbTiposEntrada { get; set; }
         public virtual DbSet<tbTiposSalida> tbTiposSalida { get; set; }
@@ -77,5 +76,8 @@ namespace ERP_ZORZAL.Models
         public virtual DbSet<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
+        public virtual DbSet<tbObjeto> tbObjeto { get; set; }
+        public virtual DbSet<tbEntradaDetalle> tbEntradaDetalle { get; set; }
+        public virtual DbSet<tbInventarioFisico> tbInventarioFisico { get; set; }
     }
 }

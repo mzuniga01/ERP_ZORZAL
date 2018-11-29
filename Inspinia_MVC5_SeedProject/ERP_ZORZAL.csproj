@@ -180,10 +180,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadEconomicaController.cs" />
     <Compile Include="Controllers\BancoController.cs" />
+    <Compile Include="Controllers\BodegaController.cs" />
+    <Compile Include="Controllers\BodegaDetalleController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\CuentasBancoController.cs" />
     <Compile Include="Controllers\DevolucionController.cs" />
     <Compile Include="Controllers\DevolucionDetallesController.cs" />
+    <Compile Include="Controllers\EntradaController.cs" />
+    <Compile Include="Controllers\EntradaDetalleController.cs" />
     <Compile Include="Controllers\EstadoFacturaController.cs" />
     <Compile Include="Controllers\EstadoSolicitudCreditoController.cs" />
     <Compile Include="Controllers\FacturaController.cs" />
@@ -192,9 +196,12 @@
     <Compile Include="Controllers\ListaPrecioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MonedaController.cs" />
+    <Compile Include="Controllers\ObjetoController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\PedidoDetalleController.cs" />
+    <Compile Include="Controllers\ProductoCategoriaController.cs" />
+    <Compile Include="Controllers\ProductoSubcategoriaController.cs" />
     <Compile Include="Controllers\PuntoEmisionController.cs" />
     <Compile Include="Controllers\SolicitudCreditoController.cs" />
     <Compile Include="Controllers\SucursalsController.cs" />
@@ -204,6 +211,7 @@
     <Compile Include="Controllers\tbSolicitudEfectivoesController.cs" />
     <Compile Include="Controllers\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\TipoPagoController.cs" />
+    <Compile Include="Controllers\TiposEntradaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -292,6 +300,9 @@
     <Compile Include="Models\tbEntrada.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbEntradaDetalle.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbEstadoFactura.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -308,6 +319,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbFactura.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbInventarioFisico.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbInventarioFisicoDetalle.cs">
@@ -904,6 +918,75 @@
     <Content Include="Views\TipoIdentificacion\Details.cshtml" />
     <Content Include="Views\TipoIdentificacion\Edit.cshtml" />
     <Content Include="Views\TipoIdentificacion\Index.cshtml" />
+    <Content Include="Views\BodegaDetalle\Crear.cshtml" />
+    <Content Include="Views\BodegaDetalle\Create.cshtml" />
+    <Content Include="Views\BodegaDetalle\Delete.cshtml" />
+    <Content Include="Views\BodegaDetalle\Details.cshtml" />
+    <Content Include="Views\BodegaDetalle\Detalles.cshtml" />
+    <Content Include="Views\BodegaDetalle\Edit.cshtml" />
+    <Content Include="Views\BodegaDetalle\Editar.cshtml" />
+    <Content Include="Views\BodegaDetalle\Index.cshtml" />
+    <Content Include="Views\BodegaDetalle\Index_BodegaDetalle.cshtml" />
+    <Content Include="Views\Bodega\Crear.cshtml" />
+    <Content Include="Views\Bodega\Create.cshtml" />
+    <Content Include="Views\Bodega\Delete.cshtml" />
+    <Content Include="Views\Bodega\Details.cshtml" />
+    <Content Include="Views\Bodega\Detalles.cshtml" />
+    <Content Include="Views\Bodega\Edit.cshtml" />
+    <Content Include="Views\Bodega\Editar.cshtml" />
+    <Content Include="Views\Bodega\Index.cshtml" />
+    <Content Include="Views\Bodega\Index_Bodega.cshtml" />
+    <Content Include="Views\EntradaDetalle\CrearPrueba.cshtml" />
+    <Content Include="Views\EntradaDetalle\Create.cshtml" />
+    <Content Include="Views\EntradaDetalle\Delete.cshtml" />
+    <Content Include="Views\EntradaDetalle\Details.cshtml" />
+    <Content Include="Views\EntradaDetalle\DetallePrueba.cshtml" />
+    <Content Include="Views\EntradaDetalle\Edit.cshtml" />
+    <Content Include="Views\EntradaDetalle\EditarPrueba.cshtml" />
+    <Content Include="Views\EntradaDetalle\Index.cshtml" />
+    <Content Include="Views\Entrada\CrearPrueba.cshtml" />
+    <Content Include="Views\Entrada\Create.cshtml" />
+    <Content Include="Views\Entrada\Delete.cshtml" />
+    <Content Include="Views\Entrada\Details.cshtml" />
+    <Content Include="Views\Entrada\DetallePrueba.cshtml" />
+    <Content Include="Views\Entrada\Edit.cshtml" />
+    <Content Include="Views\Entrada\EditarPrueba.cshtml" />
+    <Content Include="Views\Entrada\Index.cshtml" />
+    <Content Include="Views\Objeto\CrearPrueba.cshtml" />
+    <Content Include="Views\Objeto\Create.cshtml" />
+    <Content Include="Views\Objeto\Delete.cshtml" />
+    <Content Include="Views\Objeto\Details.cshtml" />
+    <Content Include="Views\Objeto\DetallePrueba.cshtml" />
+    <Content Include="Views\Objeto\Edit.cshtml" />
+    <Content Include="Views\Objeto\EditarPrueba.cshtml" />
+    <Content Include="Views\Objeto\Index.cshtml" />
+    <Content Include="Views\ProductoCategoria\Crear.cshtml" />
+    <Content Include="Views\ProductoCategoria\Create.cshtml" />
+    <Content Include="Views\ProductoCategoria\Delete.cshtml" />
+    <Content Include="Views\ProductoCategoria\Details.cshtml" />
+    <Content Include="Views\ProductoCategoria\Detalles.cshtml" />
+    <Content Include="Views\ProductoCategoria\Edit.cshtml" />
+    <Content Include="Views\ProductoCategoria\Editar.cshtml" />
+    <Content Include="Views\ProductoCategoria\Index.cshtml" />
+    <Content Include="Views\ProductoCategoria\Index_Pro_Ca.cshtml" />
+    <Content Include="Views\ProductoSubcategoria\Crear.cshtml" />
+    <Content Include="Views\ProductoSubcategoria\Create.cshtml" />
+    <Content Include="Views\ProductoSubcategoria\Delete.cshtml" />
+    <Content Include="Views\ProductoSubcategoria\Details.cshtml" />
+    <Content Include="Views\ProductoSubcategoria\Detalles.cshtml" />
+    <Content Include="Views\ProductoSubcategoria\Edit.cshtml" />
+    <Content Include="Views\ProductoSubcategoria\Editar.cshtml" />
+    <Content Include="Views\ProductoSubcategoria\Index.cshtml" />
+    <Content Include="Views\ProductoSubcategoria\Index_Pro_SubC.cshtml" />
+    <Content Include="Views\TiposEntrada\Crear.cshtml" />
+    <Content Include="Views\TiposEntrada\Create.cshtml" />
+    <Content Include="Views\TiposEntrada\Delete.cshtml" />
+    <Content Include="Views\TiposEntrada\Details.cshtml" />
+    <Content Include="Views\TiposEntrada\Detalles.cshtml" />
+    <Content Include="Views\TiposEntrada\Edit.cshtml" />
+    <Content Include="Views\TiposEntrada\Editar.cshtml" />
+    <Content Include="Views\TiposEntrada\Index.cshtml" />
+    <Content Include="Views\TiposEntrada\index_Tent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -23,9 +23,9 @@ namespace ERP_ZORZAL.Models
     
         public int obj_Id { get; set; }
         public string obj_Pantalla { get; set; }
-        public string obj_UsuarioCrea { get; set; }
+        public int obj_UsuarioCrea { get; set; }
         public System.DateTime obj_FechaCrea { get; set; }
-        public string obj_UsuarioModifica { get; set; }
+        public Nullable<int> obj_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> obj_FechaModifica { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

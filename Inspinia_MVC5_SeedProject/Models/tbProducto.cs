@@ -25,6 +25,7 @@ namespace ERP_ZORZAL.Models
             this.tbListaPrecio = new HashSet<tbListaPrecio>();
             this.tbPedidoDetalle = new HashSet<tbPedidoDetalle>();
             this.tbDevolucionDetalle = new HashSet<tbDevolucionDetalle>();
+            this.tbEntradaDetalle = new HashSet<tbEntradaDetalle>();
         }
     
         public string prod_Codigo { get; set; }
@@ -56,5 +57,7 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
         public virtual tbUnidadesMedida tbUnidadesMedida { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbEntradaDetalle> tbEntradaDetalle { get; set; }
     }
 }
