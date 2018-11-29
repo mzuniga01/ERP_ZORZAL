@@ -820,7 +820,6 @@
     <Content Include="Views\PedidoDetalle\Edit.cshtml" />
     <Content Include="Views\PedidoDetalle\Index.cshtml" />
     <Content Include="Views\PuntoEmision\Create.cshtml" />
-    <Content Include="Views\PuntoEmision\Delete.cshtml" />
     <Content Include="Views\PuntoEmision\Details.cshtml" />
     <Content Include="Views\PuntoEmision\Edit.cshtml" />
     <Content Include="Views\PuntoEmision\Index.cshtml" />

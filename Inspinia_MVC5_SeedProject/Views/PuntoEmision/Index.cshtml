@@ -7,10 +7,10 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Index</h2>
+        <h2>Punto Emisión</h2>
         <ol class="breadcrumb">
             <li class="active">
-                <strong>Punto Emision</strong>
+                <strong></strong>
             </li>
         </ol>
     </div>
@@ -22,7 +22,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Punto Emision</h5>
+                    <h5>Listado de Punto Emisión</h5>
 					<div class="ibox-tools">
 						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
@@ -32,9 +32,9 @@
 <table class="table table-striped" id="DataTable">
     <thead>
         <tr>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.pe_Codigo)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.pe_NumeroCAI)
             </th>
@@ -60,9 +60,9 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.pe_Codigo)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.pe_NumeroCAI)
                 </td>
