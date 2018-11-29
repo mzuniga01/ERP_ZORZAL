@@ -178,18 +178,22 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActividadEconomicaController.cs" />
     <Compile Include="Controllers\BancoController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\CuentasBancoController.cs" />
     <Compile Include="Controllers\DevolucionController.cs" />
     <Compile Include="Controllers\DevolucionDetallesController.cs" />
     <Compile Include="Controllers\EstadoFacturaController.cs" />
+    <Compile Include="Controllers\EstadoSolicitudCreditoController.cs" />
     <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListadoPrecioDetalleController.cs" />
     <Compile Include="Controllers\ListaPrecioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MonedaController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
+    <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\PedidoDetalleController.cs" />
     <Compile Include="Controllers\PuntoEmisionController.cs" />
     <Compile Include="Controllers\SolicitudCreditoController.cs" />
@@ -198,12 +202,14 @@
     <Compile Include="Controllers\tbCajasController.cs" />
     <Compile Include="Controllers\tbDocumentoFiscalsController.cs" />
     <Compile Include="Controllers\tbSolicitudEfectivoesController.cs" />
+    <Compile Include="Controllers\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\TipoPagoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ActividadesEconomicas.cs" />
     <Compile Include="Models\ArqueoCaja.cs" />
     <Compile Include="Models\cDetalleDevolucion.cs" />
     <Compile Include="Models\cDetallePedido.cs" />
@@ -212,7 +218,10 @@
     <Compile Include="Models\cPago.cs" />
     <Compile Include="Models\cTipoPago.cs" />
     <Compile Include="Models\DocumentoFiscal.cs" />
+    <Compile Include="Models\EstadoSolicitudCreditos.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ListadoPrecioDetalles.cs" />
+    <Compile Include="Models\ListaPrecioDetalles.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -229,6 +238,8 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Monedas.cs" />
+    <Compile Include="Models\Pedidos.cs" />
+    <Compile Include="Models\SolicitudCreditos.cs" />
     <Compile Include="Models\SolicitudesEfectivo.cs" />
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
@@ -392,6 +403,7 @@
     <Compile Include="Models\EstadoFactura.cs" />
     <Compile Include="Models\Factura.cs" />
     <Compile Include="Models\PuntoEmision.cs" />
+    <Compile Include="Models\TipoIdentificaciones.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -858,6 +870,41 @@
     <Content Include="Views\Viewssolicitud credito\Details.cshtml" />
     <Content Include="Views\Viewssolicitud credito\Edit.cshtml" />
     <Content Include="Views\Viewssolicitud credito\Index.cshtml" />
+    <Content Include="Views\Pedido\Create.cshtml" />
+    <Content Include="Views\Pedido\Delete.cshtml" />
+    <Content Include="Views\Pedido\Details.cshtml" />
+    <Content Include="Views\Pedido\Edit.cshtml" />
+    <Content Include="Views\Pedido\Index.cshtml" />
+    <Content Include="Views\ActividadEconomica\Create.cshtml" />
+    <Content Include="Views\ActividadEconomica\Delete.cshtml" />
+    <Content Include="Views\ActividadEconomica\Details.cshtml" />
+    <Content Include="Views\ActividadEconomica\Edit.cshtml" />
+    <Content Include="Views\ActividadEconomica\Index.cshtml" />
+    <Content Include="Views\EstadoSolicitudCredito\Create.cshtml" />
+    <Content Include="Views\EstadoSolicitudCredito\Delete.cshtml" />
+    <Content Include="Views\EstadoSolicitudCredito\Details.cshtml" />
+    <Content Include="Views\EstadoSolicitudCredito\Edit.cshtml" />
+    <Content Include="Views\EstadoSolicitudCredito\Index.cshtml" />
+    <Content Include="Views\ListadoPrecioDetalle\Create.cshtml" />
+    <Content Include="Views\ListadoPrecioDetalle\Delete.cshtml" />
+    <Content Include="Views\ListadoPrecioDetalle\Details.cshtml" />
+    <Content Include="Views\ListadoPrecioDetalle\Edit.cshtml" />
+    <Content Include="Views\ListadoPrecioDetalle\Index.cshtml" />
+    <Content Include="Views\listaprecio\Create.cshtml" />
+    <Content Include="Views\listaprecio\Delete.cshtml" />
+    <Content Include="Views\listaprecio\Details.cshtml" />
+    <Content Include="Views\listaprecio\Edit.cshtml" />
+    <Content Include="Views\listaprecio\Index.cshtml" />
+    <Content Include="Views\solicitudcredito\Create.cshtml" />
+    <Content Include="Views\solicitudcredito\Delete.cshtml" />
+    <Content Include="Views\solicitudcredito\Details.cshtml" />
+    <Content Include="Views\solicitudcredito\Edit.cshtml" />
+    <Content Include="Views\solicitudcredito\Index.cshtml" />
+    <Content Include="Views\TipoIdentificacion\Create.cshtml" />
+    <Content Include="Views\TipoIdentificacion\Delete.cshtml" />
+    <Content Include="Views\TipoIdentificacion\Details.cshtml" />
+    <Content Include="Views\TipoIdentificacion\Edit.cshtml" />
+    <Content Include="Views\TipoIdentificacion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
