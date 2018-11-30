@@ -194,6 +194,7 @@
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Banco.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
       <AutoGen>True</AutoGen>
