@@ -20,7 +20,7 @@ namespace ERP_ZORZAL.Models
         [Display(Name = "Código Banco")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public short ban_Id { get; set; }
-        [Display(Name = "Codigo de Moneda")]
+        [Display(Name = "Código Moneda")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public short mnda_Id { get; set; }
         [Display(Name = "Tipo Cuenta")]
@@ -29,7 +29,7 @@ namespace ERP_ZORZAL.Models
         [Display(Name = "Total Crédito")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public decimal bcta_TotalCredito { get; set; }
-        [Display(Name = "Total Debito")]
+        [Display(Name = "Total Débito")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public decimal bcta_TotalDebito { get; set; }
         [Display(Name = "Fecha Apertura")]
@@ -47,10 +47,8 @@ namespace ERP_ZORZAL.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime bcta_FechaCrea { get; set; }
         [Display(Name = "Usuario Modificación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<int> bcta_UsuarioModifica { get; set; }
         [Display(Name = "Fecha Modificación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> bcta_FechaModifica { get; set; }
     }
