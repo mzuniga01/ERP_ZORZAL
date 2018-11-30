@@ -190,8 +190,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MonedaController.cs" />
+    <Compile Include="Controllers\NotaCreditoController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\PuntoEmisionController.cs" />
+    <Compile Include="Controllers\SolicitudCreditoController.cs" />
     <Compile Include="Controllers\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\TipoPagoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -199,10 +201,12 @@
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ActividadEconomicas.cs" />
     <Compile Include="Models\Banco.cs" />
     <Compile Include="Models\cDevolucion.cs" />
     <Compile Include="Models\cDocumentoFiscal.cs" />
     <Compile Include="Models\CuentaBanco.cs" />
+    <Compile Include="Models\EstadoSolicitudCreditoscs.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
       <AutoGen>True</AutoGen>
@@ -219,6 +223,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Monedas.cs" />
+    <Compile Include="Models\NotasCredito.cs" />
+    <Compile Include="Models\PuntoEmision.cs" />
+    <Compile Include="Models\SolicitudCreditos.cs" />
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -387,6 +395,7 @@
     <Compile Include="Models\tbUsuario.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TiposIdenticacion.cs" />
     <Compile Include="Models\UnidadesMedida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -828,6 +837,29 @@
     <Content Include="Views\DocumentoFiscal\Details.cshtml" />
     <Content Include="Views\DocumentoFiscal\Edit.cshtml" />
     <Content Include="Views\DocumentoFiscal\Index.cshtml" />
+    <Content Include="Views\PuntoEmision\_CreatePuntoEmisionDetalle.cshtml" />
+    <Content Include="Views\PuntoEmision\_EditarPuntoEmisionDetalle.cshtml" />
+    <Content Include="Views\PuntoEmision\_IndexPuntoEmisionDetalle.cshtml" />
+    <Content Include="Views\Cupodescuento\Create.cshtml" />
+    <Content Include="Views\Cupodescuento\Delete.cshtml" />
+    <Content Include="Views\Cupodescuento\Details.cshtml" />
+    <Content Include="Views\Cupodescuento\Edit.cshtml" />
+    <Content Include="Views\Cupodescuento\Index.cshtml" />
+    <Content Include="Views\NotaCredito\Create.cshtml" />
+    <Content Include="Views\NotaCredito\Delete.cshtml" />
+    <Content Include="Views\NotaCredito\Details.cshtml" />
+    <Content Include="Views\NotaCredito\Edit.cshtml" />
+    <Content Include="Views\NotaCredito\Index.cshtml" />
+    <Content Include="Views\SolicitudCredito\Create.cshtml" />
+    <Content Include="Views\SolicitudCredito\Delete.cshtml" />
+    <Content Include="Views\SolicitudCredito\Details.cshtml" />
+    <Content Include="Views\SolicitudCredito\Edit.cshtml" />
+    <Content Include="Views\SolicitudCredito\Index.cshtml" />
+    <Content Include="Views\UnidadesMedida\Create.cshtml" />
+    <Content Include="Views\UnidadesMedida\Delete.cshtml" />
+    <Content Include="Views\UnidadesMedida\Details.cshtml" />
+    <Content Include="Views\UnidadesMedida\Edit.cshtml" />
+    <Content Include="Views\UnidadesMedida\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

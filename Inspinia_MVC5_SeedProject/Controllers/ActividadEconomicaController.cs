@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_ZORZAL.Models;
 
-namespace Inspinia_MVC5_SeedProject.Controllers
+namespace ERP_ZORZAL.Controllers
 {
     public class ActividadEconomicaController : Controller
     {
@@ -21,7 +21,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         }
 
         // GET: /ActividadEconomica/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(short? id)
         {
             if (id == null)
             {
@@ -59,7 +59,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         }
 
         // GET: /ActividadEconomica/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(short? id)
         {
             if (id == null)
             {
@@ -90,7 +90,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         }
 
         // GET: /ActividadEconomica/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(short? id)
         {
             if (id == null)
             {
@@ -107,7 +107,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // POST: /ActividadEconomica/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(short id)
         {
             tbActividadEconomica tbActividadEconomica = db.tbActividadEconomica.Find(id);
             db.tbActividadEconomica.Remove(tbActividadEconomica);

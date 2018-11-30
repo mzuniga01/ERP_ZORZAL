@@ -168,6 +168,10 @@
     <EntitySetMapping Name="tbTipoDenominacion">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTipoDenominacion">
         <MappingFragment StoreEntitySet="tbTipoDenominacion">
+          <ScalarProperty Name="tdmi_FechaModifica" ColumnName="tdmi_FechaModifica" />
+          <ScalarProperty Name="tdmi_UsuarioModifica" ColumnName="tdmi_UsuarioModifica" />
+          <ScalarProperty Name="tdmi_FechaCrea" ColumnName="tdmi_FechaCrea" />
+          <ScalarProperty Name="tdmi_UsuarioCrea" ColumnName="tdmi_UsuarioCrea" />
           <ScalarProperty Name="tdmi_BilleteMoneda" ColumnName="tdmi_BilleteMoneda" />
           <ScalarProperty Name="tdmi_Id" ColumnName="tdmi_Id" />
         </MappingFragment>
@@ -509,8 +513,8 @@
     <EntitySetMapping Name="tbCuponDescuento">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCuponDescuento">
         <MappingFragment StoreEntitySet="tbCuponDescuento">
-          <ScalarProperty Name="cdto_FechaModifa" ColumnName="cdto_FechaModifa" />
-          <ScalarProperty Name="cdto_UsuarioModifa" ColumnName="cdto_UsuarioModifa" />
+          <ScalarProperty Name="cdto_FechaModifica" ColumnName="cdto_FechaModifica" />
+          <ScalarProperty Name="cdto_UsuarioModifica" ColumnName="cdto_UsuarioModifica" />
           <ScalarProperty Name="cdto_FechaCrea" ColumnName="cdto_FechaCrea" />
           <ScalarProperty Name="cdto_UsuarioCrea" ColumnName="cdto_UsuarioCrea" />
           <ScalarProperty Name="cdto_MontoDescuento" ColumnName="cdto_MontoDescuento" />
@@ -775,7 +779,7 @@
     <EntitySetMapping Name="tbSolicitudCredito">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSolicitudCredito">
         <MappingFragment StoreEntitySet="tbSolicitudCredito">
-          <ScalarProperty Name="cred_FechaModifica" ColumnName="cred_FechaModifica" />
+          <ScalarProperty Name="cred_FechaModificacion" ColumnName="cred_FechaModificacion" />
           <ScalarProperty Name="cred_UsuarioModicacion" ColumnName="cred_UsuarioModicacion" />
           <ScalarProperty Name="cred_FechaCrea" ColumnName="cred_FechaCrea" />
           <ScalarProperty Name="cred_UsuarioCrea" ColumnName="cred_UsuarioCrea" />

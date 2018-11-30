@@ -28,6 +28,8 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> pago_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> pago_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbCuentasBanco tbCuentasBanco { get; set; }
         public virtual tbFactura tbFactura { get; set; }
         public virtual tbTipoPago tbTipoPago { get; set; }

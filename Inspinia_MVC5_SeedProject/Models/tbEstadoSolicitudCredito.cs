@@ -27,6 +27,10 @@ namespace ERP_ZORZAL.Models
         public System.DateTime escre_FechaAgrego { get; set; }
         public Nullable<System.DateTime> escre_FechaModifico { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbUsuario tbUsuario2 { get; set; }
+        public virtual tbUsuario tbUsuario3 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito { get; set; }
     }

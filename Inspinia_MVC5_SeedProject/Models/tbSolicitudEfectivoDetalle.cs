@@ -22,5 +22,9 @@ namespace ERP_ZORZAL.Models
         public Nullable<System.DateTime> solefd_FechaCrea { get; set; }
         public Nullable<int> solefd_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> solefd_FechaModifica { get; set; }
+    
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbSolicitudEfectivo tbSolicitudEfectivo { get; set; }
     }
 }

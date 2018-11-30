@@ -143,6 +143,10 @@
     </Key>
     <Property Name="tdmi_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tdmi_BilleteMoneda" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="tdmi_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="tdmi_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="tdmi_UsuarioModifica" Type="int" />
+    <Property Name="tdmi_FechaModifica" Type="datetime" />
   </EntityType>
   <EntityType Name="tbTipoIdentificacion">
     <Key>
@@ -483,8 +487,8 @@
     <Property Name="cdto_MontoDescuento" Type="decimal" Precision="10" Scale="2" />
     <Property Name="cdto_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="cdto_FechaCrea" Type="datetime" Nullable="false" />
-    <Property Name="cdto_UsuarioModifa" Type="int" />
-    <Property Name="cdto_FechaModifa" Type="datetime" />
+    <Property Name="cdto_UsuarioModifica" Type="int" />
+    <Property Name="cdto_FechaModifica" Type="datetime" />
   </EntityType>
   <EntityType Name="tbDevolucion">
     <Key>
@@ -736,7 +740,7 @@
     <Property Name="cred_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="cred_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="cred_UsuarioModicacion" Type="int" />
-    <Property Name="cred_FechaModifica" Type="datetime" />
+    <Property Name="cred_FechaModificacion" Type="datetime" />
   </EntityType>
   <EntityType Name="tbSolicitudEfectivo">
     <Key>
@@ -794,6 +798,366 @@
     <Property Name="tpa_UsuarioModifica" Type="int" />
     <Property Name="tpa_FechaModifica" Type="datetime" />
   </EntityType>
+  <Association Name="FK__tbActivid__acte___28ADE706">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbActividadEconomica" Type="Self.tbActividadEconomica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbActividadEconomica">
+        <PropertyRef Name="acte_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbActivid__acte___29A20B3F">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbActividadEconomica" Type="Self.tbActividadEconomica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbActividadEconomica">
+        <PropertyRef Name="acte_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbCuponDe__cdto___2E66C05C">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbCuponDescuento" Type="Self.tbCuponDescuento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCuponDescuento">
+        <PropertyRef Name="cdto_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbCuponDe__cdto___51AFFC99">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbCuponDescuento" Type="Self.tbCuponDescuento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCuponDescuento">
+        <PropertyRef Name="cdto_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbCuponDe__cdto___548C6944">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbCuponDescuento" Type="Self.tbCuponDescuento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCuponDescuento">
+        <PropertyRef Name="cdto_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbCuponDe__cdto___5768D5EF">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbCuponDescuento" Type="Self.tbCuponDescuento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCuponDescuento">
+        <PropertyRef Name="cdto_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbCuponDe__cdto___59511E61">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbCuponDescuento" Type="Self.tbCuponDescuento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCuponDescuento">
+        <PropertyRef Name="cdto_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbCuponDe__cdto___5A45429A">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbCuponDescuento" Type="Self.tbCuponDescuento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCuponDescuento">
+        <PropertyRef Name="cdto_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbEstadoS__escre__2F5AE495">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbEstadoSolicitudCredito" Type="Self.tbEstadoSolicitudCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoSolicitudCredito">
+        <PropertyRef Name="escre_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbEstadoS__escre__55808D7D">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbEstadoSolicitudCredito" Type="Self.tbEstadoSolicitudCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoSolicitudCredito">
+        <PropertyRef Name="escre_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbEstadoS__escre__5C2D8B0C">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbEstadoSolicitudCredito" Type="Self.tbEstadoSolicitudCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoSolicitudCredito">
+        <PropertyRef Name="escre_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbEstadoS__escre__5D21AF45">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbEstadoSolicitudCredito" Type="Self.tbEstadoSolicitudCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoSolicitudCredito">
+        <PropertyRef Name="escre_UsuarioModifico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbListado__lispd__66AB197F">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbListadoPrecioDetalle" Type="Self.tbListadoPrecioDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbListadoPrecioDetalle">
+        <PropertyRef Name="lispd_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbListado__lispd__679F3DB8">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbListadoPrecioDetalle" Type="Self.tbListadoPrecioDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbListadoPrecioDetalle">
+        <PropertyRef Name="lispd_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbListaPr__listp__5F09F7B7">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbListaPrecio" Type="Self.tbListaPrecio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbListaPrecio">
+        <PropertyRef Name="listp_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbListaPr__listp__5FFE1BF0">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbListaPrecio" Type="Self.tbListaPrecio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbListaPrecio">
+        <PropertyRef Name="listp_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbMoneda__mnda_U__4FC7B427">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbMoneda" Type="Self.tbMoneda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbMoneda">
+        <PropertyRef Name="mnda_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbMoneda__mnda_U__50BBD860">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbMoneda" Type="Self.tbMoneda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbMoneda">
+        <PropertyRef Name="mnda_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbNotaCre__nocre__37F02A96">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbNotaCredito" Type="Self.tbNotaCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbNotaCredito">
+        <PropertyRef Name="nocre_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbNotaCre__nocre__38E44ECF">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbNotaCredito" Type="Self.tbNotaCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbNotaCredito">
+        <PropertyRef Name="nocre_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbPedido__ped_Us__32375140">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbPedido" Type="Self.tbPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbPedido">
+        <PropertyRef Name="ped_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbPedido__ped_Us__332B7579">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbPedido" Type="Self.tbPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbPedido">
+        <PropertyRef Name="ped_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbPedidoD__pedd___3513BDEB">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbPedidoDetalle" Type="Self.tbPedidoDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbPedidoDetalle">
+        <PropertyRef Name="pedd_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbPedidoD__pedd___3607E224">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbPedidoDetalle" Type="Self.tbPedidoDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbPedidoDetalle">
+        <PropertyRef Name="pedd_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbSolicit__cred___39D87308">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbSolicitudCredito" Type="Self.tbSolicitudCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbSolicitudCredito">
+        <PropertyRef Name="cred_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbSolicit__cred___5674B1B6">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbSolicitudCredito" Type="Self.tbSolicitudCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbSolicitudCredito">
+        <PropertyRef Name="cred_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbSolicit__cred___62DA889B">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbSolicitudCredito" Type="Self.tbSolicitudCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbSolicitudCredito">
+        <PropertyRef Name="cred_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbSolicit__cred___63CEACD4">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbSolicitudCredito" Type="Self.tbSolicitudCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbSolicitudCredito">
+        <PropertyRef Name="cred_UsuarioModicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbTipoIde__tpi_U__2C7E77EA">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbTipoIdentificacion">
+        <PropertyRef Name="tpi_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbTipoIde__tpi_U__2D729C23">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbTipoIdentificacion">
+        <PropertyRef Name="tpi_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Acce_tbAccesoRol_tbRoles_Rol_Id">
     <End Role="tbRol" Type="Self.tbRol" Multiplicity="1" />
     <End Role="tbAccesoRol" Type="Self.tbAccesoRol" Multiplicity="*" />
@@ -842,6 +1206,294 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbArqueoCaja" Type="Self.tbArqueoCaja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbArqueoCaja">
+        <PropertyRef Name="aqcja_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbArqueoCaja" Type="Self.tbArqueoCaja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbArqueoCaja">
+        <PropertyRef Name="aqcja_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbCaja_cja_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbCaja1" Type="Self.tbCaja1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCaja1">
+        <PropertyRef Name="cja_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbCaja_cja_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbCaja1" Type="Self.tbCaja1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCaja1">
+        <PropertyRef Name="cja_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbDevolucion" Type="Self.tbDevolucion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbDevolucion">
+        <PropertyRef Name="dev_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbDevolucion" Type="Self.tbDevolucion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbDevolucion">
+        <PropertyRef Name="dev_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbDevolucionDetalle" Type="Self.tbDevolucionDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbDevolucionDetalle">
+        <PropertyRef Name="devd_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbDevolucionDetalle" Type="Self.tbDevolucionDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbDevolucionDetalle">
+        <PropertyRef Name="devd_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbDocumentoFiscal_dfisc_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbDocumentoFiscal" Type="Self.tbDocumentoFiscal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbDocumentoFiscal">
+        <PropertyRef Name="dfisc_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbDocumentoFiscal_dfisc_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbDocumentoFiscal" Type="Self.tbDocumentoFiscal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbDocumentoFiscal">
+        <PropertyRef Name="dfisc_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbExoneracion_exo_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbExoneracion" Type="Self.tbExoneracion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbExoneracion">
+        <PropertyRef Name="exo_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbExoneracion_exo_UsuarioModifa">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbExoneracion" Type="Self.tbExoneracion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbExoneracion">
+        <PropertyRef Name="exo_UsuarioModifa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbPago" Type="Self.tbPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbPago">
+        <PropertyRef Name="pago_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbPago" Type="Self.tbPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbPago">
+        <PropertyRef Name="pago_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbTipoPago" Type="Self.tbTipoPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbTipoPago">
+        <PropertyRef Name="tpa_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbTipoPago" Type="Self.tbTipoPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbTipoPago">
+        <PropertyRef Name="tpa_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbSolicitudEfectivo">
+        <PropertyRef Name="solef_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_solefd_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbSolicitudEfectivoDetalle" Type="Self.tbSolicitudEfectivoDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbSolicitudEfectivoDetalle">
+        <PropertyRef Name="solefd_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_solefd_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbSolicitudEfectivoDetalle" Type="Self.tbSolicitudEfectivoDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbSolicitudEfectivoDetalle">
+        <PropertyRef Name="solefd_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbSolicitudEfectivo">
+        <PropertyRef Name="solef_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbSucursal">
+        <PropertyRef Name="suc_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbSucursal">
+        <PropertyRef Name="suc_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbTipoDenominacion_tdmi_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbTipoDenominacion" Type="Self.tbTipoDenominacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbTipoDenominacion">
+        <PropertyRef Name="tdmi_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbTipoDenominacion_tdmi_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbTipoDenominacion" Type="Self.tbTipoDenominacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbTipoDenominacion">
+        <PropertyRef Name="tdmi_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Gral_tbBanco_tbCuentasBanco_ban_Id">
     <End Role="tbBanco" Type="Self.tbBanco" Multiplicity="1" />
     <End Role="tbCuentasBanco" Type="Self.tbCuentasBanco" Multiplicity="*" />
@@ -851,6 +1503,54 @@
       </Principal>
       <Dependent Role="tbCuentasBanco">
         <PropertyRef Name="ban_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbBanco_tbUsuario_usu_Id_Crea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbBanco" Type="Self.tbBanco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbBanco">
+        <PropertyRef Name="ban_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbBanco_tbUsuario_usu_Id_Modifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbBanco" Type="Self.tbBanco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbBanco">
+        <PropertyRef Name="ban_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Crea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbCuentasBanco" Type="Self.tbCuentasBanco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCuentasBanco">
+        <PropertyRef Name="bcta_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Modifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbCuentasBanco" Type="Self.tbCuentasBanco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCuentasBanco">
+        <PropertyRef Name="bcta_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1202,18 +1902,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbCaja_tbFactura_cja_Id">
-    <End Role="tbCaja1" Type="Self.tbCaja1" Multiplicity="1" />
-    <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbCaja1">
-        <PropertyRef Name="cja_Id" />
-      </Principal>
-      <Dependent Role="tbFactura">
-        <PropertyRef Name="cja_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbCaja_tbSolicitudEfectivo_cja_Id">
     <End Role="tbCaja1" Type="Self.tbCaja1" Multiplicity="1" />
     <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
@@ -1234,18 +1922,6 @@
         <PropertyRef Name="clte_Id" />
       </Principal>
       <Dependent Role="tbExoneracion">
-        <PropertyRef Name="clte_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbCliente_tbFactura_clte_Id">
-    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="1" />
-    <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbCliente">
-        <PropertyRef Name="clte_Id" />
-      </Principal>
-      <Dependent Role="tbFactura">
         <PropertyRef Name="clte_Id" />
       </Dependent>
     </ReferentialConstraint>
@@ -1283,18 +1959,6 @@
       </Principal>
       <Dependent Role="tbDevolucionDetalle">
         <PropertyRef Name="dev_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbEstadoFactura_tbFactura_esfac_Id">
-    <End Role="tbEstadoFactura" Type="Self.tbEstadoFactura" Multiplicity="1" />
-    <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbEstadoFactura">
-        <PropertyRef Name="esfac_Id" />
-      </Principal>
-      <Dependent Role="tbFactura">
-        <PropertyRef Name="esfac_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1490,6 +2154,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbSolicitudEfectivo_tbSolicitudEfectivoDetalle_solef_Id">
+    <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="1" />
+    <End Role="tbSolicitudEfectivoDetalle" Type="Self.tbSolicitudEfectivoDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSolicitudEfectivo">
+        <PropertyRef Name="solef_Id" />
+      </Principal>
+      <Dependent Role="tbSolicitudEfectivoDetalle">
+        <PropertyRef Name="solef_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbSucursal_tbCaja_suc_Id">
     <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="1" />
     <End Role="tbCaja1" Type="Self.tbCaja1" Multiplicity="*" />
@@ -1510,18 +2186,6 @@
         <PropertyRef Name="suc_Id" />
       </Principal>
       <Dependent Role="tbCuponDescuento">
-        <PropertyRef Name="suc_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbSucursal_tbfactura_suc_Id">
-    <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="1" />
-    <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbSucursal">
-        <PropertyRef Name="suc_Id" />
-      </Principal>
-      <Dependent Role="tbFactura">
         <PropertyRef Name="suc_Id" />
       </Dependent>
     </ReferentialConstraint>
@@ -1619,6 +2283,126 @@
     <EntitySet Name="tbSolicitudEfectivoDetalle" EntityType="Self.tbSolicitudEfectivoDetalle" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbSucursal" EntityType="Self.tbSucursal" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbTipoPago" EntityType="Self.tbTipoPago" Schema="Vent" store:Type="Tables" />
+    <AssociationSet Name="FK__tbActivid__acte___28ADE706" Association="Self.FK__tbActivid__acte___28ADE706">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbActividadEconomica" EntitySet="tbActividadEconomica" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbActivid__acte___29A20B3F" Association="Self.FK__tbActivid__acte___29A20B3F">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbActividadEconomica" EntitySet="tbActividadEconomica" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbCuponDe__cdto___2E66C05C" Association="Self.FK__tbCuponDe__cdto___2E66C05C">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbCuponDescuento" EntitySet="tbCuponDescuento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbCuponDe__cdto___51AFFC99" Association="Self.FK__tbCuponDe__cdto___51AFFC99">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbCuponDescuento" EntitySet="tbCuponDescuento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbCuponDe__cdto___548C6944" Association="Self.FK__tbCuponDe__cdto___548C6944">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbCuponDescuento" EntitySet="tbCuponDescuento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbCuponDe__cdto___5768D5EF" Association="Self.FK__tbCuponDe__cdto___5768D5EF">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbCuponDescuento" EntitySet="tbCuponDescuento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbCuponDe__cdto___59511E61" Association="Self.FK__tbCuponDe__cdto___59511E61">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbCuponDescuento" EntitySet="tbCuponDescuento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbCuponDe__cdto___5A45429A" Association="Self.FK__tbCuponDe__cdto___5A45429A">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbCuponDescuento" EntitySet="tbCuponDescuento" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbEstadoS__escre__2F5AE495" Association="Self.FK__tbEstadoS__escre__2F5AE495">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoSolicitudCredito" EntitySet="tbEstadoSolicitudCredito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbEstadoS__escre__55808D7D" Association="Self.FK__tbEstadoS__escre__55808D7D">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoSolicitudCredito" EntitySet="tbEstadoSolicitudCredito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbEstadoS__escre__5C2D8B0C" Association="Self.FK__tbEstadoS__escre__5C2D8B0C">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoSolicitudCredito" EntitySet="tbEstadoSolicitudCredito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbEstadoS__escre__5D21AF45" Association="Self.FK__tbEstadoS__escre__5D21AF45">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoSolicitudCredito" EntitySet="tbEstadoSolicitudCredito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbListado__lispd__66AB197F" Association="Self.FK__tbListado__lispd__66AB197F">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbListado__lispd__679F3DB8" Association="Self.FK__tbListado__lispd__679F3DB8">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbListaPr__listp__5F09F7B7" Association="Self.FK__tbListaPr__listp__5F09F7B7">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbListaPr__listp__5FFE1BF0" Association="Self.FK__tbListaPr__listp__5FFE1BF0">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbMoneda__mnda_U__4FC7B427" Association="Self.FK__tbMoneda__mnda_U__4FC7B427">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbMoneda" EntitySet="tbMoneda" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbMoneda__mnda_U__50BBD860" Association="Self.FK__tbMoneda__mnda_U__50BBD860">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbMoneda" EntitySet="tbMoneda" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbNotaCre__nocre__37F02A96" Association="Self.FK__tbNotaCre__nocre__37F02A96">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbNotaCre__nocre__38E44ECF" Association="Self.FK__tbNotaCre__nocre__38E44ECF">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbPedido__ped_Us__32375140" Association="Self.FK__tbPedido__ped_Us__32375140">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbPedido" EntitySet="tbPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbPedido__ped_Us__332B7579" Association="Self.FK__tbPedido__ped_Us__332B7579">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbPedido" EntitySet="tbPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbPedidoD__pedd___3513BDEB" Association="Self.FK__tbPedidoD__pedd___3513BDEB">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbPedidoDetalle" EntitySet="tbPedidoDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbPedidoD__pedd___3607E224" Association="Self.FK__tbPedidoD__pedd___3607E224">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbPedidoDetalle" EntitySet="tbPedidoDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbSolicit__cred___39D87308" Association="Self.FK__tbSolicit__cred___39D87308">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbSolicitudCredito" EntitySet="tbSolicitudCredito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbSolicit__cred___5674B1B6" Association="Self.FK__tbSolicit__cred___5674B1B6">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbSolicitudCredito" EntitySet="tbSolicitudCredito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbSolicit__cred___62DA889B" Association="Self.FK__tbSolicit__cred___62DA889B">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbSolicitudCredito" EntitySet="tbSolicitudCredito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbSolicit__cred___63CEACD4" Association="Self.FK__tbSolicit__cred___63CEACD4">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbSolicitudCredito" EntitySet="tbSolicitudCredito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbTipoIde__tpi_U__2C7E77EA" Association="Self.FK__tbTipoIde__tpi_U__2C7E77EA">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbTipoIde__tpi_U__2D729C23" Association="Self.FK__tbTipoIde__tpi_U__2D729C23">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
+    </AssociationSet>
     <AssociationSet Name="FK_Acce_tbAccesoRol_tbRoles_Rol_Id" Association="Self.FK_Acce_tbAccesoRol_tbRoles_Rol_Id">
       <End Role="tbRol" EntitySet="tbRol" />
       <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
@@ -1635,8 +2419,120 @@
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbRolesUsuario" EntitySet="tbRolesUsuario" />
     </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbArqueoCaja" EntitySet="tbArqueoCaja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbArqueoCaja" EntitySet="tbArqueoCaja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbCaja_cja_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbCaja_cja_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbCaja1" EntitySet="tbCaja1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbCaja_cja_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbCaja_cja_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbCaja1" EntitySet="tbCaja1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbDevolucionDetalle" EntitySet="tbDevolucionDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbDevolucionDetalle" EntitySet="tbDevolucionDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbDocumentoFiscal_dfisc_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbDocumentoFiscal_dfisc_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbDocumentoFiscal" EntitySet="tbDocumentoFiscal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbDocumentoFiscal_dfisc_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbDocumentoFiscal_dfisc_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbDocumentoFiscal" EntitySet="tbDocumentoFiscal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbExoneracion_exo_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbExoneracion_exo_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbExoneracion" EntitySet="tbExoneracion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbExoneracion_exo_UsuarioModifa" Association="Self.FK_Acce_tbUsuario_tbExoneracion_exo_UsuarioModifa">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbExoneracion" EntitySet="tbExoneracion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbPago" EntitySet="tbPago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbPago" EntitySet="tbPago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbTipoPago" EntitySet="tbTipoPago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbTipoPago" EntitySet="tbTipoPago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_solefd_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_solefd_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_solefd_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_solefd_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea" Association="Self.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbTipoDenominacion_tdmi_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbTipoDenominacion_tdmi_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbTipoDenominacion" EntitySet="tbTipoDenominacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbTipoDenominacion_tdmi_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbTipoDenominacion_tdmi_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbTipoDenominacion" EntitySet="tbTipoDenominacion" />
+    </AssociationSet>
     <AssociationSet Name="FK_Gral_tbBanco_tbCuentasBanco_ban_Id" Association="Self.FK_Gral_tbBanco_tbCuentasBanco_ban_Id">
       <End Role="tbBanco" EntitySet="tbBanco" />
+      <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbBanco_tbUsuario_usu_Id_Crea" Association="Self.FK_Gral_tbBanco_tbUsuario_usu_Id_Crea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbBanco" EntitySet="tbBanco" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbBanco_tbUsuario_usu_Id_Modifica" Association="Self.FK_Gral_tbBanco_tbUsuario_usu_Id_Modifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbBanco" EntitySet="tbBanco" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Crea" Association="Self.FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Crea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Modifica" Association="Self.FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Modifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
     </AssociationSet>
     <AssociationSet Name="FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id" Association="Self.FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id">
@@ -1755,10 +2651,6 @@
       <End Role="tbCaja1" EntitySet="tbCaja1" />
       <End Role="tbDevolucion" EntitySet="tbDevolucion" />
     </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbCaja_tbFactura_cja_Id" Association="Self.FK_Vent_tbCaja_tbFactura_cja_Id">
-      <End Role="tbCaja1" EntitySet="tbCaja1" />
-      <End Role="tbFactura" EntitySet="tbFactura" />
-    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbCaja_tbSolicitudEfectivo_cja_Id" Association="Self.FK_Vent_tbCaja_tbSolicitudEfectivo_cja_Id">
       <End Role="tbCaja1" EntitySet="tbCaja1" />
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
@@ -1766,10 +2658,6 @@
     <AssociationSet Name="FK_Vent_tbCliente_tbExoneracion_clte_Id" Association="Self.FK_Vent_tbCliente_tbExoneracion_clte_Id">
       <End Role="tbCliente" EntitySet="tbCliente" />
       <End Role="tbExoneracion" EntitySet="tbExoneracion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbCliente_tbFactura_clte_Id" Association="Self.FK_Vent_tbCliente_tbFactura_clte_Id">
-      <End Role="tbCliente" EntitySet="tbCliente" />
-      <End Role="tbFactura" EntitySet="tbFactura" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbCliente_tbPedido_clte_id" Association="Self.FK_Vent_tbCliente_tbPedido_clte_id">
       <End Role="tbCliente" EntitySet="tbCliente" />
@@ -1782,10 +2670,6 @@
     <AssociationSet Name="FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" Association="Self.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id">
       <End Role="tbDevolucion" EntitySet="tbDevolucion" />
       <End Role="tbDevolucionDetalle" EntitySet="tbDevolucionDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbEstadoFactura_tbFactura_esfac_Id" Association="Self.FK_Vent_tbEstadoFactura_tbFactura_esfac_Id">
-      <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
-      <End Role="tbFactura" EntitySet="tbFactura" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbFactura_tbDevolucion_fact_Id" Association="Self.FK_Vent_tbFactura_tbDevolucion_fact_Id">
       <End Role="tbFactura" EntitySet="tbFactura" />
@@ -1851,6 +2735,10 @@
       <End Role="tbEstadoSolicitudCredito" EntitySet="tbEstadoSolicitudCredito" />
       <End Role="tbSolicitudCredito" EntitySet="tbSolicitudCredito" />
     </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbSolicitudEfectivo_tbSolicitudEfectivoDetalle_solef_Id" Association="Self.FK_Vent_tbSolicitudEfectivo_tbSolicitudEfectivoDetalle_solef_Id">
+      <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
+      <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
+    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbSucursal_tbCaja_suc_Id" Association="Self.FK_Vent_tbSucursal_tbCaja_suc_Id">
       <End Role="tbSucursal" EntitySet="tbSucursal" />
       <End Role="tbCaja1" EntitySet="tbCaja1" />
@@ -1858,10 +2746,6 @@
     <AssociationSet Name="FK_Vent_tbSucursal_tbCuponDescuento_suc_Codigo" Association="Self.FK_Vent_tbSucursal_tbCuponDescuento_suc_Codigo">
       <End Role="tbSucursal" EntitySet="tbSucursal" />
       <End Role="tbCuponDescuento" EntitySet="tbCuponDescuento" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbSucursal_tbfactura_suc_Id" Association="Self.FK_Vent_tbSucursal_tbfactura_suc_Id">
-      <End Role="tbSucursal" EntitySet="tbSucursal" />
-      <End Role="tbFactura" EntitySet="tbFactura" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbSucursal_tbPedido_suc_Id" Association="Self.FK_Vent_tbSucursal_tbPedido_suc_Id">
       <End Role="tbSucursal" EntitySet="tbSucursal" />

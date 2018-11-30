@@ -48,7 +48,18 @@
                     <li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "Factura")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Facturas</span> </a>
                     </li>
-
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "SolicitudCredito")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Solicitud Créditos</span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "EstadoSolicitudCredito")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Estado Solicitud Credito</span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "NotaCredito")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Nota Credito</span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "TipoIdentificacion")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Tipo Identificacion</span> </a>
+                    </li>
                 </ul>
             </li>
 
@@ -113,6 +124,12 @@
                     @*<li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Estado Inventario Fisico</span> </a>
                     </li>*@
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "ActividadEconomica")"><i class="fa fa-university fa-fw"></i> <span class="nav-label">Actividad Ecónomica</span> </a>
+                    </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Moneda")"><i class="fa fa-university fa-fw"></i> <span class="nav-label">Moneda</span> </a>
+                    </li>
                 </ul>
             </li>
 

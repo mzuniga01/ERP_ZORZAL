@@ -21,6 +21,8 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> listp_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> listp_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbListadoPrecioDetalle tbListadoPrecioDetalle { get; set; }
     }
 }

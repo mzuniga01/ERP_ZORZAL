@@ -7,7 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Registrar Moneda</h2>
+        <h2>Create</h2>
         <ol class="breadcrumb">
             @*<li>
                 @Html.ActionLink("List", "Index")
@@ -31,7 +31,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Create tbMoneda</h5>
+                    <h5>Registrar Moneda</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -43,7 +43,7 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mnda_Id , new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.mnda_Id)
                 @Html.ValidationMessageFor(model => model.mnda_Id)
@@ -66,8 +66,9 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.mnda_UsuarioCrea, new { @class = "control-label col-md-2" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Usuario Crea</label>
+            @*@Html.LabelFor(model => model.mnda_UsuarioCrea, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.mnda_UsuarioCrea)
                 @Html.ValidationMessageFor(model => model.mnda_UsuarioCrea)
@@ -75,7 +76,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mnda_FechaCrea, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Fecha Crea</label>
+            @*@Html.LabelFor(model => model.mnda_FechaCrea, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.mnda_FechaCrea)
                 @Html.ValidationMessageFor(model => model.mnda_FechaCrea)
@@ -83,7 +85,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mnda_UsuarioModifica, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Usuario Modifica</label>
+            @*@Html.LabelFor(model => model.mnda_UsuarioModifica, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.mnda_UsuarioModifica)
                 @Html.ValidationMessageFor(model => model.mnda_UsuarioModifica)
@@ -91,17 +94,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mnda_FechaModifica, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Fecha Modifica</label>
+            @*@Html.LabelFor(model => model.mnda_FechaModifica, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.mnda_FechaModifica)
                 @Html.ValidationMessageFor(model => model.mnda_FechaModifica)
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-primary" })
             </div>
         </div>
     </div>

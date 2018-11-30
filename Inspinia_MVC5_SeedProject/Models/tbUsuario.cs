@@ -18,6 +18,64 @@ namespace ERP_ZORZAL.Models
         public tbUsuario()
         {
             this.tbRolesUsuario = new HashSet<tbRolesUsuario>();
+            this.tbActividadEconomica = new HashSet<tbActividadEconomica>();
+            this.tbActividadEconomica1 = new HashSet<tbActividadEconomica>();
+            this.tbCuponDescuento = new HashSet<tbCuponDescuento>();
+            this.tbCuponDescuento1 = new HashSet<tbCuponDescuento>();
+            this.tbCuponDescuento2 = new HashSet<tbCuponDescuento>();
+            this.tbCuponDescuento3 = new HashSet<tbCuponDescuento>();
+            this.tbCuponDescuento4 = new HashSet<tbCuponDescuento>();
+            this.tbCuponDescuento5 = new HashSet<tbCuponDescuento>();
+            this.tbEstadoSolicitudCredito = new HashSet<tbEstadoSolicitudCredito>();
+            this.tbEstadoSolicitudCredito1 = new HashSet<tbEstadoSolicitudCredito>();
+            this.tbEstadoSolicitudCredito2 = new HashSet<tbEstadoSolicitudCredito>();
+            this.tbEstadoSolicitudCredito3 = new HashSet<tbEstadoSolicitudCredito>();
+            this.tbListadoPrecioDetalle = new HashSet<tbListadoPrecioDetalle>();
+            this.tbListadoPrecioDetalle1 = new HashSet<tbListadoPrecioDetalle>();
+            this.tbListaPrecio = new HashSet<tbListaPrecio>();
+            this.tbListaPrecio1 = new HashSet<tbListaPrecio>();
+            this.tbMoneda = new HashSet<tbMoneda>();
+            this.tbMoneda1 = new HashSet<tbMoneda>();
+            this.tbNotaCredito = new HashSet<tbNotaCredito>();
+            this.tbNotaCredito1 = new HashSet<tbNotaCredito>();
+            this.tbPedido = new HashSet<tbPedido>();
+            this.tbPedido1 = new HashSet<tbPedido>();
+            this.tbPedidoDetalle = new HashSet<tbPedidoDetalle>();
+            this.tbPedidoDetalle1 = new HashSet<tbPedidoDetalle>();
+            this.tbSolicitudCredito = new HashSet<tbSolicitudCredito>();
+            this.tbSolicitudCredito1 = new HashSet<tbSolicitudCredito>();
+            this.tbSolicitudCredito2 = new HashSet<tbSolicitudCredito>();
+            this.tbSolicitudCredito3 = new HashSet<tbSolicitudCredito>();
+            this.tbTipoIdentificacion = new HashSet<tbTipoIdentificacion>();
+            this.tbTipoIdentificacion1 = new HashSet<tbTipoIdentificacion>();
+            this.tbArqueoCaja = new HashSet<tbArqueoCaja>();
+            this.tbArqueoCaja1 = new HashSet<tbArqueoCaja>();
+            this.tbCaja1 = new HashSet<tbCaja1>();
+            this.tbCaja11 = new HashSet<tbCaja1>();
+            this.tbDevolucion = new HashSet<tbDevolucion>();
+            this.tbDevolucion1 = new HashSet<tbDevolucion>();
+            this.tbDevolucionDetalle = new HashSet<tbDevolucionDetalle>();
+            this.tbDevolucionDetalle1 = new HashSet<tbDevolucionDetalle>();
+            this.tbDocumentoFiscal = new HashSet<tbDocumentoFiscal>();
+            this.tbDocumentoFiscal1 = new HashSet<tbDocumentoFiscal>();
+            this.tbExoneracion = new HashSet<tbExoneracion>();
+            this.tbExoneracion1 = new HashSet<tbExoneracion>();
+            this.tbPago = new HashSet<tbPago>();
+            this.tbPago1 = new HashSet<tbPago>();
+            this.tbTipoPago = new HashSet<tbTipoPago>();
+            this.tbTipoPago1 = new HashSet<tbTipoPago>();
+            this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
+            this.tbSolicitudEfectivoDetalle = new HashSet<tbSolicitudEfectivoDetalle>();
+            this.tbSolicitudEfectivoDetalle1 = new HashSet<tbSolicitudEfectivoDetalle>();
+            this.tbSolicitudEfectivo1 = new HashSet<tbSolicitudEfectivo>();
+            this.tbSucursal = new HashSet<tbSucursal>();
+            this.tbSucursal1 = new HashSet<tbSucursal>();
+            this.tbTipoDenominacion = new HashSet<tbTipoDenominacion>();
+            this.tbTipoDenominacion1 = new HashSet<tbTipoDenominacion>();
+            this.tbBanco = new HashSet<tbBanco>();
+            this.tbBanco1 = new HashSet<tbBanco>();
+            this.tbCuentasBanco = new HashSet<tbCuentasBanco>();
+            this.tbCuentasBanco1 = new HashSet<tbCuentasBanco>();
             this.tbBodega = new HashSet<tbBodega>();
         }
     
@@ -33,6 +91,122 @@ namespace ERP_ZORZAL.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbRolesUsuario> tbRolesUsuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbActividadEconomica> tbActividadEconomica { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbActividadEconomica> tbActividadEconomica1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbCuponDescuento> tbCuponDescuento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbCuponDescuento> tbCuponDescuento1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbCuponDescuento> tbCuponDescuento2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbCuponDescuento> tbCuponDescuento3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbCuponDescuento> tbCuponDescuento4 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbCuponDescuento> tbCuponDescuento5 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbEstadoSolicitudCredito> tbEstadoSolicitudCredito { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbEstadoSolicitudCredito> tbEstadoSolicitudCredito1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbEstadoSolicitudCredito> tbEstadoSolicitudCredito2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbEstadoSolicitudCredito> tbEstadoSolicitudCredito3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbListaPrecio> tbListaPrecio { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbListaPrecio> tbListaPrecio1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbMoneda> tbMoneda { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbMoneda> tbMoneda1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbNotaCredito> tbNotaCredito { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbNotaCredito> tbNotaCredito1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPedido> tbPedido { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPedido> tbPedido1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPedidoDetalle> tbPedidoDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPedidoDetalle> tbPedidoDetalle1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbTipoIdentificacion> tbTipoIdentificacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbTipoIdentificacion> tbTipoIdentificacion1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbArqueoCaja> tbArqueoCaja { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbArqueoCaja> tbArqueoCaja1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbCaja1> tbCaja1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbCaja1> tbCaja11 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbDevolucion> tbDevolucion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbDevolucion> tbDevolucion1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbDevolucionDetalle> tbDevolucionDetalle1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbDocumentoFiscal> tbDocumentoFiscal { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbDocumentoFiscal> tbDocumentoFiscal1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbExoneracion> tbExoneracion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbExoneracion> tbExoneracion1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPago> tbPago { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPago> tbPago1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbTipoPago> tbTipoPago { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbTipoPago> tbTipoPago1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSucursal> tbSucursal { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSucursal> tbSucursal1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbTipoDenominacion> tbTipoDenominacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbTipoDenominacion> tbTipoDenominacion1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbBanco> tbBanco { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbBanco> tbBanco1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbCuentasBanco> tbCuentasBanco { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbCuentasBanco> tbCuentasBanco1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodega> tbBodega { get; set; }
     }

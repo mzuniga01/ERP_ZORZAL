@@ -6,9 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Inspinia_MVC5_SeedProject.Models;
+using ERP_ZORZAL.Models;
 
-namespace Inspinia_MVC5_SeedProject.Controllers
+namespace ERP_ZORZAL.Controllers
 {
     public class NotaCreditoController : Controller
     {
@@ -22,7 +22,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         }
 
         // GET: /NotaCredito/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(short? id)
         {
             if (id == null)
             {
@@ -39,8 +39,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /NotaCredito/Create
         public ActionResult Create()
         {
-            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP");
-            ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "fact_Codigo");
+            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte");
+            ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id");
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="nocre_Codigo,dev_Id,clte_Id,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica")] tbNotaCredito tbNotaCredito)
+        public ActionResult Create([Bind(Include="nocre_Id,nocre_Codigo,dev_Id,clte_Id,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica")] tbNotaCredito tbNotaCredito)
         {
             if (ModelState.IsValid)
             {
@@ -58,13 +58,13 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP", tbNotaCredito.clte_Id);
-            ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "fact_Codigo", tbNotaCredito.dev_Id);
+            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbNotaCredito.clte_Id);
+            ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id", tbNotaCredito.dev_Id);
             return View(tbNotaCredito);
         }
 
         // GET: /NotaCredito/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(short? id)
         {
             if (id == null)
             {
@@ -75,8 +75,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP", tbNotaCredito.clte_Id);
-            ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "fact_Codigo", tbNotaCredito.dev_Id);
+            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbNotaCredito.clte_Id);
+            ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id", tbNotaCredito.dev_Id);
             return View(tbNotaCredito);
         }
 
@@ -85,7 +85,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="nocre_Codigo,dev_Id,clte_Id,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica")] tbNotaCredito tbNotaCredito)
+        public ActionResult Edit([Bind(Include="nocre_Id,nocre_Codigo,dev_Id,clte_Id,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica")] tbNotaCredito tbNotaCredito)
         {
             if (ModelState.IsValid)
             {
@@ -93,13 +93,13 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP", tbNotaCredito.clte_Id);
-            ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "fact_Codigo", tbNotaCredito.dev_Id);
+            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbNotaCredito.clte_Id);
+            ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id", tbNotaCredito.dev_Id);
             return View(tbNotaCredito);
         }
 
         // GET: /NotaCredito/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(short? id)
         {
             if (id == null)
             {
@@ -116,7 +116,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // POST: /NotaCredito/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(short id)
         {
             tbNotaCredito tbNotaCredito = db.tbNotaCredito.Find(id);
             db.tbNotaCredito.Remove(tbNotaCredito);

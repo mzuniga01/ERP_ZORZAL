@@ -26,6 +26,8 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> nocre_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> nocre_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbCliente tbCliente { get; set; }
         public virtual tbDevolucion tbDevolucion { get; set; }
     }

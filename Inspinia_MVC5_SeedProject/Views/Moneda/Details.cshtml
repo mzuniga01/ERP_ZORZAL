@@ -7,7 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Detalles Moneda</h2>
+        <h2>Details</h2>
         <ol class="breadcrumb">
             @*<li>
                 @Html.ActionLink("List", "Index")
@@ -27,12 +27,19 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    @*<h5>Details tbMoneda</h5>*@
+                    <h5>Detalles Moneda</h5>
                 </div>
                 <div class="ibox-content">
 
 
 				    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mnda_Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.mnda_Id)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.mnda_Iso)
         </dt>
@@ -88,8 +95,8 @@
     </dl>
 
 
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.mnda_Id }, new { @class = "btn btn-primary btn-sm" })
-    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary btn-sm" })
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.mnda_Id }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary" })
 
                 </div>
             </div>

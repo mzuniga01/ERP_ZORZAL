@@ -20,5 +20,8 @@ namespace ERP_ZORZAL.Models
         public System.DateTime dfisc_FechaCrea { get; set; }
         public Nullable<int> dfisc_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> dfisc_FechaModifica { get; set; }
+    
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
     }
 }
