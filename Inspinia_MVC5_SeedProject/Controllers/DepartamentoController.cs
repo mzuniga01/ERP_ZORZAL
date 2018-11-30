@@ -38,6 +38,10 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         {
             return View();
         }
+        public ActionResult _IndexMunicipio_Botones()
+        {
+            return View();
+        }
         // GET: /Departamento/Create
         public ActionResult Create()
         {

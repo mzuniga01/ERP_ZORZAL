@@ -14,9 +14,9 @@ namespace ERP_ZORZAL.Models
 
     public class municipioMetaData
     {
-        [Display(Name = "Codigo del Departamento")]
+        [Display(Name = "Código")]
         public string dep_Codigo { get; set; }
-        [Display(Name = "Nombre del Departamento")]
+        [Display(Name = "Departamento")]
         public string dep_Nombre { get; set; }
         [Display(Name = "Creado por")]
         public int dep_UsuarioCrea { get; set; }

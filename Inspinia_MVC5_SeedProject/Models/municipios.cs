@@ -12,11 +12,11 @@ namespace ERP_ZORZAL.Models
     }
     public class municipiosMetaData
     {
-        [Display(Name = "Codigo Municipio")]
+        [Display(Name = "Código Municipio")]
         public string mun_Codigo { get; set; }
-        [Display(Name = "Codigo Departamento")]
+        [Display(Name = "Código Departamento")]
         public string dep_Codigo { get; set; }
-        [Display(Name = "Nombre Municipio")]
+        [Display(Name = "Municipio")]
         public string mun_Nombre { get; set; }
         [Display(Name = "Creado por")]
         public int mun_UsuarioCrea { get; set; }
