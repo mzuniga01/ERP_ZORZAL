@@ -17,7 +17,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /Salida/
         public ActionResult Index()
         {
-            var tbsalida = db.tbSalida.Include(t => t.tbBodega).Include(t => t.tbBodega1).Include(t => t.tbCaja).Include(t => t.fact_Id);
+            var tbsalida = db.tbSalida.Include(t => t.tbBodega).Include(t => t.tbBodega1).Include(t => t.tbCaja).Include(t => t.tbFactura);
             return View(tbsalida.ToList());
         }
 
@@ -63,7 +63,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             ViewBag.sald_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSalida.sald_Id);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSalida.bod_Id);
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbSalida.cja_Id);
-            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbSalida.fact_Id);
+            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbSalida.fact_Codigo);
             return View(tbSalida);
         }
 
@@ -82,7 +82,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             ViewBag.sald_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSalida.sald_Id);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSalida.bod_Id);
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbSalida.cja_Id);
-            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbSalida.fact_Id);
+            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbSalida.fact_Codigo);
             return View(tbSalida);
         }
 
@@ -102,7 +102,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             ViewBag.sald_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSalida.sald_Id);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSalida.bod_Id);
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbSalida.cja_Id);
-            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbSalida.fact_Id);
+            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbSalida.fact_Codigo);
             return View(tbSalida);
         }
 

@@ -182,6 +182,7 @@
     <Compile Include="Controllers\ActividadEconomicaController.cs" />
     <Compile Include="Controllers\BodegaController.cs" />
     <Compile Include="Controllers\BodegaDetalleController.cs" />
+    <Compile Include="Controllers\CajasController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\CuentasBancoController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
@@ -217,10 +218,12 @@
     <Compile Include="Controllers\tbArqueoCajasController.cs" />
     <Compile Include="Controllers\tbCajasController.cs" />
     <Compile Include="Controllers\tbDocumentoFiscalsController.cs" />
+    <Compile Include="Controllers\tbRolesUsuariosController.cs" />
     <Compile Include="Controllers\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\TipoPagoController.cs" />
     <Compile Include="Controllers\TiposEntradaController.cs" />
     <Compile Include="Controllers\TiposSalidaController.cs" />
+    <Compile Include="Controllers\UnidadesMedidaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -402,6 +405,7 @@
     <Compile Include="Models\tbUsuario.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UnidadesMedida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1057,6 +1061,24 @@
     <Content Include="Views\PuntoEmision\Details.cshtml" />
     <Content Include="Views\PuntoEmision\Edit.cshtml" />
     <Content Include="Views\PuntoEmision\Index.cshtml" />
+    <Content Include="Views\Cajas\Crear.cshtml" />
+    <Content Include="Views\Cajas\Create.cshtml" />
+    <Content Include="Views\Cajas\Delete.cshtml" />
+    <Content Include="Views\Cajas\Details.cshtml" />
+    <Content Include="Views\Cajas\Detalle.cshtml" />
+    <Content Include="Views\Cajas\Edit.cshtml" />
+    <Content Include="Views\Cajas\Editar.cshtml" />
+    <Content Include="Views\Cajas\Index.cshtml" />
+    <Content Include="Views\Cajas\IndexC.cshtml" />
+    <Content Include="Views\SalidaDetalle\detalles.cshtml" />
+    <Content Include="Views\SalidaDetalle\editar.cshtml" />
+    <Content Include="Views\tbRolesUsuarios\Create.cshtml" />
+    <Content Include="Views\tbRolesUsuarios\Delete.cshtml" />
+    <Content Include="Views\tbRolesUsuarios\Details.cshtml" />
+    <Content Include="Views\tbRolesUsuarios\detalles.cshtml" />
+    <Content Include="Views\tbRolesUsuarios\Edit.cshtml" />
+    <Content Include="Views\tbRolesUsuarios\editar.cshtml" />
+    <Content Include="Views\tbRolesUsuarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,129 +6,124 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ERP_ZORZAL.Models;
+using Inspinia_MVC5_SeedProject.Models;
 
 namespace Inspinia_MVC5_SeedProject.Controllers
 {
-    public class SalidaDetalleController : Controller
+    public class tbRolesUsuariosController : Controller
     {
-        private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        private ERP_ZORZALEntities1 db = new ERP_ZORZALEntities1();
 
-        // GET: /SalidaDetalle/
+        // GET: /tbRolesUsuarios/
         public ActionResult Index()
         {
-            var tbsalidadetalle = db.tbSalidaDetalle.Include(t => t.tbProducto);
-            return View(tbsalidadetalle.ToList());
+            return View(db.tbRolesUsuario.ToList());
         }
 
-        // GET: /SalidaDetalle/Details/5
+        // GET: /tbRolesUsuarios/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbSalidaDetalle tbSalidaDetalle = db.tbSalidaDetalle.Find(id);
-            if (tbSalidaDetalle == null)
+            tbRolesUsuario tbRolesUsuario = db.tbRolesUsuario.Find(id);
+            if (tbRolesUsuario == null)
             {
                 return HttpNotFound();
             }
-            return View(tbSalidaDetalle);
+            return View(tbRolesUsuario);
         }
 
-        // GET: /SalidaDetalle/Create
+        // GET: /tbRolesUsuarios/Create
         public ActionResult Create()
         {
-            ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
             return View();
         }
 
-        // POST: /SalidaDetalle/Create
+        // POST: /tbRolesUsuarios/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="sald_Id,prod_Codigo,bod_Id,bod_ResponsableBodega,sald_UsuarioCrea,sald_FechaCrea,sald_UsuarioModifica,sald_FechaModifica")] tbSalidaDetalle tbSalidaDetalle)
+        public ActionResult Create([Bind(Include="rolusu_Id,rol_Id,usu_Id,rolusu_UsuarioCrea,rolusu_FechaCrea,rolusu_UsuarioModifica,rolusu_FechaModifica")] tbRolesUsuario tbRolesUsuario)
         {
             if (ModelState.IsValid)
             {
-                db.tbSalidaDetalle.Add(tbSalidaDetalle);
+                db.tbRolesUsuario.Add(tbRolesUsuario);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion", tbSalidaDetalle.prod_Codigo);
-            return View(tbSalidaDetalle);
+            return View(tbRolesUsuario);
         }
 
-        // GET: /SalidaDetalle/Edit/5
+        // GET: /tbRolesUsuarios/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbSalidaDetalle tbSalidaDetalle = db.tbSalidaDetalle.Find(id);
-            if (tbSalidaDetalle == null)
+            tbRolesUsuario tbRolesUsuario = db.tbRolesUsuario.Find(id);
+            if (tbRolesUsuario == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion", tbSalidaDetalle.prod_Codigo);
-            return View(tbSalidaDetalle);
+            return View(tbRolesUsuario);
         }
 
-        // POST: /SalidaDetalle/Edit/5
+        // POST: /tbRolesUsuarios/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="sald_Id,prod_Codigo,bod_Id,bod_ResponsableBodega,sald_UsuarioCrea,sald_FechaCrea,sald_UsuarioModifica,sald_FechaModifica")] tbSalidaDetalle tbSalidaDetalle)
+        public ActionResult Edit([Bind(Include="rolusu_Id,rol_Id,usu_Id,rolusu_UsuarioCrea,rolusu_FechaCrea,rolusu_UsuarioModifica,rolusu_FechaModifica")] tbRolesUsuario tbRolesUsuario)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbSalidaDetalle).State = EntityState.Modified;
+                db.Entry(tbRolesUsuario).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion", tbSalidaDetalle.prod_Codigo);
-            return View(tbSalidaDetalle);
+            return View(tbRolesUsuario);
         }
 
-        // GET: /SalidaDetalle/Delete/5
+        // GET: /tbRolesUsuarios/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbSalidaDetalle tbSalidaDetalle = db.tbSalidaDetalle.Find(id);
-            if (tbSalidaDetalle == null)
+            tbRolesUsuario tbRolesUsuario = db.tbRolesUsuario.Find(id);
+            if (tbRolesUsuario == null)
             {
                 return HttpNotFound();
             }
-            return View(tbSalidaDetalle);
+            return View(tbRolesUsuario);
         }
 
-        // POST: /SalidaDetalle/Delete/5
+        // POST: /tbRolesUsuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            tbSalidaDetalle tbSalidaDetalle = db.tbSalidaDetalle.Find(id);
-            db.tbSalidaDetalle.Remove(tbSalidaDetalle);
+            tbRolesUsuario tbRolesUsuario = db.tbRolesUsuario.Find(id);
+            db.tbRolesUsuario.Remove(tbRolesUsuario);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         public ActionResult editar()
         {
-           
+            
             return View("editar");
         }
 
         public ActionResult detalles()
         {
-            
+
             return View("detalles");
         }
 

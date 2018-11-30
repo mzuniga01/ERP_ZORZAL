@@ -1,0 +1,82 @@
+﻿@model Inspinia_MVC5_SeedProject.Models.tbRolesUsuario
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>editar RolesUsuario</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.rolusu_Id)
+
+        <div class="form-group">
+            
+            <div class="col-md-10">
+                Rol Id
+                <input class="text-box single-line" value="01" />
+                @Html.ValidationMessageFor(model => model.rol_Id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            
+            <div class="col-md-10">
+                Usuario Id
+                <input class="text-box single-line" value="01" />
+                @Html.ValidationMessageFor(model => model.usu_Id)
+            </div>
+        </div>
+
+       
+
+        <div class="form-group">
+           
+            <div class="col-md-10">
+                Usuario Modifica
+                @Html.EditorFor(model => model.rolusu_UsuarioModifica)
+                @Html.ValidationMessageFor(model => model.rolusu_UsuarioModifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+           
+            <div class="col-md-10">
+                Fecha Modifica
+                @Html.EditorFor(model => model.rolusu_FechaModifica)
+                @Html.ValidationMessageFor(model => model.rolusu_FechaModifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -32,11 +32,17 @@
                                     Estado Movimiento
                                 </th>
                                 <th>
-                                    Destino Salida
+                                    Creado Por
                                 </th>
                                 <th>
-                                    Id Caja
+                                    Tipo Salida
                                 </th>
+                                @*<th>
+                                    Destino Salida
+                                </th>*@
+                                @*<th>
+                                    Id Caja
+                                </th>*@
                                 <th></th>
                             </tr>
                         </thead>
@@ -46,7 +52,7 @@
                                     1
                                 </td>
                                 <td>
-                                    1
+                                    Bodega Tegucigalpa
                                 </td>
                                 <td>
                                     0000
@@ -58,11 +64,18 @@
                                     Activo
                                 </td>
                                 <td>
-                                    La Ceiba
+                                    Mafer
                                 </td>
                                 <td>
-                                    000
+                                    Salida Por Devolucion
                                 </td>
+
+                                @*<td>
+                                    La Ceiba
+                                </td>*@
+                                @*<td>
+                                    000
+                                </td>*@
                                 <td>
                                     @Html.ActionLink("Detalles", "Detalles", new { @class = "btn btn-primary btn-sm" })
                                     @Html.ActionLink("Editar", "Editar", new { @class = "btn btn-white btn-sm" })
@@ -70,6 +83,7 @@
                             </tr>
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>

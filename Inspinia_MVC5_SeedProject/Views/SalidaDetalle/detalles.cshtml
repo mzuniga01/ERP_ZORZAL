@@ -1,0 +1,194 @@
+﻿@model ERP_ZORZAL.Models.tbSalidaDetalle
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>detalles SalidaDetalle</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+                        <dt>
+                           Bodega
+                        </dt>
+                        <dd>
+                           Central
+                        </dd>
+        <dt>
+            Responsable
+        </dt>
+
+        <dd>
+            Pedro Pablo
+        </dd>
+
+        <dt>
+           Usuario
+        </dt>
+
+        <dd>
+            Luis Diaz
+        </dd>
+
+        <dt>
+            Fecha crea
+        </dt>
+
+        <dd>
+            29-11-2018
+        </dd>
+
+        <dt>
+            Modificado Por
+        </dt>
+
+        <dd>
+            
+        </dd>
+
+        <dt>
+            Modificado El
+        </dt>
+
+        <dd>
+            
+        </dd>
+
+        <dt>
+            Producto
+        </dt>
+
+        <dd>
+            Camisa
+        </dd>
+
+        <dt>
+            Descripcion Producto
+        </dt>
+
+        <dd>
+            Talla 32
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Editar", "editar", new { @class = "btn btn-primary"})
+    @Html.ActionLink("Volver a Listado", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Listado  Producto</h5>
+                        <div class="ibox-tools">
+                            @Html.ActionLink("Crear Nuevo", "Crear", null, new { @class = "btn btn-primary btn-xs" })
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table class="table table-condensed" id="datatables">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Código de Producto
+                                    </th>
+                                    <th>
+                                        Descripción
+                                    </th>
+
+                                    <th>
+                                        Marca
+                                    </th>
+                                    <th>
+                                        Categoría
+                                    </th>
+                                    <th>
+                                        Unidad de Medida
+                                    </th>
+                                    <th>
+                                        Descripcion Producto
+                                    </th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        PANPJ-102634700
+                                    </td>
+                                    <td>
+                                        Pantalón
+                                    </td>
+
+                                    <td>
+                                        Pepe Jeans
+                                    </td>
+                                    <td>
+                                        Ropa
+                                    </td>
+                                    <td>
+                                        Docena
+                                    </td>
+                                    <td>
+                                        Talla 32
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Detalles", "Detalles", null, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Editar", null, new { @class = "btn btn-primary btn-xs" })
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datatables').DataTable(
+        {
+            "searching": true,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_ registros por página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

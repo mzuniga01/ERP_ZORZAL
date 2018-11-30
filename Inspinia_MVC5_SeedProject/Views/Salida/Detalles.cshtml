@@ -7,105 +7,134 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Detalles tbSalida</h5>
+                    <h5>Detalles Salida</h5>
                 </div>
                 <div class="ibox-content">
 
 
 				    <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.sal_FechaSalida)
+            @*@Html.DisplayNameFor(model => model.sal_FechaSalida)*@
+             Fecha de Salida
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.sal_FechaSalida)
+            @*@Html.DisplayFor(model => model.sal_FechaSalida)*@
+            12/12/12
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.estm_Id)
+            @*@Html.DisplayNameFor(model => model.estm_Id)*@
+            Estado Id
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.estm_Id)
+            @*@Html.DisplayFor(model => model.estm_Id)*@
+            02
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.sal_Destino)
+            @*@Html.DisplayNameFor(model => model.sal_Destino)*@
+            Destino Salida
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.sal_Destino)
+            La Ceiba 
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.sal_UsuarioCrea)
+            @*@Html.DisplayNameFor(model => model.sal_UsuarioCrea)*@
+            Creado Por:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.sal_UsuarioCrea)
+            @*@Html.DisplayFor(model => model.sal_UsuarioCrea)*@
+            Mafer
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.sal_FechaCrea)
+            @*@Html.DisplayNameFor(model => model.sal_FechaCrea)*@
+            Creado el:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.sal_FechaCrea)
+            @*@Html.DisplayFor(model => model.sal_FechaCrea)*@
+            20/11/18
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.sal_UsuarioModifica)
+            @*@Html.DisplayNameFor(model => model.sal_UsuarioModifica)*@
+            Modificado Por:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.sal_UsuarioModifica)
+            @*@Html.DisplayFor(model => model.sal_UsuarioModifica)*@
+            Mafer
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.sal_FechaModifica)
+            @*@Html.DisplayNameFor(model => model.sal_FechaModifica)*@
+            Modificado el:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.sal_FechaModifica)
+            @*@Html.DisplayFor(model => model.sal_FechaModifica)*@
+            23/11/18
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)
+            @*@Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)*@
+            Responsable Bodega
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.tbBodega.bod_ResponsableBodega)
+            @*@Html.DisplayFor(model => model.tbBodega.bod_ResponsableBodega)*@
+            Gleen Aaron Macias
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.tbBodega1.bod_ResponsableBodega)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.tbBodega1.bod_ResponsableBodega)
-        </dd>
+        </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.tbCaja.cja_Descripcion)
+            @*@Html.DisplayNameFor(model => model.tbCaja.cja_Descripcion)*@
+            Descripcion Caja
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.tbCaja.cja_Descripcion)
+            @*@Html.DisplayFor(model => model.tbCaja.cja_Descripcion)*@
+
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.tbFactura.cja_Codigo)
+            @*@Html.DisplayNameFor(model => model.tbFactura.cja_Codigo)*@
+            Codigo Caja
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.tbFactura.cja_Codigo)
+            @*@Html.DisplayFor(model => model.tbFactura.cja_Codigo)*@
+            000
         </dd>
+                        <dt>
+                            @*@Html.DisplayNameFor(model => model.tbFactura.cja_Codigo)*@
+                            Codigo Factura
+                        </dt>
+
+                        <dd>
+                            @*@Html.DisplayFor(model => model.tbFactura.cja_Codigo)*@
+                            000
+                        </dd>
 
     </dl>
 
 
-	    @Html.ActionLink("Edit", "Edit", new { id = Model.sal_Codigo }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+	    @Html.ActionLink("Edit", "Editar", @*new { id = Model.sal_Codigo },*@ new { @class = "btn btn-primary" })&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    @Html.ActionLink("Regresar al Listado", "Index_Salida", @*null,*@ new { @class = "btn btn-primary btn-sm" })
+                    @*<input type="url" />*@
 
                 </div>
             </div>
