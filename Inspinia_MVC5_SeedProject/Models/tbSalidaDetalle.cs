@@ -14,24 +14,15 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbSalidaDetalle
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbSalidaDetalle()
-        {
-            this.tbCaja = new HashSet<tbCaja>();
-        }
-    
         public int sald_Id { get; set; }
+        public int sal_Id { get; set; }
         public string prod_Codigo { get; set; }
-        public int bod_Id { get; set; }
-        public string bod_ResponsableBodega { get; set; }
+        public decimal sal_Cantidad { get; set; }
         public int sald_UsuarioCrea { get; set; }
         public System.DateTime sald_FechaCrea { get; set; }
-        public int sald_UsuarioModifica { get; set; }
-        public System.DateTime sald_FechaModifica { get; set; }
+        public Nullable<int> sald_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> sald_FechaModifica { get; set; }
     
-        public virtual tbBodega tbBodega { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCaja> tbCaja { get; set; }
         public virtual tbProducto tbProducto { get; set; }
     }
 }

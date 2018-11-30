@@ -12,13 +12,9 @@ namespace ERP_ZORZAL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbCaja
+    public partial class tbTipoDenominacion
     {
-        public string box_Codigo { get; set; }
-        public string box_Descripcion { get; set; }
-        public int box_UsuarioCrea { get; set; }
-        public System.DateTime box_FechaCrea { get; set; }
-        public Nullable<int> box_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> box_FechaModifica { get; set; }
+        public short tdmi_Id { get; set; }
+        public string tdmi_BilleteMoneda { get; set; }
     }
 }

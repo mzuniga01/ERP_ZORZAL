@@ -14,6 +14,12 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbCuentasBanco
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbCuentasBanco()
+        {
+            this.tbPago = new HashSet<tbPago>();
+        }
+    
         public short bcta_Id { get; set; }
         public short ban_Id { get; set; }
         public short mnda_Id { get; set; }
@@ -28,5 +34,8 @@ namespace ERP_ZORZAL.Models
         public Nullable<System.DateTime> bcta_FechaModifica { get; set; }
     
         public virtual tbBanco tbBanco { get; set; }
+        public virtual tbMoneda tbMoneda { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPago> tbPago { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace ERP_ZORZAL.Models
             this.tbProductoSubcategoria = new HashSet<tbProductoSubcategoria>();
         }
     
-        public byte estm_Id { get; set; }
+        public bool estm_Id { get; set; }
         public string estm_Descripcion { get; set; }
         public int estm_UsuarioCrea { get; set; }
         public System.DateTime estm_FechaCrea { get; set; }

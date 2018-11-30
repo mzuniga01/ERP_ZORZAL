@@ -23,18 +23,16 @@ namespace ERP_ZORZAL.Models
     
         public int usu_Id { get; set; }
         public string usu_NombreUsuario { get; set; }
-        public int rolusu_Id { get; set; }
-        public string usu_Password { get; set; }
+        public byte[] usu_Password { get; set; }
         public string usu_Nombre { get; set; }
         public string usu_Apellido { get; set; }
         public string usu_Correo { get; set; }
-        public bool edo_IdEstado { get; set; }
-        public string usu_RazonEstado { get; set; }
+        public bool usu_EsActivo { get; set; }
+        public string usu_RazonInactivo { get; set; }
         public bool usu_EsAdministrador { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbRolesUsuario> tbRolesUsuario { get; set; }
-        public virtual tbRolesUsuario tbRolesUsuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodega> tbBodega { get; set; }
     }

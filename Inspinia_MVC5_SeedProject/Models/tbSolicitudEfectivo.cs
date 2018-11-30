@@ -12,13 +12,16 @@ namespace ERP_ZORZAL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbCaja
+    public partial class tbSolicitudEfectivo
     {
-        public string box_Codigo { get; set; }
-        public string box_Descripcion { get; set; }
-        public int box_UsuarioCrea { get; set; }
-        public System.DateTime box_FechaCrea { get; set; }
-        public Nullable<int> box_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> box_FechaModifica { get; set; }
+        public int solef_Id { get; set; }
+        public short cja_Id { get; set; }
+        public decimal solef_MontoSolicitud { get; set; }
+        public int solef_UsuarioCrea { get; set; }
+        public System.DateTime solef_FechaCrea { get; set; }
+        public Nullable<int> solef_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> solef_FechaModifica { get; set; }
+    
+        public virtual tbCaja1 tbCaja1 { get; set; }
     }
 }

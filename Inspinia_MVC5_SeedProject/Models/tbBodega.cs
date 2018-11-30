@@ -21,8 +21,6 @@ namespace ERP_ZORZAL.Models
             this.tbEntrada = new HashSet<tbEntrada>();
             this.tbInventarioFisico = new HashSet<tbInventarioFisico>();
             this.tbSalida = new HashSet<tbSalida>();
-            this.tbSalida1 = new HashSet<tbSalida>();
-            this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
             this.tbSucursal = new HashSet<tbSucursal>();
         }
     
@@ -31,9 +29,9 @@ namespace ERP_ZORZAL.Models
         public string bod_Direccion { get; set; }
         public string bod_Correo { get; set; }
         public string bod_Telefono { get; set; }
-        public int usu_Id { get; set; }
+        public Nullable<int> usu_Id { get; set; }
         public string mun_Codigo { get; set; }
-        public byte estm_Id { get; set; }
+        public bool bod_EsActiva { get; set; }
         public int bod_UsuarioCrea { get; set; }
         public System.DateTime bod_FechaCrea { get; set; }
         public Nullable<int> bod_UsuarioModifica { get; set; }
@@ -50,10 +48,6 @@ namespace ERP_ZORZAL.Models
         public virtual ICollection<tbInventarioFisico> tbInventarioFisico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalida> tbSalida { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSalida> tbSalida1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSucursal> tbSucursal { get; set; }
     }

@@ -24,5 +24,7 @@ namespace ERP_ZORZAL.Models
         public Nullable<System.DateTime> exo_FechaCrea { get; set; }
         public Nullable<int> exo_UsuarioModifa { get; set; }
         public Nullable<System.DateTime> exo_FechaModifica { get; set; }
+    
+        public virtual tbCliente tbCliente { get; set; }
     }
 }
