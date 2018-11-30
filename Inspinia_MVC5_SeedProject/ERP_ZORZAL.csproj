@@ -46,11 +46,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -121,9 +121,9 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
@@ -179,8 +179,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadEconomicaController.cs" />
-    <Compile Include="Controllers\ClientesController.cs" />
-    <Compile Include="Controllers\CuentasBancoController.cs" />
+    <Compile Include="Controllers\BancoController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\CuentaBancoController.cs" />
     <Compile Include="Controllers\EstadoFacturaController.cs" />
     <Compile Include="Controllers\EstadoSolicitudCreditoController.cs" />
     <Compile Include="Controllers\FacturaController.cs" />
@@ -196,6 +197,8 @@
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Banco.cs" />
+    <Compile Include="Models\CuentaBanco.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
       <AutoGen>True</AutoGen>
@@ -759,14 +762,6 @@
     <Content Include="Views\Factura\_CreateDetalleFactura.cshtml" />
     <Content Include="Views\Factura\_EditarDetalleFactura.cshtml" />
     <Content Include="Views\Factura\_IndexDetalleFactura.cshtml" />
-    <Content Include="Views\Clientes\Create.cshtml" />
-    <Content Include="Views\Clientes\Details.cshtml" />
-    <Content Include="Views\Clientes\Edit.cshtml" />
-    <Content Include="Views\Clientes\Index.cshtml" />
-    <Content Include="Views\CuentasBanco\Create.cshtml" />
-    <Content Include="Views\CuentasBanco\Details.cshtml" />
-    <Content Include="Views\CuentasBanco\Edit.cshtml" />
-    <Content Include="Views\CuentasBanco\Index.cshtml" />
     <Content Include="Views\Moneda\Create.cshtml" />
     <Content Include="Views\Moneda\Delete.cshtml" />
     <Content Include="Views\Moneda\Details.cshtml" />
@@ -802,6 +797,20 @@
     <Content Include="Views\PuntoEmision\Details.cshtml" />
     <Content Include="Views\PuntoEmision\Edit.cshtml" />
     <Content Include="Views\PuntoEmision\Index.cshtml" />
+    <Content Include="Views\Cliente\Create.cshtml" />
+    <Content Include="Views\Cliente\Details.cshtml" />
+    <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Banco\Create.cshtml" />
+    <Content Include="Views\Banco\Delete.cshtml" />
+    <Content Include="Views\Banco\Details.cshtml" />
+    <Content Include="Views\Banco\Edit.cshtml" />
+    <Content Include="Views\Banco\Index.cshtml" />
+    <Content Include="Views\CuentaBanco\Create.cshtml" />
+    <Content Include="Views\CuentaBanco\Delete.cshtml" />
+    <Content Include="Views\CuentaBanco\Details.cshtml" />
+    <Content Include="Views\CuentaBanco\Edit.cshtml" />
+    <Content Include="Views\CuentaBanco\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
