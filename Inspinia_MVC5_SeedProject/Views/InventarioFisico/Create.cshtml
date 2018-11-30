@@ -13,7 +13,7 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "btn btn-primary"})
+			@Html.ActionLink("Regresar al Listado", "Index", null, new { @class = ""})
         </div>
     </div>
 </div>
@@ -139,7 +139,7 @@
                             @Html.ValidationSummary(true)
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Descrpcion</label>
+                                <label class="control-label col-md-2">Descripcion</label>
                                 <div class="col-md-10">
                                     <input class="text-box single-line ">
                                 </div>
@@ -152,23 +152,32 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2">Bodega Id</label>
+                                <label class="control-label col-md-2">Bodega</label>
                                 <div class="col-md-10">
-                                    <input class="text-box single-line ">
+                                    <select id="Select1">
+                                        <option>--Seleccione Bodega--</option>
+                                        <option>Bodega #1</option>
+                                        <option>Bodega #2</option>
+                                        <option>Bodega #3</option>
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Fecha Inventario</label>
+                                <label class="control-label col-md-2">Fecha Levantamiento</label>
                                 <div class="col-md-10">
-                                    <input class="text-box single-line ">
+                                    <input class="" type="date">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Estado inventario Fisico</label>
+                                <label class="control-label col-md-2">Estado</label>
                                 <div class="col-md-10">
-                                    <input class="text-box single-line ">
+                                    <select id="Select1">
+                                        <option>--Seleccione Estado--</option>
+                                        <option>Estado #1</option>
+                                        <option>Estado #2</option>
+                                    </select>
                                 </div>
                             </div>
 

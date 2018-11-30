@@ -30,23 +30,49 @@
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm())
-                    {
+                   
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
 
-                            @Html.ValidationSummary(true)
-                            @Html.HiddenFor(model => model.rol_Id)
-
                             <div class="form-group">
-                                <label class="control-label col-md-2">Descripcion</label>
-                                <div class="col-md-10">
+                                <label class="control-label col-md-1">Id</label>
+                                <div class="col-md-4">
+                                    <input class="text-box single-line" value="1" readonly>
+                                </div>
+                                <label class="control-label col-md-1">Descripcion</label>
+                                <div class="col-md-4">
                                     <input class="text-box single-line ">
                                 </div>
                             </div>
 
-                          
+                            <div class="form-group">
+                                <label class="control-label col-md-1">Creado por:</label>
+                                <div class="col-md-4">
+                                    <input class="text-box single-line" value="Antonio" readonly>
+                                </div>
+                                <label class="control-label col-md-1">Creado en:</label>
+                                <div class="col-md-4">
+                                    <input class="text-box single-line" value="29/11/2018" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-1">Modificado por:</label>
+                                <div class="col-md-4">
+                                    <input class="text-box single-line" value="Antonio" readonly>
+                                </div>
+                                <label class="control-label col-md-1">Modificado en:</label>
+                                <div class="col-md-4">
+                                    <input class="text-box single-line" value="29/11/2018" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    @Html.Partial("_AccesoRoles", Model)
+                                </div>
+                            </div>    
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
@@ -55,7 +81,7 @@
                                 </div>
                             </div>
                         </div>
-                    }
+                    
 
 
                 </div>

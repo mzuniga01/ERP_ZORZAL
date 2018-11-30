@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_ZORZAL.Models;
 
-namespace Inspinia_MVC5_SeedProject.Controllers
+namespace ERP_ZORZAL.Controllers
 {
     public class ProveedorController : Controller
     {
@@ -43,17 +43,9 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             return View();
         }
 
-        public ActionResult Detalle()
-        {
-            return View();
-        }
-        public ActionResult Editar()
-        {
-            return View();
-        }
         // POST: /Proveedor/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="prov_Id,prov_NombreContacto,prov_Direccion,prov_Email,prov_Telefono,prov_UsuarioCrea,prov_FechaCrea,prov_UsuarioModifica,prov_FechaModifica,mun_Codigo")] tbProveedor tbProveedor)
@@ -87,7 +79,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
 
         // POST: /Proveedor/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="prov_Id,prov_NombreContacto,prov_Direccion,prov_Email,prov_Telefono,prov_UsuarioCrea,prov_FechaCrea,prov_UsuarioModifica,prov_FechaModifica,mun_Codigo")] tbProveedor tbProveedor)

@@ -7,19 +7,11 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Edit</h2>
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("Listado", "Index")
-            </li>
-            <li class="active">
-                <strong>Editar</strong>
-            </li>
-        </ol>
+        <h2>Editar</h2>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+			@Html.ActionLink("Regresar al Listado", "Index")
         </div>
     </div>
 </div>
@@ -32,7 +24,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Edit tbDepartamento</h5>
+                    <h5>Editar Departamento</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -43,12 +35,18 @@
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.dep_Codigo)
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.dep_Codigo, new { @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.dep_Codigo)
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.dep_Nombre, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.dep_Nombre)
+                @Html.TextBoxFor(model => model.dep_Nombre)
                 @Html.ValidationMessageFor(model => model.dep_Nombre)
             </div>
         </div>
@@ -56,7 +54,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.dep_UsuarioCrea, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.dep_UsuarioCrea)
+                <input type="text" value="Anthony Fugon" readonly>
                 @Html.ValidationMessageFor(model => model.dep_UsuarioCrea)
             </div>
         </div>
@@ -64,7 +62,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.dep_FechaCrea, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.dep_FechaCrea)
+                @Html.TextBoxFor(model => model.dep_FechaCrea, new { @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.dep_FechaCrea)
             </div>
         </div>
@@ -72,7 +70,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.dep_UsuarioModifica, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.dep_UsuarioModifica)
+                @Html.TextBoxFor(model => model.dep_UsuarioModifica, new { @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.dep_UsuarioModifica)
             </div>
         </div>
@@ -80,19 +78,25 @@
         <div class="form-group">
             @Html.LabelFor(model => model.dep_FechaModifica, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.dep_FechaModifica)
+                @Html.TextBoxFor(model => model.dep_FechaModifica, new { @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.dep_FechaModifica)
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+                <input type="button" value="Actualizar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>
-}
+    <div class="form-group">
+        @*<div class="col-md-offset-2 col-md-10">*@
+            @Html.Partial("_IndexMunicipio", Model.tbMunicipio)
+        @*</div>*@
+    </div>
+                }
+                    
 
 
                 </div>

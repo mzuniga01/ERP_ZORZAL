@@ -19,18 +19,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         {
             return View(db.tbEstadoMovimiento.ToList());
         }
-        public ActionResult CrearPrueba()
-        {
-            return View();
-        }
-        public ActionResult DetallePrueba()
-        {
-            return View();
-        }
-        public ActionResult EditarPrueba()
-        {
-            return View();
-        }
+        
 
         // GET: /EstadoMovimiento/Details/5
         public ActionResult Details(byte? id)

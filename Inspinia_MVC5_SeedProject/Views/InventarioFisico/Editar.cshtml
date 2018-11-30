@@ -20,110 +20,110 @@
 
 
 @*<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Edit tbInventarioFisico</h5>
-                </div>
-                <div class="ibox-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Edit tbInventarioFisico</h5>
+                    </div>
+                    <div class="ibox-content">
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
 
-                        <div class="form-horizontal">
+                            <div class="form-horizontal">
 
-                            @Html.ValidationSummary(true)
-                            @Html.HiddenFor(model => model.invf_Id)
+                                @Html.ValidationSummary(true)
+                                @Html.HiddenFor(model => model.invf_Id)
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.invf_Descripcion, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.invf_Descripcion)
-                                    @Html.ValidationMessageFor(model => model.invf_Descripcion)
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.invf_Descripcion, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.invf_Descripcion)
+                                        @Html.ValidationMessageFor(model => model.invf_Descripcion)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.invf_ResponsableBodega, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.invf_ResponsableBodega)
+                                        @Html.ValidationMessageFor(model => model.invf_ResponsableBodega)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.bod_Id)
+                                        @Html.ValidationMessageFor(model => model.bod_Id)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.estif_Id, "estif_Id", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("estif_Id", String.Empty)
+                                        @Html.ValidationMessageFor(model => model.estif_Id)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.invf_FechaInventario, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.invf_FechaInventario)
+                                        @Html.ValidationMessageFor(model => model.invf_FechaInventario)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.invf_UsuarioCrea, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.invf_UsuarioCrea)
+                                        @Html.ValidationMessageFor(model => model.invf_UsuarioCrea)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.invf_FechaCrea, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.invf_FechaCrea)
+                                        @Html.ValidationMessageFor(model => model.invf_FechaCrea)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.invf_UsuarioModifica, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.invf_UsuarioModifica)
+                                        @Html.ValidationMessageFor(model => model.invf_UsuarioModifica)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.invf_FechaModifica, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.invf_FechaModifica)
+                                        @Html.ValidationMessageFor(model => model.invf_FechaModifica)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white" })
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.invf_ResponsableBodega, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.invf_ResponsableBodega)
-                                    @Html.ValidationMessageFor(model => model.invf_ResponsableBodega)
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.bod_Id)
-                                    @Html.ValidationMessageFor(model => model.bod_Id)
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.estif_Id, "estif_Id", new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.DropDownList("estif_Id", String.Empty)
-                                    @Html.ValidationMessageFor(model => model.estif_Id)
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.invf_FechaInventario, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.invf_FechaInventario)
-                                    @Html.ValidationMessageFor(model => model.invf_FechaInventario)
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.invf_UsuarioCrea, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.invf_UsuarioCrea)
-                                    @Html.ValidationMessageFor(model => model.invf_UsuarioCrea)
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.invf_FechaCrea, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.invf_FechaCrea)
-                                    @Html.ValidationMessageFor(model => model.invf_FechaCrea)
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.invf_UsuarioModifica, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.invf_UsuarioModifica)
-                                    @Html.ValidationMessageFor(model => model.invf_UsuarioModifica)
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.invf_FechaModifica, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.invf_FechaModifica)
-                                    @Html.ValidationMessageFor(model => model.invf_FechaModifica)
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Save" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white" })
-                                </div>
-                            </div>
-                        </div>
-                    }
+                        }
 
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>*@
+    </div>*@
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -159,39 +159,36 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Bodega Id</label>
+                                <label class="control-label col-md-2">Bodega</label>
                                 <div class="col-md-10">
                                     <input class="text-box single-line ">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Fecha Inventario</label>
+                                <label class="control-label col-md-2">Fecha Levantamiento</label>
+                                <div class="col-md-10">
+                                    <input class="text-box single-line " readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Estado</label>
                                 <div class="col-md-10">
                                     <input class="text-box single-line ">
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Estado Inventario Fisico</label>
-                                <div class="col-md-10">
-                                    <input class="text-box single-line ">
-                                </div>
-                            </div>
-                         
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    <input type="button" value="Actualizar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
                         </div>
+
+
+                        @Html.Partial("_IndexInvFisicoDetalle", Model)
                     }
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                    

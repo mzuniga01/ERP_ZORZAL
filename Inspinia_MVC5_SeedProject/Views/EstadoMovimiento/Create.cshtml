@@ -1,25 +1,20 @@
 ﻿@model ERP_ZORZAL.Models.tbEstadoMovimiento
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Crear";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Create</h2>
+        <h2>Estado Movimiento</h2>
         <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Create</strong>
-            </li>
+            
         </ol>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+			@Html.ActionLink("Regresar al Listado", "Index", null, new { @class = ""})
         </div>
     </div>
 </div>
@@ -31,7 +26,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Create tbEstadoMovimiento</h5>
+                    <h5>Crear Estado Movimiento</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -43,8 +38,8 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.estm_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.estm_Id, new { @class = "control-label col-md-2"})
+            <div class="col-md-1">
                 @Html.EditorFor(model => model.estm_Id)
                 @Html.ValidationMessageFor(model => model.estm_Id)
             </div>
@@ -52,48 +47,16 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.estm_Descripcion, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.estm_Descripcion)
                 @Html.ValidationMessageFor(model => model.estm_Descripcion)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.estm_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.estm_UsuarioCrea)
-                @Html.ValidationMessageFor(model => model.estm_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.estm_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.estm_FechaCrea)
-                @Html.ValidationMessageFor(model => model.estm_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.estm_UsuarioModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.estm_UsuarioModifica)
-                @Html.ValidationMessageFor(model => model.estm_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.estm_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.estm_FechaModifica)
-                @Html.ValidationMessageFor(model => model.estm_FechaModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = ""})
             </div>
         </div>
     </div>

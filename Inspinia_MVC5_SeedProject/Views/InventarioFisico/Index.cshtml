@@ -8,9 +8,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Inventario Fisico</h2>
-        <ol class="breadcrumb">
-            
-        </ol>
     </div>
 </div>
 
@@ -111,79 +108,78 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado  Inventario Fisico</h5>
+                    <h5>Listado Inventario Fisico</h5>
                     <div class="ibox-tools">
-                        @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs" })
+                        @Html.ActionLink("Registrar Inventario Fisico", "Create", null, new { @class = "btn btn-primary btn-xs" })
                     </div>
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-striped" id="datatables">
+                    <table class="table table-striped table-hover table-bordered" id="DataTable">
                          <thead>
                             <tr>
                                 <th>
                                     Descripcion
                                 </th>
                                 <th>
-                                    Responsable Bodega
+                                    Responsable de Bodega
                                 </th>
                                 <th>
-                                    Bodega Id
+                                    Bodega
                                 </th>
                                 <th>
-                                    Fecha Inventario
+                                    Fecha de Levantamento
                                 </th>
                                 <th>
-                                    Usuario Crea
+                                    Creado por
                                 </th>
                                 <th>
-                                    Fecha Crea
+                                    Creado el
                                 </th>
                                 <th>
-                                    Usuario Modifica
+                                    Modificado por
                                 </th>
                                 <th>
-                                    Fecha Modifica
+                                    Modificado el
                                 </th>
                                 <th>
-                                    Estado Inventario Fisico
+                                    Estado
                                 </th>
-                                <th></th>
+                                <th>Acciones</th>
                             </tr>
-                        </thead>>
+                        </thead>
                         <tbody>
                             <tr>
                                 <td>
-                                    Bodega
+                                    Inventario F. 2018
                                 </td>
                                 <td>
                                     Antony Fugon
                                 </td>
                                 <td>
-                                    01
+                                    Bodega #1
                                 </td>
                                 <td>
                                     28/11/2018
                                 </td>
                                 <td>
-                                    Keilin_R
+                                    Anthony Fugon
                                 </td>
                                 <td>
                                     28/11/2018
                                 </td>
                                 <td>
-                                    BR
+                                    
                                 </td>
                                 <td>
-                                    28/11/2018
+                                    
                                 </td>
-                                <td></td>Activo
+                                <td>Activo</td>
                                 <td>
                                     @Html.ActionLink("Detalle", "Detalle", new { @class = "" })
                                     @Html.ActionLink("Editar", "Editar", new { @class = "" })
                                 </td>
                             </tr>
-
                             </tbody>
 </table>
 
@@ -192,14 +188,10 @@
         </div>
     </div>
 </div>
-@section scripts{
-     
-    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
-    <script src="~/Scripts/DataTables/dataTables.responsive.js"></script>
-    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script>
     $(document).ready(function () {
-    $('#datatables').DataTable({
+        $('#DataTable').DataTable({
 
         "searching": true,
         "oLanguage": {
@@ -218,4 +210,3 @@
     });
 
     </script>
-}

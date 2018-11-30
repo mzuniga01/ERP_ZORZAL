@@ -7,125 +7,203 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Details</h2>
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Details</strong>
-            </li>
-        </ol>
+        <h2>Inventario Fisico</h2>
+        <ol class="breadcrumb"></ol>
     </div>
 </div>
 
 
 
 
+@*<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Details tbInventarioFisico</h5>
+                    </div>
+                    <div class="ibox-content">
+
+
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.invf_Descripcion)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.invf_Descripcion)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.invf_ResponsableBodega)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.invf_ResponsableBodega)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.bod_Id)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.bod_Id)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.invf_FechaInventario)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.invf_FechaInventario)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.invf_UsuarioCrea)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.invf_UsuarioCrea)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.invf_FechaCrea)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.invf_FechaCrea)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.invf_UsuarioModifica)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.invf_UsuarioModifica)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.invf_FechaModifica)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.invf_FechaModifica)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.tbEstadoInventarioFisico.estif_Descripcion)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.tbEstadoInventarioFisico.estif_Descripcion)
+                            </dd>
+
+                        </dl>
+
+
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.invf_Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white" })
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Details tbInventarioFisico</h5>
+                    <h5>Detalle Inventario Fisico</h5>
                 </div>
                 <div class="ibox-content">
 
 
-				    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.invf_Descripcion)
-        </dt>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            <label class="control-label col-md-2">Descripcion</label>
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.invf_Descripcion)
-        </dd>
+                        <dd>
+                            Bodega
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.invf_ResponsableBodega)
-        </dt>
+                        <dt>
+                            <label class="control-label col-md-2">Responsable Bodega</label>
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.invf_ResponsableBodega)
-        </dd>
+                        <dd>
+                            Antony Fugon
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.bod_Id)
-        </dt>
+                        <dt>
+                            <label class="control-label col-md-2">Bodega</label>
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.bod_Id)
-        </dd>
+                        <dd>
+                            01
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.invf_FechaInventario)
-        </dt>
+                        <dt>
+                            <label class="control-label col-md-2">Fecha Levantamiento</label>
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.invf_FechaInventario)
-        </dd>
+                        <dd>
+                            28/11/2018
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.invf_UsuarioCrea)
-        </dt>
+                        <dt>
+                            <label class="control-label col-md-2">Creado por</label>
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.invf_UsuarioCrea)
-        </dd>
+                        <dd>
+                            Keilin_R
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.invf_FechaCrea)
-        </dt>
+                        <dt>
+                            <label class="control-label col-md-2">Creado el</label>
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.invf_FechaCrea)
-        </dd>
+                        <dd>
+                            28/11/2018
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.invf_UsuarioModifica)
-        </dt>
+                        <dt>
+                            <label class="control-label col-md-2">Modificado por</label>
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.invf_UsuarioModifica)
-        </dd>
+                        <dd>
+                            BR
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.invf_FechaModifica)
-        </dt>
+                        <dt>
+                            <label class="control-label col-md-2">Modificado el</label>
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.invf_FechaModifica)
-        </dd>
+                        <dd>
+                            28/11/2018
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tbEstadoInventarioFisico.estif_Descripcion)
-        </dt>
+                        <dt>
+                            <label class="control-label col-md-2">Estado</label>
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbEstadoInventarioFisico.estif_Descripcion)
-        </dd>
+                        <dd>
+                            Activo
+                        </dd>
 
-    </dl>
+                    </dl>
 
 
-	    @Html.ActionLink("Edit", "Edit", new { id = Model.invf_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+                    @Html.ActionLink("Editar", "Edit", new { @class = "" })
+                    @Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "" })
 
                 </div>
             </div>
         </div>
     </div>
- </div>
-
-
-
-
-
-
-
-
-
-
+</div>
 
 
 

@@ -34,22 +34,16 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             }
             return View(tbDepartamento);
         }
-
+        public ActionResult _IndexMunicipio()
+        {
+            return View();
+        }
         // GET: /Departamento/Create
         public ActionResult Create()
         {
             return View();
         }
         
-        public ActionResult Detalle()
-        {
-            return View();
-        }
-
-        public ActionResult Editar()
-        {
-            return View();
-        }
         // POST: /Departamento/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

@@ -128,7 +128,7 @@
                         </dt>
 
                         <dd>
-                            Bodega
+                            Inventario F. 2018
                         </dd>
 
                         <dt>
@@ -140,15 +140,15 @@
                         </dd>
 
                         <dt>
-                            <label class="control-label col-md-2">Bodega Id</label>
+                            <label class="control-label col-md-2">Bodega</label>
                         </dt>
 
                         <dd>
-                           01
+                           Bodega #1
                         </dd>
 
                         <dt>
-                            <label class="control-label col-md-2">Fecha Inventario</label>
+                            <label class="control-label col-md-2">Fecha Levantamiento</label>
                         </dt>
 
                         <dd>
@@ -156,15 +156,15 @@
                         </dd>
 
                         <dt>
-                            <label class="control-label col-md-2">Usuario Crea</label>
+                            <label class="control-label col-md-2">Creado por</label>
                         </dt>
 
                         <dd>
-                           Keilin_R
+                           Anthony Fugon
                         </dd>
 
                         <dt>
-                            <label class="control-label col-md-2">Fecha Crea</label>
+                            <label class="control-label col-md-2">Creado el</label>
                         </dt>
 
                         <dd>
@@ -172,7 +172,7 @@
                         </dd>
 
                         <dt>
-                            <label class="control-label col-md-2">Usuario Modifica</label>
+                            <label class="control-label col-md-2">Modificado por</label>
                         </dt>
 
                         <dd>
@@ -180,7 +180,7 @@
                         </dd>
 
                         <dt>
-                            <label class="control-label col-md-2">Fecha Modifica</label>
+                            <label class="control-label col-md-2">Modificado el</label>
                         </dt>
 
                         <dd>
@@ -188,7 +188,7 @@
                         </dd>
 
                         <dt>
-                            <label class="control-label col-md-2">Estado Inventario Fisico</label>
+                            <label class="control-label col-md-2">Estado</label>
                         </dt>
 
                         <dd>
@@ -200,7 +200,7 @@
 
                     @Html.ActionLink("Editar", "Editar", new { @class = "" })
                     @Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "" })
-
+                    @Html.Partial("_IndexInvFisicoDetalle", Model)
                 </div>
             </div>
         </div>

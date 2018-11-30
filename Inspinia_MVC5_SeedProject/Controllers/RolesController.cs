@@ -44,6 +44,11 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         {
             return View();
         }
+
+        public ActionResult _AccesoRoles()
+        {
+            return View();
+        }
         public ActionResult Editar()
         {
             return View();
