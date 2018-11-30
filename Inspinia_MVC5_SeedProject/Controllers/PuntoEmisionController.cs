@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,7 +17,8 @@ namespace ERP_ZORZAL.Controllers
         // GET: /PuntoEmision/
         public ActionResult Index()
         {
-            return View(db.tbPuntoEmision.ToList());
+            var tbpuntoemision = db.tbPuntoEmision.Include(t => t.tbSucursal1);
+            return View(tbpuntoemision.ToList());
         }
 
         // GET: /PuntoEmision/Details/5
@@ -38,6 +39,7 @@ namespace ERP_ZORZAL.Controllers
         // GET: /PuntoEmision/Create
         public ActionResult Create()
         {
+            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
             return View();
         }
 
@@ -55,6 +57,7 @@ namespace ERP_ZORZAL.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPuntoEmision.suc_Id);
             return View(tbPuntoEmision);
         }
 
@@ -70,6 +73,7 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPuntoEmision.suc_Id);
             return View(tbPuntoEmision);
         }
 
@@ -86,6 +90,7 @@ namespace ERP_ZORZAL.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPuntoEmision.suc_Id);
             return View(tbPuntoEmision);
         }
 

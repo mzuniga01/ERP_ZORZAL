@@ -7,19 +7,20 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Edit</h2>
-        <ol class="breadcrumb">
+        <h2>Punto Emisión</h2>
+        @*<ol class="breadcrumb">
             <li>
                 @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
                 <strong>Edit</strong>
             </li>
-        </ol>
+        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+            <a href="@Url.Action("Index","PuntoEmision")">Regresar</a>
+			@*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
 </div>
@@ -32,7 +33,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Edit tbPuntoEmision</h5>
+                    <h5>Editar Punto Emision</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -46,24 +47,25 @@
         @Html.HiddenFor(model => model.pemi_Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.suc_Id)
+            @Html.LabelFor(model => model.suc_Id, "suc_Id", new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @*@Html.DropDownList("suc_Id", String.Empty)*@
+                @Html.DropDownList("suc_Id", null, new { @class = "control-label col-md-12" })
                 @Html.ValidationMessageFor(model => model.suc_Id)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.pemi_NumeroCAI)
                 @Html.ValidationMessageFor(model => model.pemi_NumeroCAI)
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.pemi_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.pemi_UsuarioCrea)
                 @Html.ValidationMessageFor(model => model.pemi_UsuarioCrea)
             </div>
@@ -71,7 +73,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.pemi_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.pemi_FechaCrea)
                 @Html.ValidationMessageFor(model => model.pemi_FechaCrea)
             </div>
@@ -79,7 +81,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.pemi_UsuarioModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.pemi_UsuarioModifica)
                 @Html.ValidationMessageFor(model => model.pemi_UsuarioModifica)
             </div>
@@ -87,21 +89,25 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.pemi_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.pemi_FechaModifica)
                 @Html.ValidationMessageFor(model => model.pemi_FechaModifica)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+            <div class="col-md-offset-2 col-md-5">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>
 }
-
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        @Html.Partial("_IndexPuntoEmisionDetalle",Model.tbPuntoEmisionDetalle)
+    </div>
+</div>
 
                 </div>
             </div>
@@ -114,3 +120,6 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+@Html.Partial("_IndexPuntoEmisionDetalle")

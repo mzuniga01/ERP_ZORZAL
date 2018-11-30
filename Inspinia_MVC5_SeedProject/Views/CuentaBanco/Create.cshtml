@@ -19,7 +19,8 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})
+            <a href="@Url.Action("Index","CuentaBanco")">Regresar</a>
+			@*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
 </div>
@@ -46,48 +47,49 @@
             @Html.LabelFor(model => model.bcta_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.bcta_Id)
-                @Html.ValidationMessageFor(model => model.bcta_Id)
+                <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_Id)</p>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ban_Id, "ban_Id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ban_Id, "Id Banco", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ban_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.ban_Id)
-            </div>
+                @*@Html.DropDownList("ban_Id", String.Empty)*@
+                @Html.DropDownList("ban_Id", null, new { @class = "control-label col-md-12" })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.ban_Id)</p>
+</div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.mnda_Id)
-                @Html.ValidationMessageFor(model => model.mnda_Id)
-            </div>
+                <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Id)</p>
+</div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.bcta_TipoCuenta, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.bcta_TipoCuenta)
-                @Html.ValidationMessageFor(model => model.bcta_TipoCuenta)
-            </div>
+                <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_TipoCuenta)</p>
+</div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.bcta_TotalCredito, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.bcta_TotalCredito)
-                @Html.ValidationMessageFor(model => model.bcta_TotalCredito)
-            </div>
+                <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_TotalCredito)</p>
+</div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.bcta_TotalDebito, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.bcta_TotalDebito)
-                @Html.ValidationMessageFor(model => model.bcta_TotalDebito)
-            </div>
+                <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_TotalDebito)</p>
+</div>
         </div>
 
         @*<div class="form-group">

@@ -53,7 +53,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.ban_FechaModifica)
                 </th>*@
-            <th></th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -84,8 +84,8 @@
                     @Html.DisplayFor(modelItem => item.ban_FechaModifica)
                 </td>*@
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.ban_Id }, new { @class = "btn btn-primary btn-sm" })
-                @Html.ActionLink("Edit", "Edit", new { id = item.ban_Id }, new { @class = "btn btn-white btn-sm" })
+                @Html.ActionLink("Detalles", "Details", new { id = item.ban_Id }, new { @class = "btn btn-primary btn-sm" })
+                @Html.ActionLink("Editar", "Edit", new { id = item.ban_Id }, new { @class = "btn btn-white btn-sm" })
                 @*@Html.ActionLink("Delete", "Delete", new { id=item.ban_Id }, new { @class = "btn btn-white btn-sm"})*@
             </td>
         </tr>

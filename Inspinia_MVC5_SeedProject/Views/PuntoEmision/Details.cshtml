@@ -7,15 +7,15 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Details</h2>
-        <ol class="breadcrumb">
+        <h2>Punto Emisión</h2>
+        @*<ol class="breadcrumb">
             <li>
                 @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
                 <strong>Details</strong>
             </li>
-        </ol>
+        </ol>*@
     </div>
 </div>
 
@@ -27,20 +27,12 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Details tbPuntoEmision</h5>
+                    <h5>Detalle Punto Emisión</h5>
                 </div>
                 <div class="ibox-content">
 
 
 				    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.suc_Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.suc_Id)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
         </dt>
@@ -65,7 +57,7 @@
             @Html.DisplayFor(model => model.pemi_FechaCrea)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.pemi_UsuarioModifica)
         </dt>
 
@@ -79,13 +71,22 @@
 
         <dd>
             @Html.DisplayFor(model => model.pemi_FechaModifica)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbSucursal1.mun_Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbSucursal1.mun_Codigo)
         </dd>
 
     </dl>
 
 
-	    @Html.ActionLink("Edit", "Edit", new { id = Model.pemi_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.pemi_Id }, new { @class = "btn btn-primary"})
+                    <a href="@Url.Action("Index","PuntoEmision")">Regresar</a>
+    @*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white"})*@
 
                 </div>
             </div>

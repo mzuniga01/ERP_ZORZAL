@@ -19,7 +19,8 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+            <a href="@Url.Action("Index","CuentaBanco")">Regresar</a>
+			@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
 </div>
@@ -46,9 +47,10 @@
         @Html.HiddenFor(model => model.bcta_Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ban_Id, "ban_Id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ban_Id, "Id Banco", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ban_Id", String.Empty)
+                @*@Html.DropDownList("ban_Id", String.Empty)*@
+                @Html.DropDownList("ban_Id", null, new { @class = "control-label col-md-12" })
                 @Html.ValidationMessageFor(model => model.ban_Id)
             </div>
         </div>
