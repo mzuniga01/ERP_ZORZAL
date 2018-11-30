@@ -7,15 +7,24 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Unidad Medida</h2>
+        <h2>Unidades de Medida</h2>
+        @*<ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("List", "Index")
+                </li>
+                <li class="active">
+                    <strong>Details</strong>
+                </li>
+            </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
             <a href="@Url.Action("Index","UnidadMedida")">Regresar</a>
+            @*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
-</div>
 
+</div>
 
 
 
@@ -56,32 +65,36 @@
         <div class="form-group">
             @Html.LabelFor(model => model.uni_UsuarioCrea, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.uni_UsuarioCrea)
-                @Html.ValidationMessageFor(model => model.uni_UsuarioCrea)
+                @*@Html.EditorFor(model => model.uni_UsuarioCrea)
+                @Html.ValidationMessageFor(model => model.uni_UsuarioCrea)*@
+                <input type="text" class="form-control" value="MariaFernanda"  readonly="readonly"/>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.uni_FechaCrea, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.uni_FechaCrea)
-                @Html.ValidationMessageFor(model => model.uni_FechaCrea)
+                @*@Html.EditorFor(model => model.uni_FechaCrea)
+                @Html.ValidationMessageFor(model => model.uni_FechaCrea)*@
+                <input type="text" class="form-control" value="30/11/2018 /4:00"  readonly="readonly"/>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.uni_UsuarioModifica, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.uni_UsuarioModifica)
-                @Html.ValidationMessageFor(model => model.uni_UsuarioModifica)
+                @*@Html.EditorFor(model => model.uni_UsuarioModifica)
+                @Html.ValidationMessageFor(model => model.uni_UsuarioModifica)*@
+                <input type="text" class="form-control" value="Maria Fernanda" readonly="readonly" />
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.uni_FechaModifica, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.uni_FechaModifica)
-                @Html.ValidationMessageFor(model => model.uni_FechaModifica)
+                @*@Html.EditorFor(model => model.uni_FechaModifica)
+                @Html.ValidationMessageFor(model => model.uni_FechaModifica)*@
+                <input type="text" class="form-control" value="30/11/2018 /4:20" readonly="readonly" />
             </div>
         </div>
 

@@ -104,6 +104,20 @@ namespace ERP_ZORZAL.Controllers
             return View(tbUnidadMedida);
         }
 
+        public ActionResult Usuario(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbUsuario tbUsuario = db.tbUsuario.Find(id);
+            if (tbUsuario == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tbUsuario);
+        }
+
         // POST: /UnidadMedida/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
