@@ -12,7 +12,7 @@
                 <div class="ibox-title">
                     <h5>Tipos De Entradas</h5>
                     <div class="ibox-tools">
-                        @Html.ActionLink("Nueva Entrada", "Crear", null, new { @class = "btn btn-primary btn-xs" })
+                        @Html.ActionLink("Nuevo", "Crear", null, new { @class = "btn btn-primary btn-xs" })
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -26,7 +26,9 @@
                                 <th>
                                     Nombre Tipo Entrada
                                 </th>
-                                <th></th>
+                                <th>
+                                    Acciones
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,8 +41,11 @@
                                     Entrada Por Devolucion
                                 </td>
                                 <td>
-                                    <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Editar" data-toggle="modal" data-target="#Editar" />
-                                    <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Detalles" data-toggle="modal" data-target="#Detalles" />
+                                    @*<input type="button" class="btn btn-primary btn-xs" data-dismiss="modal"  id="btnCerrar" value="Detalles" data-toggle="modal" data-target="#Detalles" />
+                                    <input type="button" class="btn btn-white btn-xs" data-dismiss="modal" id="btnCerrar" value="Editar" data-toggle="modal" data-target="#Editar" />*@
+                                    @Html.ActionLink("Detalles", "Detalles", null, new { @class = "btn btn-primary btn-xs" })
+                                    @Html.ActionLink("Editar", "Editar", null, new { @class = "btn btn-white btn-xs" })
+                                    
                                 </td>
                             </tr>
                             <tr>
@@ -51,8 +56,9 @@
                                     Entrada Por Traslado
                                 </td>
                                 <td>
-                                    <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Editar" data-toggle="modal" data-target="#Editar" />
-                                    <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Detalles" data-toggle="modal" data-target="#Detalles" />
+                                    @Html.ActionLink("Detalles", "Detalles", null, new { @class = "btn btn-primary btn-xs" })
+                                    @Html.ActionLink("Editar", "Editar", null, new { @class = "btn btn-white btn-xs" })
+                                    
                                 </td>
                             </tr>
                             <tr>
@@ -63,8 +69,9 @@
                                     Entrada Por Compra
                                 </td>
                                 <td>
-                                    <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Editar" data-toggle="modal" data-target="#Editar" />
-                                    <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Detalles" data-toggle="modal" data-target="#Detalles" />
+                                    @Html.ActionLink("Detalles", "Detalles", null, new { @class = "btn btn-primary btn-xs" })
+                                    @Html.ActionLink("Editar", "Editar", null, new { @class = "btn btn-white btn-xs" })
+                                    
                                 </td>
                             </tr>
                         </tbody>
@@ -97,7 +104,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
+                                    <input type="button" class="btn btn-white btn-xs" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
                                     <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Aceptar" />
                                 </div>
                             </div>
@@ -138,7 +145,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
+                                    <input type="button" class="btn btn-white btn-xs" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
                                     <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Aceptar" />
                                 </div>
                             </div>
