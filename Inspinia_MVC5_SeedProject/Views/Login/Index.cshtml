@@ -12,13 +12,13 @@
     @using (Html.BeginForm())
     {
         <!-- USERNAME INPUT -->
-        <label for="username">Nombre Usuario</label>
+        <label for="username">Usuario</label>
         @Html.EditorFor(model => model.fact_Codigo)
         <!-- PASSWORD INPUT -->
         <label for="password">Contraseña</label>
-        @Html.EditorFor(model => model.fact_Codigo, new { htmlAttributes = new { @class = "form-control", type = "password" , placeholder = "Password" } })
+        @Html.EditorFor(model => model.fact_Codigo, new { htmlAttributes = new { @class = "form-control", type = "password" } })
         <input type="submit" value="INGRESAR">
-        <a href="#">Olvidaste Tu Contraseña?</a><br>
+        <a href="#">¿Olvidaste tu Contraseña?</a><br>
         <a href="#"></a>
     }
 </div>
