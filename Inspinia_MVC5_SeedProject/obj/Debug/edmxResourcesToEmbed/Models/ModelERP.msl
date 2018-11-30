@@ -75,8 +75,8 @@
           <ScalarProperty Name="usu_RazonInactivo" ColumnName="usu_RazonInactivo" />
           <ScalarProperty Name="usu_EsActivo" ColumnName="usu_EsActivo" />
           <ScalarProperty Name="usu_Correo" ColumnName="usu_Correo" />
-          <ScalarProperty Name="usu_Apellido" ColumnName="usu_Apellido" />
-          <ScalarProperty Name="usu_Nombre" ColumnName="usu_Nombre" />
+          <ScalarProperty Name="usu_Apellidos" ColumnName="usu_Apellidos" />
+          <ScalarProperty Name="usu_Nombres" ColumnName="usu_Nombres" />
           <ScalarProperty Name="usu_Password" ColumnName="usu_Password" />
           <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
           <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
@@ -238,9 +238,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbCaja">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCaja">
-        <MappingFragment StoreEntitySet="tbCaja">
+    <EntitySetMapping Name="tbBox">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbBox">
+        <MappingFragment StoreEntitySet="tbBox">
           <ScalarProperty Name="box_FechaModifica" ColumnName="box_FechaModifica" />
           <ScalarProperty Name="box_UsuarioModifica" ColumnName="box_UsuarioModifica" />
           <ScalarProperty Name="box_FechaCrea" ColumnName="box_FechaCrea" />
@@ -335,8 +335,8 @@
           <ScalarProperty Name="prod_UsuarioCrea" ColumnName="prod_UsuarioCrea" />
           <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
           <ScalarProperty Name="pscat_Id" ColumnName="pscat_Id" />
-          <ScalarProperty Name="Color" ColumnName="Color" />
-          <ScalarProperty Name="Talla" ColumnName="Talla" />
+          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
           <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
           <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
           <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
@@ -395,9 +395,9 @@
           <ScalarProperty Name="sal_UsuarioCrea" ColumnName="sal_UsuarioCrea" />
           <ScalarProperty Name="sal_RazonDevolucion" ColumnName="sal_RazonDevolucion" />
           <ScalarProperty Name="tsal_Id" ColumnName="tsal_Id" />
-          <ScalarProperty Name="box_Id" ColumnName="box_Id" />
+          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
           <ScalarProperty Name="estm_Id" ColumnName="estm_Id" />
-          <ScalarProperty Name="sal_FechaSalida" ColumnName="sal_FechaSalida" />
+          <ScalarProperty Name="sal_FechaElaboracion" ColumnName="sal_FechaElaboracion" />
           <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
           <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
           <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
@@ -418,9 +418,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbTiposEntrada">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposEntrada">
-        <MappingFragment StoreEntitySet="tbTiposEntrada">
+    <EntitySetMapping Name="tbTipoEntrada">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTipoEntrada">
+        <MappingFragment StoreEntitySet="tbTipoEntrada">
           <ScalarProperty Name="tent_FechaModifica" ColumnName="tent_FechaModifica" />
           <ScalarProperty Name="tent_UsuarioModifica" ColumnName="tent_UsuarioModifica" />
           <ScalarProperty Name="tent_FechaCrea" ColumnName="tent_FechaCrea" />
@@ -430,9 +430,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbTiposSalida">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTiposSalida">
-        <MappingFragment StoreEntitySet="tbTiposSalida">
+    <EntitySetMapping Name="tbTipoSalida">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTipoSalida">
+        <MappingFragment StoreEntitySet="tbTipoSalida">
           <ScalarProperty Name="tsal_FechaModifica" ColumnName="tsal_FechaModifica" />
           <ScalarProperty Name="tsal_UsuarioModifica" ColumnName="tsal_UsuarioModifica" />
           <ScalarProperty Name="tsal_FechaCrea" ColumnName="tsal_FechaCrea" />
@@ -464,9 +464,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbCaja1">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCaja1">
-        <MappingFragment StoreEntitySet="tbCaja1">
+    <EntitySetMapping Name="tbCaja">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCaja">
+        <MappingFragment StoreEntitySet="tbCaja">
           <ScalarProperty Name="cja_FechaModifica" ColumnName="cja_FechaModifica" />
           <ScalarProperty Name="cja_UsuarioModifica" ColumnName="cja_UsuarioModifica" />
           <ScalarProperty Name="cja_FechaCrea" ColumnName="cja_FechaCrea" />

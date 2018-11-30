@@ -31,7 +31,7 @@ namespace ERP_ZORZAL.Models
         public string bod_Telefono { get; set; }
         public Nullable<int> usu_Id { get; set; }
         public string mun_Codigo { get; set; }
-        public bool bod_EsActiva { get; set; }
+        public byte bod_EsActiva { get; set; }
         public int bod_UsuarioCrea { get; set; }
         public System.DateTime bod_FechaCrea { get; set; }
         public Nullable<int> bod_UsuarioModifica { get; set; }

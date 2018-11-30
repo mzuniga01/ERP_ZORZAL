@@ -14,11 +14,30 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbCaja
     {
-        public string box_Codigo { get; set; }
-        public string box_Descripcion { get; set; }
-        public int box_UsuarioCrea { get; set; }
-        public System.DateTime box_FechaCrea { get; set; }
-        public Nullable<int> box_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> box_FechaModifica { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbCaja()
+        {
+            this.tbArqueoCaja = new HashSet<tbArqueoCaja>();
+            this.tbDevolucion = new HashSet<tbDevolucion>();
+            this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
+        }
+    
+        public short cja_Id { get; set; }
+        public string cja_Descripcion { get; set; }
+        public short suc_Id { get; set; }
+        public int cja_UsuarioCrea { get; set; }
+        public System.DateTime cja_FechaCrea { get; set; }
+        public Nullable<int> cja_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> cja_FechaModifica { get; set; }
+    
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbArqueoCaja> tbArqueoCaja { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbDevolucion> tbDevolucion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
+        public virtual tbSucursal tbSucursal { get; set; }
     }
 }

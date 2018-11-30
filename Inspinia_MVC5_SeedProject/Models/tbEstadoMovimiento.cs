@@ -20,9 +20,10 @@ namespace ERP_ZORZAL.Models
             this.tbBodega = new HashSet<tbBodega>();
             this.tbEntrada = new HashSet<tbEntrada>();
             this.tbProductoSubcategoria = new HashSet<tbProductoSubcategoria>();
+            this.tbSalida = new HashSet<tbSalida>();
         }
     
-        public bool estm_Id { get; set; }
+        public byte estm_Id { get; set; }
         public string estm_Descripcion { get; set; }
         public int estm_UsuarioCrea { get; set; }
         public System.DateTime estm_FechaCrea { get; set; }
@@ -35,5 +36,7 @@ namespace ERP_ZORZAL.Models
         public virtual ICollection<tbEntrada> tbEntrada { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSalida> tbSalida { get; set; }
     }
 }

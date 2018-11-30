@@ -22,14 +22,8 @@ namespace ERP_ZORZAL.Models
             this.tbActividadEconomica1 = new HashSet<tbActividadEconomica>();
             this.tbCuponDescuento = new HashSet<tbCuponDescuento>();
             this.tbCuponDescuento1 = new HashSet<tbCuponDescuento>();
-            this.tbCuponDescuento2 = new HashSet<tbCuponDescuento>();
-            this.tbCuponDescuento3 = new HashSet<tbCuponDescuento>();
-            this.tbCuponDescuento4 = new HashSet<tbCuponDescuento>();
-            this.tbCuponDescuento5 = new HashSet<tbCuponDescuento>();
             this.tbEstadoSolicitudCredito = new HashSet<tbEstadoSolicitudCredito>();
             this.tbEstadoSolicitudCredito1 = new HashSet<tbEstadoSolicitudCredito>();
-            this.tbEstadoSolicitudCredito2 = new HashSet<tbEstadoSolicitudCredito>();
-            this.tbEstadoSolicitudCredito3 = new HashSet<tbEstadoSolicitudCredito>();
             this.tbListadoPrecioDetalle = new HashSet<tbListadoPrecioDetalle>();
             this.tbListadoPrecioDetalle1 = new HashSet<tbListadoPrecioDetalle>();
             this.tbListaPrecio = new HashSet<tbListaPrecio>();
@@ -44,14 +38,12 @@ namespace ERP_ZORZAL.Models
             this.tbPedidoDetalle1 = new HashSet<tbPedidoDetalle>();
             this.tbSolicitudCredito = new HashSet<tbSolicitudCredito>();
             this.tbSolicitudCredito1 = new HashSet<tbSolicitudCredito>();
-            this.tbSolicitudCredito2 = new HashSet<tbSolicitudCredito>();
-            this.tbSolicitudCredito3 = new HashSet<tbSolicitudCredito>();
             this.tbTipoIdentificacion = new HashSet<tbTipoIdentificacion>();
             this.tbTipoIdentificacion1 = new HashSet<tbTipoIdentificacion>();
             this.tbArqueoCaja = new HashSet<tbArqueoCaja>();
             this.tbArqueoCaja1 = new HashSet<tbArqueoCaja>();
-            this.tbCaja1 = new HashSet<tbCaja1>();
-            this.tbCaja11 = new HashSet<tbCaja1>();
+            this.tbCaja = new HashSet<tbCaja>();
+            this.tbCaja1 = new HashSet<tbCaja>();
             this.tbDevolucion = new HashSet<tbDevolucion>();
             this.tbDevolucion1 = new HashSet<tbDevolucion>();
             this.tbDevolucionDetalle = new HashSet<tbDevolucionDetalle>();
@@ -82,8 +74,8 @@ namespace ERP_ZORZAL.Models
         public int usu_Id { get; set; }
         public string usu_NombreUsuario { get; set; }
         public byte[] usu_Password { get; set; }
-        public string usu_Nombre { get; set; }
-        public string usu_Apellido { get; set; }
+        public string usu_Nombres { get; set; }
+        public string usu_Apellidos { get; set; }
         public string usu_Correo { get; set; }
         public bool usu_EsActivo { get; set; }
         public string usu_RazonInactivo { get; set; }
@@ -100,21 +92,9 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCuponDescuento> tbCuponDescuento1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCuponDescuento> tbCuponDescuento2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCuponDescuento> tbCuponDescuento3 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCuponDescuento> tbCuponDescuento4 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCuponDescuento> tbCuponDescuento5 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEstadoSolicitudCredito> tbEstadoSolicitudCredito { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEstadoSolicitudCredito> tbEstadoSolicitudCredito1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbEstadoSolicitudCredito> tbEstadoSolicitudCredito2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbEstadoSolicitudCredito> tbEstadoSolicitudCredito3 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -144,10 +124,6 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito3 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbTipoIdentificacion> tbTipoIdentificacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbTipoIdentificacion> tbTipoIdentificacion1 { get; set; }
@@ -156,9 +132,9 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbArqueoCaja> tbArqueoCaja1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCaja1> tbCaja1 { get; set; }
+        public virtual ICollection<tbCaja> tbCaja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCaja1> tbCaja11 { get; set; }
+        public virtual ICollection<tbCaja> tbCaja1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbDevolucion> tbDevolucion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

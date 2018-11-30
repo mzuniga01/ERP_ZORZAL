@@ -17,7 +17,7 @@ namespace ERP_ZORZAL.Models
         public int pscat_Id { get; set; }
         public string pscat_Descripcion { get; set; }
         public int pcat_Id { get; set; }
-        public bool pscat_EsActiva { get; set; }
+        public byte pscat_EsActiva { get; set; }
         public int pscat_UsuarioCrea { get; set; }
         public System.DateTime pscat_FechaCrea { get; set; }
         public Nullable<int> pscat_UsuarioModifica { get; set; }

@@ -24,7 +24,7 @@ namespace ERP_ZORZAL.Models
         public string ent_NumeroFormato { get; set; }
         public System.DateTime ent_FechaElaboracion { get; set; }
         public int bod_Id { get; set; }
-        public bool estm_Id { get; set; }
+        public byte estm_Id { get; set; }
         public int prov_Id { get; set; }
         public string ent_FacturaCompra { get; set; }
         public System.DateTime ent_FechaCompra { get; set; }
@@ -40,7 +40,7 @@ namespace ERP_ZORZAL.Models
         public virtual tbBodega tbBodega { get; set; }
         public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }
         public virtual tbProveedor tbProveedor { get; set; }
-        public virtual tbTiposEntrada tbTiposEntrada { get; set; }
+        public virtual tbTipoEntrada tbTipoEntrada { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEntradaDetalle> tbEntradaDetalle { get; set; }
     }

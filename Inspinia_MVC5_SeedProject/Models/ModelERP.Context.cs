@@ -42,7 +42,7 @@ namespace ERP_ZORZAL.Models
         public virtual DbSet<tbUnidadMedida> tbUnidadMedida { get; set; }
         public virtual DbSet<tbBodega> tbBodega { get; set; }
         public virtual DbSet<tbBodegaDetalle> tbBodegaDetalle { get; set; }
-        public virtual DbSet<tbCaja> tbCaja { get; set; }
+        public virtual DbSet<tbBox> tbBox { get; set; }
         public virtual DbSet<tbEntrada> tbEntrada { get; set; }
         public virtual DbSet<tbEntradaDetalle> tbEntradaDetalle { get; set; }
         public virtual DbSet<tbEstadoInventarioFisico> tbEstadoInventarioFisico { get; set; }
@@ -54,10 +54,10 @@ namespace ERP_ZORZAL.Models
         public virtual DbSet<tbProveedor> tbProveedor { get; set; }
         public virtual DbSet<tbSalida> tbSalida { get; set; }
         public virtual DbSet<tbSalidaDetalle> tbSalidaDetalle { get; set; }
-        public virtual DbSet<tbTiposEntrada> tbTiposEntrada { get; set; }
-        public virtual DbSet<tbTiposSalida> tbTiposSalida { get; set; }
+        public virtual DbSet<tbTipoEntrada> tbTipoEntrada { get; set; }
+        public virtual DbSet<tbTipoSalida> tbTipoSalida { get; set; }
         public virtual DbSet<tbArqueoCaja> tbArqueoCaja { get; set; }
-        public virtual DbSet<tbCaja1> tbCaja1 { get; set; }
+        public virtual DbSet<tbCaja> tbCaja { get; set; }
         public virtual DbSet<tbCliente> tbCliente { get; set; }
         public virtual DbSet<tbCuponDescuento> tbCuponDescuento { get; set; }
         public virtual DbSet<tbDevolucion> tbDevolucion { get; set; }

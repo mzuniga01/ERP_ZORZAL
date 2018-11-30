@@ -245,10 +245,10 @@
     <Compile Include="Models\tbBodegaDetalle.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbCaja.cs">
+    <Compile Include="Models\tbBox.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbCaja1.cs">
+    <Compile Include="Models\tbCaja.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbCliente.cs">
@@ -377,16 +377,16 @@
     <Compile Include="Models\tbTipoDenominacion.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbTipoEntrada.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbTipoIdentificacion.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbTipoPago.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbTiposEntrada.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbTiposSalida.cs">
+    <Compile Include="Models\tbTipoSalida.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbUnidadMedida.cs">

@@ -17,7 +17,7 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbSucursal()
         {
-            this.tbCaja1 = new HashSet<tbCaja1>();
+            this.tbCaja = new HashSet<tbCaja>();
             this.tbCuponDescuento = new HashSet<tbCuponDescuento>();
             this.tbPedido = new HashSet<tbPedido>();
             this.tbPuntoEmision1 = new HashSet<tbPuntoEmision>();
@@ -40,7 +40,7 @@ namespace ERP_ZORZAL.Models
         public virtual tbMunicipio tbMunicipio { get; set; }
         public virtual tbBodega tbBodega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCaja1> tbCaja1 { get; set; }
+        public virtual ICollection<tbCaja> tbCaja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCuponDescuento> tbCuponDescuento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

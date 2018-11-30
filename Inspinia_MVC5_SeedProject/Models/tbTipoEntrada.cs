@@ -12,10 +12,10 @@ namespace ERP_ZORZAL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbTiposEntrada
+    public partial class tbTipoEntrada
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbTiposEntrada()
+        public tbTipoEntrada()
         {
             this.tbEntrada = new HashSet<tbEntrada>();
         }

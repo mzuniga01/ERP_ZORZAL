@@ -31,8 +31,8 @@ namespace ERP_ZORZAL.Models
         public string prod_Descripcion { get; set; }
         public string prod_Marca { get; set; }
         public string prod_Modelo { get; set; }
-        public string Talla { get; set; }
-        public string Color { get; set; }
+        public string prod_Talla { get; set; }
+        public string prod_Color { get; set; }
         public int pscat_Id { get; set; }
         public int uni_Id { get; set; }
         public int prod_UsuarioCrea { get; set; }
