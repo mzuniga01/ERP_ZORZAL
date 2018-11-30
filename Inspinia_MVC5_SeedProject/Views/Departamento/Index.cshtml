@@ -19,7 +19,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Departamento</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Departamento", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -47,8 +47,8 @@
                     @Html.DisplayFor(modelItem => item.dep_Nombre)
                 </td>
                 <td>
-                    @Html.ActionLink("Detalle", "Details", new { id = 5 }, new { @class =""  })
-                    @Html.ActionLink("Editar", "Edit", new { id = 5 }, new { @class = "" })
+                    @Html.ActionLink("Detalle", "Details", new { id = 5 }, new { @class = "btn btn-primary btn-sm" })
+                    @Html.ActionLink("Editar", "Edit", new { id = 5 }, new { @class = "btn btn-white btn-sm" })
                 </td>
             </tr>
         }
