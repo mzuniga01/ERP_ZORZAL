@@ -19,14 +19,14 @@ namespace ERP_ZORZAL.Models
         public byte escre_Id { get; set; }
         public System.DateTime cred_FechaSolicitud { get; set; }
         public System.DateTime cred_FechaAprobacion { get; set; }
-        public decimal cred_MontoSolicitud { get; set; }
-        public decimal cred_MontoAprobacion { get; set; }
-        public int cred_DiasSolicitud { get; set; }
-        public int cred_DiasAprobacion { get; set; }
-        public string cred_UsuarioCrea { get; set; }
+        public decimal cred_MontoSolicitado { get; set; }
+        public decimal cred_MontoAprobado { get; set; }
+        public int cred_DiasSolicitado { get; set; }
+        public int cred_DiasAprobado { get; set; }
+        public int cred_UsuarioCrea { get; set; }
         public System.DateTime cred_FechaCrea { get; set; }
-        public string cred_UsuarioModicacion { get; set; }
-        public System.DateTime cred_FechaModifica { get; set; }
+        public Nullable<int> cred_UsuarioModicacion { get; set; }
+        public Nullable<System.DateTime> cred_FechaModifica { get; set; }
     
         public virtual tbCliente tbCliente { get; set; }
         public virtual tbEstadoSolicitudCredito tbEstadoSolicitudCredito { get; set; }

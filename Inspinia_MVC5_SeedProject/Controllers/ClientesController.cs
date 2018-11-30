@@ -17,7 +17,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /Clientes/
         public ActionResult Index()
         {
-            var tbcliente = db.tbCliente.Include(t => t.tbTipoIdentificacion);
+            var tbcliente = db.tbCliente.Include(t => t.clte_Id);
             return View(tbcliente.ToList());
         }
 
@@ -57,7 +57,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente);
             return View(tbCliente);
         }
 
@@ -73,7 +73,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente);
             return View(tbCliente);
         }
 
@@ -90,7 +90,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente);
             return View(tbCliente);
         }
 

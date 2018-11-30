@@ -102,8 +102,8 @@
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.0\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -118,11 +118,11 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -130,19 +130,19 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -180,7 +180,6 @@
     <Compile Include="Controllers\AccesoRolController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadEconomicaController.cs" />
-    <Compile Include="Controllers\BancoController.cs" />
     <Compile Include="Controllers\BodegaController.cs" />
     <Compile Include="Controllers\BodegaDetalleController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
@@ -214,12 +213,10 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SalidaController.cs" />
     <Compile Include="Controllers\SalidaDetalleController.cs" />
-    <Compile Include="Controllers\SolicitudCreditoController.cs" />
     <Compile Include="Controllers\SucursalsController.cs" />
     <Compile Include="Controllers\tbArqueoCajasController.cs" />
     <Compile Include="Controllers\tbCajasController.cs" />
     <Compile Include="Controllers\tbDocumentoFiscalsController.cs" />
-    <Compile Include="Controllers\tbSolicitudEfectivoesController.cs" />
     <Compile Include="Controllers\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\TipoPagoController.cs" />
     <Compile Include="Controllers\TiposEntradaController.cs" />
@@ -230,19 +227,7 @@
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ActividadesEconomicas.cs" />
-    <Compile Include="Models\ArqueoCaja.cs" />
-    <Compile Include="Models\cDetalleDevolucion.cs" />
-    <Compile Include="Models\cDetallePedido.cs" />
-    <Compile Include="Models\cDevolucion.cs" />
-    <Compile Include="Models\cExoneracion.cs" />
-    <Compile Include="Models\cPago.cs" />
-    <Compile Include="Models\cTipoPago.cs" />
-    <Compile Include="Models\DocumentoFiscal.cs" />
-    <Compile Include="Models\EstadoSolicitudCreditos.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ListadoPrecioDetalles.cs" />
-    <Compile Include="Models\ListaPrecioDetalles.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -258,16 +243,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Monedas.cs" />
-    <Compile Include="Models\Pedidos.cs" />
-    <Compile Include="Models\SolicitudCreditos.cs" />
-    <Compile Include="Models\SolicitudesEfectivo.cs" />
-    <Compile Include="Models\Banco.cs" />
-    <Compile Include="Models\Clientes.cs" />
-    <Compile Include="Models\CuentasBanco.cs" />
-    <Compile Include="Models\EstadoFactura.cs" />
-    <Compile Include="Models\Factura.cs" />
-    <Compile Include="Models\PuntoEmision.cs" />
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -304,9 +279,6 @@
     <Compile Include="Models\tbDepartamento.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbDetalleFactura.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tbDevolucion.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -338,6 +310,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbFactura.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbFacturaDetalle.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbInventarioFisico.cs">
@@ -406,9 +381,6 @@
     <Compile Include="Models\tbSolicitudCredito.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbSolicitudEfectivo.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tbSucursal.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -430,7 +402,6 @@
     <Compile Include="Models\tbUsuario.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TipoIdentificaciones.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -809,10 +780,6 @@
     <Content Include="Views\Factura\_CreateDetalleFactura.cshtml" />
     <Content Include="Views\Factura\_EditarDetalleFactura.cshtml" />
     <Content Include="Views\Factura\_IndexDetalleFactura.cshtml" />
-    <Content Include="Views\Banco\Create.cshtml" />
-    <Content Include="Views\Banco\Details.cshtml" />
-    <Content Include="Views\Banco\Edit.cshtml" />
-    <Content Include="Views\Banco\Index.cshtml" />
     <Content Include="Views\Clientes\Create.cshtml" />
     <Content Include="Views\Clientes\Details.cshtml" />
     <Content Include="Views\Clientes\Edit.cshtml" />
@@ -846,11 +813,6 @@
     <Content Include="Views\PedidoDetalle\Details.cshtml" />
     <Content Include="Views\PedidoDetalle\Edit.cshtml" />
     <Content Include="Views\PedidoDetalle\Index.cshtml" />
-    <Content Include="Views\PuntoEmision\Create.cshtml" />
-    <Content Include="Views\PuntoEmision\Details.cshtml" />
-    <Content Include="Views\PuntoEmision\Edit.cshtml" />
-    <Content Include="Views\PuntoEmision\Index.cshtml" />
-    <Content Include="Views\PuntoEmision\_PuntoEmisionDetalle.cshtml" />
     <Content Include="Views\Sucursals\Create.cshtml" />
     <Content Include="Views\Sucursals\Delete.cshtml" />
     <Content Include="Views\Sucursals\Details.cshtml" />
@@ -871,11 +833,6 @@
     <Content Include="Views\tbDocumentoFiscals\Details.cshtml" />
     <Content Include="Views\tbDocumentoFiscals\Edit.cshtml" />
     <Content Include="Views\tbDocumentoFiscals\Index.cshtml" />
-    <Content Include="Views\tbSolicitudEfectivoes\Create.cshtml" />
-    <Content Include="Views\tbSolicitudEfectivoes\Delete.cshtml" />
-    <Content Include="Views\tbSolicitudEfectivoes\Details.cshtml" />
-    <Content Include="Views\tbSolicitudEfectivoes\Edit.cshtml" />
-    <Content Include="Views\tbSolicitudEfectivoes\Index.cshtml" />
     <Content Include="Views\TipoPago\Create.cshtml" />
     <Content Include="Views\TipoPago\Delete.cshtml" />
     <Content Include="Views\TipoPago\Details.cshtml" />
@@ -921,11 +878,6 @@
     <Content Include="Views\listaprecio\Details.cshtml" />
     <Content Include="Views\listaprecio\Edit.cshtml" />
     <Content Include="Views\listaprecio\Index.cshtml" />
-    <Content Include="Views\solicitudcredito\Create.cshtml" />
-    <Content Include="Views\solicitudcredito\Delete.cshtml" />
-    <Content Include="Views\solicitudcredito\Details.cshtml" />
-    <Content Include="Views\solicitudcredito\Edit.cshtml" />
-    <Content Include="Views\solicitudcredito\Index.cshtml" />
     <Content Include="Views\TipoIdentificacion\Create.cshtml" />
     <Content Include="Views\TipoIdentificacion\Delete.cshtml" />
     <Content Include="Views\TipoIdentificacion\Details.cshtml" />
@@ -1100,6 +1052,11 @@
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Usuario\EditarPrueba.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\PuntoEmision\Create.cshtml" />
+    <Content Include="Views\PuntoEmision\Delete.cshtml" />
+    <Content Include="Views\PuntoEmision\Details.cshtml" />
+    <Content Include="Views\PuntoEmision\Edit.cshtml" />
+    <Content Include="Views\PuntoEmision\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

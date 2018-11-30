@@ -25,7 +25,9 @@ namespace ERP_ZORZAL.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<tbInventarioFisico> tbInventarioFisico { get; set; }
         public virtual DbSet<tbAccesoRol> tbAccesoRol { get; set; }
+        public virtual DbSet<tbObjeto> tbObjeto { get; set; }
         public virtual DbSet<tbRoles> tbRoles { get; set; }
         public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
         public virtual DbSet<tbUsuario> tbUsuario { get; set; }
@@ -33,7 +35,6 @@ namespace ERP_ZORZAL.Models
         public virtual DbSet<tbBanco> tbBanco { get; set; }
         public virtual DbSet<tbCuentasBanco> tbCuentasBanco { get; set; }
         public virtual DbSet<tbDepartamento> tbDepartamento { get; set; }
-        public virtual DbSet<tbDocumentoFiscal> tbDocumentoFiscal { get; set; }
         public virtual DbSet<tbEstadoInventarioFisico> tbEstadoInventarioFisico { get; set; }
         public virtual DbSet<tbMoneda> tbMoneda { get; set; }
         public virtual DbSet<tbMunicipio> tbMunicipio { get; set; }
@@ -45,6 +46,7 @@ namespace ERP_ZORZAL.Models
         public virtual DbSet<tbBodegaDetalle> tbBodegaDetalle { get; set; }
         public virtual DbSet<tbCaja> tbCaja { get; set; }
         public virtual DbSet<tbEntrada> tbEntrada { get; set; }
+        public virtual DbSet<tbEntradaDetalle> tbEntradaDetalle { get; set; }
         public virtual DbSet<tbEstadoMovimiento> tbEstadoMovimiento { get; set; }
         public virtual DbSet<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
         public virtual DbSet<tbProducto> tbProducto { get; set; }
@@ -57,13 +59,14 @@ namespace ERP_ZORZAL.Models
         public virtual DbSet<tbCaja1> tbCaja1 { get; set; }
         public virtual DbSet<tbCliente> tbCliente { get; set; }
         public virtual DbSet<tbCuponDescuento> tbCuponDescuento { get; set; }
-        public virtual DbSet<tbDetalleFactura> tbDetalleFactura { get; set; }
         public virtual DbSet<tbDevolucion> tbDevolucion { get; set; }
         public virtual DbSet<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
+        public virtual DbSet<tbDocumentoFiscal> tbDocumentoFiscal { get; set; }
         public virtual DbSet<tbEstadoFactura> tbEstadoFactura { get; set; }
         public virtual DbSet<tbEstadoSolicitudCredito> tbEstadoSolicitudCredito { get; set; }
         public virtual DbSet<tbExoneracion> tbExoneracion { get; set; }
         public virtual DbSet<tbFactura> tbFactura { get; set; }
+        public virtual DbSet<tbFacturaDetalle> tbFacturaDetalle { get; set; }
         public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
         public virtual DbSet<tbListaPrecio> tbListaPrecio { get; set; }
         public virtual DbSet<tbNotaCredito> tbNotaCredito { get; set; }
@@ -73,11 +76,7 @@ namespace ERP_ZORZAL.Models
         public virtual DbSet<tbPuntoEmision> tbPuntoEmision { get; set; }
         public virtual DbSet<tbPuntoEmisionDetalle> tbPuntoEmisionDetalle { get; set; }
         public virtual DbSet<tbSolicitudCredito> tbSolicitudCredito { get; set; }
-        public virtual DbSet<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
-        public virtual DbSet<tbObjeto> tbObjeto { get; set; }
-        public virtual DbSet<tbEntradaDetalle> tbEntradaDetalle { get; set; }
-        public virtual DbSet<tbInventarioFisico> tbInventarioFisico { get; set; }
     }
 }

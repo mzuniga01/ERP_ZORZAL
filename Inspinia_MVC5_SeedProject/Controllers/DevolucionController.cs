@@ -58,8 +58,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbDevolucion.fact_Codigo);
-            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbDevolucion.fact_Codigo);
+            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Id", "cja_Id", tbDevolucion.fact_Id);
+            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Id", "cja_Id", tbDevolucion.fact_Id);
             return View(tbDevolucion);
         }
 
@@ -75,8 +75,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbDevolucion.fact_Codigo);
-            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbDevolucion.fact_Codigo);
+            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbDevolucion.fact_Id);
+            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbDevolucion.fact_Id);
             return View(tbDevolucion);
         }
 
@@ -93,8 +93,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbDevolucion.fact_Codigo);
-            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbDevolucion.fact_Codigo);
+            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbDevolucion.fact_Id);
+            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbDevolucion.fact_Id);
             return View(tbDevolucion);
         }
 

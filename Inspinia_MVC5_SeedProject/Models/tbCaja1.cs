@@ -18,24 +18,18 @@ namespace ERP_ZORZAL.Models
         public tbCaja1()
         {
             this.tbArqueoCaja = new HashSet<tbArqueoCaja>();
-            this.tbFactura = new HashSet<tbFactura>();
-            this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
         }
     
-        public string cja_Codigo { get; set; }
+        public short cja_Id { get; set; }
         public string cja_Descripcion { get; set; }
-        public string sucur_Codigo { get; set; }
-        public string cja_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> cja_FechaCrea { get; set; }
-        public string cja_UsuarioModifica { get; set; }
+        public short suc_Id { get; set; }
+        public int cja_UsuarioCrea { get; set; }
+        public System.DateTime cja_FechaCrea { get; set; }
+        public Nullable<int> cja_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> cja_FechaModifica { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbArqueoCaja> tbArqueoCaja { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbFactura> tbFactura { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
         public virtual tbSucursal tbSucursal { get; set; }
     }
 }

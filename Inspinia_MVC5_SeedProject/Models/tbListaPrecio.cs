@@ -15,14 +15,12 @@ namespace ERP_ZORZAL.Models
     public partial class tbListaPrecio
     {
         public int listp_Id { get; set; }
-        public string prod_Codigo { get; set; }
-        public string listp_Estado { get; set; }
-        public string listp_UsuarioCrea { get; set; }
+        public Nullable<bool> listp_EsActivo { get; set; }
+        public int listp_UsuarioCrea { get; set; }
         public System.DateTime listp_FechaCrea { get; set; }
-        public string listp_UsuarioModifica { get; set; }
-        public System.DateTime listp_FechaModifica { get; set; }
+        public Nullable<int> listp_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> listp_FechaModifica { get; set; }
     
-        public virtual tbProducto tbProducto { get; set; }
         public virtual tbListadoPrecioDetalle tbListadoPrecioDetalle { get; set; }
     }
 }

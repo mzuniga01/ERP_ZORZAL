@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_ZORZAL.Models;
 
-namespace Inspinia_MVC5_SeedProject.Controllers
+namespace ERP_ZORZAL.Controllers
 {
     public class PuntoEmisionController : Controller
     {
@@ -17,12 +17,11 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /PuntoEmision/
         public ActionResult Index()
         {
-            var tbpuntoemision = db.tbPuntoEmision.Include(t => t.tbSucursal);
-            return View(tbpuntoemision.ToList());
+            return View(db.tbPuntoEmision.ToList());
         }
 
         // GET: /PuntoEmision/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -39,7 +38,6 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /PuntoEmision/Create
         public ActionResult Create()
         {
-            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id");
             return View();
         }
 
@@ -48,7 +46,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="pe_Codigo,sucur_Codigo,pe_NumeroCAI,pe_UsuarioCrea,pe_FechaCrea,pe_UsuarioModifica,pe_FechaModifica")] tbPuntoEmision tbPuntoEmision)
+        public ActionResult Create([Bind(Include="pemi_Id,suc_Id,pemi_NumeroCAI,pemi_UsuarioCrea,pemi_FechaCrea,pemi_UsuarioModifica,pemi_FechaModifica")] tbPuntoEmision tbPuntoEmision)
         {
             if (ModelState.IsValid)
             {
@@ -57,12 +55,11 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbPuntoEmision.sucur_Codigo);
             return View(tbPuntoEmision);
         }
 
         // GET: /PuntoEmision/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -73,7 +70,6 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbPuntoEmision.sucur_Codigo);
             return View(tbPuntoEmision);
         }
 
@@ -82,7 +78,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="pe_Codigo,sucur_Codigo,pe_NumeroCAI,pe_UsuarioCrea,pe_FechaCrea,pe_UsuarioModifica,pe_FechaModifica")] tbPuntoEmision tbPuntoEmision)
+        public ActionResult Edit([Bind(Include="pemi_Id,suc_Id,pemi_NumeroCAI,pemi_UsuarioCrea,pemi_FechaCrea,pemi_UsuarioModifica,pemi_FechaModifica")] tbPuntoEmision tbPuntoEmision)
         {
             if (ModelState.IsValid)
             {
@@ -90,12 +86,11 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbPuntoEmision.sucur_Codigo);
             return View(tbPuntoEmision);
         }
 
         // GET: /PuntoEmision/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -112,7 +107,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // POST: /PuntoEmision/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             tbPuntoEmision tbPuntoEmision = db.tbPuntoEmision.Find(id);
             db.tbPuntoEmision.Remove(tbPuntoEmision);

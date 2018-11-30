@@ -14,29 +14,21 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbPago
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbPago()
-        {
-            this.tbFactura1 = new HashSet<tbFactura>();
-        }
-    
         public int pago_Id { get; set; }
-        public string fact_Codigo { get; set; }
-        public int tpa_Id { get; set; }
-        public decimal pago_Totalpagos { get; set; }
+        public long fact_Id { get; set; }
+        public short tpa_Id { get; set; }
+        public decimal pago_Totalpago { get; set; }
         public decimal pago_Totalcambio { get; set; }
         public string pago_Emisor { get; set; }
-        public string pago_Cuenta { get; set; }
+        public Nullable<int> bcta_Id { get; set; }
         public Nullable<System.DateTime> pago_FechaVencimiento { get; set; }
         public string pago_Titular_ { get; set; }
-        public string pago_UsuarioCrea { get; set; }
+        public int pago_UsuarioCrea { get; set; }
         public System.DateTime pago_FechaCrea { get; set; }
-        public string pago_UsuarioModifica { get; set; }
+        public Nullable<int> pago_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> pago_FechaModifica { get; set; }
     
         public virtual tbFactura tbFactura { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbFactura> tbFactura1 { get; set; }
         public virtual tbTipoPago tbTipoPago { get; set; }
     }
 }

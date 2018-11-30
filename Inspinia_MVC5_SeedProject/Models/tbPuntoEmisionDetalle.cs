@@ -15,14 +15,14 @@ namespace ERP_ZORZAL.Models
     public partial class tbPuntoEmisionDetalle
     {
         public int pemid_Id { get; set; }
-        public string pe_Codigo { get; set; }
-        public byte dfisc_Codigo { get; set; }
+        public int pemi_Id { get; set; }
+        public byte dfisc_Id { get; set; }
         public string pemid_RangoInicio { get; set; }
         public string pemid_RangoFinal { get; set; }
         public System.DateTime pemid_FechaLimite { get; set; }
-        public string pemid_UsuarioCrea { get; set; }
+        public int pemid_UsuarioCrea { get; set; }
         public System.DateTime pemid_FechaCrea { get; set; }
-        public string pemid_UsuarioModifica { get; set; }
+        public Nullable<int> pemid_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> pemid_FechaModifica { get; set; }
     
         public virtual tbPuntoEmision tbPuntoEmision { get; set; }

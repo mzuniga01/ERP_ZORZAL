@@ -16,7 +16,7 @@ namespace ERP_ZORZAL.Models
     {
         public int sal_Codigo { get; set; }
         public int bod_Id { get; set; }
-        public string fact_Codigo { get; set; }
+        public long fact_Id { get; set; }
         public System.DateTime sal_FechaSalida { get; set; }
         public int sald_Id { get; set; }
         public byte estm_Id { get; set; }
@@ -30,6 +30,5 @@ namespace ERP_ZORZAL.Models
         public virtual tbBodega tbBodega { get; set; }
         public virtual tbBodega tbBodega1 { get; set; }
         public virtual tbCaja tbCaja { get; set; }
-        public virtual tbFactura tbFactura { get; set; }
     }
 }

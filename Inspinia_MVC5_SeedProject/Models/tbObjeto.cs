@@ -14,23 +14,11 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbObjeto
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbObjeto()
-        {
-            this.tbAccesoRol = new HashSet<tbAccesoRol>();
-            this.tbAccesoRol1 = new HashSet<tbAccesoRol>();
-        }
-    
         public int obj_Id { get; set; }
         public string obj_Pantalla { get; set; }
         public int obj_UsuarioCrea { get; set; }
         public System.DateTime obj_FechaCrea { get; set; }
         public Nullable<int> obj_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> obj_FechaModifica { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbAccesoRol> tbAccesoRol { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbAccesoRol> tbAccesoRol1 { get; set; }
     }
 }

@@ -7,19 +7,19 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Punto Emisión</h2>
+        <h2>Edit</h2>
         <ol class="breadcrumb">
             <li>
-                @Html.ActionLink("Listado", "Index")
+                @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
-                <strong></strong>
+                <strong>Edit</strong>
             </li>
         </ol>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})
+			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
         </div>
     </div>
 </div>
@@ -32,7 +32,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Editar Punto Emision</h5>
+                    <h5>Edit tbPuntoEmision</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -43,60 +43,60 @@
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.pe_Codigo)
+        @Html.HiddenFor(model => model.pemi_Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.sucur_Codigo, "sucur_Codigo", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("sucur_Codigo", String.Empty)
-                @Html.ValidationMessageFor(model => model.sucur_Codigo)
+                @Html.EditorFor(model => model.suc_Id)
+                @Html.ValidationMessageFor(model => model.suc_Id)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.pe_NumeroCAI, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.pe_NumeroCAI)
-                @Html.ValidationMessageFor(model => model.pe_NumeroCAI)
+                @Html.EditorFor(model => model.pemi_NumeroCAI)
+                @Html.ValidationMessageFor(model => model.pemi_NumeroCAI)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.pe_UsuarioCrea, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.pemi_UsuarioCrea, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.pe_UsuarioCrea)
-                @Html.ValidationMessageFor(model => model.pe_UsuarioCrea)
+                @Html.EditorFor(model => model.pemi_UsuarioCrea)
+                @Html.ValidationMessageFor(model => model.pemi_UsuarioCrea)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.pe_FechaCrea, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.pemi_FechaCrea, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.pe_FechaCrea)
-                @Html.ValidationMessageFor(model => model.pe_FechaCrea)
+                @Html.EditorFor(model => model.pemi_FechaCrea)
+                @Html.ValidationMessageFor(model => model.pemi_FechaCrea)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.pe_UsuarioModifica, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.pemi_UsuarioModifica, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.pe_UsuarioModifica)
-                @Html.ValidationMessageFor(model => model.pe_UsuarioModifica)
+                @Html.EditorFor(model => model.pemi_UsuarioModifica)
+                @Html.ValidationMessageFor(model => model.pemi_UsuarioModifica)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.pe_FechaModifica, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.pemi_FechaModifica, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.pe_FechaModifica)
-                @Html.ValidationMessageFor(model => model.pe_FechaModifica)
+                @Html.EditorFor(model => model.pemi_FechaModifica)
+                @Html.ValidationMessageFor(model => model.pemi_FechaModifica)
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Save" class="btn btn-primary" />
+				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>

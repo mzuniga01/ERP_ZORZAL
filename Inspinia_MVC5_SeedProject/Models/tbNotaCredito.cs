@@ -14,15 +14,16 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbNotaCredito
     {
+        public short nocre_Id { get; set; }
         public string nocre_Codigo { get; set; }
-        public string dev_Id { get; set; }
+        public int dev_Id { get; set; }
         public int clte_Id { get; set; }
         public System.DateTime nocre_FechaEmision { get; set; }
         public string nocre_MotivoEmision { get; set; }
         public Nullable<decimal> nocre_Monto { get; set; }
-        public string nocre_UsuarioCrea { get; set; }
+        public int nocre_UsuarioCrea { get; set; }
         public System.DateTime nocre_FechaCrea { get; set; }
-        public string nocre_UsuarioModifica { get; set; }
+        public Nullable<int> nocre_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> nocre_FechaModifica { get; set; }
     
         public virtual tbCliente tbCliente { get; set; }

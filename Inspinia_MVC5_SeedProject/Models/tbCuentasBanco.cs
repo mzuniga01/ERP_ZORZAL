@@ -14,22 +14,19 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbCuentasBanco
     {
-        public int bcta_Id { get; set; }
-        public int ban_Id { get; set; }
-        public int mnda_Id { get; set; }
-        public string bcta_NombreContacto { get; set; }
-        public string bcta_TipoCuenta { get; set; }
+        public short bcta_Id { get; set; }
+        public short ban_Id { get; set; }
+        public short mnda_Id { get; set; }
+        public byte bcta_TipoCuenta { get; set; }
         public decimal bcta_TotalCredito { get; set; }
         public decimal bcta_TotalDebito { get; set; }
-        public decimal bcta_SaldoCuenta { get; set; }
         public System.DateTime bcta_FechaApertura { get; set; }
-        public string bcta_Num { get; set; }
-        public string bcta_UsuarioCrea { get; set; }
+        public string bcta_Numero { get; set; }
+        public int bcta_UsuarioCrea { get; set; }
         public System.DateTime bcta_FechaCrea { get; set; }
-        public string bcta_UsuarioModifica { get; set; }
+        public Nullable<int> bcta_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> bcta_FechaModifica { get; set; }
     
         public virtual tbBanco tbBanco { get; set; }
-        public virtual tbMoneda tbMoneda { get; set; }
     }
 }

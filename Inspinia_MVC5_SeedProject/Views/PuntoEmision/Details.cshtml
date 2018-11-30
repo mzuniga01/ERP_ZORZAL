@@ -7,13 +7,13 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Punto Emisión</h2>
+        <h2>Details</h2>
         <ol class="breadcrumb">
             <li>
-                @Html.ActionLink("Listado", "Index")
+                @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
-                <strong></strong>
+                <strong>Details</strong>
             </li>
         </ol>
     </div>
@@ -27,65 +27,65 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Detalle Punto Emisión</h5>
+                    <h5>Details tbPuntoEmision</h5>
                 </div>
                 <div class="ibox-content">
 
 
 				    <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.pe_NumeroCAI)
+            @Html.DisplayNameFor(model => model.suc_Id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.pe_NumeroCAI)
+            @Html.DisplayFor(model => model.suc_Id)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.pe_UsuarioCrea)
+            @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.pe_UsuarioCrea)
+            @Html.DisplayFor(model => model.pemi_NumeroCAI)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.pe_FechaCrea)
+            @Html.DisplayNameFor(model => model.pemi_UsuarioCrea)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.pe_FechaCrea)
+            @Html.DisplayFor(model => model.pemi_UsuarioCrea)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.pe_UsuarioModifica)
+            @Html.DisplayNameFor(model => model.pemi_FechaCrea)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.pe_UsuarioModifica)
+            @Html.DisplayFor(model => model.pemi_FechaCrea)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.pe_FechaModifica)
+            @Html.DisplayNameFor(model => model.pemi_UsuarioModifica)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.pe_FechaModifica)
+            @Html.DisplayFor(model => model.pemi_UsuarioModifica)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.tbSucursal.mun_Id)
+            @Html.DisplayNameFor(model => model.pemi_FechaModifica)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.tbSucursal.mun_Id)
+            @Html.DisplayFor(model => model.pemi_FechaModifica)
         </dd>
 
     </dl>
 
 
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.pe_Codigo }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white"})
+	    @Html.ActionLink("Edit", "Edit", new { id = Model.pemi_Id }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
 
                 </div>
             </div>

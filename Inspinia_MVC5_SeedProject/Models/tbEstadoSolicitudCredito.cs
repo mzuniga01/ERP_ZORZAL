@@ -22,8 +22,8 @@ namespace ERP_ZORZAL.Models
     
         public byte escre_Id { get; set; }
         public string escre_Descripcion { get; set; }
-        public string escre_UsuarioCrea { get; set; }
-        public string escre_UsuarioModifico { get; set; }
+        public int escre_UsuarioCrea { get; set; }
+        public Nullable<int> escre_UsuarioModifico { get; set; }
         public System.DateTime escre_FechaAgrego { get; set; }
         public Nullable<System.DateTime> escre_FechaModifico { get; set; }
     

@@ -18,22 +18,22 @@ namespace ERP_ZORZAL.Models
         public tbRolesUsuario()
         {
             this.tbAccesoRol = new HashSet<tbAccesoRol>();
-            this.tbUsuario = new HashSet<tbUsuario>();
+            this.tbUsuario1 = new HashSet<tbUsuario>();
         }
     
-        public int rolusu_Id { get; set; }
+        public int rolu_Id { get; set; }
         public int rol_Id { get; set; }
         public int usu_Id { get; set; }
-        public int rolusu_UsuarioCrea { get; set; }
-        public System.DateTime rolusu_FechaCrea { get; set; }
-        public Nullable<int> rolusu_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> rolusu_FechaModifica { get; set; }
+        public int rolu_UsuarioCrea { get; set; }
+        public System.DateTime rolu_FechaCrea { get; set; }
+        public Nullable<int> rolu_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> rolu_FechaModifica { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbAccesoRol> tbAccesoRol { get; set; }
         public virtual tbRoles tbRoles { get; set; }
+        public virtual tbUsuario tbUsuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbUsuario> tbUsuario { get; set; }
-        public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual ICollection<tbUsuario> tbUsuario1 { get; set; }
     }
 }

@@ -22,9 +22,9 @@ namespace ERP_ZORZAL.Models
         public System.DateTime lispd_Fechaifinalvigencia { get; set; }
         public Nullable<decimal> lispd_DescCaja { get; set; }
         public Nullable<decimal> lispd_DescGerente { get; set; }
-        public string lispd_UsuarioCrea { get; set; }
+        public int lispd_UsuarioCrea { get; set; }
         public System.DateTime lispd_FechaCrea { get; set; }
-        public string lispd_UsuarioModifica { get; set; }
+        public Nullable<int> lispd_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> lispd_FechaModifica { get; set; }
     
         public virtual tbProducto tbProducto { get; set; }

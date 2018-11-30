@@ -17,7 +17,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /CuentasBanco/
         public ActionResult Index()
         {
-            var tbcuentasbanco = db.tbCuentasBanco.Include(t => t.tbBanco).Include(t => t.tbMoneda);
+            var tbcuentasbanco = db.tbCuentasBanco.Include(t => t.tbBanco).Include(t => t.ban_Id);
             return View(tbcuentasbanco.ToList());
         }
 

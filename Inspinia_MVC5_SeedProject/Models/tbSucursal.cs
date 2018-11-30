@@ -17,36 +17,31 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbSucursal()
         {
-            this.tbArqueoCaja = new HashSet<tbArqueoCaja>();
             this.tbCaja1 = new HashSet<tbCaja1>();
             this.tbCuponDescuento = new HashSet<tbCuponDescuento>();
-            this.tbFactura = new HashSet<tbFactura>();
             this.tbPedido = new HashSet<tbPedido>();
-            this.tbPuntoEmision = new HashSet<tbPuntoEmision>();
         }
     
-        public string sucur_Codigo { get; set; }
-        public string mun_Id { get; set; }
-        public string sucur_Correo { get; set; }
-        public string sucur_Direccion { get; set; }
-        public string sucur_Telefono { get; set; }
-        public string sucur_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> sucur_FechaCrea { get; set; }
-        public string sucur_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> sucur_FechaModifica { get; set; }
+        public short suc_Id { get; set; }
+        public string mun_Codigo { get; set; }
+        public int bod_Id { get; set; }
+        public int pemi_Id { get; set; }
+        public string suc_Correo { get; set; }
+        public string suc_Direccion { get; set; }
+        public string suc_Telefono { get; set; }
+        public int suc_UsuarioCrea { get; set; }
+        public System.DateTime suc_FechaCrea { get; set; }
+        public Nullable<int> suc_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> suc_FechaModifica { get; set; }
     
-        public virtual tbMunicipio tbMunicipio { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbArqueoCaja> tbArqueoCaja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCaja1> tbCaja1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCuponDescuento> tbCuponDescuento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbFactura> tbFactura { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedido> tbPedido { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbPuntoEmision> tbPuntoEmision { get; set; }
+        public virtual tbMunicipio tbMunicipio { get; set; }
+        public virtual tbBodega tbBodega { get; set; }
+        public virtual tbPuntoEmision tbPuntoEmision { get; set; }
     }
 }

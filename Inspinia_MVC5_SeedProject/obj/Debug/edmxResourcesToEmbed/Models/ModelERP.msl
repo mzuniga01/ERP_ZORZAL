@@ -1,6 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ERP_ZORZALModelStoreContainer" CdmEntityContainer="ERP_ZORZALEntities">
+    <EntitySetMapping Name="tbInventarioFisico">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbInventarioFisico">
+        <MappingFragment StoreEntitySet="tbInventarioFisico">
+          <ScalarProperty Name="invf_FechaModifica" ColumnName="invf_FechaModifica" />
+          <ScalarProperty Name="invf_UsuarioModifica" ColumnName="invf_UsuarioModifica" />
+          <ScalarProperty Name="invf_FechaCrea" ColumnName="invf_FechaCrea" />
+          <ScalarProperty Name="invf_UsuarioCrea" ColumnName="invf_UsuarioCrea" />
+          <ScalarProperty Name="invf_FechaInventario" ColumnName="invf_FechaInventario" />
+          <ScalarProperty Name="estif_Id" ColumnName="estif_Id" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="invf_ResponsableBodega" ColumnName="invf_ResponsableBodega" />
+          <ScalarProperty Name="invf_Descripcion" ColumnName="invf_Descripcion" />
+          <ScalarProperty Name="invf_Id" ColumnName="invf_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tbAccesoRol">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbAccesoRol">
         <MappingFragment StoreEntitySet="tbAccesoRol">
@@ -12,6 +28,18 @@
           <ScalarProperty Name="obj_Id" ColumnName="obj_Id" />
           <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
           <ScalarProperty Name="acrol_Id" ColumnName="acrol_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbObjeto">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbObjeto">
+        <MappingFragment StoreEntitySet="tbObjeto">
+          <ScalarProperty Name="obj_FechaModifica" ColumnName="obj_FechaModifica" />
+          <ScalarProperty Name="obj_UsuarioModifica" ColumnName="obj_UsuarioModifica" />
+          <ScalarProperty Name="obj_FechaCrea" ColumnName="obj_FechaCrea" />
+          <ScalarProperty Name="obj_UsuarioCrea" ColumnName="obj_UsuarioCrea" />
+          <ScalarProperty Name="obj_Pantalla" ColumnName="obj_Pantalla" />
+          <ScalarProperty Name="obj_Id" ColumnName="obj_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -30,13 +58,13 @@
     <EntitySetMapping Name="tbRolesUsuario">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbRolesUsuario">
         <MappingFragment StoreEntitySet="tbRolesUsuario">
-          <ScalarProperty Name="rolusu_FechaModifica" ColumnName="rolusu_FechaModifica" />
-          <ScalarProperty Name="rolusu_UsuarioModifica" ColumnName="rolusu_UsuarioModifica" />
-          <ScalarProperty Name="rolusu_FechaCrea" ColumnName="rolusu_FechaCrea" />
-          <ScalarProperty Name="rolusu_UsuarioCrea" ColumnName="rolusu_UsuarioCrea" />
+          <ScalarProperty Name="rolu_FechaModifica" ColumnName="rolu_FechaModifica" />
+          <ScalarProperty Name="rolu_UsuarioModifica" ColumnName="rolu_UsuarioModifica" />
+          <ScalarProperty Name="rolu_FechaCrea" ColumnName="rolu_FechaCrea" />
+          <ScalarProperty Name="rolu_UsuarioCrea" ColumnName="rolu_UsuarioCrea" />
           <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
           <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
-          <ScalarProperty Name="rolusu_Id" ColumnName="rolusu_Id" />
+          <ScalarProperty Name="rolu_Id" ColumnName="rolu_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -89,13 +117,11 @@
           <ScalarProperty Name="bcta_UsuarioModifica" ColumnName="bcta_UsuarioModifica" />
           <ScalarProperty Name="bcta_FechaCrea" ColumnName="bcta_FechaCrea" />
           <ScalarProperty Name="bcta_UsuarioCrea" ColumnName="bcta_UsuarioCrea" />
-          <ScalarProperty Name="bcta_Num" ColumnName="bcta_Num" />
+          <ScalarProperty Name="bcta_Numero" ColumnName="bcta_Numero" />
           <ScalarProperty Name="bcta_FechaApertura" ColumnName="bcta_FechaApertura" />
-          <ScalarProperty Name="bcta_SaldoCuenta" ColumnName="bcta_SaldoCuenta" />
           <ScalarProperty Name="bcta_TotalDebito" ColumnName="bcta_TotalDebito" />
           <ScalarProperty Name="bcta_TotalCredito" ColumnName="bcta_TotalCredito" />
           <ScalarProperty Name="bcta_TipoCuenta" ColumnName="bcta_TipoCuenta" />
-          <ScalarProperty Name="bcta_NombreContacto" ColumnName="bcta_NombreContacto" />
           <ScalarProperty Name="mnda_Id" ColumnName="mnda_Id" />
           <ScalarProperty Name="ban_Id" ColumnName="ban_Id" />
           <ScalarProperty Name="bcta_Id" ColumnName="bcta_Id" />
@@ -111,18 +137,6 @@
           <ScalarProperty Name="dep_UsuarioCrea" ColumnName="dep_UsuarioCrea" />
           <ScalarProperty Name="dep_Nombre" ColumnName="dep_Nombre" />
           <ScalarProperty Name="dep_Codigo" ColumnName="dep_Codigo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbDocumentoFiscal">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDocumentoFiscal">
-        <MappingFragment StoreEntitySet="tbDocumentoFiscal">
-          <ScalarProperty Name="dfisc_FechaModifica" ColumnName="dfisc_FechaModifica" />
-          <ScalarProperty Name="dfisc_UsuarioModifica" ColumnName="dfisc_UsuarioModifica" />
-          <ScalarProperty Name="dfisc_FechaCrea" ColumnName="dfisc_FechaCrea" />
-          <ScalarProperty Name="dfisc_UsuarioCrea" ColumnName="dfisc_UsuarioCrea" />
-          <ScalarProperty Name="dfisc_Descripcion" ColumnName="dfisc_Descripcion" />
-          <ScalarProperty Name="dfisc_Codigo" ColumnName="dfisc_Codigo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -270,7 +284,7 @@
           <ScalarProperty Name="tent_Id" ColumnName="tent_Id" />
           <ScalarProperty Name="ent_BodegaDestino" ColumnName="ent_BodegaDestino" />
           <ScalarProperty Name="ent_RazonDevolucion" ColumnName="ent_RazonDevolucion" />
-          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
           <ScalarProperty Name="ent_CompraFecha" ColumnName="ent_CompraFecha" />
           <ScalarProperty Name="ent_CompraNumero" ColumnName="ent_CompraNumero" />
           <ScalarProperty Name="prov_Id" ColumnName="prov_Id" />
@@ -279,6 +293,20 @@
           <ScalarProperty Name="ent_Fecha" ColumnName="ent_Fecha" />
           <ScalarProperty Name="ent_NumeroFormato" ColumnName="ent_NumeroFormato" />
           <ScalarProperty Name="ent_Id" ColumnName="ent_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbEntradaDetalle">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEntradaDetalle">
+        <MappingFragment StoreEntitySet="tbEntradaDetalle">
+          <ScalarProperty Name="entd_FechaModifica" ColumnName="entd_FechaModifica" />
+          <ScalarProperty Name="entd_UsuarioModifica" ColumnName="entd_UsuarioModifica" />
+          <ScalarProperty Name="entd_FechaCrea" ColumnName="entd_FechaCrea" />
+          <ScalarProperty Name="entd_UsuarioCrea" ColumnName="entd_UsuarioCrea" />
+          <ScalarProperty Name="entd_Cantidad" ColumnName="entd_Cantidad" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="ent_Id" ColumnName="ent_Id" />
+          <ScalarProperty Name="entd_Id" ColumnName="entd_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -312,6 +340,7 @@
     <EntitySetMapping Name="tbProducto">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProducto">
         <MappingFragment StoreEntitySet="tbProducto">
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
           <ScalarProperty Name="prod_FechaModifica" ColumnName="prod_FechaModifica" />
           <ScalarProperty Name="prod_UsuarioModifica" ColumnName="prod_UsuarioModifica" />
           <ScalarProperty Name="prod_FechaCrea" ColumnName="prod_FechaCrea" />
@@ -319,7 +348,6 @@
           <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
           <ScalarProperty Name="pscat_Id" ColumnName="pscat_Id" />
           <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
-          <ScalarProperty Name="prod_FechaCreacion" ColumnName="prod_FechaCreacion" />
           <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
           <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
         </MappingFragment>
@@ -380,7 +408,7 @@
           <ScalarProperty Name="estm_Id" ColumnName="estm_Id" />
           <ScalarProperty Name="sald_Id" ColumnName="sald_Id" />
           <ScalarProperty Name="sal_FechaSalida" ColumnName="sal_FechaSalida" />
-          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
           <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
           <ScalarProperty Name="sal_Codigo" ColumnName="sal_Codigo" />
         </MappingFragment>
@@ -407,18 +435,18 @@
           <ScalarProperty Name="aqcja_UsuarioModifica" ColumnName="aqcja_UsuarioModifica" />
           <ScalarProperty Name="aqcja_FechaCrea" ColumnName="aqcja_FechaCrea" />
           <ScalarProperty Name="aqcja_UsuarioCrea" ColumnName="aqcja_UsuarioCrea" />
-          <ScalarProperty Name="aqcja_Diferencia" ColumnName="aqcja_Diferencia" />
-          <ScalarProperty Name="aqcja_Total" ColumnName="aqcja_Total" />
+          <ScalarProperty Name="aqcja_MontoCupon" ColumnName="aqcja_MontoCupon" />
+          <ScalarProperty Name="aqcja_MontoNotaCredito" ColumnName="aqcja_MontoNotaCredito" />
+          <ScalarProperty Name="aqcja_MontoTCoTD" ColumnName="aqcja_MontoTCoTD" />
           <ScalarProperty Name="aqcja_MontoCheque" ColumnName="aqcja_MontoCheque" />
           <ScalarProperty Name="aqcja_MontoEfectivo" ColumnName="aqcja_MontoEfectivo" />
           <ScalarProperty Name="aqcja_SaldoFinal" ColumnName="aqcja_SaldoFinal" />
           <ScalarProperty Name="aqcja_SaldoInicial" ColumnName="aqcja_SaldoInicial" />
-          <ScalarProperty Name="aqcja_HoraFinal" ColumnName="aqcja_HoraFinal" />
-          <ScalarProperty Name="aqcja_HoraInicio" ColumnName="aqcja_HoraInicio" />
+          <ScalarProperty Name="aqcja_FechaFin" ColumnName="aqcja_FechaFin" />
+          <ScalarProperty Name="aqcja_FechaInicio" ColumnName="aqcja_FechaInicio" />
           <ScalarProperty Name="aqcja_Fecha" ColumnName="aqcja_Fecha" />
-          <ScalarProperty Name="cja_Codigo" ColumnName="cja_Codigo" />
-          <ScalarProperty Name="sucur_Codigo" ColumnName="sucur_Codigo" />
-          <ScalarProperty Name="aqcja_Codigo" ColumnName="aqcja_Codigo" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+          <ScalarProperty Name="aqcja_Id" ColumnName="aqcja_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -429,9 +457,9 @@
           <ScalarProperty Name="cja_UsuarioModifica" ColumnName="cja_UsuarioModifica" />
           <ScalarProperty Name="cja_FechaCrea" ColumnName="cja_FechaCrea" />
           <ScalarProperty Name="cja_UsuarioCrea" ColumnName="cja_UsuarioCrea" />
-          <ScalarProperty Name="sucur_Codigo" ColumnName="sucur_Codigo" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
           <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
-          <ScalarProperty Name="cja_Codigo" ColumnName="cja_Codigo" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -449,9 +477,9 @@
           <ScalarProperty Name="clte_EsActivo" ColumnName="clte_EsActivo" />
           <ScalarProperty Name="clte_CorreoElectronico" ColumnName="clte_CorreoElectronico" />
           <ScalarProperty Name="clte_Direccion" ColumnName="clte_Direccion" />
-          <ScalarProperty Name="mun_Id" ColumnName="mun_Id" />
-          <ScalarProperty Name="clte_FechaConstitusion" ColumnName="clte_FechaConstitusion" />
-          <ScalarProperty Name="clte_ContactoTel" ColumnName="clte_ContactoTel" />
+          <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
+          <ScalarProperty Name="clte_FechaConstitucion" ColumnName="clte_FechaConstitucion" />
+          <ScalarProperty Name="clte_ContactoTelefono" ColumnName="clte_ContactoTelefono" />
           <ScalarProperty Name="clte_ContactoEmail" ColumnName="clte_ContactoEmail" />
           <ScalarProperty Name="clte_ContactoNombre" ColumnName="clte_ContactoNombre" />
           <ScalarProperty Name="clte_RazonSocial" ColumnName="clte_RazonSocial" />
@@ -460,11 +488,10 @@
           <ScalarProperty Name="clte_Sexo" ColumnName="clte_Sexo" />
           <ScalarProperty Name="clte_Nacionalidad" ColumnName="clte_Nacionalidad" />
           <ScalarProperty Name="clte_FechaNacimiento" ColumnName="clte_FechaNacimiento" />
-          <ScalarProperty Name="clte_Apellido" ColumnName="clte_Apellido" />
-          <ScalarProperty Name="clte_Nombre" ColumnName="clte_Nombre" />
+          <ScalarProperty Name="clte_Apellidos" ColumnName="clte_Apellidos" />
+          <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
           <ScalarProperty Name="clte_EsPersonaNatural" ColumnName="clte_EsPersonaNatural" />
-          <ScalarProperty Name="clte_RTN_IDT_PASSP" ColumnName="clte_RTN_IDT_PASSP" />
-          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+          <ScalarProperty Name="clte_RTN_Identidad_Pasaporte" ColumnName="clte_RTN_Identidad_Pasaporte" />
           <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -472,31 +499,16 @@
     <EntitySetMapping Name="tbCuponDescuento">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCuponDescuento">
         <MappingFragment StoreEntitySet="tbCuponDescuento">
-          <ScalarProperty Name="cd_FechaModifa" ColumnName="cd_FechaModifa" />
-          <ScalarProperty Name="cd_UsuarioModifa" ColumnName="cd_UsuarioModifa" />
-          <ScalarProperty Name="cd_FechaCrea" ColumnName="cd_FechaCrea" />
-          <ScalarProperty Name="cd_UsuarioCrea" ColumnName="cd_UsuarioCrea" />
-          <ScalarProperty Name="cd_MontoDescuento" ColumnName="cd_MontoDescuento" />
-          <ScalarProperty Name="cd_PorcentajeDescuento" ColumnName="cd_PorcentajeDescuento" />
-          <ScalarProperty Name="cd_FechaVencimiento" ColumnName="cd_FechaVencimiento" />
-          <ScalarProperty Name="cd_FechaEmision" ColumnName="cd_FechaEmision" />
-          <ScalarProperty Name="sucur_Codigo" ColumnName="sucur_Codigo" />
-          <ScalarProperty Name="cd_IDCuponDescuento" ColumnName="cd_IDCuponDescuento" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbDetalleFactura">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDetalleFactura">
-        <MappingFragment StoreEntitySet="tbDetalleFactura">
-          <ScalarProperty Name="dfact_FechaModifica" ColumnName="dfact_FechaModifica" />
-          <ScalarProperty Name="dfact_UsuarioModifica" ColumnName="dfact_UsuarioModifica" />
-          <ScalarProperty Name="dfact_FechaCrea" ColumnName="dfact_FechaCrea" />
-          <ScalarProperty Name="dfact_UsuarioCrea" ColumnName="dfact_UsuarioCrea" />
-          <ScalarProperty Name="dfact_Impuesto" ColumnName="dfact_Impuesto" />
-          <ScalarProperty Name="dfact_Descuento" ColumnName="dfact_Descuento" />
-          <ScalarProperty Name="dfact_CantidadProducto" ColumnName="dfact_CantidadProducto" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="cdto_FechaModifa" ColumnName="cdto_FechaModifa" />
+          <ScalarProperty Name="cdto_UsuarioModifa" ColumnName="cdto_UsuarioModifa" />
+          <ScalarProperty Name="cdto_FechaCrea" ColumnName="cdto_FechaCrea" />
+          <ScalarProperty Name="cdto_UsuarioCrea" ColumnName="cdto_UsuarioCrea" />
+          <ScalarProperty Name="cdto_MontoDescuento" ColumnName="cdto_MontoDescuento" />
+          <ScalarProperty Name="cdto_PorcentajeDescuento" ColumnName="cdto_PorcentajeDescuento" />
+          <ScalarProperty Name="cdto_FechaVencimiento" ColumnName="cdto_FechaVencimiento" />
+          <ScalarProperty Name="cdto_FechaEmision" ColumnName="cdto_FechaEmision" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+          <ScalarProperty Name="cdto_ID" ColumnName="cdto_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -507,9 +519,9 @@
           <ScalarProperty Name="dev_UsuarioModifica" ColumnName="dev_UsuarioModifica" />
           <ScalarProperty Name="dev_FechaCrea" ColumnName="dev_FechaCrea" />
           <ScalarProperty Name="dev_UsuarioCrea" ColumnName="dev_UsuarioCrea" />
-          <ScalarProperty Name="clte_id" ColumnName="clte_id" />
           <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
-          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
           <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -517,24 +529,36 @@
     <EntitySetMapping Name="tbDevolucionDetalle">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucionDetalle">
         <MappingFragment StoreEntitySet="tbDevolucionDetalle">
-          <ScalarProperty Name="ddv_FechaModifa" ColumnName="ddv_FechaModifa" />
-          <ScalarProperty Name="ddv_UsuarioModifa" ColumnName="ddv_UsuarioModifa" />
-          <ScalarProperty Name="ddv_FechaCrea" ColumnName="ddv_FechaCrea" />
-          <ScalarProperty Name="ddv_UsuarioCrea" ColumnName="ddv_UsuarioCrea" />
-          <ScalarProperty Name="ddv_Descripcion" ColumnName="ddv_Descripcion" />
-          <ScalarProperty Name="ddv_CantidadProducto" ColumnName="ddv_CantidadProducto" />
+          <ScalarProperty Name="devd_FechaModifica" ColumnName="devd_FechaModifica" />
+          <ScalarProperty Name="devd_UsuarioModifica" ColumnName="devd_UsuarioModifica" />
+          <ScalarProperty Name="devd_FechaCrea" ColumnName="devd_FechaCrea" />
+          <ScalarProperty Name="devd_UsuarioCrea" ColumnName="devd_UsuarioCrea" />
+          <ScalarProperty Name="devd_Descripcion" ColumnName="devd_Descripcion" />
+          <ScalarProperty Name="devd_CantidadProducto" ColumnName="devd_CantidadProducto" />
           <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="dev_Codigo" ColumnName="dev_Codigo" />
-          <ScalarProperty Name="ddv_Codigo" ColumnName="ddv_Codigo" />
+          <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
+          <ScalarProperty Name="devd_Id" ColumnName="devd_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbDocumentoFiscal">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDocumentoFiscal">
+        <MappingFragment StoreEntitySet="tbDocumentoFiscal">
+          <ScalarProperty Name="dfisc_FechaModifica" ColumnName="dfisc_FechaModifica" />
+          <ScalarProperty Name="dfisc_UsuarioModifica" ColumnName="dfisc_UsuarioModifica" />
+          <ScalarProperty Name="dfisc_FechaCrea" ColumnName="dfisc_FechaCrea" />
+          <ScalarProperty Name="dfisc_UsuarioCrea" ColumnName="dfisc_UsuarioCrea" />
+          <ScalarProperty Name="dfisc_Descripcion" ColumnName="dfisc_Descripcion" />
+          <ScalarProperty Name="dfisc_Id" ColumnName="dfisc_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tbEstadoFactura">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEstadoFactura">
         <MappingFragment StoreEntitySet="tbEstadoFactura">
-          <ScalarProperty Name="esfac_FechaModifico" ColumnName="esfac_FechaModifico" />
-          <ScalarProperty Name="esfac_FechaAgrego" ColumnName="esfac_FechaAgrego" />
-          <ScalarProperty Name="esfac_UsuarioModifico" ColumnName="esfac_UsuarioModifico" />
+          <ScalarProperty Name="esfac_FechaModifica" ColumnName="esfac_FechaModifica" />
+          <ScalarProperty Name="esfac_UsuarioModifica" ColumnName="esfac_UsuarioModifica" />
+          <ScalarProperty Name="esfac_FechaCrea" ColumnName="esfac_FechaCrea" />
           <ScalarProperty Name="esfac_UsuarioCrea" ColumnName="esfac_UsuarioCrea" />
           <ScalarProperty Name="esfac_Descripcion" ColumnName="esfac_Descripcion" />
           <ScalarProperty Name="esfac_Id" ColumnName="esfac_Id" />
@@ -565,25 +589,49 @@
           <ScalarProperty Name="exo_FechaInicialVigencia" ColumnName="exo_FechaInicialVigencia" />
           <ScalarProperty Name="exo_ExoneracionActiva" ColumnName="exo_ExoneracionActiva" />
           <ScalarProperty Name="exo_Documento" ColumnName="exo_Documento" />
-          <ScalarProperty Name="exo_Codigo" ColumnName="exo_Codigo" />
+          <ScalarProperty Name="exo_Id" ColumnName="exo_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tbFactura">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbFactura">
         <MappingFragment StoreEntitySet="tbFactura">
-          <ScalarProperty Name="fact_FechaModica" ColumnName="fact_FechaModica" />
+          <ScalarProperty Name="fact_FechaModifica" ColumnName="fact_FechaModifica" />
           <ScalarProperty Name="fact__UsuarioModifica" ColumnName="fact_ UsuarioModifica" />
           <ScalarProperty Name="fact__FechaCrea" ColumnName="fact_ FechaCrea" />
           <ScalarProperty Name="fact_UsuarioCrea" ColumnName="fact_UsuarioCrea" />
-          <ScalarProperty Name="peCodigo" ColumnName="peCodigo" />
-          <ScalarProperty Name="clte_id" ColumnName="clte_id" />
-          <ScalarProperty Name="sucur_Codigo" ColumnName="sucur_Codigo" />
-          <ScalarProperty Name="cja_Codigo" ColumnName="cja_Codigo" />
-          <ScalarProperty Name="pago_Id" ColumnName="pago_Id" />
+          <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
+          <ScalarProperty Name="clte_RTN_Identidad_Pasaporte" ColumnName="clte_RTN_Identidad_Pasaporte" />
+          <ScalarProperty Name="fact_Vendedor" ColumnName="fact_Vendedor" />
+          <ScalarProperty Name="fact_AutorizarDescuento" ColumnName="fact_AutorizarDescuento" />
+          <ScalarProperty Name="fact_PorcentajeDescuento" ColumnName="fact_PorcentajeDescuento" />
+          <ScalarProperty Name="fact_DiasCredito" ColumnName="fact_DiasCredito" />
+          <ScalarProperty Name="fact_AlCredito" ColumnName="fact_AlCredito" />
+          <ScalarProperty Name="pemi_NumeroCAI" ColumnName="pemi_NumeroCAI" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
           <ScalarProperty Name="esfac_Id" ColumnName="esfac_Id" />
           <ScalarProperty Name="fact_Fecha" ColumnName="fact_Fecha" />
           <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbFacturaDetalle">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbFacturaDetalle">
+        <MappingFragment StoreEntitySet="tbFacturaDetalle">
+          <ScalarProperty Name="factd_FechaModifica" ColumnName="factd_FechaModifica" />
+          <ScalarProperty Name="factd_UsuarioModifica" ColumnName="factd_UsuarioModifica" />
+          <ScalarProperty Name="factd_FechaCrea" ColumnName="factd_FechaCrea" />
+          <ScalarProperty Name="factd_UsuarioCrea" ColumnName="factd_UsuarioCrea" />
+          <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
+          <ScalarProperty Name="factd_PorcentajeDescuento" ColumnName="factd_PorcentajeDescuento" />
+          <ScalarProperty Name="factd__MontoDescuento" ColumnName="factd_&#x9;MontoDescuento" />
+          <ScalarProperty Name="factd_Cantidad" ColumnName="factd_Cantidad" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="factd_Id" ColumnName="factd_Id" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -612,8 +660,7 @@
           <ScalarProperty Name="listp_UsuarioModifica" ColumnName="listp_UsuarioModifica" />
           <ScalarProperty Name="listp_FechaCrea" ColumnName="listp_FechaCrea" />
           <ScalarProperty Name="listp_UsuarioCrea" ColumnName="listp_UsuarioCrea" />
-          <ScalarProperty Name="listp_Estado" ColumnName="listp_Estado" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="listp_EsActivo" ColumnName="listp_EsActivo" />
           <ScalarProperty Name="listp_Id" ColumnName="listp_Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -631,6 +678,7 @@
           <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
           <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
           <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
+          <ScalarProperty Name="nocre_Id" ColumnName="nocre_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -643,12 +691,12 @@
           <ScalarProperty Name="pago_UsuarioCrea" ColumnName="pago_UsuarioCrea" />
           <ScalarProperty Name="pago_Titular_" ColumnName="pago_Titular " />
           <ScalarProperty Name="pago_FechaVencimiento" ColumnName="pago_FechaVencimiento" />
-          <ScalarProperty Name="pago_Cuenta" ColumnName="pago_Cuenta" />
+          <ScalarProperty Name="bcta_Id" ColumnName="bcta_Id" />
           <ScalarProperty Name="pago_Emisor" ColumnName="pago_Emisor" />
           <ScalarProperty Name="pago_Totalcambio" ColumnName="pago_Totalcambio" />
-          <ScalarProperty Name="pago_Totalpagos" ColumnName="pago_Totalpagos" />
+          <ScalarProperty Name="pago_Totalpago" ColumnName="pago_Totalpago" />
           <ScalarProperty Name="tpa_Id" ColumnName="tpa_Id" />
-          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
           <ScalarProperty Name="pago_Id" ColumnName="pago_Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -660,40 +708,41 @@
           <ScalarProperty Name="ped_UsuarioModifica" ColumnName="ped_UsuarioModifica" />
           <ScalarProperty Name="ped_FechaCrea" ColumnName="ped_FechaCrea" />
           <ScalarProperty Name="ped_UsuarioCrea" ColumnName="ped_UsuarioCrea" />
-          <ScalarProperty Name="sucur_Codigo" ColumnName="sucur_Codigo" />
-          <ScalarProperty Name="clte_id" ColumnName="clte_id" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
           <ScalarProperty Name="ped_FechaEntrega" ColumnName="ped_FechaEntrega" />
-          <ScalarProperty Name="ped_Fecha" ColumnName="ped_Fecha" />
-          <ScalarProperty Name="ped_Codigo" ColumnName="ped_Codigo" />
+          <ScalarProperty Name="ped_FechaElaboracion" ColumnName="ped_FechaElaboracion" />
+          <ScalarProperty Name="ped_Id" ColumnName="ped_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tbPedidoDetalle">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPedidoDetalle">
         <MappingFragment StoreEntitySet="tbPedidoDetalle">
-          <ScalarProperty Name="pdet_FechaModifica" ColumnName="pdet_FechaModifica" />
-          <ScalarProperty Name="pdet_UsuarioModifica" ColumnName="pdet_UsuarioModifica" />
-          <ScalarProperty Name="pdet_FechaCrea" ColumnName="pdet_FechaCrea" />
-          <ScalarProperty Name="pdet_UsuarioCrea" ColumnName="pdet_UsuarioCrea" />
-          <ScalarProperty Name="pdet_CantidadEntregada" ColumnName="pdet_CantidadEntregada" />
-          <ScalarProperty Name="pdet_Cantidad" ColumnName="pdet_Cantidad" />
-          <ScalarProperty Name="ped_Descripcion" ColumnName="ped_Descripcion" />
+          <ScalarProperty Name="pedd_FechaModifica" ColumnName="pedd_FechaModifica" />
+          <ScalarProperty Name="pedd_UsuarioModifica" ColumnName="pedd_UsuarioModifica" />
+          <ScalarProperty Name="pedd_FechaCrea" ColumnName="pedd_FechaCrea" />
+          <ScalarProperty Name="pedd_UsuarioCrea" ColumnName="pedd_UsuarioCrea" />
+          <ScalarProperty Name="pedd_CantidadFacturada" ColumnName="pedd_CantidadFacturada" />
+          <ScalarProperty Name="pedd_Cantidad" ColumnName="pedd_Cantidad" />
+          <ScalarProperty Name="pedd_Descripcion" ColumnName="pedd_Descripcion" />
           <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="ped_Codigo" ColumnName="ped_Codigo" />
-          <ScalarProperty Name="pdet_Id" ColumnName="pdet_Id" />
+          <ScalarProperty Name="ped_Id" ColumnName="ped_Id" />
+          <ScalarProperty Name="pedd_Id" ColumnName="pedd_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tbPuntoEmision">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPuntoEmision">
         <MappingFragment StoreEntitySet="tbPuntoEmision">
-          <ScalarProperty Name="pe_FechaModifica" ColumnName="pe_FechaModifica" />
-          <ScalarProperty Name="pe_UsuarioModifica" ColumnName="pe_UsuarioModifica" />
-          <ScalarProperty Name="pe_FechaCrea" ColumnName="pe_FechaCrea" />
-          <ScalarProperty Name="pe_UsuarioCrea" ColumnName="pe_UsuarioCrea" />
-          <ScalarProperty Name="pe_NumeroCAI" ColumnName="pe_NumeroCAI" />
-          <ScalarProperty Name="sucur_Codigo" ColumnName="sucur_Codigo" />
-          <ScalarProperty Name="pe_Codigo" ColumnName="pe_Codigo" />
+          <ScalarProperty Name="pemi_FechaModifica" ColumnName="pemi_FechaModifica" />
+          <ScalarProperty Name="pemi_UsuarioModifica" ColumnName="pemi_UsuarioModifica" />
+          <ScalarProperty Name="pemi_FechaCrea" ColumnName="pemi_FechaCrea" />
+          <ScalarProperty Name="pemi_UsuarioCrea" ColumnName="pemi_UsuarioCrea" />
+          <ScalarProperty Name="pemi_NumeroCAI" ColumnName="pemi_NumeroCAI" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+          <ScalarProperty Name="pemi_Id" ColumnName="pemi_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -707,8 +756,8 @@
           <ScalarProperty Name="pemid_FechaLimite" ColumnName="pemid_FechaLimite" />
           <ScalarProperty Name="pemid_RangoFinal" ColumnName="pemid_RangoFinal" />
           <ScalarProperty Name="pemid_RangoInicio" ColumnName="pemid_RangoInicio" />
-          <ScalarProperty Name="dfisc_Codigo" ColumnName="dfisc_Codigo" />
-          <ScalarProperty Name="pe_Codigo" ColumnName="pe_Codigo" />
+          <ScalarProperty Name="dfisc_Id" ColumnName="dfisc_Id" />
+          <ScalarProperty Name="pemi_Id" ColumnName="pemi_Id" />
           <ScalarProperty Name="pemid_Id" ColumnName="pemid_Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -720,10 +769,10 @@
           <ScalarProperty Name="cred_UsuarioModicacion" ColumnName="cred_UsuarioModicacion" />
           <ScalarProperty Name="cred_FechaCrea" ColumnName="cred_FechaCrea" />
           <ScalarProperty Name="cred_UsuarioCrea" ColumnName="cred_UsuarioCrea" />
-          <ScalarProperty Name="cred_DiasAprobacion" ColumnName="cred_DiasAprobacion" />
-          <ScalarProperty Name="cred_DiasSolicitud" ColumnName="cred_DiasSolicitud" />
-          <ScalarProperty Name="cred_MontoAprobacion" ColumnName="cred_MontoAprobacion" />
-          <ScalarProperty Name="cred_MontoSolicitud" ColumnName="cred_MontoSolicitud" />
+          <ScalarProperty Name="cred_DiasAprobado" ColumnName="cred_DiasAprobado" />
+          <ScalarProperty Name="cred_DiasSolicitado" ColumnName="cred_DiasSolicitado" />
+          <ScalarProperty Name="cred_MontoAprobado" ColumnName="cred_MontoAprobado" />
+          <ScalarProperty Name="cred_MontoSolicitado" ColumnName="cred_MontoSolicitado" />
           <ScalarProperty Name="cred_FechaAprobacion" ColumnName="cred_FechaAprobacion" />
           <ScalarProperty Name="cred_FechaSolicitud" ColumnName="cred_FechaSolicitud" />
           <ScalarProperty Name="escre_Id" ColumnName="escre_Id" />
@@ -732,31 +781,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbSolicitudEfectivo">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSolicitudEfectivo">
-        <MappingFragment StoreEntitySet="tbSolicitudEfectivo">
-          <ScalarProperty Name="solef_FechaModifica" ColumnName="solef_FechaModifica" />
-          <ScalarProperty Name="solef_UsuarioModifica" ColumnName="solef_UsuarioModifica" />
-          <ScalarProperty Name="solef_FechaCrea" ColumnName="solef_FechaCrea" />
-          <ScalarProperty Name="solef_UsuarioCrea" ColumnName="solef_UsuarioCrea" />
-          <ScalarProperty Name="solef_MontoSolicitud" ColumnName="solef_MontoSolicitud" />
-          <ScalarProperty Name="cja_Codigo" ColumnName="cja_Codigo" />
-          <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbSucursal">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSucursal">
         <MappingFragment StoreEntitySet="tbSucursal">
-          <ScalarProperty Name="sucur_FechaModifica" ColumnName="sucur_FechaModifica" />
-          <ScalarProperty Name="sucur_UsuarioModifica" ColumnName="sucur_UsuarioModifica" />
-          <ScalarProperty Name="sucur_FechaCrea" ColumnName="sucur_FechaCrea" />
-          <ScalarProperty Name="sucur_UsuarioCrea" ColumnName="sucur_UsuarioCrea" />
-          <ScalarProperty Name="sucur_Telefono" ColumnName="sucur_Telefono" />
-          <ScalarProperty Name="sucur_Direccion" ColumnName="sucur_Direccion" />
-          <ScalarProperty Name="sucur_Correo" ColumnName="sucur_Correo" />
-          <ScalarProperty Name="mun_Id" ColumnName="mun_Id" />
-          <ScalarProperty Name="sucur_Codigo" ColumnName="sucur_Codigo" />
+          <ScalarProperty Name="suc_FechaModifica" ColumnName="suc_FechaModifica" />
+          <ScalarProperty Name="suc_UsuarioModifica" ColumnName="suc_UsuarioModifica" />
+          <ScalarProperty Name="suc_FechaCrea" ColumnName="suc_FechaCrea" />
+          <ScalarProperty Name="suc_UsuarioCrea" ColumnName="suc_UsuarioCrea" />
+          <ScalarProperty Name="suc_Telefono" ColumnName="suc_Telefono" />
+          <ScalarProperty Name="suc_Direccion" ColumnName="suc_Direccion" />
+          <ScalarProperty Name="suc_Correo" ColumnName="suc_Correo" />
+          <ScalarProperty Name="pemi_Id" ColumnName="pemi_Id" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -773,48 +811,6 @@
           <ScalarProperty Name="tpa_Emisor" ColumnName="tpa_Emisor" />
           <ScalarProperty Name="tpa_Descripcion" ColumnName="tpa_Descripcion" />
           <ScalarProperty Name="tpa_Id" ColumnName="tpa_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbObjeto">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbObjeto">
-        <MappingFragment StoreEntitySet="tbObjeto">
-          <ScalarProperty Name="obj_FechaModifica" ColumnName="obj_FechaModifica" />
-          <ScalarProperty Name="obj_UsuarioModifica" ColumnName="obj_UsuarioModifica" />
-          <ScalarProperty Name="obj_FechaCrea" ColumnName="obj_FechaCrea" />
-          <ScalarProperty Name="obj_UsuarioCrea" ColumnName="obj_UsuarioCrea" />
-          <ScalarProperty Name="obj_Pantalla" ColumnName="obj_Pantalla" />
-          <ScalarProperty Name="obj_Id" ColumnName="obj_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbEntradaDetalle">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEntradaDetalle">
-        <MappingFragment StoreEntitySet="tbEntradaDetalle">
-          <ScalarProperty Name="entd_FechaModifica" ColumnName="entd_FechaModifica" />
-          <ScalarProperty Name="entd_UsuarioModifica" ColumnName="entd_UsuarioModifica" />
-          <ScalarProperty Name="entd_FechaCrea" ColumnName="entd_FechaCrea" />
-          <ScalarProperty Name="entd_UsuarioCrea" ColumnName="entd_UsuarioCrea" />
-          <ScalarProperty Name="entd_Cantidad" ColumnName="entd_Cantidad" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="ent_Id" ColumnName="ent_Id" />
-          <ScalarProperty Name="entd_Id" ColumnName="entd_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbInventarioFisico">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbInventarioFisico">
-        <MappingFragment StoreEntitySet="tbInventarioFisico">
-          <ScalarProperty Name="invf_FechaModifica" ColumnName="invf_FechaModifica" />
-          <ScalarProperty Name="invf_UsuarioModifica" ColumnName="invf_UsuarioModifica" />
-          <ScalarProperty Name="invf_FechaCrea" ColumnName="invf_FechaCrea" />
-          <ScalarProperty Name="invf_UsuarioCrea" ColumnName="invf_UsuarioCrea" />
-          <ScalarProperty Name="invf_FechaInventario" ColumnName="invf_FechaInventario" />
-          <ScalarProperty Name="estif_Id" ColumnName="estif_Id" />
-          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
-          <ScalarProperty Name="invf_ResponsableBodega" ColumnName="invf_ResponsableBodega" />
-          <ScalarProperty Name="invf_Descripcion" ColumnName="invf_Descripcion" />
-          <ScalarProperty Name="invf_Id" ColumnName="invf_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

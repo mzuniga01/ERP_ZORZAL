@@ -14,16 +14,16 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbCuponDescuento
     {
-        public int cd_IDCuponDescuento { get; set; }
-        public string sucur_Codigo { get; set; }
-        public System.DateTime cd_FechaEmision { get; set; }
-        public System.DateTime cd_FechaVencimiento { get; set; }
-        public Nullable<decimal> cd_PorcentajeDescuento { get; set; }
-        public Nullable<decimal> cd_MontoDescuento { get; set; }
-        public string cd_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> cd_FechaCrea { get; set; }
-        public string cd_UsuarioModifa { get; set; }
-        public Nullable<System.DateTime> cd_FechaModifa { get; set; }
+        public int cdto_ID { get; set; }
+        public short suc_Id { get; set; }
+        public System.DateTime cdto_FechaEmision { get; set; }
+        public System.DateTime cdto_FechaVencimiento { get; set; }
+        public Nullable<decimal> cdto_PorcentajeDescuento { get; set; }
+        public Nullable<decimal> cdto_MontoDescuento { get; set; }
+        public int cdto_UsuarioCrea { get; set; }
+        public System.DateTime cdto_FechaCrea { get; set; }
+        public Nullable<int> cdto_UsuarioModifa { get; set; }
+        public Nullable<System.DateTime> cdto_FechaModifa { get; set; }
     
         public virtual tbSucursal tbSucursal { get; set; }
     }

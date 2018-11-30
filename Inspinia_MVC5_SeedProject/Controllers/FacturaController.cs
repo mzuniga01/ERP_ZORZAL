@@ -17,7 +17,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /Factura/
         public ActionResult Index()
         {
-            var tbfactura = db.tbFactura.Include(t => t.tbCaja1).Include(t => t.tbCliente).Include(t => t.tbEstadoFactura).Include(t => t.tbPago1).Include(t => t.tbSucursal);
+            var tbfactura = db.tbFactura.Include(t => t.cja_Id).Include(t => t.clte_Id).Include(t => t.esfac_Id).Include(t => t.tbPago).Include(t => t.suc_Id);
             return View(tbfactura.ToList());
         }
 
@@ -61,11 +61,11 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.cja_Codigo = new SelectList(db.tbCaja, "cja_Codigo", "cja_Descripcion", tbFactura.cja_Codigo);
-            ViewBag.clte_id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP", tbFactura.clte_id);
+            ViewBag.cja_Codigo = new SelectList(db.tbCaja, "cja_Codigo", "cja_Descripcion", tbFactura.cja_Id);
+            ViewBag.clte_id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP", tbFactura.clte_Id);
             ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion", tbFactura.esfac_Id);
-            ViewBag.pago_Id = new SelectList(db.tbPago, "pago_Id", "fact_Codigo", tbFactura.pago_Id);
-            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbFactura.sucur_Codigo);
+            ViewBag.pago_Id = new SelectList(db.tbPago, "pago_Id", "fact_Id", tbFactura.tbPago);
+            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbFactura.suc_Id);
             return View(tbFactura);
         }
 
@@ -81,11 +81,11 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.cja_Codigo = new SelectList(db.tbCaja, "cja_Codigo", "cja_Descripcion", tbFactura.cja_Codigo);
-            ViewBag.clte_id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP", tbFactura.clte_id);
+            ViewBag.cja_Codigo = new SelectList(db.tbCaja, "cja_Codigo", "cja_Descripcion", tbFactura.cja_Id);
+            ViewBag.clte_id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP", tbFactura.clte_Id);
             ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion", tbFactura.esfac_Id);
-            ViewBag.pago_Id = new SelectList(db.tbPago, "pago_Id", "fact_Codigo", tbFactura.pago_Id);
-            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbFactura.sucur_Codigo);
+            ViewBag.pago_Id = new SelectList(db.tbPago, "pago_Id", "fact_Codigo", tbFactura.tbPago);
+            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbFactura.suc_Id);
             return View(tbFactura);
         }
 
@@ -102,11 +102,11 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.cja_Codigo = new SelectList(db.tbCaja, "cja_Codigo", "cja_Descripcion", tbFactura.cja_Codigo);
-            ViewBag.clte_id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP", tbFactura.clte_id);
+            ViewBag.cja_Codigo = new SelectList(db.tbCaja, "cja_Codigo", "cja_Descripcion", tbFactura.cja_Id);
+            ViewBag.clte_id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP", tbFactura.clte_Id);
             ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion", tbFactura.esfac_Id);
-            ViewBag.pago_Id = new SelectList(db.tbPago, "pago_Id", "fact_Codigo", tbFactura.pago_Id);
-            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbFactura.sucur_Codigo);
+            ViewBag.pago_Id = new SelectList(db.tbPago, "pago_Id", "fact_Codigo", tbFactura.tbPago);
+            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbFactura.suc_Id);
             return View(tbFactura);
         }
 

@@ -14,11 +14,11 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbActividadEconomica
     {
-        public int acte_Id { get; set; }
+        public short acte_Id { get; set; }
         public string acte_Descripcion { get; set; }
-        public string acte_UsuarioCrea { get; set; }
+        public int acte_UsuarioCrea { get; set; }
         public System.DateTime acte_FechaCrea { get; set; }
-        public string acte_UsuarioModifica { get; set; }
-        public System.DateTime acte_FechaModifica { get; set; }
+        public Nullable<int> acte_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> acte_FechaModifica { get; set; }
     }
 }

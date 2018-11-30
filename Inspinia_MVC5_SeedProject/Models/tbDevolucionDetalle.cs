@@ -14,16 +14,16 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbDevolucionDetalle
     {
-        public string ddv_Codigo { get; set; }
-        public string dev_Codigo { get; set; }
+        public int devd_Id { get; set; }
+        public int dev_Id { get; set; }
         public string prod_Codigo { get; set; }
-        public int ddv_CantidadProducto { get; set; }
-        public string ddv_Descripcion { get; set; }
-        public string ddv_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> ddv_FechaCrea { get; set; }
-        public string ddv_UsuarioModifa { get; set; }
-        public Nullable<System.DateTime> ddv_FechaModifa { get; set; }
+        public decimal devd_CantidadProducto { get; set; }
+        public string devd_Descripcion { get; set; }
+        public Nullable<int> devd_UsuarioCrea { get; set; }
+        public Nullable<System.DateTime> devd_FechaCrea { get; set; }
+        public Nullable<int> devd_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> devd_FechaModifica { get; set; }
     
-        public virtual tbProducto tbProducto { get; set; }
+        public virtual tbDevolucion tbDevolucion { get; set; }
     }
 }

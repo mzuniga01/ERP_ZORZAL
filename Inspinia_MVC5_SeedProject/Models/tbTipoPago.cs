@@ -20,15 +20,15 @@ namespace ERP_ZORZAL.Models
             this.tbPago = new HashSet<tbPago>();
         }
     
-        public int tpa_Id { get; set; }
+        public short tpa_Id { get; set; }
         public string tpa_Descripcion { get; set; }
         public string tpa_Emisor { get; set; }
         public string tpa_Cuenta { get; set; }
         public string tpa_FechaVencimiento { get; set; }
         public string tpa_Titular { get; set; }
-        public string tpa_UsuarioCrea { get; set; }
+        public int tpa_UsuarioCrea { get; set; }
         public System.DateTime tpa_FechaCrea { get; set; }
-        public string tpa_UsuarioModifica { get; set; }
+        public Nullable<int> tpa_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> tpa_FechaModifica { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -58,8 +58,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.clte_id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP", tbPedido.clte_id);
-            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbPedido.sucur_Codigo);
+            ViewBag.clte_id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP", tbPedido.clte_Id);
+            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbPedido.suc_Id);
             return View(tbPedido);
         }
 
@@ -75,8 +75,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.clte_id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP", tbPedido.clte_id);
-            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbPedido.sucur_Codigo);
+            ViewBag.clte_id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP", tbPedido.clte_Id);
+            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbPedido.suc_Id);
             return View(tbPedido);
         }
 
@@ -93,8 +93,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.clte_id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP", tbPedido.clte_id);
-            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbPedido.sucur_Codigo);
+            ViewBag.clte_id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_IDT_PASSP", tbPedido.clte_Id);
+            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbPedido.suc_Id);
             return View(tbPedido);
         }
 

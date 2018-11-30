@@ -17,20 +17,16 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbCliente()
         {
-            this.tbDevolucion = new HashSet<tbDevolucion>();
-            this.tbExoneracion = new HashSet<tbExoneracion>();
-            this.tbFactura = new HashSet<tbFactura>();
             this.tbPedido = new HashSet<tbPedido>();
             this.tbNotaCredito = new HashSet<tbNotaCredito>();
             this.tbSolicitudCredito = new HashSet<tbSolicitudCredito>();
         }
     
         public int clte_Id { get; set; }
-        public byte tpi_Id { get; set; }
-        public string clte_RTN_IDT_PASSP { get; set; }
+        public string clte_RTN_Identidad_Pasaporte { get; set; }
         public bool clte_EsPersonaNatural { get; set; }
-        public string clte_Nombre { get; set; }
-        public string clte_Apellido { get; set; }
+        public string clte_Nombres { get; set; }
+        public string clte_Apellidos { get; set; }
         public System.DateTime clte_FechaNacimiento { get; set; }
         public string clte_Nacionalidad { get; set; }
         public string clte_Sexo { get; set; }
@@ -39,9 +35,9 @@ namespace ERP_ZORZAL.Models
         public string clte_RazonSocial { get; set; }
         public string clte_ContactoNombre { get; set; }
         public string clte_ContactoEmail { get; set; }
-        public string clte_ContactoTel { get; set; }
-        public System.DateTime clte_FechaConstitusion { get; set; }
-        public string mun_Id { get; set; }
+        public string clte_ContactoTelefono { get; set; }
+        public Nullable<System.DateTime> clte_FechaConstitucion { get; set; }
+        public string mun_Codigo { get; set; }
         public string clte_Direccion { get; set; }
         public string clte_CorreoElectronico { get; set; }
         public string clte_EsActivo { get; set; }
@@ -49,19 +45,11 @@ namespace ERP_ZORZAL.Models
         public bool clte_ConCredito { get; set; }
         public bool clte_EsMinorista { get; set; }
         public string clte_Observaciones_ { get; set; }
-        public string clte_UsuarioCrea { get; set; }
+        public int clte_UsuarioCrea { get; set; }
         public System.DateTime clte_FechaCrea { get; set; }
-        public string clte_UsuarioModifica { get; set; }
+        public Nullable<int> clte_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
     
-        public virtual tbMunicipio tbMunicipio { get; set; }
-        public virtual tbTipoIdentificacion tbTipoIdentificacion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbDevolucion> tbDevolucion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbExoneracion> tbExoneracion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbFactura> tbFactura { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedido> tbPedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

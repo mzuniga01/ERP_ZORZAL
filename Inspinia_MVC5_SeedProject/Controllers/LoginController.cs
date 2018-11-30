@@ -16,7 +16,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(tbPago Login)
+        public ActionResult Index(tbFactura Login)
         {
             string user = Login.fact_Codigo.ToString();
             if (Login.fact_Codigo == "Admin")

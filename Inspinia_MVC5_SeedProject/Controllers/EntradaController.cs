@@ -64,7 +64,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             ViewBag.tent_Id = new SelectList(db.tbTiposEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbEntrada.bod_Id);
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbEntrada.estm_Id);
-            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbEntrada.fact_Codigo);
+            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbEntrada.fact_Id);
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_NombreContacto", tbEntrada.prov_Id);
             return View(tbEntrada);
         }
@@ -84,7 +84,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             ViewBag.tent_Id = new SelectList(db.tbTiposEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbEntrada.bod_Id);
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbEntrada.estm_Id);
-            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbEntrada.fact_Codigo);
+            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbEntrada.fact_Id);
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_NombreContacto", tbEntrada.prov_Id);
             return View(tbEntrada);
         }
@@ -105,7 +105,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             ViewBag.tent_Id = new SelectList(db.tbTiposEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbEntrada.bod_Id);
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbEntrada.estm_Id);
-            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbEntrada.fact_Codigo);
+            ViewBag.fact_Codigo = new SelectList(db.tbFactura, "fact_Codigo", "cja_Codigo", tbEntrada.fact_Id);
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_NombreContacto", tbEntrada.prov_Id);
             return View(tbEntrada);
         }

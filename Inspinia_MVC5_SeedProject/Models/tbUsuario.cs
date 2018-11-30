@@ -17,8 +17,8 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbUsuario()
         {
+            this.tbRolesUsuario = new HashSet<tbRolesUsuario>();
             this.tbBodega = new HashSet<tbBodega>();
-            this.tbRolesUsuario1 = new HashSet<tbRolesUsuario>();
         }
     
         public int usu_Id { get; set; }
@@ -32,10 +32,10 @@ namespace ERP_ZORZAL.Models
         public string usu_RazonEstado { get; set; }
         public bool usu_EsAdministrador { get; set; }
     
-        public virtual tbRolesUsuario tbRolesUsuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbRolesUsuario> tbRolesUsuario { get; set; }
+        public virtual tbRolesUsuario tbRolesUsuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodega> tbBodega { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbRolesUsuario> tbRolesUsuario1 { get; set; }
     }
 }

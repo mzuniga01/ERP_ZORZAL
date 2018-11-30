@@ -14,24 +14,23 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbArqueoCaja
     {
-        public int aqcja_Codigo { get; set; }
-        public string sucur_Codigo { get; set; }
-        public string cja_Codigo { get; set; }
+        public int aqcja_Id { get; set; }
+        public short cja_Id { get; set; }
         public System.DateTime aqcja_Fecha { get; set; }
-        public System.DateTime aqcja_HoraInicio { get; set; }
-        public System.DateTime aqcja_HoraFinal { get; set; }
+        public System.DateTime aqcja_FechaInicio { get; set; }
+        public System.DateTime aqcja_FechaFin { get; set; }
         public decimal aqcja_SaldoInicial { get; set; }
         public decimal aqcja_SaldoFinal { get; set; }
         public decimal aqcja_MontoEfectivo { get; set; }
         public decimal aqcja_MontoCheque { get; set; }
-        public decimal aqcja_Total { get; set; }
-        public decimal aqcja_Diferencia { get; set; }
-        public string aqcja_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> aqcja_FechaCrea { get; set; }
-        public string aqcja_UsuarioModifica { get; set; }
-        public System.DateTime aqcja_FechaModifico { get; set; }
+        public decimal aqcja_MontoTCoTD { get; set; }
+        public decimal aqcja_MontoNotaCredito { get; set; }
+        public decimal aqcja_MontoCupon { get; set; }
+        public int aqcja_UsuarioCrea { get; set; }
+        public System.DateTime aqcja_FechaCrea { get; set; }
+        public Nullable<int> aqcja_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> aqcja_FechaModifico { get; set; }
     
-        public virtual tbSucursal tbSucursal { get; set; }
         public virtual tbCaja1 tbCaja1 { get; set; }
     }
 }

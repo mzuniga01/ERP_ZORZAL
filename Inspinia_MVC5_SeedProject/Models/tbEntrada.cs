@@ -28,7 +28,7 @@ namespace ERP_ZORZAL.Models
         public int prov_Id { get; set; }
         public decimal ent_CompraNumero { get; set; }
         public System.DateTime ent_CompraFecha { get; set; }
-        public string fact_Codigo { get; set; }
+        public long fact_Id { get; set; }
         public string ent_RazonDevolucion { get; set; }
         public string ent_BodegaDestino { get; set; }
         public byte tent_Id { get; set; }

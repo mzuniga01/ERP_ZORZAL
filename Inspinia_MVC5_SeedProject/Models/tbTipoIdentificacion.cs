@@ -14,20 +14,11 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbTipoIdentificacion
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbTipoIdentificacion()
-        {
-            this.tbCliente = new HashSet<tbCliente>();
-        }
-    
         public byte tpi_Id { get; set; }
         public string tpi_Descripcion { get; set; }
-        public string tpi_UsuarioCrea { get; set; }
+        public int tpi_UsuarioCrea { get; set; }
         public System.DateTime tpi_FechaCrea { get; set; }
-        public string tpi_UsuarioModifica { get; set; }
+        public Nullable<int> tpi_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> tpi_FechaModifica { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCliente> tbCliente { get; set; }
     }
 }

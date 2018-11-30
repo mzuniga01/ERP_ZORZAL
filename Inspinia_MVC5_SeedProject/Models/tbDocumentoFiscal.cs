@@ -14,11 +14,11 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbDocumentoFiscal
     {
-        public byte dfisc_Codigo { get; set; }
+        public byte dfisc_Id { get; set; }
         public string dfisc_Descripcion { get; set; }
-        public string dfisc_UsuarioCrea { get; set; }
+        public int dfisc_UsuarioCrea { get; set; }
         public System.DateTime dfisc_FechaCrea { get; set; }
-        public string dfisc_UsuarioModifica { get; set; }
+        public Nullable<int> dfisc_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> dfisc_FechaModifica { get; set; }
     }
 }

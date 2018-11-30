@@ -14,16 +14,16 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbPedidoDetalle
     {
-        public int pdet_Id { get; set; }
-        public int ped_Codigo { get; set; }
+        public int pedd_Id { get; set; }
+        public int ped_Id { get; set; }
         public string prod_Codigo { get; set; }
-        public string ped_Descripcion { get; set; }
-        public int pdet_Cantidad { get; set; }
-        public string pdet_CantidadEntregada { get; set; }
-        public string pdet_UsuarioCrea { get; set; }
-        public System.DateTime pdet_FechaCrea { get; set; }
-        public string pdet_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> pdet_FechaModifica { get; set; }
+        public string pedd_Descripcion { get; set; }
+        public decimal pedd_Cantidad { get; set; }
+        public decimal pedd_CantidadFacturada { get; set; }
+        public int pedd_UsuarioCrea { get; set; }
+        public System.DateTime pedd_FechaCrea { get; set; }
+        public Nullable<int> pedd_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> pedd_FechaModifica { get; set; }
     
         public virtual tbProducto tbProducto { get; set; }
     }

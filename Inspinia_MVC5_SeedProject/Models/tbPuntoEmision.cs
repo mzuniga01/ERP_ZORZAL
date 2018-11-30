@@ -18,18 +18,20 @@ namespace ERP_ZORZAL.Models
         public tbPuntoEmision()
         {
             this.tbPuntoEmisionDetalle = new HashSet<tbPuntoEmisionDetalle>();
+            this.tbSucursal = new HashSet<tbSucursal>();
         }
     
-        public string pe_Codigo { get; set; }
-        public string sucur_Codigo { get; set; }
-        public string pe_NumeroCAI { get; set; }
-        public string pe_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> pe_FechaCrea { get; set; }
-        public string pe_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> pe_FechaModifica { get; set; }
+        public int pemi_Id { get; set; }
+        public short suc_Id { get; set; }
+        public string pemi_NumeroCAI { get; set; }
+        public int pemi_UsuarioCrea { get; set; }
+        public System.DateTime pemi_FechaCrea { get; set; }
+        public Nullable<int> pemi_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> pemi_FechaModifica { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPuntoEmisionDetalle> tbPuntoEmisionDetalle { get; set; }
-        public virtual tbSucursal tbSucursal { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSucursal> tbSucursal { get; set; }
     }
 }

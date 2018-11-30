@@ -17,7 +17,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /tbArqueoCajas/
         public ActionResult Index()
         {
-            var tbarqueocaja = db.tbArqueoCaja.Include(t => t.tbSucursal).Include(t => t.tbCaja1);
+            var tbarqueocaja = db.tbArqueoCaja.Include(t => t.tbCaja1).Include(t => t.tbCaja1);
             return View(tbarqueocaja.ToList());
         }
 
@@ -58,8 +58,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbArqueoCaja.sucur_Codigo);
-            ViewBag.cja_Codigo = new SelectList(db.tbCaja, "cja_Codigo", "cja_Descripcion", tbArqueoCaja.cja_Codigo);
+            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "suc_Id", "cja_Id", tbArqueoCaja.cja_Id);
+            ViewBag.cja_Codigo = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbArqueoCaja.cja_Id);
             return View(tbArqueoCaja);
         }
 
@@ -75,8 +75,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbArqueoCaja.sucur_Codigo);
-            ViewBag.cja_Codigo = new SelectList(db.tbCaja, "cja_Codigo", "cja_Descripcion", tbArqueoCaja.cja_Codigo);
+            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Id", tbArqueoCaja.cja_Id);
+            ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Codigo", "cja_Descripcion", tbArqueoCaja.cja_Id);
             return View(tbArqueoCaja);
         }
 
@@ -93,8 +93,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.sucur_Codigo = new SelectList(db.tbSucursal, "sucur_Codigo", "mun_Id", tbArqueoCaja.sucur_Codigo);
-            ViewBag.cja_Codigo = new SelectList(db.tbCaja, "cja_Codigo", "cja_Descripcion", tbArqueoCaja.cja_Codigo);
+            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Id", tbArqueoCaja.cja_Id);
+            ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbArqueoCaja.cja_Id);
             return View(tbArqueoCaja);
         }
 

@@ -29,9 +29,9 @@ namespace ERP_ZORZAL.Models
         public int sald_UsuarioModifica { get; set; }
         public System.DateTime sald_FechaModifica { get; set; }
     
+        public virtual tbBodega tbBodega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCaja> tbCaja { get; set; }
         public virtual tbProducto tbProducto { get; set; }
-        public virtual tbBodega tbBodega { get; set; }
     }
 }
