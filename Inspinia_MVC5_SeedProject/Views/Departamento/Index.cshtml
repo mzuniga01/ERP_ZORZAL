@@ -19,12 +19,12 @@
                 <div class="ibox-title">
                     <h5>Listado de Departamento</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-sm"})
 					</div>
                 </div>
                 <div class="ibox-content">
 
-<table class="table table-striped table-hover table-bordered" id="DataTable">
+<table class="table table-responsive" style="width:100%" id="DataTable">
     <thead>
         <tr>
             <th>
@@ -47,8 +47,8 @@
                     @Html.DisplayFor(modelItem => item.dep_Nombre)
                 </td>
                 <td>
-                    @Html.ActionLink("Detalle", "Details", new { id = 5 }, new { @class = "btn btn-primary btn-sm" })
-                    @Html.ActionLink("Editar", "Edit", new { id = 5 }, new { @class = "btn btn-white btn-sm" })
+                    @Html.ActionLink("Detalle", "Details", new { id = 5 }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = 5 }, new { @class = "btn btn-white btn-xs" })
                 </td>
             </tr>
         }

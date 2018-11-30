@@ -8,12 +8,12 @@
                 <div class="ibox-title">
                     <h5>Listado de Municipios</h5>
                     <div class="ibox-tools">
-                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalregistro">Nuevo</button>
+                        <button type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#modalregistro">Registrar Municipio</button>
                     </div>
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-striped table-hover table-bordered" id="DataTable">
+                    <table class="table table-responsive" style="width:100%" id="DataTable">
                         <thead>
                             <tr>
                                 <th>
@@ -43,7 +43,7 @@
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modaldetalle">Detalle</button>
-                                        <button type="button" class="btn btn-white btn-sm" data-toggle="modal" data-target="#modal">Editar</button>
+                                        <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#modal">Editar</button>
                                     </td>
                                 </tr>
                             }
@@ -103,15 +103,7 @@
                                 <input type="text" class="form-control" id="txtNombreMunicipio" value="San Pedro Sula" />
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Departamento</label>
-                            <div class="col-sm-7  input-group">
-                                <select id="Select1" class="form-control">>
-                                    <option>Cortes</option>
 
-                                </select>
-                            </div>
-                        </div>
                         <div class="form-group row">
                             <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado por:</label>
                             <div class="col-sm-7  input-group">
@@ -140,8 +132,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
-                <input type="button" class="btn btn-primary" id="btnAceptar" style="width:110px;" value="Aceptar" onclick="Aceptar();" />
+                <input type="button" class="btn btn-primary btn-xs" id="btnAceptar" style="width:110px;" value="Guardar" onclick="Aceptar();" />
+                <input type="button" class="btn btn-white btn-xs" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
             </div>
         </div>
     </div>
@@ -173,12 +165,6 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Departamento</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="Cortes" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado por:</label>
                             <div class="col-sm-7  input-group">
                                 <input type="text" class="form-control" value="Anthony Fugon" readonly />
@@ -206,8 +192,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
-                <input type="button" class="btn btn-primary" id="btnAceptar" style="width:110px;" value="Aceptar" onclick="Aceptar();" />
+                <input type="button" class="btn btn-primary btn-xs" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
             </div>
         </div>
     </div>
@@ -218,7 +203,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Ingresar un nuevo registro</label></h5>
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Registrar Municipio</label></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -238,22 +223,12 @@
             <input type="text" class="form-control" id="txtNombreMunicipio" value="" />
         </div>
     </div>
-    <div class="form-group row">
-        <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Departamento</label>
-        <div class="col-sm-7  input-group">
-            <select id="Select1" class="form-control">
-                <option>--Seleccione Departamento--</option>
-                <option>Cortes</option>
-
-            </select>
-        </div>
-    </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
-                <input type="button" class="btn btn-primary" id="btnAceptar" style="width:110px;" value="Aceptar" onclick="Aceptar();" />
+                <input type="button" class="btn btn-primary btn-xs" id="btnAceptar" style="width:110px;" value="Guardar" onclick="Aceptar();" />
+                <input type="button" class="btn btn-white btn-xs" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
             </div>
         </div>
     </div>
