@@ -2,7 +2,6 @@
     $('#DataTable').DataTable(
     {
         "searching": true,
-        "scrollX": true,
 
         "oLanguage": {
             "oPaginate": {

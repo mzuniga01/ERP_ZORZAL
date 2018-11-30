@@ -8,11 +8,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Devolución</h2>
-        <ol class="breadcrumb">
-            <li class="active">
-                <strong>Devolución de Producto</strong>
-            </li>
-        </ol>
     </div>
 </div>
 
@@ -29,39 +24,42 @@
                 </div>
                 <div class="ibox-content">
 
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.cja_Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dev_Fecha)
-        </th>
-        <th>
-            Codigo de Factura
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.cja_Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dev_Fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
-        </td>
-   <td>
-                @Html.ActionLink("Detalle", "Details", new { id=item.dev_Id }, new { @class = "btn btn-primary btn-sm"})
-                @Html.ActionLink("Editar", "Edit", new { id=item.dev_Id }, new { @class = "btn btn-white btn-sm"})
-                @*@Html.ActionLink("Delete", "Delete", new { id=item.dev_Id }, new { @class = "btn btn-white btn-sm"})*@
-        </td>
-    </tr>
-}
-
+<table class="table table-responsive" id="DataTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cja_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dev_Fecha)
+            </th>
+            <th>
+                Codigo de Factura
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cja_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dev_Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalle", "Details", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-sm" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.dev_Id }, new { @class = "btn btn-white btn-sm" })
+                    @*@Html.ActionLink("Delete", "Delete", new { id=item.dev_Id }, new { @class = "btn btn-white btn-sm"})*@
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
                 </div>
@@ -72,3 +70,5 @@
 
 @*@Html.Partial("_CreateDevolucionDetalle")*@
 
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
