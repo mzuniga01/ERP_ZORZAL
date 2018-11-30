@@ -26,7 +26,6 @@ namespace ERP_ZORZAL.Models
         public System.DateTime pcat_FechaCrea { get; set; }
         public Nullable<int> pcat_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> pcat_FechaModifica { get; set; }
-        public decimal sal_Cantidad { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }

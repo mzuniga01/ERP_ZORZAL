@@ -12,25 +12,22 @@ namespace ERP_ZORZAL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbRolesUsuario
+    public partial class tbTipoEntrada
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbRolesUsuario()
+        public tbTipoEntrada()
         {
-            this.tbAccesoRol = new HashSet<tbAccesoRol>();
+            this.tbEntrada = new HashSet<tbEntrada>();
         }
     
-        public int rolu_Id { get; set; }
-        public int rol_Id { get; set; }
-        public int usu_Id { get; set; }
-        public int rolu_UsuarioCrea { get; set; }
-        public System.DateTime rolu_FechaCrea { get; set; }
-        public Nullable<int> rolu_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> rolu_FechaModifica { get; set; }
+        public byte tent_Id { get; set; }
+        public string tent_Descripcion { get; set; }
+        public int tent_UsuarioCrea { get; set; }
+        public System.DateTime tent_FechaCrea { get; set; }
+        public Nullable<int> tent_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> tent_FechaModifica { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbAccesoRol> tbAccesoRol { get; set; }
-        public virtual tbRol tbRol { get; set; }
-        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual ICollection<tbEntrada> tbEntrada { get; set; }
     }
 }

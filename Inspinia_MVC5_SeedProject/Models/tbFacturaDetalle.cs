@@ -26,6 +26,7 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> factd_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> factd_FechaModifica { get; set; }
     
+        public virtual tbProducto tbProducto { get; set; }
         public virtual tbFactura tbFactura { get; set; }
     }
 }

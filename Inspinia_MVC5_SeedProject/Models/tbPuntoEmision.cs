@@ -19,6 +19,7 @@ namespace ERP_ZORZAL.Models
         {
             this.tbPuntoEmisionDetalle = new HashSet<tbPuntoEmisionDetalle>();
             this.tbSucursal = new HashSet<tbSucursal>();
+            this.tbPuntoEmisionDetalle1 = new HashSet<tbPuntoEmisionDetalle>();
         }
     
         public int pemi_Id { get; set; }
@@ -33,5 +34,8 @@ namespace ERP_ZORZAL.Models
         public virtual ICollection<tbPuntoEmisionDetalle> tbPuntoEmisionDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSucursal> tbSucursal { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPuntoEmisionDetalle> tbPuntoEmisionDetalle1 { get; set; }
+        public virtual tbSucursal tbSucursal1 { get; set; }
     }
 }

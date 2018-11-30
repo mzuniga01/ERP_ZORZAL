@@ -14,16 +14,18 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbBodegaDetalle
     {
-        public int bodde_Id { get; set; }
+        public int bodd_Id { get; set; }
         public string prod_Codigo { get; set; }
         public int bod_Id { get; set; }
-        public decimal bodde_CantidadMinima { get; set; }
-        public decimal bodde_CantidadMaxima { get; set; }
-        public decimal bodde_PuntoReorden { get; set; }
-        public Nullable<int> bodde_UsuarioCrea { get; set; }
-        public System.DateTime bodde_FechaCrea { get; set; }
-        public Nullable<int> bodde_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> bodde_FechaModifica { get; set; }
+        public decimal bodd_CantidadMinima { get; set; }
+        public decimal bodd_CantidadMaxima { get; set; }
+        public decimal bodd_PuntoReorden { get; set; }
+        public int bodd_UsuarioCrea { get; set; }
+        public System.DateTime bodd_FechaCrea { get; set; }
+        public Nullable<int> bodd_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> bodd_FechaModifica { get; set; }
+        public decimal bodd_Costo { get; set; }
+        public decimal bodd_CostoPromedio { get; set; }
     
         public virtual tbBodega tbBodega { get; set; }
         public virtual tbProducto tbProducto { get; set; }

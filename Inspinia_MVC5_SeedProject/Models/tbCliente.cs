@@ -17,6 +17,7 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbCliente()
         {
+            this.tbExoneracion = new HashSet<tbExoneracion>();
             this.tbPedido = new HashSet<tbPedido>();
             this.tbNotaCredito = new HashSet<tbNotaCredito>();
             this.tbSolicitudCredito = new HashSet<tbSolicitudCredito>();
@@ -50,6 +51,9 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> clte_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
     
+        public virtual tbMunicipio tbMunicipio { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbExoneracion> tbExoneracion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedido> tbPedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

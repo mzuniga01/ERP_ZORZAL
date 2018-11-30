@@ -17,7 +17,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /AccesoRol/
         public ActionResult Index()
         {
-            var tbaccesorol = db.tbAccesoRol.Include(t => t.obj_Id).Include(t => t.obj_Id).Include(t => t.tbRoles).Include(t => t.tbRolesUsuario);
+            var tbaccesorol = db.tbAccesoRol.Include(t => t.obj_Id).Include(t => t.obj_Id).Include(t => t.tbRol).Include(t => t.tbRolesUsuario);
             return View(tbaccesorol.ToList());
         }
 
@@ -54,7 +54,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         {
             ViewBag.rol_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla");
             ViewBag.obj_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla");
-            ViewBag.rol_Id = new SelectList(db.tbRoles, "rol_Id", "rol_Descripcion");
+            ViewBag.rol_Id = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion");
             ViewBag.rol_Id = new SelectList(db.tbRolesUsuario, "rolusu_Id", "rolusu_Id");
             return View();
         }
@@ -75,7 +75,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
 
             ViewBag.rol_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla", tbAccesoRol.rol_Id);
             ViewBag.obj_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla", tbAccesoRol.obj_Id);
-            ViewBag.rol_Id = new SelectList(db.tbRoles, "rol_Id", "rol_Descripcion", tbAccesoRol.rol_Id);
+            ViewBag.rol_Id = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion", tbAccesoRol.rol_Id);
             ViewBag.rol_Id = new SelectList(db.tbRolesUsuario, "rolusu_Id", "rolusu_Id", tbAccesoRol.rol_Id);
             return View(tbAccesoRol);
         }
@@ -94,7 +94,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             }
             ViewBag.rol_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla", tbAccesoRol.rol_Id);
             ViewBag.obj_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla", tbAccesoRol.obj_Id);
-            ViewBag.rol_Id = new SelectList(db.tbRoles, "rol_Id", "rol_Descripcion", tbAccesoRol.rol_Id);
+            ViewBag.rol_Id = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion", tbAccesoRol.rol_Id);
             ViewBag.rol_Id = new SelectList(db.tbRolesUsuario, "rolusu_Id", "rolusu_Id", tbAccesoRol.rol_Id);
             return View(tbAccesoRol);
         }
@@ -114,7 +114,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             }
             ViewBag.rol_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla", tbAccesoRol.rol_Id);
             ViewBag.obj_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla", tbAccesoRol.obj_Id);
-            ViewBag.rol_Id = new SelectList(db.tbRoles, "rol_Id", "rol_Descripcion", tbAccesoRol.rol_Id);
+            ViewBag.rol_Id = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion", tbAccesoRol.rol_Id);
             ViewBag.rol_Id = new SelectList(db.tbRolesUsuario, "rolusu_Id", "rolusu_Id", tbAccesoRol.rol_Id);
             return View(tbAccesoRol);
         }

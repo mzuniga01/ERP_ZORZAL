@@ -12,14 +12,14 @@ namespace ERP_ZORZAL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbActividadEconomica
+    public partial class tbTipoDenominacion
     {
-        public short acte_Id { get; set; }
-        public string acte_Descripcion { get; set; }
-        public int acte_UsuarioCrea { get; set; }
-        public System.DateTime acte_FechaCrea { get; set; }
-        public Nullable<int> acte_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> acte_FechaModifica { get; set; }
+        public short tdmi_Id { get; set; }
+        public string tdmi_BilleteMoneda { get; set; }
+        public int tdmi_UsuarioCrea { get; set; }
+        public System.DateTime tdmi_FechaCrea { get; set; }
+        public Nullable<int> tdmi_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> tdmi_FechaModifica { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

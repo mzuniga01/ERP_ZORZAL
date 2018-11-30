@@ -12,28 +12,26 @@ namespace ERP_ZORZAL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbInventarioFisico
+    public partial class tbUnidadMedida
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbInventarioFisico()
+        public tbUnidadMedida()
         {
             this.tbInventarioFisicoDetalle = new HashSet<tbInventarioFisicoDetalle>();
+            this.tbProducto = new HashSet<tbProducto>();
         }
     
-        public int invf_Id { get; set; }
-        public string invf_Descripcion { get; set; }
-        public string invf_ResponsableBodega { get; set; }
-        public int bod_Id { get; set; }
-        public byte estif_Id { get; set; }
-        public System.DateTime invf_FechaInventario { get; set; }
-        public int invf_UsuarioCrea { get; set; }
-        public System.DateTime invf_FechaCrea { get; set; }
-        public Nullable<int> invf_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> invf_FechaModifica { get; set; }
+        public int uni_Id { get; set; }
+        public string uni_Descripcion { get; set; }
+        public string uni_Abreviacion { get; set; }
+        public int uni_UsuarioCrea { get; set; }
+        public System.DateTime uni_FechaCrea { get; set; }
+        public Nullable<int> uni_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> uni_FechaModifica { get; set; }
     
-        public virtual tbBodega tbBodega { get; set; }
-        public virtual tbEstadoInventarioFisico tbEstadoInventarioFisico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbProducto> tbProducto { get; set; }
     }
 }

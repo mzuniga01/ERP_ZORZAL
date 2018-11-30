@@ -22,9 +22,11 @@ namespace ERP_ZORZAL.Models
         public Nullable<decimal> cdto_MontoDescuento { get; set; }
         public int cdto_UsuarioCrea { get; set; }
         public System.DateTime cdto_FechaCrea { get; set; }
-        public Nullable<int> cdto_UsuarioModifa { get; set; }
-        public Nullable<System.DateTime> cdto_FechaModifa { get; set; }
+        public Nullable<int> cdto_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> cdto_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbSucursal tbSucursal { get; set; }
     }
 }

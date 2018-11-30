@@ -26,8 +26,10 @@ namespace ERP_ZORZAL.Models
         public int cred_UsuarioCrea { get; set; }
         public System.DateTime cred_FechaCrea { get; set; }
         public Nullable<int> cred_UsuarioModicacion { get; set; }
-        public Nullable<System.DateTime> cred_FechaModifica { get; set; }
+        public Nullable<System.DateTime> cred_FechaModificacion { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbCliente tbCliente { get; set; }
         public virtual tbEstadoSolicitudCredito tbEstadoSolicitudCredito { get; set; }
     }

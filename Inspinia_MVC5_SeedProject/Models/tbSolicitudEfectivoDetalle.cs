@@ -12,16 +12,19 @@ namespace ERP_ZORZAL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbActividadEconomica
+    public partial class tbSolicitudEfectivoDetalle
     {
-        public short acte_Id { get; set; }
-        public string acte_Descripcion { get; set; }
-        public int acte_UsuarioCrea { get; set; }
-        public System.DateTime acte_FechaCrea { get; set; }
-        public Nullable<int> acte_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> acte_FechaModifica { get; set; }
+        public int solefd_Id { get; set; }
+        public int solef_Id { get; set; }
+        public short solefd_Cantidad { get; set; }
+        public short tdmi_Id { get; set; }
+        public Nullable<int> solefd_UsuarioCrea { get; set; }
+        public Nullable<System.DateTime> solefd_FechaCrea { get; set; }
+        public Nullable<int> solefd_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> solefd_FechaModifica { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbSolicitudEfectivo tbSolicitudEfectivo { get; set; }
     }
 }

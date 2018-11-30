@@ -14,21 +14,31 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbSalida
     {
-        public int sal_Codigo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbSalida()
+        {
+            this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
+        }
+    
+        public int sal_Id { get; set; }
         public int bod_Id { get; set; }
         public long fact_Id { get; set; }
-        public System.DateTime sal_FechaSalida { get; set; }
-        public int sald_Id { get; set; }
+        public System.DateTime sal_FechaElaboracion { get; set; }
         public byte estm_Id { get; set; }
-        public string sal_Destino { get; set; }
-        public int cja_Id { get; set; }
+        public string box_Codigo { get; set; }
+        public byte tsal_Id { get; set; }
+        public string sal_RazonDevolucion { get; set; }
         public int sal_UsuarioCrea { get; set; }
         public System.DateTime sal_FechaCrea { get; set; }
         public Nullable<int> sal_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> sal_FechaModifica { get; set; }
     
         public virtual tbBodega tbBodega { get; set; }
-        public virtual tbBodega tbBodega1 { get; set; }
-        public virtual tbCaja tbCaja { get; set; }
+        public virtual tbBox tbBox { get; set; }
+        public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }
+        public virtual tbFactura tbFactura { get; set; }
+        public virtual tbTipoSalida tbTipoSalida { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle { get; set; }
     }
 }

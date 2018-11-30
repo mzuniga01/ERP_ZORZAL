@@ -20,7 +20,7 @@ namespace ERP_ZORZAL.Models
         public decimal pago_Totalpago { get; set; }
         public decimal pago_Totalcambio { get; set; }
         public string pago_Emisor { get; set; }
-        public Nullable<int> bcta_Id { get; set; }
+        public short bcta_Id { get; set; }
         public Nullable<System.DateTime> pago_FechaVencimiento { get; set; }
         public string pago_Titular_ { get; set; }
         public int pago_UsuarioCrea { get; set; }
@@ -28,6 +28,9 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> pago_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> pago_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbCuentasBanco tbCuentasBanco { get; set; }
         public virtual tbFactura tbFactura { get; set; }
         public virtual tbTipoPago tbTipoPago { get; set; }
     }

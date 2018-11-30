@@ -21,17 +21,16 @@ namespace ERP_ZORZAL.Models
         }
     
         public int prov_Id { get; set; }
+        public string prov_Nombre { get; set; }
         public string prov_NombreContacto { get; set; }
         public string prov_Direccion { get; set; }
         public string prov_Email { get; set; }
         public string prov_Telefono { get; set; }
-        public string prov_UsuarioCrea { get; set; }
+        public int prov_UsuarioCrea { get; set; }
         public System.DateTime prov_FechaCrea { get; set; }
-        public string prov_UsuarioModifica { get; set; }
+        public Nullable<int> prov_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> prov_FechaModifica { get; set; }
-        public string mun_Codigo { get; set; }
     
-        public virtual tbMunicipio tbMunicipio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEntrada> tbEntrada { get; set; }
     }

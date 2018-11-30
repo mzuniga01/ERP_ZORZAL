@@ -17,8 +17,8 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbMunicipio()
         {
+            this.tbCliente = new HashSet<tbCliente>();
             this.tbBodega = new HashSet<tbBodega>();
-            this.tbProveedor = new HashSet<tbProveedor>();
             this.tbSucursal = new HashSet<tbSucursal>();
         }
     
@@ -26,15 +26,15 @@ namespace ERP_ZORZAL.Models
         public string dep_Codigo { get; set; }
         public string mun_Nombre { get; set; }
         public int mun_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> mun_FechaCrea { get; set; }
+        public System.DateTime mun_FechaCrea { get; set; }
         public Nullable<int> mun_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> mun_FechaModifica { get; set; }
     
         public virtual tbDepartamento tbDepartamento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbBodega> tbBodega { get; set; }
+        public virtual ICollection<tbCliente> tbCliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProveedor> tbProveedor { get; set; }
+        public virtual ICollection<tbBodega> tbBodega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSucursal> tbSucursal { get; set; }
     }
