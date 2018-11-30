@@ -180,6 +180,7 @@
     <Compile Include="Controllers\BancoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\TipoEntradaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -730,6 +731,14 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\_TopNavbar.cshtml" />
+    <Content Include="Views\TipoEntrada\Crear.cshtml" />
+    <Content Include="Views\TipoEntrada\Create.cshtml" />
+    <Content Include="Views\TipoEntrada\Delete.cshtml" />
+    <Content Include="Views\TipoEntrada\Details.cshtml" />
+    <Content Include="Views\TipoEntrada\Detalles.cshtml" />
+    <Content Include="Views\TipoEntrada\Edit.cshtml" />
+    <Content Include="Views\TipoEntrada\Editar.cshtml" />
+    <Content Include="Views\TipoEntrada\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
