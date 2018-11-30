@@ -182,6 +182,8 @@
     <Compile Include="Controllers\BancoController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\CuentaBancoController.cs" />
+    <Compile Include="Controllers\DevolucionController.cs" />
+    <Compile Include="Controllers\DocumentoFiscalController.cs" />
     <Compile Include="Controllers\EstadoFacturaController.cs" />
     <Compile Include="Controllers\EstadoSolicitudCreditoController.cs" />
     <Compile Include="Controllers\FacturaController.cs" />
@@ -198,6 +200,8 @@
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Banco.cs" />
+    <Compile Include="Models\cDevolucion.cs" />
+    <Compile Include="Models\cDocumentoFiscal.cs" />
     <Compile Include="Models\CuentaBanco.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
@@ -811,6 +815,19 @@
     <Content Include="Views\CuentaBanco\Details.cshtml" />
     <Content Include="Views\CuentaBanco\Edit.cshtml" />
     <Content Include="Views\CuentaBanco\Index.cshtml" />
+    <Content Include="Views\Devolucion\Create.cshtml" />
+    <Content Include="Views\Devolucion\Delete.cshtml" />
+    <Content Include="Views\Devolucion\Details.cshtml" />
+    <Content Include="Views\Devolucion\Edit.cshtml" />
+    <Content Include="Views\Devolucion\Index.cshtml" />
+    <Content Include="Views\Devolucion\_CreateDevolucionDetalle.cshtml" />
+    <Content Include="Views\Devolucion\_DetalleDevolucion.cshtml" />
+    <Content Include="Views\Devolucion\_EditarDetalleDevolucion.cshtml" />
+    <Content Include="Views\DocumentoFiscal\Create.cshtml" />
+    <Content Include="Views\DocumentoFiscal\Delete.cshtml" />
+    <Content Include="Views\DocumentoFiscal\Details.cshtml" />
+    <Content Include="Views\DocumentoFiscal\Edit.cshtml" />
+    <Content Include="Views\DocumentoFiscal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

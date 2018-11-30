@@ -19,6 +19,30 @@
                 <a href="#"><i class="fa fa-shopping-bag fa-fw"></i><span class="nav-label">Ventas</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "DocumentoFiscal")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Documento Fiscal</span> </a>
+                    </li>
+
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "SolicitudEfectivo")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Solicitud Efectivo</span> </a>
+                    </li>
+
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "ArqueoCaja")"><i class="fa fa-users fa-fw"></i> <span class="nav-label">Arqueo Caja</span> </a>
+                    </li>
+
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Exoneracion")"><i class="fa fa-users fa-fw"></i> <span class="nav-label">Exoneración</span> </a>
+                    </li>
+
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Devolucion")"><i class="fa fa-users fa-fw"></i> <span class="nav-label">Devolución</span> </a>
+                    </li>
+
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Pago")"><i class="fa fa-users fa-fw"></i> <span class="nav-label">Pago</span> </a>
+                    </li>
+
+                    <li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "Cliente")"><i class="fa fa-users fa-fw"></i> <span class="nav-label">Clientes</span> </a>
                                          
                     <li class="@Html.IsSelected(action: "Index")">
@@ -95,6 +119,14 @@
             <li>
                 <a href="#"><i class="fa fa-cogs fa-fw"></i><span class="nav-label">Configuración</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Sucursal")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Sucursal</span> </a>
+                    </li>
+
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "Caja")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Caja</span> </a>
+                    </li>
+
                     <li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "PuntoEmision")"><i class="fa fa-users fa-fw"></i> <span class="nav-label">Punto Emision</span> </a>
 
