@@ -179,6 +179,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccesoRolController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BancoController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EstadoMovimientoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -807,6 +808,11 @@
     <Content Include="Views\TipoEntrada\Edit.cshtml" />
     <Content Include="Views\TipoEntrada\Editar.cshtml" />
     <Content Include="Views\TipoEntrada\Index.cshtml" />
+    <Content Include="Views\Banco\Create.cshtml" />
+    <Content Include="Views\Banco\Delete.cshtml" />
+    <Content Include="Views\Banco\Details.cshtml" />
+    <Content Include="Views\Banco\Edit.cshtml" />
+    <Content Include="Views\Banco\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
