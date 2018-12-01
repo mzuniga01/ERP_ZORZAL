@@ -14,11 +14,20 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbEstadoFactura
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbEstadoFactura()
+        {
+            this.tbFactura = new HashSet<tbFactura>();
+        }
+    
         public byte esfac_Id { get; set; }
         public string esfac_Descripcion { get; set; }
         public int esfac_UsuarioCrea { get; set; }
         public System.DateTime esfac_FechaCrea { get; set; }
         public Nullable<int> esfac_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> esfac_FechaModifica { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFactura> tbFactura { get; set; }
     }
 }

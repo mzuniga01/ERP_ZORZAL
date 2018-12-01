@@ -18,6 +18,7 @@ namespace ERP_ZORZAL.Models
         public tbCliente()
         {
             this.tbExoneracion = new HashSet<tbExoneracion>();
+            this.tbFactura = new HashSet<tbFactura>();
             this.tbPedido = new HashSet<tbPedido>();
             this.tbNotaCredito = new HashSet<tbNotaCredito>();
             this.tbSolicitudCredito = new HashSet<tbSolicitudCredito>();
@@ -54,6 +55,8 @@ namespace ERP_ZORZAL.Models
         public virtual tbMunicipio tbMunicipio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbExoneracion> tbExoneracion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFactura> tbFactura { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedido> tbPedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

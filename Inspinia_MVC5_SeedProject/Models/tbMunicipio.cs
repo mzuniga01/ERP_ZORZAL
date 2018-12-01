@@ -30,6 +30,7 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> mun_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> mun_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbDepartamento tbDepartamento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCliente> tbCliente { get; set; }

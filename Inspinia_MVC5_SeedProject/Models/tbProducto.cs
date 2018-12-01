@@ -40,6 +40,7 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> prod_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> prod_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUnidadMedida tbUnidadMedida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodegaDetalle> tbBodegaDetalle { get; set; }

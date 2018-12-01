@@ -33,6 +33,7 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> sal_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> sal_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbBodega tbBodega { get; set; }
         public virtual tbBox tbBox { get; set; }
         public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }

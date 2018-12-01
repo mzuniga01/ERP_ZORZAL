@@ -21,7 +21,7 @@ namespace ERP_ZORZAL.Models
         }
     
         public short mnda_Id { get; set; }
-        public string mnda_Iso { get; set; }
+        public string mnda_Abreviatura { get; set; }
         public string mnda_Nombre { get; set; }
         public int mnda_UsuarioCrea { get; set; }
         public System.DateTime mnda_FechaCrea { get; set; }

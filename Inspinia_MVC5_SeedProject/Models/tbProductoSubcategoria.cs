@@ -23,6 +23,7 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> pscat_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> pscat_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }
         public virtual tbProductoCategoria tbProductoCategoria { get; set; }
     }
