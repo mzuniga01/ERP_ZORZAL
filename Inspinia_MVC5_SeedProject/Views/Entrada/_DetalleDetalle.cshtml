@@ -1,0 +1,285 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbEntradaDetalle>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Entrada Detalle</h5>
+                    <div class="ibox-tools">
+                        @*@Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})*@
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Crear">Nuevo</button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped" id="vistaEntrada">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Codigo Entrada
+                                </th>
+                                <th>
+                                    Codigo Producto
+                                </th>
+                                <th>
+                                    Cantidad
+                                </th>
+                                <th>
+                                    Descripcion
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    1004
+                                </td>
+                                <td>
+                                    12
+                                </td>
+                                <td>
+                                    (Descripcion del Producto)
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink("Detalle", "Details", new { @class = "btn btn-primary btn-sm" })
+                                        @Html.ActionLink("Editar", "Edit", new { @class = "btn btn-white btn-sm" })*@
+
+                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle">Detalle</button>
+                                    <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar">Editar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Crear de entrada detalles MODAL -->
+<div class="modal fade" id="Crear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Crear Nuevo Detalle</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Codigo Entrada</label>
+
+                            <div class="col-md-7">
+                                <input type="text" class="text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Codigo Producto</label>
+
+                            <div class="col-md-7">
+                                <input type="text" class="text-box single-line" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Cantidad Producto</label>
+
+                            <div class="col-md-7">
+                                <input type="text" class="text-box single-line" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary" id="btnAceptar" style="width:110px;" value="Guardar" onclick="Aceptar();" />
+                <input type="button" class="btn btn-white" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Editar de entrada detalles MODAL -->
+<div class="modal fade" id="Editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Editar Detalle Entrada</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Codigo Entrada</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtIDTipoTaller" value="1" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Cantidad Producto</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtNombreTipoTaller" value="12" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Descripcion Producto</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtNombreTipoTaller" value="Pantalones para Hombre" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado Por:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtNombreTipoTaller" value="CristianF" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado en:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtNombreTipoTaller" value="18/11/2018" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado Por:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtNombreTipoTaller" value="MirianD" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado en:</label>
+                            <div class="col-sm-7 input-group">
+                                <input type="text" class="form-control" id="txtNombreTipoTaller" value="29/11/2018" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary" id="btnAceptar" style="width:110px;" value="Guardar" onclick="Aceptar();" />
+                <input type="button" class="btn btn-white" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Detalles de entrada detalles MODAL -->
+<div class="modal fade" id="Detalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Detalles Entrada</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <dl class="dl-horizontal col-12">
+                            <dt>
+                                Codigo Entrada
+                            </dt>
+
+                            <dd>
+                                1
+                            </dd>
+
+                            <dt>
+                                Cantidad
+                            </dt>
+
+                            <dd>
+                                12
+                            </dd>
+                            <dt>
+                                Descripcion Producto
+                            </dt>
+
+                            <dd>
+                                Pantalones para Hombre
+                            </dd>
+                            <dt>
+                                Creado Por:
+                            </dt>
+
+                            <dd>
+                                CristianF
+                            </dd>
+
+                            <dt>
+                                Creado en:
+                            </dt>
+
+                            <dd>
+                                27/11/2018
+                            </dd>
+
+                            <dt>
+                                Modificado Por:
+                            </dt>
+
+                            <dd>
+                                MirianD
+                            </dd>
+
+                            <dt>
+                                Modificado en:
+                            </dt>
+
+                            <dd>
+                                29/11/2018
+                            </dd>
+
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-white" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#vistaEntrada').DataTable(
+            {
+                "searching": true,
+
+                "oLanguage": {
+                    "oPaginate": {
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior",
+                    },
+                    "sSearch": "Buscar",
+                    "sLengthMenu": "Mostrar _MENU_ registros por página",
+                    "sInfo": "Mostrando _START_ a _END_ Entradas",
+                }
+            });
+    });
+</script>
+
+
+
+
+
+

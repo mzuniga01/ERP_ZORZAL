@@ -3,19 +3,19 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-
-        <ol class="breadcrumb">
+        <h2>Categoría Producto</h2>
+        @*<ol class="breadcrumb">
             <li>
                 @Html.ActionLink("Listado", "Index")
             </li>
             <li class="active">
 
             </li>
-        </ol>
+        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Regresar", "Index")
         </div>
     </div>
 </div>
@@ -28,7 +28,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Editar Producto Categoria</h5>
+                    <h5>Editar Producto Categoría</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -38,41 +38,36 @@
 
 
                         <div class="form-group">
-                            <label class="control-label col-md-2">ID Categoria</label>
+                            <label class="control-label col-md-2">Id</label>
 
                             <div class="col-md-10">
-                                <input type="text" value="0000" class="text-box single-line" readonly="readonly" />
+                                <input type="text" value="1" class="text-box single-line" readonly="readonly" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-2">Nombre Categoria</label>
+                            <label class="control-label col-md-2">Nombre Categoría</label>
 
                             <div class="col-md-10">
                                 <input type="text" value="Ropa" class="text-box single-line" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2">Cantidad</label>
-                            <div class="col-md-10">
-                                <input type="text" value="100" class="text-box single-line" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Guardar" class="btn btn-primary" />
-                                @Html.ActionLink("Cancelar", "Index_Pro_Ca", null, new { @class = "btn btn-white" })
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                             </div>
                         </div>
+                        <div>
+                            @Html.Partial("_ProductoSubCategoria", Model);
+                        </div>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 

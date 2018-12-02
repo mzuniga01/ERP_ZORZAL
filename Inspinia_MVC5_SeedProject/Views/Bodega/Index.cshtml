@@ -1,0 +1,114 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbBodega>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Bodegas</h2>
+        @*<ol class="breadcrumb">
+            <li class="active">
+                <strong>Listado Bodega</strong>
+            </li>
+        </ol>*@
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Bodegas</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Nuevo", "Crear", null, new { @class = "btn btn-primary " })
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-responsive" style="width:100%" id="Bodega">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Responsable
+                                </th>
+                                <th>
+                                    Direccion
+                                </th>
+                                <th>
+                                    Correo
+                                </th>
+                                <th>
+                                    Telefono
+                                </th>
+                                <th>
+                                    Municipio
+                                </th>
+                                <th>
+                                    Estado
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Mirian Deras
+                                </td>
+                                <td>
+                                    San Pedro Sula
+                                </td>
+                                <td>
+                                    Bodega@hotmail.com
+                                </td>
+                                <td>
+                                    96451236
+                                </td>
+                                <td>
+                                    S.p.s
+                                </td>
+                                <td>
+                                    Habilitado
+                                </td>
+                                <td>
+                                    <div class="ibox-tools">
+                                        @Html.ActionLink("Detalles", "Detalles", null, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Editar", null, new { @class = "btn btn-white btn-xs" })
+                                    </div>
+                                    <div class="ibox-tools">
+                                        
+                                    </div>
+                                   
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Bodega').DataTable(
+        {
+            "searching": true,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_ registros por página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+            }
+        });
+    });
+</script>

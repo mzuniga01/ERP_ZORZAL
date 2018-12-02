@@ -1,0 +1,236 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbProductoSubcategoria>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Producto SubCategoría</h5>
+					<div class="ibox-tools">
+						@*@Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-primary" })*@
+                        <input type="button" class="btn btn-primary" data-dismiss="modal" id="#Crear" value="Nuevo"
+                               data-toggle="modal" data-target="#Crear" />
+					</div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-responsive" style="width:100%" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Descripcion
+                                </th>
+                                <th>
+                                    Creado Por
+                                </th>
+
+                                <th>
+                                    Estado Movimiento
+                                </th>
+                                <th>
+                                    Nombre Subcategoría
+                                </th>
+                                <th>
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @*@foreach (var item in Model)
+            {*@
+                            <tr>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.pscat_UsuarioCrea)*@
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.pscat_FechaCrea)*@
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.pscat_UsuarioModifica)*@
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.pscat_FechaModifica)*@
+                                </td>
+                                <td>
+                                    @* AQUI IBAN UNOS BOTONES HtmlAction *@
+                                    <input type="button" class="btn btn-primary btn-xs" data-dismiss="modal" id="#Detalles" value="Detalles"
+                                           data-toggle="modal" data-target="#Detalles" />
+                                    <input type="button" class="btn btn-white btn-xs" data-dismiss="modal" id="#Editar" value="Editar"
+                                           data-toggle="modal" data-target="#Editar" />
+                                </td>
+                            </tr>
+                            @*}*@
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+<!-- INSERT MODAL CREAR NUEVA SUBCATEGORIA -->
+<div class="modal fade" id="Crear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Ingresar SubCategoria</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Descripción</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Estado Movimiento</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Nombre SubCategoría</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary " data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Guardar" />
+                <input type="button" class="btn btn-white  " data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+            </div>
+        </div>
+    </div>
+</div>
+<!-- INSERT MODAL detalle NUEVA SUBCATEGORIA -->
+<div class="modal fade" id="Detalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription"></label>Detalle SubCategoria</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <dl class="dl-horizontal">
+
+                        <dt>
+                            Descripcion
+                        </dt>
+
+                        <dd>
+                            Mujer
+                        </dd>
+
+                        <dt>
+                           Creado Por
+                        </dt>
+
+                        <dd>
+                           Maynor Velazques
+                        </dd>
+
+                        <dt>
+                            Estado Movimiento
+                        </dt>
+
+                        <dd>
+                            Activo
+                        </dd>
+
+                        <dt>
+                           Nombre Subcategoría
+                        </dt>
+
+                        <dd>
+                            Deportiva
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-white  " data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+            </div>
+        </div>
+    </div>
+</div>
+@* Modal Editar  *@
+<div class="modal fade" id="Editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Editar SubCategoria</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Descripcion</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="Pantalones" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Estado Movimiento</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="Activo" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Nombre Producto Categoria</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="Ropa de Niño" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary " data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Guardar" />
+                <input type="button" class="btn btn-white  " data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+    $(document).ready(function () {
+        $('#DataTable').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+        },
+
+    });
+
+    });
+
+    </script>
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+
+

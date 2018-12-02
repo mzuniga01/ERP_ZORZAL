@@ -17,7 +17,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /ProductoCategoria/
         public ActionResult Index()
         {
-            return View(db.tbProductoCategoria.ToList());
+            //return View(db.tbProductoCategoria.ToList());
+            return View();
         }
 
         // GET: /ProductoCategoria/Details/5
@@ -136,10 +137,6 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         {
             return View();
         }
-
-        public ActionResult Index_Pro_Ca()
-        {
-            return View();
-        }
+        
     }
 }

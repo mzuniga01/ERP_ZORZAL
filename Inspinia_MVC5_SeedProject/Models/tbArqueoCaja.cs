@@ -29,7 +29,7 @@ namespace ERP_ZORZAL.Models
         public int aqcja_UsuarioCrea { get; set; }
         public System.DateTime aqcja_FechaCrea { get; set; }
         public Nullable<int> aqcja_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> aqcja_FechaModifico { get; set; }
+        public Nullable<System.DateTime> aqcja_FechaModifica { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

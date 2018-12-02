@@ -7,19 +7,19 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Editar</h2>
-        <ol class="breadcrumb">
+        <h2>Objetos</h2>
+        @*<ol class="breadcrumb">
             <li>
                 @Html.ActionLink("Listado", "Index")
             </li>
             <li class="active">
                 <strong>Editar</strong>
             </li>
-        </ol>
+        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            @Html.ActionLink("regresar a Lista", "Index", null, new { @class = "btn btn-primary" })
+            <a href="@Url.Action("Index","Objeto")">Regresar</a>
         </div>
     </div>
 </div>
@@ -39,10 +39,10 @@
                         <div class="form-horizontal">
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Objeto Pantalla</label>
+                                <label class="control-label col-md-2">Nombre Pantalla</label>
 
                                 <div class="col-md-10">
-                                    <input type="text" class="text-box single-line" value="1"  />
+                                    <input type="text" class="text-box single-line" value=" Bodegas"  />
                                 </div>
                             </div>
 
