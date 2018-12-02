@@ -8,9 +8,11 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Inventario Fisico</h2>
-        <ol class="breadcrumb">
-            
-        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
     </div>
 </div>
 
@@ -18,99 +20,99 @@
 
 
 @*<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Details tbInventarioFisico</h5>
-                </div>
-                <div class="ibox-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Details tbInventarioFisico</h5>
+                    </div>
+                    <div class="ibox-content">
 
 
-                    <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.invf_Descripcion)
-                        </dt>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.invf_Descripcion)
+                            </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.invf_Descripcion)
-                        </dd>
+                            <dd>
+                                @Html.DisplayFor(model => model.invf_Descripcion)
+                            </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.invf_ResponsableBodega)
-                        </dt>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.invf_ResponsableBodega)
+                            </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.invf_ResponsableBodega)
-                        </dd>
+                            <dd>
+                                @Html.DisplayFor(model => model.invf_ResponsableBodega)
+                            </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.bod_Id)
-                        </dt>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.bod_Id)
+                            </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.bod_Id)
-                        </dd>
+                            <dd>
+                                @Html.DisplayFor(model => model.bod_Id)
+                            </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.invf_FechaInventario)
-                        </dt>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.invf_FechaInventario)
+                            </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.invf_FechaInventario)
-                        </dd>
+                            <dd>
+                                @Html.DisplayFor(model => model.invf_FechaInventario)
+                            </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.invf_UsuarioCrea)
-                        </dt>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.invf_UsuarioCrea)
+                            </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.invf_UsuarioCrea)
-                        </dd>
+                            <dd>
+                                @Html.DisplayFor(model => model.invf_UsuarioCrea)
+                            </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.invf_FechaCrea)
-                        </dt>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.invf_FechaCrea)
+                            </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.invf_FechaCrea)
-                        </dd>
+                            <dd>
+                                @Html.DisplayFor(model => model.invf_FechaCrea)
+                            </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.invf_UsuarioModifica)
-                        </dt>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.invf_UsuarioModifica)
+                            </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.invf_UsuarioModifica)
-                        </dd>
+                            <dd>
+                                @Html.DisplayFor(model => model.invf_UsuarioModifica)
+                            </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.invf_FechaModifica)
-                        </dt>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.invf_FechaModifica)
+                            </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.invf_FechaModifica)
-                        </dd>
+                            <dd>
+                                @Html.DisplayFor(model => model.invf_FechaModifica)
+                            </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tbEstadoInventarioFisico.estif_Descripcion)
-                        </dt>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.tbEstadoInventarioFisico.estif_Descripcion)
+                            </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.tbEstadoInventarioFisico.estif_Descripcion)
-                        </dd>
+                            <dd>
+                                @Html.DisplayFor(model => model.tbEstadoInventarioFisico.estif_Descripcion)
+                            </dd>
 
-                    </dl>
+                        </dl>
 
 
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.invf_Id }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white" })
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.invf_Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white" })
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>*@
+    </div>*@
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -128,7 +130,7 @@
                         </dt>
 
                         <dd>
-                            Inventario F. 2018
+                            Inventario Fisico 2018
                         </dd>
 
                         <dt>
@@ -136,7 +138,7 @@
                         </dt>
 
                         <dd>
-                           Antony Fugon
+                            Antony Fugon
                         </dd>
 
                         <dt>
@@ -144,7 +146,7 @@
                         </dt>
 
                         <dd>
-                           Bodega #1
+                            Bodega #1
                         </dd>
 
                         <dt>
@@ -152,7 +154,7 @@
                         </dt>
 
                         <dd>
-                           28/11/2018
+                            28/11/2018
                         </dd>
 
                         <dt>
@@ -160,7 +162,7 @@
                         </dt>
 
                         <dd>
-                           Anthony Fugon
+                            Anthony Fugon
                         </dd>
 
                         <dt>
@@ -168,7 +170,7 @@
                         </dt>
 
                         <dd>
-                            28/11/2018
+                            02/12/2018
                         </dd>
 
                         <dt>
@@ -176,7 +178,7 @@
                         </dt>
 
                         <dd>
-                            BR
+                            
                         </dd>
 
                         <dt>
@@ -184,7 +186,7 @@
                         </dt>
 
                         <dd>
-                            28/11/2018
+                            
                         </dd>
 
                         <dt>
@@ -192,15 +194,18 @@
                         </dt>
 
                         <dd>
-                           Activo
+                            Activo
                         </dd>
 
                     </dl>
 
 
-                    @Html.ActionLink("Editar", "Editar", new { @class = "" })
-                    @Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "" })
-                    @Html.Partial("_IndexInvFisicoDetalle", Model)
+                    @Html.ActionLink("Editar", "Editar", new {  }, new { @class = "btn btn-primary" })
+                    <div class="form-group">
+                        @*<div class="col-md-offset-2 col-md-10">*@
+                        @Html.Partial("_IndexInvFisicoDetalle", Model)
+                        @*</div>*@
+                    </div>
                 </div>
             </div>
         </div>

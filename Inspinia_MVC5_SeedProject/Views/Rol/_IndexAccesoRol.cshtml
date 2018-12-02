@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbInventarioFisicoDetalle>
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbAccesoRol>
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -6,43 +6,39 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Inventario Fisico Detalle</h5>
+                    <h5>Listado de Acceso Rol</h5>
                 </div>
                 <div class="ibox-content">
+
                     <table class="table table-responsive" style="width:100%" id="DataTable">
                         <thead>
                             <tr>
                                 <th>
-                                    Inventario Fisico
+                                    @Html.DisplayNameFor(model => model.obj_Id)
                                 </th>
                                 <th>
-                                    Producto
+                                    @Html.DisplayNameFor(model => model.acrol_Descripcion)
                                 </th>
                                 <th>
-                                    Cantidad
-                                </th>
-                                <th>
-                                    Unidad de Medida
+                                    @Html.DisplayNameFor(model => model.tbRol.rol_Descripcion)
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-
-                    <tr>
-                        <td>
-                            Inventario Fisico 2018
-                        </td>
-                        <td>
-                            Camisa Polo
-                        </td>
-                        <td>
-                            127
-                        </td>
-                        <td>
-                            Unidad
-                        </td>
-                    </tr>
-                
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.obj_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.acrol_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbRol.rol_Descripcion)
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
 
@@ -51,7 +47,6 @@
         </div>
     </div>
  </div>
-
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -72,4 +67,5 @@
     });
     });
 </script>
+
 

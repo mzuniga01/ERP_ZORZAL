@@ -1,0 +1,298 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbInventarioFisicoDetalle>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Inventario Fisico Detalle</h5>
+                    <div class="ibox-tools">
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalregistro">Registrar Inventario Fisico Detalle</button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-responsive" style="width:100%" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Inventario Fisico
+                                </th>
+                                <th>
+                                    Producto
+                                </th>
+                                <th>
+                                    Cantidad
+                                </th>
+                                <th>
+                                    Unidad de Medida
+                                </th>
+                                <th>
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    Inventario Fisico 2018
+                                </td>
+                                <td>
+                                    Camisa Polo
+                                </td>
+                                <td>
+                                    127
+                                </td>
+                                <td>
+                                    Unidad
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modaldetalle">Detalle</button>
+                                    <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#modal">Editar</button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#DataTable').DataTable({
+
+        "searching": false,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+        },
+
+    });
+    });
+</script>
+
+<!-- INSERT MODAL -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Editar</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Inventario Fisico</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtNombreMunicipio" value="Inventario Fisico 2018" readonly/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Producto</label>
+                            <div class="col-sm-7  input-group">
+                                <select id="Select1" class="form-control">
+                                    <option>Producto #1</option>
+                                    <option>Producto #2</option>
+                                    <option>Producto #3</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Cantidad</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtCodigoMunicipio" value="127" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Unidad de Medida</label>
+                            <div class="col-sm-7  input-group">
+                                <select id="Select1" class="form-control">
+                                    <option>Unidad #1</option>
+                                    <option>Unidad #2</option>
+                                    <option>Unidad #3</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado por:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="Anthony Fugon" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado en:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="02/12/2018" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado por:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado en:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
+                <input type="button" class="btn btn-primary btn-sm" id="btnAceptar" style="width:110px;" value="Aceptar" onclick="Aceptar();" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- INSERT MODAL DETALLE-->
+<div class="modal fade" id="modaldetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Detalles</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Inventario Fisico</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtNombreMunicipio" value="Inventario Fisico 2018" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Producto</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtNombreMunicipio" value="Producto #1" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Cantidad</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtCodigoMunicipio" value="127" readonly/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Unidad de Medida</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtNombreMunicipio" value="Unidad" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado por:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="Anthony Fugon" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado en:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="02/12/2018" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado por:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado en:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- INSERT MODAL Registro-->
+<div class="modal fade" id="modalregistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Registrar Inventario Fisico Detalle</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Inventario Fisico</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtNombreMunicipio" value="Inventario Fisico 2018" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Producto</label>
+                            <div class="col-sm-7  input-group">
+                                <select id="Select1" class="form-control">
+                                    <option>--Seleccione Producto--</option>
+                                    <option>Producto #1</option>
+                                    <option>Producto #2</option>
+                                    <option>Producto #3</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Cantidad</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtCodigoMunicipio" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Unidades de Medida</label>
+                            <div class="col-sm-7  input-group">
+                                <select id="Select1" class="form-control">
+                                    <option>--Seleccione Unidad de Medida--</option>
+                                    <option>Unidad #1</option>
+                                    <option>Unidad #2</option>
+                                    <option>Unidad #3</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+                <input type="button" class="btn btn-primary btn-sm" id="btnAceptar" style="width:110px;" value="Guardar" onclick="Aceptar();" />
+            </div>
+        </div>
+    </div>
+</div>
+

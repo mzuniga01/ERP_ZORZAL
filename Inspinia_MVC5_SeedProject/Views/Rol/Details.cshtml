@@ -1,0 +1,100 @@
+﻿@model ERP_ZORZAL.Models.tbRol
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Rol</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Rol</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.rol_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rol_Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rol_UsuarioCrea)
+        </dt>
+
+        <dd>
+            Anthony Fugon
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rol_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rol_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rol_UsuarioModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rol_UsuarioModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rol_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rol_FechaModifica)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.rol_Id }, new { @class = "btn btn-primary"})
+                    <div class="form-group">
+                        @*<div class="col-md-offset-2 col-md-10">*@
+                        @Html.Partial("_IndexAccesoRol", Model.tbAccesoRol)
+                        @*</div>*@
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

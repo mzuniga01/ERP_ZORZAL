@@ -48,6 +48,11 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             return View();
         }
 
+        public ActionResult _IndexInvFisicoDetalle_Botones()
+        {
+            return View();
+        }
+
         public ActionResult Detalle()
         {
             return View();

@@ -190,15 +190,23 @@
     <Compile Include="Controllers\MunicipioController.cs" />
     <Compile Include="Controllers\ObjetoController.cs" />
     <Compile Include="Controllers\ProductoCategoriaController.cs" />
+    <Compile Include="Controllers\RolController.cs" />
+    <Compile Include="Controllers\tbProveedorsController.cs" />
     <Compile Include="Controllers\TipoEntradaController.cs" />
     <Compile Include="Controllers\UnidadMedidaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
+    <Compile Include="Models\accesorol.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Banco.cs" />
+    <Compile Include="Models\departamento.cs" />
+    <Compile Include="Models\EstadoInventariosFisico.cs" />
+    <Compile Include="Models\estadomovimientos.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\InventariosFisicos.cs" />
+    <Compile Include="Models\InventariosFisicosDetalle.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -214,6 +222,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\municipios.cs" />
+    <Compile Include="Models\proveedor.cs" />
+    <Compile Include="Models\rol.cs" />
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -383,6 +394,7 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UnidadesMedida.cs" />
+    <Compile Include="Models\UnidadMedida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -840,6 +852,23 @@
     <Content Include="Views\Entrada\Editar.cshtml" />
     <Content Include="Views\Entrada\Index.cshtml" />
     <Content Include="Views\Entrada\_DetalleDetalle.cshtml" />
+    <Content Include="Views\EstadoMovimiento\_Create.cshtml" />
+    <Content Include="Views\EstadoMovimiento\_Details.cshtml" />
+    <Content Include="Views\EstadoMovimiento\_Edit.cshtml" />
+    <Content Include="Views\EstadoMovimiento\_Index.cshtml" />
+    <Content Include="Views\InventarioFisico\_IndexInvFisicoDetalle.cshtml" />
+    <Content Include="Views\InventarioFisico\_IndexInvFisicoDetalle_Botones.cshtml" />
+    <Content Include="Views\Rol\Create.cshtml" />
+    <Content Include="Views\Rol\Delete.cshtml" />
+    <Content Include="Views\Rol\Details.cshtml" />
+    <Content Include="Views\Rol\Edit.cshtml" />
+    <Content Include="Views\Rol\Index.cshtml" />
+    <Content Include="Views\Rol\_IndexAccesoRol.cshtml" />
+    <Content Include="Views\Rol\_IndexAccesoRol_Botones.cshtml" />
+    <Content Include="Views\tbProveedors\Create.cshtml" />
+    <Content Include="Views\tbProveedors\Details.cshtml" />
+    <Content Include="Views\tbProveedors\Edit.cshtml" />
+    <Content Include="Views\tbProveedors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

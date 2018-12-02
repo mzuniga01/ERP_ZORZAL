@@ -1,0 +1,113 @@
+﻿@model ERP_ZORZAL.Models.tbRol
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Rol</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+			@Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Rol</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rol_Id, new { @class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.rol_Id, new { @class = "textbox single-line", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.rol_Id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rol_Descripcion, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.rol_Descripcion)
+                @Html.ValidationMessageFor(model => model.rol_Descripcion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rol_UsuarioCrea, new { @class = "control-label col-md-2", @readonly = "readonly" })
+            <div class="col-md-10">
+                <input class="textbox single-line" type="text" value="Anthony Fugon" readonly>
+                @Html.ValidationMessageFor(model => model.rol_UsuarioCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rol_FechaCrea, new { @class = "control-label col-md-2", @readonly = "readonly" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.rol_FechaCrea, new { @class = "textbox single-line", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.rol_FechaCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rol_UsuarioModifica, new { @class = "control-label col-md-2", @readonly = "readonly" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.rol_UsuarioModifica, new { @class = "textbox single-line", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.rol_UsuarioModifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rol_FechaModifica, new { @class = "control-label col-md-2", @readonly = "readonly" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.rol_FechaModifica, new { @class = "textbox single-line", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.rol_FechaModifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @*<div class="col-md-offset-2 col-md-10">*@
+        @Html.Partial("_IndexAccesoRol_Botones", Model.tbAccesoRol)
+        @*</div>*@
+    </div>
+                }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

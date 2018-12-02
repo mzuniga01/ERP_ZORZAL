@@ -1,26 +1,27 @@
 ﻿@model ERP_ZORZAL.Models.tbInventarioFisico
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Inventario Fisico</h2>
-        <ol class="breadcrumb"></ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index", null, new { @class = "" })
+        </div>
     </div>
 </div>
 
-
-
-
-@*<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Details tbInventarioFisico</h5>
+                        <h5>Detalle nventario Fisico</h5>
                     </div>
                     <div class="ibox-content">
 
@@ -102,15 +103,14 @@
 
 
                         @Html.ActionLink("Edit", "Edit", new { id = Model.invf_Id }, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white" })
 
                     </div>
                 </div>
             </div>
         </div>
-    </div>*@
+    </div>
 
-<div class="wrapper wrapper-content animated fadeInRight">
+@*<div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
@@ -118,7 +118,6 @@
                     <h5>Detalle Inventario Fisico</h5>
                 </div>
                 <div class="ibox-content">
-
 
                     <dl class="dl-horizontal">
                         <dt>
@@ -193,17 +192,17 @@
                             Activo
                         </dd>
 
-                    </dl>
+                    </dl>*@
 
 
-                    @Html.ActionLink("Editar", "Edit", new { @class = "" })
-                    @Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "" })
+                    @*@Html.ActionLink("Editar", "Edit", new { @class = "" })*@
+                    @*@Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "" })*@
 
-                </div>
+                @*</div>
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 
 

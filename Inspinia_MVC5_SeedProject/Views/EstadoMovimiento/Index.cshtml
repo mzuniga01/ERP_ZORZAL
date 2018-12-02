@@ -19,12 +19,12 @@
                 <div class="ibox-title">
                     <h5>Listado de Estado Movimiento</h5>
                     <div class="ibox-tools">
-                        @Html.ActionLink("Registrar Estado", "Create", null, new { @class = "btn btn-primary btn-xs" })
+                        @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary" })
                     </div>
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-striped" style="width:100%" id="datatable">
+                    <table class="table table-responsive" style="width:100%" id="datatable">
                         <thead>
                             <tr>
                                 <th>
@@ -49,8 +49,8 @@
                                     </td>
 
                                     <td>
-                                        @Html.ActionLink("Detalle", "Details", new { id = item.estm_Id }, new { @class = "" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.estm_Id }, new { @class = "" })
+                                        @Html.ActionLink("Detalle", "Details", new { id = item.estm_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.estm_Id }, new { @class = "btn btn-white btn-xs" })
                                     </td>
                                 </tr>
                             }
@@ -62,9 +62,6 @@
         </div>
     </div>
 </div>
-
-
-
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -84,8 +81,6 @@
         });
     });
 </script>
-
-
 
 
 

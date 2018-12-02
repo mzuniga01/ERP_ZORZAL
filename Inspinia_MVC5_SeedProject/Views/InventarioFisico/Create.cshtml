@@ -8,12 +8,10 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Inventario Fisico</h2>
-        <ol class="breadcrumb">
-        </ol>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar al Listado", "Index", null, new { @class = ""})
+			@Html.ActionLink("Regresar", "Index", null, new { @class = ""})
         </div>
     </div>
 </div>
@@ -24,7 +22,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Create tbInventarioFisico</h5>
+                    <h5>Crear Inventario Fisico</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -67,50 +65,11 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.invf_FechaInventario, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.invf_FechaInventario)
-                @Html.ValidationMessageFor(model => model.invf_FechaInventario)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.invf_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.invf_UsuarioCrea)
-                @Html.ValidationMessageFor(model => model.invf_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.invf_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.invf_FechaCrea)
-                @Html.ValidationMessageFor(model => model.invf_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.invf_UsuarioModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.invf_UsuarioModifica)
-                @Html.ValidationMessageFor(model => model.invf_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.invf_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.invf_FechaModifica)
-                @Html.ValidationMessageFor(model => model.invf_FechaModifica)
-            </div>
-        </div>
-
+       
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>
@@ -127,7 +86,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Crear Inventario Fisico</h5>
+                    <h5>Registrar Inventario Fisico</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -154,7 +113,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Bodega</label>
                                 <div class="col-md-10">
-                                    <select id="Select1">
+                                    <select id="Select1" class="form-control">
                                         <option>--Seleccione Bodega--</option>
                                         <option>Bodega #1</option>
                                         <option>Bodega #2</option>
@@ -166,24 +125,24 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Fecha Levantamiento</label>
                                 <div class="col-md-10">
-                                    <input class="" type="date">
+                                    <input type="date" class="form-control">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label col-md-2">Estado</label>
                                 <div class="col-md-10">
-                                    <select id="Select1">
+                                    <select id="Select1" class="form-control">
                                         <option>--Seleccione Estado--</option>
-                                        <option>Estado #1</option>
-                                        <option>Estado #2</option>
+                                        <option>Activo</option>
+                                        <option>Inactivo</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Crear" class="btn btn-primary" />
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>

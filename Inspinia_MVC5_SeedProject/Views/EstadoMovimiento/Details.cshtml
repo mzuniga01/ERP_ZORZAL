@@ -8,13 +8,13 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Estado Movimiento</h2>
-        <ol class="breadcrumb">
-          
-        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
     </div>
 </div>
-
-
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -48,7 +48,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.estm_UsuarioCrea)
+            Luis Ochoa
         </dd>
 
         <dt>
@@ -64,7 +64,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.estm_UsuarioModifica)
+            Luis Ochoa
         </dd>
 
         <dt>
@@ -78,8 +78,8 @@
     </dl>
 
 
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.estm_Id }, new { @class = ""})
-    @Html.ActionLink("Regresar al Listado", "Index", null, new { @class = ""})
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.estm_Id }, new { @class = "btn btn-primary" })
+    
 
                 </div>
             </div>

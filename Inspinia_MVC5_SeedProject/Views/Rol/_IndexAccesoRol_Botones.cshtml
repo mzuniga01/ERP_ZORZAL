@@ -1,0 +1,266 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbAccesoRol>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Acceso Rol</h5>
+					<div class="ibox-tools">
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalregistro">Registrar Acceso Rol</button>
+					</div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-responsive" style="width:100%" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.obj_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.acrol_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbRol.rol_Descripcion)
+                                </th>
+                                
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.obj_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.acrol_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbRol.rol_Descripcion)
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modaldetalle">Detalle</button>
+                                        <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#modal">Editar</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#DataTable').DataTable({
+
+        "searching": false,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+        },
+
+    });
+    });
+</script>
+
+<!-- Editar MODAL -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Editar</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Código Acceso Rol</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtIdAccesoRol" value="1" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Descripción Acceso Rol</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtDescripcionRol" value="Acceso no restringido a los recursos. Esto incluye crear, configurar y suprimir recursos." />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Pantalla</label>
+                            <div class="col-sm-7  input-group">
+                                <select id="Select1" class="form-control">
+                                    <option>Bodega</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado por:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="Anthony Fugon" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado el:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="2/12/2018" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado por:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado el:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+                <input type="button" class="btn btn-primary btn-sm" id="btnAceptar" style="width:110px;" value="Guardar" onclick="Aceptar();" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- INSERT MODAL DETALLE-->
+<div class="modal fade" id="modaldetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Detalles</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Código Acceso Rol</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtIdAccesoRol" value="1" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Pantalla</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtObjetoPantalla" value="Bodega" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Descripción Acceso Rol</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtDescripcionRol" value="Acceso no restringido a los recursos. Esto incluye crear, configurar y suprimir recursos."  readonly/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado por:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="Anthony Fugon" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado el:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="2/12/2018" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado por:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado el:</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" value="" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- INSERT MODAL Registro-->
+<div class="modal fade" id="modalregistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Registrar Acceso Rol</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Código Acceso Rol</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtIdAccesoRol" value="" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Descripción Acceso Rol</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="txtDescripcionRol" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Pantalla</label>
+                            <div class="col-sm-7  input-group">
+                                <select id="Select1" class="form-control">
+                                    <option>--Seleccione Pantalla--</option>
+                                    <option>Bodega</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+                <input type="button" class="btn btn-primary btn-sm" id="btnAceptar" style="width:110px;" value="Guardar" onclick="Aceptar();" />
+            </div>
+        </div>
+    </div>
+</div>
+
+

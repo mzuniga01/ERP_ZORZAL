@@ -8,13 +8,10 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Estado Movimiento</h2>
-        <ol class="breadcrumb">
-            
-        </ol>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar al Listado", "Index", null, new { @class = ""})
+            @Html.ActionLink("Regresar", "Index")
         </div>
     </div>
 </div>
@@ -42,16 +39,16 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.estm_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-1">
-                @Html.EditorFor(model => model.estm_Id)
+            @Html.LabelFor(model => model.estm_Id, new { @class = "control-label col-md-2"  })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.estm_Id, new { @class = "form-control", @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.estm_Id)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.estm_Descripcion, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.estm_Descripcion)
                 @Html.ValidationMessageFor(model => model.estm_Descripcion)
             </div>
@@ -59,15 +56,15 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.estm_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.estm_UsuarioCrea, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            <div class="col-md-10">
+                <input class="form-control" type="text" value="Luis Ochoa" readonly>
                 @Html.ValidationMessageFor(model => model.estm_UsuarioCrea)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.estm_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.estm_FechaCrea, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.estm_FechaCrea)
             </div>
@@ -75,15 +72,15 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.estm_UsuarioModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.estm_UsuarioModifica, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            <div class="col-md-10">
+                <input class="form-control" type="text" value="Luis Ochoa" readonly>
                 @Html.ValidationMessageFor(model => model.estm_UsuarioModifica)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.estm_FechaModifica, new { @class = "control-label col-md-2"})
-            <div class="col-md-5">
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.estm_FechaModifica, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.estm_FechaModifica)
             </div>
@@ -91,8 +88,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+                <input type="button" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
             </div>
         </div>
     </div>
