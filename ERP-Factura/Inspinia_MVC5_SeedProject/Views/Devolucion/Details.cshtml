@@ -1,0 +1,89 @@
+﻿@model ERP_ZORZAL.Models.tbDevolucion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Detalle Devolucion</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("Lista", "Index")
+            </li>
+            <li class="active">
+                <strong>Detalle</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Devolución</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cja_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cja_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dev_Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dev_Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dev_UsuarioCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dev_UsuarioCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.dev_Id }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+@Html.Partial("_DetalleDevolucion")
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,127 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbCuentasBanco>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Cuentas de Banco</h2>
+        @*<ol class="breadcrumb">
+            <li class="active">
+                <strong>tbCuentasBanco</strong>
+            </li>
+        </ol>*@
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Cuentas de Banco</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-responsive" style="width:100%" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.mnda_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bcta_TipoCuenta)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bcta_TotalCredito)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bcta_TotalDebito)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bcta_FechaApertura)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bcta_Numero)
+                                </th>
+                                @*<th>
+                                    @Html.DisplayNameFor(model => model.bcta_UsuarioCrea)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bcta_FechaCrea)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bcta_UsuarioModifica)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bcta_FechaModifica)
+                                </th>*@
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbBanco.ban_Nombre)
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.mnda_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bcta_TipoCuenta)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bcta_TotalCredito)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bcta_TotalDebito)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bcta_FechaApertura)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bcta_Numero)
+                                    </td>
+                                    @*<td>
+                                        @Html.DisplayFor(modelItem => item.bcta_UsuarioCrea)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bcta_FechaCrea)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bcta_UsuarioModifica)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bcta_FechaModifica)
+                                    </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbBanco.ban_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Detalle", "Details", new { id = item.bcta_Id }, new { @class = "btn btn-primary btn-sm" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.bcta_Id }, new { @class = "btn btn-white btn-sm" })
+                                        @*@Html.ActionLink("Delete", "Delete", new { id = item.bcta_Id }, new { @class = "btn btn-white btn-sm" })*@
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>

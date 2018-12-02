@@ -1,0 +1,123 @@
+﻿@model ERP_ZORZAL.Models.tbPago
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Detalle Pago</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("Lista", "Index")
+            </li>
+            <li class="active">
+                <strong>Detalle Pago</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Pago</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pago_Totalpagos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pago_Totalpagos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pago_Totalcambio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pago_Totalcambio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pago_Emisor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pago_Emisor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pago_Cuenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pago_Cuenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pago_FechaVencimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pago_FechaVencimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pago_Titular_)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pago_Titular_)
+        </dd>
+     
+        <dt>
+            @Html.DisplayNameFor(model => model.tbFactura.cja_Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbFactura.cja_Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbTipoPago.tpa_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbTipoPago.tpa_Descripcion)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.pago_Id }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -18,6 +18,7 @@ namespace ERP_ZORZAL.Models
         public tbMoneda()
         {
             this.tbCuentasBanco = new HashSet<tbCuentasBanco>();
+            this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
         }
     
         public short mnda_Id { get; set; }
@@ -32,5 +33,7 @@ namespace ERP_ZORZAL.Models
         public virtual tbUsuario tbUsuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCuentasBanco> tbCuentasBanco { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
     }
 }

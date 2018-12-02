@@ -1,0 +1,145 @@
+﻿@model ERP_ZORZAL.Models.tbNotaCredito
+
+@{
+    ViewBag.Title = "Datalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Detalles</h2>
+        <ol class="breadcrumb">
+            @*<li>
+                @Html.ActionLink("List", "Index")
+            </li>*@
+            <li class="active">
+                @*<strong>Details</strong>*@
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Nota Crédito</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nocre_Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nocre_Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nocre_FechaEmision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nocre_FechaEmision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nocre_MotivoEmision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nocre_MotivoEmision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nocre_Monto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nocre_Monto)
+        </dd>
+
+        <dt>
+            Usuario Crea
+            @*@Html.DisplayNameFor(model => model.nocre_UsuarioCrea)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nocre_UsuarioCrea)
+        </dd>
+
+        <dt>
+            Fecha Crea
+            @*@Html.DisplayNameFor(model => model.nocre_FechaCrea)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nocre_FechaCrea)
+        </dd>
+
+        <dt>
+            Usuario Modifica
+            @*@Html.DisplayNameFor(model => model.nocre_UsuarioModifica)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nocre_UsuarioModifica)
+        </dd>
+
+        <dt>
+            Fecha Modifica
+            @*@Html.DisplayNameFor(model => model.nocre_FechaModifica)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nocre_FechaModifica)
+        </dd>
+
+        <dt>
+            Numero Identificación
+            @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)
+        </dd>
+
+        <dt>
+            Id Devolución
+            @*@Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbDevolucion.dev_Id)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.nocre_Id }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary" })
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
