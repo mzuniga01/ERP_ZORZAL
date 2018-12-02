@@ -1,5 +1,6 @@
 ﻿@model ERP_ZORZAL.Models.tbPuntoEmisionDetalle
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -55,7 +56,7 @@
             @Html.LabelFor(model => model.pemid_FechaLimite, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.pemid_FechaLimite)
-                @Html.ValidationMessageFor(model => model.pemid_FechaLimite)
+                @Html.ValidationMessageFor(model => model.pemid_FechaLimite, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "datepicker" } })
             </div>
         </div>
 
@@ -110,4 +111,16 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+        $(function () {
+            $('#datepicker').datepicker({
+                dateFormat: "yy-mm-dd",
+                showOn: "both",
+                buttonText: "<i class='fas fa-calendar-alt'></i>"
+            });
+
+        });
+
+</script>
+
 }

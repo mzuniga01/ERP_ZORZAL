@@ -202,7 +202,9 @@
     <Compile Include="Models\Banco.cs" />
     <Compile Include="Models\cDevolucion.cs" />
     <Compile Include="Models\cDocumentoFiscal.cs" />
+    <Compile Include="Models\Clientes.cs" />
     <Compile Include="Models\CuentaBanco.cs" />
+    <Compile Include="Models\EstadoFactura.cs" />
     <Compile Include="Models\Factura.cs" />
     <Compile Include="Models\FacturaDetalle.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -223,6 +225,7 @@
     </Compile>
     <Compile Include="Models\NotasCredito.cs" />
     <Compile Include="Models\PuntoEmision.cs" />
+    <Compile Include="Models\PuntoEmisionDetalle.cs" />
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

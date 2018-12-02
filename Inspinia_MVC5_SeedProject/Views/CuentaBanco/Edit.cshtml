@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Cuentas Banco</h2>
@@ -48,7 +50,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ban_Id, "Id Banco", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @*@Html.DropDownList("ban_Id", String.Empty)*@
                 @Html.DropDownList("ban_Id", null, new { @class = "control-label col-md-12" })
                 @Html.ValidationMessageFor(model => model.ban_Id)
@@ -57,7 +59,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.mnda_Id)
                 @Html.ValidationMessageFor(model => model.mnda_Id)
             </div>
@@ -65,7 +67,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.bcta_TipoCuenta, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.bcta_TipoCuenta)
                 @Html.ValidationMessageFor(model => model.bcta_TipoCuenta)
             </div>
@@ -73,7 +75,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.bcta_TotalCredito, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.bcta_TotalCredito)
                 @Html.ValidationMessageFor(model => model.bcta_TotalCredito)
             </div>
@@ -81,7 +83,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.bcta_TotalDebito, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.bcta_TotalDebito)
                 @Html.ValidationMessageFor(model => model.bcta_TotalDebito)
             </div>
@@ -89,15 +91,15 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.bcta_FechaApertura, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.bcta_FechaApertura)
-                @Html.ValidationMessageFor(model => model.bcta_FechaApertura)
+                @Html.ValidationMessageFor(model => model.bcta_FechaApertura , "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "datepicker" } }))
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.bcta_Numero, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.bcta_Numero)
                 @Html.ValidationMessageFor(model => model.bcta_Numero)
             </div>
@@ -105,7 +107,7 @@
 
         @*<div class="form-group">
             @Html.LabelFor(model => model.bcta_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.bcta_UsuarioCrea)
                 @Html.ValidationMessageFor(model => model.bcta_UsuarioCrea)
             </div>
@@ -113,7 +115,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.bcta_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.bcta_FechaCrea)
                 @Html.ValidationMessageFor(model => model.bcta_FechaCrea)
             </div>
@@ -121,7 +123,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.bcta_UsuarioModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.bcta_UsuarioModifica)
                 @Html.ValidationMessageFor(model => model.bcta_UsuarioModifica)
             </div>
@@ -129,7 +131,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.bcta_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.bcta_FechaModifica)
                 @Html.ValidationMessageFor(model => model.bcta_FechaModifica)
             </div>
@@ -155,4 +157,17 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+<script>
+        $(function () {
+            $('#datepicker').datepicker({
+                dateFormat: "yy-mm-dd",
+                showOn: "both",
+                buttonText: "<i class='fas fa-calendar-alt'></i>"
+            });
+
+        });
+
+</script>
+
 }

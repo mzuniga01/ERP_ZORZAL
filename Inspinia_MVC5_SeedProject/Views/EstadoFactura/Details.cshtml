@@ -8,14 +8,20 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Details</h2>
-        <ol class="breadcrumb">
+        @*<ol class="breadcrumb">
             <li>
                 @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
                 <strong>Details</strong>
             </li>
-        </ol>
+        </ol>*@
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","EstadoFactura")">Regresar</a>
+            @*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
+        </div>
     </div>
 </div>
 
@@ -27,7 +33,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Details tbEstadoFactura</h5>
+                    <h5>Detalles Estado Factura</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -50,34 +56,34 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.esfac_UsuarioModifico)
+            @Html.DisplayNameFor(model => model.esfac_FechaCrea)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.esfac_UsuarioModifico)
+            @Html.DisplayFor(model => model.esfac_FechaCrea)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.esfac_FechaAgrego)
+            @Html.DisplayNameFor(model => model.esfac_UsuarioModifica)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.esfac_FechaAgrego)
-        </dd>
+            @Html.DisplayFor(model => model.esfac_UsuarioModifica)
+        </dd>       
 
         <dt>
-            @Html.DisplayNameFor(model => model.esfac_FechaModifico)
+            @Html.DisplayNameFor(model => model.esfac_FechaModifica)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.esfac_FechaModifico)
+            @Html.DisplayFor(model => model.esfac_FechaModifica)
         </dd>
 
     </dl>
 
 
-	    @Html.ActionLink("Edit", "Edit", new { id = Model.esfac_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.esfac_Id }, new { @class = "btn btn-primary"})
+    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
 
                 </div>
             </div>
