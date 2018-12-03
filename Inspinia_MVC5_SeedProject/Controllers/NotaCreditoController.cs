@@ -17,7 +17,7 @@ namespace ERP_ZORZAL.Controllers
         // GET: /NotaCredito/
         public ActionResult Index()
         {
-            var tbnotacredito = db.tbNotaCredito.Include(t => t.tbCliente).Include(t => t.tbDevolucion);
+            var tbnotacredito = db.tbNotaCredito.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbDevolucion);
             return View(tbnotacredito.ToList());
         }
 
@@ -39,6 +39,8 @@ namespace ERP_ZORZAL.Controllers
         // GET: /NotaCredito/Create
         public ActionResult Create()
         {
+            ViewBag.nocre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.nocre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte");
             ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id");
             return View();
@@ -58,6 +60,8 @@ namespace ERP_ZORZAL.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.nocre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioCrea);
+            ViewBag.nocre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioModifica);
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbNotaCredito.clte_Id);
             ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id", tbNotaCredito.dev_Id);
             return View(tbNotaCredito);
@@ -75,6 +79,8 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.nocre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioCrea);
+            ViewBag.nocre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioModifica);
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbNotaCredito.clte_Id);
             ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id", tbNotaCredito.dev_Id);
             return View(tbNotaCredito);
@@ -93,6 +99,8 @@ namespace ERP_ZORZAL.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.nocre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioCrea);
+            ViewBag.nocre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioModifica);
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbNotaCredito.clte_Id);
             ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id", tbNotaCredito.dev_Id);
             return View(tbNotaCredito);

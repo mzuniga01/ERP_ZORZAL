@@ -8,11 +8,11 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Tipos De identificación</h2>
-        <ol class="breadcrumb">
+        @*<ol class="breadcrumb">
             <li class="active">
                 <strong></strong>
             </li>
-        </ol>
+        </ol>*@
     </div>
 </div>
 
@@ -24,7 +24,7 @@
                 <div class="ibox-title">
                     <h5>Listado Tipo Identificación</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-primary" })
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -50,7 +50,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.tpi_FechaModifica)
             </th>*@
-            <th></th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -77,8 +77,8 @@
                         @Html.DisplayFor(modelItem => item.tpi_FechaModifica)
                     </td>*@
                 <td>
-                    @Html.ActionLink("Detalles", "Details", new { id = item.tpi_Id }, new { @class = "btn btn-white btn-sm" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.tpi_Id }, new { @class = "btn btn-white btn-sm" })
+                    @Html.ActionLink("Detalles", "Details", new { id = item.tpi_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.tpi_Id }, new { @class = "btn btn-primary btn-xs" })
                     @*@Html.ActionLink("Delete", "Delete", new { id=item.tpi_Id }, new { @class = "btn btn-white btn-sm"})*@
                 </td>
             </tr>
@@ -93,5 +93,4 @@
  </div>
 
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
-
 <script src="~/Scripts/app/DataTable.js"></script>

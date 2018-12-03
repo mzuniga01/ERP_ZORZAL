@@ -19,7 +19,8 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary btn-xs" })
+            <a href="@Url.Action("Index","TipoIdentificacion")">Regresar</a>
+			@*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary btn-xs" })*@
         </div>
     </div>
 </div>
@@ -53,7 +54,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.tpi_UsuarioCrea, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.tpi_UsuarioCrea)
@@ -83,12 +84,12 @@
                 @Html.EditorFor(model => model.tpi_FechaModifica)
                 @Html.ValidationMessageFor(model => model.tpi_FechaModifica)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-white btn-sm" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
             </div>
         </div>
     </div>

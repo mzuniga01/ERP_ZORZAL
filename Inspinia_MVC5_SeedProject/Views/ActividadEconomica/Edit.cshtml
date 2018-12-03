@@ -7,19 +7,20 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2></h2>
-        <ol class="breadcrumb">
+        <h2>Actividad Económica</h2>
+        @*<ol class="breadcrumb">
             <li>
                 @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
                 <strong>Editar</strong>
             </li>
-        </ol>
+        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white btn-sm"})
+            <a href="@Url.Action("Index","ActividadEconomica")">Regresar</a>
+			@*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white btn-sm"})*@
         </div>
     </div>
 </div>
@@ -53,7 +54,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.acte_UsuarioCrea, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.acte_UsuarioCrea)
@@ -83,12 +84,12 @@
                 @Html.EditorFor(model => model.acte_FechaModifica)
                 @Html.ValidationMessageFor(model => model.acte_FechaModifica)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-white btn-sm" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
             </div>
         </div>
     </div>
