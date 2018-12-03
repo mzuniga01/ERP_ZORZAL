@@ -25,7 +25,7 @@ namespace ERP_Zorzal.Models
         public int clte_Id { get; set; }
 
         [Display(Name = "Estado Crédito")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte escre_Id { get; set; }
 
         [Display(Name = "Fecha de Solicitud")]
@@ -56,7 +56,7 @@ namespace ERP_Zorzal.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int cred_UsuarioCrea { get; set; }
 
-        [Display(Name = "Usuario Creó")]
+        [Display(Name = "Fecha Creó")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime cred_FechaCrea { get; set; }
 
@@ -64,7 +64,7 @@ namespace ERP_Zorzal.Models
 
         public Nullable<int> cred_UsuarioModifica { get; set; }
 
-        [Display(Name = "Usuario Modifica")]
+        [Display(Name = "Fecha Modifica")]
 
         public Nullable<System.DateTime> cred_FechaModifica { get; set; }
 
