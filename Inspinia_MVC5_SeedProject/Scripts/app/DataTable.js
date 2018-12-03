@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('#DataTable').DataTable(
+    $('#Datatable').DataTable(
     {
         "searching": true,
         "scrollX": true,

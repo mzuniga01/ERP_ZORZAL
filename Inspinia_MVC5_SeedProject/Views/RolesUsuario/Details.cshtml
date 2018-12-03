@@ -1,0 +1,113 @@
+﻿@model ERP_ZORZAL.Models.tbRolesUsuario
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        @*<h2>Details</h2>
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("List", "Index")
+                </li>
+                <li class="active">
+                    <strong>Details</strong>
+                </li>
+            </ol>*@
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","RolesUsuario")">Regresar</a>
+            @*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Details tbRolesUsuario</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.rolu_UsuarioCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rolu_UsuarioCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rolu_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rolu_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rolu_UsuarioModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rolu_UsuarioModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rolu_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rolu_FechaModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbRol.rol_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbRol.rol_Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.rolu_Id }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

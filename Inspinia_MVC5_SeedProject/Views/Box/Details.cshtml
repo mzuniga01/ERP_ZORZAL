@@ -1,0 +1,113 @@
+﻿@model ERP_ZORZAL.Models.tbBox
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        @*<h2>Create</h2>
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("List", "Index")
+                </li>
+                <li class="active">
+                    <strong>Create</strong>
+                </li>
+            </ol>*@
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Box")">Regresar</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Caja</h5>
+                </div>
+                <div class="ibox-content">
+
+                    <div class="form-horizontal">
+
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.box_Codigo)
+                            </dt>
+
+                            <dd>
+                                @*@Html.DisplayFor(model => model.box_Descripcion)*@
+                                0102
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.box_Descripcion)
+                            </dt>
+
+                            <dd>
+                                @*@Html.DisplayFor(model => model.box_Descripcion)*@
+                                40X40 Fragil
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.box_UsuarioCrea)
+                            </dt>
+
+                            <dd>
+                                @*@Html.DisplayFor(model => model.box_Descripcion)*@
+                                Administrador
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.box_FechaCrea)
+                            </dt>
+
+                            <dd>
+                                @*@Html.DisplayFor(model => model.box_Descripcion)*@
+                                25/11/2018
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.box_UsuarioModifica)
+                            </dt>
+                            <dd>
+                                @*@Html.DisplayFor(model => model.box_Descripcion)*@
+                                Administrador
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.box_FechaModifica)
+                            </dt>
+
+                            <dd>
+                                @*@Html.DisplayFor(model => model.box_Descripcion)*@
+                                29/11/2018
+                            </dd>
+                        </dl>
+
+
+                        @Html.ActionLink("Editar", "Edit", null, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

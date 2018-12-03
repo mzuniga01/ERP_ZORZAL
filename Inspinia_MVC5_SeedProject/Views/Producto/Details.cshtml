@@ -1,0 +1,142 @@
+﻿@model ERP_ZORZAL.Models.tbProducto
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Producto</h2>
+        @*<ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("List", "Index")
+                </li>
+                <li class="active">
+                    <strong>Details</strong>
+                </li>
+            </ol>*@
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Producto")">Regresar</a>
+            @*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
+        </div>
+    </div>
+
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalles Producto</h5>
+                </div>
+                <div class="ibox-content">
+
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            <label class="control-label col-md-2">Código de Producto</label>
+                        </dt>
+
+                        <dd>
+                            PANPJ-102634700
+                        </dd>
+
+                        <dt>
+                            <label class="control-label col-md-2">Descripción</label>
+                        </dt>
+
+                        <dd>
+                            Pantalón
+                        </dd>
+
+                        <dt>
+                            <label class="control-label col-md-2">Marca</label>
+                        </dt>
+
+                        <dd>
+                            Pepe Jeans
+                        </dd>
+                        <dt>
+                            <label class="control-label col-md-2">Categoría</label>
+                        </dt>
+
+                        <dd>
+                            Ropa
+                        </dd>
+                        <dt>
+                            <label class="control-label col-md-2">Unidad de Medida</label>
+                        </dt>
+
+                        <dd>
+                            Docena
+                        </dd>
+
+                        <dt>
+                            <label class="control-label col-md-2">Modelo</label>
+                        </dt>
+
+                        <dd>
+                            Licra
+                        </dd>
+                        <dt>
+                            <label class="control-label col-md-2">Descripción</label>
+                        </dt>
+
+                        <dd>
+                            Talla 32
+                        </dd>
+                        <dt>
+                            <label class="control-label col-md-2">Color</label>
+                        </dt>
+
+                        <dd>
+                            Negro
+                        </dd>
+
+                        <dt>
+                            <label class="control-label col-md-2">Usuario</label>
+                        </dt>
+
+                        <dd>
+                            HenryFigueroa
+                        </dd>
+
+                        <dt>
+                            <label class="control-label col-md-2">Fecha Crea</label>
+                        </dt>
+
+                        <dd>
+                            23/09/2018
+                        </dd>
+
+                        <dt>
+                            <label class="control-label col-md-2">Modificado Por</label>
+                        </dt>
+
+                        <dd>
+
+                        </dd>
+
+                        <dt>
+                            <label class="control-label col-md-2">Modificado El</label>
+                        </dt>
+
+                        <dd>
+
+                        </dd>
+
+                    </dl>
+
+                    @Html.ActionLink("Editar", "Edit", null, new { @class = "btn btn-primary" })
+                    @*@Html.ActionLink("Editar", "Editar", null, new { @class = "btn btn-primary btn-xs" })
+                        @Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "btn btn-primary btn-xs" })*@
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

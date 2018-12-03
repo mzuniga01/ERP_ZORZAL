@@ -1,0 +1,209 @@
+﻿
+@model ERP_ZORZAL.Models.tbUsuario
+
+@{
+    ViewBag.Title = "Editar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        @*<h2>Create</h2>
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("List", "Index")
+                </li>
+                <li class="active">
+                    <strong>Create</strong>
+                </li>
+            </ol>*@
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Box")">Regresar</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Usuario</h5>
+                </div>
+                <div class="ibox-content">
+
+                    <div class="form-horizontal">
+
+                        <div class="col-lg-4">
+                            <label class="col-md-10">Nombres</label>
+
+                            <div class="col-md-10">
+                                <input type="text" value="Bayron" class="text-box single-line" />
+                            </div>
+                            <div class="col-md-12"><br /></div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label class="col-md-10">Apellidos</label>
+
+                            <div class="col-md-10">
+                                <input type="text" value="Matute" class="text-box single-line" />
+                            </div>
+                            <div class="col-md-12"><br /></div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label class="col-md-10">Nombre Usuario</label>
+
+                            <div class="col-md-10">
+                                <input type="text" value="BayronMatute" class="text-box single-line" />
+                            </div>
+                            <div class="col-md-12"><br /></div>
+                        </div>
+
+
+
+                        <div class="col-lg-4">
+                            <label class="col-md-10">Correo Electronico</label>
+
+                            <div class="col-md-10">
+                                <input type="email" value="Bayron_matute@gmail.com" class="text-box single-line" />
+                            </div>
+                            <div class="col-md-12"><br /></div>
+                        </div>
+
+
+
+                        <div class="col-lg-4">
+                            <label class="col-md-10">Razón Inactivo</label>
+
+                            <div class="col-md-10">
+                                <input type="text" class="text-box single-line" />
+                            </div>
+                            <div class="col-md-12"><br /></div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label class="col-md-10">Administrador</label>
+
+                            <div class="col-md-10">
+                                <input type="text" class="text-box single-line" />
+                            </div>
+                            <div class="col-md-12"><br /></div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="col-md-10">Estado</label>
+
+                            <div class="col-md-10">
+                                <select id="Select1" class="form-control">
+                                    <option>Activo</option>
+                                    <option>Inactivo</option>
+
+                                </select>
+                            </div>
+                            <div class="col-md-12"><br /></div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="col-md-10">Creado por</label>
+
+                            <div class="col-md-10">
+                                <input type="text" value="BayronMatute" readonly class="text-box single-line" />
+                            </div>
+                            <div class="col-md-12"><br /></div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label class="col-md-10">Fecha Creación</label>
+
+                            <div class="col-md-10">
+                                <input type="text" value="29/09/2018" readonly class="text-box single-line" />
+                                
+                            </div>
+                            <div class="col-md-12"><br /></div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label class="col-md-10">Modificado por</label>
+
+                            <div class="col-md-10">
+                                <input type="text" value="AlexisSarmiento" readonly class="text-box single-line" />
+                            </div>
+                            <div class="col-md-12"><br /></div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label class="col-md-10">Fecha de Modificación</label>
+
+                            <div class="col-md-10">
+                                <input type="text" value="29/11/2018" readonly class="text-box single-line" />
+                            </div>
+                            <div class="col-md-12"><br /><br /><br /><br /><br /></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="col-md-10" style="text-align:center">Roles Asignados</label>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td style="color:white" bgcolor="#1ab394">Rol</td>
+                                    <td bgcolor="#1ab394"></td>
+                                </tr>
+                                <tr>
+                                    <td>Administrador</td>
+                                    <td><input name="id01" type="checkbox" id="id01" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Encargado de Bodega</td>
+                                    <td><input name="id02" type="checkbox" id="id02" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Jefe de Bodega</td>
+                                    <td><input name="id03" type="checkbox" id="id03" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Cajero</td>
+                                    <td><input name="id03" type="checkbox" id="id03" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="col-md-10" style="text-align:center">Roles No Asignados</label>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td style="color:white" bgcolor="#1ab394">Rol</td>
+                                    <td bgcolor="#1ab394"></td>
+                                </tr>
+                                <tr>
+                                    <td>Administrador</td>
+                                    <td><input name="id01" type="checkbox" id="id01" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Encargado de Bodega</td>
+                                    <td><input name="id02" type="checkbox" id="id02" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Jefe de Bodega</td>
+                                    <td><input name="id03" type="checkbox" id="id03" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Cajero</td>
+                                    <td><input name="id03" type="checkbox" id="id03" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                @Html.ActionLink("Aplicar Cambios", "Index", null, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
