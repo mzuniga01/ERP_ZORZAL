@@ -1,0 +1,122 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbRolesUsuario>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        @*<h2>Index</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>tbRolesUsuario</strong>
+            </li>
+        </ol>*@
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Roles a Usuario</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Registrar Rol a Usuario", "Create", null, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped" id="DataTable">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.tbRol.rol_Id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.tbRol.rol_Descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+                            </th>
+                            @*<th>
+                @Html.DisplayNameFor(model => model.rolu_UsuarioCrea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rolu_FechaCrea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rolu_UsuarioModifica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rolu_FechaModifica)
+            </th>*@
+
+                            <th></th>
+                        </tr>
+                        <tr>
+                            @foreach (var item in Model)
+                            {
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbRol.rol_Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbRol.rol_Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Detalles", "Details", new { id = item.rolu_Id }, new { @class = "btn btn-primary btn-xs" })
+                                    @Html.ActionLink("Editar", "Edit", new { id = item.rolu_Id }, new { @class = "btn btn-primary btn-xs" })
+
+                                </td>
+                            }
+
+                            @*<td>
+                @Html.DisplayFor(modelItem => item.rolu_UsuarioCrea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rolu_FechaCrea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rolu_UsuarioModifica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rolu_FechaModifica)
+            </td>*@
+
+                        </tr>
+
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#DataTable').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+        },
+
+    });
+    });
+</script>
+
+

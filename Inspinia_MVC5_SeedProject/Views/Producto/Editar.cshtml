@@ -1,0 +1,194 @@
+﻿
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Productos</h2>
+        @*<ol class="breadcrumb"></ol>*@
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Producto")">Regresar</a>
+            @*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
+        </div>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Producto</h5>
+                </div>
+                <div class="ibox-content">
+
+                        <div class="form-horizontal">
+
+                            <div class="form-group">
+                                <label class="control-label col-md-1">Código</label>
+                                <div class="col-md-4">
+                                    <input class="text-box single-line " value="PANPJ-102634700">
+                                </div>
+                                <label class="control-label col-md-1">Nombre</label>
+                                <div class="col-md-4">
+                                    <input class="text-box single-line " value="Pantalón">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-1">Fecha Creación</label>
+                                <div class="col-md-4">
+                                    <input class="text-box single-line " value="23/09/2018">
+                                </div>
+                            
+                                <label class="control-label col-md-1">Marca</label>
+                                <div class="col-md-4">
+                                    <input class="text-box single-line " value="Pepe Jeans">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-1">Categoria</label>
+                                <div class="col-md-4">
+                                   
+                                    <select class="form-control" id="" name="">
+                                        <option>Seleccione la Categoria</option>
+                                        <option>Ropa</option>
+                                        <option>Calzado</option>
+                                        <option>Electrodomesticos</option>
+                                        <option>Muebles</option>
+                                        <option>Accesorios</option>
+                                        <option>Juguetes</option>
+                                    </select>
+                                </div>
+                            
+                                <label class="control-label col-md-1">Unidad de Medida</label>
+                                <div class="col-md-4">
+                                    <select class="form-control" id="" name="">
+                                        <option>Seleccione la Unidad</option>
+                                        <option>Docena</option>
+                                        <option>Media Docena</option>
+                                        <option>Yarda</option>
+                                        <option>Kilogramo</option>
+                                        <option>Caja</option>
+                                        <option>Metros</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-1">Modelo</label>
+                                <div class="col-md-4">
+                                    <input class="text-box single-line " value="Licra">
+                                </div>
+  
+                                <label class="control-label col-md-1">Descripcion</label>
+                                <div class="col-md-4">
+                                    <input class="text-box single-line " value="Talla 32">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-1">Color</label>
+                                <div class="col-md-4">
+                                    <input class="text-box single-line " value="Negro">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @model IEnumerable<ERP_ZORZAL.Models.tbProductoCategoria>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Lista Categorias</h5>
+                        <div class="ibox-tools">
+                            @Html.ActionLink("Nuevo", "Crear", null, new { @class = "btn btn-primary btn-xs" })
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table class="table table-striped" id="tbProductoCategorias">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Id Categoria
+                                    </th>
+                                    <th>
+                                        Nombre Categoria
+                                    </th>
+                                    
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        000
+                                    </td>
+                                    <td>
+                                        Ropa
+                                    </td>
+                                    
+                                    <td>
+                                        @Html.ActionLink("Detalles", "Detalles", new { @class = "btn btn-primary btn-sm" })
+                                        @Html.ActionLink("Editar", "Editar", new { @class = "btn btn-white btn-sm" })
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.responsive.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#tbProductoCategorias').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+        },
+
+    });
+
+    });
+
+    </script>
+}
+

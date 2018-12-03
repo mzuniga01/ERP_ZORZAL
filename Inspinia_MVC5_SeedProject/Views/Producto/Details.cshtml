@@ -1,0 +1,132 @@
+﻿@model ERP_ZORZAL.Models.tbProducto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Details</h2>
+        @*<ol class="breadcrumb">
+            <li>
+                
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>*@
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Producto")">Regresar</a>
+            @*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Details tbProducto</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prod_Descripcion)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_Marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prod_Marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_UsuarioCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prod_UsuarioCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prod_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_UsuarioModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prod_UsuarioModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prod_FechaModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbProductoSubcategoria.pscat_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbProductoSubcategoria.pscat_Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUnidadesMedida.uni_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbUnidadesMedida.uni_Descripcion)
+        </dd>
+
+    </dl>
+
+
+                    @Html.ActionLink("Editar", "Editar", new { @class = "btn btn-primary" })
+                    @*<a href="@Url.Action("Index","Banco")">Regresar</a>*@
+                    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
