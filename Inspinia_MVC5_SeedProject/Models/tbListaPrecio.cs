@@ -15,6 +15,7 @@ namespace ERP_ZORZAL.Models
     public partial class tbListaPrecio
     {
         public int listp_Id { get; set; }
+        public string listp_Nombre { get; set; }
         public Nullable<bool> listp_EsActivo { get; set; }
         public int listp_UsuarioCrea { get; set; }
         public System.DateTime listp_FechaCrea { get; set; }

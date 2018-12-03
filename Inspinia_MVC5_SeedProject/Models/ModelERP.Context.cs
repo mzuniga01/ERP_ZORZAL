@@ -68,6 +68,7 @@ namespace ERP_ZORZAL.Models
         public virtual DbSet<tbExoneracion> tbExoneracion { get; set; }
         public virtual DbSet<tbFactura> tbFactura { get; set; }
         public virtual DbSet<tbFacturaDetalle> tbFacturaDetalle { get; set; }
+        public virtual DbSet<tbFacturaHistorica> tbFacturaHistorica { get; set; }
         public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
         public virtual DbSet<tbListaPrecio> tbListaPrecio { get; set; }
         public virtual DbSet<tbNotaCredito> tbNotaCredito { get; set; }

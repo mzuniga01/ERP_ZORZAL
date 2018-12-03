@@ -20,6 +20,7 @@ namespace ERP_ZORZAL.Models
         public System.DateTime cdto_FechaVencimiento { get; set; }
         public Nullable<decimal> cdto_PorcentajeDescuento { get; set; }
         public Nullable<decimal> cdto_MontoDescuento { get; set; }
+        public Nullable<bool> cdto_Anulado { get; set; }
         public int cdto_UsuarioCrea { get; set; }
         public System.DateTime cdto_FechaCrea { get; set; }
         public Nullable<int> cdto_UsuarioModifica { get; set; }

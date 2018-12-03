@@ -7,7 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Punto Emisión</h2>
+        <h2>Punto de emisión</h2>
         @*<ol class="breadcrumb">
             <li class="active">
                 <strong>tbPuntoEmision</strong>
@@ -22,9 +22,9 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Punto Emisión</h5>
+                    <h5>Listado de punto emisión</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Registrar", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -33,24 +33,24 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.pemi_Id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.pemi_UsuarioCrea)
-            </th>*@
-            @*<th>
-                @Html.DisplayNameFor(model => model.pemi_FechaCrea)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.pemi_UsuarioModifica)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.pemi_FechaModifica)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tbSucursal1.mun_Codigo)
-            </th>*@
-            <th>Acciones</th>
+                    @Html.DisplayNameFor(model => model.pemi_FechaCrea)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pemi_FechaModifica)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+                </th>*@
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -58,32 +58,31 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.pemi_Id)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.pemi_NumeroCAI)
                 </td>
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.pemi_UsuarioCrea)
-                </td>
+                        @Html.DisplayFor(modelItem => item.pemi_FechaCrea)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.pemi_FechaModifica)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
+                    </td>*@
                 <td>
-                    @Html.DisplayFor(modelItem => item.pemi_FechaCrea)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.pemi_UsuarioModifica)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.pemi_FechaModifica)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbSucursal1.mun_Codigo)
-                </td>
-                <td>
-                    @Html.ActionLink("Detalle", "Details", new { id = item.pemi_Id }, new { @class = "btn btn-primary btn-sm" })
+                    @Html.ActionLink("Detalles", "Details", new { id = item.pemi_Id }, new { @class = "btn btn-primary btn-sm" })
                     @Html.ActionLink("Editar", "Edit", new { id = item.pemi_Id }, new { @class = "btn btn-white btn-sm" })
                     @*@Html.ActionLink("Delete", "Delete", new { id=item.pemi_Id }, new { @class = "btn btn-white btn-sm"})*@
                 </td>
             </tr>
         }
     </tbody>
-
 </table>
 
                 </div>
@@ -91,6 +90,7 @@
         </div>
     </div>
  </div>
+
 
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>

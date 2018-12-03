@@ -44,7 +44,5 @@ namespace ERP_ZORZAL.Models
 
         [NotMapped]
         public List<cTipoCuenta> TipoCuentaList { get; set; }
-
-
     }
 }

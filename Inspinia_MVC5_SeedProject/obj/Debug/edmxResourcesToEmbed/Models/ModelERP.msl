@@ -520,6 +520,7 @@
           <ScalarProperty Name="cdto_UsuarioModifica" ColumnName="cdto_UsuarioModifica" />
           <ScalarProperty Name="cdto_FechaCrea" ColumnName="cdto_FechaCrea" />
           <ScalarProperty Name="cdto_UsuarioCrea" ColumnName="cdto_UsuarioCrea" />
+          <ScalarProperty Name="cdto_Anulado" ColumnName="cdto_Anulado" />
           <ScalarProperty Name="cdto_MontoDescuento" ColumnName="cdto_MontoDescuento" />
           <ScalarProperty Name="cdto_PorcentajeDescuento" ColumnName="cdto_PorcentajeDescuento" />
           <ScalarProperty Name="cdto_FechaVencimiento" ColumnName="cdto_FechaVencimiento" />
@@ -652,6 +653,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbFacturaHistorica">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbFacturaHistorica">
+        <MappingFragment StoreEntitySet="tbFacturaHistorica">
+          <ScalarProperty Name="facth_Fecha" ColumnName="facth_Fecha" />
+          <ScalarProperty Name="esfac_Id" ColumnName="esfac_Id" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="facth_Id" ColumnName="facth_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tbListadoPrecioDetalle">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbListadoPrecioDetalle">
         <MappingFragment StoreEntitySet="tbListadoPrecioDetalle">
@@ -661,9 +672,9 @@
           <ScalarProperty Name="lispd_UsuarioCrea" ColumnName="lispd_UsuarioCrea" />
           <ScalarProperty Name="lispd_DescGerente" ColumnName="lispd_DescGerente" />
           <ScalarProperty Name="lispd_DescCaja" ColumnName="lispd_DescCaja" />
-          <ScalarProperty Name="lispd_Fechaifinalvigencia" ColumnName="lispd_Fechaifinalvigencia" />
-          <ScalarProperty Name="lispd_Fechainiciovigencia" ColumnName="lispd_Fechainiciovigencia" />
-          <ScalarProperty Name="lispd_Preciominorista" ColumnName="lispd_Preciominorista" />
+          <ScalarProperty Name="lispd_FechaFinalVigencia" ColumnName="lispd_FechaFinalVigencia" />
+          <ScalarProperty Name="lispd_FechaInicioVigencia" ColumnName="lispd_FechaInicioVigencia" />
+          <ScalarProperty Name="lispd_PrecioMinorista" ColumnName="lispd_PrecioMinorista" />
           <ScalarProperty Name="lispd_PrecioMayorista" ColumnName="lispd_PrecioMayorista" />
           <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
           <ScalarProperty Name="listp_Id" ColumnName="listp_Id" />
@@ -678,6 +689,7 @@
           <ScalarProperty Name="listp_FechaCrea" ColumnName="listp_FechaCrea" />
           <ScalarProperty Name="listp_UsuarioCrea" ColumnName="listp_UsuarioCrea" />
           <ScalarProperty Name="listp_EsActivo" ColumnName="listp_EsActivo" />
+          <ScalarProperty Name="listp_Nombre" ColumnName="listp_Nombre" />
           <ScalarProperty Name="listp_Id" ColumnName="listp_Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -692,6 +704,7 @@
           <ScalarProperty Name="nocre_Monto" ColumnName="nocre_Monto" />
           <ScalarProperty Name="nocre_MotivoEmision" ColumnName="nocre_MotivoEmision" />
           <ScalarProperty Name="nocre_FechaEmision" ColumnName="nocre_FechaEmision" />
+          <ScalarProperty Name="nocre_Anulado" ColumnName="nocre_Anulado" />
           <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
           <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
           <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
@@ -758,7 +771,6 @@
           <ScalarProperty Name="pemi_FechaCrea" ColumnName="pemi_FechaCrea" />
           <ScalarProperty Name="pemi_UsuarioCrea" ColumnName="pemi_UsuarioCrea" />
           <ScalarProperty Name="pemi_NumeroCAI" ColumnName="pemi_NumeroCAI" />
-          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
           <ScalarProperty Name="pemi_Id" ColumnName="pemi_Id" />
         </MappingFragment>
       </EntityTypeMapping>

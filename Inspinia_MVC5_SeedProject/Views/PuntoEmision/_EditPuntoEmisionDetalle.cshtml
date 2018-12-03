@@ -1,7 +1,6 @@
 ﻿@model ERP_ZORZAL.Models.tbPuntoEmisionDetalle
 
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -9,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Punto Emisión Detalle</h5>
+                    <h5>_EditPuntoEmisionDetalle tbPuntoEmisionDetalle</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -24,16 +23,15 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.pemi_Id, "pemi_Id", new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @*@Html.DropDownList("pemi_Id", String.Empty)*@
-                @Html.DropDownList("pemi_Id", null, new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.DropDownList("pemi_Id", String.Empty)
                 @Html.ValidationMessageFor(model => model.pemi_Id)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.dfisc_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.dfisc_Id)
                 @Html.ValidationMessageFor(model => model.dfisc_Id)
             </div>
@@ -41,7 +39,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.pemid_RangoInicio, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.pemid_RangoInicio)
                 @Html.ValidationMessageFor(model => model.pemid_RangoInicio)
             </div>
@@ -49,7 +47,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.pemid_RangoFinal, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.pemid_RangoFinal)
                 @Html.ValidationMessageFor(model => model.pemid_RangoFinal)
             </div>
@@ -57,15 +55,15 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.pemid_FechaLimite, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.pemid_FechaLimite)
-                @Html.ValidationMessageFor(model => model.pemid_FechaLimite, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "datepicker" } })
+                @Html.ValidationMessageFor(model => model.pemid_FechaLimite)
             </div>
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.pemid_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.pemid_UsuarioCrea)
                 @Html.ValidationMessageFor(model => model.pemid_UsuarioCrea)
             </div>
@@ -73,7 +71,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.pemid_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.pemid_FechaCrea)
                 @Html.ValidationMessageFor(model => model.pemid_FechaCrea)
             </div>
@@ -81,7 +79,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.pemid_UsuarioModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.pemid_UsuarioModifica)
                 @Html.ValidationMessageFor(model => model.pemid_UsuarioModifica)
             </div>
@@ -89,16 +87,16 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.pemid_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.pemid_FechaModifica)
                 @Html.ValidationMessageFor(model => model.pemid_FechaModifica)
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Save" class="btn btn-primary" />
+				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>
@@ -115,15 +113,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script>
-        $(function () {
-            $('#datepicker').datepicker({
-                dateFormat: "yy-mm-dd",
-                showOn: "both",
-                buttonText: "<i class='fas fa-calendar-alt'></i>"
-            });
-
-        });
-
-</script>
 }

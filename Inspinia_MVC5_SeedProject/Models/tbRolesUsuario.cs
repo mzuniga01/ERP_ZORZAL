@@ -14,12 +14,6 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbRolesUsuario
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbRolesUsuario()
-        {
-            this.tbAccesoRol = new HashSet<tbAccesoRol>();
-        }
-    
         public int rolu_Id { get; set; }
         public int rol_Id { get; set; }
         public int usu_Id { get; set; }
@@ -28,9 +22,9 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> rolu_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> rolu_FechaModifica { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbAccesoRol> tbAccesoRol { get; set; }
         public virtual tbRol tbRol { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbUsuario tbUsuario2 { get; set; }
     }
 }

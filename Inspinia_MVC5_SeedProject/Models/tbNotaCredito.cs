@@ -18,6 +18,7 @@ namespace ERP_ZORZAL.Models
         public string nocre_Codigo { get; set; }
         public int dev_Id { get; set; }
         public int clte_Id { get; set; }
+        public Nullable<bool> nocre_Anulado { get; set; }
         public System.DateTime nocre_FechaEmision { get; set; }
         public string nocre_MotivoEmision { get; set; }
         public Nullable<decimal> nocre_Monto { get; set; }

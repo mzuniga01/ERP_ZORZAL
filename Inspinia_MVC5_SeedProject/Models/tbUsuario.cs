@@ -18,6 +18,8 @@ namespace ERP_ZORZAL.Models
         public tbUsuario()
         {
             this.tbRolesUsuario = new HashSet<tbRolesUsuario>();
+            this.tbRolesUsuario1 = new HashSet<tbRolesUsuario>();
+            this.tbRolesUsuario2 = new HashSet<tbRolesUsuario>();
             this.tbActividadEconomica = new HashSet<tbActividadEconomica>();
             this.tbActividadEconomica1 = new HashSet<tbActividadEconomica>();
             this.tbArqueoCaja = new HashSet<tbArqueoCaja>();
@@ -71,6 +73,8 @@ namespace ERP_ZORZAL.Models
             this.tbDepartamento = new HashSet<tbDepartamento>();
             this.tbMunicipio = new HashSet<tbMunicipio>();
             this.tbUnidadMedida = new HashSet<tbUnidadMedida>();
+            this.tbUnidadMedida1 = new HashSet<tbUnidadMedida>();
+            this.tbUnidadMedida2 = new HashSet<tbUnidadMedida>();
             this.tbBodega = new HashSet<tbBodega>();
             this.tbEstadoMovimiento = new HashSet<tbEstadoMovimiento>();
             this.tbProducto = new HashSet<tbProducto>();
@@ -78,8 +82,14 @@ namespace ERP_ZORZAL.Models
             this.tbProductoSubcategoria = new HashSet<tbProductoSubcategoria>();
             this.tbProveedor = new HashSet<tbProveedor>();
             this.tbSalida = new HashSet<tbSalida>();
+            this.tbSalida1 = new HashSet<tbSalida>();
+            this.tbSalida2 = new HashSet<tbSalida>();
+            this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
+            this.tbSalidaDetalle1 = new HashSet<tbSalidaDetalle>();
             this.tbTipoEntrada = new HashSet<tbTipoEntrada>();
             this.tbTipoSalida = new HashSet<tbTipoSalida>();
+            this.tbCliente = new HashSet<tbCliente>();
+            this.tbCliente1 = new HashSet<tbCliente>();
             this.tbPuntoEmision = new HashSet<tbPuntoEmision>();
             this.tbPuntoEmision1 = new HashSet<tbPuntoEmision>();
         }
@@ -96,6 +106,10 @@ namespace ERP_ZORZAL.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbRolesUsuario> tbRolesUsuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbRolesUsuario> tbRolesUsuario1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbRolesUsuario> tbRolesUsuario2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbActividadEconomica> tbActividadEconomica { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -203,6 +217,10 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbUnidadMedida> tbUnidadMedida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbUnidadMedida> tbUnidadMedida1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbUnidadMedida> tbUnidadMedida2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodega> tbBodega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEstadoMovimiento> tbEstadoMovimiento { get; set; }
@@ -217,9 +235,21 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalida> tbSalida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSalida> tbSalida1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSalida> tbSalida2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbTipoEntrada> tbTipoEntrada { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbTipoSalida> tbTipoSalida { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbCliente> tbCliente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbCliente> tbCliente1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPuntoEmision> tbPuntoEmision { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

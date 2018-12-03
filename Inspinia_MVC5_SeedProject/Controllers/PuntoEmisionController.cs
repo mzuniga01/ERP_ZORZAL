@@ -17,7 +17,7 @@ namespace ERP_ZORZAL.Controllers
         // GET: /PuntoEmision/
         public ActionResult Index()
         {
-            var tbpuntoemision = db.tbPuntoEmision.Include(t => t.tbSucursal1);
+            var tbpuntoemision = db.tbPuntoEmision.Include(t => t.tbUsuario).Include(t => t.tbUsuario1);
             return View(tbpuntoemision.ToList());
         }
 
@@ -39,7 +39,8 @@ namespace ERP_ZORZAL.Controllers
         // GET: /PuntoEmision/Create
         public ActionResult Create()
         {
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
+            ViewBag.pemi_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.pemi_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             return View();
         }
 
@@ -48,7 +49,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="pemi_Id,suc_Id,pemi_NumeroCAI,pemi_UsuarioCrea,pemi_FechaCrea,pemi_UsuarioModifica,pemi_FechaModifica")] tbPuntoEmision tbPuntoEmision)
+        public ActionResult Create([Bind(Include="pemi_Id,pemi_NumeroCAI,pemi_UsuarioCrea,pemi_FechaCrea,pemi_UsuarioModifica,pemi_FechaModifica")] tbPuntoEmision tbPuntoEmision)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +58,8 @@ namespace ERP_ZORZAL.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPuntoEmision.suc_Id);
+            ViewBag.pemi_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmision.pemi_UsuarioCrea);
+            ViewBag.pemi_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmision.pemi_UsuarioModifica);
             return View(tbPuntoEmision);
         }
 
@@ -73,7 +75,8 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPuntoEmision.suc_Id);
+            ViewBag.pemi_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmision.pemi_UsuarioCrea);
+            ViewBag.pemi_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmision.pemi_UsuarioModifica);
             return View(tbPuntoEmision);
         }
 
@@ -82,7 +85,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="pemi_Id,suc_Id,pemi_NumeroCAI,pemi_UsuarioCrea,pemi_FechaCrea,pemi_UsuarioModifica,pemi_FechaModifica")] tbPuntoEmision tbPuntoEmision)
+        public ActionResult Edit([Bind(Include="pemi_Id,pemi_NumeroCAI,pemi_UsuarioCrea,pemi_FechaCrea,pemi_UsuarioModifica,pemi_FechaModifica")] tbPuntoEmision tbPuntoEmision)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +93,8 @@ namespace ERP_ZORZAL.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPuntoEmision.suc_Id);
+            ViewBag.pemi_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmision.pemi_UsuarioCrea);
+            ViewBag.pemi_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmision.pemi_UsuarioModifica);
             return View(tbPuntoEmision);
         }
 

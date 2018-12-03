@@ -23,7 +23,6 @@ namespace ERP_ZORZAL.Models
         }
     
         public int pemi_Id { get; set; }
-        public short suc_Id { get; set; }
         public string pemi_NumeroCAI { get; set; }
         public int pemi_UsuarioCrea { get; set; }
         public System.DateTime pemi_FechaCrea { get; set; }
@@ -38,6 +37,6 @@ namespace ERP_ZORZAL.Models
         public virtual ICollection<tbSucursal> tbSucursal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPuntoEmisionDetalle> tbPuntoEmisionDetalle1 { get; set; }
-        public virtual tbSucursal tbSucursal1 { get; set; }
+
     }
 }

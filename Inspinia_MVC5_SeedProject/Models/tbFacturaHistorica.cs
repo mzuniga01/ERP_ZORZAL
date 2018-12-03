@@ -12,17 +12,14 @@ namespace ERP_ZORZAL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbAccesoRol
+    public partial class tbFacturaHistorica
     {
-        public int acrol_Id { get; set; }
-        public int rol_Id { get; set; }
-        public int obj_Id { get; set; }
-        public string acrol_Descripcion { get; set; }
-        public int acrol_UsuarioCrea { get; set; }
-        public System.DateTime acrol_FechaCrea { get; set; }
-        public Nullable<int> acrol_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> acrol_FechaModifica { get; set; }
+        public byte facth_Id { get; set; }
+        public long fact_Id { get; set; }
+        public byte esfac_Id { get; set; }
+        public Nullable<System.DateTime> facth_Fecha { get; set; }
     
-        public virtual tbRol tbRol { get; set; }
+        public virtual tbEstadoFactura tbEstadoFactura { get; set; }
+        public virtual tbFactura tbFactura { get; set; }
     }
 }

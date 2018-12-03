@@ -18,6 +18,7 @@ namespace ERP_ZORZAL.Models
         public tbEstadoFactura()
         {
             this.tbFactura = new HashSet<tbFactura>();
+            this.tbFacturaHistorica = new HashSet<tbFacturaHistorica>();
         }
     
         public byte esfac_Id { get; set; }
@@ -29,5 +30,7 @@ namespace ERP_ZORZAL.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFactura> tbFactura { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFacturaHistorica> tbFacturaHistorica { get; set; }
     }
 }

@@ -317,6 +317,9 @@
     <Compile Include="Models\tbFacturaDetalle.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbFacturaHistorica.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbInventarioFisico.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -848,11 +851,6 @@
     <Content Include="Views\TipoIdentificacion\Details.cshtml" />
     <Content Include="Views\TipoIdentificacion\Edit.cshtml" />
     <Content Include="Views\TipoIdentificacion\Index.cshtml" />
-    <Content Include="Views\PuntoEmision\Create.cshtml" />
-    <Content Include="Views\PuntoEmision\Delete.cshtml" />
-    <Content Include="Views\PuntoEmision\Details.cshtml" />
-    <Content Include="Views\PuntoEmision\Edit.cshtml" />
-    <Content Include="Views\PuntoEmision\Index.cshtml" />
     <Content Include="Views\Cliente\Create.cshtml" />
     <Content Include="Views\Cliente\Details.cshtml" />
     <Content Include="Views\Cliente\Edit.cshtml" />
@@ -880,9 +878,6 @@
     <Content Include="Views\DocumentoFiscal\Details.cshtml" />
     <Content Include="Views\DocumentoFiscal\Edit.cshtml" />
     <Content Include="Views\DocumentoFiscal\Index.cshtml" />
-    <Content Include="Views\PuntoEmision\_CreatePuntoEmisionDetalle.cshtml" />
-    <Content Include="Views\PuntoEmision\_EditarPuntoEmisionDetalle.cshtml" />
-    <Content Include="Views\PuntoEmision\_IndexPuntoEmisionDetalle.cshtml" />
     <Content Include="Views\UnidadesMedida\Create.cshtml" />
     <Content Include="Views\UnidadesMedida\Delete.cshtml" />
     <Content Include="Views\UnidadesMedida\Details.cshtml" />
@@ -932,6 +927,13 @@
     <Content Include="Views\ListaPrecio\Edit.cshtml" />
     <Content Include="Views\ListaPrecio\Index.cshtml" />
     <Content Include="Views\ListaPrecio\_CreateListaPrecioDetalle.cshtml" />
+    <Content Include="Views\PuntoEmision\Create.cshtml" />
+    <Content Include="Views\PuntoEmision\Details.cshtml" />
+    <Content Include="Views\PuntoEmision\Edit.cshtml" />
+    <Content Include="Views\PuntoEmision\Index.cshtml" />
+    <Content Include="Views\PuntoEmision\_CreatePuntoEmisionDetalle.cshtml" />
+    <Content Include="Views\PuntoEmision\_IndexPuntoEmisionDetalle.cshtml" />
+    <Content Include="Views\PuntoEmision\_EditPuntoEmisionDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

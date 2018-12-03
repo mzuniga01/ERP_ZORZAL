@@ -21,7 +21,6 @@ namespace ERP_ZORZAL.Models
             this.tbCuponDescuento = new HashSet<tbCuponDescuento>();
             this.tbFactura = new HashSet<tbFactura>();
             this.tbPedido = new HashSet<tbPedido>();
-            this.tbPuntoEmision1 = new HashSet<tbPuntoEmision>();
         }
     
         public short suc_Id { get; set; }
@@ -49,7 +48,5 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedido> tbPedido { get; set; }
         public virtual tbPuntoEmision tbPuntoEmision { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbPuntoEmision> tbPuntoEmision1 { get; set; }
     }
 }

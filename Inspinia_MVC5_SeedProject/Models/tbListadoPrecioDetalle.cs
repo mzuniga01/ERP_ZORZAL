@@ -17,9 +17,9 @@ namespace ERP_ZORZAL.Models
         public int listp_Id { get; set; }
         public string prod_Codigo { get; set; }
         public decimal lispd_PrecioMayorista { get; set; }
-        public decimal lispd_Preciominorista { get; set; }
-        public System.DateTime lispd_Fechainiciovigencia { get; set; }
-        public System.DateTime lispd_Fechaifinalvigencia { get; set; }
+        public decimal lispd_PrecioMinorista { get; set; }
+        public Nullable<System.DateTime> lispd_FechaInicioVigencia { get; set; }
+        public Nullable<System.DateTime> lispd_FechaFinalVigencia { get; set; }
         public Nullable<decimal> lispd_DescCaja { get; set; }
         public Nullable<decimal> lispd_DescGerente { get; set; }
         public int lispd_UsuarioCrea { get; set; }

@@ -6,7 +6,24 @@
 }
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+        margin-left: 17%;
+    }
 
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Cuentas Banco</h2>
@@ -52,16 +69,22 @@
             @Html.LabelFor(model => model.ban_Id, "Banco", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
                 @*@Html.DropDownList("ban_Id", String.Empty)*@
-                @Html.DropDownList("ban_Id", null, new { @class = "control-label col-md-12" })
+                @Html.DropDownList("ban_Id", null, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ban_Id)
             </div>
         </div>
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.bcta_Numero, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.bcta_Numero)
+                @Html.ValidationMessageFor(model => model.bcta_Numero)
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
                 @*@Html.EditorFor(model => model.mnda_Id)*@
-                @Html.DropDownList("mnda_Id", null, new { @class = "control-label col-md-12" })
+                @Html.DropDownList("mnda_Id", null, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.mnda_Id)
             </div>
         </div>
@@ -70,7 +93,7 @@
             @*@Html.LabelFor(model => model.bcta_TipoCuenta, new { @class = "control-label col-md-2" })*@
             @Html.LabelFor(model => model.bcta_TipoCuenta, "Tipo Cuenta", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.bcta_TipoCuenta)
+                @Html.DropDownListFor(model => model.bcta_TipoCuenta, new SelectList(Model.TipoCuentaList, "ID_TIPOCUENTA", "DESCRIPCION"), "Seleccione Tipo Cuenta", new { @class = "form-control" })
                 @*@Html.DropDownListFor(model => model.bcta_TipoCuenta, new SelectList(Model.TipoCuentaList, "Id_TipoCuenta", "Descripción"), new { @class = "form-control" })*@
                 @Html.ValidationMessageFor(model => model.bcta_TipoCuenta)
             </div>
@@ -96,16 +119,28 @@
             @Html.LabelFor(model => model.bcta_FechaApertura, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.bcta_FechaApertura, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "fechaapertura" } })
-                @Html.ValidationMessageFor(model => model.bcta_FechaApertura , "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "datepicker" } }))
+                @Html.ValidationMessageFor(model => model.bcta_FechaApertura)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.bcta_Numero, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.bcta_Numero)
-                @Html.ValidationMessageFor(model => model.bcta_Numero)
-            </div>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+                <tr>
+                    <td>Creado</td>
+                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                    <td>@Html.DisplayFor(model => model.bcta_FechaCrea)</td>
+                </tr>
+                <tr>
+                    <td>Modificado</td>
+                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                    <td>@Html.DisplayFor(model => model.bcta_FechaModifica)</td>
+                </tr>
+            </table>
         </div>
 
         @*<div class="form-group">
@@ -139,6 +174,8 @@
                 @Html.ValidationMessageFor(model => model.bcta_FechaModifica)
             </div>
         </div>*@
+
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

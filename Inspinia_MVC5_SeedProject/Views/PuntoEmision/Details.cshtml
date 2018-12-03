@@ -4,6 +4,24 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+        margin-left: 17%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -27,7 +45,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Detalle Punto Emisión</h5>
+                    <h5>Detalle punto de emisión</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -42,21 +60,6 @@
         </dd>
 
         @*<dt>
-            @Html.DisplayNameFor(model => model.pemi_UsuarioCrea)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pemi_UsuarioCrea)
-        </dd>*@
-                        <dt>
-                            Usuario Creación
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.pemi_FechaCrea)
         </dt>
 
@@ -64,24 +67,6 @@
             @Html.DisplayFor(model => model.pemi_FechaCrea)
         </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.pemi_UsuarioModifica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pemi_UsuarioModifica)
-        </dd>*@
-
-                
-
-                        <dt>
-                            Usuario Modificación
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        </dd>
-              
         <dt>
             @Html.DisplayNameFor(model => model.pemi_FechaModifica)
         </dt>
@@ -91,19 +76,50 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.tbSucursal1.mun_Codigo)
+            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.tbSucursal1.mun_Codigo)
+            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
+        </dd>*@
+                   
+                             <div class="form-group">
+                            <table>
+                                <tr>
+                                    <th></th>
+                                    <th>Usuario</th>
+                                    <th>Fecha</th>
+                                </tr>
+                                <tr>
+                                    <td>Creado</td>
+                                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                    <td>@Html.DisplayFor(model => model.pemi_FechaCrea)</td>
+                                </tr>
+                                <tr>
+                                    <td>Modificado</td>
+                                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                    <td>@Html.DisplayFor(model => model.pemi_FechaModifica)</td>
+                                </tr>
+                            </table>
+                        </div>
+
+
+
 
     </dl>
 
 
 	    @Html.ActionLink("Editar", "Edit", new { id = Model.pemi_Id }, new { @class = "btn btn-primary"})
-                    <a href="@Url.Action("Index","PuntoEmision")">Regresar</a>
-    @*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white"})*@
+       <a href="@Url.Action("Index","PuntoEmision")">Regresar</a>   
+       @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
 
                 </div>
             </div>

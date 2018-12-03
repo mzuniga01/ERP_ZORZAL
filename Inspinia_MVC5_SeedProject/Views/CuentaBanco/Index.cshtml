@@ -33,6 +33,12 @@
                         <thead>
                             <tr>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.tbBanco.ban_Nombre)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bcta_Numero)
+                                </th>
+                                <th>
                                     @Html.DisplayNameFor(model => model.mnda_Id)
                                 </th>
                                 <th>
@@ -47,9 +53,7 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.bcta_FechaApertura)
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.bcta_Numero)
-                                </th>
+                               
                                 @*<th>
                                     @Html.DisplayNameFor(model => model.bcta_UsuarioCrea)
                                 </th>
@@ -62,9 +66,7 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.bcta_FechaModifica)
                                 </th>*@
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbBanco.ban_Nombre)
-                                </th>
+                                
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -73,23 +75,27 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.mnda_Id)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.bcta_TipoCuenta)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.bcta_TotalCredito)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.bcta_TotalDebito)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.bcta_FechaApertura)
+                                        @Html.DisplayFor(modelItem => item.tbBanco.ban_Nombre)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.bcta_Numero)
                                     </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbMoneda.mnda_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bcta_TipoCuenta)
+                                    </td>
+                                    @*<td>
+                                        @Html.DisplayFor(modelItem => item.bcta_TotalCredito)
+                                    </td>*@
+                                    @*<td>
+                                        @Html.DisplayFor(modelItem => item.bcta_TotalDebito)
+                                    </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bcta_FechaApertura)
+                                    </td>
+                                    
                                     @*<td>
                                         @Html.DisplayFor(modelItem => item.bcta_UsuarioCrea)
                                     </td>
@@ -102,9 +108,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.bcta_FechaModifica)
                                     </td>*@
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbBanco.ban_Nombre)
-                                    </td>
+                                    
                                     <td>
                                         @Html.ActionLink("Detalle", "Details", new { id = item.bcta_Id }, new { @class = "btn btn-primary btn-sm" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.bcta_Id }, new { @class = "btn btn-white btn-sm" })
