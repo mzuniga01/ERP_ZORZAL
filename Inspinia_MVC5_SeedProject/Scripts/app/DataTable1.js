@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
-    $('#DataTable').DataTable(
+    $('#DataTable1').DataTable(
     {
-        "searching": true,
+        "searching": false,
 
         "oLanguage": {
             "oPaginate": {

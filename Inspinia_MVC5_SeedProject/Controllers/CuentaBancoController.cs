@@ -39,8 +39,13 @@ namespace ERP_ZORZAL.Controllers
         // GET: /CuentaBanco/Create
         public ActionResult Create()
         {
+            tbCuentasBanco CuentasBanco = new tbCuentasBanco();
             ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre");
-            return View();
+            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
+            //TipoCuenta.TipoCuentaList = Utileria.TipoCuentaList();
+            
+            CuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
+            return View(CuentasBanco);
         }
 
         // POST: /CuentaBanco/Create
@@ -54,11 +59,17 @@ namespace ERP_ZORZAL.Controllers
             {
                 db.tbCuentasBanco.Add(tbCuentasBanco);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
             ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", tbCuentasBanco.ban_Id);
+            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbCuentasBanco.mnda_Id);
+            tbCuentasBanco CuentasBanco = new tbCuentasBanco();
+            CuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
+
             return View(tbCuentasBanco);
+
         }
 
         // GET: /CuentaBanco/Edit/5
@@ -74,6 +85,8 @@ namespace ERP_ZORZAL.Controllers
                 return HttpNotFound();
             }
             ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", tbCuentasBanco.ban_Id);
+            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbCuentasBanco.mnda_Id);
+            tbCuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
             return View(tbCuentasBanco);
         }
 
@@ -82,15 +95,18 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="bcta_Id,ban_Id,mnda_Id,bcta_TipoCuenta,bcta_TotalCredito,bcta_TotalDebito,bcta_FechaApertura,bcta_Numero,bcta_UsuarioCrea,bcta_FechaCrea,bcta_UsuarioModifica,bcta_FechaModifica")] tbCuentasBanco tbCuentasBanco)
+        public ActionResult Edit([Bind(Include="bcta_Id,ban_Id,mnda_Id,bcta_TipoCuenta,bcta_TotalCredito,bcta_TotalDebito,bcta_FechaApertura,bcta_Numero,bcta_UsuarioCrea,bcta_FechaCrea,bcta_UsuarioModifica,bcta_FechaModifica") ] tbCuentasBanco tbCuentasBanco)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(tbCuentasBanco).State = EntityState.Modified;
                 db.SaveChanges();
+               
                 return RedirectToAction("Index");
             }
             ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", tbCuentasBanco.ban_Id);
+            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbCuentasBanco.mnda_Id);
+            tbCuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
             return View(tbCuentasBanco);
         }
 

@@ -255,7 +255,7 @@ body:not(.fixed-sidebar):not(.canvas-menu).mini-navbar .nav li:hover > .nav-seco
 .mini-navbar .nav li:focus > .nav-second-level {
   display: block;
   border-radius: 0 2px 2px 0;
-  min-width: 140px;
+  min-width: 190px;
   height: auto;
 }
 body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {

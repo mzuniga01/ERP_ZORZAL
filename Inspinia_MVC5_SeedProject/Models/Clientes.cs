@@ -31,6 +31,7 @@ namespace ERP_ZORZAL.Models
         public string clte_Apellidos { get; set; }
         [Display(Name = "Fecha Nacimiento")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime clte_FechaNacimiento { get; set; }
         [Display(Name = "Nacionalidad")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
@@ -58,7 +59,10 @@ namespace ERP_ZORZAL.Models
         public string clte_ContactoTelefono { get; set; }
         [Display(Name = "Fecha Constitución")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> clte_FechaConstitucion { get; set; }
+        [Display(Name = "Código Municipio")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string mun_Codigo { get; set; }
         [Display(Name = "Dirección")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
@@ -66,16 +70,16 @@ namespace ERP_ZORZAL.Models
         [Display(Name = "Correo Electrónico")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_CorreoElectronico { get; set; }
-        [Display(Name = "Es Activo?")]
+        [Display(Name = "¿Es Activo?")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_EsActivo { get; set; }
         [Display(Name = "Razón Inactivo")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_RazonInactivo { get; set; }
-        [Display(Name = "Con Crédito?")]
+        [Display(Name = "¿Con Crédito?")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public bool clte_ConCredito { get; set; }
-        [Display(Name = "Es Minorista?")]
+        [Display(Name = "¿Es Minorista?")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public bool clte_EsMinorista { get; set; }
         [Display(Name = "Observaciones")]
@@ -85,13 +89,16 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int clte_UsuarioCrea { get; set; }
         [Display(Name = "Fecha Crea")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime clte_FechaCrea { get; set; }
         [Display(Name = "Usuario Modificó")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<int> clte_UsuarioModifica { get; set; }
-        [Display(Name = "CFecha Modificó")]
+        [Display(Name = "Fecha Modificó")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
+
     }
 }

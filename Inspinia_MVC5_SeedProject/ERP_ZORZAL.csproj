@@ -206,11 +206,18 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActividadEconomicas.cs" />
     <Compile Include="Models\Banco.cs" />
+    <Compile Include="Models\cActivo.cs" />
     <Compile Include="Models\cCuponDescuento.cs" />
     <Compile Include="Models\cDevolucion.cs" />
     <Compile Include="Models\cDocumentoFiscal.cs" />
+    <Compile Include="Models\cGenero.cs" />
+    <Compile Include="Models\Clientes.cs" />
+    <Compile Include="Models\cNacionalidad.cs" />
     <Compile Include="Models\cNotaCredito.cs" />
+    <Compile Include="Models\cTipoCuenta.cs" />
     <Compile Include="Models\CuentaBanco.cs" />
+    <Compile Include="Models\cUtilities.cs" />
+    <Compile Include="Models\EstadoFactura.cs" />
     <Compile Include="Models\EstadosSolicitudCreditos.cs" />
     <Compile Include="Models\Factura.cs" />
     <Compile Include="Models\FacturaDetalle.cs" />
@@ -643,6 +650,8 @@
       <LastGenOutput>ModelERP.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\app\DataTable.js" />
+    <Content Include="Scripts\app\DataTable1.js" />
+    <Content Include="Scripts\app\Datepicker.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
     <Content Include="Scripts\bootstrap.js" />

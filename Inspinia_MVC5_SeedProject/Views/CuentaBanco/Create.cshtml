@@ -47,16 +47,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.bcta_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.bcta_Id)
+                @Html.EditorFor(model => model.bcta_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_Id)</p>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ban_Id, "Id Banco", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ban_Id, "Banco", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
                 @*@Html.DropDownList("ban_Id", String.Empty)*@
-                @Html.DropDownList("ban_Id", null, new { @class = "control-label col-md-12" })
+                 @Html.DropDownList("ban_Id", null, new { @class = "form-control" })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.ban_Id)</p>
 </div>
         </div>
@@ -64,7 +64,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.mnda_Id)
+                @*@Html.EditorFor(model => model.mnda_Id)*@
+                @Html.DropDownList("mnda_Id", null, new { @class = "form-control" })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Id)</p>
 </div>
         </div>
@@ -72,7 +73,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.bcta_TipoCuenta, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.bcta_TipoCuenta)
+                @Html.DropDownListFor(model => model.bcta_TipoCuenta, new SelectList(Model.TipoCuentaList, "ID_TIPOCUENTA", "DESCRIPCION"), new { @class = "form-control" })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_TipoCuenta)</p>
 </div>
         </div>
@@ -96,7 +97,7 @@
         <div class="form-group">
         @Html.LabelFor(model => model.bcta_FechaApertura, new { @class = "control-label col-md-2" })
         <div class="col-md-5">
-            @Html.EditorFor(model => model.bcta_FechaApertura , "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id="datepicker"} })
+            @Html.EditorFor(model => model.bcta_FechaApertura , "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id="fechaapertura"} })
             <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_FechaApertura)</p>
 </div>
     </div>
@@ -160,16 +161,6 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
-<script>
-        $(function () {
-            $('#datepicker').datepicker({
-                dateFormat: "yy-mm-dd",
-                showOn: "both",
-                buttonText: "<i class='fas fa-calendar-alt'></i>"
-            });
-
-        });
-
-</script>
 }
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>

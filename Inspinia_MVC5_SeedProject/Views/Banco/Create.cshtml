@@ -5,6 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Banco</h2>
@@ -41,6 +44,16 @@
     
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ban_Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.ban_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.ban_Id)
+
+             
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.ban_Nombre, new { @class = "control-label col-md-2" })
@@ -104,8 +117,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-white btn-sm" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>

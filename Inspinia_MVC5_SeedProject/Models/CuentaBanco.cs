@@ -10,17 +10,18 @@ namespace ERP_ZORZAL.Models
 
     public partial class tbCuentasBanco
     {
+        
     }
 
     public class _CuentasBancoMetaData
     {
-        [Display(Name = "Código Cuenta de Banco")]
+        [Display(Name = "Código")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public short bcta_Id { get; set; }
-        [Display(Name = "Código Banco")]
+        [Display(Name = "Banco")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public short ban_Id { get; set; }
-        [Display(Name = "Código de Moneda")]
+        [Display(Name = "Moneda")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public short mnda_Id { get; set; }
         [Display(Name = "Tipo Cuenta")]

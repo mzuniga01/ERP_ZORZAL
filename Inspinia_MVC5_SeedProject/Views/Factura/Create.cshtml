@@ -18,7 +18,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Registrar Factura</h2>
+        <h2>Factura</h2>
         @*<ol class="breadcrumb">
             <li>
                 @Html.ActionLink("List", "Index")
@@ -42,7 +42,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Nueva Factura</h5>
+                    <h5>Registrar Factura</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -56,27 +56,27 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fact_Codigo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.fact_Codigo)
+                @Html.EditorFor(model => model.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 <span class="validation-error">  @Html.ValidationMessageFor(model => model.fact_Codigo)</span>
 </div>
 
             @Html.LabelFor(model => model.fact_Fecha, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.fact_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "datepicker" } })
+                @Html.EditorFor(model => model.fact_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafactura" } })
                 <span class="validation-error"> @Html.ValidationMessageFor(model => model.fact_Fecha)</span>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.clte_RTN_Identidad_Pasaporte, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.esfac_Id)
-                <span class="validation-error"> @Html.ValidationMessageFor(model => model.esfac_Id)</span>
-</div>
-
-            @Html.LabelFor(model => model.cja_Id, new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.clte_RTN_Identidad_Pasaporte)
+                <span class="validation-error"> @Html.ValidationMessageFor(model => model.clte_RTN_Identidad_Pasaporte)</span>
+            </div>
+           @Html.LabelFor(model => model.cja_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cja_Id)
+                @*@Html.EditorFor(model => model.cja_Id)*@
+                @Html.DropDownList("cja_Id", null, new { @class = "form-control" })
                 <span class="validation-error">  @Html.ValidationMessageFor(model => model.cja_Id)</span>
 </div>
         </div>
@@ -84,7 +84,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.suc_Id)
+                @*@Html.EditorFor(model => model.suc_Id)*@
+                @Html.DropDownList("suc_Id", null, new { @class = "form-control" })
                 <span class="validation-error">  @Html.ValidationMessageFor(model => model.suc_Id)</span>
             </div>
  
@@ -93,9 +94,9 @@
                 @Html.EditorFor(model => model.clte_Id)
                 <span class="validation-error"> @Html.ValidationMessageFor(model => model.clte_Id)</span>
             </div>*@
-            @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label col-md-2", } )
             <div class="col-md-4">
-                @Html.EditorFor(model => model.pemi_NumeroCAI)
+                @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 <span class="validation-error">  @Html.ValidationMessageFor(model => model.pemi_NumeroCAI)</span>
             </div>
         </div>
@@ -127,10 +128,11 @@
                 <span class="validation-error">  @Html.ValidationMessageFor(model => model.fact_Vendedor)</span>
             </div>
 
-            @Html.LabelFor(model => model.clte_RTN_Identidad_Pasaporte, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.clte_RTN_Identidad_Pasaporte)
-                <span class="validation-error"> @Html.ValidationMessageFor(model => model.clte_RTN_Identidad_Pasaporte)</span>
+                @*@Html.EditorFor(model => model.esfac_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })*@
+                @Html.DropDownList("esfac_Id", null, new { @class = "form-control" })
+                <span class="validation-error"> @Html.ValidationMessageFor(model => model.esfac_Id)</span>
             </div>
         </div>
 
@@ -278,19 +280,5 @@
         </div>
     </div>
 </div>
-
-@section scripts{
-
-    <script>
-        $(function () {
-            $('#datepicker').datepicker({
-                dateFormat: "yy-mm-dd",
-                showOn: "both",
-                buttonText: "<i class='fas fa-calendar-alt'></i>"
-            });
-
-        });
-
-    </script>
-
-}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>

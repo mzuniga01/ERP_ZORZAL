@@ -39,8 +39,13 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Cliente/Create
         public ActionResult Create()
         {
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo");
-            return View();
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
+            tbCliente Cliente = new tbCliente();
+            Cliente.EstadoList = cUtilities.EstadoList();
+            Cliente.GeneroList = cUtilities.GeneroList();
+            Cliente.NacionalidadList = cUtilities.NacionalidadList();
+
+            return View(Cliente);
         }
 
         // POST: /Cliente/Create
@@ -57,7 +62,11 @@ namespace ERP_ZORZAL.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbCliente.mun_Codigo);
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", " mun_Nombre", tbCliente.mun_Codigo);
+            tbCliente Cliente = new tbCliente();
+            Cliente.EstadoList = cUtilities.EstadoList();
+            Cliente.GeneroList = cUtilities.GeneroList();
+            Cliente.NacionalidadList = cUtilities.NacionalidadList();
             return View(tbCliente);
         }
 
@@ -73,7 +82,11 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbCliente.mun_Codigo);
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
+            tbCliente Cliente = db.tbCliente.Find(id);
+            Cliente.EstadoList = cUtilities.EstadoList();
+            Cliente.GeneroList = cUtilities.GeneroList();
+            Cliente.NacionalidadList = cUtilities.NacionalidadList();
             return View(tbCliente);
         }
 
@@ -90,7 +103,10 @@ namespace ERP_ZORZAL.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbCliente.mun_Codigo);
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
+            tbCliente.EstadoList = cUtilities.EstadoList();
+            tbCliente.GeneroList = cUtilities.GeneroList();
+            tbCliente.NacionalidadList = cUtilities.NacionalidadList();
             return View(tbCliente);
         }
 

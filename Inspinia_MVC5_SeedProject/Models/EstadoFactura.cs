@@ -14,7 +14,8 @@ namespace ERP_ZORZAL.Models
 
     public class EstadoFacturaMetaData
     {
-
+        [Display(Name = "Id Estado Factura")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte esfac_Id { get; set; }
 
         [Display(Name = "Descripción")]

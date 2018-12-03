@@ -17,8 +17,6 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Factura/
         public ActionResult Index()
         {
-
-          
             return View(db.tbFactura.ToList());
         }
 
@@ -42,8 +40,11 @@ namespace ERP_ZORZAL.Controllers
         {
             //ERP_ZORZALEntities dc = new ERP_ZORZALEntities();
             //var item = dc.tbFacturaDetalle.ToList();
-            
-            return View();
+            tbFactura Factura = new tbFactura();
+            ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
+            ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion");
+            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
+            return View(Factura);
         }
 
         // POST: /Factura/Create
@@ -57,11 +58,19 @@ namespace ERP_ZORZAL.Controllers
             {
                 db.tbFactura.Add(tbFactura);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
-
+            ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
+            ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion");
+            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
             return View(tbFactura);
         }
+
+        //Get: Sucursal/Create
+
+
+
 
         // GET: /Factura/Edit/5
         public ActionResult Edit(long? id)
