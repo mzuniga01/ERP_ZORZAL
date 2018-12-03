@@ -39,7 +39,7 @@
                     </li>
 
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Salida")"><i class="fa fa-users fa-fw"></i>Salidas<span class="nav-label"></span> </a>
+                        <a href="@Url.Action("Index_Salida", "Salida")"><i class="fa fa-users fa-fw"></i>Salidas<span class="nav-label"></span> </a>
                     </li>
 
                     <li class="@Html.IsSelected(action: "Index")">
@@ -63,9 +63,6 @@
                     <li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "Proveedor")"><i class="fa fa-users fa-fw"></i>Proveedor <span class="nav-label"></span> </a>
                     </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Producto")"><i class="fa fa-product-hunt"></i>Producto <span class="nav-label"></span> </a>
-                    </li>
                 </ul>
             </li>
             
@@ -87,22 +84,16 @@
                         <a href="@Url.Action("Index", "TiposSalida")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Tipos Salidas</span> </a>
                     </li>
                     @*<li class="@Html.IsSelected(action: "Index")">
-            <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Unidades De Medida</span> </a>
-        </li>*@
+                        <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Unidades De Medida</span> </a>
+                    </li>*@
                     <li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "Objeto")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Objeto</span> </a>
                     </li>
                     @*<li class="@Html.IsSelected(action: "Index")">
-            <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Estado Inventario Fisico</span> </a>
-        </li>*@
+                        <a href="@Url.Action("Index", "Index")"><i class="fa fa-cc-visa fa-fw"></i><span class="nav-label">Estado Inventario Fisico</span> </a>
+                    </li>*@
                     <li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "UnidadMedida")"><i class="fa fa-balance-scale"></i></i><span class="nav-label">Unidades de Medida</span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "Box")"><i class="fa fa-square"></i></i><span class="nav-label">Cajas</span> </a>
-                    </li>
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "RolesUsuario")"><i class="fa fa-user"></i></i><span class="nav-label">Roles a Usuarios</span> </a>
                     </li>
                 </ul>
             </li>
