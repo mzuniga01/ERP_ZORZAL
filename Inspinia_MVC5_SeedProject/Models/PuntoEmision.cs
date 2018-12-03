@@ -18,7 +18,7 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pemi_Id { get; set; }
 
-        [Display(Name = "Id Sucursal")]
+        [Display(Name = "Sucursal")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public short suc_Id { get; set; }
 

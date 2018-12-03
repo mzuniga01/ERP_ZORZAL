@@ -4,22 +4,25 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Edit</h2>
-        <ol class="breadcrumb">
+        <h2>Factura</h2>
+        @*<ol class="breadcrumb">
             <li>
                 @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
                 <strong>Edit</strong>
             </li>
-        </ol>
+        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+            <a href="@Url.Action("Index","Factura")">Regresar</a>
+			@*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
 </div>
@@ -32,7 +35,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Edit tbFactura</h5>
+                    <h5>Editar Factura</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -57,7 +60,7 @@
             @Html.LabelFor(model => model.fact_Fecha, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.fact_Fecha)
-                @Html.ValidationMessageFor(model => model.fact_Fecha)
+                @Html.ValidationMessageFor(model => model.fact_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "datepicker" } })
             </div>
         </div>
 
@@ -185,14 +188,14 @@
             @Html.LabelFor(model => model.fact_FechaModifica, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.fact_FechaModifica)
-                @Html.ValidationMessageFor(model => model.fact_FechaModifica)
+                @Html.ValidationMessageFor(model => model.fact_FechaModifica) 
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>
@@ -209,4 +212,15 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+        $(function () {
+            $('#datepicker').datepicker({
+                dateFormat: "yy-mm-dd",
+                showOn: "both",
+                buttonText: "<i class='fas fa-calendar-alt'></i>"
+            });
+
+        });
+
+</script>
 }

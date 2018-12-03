@@ -44,7 +44,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ban_Nombre, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.ban_Nombre)
                 @Html.ValidationMessageFor(model => model.ban_Nombre)
 
@@ -54,7 +54,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ban_NombreContacto, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.ban_NombreContacto)
                 @Html.ValidationMessageFor(model => model.ban_NombreContacto)
                 <p style="color:red">@Html.ValidationMessageFor(model => model.ban_NombreContacto)</p>
@@ -63,7 +63,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ban_TelefonoContacto, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.ban_TelefonoContacto)
                 @Html.ValidationMessageFor(model => model.ban_TelefonoContacto)
                 <p style="color:red">@Html.ValidationMessageFor(model => model.ban_TelefonoContacto)</p>
@@ -72,7 +72,7 @@
 
         @*<div class="form-group">
             @Html.LabelFor(model => model.ban_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.ban_UsuarioCrea)
                 @Html.ValidationMessageFor(model => model.ban_UsuarioCrea)
             </div>
@@ -80,7 +80,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ban_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.ban_FechaCrea)
                 @Html.ValidationMessageFor(model => model.ban_FechaCrea)
             </div>
@@ -88,7 +88,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ban_UsuarioModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.ban_UsuarioModifica)
                 @Html.ValidationMessageFor(model => model.ban_UsuarioModifica)
             </div>
@@ -96,7 +96,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ban_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.ban_FechaModifica)
                 @Html.ValidationMessageFor(model => model.ban_FechaModifica)
             </div>
@@ -121,4 +121,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
 }

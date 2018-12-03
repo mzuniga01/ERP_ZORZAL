@@ -34,7 +34,7 @@ namespace ERP_ZORZAL.Models
         public decimal bcta_TotalDebito { get; set; }
         [Display(Name = "Fecha Apertura")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
         public System.DateTime bcta_FechaApertura { get; set; }
         [Display(Name = "Número Cuenta")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
@@ -47,10 +47,8 @@ namespace ERP_ZORZAL.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime bcta_FechaCrea { get; set; }
         [Display(Name = "Usuario Modificación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<int> bcta_UsuarioModifica { get; set; }
         [Display(Name = "Fecha Modificación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> bcta_FechaModifica { get; set; }
     }
