@@ -17,16 +17,16 @@ namespace ERP_ZORZAL.Models
         [Display(Name = "Id Cliente")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int clte_Id { get; set; }
-        [Display(Name = "Número de Identificación")]
+        [Display(Name = "RTN/Identificación")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_RTN_Identidad_Pasaporte { get; set; }
         [Display(Name = "¿Es Persona Natural?")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public bool clte_EsPersonaNatural { get; set; }
-        [Display(Name = "Nombre")]
+        [Display(Name = "Nombres")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_Nombres { get; set; }
-        [Display(Name = "Apellido")]
+        [Display(Name = "Apellidos")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_Apellidos { get; set; }
         [Display(Name = "Fecha Nacimiento")]
@@ -73,7 +73,7 @@ namespace ERP_ZORZAL.Models
         [Display(Name = "¿Es Activo?")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_EsActivo { get; set; }
-        [Display(Name = "Razón Inactivo")]
+        [Display(Name = "Razón Inactivación")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_RazonInactivo { get; set; }
         [Display(Name = "¿Con Crédito?")]

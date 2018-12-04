@@ -24,7 +24,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Cliente</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Registrar", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>
 
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-2">Apellido</label>
+                            <label class="control-label col-md-2">Apellidos</label>
                             <div class="col-md-4">
                                 <input type="text" class="form-control " />
                             </div>
@@ -52,7 +52,7 @@
                                 <input type="text" class="form-control" />
                             </div>
                             <div class="">
-                                <input type="button" value="Buscar" class="btn btn-primary btn-xl" />
+                                <input type="button" value="Buscar" class="btn btn-primary btn-sm" />
                             </div>
                         </div>
                     </div>
@@ -63,45 +63,45 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)
                                 </th>
-                                <th>
+                                @*<th>
                                     @Html.DisplayNameFor(model => model.clte_EsPersonaNatural)
-                                </th>
+                                </th>*@
                                 <th>
                                     @Html.DisplayNameFor(model => model.clte_Nombres)
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.clte_Apellidos)
-                                </th>
                                 @*<th>
-                        @Html.DisplayNameFor(model => model.clte_FechaNacimiento)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.clte_Nacionalidad)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.clte_Sexo)
-                    </th>
+                                    @Html.DisplayNameFor(model => model.clte_Apellidos)
+                                </th>*@
+                                @*<th>
+                                @Html.DisplayNameFor(model => model.clte_FechaNacimiento)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.clte_Nacionalidad)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.clte_Sexo)
+                            </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.clte_Telefono)
-                    </th>*@
-                                @*<th>
+                    </th>
+                    @*<th>
                         @Html.DisplayNameFor(model => model.clte_NombreComercial)
                     </th>*@
-                                <th>
-                                    @Html.DisplayNameFor(model => model.clte_RazonSocial)
-                                </th>
                                 @*<th>
+                                    @Html.DisplayNameFor(model => model.clte_RazonSocial)
+                                </th>*@
+                        <th>
                         @Html.DisplayNameFor(model => model.clte_ContactoNombre)
-                    </th>
-                    <th>
+                       </th>
+                      @* <th>
                         @Html.DisplayNameFor(model => model.clte_ContactoEmail)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.clte_ContactoTelefono)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.clte_FechaConstitucion)*@
-                                @*</th>
+                        @Html.DisplayNameFor(model => model.clte_FechaConstitucion)
+                       </th>
                     <th>
                         @Html.DisplayNameFor(model => model.clte_Direccion)
                     </th>
@@ -110,7 +110,9 @@
                     </th>*@
                                 <th>
                                     @Html.DisplayNameFor(model => model.clte_EsActivo)
+
                                 </th>
+
                                 @*<th>
                         @Html.DisplayNameFor(model => model.clte_RazonInactivo)
                     </th>*@
@@ -148,82 +150,91 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.clte_RTN_Identidad_Pasaporte)
                                     </td>
-                                    <td>
+                                    @*<td>
                                         @Html.DisplayFor(modelItem => item.clte_EsPersonaNatural)
-                                    </td>
+                                    </td>*@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.clte_Nombres)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.clte_Apellidos)
-                                    </td>
                                     @*<td>
-                            @Html.DisplayFor(modelItem => item.clte_FechaNacimiento)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.clte_Nacionalidad)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.clte_Sexo)
-                        </td>
+                                        @Html.DisplayFor(modelItem => item.clte_Apellidos)
+                                    </td>*@
+                                    @*<td>
+        @Html.DisplayFor(modelItem => item.clte_FechaNacimiento)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.clte_Nacionalidad)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.clte_Sexo)
+    </td>*@
                         <td>
                             @Html.DisplayFor(modelItem => item.clte_Telefono)
-                        </td>*@
+                        </td>
                                     @*<td>
                             @Html.DisplayFor(modelItem => item.clte_NombreComercial)
                         </td>*@
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.clte_RazonSocial)
-                                    </td>
                                     @*<td>
+                                        @Html.DisplayFor(modelItem => item.clte_RazonSocial)
+                                    </td>*@
+                           <td>
                             @Html.DisplayFor(modelItem => item.clte_ContactoNombre)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.clte_ContactoEmail)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.clte_ContactoTelefono)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.clte_FechaConstitucion)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.clte_Direccion)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.clte_CorreoElectronico)
-                        </td>*@
-                                    <td>
+                                                    @*<td>
+                                    @Html.DisplayFor(modelItem => item.clte_ContactoEmail)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.clte_ContactoTelefono)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.clte_FechaConstitucion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.clte_Direccion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.clte_CorreoElectronico)
+                                </td>*@
+                                    @*<td>
                                         @Html.DisplayFor(modelItem => item.clte_EsActivo)
-                                    </td>
-                                    @*<td>
-                            @Html.DisplayFor(modelItem => item.clte_RazonInactivo)
-                        </td>*@
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.clte_ConCredito)
                                     </td>*@
-                                    @*<td>
-                            @Html.DisplayFor(modelItem => item.clte_EsMinorista)
-                        </td>*@
-                                    @*<td>
-                            @Html.DisplayFor(modelItem => item.clte_Observaciones_)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.clte_UsuarioCrea)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.clte_FechaCrea)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.clte_UsuarioModifica)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.clte_FechaModifica)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.tbMunicipio.dep_Codigo)
-                        </td>*@
-                                    <td>
+                                    @if (item.clte_EsActivo == "1")
+                                     {
+                                        <td>Sí</td>
+                                    }
+                                    else
+                                    {
+                                        <td>No</td>
+                                    }
+                                   
+                                        @*<td>
+                @Html.DisplayFor(modelItem => item.clte_RazonInactivo)
+            </td>*@
+                                        @*<td>
+                @Html.DisplayFor(modelItem => item.clte_ConCredito)
+            </td>*@
+                                        @*<td>
+                @Html.DisplayFor(modelItem => item.clte_EsMinorista)
+            </td>*@
+                                        @*<td>
+                @Html.DisplayFor(modelItem => item.clte_Observaciones_)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.clte_UsuarioCrea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.clte_FechaCrea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.clte_UsuarioModifica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.clte_FechaModifica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbMunicipio.dep_Codigo)
+            </td>*@
+<td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.clte_Id }, new { @class = "btn btn-primary btn-sm" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.clte_Id }, new { @class = "btn btn-white btn-sm" })
                                         @*@Html.ActionLink("Delete", "Delete", new { id=item.clte_Id }, new { @class = "btn btn-white btn-sm"})*@

@@ -84,7 +84,7 @@
             @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
                 @*@Html.EditorFor(model => model.mnda_Id)*@
-                @Html.DropDownList("mnda_Id", null, new { @class = "form-control" })
+                @Html.DropDownList("mnda_Id", null,  new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.mnda_Id)
             </div>
         </div>
@@ -93,7 +93,7 @@
             @*@Html.LabelFor(model => model.bcta_TipoCuenta, new { @class = "control-label col-md-2" })*@
             @Html.LabelFor(model => model.bcta_TipoCuenta, "Tipo Cuenta", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.DropDownListFor(model => model.bcta_TipoCuenta, new SelectList(Model.TipoCuentaList, "ID_TIPOCUENTA", "DESCRIPCION"), "Seleccione Tipo Cuenta", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.bcta_TipoCuenta, new SelectList(Model.TipoCuentaList, "ID_TIPOCUENTA", "DESCRIPCION"),  new { @class = "form-control" })
                 @*@Html.DropDownListFor(model => model.bcta_TipoCuenta, new SelectList(Model.TipoCuentaList, "Id_TipoCuenta", "Descripción"), new { @class = "form-control" })*@
                 @Html.ValidationMessageFor(model => model.bcta_TipoCuenta)
             </div>

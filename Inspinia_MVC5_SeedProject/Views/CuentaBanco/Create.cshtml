@@ -56,7 +56,7 @@
             @Html.LabelFor(model => model.ban_Id, "Banco", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
                 @*@Html.DropDownList("ban_Id", String.Empty)*@
-                 @Html.DropDownList("ban_Id", null, "Seleccione un Banco", new { @class = "form-control" })
+                 @Html.DropDownList("ban_Id", null, "Seleccione Banco", new { @class = "form-control" })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.ban_Id)</p>
 </div>
         </div>
@@ -72,7 +72,7 @@
             @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
                 @*@Html.EditorFor(model => model.mnda_Id)*@
-                @Html.DropDownList("mnda_Id", null, "Seleccione una Moneda", new { @class = "form-control" })
+                @Html.DropDownList("mnda_Id", null, "Seleccione Moneda", new { @class = "form-control" })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Id)</p>
 </div>
         </div>

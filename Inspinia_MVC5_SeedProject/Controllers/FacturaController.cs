@@ -40,11 +40,11 @@ namespace ERP_ZORZAL.Controllers
         {
             //ERP_ZORZALEntities dc = new ERP_ZORZALEntities();
             //var item = dc.tbFacturaDetalle.ToList();
-            tbFactura Factura = new tbFactura();
-            ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
-            ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion");
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
-            return View(Factura);
+            //tbFactura Factura = new tbFactura();
+            //ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
+            //ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion");
+            //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
+            return View();
         }
 
         // POST: /Factura/Create

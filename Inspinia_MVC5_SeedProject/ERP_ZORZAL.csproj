@@ -208,6 +208,7 @@
     <Compile Include="Models\Banco.cs" />
     <Compile Include="Models\cActivo.cs" />
     <Compile Include="Models\cCuponDescuento.cs" />
+    <Compile Include="Models\cDepartamento.cs" />
     <Compile Include="Models\cDevolucion.cs" />
     <Compile Include="Models\cDocumentoFiscal.cs" />
     <Compile Include="Models\cGenero.cs" />
@@ -652,6 +653,8 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
       <LastGenOutput>ModelERP.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\app\Activo.js" />
+    <Content Include="Scripts\app\Credito.js" />
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\DataTable1.js" />
     <Content Include="Scripts\app\Datepicker.js" />
@@ -934,6 +937,7 @@
     <Content Include="Views\PuntoEmision\_CreatePuntoEmisionDetalle.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexPuntoEmisionDetalle.cshtml" />
     <Content Include="Views\PuntoEmision\_EditPuntoEmisionDetalle.cshtml" />
+    <Content Include="Views\PuntoEmision\TabBodega.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

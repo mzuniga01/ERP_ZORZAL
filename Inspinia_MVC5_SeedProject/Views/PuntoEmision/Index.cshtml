@@ -22,13 +22,21 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de punto emisión</h5>
-					<div class="ibox-tools">
-						@Html.ActionLink("Registrar", "Create", null, new { @class = "btn btn-primary btn-xs"})
-					</div>
-                </div>
-                <div class="ibox-content">
+                    @*<h2>Listado de punto emisión</h2>*@
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Registrar", "Create", null, new { @class = "btn btn-primary btn-xs" })
+                    </div>       
+                     <ul id="tabs" class="nav nav-tabs" data-tabbs="tabs">
+                                <li class="active">
+                                    <a href="#tab1" data-toggle="tab">Bodegas </a>
+                                </li>
+                                <li class="active">
+                                    <a href="#tab2" data-toggle="tab">Numeración </a>
+                                </li>
+                            </ul>
 
+                </div>
+<div class="ibox-content">
 <table class="table table table-striped  table-bordered" id="DataTable">
     <thead>
         <tr>

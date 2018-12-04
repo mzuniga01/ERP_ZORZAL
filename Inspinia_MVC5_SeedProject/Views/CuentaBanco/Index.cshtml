@@ -24,7 +24,7 @@
                 <div class="ibox-title">
                     <h5>Listado Cuentas de Banco</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Registrar", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -83,16 +83,27 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbMoneda.mnda_Nombre)
                                     </td>
-                                    <td>
+                                    @*<td>
                                         @Html.DisplayFor(modelItem => item.bcta_TipoCuenta)
-                                    </td>
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.bcta_TotalCredito)
                                     </td>*@
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.bcta_TotalDebito)
-                                    </td>*@
-                                    <td>
+
+                                    @if (item.bcta_TipoCuenta == 1)
+                                    {
+                                        <td>Ahorro</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Cheques</td>
+                                    }
+                                 
+
+                                        @*<td>
+                @Html.DisplayFor(modelItem => item.bcta_TotalCredito)
+            </td>*@
+                                        @*<td>
+                @Html.DisplayFor(modelItem => item.bcta_TotalDebito)
+            </td>*@
+                                        <td>
                                         @Html.DisplayFor(modelItem => item.bcta_FechaApertura)
                                     </td>
                                     

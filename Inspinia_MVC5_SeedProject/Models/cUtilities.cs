@@ -77,6 +77,34 @@ namespace ERP_ZORZAL.Models
             });
             return list;
         }
-        
+
+        public static List<cDepartamento> DepartamentoList()
+        {
+            List<cDepartamento> list = new List<cDepartamento>();
+
+            list.Add(new cDepartamento()
+            {
+                DESCRIPCION = "Olancho",
+            });
+            list.Add(new cDepartamento()
+            {
+                DESCRIPCION = "Atlántida",
+            });
+            list.Add(new cDepartamento()
+            {
+                DESCRIPCION = "La Ceiba"
+            });
+            list.Add(new cDepartamento()
+            {
+                DESCRIPCION = "Choluteca"
+            });
+            list.Add(new cDepartamento()
+            {
+                DESCRIPCION = "Cortes"
+            });
+
+            return list;
+        }
+
     }
 }
