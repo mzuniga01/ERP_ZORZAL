@@ -1,0 +1,118 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbCuponDescuento>
+
+@{
+    ViewBag.Title = "Listado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Cupón Descuento</h2>
+        @*<ol class="breadcrumb">
+            <li class="active">
+                <strong>tbCuponDescuento</strong>
+            </li>
+        </ol>*@
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Cupón Descuento</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs" })
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped table-bordered table-hover" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cdto_FechaEmision)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cdto_FechaVencimiento)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cdto_PorcentajeDescuento)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cdto_MontoDescuento)
+                                </th>
+                                @*<th>
+                    @Html.DisplayNameFor(model => model.cdto_FechaCrea)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.cdto_FechaModifica)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+                </th>*@
+                                <th>
+                                    Municipio
+                                    @*@Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)*@
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                    
+                                        @*@Html.DisplayFor(modelItem => item.cdto_FechaEmision)*@
+                                    </td>
+                                    <td>
+                                      
+                                        @*@Html.DisplayFor(modelItem => item.cdto_FechaVencimiento)*@
+                                    </td>
+                                    <td>
+                                       
+                                        @*@Html.DisplayFor(modelItem => item.cdto_PorcentajeDescuento)*@
+                                    </td>
+                                    <td>
+                                        
+                                        @*@Html.DisplayFor(modelItem => item.cdto_MontoDescuento)*@
+                                    </td>
+                                    @*<td>
+                        @Html.DisplayFor(modelItem => item.cdto_FechaCrea)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cdto_FechaModifica)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
+                    </td>*@
+                                    <td>
+                                        @*@Html.DisplayFor(modelItem => item.tbSucursal.mun_Codigo)*@
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Detalle", "Details", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn - xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn-xs" })
+                                        @*@Html.ActionLink("Delete", "Delete", new { id = item.cdto_ID }, new { @class = "btn btn - primary btn - xs" })*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>

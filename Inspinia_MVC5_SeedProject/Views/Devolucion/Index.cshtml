@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbDevolucion>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Devolución</h2>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Lista de Devoluciones</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-responsive" id="DataTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cja_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dev_Fecha)
+            </th>
+            <th>
+                Codigo de Factura
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cja_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dev_Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalle", "Details", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-sm" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.dev_Id }, new { @class = "btn btn-white btn-sm" })
+                    @*@Html.ActionLink("Delete", "Delete", new { id=item.dev_Id }, new { @class = "btn btn-white btn-sm"})*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+@*@Html.Partial("_CreateDevolucionDetalle")*@
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>

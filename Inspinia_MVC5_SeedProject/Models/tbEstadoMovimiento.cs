@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ERP_GMEDINA.Models
+namespace ERP_ZORZAL.Models
 {
     using System;
     using System.Collections.Generic;
@@ -30,6 +30,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> estm_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> estm_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodega> tbBodega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

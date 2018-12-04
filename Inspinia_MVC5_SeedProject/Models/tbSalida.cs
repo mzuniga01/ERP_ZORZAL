@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ERP_GMEDINA.Models
+namespace ERP_ZORZAL.Models
 {
     using System;
     using System.Collections.Generic;
@@ -33,6 +33,9 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> sal_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> sal_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbUsuario tbUsuario2 { get; set; }
         public virtual tbBodega tbBodega { get; set; }
         public virtual tbBox tbBox { get; set; }
         public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }

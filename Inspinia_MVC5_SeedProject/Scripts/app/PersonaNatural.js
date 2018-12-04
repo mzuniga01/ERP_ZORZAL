@@ -1,50 +1,79 @@
-﻿(document).ready(function () {
-
-    $('#subscribe').on('click', function () {
-        var c = document.getElementById('subscribe').checked;
-        if (c) {
-
-            $("#apellido").hide();
-
-        }
-
-        else {
-            $("#apellido").show();
-
-        }
-
-
-    });
-
+﻿$("#clte_EsPersonaNatural").change(function () {
+    if (this.checked) {
+        //Do stuff
+        console.log("Hola");
+        $('#natural').show();
+        $('#juridica').hide();
+    }
+    else {
+        $('#natural').hide();
+        $('#juridica').show();
+    }
 });
 
 
+//$("#clte_EsPersonaNatural").ready(function () {
+//    if (this.checked) {
+//        //Do stuff
+//        console.log("Hola");
+//        $('#natural').show();
+//        $('#juridica').hide();
+//    }
+//    else {
+//        $('#natural').hide();
+//        $('#juridica').show();
+//    }
+//});
+
+$(document).ready(function () {
+    if ("#clte_EsPersonaNatural".checked) {
+        //Do stuff
+        console.log("Hola");
+        $('#natural').show();
+        $('#juridica').hide();
+    }
+    else {
+        $('#natural').hide();
+        $('#juridica').show();
+    }
+});
+
+
+//$("#clte_EsPersonaNatural").change(function () {
+//    if (this.checked) {
+//        //Do stuff
+//        console.log("Hola");
+//        $('#natural1').show();
+//        $('#juridica1').hide();
+//    }
+//    else {
+//        $('#natural1').hide();
+//        $('#juridica1').show();
+//    }
+//});
 
 //$(document).ready(function () {
-//    $('#suscribe').on('change', function () {
-//        if (this.checked) {
-//            $("#nombrecomercial").hide();
-//            $("#razonsocial").hide();
-//            $("#contactonombre").hide();
-//            $("#contactoemail").hide();
-//            $("#contactotel").hide();
-//            $("#fechaconstitucion").hide();
-//        }
-//        else {
-//            $("#nombre").show();
-//            $("#apellido").show();
-//            $("#fechanacimiento").show();
-//            $("#nacionalidad").show();
-//            $("#sexo").show();
-//            $("#telefono").show();
-//            $("#municipio").show();
-//            $("#direccion").show();
-//            $("#correoelectronico").show();
-//            $("#activo").show();
-//            $("#clientecredito").show();
-//            $("#minorista").show();
-//            $("#observaciones").show();
-
-//        }
-//    })
+//    if (this.checked) {
+//        //Do stuff
+//        console.log("Hola");
+//        $('#natural1').show();
+//        $('#juridica1').hide();
+//    }
+//    else {
+//        $('#natural1').hide();
+//        $('#juridica1').show();
+//    }
 //});
+
+
+$(document).ready(function () {
+    $('#clte_EsPersonaNatural').click(function () {
+        if ($(this).is(':checked')) {
+            $('#natural1').show();
+            $('#juridica1').hide();
+        } else {
+            $('#juridica1').show();
+            $('#natural1').hide();
+        }
+    });
+});

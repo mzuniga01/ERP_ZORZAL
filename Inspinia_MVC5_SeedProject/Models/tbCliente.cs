@@ -7,28 +7,31 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ERP_GMEDINA.Models
+namespace ERP_ZORZAL.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class tbCliente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbCliente()
         {
             this.tbExoneracion = new HashSet<tbExoneracion>();
+            this.tbFactura = new HashSet<tbFactura>();
             this.tbPedido = new HashSet<tbPedido>();
             this.tbNotaCredito = new HashSet<tbNotaCredito>();
             this.tbSolicitudCredito = new HashSet<tbSolicitudCredito>();
         }
     
         public int clte_Id { get; set; }
+        public byte tpi_Id { get; set; }
         public string clte_RTN_Identidad_Pasaporte { get; set; }
         public bool clte_EsPersonaNatural { get; set; }
         public string clte_Nombres { get; set; }
         public string clte_Apellidos { get; set; }
-        public System.DateTime clte_FechaNacimiento { get; set; }
+        public Nullable<System.DateTime> clte_FechaNacimiento { get; set; }
         public string clte_Nacionalidad { get; set; }
         public string clte_Sexo { get; set; }
         public string clte_Telefono { get; set; }
@@ -41,7 +44,7 @@ namespace ERP_GMEDINA.Models
         public string mun_Codigo { get; set; }
         public string clte_Direccion { get; set; }
         public string clte_CorreoElectronico { get; set; }
-        public string clte_EsActivo { get; set; }
+        public bool clte_EsActivo { get; set; }
         public string clte_RazonInactivo { get; set; }
         public bool clte_ConCredito { get; set; }
         public bool clte_EsMinorista { get; set; }
@@ -51,14 +54,27 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> clte_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbMunicipio tbMunicipio { get; set; }
+        public virtual tbTipoIdentificacion tbTipoIdentificacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbExoneracion> tbExoneracion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFactura> tbFactura { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedido> tbPedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbNotaCredito> tbNotaCredito { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito { get; set; }
+
+        [NotMapped]
+        public List<cActivo> EstadoList { get; set; }
+
+        [NotMapped]
+        public List<cGenero> GeneroList { get; set; }
+
+        public List<cNacionalidad> NacionalidadList { get; set; }
     }
 }

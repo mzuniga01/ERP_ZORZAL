@@ -59,6 +59,15 @@ namespace Inspinia_MVC5_SeedProject
             bundles.Add(new StyleBundle("~/font-awesome/css").Include(
                       "~/fonts/font-awesome/css/font-awesome.min.css", new CssRewriteUrlTransform()));
 
+            //Date picker
+            bundles.Add(new StyleBundle("~/Content/datepicker").Include(
+                        "~/Content/themes/base/jquery-ui.min.css"
+            ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/datepicker").Include(
+                "~/Scripts/jquery-ui-1.12.1.min.js"
+                ));
+
         }
     }
 }

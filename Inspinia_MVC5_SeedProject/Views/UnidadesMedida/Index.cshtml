@@ -1,0 +1,82 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbUnidadesMedida>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2></h2>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Unidades de Medida</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Registrar Nuevo", "Create", null, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped" id="Table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.uni_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.uni_Abreviacion)
+                                <th>Acciones</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.uni_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.uni_Abreviacion)
+                                    <td>
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.uni_Id }, new { @class = "btn btn-primary btn-sm" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.uni_Id }, new { @class = "btn btn-white btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#Table').DataTable(
+        {
+            "searching": false,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_ registros por página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+            }
+        });
+    });
+    </script>
+}

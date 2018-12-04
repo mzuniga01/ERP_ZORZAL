@@ -1,0 +1,104 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbEstadoFactura>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Estado Factura</h2>
+        @*<ol class="breadcrumb">
+            <li class="active">
+            </li>
+        </ol>*@
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Factura")">Regresar</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Estado de Factura</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table id="DataTable" class="table table table-striped  table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.esfac_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.esfac_Descripcion)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.esfac_UsuarioCrea)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.esfac_UsuarioModifico)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.esfac_FechaAgrego)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.esfac_FechaModifico)
+                </th>*@
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.esfac_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.esfac_Descripcion)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.esfac_UsuarioCrea)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.esfac_UsuarioModifico)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.esfac_FechaAgrego)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.esfac_FechaModifico)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.esfac_Id }, new { @class = "btn btn-primary btn-sm" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.esfac_Id }, new { @class = "btn btn-white btn-sm" })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.esfac_Id }, new { @class = "btn btn-white btn-sm" })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+
+

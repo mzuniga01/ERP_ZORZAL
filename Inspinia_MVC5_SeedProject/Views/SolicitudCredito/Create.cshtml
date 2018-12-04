@@ -1,0 +1,161 @@
+﻿@model ERP_ZORZAL.Models.tbSolicitudCredito
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Solicitud Crédito</h2>
+        @*<ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Creaer</strong>
+            </li>
+        </ol>*@
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","SolicitudCredito")">Regresar</a>
+			@*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5> Crear Solicitud Credito</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        <div class="form-group"> 
+            @Html.LabelFor(model => model.clte_Id, "Cliente", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("clte_Id", String.Empty)
+                @Html.ValidationMessageFor(model => model.clte_Id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.escre_Id, "Estado Crédito", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("escre_Id", String.Empty)
+                @Html.ValidationMessageFor(model => model.escre_Id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cred_FechaSolicitud, "Fecha Solicitud", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cred_FechaSolicitud)
+                @Html.ValidationMessageFor(model => model.cred_FechaSolicitud)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cred_FechaAprobacion, "Fecha Aprobación", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cred_FechaAprobacion)
+                @Html.ValidationMessageFor(model => model.cred_FechaAprobacion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cred_MontoSolicitado, "Monto Solicitado", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cred_MontoSolicitado)
+                @Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cred_MontoAprobado, "Monto Aprobado", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cred_MontoAprobado)
+                @Html.ValidationMessageFor(model => model.cred_MontoAprobado)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cred_DiasSolicitado, "Dias Solicitado", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cred_DiasSolicitado)
+                @Html.ValidationMessageFor(model => model.cred_DiasSolicitado)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cred_DiasAprobado, "Dias Aprobado", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cred_DiasAprobado)
+                @Html.ValidationMessageFor(model => model.cred_DiasAprobado)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.cred_UsuarioCrea, "cred_UsuarioCrea", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("cred_UsuarioCrea", String.Empty)
+                @Html.ValidationMessageFor(model => model.cred_UsuarioCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cred_FechaCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cred_FechaCrea)
+                @Html.ValidationMessageFor(model => model.cred_FechaCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cred_UsuarioModifica, "cred_UsuarioModifica", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("cred_UsuarioModifica", String.Empty)s
+                @Html.ValidationMessageFor(model => model.cred_UsuarioModifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cred_FechaModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cred_FechaModifica)
+                @Html.ValidationMessageFor(model => model.cred_FechaModifica)
+            </div>*@
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    @*</div>*@
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ERP_GMEDINA.Models
+namespace ERP_ZORZAL.Models
 {
     using System;
     using System.Collections.Generic;
@@ -25,6 +25,7 @@ namespace ERP_GMEDINA.Models
         }
     
         public int bod_Id { get; set; }
+        public string bod_Nombre { get; set; }
         public string bod_ResponsableBodega { get; set; }
         public string bod_Direccion { get; set; }
         public string bod_Correo { get; set; }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ERP_GMEDINA.Models
+namespace ERP_ZORZAL.Models
 {
     using System;
     using System.Data.Entity;
@@ -25,6 +25,7 @@ namespace ERP_GMEDINA.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<tbInventarioFisico> tbInventarioFisico { get; set; }
         public virtual DbSet<tbAccesoRol> tbAccesoRol { get; set; }
         public virtual DbSet<tbObjeto> tbObjeto { get; set; }
         public virtual DbSet<tbRol> tbRol { get; set; }
@@ -33,10 +34,10 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbActividadEconomica> tbActividadEconomica { get; set; }
         public virtual DbSet<tbBanco> tbBanco { get; set; }
         public virtual DbSet<tbCuentasBanco> tbCuentasBanco { get; set; }
+        public virtual DbSet<tbDenominacion> tbDenominacion { get; set; }
         public virtual DbSet<tbDepartamento> tbDepartamento { get; set; }
         public virtual DbSet<tbMoneda> tbMoneda { get; set; }
         public virtual DbSet<tbMunicipio> tbMunicipio { get; set; }
-        public virtual DbSet<tbTipoDenominacion> tbTipoDenominacion { get; set; }
         public virtual DbSet<tbTipoIdentificacion> tbTipoIdentificacion { get; set; }
         public virtual DbSet<tbUnidadMedida> tbUnidadMedida { get; set; }
         public virtual DbSet<tbBodega> tbBodega { get; set; }
@@ -46,7 +47,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbEntradaDetalle> tbEntradaDetalle { get; set; }
         public virtual DbSet<tbEstadoInventarioFisico> tbEstadoInventarioFisico { get; set; }
         public virtual DbSet<tbEstadoMovimiento> tbEstadoMovimiento { get; set; }
-        public virtual DbSet<tbInventarioFisico> tbInventarioFisico { get; set; }
         public virtual DbSet<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
         public virtual DbSet<tbProducto> tbProducto { get; set; }
         public virtual DbSet<tbProductoCategoria> tbProductoCategoria { get; set; }
@@ -68,6 +68,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbExoneracion> tbExoneracion { get; set; }
         public virtual DbSet<tbFactura> tbFactura { get; set; }
         public virtual DbSet<tbFacturaDetalle> tbFacturaDetalle { get; set; }
+        public virtual DbSet<tbFacturaHistorica> tbFacturaHistorica { get; set; }
         public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
         public virtual DbSet<tbListaPrecio> tbListaPrecio { get; set; }
         public virtual DbSet<tbNotaCredito> tbNotaCredito { get; set; }

@@ -1,0 +1,204 @@
+﻿@model ERP_ZORZAL.Models.tbCuentasBanco
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+        margin-left: 17%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Cuentas Banco</h2>
+        @*<ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong></strong>
+            </li>
+        </ol>*@
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","CuentaBanco")">Regresar</a>
+			@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Cuentas Banco</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.bcta_Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ban_Id, "Banco", new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @*@Html.DropDownList("ban_Id", String.Empty)*@
+                @Html.DropDownList("ban_Id", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ban_Id)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.bcta_Numero, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.bcta_Numero)
+                @Html.ValidationMessageFor(model => model.bcta_Numero)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @*@Html.EditorFor(model => model.mnda_Id)*@
+                @Html.DropDownList("mnda_Id", null,  new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.mnda_Id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.bcta_TipoCuenta, new { @class = "control-label col-md-2" })*@
+            @Html.LabelFor(model => model.bcta_TipoCuenta, "Tipo Cuenta", new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(model => model.bcta_TipoCuenta, new SelectList(Model.TipoCuentaList, "ID_TIPOCUENTA", "DESCRIPCION"),  new { @class = "form-control" })
+                @*@Html.DropDownListFor(model => model.bcta_TipoCuenta, new SelectList(Model.TipoCuentaList, "Id_TipoCuenta", "Descripción"), new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(model => model.bcta_TipoCuenta)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.bcta_TotalCredito, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.bcta_TotalCredito)
+                @Html.ValidationMessageFor(model => model.bcta_TotalCredito)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.bcta_TotalDebito, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.bcta_TotalDebito)
+                @Html.ValidationMessageFor(model => model.bcta_TotalDebito)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.bcta_FechaApertura, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.bcta_FechaApertura, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "fechaapertura" } })
+                @Html.ValidationMessageFor(model => model.bcta_FechaApertura)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+                <tr>
+                    <td>Creado</td>
+                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                    <td>@Html.DisplayFor(model => model.bcta_FechaCrea)</td>
+                </tr>
+                <tr>
+                    <td>Modificado</td>
+                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                    <td>@Html.DisplayFor(model => model.bcta_FechaModifica)</td>
+                </tr>
+            </table>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.bcta_UsuarioCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.bcta_UsuarioCrea)
+                @Html.ValidationMessageFor(model => model.bcta_UsuarioCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.bcta_FechaCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.bcta_FechaCrea)
+                @Html.ValidationMessageFor(model => model.bcta_FechaCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.bcta_UsuarioModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.bcta_UsuarioModifica)
+                @Html.ValidationMessageFor(model => model.bcta_UsuarioModifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.bcta_FechaModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.bcta_FechaModifica)
+                @Html.ValidationMessageFor(model => model.bcta_FechaModifica)
+            </div>
+        </div>*@
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>

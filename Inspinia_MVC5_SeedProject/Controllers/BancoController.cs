@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ERP_GMEDINA.Models;
+using ERP_ZORZAL.Models;
 
 namespace ERP_ZORZAL.Controllers
 {

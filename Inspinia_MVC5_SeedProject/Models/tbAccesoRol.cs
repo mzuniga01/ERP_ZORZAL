@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ERP_GMEDINA.Models
+namespace ERP_ZORZAL.Models
 {
     using System;
     using System.Collections.Generic;
@@ -24,6 +24,5 @@ namespace ERP_GMEDINA.Models
         public Nullable<System.DateTime> acrol_FechaModifica { get; set; }
     
         public virtual tbRol tbRol { get; set; }
-        public virtual tbRolesUsuario tbRolesUsuario { get; set; }
     }
 }

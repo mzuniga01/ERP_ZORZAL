@@ -1,0 +1,105 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbPuntoEmision>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Punto de emisión</h2>
+        @*<ol class="breadcrumb">
+            <li class="active">
+                <strong>tbPuntoEmision</strong>
+            </li>
+        </ol>*@
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    @*<h2>Listado de punto emisión</h2>*@
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Registrar", "Create", null, new { @class = "btn btn-primary btn-xs" })
+                    </div>       
+                     <ul id="tabs" class="nav nav-tabs" data-tabbs="tabs">
+                                <li class="active">
+                                    <a href="#tab1" data-toggle="tab">Bodegas </a>
+                                </li>
+                                <li class="active">
+                                    <a href="#tab2" data-toggle="tab">Numeración </a>
+                                </li>
+                            </ul>
+
+                </div>
+<div class="ibox-content">
+<table class="table table table-striped  table-bordered" id="DataTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.pemi_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.pemi_FechaCrea)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pemi_FechaModifica)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pemi_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pemi_NumeroCAI)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.pemi_FechaCrea)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.pemi_FechaModifica)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.pemi_Id }, new { @class = "btn btn-primary btn-sm" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.pemi_Id }, new { @class = "btn btn-white btn-sm" })
+                    @*@Html.ActionLink("Delete", "Delete", new { id=item.pemi_Id }, new { @class = "btn btn-white btn-sm"})*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>

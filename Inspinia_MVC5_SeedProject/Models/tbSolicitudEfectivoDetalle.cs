@@ -7,24 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ERP_GMEDINA.Models
+namespace ERP_ZORZAL.Models
 {
     using System;
     using System.Collections.Generic;
     
     public partial class tbSolicitudEfectivoDetalle
     {
-        public int solefd_Id { get; set; }
+        public int soled_Id { get; set; }
         public int solef_Id { get; set; }
-        public short solefd_Cantidad { get; set; }
-        public short tdmi_Id { get; set; }
-        public Nullable<int> solefd_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> solefd_FechaCrea { get; set; }
-        public Nullable<int> solefd_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> solefd_FechaModifica { get; set; }
+        public short deno_Id { get; set; }
+        public decimal soled_CantidadSolicitada { get; set; }
+        public decimal soled_CantidadEntregada { get; set; }
+        public int soled_UsuarioCrea { get; set; }
+        public System.DateTime soled_FechaCrea { get; set; }
+        public Nullable<int> soled_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> soled_FechaModifica { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbDenominacion tbDenominacion { get; set; }
         public virtual tbSolicitudEfectivo tbSolicitudEfectivo { get; set; }
     }
 }
