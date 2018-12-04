@@ -212,6 +212,7 @@
     <Compile Include="Models\cDevolucion.cs" />
     <Compile Include="Models\cDocumentoFiscal.cs" />
     <Compile Include="Models\cGenero.cs" />
+    <Compile Include="Models\Clientes.cs" />
     <Compile Include="Models\cNacionalidad.cs" />
     <Compile Include="Models\cNotaCredito.cs" />
     <Compile Include="Models\cTipoCuenta.cs" />
@@ -240,7 +241,7 @@
     </Compile>
     <Compile Include="Models\Monedas.cs" />
     <Compile Include="Models\Pedidos.cs" />
-    <Compile Include="Models\PuntoEmision.cs" />
+    <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\SolicitudCreditos.cs" />
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
@@ -656,6 +657,7 @@
     <Content Include="Scripts\app\Credito.js" />
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\DataTable1.js" />
+    <Content Include="Scripts\app\DataTableBusquedaGenerica.js" />
     <Content Include="Scripts\app\Datepicker.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
@@ -925,19 +927,17 @@
     <Content Include="Views\ListaPrecio\Edit.cshtml" />
     <Content Include="Views\ListaPrecio\Index.cshtml" />
     <Content Include="Views\ListaPrecio\_CreateListaPrecioDetalle.cshtml" />
-    <Content Include="Views\PuntoEmision\Create.cshtml" />
-    <Content Include="Views\PuntoEmision\Details.cshtml" />
-    <Content Include="Views\PuntoEmision\Edit.cshtml" />
-    <Content Include="Views\PuntoEmision\Index.cshtml" />
-    <Content Include="Views\PuntoEmision\_CreatePuntoEmisionDetalle.cshtml" />
-    <Content Include="Views\PuntoEmision\_IndexPuntoEmisionDetalle.cshtml" />
-    <Content Include="Views\PuntoEmision\_EditPuntoEmisionDetalle.cshtml" />
-    <Content Include="Views\PuntoEmision\TabBodega.cshtml" />
     <Content Include="Views\Cliente\Create.cshtml" />
     <Content Include="Views\Cliente\Delete.cshtml" />
     <Content Include="Views\Cliente\Details.cshtml" />
     <Content Include="Views\Cliente\Edit.cshtml" />
     <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Factura\_BusquedaProducto.cshtml" />
+    <Content Include="Views\PuntoEmision\Create.cshtml" />
+    <Content Include="Views\PuntoEmision\Delete.cshtml" />
+    <Content Include="Views\PuntoEmision\Details.cshtml" />
+    <Content Include="Views\PuntoEmision\Edit.cshtml" />
+    <Content Include="Views\PuntoEmision\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

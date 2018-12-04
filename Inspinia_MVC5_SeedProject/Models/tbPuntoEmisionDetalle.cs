@@ -25,6 +25,7 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> pemid_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> pemid_FechaModifica { get; set; }
     
+        public virtual tbDocumentoFiscal tbDocumentoFiscal { get; set; }
         public virtual tbPuntoEmision tbPuntoEmision { get; set; }
         public virtual tbPuntoEmision tbPuntoEmision1 { get; set; }
     }

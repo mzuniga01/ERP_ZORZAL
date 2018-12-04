@@ -39,11 +39,18 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Cliente/Create
         public ActionResult Create()
         {
+            tbCliente Cliente = new tbCliente();
+            Cliente.GeneroList = cUtilities.GeneroList();
+            Cliente.NacionalidadList = cUtilities.NacionalidadList();
+
+            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
             ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo");
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
-            return View();
+
+
+            return View(Cliente);
         }
 
         // POST: /Cliente/Create
@@ -59,11 +66,15 @@ namespace ERP_ZORZAL.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbCliente.tbMunicipio.dep_Codigo);
             ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
             ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbCliente.mun_Codigo);
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+
+            tbCliente Cliente = new tbCliente();
+            Cliente.GeneroList = cUtilities.GeneroList();
+            Cliente.NacionalidadList = cUtilities.NacionalidadList();
             return View(tbCliente);
         }
 
@@ -83,6 +94,10 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbCliente.mun_Codigo);
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+
+            tbCliente Cliente = db.tbCliente.Find(id);
+            Cliente.GeneroList = cUtilities.GeneroList();
+            Cliente.NacionalidadList = cUtilities.NacionalidadList();
             return View(tbCliente);
         }
 
@@ -91,7 +106,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="clte_Id,tpi_Id,clte_RTN_Identidad_Pasaporte,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones_,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica")] tbCliente tbCliente)
+        public ActionResult Edit([Bind(Include = "clte_Id,tpi_Id,clte_RTN_Identidad_Pasaporte,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones_,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica")] tbCliente tbCliente)
         {
             if (ModelState.IsValid)
             {
@@ -103,6 +118,10 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbCliente.mun_Codigo);
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+
+
+            tbCliente.GeneroList = cUtilities.GeneroList();
+            tbCliente.NacionalidadList = cUtilities.NacionalidadList();
             return View(tbCliente);
         }
 

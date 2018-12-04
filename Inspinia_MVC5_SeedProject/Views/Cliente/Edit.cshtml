@@ -4,22 +4,33 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+        margin-left: 17%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Edit</h2>
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Edit</strong>
-            </li>
-        </ol>
+        <h2>Cliente</h2>      
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+            <a href="@Url.Action("Index","Cliente")">Regresar</a>
         </div>
     </div>
 </div>
@@ -31,7 +42,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Edit tbCliente</h5>
+                    <h5>Editar Cliente</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -45,9 +56,9 @@
         @Html.HiddenFor(model => model.clte_Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tpi_Id, "tpi_Id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tpi_Id, "Tipo Identificacion", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("tpi_Id", String.Empty)
+                @Html.DropDownList("tpi_Id", null, "Seleccione Tipo Identificación", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.tpi_Id)
             </div>
         </div>
@@ -68,205 +79,228 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_Nombres)
-                @Html.ValidationMessageFor(model => model.clte_Nombres)
+        <div class="form-horizontal" name="natural" id="natural">
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_Nombres)
+                    @Html.ValidationMessageFor(model => model.clte_Nombres)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_Apellidos, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_Apellidos)
-                @Html.ValidationMessageFor(model => model.clte_Apellidos)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_Apellidos, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_Apellidos)
+                    @Html.ValidationMessageFor(model => model.clte_Apellidos)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_FechaNacimiento, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_FechaNacimiento)
-                @Html.ValidationMessageFor(model => model.clte_FechaNacimiento)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_FechaNacimiento, new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.clte_FechaNacimiento, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "fechanacimiento" } })
+                    @Html.ValidationMessageFor(model => model.clte_FechaNacimiento)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_Nacionalidad, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_Nacionalidad)
-                @Html.ValidationMessageFor(model => model.clte_Nacionalidad)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_Sexo, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.clte_Sexo, new SelectList(Model.GeneroList, "ID_GENERO", "DESCRIPCION"), "Seleccione Sexo", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.clte_Sexo)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_Sexo, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_Sexo)
-                @Html.ValidationMessageFor(model => model.clte_Sexo)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_Telefono, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_Telefono)
+                    @Html.ValidationMessageFor(model => model.clte_Telefono)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_Telefono, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_Telefono)
-                @Html.ValidationMessageFor(model => model.clte_Telefono)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_CorreoElectronico, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_CorreoElectronico)
+                    @Html.ValidationMessageFor(model => model.clte_CorreoElectronico)
+                </div>
             </div>
         </div>
+           
+        <div class="form-horizontal" id="juridica" name="juridica">
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_NombreComercial, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_NombreComercial)
+                    @Html.ValidationMessageFor(model => model.clte_NombreComercial)
+                </div>
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_NombreComercial, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_NombreComercial)
-                @Html.ValidationMessageFor(model => model.clte_NombreComercial)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_RazonSocial, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_RazonSocial)
+                    @Html.ValidationMessageFor(model => model.clte_RazonSocial)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_RazonSocial, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_RazonSocial)
-                @Html.ValidationMessageFor(model => model.clte_RazonSocial)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_ContactoNombre, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_ContactoNombre)
+                    @Html.ValidationMessageFor(model => model.clte_ContactoNombre)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_ContactoNombre, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_ContactoNombre)
-                @Html.ValidationMessageFor(model => model.clte_ContactoNombre)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_ContactoEmail, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_ContactoEmail)
+                    @Html.ValidationMessageFor(model => model.clte_ContactoEmail)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_ContactoEmail, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_ContactoEmail)
-                @Html.ValidationMessageFor(model => model.clte_ContactoEmail)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_ContactoTelefono, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_ContactoTelefono)
+                    @Html.ValidationMessageFor(model => model.clte_ContactoTelefono)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_ContactoTelefono, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_ContactoTelefono)
-                @Html.ValidationMessageFor(model => model.clte_ContactoTelefono)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_FechaConstitucion, new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.clte_FechaConstitucion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "fechaconstitucion" } })
+                    @Html.ValidationMessageFor(model => model.clte_FechaConstitucion)
+                </div>
             </div>
         </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_Nacionalidad, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.clte_Nacionalidad, new SelectList(Model.NacionalidadList, "DESCRIPCION", "DESCRIPCION"), "Seleccione Nacionalidad", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.clte_Nacionalidad)
+                </div>
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_FechaConstitucion, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_FechaConstitucion)
-                @Html.ValidationMessageFor(model => model.clte_FechaConstitucion)
+            <div class="form-group">
+                @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.mun_Codigo)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.mun_Codigo, "mun_Codigo", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("mun_Codigo", String.Empty)
-                @Html.ValidationMessageFor(model => model.mun_Codigo)
-            </div>
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_Direccion, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_Direccion)
+                    @Html.ValidationMessageFor(model => model.clte_Direccion)
+                </div>
+            </div>        
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_Direccion, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_Direccion)
-                @Html.ValidationMessageFor(model => model.clte_Direccion)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_EsActivo, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_EsActivo)
+                    @Html.ValidationMessageFor(model => model.clte_EsActivo)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_CorreoElectronico, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_CorreoElectronico)
-                @Html.ValidationMessageFor(model => model.clte_CorreoElectronico)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_RazonInactivo, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_RazonInactivo)
+                    @Html.ValidationMessageFor(model => model.clte_RazonInactivo)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_EsActivo, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_EsActivo)
-                @Html.ValidationMessageFor(model => model.clte_EsActivo)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_ConCredito, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_ConCredito)
+                    @Html.ValidationMessageFor(model => model.clte_ConCredito)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_RazonInactivo, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_RazonInactivo)
-                @Html.ValidationMessageFor(model => model.clte_RazonInactivo)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_EsMinorista, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_EsMinorista)
+                    @Html.ValidationMessageFor(model => model.clte_EsMinorista)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_ConCredito, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_ConCredito)
-                @Html.ValidationMessageFor(model => model.clte_ConCredito)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_Observaciones_, new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.TextAreaFor(model => model.clte_Observaciones_, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.clte_Observaciones_)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_EsMinorista, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_EsMinorista)
-                @Html.ValidationMessageFor(model => model.clte_EsMinorista)
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.clte_UsuarioCrea, "clte_UsuarioCrea", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("clte_UsuarioCrea", String.Empty)
+                    @Html.ValidationMessageFor(model => model.clte_UsuarioCrea)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_Observaciones_, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_Observaciones_)
-                @Html.ValidationMessageFor(model => model.clte_Observaciones_)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_FechaCrea, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_FechaCrea)
+                    @Html.ValidationMessageFor(model => model.clte_FechaCrea)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_UsuarioCrea, "clte_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("clte_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.clte_UsuarioCrea)
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_UsuarioModifica, "clte_UsuarioModifica", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("clte_UsuarioModifica", String.Empty)
+                    @Html.ValidationMessageFor(model => model.clte_UsuarioModifica)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_FechaCrea)
-                @Html.ValidationMessageFor(model => model.clte_FechaCrea)
-            </div>
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.clte_FechaModifica, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.clte_FechaModifica)
+                    @Html.ValidationMessageFor(model => model.clte_FechaModifica)
+                </div>
+            </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_UsuarioModifica, "clte_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("clte_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.clte_UsuarioModifica)
+            <div class="form-group">
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>@Html.DisplayFor(model => model.clte_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>@Html.DisplayFor(model => model.clte_FechaModifica)</td>
+                    </tr>
+                </table>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.clte_FechaModifica)
-                @Html.ValidationMessageFor(model => model.clte_FechaModifica)
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
 }
 
 
@@ -276,4 +310,7 @@
     </div>
  </div>
 
-
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/PersonaNatural.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/Activo.js"></script>

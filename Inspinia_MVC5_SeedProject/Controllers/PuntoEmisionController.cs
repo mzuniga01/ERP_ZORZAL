@@ -13,10 +13,7 @@ namespace ERP_ZORZAL.Controllers
     public class PuntoEmisionController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        public ActionResult TabBodega()
-        {
-            return View();
-        }
+
         // GET: /PuntoEmision/
         public ActionResult Index()
         {

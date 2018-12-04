@@ -856,6 +856,7 @@
           <ScalarProperty Name="suc_Telefono" ColumnName="suc_Telefono" />
           <ScalarProperty Name="suc_Direccion" ColumnName="suc_Direccion" />
           <ScalarProperty Name="suc_Correo" ColumnName="suc_Correo" />
+          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
           <ScalarProperty Name="pemi_Id" ColumnName="pemi_Id" />
           <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
           <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />

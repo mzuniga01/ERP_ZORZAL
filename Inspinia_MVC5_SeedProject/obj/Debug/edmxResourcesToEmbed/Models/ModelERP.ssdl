@@ -491,7 +491,7 @@
     <Property Name="cdto_PorcentajeDescuento" Type="decimal" Precision="5" Scale="2" />
     <Property Name="cdto_MontoDescuento" Type="decimal" Precision="10" Scale="2" />
     <Property Name="cdto_MaximoMontoDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="cdto_Redimido" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="cdto_Redimido" Type="bit" Nullable="false" />
     <Property Name="cdto_Anulado" Type="bit" />
     <Property Name="cdto_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="cdto_FechaCrea" Type="datetime" Nullable="false" />
@@ -679,9 +679,9 @@
     <Property Name="pago_FechaElaboracion" Type="datetime" Nullable="false" />
     <Property Name="pago_SaldoAnterior" Type="decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="pago_TotalPago" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="pago_TotalCambio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="pago_TotalCambio" Type="decimal" Precision="10" Scale="2" />
     <Property Name="pago_Emisor" Type="nvarchar" MaxLength="25" />
-    <Property Name="bcta_Id" Type="smallint" Nullable="false" />
+    <Property Name="bcta_Id" Type="smallint" />
     <Property Name="pago_FechaVencimiento" Type="datetime" />
     <Property Name="pago_Titular " Type="nvarchar" MaxLength="50" />
     <Property Name="pago_UsuarioCrea" Type="int" Nullable="false" />
@@ -724,7 +724,7 @@
       <PropertyRef Name="pemi_Id" />
     </Key>
     <Property Name="pemi_Id" Type="int" Nullable="false" />
-    <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="40" Nullable="false" />
     <Property Name="pemi_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="pemi_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="pemi_UsuarioModifica" Type="int" />
@@ -798,6 +798,7 @@
     <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
     <Property Name="bod_Id" Type="int" Nullable="false" />
     <Property Name="pemi_Id" Type="int" Nullable="false" />
+    <Property Name="suc_Descripcion" Type="nvarchar" MaxLength="40" Nullable="false" />
     <Property Name="suc_Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="suc_Direccion" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="suc_Telefono" Type="nvarchar" MaxLength="9" Nullable="false" />
@@ -2214,7 +2215,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Vent_tbCuentasBanco_tbPago_bcta_Id">
-    <End Role="tbCuentasBanco" Type="Self.tbCuentasBanco" Multiplicity="1" />
+    <End Role="tbCuentasBanco" Type="Self.tbCuentasBanco" Multiplicity="0..1" />
     <End Role="tbPago" Type="Self.tbPago" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbCuentasBanco">
@@ -2450,6 +2451,18 @@
       </Principal>
       <Dependent Role="tbPuntoEmision">
         <PropertyRef Name="pemi_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id">
+    <End Role="tbDocumentoFiscal" Type="Self.tbDocumentoFiscal" Multiplicity="1" />
+    <End Role="tbPuntoEmisionDetalle" Type="Self.tbPuntoEmisionDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDocumentoFiscal">
+        <PropertyRef Name="dfisc_Id" />
+      </Principal>
+      <Dependent Role="tbPuntoEmisionDetalle">
+        <PropertyRef Name="dfisc_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3174,6 +3187,10 @@
     <AssociationSet Name="FK_Vent_tbPuntoEmision_tbUsuario_usu_Id_Modifica" Association="Self.FK_Vent_tbPuntoEmision_tbUsuario_usu_Id_Modifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbPuntoEmision" EntitySet="tbPuntoEmision" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id" Association="Self.FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id">
+      <End Role="tbDocumentoFiscal" EntitySet="tbDocumentoFiscal" />
+      <End Role="tbPuntoEmisionDetalle" EntitySet="tbPuntoEmisionDetalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbPuntoEmisionDetalle_tbPuntoEmision_pemi_Id" Association="Self.FK_Vent_tbPuntoEmisionDetalle_tbPuntoEmision_pemi_Id">
       <End Role="tbPuntoEmision" EntitySet="tbPuntoEmision" />

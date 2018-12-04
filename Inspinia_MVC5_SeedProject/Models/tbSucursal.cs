@@ -28,6 +28,7 @@ namespace ERP_ZORZAL.Models
         public string mun_Codigo { get; set; }
         public int bod_Id { get; set; }
         public int pemi_Id { get; set; }
+        public string suc_Descripcion { get; set; }
         public string suc_Correo { get; set; }
         public string suc_Direccion { get; set; }
         public string suc_Telefono { get; set; }

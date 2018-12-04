@@ -578,6 +578,10 @@
       <End Role="tbDevolucion" EntitySet="tbDevolucion" />
       <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
     </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id" Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id">
+      <End Role="tbDocumentoFiscal" EntitySet="tbDocumentoFiscal" />
+      <End Role="tbPuntoEmisionDetalle" EntitySet="tbPuntoEmisionDetalle" />
+    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo" Association="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo">
       <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
       <End Role="tbFactura" EntitySet="tbFactura" />
@@ -1331,7 +1335,7 @@
     <Property Name="cdto_PorcentajeDescuento" Type="Decimal" Precision="5" Scale="2" />
     <Property Name="cdto_MontoDescuento" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="cdto_MaximoMontoDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-    <Property Name="cdto_Redimido" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="cdto_Redimido" Type="Boolean" Nullable="false" />
     <Property Name="cdto_Anulado" Type="Boolean" />
     <Property Name="cdto_UsuarioCrea" Type="Int32" Nullable="false" />
     <Property Name="cdto_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
@@ -1390,6 +1394,7 @@
     <Property Name="dfisc_FechaModifica" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDocumentoFiscal_dfisc_UsuarioCrea" FromRole="tbDocumentoFiscal" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDocumentoFiscal_dfisc_UsuarioModifica" FromRole="tbDocumentoFiscal" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbPuntoEmisionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id" FromRole="tbDocumentoFiscal" ToRole="tbPuntoEmisionDetalle" />
   </EntityType>
   <EntityType Name="tbEstadoFactura">
     <Key>
@@ -1568,9 +1573,9 @@
     <Property Name="pago_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="pago_SaldoAnterior" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
     <Property Name="pago_TotalPago" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-    <Property Name="pago_TotalCambio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="pago_TotalCambio" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="pago_Emisor" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-    <Property Name="bcta_Id" Type="Int16" Nullable="false" />
+    <Property Name="bcta_Id" Type="Int16" />
     <Property Name="pago_FechaVencimiento" Type="DateTime" Precision="3" />
     <Property Name="pago_Titular_" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="pago_UsuarioCrea" Type="Int32" Nullable="false" />
@@ -1626,7 +1631,7 @@
       <PropertyRef Name="pemi_Id" />
     </Key>
     <Property Name="pemi_Id" Type="Int32" Nullable="false" />
-    <Property Name="pemi_NumeroCAI" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="pemi_NumeroCAI" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
     <Property Name="pemi_UsuarioCrea" Type="Int32" Nullable="false" />
     <Property Name="pemi_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="pemi_UsuarioModifica" Type="Int32" />
@@ -1651,6 +1656,7 @@
     <Property Name="pemid_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="pemid_UsuarioModifica" Type="Int32" />
     <Property Name="pemid_FechaModifica" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbDocumentoFiscal" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id" FromRole="tbPuntoEmisionDetalle" ToRole="tbDocumentoFiscal" />
     <NavigationProperty Name="tbPuntoEmision" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbPuntoEmisionDetalle_pemi_Id" FromRole="tbPuntoEmisionDetalle" ToRole="tbPuntoEmision" />
     <NavigationProperty Name="tbPuntoEmision1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbPuntoEmision_pemi_Id" FromRole="tbPuntoEmisionDetalle" ToRole="tbPuntoEmision" />
   </EntityType>
@@ -1720,6 +1726,7 @@
     <Property Name="mun_Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
     <Property Name="bod_Id" Type="Int32" Nullable="false" />
     <Property Name="pemi_Id" Type="Int32" Nullable="false" />
+    <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
     <Property Name="suc_Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="suc_Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="suc_Telefono" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
@@ -2693,7 +2700,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Vent_tbCuentasBanco_tbPago_bcta_Id">
-    <End Type="ERP_ZORZALModel.tbCuentasBanco" Role="tbCuentasBanco" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbCuentasBanco" Role="tbCuentasBanco" Multiplicity="0..1" />
     <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbCuentasBanco">
@@ -3313,6 +3320,18 @@
       </Principal>
       <Dependent Role="tbNotaCredito">
         <PropertyRef Name="dev_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id">
+    <End Type="ERP_ZORZALModel.tbDocumentoFiscal" Role="tbDocumentoFiscal" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbPuntoEmisionDetalle" Role="tbPuntoEmisionDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDocumentoFiscal">
+        <PropertyRef Name="dfisc_Id" />
+      </Principal>
+      <Dependent Role="tbPuntoEmisionDetalle">
+        <PropertyRef Name="dfisc_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

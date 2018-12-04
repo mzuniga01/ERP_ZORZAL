@@ -28,26 +28,11 @@
                         @Html.ActionLink("Registrar Factura", "Create", null, new { @class = "btn btn-primary btn-xs" })
                     </div>
                     <div class="ibox-content">
-
                         <div class="form-horizontal">
                             <div class="form-group">
                                 <label class="control-label col-md-2">RTN-Identidad</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control " />
-                                </div>
-                                <label class="control-label col-md-1">Factura</label>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Nombre Cliente</label>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control " />
-                                </div>
-                                <label class="control-label col-md-1">Fecha </label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control" />
                                 </div>
                                 <div class="">
                                     <input type="button" value="Buscar" class="btn btn-primary btn-xl" />
@@ -59,25 +44,25 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.suc_Id)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.cja_Id)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
-                                    </th>
-                                    <th>
                                         @Html.DisplayNameFor(model => model.fact_Codigo)
                                     </th>
                                     @*<th>
                                             @Html.DisplayNameFor(model => model.fact_Fecha)
                                         </th>*@
                                     <th>
+                                        @Html.DisplayNameFor(model => model.esfac_Id)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.cja_Id)
+                                    </th>
+                                    @*<th>
+                                            @Html.DisplayNameFor(model => model.suc_Id)
+                                        </th>*@
+                                    <th>
                                         @Html.DisplayNameFor(model => model.clte_Id)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.esfac_Id)
+                                        @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
                                     </th>
                                     @*<th>
                                             @Html.DisplayNameFor(model => model.fact_AlCredito)
@@ -121,27 +106,27 @@
                                 {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.suc_Id)
+                                            @Html.DisplayFor(modelItem => item.fact_Codigo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.fact_Fecha)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.esfac_Id)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.cja_Id)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.pemi_NumeroCAI)
+                                            @Html.DisplayFor(modelItem => item.suc_Id)
                                         </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fact_Codigo)
-                                        </td>
-                                        @*<td>
-                                            @Html.DisplayFor(modelItem => item.fact_Fecha)
-                                        </td>*@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.clte_Id)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.esfac_Id)
+                                            @Html.DisplayFor(modelItem => item.pemi_NumeroCAI)
                                         </td>
-                                        @*<td>
+                                        <td>
                                             @Html.DisplayFor(modelItem => item.fact_AlCredito)
                                         </td>
                                         <td>
@@ -161,7 +146,7 @@
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.clte_Nombres)
-                                        </td>*@
+                                        </td>
                                         @*<td>
                                                 @Html.DisplayFor(modelItem => item.fact_UsuarioCrea)
                                             </td>
@@ -175,9 +160,8 @@
                                                 @Html.DisplayFor(modelItem => item.fact_FechaModifica)
                                             </td>*@
                                         <td>
-                                            @Html.ActionLink("Details", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-sm" })
-                                            @Html.ActionLink("Edit", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-white btn-sm" })
-                                            @Html.ActionLink("Delete", "Delete", new { id = item.fact_Id }, new { @class = "btn btn-white btn-sm" })
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-white btn-sm" })
+                                            @Html.ActionLink("Anular", "Delete", new { id = item.fact_Id }, new { @class = "btn btn-white btn-sm" })
                                         </td>
                                     </tr>
                                 }

@@ -69,12 +69,9 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito { get; set; }
 
-
-      
-        [NotMapped]
-        public List<cActivo> EstadoList { get; set; }
         [NotMapped]
         public List<cGenero> GeneroList { get; set; }
         public List<cNacionalidad> NacionalidadList { get; set; }
+
     }
 }

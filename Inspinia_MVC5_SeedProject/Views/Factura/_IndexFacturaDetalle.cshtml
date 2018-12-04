@@ -13,11 +13,8 @@
                 </div>
                 <div class="ibox-content">
 
-<table class="table table table-striped  table-bordered">
+<table class="table table-striped">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.prod_Codigo)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.factd_Cantidad)
         </th>
@@ -43,6 +40,9 @@
             @Html.DisplayNameFor(model => model.factd_FechaModifica)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)
         </th>
         <th></th>
@@ -50,9 +50,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.prod_Codigo)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.factd_Cantidad)
         </td>
@@ -76,6 +73,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.factd_FechaModifica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
