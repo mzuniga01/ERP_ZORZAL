@@ -155,7 +155,7 @@
     <Key>
       <PropertyRef Name="tpi_Id" />
     </Key>
-    <Property Name="tpi_Id" Type="tinyint" Nullable="false" />
+    <Property Name="tpi_Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tpi_Descripcion" Type="nvarchar" MaxLength="25" Nullable="false" />
     <Property Name="tpi_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="tpi_FechaCrea" Type="datetime" Nullable="false" />
@@ -168,7 +168,7 @@
     </Key>
     <Property Name="uni_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="uni_Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
-    <Property Name="uni_Abreviacion" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="uni_Abreviatura" Type="char" MaxLength="5" Nullable="false" />
     <Property Name="uni_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="uni_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="uni_UsuarioModifica" Type="int" />
@@ -179,6 +179,7 @@
       <PropertyRef Name="bod_Id" />
     </Key>
     <Property Name="bod_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bod_Nombre" Type="varchar" MaxLength="100" />
     <Property Name="bod_ResponsableBodega" Type="varchar" MaxLength="100" />
     <Property Name="bod_Direccion" Type="varchar" MaxLength="200" />
     <Property Name="bod_Correo" Type="varchar(max)" />
@@ -326,7 +327,7 @@
     <Key>
       <PropertyRef Name="pcat_Id" />
     </Key>
-    <Property Name="pcat_Id" Type="int" Nullable="false" />
+    <Property Name="pcat_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="pcat_Nombre" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="pcat_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="pcat_FechaCrea" Type="datetime" Nullable="false" />
@@ -451,11 +452,12 @@
       <PropertyRef Name="clte_Id" />
     </Key>
     <Property Name="clte_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tpi_Id" Type="tinyint" Nullable="false" />
     <Property Name="clte_RTN_Identidad_Pasaporte" Type="nvarchar" MaxLength="26" Nullable="false" />
     <Property Name="clte_EsPersonaNatural" Type="bit" Nullable="false" />
     <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="clte_Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="clte_FechaNacimiento" Type="date" Nullable="false" />
+    <Property Name="clte_FechaNacimiento" Type="date" />
     <Property Name="clte_Nacionalidad" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="clte_Sexo" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="clte_Telefono" Type="nvarchar" MaxLength="25" />
@@ -468,7 +470,7 @@
     <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
     <Property Name="clte_Direccion" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="clte_CorreoElectronico" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="clte_EsActivo" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="clte_EsActivo" Type="bit" Nullable="false" />
     <Property Name="clte_RazonInactivo" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="clte_ConCredito" Type="bit" Nullable="false" />
     <Property Name="clte_EsMinorista" Type="bit" Nullable="false" />
@@ -488,6 +490,8 @@
     <Property Name="cdto_FechaVencimiento" Type="date" Nullable="false" />
     <Property Name="cdto_PorcentajeDescuento" Type="decimal" Precision="5" Scale="2" />
     <Property Name="cdto_MontoDescuento" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="cdto_MaximoMontoDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="cdto_Redimido" Type="char" MaxLength="2" Nullable="false" />
     <Property Name="cdto_Anulado" Type="bit" />
     <Property Name="cdto_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="cdto_FechaCrea" Type="datetime" Nullable="false" />
@@ -547,7 +551,7 @@
     <Key>
       <PropertyRef Name="escre_Id" />
     </Key>
-    <Property Name="escre_Id" Type="tinyint" Nullable="false" />
+    <Property Name="escre_Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="escre_Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="escre_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="escre_UsuarioModifica" Type="int" />
@@ -655,6 +659,7 @@
     <Property Name="nocre_Codigo" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="dev_Id" Type="int" Nullable="false" />
     <Property Name="clte_Id" Type="int" Nullable="false" />
+    <Property Name="suc_Id" Type="smallint" Nullable="false" />
     <Property Name="nocre_Anulado" Type="bit" />
     <Property Name="nocre_FechaEmision" Type="datetime" Nullable="false" />
     <Property Name="nocre_MotivoEmision" Type="nvarchar" MaxLength="250" Nullable="false" />
@@ -671,8 +676,10 @@
     <Property Name="pago_Id" Type="int" Nullable="false" />
     <Property Name="fact_Id" Type="bigint" Nullable="false" />
     <Property Name="tpa_Id" Type="smallint" Nullable="false" />
-    <Property Name="pago_Totalpago" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="pago_Totalcambio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="pago_FechaElaboracion" Type="datetime" Nullable="false" />
+    <Property Name="pago_SaldoAnterior" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="pago_TotalPago" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="pago_TotalCambio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="pago_Emisor" Type="nvarchar" MaxLength="25" />
     <Property Name="bcta_Id" Type="smallint" Nullable="false" />
     <Property Name="pago_FechaVencimiento" Type="datetime" />
@@ -1582,6 +1589,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id">
+    <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="1" />
+    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbTipoIdentificacion">
+        <PropertyRef Name="tpi_Id" />
+      </Principal>
+      <Dependent Role="tbCliente">
+        <PropertyRef Name="tpi_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioCrea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbUnidadMedida" Type="Self.tbUnidadMedida" Multiplicity="*" />
@@ -2074,18 +2093,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inv_tbTipoSalida_tsal_UsuarioModifica">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-    <End Role="tbTipoSalida" Type="Self.tbTipoSalida" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbTipoSalida">
-        <PropertyRef Name="tsal_UsuarioModifica" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbBodega_tbSucursal_bod_Id">
     <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
     <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="*" />
@@ -2530,6 +2537,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
+    <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="1" />
+    <End Role="tbNotaCredito" Type="Self.tbNotaCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSucursal">
+        <PropertyRef Name="suc_Id" />
+      </Principal>
+      <Dependent Role="tbNotaCredito">
+        <PropertyRef Name="suc_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbSucursal_tbPedido_suc_Id">
     <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="1" />
     <End Role="tbPedido" Type="Self.tbPedido" Multiplicity="*" />
@@ -2868,6 +2887,10 @@
       <End Role="tbMunicipio" EntitySet="tbMunicipio" />
       <End Role="tbCliente" EntitySet="tbCliente" />
     </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id" Association="Self.FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id">
+      <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
+      <End Role="tbCliente" EntitySet="tbCliente" />
+    </AssociationSet>
     <AssociationSet Name="FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioCrea" Association="Self.FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
@@ -3032,10 +3055,6 @@
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbTipoEntrada" EntitySet="tbTipoEntrada" />
     </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbTipoSalida_tsal_UsuarioModifica" Association="Self.FK_Inv_tbTipoSalida_tsal_UsuarioModifica">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbTipoSalida" EntitySet="tbTipoSalida" />
-    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbBodega_tbSucursal_bod_Id" Association="Self.FK_Vent_tbBodega_tbSucursal_bod_Id">
       <End Role="tbBodega" EntitySet="tbBodega" />
       <End Role="tbSucursal" EntitySet="tbSucursal" />
@@ -3183,6 +3202,10 @@
     <AssociationSet Name="FK_Vent_tbSucursal_tbfactura_suc_Id" Association="Self.FK_Vent_tbSucursal_tbfactura_suc_Id">
       <End Role="tbSucursal" EntitySet="tbSucursal" />
       <End Role="tbFactura" EntitySet="tbFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id" Association="Self.FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbSucursal_tbPedido_suc_Id" Association="Self.FK_Vent_tbSucursal_tbPedido_suc_Id">
       <End Role="tbSucursal" EntitySet="tbSucursal" />

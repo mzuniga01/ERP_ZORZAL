@@ -87,7 +87,6 @@ namespace ERP_ZORZAL.Models
             this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
             this.tbSalidaDetalle1 = new HashSet<tbSalidaDetalle>();
             this.tbTipoEntrada = new HashSet<tbTipoEntrada>();
-            this.tbTipoSalida = new HashSet<tbTipoSalida>();
             this.tbCliente = new HashSet<tbCliente>();
             this.tbCliente1 = new HashSet<tbCliente>();
             this.tbPuntoEmision = new HashSet<tbPuntoEmision>();
@@ -244,8 +243,6 @@ namespace ERP_ZORZAL.Models
         public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbTipoEntrada> tbTipoEntrada { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbTipoSalida> tbTipoSalida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCliente> tbCliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

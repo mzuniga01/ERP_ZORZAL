@@ -23,7 +23,7 @@ namespace ERP_ZORZAL.Models
     
         public int uni_Id { get; set; }
         public string uni_Descripcion { get; set; }
-        public string uni_Abreviacion { get; set; }
+        public string uni_Abreviatura { get; set; }
         public int uni_UsuarioCrea { get; set; }
         public System.DateTime uni_FechaCrea { get; set; }
         public Nullable<int> uni_UsuarioModifica { get; set; }

@@ -17,7 +17,7 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Cliente/
         public ActionResult Index()
         {
-            var tbcliente = db.tbCliente.Include(t => t.tbMunicipio);
+            var tbcliente = db.tbCliente.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbMunicipio).Include(t => t.tbTipoIdentificacion);
             return View(tbcliente.ToList());
         }
 
@@ -39,13 +39,11 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Cliente/Create
         public ActionResult Create()
         {
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
-            tbCliente Cliente = new tbCliente();
-            Cliente.EstadoList = cUtilities.EstadoList();
-            Cliente.GeneroList = cUtilities.GeneroList();
-            Cliente.NacionalidadList = cUtilities.NacionalidadList();
-
-            return View(Cliente);
+            ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo");
+            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
+            return View();
         }
 
         // POST: /Cliente/Create
@@ -53,7 +51,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="clte_Id,clte_RTN_Identidad_Pasaporte,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones_,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica")] tbCliente tbCliente)
+        public ActionResult Create([Bind(Include="clte_Id,tpi_Id,clte_RTN_Identidad_Pasaporte,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones_,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica")] tbCliente tbCliente)
         {
             if (ModelState.IsValid)
             {
@@ -62,11 +60,10 @@ namespace ERP_ZORZAL.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", " mun_Nombre", tbCliente.mun_Codigo);
-            tbCliente Cliente = new tbCliente();
-            Cliente.EstadoList = cUtilities.EstadoList();
-            Cliente.GeneroList = cUtilities.GeneroList();
-            Cliente.NacionalidadList = cUtilities.NacionalidadList();
+            ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
+            ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbCliente.mun_Codigo);
+            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
             return View(tbCliente);
         }
 
@@ -82,11 +79,10 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
-            tbCliente Cliente = db.tbCliente.Find(id);
-            Cliente.EstadoList = cUtilities.EstadoList();
-            Cliente.GeneroList = cUtilities.GeneroList();
-            Cliente.NacionalidadList = cUtilities.NacionalidadList();
+            ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
+            ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbCliente.mun_Codigo);
+            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
             return View(tbCliente);
         }
 
@@ -95,7 +91,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="clte_Id,clte_RTN_Identidad_Pasaporte,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones_,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica")] tbCliente tbCliente)
+        public ActionResult Edit([Bind(Include="clte_Id,tpi_Id,clte_RTN_Identidad_Pasaporte,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones_,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica")] tbCliente tbCliente)
         {
             if (ModelState.IsValid)
             {
@@ -103,10 +99,10 @@ namespace ERP_ZORZAL.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
-            tbCliente.EstadoList = cUtilities.EstadoList();
-            tbCliente.GeneroList = cUtilities.GeneroList();
-            tbCliente.NacionalidadList = cUtilities.NacionalidadList();
+            ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
+            ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbCliente.mun_Codigo);
+            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
             return View(tbCliente);
         }
 

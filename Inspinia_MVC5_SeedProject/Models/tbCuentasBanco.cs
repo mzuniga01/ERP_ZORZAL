@@ -42,6 +42,7 @@ namespace ERP_ZORZAL.Models
         public virtual ICollection<tbPago> tbPago { get; set; }
 
 
+      
         [NotMapped]
         public List<cTipoCuenta> TipoCuentaList { get; set; }
     }

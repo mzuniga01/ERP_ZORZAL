@@ -25,6 +25,7 @@ namespace ERP_ZORZAL.Models
         }
     
         public int bod_Id { get; set; }
+        public string bod_Nombre { get; set; }
         public string bod_ResponsableBodega { get; set; }
         public string bod_Direccion { get; set; }
         public string bod_Correo { get; set; }

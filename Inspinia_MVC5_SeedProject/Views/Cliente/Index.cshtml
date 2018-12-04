@@ -7,12 +7,12 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Cliente</h2>
-        @*<ol class="breadcrumb">
+        <h2>Index</h2>
+        <ol class="breadcrumb">
             <li class="active">
-                <strong></strong>
+                <strong>tbCliente</strong>
             </li>
-        </ol>*@
+        </ol>
     </div>
 </div>
 
@@ -22,235 +22,197 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Cliente</h5>
+                    <h5>List of tbCliente</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>
-
                 <div class="ibox-content">
 
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_EsPersonaNatural)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_Apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_FechaNacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_Nacionalidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_Sexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_Telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_NombreComercial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_RazonSocial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_ContactoNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_ContactoEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_ContactoTelefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_FechaConstitucion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_CorreoElectronico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_EsActivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_RazonInactivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_ConCredito)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_EsMinorista)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_Observaciones_)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_FechaCrea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_FechaModifica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbMunicipio.dep_Codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbTipoIdentificacion.tpi_Descripcion)
+        </th>
+        <th></th>
+    </tr>
 
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label class="control-label col-md-2">RTN-Identidad</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control " />
-                            </div>
-                            <label class="control-label col-md-1">Nombres</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2">Apellidos</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control " />
-                            </div>
-                            <label class="control-label col-md-1">Teléfono</label>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="">
-                                <input type="button" value="Buscar" class="btn btn-primary btn-sm" />
-                            </div>
-                        </div>
-                    </div>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_RTN_Identidad_Pasaporte)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_EsPersonaNatural)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_Nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_Apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_FechaNacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_Nacionalidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_Sexo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_NombreComercial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_RazonSocial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_ContactoNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_ContactoEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_ContactoTelefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_FechaConstitucion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_Direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_CorreoElectronico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_EsActivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_RazonInactivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_ConCredito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_EsMinorista)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_Observaciones_)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_FechaCrea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_FechaModifica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbMunicipio.dep_Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbTipoIdentificacion.tpi_Descripcion)
+        </td>
+        <td>
+			@Html.ActionLink("Details", "Details", new { id=item.clte_Id }, new { @class = "btn btn-primary btn-sm"})
+            @Html.ActionLink("Edit", "Edit", new { id=item.clte_Id }, new { @class = "btn btn-white btn-sm"})
+            @Html.ActionLink("Delete", "Delete", new { id=item.clte_Id }, new { @class = "btn btn-white btn-sm"})
+        </td>
+    </tr>
+}
 
-                    <table class="table table table-striped  table-bordered" id="DataTable1">
-                        <thead>
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)
-                                </th>
-                                @*<th>
-                                    @Html.DisplayNameFor(model => model.clte_EsPersonaNatural)
-                                </th>*@
-                                <th>
-                                    @Html.DisplayNameFor(model => model.clte_Nombres)
-                                </th>
-                                @*<th>
-                                    @Html.DisplayNameFor(model => model.clte_Apellidos)
-                                </th>*@
-                                @*<th>
-                                @Html.DisplayNameFor(model => model.clte_FechaNacimiento)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.clte_Nacionalidad)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.clte_Sexo)
-                            </th>*@
-                    <th>
-                        @Html.DisplayNameFor(model => model.clte_Telefono)
-                    </th>
-                    @*<th>
-                        @Html.DisplayNameFor(model => model.clte_NombreComercial)
-                    </th>*@
-                                @*<th>
-                                    @Html.DisplayNameFor(model => model.clte_RazonSocial)
-                                </th>*@
-                        <th>
-                        @Html.DisplayNameFor(model => model.clte_ContactoNombre)
-                       </th>
-                      @* <th>
-                        @Html.DisplayNameFor(model => model.clte_ContactoEmail)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.clte_ContactoTelefono)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.clte_FechaConstitucion)
-                       </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.clte_Direccion)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.clte_CorreoElectronico)
-                    </th>*@
-                                <th>
-                                    @Html.DisplayNameFor(model => model.clte_EsActivo)
-
-                                </th>
-
-                                @*<th>
-                        @Html.DisplayNameFor(model => model.clte_RazonInactivo)
-                    </th>*@
-                                @*<th>
-                                    @Html.DisplayNameFor(model => model.clte_ConCredito)
-                                </th>*@
-                                @*<th>
-                        @Html.DisplayNameFor(model => model.clte_EsMinorista)
-                    </th>*@
-                                @*<th>
-                        @Html.DisplayNameFor(model => model.clte_Observaciones_)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.clte_UsuarioCrea)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.clte_FechaCrea)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.clte_UsuarioModifica)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.clte_FechaModifica)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.tbMunicipio.dep_Codigo)
-                    </th>*@
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.clte_RTN_Identidad_Pasaporte)
-                                    </td>
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.clte_EsPersonaNatural)
-                                    </td>*@
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.clte_Nombres)
-                                    </td>
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.clte_Apellidos)
-                                    </td>*@
-                                    @*<td>
-        @Html.DisplayFor(modelItem => item.clte_FechaNacimiento)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.clte_Nacionalidad)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.clte_Sexo)
-    </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.clte_Telefono)
-                        </td>
-                                    @*<td>
-                            @Html.DisplayFor(modelItem => item.clte_NombreComercial)
-                        </td>*@
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.clte_RazonSocial)
-                                    </td>*@
-                           <td>
-                            @Html.DisplayFor(modelItem => item.clte_ContactoNombre)
-                        </td>
-                                                    @*<td>
-                                    @Html.DisplayFor(modelItem => item.clte_ContactoEmail)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.clte_ContactoTelefono)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.clte_FechaConstitucion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.clte_Direccion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.clte_CorreoElectronico)
-                                </td>*@
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.clte_EsActivo)
-                                    </td>*@
-                                    @if (item.clte_EsActivo == "1")
-                                     {
-                                        <td>Sí</td>
-                                    }
-                                    else
-                                    {
-                                        <td>No</td>
-                                    }
-                                   
-                                        @*<td>
-                @Html.DisplayFor(modelItem => item.clte_RazonInactivo)
-            </td>*@
-                                        @*<td>
-                @Html.DisplayFor(modelItem => item.clte_ConCredito)
-            </td>*@
-                                        @*<td>
-                @Html.DisplayFor(modelItem => item.clte_EsMinorista)
-            </td>*@
-                                        @*<td>
-                @Html.DisplayFor(modelItem => item.clte_Observaciones_)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.clte_UsuarioCrea)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.clte_FechaCrea)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.clte_UsuarioModifica)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.clte_FechaModifica)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tbMunicipio.dep_Codigo)
-            </td>*@
-<td>
-                                        @Html.ActionLink("Detalles", "Details", new { id = item.clte_Id }, new { @class = "btn btn-primary btn-sm" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.clte_Id }, new { @class = "btn btn-white btn-sm" })
-                                        @*@Html.ActionLink("Delete", "Delete", new { id=item.clte_Id }, new { @class = "btn btn-white btn-sm"})*@
-                                    </td>
-                                </tr>
-                            }
-                        <tbody>
-                    </table>
+</table>
 
                 </div>
             </div>
         </div>
     </div>
  </div>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/DataTable1.js"></script>
 
 
 

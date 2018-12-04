@@ -199,7 +199,7 @@
           <ScalarProperty Name="uni_UsuarioModifica" ColumnName="uni_UsuarioModifica" />
           <ScalarProperty Name="uni_FechaCrea" ColumnName="uni_FechaCrea" />
           <ScalarProperty Name="uni_UsuarioCrea" ColumnName="uni_UsuarioCrea" />
-          <ScalarProperty Name="uni_Abreviacion" ColumnName="uni_Abreviacion" />
+          <ScalarProperty Name="uni_Abreviatura" ColumnName="uni_Abreviatura" />
           <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
           <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
         </MappingFragment>
@@ -219,6 +219,7 @@
           <ScalarProperty Name="bod_Correo" ColumnName="bod_Correo" />
           <ScalarProperty Name="bod_Direccion" ColumnName="bod_Direccion" />
           <ScalarProperty Name="bod_ResponsableBodega" ColumnName="bod_ResponsableBodega" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
           <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -509,6 +510,7 @@
           <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
           <ScalarProperty Name="clte_EsPersonaNatural" ColumnName="clte_EsPersonaNatural" />
           <ScalarProperty Name="clte_RTN_Identidad_Pasaporte" ColumnName="clte_RTN_Identidad_Pasaporte" />
+          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
           <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -521,6 +523,8 @@
           <ScalarProperty Name="cdto_FechaCrea" ColumnName="cdto_FechaCrea" />
           <ScalarProperty Name="cdto_UsuarioCrea" ColumnName="cdto_UsuarioCrea" />
           <ScalarProperty Name="cdto_Anulado" ColumnName="cdto_Anulado" />
+          <ScalarProperty Name="cdto_Redimido" ColumnName="cdto_Redimido" />
+          <ScalarProperty Name="cdto_MaximoMontoDescuento" ColumnName="cdto_MaximoMontoDescuento" />
           <ScalarProperty Name="cdto_MontoDescuento" ColumnName="cdto_MontoDescuento" />
           <ScalarProperty Name="cdto_PorcentajeDescuento" ColumnName="cdto_PorcentajeDescuento" />
           <ScalarProperty Name="cdto_FechaVencimiento" ColumnName="cdto_FechaVencimiento" />
@@ -705,6 +709,7 @@
           <ScalarProperty Name="nocre_MotivoEmision" ColumnName="nocre_MotivoEmision" />
           <ScalarProperty Name="nocre_FechaEmision" ColumnName="nocre_FechaEmision" />
           <ScalarProperty Name="nocre_Anulado" ColumnName="nocre_Anulado" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
           <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
           <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
           <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
@@ -723,8 +728,10 @@
           <ScalarProperty Name="pago_FechaVencimiento" ColumnName="pago_FechaVencimiento" />
           <ScalarProperty Name="bcta_Id" ColumnName="bcta_Id" />
           <ScalarProperty Name="pago_Emisor" ColumnName="pago_Emisor" />
-          <ScalarProperty Name="pago_Totalcambio" ColumnName="pago_Totalcambio" />
-          <ScalarProperty Name="pago_Totalpago" ColumnName="pago_Totalpago" />
+          <ScalarProperty Name="pago_TotalCambio" ColumnName="pago_TotalCambio" />
+          <ScalarProperty Name="pago_TotalPago" ColumnName="pago_TotalPago" />
+          <ScalarProperty Name="pago_SaldoAnterior" ColumnName="pago_SaldoAnterior" />
+          <ScalarProperty Name="pago_FechaElaboracion" ColumnName="pago_FechaElaboracion" />
           <ScalarProperty Name="tpa_Id" ColumnName="tpa_Id" />
           <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
           <ScalarProperty Name="pago_Id" ColumnName="pago_Id" />

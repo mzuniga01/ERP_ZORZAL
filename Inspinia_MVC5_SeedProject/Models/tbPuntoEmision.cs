@@ -37,6 +37,5 @@ namespace ERP_ZORZAL.Models
         public virtual ICollection<tbSucursal> tbSucursal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPuntoEmisionDetalle> tbPuntoEmisionDetalle1 { get; set; }
-
     }
 }

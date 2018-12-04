@@ -160,7 +160,7 @@
           <Key>
             <PropertyRef Name="tpi_Id" />
           </Key>
-          <Property Name="tpi_Id" Type="tinyint" Nullable="false" />
+          <Property Name="tpi_Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tpi_Descripcion" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="tpi_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="tpi_FechaCrea" Type="datetime" Nullable="false" />
@@ -173,7 +173,7 @@
           </Key>
           <Property Name="uni_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="uni_Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="uni_Abreviacion" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="uni_Abreviatura" Type="char" MaxLength="5" Nullable="false" />
           <Property Name="uni_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="uni_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="uni_UsuarioModifica" Type="int" />
@@ -184,6 +184,7 @@
             <PropertyRef Name="bod_Id" />
           </Key>
           <Property Name="bod_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bod_Nombre" Type="varchar" MaxLength="100" />
           <Property Name="bod_ResponsableBodega" Type="varchar" MaxLength="100" />
           <Property Name="bod_Direccion" Type="varchar" MaxLength="200" />
           <Property Name="bod_Correo" Type="varchar(max)" />
@@ -331,7 +332,7 @@
           <Key>
             <PropertyRef Name="pcat_Id" />
           </Key>
-          <Property Name="pcat_Id" Type="int" Nullable="false" />
+          <Property Name="pcat_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="pcat_Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="pcat_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="pcat_FechaCrea" Type="datetime" Nullable="false" />
@@ -456,11 +457,12 @@
             <PropertyRef Name="clte_Id" />
           </Key>
           <Property Name="clte_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tpi_Id" Type="tinyint" Nullable="false" />
           <Property Name="clte_RTN_Identidad_Pasaporte" Type="nvarchar" MaxLength="26" Nullable="false" />
           <Property Name="clte_EsPersonaNatural" Type="bit" Nullable="false" />
           <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="clte_Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="clte_FechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="clte_FechaNacimiento" Type="date" />
           <Property Name="clte_Nacionalidad" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="clte_Sexo" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="clte_Telefono" Type="nvarchar" MaxLength="25" />
@@ -473,7 +475,7 @@
           <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
           <Property Name="clte_Direccion" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="clte_CorreoElectronico" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="clte_EsActivo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="clte_EsActivo" Type="bit" Nullable="false" />
           <Property Name="clte_RazonInactivo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="clte_ConCredito" Type="bit" Nullable="false" />
           <Property Name="clte_EsMinorista" Type="bit" Nullable="false" />
@@ -493,6 +495,8 @@
           <Property Name="cdto_FechaVencimiento" Type="date" Nullable="false" />
           <Property Name="cdto_PorcentajeDescuento" Type="decimal" Precision="5" Scale="2" />
           <Property Name="cdto_MontoDescuento" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="cdto_MaximoMontoDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="cdto_Redimido" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="cdto_Anulado" Type="bit" />
           <Property Name="cdto_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="cdto_FechaCrea" Type="datetime" Nullable="false" />
@@ -552,7 +556,7 @@
           <Key>
             <PropertyRef Name="escre_Id" />
           </Key>
-          <Property Name="escre_Id" Type="tinyint" Nullable="false" />
+          <Property Name="escre_Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="escre_Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="escre_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="escre_UsuarioModifica" Type="int" />
@@ -660,6 +664,7 @@
           <Property Name="nocre_Codigo" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="dev_Id" Type="int" Nullable="false" />
           <Property Name="clte_Id" Type="int" Nullable="false" />
+          <Property Name="suc_Id" Type="smallint" Nullable="false" />
           <Property Name="nocre_Anulado" Type="bit" />
           <Property Name="nocre_FechaEmision" Type="datetime" Nullable="false" />
           <Property Name="nocre_MotivoEmision" Type="nvarchar" MaxLength="250" Nullable="false" />
@@ -676,8 +681,10 @@
           <Property Name="pago_Id" Type="int" Nullable="false" />
           <Property Name="fact_Id" Type="bigint" Nullable="false" />
           <Property Name="tpa_Id" Type="smallint" Nullable="false" />
-          <Property Name="pago_Totalpago" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="pago_Totalcambio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="pago_FechaElaboracion" Type="datetime" Nullable="false" />
+          <Property Name="pago_SaldoAnterior" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="pago_TotalPago" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="pago_TotalCambio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="pago_Emisor" Type="nvarchar" MaxLength="25" />
           <Property Name="bcta_Id" Type="smallint" Nullable="false" />
           <Property Name="pago_FechaVencimiento" Type="datetime" />
@@ -1587,6 +1594,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id">
+          <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="1" />
+          <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbTipoIdentificacion">
+              <PropertyRef Name="tpi_Id" />
+            </Principal>
+            <Dependent Role="tbCliente">
+              <PropertyRef Name="tpi_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioCrea">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
           <End Role="tbUnidadMedida" Type="Self.tbUnidadMedida" Multiplicity="*" />
@@ -2079,18 +2098,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inv_tbTipoSalida_tsal_UsuarioModifica">
-          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-          <End Role="tbTipoSalida" Type="Self.tbTipoSalida" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbTipoSalida">
-              <PropertyRef Name="tsal_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vent_tbBodega_tbSucursal_bod_Id">
           <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
           <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="*" />
@@ -2535,6 +2542,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
+          <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="1" />
+          <End Role="tbNotaCredito" Type="Self.tbNotaCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbSucursal">
+              <PropertyRef Name="suc_Id" />
+            </Principal>
+            <Dependent Role="tbNotaCredito">
+              <PropertyRef Name="suc_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vent_tbSucursal_tbPedido_suc_Id">
           <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="1" />
           <End Role="tbPedido" Type="Self.tbPedido" Multiplicity="*" />
@@ -2873,6 +2892,10 @@
             <End Role="tbMunicipio" EntitySet="tbMunicipio" />
             <End Role="tbCliente" EntitySet="tbCliente" />
           </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id" Association="Self.FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id">
+            <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
+            <End Role="tbCliente" EntitySet="tbCliente" />
+          </AssociationSet>
           <AssociationSet Name="FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioCrea" Association="Self.FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
@@ -3037,10 +3060,6 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbTipoEntrada" EntitySet="tbTipoEntrada" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbTipoSalida_tsal_UsuarioModifica" Association="Self.FK_Inv_tbTipoSalida_tsal_UsuarioModifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbTipoSalida" EntitySet="tbTipoSalida" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbBodega_tbSucursal_bod_Id" Association="Self.FK_Vent_tbBodega_tbSucursal_bod_Id">
             <End Role="tbBodega" EntitySet="tbBodega" />
             <End Role="tbSucursal" EntitySet="tbSucursal" />
@@ -3188,6 +3207,10 @@
           <AssociationSet Name="FK_Vent_tbSucursal_tbfactura_suc_Id" Association="Self.FK_Vent_tbSucursal_tbfactura_suc_Id">
             <End Role="tbSucursal" EntitySet="tbSucursal" />
             <End Role="tbFactura" EntitySet="tbFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id" Association="Self.FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
+            <End Role="tbSucursal" EntitySet="tbSucursal" />
+            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
           </AssociationSet>
           <AssociationSet Name="FK_Vent_tbSucursal_tbPedido_suc_Id" Association="Self.FK_Vent_tbSucursal_tbPedido_suc_Id">
             <End Role="tbSucursal" EntitySet="tbSucursal" />
@@ -3548,10 +3571,6 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbTipoEntrada" EntitySet="tbTipoEntrada" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbTipoSalida_tsal_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbTipoSalida_tsal_UsuarioModifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbTipoSalida" EntitySet="tbTipoSalida" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbCliente_tbUsuario_usu_Id_Crea" Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbUsuario_usu_Id_Crea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbCliente" EntitySet="tbCliente" />
@@ -3607,6 +3626,10 @@
           <AssociationSet Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" Association="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
             <End Role="tbMunicipio" EntitySet="tbMunicipio" />
             <End Role="tbSucursal" EntitySet="tbSucursal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id" Association="ERP_ZORZALModel.FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id">
+            <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
+            <End Role="tbCliente" EntitySet="tbCliente" />
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbInventarioFisicoDetalle_tbUnidadesMedida_uni_Id" Association="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbUnidadesMedida_uni_Id">
             <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
@@ -3816,6 +3839,10 @@
             <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
             <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
           </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
+            <End Role="tbSucursal" EntitySet="tbSucursal" />
+            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbTipoPago_tbPago_tpa_Id" Association="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id">
             <End Role="tbTipoPago" EntitySet="tbTipoPago" />
             <End Role="tbPago" EntitySet="tbPago" />
@@ -3996,7 +4023,6 @@
           <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea" FromRole="tbUsuario" ToRole="tbSalidaDetalle" />
           <NavigationProperty Name="tbSalidaDetalle1" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioModifica" FromRole="tbUsuario" ToRole="tbSalidaDetalle" />
           <NavigationProperty Name="tbTipoEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoEntrada_tent_UsuarioModifica" FromRole="tbUsuario" ToRole="tbTipoEntrada" />
-          <NavigationProperty Name="tbTipoSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoSalida_tsal_UsuarioModifica" FromRole="tbUsuario" ToRole="tbTipoSalida" />
           <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbCliente" />
           <NavigationProperty Name="tbCliente1" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbCliente" />
           <NavigationProperty Name="tbPuntoEmision" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbPuntoEmision" />
@@ -4122,7 +4148,7 @@
           <Key>
             <PropertyRef Name="tpi_Id" />
           </Key>
-          <Property Name="tpi_Id" Type="Byte" Nullable="false" />
+          <Property Name="tpi_Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tpi_Descripcion" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="tpi_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="tpi_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
@@ -4130,6 +4156,7 @@
           <Property Name="tpi_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioCrea" FromRole="tbTipoIdentificacion" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioModifica" FromRole="tbTipoIdentificacion" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id" FromRole="tbTipoIdentificacion" ToRole="tbCliente" />
         </EntityType>
         <EntityType Name="tbUnidadMedida">
           <Key>
@@ -4137,7 +4164,7 @@
           </Key>
           <Property Name="uni_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="uni_Abreviacion" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="uni_Abreviatura" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
           <Property Name="uni_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="uni_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="uni_UsuarioModifica" Type="Int32" />
@@ -4153,6 +4180,7 @@
             <PropertyRef Name="bod_Id" />
           </Key>
           <Property Name="bod_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="bod_ResponsableBodega" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="bod_Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="bod_Correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -4322,7 +4350,7 @@
           <Key>
             <PropertyRef Name="pcat_Id" />
           </Key>
-          <Property Name="pcat_Id" Type="Int32" Nullable="false" />
+          <Property Name="pcat_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="pcat_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="pcat_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="pcat_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
@@ -4430,7 +4458,6 @@
           <Property Name="tsal_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="tsal_UsuarioModifica" Type="Int32" />
           <Property Name="tsal_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoSalida_tsal_UsuarioModifica" FromRole="tbTipoSalida" ToRole="tbUsuario" />
           <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoSalida_tsal_Id" FromRole="tbTipoSalida" ToRole="tbSalida" />
         </EntityType>
         <EntityType Name="tbArqueoCaja">
@@ -4481,11 +4508,12 @@
             <PropertyRef Name="clte_Id" />
           </Key>
           <Property Name="clte_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tpi_Id" Type="Byte" Nullable="false" />
           <Property Name="clte_RTN_Identidad_Pasaporte" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
           <Property Name="clte_EsPersonaNatural" Type="Boolean" Nullable="false" />
           <Property Name="clte_Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="clte_Apellidos" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="clte_FechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="clte_FechaNacimiento" Type="DateTime" Precision="0" />
           <Property Name="clte_Nacionalidad" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="clte_Sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="clte_Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
@@ -4498,7 +4526,7 @@
           <Property Name="mun_Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="clte_Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="clte_CorreoElectronico" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="clte_EsActivo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="clte_EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="clte_RazonInactivo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="clte_ConCredito" Type="Boolean" Nullable="false" />
           <Property Name="clte_EsMinorista" Type="Boolean" Nullable="false" />
@@ -4510,6 +4538,7 @@
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbUsuario_usu_Id_Crea" FromRole="tbCliente" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbUsuario_usu_Id_Modifica" FromRole="tbCliente" ToRole="tbUsuario" />
           <NavigationProperty Name="tbMunicipio" Relationship="ERP_ZORZALModel.FK_Gral_tbMunicipio_tbCliente_mun_Codigo" FromRole="tbCliente" ToRole="tbMunicipio" />
+          <NavigationProperty Name="tbTipoIdentificacion" Relationship="ERP_ZORZALModel.FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id" FromRole="tbCliente" ToRole="tbTipoIdentificacion" />
           <NavigationProperty Name="tbExoneracion" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbExoneracion_clte_Id" FromRole="tbCliente" ToRole="tbExoneracion" />
           <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id" FromRole="tbCliente" ToRole="tbFactura" />
           <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbPedido_clte_id" FromRole="tbCliente" ToRole="tbPedido" />
@@ -4526,6 +4555,8 @@
           <Property Name="cdto_FechaVencimiento" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="cdto_PorcentajeDescuento" Type="Decimal" Precision="5" Scale="2" />
           <Property Name="cdto_MontoDescuento" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="cdto_MaximoMontoDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="cdto_Redimido" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="cdto_Anulado" Type="Boolean" />
           <Property Name="cdto_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="cdto_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
@@ -4602,7 +4633,7 @@
           <Key>
             <PropertyRef Name="escre_Id" />
           </Key>
-          <Property Name="escre_Id" Type="Byte" Nullable="false" />
+          <Property Name="escre_Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="escre_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="escre_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="escre_UsuarioModifica" Type="Int32" />
@@ -4737,6 +4768,7 @@
           <Property Name="nocre_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="dev_Id" Type="Int32" Nullable="false" />
           <Property Name="clte_Id" Type="Int32" Nullable="false" />
+          <Property Name="suc_Id" Type="Int16" Nullable="false" />
           <Property Name="nocre_Anulado" Type="Boolean" />
           <Property Name="nocre_FechaEmision" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="nocre_MotivoEmision" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -4749,6 +4781,7 @@
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" FromRole="tbNotaCredito" ToRole="tbUsuario" />
           <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbNotaCredito" ToRole="tbCliente" />
           <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbNotaCredito" ToRole="tbDevolucion" />
+          <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbNotaCredito" ToRole="tbSucursal" />
         </EntityType>
         <EntityType Name="tbPago">
           <Key>
@@ -4757,8 +4790,10 @@
           <Property Name="pago_Id" Type="Int32" Nullable="false" />
           <Property Name="fact_Id" Type="Int64" Nullable="false" />
           <Property Name="tpa_Id" Type="Int16" Nullable="false" />
-          <Property Name="pago_Totalpago" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="pago_Totalcambio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="pago_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="pago_SaldoAnterior" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <Property Name="pago_TotalPago" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="pago_TotalCambio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="pago_Emisor" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="bcta_Id" Type="Int16" Nullable="false" />
           <Property Name="pago_FechaVencimiento" Type="DateTime" Precision="3" />
@@ -4924,6 +4959,7 @@
           <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id" FromRole="tbSucursal" ToRole="tbCaja" />
           <NavigationProperty Name="tbCuponDescuento" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_suc_Codigo" FromRole="tbSucursal" ToRole="tbCuponDescuento" />
           <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" FromRole="tbSucursal" ToRole="tbFactura" />
+          <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbSucursal" ToRole="tbNotaCredito" />
           <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbPedido_suc_Id" FromRole="tbSucursal" ToRole="tbPedido" />
           <NavigationProperty Name="tbPuntoEmision" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" FromRole="tbSucursal" ToRole="tbPuntoEmision" />
         </EntityType>
@@ -5809,18 +5845,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inv_tbTipoSalida_tsal_UsuarioModifica">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbTipoSalida" Role="tbTipoSalida" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbTipoSalida">
-              <PropertyRef Name="tsal_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vent_tbCliente_tbUsuario_usu_Id_Crea">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbCliente" Role="tbCliente" Multiplicity="*" />
@@ -5986,6 +6010,18 @@
             </Principal>
             <Dependent Role="tbSucursal">
               <PropertyRef Name="mun_Codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id">
+          <End Type="ERP_ZORZALModel.tbTipoIdentificacion" Role="tbTipoIdentificacion" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbCliente" Role="tbCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbTipoIdentificacion">
+              <PropertyRef Name="tpi_Id" />
+            </Principal>
+            <Dependent Role="tbCliente">
+              <PropertyRef Name="tpi_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6613,6 +6649,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
+          <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbSucursal">
+              <PropertyRef Name="suc_Id" />
+            </Principal>
+            <Dependent Role="tbNotaCredito">
+              <PropertyRef Name="suc_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vent_tbTipoPago_tbPago_tpa_Id">
           <End Type="ERP_ZORZALModel.tbTipoPago" Role="tbTipoPago" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
@@ -6889,7 +6937,7 @@
                 <ScalarProperty Name="uni_UsuarioModifica" ColumnName="uni_UsuarioModifica" />
                 <ScalarProperty Name="uni_FechaCrea" ColumnName="uni_FechaCrea" />
                 <ScalarProperty Name="uni_UsuarioCrea" ColumnName="uni_UsuarioCrea" />
-                <ScalarProperty Name="uni_Abreviacion" ColumnName="uni_Abreviacion" />
+                <ScalarProperty Name="uni_Abreviatura" ColumnName="uni_Abreviatura" />
                 <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
                 <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
               </MappingFragment>
@@ -6909,6 +6957,7 @@
                 <ScalarProperty Name="bod_Correo" ColumnName="bod_Correo" />
                 <ScalarProperty Name="bod_Direccion" ColumnName="bod_Direccion" />
                 <ScalarProperty Name="bod_ResponsableBodega" ColumnName="bod_ResponsableBodega" />
+                <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
                 <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -7199,6 +7248,7 @@
                 <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
                 <ScalarProperty Name="clte_EsPersonaNatural" ColumnName="clte_EsPersonaNatural" />
                 <ScalarProperty Name="clte_RTN_Identidad_Pasaporte" ColumnName="clte_RTN_Identidad_Pasaporte" />
+                <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
                 <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -7211,6 +7261,8 @@
                 <ScalarProperty Name="cdto_FechaCrea" ColumnName="cdto_FechaCrea" />
                 <ScalarProperty Name="cdto_UsuarioCrea" ColumnName="cdto_UsuarioCrea" />
                 <ScalarProperty Name="cdto_Anulado" ColumnName="cdto_Anulado" />
+                <ScalarProperty Name="cdto_Redimido" ColumnName="cdto_Redimido" />
+                <ScalarProperty Name="cdto_MaximoMontoDescuento" ColumnName="cdto_MaximoMontoDescuento" />
                 <ScalarProperty Name="cdto_MontoDescuento" ColumnName="cdto_MontoDescuento" />
                 <ScalarProperty Name="cdto_PorcentajeDescuento" ColumnName="cdto_PorcentajeDescuento" />
                 <ScalarProperty Name="cdto_FechaVencimiento" ColumnName="cdto_FechaVencimiento" />
@@ -7395,6 +7447,7 @@
                 <ScalarProperty Name="nocre_MotivoEmision" ColumnName="nocre_MotivoEmision" />
                 <ScalarProperty Name="nocre_FechaEmision" ColumnName="nocre_FechaEmision" />
                 <ScalarProperty Name="nocre_Anulado" ColumnName="nocre_Anulado" />
+                <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
                 <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
                 <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
                 <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
@@ -7413,8 +7466,10 @@
                 <ScalarProperty Name="pago_FechaVencimiento" ColumnName="pago_FechaVencimiento" />
                 <ScalarProperty Name="bcta_Id" ColumnName="bcta_Id" />
                 <ScalarProperty Name="pago_Emisor" ColumnName="pago_Emisor" />
-                <ScalarProperty Name="pago_Totalcambio" ColumnName="pago_Totalcambio" />
-                <ScalarProperty Name="pago_Totalpago" ColumnName="pago_Totalpago" />
+                <ScalarProperty Name="pago_TotalCambio" ColumnName="pago_TotalCambio" />
+                <ScalarProperty Name="pago_TotalPago" ColumnName="pago_TotalPago" />
+                <ScalarProperty Name="pago_SaldoAnterior" ColumnName="pago_SaldoAnterior" />
+                <ScalarProperty Name="pago_FechaElaboracion" ColumnName="pago_FechaElaboracion" />
                 <ScalarProperty Name="tpa_Id" ColumnName="tpa_Id" />
                 <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
                 <ScalarProperty Name="pago_Id" ColumnName="pago_Id" />

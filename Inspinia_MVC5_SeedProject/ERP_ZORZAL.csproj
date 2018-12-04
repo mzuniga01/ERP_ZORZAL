@@ -212,7 +212,6 @@
     <Compile Include="Models\cDevolucion.cs" />
     <Compile Include="Models\cDocumentoFiscal.cs" />
     <Compile Include="Models\cGenero.cs" />
-    <Compile Include="Models\Clientes.cs" />
     <Compile Include="Models\cNacionalidad.cs" />
     <Compile Include="Models\cNotaCredito.cs" />
     <Compile Include="Models\cTipoCuenta.cs" />
@@ -854,10 +853,6 @@
     <Content Include="Views\TipoIdentificacion\Details.cshtml" />
     <Content Include="Views\TipoIdentificacion\Edit.cshtml" />
     <Content Include="Views\TipoIdentificacion\Index.cshtml" />
-    <Content Include="Views\Cliente\Create.cshtml" />
-    <Content Include="Views\Cliente\Details.cshtml" />
-    <Content Include="Views\Cliente\Edit.cshtml" />
-    <Content Include="Views\Cliente\Index.cshtml" />
     <Content Include="Views\Banco\Create.cshtml" />
     <Content Include="Views\Banco\Delete.cshtml" />
     <Content Include="Views\Banco\Details.cshtml" />
@@ -938,6 +933,11 @@
     <Content Include="Views\PuntoEmision\_IndexPuntoEmisionDetalle.cshtml" />
     <Content Include="Views\PuntoEmision\_EditPuntoEmisionDetalle.cshtml" />
     <Content Include="Views\PuntoEmision\TabBodega.cshtml" />
+    <Content Include="Views\Cliente\Create.cshtml" />
+    <Content Include="Views\Cliente\Delete.cshtml" />
+    <Content Include="Views\Cliente\Details.cshtml" />
+    <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
