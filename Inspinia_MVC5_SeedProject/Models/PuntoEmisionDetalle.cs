@@ -30,6 +30,7 @@ namespace ERP_ZORZAL.Models
         public string pemid_RangoFinal { get; set; }
 
         [Display(Name = "Fecha Límite")]
+        [DataType(DataType.Date)]
         public System.DateTime pemid_FechaLimite { get; set; }
 
         [Display(Name = "Usuario Creación")]
