@@ -99,24 +99,14 @@
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane active">
                             <div class="panel-body">
-                                @*<div class="ibox-title">
-                                    <h5>Listado Numeración</h5>
-                                    <div class="ibox-tools">
-                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarCasoExito">Nuevo</button>
-                                    </div>
-                                </div>*@
-                                @*@Html.Partial("_IndexNumeracion", new tbPuntoEmisionDetalle())*@
+                                
+                                @Html.Partial("_IndexNumeracion", (List<tbPuntoEmisionDetalle>)ViewBag.PuntoEmisionDetalle)
                             </div>
                         </div>
                         <div id="tab-2" class="tab-pane">
                             <div class="panel-body">
-                                @*<div class="ibox-title">
-                                    <h5>Listado de Sucursal</h5>
-                                    <div class="ibox-tools">
-                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarEquipoAsignado">Nuevo</button>
-                                    </div>
-                                </div>*@
-                                @*@Html.Partial("_IndexSucursal", new tbSucursal())*@
+                                
+                                @Html.Partial("_IndexSucursal", (List<tbSucursal>)ViewBag.Sucursal)
                             </div>
                         </div>                      
                     </div>

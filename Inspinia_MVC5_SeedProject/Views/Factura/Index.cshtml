@@ -24,18 +24,33 @@
                 <div class="ibox-title">
                     <h5>Listado de Facturas</h5>
                     <div class="ibox-tools">
-                        <a href="@Url.Action("Index","EstadoFactura")" class="btn btn-primary btn-xs">Estado Factura</a>
                         @Html.ActionLink("Registrar Factura", "Create", null, new { @class = "btn btn-primary btn-xs" })
                     </div>
                     <div class="ibox-content">
                         <div class="form-horizontal">
-                            <div class="form-group">
-                                <label class="control-label col-md-2">RTN-Identidad</label>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control " />
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Numero Factura</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control "/>
+                                    </div>
+                                    <label class="control-label col-md-2">RTN-Identidad</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" />
+                                    </div>
                                 </div>
-                                <div class="">
-                                    <input type="button" value="Buscar" class="btn btn-primary btn-xl" />
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Nombre</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control " />
+                                    </div>
+                                    <label class="control-label col-md-2">Fecha</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" />
+                                    </div>
+                                    <div class="">
+                                        <input type="button" value="Buscar" class="btn btn-primary btn-sm" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -166,7 +181,9 @@
                                             </td>*@
                                         <td>
                                             @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-white btn-sm" })                                          
-                                            
+                                            <button type="button" class="btn btn-white btn-sm" data-toggle="modal" data-target="#ModalImprimir">
+                                                Imprimir
+                                            </button>
                                             <button type="button" class="btn btn-white btn-sm" data-toggle="modal" data-target="#exampleModal">
                                                 Anular
                                             </button>
@@ -197,8 +214,28 @@
                ¿Está seguro de anular esta factura?
             </div>
             <div class="modal-footer">
-                <a href="@Url.Action("Index","Factura")" class="btn btn-primary">Guardar</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>               
+                <a href="@Url.Action("Index","Factura")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>               
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Imprimir Factura</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea Imprimir Factura?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Index","Factura")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>

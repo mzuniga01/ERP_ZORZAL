@@ -6,12 +6,13 @@ using System.Web;
 
 namespace ERP_ZORZAL.Models
 {
+    [MetadataType(typeof(PuntoEmisionDetalleMetaData))]
     public partial class tbPuntoEmisionDetalle
     {
 
         
     }
-    public class PuntoEmisionDetalle
+    public class PuntoEmisionDetalleMetaData
     {
         [Display(Name = "Id Punto Emisión Detalle")]
         public int pemid_Id { get; set; }

@@ -49,16 +49,15 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                @*<div class="ibox-title">
-                    <h5>Detalle Cliente</h5>
-                </div>*@
+                <div class="ibox-title">
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.clte_Id }, new { @class = "btn btn-primary" })
+                </div>
                 <div class="ibox-content">
 
 
                     <div class="row">
                         <div class="row">
-                            <div class="col-md-4">
-
+                            <div class="col-md-4" id="natural" name="natural">
                                 <dl class="dl-horizontal">
 
                                     <dt>
@@ -128,85 +127,83 @@
                                             @Html.DisplayFor(model => model.clte_CorreoElectronico)
                                         </dd>
                                     </dl>
-                                
+                                </div>
+                            <div class="col-md-4" id="juridica" name="juridica">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_Nacionalidad)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.clte_Nacionalidad)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_NombreComercial)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.clte_NombreComercial)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_RazonSocial)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.clte_RazonSocial)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_ContactoNombre)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.clte_ContactoNombre)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_ContactoEmail)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.clte_ContactoEmail)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_ContactoTelefono)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.clte_ContactoTelefono)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_FechaConstitucion)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.clte_FechaConstitucion)
+                                    </dd>
+                                </dl>
                             </div>
                             <div class="col-md-4">
                                 <dl class="dl-horizontal">
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.clte_Nacionalidad)
-                                </dt>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_EsActivo)
+                                    </dt>
 
-                                <dd>
-                                    @Html.DisplayFor(model => model.clte_Nacionalidad)
-                                </dd>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.clte_EsActivo)
+                                    </dd>
 
-                                        <dt>
-                                            @Html.DisplayNameFor(model => model.clte_NombreComercial)
-                                        </dt>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_RazonInactivo)
+                                    </dt>
 
-                                        <dd>
-                                            @Html.DisplayFor(model => model.clte_NombreComercial)
-                                        </dd>
-
-                                        <dt>
-                                            @Html.DisplayNameFor(model => model.clte_RazonSocial)
-                                        </dt>
-
-                                        <dd>
-                                            @Html.DisplayFor(model => model.clte_RazonSocial)
-                                        </dd>
-
-                                        <dt>
-                                            @Html.DisplayNameFor(model => model.clte_ContactoNombre)
-                                        </dt>
-
-                                        <dd>
-                                            @Html.DisplayFor(model => model.clte_ContactoNombre)
-                                        </dd>
-
-                                        <dt>
-                                            @Html.DisplayNameFor(model => model.clte_ContactoEmail)
-                                        </dt>
-
-                                        <dd>
-                                            @Html.DisplayFor(model => model.clte_ContactoEmail)
-                                        </dd>
-
-                                        <dt>
-                                            @Html.DisplayNameFor(model => model.clte_ContactoTelefono)
-                                        </dt>
-
-                                        <dd>
-                                            @Html.DisplayFor(model => model.clte_ContactoTelefono)
-                                        </dd>
-
-                                        <dt>
-                                            @Html.DisplayNameFor(model => model.clte_FechaConstitucion)
-                                        </dt>
-
-                                        <dd>
-                                            @Html.DisplayFor(model => model.clte_FechaConstitucion)
-                                        </dd>
-                                
-                                        <dt>
-                                            @Html.DisplayNameFor(model => model.clte_EsActivo)
-                                        </dt>
-
-                                        <dd>
-                                            @Html.DisplayFor(model => model.clte_EsActivo)
-                                        </dd>
-
-                                        <dt>
-                                            @Html.DisplayNameFor(model => model.clte_RazonInactivo)
-                                        </dt>
-
-                                        <dd>
-                                            @Html.DisplayFor(model => model.clte_RazonInactivo)
-                                        </dd>
-                                    </dl>
-                            </div>
-                            <div class="col-md-4">
-                                <dl class="dl-horizontal">
+                                    <dd>
+                                        @Html.DisplayFor(model => model.clte_RazonInactivo)
+                                    </dd>
                                     <dt>
                                         @Html.DisplayNameFor(model => model.clte_EsActivo)
                                     </dt>
@@ -238,36 +235,36 @@
                                     </dd>
 
                                     @*<dt>
-                @Html.DisplayNameFor(model => model.clte_UsuarioCrea)
-            </dt>
+                        @Html.DisplayNameFor(model => model.clte_UsuarioCrea)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.clte_UsuarioCrea)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.clte_UsuarioCrea)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.clte_FechaCrea)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.clte_FechaCrea)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.clte_FechaCrea)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.clte_FechaCrea)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.clte_UsuarioModifica)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.clte_UsuarioModifica)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.clte_UsuarioModifica)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.clte_UsuarioModifica)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.clte_FechaModifica)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.clte_FechaModifica)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.clte_FechaModifica)
-            </dd>*@
+                    <dd>
+                        @Html.DisplayFor(model => model.clte_FechaModifica)
+                    </dd>*@
 
                                     <dt>
                                         Municipio
@@ -279,6 +276,7 @@
                                     </dd>
                                 </dl>
                             </div>
+                        
                             <div class="form-group">
                                 <table>
                                     <tr>
@@ -301,7 +299,7 @@
                         </div>
                        
                     </div>
-                  @Html.ActionLink("Editar", "Edit", new { id = Model.clte_Id }, new { @class = "btn btn-primary" })
+                 
                 @*@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})*@
                 </div>
             </div>
@@ -310,6 +308,7 @@
 </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/PersonaNatural.js"></script>
+<script src="~/Scripts/app/Activo.js"></script>
 
 
 

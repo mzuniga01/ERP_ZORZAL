@@ -200,6 +200,8 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.clte_CorreoElectronico)
                                     </td>*@
+                                   
+                                        @*@Html.DisplayFor(modelItem => item.clte_EsActivo)*@
                                         @if (item.clte_EsActivo )
                                         {
                                         <td>Sí</td>
@@ -258,12 +260,3 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>
-<script>
-    $(document).ready(function () {
-        if (clte_EsPersonaNatural.checked) {
-            clte_EsPersonaNatural.value = Si;
-        } else {
-            clte_EsPersonaNatural.value = No;
-        }
-    });
-</script>

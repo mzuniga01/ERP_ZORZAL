@@ -39,9 +39,13 @@ namespace ERP_ZORZAL.Controllers
         // GET: /PuntoEmision/Create
         public ActionResult Create()
         {
+            //tbPuntoEmisionDetalle C_PuntoEmisionDetalle = new tbPuntoEmisionDetalle();
+            //ViewBag.dfisc_Id = new SelectList(db.tbPuntoEmisionDetalle, "dfisc_Id", "tpi_Descripcion");
+
             ViewBag.pemi_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.pemi_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.PuntoEmisionDetalle = db.tbPuntoEmisionDetalle.ToList();
+            ViewBag.Sucursal = db.tbSucursal.ToList();
             return View();
         }
 
@@ -58,6 +62,8 @@ namespace ERP_ZORZAL.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            //tbPuntoEmisionDetalle C_PuntoEmisionDetalle = new tbPuntoEmisionDetalle();
+            //ViewBag.dfisc_Id = new SelectList(db.tbPuntoEmisionDetalle, "dfisc_Id", "tpi_Descripcion");
 
             ViewBag.pemi_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmision.pemi_UsuarioCrea);
             ViewBag.pemi_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmision.pemi_UsuarioModifica);

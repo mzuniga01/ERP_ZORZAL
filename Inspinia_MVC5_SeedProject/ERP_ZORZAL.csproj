@@ -245,6 +245,7 @@
     <Compile Include="Models\PuntoEmision.cs" />
     <Compile Include="Models\PuntoEmisionDetalle.cs" />
     <Compile Include="Models\SolicitudCreditos.cs" />
+    <Compile Include="Models\Sucursal.cs" />
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -942,6 +943,7 @@
     <Content Include="Views\PuntoEmision\_CreateNumeracion.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexNumeracion.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexSucursal.cshtml" />
+    <Content Include="Views\PuntoEmision\_EditNumeracion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

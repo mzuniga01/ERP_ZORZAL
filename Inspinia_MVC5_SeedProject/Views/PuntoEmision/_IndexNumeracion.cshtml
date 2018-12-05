@@ -6,9 +6,9 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Numeración</h5>
+                    <h5>Listado de Punto Emisión Detalle</h5>
 					<div class="ibox-tools">
-                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Nuevo">
                             Nuevo
                         </button>
 						@*@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})*@
@@ -16,9 +16,15 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table table-striped  table-bordered" id="DataTable1">
+                    <table class="table table table-striped  table-bordered" >
                         <thead>
                             <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbDocumentoFiscal.dfisc_Descripcion)
+                                </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.pemid_RangoInicio)
                                 </th>
@@ -28,7 +34,7 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.pemid_FechaLimite)
                                 </th>
-                                <th>
+                                @*<th>
                                     @Html.DisplayNameFor(model => model.pemid_UsuarioCrea)
                                 </th>
                                 <th>
@@ -39,23 +45,20 @@
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.pemid_FechaModifica)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbDocumentoFiscal.dfisc_Descripcion)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbPuntoEmision1.pemi_NumeroCAI)
-                                </th>
-                                <th></th>
+                                </th>*@
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
                                 <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbPuntoEmision.pemi_NumeroCAI)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbDocumentoFiscal.dfisc_Descripcion)
+                                    </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.pemid_RangoInicio)
                                     </td>
@@ -77,24 +80,39 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.pemid_FechaModifica)
                                     </td>*@
+                                   
+                                   
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbDocumentoFiscal.dfisc_Descripcion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbPuntoEmision.pemi_NumeroCAI)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbPuntoEmision1.pemi_NumeroCAI)
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Detalle", "Details", new { id = item.pemid_Id }, new { @class = "btn btn-primary btn-sm" })
-                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#exampleModal">
-                                            Nuevo
+                                        
+                                        <button type="button"  class="btn btn-primary btn-xs"  data-toggle="modal" data-target="#Detalle">
+                                            Detalle
                                         </button>
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.pemid_Id }, new { @class = "btn btn-white btn-sm" })
+                                        <button type="button"  class="btn btn-primary btn-xs"  data-toggle="modal" data-target="#Editar_@item.pemid_Id">
+                                            Editar
+                                        </button>
+                                        @*@Html.ActionLink("Editar", "Edit", new { id = item.pemid_Id }, new { @class = "btn btn-white btn-sm" })*@
                                         @*@Html.ActionLink("Delete", "Delete", new { id = item.pemid_Id }, new { @class = "btn btn-white btn-sm" })*@
                                     </td>
                                 </tr>
+                                <div class="modal fade" id="Editar_@item.pemid_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Editar Numeración</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                @*@Html.Partial("_EditMunicipios", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle())*@
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="@Url.Action("Create","PuntoEmision")" class="btn btn-primary ">Guardar</a>
+                                                <a href="@Url.Action("Index","PuntoEmision")" class="btn btn-primary ">Cancelar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             }
                         </tbody>
                     </table>
@@ -108,21 +126,46 @@
 <script src="~/Scripts/app/DataTable.js"></script>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Nuevo" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Asignar Numeración</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Registar Numeración</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                @Html.Partial("_CreateNumeracion")
+                @Html.Partial("_CreateNumeracion", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle())
             </div>
             <div class="modal-footer">
-                <a href="@Url.Action("_IndexNumeracion","PuntoEmision")" class="btn btn-primary">Guardar</a>
-                <a href="@Url.Action("Index","PuntoEmision")" class="btn btn-secondary">Cancelar</a>
+                <a href="@Url.Action("Create","PuntoEmision")" class="btn btn-primary ">Guardar</a>
+                <a href="@Url.Action("Index","PuntoEmision")" class="btn btn-primary ">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="Detalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalle Numeración</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @*@Html.Partial("_CreateNumeracion")*@
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Create","PuntoEmision")" class="btn btn-primary ">Guardar</a>
+                <a href="@Url.Action("Index","PuntoEmision")" class="btn btn-primary ">Cancelar</a>
             </div>
         </div>
     </div>
