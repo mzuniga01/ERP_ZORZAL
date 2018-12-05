@@ -14,6 +14,12 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbProductoSubcategoria
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbProductoSubcategoria()
+        {
+            this.tbProducto = new HashSet<tbProducto>();
+        }
+    
         public int pscat_Id { get; set; }
         public string pscat_Descripcion { get; set; }
         public int pcat_Id { get; set; }
@@ -25,6 +31,8 @@ namespace ERP_ZORZAL.Models
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbProducto> tbProducto { get; set; }
         public virtual tbProductoCategoria tbProductoCategoria { get; set; }
     }
 }

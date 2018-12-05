@@ -11,8 +11,7 @@ namespace ERP_ZORZAL.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class tbPago
     {
         public int pago_Id { get; set; }
@@ -36,7 +35,5 @@ namespace ERP_ZORZAL.Models
         public virtual tbCuentasBanco tbCuentasBanco { get; set; }
         public virtual tbFactura tbFactura { get; set; }
         public virtual tbTipoPago tbTipoPago { get; set; }
-        [NotMapped]
-        public List<cTP> TPList { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,7 +11,8 @@ namespace ERP_ZORZAL.Models
 
     public partial class tbCuentasBanco
     {
-        
+        [NotMapped]
+        public List<cTipoCuenta> TipoCuentaList { get; set; }
     }
 
     public class _CuentasBancoMetaData
@@ -52,6 +54,8 @@ namespace ERP_ZORZAL.Models
         [Display(Name = "Fecha Modificación")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> bcta_FechaModifica { get; set; }
+
+        
     }
 
 }

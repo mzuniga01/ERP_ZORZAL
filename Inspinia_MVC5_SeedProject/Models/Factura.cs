@@ -24,7 +24,7 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         //[DataType(DataType.Date)]
         public System.DateTime fact_Fecha { get; set; }
-        [Display(Name = "Estado Factura")]
+        [Display(Name = "Estado")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public byte esfac_Id { get; set; }
         [Display(Name = "Caja")]

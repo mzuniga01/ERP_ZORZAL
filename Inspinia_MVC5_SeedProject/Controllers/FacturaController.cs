@@ -82,6 +82,7 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbFactura tbFactura = db.tbFactura.Find(id);
+            ViewBag.FacturaHistorica = db.tbFacturaHistorica.ToList();
             ViewBag.Producto = db.tbProducto.ToList();
             if (tbFactura == null)
             {

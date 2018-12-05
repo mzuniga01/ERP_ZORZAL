@@ -668,6 +668,7 @@
     <Property Name="nocre_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="nocre_UsuarioModifica" Type="int" />
     <Property Name="nocre_FechaModifica" Type="datetime" />
+    <Property Name="nocre_Estado" Type="tinyint" Nullable="false" />
   </EntityType>
   <EntityType Name="tbPago">
     <Key>
@@ -831,6 +832,30 @@
       </Principal>
       <Dependent Role="tbAccesoRol">
         <PropertyRef Name="rol_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbObjeto_obj_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbObjeto">
+        <PropertyRef Name="obj_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbObjeto_obj_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbObjeto">
+        <PropertyRef Name="obj_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1698,6 +1723,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbBox" Type="Self.tbBox" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbBox">
+        <PropertyRef Name="box_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbEntrada_tbBodega_bod_Id">
     <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
     <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
@@ -1878,6 +1915,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id">
+    <End Role="tbProductoSubcategoria" Type="Self.tbProductoSubcategoria" Multiplicity="1" />
+    <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbProductoSubcategoria">
+        <PropertyRef Name="pscat_Id" />
+      </Principal>
+      <Dependent Role="tbProducto">
+        <PropertyRef Name="pscat_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
     <End Role="tbProductoCategoria" Type="Self.tbProductoCategoria" Multiplicity="*" />
@@ -1927,6 +1976,18 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Inv_tbProveedor_pro_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbProveedor" Type="Self.tbProveedor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbProveedor">
+        <PropertyRef Name="prov_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbProveedor_prov_UsuarioCrea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
     <End Role="tbProveedor" Type="Self.tbProveedor" Multiplicity="*" />
     <ReferentialConstraint>
@@ -2091,6 +2152,18 @@
       </Principal>
       <Dependent Role="tbTipoEntrada">
         <PropertyRef Name="tent_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbTipoSalida_tbUsuario_tsal_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbTipoSalida" Type="Self.tbTipoSalida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbTipoSalida">
+        <PropertyRef Name="tsal_UsuarioCrea" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2307,6 +2380,30 @@
       </Principal>
       <Dependent Role="tbPedido">
         <PropertyRef Name="fact_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbFactura_tbUsuario_usu_Id_Crea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbFactura">
+        <PropertyRef Name="fact_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbFactura_tbUsuario_usu_Id_Modifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbFactura">
+        <PropertyRef Name="fact_ UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2648,6 +2745,14 @@
       <End Role="tbRol" EntitySet="tbRol" />
       <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
     </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbObjeto_obj_UsuarioCrea" Association="Self.FK_Acce_tbObjeto_obj_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbObjeto" EntitySet="tbObjeto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbObjeto_obj_UsuarioModifica" Association="Self.FK_Acce_tbObjeto_obj_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbObjeto" EntitySet="tbObjeto" />
+    </AssociationSet>
     <AssociationSet Name="FK_Acce_tbRolesUsuario_tbRoles_rol_Id" Association="Self.FK_Acce_tbRolesUsuario_tbRoles_rol_Id">
       <End Role="tbRol" EntitySet="tbRol" />
       <End Role="tbRolesUsuario" EntitySet="tbRolesUsuario" />
@@ -2936,6 +3041,10 @@
       <End Role="tbProducto" EntitySet="tbProducto" />
       <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
     </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" Association="Self.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbBox" EntitySet="tbBox" />
+    </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEntrada_tbBodega_bod_Id" Association="Self.FK_Inv_tbEntrada_tbBodega_bod_Id">
       <End Role="tbBodega" EntitySet="tbBodega" />
       <End Role="tbEntrada" EntitySet="tbEntrada" />
@@ -2996,6 +3105,10 @@
       <End Role="tbProducto" EntitySet="tbProducto" />
       <End Role="tbDevolucionDetalle" EntitySet="tbDevolucionDetalle" />
     </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" Association="Self.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id">
+      <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />
+      <End Role="tbProducto" EntitySet="tbProducto" />
+    </AssociationSet>
     <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" Association="Self.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
@@ -3013,6 +3126,10 @@
       <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbProveedor_pro_UsuarioModifica" Association="Self.FK_Inv_tbProveedor_pro_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbProveedor" EntitySet="tbProveedor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbProveedor_prov_UsuarioCrea" Association="Self.FK_Inv_tbProveedor_prov_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbProveedor" EntitySet="tbProveedor" />
     </AssociationSet>
@@ -3067,6 +3184,10 @@
     <AssociationSet Name="FK_Inv_tbTipoEntrada_tent_UsuarioModifica" Association="Self.FK_Inv_tbTipoEntrada_tent_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbTipoEntrada" EntitySet="tbTipoEntrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbTipoSalida_tbUsuario_tsal_UsuarioCrea" Association="Self.FK_Inv_tbTipoSalida_tbUsuario_tsal_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbTipoSalida" EntitySet="tbTipoSalida" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbBodega_tbSucursal_bod_Id" Association="Self.FK_Vent_tbBodega_tbSucursal_bod_Id">
       <End Role="tbBodega" EntitySet="tbBodega" />
@@ -3139,6 +3260,14 @@
     <AssociationSet Name="FK_Vent_tbFactura_tbPedido_fact_Id" Association="Self.FK_Vent_tbFactura_tbPedido_fact_Id">
       <End Role="tbFactura" EntitySet="tbFactura" />
       <End Role="tbPedido" EntitySet="tbPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbFactura_tbUsuario_usu_Id_Crea" Association="Self.FK_Vent_tbFactura_tbUsuario_usu_Id_Crea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbFactura" EntitySet="tbFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbFactura_tbUsuario_usu_Id_Modifica" Association="Self.FK_Vent_tbFactura_tbUsuario_usu_Id_Modifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbFactura" EntitySet="tbFactura" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" Association="Self.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id">
       <End Role="tbFactura" EntitySet="tbFactura" />

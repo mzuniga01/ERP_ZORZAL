@@ -443,6 +443,7 @@
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\Auditoria.css" />
     <Content Include="Content\css\master.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
@@ -995,6 +996,7 @@
     <Content Include="Views\Sucursal\Index.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexNumeracionWithouBottomNew.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexNumeracionWithoutBottom.cshtml" />
+    <Content Include="Views\Factura\_IndexFacturaHistorica.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

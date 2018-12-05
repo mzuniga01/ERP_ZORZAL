@@ -11,8 +11,7 @@ namespace ERP_ZORZAL.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class tbCliente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -68,10 +67,5 @@ namespace ERP_ZORZAL.Models
         public virtual ICollection<tbNotaCredito> tbNotaCredito { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito { get; set; }
-
-        [NotMapped]
-        public List<cGenero> GeneroList { get; set; }
-        public List<cNacionalidad> NacionalidadList { get; set; }
-
     }
 }

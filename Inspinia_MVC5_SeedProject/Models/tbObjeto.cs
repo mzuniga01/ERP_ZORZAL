@@ -20,5 +20,8 @@ namespace ERP_ZORZAL.Models
         public System.DateTime obj_FechaCrea { get; set; }
         public Nullable<int> obj_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> obj_FechaModifica { get; set; }
+    
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
     }
 }

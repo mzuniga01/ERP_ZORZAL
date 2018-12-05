@@ -4,6 +4,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@*Font Awesome*@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -46,7 +48,7 @@
                                     </div>
                                     <label class="control-label col-md-2">Fecha</label>
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control" />
+                                        <input id="FechaBuscar" type="text" class="form-control" />
                                     </div>
                                     <div class="">
                                         <input type="button" value="Buscar" class="btn btn-primary btn-sm" />
@@ -61,58 +63,57 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.fact_Codigo)
                                     </th>
-                                    @*<th>
-                                            @Html.DisplayNameFor(model => model.fact_Fecha)
-                                        </th>*@
                                     <th>
-                                        @Html.DisplayNameFor(model => model.esfac_Id)
-                                      
+                                        @Html.DisplayNameFor(model => model.fact_Fecha)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.clte_Nombres)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.cja_Id)
                                     </th>
-                                    @*<th>
-                                            @Html.DisplayNameFor(model => model.suc_Id)
-                                        </th>*@
                                     <th>
-                                        @Html.DisplayNameFor(model => model.clte_Id)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
+                                        @Html.DisplayNameFor(model => model.esfac_Id)
                                     </th>
                                     @*<th>
-                                            @Html.DisplayNameFor(model => model.fact_AlCredito)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.fact_DiasCredito)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.fact_PorcentajeDescuento)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.fact_AutorizarDescuento)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.fact_Vendedor)
-                                        </th>*@
+                                    @Html.DisplayNameFor(model => model.suc_Id)
+                                    </th>*@
                                     @*<th>
-                                            @Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)
-                                        </th>*@
+                                    @Html.DisplayNameFor(model => model.clte_Id)
+                                    </th>*@
                                     @*<th>
-                                            @Html.DisplayNameFor(model => model.clte_Nombres)
-                                        </th>*@
+                                    @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
+                                    </th>*@
                                     @*<th>
-                                            @Html.DisplayNameFor(model => model.fact_UsuarioCrea)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.fact__FechaCrea)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.fact__UsuarioModifica)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.fact_FechaModifica)
-                                        </th>*@
+                                    @Html.DisplayNameFor(model => model.fact_AlCredito)
+                                    </th>
+                                    <th>
+                                    @Html.DisplayNameFor(model => model.fact_DiasCredito)
+                                    </th>
+                                    <th>
+                                    @Html.DisplayNameFor(model => model.fact_PorcentajeDescuento)
+                                    </th>
+                                    <th>
+                                    @Html.DisplayNameFor(model => model.fact_AutorizarDescuento)
+                                    </th>
+                                    <th>
+                                    @Html.DisplayNameFor(model => model.fact_Vendedor)
+                                    </th>*@
+                                    @*<th>
+                                        @Html.DisplayNameFor(model => model.fact_UsuarioCrea)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.fact__FechaCrea)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.fact__UsuarioModifica)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.fact_FechaModifica)
+                                    </th>*@
                                     <th> Acciones</th>
                                 </tr>
                             </thead>
@@ -124,68 +125,65 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.fact_Codigo)
                                         </td>
-                                        @*<td>
+                                        <td>
                                             @Html.DisplayFor(modelItem => item.fact_Fecha)
-                                        </td>*@
-                                        <td>
-                                            @*@Html.DisplayFor(modelItem => item.esfac_Id)*@
-                                              @Html.DisplayFor(model => item.tbEstadoFactura.esfac_Descripcion)
                                         </td>
                                         <td>
-                                            @*@Html.DisplayFor(modelItem => item.cja_Id)*@
-                                          
-                                            @Html.DisplayFor(model => item.tbCaja.cja_Descripcion)
-                                        </td>
-                                        @*<td>
-                                            @Html.DisplayFor(modelItem => item.suc_Id)
-                                        </td>*@
-                                        <td>
-                                            @*@Html.DisplayFor(modelItem => item.clte_Id)*@
-                                            @Html.DisplayFor(model => item.tbCliente.clte_Nombres)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.pemi_NumeroCAI)
-                                        </td>
-                                        @*<td>
-                                            @Html.DisplayFor(modelItem => item.fact_AlCredito)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fact_DiasCredito)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fact_PorcentajeDescuento)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fact_AutorizarDescuento)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fact_Vendedor)
+                                            @Html.DisplayFor(modelItem => item.clte_Nombres)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.clte_RTN_Identidad_Pasaporte)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.clte_Nombres)
+                                            @*@Html.DisplayFor(modelItem => item.cja_Id)*@
+                                            @Html.DisplayFor(model => item.tbCaja.cja_Descripcion)
+                                        </td>
+                                        <td>
+                                            @*@Html.DisplayFor(modelItem => item.esfac_Id)*@
+                                              @Html.DisplayFor(model => item.tbEstadoFactura.esfac_Descripcion)
+                                        </td>
+                                        @*<td>
+                                            @Html.DisplayFor(modelItem => item.suc_Id)
+                                        </td>*@
+                                        
+                                        
+                                        @*<td>
+                                        @Html.DisplayFor(modelItem => item.pemi_NumeroCAI)
                                         </td>*@
                                         @*<td>
-                                                @Html.DisplayFor(modelItem => item.fact_UsuarioCrea)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.fact__FechaCrea)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.fact__UsuarioModifica)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.fact_FechaModifica)
-                                            </td>*@
+                                        @Html.DisplayFor(modelItem => item.fact_AlCredito)
+                                        </td>
                                         <td>
-                                            @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-white btn-sm" })                                          
-                                            <button type="button" class="btn btn-white btn-sm" data-toggle="modal" data-target="#ModalImprimir">
+                                        @Html.DisplayFor(modelItem => item.fact_DiasCredito)
+                                        </td>
+                                        <td>
+                                        @Html.DisplayFor(modelItem => item.fact_PorcentajeDescuento)
+                                        </td>
+                                        <td>
+                                        @Html.DisplayFor(modelItem => item.fact_AutorizarDescuento)
+                                        </td>
+                                        <td>
+                                        @Html.DisplayFor(modelItem => item.fact_Vendedor)
+                                        </td>
+                                                                              
+                                        @*<td>
+                                            @Html.DisplayFor(modelItem => item.fact_UsuarioCrea)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.fact__FechaCrea)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.fact__UsuarioModifica)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.fact_FechaModifica)
+                                        </td>*@
+                                        <td>
+                                            @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-sm" })
+                                            
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-sm" })                                          
+                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalImprimir">
                                                 Imprimir
-                                            </button>
-                                            <button type="button" class="btn btn-white btn-sm" data-toggle="modal" data-target="#exampleModal">
-                                                Anular
                                             </button>
                                         </td>
                                     </tr>
@@ -242,4 +240,5 @@
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>

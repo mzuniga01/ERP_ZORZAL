@@ -701,6 +701,7 @@
     <EntitySetMapping Name="tbNotaCredito">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbNotaCredito">
         <MappingFragment StoreEntitySet="tbNotaCredito">
+          <ScalarProperty Name="nocre_Estado" ColumnName="nocre_Estado" />
           <ScalarProperty Name="nocre_FechaModifica" ColumnName="nocre_FechaModifica" />
           <ScalarProperty Name="nocre_UsuarioModifica" ColumnName="nocre_UsuarioModifica" />
           <ScalarProperty Name="nocre_FechaCrea" ColumnName="nocre_FechaCrea" />

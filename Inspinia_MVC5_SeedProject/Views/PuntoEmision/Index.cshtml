@@ -29,6 +29,9 @@
                         <thead>
                             <tr>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.pemi_Id)
+                                </th>
+                                <th>
                                     @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
                                 </th>
                                 @*<th>
@@ -51,6 +54,9 @@
                             {
                                 <tr>
                                     <td>
+                                        @Html.DisplayFor(modelItem => item.pemi_Id)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.pemi_NumeroCAI)
                                     </td>
                                     @*<td>
@@ -66,7 +72,7 @@
                                         @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
                                     </td>*@
                                     <td>
-                                        @Html.ActionLink("Detalle", "Details", new { id = item.pemi_Id }, new { @class = "btn btn-primary btn-sm" })
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.pemi_Id }, new { @class = "btn btn-primary btn-sm" })
                                         @*@Html.ActionLink("Edit", "Edit", new { id = item.pemi_Id }, new { @class = "btn btn-white btn-sm" })
                                         @Html.ActionLink("Delete", "Delete", new { id = item.pemi_Id }, new { @class = "btn btn-white btn-sm" })*@
                                     </td>

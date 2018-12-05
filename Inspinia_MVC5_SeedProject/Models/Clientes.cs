@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,7 +11,9 @@ namespace ERP_ZORZAL.Models
     public partial class tbCliente
     {
 
-
+        [NotMapped]
+        public List<cGenero> GeneroList { get; set; }
+        public List<cNacionalidad> NacionalidadList { get; set; }
 
 
     }

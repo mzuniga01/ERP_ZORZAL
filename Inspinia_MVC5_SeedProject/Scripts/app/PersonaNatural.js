@@ -22,5 +22,18 @@ $(document).ready(function () {
 });
 
 
+$("#tpi_Id").change(function () {
+    var d = $("#tpi_Id").val();
+
+    if (d == 1) {
+        document.getElementById("clte_RTN_Identidad_Pasaporte").maxLength = "13";
+    }
+    else if (d == 2) {
+        document.getElementById("clte_RTN_Identidad_Pasaporte").maxLength = "14";
+    }
+    else if (d == 3) {
+        document.getElementById("clte_RTN_Identidad_Pasaporte").maxLength = "25";
+    }
+});
 
 
