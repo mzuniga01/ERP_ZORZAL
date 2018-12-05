@@ -60,9 +60,21 @@ namespace ERP_ZORZAL.Models
         [Display(Name = "Nombre Cliente")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string clte_Nombres { get; set; }
+
+        [Display(Name = "Usuario Creación")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int fact_UsuarioCrea { get; set; }
+
+        [Display(Name = "Fecha Creación")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime fact__FechaCrea { get; set; }
+
+        [Display(Name = "Usuario Modificación")]
         public Nullable<int> fact__UsuarioModifica { get; set; }
+
+        [Display(Name = "Fecha Modificación")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> fact_FechaModifica { get; set; }
     }
 }

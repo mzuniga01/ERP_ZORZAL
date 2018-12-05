@@ -51,6 +51,7 @@
                                         </th>*@
                                     <th>
                                         @Html.DisplayNameFor(model => model.esfac_Id)
+                                      
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.cja_Id)
@@ -112,16 +113,20 @@
                                             @Html.DisplayFor(modelItem => item.fact_Fecha)
                                         </td>*@
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.esfac_Id)
+                                            @*@Html.DisplayFor(modelItem => item.esfac_Id)*@
+                                              @Html.DisplayFor(model => item.tbEstadoFactura.esfac_Descripcion)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.cja_Id)
+                                            @*@Html.DisplayFor(modelItem => item.cja_Id)*@
+                                          
+                                            @Html.DisplayFor(model => item.tbCaja.cja_Descripcion)
                                         </td>
                                         @*<td>
                                             @Html.DisplayFor(modelItem => item.suc_Id)
                                         </td>*@
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.clte_Id)
+                                            @*@Html.DisplayFor(modelItem => item.clte_Id)*@
+                                            @Html.DisplayFor(model => item.tbCliente.clte_Nombres)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.pemi_NumeroCAI)

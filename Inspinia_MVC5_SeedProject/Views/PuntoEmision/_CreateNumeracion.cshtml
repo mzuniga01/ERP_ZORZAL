@@ -5,9 +5,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                @*<div class="ibox-title">
                     <h5>_CreateNumeracion tbPuntoEmisionDetalle</h5>
-                </div>
+                </div>*@
                 <div class="ibox-content">
 
 				@using (Html.BeginForm()) 
@@ -57,7 +57,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.pemid_UsuarioCrea, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.pemid_UsuarioCrea)
@@ -87,7 +87,7 @@
                 @Html.EditorFor(model => model.pemid_FechaModifica)
                 @Html.ValidationMessageFor(model => model.pemid_FechaModifica)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

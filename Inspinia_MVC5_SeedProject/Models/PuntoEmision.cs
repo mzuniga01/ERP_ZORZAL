@@ -28,11 +28,10 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime pemi_FechaCrea { get; set; }
 
-        [Display(Name = "Usuario Modificó")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Usuario Modificación")]
         public Nullable<int> pemi_UsuarioModifica { get; set; }
 
-        [Display(Name = "Fecha Modificó")]
+        [Display(Name = "Fecha Modificación")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> pemi_FechaModifica { get; set; }
     }

@@ -58,11 +58,11 @@
                         <thead>
                             <tr>
                                 <th>
-
+                                    @Html.DisplayNameFor(model => model.tbTipoIdentificacion.tpi_Descripcion)
                                 </th>
-                                <th>
+                                <td>
                                     @Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)
-                                </th>
+                                </td>
                                 @*<th>
                                     @Html.DisplayNameFor(model => model.clte_EsPersonaNatural)
                                 </th>*@
@@ -200,17 +200,14 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.clte_CorreoElectronico)
                                     </td>*@
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.clte_EsActivo)
-                                        @*@if (item.clte_EsActivo)
+                                        @if (item.clte_EsActivo )
                                         {
-                                        <td>Si</td>
+                                        <td>Sí</td>
                                         }
                                         else
                                         {
                                          <td>No</td>
-                                        }*@
-                                    </td>
+                                        }
                                     @*<td>
                                         @Html.DisplayFor(modelItem => item.clte_RazonInactivo)
                                     </td>*@

@@ -18,7 +18,7 @@ namespace ERP_ZORZAL.Models
 
         public byte tpi_Id { get; set; }
 
-        [Display(Name = "Descripción")]
+        [Display(Name = "Tipo Identificación")]
         public string tpi_Descripcion { get; set; }
 
         [Display(Name = "Usuario Crea")]

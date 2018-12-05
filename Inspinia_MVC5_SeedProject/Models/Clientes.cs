@@ -121,11 +121,11 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime clte_FechaCrea { get; set; }
 
-        [Display(Name = "Usuario Modificó")]
+        [Display(Name = "Usuario Modificación")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<int> clte_UsuarioModifica { get; set; }
 
-        [Display(Name = "Fecha Modificó")]
+        [Display(Name = "Fecha Modificación")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
         

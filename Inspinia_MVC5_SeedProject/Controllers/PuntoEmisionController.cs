@@ -41,6 +41,7 @@ namespace ERP_ZORZAL.Controllers
         {
             ViewBag.pemi_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.pemi_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.PuntoEmisionDetalle = db.tbPuntoEmisionDetalle.ToList();
             return View();
         }
 

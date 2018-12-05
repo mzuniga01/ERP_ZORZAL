@@ -4,18 +4,41 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 90%;
+        margin-left: 4%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Details</h2>
-        <ol class="breadcrumb">
+        <h2>Detalles Punto Emisión</h2>
+        @*<ol class="breadcrumb">
             <li>
                 @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
                 <strong>Details</strong>
             </li>
-        </ol>
+        </ol>*@
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","PuntoEmision")">Regresar</a>
+        </div>
     </div>
 </div>
 
@@ -27,58 +50,114 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Details tbPuntoEmision</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.pemi_Id }, new { @class = "btn btn-primary" })
+                    </div>                  
                 </div>
                 <div class="ibox-content">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pemi_Id)
+                        </dt>
 
+                        <dd>
+                            @Html.DisplayFor(model => model.pemi_Id)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
+                        </dt>
 
-				    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.pemi_NumeroCAI)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.pemi_NumeroCAI)
-        </dd>
+                        @*<dt>
+                    @Html.DisplayNameFor(model => model.pemi_FechaCrea)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pemi_FechaCrea)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.pemi_FechaCrea)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.pemi_FechaCrea)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.pemi_FechaModifica)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pemi_FechaModifica)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.pemi_FechaModifica)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.pemi_FechaModifica)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
+                </dd>*@
 
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
-        </dd>
-
-    </dl>
-
-
-	    @Html.ActionLink("Edit", "Edit", new { id = Model.pemi_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
-
+                    </dl>
+                    <div class="form-group">
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.pemi_FechaCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.pemi_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="tabs-container">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a data-toggle="tab" href="#tab-1">Numeración</a></li>
+                                    <li class=""><a data-toggle="tab" href="#tab-2">Sucursal</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="tab-1" class="tab-pane active">
+                                        <div class="panel-body">
+                                            @*<div class="ibox-title">
+                                        <h5>Listado Numeración</h5>
+                                        <div class="ibox-tools">
+                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarCasoExito">Nuevo</button>
+                                        </div>
+                                    </div>*@
+                                            @*@Html.Partial("_IndexNumeracion", new tbPuntoEmisionDetalle())*@
+                                        </div>
+                                    </div>
+                                    <div id="tab-2" class="tab-pane">
+                                        <div class="panel-body">
+                                            @*<div class="ibox-title">
+                                        <h5>Listado de Sucursal</h5>
+                                        <div class="ibox-tools">
+                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarEquipoAsignado">Nuevo</button>
+                                        </div>
+                                    </div>*@
+                                            @*@Html.Partial("_IndexSucursal", new tbSucursal())*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
