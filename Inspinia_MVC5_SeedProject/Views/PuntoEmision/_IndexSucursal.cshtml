@@ -23,9 +23,9 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.suc_Descripcion)
                                 </th>
-                                <th>
+                                @*<th>
                                     @Html.DisplayNameFor(model => model.suc_Correo)
-                                </th>
+                                </th>*@
                                 <th>
                                     @Html.DisplayNameFor(model => model.suc_Direccion)
                                 </th>
@@ -44,14 +44,14 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
                                 </th>*@
-                                <th>
+                                @*<th>
                                     Municipio
-                                    @*@Html.DisplayNameFor(model => model.tbMunicipio.dep_Codigo)*@
-                                </th>
-                                <th>
+                                    @Html.DisplayNameFor(model => model.tbMunicipio.dep_Codigo)
+                                </th>*@
+                                @*<th>
                                     Bodega
-                                   @* @Html.DisplayNameFor(model => model.tbBodega.bod_Nombre)*@
-                                </th>
+                                    @Html.DisplayNameFor(model => model.tbBodega.bod_Nombre)
+                                </th>*@
                                 
                                 <th>Acciones</th>
                             </tr>
@@ -66,9 +66,9 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.suc_Descripcion)
                                     </td>
-                                    <td>
+                                    @*<td>
                                         @Html.DisplayFor(modelItem => item.suc_Correo)
-                                    </td>
+                                    </td>*@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.suc_Direccion)
                                     </td>
@@ -87,16 +87,18 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
                                     </td>*@
-                                    <td>
+                                    @*<td>
                                         @Html.DisplayFor(modelItem => item.tbMunicipio.dep_Codigo)
-                                    </td>
-                                    <td>
+                                    </td>*@
+                                    @*<td>
                                         @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
-                                    </td>
+                                    </td>*@
                                     
                                     <td>
-                                        @Html.ActionLink("Detalle", "Details", new { id = item.suc_Id }, new { @class = "btn btn-primary btn-sm" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.suc_Id }, new { @class = "btn btn-white btn-sm" })
+                                        <button type="button" class="btn btn-primary btn-xs">Detalle</button>
+                                        <button type="button" class="btn btn-white btn-xs">Editar</button>
+                                        @*@Html.ActionLink("Detalle", "Index", new { id = item.suc_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.suc_Id }, new { @class = "btn btn-white btn-xs" })*@
                                         @*@Html.ActionLink("Delete", "Delete", new { id = item.suc_Id }, new { @class = "btn btn-white btn-sm" })*@
                                     </td>
                                 </tr>

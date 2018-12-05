@@ -7,7 +7,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
-    table {
+    #tblusu {
         font-family: arial, sans-serif;
         border-collapse: collapse;
         width: 90%;
@@ -70,41 +70,41 @@
                             @Html.DisplayFor(model => model.pemi_NumeroCAI)
                         </dd>
 
-                        @*<dt>
-                    @Html.DisplayNameFor(model => model.pemi_FechaCrea)
-                </dt>
+                                @*<dt>
+                            @Html.DisplayNameFor(model => model.pemi_FechaCrea)
+                        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.pemi_FechaCrea)
-                </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.pemi_FechaCrea)
+                        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.pemi_FechaModifica)
-                </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pemi_FechaModifica)
+                        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.pemi_FechaModifica)
-                </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.pemi_FechaModifica)
+                        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-                </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+                        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
-                </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+                        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-                </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+                        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
-                </dd>*@
+                        <dd>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
+                        </dd>*@
 
                     </dl>
                     <div class="form-group">
-                        <table>
+                        <table id="tblusu">
                             <tr>
                                 <th></th>
                                 <th>Usuario</th>
@@ -132,15 +132,14 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div id="tab-1" class="tab-pane active">
-                                        <div class="panel-body">
-
-                                            @Html.Partial("_IndexNumeracion", (List<tbPuntoEmisionDetalle>)ViewBag.PuntoEmisionDetalle)
+                                        <div  class="panel-body">
+                                            @Html.Partial("_IndexNumeracion", Model.tbPuntoEmisionDetalle)
+                                           
                                         </div>
                                     </div>
                                     <div id="tab-2" class="tab-pane">
                                         <div class="panel-body">
-
-                                            @Html.Partial("_IndexSucursal", (List<tbSucursal>)ViewBag.Sucursal)
+                                            @Html.Partial("_IndexSucursal", Model.tbSucursal)
                                         </div>
                                     </div>
                                 </div>

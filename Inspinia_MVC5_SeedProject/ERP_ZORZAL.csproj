@@ -993,6 +993,8 @@
     <Content Include="Views\Sucursal\Details.cshtml" />
     <Content Include="Views\Sucursal\Edit.cshtml" />
     <Content Include="Views\Sucursal\Index.cshtml" />
+    <Content Include="Views\PuntoEmision\_IndexNumeracionWithouBottomNew.cshtml" />
+    <Content Include="Views\PuntoEmision\_IndexNumeracionWithoutBottom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

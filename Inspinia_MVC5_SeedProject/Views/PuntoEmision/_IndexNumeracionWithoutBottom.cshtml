@@ -7,12 +7,12 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado de Numeración</h5>
-					<div class="ibox-tools">
+                    <div class="ibox-tools">
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Nuevo">
                             Nuevo
                         </button>
-						@*@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})*@
-					</div>
+                        @*@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})*@
+                    </div>
                 </div>
                 <div class="ibox-content">
 
@@ -35,17 +35,17 @@
                                     @Html.DisplayNameFor(model => model.pemid_FechaLimite)
                                 </th>
                                 @*<th>
-                                    @Html.DisplayNameFor(model => model.pemid_UsuarioCrea)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.pemid_FechaCrea)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.pemid_UsuarioModifica)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.pemid_FechaModifica)
-                                </th>*@
+                                        @Html.DisplayNameFor(model => model.pemid_UsuarioCrea)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.pemid_FechaCrea)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.pemid_UsuarioModifica)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.pemid_FechaModifica)
+                                    </th>*@
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -69,25 +69,21 @@
                                         @Html.DisplayFor(modelItem => item.pemid_FechaLimite)
                                     </td>
                                     @*<td>
-                                        @Html.DisplayFor(modelItem => item.pemid_UsuarioCrea)
-                                    </td>
+                                            @Html.DisplayFor(modelItem => item.pemid_UsuarioCrea)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.pemid_FechaCrea)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.pemid_UsuarioModifica)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.pemid_FechaModifica)
+                                        </td>*@
+
+
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.pemid_FechaCrea)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.pemid_UsuarioModifica)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.pemid_FechaModifica)
-                                    </td>*@
-                                   
-                                   
-                                    <td>
-                                        
-                                        <button type="button"  class="btn btn-primary btn-xs"  data-toggle="modal" data-target="#Detalle">
-                                            Detalle
-                                        </button>
-                                        <button type="button"  class = "btn btn-white btn-xs"   data-toggle="modal" data-target="#Editar_@item.pemid_Id">
+                                        <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar_@item.pemid_Id">
                                             Editar
                                         </button>
                                         @*@Html.ActionLink("Editar", "Edit", new { id = item.pemid_Id }, new { @class = "btn btn-white btn-sm" })*@
@@ -107,7 +103,7 @@
                                                 @*@Html.Partial("_EditMunicipios", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle())*@
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="@Url.Action("Details","PuntoEmision")" class="btn btn-primary ">Guardar</a>
+                                                <a href="@Url.Action("Create","PuntoEmision")" class="btn btn-primary ">Guardar</a>
                                                 <a href="@Url.Action("Index","PuntoEmision")" class = "btn btn-white">Cancelar</a>
                                             </div>
                                         </div>
@@ -121,7 +117,7 @@
             </div>
         </div>
     </div>
- </div>
+</div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
 
@@ -139,34 +135,10 @@
                 @Html.Partial("_CreateNumeracion", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle())
             </div>
             <div class="modal-footer">
-                <a href="@Url.Action("Details","PuntoEmision")" class="btn btn-primary ">Guardar</a>
+                <a href="@Url.Action("Create","PuntoEmision")" class="btn btn-primary ">Guardar</a>
                 <a href="@Url.Action("Index","PuntoEmision")" class = "btn btn-white">Cancelar</a>
             </div>
         </div>
     </div>
 </div>
 
-
-<!-- Modal -->
-
-
-<!-- Modal -->
-<div class="modal fade" id="Detalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detalle Numeración</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                @*@Html.Partial("_CreateNumeracion")*@
-            </div>
-            <div class="modal-footer">
-                <a href="@Url.Action("Details","PuntoEmision")" class="btn btn-primary ">Guardar</a>
-                <a href="@Url.Action("Index","PuntoEmision")" class = "btn btn-white">Cancelar</a>
-            </div>
-        </div>
-    </div>
-</div>

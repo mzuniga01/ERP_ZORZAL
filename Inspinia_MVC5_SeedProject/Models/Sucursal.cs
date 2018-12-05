@@ -14,7 +14,7 @@ namespace ERP_ZORZAL.Models
     }
     public class SucursalMetaData
     {
-        [Display(Name ="Codigo Municipio")]
+        [Display(Name ="Id")]
         public short suc_Id { get; set; }
 
         [Display(Name ="Municipio")]
