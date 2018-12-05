@@ -225,7 +225,7 @@
                                     <div id="tab-1" class="tab-pane active">
                                         <div class="panel-body">
                                             <div class="ibox-title">
-                                                <h5>Estado</h5>
+                                                @*<h5>Estado</h5>*@
                                                 <div class="ibox-tools">
                                                 </div>
                                             </div>
@@ -235,11 +235,65 @@
                                     <div id="tab-2" class="tab-pane">
                                         <div class="panel-body">
                                             <div class="ibox-title">
-                                                <h5>Detalle de Factura</h5>
+                                                @*<h5>Detalle de Factura</h5>*@
                                                 <div class="ibox-tools">
                                                 </div>
                                             </div>
-                                            @Html.Partial("_CreateFacturaDetalle", new tbFacturaDetalle())                                       
+                                            <div class="col-md-offset-11 col-md-1">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Añadir</span></button>
+                                            </div>
+                                            <div class="ibox-content">
+                                                <table class="table table-striped table-bordered table-hover dataTables-example">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID Producto</th>
+                                                            <th>Descripción Producto</th>
+                                                            <th>Cantidad</th>
+                                                            <th>Valor Unit.</th>
+                                                            <th>Descuento</th>
+                                                            <th>Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @*<tr class="gradeX">
+                                                        <td></td>
+                                                        <td>
+                                                        </td>
+                                                        <td></td>
+                                                        <td class="center"></td>
+                                                        <td class="center"></td>
+                                                        <td class="center"></td>
+                                                        </tr>*@
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th>Sub-Total</th>
+                                                            <th></th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th>ISV %</th>
+                                                            <th></th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th>Total a Pagar</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+
+                                            </div>                                     
                                         </div>
                                     </div>
                                 </div>
@@ -257,7 +311,23 @@
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Credito.js"></script>
 
-
+<div>
+    <div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_CreateFacturaDetalleModal", new tbFacturaDetalle())
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
