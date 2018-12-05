@@ -9,18 +9,13 @@
     <div class="col-sm-4">
         <h2>Nota Crédito</h2>
         @*<ol class="breadcrumb">
-        <li>
-            @Html.ActionLink("List", "Index")
-        </li>
-        <li class="active">
-            <strong>Details</strong>
-        </li>
-    </ol>*@
-    </div>
-    <div class="col-sm-8">
-        <div class="title-action">
-            @Html.ActionLink("Regresar", "Index")
-        </div>
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>*@
     </div>
 </div>
 
@@ -32,18 +27,44 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Detalle Nota Crédito</h5>
+                    <h5>Details tbNotaCredito</h5>
                 </div>
                 <div class="ibox-content">
 
 
-				    <dl class="dl-horizontal">
+	<dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.nocre_Codigo)
+            Sucursal
+            @*@Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbSucursal.mun_Codigo)
+        </dd>
+
+        <dt>
+            Cliente
+            @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)
+        </dd>
+        <dt>
+            Código Nota Crédito
+            @*@Html.DisplayNameFor(model => model.nocre_Codigo)*@
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.nocre_Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nocre_Anulado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nocre_Anulado)
         </dd>
 
         <dt>
@@ -71,24 +92,28 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.nocre_FechaCrea)
+            Fecha Creó
+            @*@Html.DisplayNameFor(model => model.nocre_FechaCrea)*@
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.nocre_FechaCrea)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.nocre_FechaModifica)
+            Usuario Creó
+            @*@Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)*@
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
+        </dd>
+        <dt>
+            Fecha Modificó
+            @*@Html.DisplayNameFor(model => model.nocre_FechaModifica)*@
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.nocre_FechaModifica)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-        </dt>
 
         <dd>
             @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
@@ -98,20 +123,11 @@
             @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
-        </dd>
+        
 
         <dt>
-            @Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)
+            Devolución
+            @*@Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)*@
         </dt>
 
         <dd>
@@ -121,8 +137,8 @@
     </dl>
 
 
-	    @Html.ActionLink("Edit", "Edit", new { id = Model.nocre_Id }, new { @class = "btn btn-primary"})
-    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.nocre_Id }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Regresar", "Index")
 
                 </div>
             </div>

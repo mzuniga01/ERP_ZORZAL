@@ -4,18 +4,35 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+        margin-left: 17%;
+    }
 
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Details</h2>
-        <ol class="breadcrumb">
+        <h2>Actividad Económica</h2>
+        @*<ol class="breadcrumb">
             <li>
                 @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
                 <strong>Details</strong>
             </li>
-        </ol>
+        </ol>*@
     </div>
 </div>
 
@@ -27,12 +44,20 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Details tbActividadEconomica</h5>
+                    <h5>Detalles Actividad Económica</h5>
                 </div>
                 <div class="ibox-content">
 
 
 				    <dl class="dl-horizontal">
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.acte_Id)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.acte_Id)
+                        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.acte_Descripcion)
         </dt>
@@ -41,7 +66,7 @@
             @Html.DisplayFor(model => model.acte_Descripcion)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.acte_UsuarioCrea)
         </dt>
 
@@ -71,14 +96,32 @@
 
         <dd>
             @Html.DisplayFor(model => model.acte_FechaModifica)
-        </dd>
+        </dd>*@
 
     </dl>
-
-
-	    @Html.ActionLink("Edit", "Edit", new { id = Model.acte_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
-
+                    <div class="form-group">
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.acte_FechaCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.acte_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </div>
+            
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.acte_Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white" })
+                   
                 </div>
             </div>
         </div>

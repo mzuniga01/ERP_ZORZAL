@@ -13,7 +13,7 @@ namespace ERP_ZORZAL.Models
     }
     public class ActividadEconomicasMetaData
     {
-        [Display(Name = "ID")]
+        [Display(Name = "Número")]
         public short acte_Id { get; set; }
 
         [Display(Name = "Descripción")]
@@ -23,12 +23,18 @@ namespace ERP_ZORZAL.Models
         public int acte_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Crea")]
+        [DisplayFormat(ApplyFormatInEditMode = true,
+            DataFormatString = "{0:yyyy-MM-dd}",
+            HtmlEncode = false)]
         public System.DateTime acte_FechaCrea { get; set; }
 
         [Display(Name = "Usuario Modifica")]
         public Nullable<int> acte_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modifica")]
+        [DisplayFormat(ApplyFormatInEditMode = true,
+            DataFormatString = "{0:yyyy-MM-dd}",
+            HtmlEncode = false)]
         public Nullable<System.DateTime> acte_FechaModifica { get; set; }
     }
 }

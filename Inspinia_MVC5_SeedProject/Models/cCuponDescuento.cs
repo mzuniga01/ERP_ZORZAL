@@ -12,11 +12,11 @@ namespace ERP_ZORZAL.Models
     }
     public class cCuponDescuentoMetaData
     {
-        [Display(Name = "Id Cupón Descuento")]
+        [Display(Name = "ID Cupón Descuento")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public int cdto_ID { get; set; }
 
-        [Display(Name = "Código Cupón Descuento")]
+        [Display(Name = "Sucursal")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public short suc_Id { get; set; }
 
@@ -40,20 +40,22 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public Nullable<decimal> cdto_MontoDescuento { get; set; }
 
-        [Display(Name = "Usuario Agregó")]
+        [Display(Name = "Anulado")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
+        public Nullable<bool> cdto_Anulado { get; set; }
+
+        [Display(Name = "Usuario Creó")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public int cdto_UsuarioCrea { get; set; }
 
-        [Display(Name = "Fecha Agregó")]
+        [Display(Name = "Fecha Creó")]
         [DisplayFormat(ApplyFormatInEditMode = true,
             DataFormatString = "{0:yyyy-MM-dd}",
             HtmlEncode = false)]
         public System.DateTime cdto_FechaCrea { get; set; }
 
-        [Display(Name = "Fecha Modificó")]
-        [DisplayFormat(ApplyFormatInEditMode = true,
-            DataFormatString = "{0:yyyy-MM-dd}",
-            HtmlEncode = false)]
+        [Display(Name = "Usuario Modificó")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public Nullable<int> cdto_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modificó")]
@@ -61,6 +63,14 @@ namespace ERP_ZORZAL.Models
             DataFormatString = "{0:yyyy-MM-dd}",
             HtmlEncode = false)]
         public Nullable<System.DateTime> cdto_FechaModifica { get; set; }
+
+        [Display(Name = "Redimido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
+        public string cdto_Redimido { get; set; }
+
+        [Display(Name = "Máximo Monto Descuento")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
+        public decimal cdto_MaximoMontoDescuento { get; set; }
 
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

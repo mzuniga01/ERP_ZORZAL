@@ -24,7 +24,7 @@
                 <div class="ibox-title">
                     <h5>Listado Tipo Identificación</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-primary" })
+						@Html.ActionLink("Registrar Tipo Identificación", "Create", null, new { @class = "btn btn-primary" })
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -35,9 +35,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.tpi_Id)
             </th>
+         
             <th>
                 @Html.DisplayNameFor(model => model.tpi_Descripcion)
             </th>
+           
             @*<th>
                 @Html.DisplayNameFor(model => model.tpi_UsuarioCrea)
             </th>

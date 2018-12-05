@@ -26,13 +26,12 @@
 
 
 
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Editar Nota Crédito</h5>
+                    <h5>Edit tbNotaCredito</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -46,84 +45,102 @@
         @Html.HiddenFor(model => model.nocre_Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nocre_Codigo, new { @class = "control-label col-md-2", @readonly="readonly" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nocre_Codigo)
-                @Html.ValidationMessageFor(model => model.nocre_Codigo)
+            @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
+                @Html.DropDownList("suc_Id", String.Empty)
+                @Html.ValidationMessageFor(model => model.suc_Id)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.dev_Id, "Devolución", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("dev_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.dev_Id)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.clte_Id, "Cliente", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("clte_Id", String.Empty)
+            @Html.LabelFor(model => model.clte_Id, "Cliente", new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.clte_Id, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.DropDownList("clte_Id", String.Empty)*@
                 @Html.ValidationMessageFor(model => model.clte_Id)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nocre_FechaEmision, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nocre_FechaEmision)
+            @Html.LabelFor(model => model.dev_Id, "Devolucion", new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.dev_Id, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.DropDownList("dev_Id", String.Empty)*@
+                @Html.ValidationMessageFor(model => model.dev_Id)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.nocre_Codigo, new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.nocre_Codigo)
+                @Html.ValidationMessageFor(model => model.nocre_Codigo)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nocre_Anulado, new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.nocre_Anulado)
+                @Html.ValidationMessageFor(model => model.nocre_Anulado)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nocre_FechaEmision, new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.nocre_FechaEmision, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.nocre_FechaEmision)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.nocre_MotivoEmision)
                 @Html.ValidationMessageFor(model => model.nocre_MotivoEmision)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.nocre_Monto)
                 @Html.ValidationMessageFor(model => model.nocre_Monto)
             </div>
         </div>
 
         @*<div class="form-group">
-        @Html.LabelFor(model => model.nocre_UsuarioCrea, "nocre_UsuarioCrea", new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("nocre_UsuarioCrea", String.Empty)
-            @Html.ValidationMessageFor(model => model.nocre_UsuarioCrea)
+            @Html.LabelFor(model => model.nocre_UsuarioCrea, "nocre_UsuarioCrea", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("nocre_UsuarioCrea", String.Empty)
+                @Html.ValidationMessageFor(model => model.nocre_UsuarioCrea)
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.nocre_FechaCrea, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.nocre_FechaCrea)
-            @Html.ValidationMessageFor(model => model.nocre_FechaCrea)
+        <div class="form-group">
+            @Html.LabelFor(model => model.nocre_FechaCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nocre_FechaCrea)
+                @Html.ValidationMessageFor(model => model.nocre_FechaCrea)
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.nocre_UsuarioModifica, "nocre_UsuarioModifica", new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("nocre_UsuarioModifica", String.Empty)
-            @Html.ValidationMessageFor(model => model.nocre_UsuarioModifica)
+        <div class="form-group">
+            @Html.LabelFor(model => model.nocre_UsuarioModifica, "nocre_UsuarioModifica", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("nocre_UsuarioModifica", String.Empty)
+                @Html.ValidationMessageFor(model => model.nocre_UsuarioModifica)
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.nocre_FechaModifica, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.nocre_FechaModifica)
-            @Html.ValidationMessageFor(model => model.nocre_FechaModifica)
-        </div>
-    </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.nocre_FechaModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nocre_FechaModifica)
+                @Html.ValidationMessageFor(model => model.nocre_FechaModifica)
+            </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -142,7 +159,3 @@
  </div>
 
 
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

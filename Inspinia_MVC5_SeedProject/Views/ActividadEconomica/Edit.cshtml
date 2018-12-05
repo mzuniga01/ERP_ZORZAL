@@ -4,7 +4,24 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+        margin-left: 17%;
+    }
 
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Actividad Económica</h2>
@@ -47,11 +64,11 @@
         @Html.HiddenFor(model => model.acte_Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.acte_Descripcion, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.acte_Descripcion, new { @class = "control-label col-md-1" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.acte_Descripcion)
-                @Html.ValidationMessageFor(model => model.acte_Descripcion)
-            </div>
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.acte_Descripcion)
+</div>
         </div>
 
         @*<div class="form-group">
@@ -85,6 +102,26 @@
                 @Html.ValidationMessageFor(model => model.acte_FechaModifica)
             </div>
         </div>*@
+
+        <div class="form-group">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+                <tr>
+                    <td>Creado</td>
+                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                    <td>@Html.DisplayFor(model => model.acte_FechaCrea)</td>
+                </tr>
+                <tr>
+                    <td>Modificado</td>
+                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                    <td>@Html.DisplayFor(model => model.acte_FechaModifica)</td>
+                </tr>
+            </table>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
