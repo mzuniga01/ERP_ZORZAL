@@ -112,11 +112,11 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_Observaciones_ { get; set; }
 
-        [Display(Name = "Usuario Crea")]
+        [Display(Name = "Usuario Creación")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int clte_UsuarioCrea { get; set; }
 
-        [Display(Name = "Fecha Crea")]
+        [Display(Name = "Fecha Creación")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime clte_FechaCrea { get; set; }
@@ -127,7 +127,6 @@ namespace ERP_ZORZAL.Models
 
         [Display(Name = "Fecha Modificó")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
         
 

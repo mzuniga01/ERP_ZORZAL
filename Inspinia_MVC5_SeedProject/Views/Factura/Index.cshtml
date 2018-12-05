@@ -108,25 +108,25 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.fact_Codigo)
                                         </td>
-                                        <td>
+                                        @*<td>
                                             @Html.DisplayFor(modelItem => item.fact_Fecha)
-                                        </td>
+                                        </td>*@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.esfac_Id)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.cja_Id)
                                         </td>
-                                        <td>
+                                        @*<td>
                                             @Html.DisplayFor(modelItem => item.suc_Id)
-                                        </td>
+                                        </td>*@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.clte_Id)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.pemi_NumeroCAI)
                                         </td>
-                                        <td>
+                                        @*<td>
                                             @Html.DisplayFor(modelItem => item.fact_AlCredito)
                                         </td>
                                         <td>
@@ -146,7 +146,7 @@
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.clte_Nombres)
-                                        </td>
+                                        </td>*@
                                         @*<td>
                                                 @Html.DisplayFor(modelItem => item.fact_UsuarioCrea)
                                             </td>
@@ -160,8 +160,11 @@
                                                 @Html.DisplayFor(modelItem => item.fact_FechaModifica)
                                             </td>*@
                                         <td>
-                                            @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-white btn-sm" })
-                                            @Html.ActionLink("Anular", "Delete", new { id = item.fact_Id }, new { @class = "btn btn-white btn-sm" })
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-white btn-sm" })                                          
+                                            
+                                            <button type="button" class="btn btn-white btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                                Anular
+                                            </button>
                                         </td>
                                     </tr>
                                 }
@@ -175,8 +178,26 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular factura</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               ¿Está seguro de anular esta factura?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Index","Factura")" class="btn btn-primary">Guardar</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>               
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/DataTable1.js"></script>
-
-
+<script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>

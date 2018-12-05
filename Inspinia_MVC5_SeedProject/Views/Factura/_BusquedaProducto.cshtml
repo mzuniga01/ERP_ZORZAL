@@ -6,8 +6,11 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <div class="col-md-12">
-                        <input type="text" class="form-control" />
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" placeholder="Ingresar producto" />
+                            <br />
+                        </div>
                     </div>
                    
                     @*<div class="ibox-tools">
@@ -50,9 +53,9 @@
                                     @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)*@
-                                </th>
-                                <th></th>
+                                    @Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)
+                                </th>*@
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                        
@@ -60,9 +63,9 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>
+                                    @*<td>
                                         @Html.DisplayFor(modelItem => item.prod_Descripcion)
-                                    </td>
+                                    </td>*@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.prod_Marca)
                                     </td>
@@ -72,7 +75,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.prod_Talla)
                                     </td>
-                                    <td>
+                                    @*<td>
                                         @Html.DisplayFor(modelItem => item.prod_Color)
                                     </td>
                                     <td>
@@ -92,11 +95,12 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
-                                    </td>
+                                    </td>*@
                                     <td>
-                                        @Html.ActionLink("Details", "Details", new { id = item.prod_Codigo }, new { @class = "btn btn-primary btn-sm" })
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-sm" })
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-sm" })
+                                        <button class = "btn btn-primary btn-sm">Agregar</button>
+                                        @*@Html.ActionLink("Agregar", "Details", new { id = item.prod_Codigo }, new { @class = "btn btn-primary btn-sm" })*@
+                                        @*@Html.ActionLink("Edit", "Edit", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-sm" })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-sm" })*@
                                     </td>
                                 </tr>
                             }
@@ -126,6 +130,7 @@ $(document).ready(function () {
                 "sEmptyTable": "No hay registros",
                 "sInfoEmpty": "Mostrando 0 de 0 Entradas",
                 "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
                
             }
         });

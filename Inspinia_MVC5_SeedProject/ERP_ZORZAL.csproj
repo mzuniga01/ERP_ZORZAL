@@ -242,6 +242,7 @@
     <Compile Include="Models\Monedas.cs" />
     <Compile Include="Models\Pedidos.cs" />
     <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\PuntoEmision.cs" />
     <Compile Include="Models\SolicitudCreditos.cs" />
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
@@ -656,7 +657,6 @@
     <Content Include="Scripts\app\Activo.js" />
     <Content Include="Scripts\app\Credito.js" />
     <Content Include="Scripts\app\DataTable.js" />
-    <Content Include="Scripts\app\DataTable1.js" />
     <Content Include="Scripts\app\DataTableBusquedaGenerica.js" />
     <Content Include="Scripts\app\Datepicker.js" />
     <Content Include="Scripts\app\inspinia.js" />
@@ -938,6 +938,8 @@
     <Content Include="Views\PuntoEmision\Details.cshtml" />
     <Content Include="Views\PuntoEmision\Edit.cshtml" />
     <Content Include="Views\PuntoEmision\Index.cshtml" />
+    <Content Include="Views\PuntoEmision\_CreateNumeracion.cshtml" />
+    <Content Include="Views\PuntoEmision\_IndexNumeracion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
