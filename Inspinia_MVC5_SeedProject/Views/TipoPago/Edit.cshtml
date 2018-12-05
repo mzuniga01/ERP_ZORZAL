@@ -86,9 +86,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tpa_UsuarioCrea, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tpa_UsuarioCrea, "tpa_UsuarioCrea", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.tpa_UsuarioCrea)
+                @Html.DropDownList("tpa_UsuarioCrea", String.Empty)
                 @Html.ValidationMessageFor(model => model.tpa_UsuarioCrea)
             </div>
         </div>
@@ -102,9 +102,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tpa_UsuarioModifica, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tpa_UsuarioModifica, "tpa_UsuarioModifica", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.tpa_UsuarioModifica)
+                @Html.DropDownList("tpa_UsuarioModifica", String.Empty)
                 @Html.ValidationMessageFor(model => model.tpa_UsuarioModifica)
             </div>
         </div>

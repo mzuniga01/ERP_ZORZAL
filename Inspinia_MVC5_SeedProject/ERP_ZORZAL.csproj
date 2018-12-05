@@ -179,14 +179,18 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadEconomicaController.cs" />
+    <Compile Include="Controllers\ArqueoCajaController.cs" />
     <Compile Include="Controllers\BancoController.cs" />
+    <Compile Include="Controllers\CajaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\CuentaBancoController.cs" />
     <Compile Include="Controllers\CuponDescuentoController.cs" />
+    <Compile Include="Controllers\DenominacionController.cs" />
     <Compile Include="Controllers\DevolucionController.cs" />
     <Compile Include="Controllers\DocumentoFiscalController.cs" />
     <Compile Include="Controllers\EstadoFacturaController.cs" />
     <Compile Include="Controllers\EstadoSolicitudCreditoController.cs" />
+    <Compile Include="Controllers\ExoneracionController.cs" />
     <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListaPrecioController.cs" />
@@ -197,6 +201,9 @@
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\PuntoEmisionController.cs" />
     <Compile Include="Controllers\SolicitudCreditoController.cs" />
+    <Compile Include="Controllers\SolicitudEfectivoController.cs" />
+    <Compile Include="Controllers\SolicitudEfectivoDetalleController.cs" />
+    <Compile Include="Controllers\SucursalController.cs" />
     <Compile Include="Controllers\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\TipoPagoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -205,17 +212,25 @@
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActividadEconomicas.cs" />
+    <Compile Include="Models\ArqueoCajas.cs" />
     <Compile Include="Models\Banco.cs" />
     <Compile Include="Models\cActivo.cs" />
+    <Compile Include="Models\Cajas.cs" />
     <Compile Include="Models\cCuponDescuento.cs" />
+    <Compile Include="Models\cDenominacion.cs" />
     <Compile Include="Models\cDepartamento.cs" />
+    <Compile Include="Models\cDetalleDevolucion.cs" />
     <Compile Include="Models\cDevolucion.cs" />
     <Compile Include="Models\cDocumentoFiscal.cs" />
+    <Compile Include="Models\cExoneracion.cs" />
     <Compile Include="Models\cGenero.cs" />
     <Compile Include="Models\Clientes.cs" />
     <Compile Include="Models\cNacionalidad.cs" />
     <Compile Include="Models\cNotaCredito.cs" />
+    <Compile Include="Models\cSolicitudEfectivo.cs" />
+    <Compile Include="Models\cTest.cs" />
     <Compile Include="Models\cTipoCuenta.cs" />
+    <Compile Include="Models\cTP.cs" />
     <Compile Include="Models\CuentaBanco.cs" />
     <Compile Include="Models\cUtilities.cs" />
     <Compile Include="Models\EstadoFactura.cs" />
@@ -240,6 +255,7 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Monedas.cs" />
+    <Compile Include="Models\Pagos.cs" />
     <Compile Include="Models\Pedidos.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\PuntoEmision.cs" />
@@ -417,6 +433,7 @@
     <Compile Include="Models\tbUsuario.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TipoPagos.cs" />
     <Compile Include="Models\TiposIdenticacion.cs" />
     <Compile Include="Models\UnidadesMedida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -663,6 +680,7 @@
     <Content Include="Scripts\app\Datepicker.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
+    <Content Include="Scripts\app\TipoPago.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap.css.map" />
@@ -944,9 +962,41 @@
     <Content Include="Views\PuntoEmision\_IndexNumeracion.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexSucursal.cshtml" />
     <Content Include="Views\PuntoEmision\_EditNumeracion.cshtml" />
+    <Content Include="Views\ArqueoCaja\Create.cshtml" />
+    <Content Include="Views\ArqueoCaja\Delete.cshtml" />
+    <Content Include="Views\ArqueoCaja\Details.cshtml" />
+    <Content Include="Views\ArqueoCaja\Edit.cshtml" />
+    <Content Include="Views\ArqueoCaja\Index.cshtml" />
+    <Content Include="Views\Caja\Create.cshtml" />
+    <Content Include="Views\Caja\Delete.cshtml" />
+    <Content Include="Views\Caja\Details.cshtml" />
+    <Content Include="Views\Caja\Edit.cshtml" />
+    <Content Include="Views\Caja\Index.cshtml" />
+    <Content Include="Views\Denominacion\Create.cshtml" />
+    <Content Include="Views\Denominacion\Delete.cshtml" />
+    <Content Include="Views\Denominacion\Details.cshtml" />
+    <Content Include="Views\Denominacion\Edit.cshtml" />
+    <Content Include="Views\Denominacion\Index.cshtml" />
+    <Content Include="Views\Exoneracion\Create.cshtml" />
+    <Content Include="Views\Exoneracion\Delete.cshtml" />
+    <Content Include="Views\Exoneracion\Details.cshtml" />
+    <Content Include="Views\Exoneracion\Edit.cshtml" />
+    <Content Include="Views\Exoneracion\Index.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\Create.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\Delete.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\Details.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\Edit.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\Index.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\_CreateSolicitudEfectivoDetalle.cshtml" />
+    <Content Include="Views\Sucursal\Create.cshtml" />
+    <Content Include="Views\Sucursal\Delete.cshtml" />
+    <Content Include="Views\Sucursal\Details.cshtml" />
+    <Content Include="Views\Sucursal\Edit.cshtml" />
+    <Content Include="Views\Sucursal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\SolicitudEfectivoDetalle\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

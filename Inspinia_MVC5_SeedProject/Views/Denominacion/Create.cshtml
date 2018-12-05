@@ -1,0 +1,148 @@
+﻿@model ERP_ZORZAL.Models.tbDenominacion
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Registro de Denominación</h2>
+        @*<ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Create</strong>
+            </li>
+        </ol>*@
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+			@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
+            <a href="/Denominacion/Index">Regresar</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Registrar Denominación</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mnda_Id, "Moneda", new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.DropDownList("mnda_Nombre", String.Empty)
+                @Html.ValidationMessageFor(model => model.mnda_Id)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_Descripcion, "Denominación", new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+
+                @Html.DropDownListFor(x => x.deno_Tipo, new List<SelectListItem>
+    {
+                        new SelectListItem() {Text = "Billete", Value="1"},
+                        new SelectListItem() {Text = "Moneda", Value="2"},
+                       
+    })
+
+
+            </div>
+        </div>
+
+
+
+
+
+        
+
+
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_Descripcion, "Descripción", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.deno_Descripcion)
+                @Html.ValidationMessageFor(model => model.deno_Descripcion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_valor,"Valor", new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.deno_valor)
+                @Html.ValidationMessageFor(model => model.deno_valor)
+            </div>
+        </div>
+
+        
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.deno_UsuarioCrea, "deno_UsuarioCrea", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("deno_UsuarioCrea", String.Empty)
+                @Html.ValidationMessageFor(model => model.deno_UsuarioCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_FechaCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.deno_FechaCrea)
+                @Html.ValidationMessageFor(model => model.deno_FechaCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_UsuarioModifica, "deno_UsuarioModifica", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("deno_UsuarioModifica", String.Empty)
+                @Html.ValidationMessageFor(model => model.deno_UsuarioModifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_FechaModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.deno_FechaModifica)
+                @Html.ValidationMessageFor(model => model.deno_FechaModifica)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,145 @@
+﻿@model ERP_ZORZAL.Models.tbExoneracion
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Crear</h2>
+        @*<ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Create</strong>
+            </li>
+        </ol>*@
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+			@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary btn-xs" })
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Crear Exoneracion</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.exo_Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.exo_Id)
+                @Html.ValidationMessageFor(model => model.exo_Id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.exo_Documento, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.exo_Documento)
+                @Html.ValidationMessageFor(model => model.exo_Documento)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.exo_ExoneracionActiva, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.exo_ExoneracionActiva)
+                @Html.ValidationMessageFor(model => model.exo_ExoneracionActiva)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.exo_FechaInicialVigencia, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.exo_FechaInicialVigencia)
+                @Html.ValidationMessageFor(model => model.exo_FechaInicialVigencia)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.exo_FechaIFinalVigencia, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.exo_FechaIFinalVigencia)
+                @Html.ValidationMessageFor(model => model.exo_FechaIFinalVigencia)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.clte_Id, "Cliente Id", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_Id)
+                @*@Html.DropDownList("clte_Id", String.Empty)*@
+                @Html.ValidationMessageFor(model => model.clte_Id)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.exo_UsuarioCrea, "exo_UsuarioCrea", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("exo_UsuarioCrea", String.Empty)
+                @Html.ValidationMessageFor(model => model.exo_UsuarioCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.exo_FechaCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.exo_FechaCrea)
+                @Html.ValidationMessageFor(model => model.exo_FechaCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.exo_UsuarioModifa, "exo_UsuarioModifa", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("exo_UsuarioModifa", String.Empty)
+                @Html.ValidationMessageFor(model => model.exo_UsuarioModifa)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.exo_FechaModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.exo_FechaModifica)
+                @Html.ValidationMessageFor(model => model.exo_FechaModifica)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Registrar Exoneracion" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

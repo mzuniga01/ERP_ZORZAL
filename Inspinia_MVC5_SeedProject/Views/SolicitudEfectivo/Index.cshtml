@@ -1,0 +1,141 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbSolicitudEfectivo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Solicitud de Efectivo</h2>
+        @*<ol class="breadcrumb">
+            <li class="active">
+                <strong>tbSolicitudEfectivo</strong>
+            </li>
+        </ol>*@
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Solicitudes de Efectivo</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Registrar Solicitud de Efectivo", "Create", null, new { @class = "btn btn-primary "})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+                    <div class="table-responsive">
+                        <table class="table table table-striped  table-bordered" id="DataTable" style="width:100%">
+                            <thead>
+                                <tr>
+
+                                    <th>
+                                        Fecha Solicitud
+                                    </th>
+
+                                    <th>                                        
+                                        Sucursal
+                                    </th>
+
+                                    
+
+                                    <th>
+                                        Caja
+                                    </th>
+
+                                    <th>
+                                        @*@Html.DisplayNameFor(model => model.tbMoneda.mnda_Nombre)*@
+                                        Moneda
+                                    </th>
+
+                                    <th>
+                                        Monto Solicitado
+                                    </th>
+                                    <th>
+                                     Monto Entregado
+                                    </th>
+
+
+                                    @*<th>
+                                        @Html.DisplayNameFor(model => model.solef_FechaCrea)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.solef_FechaModifica)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+                                    </th>*@
+                                                                       
+
+                                    
+
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                           
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                        
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbCaja.cja_Descripcion)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbMoneda.mnda_Nombre)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.solef_MontoSolicitud)
+                                        </td>
+                                        <td>
+                                          
+                                        </td>
+
+                                        @*<td>
+                                            @Html.DisplayFor(modelItem => item.solef_FechaCrea)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.solef_FechaModifica)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
+                                        </td>*@
+                                       
+                                        
+                                        <td>
+                                            @Html.ActionLink("Details", "Details", new { id = item.solef_Id }, new { @class = "btn btn-primary btn-sm" })
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.solef_Id }, new { @class = "btn btn-white btn-sm" })
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.solef_Id }, new { @class = "btn btn-white btn-sm" })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+ </div>
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>

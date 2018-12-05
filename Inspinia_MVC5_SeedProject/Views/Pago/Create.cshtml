@@ -7,23 +7,22 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Nuevo Pago</h2>
-        <ol class="breadcrumb">
+        <h2>Pago</h2>
+        @*<ol class="breadcrumb">
             <li>
-                @Html.ActionLink("Lista", "Index")
+                @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
-                <strong>Nuevo Pago</strong>
+                <strong>Pago</strong>
             </li>
-        </ol>
+        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})
+            <a href="@Url.Action("Index","Pago")">Regresar</a>
         </div>
     </div>
 </div>
-
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -31,7 +30,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Nuevo Pago</h5>
+                    <h5>Registrar Pago</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -44,81 +43,147 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.pago_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pago_Id)
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.pago_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.pago_Id)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.fact_Codigo,"Codigo Factura", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("fact_Codigo", String.Empty)
-                @Html.ValidationMessageFor(model => model.fact_Codigo)
+            @Html.LabelFor(model => model.fact_Id, "Factura", new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.fact_Id, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.fact_Id)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.pago_FechaElaboracion, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.pago_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaPago" } })
+                @Html.ValidationMessageFor(model => model.pago_FechaElaboracion)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.pago_SaldoAnterior, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.pago_SaldoAnterior, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.pago_SaldoAnterior)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tpa_Id, "Codigo Tipo Pago", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("tpa_Id", String.Empty)
+            @Html.LabelFor(model => model.pago_TotalPago, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.pago_TotalPago, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.pago_TotalPago)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tpa_Id, "Tipo de Pago", new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @*@Html.DropDownList("tpa_Id", String.Empty)*@
+                @Html.DropDownList("tpa_id", new SelectList(Model.TPList, "ID_TP", "DESCRIPCION_TP"), "Seleccionar Tipo Pago", new { @class = "form-control", @id = "TipoPago" })
                 @Html.ValidationMessageFor(model => model.tpa_Id)
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.pago_Totalpagos, new { @class = "control-label col-md-2" })
+        <div id="Efectivo" name="Efectivo">
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_TotalPago,"Monto a Pagar", new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.pago_TotalPago)
+                    @Html.ValidationMessageFor(model => model.pago_TotalPago)
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_TotalCambio, new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.pago_TotalCambio,  new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.pago_TotalCambio)
+                </div>
+            </div>
+        </div>
+
+        <div id="TCD" name="TCD">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_TotalCambio,"Monto a Pagar", new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.pago_TotalCambio)
+                    @Html.ValidationMessageFor(model => model.pago_TotalCambio)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.pago_Emisor)
+                    @Html.ValidationMessageFor(model => model.pago_Emisor)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_FechaVencimiento, new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.pago_FechaVencimiento)
+                    @Html.ValidationMessageFor(model => model.pago_FechaVencimiento)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_Titular_, new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.pago_Titular_)
+                    @Html.ValidationMessageFor(model => model.pago_Titular_)
+                </div>
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.bcta_Id, "bcta_Id", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.pago_Totalpagos)
-                @Html.ValidationMessageFor(model => model.pago_Totalpagos)
+                @Html.DropDownList("bcta_Id", String.Empty)
+                @Html.ValidationMessageFor(model => model.bcta_Id)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.pago_UsuarioCrea, "pago_UsuarioCrea", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("pago_UsuarioCrea", String.Empty)
+                @Html.ValidationMessageFor(model => model.pago_UsuarioCrea)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.pago_Totalcambio, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.pago_FechaCrea, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.pago_Totalcambio)
-                @Html.ValidationMessageFor(model => model.pago_Totalcambio)
+                @Html.EditorFor(model => model.pago_FechaCrea)
+                @Html.ValidationMessageFor(model => model.pago_FechaCrea)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.pago_UsuarioModifica, "pago_UsuarioModifica", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.pago_Emisor)
-                @Html.ValidationMessageFor(model => model.pago_Emisor)
+                @Html.DropDownList("pago_UsuarioModifica", String.Empty)
+                @Html.ValidationMessageFor(model => model.pago_UsuarioModifica)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.pago_Cuenta, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.pago_FechaModifica, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.pago_Cuenta)
-                @Html.ValidationMessageFor(model => model.pago_Cuenta)
+                @Html.EditorFor(model => model.pago_FechaModifica)
+                @Html.ValidationMessageFor(model => model.pago_FechaModifica)
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pago_FechaVencimiento, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pago_FechaVencimiento)
-                @Html.ValidationMessageFor(model => model.pago_FechaVencimiento)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pago_Titular_, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pago_Titular_)
-                @Html.ValidationMessageFor(model => model.pago_Titular_)
-            </div>
-        </div>
-
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Crear" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Registrar Pago" class="btn btn-primary" />
+				@Html.ActionLink("Salir", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>
@@ -131,7 +196,6 @@
  </div>
 
  
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/TipoPago.js"></script>

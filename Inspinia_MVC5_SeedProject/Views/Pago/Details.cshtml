@@ -7,13 +7,13 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Detalle Pago</h2>
+        <h2>Details</h2>
         <ol class="breadcrumb">
             <li>
-                @Html.ActionLink("Lista", "Index")
+                @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
-                <strong>Detalle Pago</strong>
+                <strong>Details</strong>
             </li>
         </ol>
     </div>
@@ -27,26 +27,42 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Detalle Pago</h5>
+                    <h5>Details tbPago</h5>
                 </div>
                 <div class="ibox-content">
 
 
 				    <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.pago_Totalpagos)
+            @Html.DisplayNameFor(model => model.pago_FechaElaboracion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.pago_Totalpagos)
+            @Html.DisplayFor(model => model.pago_FechaElaboracion)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.pago_Totalcambio)
+            @Html.DisplayNameFor(model => model.pago_SaldoAnterior)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.pago_Totalcambio)
+            @Html.DisplayFor(model => model.pago_SaldoAnterior)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pago_TotalPago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pago_TotalPago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pago_TotalCambio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pago_TotalCambio)
         </dd>
 
         <dt>
@@ -55,14 +71,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.pago_Emisor)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pago_Cuenta)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pago_Cuenta)
         </dd>
 
         <dt>
@@ -80,13 +88,53 @@
         <dd>
             @Html.DisplayFor(model => model.pago_Titular_)
         </dd>
-     
+
         <dt>
-            @Html.DisplayNameFor(model => model.tbFactura.cja_Codigo)
+            @Html.DisplayNameFor(model => model.pago_FechaCrea)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.tbFactura.cja_Codigo)
+            @Html.DisplayFor(model => model.pago_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pago_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pago_FechaModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbCuentasBanco.bcta_Numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbCuentasBanco.bcta_Numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
         </dd>
 
         <dt>
@@ -100,7 +148,7 @@
     </dl>
 
 
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.pago_Id }, new { @class = "btn btn-primary"})
+	    @Html.ActionLink("Edit", "Edit", new { id = Model.pago_Id }, new { @class = "btn btn-primary"})
     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
 
                 </div>

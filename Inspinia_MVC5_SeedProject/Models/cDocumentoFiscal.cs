@@ -16,11 +16,11 @@ namespace ERP_ZORZAL.Models
         [Display(Name = " Codigo Documento ")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public byte dfisc_Id { get; set; }
-        [Display(Name = " Descripcion ")]
+        [Display(Name = " Descripción ")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string dfisc_Descripcion { get; set; }
 
-        [Display(Name = "Fecha Creación")]
+        [Display(Name = "Usuario Creación")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int dfisc_UsuarioCrea { get; set; }
         

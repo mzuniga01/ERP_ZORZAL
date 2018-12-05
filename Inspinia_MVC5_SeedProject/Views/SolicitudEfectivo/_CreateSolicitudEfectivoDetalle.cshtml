@@ -1,0 +1,146 @@
+﻿@model ERP_ZORZAL.Models.tbSolicitudEfectivoDetalle
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                @*<div class="ibox-title">
+                    <h5>Detalle de Solicitud Efectivo</h5>
+                </div>*@
+                <div class="ibox-content">
+
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+
+
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.solef_Id, "Número", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.DropDownList("solef_Id", String.Empty)*@
+                @Html.EditorFor(model => model.soled_Id, new { htmlAttributes = new { disabled = true } })
+                @Html.ValidationMessageFor(model => model.solef_Id)
+            </div>
+        </div>
+
+
+        @{
+            var Listado = new List<SelectListItem>() {
+
+                new SelectListItem()
+                {
+                    Text ="500",
+                    Value = "1"
+                },
+                new SelectListItem()
+                {
+                    Text ="100",
+                    Value = "2"
+                },
+                 new SelectListItem()
+                {
+                    Text ="0.50",
+                    Value = "1"
+                },
+           };
+        }
+
+        <div class="form-group">
+            @*<label  class = "control-label col-md-3">Denominacion</label>*@
+            @Html.LabelFor(model => model.deno_Id, "Denominación", new { @class = "control-label col-md-3" })
+            <div class="col-md-3">
+                @*@Html.DropDownList("deno_Id", String.Empty)*@
+                @Html.DropDownList("Tipo Denominacion", Listado, new { @class = "control-label col-md-12" })
+                @*@Html.EditorFor(model => model.deno_Id)*@
+                <span class="validation-error">  @Html.ValidationMessageFor(model => model.deno_Id)</span>
+            </div>
+        </div>
+
+
+
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.deno_Id, "deno_Id", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("deno_Id", String.Empty)
+                @Html.ValidationMessageFor(model => model.deno_Id)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Cantidad Solicitada</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.soled_CantidadSolicitada)
+                @Html.ValidationMessageFor(model => model.soled_CantidadSolicitada)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Cantidad Entregada</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.soled_CantidadEntregada)
+                @Html.ValidationMessageFor(model => model.soled_CantidadEntregada)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.soled_UsuarioCrea, "soled_UsuarioCrea", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("soled_UsuarioCrea", String.Empty)
+                @Html.ValidationMessageFor(model => model.soled_UsuarioCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.soled_FechaCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.soled_FechaCrea)
+                @Html.ValidationMessageFor(model => model.soled_FechaCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.soled_UsuarioModifica, "soled_UsuarioModifica", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("soled_UsuarioModifica", String.Empty)
+                @Html.ValidationMessageFor(model => model.soled_UsuarioModifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.soled_FechaModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.soled_FechaModifica)
+                @Html.ValidationMessageFor(model => model.soled_FechaModifica)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Agregar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Create", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

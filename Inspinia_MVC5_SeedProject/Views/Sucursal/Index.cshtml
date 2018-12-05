@@ -1,0 +1,131 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbSucursal>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Sucursal</h2>
+        @*<ol class="breadcrumb">
+            <li class="active">
+                <strong>tbSucursal</strong>
+            </li>
+        </ol>*@
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Lista Sucursal</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Registrar Sucursal", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+                    <table id="DataTable1" class="table table table-striped  table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Descripcion
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.suc_Correo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.suc_Direccion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.suc_Telefono)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.suc_FechaCrea)
+                                </th>
+                                @*<th>
+                                    @Html.DisplayNameFor(model => model.suc_FechaModifica)
+                                </th>*@
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)*@
+                                    Nombre usuario
+                                </th>
+                                @*<th>
+                                    @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+                                </th>*@
+                                <th>
+                                    Departamento
+                                    @*@Html.DisplayNameFor(model => model.tbMunicipio.dep_Codigo)*@
+                                </th>
+                                <th>
+                                    Encargado
+                                    @*@Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)*@
+                                </th>
+                                <th>
+                                    Numero CAI
+                                    @*@Html.DisplayNameFor(model => model.tbPuntoEmision.pemi_NumeroCAI)*@
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.suc_Correo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.suc_Direccion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.suc_Telefono)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.suc_FechaCrea)
+                                    </td>
+                                    @*<td>
+                                        @Html.DisplayFor(modelItem => item.suc_FechaModifica)
+                                    </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+                                    </td>
+                                    @*<td>
+                                        @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
+                                    </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbMunicipio.dep_Codigo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbBodega.bod_ResponsableBodega)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbPuntoEmision.pemi_NumeroCAI)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Details", "Details", new { id = item.suc_Id }, new { @class = "btn btn-primary btn-sm" })
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.suc_Id }, new { @class = "btn btn-white btn-sm" })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.suc_Id }, new { @class = "btn btn-white btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable1.js"></script>
+
+
+

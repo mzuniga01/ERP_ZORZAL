@@ -7,19 +7,19 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Nuevo</h2>
-        <ol class="breadcrumb">
+        <h2>Registrar </h2>
+        @*<ol class="breadcrumb">
             <li>
-                @Html.ActionLink("Lista", "Index")
+                @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
-                <strong>Tipo Pago</strong>
+                <strong>Create</strong>
             </li>
-        </ol>
+        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})
+            <a href="@Url.Action("Index","TipoPago")">Regresar</a>
         </div>
     </div>
 </div>
@@ -31,7 +31,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Nuevo Tipo Pago</h5>
+                    <h5>Registrar Tipo de Pago</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -82,11 +82,42 @@
             </div>
         </div>
 
-  
+        @*<div class="form-group">
+            @html.labelfor(model => model.tpa_usuariocrea, "tpa_usuariocrea", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @html.dropdownlist("tpa_usuariocrea", string.empty)
+                @html.validationmessagefor(model => model.tpa_usuariocrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @html.labelfor(model => model.tpa_fechacrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @html.editorfor(model => model.tpa_fechacrea)
+                @html.validationmessagefor(model => model.tpa_fechacrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @html.labelfor(model => model.tpa_usuariomodifica, "tpa_usuariomodifica", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @html.dropdownlist("tpa_usuariomodifica", string.empty)
+                @html.validationmessagefor(model => model.tpa_usuariomodifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @html.labelfor(model => model.tpa_fechamodifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @html.editorfor(model => model.tpa_fechamodifica)
+                @html.validationmessagefor(model => model.tpa_fechamodifica)
+            </div>
+        </div>*@
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Nuevo" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Registrar Tipo de Pago" class="btn btn-primary" />
+				@Html.ActionLink("Anular", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>
@@ -103,3 +134,5 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script src="~/Scripts/app/Datepicker.js"></script>
