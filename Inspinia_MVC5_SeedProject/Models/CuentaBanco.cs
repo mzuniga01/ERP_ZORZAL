@@ -18,6 +18,7 @@ namespace ERP_ZORZAL.Models
     public class _CuentasBancoMetaData
     {
         [Display(Name = "Código")]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{"":D0}")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public short bcta_Id { get; set; }
         [Display(Name = "Banco")]

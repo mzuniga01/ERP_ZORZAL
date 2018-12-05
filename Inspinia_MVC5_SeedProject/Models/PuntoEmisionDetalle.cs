@@ -23,7 +23,7 @@ namespace ERP_ZORZAL.Models
         [Display(Name ="Documento Fiscal")]
         public byte dfisc_Id { get; set; }
 
-        [Display(Name = "Rango Inicio")]
+        [Display(Name = "Rango Inicial")]
         public string pemid_RangoInicio { get; set; }
 
         [Display(Name = "Rango Final")]
