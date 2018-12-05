@@ -44,3 +44,15 @@ $("#fact_AlCredito").ready(function () {
         $('#Credito1').hide();
     }
 });
+
+
+
+$(document).ready(function () {
+    if (fact_AlCredito.checked) {
+        $('#Credito').show();
+        $('#Credito1').show();
+    } else {
+        $('#Credito').show();
+        $('#Credito1').show();
+    }
+});
