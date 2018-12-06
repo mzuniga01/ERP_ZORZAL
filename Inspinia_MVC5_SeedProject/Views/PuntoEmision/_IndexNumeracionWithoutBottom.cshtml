@@ -100,11 +100,11 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                @*@Html.Partial("_EditMunicipios", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle())*@
+                                                @Html.Partial("_EditNumeracion", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle() { pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, })
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="@Url.Action("Create","PuntoEmision")" class="btn btn-primary ">Guardar</a>
-                                                <a href="@Url.Action("Index","PuntoEmision")" class = "btn btn-white">Cancelar</a>
+                                                <a href="@Url.Action("Details","PuntoEmision")" class="btn btn-primary ">Guardar</a>
+                                                <a href="@Url.Action("Index","PuntoEmision")" class="btn btn-white">Cancelar</a>
                                             </div>
                                         </div>
                                     </div>
