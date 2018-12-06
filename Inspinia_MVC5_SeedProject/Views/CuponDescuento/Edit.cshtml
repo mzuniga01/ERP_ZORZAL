@@ -1,29 +1,38 @@
 ﻿@model ERP_ZORZAL.Models.tbCuponDescuento
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+        margin-left: 17%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        /*background-color: #dddddd;*/
+    }
+</style>
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Edit</h2>
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Edit</strong>
-            </li>
-        </ol>
+        <h2>Cupón Descuento</h2>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+			@Html.ActionLink("Regresar", "Index")
         </div>
     </div>
 </div>
-
 
 
 
@@ -32,7 +41,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Edit tbCuponDescuento</h5>
+                    <h5>Editar Cupón Descuento</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -46,105 +55,106 @@
         @Html.HiddenFor(model => model.cdto_ID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.suc_Id, "suc_Id", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("suc_Id", String.Empty)
+            @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
+                <input type="text" value="San Pedro Sula" readonly class="form-control" />
+                @*@Html.DropDownList("suc_Id", String.Empty)*@
                 @Html.ValidationMessageFor(model => model.suc_Id)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cdto_FechaEmision)
-                @Html.ValidationMessageFor(model => model.cdto_FechaEmision)
+            @Html.LabelFor(model => model.suc_Id, "Código Cupón Descuento", new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
+                <input type="text" value="2" readonly class="form-control" />
+                @*@Html.DropDownList("suc_Id", String.Empty)*@
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cdto_FechaVencimiento)
-                @Html.ValidationMessageFor(model => model.cdto_FechaVencimiento)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.cdto_PorcentajeDescuento)
                 @Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.cdto_MontoDescuento)
                 @Html.ValidationMessageFor(model => model.cdto_MontoDescuento)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_Anulado, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cdto_Anulado)
-                @Html.ValidationMessageFor(model => model.cdto_Anulado)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_UsuarioCrea, "cdto_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("cdto_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.cdto_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cdto_FechaCrea)
-                @Html.ValidationMessageFor(model => model.cdto_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_UsuarioModifica, "cdto_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("cdto_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.cdto_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cdto_FechaModifica)
-                @Html.ValidationMessageFor(model => model.cdto_FechaModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_Redimido, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cdto_Redimido)
-                @Html.ValidationMessageFor(model => model.cdto_Redimido)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.cdto_MaximoMontoDescuento)
                 @Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)
             </div>
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.cdto_Anulado, new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
+                <select id="cdto_Anulado">
+                    <option>Seleccionar</option>
+                    <option value="true">Si</option>
+                    <option value="false">No</option>
+                </select>
+                @*@Html.EditorFor(model => model.cdto_Anulado)*@
+                @Html.ValidationMessageFor(model => model.cdto_Anulado)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cdto_Redimido, new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.cdto_Redimido)
+                @Html.ValidationMessageFor(model => model.cdto_Redimido)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.cdto_FechaEmision)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-4" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.cdto_FechaVencimiento)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+                <tr>
+                    <td>Creado</td>
+                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                    <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
+                </tr>
+                <tr>
+                    <td>Modificado</td>
+                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                    <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
+                </tr>
+            </table>
+        </div>
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-primary" })
             </div>
         </div>
     </div>
@@ -158,7 +168,3 @@
  </div>
 
 
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

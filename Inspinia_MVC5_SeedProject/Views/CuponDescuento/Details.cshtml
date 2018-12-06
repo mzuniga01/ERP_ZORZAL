@@ -4,18 +4,27 @@
     ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+        margin-left: 17%;
+    }
 
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        /*background-color: #dddddd;*/
+    }
+</style>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Cupón Descuento</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Details</strong>
-            </li>
-        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -37,143 +46,135 @@
                 <div class="ibox-content">
 
 
-                    <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)
-                        </dt>
+				    <dl class="dl-horizontal">
 
-                        <dd>
-                            @Html.DisplayFor(model => model.tbSucursal.mun_Codigo)
-                        </dd>
-                        <dt>
-                            @Html.DisplayNameFor(model => model.cdto_FechaEmision)
-                        </dt>
+        <dt>
+            Sucursal
+            @*@Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)*@
+        </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.cdto_FechaEmision)
-                        </dd>
+        <dd>
+            San Pedro Sula
+            @*@Html.DisplayFor(model => model.tbSucursal.mun_Codigo)*@
+        </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.cdto_FechaVencimiento)
-                        </dt>
+        <dt>
+            Código
+            @*@Html.DisplayNameFor(model => model.cdto_FechaEmision)*@
+        </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.cdto_FechaVencimiento)
-                        </dd>
+        <dd>
+            2
+            @*@Html.DisplayFor(model => model.cdto_FechaEmision)*@
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.cdto_PorcentajeDescuento)
+        </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.cdto_PorcentajeDescuento)
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cdto_PorcentajeDescuento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.cdto_MontoDescuento)
+        </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.cdto_PorcentajeDescuento)
-                        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.cdto_MontoDescuento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.cdto_MaximoMontoDescuento)
+        </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.cdto_MontoDescuento)
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cdto_MaximoMontoDescuento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.cdto_Anulado)
+        </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.cdto_MontoDescuento)
-                        </dd>
-                        <dt>
-                            @Html.DisplayNameFor(model => model.cdto_MaximoMontoDescuento)
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cdto_Anulado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.cdto_Redimido)
+        </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.cdto_MaximoMontoDescuento)
-                        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.cdto_Redimido)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.cdto_FechaEmision)
+        </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.cdto_Anulado)
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cdto_FechaEmision)
+        </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.cdto_Anulado)
-                        </dd>
-                        <dt>
-                            @Html.DisplayNameFor(model => model.cdto_Redimido)
-                        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.cdto_FechaVencimiento)
+        </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.cdto_Redimido)
-                        </dd>
-                        <style>
-                            table {
-                                font-family: arial, sans-serif;
-                                border-collapse: collapse;
-                                width: 50%;
-                                margin-left: 17%;
-                            }
+        <dd>
+            @Html.DisplayFor(model => model.cdto_FechaVencimiento)
+        </dd>
 
-                            td, th {
-                                border: 1px solid #dddddd;
-                                text-align: left;
-                                padding: 8px;
-                            }
+        @*<dt>
+            @Html.DisplayNameFor(model => model.cdto_FechaCrea)
+        </dt>
 
-                            tr:nth-child(even) {
-                                background-color: #dddddd;
-                            }
-                        </style>
-                        <div class="form-group">
-                            <table>
-                                <tr>
-                                    <th></th>
-                                    <th>Usuario</th>
-                                    <th>Fecha</th>
-                                </tr>
-                                <tr>
-                                    <td>Creado</td>
-                                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                    <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
-                                </tr>
-                                <tr>
-                                    <td>Modificado</td>
-                                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                    <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
-                                </tr>
-                            </table>
-                        </div>
-                @*<dt>
-                    @Html.DisplayNameFor(model => model.cdto_FechaCrea)
-                </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cdto_FechaCrea)
+        </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.cdto_FechaCrea)
-                </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.cdto_FechaModifica)
+        </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.cdto_FechaModifica)
-                </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cdto_FechaModifica)
+        </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.cdto_FechaModifica)
-                </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+        </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-                </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+        </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
-                </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+        </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-                </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
+        </dd>*@
 
-                <dd>
-                    @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
-                </dd>
-
-                </dl>*@
+    </dl>
+                    <div class="form-group">
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </div>
 
 
-                @Html.ActionLink("Editar", "Edit", new { id = Model.cdto_ID }, new { @class = "btn btn-primary" })
-                @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white" })*@
-
-            </div>
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.cdto_ID }, new { @class = "btn btn-primary"})
+    
+                </div>
             </div>
         </div>
     </div>

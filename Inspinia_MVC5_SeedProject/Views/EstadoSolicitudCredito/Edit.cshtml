@@ -68,15 +68,15 @@
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.escre_Id, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.escre_Id, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.escre_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 @Html.ValidationMessageFor(model => model.escre_Id)
                             </div>
                         </div>
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.escre_Descripcion, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
+                            <div class="col-md-4">
                                 @Html.EditorFor(model => model.escre_Descripcion)
                                 @Html.ValidationMessageFor(model => model.escre_Descripcion)
                             </div>
@@ -113,29 +113,8 @@
                                     @Html.ValidationMessageFor(model => model.escre_FechaModifica)
                                 </div>
                             </div>*@
-
-                       <div class="form-group">
-                            <table>
-                                <tr>
-                                    <th></th>
-                                    <th>Usuario</th>
-                                    <th>Fecha</th>
-                                </tr>
-                                <tr>
-                                    <td>Creado</td>
-                                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                    <td>@Html.DisplayFor(model => model.escre_FechaAgrego)</td>
-                                </tr>
-                                <tr>
-                                    <td>Modificado</td>
-                                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                    <td>@Html.DisplayFor(model => model.escre_FechaModifica)</td>
-                                </tr>
-                            </table>
-                        </div>
-
                         <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
+                            <div class="col-md-12 text-center">
                                 <input type="submit" value="Guardar" class="btn btn-primary" />
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                             </div>
@@ -145,8 +124,31 @@
 
 
                 </div>
+
+
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.escre_FechaAgrego)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.escre_FechaModifica)</td>
+                    </tr>
+                </table>
             </div>
         </div>
+
+
     </div>
  </div>
 

@@ -1,18 +1,13 @@
 ﻿@model IEnumerable<ERP_ZORZAL.Models.tbCuponDescuento>
 
 @{
-    ViewBag.Title = "listado";
+    ViewBag.Title = "Listado";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Cupón Descuento</h2>
-        @*<ol class="breadcrumb">
-            <li class="active">
-                <strong>tbCuponDescuento</strong>
-            </li>
-        </ol>*@
     </div>
 </div>
 
@@ -22,9 +17,9 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Lista de Cupón Descuento</h5>
+                    <h5>Lista Cupón Descuento</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Cupón Descuento", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Registrar Cupón Descuento", "Create", null, new { @class = "btn btn-primary"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -35,12 +30,6 @@
             <th>
                 Sucursal
                 @*@Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)*@
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cdto_FechaEmision)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cdto_FechaVencimiento)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.cdto_PorcentajeDescuento)
@@ -54,24 +43,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.cdto_Anulado)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.cdto_FechaCrea)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.cdto_FechaModifica)
-                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.cdto_Redimido)
             </th>
-
-            @*<th>
-                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-                </th>*@
-
-            <th></th>
+           
+            <th>Opción</th>
         </tr>
     </thead>
     <tbody>
@@ -79,13 +55,8 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.tbSucursal.mun_Codigo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cdto_FechaEmision)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cdto_FechaVencimiento)
+                    San Pedro Sula
+                    @*@Html.DisplayFor(modelItem => item.tbSucursal.mun_Codigo)*@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.cdto_PorcentajeDescuento)
@@ -97,31 +68,18 @@
                     @Html.DisplayFor(modelItem => item.cdto_MaximoMontoDescuento)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.cdto_Anulado)
+                    No
+                    @*@Html.DisplayFor(modelItem => item.cdto_Anulado)*@
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.cdto_FechaCrea)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cdto_FechaModifica)
-                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.cdto_Redimido)
                 </td>
                
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-                </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-                </td>*@
-                
-                <td>
-                    @Html.ActionLink("Imprimir", "Delete", new { @class = "btn btn-white btn-sm" })
-                    @Html.ActionLink("Anular", "Details", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn-sm" })
-                    @Html.ActionLink("Detalles", "Details", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn-sm" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.cdto_ID }, new { @class = "btn btn-white btn-sm" })
-                
+                    @Html.ActionLink("Imprimir", "", null, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Anular", "", null, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Detalles", "Details", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn-xs" })
                 </td>
             </tr>
         }
@@ -136,5 +94,4 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
-
 

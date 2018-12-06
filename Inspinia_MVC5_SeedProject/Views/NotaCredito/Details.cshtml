@@ -4,42 +4,64 @@
     ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+        margin-left: 17%;
+    }
 
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        /*background-color: #dddddd;*/
+    }
+</style>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Nota Crédito</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Details</strong>
-            </li>
-        </ol>*@
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
     </div>
 </div>
-
-
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Details tbNotaCredito</h5>
+                    <h5>Detalles Nota Crédito</h5>
                 </div>
                 <div class="ibox-content">
 
 
-	<dl class="dl-horizontal">
+				    <dl class="dl-horizontal">
+
+
         <dt>
             Sucursal
             @*@Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)*@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.tbSucursal.mun_Codigo)
+            San Pedro Sula
+            @*@Html.DisplayFor(model => model.tbSucursal.mun_Codigo)*@
+        </dd>
+        <dt>
+            Número Nota Crédito
+            @*@Html.DisplayNameFor(model => model.nocre_Codigo)*@
+        </dt>
+
+        <dd>2
+            @*@Html.DisplayFor(model => model.nocre_Codigo)*@
         </dd>
 
         <dt>
@@ -48,31 +70,22 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)
+            Luis Eduardo
+            @*@Html.DisplayFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
         </dd>
-        <dt>
-            Código Nota Crédito
-            @*@Html.DisplayNameFor(model => model.nocre_Codigo)*@
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nocre_Codigo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.nocre_Anulado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nocre_Anulado)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.nocre_FechaEmision)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.nocre_FechaEmision)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.nocre_Monto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nocre_Monto)
         </dd>
 
         <dt>
@@ -84,36 +97,49 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.nocre_Monto)
+            @Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.nocre_Monto)
+            @Html.DisplayFor(model => model.tbDevolucion.dev_Id)
         </dd>
 
         <dt>
-            Fecha Creó
-            @*@Html.DisplayNameFor(model => model.nocre_FechaCrea)*@
+            @Html.DisplayNameFor(model => model.nocre_Estado)
+        </dt>
+
+        <dd>
+            Activo
+            @*@Html.DisplayFor(model => model.nocre_Estado)*@
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.nocre_Anulado)
+        </dt>
+
+        <dd>
+            No
+            @*@Html.DisplayFor(model => model.nocre_Anulado)*@
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.nocre_FechaCrea)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.nocre_FechaCrea)
         </dd>
+
         <dt>
-            Usuario Creó
-            @*@Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)*@
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
-        </dd>
-        <dt>
-            Fecha Modificó
-            @*@Html.DisplayNameFor(model => model.nocre_FechaModifica)*@
+            @Html.DisplayNameFor(model => model.nocre_FechaModifica)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.nocre_FechaModifica)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+        </dt>
 
         <dd>
             @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
@@ -123,22 +149,33 @@
             @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
         </dt>
 
-        
-
-        <dt>
-            Devolución
-            @*@Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)*@
-        </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.tbDevolucion.dev_Id)
-        </dd>
+            @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
+        </dd>*@
 
     </dl>
+                    <div class="form-group">
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.nocre_FechaCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.nocre_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </div>
 
 
 	    @Html.ActionLink("Editar", "Edit", new { id = Model.nocre_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Regresar", "Index")
 
                 </div>
             </div>

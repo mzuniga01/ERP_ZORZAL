@@ -8,11 +8,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Nota Crédito</h2>
-        @*<ol class="breadcrumb">
-            <li class="active">
-                <strong>tbNotaCredito</strong>
-            </li>
-        </ol>*@
     </div>
 </div>
 
@@ -22,9 +17,9 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Lista Nota Crédito</h5>
+                    <h5>Listado Nota Crédito</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Nota Crédito", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Registrar Nota Crédito", "Create", null, new { @class = "btn btn-primary"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -37,25 +32,31 @@
                 @*@Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)*@
             </th>
             <th>
-                Cliente
-                @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
-            </th>
-            @*<th>
                 @Html.DisplayNameFor(model => model.nocre_Codigo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.nocre_Anulado)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.nocre_FechaEmision)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nocre_MotivoEmision)
+                Cliente
+                @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.nocre_Monto)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nocre_Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nocre_Anulado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nocre_FechaEmision)
+            </th>
             @*<th>
+                @Html.DisplayNameFor(model => model.nocre_MotivoEmision)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.nocre_FechaCrea)
             </th>
             <th>
@@ -67,13 +68,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
             </th>*@
-            <th>
-                Estado
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)
-            </th>*@
-            
             <th>Opción</th>
         </tr>
     </thead>
@@ -82,51 +76,55 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.tbSucursal.mun_Codigo)
+                    San Pedro Sula
+                    @*@Html.DisplayFor(modelItem => item.tbSucursal.mun_Codigo)*@
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.tbCliente.clte_RTN_Identidad_Pasaporte)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.nocre_Codigo)
+                    2
+                    @*@Html.DisplayFor(modelItem => item.nocre_Codigo)*@
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.nocre_Anulado)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.nocre_FechaEmision)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nocre_MotivoEmision)
+                    Luis Eduardo
+                    @*@Html.DisplayFor(modelItem => item.tbCliente.clte_RTN_Identidad_Pasaporte)*@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.nocre_Monto)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbDevolucion.dev_Id)
+                </td>
+                <td>
+                    Activo
+                    @*@Html.DisplayFor(modelItem => item.nocre_Estado)*@
+                </td>
+                <td>
+                    No
+                    @*@Html.DisplayFor(modelItem => item.nocre_Anulado)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nocre_FechaEmision)
+                </td>
                 @*<td>
-        @Html.DisplayFor(modelItem => item.nocre_FechaCrea)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.nocre_FechaModifica)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-    </td>
-
-    <td>
-        @Html.DisplayFor(modelItem => item.tbDevolucion.dev_Id)
-    </td>*@
+                    @Html.DisplayFor(modelItem => item.nocre_MotivoEmision)
+                </td>
                 <td>
-                    
-                </td>    
+                    @Html.DisplayFor(modelItem => item.nocre_FechaCrea)
+                </td>
                 <td>
-                    @Html.ActionLink("Imprimir", "Details", null, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Anular", "Edit", null, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Delete", "Delete", @*new { id = item.nocre_Id },*@ new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Editar", "Edit", @*new { id = item.nocre_Id },*@ new { @class = "btn btn-primary btn-xs" })
-                 </td>
+                    @Html.DisplayFor(modelItem => item.nocre_FechaModifica)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
+                </td>*@
+                <td> 
+                    @Html.ActionLink("Imprimir", "", null, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Anular", "", null, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
+                     @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
+                   </td>
             </tr>
         }
     </tbody>
@@ -140,6 +138,5 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
- 
 
 
