@@ -21,7 +21,7 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="@Url.Action("Index","Banco")">Regresar</a>
+            <a href="@Url.Action("Index", "Banco")">Regresar</a>
             @*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
@@ -108,25 +108,6 @@
         </dd>*@
 
     </dl>
-                    <div class="form-group">
-                        <table id="Auditoria">
-                            <tr>
-                                <th></th>
-                                <th>Usuario</th>
-                                <th>Fecha</th>
-                            </tr>
-                            <tr>
-                                <td>Creado</td>
-                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                <td>@Html.DisplayFor(model => model.ban_FechaCrea)</td>
-                            </tr>
-                            <tr>
-                                <td>Modificado</td>
-                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                <td>@Html.DisplayFor(model => model.ban_FechaModifica)</td>
-                            </tr>
-                        </table>
-                    </div>
 
                     @Html.ActionLink("Editar", "Edit", new { id = Model.ban_Id }, new { @class = "btn btn-primary" })
                     @*<a href="@Url.Action("Index","Banco")">Regresar</a>*@
@@ -134,6 +115,28 @@
 
                 </div>
             </div>
+
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>                         
+                        <th>Acción</th>                         
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr> 
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.ban_FechaCrea)</td>
+                    </tr>
+                    <tr>                         
+                        <td>Modificado</td>                         
+                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.ban_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+
+
         </div>
     </div>
  </div>
