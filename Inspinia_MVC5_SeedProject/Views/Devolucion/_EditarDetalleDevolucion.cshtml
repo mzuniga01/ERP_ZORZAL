@@ -1,5 +1,5 @@
 ﻿@model ERP_ZORZAL.Models.tbDevolucionDetalle
-
+@using ERP_ZORZAL.Models
 
 
 
@@ -22,7 +22,7 @@
         @Html.HiddenFor(model => model.devd_Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.dev_Id, "dev_Id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.dev_Id, "Codigo Devolucion", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("dev_Id", String.Empty)
                 @Html.ValidationMessageFor(model => model.dev_Id)

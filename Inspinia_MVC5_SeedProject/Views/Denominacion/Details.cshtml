@@ -44,6 +44,17 @@
 
 				    <dl class="dl-horizontal">
 
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.deno_valor)*@
+            Número
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deno_Id)
+        </dd>
+
+
         <dt>
             @*@Html.DisplayNameFor(model => model.tbMoneda.mnda_Nombre)*@
             Moneda
@@ -93,27 +104,8 @@
                         <dt> </dt>
         
         
-                        
-                                <div class="form-group">
-                                    <br />
-                                    <table>
-                                        <tr>
-                                            <th></th>
-                                            <th>Usuario</th>
-                                            <th>Fecha</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Creado</td>
-                                            <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                            <td>@Html.DisplayFor(model => model.deno_FechaCrea)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Modificado</td>
-                                            <td>@Html.DisplayFor(model => model.deno_UsuarioModifica)</td>
-                                            <td>@Html.DisplayFor(model => model.deno_FechaModifica)</td>
-                                        </tr>
-                                    </table>
-                                </div>
+                       
+
                           
         
 
@@ -123,13 +115,38 @@
 
 
 	    @Html.ActionLink("Editar", "Edit", new { id = Model.deno_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white"})
+    @*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white"})*@
 
                 </div>
             </div>
         </div>
+
+        <div class="ibox-content">
+            <table class="table table-striped">
+                <tr>
+                    <th></th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+                <tr>
+                    <td>Creado</td>
+                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                    <td>@Html.DisplayFor(model => model.deno_FechaCrea)</td>
+                </tr>
+                <tr>
+                    <td>Modificado</td>
+                    <td>@Html.DisplayFor(model => model.deno_UsuarioModifica)</td>
+                    <td>@Html.DisplayFor(model => model.deno_FechaModifica)</td>
+                </tr>
+            </table>
+        </div>
+
+
     </div>
  </div>
+
+
+
 
 
 

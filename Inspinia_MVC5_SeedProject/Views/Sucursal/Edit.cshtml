@@ -48,9 +48,16 @@
         @Html.HiddenFor(model => model.suc_Id)
 
         <div class="form-group">
+            @Html.LabelFor(model => model.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.suc_Descripcion)
+            </div>
+        </div>
+        <div class="form-group">
             @Html.LabelFor(model => model.tbMunicipio.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
+               @Html.EditorFor(model => model.tbMunicipio.mun_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.tbMunicipio.mun_Nombre)
             </div>
         </div>
@@ -58,7 +65,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.tbBodega.bod_Id, "Bodega", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.DropDownList("bod_Id", null, "Seleccione Bodega", new { @class = "form-control" })
+                @Html.EditorFor(model => model.tbBodega.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.tbBodega.bod_Nombre)
             </div>
         </div>
@@ -66,7 +73,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.pemi_Id, "Punto Emision", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.DropDownList("pemi_Id", null, "Seleccione Punto Emision", new { @class = "form-control" })
+                @Html.EditorFor(model => model.tbPuntoEmision.pemi_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.pemi_Id)
             </div>
         </div>

@@ -24,7 +24,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Denominaciones</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Denominación", "Create", null, new { @class = "btn btn-primary "})
+						@Html.ActionLink("Registrar Denominación", "Create", null, new { @class = "btn btn-primary " })
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -45,7 +45,8 @@
                                         
                                         <th>
                                             
-                                            @Html.DisplayNameFor(model => model.deno_Tipo)
+                                            @*@Html.DisplayNameFor(model => model.deno_Tipo)*@
+                                            Tipo Denominación
                                         </th>
 
                                         <th>
@@ -112,8 +113,8 @@
                             </td>*@
                                             
                                             <td>
-                                                @Html.ActionLink("Detalle", "Details", new { id = item.deno_Id }, new { @class = "btn btn-primary btn-sm" })
-                                                @Html.ActionLink("Editar", "Edit", new { id = item.deno_Id }, new { @class = "btn btn-white btn-sm" })
+                                                @Html.ActionLink("Detalle", "Details", new { id = item.deno_Id }, new { @class = "btn btn-primary btn-xs" })
+                                                @Html.ActionLink("Editar", "Edit", new { id = item.deno_Id }, new { @class = "btn btn-white btn-xs" })
                                                 @*@Html.ActionLink("Delete", "Delete", new { id = item.deno_Id }, new { @class = "btn btn-white btn-sm" })*@
                                             </td>
                                         </tr>

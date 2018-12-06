@@ -39,9 +39,11 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Exoneracion/Create
         public ActionResult Create()
         {
-            ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte");
+            //ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            //ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte");
+            //return View();
+            ViewBag.Cliente = db.tbCliente.ToList();
             return View();
         }
 
@@ -77,10 +79,12 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioCrea);
-            ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);
-            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
-            return View(tbExoneracion);
+            //ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioCrea);
+            //ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);
+            //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
+            //return View(tbExoneracion);
+            ViewBag.Cliente = db.tbCliente.ToList();
+            return View();
         }
 
         // POST: /Exoneracion/Edit/5

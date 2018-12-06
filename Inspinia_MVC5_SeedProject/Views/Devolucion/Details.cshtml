@@ -29,7 +29,7 @@
                 <div class="ibox-title">
                     <h5>Detalle Devolución</h5>
                     <div class="ibox-tools">
-                        @Html.ActionLink("Editar", "Edit", new { id = Model.dev_Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.dev_Id }, new { @class = "btn btn-primary  btn-xs" })
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -99,29 +99,28 @@
                            Pantalon
                         </dd>
     </dl>
-                    
-
-                    <div class="form-group">
-                        <table id="Auditoria"  class="table table-striped">
-                            <tr>
-                                <th></th>
-                                <th>Usuario</th>
-                                <th>Fecha</th>
-                            </tr>
-                            <tr>
-                                <td>Creado</td>
-                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                <td>@Html.DisplayFor(model => model.dev_FechaCrea)</td>
-                            </tr>
-                            <tr>
-                                <td>Modificado</td>
-                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                <td>@Html.DisplayFor(model => model.dev_FechaModifica)</td>
-                            </tr>
-                        </table>
-                    </div>
                 </div>
             </div>
+            <div class="form-group">
+                <table id="Auditoria" class="table table-striped">
+                    <tr>
+                        <th></th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>@Html.DisplayFor(model => model.dev_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>@Html.DisplayFor(model => model.dev_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+
         </div>
     </div>
  </div>

@@ -13,7 +13,7 @@ namespace ERP_ZORZAL.Models
     }
     public class cExoneracionMetaData
     {
-        [Display(Name = "Codigo Exoneración")]
+        [Display(Name = "Número")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int exo_Id { get; set; }
 
@@ -21,15 +21,15 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string exo_Documento { get; set; }
 
-        [Display(Name = "Exoneracion Activa")]
+        [Display(Name = "Exoneración Activa")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public bool exo_ExoneracionActiva { get; set; }
 
-        [Display(Name = "Fecha Inicial Vigencia")]
+        [Display(Name = "Fecha Inicio")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
         public System.DateTime exo_FechaInicialVigencia { get; set; }
 
-        [Display(Name = "Fecha Final Vigencia")]
+        [Display(Name = "Fecha Vencimiento")]
         [DisplayFormat(ApplyFormatInEditMode = true,DataFormatString = "{0:yyyy-MM-dd}",HtmlEncode = false)]
         public System.DateTime exo_FechaIFinalVigencia { get; set; }
 

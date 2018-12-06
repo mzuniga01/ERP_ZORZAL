@@ -8,18 +8,11 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Registro de Solicitud</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Registro de Solicitud</strong>
-            </li>
-        </ol>*@
+       
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
+			
             <a href="/SolicitudEfectivo/Index">Regresar</a>
         </div>
     </div>
@@ -46,11 +39,9 @@
 
         <div class="form-group">
             <label class="control-label col-md-2">Sucursal</label>
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.solef_MontoSolicitud, new { htmlAttributes = new { disabled = true } })
-              
-            </div>
-           
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.solef_MontoSolicitud, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })              
+            </div>           
         </div>
 
 
@@ -59,20 +50,13 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                @*@Html.DropDownList("cja_Id", String.Empty)*@
-                @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { disabled = true } })
+            <div class="col-md-3">              
+                @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.cja_Id)
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.mnda_Id, "Moneda", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("mnda_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.mnda_Id)
-            </div>
-        </div>*@
+       
 
         <div class="form-group">
             @Html.LabelFor(model => model.mnda_Id, "Moneda", new { @class = "control-label col-md-2" })
@@ -97,7 +81,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Monto Solicitado</label>
             <div class="col-md-3">
-                @Html.EditorFor(model => model.solef_MontoSolicitud, new { htmlAttributes = new { disabled = true } })
+                @Html.EditorFor(model => model.solef_MontoSolicitud, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.solef_MontoSolicitud )
             </div>
         </div>
@@ -111,37 +95,7 @@
         </div>
         
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.solef_UsuarioCrea, "Usuario Creación", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("solef_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.solef_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.solef_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.solef_FechaCrea)
-                @Html.ValidationMessageFor(model => model.solef_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.solef_UsuarioModifica, "Usuario Modificación", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("solef_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.solef_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.solef_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.solef_FechaModifica)
-                @Html.ValidationMessageFor(model => model.solef_FechaModifica)
-            </div>
-        </div>*@
+      
         <div class="form-group">
             <div class="col-md-offset-10 col-md-2">
                 <button id="detalle" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarSolicitudEfectivoDetalle">Agregar Solicitud Detalle</button>
@@ -155,7 +109,7 @@
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
                @* <input type="submit" value="Imprimir Comprobante" class="btn btn-info"   />*@
 
-                <label class="btn btn-info" onclick="alerta()">Impimir Comprobante </label></div>
+                <label class="btn btn-info" onclick="alerta()">Imprimir Solicitud de Efectivo </label></div>
         </div>
     </div>
 
@@ -198,8 +152,6 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
-
 
 
 

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbSolicitudEfectivoDetalle>
+
+
+
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.soled_CantidadSolicitada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soled_CantidadEntregada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soled_FechaCrea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soled_FechaModifica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbDenominacion.deno_Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbSolicitudEfectivo.solef_Id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.soled_CantidadSolicitada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soled_CantidadEntregada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soled_FechaCrea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soled_FechaModifica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbDenominacion.deno_Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbSolicitudEfectivo.solef_Id)
+        </td>
+       
+    </tr>
+}
+
+</table>
+
+
+
+

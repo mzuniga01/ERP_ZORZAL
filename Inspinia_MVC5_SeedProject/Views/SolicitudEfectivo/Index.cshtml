@@ -24,7 +24,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Solicitudes de Efectivo</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Solicitud de Efectivo", "Create", null, new { @class = "btn btn-primary "})
+						@Html.ActionLink("Registrar Solicitud de Efectivo", "Create", null, new { @class = "btn btn-primary " })
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -85,10 +85,10 @@
                                 {
                                     <tr>
                                         <td>
-                                           
+                                           @Html.DisplayFor(modelItem => item.solef_FechaCrea)
                                         </td>
                                         <td>
-
+                                            San Pedro Sula
                                         </td>
                                         
                                         <td>
@@ -119,10 +119,10 @@
                                             @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
                                         </td>*@
                                        
-                                        
+                                                                                        
                                         <td>
-                                            @Html.ActionLink("Details", "Details", new { id = item.solef_Id }, new { @class = "btn btn-primary btn-sm" })
-                                            @Html.ActionLink("Edit", "Edit", new { id = item.solef_Id }, new { @class = "btn btn-white btn-sm" })
+                                            @Html.ActionLink("Detalle", "Details", new { id = item.solef_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.solef_Id }, new { @class = "btn btn-white btn-xs" })
                                             @*@Html.ActionLink("Delete", "Delete", new { id = item.solef_Id }, new { @class = "btn btn-white btn-sm" })*@
                                         </td>
                                     </tr>

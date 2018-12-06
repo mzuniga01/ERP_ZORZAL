@@ -12,17 +12,17 @@
     <div class="col-sm-4">
         <h2>Editar Denominaciones</h2>
         @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Edit</strong>
-            </li>
-        </ol>*@
+                <li>
+                    @Html.ActionLink("List", "Index")
+                </li>
+                <li class="active">
+                    <strong>Edit</strong>
+                </li>
+            </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
+            @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
             <a href="/Denominacion/Index">Regresar</a>
         </div>
     </div>
@@ -40,74 +40,74 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.deno_Id)
+                        <div class="form-horizontal">
 
-
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.deno_Id)
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.deno_Id,"Número", new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.deno_Id, new { htmlAttributes = new { disabled = true } })
-                @Html.ValidationMessageFor(model => model.deno_Id)
-            </div>
-        </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.mnda_Id, "Moneda", new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                @Html.DropDownList("mnda_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.mnda_Id)
-            </div>
-        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.deno_Descripcion, "Moneda", new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.deno_Id, "Número", new { @class = "control-label col-md-2" })
+                                <div class="col-md-2">
+                                    @Html.EditorFor(model => model.deno_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.deno_Id)
+                                </div>
+                            </div>
 
-                @Html.DropDownListFor(x => x.deno_Tipo, new List<SelectListItem>
-    {                   
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.mnda_Id, "Moneda", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-2">
+                                        @Html.DropDownList("mnda_Id", String.Empty)
+                                        @Html.ValidationMessageFor(model => model.mnda_Id)
+                                    </div>
+                                </div>*@
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.deno_Descripcion, "Moneda", new { @class = "control-label col-md-2" })
+                                <div class="col-md-2">
+
+                                    @Html.DropDownListFor(x => x.deno_Tipo, new List<SelectListItem>
+    {
                         new SelectListItem() {Text = "Lempira", Value="1"},
                         new SelectListItem() {Text = "Euro", Value="2"},
 
     }, new { @class = "form-control" })
 
 
-            </div>
-        </div>
+                                </div>
+                            </div>
 
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.deno_Descripcion,"Descripción", new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.deno_Descripcion)
-                @Html.ValidationMessageFor(model => model.deno_Descripcion)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.deno_Descripcion, "Descripción", new { @class = "control-label col-md-2" })
+                                <div class="col-md-2">
+                                    @Html.EditorFor(model => model.deno_Descripcion)
+                                    @Html.ValidationMessageFor(model => model.deno_Descripcion)
+                                </div>
+                            </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.deno_Tipo, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-               @Html.DropDownListFor(model => model.SECTOR, new SelectList(Model.SectorList, "sector", "sector"), new { @class = "form-control" }
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.deno_Tipo, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                       @Html.DropDownListFor(model => model.SECTOR, new SelectList(Model.SectorList, "sector", "sector"), new { @class = "form-control" }
 
-                @Html.EditorFor(model => model.deno_Tipo)
-                @Html.ValidationMessageFor(model => model.deno_Tipo)
-            </div>
-        </div>*@
-
-
+                                        @Html.EditorFor(model => model.deno_Tipo)
+                                        @Html.ValidationMessageFor(model => model.deno_Tipo)
+                                    </div>
+                                </div>*@
 
 
-        @{
-            var Listado = new List<SelectListItem>() {
+
+
+                            @{
+                                var Listado = new List<SelectListItem>() {
 
                 new SelectListItem()
                 {
@@ -120,105 +120,105 @@
                     Value = "2"
                 },
            };
-        }
+                            }
 
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.deno_valor,"Valor", new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.deno_valor)
-                @Html.ValidationMessageFor(model => model.deno_valor)
-            </div>
-        </div>
-
-      
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.deno_UsuarioCrea, "deno_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("deno_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.deno_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.deno_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.deno_FechaCrea)
-                @Html.ValidationMessageFor(model => model.deno_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.deno_UsuarioModifica, "deno_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("deno_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.deno_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.deno_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.deno_FechaModifica)
-                @Html.ValidationMessageFor(model => model.deno_FechaModifica)
-            </div>
-        </div>*@
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.deno_valor, "Valor", new { @class = "control-label col-md-2" })
+                                <div class="col-md-2">
+                                    @Html.EditorFor(model => model.deno_valor)
+                                    @Html.ValidationMessageFor(model => model.deno_valor)
+                                </div>
+                            </div>
 
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.deno_FechaModifica, "          ", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="form-group">
-                    <table>
-                        <tr>
-                            <th></th>
-                            <th>Usuario</th>
-                            <th>Fecha</th>
-                        </tr>
-                        <tr>
-                            <td>Creado</td>
-                            <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                            <td>@Html.DisplayFor(model => model.deno_FechaCrea)</td>
-                        </tr>
-                        <tr>
-                            <td>Modificado</td>
-                            <td>@Html.DisplayFor(model => model.deno_UsuarioModifica)</td>
-                            <td>@Html.DisplayFor(model => model.deno_FechaModifica)</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.deno_UsuarioCrea, "deno_UsuarioCrea", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("deno_UsuarioCrea", String.Empty)
+                                        @Html.ValidationMessageFor(model => model.deno_UsuarioCrea)
+                                    </div>
+                                </div>
 
-       
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.deno_FechaCrea, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.deno_FechaCrea)
+                                        @Html.ValidationMessageFor(model => model.deno_FechaCrea)
+                                    </div>
+                                </div>
 
-        
-           
-            
-       
-           
-       
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.deno_UsuarioModifica, "deno_UsuarioModifica", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("deno_UsuarioModifica", String.Empty)
+                                        @Html.ValidationMessageFor(model => model.deno_UsuarioModifica)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.deno_FechaModifica, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.deno_FechaModifica)
+                                        @Html.ValidationMessageFor(model => model.deno_FechaModifica)
+                                    </div>
+                                </div>*@
 
 
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                </div>
-            </div>
-        </div>
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                                }
+
 
 
                 </div>
             </div>
         </div>
     </div>
- </div>
+</div>
+
+<div class="ibox-content">
+    <table class="table table-striped">
+        <tr>
+            <th></th>
+            <th>Usuario</th>
+            <th>Fecha</th>
+        </tr>
+        <tr>
+            <td>Creado</td>
+            <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+            <td>@Html.DisplayFor(model => model.deno_FechaCrea)</td>
+        </tr>
+        <tr>
+            <td>Modificado</td>
+            <td>@Html.DisplayFor(model => model.deno_UsuarioModifica)</td>
+            <td>@Html.DisplayFor(model => model.deno_FechaModifica)</td>
+        </tr>
+    </table>
+</div>
+
 
 
 

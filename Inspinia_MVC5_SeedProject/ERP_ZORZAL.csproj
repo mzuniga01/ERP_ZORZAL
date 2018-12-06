@@ -1003,6 +1003,8 @@
     <Content Include="Views\ListaPrecios\Create.cshtml" />
     <Content Include="Views\ListaPrecios\_CreateListaPrecioDetalle.cshtml" />
     <Content Include="Views\PuntoEmision\_DetailsNumeracion.cshtml" />
+    <Content Include="Views\Exoneracion\_IndexCliente.cshtml" />
+    <Content Include="Views\Devolucion\_ProductoDevolucion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
