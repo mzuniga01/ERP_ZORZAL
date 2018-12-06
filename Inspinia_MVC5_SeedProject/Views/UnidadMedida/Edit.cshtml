@@ -38,81 +38,125 @@
                 <div class="ibox-content">
 
 				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+                {
+                    @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
+                    <div class="form-horizontal">
 
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.uni_Id)
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.uni_Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.uni_Descripcion, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.uni_Descripcion)
-                @Html.ValidationMessageFor(model => model.uni_Descripcion)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.uni_Id, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.uni_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.uni_Id)
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.uni_Descripcion, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.uni_Descripcion)
+                                @Html.ValidationMessageFor(model => model.uni_Descripcion)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.uni_Abreviatura, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.uni_Abreviatura)
+                                @Html.ValidationMessageFor(model => model.uni_Abreviatura)
+                            </div>
+                        </div>
+
+        
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+				                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
+            <div class="ibox-content">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.uni_Abreviacion, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.uni_Abreviacion)
-                @Html.ValidationMessageFor(model => model.uni_Abreviacion)
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
+                            Acción
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
+                            Usuario
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
+                            Fecha
+                        </th>
+                        @*<th>
+                        @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tsal_FechaModifica)
+                    </th>*@
+                        @*<th></th>*@
+                    </tr>
+
+                    @*@foreach (var item in Model) { }*@
+                    <tr>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
+                            Creado
+                        </td>
+                        <td>
+
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.uni_FechaCrea)
+                        </td>
+                        @*<td>
+                        @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                        @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                        @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    </td>*@
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
+                            Modificado
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.uni_FechaModifica)
+                        </td>
+                        @*<td>
+                        @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                        @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                        @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    </td>*@
+                    </tr>
+
+                </table>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.uni_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.EditorFor(model => model.uni_UsuarioCrea)
-                @Html.ValidationMessageFor(model => model.uni_UsuarioCrea)*@
-                <input type="text" class="form-control" value="MariaFernanda"  readonly="readonly"/>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.uni_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.EditorFor(model => model.uni_FechaCrea)
-                @Html.ValidationMessageFor(model => model.uni_FechaCrea)*@
-                <input type="text" class="form-control" value="30/11/2018 /4:00"  readonly="readonly"/>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.uni_UsuarioModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.EditorFor(model => model.uni_UsuarioModifica)
-                @Html.ValidationMessageFor(model => model.uni_UsuarioModifica)*@
-                <input type="text" class="form-control" value="Maria Fernanda" readonly="readonly" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.uni_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.EditorFor(model => model.uni_FechaModifica)
-                @Html.ValidationMessageFor(model => model.uni_FechaModifica)*@
-                <input type="text" class="form-control" value="30/11/2018 /4:20" readonly="readonly" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}
-
-
-                </div>
-            </div>
-        </div>
     </div>
  </div>
+</div>
 
 
 

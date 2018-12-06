@@ -1,18 +1,13 @@
 ﻿@model IEnumerable<ERP_ZORZAL.Models.tbTipoSalida>
 
 @{
-    ViewBag.Title = "Listado de Tipos de Salida";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2></h2>
-        <ol class="breadcrumb">
-            <li class="active">
-                <strong>Tipos de Salida</strong>
-            </li>
-        </ol>
+        <h2>Tipos de Salida</h2>
     </div>
 </div>
 
@@ -22,85 +17,55 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Tipos de Salida</h5>
-                    <div class="ibox-tools">
-                        @Html.ActionLink("Crear Nuevo", "Crear", null, new { @class = "btn btn-primary" })
-                    </div>
+                    <h5>Listado de Tipo Salida</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary "})
+					</div>
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-striped" style="width:100%" id="Datatable">
+                    <table class="table table-responsive" style="width:100%" id="DataTable">
                         <thead>
                             <tr>
                                 <th>
-                                    @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
-                                    Descripcion
+                                    @Html.DisplayNameFor(model => model.tsal_Id)
                                 </th>
                                 <th>
-                                    @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
-                                    Usuario Crea
+                                    @Html.DisplayNameFor(model => model.tsal_Descripcion)
                                 </th>
-                                <th>
-                                    @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
-                                    Fecha Crea
-                                </th>
-                                <th>
-                                    @*@Html.DisplayNameFor(model => model.tsal_UsuarioModifica)*@
-                                    Usuario Modifica
-                                </th>
-                                <th>
-                                    @*@Html.DisplayNameFor(model => model.tsal_FechaModifica)*@
-                                    Fecha Modifica
-                                </th>
+
                                 <th></th>
                             </tr>
                         </thead>
-                        @*@foreach (var item in Model)
-                            { }*@
                         <tbody>
-                            <tr>
-                                <td>
-                                    @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
-                                    Venta
-                                </td>
-                                <td>
-                                    @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
-                                    Administrador
-                                </td>
-                                <td>
-                                    @*@Html.DisplayFor(modelItem => item.tsal_FechaCrea)*@
-                                    28/11/2018 07:35:50 A.M
-                                </td>
-                                <td>
-                                    @*@Html.DisplayFor(modelItem => item.tsal_UsuarioModifica)*@
-                                    No ha sido modificado
-                                </td>
-                                <td>
-                                    @*@Html.DisplayFor(modelItem => item.tsal_FechaModifica)*@
-                                    No ha sido modificado
-                                </td>
-                                <td>
-                                    @*@Html.ActionLink("Details", "Details", new { id = item.tsal_Id }, new { @class = "btn btn-primary btn-sm" })
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.tsal_Id }, new { @class = "btn btn-white btn-sm" })
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.tsal_Id }, new { @class = "btn btn-white btn-sm" })*@
-                                    @Html.ActionLink("Detalles", "Detalles", null, new { @class = "btn btn-primary btn-xs" })
-                                    @Html.ActionLink("Editar", "Editar", null, new { @class = "btn btn-primary btn-xs" })
-                                </td>
-                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tsal_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tsal_Descripcion)
+                                    </td>
+
+                                    <td>
+                                        @Html.ActionLink("Detalle", "Details", new { id = item.tsal_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.tsal_Id }, new { @class = "btn btn-white btn-xs" })
+
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
-
-
-
                     </table>
 
                 </div>
             </div>
         </div>
     </div>
-</div>
+ </div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
 
 
-@section scripts{
-    <script src="~/Scripts/app/DataTable.js"></script>
 
-}

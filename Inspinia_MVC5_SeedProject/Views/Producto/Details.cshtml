@@ -1,4 +1,5 @@
 ﻿@model ERP_ZORZAL.Models.tbProducto
+
 @{
     ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,24 +7,24 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Producto</h2>
+        <h2>Detalles</h2>
         @*<ol class="breadcrumb">
-                <li>
-                    @Html.ActionLink("List", "Index")
-                </li>
-                <li class="active">
-                    <strong>Details</strong>
-                </li>
-            </ol>*@
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
             <a href="@Url.Action("Index","Producto")">Regresar</a>
-            @*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
-
 </div>
+
+
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -31,112 +32,125 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Detalles Producto</h5>
+                    <h5>Details tbProducto</h5>
                 </div>
                 <div class="ibox-content">
 
 
-                    <dl class="dl-horizontal">
-                        <dt>
-                            <label class="control-label col-md-2">Código de Producto</label>
-                        </dt>
+				    <dl class="dl-horizontal">
+         <dt>
+            @Html.DisplayNameFor(model => model.prod_Codigo)
+         </dt>
+         <dd>
+             @Html.DisplayFor(model => model.prod_Codigo)
+         </dd>
+         <dt>
+            @Html.DisplayNameFor(model => model.prod_Descripcion)
+        </dt>
 
-                        <dd>
-                            PANPJ-102634700
-                        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.prod_Descripcion)
+        </dd>
 
-                        <dt>
-                            <label class="control-label col-md-2">Descripción</label>
-                        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_Marca)
+        </dt>
 
-                        <dd>
-                            Pantalón
-                        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.prod_Marca)
+        </dd>
+         <dt>
+            @Html.DisplayNameFor(model => model.pscat_Id)
+         </dt>
 
-                        <dt>
-                            <label class="control-label col-md-2">Marca</label>
-                        </dt>
+         <dd>
+           @Html.DisplayFor(model => model.pscat_Id)
+         </dd>
+        <dt>
+           @Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)
+         </dt>
 
-                        <dd>
-                            Pepe Jeans
-                        </dd>
-                        <dt>
-                            <label class="control-label col-md-2">Categoría</label>
-                        </dt>
+         <dd>
+           @Html.DisplayFor(model => model.tbUnidadMedida.uni_Descripcion)
+         </dd>
 
-                        <dd>
-                            Ropa
-                        </dd>
-                        <dt>
-                            <label class="control-label col-md-2">Unidad de Medida</label>
-                        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_Modelo)
+        </dt>
 
-                        <dd>
-                            Docena
-                        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.prod_Modelo)
+        </dd>
 
-                        <dt>
-                            <label class="control-label col-md-2">Modelo</label>
-                        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_Talla)
+        </dt>
 
-                        <dd>
-                            Licra
-                        </dd>
-                        <dt>
-                            <label class="control-label col-md-2">Descripción</label>
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.prod_Talla)
+        </dd>
 
-                        <dd>
-                            Talla 32
-                        </dd>
-                        <dt>
-                            <label class="control-label col-md-2">Color</label>
-                        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_Color)
+        </dt>
 
-                        <dd>
-                            Negro
-                        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.prod_Color)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_UsuarioCrea)
+        </dt>
 
-                        <dt>
-                            <label class="control-label col-md-2">Usuario</label>
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.prod_UsuarioCrea)
+        </dd>
 
-                        <dd>
-                            HenryFigueroa
-                        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_FechaCrea)
+        </dt>
 
-                        <dt>
-                            <label class="control-label col-md-2">Fecha Crea</label>
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.prod_FechaCrea)
+        </dd>
 
-                        <dd>
-                            23/09/2018
-                        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_FechaModifica)
+        </dt>
 
-                        <dt>
-                            <label class="control-label col-md-2">Modificado Por</label>
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.prod_FechaModifica)
+        </dd>
 
-                        <dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+        </dt>
 
-                        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+        </dd>
 
-                        <dt>
-                            <label class="control-label col-md-2">Modificado El</label>
-                        </dt>
+        
 
-                        <dd>
+    </dl>
 
-                        </dd>
 
-                    </dl>
-
-                    @Html.ActionLink("Editar", "Edit", null, new { @class = "btn btn-primary" })
-                    @*@Html.ActionLink("Editar", "Editar", null, new { @class = "btn btn-primary btn-xs" })
-                        @Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "btn btn-primary btn-xs" })*@
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.prod_Codigo }, new { @class = "btn btn-primary"})
 
                 </div>
             </div>
         </div>
     </div>
-</div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

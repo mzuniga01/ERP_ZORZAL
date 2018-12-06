@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_ZORZAL.Models;
 
-namespace Inspinia_MVC5_SeedProject.Controllers
+namespace ERP_ZORZAL.Controllers
 {
     public class ProductoController : Controller
     {
@@ -17,57 +17,39 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /Producto/
         public ActionResult Index()
         {
-            //var tbproducto = db.tbProducto.Include(t => t.tbProductoSubcategoria).Include(t => t.tbUnidadMedida);
-            return View(/*tbproducto.ToList()*/);
-        }
-        //Producto/Crear
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //Producto/Editar
-        public ActionResult Edit()
-        {
-            return View();
-        }
-
-        //Producto/Detalles
-        public ActionResult Details()
-        {
-            return View();
+            var tbproducto = db.tbProducto.Include(t => t.tbUsuario).Include(t => t.tbUnidadMedida);
+            return View(tbproducto.ToList());
         }
 
         // GET: /Producto/Details/5
-        //public ActionResult Details(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    tbProducto tbProducto = db.tbProducto.Find(id);
-        //    if (tbProducto == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(tbProducto);
-        //}
-
+        public ActionResult Details(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbProducto tbProducto = db.tbProducto.Find(id);
+            if (tbProducto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tbProducto);
+        }
 
         // GET: /Producto/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
-        //    ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
-        //    return View();
-        //}
+        public ActionResult Create()
+        {
+            ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+            return View();
+        }
 
         // POST: /Producto/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="prod_Codigo,prod_Descripcion,prod_FechaCreacion,prod_Marca,pscat_Id,uni_Id,prod_UsuarioCrea,prod_FechaCrea,prod_UsuarioModifica,prod_FechaModifica")] tbProducto tbProducto)
+        public ActionResult Create([Bind(Include="prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_UsuarioCrea,prod_FechaCrea,prod_UsuarioModifica,prod_FechaModifica")] tbProducto tbProducto)
         {
             if (ModelState.IsValid)
             {
@@ -76,34 +58,34 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion", tbProducto.pscat_Id);
+            ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
             return View(tbProducto);
         }
 
         // GET: /Producto/Edit/5
-        //public ActionResult Edit(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    tbProducto tbProducto = db.tbProducto.Find(id);
-        //    if (tbProducto == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion", tbProducto.pscat_Id);
-        //    ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
-        //    return View(tbProducto);
-        //}
+        public ActionResult Edit(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbProducto tbProducto = db.tbProducto.Find(id);
+            if (tbProducto == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
+            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
+            return View(tbProducto);
+        }
 
         // POST: /Producto/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="prod_Codigo,prod_Descripcion,prod_FechaCreacion,prod_Marca,pscat_Id,uni_Id,prod_UsuarioCrea,prod_FechaCrea,prod_UsuarioModifica,prod_FechaModifica")] tbProducto tbProducto)
+        public ActionResult Edit([Bind(Include="prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_UsuarioCrea,prod_FechaCrea,prod_UsuarioModifica,prod_FechaModifica")] tbProducto tbProducto)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +93,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion", tbProducto.pscat_Id);
+            ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
             return View(tbProducto);
         }

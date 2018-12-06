@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using ERP_ZORZAL.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using ERP_ZORZAL.Models;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -17,33 +13,24 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Box/
         public ActionResult Index()
         {
-            return View();
-            //db.tbBox.ToList()
-        }
-
-        public ActionResult Edit()
-        {
-            return View();
-        }
-        public ActionResult Details()
-        {
-            return View();
+            ViewBag.Salida = new tbSalida();
+            return View(db.tbBox.ToList());
         }
 
         // GET: /Box/Details/5
-        //public ActionResult Details(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    tbBox tbBox = db.tbBox.Find(id);
-        //    if (tbBox == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(tbBox);
-        //}
+        public ActionResult Details(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbBox tbBox = db.tbBox.Find(id);
+            if (tbBox == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tbBox);
+        }
 
         // GET: /Box/Create
         public ActionResult Create()
@@ -51,12 +38,17 @@ namespace ERP_ZORZAL.Controllers
             return View();
         }
 
+        public ActionResult _Producto()
+        {
+            return View();
+        }
+
         // POST: /Box/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="box_Codigo,box_Descripcion,box_UsuarioCrea,box_FechaCrea,box_UsuarioModifica,box_FechaModifica")] tbBox tbBox)
+        public ActionResult Create([Bind(Include = "box_Codigo,box_Descripcion,box_UsuarioCrea,box_FechaCrea,box_UsuarioModifica,box_FechaModifica")] tbBox tbBox)
         {
             if (ModelState.IsValid)
             {
@@ -69,26 +61,26 @@ namespace ERP_ZORZAL.Controllers
         }
 
         // GET: /Box/Edit/5
-        //public ActionResult Edit(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    tbBox tbBox = db.tbBox.Find(id);
-        //    if (tbBox == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(tbBox);
-        //}
+        public ActionResult Edit(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbBox tbBox = db.tbBox.Find(id);
+            if (tbBox == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tbBox);
+        }
 
         // POST: /Box/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="box_Codigo,box_Descripcion,box_UsuarioCrea,box_FechaCrea,box_UsuarioModifica,box_FechaModifica")] tbBox tbBox)
+        public ActionResult Edit([Bind(Include = "box_Codigo,box_Descripcion,box_UsuarioCrea,box_FechaCrea,box_UsuarioModifica,box_FechaModifica")] tbBox tbBox)
         {
             if (ModelState.IsValid)
             {

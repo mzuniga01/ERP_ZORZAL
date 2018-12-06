@@ -14,13 +14,13 @@ namespace ERP_ZORZAL.Controllers
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
 
-        // GET: /TiposSalida/
+        // GET: /TipoSalida/
         public ActionResult Index()
         {
             return View(db.tbTipoSalida.ToList());
         }
 
-        // GET: /TiposSalida/Details/5
+        // GET: /TipoSalida/Details/5
         public ActionResult Details(byte? id)
         {
             if (id == null)
@@ -35,44 +35,15 @@ namespace ERP_ZORZAL.Controllers
             return View(tbTipoSalida);
         }
 
-        public ActionResult Crear()
-        {
-            
-            return View();
-        }
-
-        public ActionResult Editar()
-        {
-
-            return View();
-        }
-
-        public ActionResult Detalles()
-        {
-
-            return View();
-        }
-
-        public ActionResult Index2()
-        {
-
-            return View();
-        }
-
-        public ActionResult Detalles2()
-        {
-
-            return View();
-        }
-        // GET: /TiposSalida/Create
+        // GET: /TipoSalida/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /TiposSalida/Create
+        // POST: /TipoSalida/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="tsal_Id,tsal_Descripcion,tsal_UsuarioCrea,tsal_FechaCrea,tsal_UsuarioModifica,tsal_FechaModifica")] tbTipoSalida tbTipoSalida)
@@ -87,7 +58,7 @@ namespace ERP_ZORZAL.Controllers
             return View(tbTipoSalida);
         }
 
-        // GET: /TiposSalida/Edit/5
+        // GET: /TipoSalida/Edit/5
         public ActionResult Edit(byte? id)
         {
             if (id == null)
@@ -102,9 +73,9 @@ namespace ERP_ZORZAL.Controllers
             return View(tbTipoSalida);
         }
 
-        // POST: /TiposSalida/Edit/5
+        // POST: /TipoSalida/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="tsal_Id,tsal_Descripcion,tsal_UsuarioCrea,tsal_FechaCrea,tsal_UsuarioModifica,tsal_FechaModifica")] tbTipoSalida tbTipoSalida)
@@ -118,7 +89,7 @@ namespace ERP_ZORZAL.Controllers
             return View(tbTipoSalida);
         }
 
-        // GET: /TiposSalida/Delete/5
+        // GET: /TipoSalida/Delete/5
         public ActionResult Delete(byte? id)
         {
             if (id == null)
@@ -133,7 +104,7 @@ namespace ERP_ZORZAL.Controllers
             return View(tbTipoSalida);
         }
 
-        // POST: /TiposSalida/Delete/5
+        // POST: /TipoSalida/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(byte id)

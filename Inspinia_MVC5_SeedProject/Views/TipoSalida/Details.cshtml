@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbTipoSalida>
+﻿@model ERP_ZORZAL.Models.tbTipoSalida
 
 @{
     ViewBag.Title = "Details";
@@ -7,16 +7,16 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Details</h2>
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Details</strong>
-            </li>
-        </ol>
+        <h2>Tipo Salida</h2>
+        
     </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","TipoSalida")">Regresar</a>
+           
+        </div>
+    </div>
+
 </div>
 
 
@@ -27,65 +27,92 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Details tbTiposSalida</h5>
+                    <h5>Detalles de Tipo Salida</h5>
                 </div>
                 <div class="ibox-content">
 
 
-                    <dl class="dl-horizontal">
+				    <dl class="dl-horizontal">
                         <dt>
-                            @Html.DisplayNameFor(model => model.tsal_Descripcion)
+                            @Html.DisplayNameFor(model => model.tsal_Id)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.tsal_Descripcion)
+                            @Html.DisplayFor(model => model.tsal_Id)
                         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tsal_Descripcion)
+        </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tsal_UsuarioCrea)
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tsal_Descripcion)
+        </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.tsal_UsuarioCrea)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tsal_FechaCrea)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tsal_FechaCrea)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tsal_UsuarioModifica)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tsal_FechaModifica)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tsal_FechaModifica)
-                        </dd>
-
-                    </dl>
+    </dl>
 
 
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.tsal_Id }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white" })
-
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.tsal_Id }, new { @class = "btn btn-primary"})
+   
                 </div>
+            </div>
+            <div class="ibox-content">
+
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                         
+                            Acción
+                        </th>
+                        <th>
+                           
+                            Creado
+                        </th>
+                        <th>
+                          
+                            Fecha
+                        </th>
+                        
+                    </tr>
+
+                   
+                    <tr>
+                        <td>
+                           
+                            Creado por
+                        </td>
+                        <td>
+
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.tsal_FechaCrea)
+                        </td>
+                       
+                    </tr>
+                    <tr>
+                        <td>
+                           
+                            Modificado por
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.tsal_FechaModifica)
+                        </td>
+                       
+                    </tr>
+
+                </table>
+
+
             </div>
         </div>
     </div>
-</div>
+ </div>
 
 
+          
 
 
 

@@ -24,15 +24,18 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-responsive" style="width:100%" id="Datatable">
-
+                    <table class="table table-responsive" style="width:100%"  id="DataTable">
+    
                         <thead>
                             <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.uni_Id)
+                                </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.uni_Descripcion)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.uni_Abreviacion)
+                                    @Html.DisplayNameFor(model => model.uni_Abreviatura)
                                 <th>Acciones</th>
                             </tr>
 
@@ -42,10 +45,13 @@
                             {
                                 <tr>
                                     <td>
+                                        @Html.DisplayFor(modelItem => item.uni_Id)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.uni_Descripcion)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.uni_Abreviacion)
+                                        @Html.DisplayFor(modelItem => item.uni_Abreviatura)
                                     <td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.uni_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.uni_Id }, new { @class = "btn btn-white btn-xs" })
@@ -62,7 +68,8 @@
 </div>
 
 
-@section scripts{
-    <script src="~/Scripts/app/DataTable.js"></script>
 
-}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+
+   

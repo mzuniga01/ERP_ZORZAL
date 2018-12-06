@@ -1,0 +1,216 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbSalidaDetalle>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Lista de SalidaDetalle</h5>
+                    <div class="ibox-tools">
+                        <input type="button" class="btn btn-primary btn-xs" data-dismiss="modal" id="#Crear" value="Nuevo" data-toggle="modal" data-target="#Detalles" />
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.sal_Cantidad)*@
+            Cantidad
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)*@
+            Producto
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.tbSalida.box_Codigo)*@
+            Numero de Caja
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.sald_FechaCrea)*@
+            Creado el
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.sald_FechaModifica)*@
+            Modificado el
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)*@
+            Nombre Usuario
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+            Nombre Usuario
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.sal_Cantidad)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbSalida.box_Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sald_FechaCrea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sald_FechaModifica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
+        </td>*@
+        <td>
+            <input type="button" class="btn btn-primary btn-xs" data-dismiss="modal" id="#Detalles" value="Detalles" data-toggle="modal" data-target="#Detalles" />
+            <input type="button" class="btn btn-white btn-xs" data-dismiss="modal" id="#Editar" value="Editar" data-toggle="modal" data-target="#Editar" />
+        </td>
+    </tr>
+}
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+<!-- INSERT MODAL -->
+<div class="modal fade" id="Crear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Ingresar Detalle de Salida</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Descripcion</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Estado Movimiento</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Nombre Producto Categoria</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
+                <input type="button" class="btn btn-primary" id="btnAceptar" style="width:110px;" value="Aceptar" onclick="Aceptar();" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- INSERT MODAL -->
+<div class="modal fade" id="Detalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Salida Detalles</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Descripcion</label>
+                            <div class="col-sm-7  input-group">
+                                nombre
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Estado Movimiento</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Nombre Producto Categoria</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
+                <input type="button" class="btn btn-primary" id="btnAceptar" style="width:110px;" value="Aceptar" onclick="Aceptar();" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- INSERT MODAL -->
+<div class="modal fade" id="Editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Ingresar</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    @Html.Partial("_EditSalidaDetalle",Model.tbSalida)
+                    @*<div class="col-12">
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Descripcion</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Estado Movimiento</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Nombre Producto Categoria</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
+                <input type="button" class="btn btn-primary" id="btnAceptar" style="width:110px;" value="Aceptar" onclick="Aceptar();" />
+            </div>
+        </div>
+    </div>
+</div>
+

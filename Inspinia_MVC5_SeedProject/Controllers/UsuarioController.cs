@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_ZORZAL.Models;
 
-namespace Inspinia_MVC5_SeedProject.Controllers
+namespace ERP_ZORZAL.Controllers
 {
     public class UsuarioController : Controller
     {
@@ -17,8 +17,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /Usuario/
         public ActionResult Index()
         {
-            //var tbusuario = db.tbUsuario.Include(t => t.tbRolesUsuario);
-            return View(/*tbusuario.ToList()*/);
+            return View(db.tbUsuario.ToList());
         }
 
         // GET: /Usuario/Details/5
@@ -39,7 +38,6 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /Usuario/Create
         public ActionResult Create()
         {
-            ViewBag.rolusu_Id = new SelectList(db.tbRolesUsuario, "rolusu_Id", "rolusu_Id");
             return View();
         }
 
@@ -48,7 +46,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="usu_Id,usu_NombreUsuario,rolusu_Id,usu_Password,usu_Nombre,usu_Apellido,usu_Correo,edo_IdEstado,usu_RazonEstado,usu_EsAdministrador")] tbUsuario tbUsuario)
+        public ActionResult Create([Bind(Include="usu_Id,usu_NombreUsuario,usu_Password,usu_Nombres,usu_Apellidos,usu_Correo,usu_EsActivo,usu_RazonInactivo,usu_EsAdministrador")] tbUsuario tbUsuario)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +55,6 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.rolusu_Id = new SelectList(db.tbRolesUsuario, "usu_Id", "usu_Id", tbUsuario.usu_Id);
             return View(tbUsuario);
         }
 
@@ -73,7 +70,6 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.rolusu_Id = new SelectList(db.tbRolesUsuario, "usu_Id", "usu_Id", tbUsuario.usu_Id);
             return View(tbUsuario);
         }
 
@@ -82,7 +78,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="usu_Id,usu_NombreUsuario,rolusu_Id,usu_Password,usu_Nombre,usu_Apellido,usu_Correo,edo_IdEstado,usu_RazonEstado,usu_EsAdministrador")] tbUsuario tbUsuario)
+        public ActionResult Edit([Bind(Include="usu_Id,usu_NombreUsuario,usu_Password,usu_Nombres,usu_Apellidos,usu_Correo,usu_EsActivo,usu_RazonInactivo,usu_EsAdministrador")] tbUsuario tbUsuario)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +86,6 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.rolusu_Id = new SelectList(db.tbRolesUsuario, "usu_Id", "usu_Id", tbUsuario.usu_Id);
             return View(tbUsuario);
         }
 
@@ -128,18 +123,5 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult CrearPrueba()
-        {
-            return View();
-        }
-        public ActionResult DetallePrueba()
-        {
-            return View();
-        }
-        public ActionResult EditarPrueba()
-        {
-            return View();
-        }
-
     }
 }

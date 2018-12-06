@@ -1,26 +1,21 @@
 ﻿@model ERP_ZORZAL.Models.tbSalida
 
 @{
-    ViewBag.Title = "Detalles";
+    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        @*<h2></h2>
-            <ol class="breadcrumb">
-                <li>
-
-                </li>
-                <li class="active">
-                    <strong></strong>
-                </li>
-            </ol>*@
-    </div>
-    <div class="col-sm-8">
-        <div class="title-action">
-            <a href="@Url.Action("Index","Salida")">Regresar</a>
-        </div>
+        <h2>Detalles</h2>
+        @*<ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>*@
     </div>
 </div>
 
@@ -32,121 +27,115 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Detalles </h5>
+                    <h5>Detalles Salida</h5>
                 </div>
                 <div class="ibox-content">
 
-                    <dl class="dl-horizontal">
 
-                        <dt>
-                            @*@Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)*@
-                            N# de Factura
-                        </dt>
+				    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.sal_FechaElaboracion)*@
+            Fecha de Elaboración
+        </dt>
 
-                        <dd>
-                            @*@Html.DisplayFor(model => model.tbFactura.fact_Codigo)*@
-                            0000-0130-1133
-                        </dd>
-                        <dt>
-                            @Html.DisplayNameFor(model => model.sal_FechaElaboracion)
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.sal_FechaElaboracion)
+        </dd>
 
-                        <dd>
-                            @*@Html.DisplayFor(model => model.sal_FechaElaboracion)*@
-                            30/11/2018
-                        </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.sal_RazonDevolucion)
+        </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.sal_RazonDevolucion)
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.sal_RazonDevolucion)
+        </dd>*@
 
-                        <dd>
-                            @*@Html.DisplayFor(model => model.sal_RazonDevolucion)*@
+       
 
-                        </dd>
+        <dt>
+            @*@Html.DisplayNameFor(model => model.tbBodega.bod_Nombre)*@
+            Nombre de Bodega
+        </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.sal_UsuarioCrea)
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tbBodega.bod_Nombre)
+        </dd>
 
-                        <dd>
-                            @*@Html.DisplayFor(model => model.sal_UsuarioCrea)*@
-                            Administrador
-                        </dd>
-                        <dt>
-                            @Html.DisplayNameFor(model => model.sal_FechaCrea)
-                        </dt>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.tbBox.box_Descripcion)
+        </dt>
 
-                        <dd>
-                            @*@Html.DisplayFor(model => model.sal_FechaCrea)*@
-                            31/11/2018
-                        </dd>
-                        <dt>
-                            @Html.DisplayNameFor(model => model.sal_UsuarioModifica)
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tbBox.box_Descripcion)
+        </dd>*@
 
-                        <dd>
-                            @*@Html.DisplayFor(model => model.sal_UsuarioModifica)*@
-                            Administrador
-                        </dd>
+        <dt>
+            @*@Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)*@
+            Estado
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.tbEstadoMovimiento.estm_Descripcion)
+        </dd>
 
+        <dt>
+            @*@Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)*@
+            Numero de Factura
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
+        </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.sal_FechaModifica)
-                        </dt>
+        <dt>
+            @*@Html.DisplayNameFor(model => model.tbTipoSalida.tsal_Descripcion)*@
+            Tipo de Salida
+        </dt>
 
-                        <dd>
-                            @*@Html.DisplayFor(model => model.sal_FechaModifica)*@
-                           01/12/2018
-                        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.tbTipoSalida.tsal_Descripcion)
+        </dd>
+          <dt>
+            @*@Html.DisplayNameFor(model => model.sal_UsuarioCrea)*@
+              Creado por
+        </dt>
 
-                        <dt>
-                            @*@Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)*@
-                            Responsable de Bodega
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.sal_UsuarioCrea)
+        </dd>
 
-                        <dd>
-                            @*@Html.DisplayFor(model => model.tbBodega.bod_ResponsableBodega)*@
-                            Luis Abel Diaz
-                        </dd>
+        <dt>
+            @*@Html.DisplayNameFor(model => model.sal_FechaCrea)*@
+            Creado el
+        </dt>
 
-                        <dt>
-                            @*@Html.DisplayNameFor(model => model.tbBox.box_Descripcion)*@
-                            Descripcion de Caja
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.sal_FechaCrea)
+        </dd>
 
-                        <dd>
-                            @*@Html.DisplayFor(model => model.tbBox.box_Descripcion)*@
-                            Fragil
-                        </dd>
+        <dt>
+            @*@Html.DisplayNameFor(model => model.sal_UsuarioModifica)*@
+            Modificado por
+        </dt>
 
-                        <dt>
-                            @*@Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)*@
-                            Estado Movimiento
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.sal_UsuarioModifica)
+        </dd>
 
-                        <dd>
-                            @*@Html.DisplayFor(model => model.tbEstadoMovimiento.estm_Descripcion)*@
-                            Realizado
-                        </dd>
+        <dt>
+            @*@Html.DisplayNameFor(model => model.sal_FechaModifica)*@
+            Modificado el
+        </dt>
 
-                        <dt>
-                            @*@Html.DisplayNameFor(model => model.tbTipoSalida.tsal_Descripcion)*@
-                            Tipo de Salida
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.sal_FechaModifica)
+        </dd>
 
-                        <dd>
-                            @*@Html.DisplayFor(model => model.tbTipoSalida.tsal_Descripcion)*@
-                            Venta
-                        </dd>
-
-                    </dl>
+    </dl>
 
 
-	    @Html.ActionLink("Editar", "Edit", null, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-white"})
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.sal_Id }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white"})
 
                 </div>
             </div>

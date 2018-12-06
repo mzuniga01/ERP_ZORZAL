@@ -1,5 +1,5 @@
 ﻿@model ERP_ZORZAL.Models.tbSalida
-
+@using ERP_ZORZAL.Models
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,25 +7,24 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        @*<h2></h2>
-        <ol class="breadcrumb">
+        <h2>Editar</h2>
+        @*<ol class="breadcrumb">
             <li>
-
+                @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
-                <strong></strong>
+                <strong>Edit</strong>
             </li>
         </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="@Url.Action("Index","Salida")">Regresar</a>
+			@Html.ActionLink("Nuevo", "Index", @*null,*@ new { @class = "btn btn-primary"})
         </div>
     </div>
 </div>
 
 
-@**@
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -37,83 +36,25 @@
                 </div>
                 <div class="ibox-content">
 
-                    <div class="form-horizontal">
-                        <div class="row">
-                            <div class="col-lg-6" style="float:left;padding-left:60px">
-                                <div class="form-group">
-                                    <p class="control-label col-md-2">Bodega</p>
-                                    <div class="col-md-6">
-                                        <select id="Select" class="form-control">
-                                            <option>--Seleccione Bodega--</option>
-                                            <option selected>Bodega #1</option>
-                                            <option>Bodega #2</option>
-                                            <option>Bodega #3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                @*@Html.LabelFor(model => model.fact_Id, "fact_Id", new { @class = "control-label col-md-2" })*@
-
-                                <div class="form-group">
-                                    <p class="control-label col-md-2">N# de Factura</p>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" value="0000-0130-1133" />
-                                    </div>
-                                    <div class="col-md-6"></div>
-                                </div>
-                                <div class="form-group">
-                                    <p class="control-label col-md-2">Fecha de Salida</p>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" value="30/11/2018" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6" >
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Codigo de Caja</label><br />
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" value="0102" />
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <p class="control-label col-md-2">Tipo de Salida</p>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" value="Venta" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-
-                    </div>
-                    @Html.Partial("_IndexSalidaDetalle", Model)
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
+				@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
     
-</div>
-@*@using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-
-                <div class="form-horizontal">
+    <div class="form-horizontal">
 
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.sal_Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.bod_Id, "bod_Id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("bod_Id", String.Empty)
+                @Html.DropDownList("bod_Nombre", (IEnumerable<SelectListItem>)ViewBag.bod_Nombre, new { @class = "col-md-5" })
                 @Html.ValidationMessageFor(model => model.bod_Id)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.fact_Id, "fact_Id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.fact_Id, "Numero de Factura", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("fact_Id", String.Empty)
                 @Html.ValidationMessageFor(model => model.fact_Id)
@@ -121,7 +62,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.sal_FechaElaboracion, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.sal_FechaElaboracion,"Fecha de Elaboración", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.sal_FechaElaboracion)
                 @Html.ValidationMessageFor(model => model.sal_FechaElaboracion)
@@ -129,47 +70,47 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.estm_Id, "estm_Id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("estm_Id", String.Empty)
                 @Html.ValidationMessageFor(model => model.estm_Id)
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.box_Codigo, "box_Codigo", new { @class = "control-label col-md-2" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.box_Codigo, "Numero de Caja", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("box_Codigo", String.Empty)
                 @Html.ValidationMessageFor(model => model.box_Codigo)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tsal_Id, "tsal_Id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tsal_Id, "Tipo de Salida", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("tsal_Id", String.Empty)
                 @Html.ValidationMessageFor(model => model.tsal_Id)
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.sal_RazonDevolucion, new { @class = "control-label col-md-2" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.sal_RazonDevolucion,"Razon de Devolución", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.sal_RazonDevolucion)
                 @Html.ValidationMessageFor(model => model.sal_RazonDevolucion)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.sal_UsuarioCrea, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.sal_UsuarioCrea,"Creado Por", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.sal_UsuarioCrea)
+                @Html.EditorFor(model => model.sal_UsuarioCrea,"disabled")
                 @Html.ValidationMessageFor(model => model.sal_UsuarioCrea)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.sal_FechaCrea, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.sal_FechaCrea,"Creado el", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.sal_FechaCrea)
                 @Html.ValidationMessageFor(model => model.sal_FechaCrea)
@@ -177,7 +118,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.sal_UsuarioModifica, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.sal_UsuarioModifica,"Modificado Por", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.sal_UsuarioModifica)
                 @Html.ValidationMessageFor(model => model.sal_UsuarioModifica)
@@ -185,7 +126,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.sal_FechaModifica, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.sal_FechaModifica,"Modificado el", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.sal_FechaModifica)
                 @Html.ValidationMessageFor(model => model.sal_FechaModifica)
@@ -194,13 +135,23 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
-                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white" })
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>
+}
 
-                }*@
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+<div>
+    @*@Html.Partial("_SalidaDetalle",new ERP_ZORZAL.Models.tbSalidaDetalle() { sal_Id = Model.tsal_Id })*@
+    @Html.Partial("_SalidaDetalle", Model.tbSalidaDetalle)
+</div>
 
 
 

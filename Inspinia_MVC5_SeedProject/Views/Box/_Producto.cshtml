@@ -1,0 +1,157 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbProducto>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <div class="ibox-tools">
+                        @*@Html.ActionLink("Registrar", "Create", null, new { @class = "btn btn-primary btn-xs"})*@
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarProducto">Nuevo</button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-responsive" style="width:100%" id="Datatable">
+                        <thead>
+                            <tr >
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tbSalidaDetallse.prod_Codigo)*@
+                                    Codigo de Producto
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.prod_Descripcion)*@
+                                    Producto
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)*@
+                                    Unidad de Medida
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.prod_Marca)*@
+                                    Marca
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.prod_Modelo)*@
+                                    Modelo
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.prod_Talla)*@
+                                    Talla
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.prod_Color)*@
+                                    Color
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tbSalidaDetallse.sal_Cantidad)*@
+                                    Cantidad
+                                </th>
+
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        @*@foreach (var item in Model)
+                            { }*@
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tbSalidaDetallse.prod_Codigo)*@
+                                    PANPJ-102634700
+                                </td>
+                                <th>
+                                    @*@Html.DisplayFor(modelItem => item.prod_Descripcion)*@
+                                    Pantalon
+                                </th>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)*@
+                                    Unidad
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.prod_Marca)*@
+                                    Pepe Jeans
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.prod_Modelo)*@
+                                    Bot Cut
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.prod_Talla)*@
+                                    Talla 32
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.prod_Color)*@
+                                    Negro
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tbSalidaDetallse.sal_Cantidad)*@
+                                    80
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink("Detalles", "Details", new { id = item.prod_Codigo }, new { @class = "btn btn-primary btn-xs" })
+        @Html.ActionLink("Editar", "Edit", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-xs" })*@
+                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalEditarProducto">Editar</button>
+                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalEliminarProducto">Eliminar</button>
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tbSalidaDetallse.prod_Codigo)*@
+                                    CAMNK-102634500
+                                </td>
+                                <th>
+                                    @*@Html.DisplayFor(modelItem => item.prod_Descripcion)*@
+                                    Camisa
+                                </th>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)*@
+                                    Docena
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.prod_Marca)*@
+                                    NIKE
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.prod_Modelo)*@
+                                    Cuello V
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.prod_Talla)*@
+                                    XL
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.prod_Color)*@
+                                    Negro Azabache
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tbSalidaDetallse.sal_Cantidad)*@
+                                    80
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink("Detalles", "Details", new { id = item.prod_Codigo }, new { @class = "btn btn-primary btn-xs" })
+        @Html.ActionLink("Editar", "Edit", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-xs" })*@
+                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalEditarProducto">Editar</button>
+                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalEliminarProducto">Eliminar</button>
+
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section scripts{
+    <script src="~/Scripts/app/DataTable.js"></script>
+
+}

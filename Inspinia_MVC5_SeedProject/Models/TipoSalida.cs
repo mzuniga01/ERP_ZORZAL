@@ -10,32 +10,31 @@ namespace ERP_ZORZAL.Models
     public partial class tbTipoSalida
     {
        
-
     }
     public class TipoSalidaMetaData
     {
-        [Display(Name = "Id de Tipo de Salida")]
+        [Display(Name = "Número")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte tsal_Id { get; set; }
 
-        [Display(Name = "Tipo de Salida")]
+        [Display(Name = "Descripción")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string tsal_Descripcion { get; set; }
 
-        [Display(Name = "Creado por")]
+        [Display(Name = "Usuario")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int tsal_UsuarioCrea { get; set; }
 
-        [Display(Name = "Fecha de Creacion")]
+        [Display(Name = "Fecha creación")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime tsal_FechaCrea { get; set; }
 
-        [Display(Name = "Modificado por")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Modificado")]
+       
         public Nullable<int> tsal_UsuarioModifica { get; set; }
 
-        [Display(Name = "Fecha de Modificacion")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+
         public Nullable<System.DateTime> tsal_FechaModifica { get; set; }
+
     }
 }
