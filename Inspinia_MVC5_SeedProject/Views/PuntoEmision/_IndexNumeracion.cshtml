@@ -11,7 +11,7 @@
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Nuevo">
                             Nuevo
                         </button>
-						@*@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})*@
+						
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -68,18 +68,6 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.pemid_FechaLimite)
                                     </td>
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.pemid_UsuarioCrea)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.pemid_FechaCrea)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.pemid_UsuarioModifica)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.pemid_FechaModifica)
-                                    </td>*@
                                    
                                    
                                     <td>
@@ -90,8 +78,6 @@
                                         <button type="button"  class = "btn btn-white btn-xs"   data-toggle="modal" data-target="#Editar_@item.pemid_Id">
                                             Editar
                                         </button>
-                                        @*@Html.ActionLink("Editar", "Edit", new { id = item.pemid_Id }, new { @class = "btn btn-white btn-sm" })*@
-                                        @*@Html.ActionLink("Delete", "Delete", new { id = item.pemid_Id }, new { @class = "btn btn-white btn-sm" })*@
                                     </td>
                                 </tr>
                                 <div class="modal fade" id="Editar_@item.pemid_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -113,6 +99,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="modal fade" id="Detalle_@item.pemid_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -123,11 +110,12 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            @Html.Partial("_DetailsNumeracion", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle() { pemi_Id = item.pemi_Id, pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, })
+                                            @Html.Partial("_DetailsNumeracion", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle() { pemi_Id = item.pemi_Id, pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea=item.pemid_UsuarioCrea, pemid_FechaCrea=item.pemid_FechaCrea, pemid_UsuarioModifica=item.pemid_UsuarioModifica, pemid_FechaModifica=item.pemid_FechaModifica})
+                                           
                                         </div>
                                         <div class="modal-footer">
                                             @*<a href = "@Url.Action("_EditNumeracion","PuntoEmision")" class="btn btn-primary ">Editar</a>*@
-                                            <a href = "@Url.Action("Index","PuntoEmision")" class = "btn btn-white">Cancelar</a>
+                                            <a href = "@Url.Action("Index","PuntoEmision")" class = "btn btn-white">Cerrar</a>
                                         </div>
                                     </div>
                                 </div>

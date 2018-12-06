@@ -24,7 +24,6 @@ namespace ERP_ZORZAL.Models
         public Nullable<System.DateTime> sald_FechaModifica { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
-        public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbProducto tbProducto { get; set; }
         public virtual tbSalida tbSalida { get; set; }
     }

@@ -1,22 +1,17 @@
 ﻿@model IEnumerable<ERP_ZORZAL.Models.tbPuntoEmisionDetalle>
 
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado de Numeración</h5>
-                    
                 </div>
                 <div class="ibox-content">
 
                     <table class="table table table-striped  table-bordered">
                         <thead>
                             <tr>
-                                @*<th>
-                                    @Html.DisplayNameFor(model => model.tbPuntoEmision.pemi_Id)
-                                </th>*@
                                 <th>
                                     @Html.DisplayNameFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
                                 </th>
@@ -51,9 +46,6 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.tbPuntoEmision.pemi_Id)
-                                    </td>*@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbPuntoEmision.pemi_NumeroCAI)
                                     </td>
@@ -69,30 +61,16 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.pemid_FechaLimite)
                                     </td>
-                                    @*<td>
-                                            @Html.DisplayFor(modelItem => item.pemid_UsuarioCrea)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.pemid_FechaCrea)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.pemid_UsuarioModifica)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.pemid_FechaModifica)
-                                        </td>*@
 
 
                                     <td>
 
-                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle">
+                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
                                             Detalle
                                         </button>
                                         <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar_@item.pemid_Id">
                                             Editar
                                         </button>
-                                        @*@Html.ActionLink("Editar", "Edit", new { id = item.pemid_Id }, new { @class = "btn btn-white btn-sm" })*@
-                                        @*@Html.ActionLink("Delete", "Delete", new { id = item.pemid_Id }, new { @class = "btn btn-white btn-sm" })*@
                                     </td>
                                 </tr>
                                 <div class="modal fade" id="Editar_@item.pemid_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -105,12 +83,32 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                @*@Html.Partial("_EditMunicipios", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle())*@
+                                                @Html.Partial("_EditNumeracion", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle() { pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, })
                                             </div>
                                             <div class="modal-footer">
-
-                                                <a href="@Url.Action("Edit","PuntoEmision")" class="btn btn-primary ">Guardar</a>
+                                                <a href="@Url.Action("Details","PuntoEmision")" class="btn btn-primary ">Guardar</a>
                                                 <a href="@Url.Action("Index","PuntoEmision")" class="btn btn-white">Cancelar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="Detalle_@item.pemid_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Detalle Numeración</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                @Html.Partial("_DetailsNumeracion", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle() { pemi_Id = item.pemi_Id, pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea = item.pemid_UsuarioCrea, pemid_FechaCrea = item.pemid_FechaCrea, pemid_UsuarioModifica = item.pemid_UsuarioModifica, pemid_FechaModifica = item.pemid_FechaModifica })
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                @*<a href = "@Url.Action("_EditNumeracion","PuntoEmision")" class="btn btn-primary ">Editar</a>*@
+                                                <a href="@Url.Action("Index","PuntoEmision")" class="btn btn-white">Cerrar</a>
                                             </div>
                                         </div>
                                     </div>
@@ -126,30 +124,3 @@
 </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
-
-
-
-<!-- Modal -->
-<!-- Modal -->
-<div class="modal fade" id="Detalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detalle Numeración</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                @*@Html.Partial("_CreateNumeracion")*@
-            </div>
-            <div class="modal-footer">
-                <a href="@Url.Action("Edit","PuntoEmision")" class="btn btn-primary ">Guardar</a>
-                <a href="@Url.Action("Index","PuntoEmision")" class="btn btn-white">Cancelar</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-

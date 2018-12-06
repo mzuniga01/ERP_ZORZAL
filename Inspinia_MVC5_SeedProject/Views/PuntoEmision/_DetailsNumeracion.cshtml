@@ -1,33 +1,24 @@
 ﻿@model ERP_ZORZAL.Models.tbPuntoEmisionDetalle
 
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 
 
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                @*<div class="ibox-title">
-                    <h5>_DetailsNumeracion tbPuntoEmisionDetalle</h5>
-                </div>*@
-                <div class="ibox-content">
-
-
-				    <dl class="dl-horizontal">
+                    <dl class="dl-horizontal">
                         @*<dt>
-                            @Html.DisplayNameFor(model => model.tbDocumentoFiscal.dfisc_Descripcion)
-                        </dt>
+                                @Html.DisplayNameFor(model => model.tbDocumentoFiscal.dfisc_Descripcion)
+                            </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.tbDocumentoFiscal.dfisc_Descripcion)
-                        </dd>
+                            <dd>
+                                @Html.DisplayFor(model => model.tbDocumentoFiscal.dfisc_Descripcion)
+                            </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
-                        </dt>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
+                            </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
-                        </dd>*@
+                            <dd>
+                                @Html.DisplayFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
+                            </dd>*@
                         <dt>
                             @Html.DisplayNameFor(model => model.pemi_Id)
                         </dt>
@@ -43,83 +34,63 @@
                             @Html.DisplayFor(model => model.pemid_Id)
                         </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.pemid_RangoInicio)
-            </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pemid_RangoInicio)
+                        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.pemid_RangoInicio)
-            </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.pemid_RangoInicio)
+                        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.pemid_RangoFinal)
-            </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pemid_RangoFinal)
+                        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.pemid_RangoFinal)
-            </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.pemid_RangoFinal)
+                        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.pemid_FechaLimite)
-            </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pemid_FechaLimite)
+                        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.pemid_FechaLimite)
-            </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.pemid_FechaLimite)
+                        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.pemid_UsuarioCrea)
-            </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pemid_UsuarioCrea)
+                        </dt>
+                        <dd>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.pemid_UsuarioCrea)
-            </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pemid_FechaCrea)
+                        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.pemid_FechaCrea)
-            </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.pemid_FechaCrea)
+                        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.pemid_FechaCrea)
-            </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pemid_UsuarioModifica)
+                        </dt>
+                           
 
-            <dt>
-                @Html.DisplayNameFor(model => model.pemid_UsuarioModifica)
-            </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+                        </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.pemid_UsuarioModifica)
-            </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pemid_FechaModifica)
+                        </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.pemid_FechaModifica)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.pemid_FechaModifica)
-            </dd>
-
-            
-
-            @*<dt>
-                @Html.DisplayNameFor(model => model.tbPuntoEmision1.pemi_NumeroCAI)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.tbPuntoEmision1.pemi_NumeroCAI)
-            </dd>*@
-
-        </dl>
+                        <dd>
+                            @Html.DisplayFor(model => model.pemid_FechaModifica)
+                        </dd>
+                        </dl>
+     
 
 
-	    @*@Html.ActionLink("Edit", "Edit", new { id = Model.pemid_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
-
-                </div>
-            </div>
-        </div>
-    </div>
- </div>
 
 
 
