@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Detalle Denominación</h2>
@@ -90,44 +90,31 @@
             @Html.DisplayFor(model => model.deno_valor)
         </dd>
 
-                        <dt>
-                            @*@Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)*@
-                            Usuario Creación
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
-                        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.deno_FechaCrea)*@
-            Fecha Creación
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.deno_FechaCrea)
-        </dd>
-
-
-                        <dt>
-                            @*@Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)*@
-                            Usuario Modificación
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
-                        </dd>
-        <dt>
-            @*@Html.DisplayNameFor(model => model.deno_FechaModifica)*@
-            Feche Modificación
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.deno_FechaModifica)
-        </dd>
-
+                        <dt> </dt>
         
-
+        
+                        
+                                <div class="form-group">
+                                    <br />
+                                    <table>
+                                        <tr>
+                                            <th></th>
+                                            <th>Usuario</th>
+                                            <th>Fecha</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Creado</td>
+                                            <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                            <td>@Html.DisplayFor(model => model.deno_FechaCrea)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Modificado</td>
+                                            <td>@Html.DisplayFor(model => model.deno_UsuarioModifica)</td>
+                                            <td>@Html.DisplayFor(model => model.deno_FechaModifica)</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                          
         
 
        

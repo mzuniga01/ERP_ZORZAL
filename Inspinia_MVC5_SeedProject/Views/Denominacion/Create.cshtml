@@ -43,13 +43,13 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.mnda_Id, "Moneda", new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.DropDownList("mnda_Nombre", String.Empty)
                 @Html.ValidationMessageFor(model => model.mnda_Id)
             </div>
-        </div>
+        </div>*@
 
 
         <div class="form-group">
@@ -57,11 +57,11 @@
             <div class="col-md-3">
 
                 @Html.DropDownListFor(x => x.deno_Tipo, new List<SelectListItem>
-    {
+    {                   
                         new SelectListItem() {Text = "Billete", Value="1"},
                         new SelectListItem() {Text = "Moneda", Value="2"},
-                       
-    })
+
+    }, "Seleccione la Denominación", new { @class = "form-control" } )
 
 
             </div>
@@ -70,16 +70,27 @@
 
 
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_Descripcion, "Moneda", new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
 
-        
+                @Html.DropDownListFor(x => x.deno_Tipo, new List<SelectListItem>
+    {                   
+                        new SelectListItem() {Text = "Lempira", Value="1"},
+                        new SelectListItem() {Text = "Euro", Value="2"},
 
+    }, "Seleccione la Moneda", new { @class = "form-control" })
+
+
+            </div>
+        </div>
 
 
 
 
         <div class="form-group">
             @Html.LabelFor(model => model.deno_Descripcion, "Descripción", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.deno_Descripcion)
                 @Html.ValidationMessageFor(model => model.deno_Descripcion)
             </div>

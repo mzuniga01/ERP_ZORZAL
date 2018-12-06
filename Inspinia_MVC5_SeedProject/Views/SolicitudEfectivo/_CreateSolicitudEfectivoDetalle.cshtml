@@ -32,8 +32,40 @@
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.solef_Id, "Moneda", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.DropDownList("solef_Id", String.Empty)*@
+                @Html.EditorFor(model => model.tbSolicitudEfectivo.mnda_Id, new { htmlAttributes = new { disabled = true } })
+               
+            </div>
+        </div>
 
-        @{
+
+
+        <div class="form-group">
+            <label class="control-label col-md-3">Denominación</label>
+            <div class="col-md-9">
+
+                @Html.DropDownListFor(x => x.soled_Id, new List<SelectListItem>
+    {
+                        new SelectListItem() {Text = "500", Value="1"},
+                        new SelectListItem() {Text = "100", Value="2"},
+
+    }, "Seleccione la Denominación", new { @class = "form-control" })
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        @*@{
             var Listado = new List<SelectListItem>() {
 
                 new SelectListItem()
@@ -52,18 +84,18 @@
                     Value = "1"
                 },
            };
-        }
+        }*@
 
-        <div class="form-group">
-            @*<label  class = "control-label col-md-3">Denominacion</label>*@
+        @*<div class="form-group">
+            <label  class = "control-label col-md-3">Denominacion</label>
             @Html.LabelFor(model => model.deno_Id, "Denominación", new { @class = "control-label col-md-3" })
             <div class="col-md-3">
-                @*@Html.DropDownList("deno_Id", String.Empty)*@
+                @Html.DropDownList("deno_Id", String.Empty)
                 @Html.DropDownList("Tipo Denominacion", Listado, new { @class = "control-label col-md-12" })
-                @*@Html.EditorFor(model => model.deno_Id)*@
+                @Html.EditorFor(model => model.deno_Id)
                 <span class="validation-error">  @Html.ValidationMessageFor(model => model.deno_Id)</span>
             </div>
-        </div>
+        </div>*@
 
 
 
@@ -84,13 +116,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             <label class="control-label col-md-2">Cantidad Entregada</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.soled_CantidadEntregada)
                 @Html.ValidationMessageFor(model => model.soled_CantidadEntregada)
             </div>
-        </div>
+        </div>*@
 
         @*<div class="form-group">
             @Html.LabelFor(model => model.soled_UsuarioCrea, "soled_UsuarioCrea", new { @class = "control-label col-md-2" })

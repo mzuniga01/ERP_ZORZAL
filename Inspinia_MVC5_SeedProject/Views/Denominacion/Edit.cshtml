@@ -5,6 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Editar Denominaciones</h2>
@@ -57,13 +60,30 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.mnda_Id, "Moneda", new { @class = "control-label col-md-2" })
             <div class="col-md-2">
                 @Html.DropDownList("mnda_Id", String.Empty)
                 @Html.ValidationMessageFor(model => model.mnda_Id)
             </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_Descripcion, "Moneda", new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+
+                @Html.DropDownListFor(x => x.deno_Tipo, new List<SelectListItem>
+    {                   
+                        new SelectListItem() {Text = "Lempira", Value="1"},
+                        new SelectListItem() {Text = "Euro", Value="2"},
+
+    }, new { @class = "form-control" })
+
+
+            </div>
         </div>
+
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.deno_Descripcion,"Descripción", new { @class = "control-label col-md-2" })
@@ -105,7 +125,7 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.deno_valor,"Vaolor", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.deno_valor,"Valor", new { @class = "control-label col-md-2" })
             <div class="col-md-2">
                 @Html.EditorFor(model => model.deno_valor)
                 @Html.ValidationMessageFor(model => model.deno_valor)
@@ -146,13 +166,51 @@
             </div>
         </div>*@
 
+
+
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+            @Html.LabelFor(model => model.deno_FechaModifica, "          ", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="form-group">
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                            <td>@Html.DisplayFor(model => model.deno_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>@Html.DisplayFor(model => model.deno_UsuarioModifica)</td>
+                            <td>@Html.DisplayFor(model => model.deno_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
+
+       
+
+        
+           
+            
+       
+           
+       
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                </div>
+            </div>
+        </div>
 }
 
 
