@@ -17,6 +17,11 @@
             </li>
         </ol>*@
     </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Factura")">Regresar</a>
+        </div>
+    </div>
 </div>
 
 
@@ -93,9 +98,14 @@
             @Html.DisplayNameFor(model => model.fact_AlCredito)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.fact_AlCredito)
-        </dd>
+        @if (Model.fact_AlCredito)
+        {
+            <dd>Si</dd>
+        }
+        else
+        {
+            <dd>No</dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.fact_DiasCredito)
@@ -117,9 +127,14 @@
             @Html.DisplayNameFor(model => model.fact_AutorizarDescuento)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.fact_AutorizarDescuento)
-        </dd>
+        @if (Model.fact_AutorizarDescuento)
+        {
+            <dd>Si</dd>
+        }
+        else
+        {
+            <dd>No</dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.fact_Vendedor)
@@ -150,7 +165,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fact_UsuarioCrea)
+            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
         </dd>
 
         <dt>
@@ -166,7 +181,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fact__UsuarioModifica)
+            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
         </dd>
 
         <dt>
@@ -180,8 +195,8 @@
     </dl>
 
 
-	    @Html.ActionLink("Guardar", "Edit", new { id = Model.fact_Id }, new { @class = "btn btn-primary"})
-        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.fact_Id }, new { @class = "btn btn-primary btn-xs" })
+        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-xs" })
 
                 </div>
             </div>

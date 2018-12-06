@@ -225,6 +225,7 @@
     <Compile Include="Models\cExoneracion.cs" />
     <Compile Include="Models\cGenero.cs" />
     <Compile Include="Models\Clientes.cs" />
+    <Compile Include="Models\cMinorista.cs" />
     <Compile Include="Models\cNacionalidad.cs" />
     <Compile Include="Models\cNotaCredito.cs" />
     <Compile Include="Models\cSolicitudEfectivo.cs" />

@@ -1,15 +1,17 @@
 ﻿$(document).ready(function () {
 
     $('#RazonInactivo').hide();
-    console.log("Hola");
+
 });
+
+
 
 $("#clte_EsActivo").change(function () {
     if (this.checked) {
-        $('#RazonInactivo').show();
+        $('#RazonInactivo').hide();
     }
     else {
-        $('#RazonInactivo').hide();
+        $('#RazonInactivo').show();
     }
 });
         

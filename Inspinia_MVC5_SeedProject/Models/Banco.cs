@@ -13,7 +13,7 @@ namespace ERP_ZORZAL.Models
     }
     public class BancoMetaData
     {
-        [Display(Name = "Código")]
+        [Display(Name = "Número")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public short ban_Id { get; set; }
         [Display(Name = "Banco")]

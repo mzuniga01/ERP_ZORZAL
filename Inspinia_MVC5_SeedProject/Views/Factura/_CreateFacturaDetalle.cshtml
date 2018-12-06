@@ -47,7 +47,7 @@
             </div>
             @Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = "control-label col-md-3" })
             <div class="col-md-2">
-                @Html.EditorFor(model => model.factd_PorcentajeDescuento)
+                <input class="form-control" value="" />
                 @Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)
             </div>
           
@@ -57,8 +57,8 @@
            
             @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label col-md-2" })
             <div class="col-md-2">
-                @Html.EditorFor(model => model.factd_Cantidad)
-                @Html.ValidationMessageFor(model => model.factd_Cantidad)
+                <input class="form-control" value=""/>
+                @Html.ValidationMessageFor(model => model.factd_Cantidad) 
             </div>
             <label class="control-label col-md-5">Subtotal</label>
             <div class="col-md-2">

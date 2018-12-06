@@ -57,7 +57,7 @@
                             </div>
                         </div>
 
-                        <table id="DataTable1" class="table table table-striped  table-bordered">
+                        <table id="DataTable1" class="table table table-striped  table-bordered" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>
@@ -179,10 +179,10 @@
                                             @Html.DisplayFor(modelItem => item.fact_FechaModifica)
                                         </td>*@
                                         <td>
-                                            @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-sm" })
+                                            @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
                                             
-                                            @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-sm" })                                          
-                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalImprimir">
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })                                          
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
                                                 Imprimir
                                             </button>
                                         </td>

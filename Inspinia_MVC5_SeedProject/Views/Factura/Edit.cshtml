@@ -203,11 +203,11 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-8 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                    <input type="submit" value="Guardar" class="btn btn-primary btn-xs" />
+                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#exampleModal">
                                         Anular
                                     </button>
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-xs" })
                                 </div>
                             </div> 
 
@@ -235,13 +235,11 @@
                                     <div id="tab-2" class="tab-pane">
                                         <div class="panel-body">
                                             <div class="ibox-title">
-                                                @*<h5>Detalle de Factura</h5>*@
-                                                <div class="ibox-tools">
+                                                <div class="col-md-offset-11">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Añadir</span></button>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-offset-11 col-md-1">
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Añadir</span></button>
-                                            </div>
+                                           </div>
+                                           
                                             <div class="ibox-content">
                                                 <table class="table table-striped table-bordered table-hover dataTables-example">
                                                     <thead>

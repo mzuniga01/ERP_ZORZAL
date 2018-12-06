@@ -8,6 +8,23 @@ namespace ERP_ZORZAL.Models
 {
     public class cUtilities
     {
+        public static List<cMinorista> MinoristaList()
+        {
+            List<cMinorista> list = new List<cMinorista>();
+
+            list.Add(new cMinorista()
+            {
+                ID_MINORISTA = "1",
+                DESCRIPCION = "Si"
+            });
+            list.Add(new cMinorista()
+            {
+                ID_MINORISTA = "0",
+                DESCRIPCION = "No"
+            });
+            return list;
+        }
+
 
         public static List<cActivo> EstadoList()
         {

@@ -33,8 +33,6 @@
 
 
 				    <dl class="dl-horizontal">
-
-
                         <dt>
                             @Html.DisplayNameFor(model => model.ban_Id)
                         </dt>
@@ -42,34 +40,33 @@
                         <dd>
                             @Html.DisplayFor(model => model.ban_Id)
                         </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ban_Nombre)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ban_Nombre)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.ban_Nombre)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ban_Nombre)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ban_NombreContacto)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ban_NombreContacto)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.ban_NombreContacto)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ban_NombreContacto)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ban_TelefonoContacto)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ban_TelefonoContacto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ban_TelefonoContacto)
-        </dd>
-        </dl>
-          @Html.ActionLink("Editar", "Edit", new { id = Model.ban_Id }, new { @class = "btn btn-primary" })
-     </div>
-            </div>
+                        <dd>
+                            @Html.DisplayFor(model => model.ban_TelefonoContacto)
+                        </dd>
+                        </dl>
+                          @Html.ActionLink("Editar", "Edit", new { id = Model.ban_Id }, new { @class = "btn btn-primary" })
+                     </div>
+                            </div>
 
             <div class="ibox-content">
                 <table class="table table-striped">
