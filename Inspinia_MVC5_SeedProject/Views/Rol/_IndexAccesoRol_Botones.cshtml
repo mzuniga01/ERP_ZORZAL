@@ -20,6 +20,9 @@
                                     @Html.DisplayNameFor(model => model.obj_Id)
                                 </th>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.tbObjeto.obj_Pantalla)
+                                </th>
+                                <th>
                                     @Html.DisplayNameFor(model => model.acrol_Descripcion)
                                 </th>
                                 <th>
@@ -37,13 +40,15 @@
                                         @Html.DisplayFor(modelItem => item.obj_Id)
                                     </td>
                                     <td>
+                                        @Html.DisplayFor(modelItem => item.tbObjeto.obj_Pantalla)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.acrol_Descripcion)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbRol.rol_Descripcion)
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modaldetalle">Detalle</button>
                                         <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#modal">Editar</button>
                                     </td>
                                 </tr>
@@ -51,6 +56,7 @@
                         </tbody>
                     </table>
 
+                    
                 </div>
             </div>
         </div>
@@ -114,34 +120,73 @@
                                 </select>
                             </div>
                         </div>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
+                                    Acción
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
+                                    Creado
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
+                                    Fecha
+                                </th>
+                                @*<th>
+                    @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tsal_FechaModifica)
+                </th>*@
+                                @*<th></th>*@
+                            </tr>
 
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado por:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="Anthony Fugon" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado el:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="2/12/2018" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado por:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado el:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="" readonly />
-                            </div>
-                        </div>
+                            @*@foreach (var item in Model) { }*@
+                            <tr>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
+                                    Creado por
+                                </td>
+                                <td>
+                                    Anthony Fugon
+
+                                </td>
+                                <td>
+                                    05/12/2018
+                                </td>
+                                @*<td>
+                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
+                                    Modificado por
+                                </td>
+                                <td></td>
+                                <td></td>
+                                @*<td>
+                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                </td>*@
+                            </tr>
+
+                        </table>
                     </div>
                 </div>
             </div>
+
             <div class="modal-footer">
                 <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
                 <input type="button" class="btn btn-primary btn-sm" id="btnAceptar" style="width:110px;" value="Guardar" onclick="Aceptar();" />
@@ -151,7 +196,7 @@
 </div>
 
 <!-- INSERT MODAL DETALLE-->
-<div class="modal fade" id="modaldetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@*<div class="modal fade" id="modaldetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -215,7 +260,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 <!-- INSERT MODAL Registro-->
 <div class="modal fade" id="modalregistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -264,3 +309,93 @@
 </div>
 
 
+<!-- Modal Detalle -->
+<div>
+    <div class="modal fade" id="modaldetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Detalle</h4>
+
+                </div>
+                <div class="modal-body" id="frmAgregarCasoExito">
+                    @Html.Partial("_DetailsAccesoRol", new ERP_ZORZAL.Models.tbAccesoRol())
+                    <div class="ibox-content">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
+                                    Acción
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
+                                    Creado
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
+                                    Fecha
+                                </th>
+                                @*<th>
+                        @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tsal_FechaModifica)
+                    </th>*@
+                                @*<th></th>*@
+                            </tr>
+
+                            @*@foreach (var item in Model) { }*@
+                            <tr>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
+                                    Creado por
+                                </td>
+                                <td>
+                                    Anthony Fugon
+
+                                </td>
+                                <td>
+                                    05/12/2018
+                                </td>
+                                @*<td>
+                        @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                        @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                        @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
+                                    Modificado por
+                                </td>
+                                <td></td>
+                                <td></td>
+                                @*<td>
+                        @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                        @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                        @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    </td>*@
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

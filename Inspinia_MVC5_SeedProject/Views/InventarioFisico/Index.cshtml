@@ -24,7 +24,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    @*<table class="table table-responsive" style="width:100%" id="DataTable">
+                    <table class="table table-responsive" style="width:100%" id="DataTable">
                         <thead>
                             <tr>
                                 <th>
@@ -65,15 +65,15 @@
                                         @Html.DisplayFor(modelItem => item.tbEstadoInventarioFisico.estif_Descripcion)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Details", "Details", new { id = item.invf_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.invf_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Delete", "Delete", new { id=item.invf_Id }, new { @class = "btn btn-white btn-sm"})
+                                        @Html.ActionLink("Detalle", "Detalle", new { id = item.invf_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Editar", new { id = item.invf_Id }, new { @class = "btn btn-white btn-xs" })
                                     </td>
                                 </tr>
                             }
                          </tbody>
-                     </table>*@
-                    <table class="table table-responsive" style="width:100%" id="DataTable">
+                     </table>
+
+                    @*<table class="table table-responsive" style="width:100%" id="DataTable">
                         <thead>
                             <tr>
                                 <th>
@@ -117,7 +117,7 @@
                                     </td>
                                 </tr>
                         </tbody>
-                    </table>
+                    </table>*@
                 </div>
             </div>
         </div>

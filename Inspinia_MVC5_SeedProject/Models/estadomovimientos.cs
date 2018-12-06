@@ -14,9 +14,9 @@ namespace ERP_ZORZAL.Models
 
     public class estadomovimientosMetaData
     {
-        [Display(Name = "Id Estado Movimiento")]
+        [Display(Name = "Numero Movimiento")]
         public byte estm_Id { get; set; }
-        [Display(Name = "Descripcion")]
+        [Display(Name = "Descripción")]
         public string estm_Descripcion { get; set; }
         [Display(Name = "Creado por")]
         public int estm_UsuarioCrea { get; set; }

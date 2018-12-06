@@ -36,7 +36,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.dep_Codigo)
                 @Html.ValidationMessageFor(model => model.dep_Codigo)
             </div>
@@ -44,34 +44,46 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.dep_Nombre, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.dep_Nombre)
                 @Html.ValidationMessageFor(model => model.dep_Nombre)
             </div>
         </div>
-
-        @*<div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                @Html.Partial("_IndexMunicipio", Model.tbMunicipio)
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
+        
     </div>
-}
+       }
+       </div>
+      </div>
 
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Agregar Municipios</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+
+                        @Html.Partial("_CreateMunicipio", new ERP_ZORZAL.Models.tbMunicipio())
+
+
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <input type="button" value="Guardar" class="btn btn-primary" />
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div> 
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+
+
     </div>
- </div>
+  </div>
+</div>
+
+
+
 
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jqueryval")
 }

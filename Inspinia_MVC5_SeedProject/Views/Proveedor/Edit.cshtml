@@ -1,0 +1,170 @@
+﻿@model ERP_ZORZAL.Models.tbProveedor
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Proveedores</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Proveedores</h5>
+                </div>
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.prov_Id)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.prov_Id, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.prov_Id, new { @class = "textbox single-line", @Readonly="readonly"})
+                                @Html.ValidationMessageFor(model => model.prov_Id)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.prov_Nombre, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.prov_Nombre, new { @class = "textbox single-line" })
+                                @Html.ValidationMessageFor(model => model.prov_Nombre)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.prov_NombreContacto, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.prov_NombreContacto, new { @class = "textbox single-line" })
+                                @Html.ValidationMessageFor(model => model.prov_NombreContacto)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.prov_Direccion, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.prov_Direccion, new { @class = "textbox single-line" })
+                                @Html.ValidationMessageFor(model => model.prov_Direccion)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.prov_Email, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.prov_Email, new { @class = "textbox single-line" })
+                                @Html.ValidationMessageFor(model => model.prov_Email)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.prov_Telefono, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.prov_Telefono, new { @class = "textbox single-line" })
+                                @Html.ValidationMessageFor(model => model.prov_Telefono)
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+            @Html.LabelFor(model => model.prov_UsuarioCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="textbox single-line" value="Jonathan Vallejo" readonly>
+                @Html.ValidationMessageFor(model => model.prov_UsuarioCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.prov_FechaCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.prov_FechaCrea, new { @class = "textbox single-line", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.prov_FechaCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.prov_UsuarioModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.prov_UsuarioModifica, new { @class = "textbox single-line", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.prov_UsuarioModifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.prov_FechaModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.prov_FechaModifica, new { @class = "textbox single-line", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.prov_FechaModifica)
+            </div>
+        </div>*@
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+
+                </div>
+            
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr><th> @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@Acción </th><th>
+                                @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@Creado</th><th>
+                                @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@Fecha</th>@*<th> 
+                                @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)</th><th>
+                                @Html.DisplayNameFor(model => model.tsal_FechaModifica) </th>*@ 
+    @*<th></th>*@                        
+                        </tr>
+                        @*@foreach (var item in Model) { }*@
+                        <tr>
+                            <td> @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@Creado por  </td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.prov_FechaCrea)</td>                             
+                          @*<td>@Html.DisplayFor(modelItem => item.tsal_FechaModifica)</td>         
+                            <td>@Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})                         @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})                         @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})                     </td>*@
+                        </tr>
+                        <tr>                             <td>                                
+                            
+    @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@Modificado por</td>
+<td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres) </td>
+                        <td> @Html.DisplayFor(model => model.prov_FechaModifica)</td>
+    @*<td> @Html.DisplayFor(modelItem => item.tsal_FechaModifica)</td>
+        *@                         
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

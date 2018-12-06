@@ -3,7 +3,6 @@
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
-        <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado de Municipios</h5>
@@ -42,7 +41,7 @@
                                         @Html.DisplayFor(modelItem => item.tbDepartamento.dep_Nombre)
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modaldetalle">Detalle</button>
+                                        @*<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modaldetalle">Detalle</button>*@
                                         <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#modal">Editar</button>
                                     </td>
                                 </tr>
@@ -54,7 +53,6 @@
             </div>
         </div>
     </div>
-</div>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -92,48 +90,61 @@
 
 
                         <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Codigo del Municipio</label>
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Código Municipio</label>
                             <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" id="txtCodigoMunicipio" value="0501" readonly />
+                                <input type="text" class="form-control" id="txtCodigoMunicipio" value="0501" />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Nombre del Municipio</label>
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Municipio</label>
                             <div class="col-sm-7  input-group">
                                 <input type="text" class="form-control" id="txtNombreMunicipio" value="San Pedro Sula" />
                             </div>
                         </div>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>
+                                    Acción
+                                </th>
+                                <th>
+                                    Creado
+                                </th>
+                                <th>
+                                    Fecha
+                                </th>
+                               
+                            </tr>
+                            <tr>
+                                <td>
+                                    Creado por
+                                </td>
+                                <td>
+                                    Antony Fugon
+                                </td>
+                                <td>
+                                    29/11/2018
+                                </td>
+                               </tr>
+                            <tr>
+                                <td>
+                                    Modificado por
+                                </td>
+                                <td></td>
+                                <td></td>
+                                
+                            </tr>
 
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado por:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="Anthony Fugon" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado el:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="29/11/2018" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado por:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado el:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="" readonly />
-                            </div>
-                        </div>
+                        </table>
+
+
+
+
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
                 <input type="button" class="btn btn-primary btn-sm" id="btnAceptar" style="width:110px;" value="Guardar" onclick="Aceptar();" />
+                <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
             </div>
         </div>
     </div>
@@ -153,41 +164,58 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Codigo del Municipio</label>
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Código Municipio</label>
                             <div class="col-sm-7  input-group">
                                 <input type="text" class="form-control" id="txtCodigoMunicipio" value="0501" readonly />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Nombre del Municipio</label>
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Municipio</label>
                             <div class="col-sm-7  input-group">
                                 <input type="text" class="form-control" id="txtNombreMunicipio" value="San Pedro Sula" readonly />
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado por:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="Anthony Fugon" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado el:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="29/11/2018" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado por:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado el:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="" readonly />
-                            </div>
-                        </div>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>
+                                    Acción
+                                </th>
+                                <th>
+                                    Creado
+                                </th>
+                                <th>
+                                    Fecha
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Creado por
+                                </td>
+                                <td>
+                                  Antony Fugon
+                                </td>
+                                <td>
+                                    30/11/2018 03:02:04
+                                </td>
+                        
+                            </tr>
+                            <tr>
+                                <td>
+                                    
+                                    Modificado por
+                                </td>
+                                <td>
+                                   
+                                </td>
+                                <td>
+                                   
+                                </td>
+                             
+                 
+                            </tr>
+
+                        </table>
+
                     </div>
                 </div>
             </div>
@@ -212,13 +240,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Codigo del Municipio</label>
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Código Municipio</label>
                             <div class="col-sm-7  input-group">
                                 <input type="text" class="form-control" id="txtCodigoMunicipio" value="0502" readonly />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Nombre del Municipio</label>
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Municipio</label>
                             <div class="col-sm-7  input-group">
                                 <input type="text" class="form-control" id="txtNombreMunicipio" value="" />
                             </div>
@@ -227,9 +255,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
                 <input type="button" class="btn btn-primary btn-sm" id="btnAceptar" style="width:110px;" value="Guardar" onclick="Aceptar();" />
-               
+                <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
             </div>
         </div>
     </div>

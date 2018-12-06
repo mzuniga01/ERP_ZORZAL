@@ -14,17 +14,17 @@ namespace ERP_ZORZAL.Models
     }
     public class proveedor
     {
-        [Display(Name = "Id Proveedor")]
+        [Display(Name = "Numero Proveedor")]
         public int prov_Id { get; set; }
         [Display(Name = "Nombre")]
         public string prov_Nombre { get; set; }
         [Display(Name = "Nombre Contacto")]
         public string prov_NombreContacto { get; set; }
-        [Display(Name = "Direccion")]
+        [Display(Name = "Dirección")]
         public string prov_Direccion { get; set; }
         [Display(Name = "Email")]
         public string prov_Email { get; set; }
-        [Display(Name = "Telefono")]
+        [Display(Name = "Teléfono")]
         public string prov_Telefono { get; set; }
         [Display(Name = "Creado Por")]
         public int prov_UsuarioCrea { get; set; }

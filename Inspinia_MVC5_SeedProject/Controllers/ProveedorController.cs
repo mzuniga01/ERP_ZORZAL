@@ -10,115 +10,107 @@ using ERP_ZORZAL.Models;
 
 namespace ERP_ZORZAL.Controllers
 {
-    public class DepartamentoController : Controller
+    public class ProveedorController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
 
-        // GET: /Departamento/
+        // GET: /Proveedor/
         public ActionResult Index()
         {
-            return View(db.tbDepartamento.ToList());
+            return View(db.tbProveedor.ToList());
         }
-        public ActionResult _IndexMunicipio()
-        {
-            return View();
-        }
-        public ActionResult _IndexMunicipio_Botones()
-        {
-            return View();
-        }
-        // GET: /Departamento/Details/5
-        public ActionResult Details(string id)
+
+        // GET: /Proveedor/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbDepartamento tbDepartamento = db.tbDepartamento.Find(id);
-            if (tbDepartamento == null)
+            tbProveedor tbProveedor = db.tbProveedor.Find(id);
+            if (tbProveedor == null)
             {
                 return HttpNotFound();
             }
-            return View(tbDepartamento);
+            return View(tbProveedor);
         }
 
-        // GET: /Departamento/Create
+        // GET: /Proveedor/Create
         public ActionResult Create()
         {
-            ViewBag.dep_Codigo = new SelectList( db.tbDepartamento, "dep_Codigo", "dep_Nombre", "Seleccione");
             return View();
         }
 
-        // POST: /Departamento/Create
+        // POST: /Proveedor/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
+        public ActionResult Create([Bind(Include="prov_Id,prov_Nombre,prov_NombreContacto,prov_Direccion,prov_Email,prov_Telefono,prov_UsuarioCrea,prov_FechaCrea,prov_UsuarioModifica,prov_FechaModifica")] tbProveedor tbProveedor)
         {
             if (ModelState.IsValid)
             {
-                db.tbDepartamento.Add(tbDepartamento);
+                db.tbProveedor.Add(tbProveedor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tbDepartamento);
+            return View(tbProveedor);
         }
 
-        // GET: /Departamento/Edit/5
-        public ActionResult Edit(string id)
+        // GET: /Proveedor/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbDepartamento tbDepartamento = db.tbDepartamento.Find(id);
-            if (tbDepartamento == null)
+            tbProveedor tbProveedor = db.tbProveedor.Find(id);
+            if (tbProveedor == null)
             {
                 return HttpNotFound();
             }
-            return View(tbDepartamento);
+            return View(tbProveedor);
         }
 
-        // POST: /Departamento/Edit/5
+        // POST: /Proveedor/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
+        public ActionResult Edit([Bind(Include="prov_Id,prov_Nombre,prov_NombreContacto,prov_Direccion,prov_Email,prov_Telefono,prov_UsuarioCrea,prov_FechaCrea,prov_UsuarioModifica,prov_FechaModifica")] tbProveedor tbProveedor)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbDepartamento).State = EntityState.Modified;
+                db.Entry(tbProveedor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tbDepartamento);
+            return View(tbProveedor);
         }
 
-        // GET: /Departamento/Delete/5
-        public ActionResult Delete(string id)
+        // GET: /Proveedor/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbDepartamento tbDepartamento = db.tbDepartamento.Find(id);
-            if (tbDepartamento == null)
+            tbProveedor tbProveedor = db.tbProveedor.Find(id);
+            if (tbProveedor == null)
             {
                 return HttpNotFound();
             }
-            return View(tbDepartamento);
+            return View(tbProveedor);
         }
 
-        // POST: /Departamento/Delete/5
+        // POST: /Proveedor/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            tbDepartamento tbDepartamento = db.tbDepartamento.Find(id);
-            db.tbDepartamento.Remove(tbDepartamento);
+            tbProveedor tbProveedor = db.tbProveedor.Find(id);
+            db.tbProveedor.Remove(tbProveedor);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

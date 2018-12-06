@@ -14,7 +14,8 @@ namespace ERP_ZORZAL.Models
     {
         [Display(Name = "Código Municipio")]
         public string mun_Codigo { get; set; }
-        [Display(Name = "Código Departamento")]
+
+        [Display(Name = "Departamento")]
         public string dep_Codigo { get; set; }
         [Display(Name = "Municipio")]
         public string mun_Nombre { get; set; }

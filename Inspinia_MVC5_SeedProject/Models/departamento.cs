@@ -6,18 +6,20 @@ using System.Web;
 
 namespace ERP_ZORZAL.Models
 {
-    [MetadataType(typeof(municipioMetaData))]
+    [MetadataType(typeof(tbDepartamentoMetaData))]
     public partial class tbDepartamento
     {
 
     }
 
-    public class municipioMetaData
+    public class tbDepartamentoMetaData
     {
         [Display(Name = "Código")]
         public string dep_Codigo { get; set; }
+
         [Display(Name = "Departamento")]
         public string dep_Nombre { get; set; }
+
         [Display(Name = "Creado por")]
         public int dep_UsuarioCrea { get; set; }
         [Display(Name = "Creado el")]
@@ -26,6 +28,7 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> dep_UsuarioModifica { get; set; }
         [Display(Name = "Modificado el")]
         public Nullable<System.DateTime> dep_FechaModifica { get; set; }
+        
     }
 
 }

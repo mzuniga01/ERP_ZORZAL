@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbRol>
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbProveedor>
 
 @{
     ViewBag.Title = "Index";
@@ -7,9 +7,8 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Rol</h2>
+        <h2>Proveedores</h2>
     </div>
-
 </div>
 
 
@@ -18,22 +17,32 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Rol</h5>
+                    <h5>Listado de Proveedores</h5>
                     <div class="ibox-tools">
                         @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary" })
                     </div>
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-responsive" style="width:100%" id="DataTable">
+                    <table class="table table-responsive" style="width:100%" id="dataTable">
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.rol_Id)
+                                    @Html.DisplayNameFor(model => model.prov_Nombre)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.rol_Descripcion)
+                                    @Html.DisplayNameFor(model => model.prov_NombreContacto)
                                 </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prov_Direccion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prov_Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prov_Telefono)
+                                </th>
+
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -42,15 +51,30 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.rol_Id)
+
+                                        @Html.DisplayFor(modelItem => item.prov_Nombre)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.rol_Descripcion)
+
+                                        @Html.DisplayFor(modelItem => item.prov_NombreContacto)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Detalle", "Details", new { id = item.rol_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.rol_Id }, new { @class = "btn btn-white btn-xs" })
+
+                                        @Html.DisplayFor(modelItem => item.prov_Direccion)
                                     </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prov_Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prov_Telefono)
+                                    </td>
+
+
+                                    <td>
+                                        @Html.ActionLink("Detalle", "Details", new { id = item.prov_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.prov_Id }, new { @class = "btn btn-white btn-xs" })
+                                    </td>
+
                                 </tr>
                             }
                         </tbody>
@@ -61,12 +85,10 @@
         </div>
     </div>
 </div>
-
-
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('#DataTable').DataTable({
+        $('#dataTable').DataTable({
 
         "searching": true,
         "oLanguage": {
@@ -83,3 +105,5 @@
     });
     });
 </script>
+
+

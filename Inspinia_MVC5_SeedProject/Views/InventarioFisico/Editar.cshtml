@@ -136,19 +136,19 @@
                             @Html.HiddenFor(model => model.invf_Id)
                             
                                 <div class="form-group">
-                                    <label class="control-label col-md-1">Descripcion</label>
-                                    <div class="col-md-5">
+                                    <label class="control-label col-md-2">Descripcion</label>
+                                    <div class="col-md-4">
                                         <input class="text-box single-line" value="Inventaro Fisico 2018">
                                     </div>
 
-                                    <label class="control-label col-md-1">Responsable Bodega</label>
-                                    <div class="col-md-5">
+                                    <label class="control-label col-md-2">Responsable Bodega</label>
+                                    <div class="col-md-4">
                                         <input class="text-box single-line" value="Anthony Fugon">
                                     </div>
                                 </div>
                             <div class="form-group">
-                                <label class="control-label col-md-1">Bodega</label>
-                                <div class="col-md-5">
+                                <label class="control-label col-md-2">Bodega</label>
+                                <div class="col-md-4">
                                     <select id="Select1" class="form-control">
                                         <option>Bodega Central</option>
                                         <option>Bodega #1</option>
@@ -157,43 +157,90 @@
                                     </select>
                                 </div>
 
-                                <label class="control-label col-md-1">Fecha Levantamiento</label>
-                                <div class="col-md-5">
+                                <label class="control-label col-md-2">Fecha Levantamiento</label>
+                                <div class="col-md-4">
                                     <input class="text-box single-line" value="02/12/2018" readonly>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-1">Estado</label>
-                                <div class="col-md-5">
+                                <label class="control-label col-md-2">Estado</label>
+                                <div class="col-md-4">
                                     <select id="Select1" class="form-control">
                                         <option>Activo</option>
                                         <option>Inactivo</option>
                                     </select>
                                 </div>
-
-                                <label class="control-label col-md-1">Creado por</label>
-                                <div class="col-md-5">
-                                    <input class="text-box single-line" value="Anthony Fugon" readonly>
-                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-md-1">Creado el</label>
-                                <div class="col-md-5">
-                                    <input class="text-box single-line" value="02/12/2018" readonly>
-                                </div>
-                                <label class="control-label col-md-1">Modificado por</label>
-                                <div class="col-md-5">
-                                    <input class="text-box single-line" value="" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-1">Modificado el</label>
-                                <div class="col-md-11">
-                                    <input class="text-box single-line" value="" readonly>
-                                </div>
-                            </div>
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>
+                                        @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
+                                        Acción
+                                    </th>
+                                    <th>
+                                        @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
+                                        Usuario
+                                    </th>
+                                    <th>
+                                        @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
+                                        Fecha
+                                    </th>
+                                    @*<th>
+                    @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tsal_FechaModifica)
+                </th>*@
+                                    @*<th></th>*@
+                                </tr>
+
+                                @*@foreach (var item in Model) { }*@
+                                <tr>
+                                    <td>
+                                        @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
+                                        Creado por
+                                    </td>
+                                    <td>
+                                        Antonio Ochoa
+                                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                    </td>
+                                    <td>
+                                        2018/12/05
+                                        @Html.DisplayFor(model => model.invf_FechaCrea)
+                                    </td>
+                                    @*<td>
+                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
+                                        Modificado por
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.invf_FechaModifica)
+                                    </td>
+                                    @*<td>
+                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                </td>*@
+                                </tr>
+
+                            </table>
 
                             <div class="form-group">
                                 <div class="col-md-offset-1 col-md-10">

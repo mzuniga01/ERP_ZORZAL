@@ -49,7 +49,7 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modaldetalle">Detalle</button>
-                                    <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#modal">Editar</button>
+                                    <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#modaleditar">Editar</button>
                                 </td>
                             </tr>
 
@@ -83,216 +83,77 @@
     });
 </script>
 
-<!-- INSERT MODAL -->
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Editar</label></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Inventario Fisico</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" id="txtNombreMunicipio" value="Inventario Fisico 2018" readonly/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Producto</label>
-                            <div class="col-sm-7  input-group">
-                                <select id="Select1" class="form-control">
-                                    <option>Producto #1</option>
-                                    <option>Producto #2</option>
-                                    <option>Producto #3</option>
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Cantidad</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" id="txtCodigoMunicipio" value="127" />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Unidad de Medida</label>
-                            <div class="col-sm-7  input-group">
-                                <select id="Select1" class="form-control">
-                                    <option>Unidad #1</option>
-                                    <option>Unidad #2</option>
-                                    <option>Unidad #3</option>
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado por:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="Anthony Fugon" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado en:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="02/12/2018" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado por:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado en:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="" readonly />
-                            </div>
+<!-- Modal EDITAR -->
+<div>
+    <div class="modal fade" id="modaleditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Ingresar Caso de Éxito</h4>
+                </div>
+                <div class="modal-body" id="frmAgregarCasoExito">
+                    @Html.Partial("_EditInvFisicoDetalle", new ERP_ZORZAL.Models.tbInventarioFisicoDetalle() { })
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" type="button" id="GuardarCasos">Guardar</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
-                <input type="button" class="btn btn-primary btn-sm" id="btnAceptar" style="width:110px;" value="Aceptar" onclick="Aceptar();" />
             </div>
         </div>
     </div>
 </div>
 
-<!-- INSERT MODAL DETALLE-->
-<div class="modal fade" id="modaldetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Detalles</label></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Inventario Fisico</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" id="txtNombreMunicipio" value="Inventario Fisico 2018" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Producto</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" id="txtNombreMunicipio" value="Producto #1" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Cantidad</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" id="txtCodigoMunicipio" value="127" readonly/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Unidad de Medida</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" id="txtNombreMunicipio" value="Unidad" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado por:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="Anthony Fugon" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Creado en:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="02/12/2018" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado por:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Modificado en:</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" value="" readonly />
-                            </div>
+<!-- Modal DETALLE -->
+<div>
+    <div class="modal fade" id="modaldetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Ingresar Caso de Éxito</h4>
+                </div>
+                <div class="modal-body" id="frmAgregarCasoExito">
+                    @Html.Partial("_DetailsInvFisicoDetalle", new ERP_ZORZAL.Models.tbInventarioFisicoDetalle() { })
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" type="button" id="GuardarCasos">Guardar</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
             </div>
         </div>
     </div>
 </div>
 
-<!-- INSERT MODAL Registro-->
-<div class="modal fade" id="modalregistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Registrar Inventario Fisico Detalle</label></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Inventario Fisico</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" id="txtNombreMunicipio" value="Inventario Fisico 2018" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Producto</label>
-                            <div class="col-sm-7  input-group">
-                                <select id="Select1" class="form-control">
-                                    <option>--Seleccione Producto--</option>
-                                    <option>Producto #1</option>
-                                    <option>Producto #2</option>
-                                    <option>Producto #3</option>
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Cantidad</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" id="txtCodigoMunicipio" value="" />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Unidades de Medida</label>
-                            <div class="col-sm-7  input-group">
-                                <select id="Select1" class="form-control">
-                                    <option>--Seleccione Unidad de Medida--</option>
-                                    <option>Unidad #1</option>
-                                    <option>Unidad #2</option>
-                                    <option>Unidad #3</option>
-
-                                </select>
-                            </div>
+<!-- Modal CREAR -->
+<div>
+    <div class="modal fade" id="modalregistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Ingresar Caso de Éxito</h4>
+                </div>
+                <div class="modal-body" id="frmAgregarCasoExito">
+                    @Html.Partial("_CreateInvFisicoDetalle", new ERP_ZORZAL.Models.tbInventarioFisicoDetalle() { })
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" type="button" id="GuardarCasos">Guardar</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
-                <input type="button" class="btn btn-primary btn-sm" id="btnAceptar" style="width:110px;" value="Guardar" onclick="Aceptar();" />
-            </div>
         </div>
     </div>
 </div>
-

@@ -158,38 +158,6 @@
                         </dd>
 
                         <dt>
-                            <label class="control-label col-md-2">Creado por</label>
-                        </dt>
-
-                        <dd>
-                            Anthony Fugon
-                        </dd>
-
-                        <dt>
-                            <label class="control-label col-md-2">Creado el</label>
-                        </dt>
-
-                        <dd>
-                            02/12/2018
-                        </dd>
-
-                        <dt>
-                            <label class="control-label col-md-2">Modificado por</label>
-                        </dt>
-
-                        <dd>
-                            
-                        </dd>
-
-                        <dt>
-                            <label class="control-label col-md-2">Modificado el</label>
-                        </dt>
-
-                        <dd>
-                            
-                        </dd>
-
-                        <dt>
                             <label class="control-label col-md-2">Estado</label>
                         </dt>
 
@@ -198,6 +166,75 @@
                         </dd>
 
                     </dl>
+
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
+                                Acción
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
+                               Usuario
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
+                                Fecha
+                            </th>
+                            @*<th>
+                    @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tsal_FechaModifica)
+                </th>*@
+                            @*<th></th>*@
+                        </tr>
+
+                        @*@foreach (var item in Model) { }*@
+                        <tr>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
+                                Creado por
+                            </td>
+                            <td>
+                                Antonio Ochoa
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            </td>
+                            <td>
+                                2018/12/05 
+                                @Html.DisplayFor(model => model.invf_FechaCrea)
+                            </td>
+                            @*<td>
+                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                </td>*@
+                        </tr>
+                        <tr>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
+                                Modificado por
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.invf_FechaModifica)
+                            </td>
+                            @*<td>
+                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                </td>*@
+                        </tr>
+
+                    </table>
 
 
                     @Html.ActionLink("Editar", "Editar", new {  }, new { @class = "btn btn-primary" })

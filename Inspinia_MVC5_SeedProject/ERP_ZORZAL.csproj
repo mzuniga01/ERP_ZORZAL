@@ -189,9 +189,8 @@
     <Compile Include="Controllers\InventarioFisicoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MunicipioController.cs" />
-    <Compile Include="Controllers\ObjetoController.cs" />
     <Compile Include="Controllers\ProductoCategoriaController.cs" />
-    <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\RolesUsuarioController.cs" />
     <Compile Include="Controllers\SalidaController.cs" />
@@ -230,6 +229,7 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\municipios.cs" />
+    <Compile Include="Models\Objeto.cs" />
     <Compile Include="Models\proveedor.cs" />
     <Compile Include="Models\rol.cs" />
     <Compile Include="Models\RolesUsuario.cs" />
@@ -772,14 +772,6 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Objeto\CrearPrueba.cshtml" />
-    <Content Include="Views\Objeto\Create.cshtml" />
-    <Content Include="Views\Objeto\Delete.cshtml" />
-    <Content Include="Views\Objeto\Details.cshtml" />
-    <Content Include="Views\Objeto\DetallePrueba.cshtml" />
-    <Content Include="Views\Objeto\Edit.cshtml" />
-    <Content Include="Views\Objeto\EditarPrueba.cshtml" />
-    <Content Include="Views\Objeto\Index.cshtml" />
     <Content Include="Views\ProductoCategoria\Crear.cshtml" />
     <Content Include="Views\ProductoCategoria\Create.cshtml" />
     <Content Include="Views\ProductoCategoria\Delete.cshtml" />
@@ -885,11 +877,6 @@
     <Content Include="Views\Box\Details.cshtml" />
     <Content Include="Views\Box\Edit.cshtml" />
     <Content Include="Views\Box\Index.cshtml" />
-    <Content Include="Views\Producto\Create.cshtml" />
-    <Content Include="Views\Producto\Delete.cshtml" />
-    <Content Include="Views\Producto\Details.cshtml" />
-    <Content Include="Views\Producto\Edit.cshtml" />
-    <Content Include="Views\Producto\Index.cshtml" />
     <Content Include="Views\RolesUsuario\Create.cshtml" />
     <Content Include="Views\RolesUsuario\Delete.cshtml" />
     <Content Include="Views\RolesUsuario\Details.cshtml" />
@@ -922,6 +909,21 @@
     <Content Include="Views\ProductoCategoria\_IndexSubCategoria.cshtml" />
     <Content Include="Views\Bodega\_CreateBodegaDetalle.cshtml" />
     <Content Include="Views\Bodega\_EditBodegaDetalle.cshtml" />
+    <Content Include="Views\Departamento\_CreateMunicipio.cshtml" />
+    <Content Include="Views\Departamento\_DetailsMunicipio.cshtml" />
+    <Content Include="Views\Departamento\_EditMunicipio.cshtml" />
+    <Content Include="Views\Departamento\_IndexMunicipio.cshtml" />
+    <Content Include="Views\Departamento\_IndexMunicipio_Botones.cshtml" />
+    <Content Include="Views\InventarioFisico\_CreateInvFisicoDetalle.cshtml" />
+    <Content Include="Views\InventarioFisico\_DetailsInvFisicoDetalle.cshtml" />
+    <Content Include="Views\InventarioFisico\_EditInvFisicoDetalle.cshtml" />
+    <Content Include="Views\Proveedor\Create.cshtml" />
+    <Content Include="Views\Proveedor\Details.cshtml" />
+    <Content Include="Views\Proveedor\Edit.cshtml" />
+    <Content Include="Views\Proveedor\Index.cshtml" />
+    <Content Include="Views\Rol\_CreateAccesoRol.cshtml" />
+    <Content Include="Views\Rol\_DetailsAccesoRol.cshtml" />
+    <Content Include="Views\Rol\_IndexAccesoRol_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

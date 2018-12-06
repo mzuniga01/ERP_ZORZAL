@@ -11,7 +11,7 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index")
+            @Html.ActionLink("Regresar", "Index")
         </div>
     </div>
 </div>
@@ -28,83 +28,97 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-        @Html.ValidationSummary(true)
+                        <div class="form-horizontal">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.rol_Id, new { @class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.rol_Id, new { @class = "textbox single-line", @readonly = "readonly" })
-                @Html.ValidationMessageFor(model => model.rol_Id)
-            </div>
-        </div>
+                            @Html.ValidationSummary(true)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.rol_Descripcion, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.rol_Descripcion)
-                @Html.ValidationMessageFor(model => model.rol_Descripcion)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.rol_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.rol_Id, new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.rol_Id)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.rol_UsuarioCrea, new { @class = "control-label col-md-2", @readonly = "readonly" })
-            <div class="col-md-10">
-                <input class="textbox single-line" type="text" value="Anthony Fugon" readonly>
-                @Html.ValidationMessageFor(model => model.rol_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.rol_FechaCrea, new { @class = "control-label col-md-2", @readonly = "readonly" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.rol_FechaCrea, new { @class = "textbox single-line", @readonly = "readonly" })
-                @Html.ValidationMessageFor(model => model.rol_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.rol_UsuarioModifica, new { @class = "control-label col-md-2", @readonly = "readonly" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.rol_UsuarioModifica, new { @class = "textbox single-line", @readonly = "readonly" })
-                @Html.ValidationMessageFor(model => model.rol_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.rol_FechaModifica, new { @class = "control-label col-md-2", @readonly = "readonly" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.rol_FechaModifica, new { @class = "textbox single-line", @readonly = "readonly" })
-                @Html.ValidationMessageFor(model => model.rol_FechaModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        @*<div class="col-md-offset-2 col-md-10">*@
-        @Html.Partial("_IndexAccesoRol_Botones", Model.tbAccesoRol)
-        @*</div>*@
-    </div>
-                }
-
-
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.rol_Descripcion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.rol_Descripcion)
+                                    @Html.ValidationMessageFor(model => model.rol_Descripcion)
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Acceso Rol</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        @Html.Partial("_IndexAccesoRol_Botones", Model.tbAccesoRol)
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <input type="button" value="Guardar" class="btn btn-primary" />
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                
+                <div class="ibox-content">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>
+                                    Acción
+                                </th>
+                                <th>
+                                    Creado
+                                </th>
+                                <th>
+                                    Fecha
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Creado por
+                                </td>
+                                <td>
+
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.rol_FechaCrea)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Modificado por
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.rol_FechaModifica)
+                                </td>
+                            </tr>
+
+                        </table>
+                </div>
+            </div>
+
+
         </div>
     </div>
- </div>
+</div>
 
 
 

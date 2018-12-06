@@ -11,99 +11,104 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index")
+            @Html.ActionLink("Regresar", "Index")
         </div>
     </div>
 </div>
 
 
 
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
-        <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Editar Departamento</h5>
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-        @Html.ValidationSummary(true)
+                        <div class="form-horizontal">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.dep_Codigo, new { @class = "textbox single-line" ,@readonly = "readonly" })
-                @Html.ValidationMessageFor(model => model.dep_Codigo)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.dep_Nombre, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.dep_Nombre, new { @class = "textbox single-line", })
-                @Html.ValidationMessageFor(model => model.dep_Nombre)
-            </div>
-        </div>
+                            @Html.ValidationSummary(true)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.dep_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input class="textbox single-line" type="text" value="Anthony Fugon" readonly>
-                @Html.ValidationMessageFor(model => model.dep_UsuarioCrea)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.dep_Codigo, new { @class = "form-control", @readonly = "readonly"  } )
+                                    @Html.ValidationMessageFor(model => model.dep_Codigo )
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.dep_Nombre, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.dep_Nombre, new { @class = "textbox single-line", })
+                                    @Html.ValidationMessageFor(model => model.dep_Nombre)
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.dep_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.dep_FechaCrea, new { @class = "textbox single-line", @readonly = "readonly" })
-                @Html.ValidationMessageFor(model => model.dep_FechaCrea)
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.dep_UsuarioModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.dep_UsuarioModifica, new { @class = "textbox single-line", @readonly = "readonly" })
-                @Html.ValidationMessageFor(model => model.dep_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.dep_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.dep_FechaModifica, new { @class = "textbox single-line", @readonly = "readonly" })
-                @Html.ValidationMessageFor(model => model.dep_FechaModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        @*<div class="col-md-offset-2 col-md-10">*@
-            @Html.Partial("_IndexMunicipio_Botones", Model.tbMunicipio)
-        @*</div>*@
-    </div>
-                }
-                    
-
+                    }
 
                 </div>
             </div>
-        </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Municipios</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        @Html.Partial("_IndexMunicipio_Botones", Model.tbMunicipio)
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <input type="button" value="Guardar" class="btn btn-primary" />
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            Acción
+                        </th>
+                        <th>
+                            Creado
+                        </th>
+                        <th>
+                            Fecha
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Creado por
+                        </td>
+                        <td></td>
+                        <td>
+                            @Html.DisplayFor(model => model.dep_FechaCrea)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Modificado por
+                        </td>
+                        <td></td>
+                        <td>
+                            @Html.DisplayFor(model => model.dep_FechaModifica)
+                        </td>
+
+                    </tr>
+
+                </table>
+            </div>
     </div>
- </div>
+</div>
 
 
 

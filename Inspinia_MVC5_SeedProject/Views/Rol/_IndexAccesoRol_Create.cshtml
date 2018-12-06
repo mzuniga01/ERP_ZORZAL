@@ -5,36 +5,46 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Acceso Rol</h5>
+                    <div class="ibox-tools">
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalregistro">Agregar</button>
+                    </div>
+                </div>
+                <div class="ibox-content">
 
                     <table class="table table-responsive" style="width:100%" id="DataTable">
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.obj_Id)
+                                    Pantalla
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbObjeto.obj_Pantalla)
+                                    Descripción Acceso Rol
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.acrol_Descripcion)
+                                    Descripción Rol
+                                </th>
+                                <th>
+                                    Acciones
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
-                            {
+                            @*@foreach (var item in Model)
+                            {*@
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.obj_Id)
+
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbObjeto.obj_Pantalla)
+
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.acrol_Descripcion)
+
                                     </td>
                                 </tr>
-                            }
+                            @*}*@
                         </tbody>
                     </table>
 
@@ -42,6 +52,7 @@
             </div>
         </div>
     </div>
+</div>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -62,5 +73,3 @@
     });
     });
 </script>
-
-

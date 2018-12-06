@@ -25,8 +25,29 @@ namespace ERP_ZORZAL.Controllers
             return View();
         }
 
+        public ActionResult _EditAccesoRol()
+        {
+            return View();
+        }
+
         public ActionResult _IndexAccesoRol_Botones()
         {
+            return View();
+        }
+
+        public ActionResult _IndexAccesoRol_Create()
+        {
+            return View();
+        }
+
+        public ActionResult _DetailsAccesoRol()
+        {
+            return PartialView();
+        }
+
+        public ActionResult _CreateAccesoRol()
+        {
+            
             return View();
         }
 
@@ -48,12 +69,13 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Rol/Create
         public ActionResult Create()
         {
+            ViewBag.obj_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla");
             return View();
         }
 
         // POST: /Rol/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="rol_Id,rol_Descripcion,rol_UsuarioCrea,rol_FechaCrea,rol_UsuarioModifica,rol_FechaModifica")] tbRol tbRol)
@@ -84,8 +106,8 @@ namespace ERP_ZORZAL.Controllers
         }
 
         // POST: /Rol/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="rol_Id,rol_Descripcion,rol_UsuarioCrea,rol_FechaCrea,rol_UsuarioModifica,rol_FechaModifica")] tbRol tbRol)
