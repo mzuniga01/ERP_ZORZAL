@@ -7,7 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Listado de Monedas</h2>
+        <h2> Monedas</h2>
         <ol class="breadcrumb">
             @*<li class="active">
                 <strong>tbMoneda</strong>
@@ -22,7 +22,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Moneda</h5>
+                    <h5>Listado Moneda</h5>
 					<div class="ibox-tools">
 						@Html.ActionLink("Registrar Moneda", "Create", null, new { @class = "btn btn-primary"})
 					</div>
@@ -33,13 +33,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.mnda_Id)
+                Número
+                @*@Html.DisplayNameFor(model => model.mnda_Id)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.mnda_Abreviatura)
+                Abreviatura
+                @*@Html.DisplayNameFor(model => model.mnda_Abreviatura)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.mnda_Nombre)
+                Nombre
+                @*@Html.DisplayNameFor(model => model.mnda_Nombre)*@
             </th>
             @*<th>
                     @Html.DisplayNameFor(model => model.mnda_FechaCrea)

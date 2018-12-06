@@ -5,29 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 50%;
-        margin-left: 17%;
-    }
-
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
 
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Detalles Monedas</h2>
+        <h2> Monedas</h2>
         @*<ol class="breadcrumb">
             <li>
                 
@@ -52,7 +34,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Moneda</h5>
+                    <h5>Detalles Moneda</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -60,16 +42,17 @@
 				    <dl class="dl-horizontal">
 
         <dt>
-            @Html.DisplayNameFor(model => model.mnda_Id)
+           Número
+            @*@Html.DisplayNameFor(model => model.mnda_Id)*@
         </dt>
-
 
         <dd>
             @Html.DisplayFor(model => model.mnda_Id)
         </dd>
                            
         <dt>
-            @Html.DisplayNameFor(model => model.mnda_Abreviatura)
+            Abreviatura
+            @*@Html.DisplayNameFor(model => model.mnda_Abreviatura)*@
         </dt>
 
         <dd>
@@ -77,80 +60,41 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.mnda_Nombre)
+            Nombre
+            @*@Html.DisplayNameFor(model => model.mnda_Nombre)*@
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.mnda_Nombre)
         </dd>
-
-
-        @*<dt>
-            Usuario Creación
-            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
-        </dd>*@
-
-
-        @*<dt>
-            Fecha Creación
-            @Html.DisplayNameFor(model => model.mnda_FechaCrea)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.mnda_FechaCrea)
-        </dd>
-
-        <dt>
-            Fecha Creación
-            @Html.DisplayNameFor(model => model.mnda_FechaModifica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.mnda_FechaModifica)
-        </dd>
-
-
-        <dt>
-            Usuario Modificación
-            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
-        </dd>*@
-
     </dl>
-                    <div class="form-group">
-                        <table>
-                            <tr>
-                                <th></th>
-                                <th>Usuario</th>
-                                <th>Fecha</th>
-                            </tr>
-                            <tr>
-                                <td>Creado</td>
-                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                <td>@Html.DisplayFor(model => model.mnda_FechaCrea)</td>
-                            </tr>
-                            <tr>
-                                <td>Modificado</td>
-                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                <td>@Html.DisplayFor(model => model.mnda_FechaModifica)</td>
-                            </tr>
-                        </table>
-                    </div>
-                    </br>
-                    </br>
+           
+                    
 	    @Html.ActionLink("Editar", "Edit", new { id = Model.mnda_Id }, new { @class = "btn btn-primary"})
     @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
 
 
                   
                 </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th></th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>@Html.DisplayFor(model => model.mnda_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>@Html.DisplayFor(model => model.mnda_FechaModifica)</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

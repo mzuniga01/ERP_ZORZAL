@@ -5,38 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 50%;
-        margin-left: 17%;
-    }
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
 
 
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Tipo Identificación</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Details</strong>
-            </li>
-        </ol>*@
+        <h2>Tipos De Identificación</h2>
+
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","TipoIdentificacion")">Regresar</a>
+           
+        </div>
     </div>
 </div>
 
@@ -69,77 +51,44 @@
                             @Html.DisplayFor(model => model.tpi_Descripcion)
                         </dd>
 
-                        @*<dt>
-                            @Html.DisplayNameFor(model => model.tpi_UsuarioCrea)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tpi_UsuarioCrea)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tpi_FechaCrea)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tpi_FechaCrea)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tpi_UsuarioModifica)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tpi_UsuarioModifica)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tpi_FechaModifica)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tpi_FechaModifica)
-                        </dd>*@
 
                     </dl>
 
 
 
 
-                    <div class="form-group">
-                        <table>
-                            <tr>
-                                <th></th>
-                                <th>Usuario</th>
-                                <th>Fecha</th>
-                            </tr>
-                            <tr>
-                                <td>Creado</td>
-                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                <td>@Html.DisplayFor(model => model.tpi_UsuarioCrea)</td>
-                            </tr>
-                            <tr>
-                                <td>Modificado</td>
-                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                <td>@Html.DisplayFor(model => model.tpi_FechaModifica)</td>
-                            </tr>
-                        </table>
-                    </div>
+                    
 
                     @Html.ActionLink("Editar", "Edit", new { id = Model.tpi_Id }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white" })
+                   
 
 
-                    @*@Html.ActionLink("Editar", "Edit", new { id = Model.tpi_Id }, new { @class = "btn btn-primary" })*@
-                    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
+                   
                 </div>
-            </div>
 
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.tpi_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.tpi_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
         </div>
             </div>
         </div>
-    </div>
- </div>
 
 
 

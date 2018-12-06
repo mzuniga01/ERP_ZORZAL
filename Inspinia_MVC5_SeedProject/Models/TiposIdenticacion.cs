@@ -14,11 +14,11 @@ namespace ERP_ZORZAL.Models
     }
     public class TiposIdenticacionMetaData
     {
-        [Display(Name = "ID Tipo Identificación")]
+        [Display(Name = "Número")]
 
         public byte tpi_Id { get; set; }
 
-        [Display(Name = "Tipo Identificación")]
+        [Display(Name = "Descripción")]
         public string tpi_Descripcion { get; set; }
 
         [Display(Name = "Usuario Crea")]

@@ -1,45 +1,16 @@
 ﻿@model ERP_ZORZAL.Models.tbMoneda
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Moneda";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 50%;
-        margin-left: 2%;
-    }
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-
-    div.form-group{
-        margin-left:2% ;
-    }
-
-</style>
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Editar Moneda</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Edit</strong>
-            </li>
-        </ol>*@
+        <h2>Moneda</h2>
+        
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -57,7 +28,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Moneda </h5>
+                    <h5>Editar Moneda </h5>
                 </div>
                 <div class="ibox-content">
 
@@ -72,15 +43,17 @@
 
 
         <div class="form-group" >
-             @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2"} )
+            <label class="control-label col-md-2">Número Moneda</label>
+             @*@Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2"} )*@
             <div class="col-md-5" >
-              @Html.EditorFor(model => model.mnda_Id, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
+              @Html.EditorFor(model => model.mnda_Id,new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.mnda_Id)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mnda_Abreviatura, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Abreviatura</label>
+            @*@Html.LabelFor(model => model.mnda_Abreviatura, new { @class = "control-label col-md-2" })*@
             <div class="col-md-5">
                 @Html.EditorFor(model => model.mnda_Abreviatura)
                 @Html.ValidationMessageFor(model => model.mnda_Abreviatura)
@@ -88,65 +61,15 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mnda_Nombre, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Nombre</label>
+            @*@Html.LabelFor(model => model.mnda_Nombre, new { @class = "control-label col-md-2" })*@
             <div class="col-md-5">
                 @Html.EditorFor(model => model.mnda_Nombre)
                 @Html.ValidationMessageFor(model => model.mnda_Nombre)
             </div>
         </div>
+        <br />
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.mnda_UsuarioCrea, "mnda_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("mnda_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.mnda_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.mnda_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.mnda_FechaCrea)
-                @Html.ValidationMessageFor(model => model.mnda_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.mnda_UsuarioModifica, "mnda_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("mnda_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.mnda_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.mnda_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.mnda_FechaModifica)
-                @Html.ValidationMessageFor(model => model.mnda_FechaModifica)
-            </div>
-        </div>*@
-
-
-        <div class="form-group">
-            <table>
-                <tr>
-                    <th></th>
-                    <th>Usuario</th>
-                    <th>Fecha</th>
-                </tr>
-                <tr>
-                    <td>Creado</td>
-                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                    <td>@Html.DisplayFor(model => model.mnda_FechaCrea)</td>
-                </tr>
-                <tr>
-                    <td>Modificado</td>
-                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                    <td>@Html.DisplayFor(model => model.mnda_FechaModifica, "0:dd/MM/yyyy" )</td>
-                </tr>
-            </table>
-        </div>
         
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -161,6 +84,26 @@
                 }  
                 </div>
             </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th></th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>@Html.DisplayFor(model => model.mnda_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>@Html.DisplayFor(model => model.mnda_FechaModifica, "0:dd/MM/yyyy")</td>
+                    </tr>
+                </table>
+            </div>
+
         </div>
     </div>
  </div>
