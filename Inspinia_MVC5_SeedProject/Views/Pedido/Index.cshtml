@@ -7,12 +7,12 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Pedidos</h2>
-        <ol class="breadcrumb">
+        <h2>Listado de Pedidos</h2>
+        @*<ol class="breadcrumb">
             <li class="active">
-                @*<strong>tbPedido</strong>*@
+                <strong>tbPedido</strong>
             </li>
-        </ol>
+        </ol>*@
     </div>
 </div>
 
@@ -22,9 +22,9 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Pedidos</h5>
+                    <h5>Pedidos</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink(" Nuevo", "Create", null, new { @class = "btn btn-primary"})
+						@Html.ActionLink("Registrar Pedido", "Create", null, new { @class = "btn btn-primary"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -33,41 +33,53 @@
     <thead>
         <tr>
             <th>
-                Id Pedido
-                @*@Html.DisplayNameFor(model => model.ped_Id)*@
+                Número Pedido
+                @*@Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)*@
+            </th>
+            <th>
+                Sucursal
+                @*@Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)*@
             </th>
             <th>
                 Fecha Elaboración
                 @*@Html.DisplayNameFor(model => model.ped_FechaElaboracion)*@
             </th>
             <th>
-                Fecha Entrega
-                @*@Html.DisplayNameFor(model => model.ped_FechaEntrega)*@
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.ped_FechaCrea)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ped_FechaModifica)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-                </th>*@
-            <th>
-                Número Identificación
-                @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
-            </th>
-            <th>
-                Código Factura
+                Cliente
                 @*@Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)*@
             </th>
             <th>
-                Código Municipio
-                @*@Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)*@
+                Nombre Cliente
+                @*@Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)*@
             </th>
+            <th>
+                Fecha Entrega
+                @*@Html.DisplayNameFor(model => model.ped_FechaEntrega)*@
+            </th>
+            <th>
+                Factura
+                @*@Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)*@
+            </th>
+            <th>
+                Fecha Facturación
+                @*@Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)*@
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.ped_FechaCrea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ped_FechaModifica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+            </th>*@
+            @*<th>
+                
+               @Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)
+            </th>*@
             <th>Acciones</th>
         </tr>
     </thead>
@@ -80,46 +92,56 @@
                     @Html.DisplayFor(modelItem => item.ped_Id)
                 </td>
                 <td>
-                    
+                    "San Pedro Sula"
+                    @*@Html.DisplayFor(modelItem => item.ped_FechaElaboracion)*@
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.ped_FechaElaboracion)
                 </td>
                 <td>
-                    
+                    0401199900876
+                    @*@Html.DisplayFor(modelItem => item.ped_FechaEntrega)*@
+                </td>
+                <td>
+                    Samuel Salcedo
+                    @*@Html.DisplayFor(modelItem => item.ped_FechaEntrega)*@
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.ped_FechaEntrega)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.ped_FechaCrea)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ped_FechaModifica)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-                    </td>*@
                 <td>
-                    
-                    @Html.DisplayFor(modelItem => item.tbCliente.clte_RTN_Identidad_Pasaporte)
-                </td>
-                <td>
-                    
                     @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
                 </td>
                 <td>
-                    
-                    @Html.DisplayFor(modelItem => item.tbSucursal.mun_Codigo)
+                   04/12/2018
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.ped_FechaCrea)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.ped_FechaModifica)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
+                </td>*@
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.tbCliente.clte_RTN_Identidad_Pasaporte)
+                </td>
+          
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbSucursal.mun_Codigo)
+                </td>*@
+                <td>
                     @Html.ActionLink("Detalles", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-sm" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.ped_Id }, new { @class = "btn btn-white btn-sm" })
-                    @*@Html.ActionLink("Delete", "Delete", new { id=item.ped_Id }, new { @class = "btn btn-white btn-sm"})*@
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-sm" })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.ped_Id }, new { @class = "btn btn-white btn-sm" })*@
                 </td>
             </tr>
         }
     </tbody>
-
 </table>
 
                 </div>
@@ -127,7 +149,6 @@
         </div>
     </div>
  </div>
-
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>

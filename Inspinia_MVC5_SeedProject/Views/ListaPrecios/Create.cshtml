@@ -1,25 +1,25 @@
 ﻿@model ERP_ZORZAL.Models.tbListaPrecio
-
+@using ERP_ZORZAL.Models
 @{
-    ViewBag.Title = "LPrecios";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Listado Precios</h2>
+        <h2>Listado Precio</h2>
         @*<ol class="breadcrumb">
             <li>
                 @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
-                <strong>Edit</strong>
+                <strong>Create</strong>
             </li>
         </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="/ListaPrecio/Index">Regresar</a>
+            <a href="@Url.Action("Index","ListaPrecios")">Regresar</a>
 			@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
@@ -32,30 +32,44 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Editar Precio</h5>
+                    <h5>Crear Listado Precio</h5>
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
+				@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+                    <div class="ibox-tools col-12">
+                        <input type="button" value="Buscar" class="btn btn-primary btn-xl" />
+                        <div class="col-md-4">
+                            <input type="text" placeholder="Buscar Lista Precio..." />
+                        </div>
+                    </div>
 
+    <div class="form-horizontal">
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.listp_Id)
 
         <div class="form-group">
-            <label class="control-label col-md-2">Listado Precio Activo</label>
-            @*@Html.LabelFor(model => model.listp_EsActivo, new { @class = "control-label col-md-2" })*@
+            @Html.LabelFor(model => model.listp_Nombre, new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.listp_Nombre)
+                @Html.ValidationMessageFor(model => model.listp_Nombre)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.listp_EsActivo, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.listp_EsActivo)
+                @*@Html.EditorFor(model => model.listp_EsActivo)*@
+       
+                @Html.CheckBox("listp_EsActivo", true)
                 @Html.ValidationMessageFor(model => model.listp_EsActivo)
+                <span class="validation-error">  @Html.ValidationMessageFor(model => model.listp_EsActivo)</span>
             </div>
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.listp_UsuarioCrea, "listp_UsuarioCrea", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.listp_UsuarioCrea, "Usuario Crea", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("listp_UsuarioCrea", String.Empty)
                 @Html.ValidationMessageFor(model => model.listp_UsuarioCrea)
@@ -71,7 +85,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.listp_UsuarioModifica, "listp_UsuarioModifica", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.listp_UsuarioModifica, "Usuario Modifica", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("listp_UsuarioModifica", String.Empty)
                 @Html.ValidationMessageFor(model => model.listp_UsuarioModifica)
@@ -88,18 +102,23 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <input type="submit" value="Crear" class="btn btn-primary" />
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+
             </div>
         </div>
     </div>
 }
+                     @Html.Partial("_CreateListaPrecioDetalle")
 
 
                 </div>
             </div>
         </div>
     </div>
- </div>
+</div>
+ 
 
-
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

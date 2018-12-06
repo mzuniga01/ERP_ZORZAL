@@ -8,14 +8,14 @@ namespace ERP_ZORZAL.Models
 {
     [MetadataType(typeof(MonedasMetaData))]
 
-    public partial class tbMoneda
+    public partial class tbMonedas
     {
     }
 
 
     public class MonedasMetaData
     {
-        [Display (Name ="Id Modena")]
+        [Display (Name ="Número")]
         [Required]
         public short mnda_Id { get; set; }
         [Display(Name = "Abreviatura")]
@@ -35,6 +35,7 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> mnda_UsuarioModifica { get; set; }
         [Display(Name = "Fecha Modifica")]
         [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
         public Nullable<System.DateTime> mnda_FechaModifica { get; set; }
     }
 }

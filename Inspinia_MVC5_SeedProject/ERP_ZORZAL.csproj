@@ -193,7 +193,7 @@
     <Compile Include="Controllers\ExoneracionController.cs" />
     <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ListaPrecioController.cs" />
+    <Compile Include="Controllers\ListaPreciosController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MonedaController.cs" />
     <Compile Include="Controllers\NotaCreditoController.cs" />
@@ -239,7 +239,7 @@
     <Compile Include="Models\FacturaDetalle.cs" />
     <Compile Include="Models\FacturaHistorica.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ListaPrecios.cs" />
+    <Compile Include="Models\ListasPrecios.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -924,12 +924,6 @@
     <Content Include="Views\NotaCredito\Details.cshtml" />
     <Content Include="Views\NotaCredito\Edit.cshtml" />
     <Content Include="Views\NotaCredito\Index.cshtml" />
-    <Content Include="Views\Pedido\Create.cshtml" />
-    <Content Include="Views\Pedido\Delete.cshtml" />
-    <Content Include="Views\Pedido\Details.cshtml" />
-    <Content Include="Views\Pedido\Edit.cshtml" />
-    <Content Include="Views\Pedido\Index.cshtml" />
-    <Content Include="Views\Pedido\_CreatePedidoDetalle.cshtml" />
     <Content Include="Views\Moneda\Create.cshtml" />
     <Content Include="Views\Moneda\Delete.cshtml" />
     <Content Include="Views\Moneda\Details.cshtml" />
@@ -945,12 +939,6 @@
     <Content Include="Views\SolicitudCredito\Details.cshtml" />
     <Content Include="Views\SolicitudCredito\Edit.cshtml" />
     <Content Include="Views\SolicitudCredito\Index.cshtml" />
-    <Content Include="Views\ListaPrecio\Create.cshtml" />
-    <Content Include="Views\ListaPrecio\Delete.cshtml" />
-    <Content Include="Views\ListaPrecio\Details.cshtml" />
-    <Content Include="Views\ListaPrecio\Edit.cshtml" />
-    <Content Include="Views\ListaPrecio\Index.cshtml" />
-    <Content Include="Views\ListaPrecio\_CreateListaPrecioDetalle.cshtml" />
     <Content Include="Views\Cliente\Create.cshtml" />
     <Content Include="Views\Cliente\Delete.cshtml" />
     <Content Include="Views\Cliente\Details.cshtml" />
@@ -1001,6 +989,20 @@
     <Content Include="Views\PuntoEmision\_IndexNumeracionWithoutBottom.cshtml" />
     <Content Include="Views\Factura\_IndexFacturaHistorica.cshtml" />
     <Content Include="Views\Factura\_CreateFacturaDetalleModal.cshtml" />
+    <Content Include="Views\Pedido\_CreatePedidoDetalle.cshtml" />
+    <Content Include="Views\Pedido\_IndexCliente.cshtml" />
+    <Content Include="Views\Pedido\_ListPedidoDetalle.cshtml" />
+    <Content Include="Views\Pedido\Create.cshtml" />
+    <Content Include="Views\Pedido\Delete.cshtml" />
+    <Content Include="Views\Pedido\Details.cshtml" />
+    <Content Include="Views\Pedido\Edit.cshtml" />
+    <Content Include="Views\Pedido\Index.cshtml" />
+    <Content Include="Views\ListaPrecios\Delete.cshtml" />
+    <Content Include="Views\ListaPrecios\Details.cshtml" />
+    <Content Include="Views\ListaPrecios\Edit.cshtml" />
+    <Content Include="Views\ListaPrecios\Index.cshtml" />
+    <Content Include="Views\ListaPrecios\Create.cshtml" />
+    <Content Include="Views\ListaPrecios\_CreateListaPrecioDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

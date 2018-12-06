@@ -7,7 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Moneda</h2>
+        <h2>Registrar Moneda</h2>
         <ol class="breadcrumb">
             @*<li>
                 @Html.ActionLink("Registrar Moneda", "Index")
@@ -31,7 +31,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Registrar Moneda</h5>
+                    <h5>Moneda</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -44,26 +44,26 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.mnda_Id)
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.mnda_Id, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.mnda_Id)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.mnda_Abreviatura, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.mnda_Abreviatura)
-                @Html.ValidationMessageFor(model => model.mnda_Abreviatura)
-            </div>
+                <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Abreviatura)
+</div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.mnda_Nombre, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.mnda_Nombre)
-                @Html.ValidationMessageFor(model => model.mnda_Nombre)
-            </div>
+                <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Nombre)
+</div>
         </div>
 
         @*<div class="form-group">

@@ -1,0 +1,108 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbListaPrecio>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Listado Precio</h2>
+        @*<ol class="breadcrumb">
+            <li class="active">
+                <strong>ListaPrecio</strong>
+            </li>
+        </ol>*@
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Precios</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Registrar Lista Precio", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.listp_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.listp_Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.listp_EsActivo)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.listp_FechaCrea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.listp_FechaModifica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbListadoPrecioDetalle.prod_Codigo)
+        </th>*@
+        <th> Acciones</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.listp_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.listp_Nombre)
+        </td> 
+
+      
+        <td>
+            &nbsp; &nbsp; &nbsp; &nbsp; @Html.CheckBox("listp_EsActivo", true)
+            @*@Html.DisplayFor(modelItem => item.listp_EsActivo)*@
+
+            @*<td>
+                @Html.DisplayFor(modelItem => item.listp_FechaCrea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.listp_FechaModifica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbListadoPrecioDetalle.prod_Codigo)
+            </td>*@
+        </td><td>
+    @Html.ActionLink("Detalles", "Details", new { id = item.listp_Id }, new { @class = "btn btn-primary btn-sm" })
+    @Html.ActionLink("Editar", "Edit", new { id = item.listp_Id }, new { @class = "btn btn-white btn-sm" })
+    @*@Html.ActionLink("Delete", "Delete", new { id=item.listp_Id }, new { @class = "btn btn-white btn-sm"})*@
+</td>
+       
+    </tr>
+}
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+

@@ -16,7 +16,7 @@ namespace ERP_ZORZAL.Models
     public class EstadosSolicitudCreditosMetaData
     {
 
-        [Display(Name = "Id Estado Solicitud")]
+        [Display(Name = "Número")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte escre_Id { get; set; }
 

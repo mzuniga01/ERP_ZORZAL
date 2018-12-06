@@ -7,7 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Monedas</h2>
+        <h2>Listado de Monedas</h2>
         <ol class="breadcrumb">
             @*<li class="active">
                 <strong>tbMoneda</strong>
@@ -22,9 +22,9 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Monedas</h5>
+                    <h5>Moneda</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary"})
+						@Html.ActionLink("Registrar Moneda", "Create", null, new { @class = "btn btn-primary"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -85,8 +85,8 @@
                         @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
                     </td>*@
                 <td>
-                    @Html.ActionLink("Detalles", "Details", new { id = item.mnda_Id }, new { @class = "btn btn-primary btn-sm" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.mnda_Id }, new { @class = "btn btn-white btn-sm" })
+                    @Html.ActionLink("Detalles", "Details", new { id = item.mnda_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.mnda_Id }, new { @class = "btn btn-white btn-xs" })
                     @*@Html.ActionLink("Delete", "Delete", new { id=item.mnda_Id }, new { @class = "btn btn-white btn-sm"})*@
                 </td>
             </tr>
