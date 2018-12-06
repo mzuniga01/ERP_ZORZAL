@@ -13,7 +13,7 @@ namespace ERP_ZORZAL.Models
     public partial class TipoPagoMetaData
     {
 
-        [Display(Name = "ID Tipo Pago")]
+        [Display(Name = "Código")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public short tpa_Id { get; set; }
         [Display(Name = "Descripción")]

@@ -40,7 +40,7 @@
                                 </th>
                                 <th>
                                     Tipo Pago
-                                    @*@Html.DisplayNameFor(model => model.tbTipoPago.tpa_Descripcion)*@
+                                    @Html.DisplayNameFor(model => model.tbTipoPago.tpa_Descripcion)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.pago_SaldoAnterior)
@@ -64,21 +64,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.pago_Titular_)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.pago_FechaCrea)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.pago_FechaModifica)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tbCuentasBanco.bcta_Numero)
-                        </th>*@
+                       *@
 
 
                                 <th></th>
@@ -133,8 +119,8 @@
                     </td>*@
 
                                     <td>
-                                        @Html.ActionLink("Detalle", "Details", new { id = item.pago_Id }, new { @class = "btn btn-primary btn-xm" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.pago_Id }, new { @class = "btn btn-white btn-xm" })
+                                        @Html.ActionLink("Detalle", "Details", new { id = item.pago_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.pago_Id }, new { @class = "btn btn-white btn-xs" })
                                         @*@Html.ActionLink("Delete", "Delete", new { id=item.pago_Id }, new { @class = "btn btn-white btn-sm"})*@
                                     </td>
                                 </tr>
@@ -145,6 +131,7 @@
 
                 </div>
             </div>
+
         </div>
     </div>
  </div>

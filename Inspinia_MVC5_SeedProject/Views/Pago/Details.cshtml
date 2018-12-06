@@ -8,14 +8,14 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Details</h2>
-        <ol class="breadcrumb">
+        @*<ol class="breadcrumb">
             <li>
                 @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
                 <strong>Details</strong>
             </li>
-        </ol>
+        </ol>*@
     </div>
 </div>
 
@@ -149,8 +149,26 @@
 
 
 	    @Html.ActionLink("Edit", "Edit", new { id = Model.pago_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
 
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                            <td>@Html.DisplayFor(model => model.pago_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
+                            <td>@Html.DisplayFor(model => model.pago_FechaModifica)</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

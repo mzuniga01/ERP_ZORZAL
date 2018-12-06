@@ -16,7 +16,7 @@ namespace ERP_ZORZAL.Models
     }
     public partial class tbPagoMetaData
     {
-        [Display(Name = "Codigo Pago")]
+        [Display(Name = "Código")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public int pago_Id { get; set; }
         [Display(Name = "Factura")]

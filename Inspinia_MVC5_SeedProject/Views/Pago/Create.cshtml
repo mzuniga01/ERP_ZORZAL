@@ -8,14 +8,7 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Pago</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Pago</strong>
-            </li>
-        </ol>*@
+        
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -82,8 +75,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.tpa_Id, "Tipo de Pago", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @*@Html.DropDownList("tpa_Id", String.Empty)*@
-                @Html.DropDownList("tpa_id", new SelectList(Model.TPList, "ID_TP", "DESCRIPCION_TP"), "Seleccionar Tipo Pago", new { @class = "form-control", @id = "TipoPago" })
+                @Html.DropDownList("tpa_Id", null, "Seleccione Tipo de Pago", new { @class = "form-control",  @id = "TipoPago" })
+                @*@Html.DropDownList("tpa_id", new SelectList(Model.TPList, "ID_TP", "DESCRIPCION_TP"), "Seleccionar Tipo Pago", new { @class = "form-control", @id = "TipoPago" })*@
                 @Html.ValidationMessageFor(model => model.tpa_Id)
             </div>
         </div>

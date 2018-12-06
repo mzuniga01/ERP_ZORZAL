@@ -24,14 +24,17 @@
                 <div class="ibox-title">
                     <h5>Listado de Tipos de Pago</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Tipo de Pago", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Registrar Tipo Pago", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>
                 <div class="ibox-content">
 
-<table class="table table-striped table-responsive" style="width:100%"  id="DataTable">
+<table class="table table-striped table-responsive table-bordered"   id="DataTable">
     <thead>
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tpa_Id)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.tpa_Descripcion)
         </th>
@@ -47,24 +50,16 @@
         <th>
             @Html.DisplayNameFor(model => model.tpa_Titular)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.tpa_FechaCrea)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tpa_FechaModifica)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-        </th>*@
+        
         <th></th>
     </tr>
         </thead>
     <tbody>
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tpa_Id)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.tpa_Descripcion)
         </td>
@@ -80,21 +75,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.tpa_Titular)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.tpa_FechaCrea)
-        </td>
+    
         <td>
-            @Html.DisplayFor(modelItem => item.tpa_FechaModifica)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-        </td>*@
-        <td>
-			@Html.ActionLink("Detalle", "Details", new { id=item.tpa_Id }, new { @class = "btn btn-primary btn-sm"})
-            @Html.ActionLink("Editar", "Edit", new { id=item.tpa_Id }, new { @class = "btn btn-white btn-sm"})
+			@Html.ActionLink("Detalle", "Details", new { id=item.tpa_Id }, new { @class = "btn btn-primary btn-xs"})
+            @Html.ActionLink("Editar", "Edit", new { id=item.tpa_Id }, new { @class = "btn btn-white btn-xs"})
             @*@Html.ActionLink("Delete", "Delete", new { id=item.tpa_Id }, new { @class = "btn btn-white btn-sm"})*@
         </td>
     </tr>
