@@ -14,13 +14,13 @@ namespace ERP_ZORZAL.Models
 
     public class CajasMetaData
     {
-            [Display(Name = "Numero de Caja")]
+            [Display(Name = "Número")]
             [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
             public short cja_Id { get; set; }
 
 
 
-            [Display(Name = "Descripcion Caja")]
+            [Display(Name = "Descripción")]
             [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
             public string cja_Descripcion { get; set; }
 
