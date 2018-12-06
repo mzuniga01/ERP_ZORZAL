@@ -30,12 +30,12 @@
                 @Html.ValidationMessageFor(model => model.devd_Id)
             </div>
         </div>*@
-        <div class="form-group">
+        @*<div class="form-group">
             <label class="control-label col-md-2">ID Devolución</label>
-            <div class="col-md-10">
+            <div class="col-md-3">
                 <input type="text" value="" class="form-control " readonly />
             </div>
-        </div>
+        </div>*@
         @*<div class="form-group">
             @Html.LabelFor(model => model.dev_Id, "Codigo Devolución", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -46,42 +46,45 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.prod_Codigo,"Codigo Producto", new { @class = "control-label col-md-2" })
-            <div class="col-md-8">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.prod_Codigo)
                 @Html.ValidationMessageFor(model => model.prod_Codigo)
             </div>
-            <input type="button" value="Buscar" class="btn btn-primary btn-xl" />
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.devd_Descripcion,"Descripción", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.devd_Descripcion)
-                @Html.ValidationMessageFor(model => model.devd_Descripcion)
+            <div class="col-md-1">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalBuscarProducto"><span class="glyphicon glyphicon-search"></span></button>
             </div>
-        </div>
-       
-        <div class="form-group">
-            @Html.LabelFor(model => model.devd_CantidadProducto,"Cantidad", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.devd_CantidadProducto, "Cantidad", new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.devd_CantidadProducto, "1")
                 @Html.ValidationMessageFor(model => model.devd_CantidadProducto)
             </div>
         </div>
-
         <div class="form-group">
+            @Html.LabelFor(model => model.devd_Descripcion, "Descripción", new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+               @Html.EditorFor(model => model.devd_Descripcion)
+                @Html.ValidationMessageFor(model => model.devd_Descripcion)
+            </div>
             <label class="control-label col-md-2">Valor</label>
-            <div class="col-md-10">
+            <div class="col-md-3">
                 <input type="text" value="" class="form-control " />
             </div>
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.devd_Descripcion, "Observaciones", new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.TextAreaFor(model => model.devd_Descripcion, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.devd_Descripcion)
+            </div>
+        </div>
+
+        @*<div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Agregar" class="btn btn-primary" />
                 @Html.ActionLink("Cancelar", "Create", null, new { @class = "btn btn-white" })
             </div>
-        </div>
+        </div>*@
     </div>
 }
 
@@ -90,3 +93,24 @@
         </div>
     </div>
  </div>
+
+<div class="modal fade" id="ModalBuscarProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Productos Devolución</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_ProductoDevolucion")
+            </div>
+
+            @*<div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar</button>
+                    </div>*@
+            </div>
+        </div>
+    </div>

@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Caja</h2>
@@ -43,11 +45,11 @@
 
 
         <dt>
-            @Html.DisplayNameFor(model => model.tbSucursal.suc_Id)
+            @Html.DisplayNameFor(model => model.tbSucursal.suc_Descripcion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.tbSucursal.suc_Id)
+            @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
         </dd>
 
         <dt>
@@ -100,12 +102,33 @@
     </dd>*@
 
        
-
     </dl>
 
 
+
+    <div class="form-group">
+        <table>
+            <tr>
+                <th></th>
+                <th>Usuario</th>
+                <th>Fecha</th>
+            </tr>
+            <tr>
+                <td>Creado</td>
+                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                <td>@Html.DisplayFor(model => model.cja_FechaCrea)</td>
+            </tr>
+            <tr>
+                <td>Modificado</td>
+                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                <td>@Html.DisplayFor(model => model.cja_FechaModifica)</td>
+            </tr>
+        </table>
+    </div>
+
+
 	    @Html.ActionLink("Editar", "Edit", new { id = Model.cja_Id }, new { @class = "btn btn-primary"})
-        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+        @*@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })*@
         
       @*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white"})*@
 

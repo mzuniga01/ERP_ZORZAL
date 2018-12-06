@@ -37,9 +37,8 @@ namespace ERP_ZORZAL.Models
 
 
             [Display(Name = "Fecha Crea")]
-            [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "0:yyyy/MM/dd}")]
+            [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
             [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
-            [DataType(DataType.Date)]
             public System.DateTime cja_FechaCrea { get; set; }
 
 

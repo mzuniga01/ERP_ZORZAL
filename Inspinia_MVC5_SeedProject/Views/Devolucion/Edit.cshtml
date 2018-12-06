@@ -1,5 +1,5 @@
 ﻿@model ERP_ZORZAL.Models.tbDevolucion
-
+@using ERP_ZORZAL.Models
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -32,66 +32,101 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Editar Devolución de Productos</h5>
+                    <h5>Editar Devolucion</h5>
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.dev_Id)
+                        <div class="form-horizontal">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.fact_Id, "Factura", new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.DropDownList("fact_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.fact_Id)
-            </div>
-        </div>
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.dev_Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.DropDownList("cja_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.cja_Id)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbCaja.tbSucursal.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" , @readonly="readonly" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+                                    @Html.ValidationMessageFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.dev_Fecha, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.dev_Fecha)
-                @Html.ValidationMessageFor(model => model.dev_Fecha)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2", @readonly = "readonly" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.tbCaja.cja_Descripcion)
+                                    @Html.ValidationMessageFor(model => model.tbCaja.cja_Descripcion)
+                                </div>
+                            </div>
 
-     
-    
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbFactura.fact_Codigo, "Codigo Factura", new { @class = "control-label col-md-2", @readonly = "readonly" })
+                                <div class="col-md-5">
+                                   @Html.EditorFor(model => model.tbFactura.fact_Codigo)
+                                    @Html.ValidationMessageFor(model => model.tbFactura.fact_Codigo)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte, "Codigo Cliente", new { @class = "control-label col-md-2", @readonly = "readonly" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte)
+                                    @Html.ValidationMessageFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbFactura.clte_Nombres, "Cliente", new { @class = "control-label col-md-2", @readonly = "readonly" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.tbFactura.clte_Nombres)
+                                    @Html.ValidationMessageFor(model => model.tbFactura.clte_Nombres)
+                                </div>
+                            </div>
 
+                          
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.dev_Fecha, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.dev_Fecha)
+                                    @Html.ValidationMessageFor(model => model.dev_Fecha)
+                                </div>
+                            </div>
 
+                            @*<div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>*@
+                        </div>
+
+                    }
+
+                    <div class="form-group">
+                        <table id="Auditoria" class="table table-striped">
+                            <tr>
+                                <th></th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.dev_FechaCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.dev_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
- </div>
+</div>
 
 
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
-@Html.Partial("_IndexDetalleDevolucion", Model.tbDevolucionDetalle)
+@*@Html.Partial("_IndexDetalleDevolucion", Model.tbDevolucionDetalle)*@

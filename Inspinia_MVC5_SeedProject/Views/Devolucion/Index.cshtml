@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ERP_ZORZAL.Models.tbDevolucion>
+@using ERP_ZORZAL.Models
 
 @{
     ViewBag.Title = "Index";
@@ -61,17 +62,23 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.tbCaja.tbSucursal.suc_Descripcion)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.tbCaja.cja_Descripcion)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.tbFactura.clte_Nombres)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.dev_Fecha)
                 </td>
                 <td>
                     @Html.ActionLink("Detalle", "Details", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-sm" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.dev_Id }, new { @class = "btn btn-white btn-sm" })
+                    @Html.ActionLink("Actualizar", "Edit", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-sm" })
                     @*@Html.ActionLink("Eliminar", "Delete", new { id=item.dev_Id }, new { @class = "btn btn-white btn-sm"})*@
                 </td>
             </tr>

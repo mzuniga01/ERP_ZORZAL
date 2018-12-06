@@ -24,7 +24,7 @@
                 <div class="ibox-title">
                     <h5>Lista de Caja</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Registrar Caja", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -63,7 +63,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.suc_Id)
+                    @Html.DisplayFor(modelItem => item.tbSucursal.suc_Descripcion)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.cja_Id)

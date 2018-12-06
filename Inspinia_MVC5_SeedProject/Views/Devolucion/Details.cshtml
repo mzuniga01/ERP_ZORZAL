@@ -28,41 +28,98 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Detalle Devolución</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.dev_Id }, new { @class = "btn btn-primary" })
+                    </div>
                 </div>
                 <div class="ibox-content">
 
 
 				    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.dev_Fecha)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.dev_Fecha)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+                        </dt>
 
-        <dt>
-          Caja
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbCaja.cja_Descripcion)
-        </dd>
+                       <br /> <dt>
+                            Caja
+                        </dt>
 
-        <dt>
-           Factura
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbCaja.cja_Descripcion)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
-        </dd>
+                        <br /> <dt>
+                            Factura
+                        </dt>
 
+                        <dd>
+                            @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
+                        </dd>
+
+                        <br /> <dt>
+                            @Html.DisplayNameFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte)
+                        </dd>
+                        
+                  <br /><dt>
+                            @Html.DisplayNameFor(model => model.tbFactura.clte_Nombres)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbFactura.clte_Nombres)
+                        </dd>
+                        <br /> <dt>
+                                    @Html.DisplayNameFor(model => model.dev_Fecha)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.dev_Fecha)
+                                </dd>
+
+                        <br / ><dt>
+                            Codigo Producto
+                        </dt>
+
+                        <dd>
+                            PANPJ-102634700
+                        </dd>
+                        <br /><dt>
+                           Producto
+                        </dt>
+
+                        <dd>
+                           Pantalon
+                        </dd>
     </dl>
+                    
 
-
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.dev_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white"})
-
+                    <div class="form-group">
+                        <table id="Auditoria"  class="table table-striped">
+                            <tr>
+                                <th></th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.dev_FechaCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.dev_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -71,7 +128,7 @@
 
 
 
-
+<script src="~/Scripts/jquery-3.3.1.js"></script>
 
 
 

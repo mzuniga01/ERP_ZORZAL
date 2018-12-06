@@ -26,7 +26,7 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string tpa_Cuenta { get; set; }
         [Display(Name = "Fecha de Vencimiento")]
-        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "0:yyyy/MM/dd}")]
+
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string tpa_FechaVencimiento { get; set; }
         [Display(Name = "Titular")]
@@ -38,7 +38,7 @@ namespace ERP_ZORZAL.Models
         public int tpa_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Crea")]
-        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "0:yyyy/MM/dd}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public System.DateTime tpa_FechaCrea { get; set; }
 
@@ -47,7 +47,7 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> tpa_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modifica")]
-        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "0:yyyy/MM/dd}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public Nullable<System.DateTime> tpa_FechaModifica { get; set; }
 

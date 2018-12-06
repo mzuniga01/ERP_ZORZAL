@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Caja</h2>
@@ -48,6 +50,14 @@
 
 
         <div class="form-group">
+            @Html.LabelFor(model => model.tbSucursal.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.tbSucursal.suc_Descripcion)
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.cja_Id, "Numero de Caja", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
@@ -63,13 +73,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2"})
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.suc_Id)
-            </div>
-        </div>
+        
 
         @*<div class="form-group">
             @Html.LabelFor(model => model.cja_UsuarioCrea, new { @class = "control-label col-md-2" })
@@ -102,6 +106,26 @@
                 @Html.ValidationMessageFor(model => model.cja_FechaModifica)
             </div>
         </div>*@
+
+        <div class="form-group">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+                <tr>
+                    <td>Creado</td>
+                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                    <td>@Html.DisplayFor(model => model.cja_FechaCrea)</td>
+                </tr>
+                <tr>
+                    <td>Modificado</td>
+                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                    <td>@Html.DisplayFor(model => model.cja_FechaModifica)</td>
+                </tr>
+            </table>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
