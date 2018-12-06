@@ -19,8 +19,9 @@ namespace ERP_ZORZAL.Models
         {
             this.tbCaja = new HashSet<tbCaja>();
             this.tbCuponDescuento = new HashSet<tbCuponDescuento>();
-            this.tbPuntoEmision1 = new HashSet<tbPuntoEmision>();
             this.tbPedido = new HashSet<tbPedido>();
+            this.tbFactura = new HashSet<tbFactura>();
+            this.tbNotaCredito = new HashSet<tbNotaCredito>();
         }
     
         public short suc_Id { get; set; }
@@ -34,6 +35,7 @@ namespace ERP_ZORZAL.Models
         public System.DateTime suc_FechaCrea { get; set; }
         public Nullable<int> suc_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> suc_FechaModifica { get; set; }
+        public string suc_Descripcion { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
@@ -43,10 +45,12 @@ namespace ERP_ZORZAL.Models
         public virtual ICollection<tbCaja> tbCaja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCuponDescuento> tbCuponDescuento { get; set; }
-        public virtual tbPuntoEmision tbPuntoEmision { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbPuntoEmision> tbPuntoEmision1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedido> tbPedido { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFactura> tbFactura { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbNotaCredito> tbNotaCredito { get; set; }
+        public virtual tbPuntoEmision tbPuntoEmision { get; set; }
     }
 }

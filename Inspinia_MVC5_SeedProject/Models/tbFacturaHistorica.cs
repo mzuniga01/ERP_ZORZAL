@@ -12,16 +12,14 @@ namespace ERP_ZORZAL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbTipoDenominacion
+    public partial class tbFacturaHistorica
     {
-        public short tdmi_Id { get; set; }
-        public string tdmi_BilleteMoneda { get; set; }
-        public int tdmi_UsuarioCrea { get; set; }
-        public System.DateTime tdmi_FechaCrea { get; set; }
-        public Nullable<int> tdmi_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> tdmi_FechaModifica { get; set; }
+        public byte facth_Id { get; set; }
+        public long fact_Id { get; set; }
+        public byte esfac_Id { get; set; }
+        public Nullable<System.DateTime> facth_Fecha { get; set; }
     
-        public virtual tbUsuario tbUsuario { get; set; }
-        public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbEstadoFactura tbEstadoFactura { get; set; }
+        public virtual tbFactura tbFactura { get; set; }
     }
 }

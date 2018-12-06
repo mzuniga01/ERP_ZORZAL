@@ -181,6 +181,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BancoController.cs" />
     <Compile Include="Controllers\BodegaController.cs" />
+    <Compile Include="Controllers\BodegaDetalleController.cs" />
     <Compile Include="Controllers\BoxController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EntradaController.cs" />
@@ -189,7 +190,9 @@
     <Compile Include="Controllers\InventarioFisicoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MunicipioController.cs" />
+    <Compile Include="Controllers\ObjetoController.cs" />
     <Compile Include="Controllers\ProductoCategoriaController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\RolesUsuarioController.cs" />
@@ -206,8 +209,12 @@
     <Compile Include="Models\accesorol.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Banco.cs" />
+    <Compile Include="Models\Bodega.cs" />
+    <Compile Include="Models\BodegaDetalle.cs" />
     <Compile Include="Models\Box.cs" />
     <Compile Include="Models\departamento.cs" />
+    <Compile Include="Models\DetalleEntrada.cs" />
+    <Compile Include="Models\Entrada.cs" />
     <Compile Include="Models\EstadoInventariosFisico.cs" />
     <Compile Include="Models\estadomovimientos.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -230,6 +237,9 @@
     </Compile>
     <Compile Include="Models\municipios.cs" />
     <Compile Include="Models\Objeto.cs" />
+    <Compile Include="Models\Productos.cs" />
+    <Compile Include="Models\ProductosCategorias.cs" />
+    <Compile Include="Models\ProductosSubCategorias.cs" />
     <Compile Include="Models\proveedor.cs" />
     <Compile Include="Models\rol.cs" />
     <Compile Include="Models\RolesUsuario.cs" />
@@ -265,6 +275,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbCuponDescuento.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbDenominacion.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbDepartamento.cs">
@@ -304,6 +317,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbFacturaDetalle.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbFacturaHistorica.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbInventarioFisico.cs">
@@ -381,9 +397,6 @@
     <Compile Include="Models\tbSucursal.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbTipoDenominacion.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tbTipoEntrada.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -402,6 +415,7 @@
     <Compile Include="Models\tbUsuario.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TipoEntrada.cs" />
     <Compile Include="Models\TipoSalida.cs" />
     <Compile Include="Models\UnidadesMedida.cs" />
     <Compile Include="Models\UnidadMedida.cs" />
@@ -924,6 +938,14 @@
     <Content Include="Views\Rol\_CreateAccesoRol.cshtml" />
     <Content Include="Views\Rol\_DetailsAccesoRol.cshtml" />
     <Content Include="Views\Rol\_IndexAccesoRol_Create.cshtml" />
+    <Content Include="Views\Objeto\Create.cshtml" />
+    <Content Include="Views\Objeto\Delete.cshtml" />
+    <Content Include="Views\Objeto\Details.cshtml" />
+    <Content Include="Views\Objeto\Edit.cshtml" />
+    <Content Include="Views\Objeto\Index.cshtml" />
+    <Content Include="Views\Objeto\EditarPrueba.cshtml" />
+    <Content Include="Views\Objeto\DetallePrueba.cshtml" />
+    <Content Include="Views\Objeto\CrearPrueba.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

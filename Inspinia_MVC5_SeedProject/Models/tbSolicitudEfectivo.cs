@@ -27,10 +27,12 @@ namespace ERP_ZORZAL.Models
         public System.DateTime solef_FechaCrea { get; set; }
         public Nullable<int> solef_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> solef_FechaModifica { get; set; }
+        public short mnda_Id { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbCaja tbCaja { get; set; }
+        public virtual tbMoneda tbMoneda { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
     }

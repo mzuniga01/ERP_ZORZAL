@@ -20,6 +20,7 @@ namespace ERP_ZORZAL.Models
             this.tbDevolucion = new HashSet<tbDevolucion>();
             this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
             this.tbArqueoCaja = new HashSet<tbArqueoCaja>();
+            this.tbFactura = new HashSet<tbFactura>();
         }
     
         public short cja_Id { get; set; }
@@ -39,5 +40,7 @@ namespace ERP_ZORZAL.Models
         public virtual tbSucursal tbSucursal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbArqueoCaja> tbArqueoCaja { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFactura> tbFactura { get; set; }
     }
 }

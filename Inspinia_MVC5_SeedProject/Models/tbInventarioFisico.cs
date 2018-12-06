@@ -35,5 +35,6 @@ namespace ERP_ZORZAL.Models
         public virtual tbEstadoInventarioFisico tbEstadoInventarioFisico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
+        public virtual tbUsuario tbUsuario { get; set; }
     }
 }

@@ -46,7 +46,7 @@ namespace ERP_ZORZAL.Controllers
 
         // POST: /Objeto/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="obj_Id,obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica")] tbObjeto tbObjeto)
@@ -66,8 +66,6 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Objeto/Edit/5
         public ActionResult Edit(int? id)
         {
-            ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_Id");
-            ViewBag.usu_NombreUsuario = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,7 +82,7 @@ namespace ERP_ZORZAL.Controllers
 
         // POST: /Objeto/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="obj_Id,obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica")] tbObjeto tbObjeto)

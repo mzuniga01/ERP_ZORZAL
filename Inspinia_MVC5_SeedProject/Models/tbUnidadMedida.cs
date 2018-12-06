@@ -23,12 +23,15 @@ namespace ERP_ZORZAL.Models
     
         public int uni_Id { get; set; }
         public string uni_Descripcion { get; set; }
-        public string uni_Abreviacion { get; set; }
+        public string uni_Abreviatura { get; set; }
         public int uni_UsuarioCrea { get; set; }
         public System.DateTime uni_FechaCrea { get; set; }
         public Nullable<int> uni_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> uni_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbUsuario tbUsuario2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

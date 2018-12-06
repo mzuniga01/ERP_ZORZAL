@@ -12,28 +12,28 @@ namespace ERP_ZORZAL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbTipoPago
+    public partial class tbDenominacion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbTipoPago()
+        public tbDenominacion()
         {
-            this.tbPago = new HashSet<tbPago>();
+            this.tbSolicitudEfectivoDetalle = new HashSet<tbSolicitudEfectivoDetalle>();
         }
     
-        public short tpa_Id { get; set; }
-        public string tpa_Descripcion { get; set; }
-        public bool tpa_Emisor { get; set; }
-        public bool tpa_Cuenta { get; set; }
-        public bool tpa_FechaVencimiento { get; set; }
-        public bool tpa_Titular { get; set; }
-        public int tpa_UsuarioCrea { get; set; }
-        public System.DateTime tpa_FechaCrea { get; set; }
-        public Nullable<int> tpa_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> tpa_FechaModifica { get; set; }
+        public short deno_Id { get; set; }
+        public string deno_Descripcion { get; set; }
+        public byte deno_Tipo { get; set; }
+        public decimal deno_valor { get; set; }
+        public short mnda_Id { get; set; }
+        public int deno_UsuarioCrea { get; set; }
+        public System.DateTime deno_FechaCrea { get; set; }
+        public Nullable<int> deno_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> deno_FechaModifica { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbPago> tbPago { get; set; }
+        public virtual ICollection<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
+        public virtual tbMoneda tbMoneda { get; set; }
     }
 }

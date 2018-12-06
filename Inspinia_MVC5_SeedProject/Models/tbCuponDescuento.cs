@@ -24,6 +24,9 @@ namespace ERP_ZORZAL.Models
         public System.DateTime cdto_FechaCrea { get; set; }
         public Nullable<int> cdto_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> cdto_FechaModifica { get; set; }
+        public decimal cdto_MaximoMontoDescuento { get; set; }
+        public bool cdto_Redimido { get; set; }
+        public Nullable<bool> cdto_Anulado { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

@@ -36,6 +36,7 @@ namespace ERP_ZORZAL.Models
         public System.DateTime bod_FechaCrea { get; set; }
         public Nullable<int> bod_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> bod_FechaModifica { get; set; }
+        public string bod_Nombre { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbMunicipio tbMunicipio { get; set; }

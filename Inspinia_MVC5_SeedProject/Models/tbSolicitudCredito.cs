@@ -30,7 +30,7 @@ namespace ERP_ZORZAL.Models
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
-        public virtual tbCliente tbCliente { get; set; }
         public virtual tbEstadoSolicitudCredito tbEstadoSolicitudCredito { get; set; }
+        public virtual tbCliente tbCliente { get; set; }
     }
 }

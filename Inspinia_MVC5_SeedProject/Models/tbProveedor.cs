@@ -33,5 +33,6 @@ namespace ERP_ZORZAL.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEntrada> tbEntrada { get; set; }
+        public virtual tbUsuario tbUsuario { get; set; }
     }
 }

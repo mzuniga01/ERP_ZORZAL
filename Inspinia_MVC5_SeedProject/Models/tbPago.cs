@@ -17,10 +17,12 @@ namespace ERP_ZORZAL.Models
         public int pago_Id { get; set; }
         public long fact_Id { get; set; }
         public short tpa_Id { get; set; }
-        public decimal pago_Totalpago { get; set; }
-        public decimal pago_Totalcambio { get; set; }
+        public System.DateTime pago_FechaElaboracion { get; set; }
+        public decimal pago_SaldoAnterior { get; set; }
+        public decimal pago_TotalPago { get; set; }
+        public Nullable<decimal> pago_TotalCambio { get; set; }
         public string pago_Emisor { get; set; }
-        public short bcta_Id { get; set; }
+        public Nullable<short> bcta_Id { get; set; }
         public Nullable<System.DateTime> pago_FechaVencimiento { get; set; }
         public string pago_Titular_ { get; set; }
         public int pago_UsuarioCrea { get; set; }

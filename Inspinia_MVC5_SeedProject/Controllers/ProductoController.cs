@@ -19,6 +19,7 @@ namespace ERP_ZORZAL.Controllers
         {
             var tbproducto = db.tbProducto.Include(t => t.tbUsuario).Include(t => t.tbUnidadMedida);
             return View(tbproducto.ToList());
+            //return View();
         }
 
         // GET: /Producto/Details/5

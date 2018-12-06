@@ -25,5 +25,6 @@ namespace ERP_ZORZAL.Models
     
         public virtual tbProducto tbProducto { get; set; }
         public virtual tbSalida tbSalida { get; set; }
+        public virtual tbUsuario tbUsuario { get; set; }
     }
 }

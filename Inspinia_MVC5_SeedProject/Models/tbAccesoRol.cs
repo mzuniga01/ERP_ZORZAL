@@ -25,5 +25,7 @@ namespace ERP_ZORZAL.Models
     
         public virtual tbRol tbRol { get; set; }
         public virtual tbRolesUsuario tbRolesUsuario { get; set; }
+        public virtual tbObjeto tbObjeto { get; set; }
+        public virtual tbUsuario tbUsuario { get; set; }
     }
 }

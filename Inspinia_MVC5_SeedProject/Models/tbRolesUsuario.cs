@@ -32,5 +32,6 @@ namespace ERP_ZORZAL.Models
         public virtual ICollection<tbAccesoRol> tbAccesoRol { get; set; }
         public virtual tbRol tbRol { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
     }
 }
