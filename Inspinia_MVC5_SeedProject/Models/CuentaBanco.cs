@@ -18,7 +18,6 @@ namespace ERP_ZORZAL.Models
     public class _CuentasBancoMetaData
     {
         [Display(Name = "Código")]
-        //[DisplayFormat(DataFormatString = "{''}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public short bcta_Id { get; set; }
         [Display(Name = "Banco")]
@@ -31,11 +30,9 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte bcta_TipoCuenta { get; set; }
         [Display(Name = "Total Crédito")]
-        [DisplayFormat(DataFormatString = "#", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public decimal bcta_TotalCredito { get; set; }
         [Display(Name = "Total Débito")]
-        [DisplayFormat(DataFormatString = "", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public decimal bcta_TotalDebito { get; set; }
         [Display(Name = "Fecha Apertura")]
