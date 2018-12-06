@@ -4,25 +4,6 @@
     ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 50%;
-        margin-left: 17%;
-    }
-
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        /*background-color: #dddddd;*/
-    }
-</style>
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Cupón Descuento</h2>
@@ -55,7 +36,7 @@
         @Html.HiddenFor(model => model.cdto_ID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 <input type="text" value="San Pedro Sula" readonly class="form-control" />
                 @*@Html.DropDownList("suc_Id", String.Empty)*@
@@ -64,7 +45,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.suc_Id, "Código Cupón Descuento", new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.suc_Id, "Código Cupón Descuento", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 <input type="text" value="2" readonly class="form-control" />
                 @*@Html.DropDownList("suc_Id", String.Empty)*@
@@ -72,7 +53,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.cdto_PorcentajeDescuento)
                 @Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)
@@ -80,7 +61,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.cdto_MontoDescuento)
                 @Html.ValidationMessageFor(model => model.cdto_MontoDescuento)
@@ -88,7 +69,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.cdto_MaximoMontoDescuento)
                 @Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)
@@ -96,9 +77,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_Anulado, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.cdto_Anulado, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <select id="cdto_Anulado">
+                <select id="cdto_Anulado" class="form-control">
                     <option>Seleccionar</option>
                     <option value="true">Si</option>
                     <option value="false">No</option>
@@ -109,7 +90,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_Redimido, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.cdto_Redimido, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.cdto_Redimido)
                 @Html.ValidationMessageFor(model => model.cdto_Redimido)
@@ -117,44 +98,24 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" } })
                 @Html.ValidationMessageFor(model => model.cdto_FechaEmision)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" } })
                 @Html.ValidationMessageFor(model => model.cdto_FechaVencimiento)
             </div>
         </div>
-
         <div class="form-group">
-            <table>
-                <tr>
-                    <th></th>
-                    <th>Usuario</th>
-                    <th>Fecha</th>
-                </tr>
-                <tr>
-                    <td>Creado</td>
-                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                    <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
-                </tr>
-                <tr>
-                    <td>Modificado</td>
-                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                    <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
-                </tr>
-            </table>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-12 text-center">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-primary" })
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
             </div>
         </div>
     </div>
@@ -166,5 +127,3 @@
         </div>
     </div>
  </div>
-
-

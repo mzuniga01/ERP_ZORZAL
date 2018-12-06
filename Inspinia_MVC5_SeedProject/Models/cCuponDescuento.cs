@@ -22,13 +22,13 @@ namespace ERP_ZORZAL.Models
         [Display(Name = "Fecha Emisión")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         [DisplayFormat(ApplyFormatInEditMode = true,
-            DataFormatString = "{0:yyyy-MM-dd}",
+            DataFormatString = "{0:dd-MM-yyyy}",
             HtmlEncode = false)]
         public System.DateTime cdto_FechaEmision { get; set; }
 
         [Display(Name = "Fecha Vencimiento")]
         [DisplayFormat(ApplyFormatInEditMode = true,
-            DataFormatString = "{0:yyyy-MM-dd}",
+            DataFormatString = "{0:dd-MM-yyyy}",
             HtmlEncode = false)]
         public System.DateTime cdto_FechaVencimiento { get; set; }
 

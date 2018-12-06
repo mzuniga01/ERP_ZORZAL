@@ -42,7 +42,7 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 <input type="text" class="form-control" value="San Pedro Sula" readonly />
                 @*@Html.DropDownList("suc_Id", String.Empty)*@
@@ -51,7 +51,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.cdto_PorcentajeDescuento)
                 @Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)
@@ -59,7 +59,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.cdto_MontoDescuento)
                 @Html.ValidationMessageFor(model => model.cdto_MontoDescuento)
@@ -67,7 +67,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.cdto_MaximoMontoDescuento)
                 @Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)
@@ -75,20 +75,20 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_Anulado, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.cdto_Anulado, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <select id="cdto_Anulado">
+                <select id="cdto_Anulado" class="form-control">
                     <option>Seleccionar</option>
                     <option value="true">Si</option>
                     <option value="false">No</option="false">
                 </select>
-                @*@Html.EditorFor(model => model.cdto_Anulado)*@
+                @*@Html.DropDownList("tpi_Id", null, "Seleccione Tipo Identificación", new { @class = "form-control" })*@
                 @Html.ValidationMessageFor(model => model.cdto_Anulado)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_Redimido, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.cdto_Redimido, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.cdto_Redimido)
                 @Html.ValidationMessageFor(model => model.cdto_Redimido)
@@ -96,7 +96,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.cdto_FechaEmision)
                 @Html.ValidationMessageFor(model => model.cdto_FechaEmision)
@@ -104,49 +104,17 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_FechaVencimiento)
+                @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" }  })
                 @Html.ValidationMessageFor(model => model.cdto_FechaVencimiento)
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.cdto_UsuarioCrea, "cdto_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("cdto_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.cdto_UsuarioCrea)
-            </div>
-        </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cdto_FechaCrea)
-                @Html.ValidationMessageFor(model => model.cdto_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_UsuarioModifica, "cdto_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("cdto_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.cdto_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cdto_FechaModifica)
-                @Html.ValidationMessageFor(model => model.cdto_FechaModifica)
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-12 text-center">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-primary"})
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
             </div>
         </div>
     </div>
@@ -182,8 +150,8 @@
  };
  $.datepicker.setDefaults($.datepicker.regional['es']);
 $(function () {
-    $("#cdto_FechaEmision").datepicker({ dateFormat: 'yy-mm-dd' });
-    $("#cdto_FechaVencimiento").datepicker({ dateFormat: 'yy-mm-dd' });
+    $("#cdto_FechaEmision").datepicker({ dateFormat: 'dd-mm-yy' });
+    $("#cdto_FechaVencimiento").datepicker({ dateFormat: 'dd-mm-yy' });
 });
     </script>
 
