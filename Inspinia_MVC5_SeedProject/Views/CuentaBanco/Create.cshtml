@@ -9,20 +9,12 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Cuentas Banco</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Create</strong>
-            </li>
-        </ol>*@
+      
     </div>
     <div class="col-sm-8">
         <div class="title-action">
             <a href="@Url.Action("Index","CuentaBanco")">Regresar</a>
-			@*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
-        </div>
+         </div>
     </div>
 </div>
 
@@ -55,7 +47,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ban_Id, "Banco", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @*@Html.DropDownList("ban_Id", String.Empty)*@
                  @Html.DropDownList("ban_Id", null, "Seleccione Banco", new { @class = "form-control" })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.ban_Id)</p>
 </div>
@@ -71,7 +62,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @*@Html.EditorFor(model => model.mnda_Id)*@
                 @Html.DropDownList("mnda_Id", null, "Seleccione Moneda", new { @class = "form-control" })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Id)</p>
 </div>
@@ -96,7 +86,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.bcta_TotalDebito,  new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.bcta_TotalDebito)
+                @Html.EditorFor(model => model.bcta_TotalDebito, new { htmlAttributes = new { @class = "form-control", @value = "value" } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_TotalDebito)</p>
             </div>
         </div>
@@ -104,44 +94,13 @@
         <div class="form-group">
         @Html.LabelFor(model => model.bcta_FechaApertura, new { @class = "control-label col-md-2" })
         <div class="col-md-5">
-            @Html.EditorFor(model => model.bcta_FechaApertura , "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id="fechaapertura"} })
+            @Html.EditorFor(model => model.bcta_FechaApertura , "{0:dd-MM-yyyy}", new { htmlAttributes = new { @id="fechaapertura"} })
             <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_FechaApertura)</p>
         </div>
     </div>
 
 
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.bcta_UsuarioCrea, new { @class = "control-label col-md-2" })
-        <div class="col-md-5">
-            @Html.EditorFor(model => model.bcta_UsuarioCrea)
-            @Html.ValidationMessageFor(model => model.bcta_UsuarioCrea)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.bcta_FechaCrea, new { @class = "control-label col-md-2" })
-        <div class="col-md-5">
-            @Html.EditorFor(model => model.bcta_FechaCrea)
-            @Html.ValidationMessageFor(model => model.bcta_FechaCrea)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.bcta_UsuarioModifica, new { @class = "control-label col-md-2" })
-        <div class="col-md-5">
-            @Html.EditorFor(model => model.bcta_UsuarioModifica)
-            @Html.ValidationMessageFor(model => model.bcta_UsuarioModifica)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.bcta_FechaModifica, new { @class = "control-label col-md-2" })
-        <div class="col-md-5">
-            @Html.EditorFor(model => model.bcta_FechaModifica)
-            @Html.ValidationMessageFor(model => model.bcta_FechaModifica)
-        </div>
-    </div>*@
-
+  
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-primary" />

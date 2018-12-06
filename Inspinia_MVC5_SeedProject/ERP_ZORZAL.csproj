@@ -880,7 +880,6 @@
     <Content Include="Views\TipoIdentificacion\Edit.cshtml" />
     <Content Include="Views\TipoIdentificacion\Index.cshtml" />
     <Content Include="Views\Banco\Create.cshtml" />
-    <Content Include="Views\Banco\Delete.cshtml" />
     <Content Include="Views\Banco\Details.cshtml" />
     <Content Include="Views\Banco\Edit.cshtml" />
     <Content Include="Views\Banco\Index.cshtml" />

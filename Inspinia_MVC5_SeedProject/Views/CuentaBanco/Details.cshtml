@@ -9,19 +9,10 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Cuentas Banco</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Details</strong>
-            </li>
-        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
             <a href="@Url.Action("Index", "CuentaBanco")">Regresar</a>
-            @*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
 </div>
@@ -59,20 +50,15 @@
                             @Html.DisplayNameFor(model => model.bcta_TipoCuenta)
                         </dt>
 
-                        @*<dd>
-                            @Html.DisplayFor(model => model.bcta_TipoCuenta)
 
-                          
-                        </dd>*@
-
-                       @if (Model.bcta_TipoCuenta == 1)
-                       {
-                        <dd>Ahorro</dd>
-                       }
-                       else
-                       {
-                        <dd>Cheques</dd>
-                       }
+                        @if (Model.bcta_TipoCuenta == 1)
+                        {
+                            <dd>Ahorro</dd>
+                        }
+                        else
+                        {
+                            <dd>Cheques</dd>
+                        }
 
 
                         <dt>
@@ -110,79 +96,38 @@
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.bcta_FechaApertura, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "fechaapertura" } })
+                            @Html.DisplayFor(model => model.bcta_FechaApertura, "{0:dd-MM-yyyy}", new { htmlAttributes = new { @id = "fechaapertura" } })
                         </dd>
-
-
-
-                        @*<dt>
-                @Html.DisplayNameFor(model => model.bcta_UsuarioCrea)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
-            </dd>
-
-
-
-            <dt>
-                @Html.DisplayNameFor(model => model.bcta_FechaCrea)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.bcta_FechaCrea)
-            </dd>
-
-
-
-            <dt>
-                Usuario Modificación
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.bcta_FechaModifica)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.bcta_FechaModifica)
-            </dd>*@
                     </dl>
-             <div class="form-group">
-                 <table id="Auditoria">
-                     <tr>
-                         <th></th>
-                         <th>Usuario</th>
-                         <th>Fecha</th>
-                     </tr>
-                     <tr>
-                         <td>Creado</td>
-                         <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                         <td>@Html.DisplayFor(model => model.bcta_FechaCrea)</td>
-                     </tr>
-                     <tr>
-                         <td>Modificado</td>
-                         <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                         <td>@Html.DisplayFor(model => model.bcta_FechaModifica)</td>
-                     </tr>
-                 </table>
-                </div>
 
 
-
-
-
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.bcta_Id }, new { @class = "btn btn-primary"})
-    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
-
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.bcta_Id }, new { @class = "btn btn-primary" })
                 </div>
             </div>
-        </div>
-    </div>
- </div>
+
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>@Html.DisplayFor(model => model.bcta_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>@Html.DisplayFor(model => model.bcta_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+          </div>
+      </div>
+  </div>
+  
 
 
 

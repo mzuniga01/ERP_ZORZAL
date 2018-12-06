@@ -7,12 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Bancos</h2>
-        @*<ol class="breadcrumb">
-            <li class="active">
-                <strong>tbBanco</strong>
-            </li>
-        </ol>*@
+        <h2>Banco</h2>
     </div>
 </div>
 
@@ -41,18 +36,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.ban_TelefonoContacto)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.ban_UsuarioCrea)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ban_FechaCrea)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ban_UsuarioModifica)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ban_FechaModifica)
-                </th>*@
             <th>Acciones</th>
         </tr>
     </thead>
@@ -71,22 +54,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ban_TelefonoContacto)
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.ban_UsuarioCrea)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ban_FechaCrea)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ban_UsuarioModifica)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ban_FechaModifica)
-                </td>*@
             <td>
                 @Html.ActionLink("Detalles", "Details", new { id = item.ban_Id }, new { @class = "btn btn-primary btn-xs" })
                 @Html.ActionLink("Editar", "Edit", new { id = item.ban_Id }, new { @class = "btn btn-white btn-xs" })
-                @*@Html.ActionLink("Delete", "Delete", new { id=item.ban_Id }, new { @class = "btn btn-white btn-sm"})*@
+             
             </td>
         </tr>
         }

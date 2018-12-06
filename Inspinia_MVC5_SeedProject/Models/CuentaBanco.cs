@@ -31,11 +31,11 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte bcta_TipoCuenta { get; set; }
         [Display(Name = "Total Crédito")]
-        [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "#", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public decimal bcta_TotalCredito { get; set; }
         [Display(Name = "Total Débito")]
-        [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public decimal bcta_TotalDebito { get; set; }
         [Display(Name = "Fecha Apertura")]

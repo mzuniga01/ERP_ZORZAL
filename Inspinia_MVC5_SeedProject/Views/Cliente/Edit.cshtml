@@ -197,15 +197,18 @@
                 </div>
             </div>        
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.clte_EsActivo, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.clte_EsActivo)
-                    @Html.ValidationMessageFor(model => model.clte_EsActivo)
-                </div>
-            </div>
 
-            <div class="form-group">
+        <div class="form-group" id="Activo">
+            @Html.LabelFor(model => model.clte_EsActivo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.clte_EsActivo)
+                @Html.ValidationMessageFor(model => model.clte_EsActivo)
+            </div>
+        </div>
+
+
+        <div class="form-group" id="RazonInactivo">
+           
                 @Html.LabelFor(model => model.clte_RazonInactivo, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.clte_RazonInactivo)
@@ -296,7 +299,7 @@
                         Activar
                     </button>
                     <button type="button" class="btn btn-primary btn-xl" data-toggle="modal" data-target="#ModalAnular">
-                        Inactivar 
+                        Inactivar
                     </button>
                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                 </div>
