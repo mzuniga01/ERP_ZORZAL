@@ -56,3 +56,51 @@ $(document).ready(function () {
         $('#Credito1').show();
     }
 });
+
+$("#fact_AlCredito").change(function () {
+    if (this.checked) {
+        //Do stuff
+        console.log("Hola");
+        $('#Cred1').show();
+    }
+    else {
+
+        $('#Cred1').hide();
+    }
+});
+
+$("#fact_AlCredito").ready(function () {
+    if (this.checked) {
+        //Do stuff
+        console.log("Hola");
+        $('#Cred1').show();
+    }
+    else {
+
+        $('#Cred1').hide();
+    }
+});
+
+$("#fact_AlCredito").change(function () {
+    if (this.checked) {
+        //Do stuff
+        console.log("Hola");
+        $('#Cred2').show();
+    }
+    else {
+
+        $('#Cred2').hide();
+    }
+});
+
+$("#fact_AlCredito").ready(function () {
+    if (this.checked) {
+        //Do stuff
+        console.log("Hola");
+        $('#Cred2').show();
+    }
+    else {
+
+        $('#Cred2').hide();
+    }
+});

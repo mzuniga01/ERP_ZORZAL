@@ -57,9 +57,6 @@
                     <table class="table table table-striped  table-bordered" id="DataTable1">
                         <thead>
                             <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbTipoIdentificacion.tpi_Descripcion)
-                                </th>
                                 <td>
                                     @Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)
                                 </td>
@@ -81,9 +78,6 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.clte_Sexo)
                                 </th>*@
-                                <th>
-                                    @Html.DisplayNameFor(model => model.clte_Telefono)
-                                </th>
                                 @*<th>
                                     @Html.DisplayNameFor(model => model.clte_NombreComercial)
                                 </th>
@@ -91,9 +85,12 @@
                                     @Html.DisplayNameFor(model => model.clte_RazonSocial)
                                 </th>*@
                                 <th>
+                                    @Html.DisplayNameFor(model => model.clte_Telefono)
+                                </th>
+                                <th>
                                     @Html.DisplayNameFor(model => model.clte_ContactoNombre)
                                 </th>
-                                                    @*<th>
+                                @*<th>
                                     @Html.DisplayNameFor(model => model.clte_ContactoEmail)
                                 </th>
                                 <th>
@@ -112,35 +109,38 @@
                                     @Html.DisplayNameFor(model => model.clte_EsActivo)
                                 </th>
                                 @*<th>
-                                @Html.DisplayNameFor(model => model.clte_RazonInactivo)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.clte_ConCredito)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.clte_EsMinorista)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.clte_Observaciones_)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.clte_FechaCrea)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.clte_FechaModifica)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.tbMunicipio.dep_Codigo)
-                            </th>
-                            <th>
+        @Html.DisplayNameFor(model => model.clte_RazonInactivo)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.clte_ConCredito)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.clte_EsMinorista)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.clte_Observaciones_)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.clte_FechaCrea)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.clte_FechaModifica)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.tbMunicipio.dep_Codigo)
+    </th>*@
+                            @*<th>
                                 @Html.DisplayNameFor(model => model.tbTipoIdentificacion.tpi_Descripcion)
                             </th>*@
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbTipoIdentificacion.tpi_Descripcion)
+                                </th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -149,9 +149,6 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbTipoIdentificacion.tpi_Descripcion)
-                                    </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.clte_RTN_Identidad_Pasaporte)
                                     </td>
@@ -173,9 +170,6 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.clte_Sexo)
                                     </td>*@
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.clte_Telefono)
-                                    </td>
                                     @*<td>
                                         @Html.DisplayFor(modelItem => item.clte_NombreComercial)
                                     </td>
@@ -183,8 +177,12 @@
                                         @Html.DisplayFor(modelItem => item.clte_RazonSocial)
                                     </td>*@
                                     <td>
+                                        @Html.DisplayFor(modelItem => item.clte_Telefono)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.clte_ContactoNombre)
                                     </td>
+
                                     @*<td>
                                         @Html.DisplayFor(modelItem => item.clte_ContactoEmail)
                                     </td>
@@ -237,7 +235,9 @@
                                     @*<td>
                                         @Html.DisplayFor(modelItem => item.tbMunicipio.dep_Codigo)
                                     </td>*@
-                                   
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbTipoIdentificacion.tpi_Descripcion)
+                                    </td>
                                     <td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.clte_Id }, new { @class = "btn btn-primary btn-sm" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.clte_Id }, new { @class = "btn btn-white btn-sm" })
@@ -260,3 +260,4 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>
+<script src="~/Scripts/app/Departamento.js"></script>

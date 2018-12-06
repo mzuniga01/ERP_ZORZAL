@@ -43,7 +43,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Registrar Factura</h5>
+                    <h5>Editar Factura</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -58,12 +58,12 @@
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @*@Html.EditorFor(model => model.suc_Id)*@
-                                    @Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <span class="validation-error">  @Html.ValidationMessageFor(model => model.suc_Id)</span>
                                 </div>
                                 @Html.LabelFor(model => model.cja_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @*@Html.DropDownList("cja_Id", null, new { @class = "form-control" })*@
                                     <span class="validation-error">  @Html.ValidationMessageFor(model => model.cja_Id)</span>
                                 </div>
@@ -151,7 +151,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.esfac_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.tbEstadoFactura.esfac_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @*@Html.DropDownList("esfac_Id", null, new { @class = "form-control" })*@
                                     <span class="validation-error"> @Html.ValidationMessageFor(model => model.esfac_Id)</span>
                                 </div>

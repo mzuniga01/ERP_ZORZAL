@@ -20,7 +20,7 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="@Url.Action("Index","CuentaBanco")">Regresar</a>
+            <a href="@Url.Action("Index", "CuentaBanco")">Regresar</a>
             @*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
@@ -59,9 +59,22 @@
                             @Html.DisplayNameFor(model => model.bcta_TipoCuenta)
                         </dt>
 
-                        <dd>
+                        @*<dd>
                             @Html.DisplayFor(model => model.bcta_TipoCuenta)
-                        </dd>
+
+                          
+                        </dd>*@
+
+                       @if (Model.bcta_TipoCuenta == 1)
+                       {
+                        <dd>Ahorro</dd>
+                       }
+                       else
+                       {
+                        <dd>Cheques</dd>
+                       }
+
+
                         <dt>
                             @Html.DisplayNameFor(model => model.bcta_Numero)
                         </dt>
@@ -97,7 +110,7 @@
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.bcta_FechaApertura)
+                            @Html.DisplayFor(model => model.bcta_FechaApertura, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "fechaapertura" } })
                         </dd>
 
 

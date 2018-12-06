@@ -165,10 +165,9 @@ namespace ERP_ZORZAL.Controllers
         [HttpPost]
         public JsonResult GetMunicipios(string CodDepartamento)
         {
-            var list = db.tbMunicipio.ToList();
+            var list = db.spGetMunicipios(CodDepartamento).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-
 
 
     }

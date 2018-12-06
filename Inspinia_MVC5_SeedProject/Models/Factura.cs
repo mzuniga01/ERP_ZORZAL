@@ -46,6 +46,7 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public int fact_DiasCredito { get; set; }
         [Display(Name = "Porcentaje Crédito")]
+        [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal fact_PorcentajeDescuento { get; set; }
         [Display(Name = "Autorizar Descuento")]

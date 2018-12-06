@@ -24,7 +24,7 @@
                 <div class="ibox-title">
                     <h5>Listado Cuentas de Banco</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Registrar Cuenta Bancaria", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -81,7 +81,7 @@
                                         @Html.DisplayFor(modelItem => item.bcta_Numero)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbMoneda.mnda_Nombre)
+                                        @Html.DisplayFor(modelItem => item.tbMoneda.mnda_Abreviatura)
                                     </td>
                                     @*<td>
                                         @Html.DisplayFor(modelItem => item.bcta_TipoCuenta)
@@ -104,7 +104,7 @@
                 @Html.DisplayFor(modelItem => item.bcta_TotalDebito)
             </td>*@
                                         <td>
-                                        @Html.DisplayFor(modelItem => item.bcta_FechaApertura)
+                                        @Html.DisplayFor(modelItem => item.bcta_FechaApertura, "{0:dd-MM-yyyy}", new { htmlAttributes = new { @id = "fechaapertura" } })
                                     </td>
                                     
                                     @*<td>

@@ -33,7 +33,7 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public bool clte_EsPersonaNatural { get; set; }
 
-        [Display(Name = "Nombres")]
+        [Display(Name = "Nombre")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_Nombres { get; set; }
 

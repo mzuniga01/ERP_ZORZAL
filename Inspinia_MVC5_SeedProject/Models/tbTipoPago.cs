@@ -22,10 +22,10 @@ namespace ERP_ZORZAL.Models
     
         public short tpa_Id { get; set; }
         public string tpa_Descripcion { get; set; }
-        public string tpa_Emisor { get; set; }
-        public string tpa_Cuenta { get; set; }
-        public string tpa_FechaVencimiento { get; set; }
-        public string tpa_Titular { get; set; }
+        public bool tpa_Emisor { get; set; }
+        public bool tpa_Cuenta { get; set; }
+        public bool tpa_FechaVencimiento { get; set; }
+        public bool tpa_Titular { get; set; }
         public int tpa_UsuarioCrea { get; set; }
         public System.DateTime tpa_FechaCrea { get; set; }
         public Nullable<int> tpa_UsuarioModifica { get; set; }

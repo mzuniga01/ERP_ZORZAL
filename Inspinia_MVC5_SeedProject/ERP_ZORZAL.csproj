@@ -237,6 +237,7 @@
     <Compile Include="Models\EstadosSolicitudCreditos.cs" />
     <Compile Include="Models\Factura.cs" />
     <Compile Include="Models\FacturaDetalle.cs" />
+    <Compile Include="Models\FacturaHistorica.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListaPrecios.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
@@ -675,10 +676,12 @@
       <LastGenOutput>ModelERP.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\app\Activo.js" />
+    <Content Include="Scripts\app\Banco.js" />
     <Content Include="Scripts\app\Credito.js" />
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\DataTableBusquedaGenerica.js" />
     <Content Include="Scripts\app\Datepicker.js" />
+    <Content Include="Scripts\app\Departamento.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
     <Content Include="Scripts\app\TipoPago.js" />
@@ -997,6 +1000,7 @@
     <Content Include="Views\PuntoEmision\_IndexNumeracionWithouBottomNew.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexNumeracionWithoutBottom.cshtml" />
     <Content Include="Views\Factura\_IndexFacturaHistorica.cshtml" />
+    <Content Include="Views\Factura\_CreateFacturaDetalleModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
