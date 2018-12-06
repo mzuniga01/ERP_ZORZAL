@@ -7,13 +7,13 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Details</h2>
+        <h2>Sucursal</h2>
         <ol class="breadcrumb">
             <li>
-                @Html.ActionLink("List", "Index")
+                @Html.ActionLink("Lista", "Index")
             </li>
             <li class="active">
-                <strong>Details</strong>
+                <strong>Detalle</strong>
             </li>
         </ol>
     </div>
@@ -27,13 +27,32 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Details tbSucursal</h5>
+                    <h5>Detalle Sucursal</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.suc_Id }, new { @class = "btn btn-primary" })
+                    </div>
                 </div>
                 <div class="ibox-content">
 
 
 				    <dl class="dl-horizontal">
-        <dt>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.suc_Descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.suc_Descripcion)
+                        </dd>
+                        <br /><dt>
+                            @Html.DisplayNameFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
+                        </dd>
+
+                        <br /> <dt>
             @Html.DisplayNameFor(model => model.suc_Correo)
         </dt>
 
@@ -41,7 +60,7 @@
             @Html.DisplayFor(model => model.suc_Correo)
         </dd>
 
-        <dt>
+                        <br /><dt>
             @Html.DisplayNameFor(model => model.suc_Direccion)
         </dt>
 
@@ -49,7 +68,15 @@
             @Html.DisplayFor(model => model.suc_Direccion)
         </dd>
 
-        <dt>
+                        <br />
+                        <dt>
+                            Municipio
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbMunicipio.mun_Nombre)
+                        </dd>
+                        <br /><dt>
             @Html.DisplayNameFor(model => model.suc_Telefono)
         </dt>
 
@@ -57,68 +84,29 @@
             @Html.DisplayFor(model => model.suc_Telefono)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.suc_FechaCrea)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.suc_FechaCrea)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.suc_FechaModifica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.suc_FechaModifica)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbMunicipio.dep_Codigo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbMunicipio.dep_Codigo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbBodega.bod_ResponsableBodega)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
-        </dd>
-
     </dl>
+	    @Html.ActionLink("Aceptar", "Index", new { id = Model.suc_Id }, new { @class = "btn btn-primary"})
+  
 
-
-	    @Html.ActionLink("Edit", "Edit", new { id = Model.suc_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
-
+                    <div class="form-group">
+                        <table id="Auditoria" class="table table-striped">
+                            <tr>
+                                <th></th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.suc_FechaCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.suc_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

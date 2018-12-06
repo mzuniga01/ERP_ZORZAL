@@ -10,19 +10,11 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Caja</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("Lista", "Index")
-            </li>
-            <li class="active">
-                <strong></strong>
-            </li>
-        </ol>*@
+ 
     </div>
     <div class="col-sm-8">
         <div class="title-action">
             <a href="@Url.Action("Index","Caja")">Regresar</a>
-			@*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
 </div>
@@ -73,64 +65,11 @@
             </div>
         </div>
 
-        
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.cja_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cja_UsuarioCrea)
-                @Html.ValidationMessageFor(model => model.cja_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cja_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cja_FechaCrea)
-                @Html.ValidationMessageFor(model => model.cja_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cja_UsuarioModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cja_UsuarioModifica)
-                @Html.ValidationMessageFor(model => model.cja_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cja_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cja_FechaModifica)
-                @Html.ValidationMessageFor(model => model.cja_FechaModifica)
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            <table>
-                <tr>
-                    <th></th>
-                    <th>Usuario</th>
-                    <th>Fecha</th>
-                </tr>
-                <tr>
-                    <td>Creado</td>
-                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                    <td>@Html.DisplayFor(model => model.cja_FechaCrea)</td>
-                </tr>
-                <tr>
-                    <td>Modificado</td>
-                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                    <td>@Html.DisplayFor(model => model.cja_FechaModifica)</td>
-                </tr>
-            </table>
-        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Guardar" class="btn btn-primary btn-xs" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-xs" })
             </div>
         </div>
     </div>
@@ -138,6 +77,25 @@
 
 
                 </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.cja_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.cja_FechaModifica)</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

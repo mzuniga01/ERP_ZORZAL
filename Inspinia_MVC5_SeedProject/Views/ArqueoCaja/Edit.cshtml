@@ -5,22 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Arqueo de Caja</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Edit</strong>
-            </li>
-        </ol>*@
+
     </div>
     <div class="col-sm-8">
         <div class="title-action">
             <a href="@Url.Action("Index","ArqueoCaja")">Regresar</a>
-			@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
 </div>
@@ -150,42 +144,11 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-        @Html.LabelFor(model => model.aqcja_UsuarioCrea, "aqcja_UsuarioCrea", new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("aqcja_UsuarioCrea", String.Empty)
-            @Html.ValidationMessageFor(model => model.aqcja_UsuarioCrea)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.aqcja_FechaCrea, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.aqcja_FechaCrea)
-            @Html.ValidationMessageFor(model => model.aqcja_FechaCrea)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.aqcja_UsuarioModifica, "aqcja_UsuarioModifica", new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("aqcja_UsuarioModifica", String.Empty)
-            @Html.ValidationMessageFor(model => model.aqcja_UsuarioModifica)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.aqcja_FechaModifica, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.aqcja_FechaModifica)
-            @Html.ValidationMessageFor(model => model.aqcja_FechaModifica)
-        </div>
-    </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Guardar" class="btn btn-primary btn-xs" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-xs" })
             </div>
         </div>
     </div>
@@ -194,12 +157,26 @@
 
                 </div>
             </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.aqcja_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.aqcja_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
  </div>
 
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

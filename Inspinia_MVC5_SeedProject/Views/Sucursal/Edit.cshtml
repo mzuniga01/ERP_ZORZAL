@@ -1,5 +1,7 @@
 ﻿@model ERP_ZORZAL.Models.tbSucursal
 
+@using ERP_ZORZAL.Models
+
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,19 +9,19 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Edit</h2>
+        <h2>Sucursal</h2>
         <ol class="breadcrumb">
             <li>
                 @Html.ActionLink("List", "Index")
             </li>
             <li class="active">
-                <strong>Edit</strong>
+                <strong>Actualizar</strong>
             </li>
         </ol>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+			@Html.ActionLink("Regresar", "Index")
         </div>
     </div>
 </div>
@@ -32,7 +34,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Edit tbSucursal</h5>
+                    <h5>Actualizar Sucursal</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -46,32 +48,32 @@
         @Html.HiddenFor(model => model.suc_Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mun_Codigo, "mun_Codigo", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("mun_Codigo", String.Empty)
-                @Html.ValidationMessageFor(model => model.mun_Codigo)
+            @Html.LabelFor(model => model.tbMunicipio.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.tbMunicipio.mun_Nombre)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.bod_Id, "bod_Id", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("bod_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.bod_Id)
+            @Html.LabelFor(model => model.tbBodega.bod_Id, "Bodega", new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownList("bod_Id", null, "Seleccione Bodega", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.tbBodega.bod_Nombre)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.pemi_Id, "pemi_Id", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("pemi_Id", String.Empty)
+            @Html.LabelFor(model => model.pemi_Id, "Punto Emision", new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownList("pemi_Id", null, "Seleccione Punto Emision", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.pemi_Id)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.suc_Correo, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.suc_Correo)
                 @Html.ValidationMessageFor(model => model.suc_Correo)
             </div>
@@ -79,7 +81,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.suc_Direccion, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.suc_Direccion)
                 @Html.ValidationMessageFor(model => model.suc_Direccion)
             </div>
@@ -87,54 +89,42 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.suc_Telefono, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.suc_Telefono)
                 @Html.ValidationMessageFor(model => model.suc_Telefono)
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.suc_UsuarioCrea, "suc_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("suc_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.suc_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.suc_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.suc_FechaCrea)
-                @Html.ValidationMessageFor(model => model.suc_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.suc_UsuarioModifica, "suc_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("suc_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.suc_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.suc_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.suc_FechaModifica)
-                @Html.ValidationMessageFor(model => model.suc_FechaModifica)
-            </div>
-        </div>
-
+      
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>
 }
 
 
+                    <div class="form-group">
+                        <table id="Auditoria" class="table table-striped">
+                            <tr>
+                                <th></th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.suc_UsuarioCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.suc_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -142,7 +132,3 @@
  </div>
 
 
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

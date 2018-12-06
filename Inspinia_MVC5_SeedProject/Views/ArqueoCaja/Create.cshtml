@@ -16,19 +16,11 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Arqueo de Caja</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Create</strong>
-            </li>
-        </ol>*@
+
     </div>
     <div class="col-sm-8">
         <div class="title-action">
             <a href="@Url.Action("Index","ArqueoCaja")">Regresar</a>
-			@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
 </div>
@@ -54,7 +46,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.tbCaja.tbSucursal.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @*@Html.DropDownList("cja_Id", String.Empty)*@
                 @Html.EditorFor(model => model.tbCaja.tbSucursal.suc_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.tbCaja.tbSucursal.suc_Id)</span>
             </div>
@@ -63,7 +54,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @*@Html.DropDownList("cja_Id", String.Empty)*@
                 @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
             </div>
@@ -99,6 +89,7 @@
                 @Html.EditorFor(model => model.aqcja_SaldoInicial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.aqcja_SaldoInicial)</span>
             </div>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalle">Detalle</button>
         </div>
 
         <div class="form-group">
@@ -144,47 +135,56 @@
         <div class="form-group">
             @Html.LabelFor(model => model.aqcja_SaldoFinal, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.aqcja_SaldoFinal)
+                @Html.EditorFor(model => model.aqcja_SaldoFinal, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.aqcja_SaldoFinal)</span>
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.aqcja_UsuarioCrea, "aqcja_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("aqcja_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.aqcja_UsuarioCrea)
-            </div>
-        </div>
+
 
         <div class="form-group">
-            @Html.LabelFor(model => model.aqcja_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.aqcja_FechaCrea)
-                @Html.ValidationMessageFor(model => model.aqcja_FechaCrea)
+            <div class="col-md-offset-1 col-md-9">
+                <label class="control-label">Detalle Denomonaciòn Efectivo</label>
+                <table class="table table-bordered">
+                                  
+                    <tr>
+                        <th class="warning">Moneda</th>
+                        <th class="warning">0.05 ctv</th>
+                        <th class="warning">0.10 ctv</th>
+                        <th class="warning">0.20 ctv</th>
+                        <th class="warning">0.50 ctv</th>
+                    </tr>
+                    <tr>
+                        <td>Unid.</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>20</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <th class="warning">Billete</th>
+                        <th class="warning">1 LP</th>
+                        <th class="warning">2 LP</th>
+                        <th class="warning">5 LP</th>
+                        <th class="warning">10 LP</th>
+                    </tr>
+                    <tr>
+                        <td>Unid.</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>20</td>
+                        <td>25</td>
+                    </tr>
+                </table>
             </div>
+            
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.aqcja_UsuarioModifica, "aqcja_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("aqcja_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.aqcja_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.aqcja_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.aqcja_FechaModifica)
-                @Html.ValidationMessageFor(model => model.aqcja_FechaModifica)
-            </div>
-        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Guardar" class="btn btn-primary btn-xs" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-xs" })
             </div>
         </div>
     </div>
@@ -198,3 +198,21 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
+
+<div>
+    <div class="modal fade" id="ModalDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog  " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Detalle Apertura Caja</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexDenominacion")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

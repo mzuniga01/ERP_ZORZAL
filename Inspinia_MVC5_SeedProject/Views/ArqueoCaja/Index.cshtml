@@ -33,7 +33,7 @@
     <thead>
         <tr>
             <th>     
-                @Html.DisplayNameFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+                @Html.DisplayNameFor(model => model.tbCaja.tbSucursal.suc_Id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.tbCaja.cja_Descripcion)
@@ -50,27 +50,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.aqcja_SaldoFinal)
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.aqcja_MontoEfectivo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.aqcja_MontoCheque)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.aqcja_MontoTCoTD)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.aqcja_MontoNotaCredito)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.aqcja_MontoCupon)
-            </th>*@
-            @*<th>
-                @Html.DisplayNameFor(model => model.aqcja_FechaCrea)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.aqcja_FechaModifica)
-            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -98,40 +77,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.aqcja_SaldoFinal)
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.aqcja_MontoEfectivo)
-                </td>
+               
                 <td>
-                    @Html.DisplayFor(modelItem => item.aqcja_MontoCheque)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.aqcja_MontoTCoTD)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.aqcja_MontoNotaCredito)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.aqcja_MontoCupon)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.aqcja_FechaCrea)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.aqcja_FechaModifica)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbCaja.cja_Descripcion)
-                </td>*@
-                <td>
-                    @Html.ActionLink("Detalle", "Details", new { id = item.aqcja_Id }, new { @class = "btn btn-primary btn-sm" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.aqcja_Id }, new { @class = "btn btn-white btn-sm" })
-                    @*@Html.ActionLink("Delete", "Delete", new { id = item.aqcja_Id }, new { @class = "btn btn-white btn-sm" })*@
+                    @Html.ActionLink("Detalle", "Details", new { id = item.aqcja_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.aqcja_Id }, new { @class = "btn btn-white btn-xs" })
+                    @Html.ActionLink("Imprimir Arqueo", "Index", new { id = item.aqcja_Id }, new { @class = "btn btn-white btn-xs" })
                 </td>
             </tr>
         }
