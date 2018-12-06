@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -15,25 +16,27 @@ namespace ERP_ZORZAL.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
 
         // GET: /Entrada/
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            //var tbentrada = db.tbEntrada.Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbProveedor).Include(t => t.tbTipoEntrada);
-            //return View(tbentrada.ToList());}
-            return View();
+            var tbentrada = db.tbEntrada.Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbProveedor).Include(t => t.tbTipoEntrada);
+            return View(await tbentrada.ToListAsync());
         }
 
         // GET: /Entrada/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbEntrada tbEntrada = db.tbEntrada.Find(id);
+            tbEntrada tbEntrada = await db.tbEntrada.FindAsync(id);
             if (tbEntrada == null)
             {
                 return HttpNotFound();
             }
+            //vista parcial de entrada detalle
+            ViewBag.ent_Id = new SelectList(db.tbEntrada, "ent_Id", "ent_Id");
+            ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
             return View(tbEntrada);
         }
 
@@ -44,6 +47,10 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre");
             ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion");
+
+            //vista parcial de entrada detalle
+            ViewBag.ent_Id = new SelectList(db.tbEntrada, "ent_Id", "ent_Id");
+            ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
             return View();
         }
 
@@ -52,12 +59,12 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ent_Id,ent_NumeroFormato,ent_FechaElaboracion,bod_Id,estm_Id,prov_Id,ent_FacturaCompra,ent_FechaCompra,fact_Id,ent_RazonDevolucion,ent_BodegaDestino,tent_Id,ent_UsuarioCrea,ent_FechaCrea,ent_UsuarioModifica,ent_FechaModifica")] tbEntrada tbEntrada)
+        public async Task<ActionResult> Create([Bind(Include="ent_Id,ent_NumeroFormato,ent_FechaElaboracion,bod_Id,estm_Id,prov_Id,ent_FacturaCompra,ent_FechaCompra,fact_Id,ent_RazonDevolucion,ent_BodegaDestino,tent_Id,ent_UsuarioCrea,ent_FechaCrea,ent_UsuarioModifica,ent_FechaModifica")] tbEntrada tbEntrada)
         {
             if (ModelState.IsValid)
             {
                 db.tbEntrada.Add(tbEntrada);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -69,13 +76,13 @@ namespace ERP_ZORZAL.Controllers
         }
 
         // GET: /Entrada/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbEntrada tbEntrada = db.tbEntrada.Find(id);
+            tbEntrada tbEntrada = await db.tbEntrada.FindAsync(id);
             if (tbEntrada == null)
             {
                 return HttpNotFound();
@@ -84,6 +91,9 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbEntrada.estm_Id);
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
             ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
+            //vista parcial de entrada detalle
+            ViewBag.ent_Id = new SelectList(db.tbEntrada, "ent_Id", "ent_Id");
+            ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
             return View(tbEntrada);
         }
 
@@ -92,12 +102,12 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ent_Id,ent_NumeroFormato,ent_FechaElaboracion,bod_Id,estm_Id,prov_Id,ent_FacturaCompra,ent_FechaCompra,fact_Id,ent_RazonDevolucion,ent_BodegaDestino,tent_Id,ent_UsuarioCrea,ent_FechaCrea,ent_UsuarioModifica,ent_FechaModifica")] tbEntrada tbEntrada)
+        public async Task<ActionResult> Edit([Bind(Include="ent_Id,ent_NumeroFormato,ent_FechaElaboracion,bod_Id,estm_Id,prov_Id,ent_FacturaCompra,ent_FechaCompra,fact_Id,ent_RazonDevolucion,ent_BodegaDestino,tent_Id,ent_UsuarioCrea,ent_FechaCrea,ent_UsuarioModifica,ent_FechaModifica")] tbEntrada tbEntrada)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(tbEntrada).State = EntityState.Modified;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbEntrada.bod_Id);
@@ -108,13 +118,13 @@ namespace ERP_ZORZAL.Controllers
         }
 
         // GET: /Entrada/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbEntrada tbEntrada = db.tbEntrada.Find(id);
+            tbEntrada tbEntrada = await db.tbEntrada.FindAsync(id);
             if (tbEntrada == null)
             {
                 return HttpNotFound();
@@ -125,11 +135,11 @@ namespace ERP_ZORZAL.Controllers
         // POST: /Entrada/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            tbEntrada tbEntrada = db.tbEntrada.Find(id);
+            tbEntrada tbEntrada = await db.tbEntrada.FindAsync(id);
             db.tbEntrada.Remove(tbEntrada);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -141,18 +151,23 @@ namespace ERP_ZORZAL.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult Editar()
-        {
-            return View();
-        }
-        public ActionResult Crear()
-        {
-            return View();
-        }
-        public ActionResult Detalles()
+        public ActionResult _EditarDetalleEntrada()
         {
             return View();
         }
 
+        public ActionResult _CrearDetalleEntrada()
+        {
+            return View();
+        }
+
+        public ActionResult _DetallesDeEntrada()
+        {
+            return View();
+        }
+        public ActionResult _IndexDetalleEntrada()
+        {
+            return View();
+        }
     }
 }

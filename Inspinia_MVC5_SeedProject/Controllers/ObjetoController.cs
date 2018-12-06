@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_ZORZAL.Models;
 
-namespace Inspinia_MVC5_SeedProject.Controllers
+namespace ERP_ZORZAL.Controllers
 {
     public class ObjetoController : Controller
     {
@@ -17,7 +17,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /Objeto/
         public ActionResult Index()
         {
-            return View(db.tbObjeto.ToList());
+            var tbobjeto = db.tbObjeto.Include(t => t.tbUsuario).Include(t => t.tbUsuario1);
+            return View(tbobjeto.ToList());
         }
 
         // GET: /Objeto/Details/5
@@ -38,6 +39,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /Objeto/Create
         public ActionResult Create()
         {
+            ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             return View();
         }
 
@@ -55,12 +58,16 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
+            ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
             return View(tbObjeto);
         }
 
         // GET: /Objeto/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_Id");
+            ViewBag.usu_NombreUsuario = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -70,6 +77,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
+            ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
             return View(tbObjeto);
         }
 
@@ -86,6 +95,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
+            ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
             return View(tbObjeto);
         }
 
@@ -122,18 +133,6 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-        public ActionResult DetallePrueba()
-        {
-            return View();
-        }
-        public ActionResult CrearPrueba()
-        {
-            return View();
-        }
-        public ActionResult EditarPrueba()
-        {
-            return View();
         }
     }
 }

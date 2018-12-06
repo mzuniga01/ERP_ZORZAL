@@ -1,0 +1,171 @@
+﻿@model ERP_ZORZAL.Models.tbBodegaDetalle
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+
+                            <div class="ibox-tools">
+                                <input type="submit" value="Agregar" id="bt_add" class="btn btn-primary" />
+                            </div>
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbProducto.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                </div>
+                                @Html.LabelFor(model => model.tbProducto.uni_Id,"Unidad Medida" ,new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbProducto.pscat_Id, "Categoría ", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("pscat_Id", (IEnumerable<SelectListItem>)ViewBag.pscat_Id, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
+                                </div>
+                                @Html.LabelFor(model => model.tbProducto.pscat_Id, "Subcategoría ", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("pcat_Id", (IEnumerable<SelectListItem>)ViewBag.pcat_Id, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.bodd_PuntoReorden)
+                                    @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
+                                </div>
+                                @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.bodd_CantidadMinima)
+                                    @Html.ValidationMessageFor(model => model.bodd_CantidadMinima)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.bodd_CantidadMaxima)
+                                    @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
+                                </div>
+                                @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.bodd_Costo)
+                                    @Html.ValidationMessageFor(model => model.bodd_Costo)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bodd_CostoPromedio, new { @class = "control-label col-md-2", @value="" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.bodd_CostoPromedio)
+                                    @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @*<div class="form-group">
+            <table class="table table-responsive table-bordered table-striped " style="width:100%" id="BodegaD">
+                <thead>
+                    <tr>
+                        <td>Punto Reorden</td>
+                        <td>Producto</td>
+                        <td>Costo </td>
+                        <td>Costo Promedio</td>
+                        <td>Cantidad Minima</td>
+                        <td>Cantidad Maxima</td>
+                        <td></td>
+                    </tr>
+                </thead>
+            </table>
+        </div>*@
+                    <div class="ibox-content">
+                        <table class="table table-striped" id="BodegaD">
+                            <tr>
+                                <th>
+                                    Producto
+                                </th>
+                                <th>
+                                    Unidad
+                                </th>
+                                <th>
+                                    SubCategía
+                                </th>
+                                <th>
+                                    Categía
+                                </th>
+                                <th>
+                                    Unidad
+                                </th>
+                                <th>
+                                    Punto Reorden
+                                </th>
+                                <th>
+                                    Cantidad Minima
+                                </th>
+                                <th>
+                                    Cantidad Maxíma
+                                </th>
+                                <th>
+                                    Costo
+                                </th>
+                                <th>
+                                    Costo Promedio
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-9 col-md-10">
+                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                            <input type="submit" value="Aplicar" class="btn btn-primary" />
+                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    
+
+    $(document).ready(function () {
+        $('#bt_add').click(function () {
+            agregar();
+        });
+    });
+    var cont = 0
+    function agregar() {
+        cont++
+        var fila = '<tr class="selected" id=fila' + cont + '"onclick="seleccionar(this.id);"><td>Pantalones</td>td>Unidad</td><td>Ropa </td><td>De Mujer</td><td>40.00</td><td>25</td><td>50</td><td>66.30</td><td>70.00</td></tr>';
+        $('#BodegaD').append(fila);
+    }
+
+
+
+
+
+</script>

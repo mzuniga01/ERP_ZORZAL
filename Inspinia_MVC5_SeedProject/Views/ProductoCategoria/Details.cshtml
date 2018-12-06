@@ -7,15 +7,12 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Details</h2>
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Details</strong>
-            </li>
-        </ol>
+        <h2>Producto Categoría</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
     </div>
 </div>
 
@@ -27,73 +24,140 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Details tbProductoCategoria</h5>
+                    <h5>Detalles Producto Categoría</h5>
                 </div>
                 <div class="ibox-content">
+                    <div class="form-horizontal">
+
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pcat_Id)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.pcat_Id)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pcat_Nombre)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.pcat_Nombre)
+                            </dd>
 
 
-				    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.pcat_Nombre)
-        </dt>
+                        </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.pcat_Nombre)
-        </dd>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.pcat_Id }, new { @class = "btn btn-primary" })
+                        <div id="tab-2" class="tab-pane">
+                            <div class="panel-body">
+                                <div class="ibox-title">
+                                    @*<div class="ibox-tools">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#">Nuevo</button>
+                                    </div>*@
+                                </div>
+                                @Html.Partial("_IndexSubCategoria", Model.tbProductoSubcategoria, new ViewDataDictionary { { "pcat_Id", Model.pcat_Id } })
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pcat_UsuarioCrea)
-        </dt>
+                        <div class="ibox-content">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>
+                                        @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
+                                        Acción
+                                    </th>
+                                    <th>
+                                        @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
+                                        Usuario
+                                    </th>
+                                    <th>
+                                        @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
+                                        Fecha
+                                    </th>
+                                    @*<th>
+                    @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)
+                    </th>
+                    <th>
+                    @Html.DisplayNameFor(model => model.tsal_FechaModifica)
+                    </th>*@
+                                    @*<th></th>*@
+                                </tr>
+                                @*@foreach (var item in Model) { }*@
+                                <tr>
+                                    <td>
+                                        @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
+                                        Creado
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.pcat_UsuarioCrea)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.pcat_FechaCrea)
+                                    </td>
+                                    @*<td>
+                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                    </td>
+                    <td>
+                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
+                                        Modificado
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.pcat_UsuarioModifica)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.pcat_FechaModifica)
+                                    </td>
+                                    @*<td>
+                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                    </td>
+                    <td>
+                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    </td>*@
+                                </tr>
+                            </table>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.pcat_UsuarioCrea)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pcat_FechaCrea)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pcat_FechaCrea)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pcat_UsuarioModifica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pcat_UsuarioModifica)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pcat_FechaModifica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pcat_FechaModifica)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.sal_Cantidad)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.sal_Cantidad)
-        </dd>
-
-    </dl>
+                    </div>
 
 
-	    @Html.ActionLink("Edit", "Edit", new { id = Model.pcat_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+                   
 
                 </div>
             </div>
         </div>
     </div>
- </div>
+</div>
 
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Detalle').DataTable(
+            {
+                "searching": true,
+
+                "oLanguage": {
+                    "oPaginate": {
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior",
+                    },
+                    "sSearch": "Buscar",
+                    "sLengthMenu": "Mostrar _MENU_ registros por página",
+                    "sInfo": "Mostrando _START_ a _END_ Entradas",
+                }
+            });
+    });
+</script>
 
 
 

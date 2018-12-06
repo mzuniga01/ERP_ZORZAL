@@ -3,32 +3,32 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_ZORZAL.Models;
 
-namespace Inspinia_MVC5_SeedProject.Controllers
+namespace ERP_ZORZAL.Controllers
 {
     public class ProductoCategoriaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
 
         // GET: /ProductoCategoria/
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            //return View(db.tbProductoCategoria.ToList());
-            return View();
+            return View(await db.tbProductoCategoria.ToListAsync());
         }
 
         // GET: /ProductoCategoria/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
+            tbProductoCategoria tbProductoCategoria = await db.tbProductoCategoria.FindAsync(id);
             if (tbProductoCategoria == null)
             {
                 return HttpNotFound();
@@ -43,16 +43,16 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         }
 
         // POST: /ProductoCategoria/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica,sal_Cantidad")] tbProductoCategoria tbProductoCategoria)
+        public async Task<ActionResult> Create([Bind(Include="pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica")] tbProductoCategoria tbProductoCategoria)
         {
             if (ModelState.IsValid)
             {
                 db.tbProductoCategoria.Add(tbProductoCategoria);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -60,13 +60,13 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         }
 
         // GET: /ProductoCategoria/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
+            tbProductoCategoria tbProductoCategoria = await db.tbProductoCategoria.FindAsync(id);
             if (tbProductoCategoria == null)
             {
                 return HttpNotFound();
@@ -75,29 +75,29 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         }
 
         // POST: /ProductoCategoria/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica,sal_Cantidad")] tbProductoCategoria tbProductoCategoria)
+        public async Task<ActionResult> Edit([Bind(Include="pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica")] tbProductoCategoria tbProductoCategoria)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(tbProductoCategoria).State = EntityState.Modified;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(tbProductoCategoria);
         }
 
         // GET: /ProductoCategoria/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
+            tbProductoCategoria tbProductoCategoria = await db.tbProductoCategoria.FindAsync(id);
             if (tbProductoCategoria == null)
             {
                 return HttpNotFound();
@@ -108,11 +108,11 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // POST: /ProductoCategoria/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
+            tbProductoCategoria tbProductoCategoria = await db.tbProductoCategoria.FindAsync(id);
             db.tbProductoCategoria.Remove(tbProductoCategoria);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -124,19 +124,5 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             }
             base.Dispose(disposing);
         }
-
-        public ActionResult Editar()
-        {
-            return View();
-        }
-        public ActionResult Detalles()
-        {
-            return View();
-        }
-        public ActionResult Crear()
-        {
-            return View();
-        }
-        
     }
 }

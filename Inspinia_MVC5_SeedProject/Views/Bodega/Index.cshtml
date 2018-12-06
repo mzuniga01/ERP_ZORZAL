@@ -4,15 +4,13 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using ERP_ZORZAL.Models
+@{
 
+}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Bodegas</h2>
-        @*<ol class="breadcrumb">
-            <li class="active">
-                <strong>Listado Bodega</strong>
-            </li>
-        </ol>*@
     </div>
 </div>
 
@@ -22,93 +20,123 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado Bodegas</h5>
+                    <h5>Listado de Bodegas</h5>
                     <div class="ibox-tools">
-                        @Html.ActionLink("Nuevo", "Crear", null, new { @class = "btn btn-primary " })
+                        @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs" })
                     </div>
                 </div>
                 <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Nombre</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control " />
+                                </div>
+                                <label class="control-label col-md-2">Departamento</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Municipio</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control " />
+                                </div>
+                                <div class="">
+                                    <input type="button" value="Buscar" class="btn btn-primary btn-sm" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <table class="table table-responsive" style="width:100%" id="Bodega">
+                    <table class="table table-responsive" style="width:100%" id="DataTable">
                         <thead>
                             <tr>
                                 <th>
-                                    Responsable
+                                    @Html.DisplayNameFor(model => model.bod_Id)
                                 </th>
                                 <th>
-                                    Direccion
+                                    @Html.DisplayNameFor(model => model.bod_Nombre)
                                 </th>
                                 <th>
-                                    Correo
+                                    @Html.DisplayNameFor(model => model.tbMunicipio.tbDepartamento.dep_Nombre)
                                 </th>
                                 <th>
-                                    Telefono
+                                    @Html.DisplayNameFor(model => model.mun_Codigo)
                                 </th>
                                 <th>
-                                    Municipio
+                                    @Html.DisplayNameFor(model => model.bod_ResponsableBodega)
                                 </th>
                                 <th>
-                                    Estado
+                                    Acciones
                                 </th>
-                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    Mirian Deras
-                                </td>
-                                <td>
-                                    San Pedro Sula
-                                </td>
-                                <td>
-                                    Bodega@hotmail.com
-                                </td>
-                                <td>
-                                    96451236
-                                </td>
-                                <td>
-                                    S.p.s
-                                </td>
-                                <td>
-                                    Habilitado
-                                </td>
-                                <td>
-                                    <div class="ibox-tools">
-                                        @Html.ActionLink("Detalles", "Detalles", null, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Editar", "Editar", null, new { @class = "btn btn-white btn-xs" })
-                                    </div>
-                                    <div class="ibox-tools">
-                                        
-                                    </div>
-                                   
-                                </td>
-                            </tr>
-
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bod_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bod_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbMunicipio.tbDepartamento.dep_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbMunicipio.mun_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bod_ResponsableBodega)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.bod_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.bod_Id }, new { @class = "btn btn-white btn-xs" })
+                                        @*@Html.ActionLink("Inactivar", "", new { id = item.bod_Id }, new { @class = "btn btn-success btn-xs" })*@
+                                        <input type="button" id="boton" value="Inactivar" class="btn btn-success btn-xs">
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
+
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/app/DataTableBusqueda.js"></script>
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#Bodega').DataTable(
-        {
-            "searching": true,
+        $('#Bodegas').DataTable(
+            {
+                "searching": true,
 
-            "oLanguage": {
-                "oPaginate": {
-                    "sNext": "Siguiente",
-                    "sPrevious": "Anterior",
-                },
-                "sSearch": "Buscar",
-                "sLengthMenu": "Mostrar _MENU_ registros por página",
-                "sInfo": "Mostrando _START_ a _END_ Entradas",
-            }
+                "oLanguage": {
+                    "oPaginate": {
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior",
+                    },
+                    "sSearch": "Buscar",
+                    "sLengthMenu": "Mostrar _MENU_ registros por página",
+                    "sInfo": "Mostrando _START_ a _END_ Entradas",
+                }
+            });
+    });
+
+    $(document).ready(function () {
+        $("#boton").click(function () {
+            $("#boton").attr("value", "Activar");
         });
     });
 </script>

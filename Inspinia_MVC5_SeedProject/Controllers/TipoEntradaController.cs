@@ -17,7 +17,7 @@ namespace ERP_ZORZAL.Controllers
         // GET: /TipoEntrada/
         public ActionResult Index()
         {
-            return View();
+            return View(db.tbTipoEntrada.ToList());
         }
 
         // GET: /TipoEntrada/Details/5
@@ -43,7 +43,7 @@ namespace ERP_ZORZAL.Controllers
 
         // POST: /TipoEntrada/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="tent_Id,tent_Descripcion,tent_UsuarioCrea,tent_FechaCrea,tent_UsuarioModifica,tent_FechaModifica")] tbTipoEntrada tbTipoEntrada)
@@ -75,7 +75,7 @@ namespace ERP_ZORZAL.Controllers
 
         // POST: /TipoEntrada/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="tent_Id,tent_Descripcion,tent_UsuarioCrea,tent_FechaCrea,tent_UsuarioModifica,tent_FechaModifica")] tbTipoEntrada tbTipoEntrada)
@@ -122,19 +122,6 @@ namespace ERP_ZORZAL.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        public ActionResult Editar()
-        {
-            return View();
-        }
-        public ActionResult Crear()
-        {
-            return View();
-        }
-        public ActionResult Detalles()
-        {
-            return View();
         }
     }
 }

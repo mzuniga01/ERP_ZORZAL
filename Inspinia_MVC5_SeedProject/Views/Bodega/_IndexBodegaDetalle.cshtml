@@ -6,218 +6,77 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Detalles de Bodegas</h5>
+                    <h5>Listado de Detalles</h5>
                     <div class="ibox-tools">
-                        @*@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs" })*@
+
                     </div>
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-responsive" style="width:100%" id="BodegaDetalle">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Cantidad Minima
-                                </th>
-                                <th>
-                                    Cantidad Maxima
-                                </th>
-                                <th>
-                                    Punto Reorden
-                                </th>
-                                <th>
-                                    Responsable
-                                </th>
-                                <th>
-                                    Nombre Producto
-                                </th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    100
-                                </td>
-                                <td>
-                                    500
-                                </td>
-                                <td>
-                                    S.P.S
-                                </td>
-                                <td>
-                                    Mirian Deras
-                                </td>
-                                <td>
-                                    Camiseta Polo
-                                </td>
-                                <td>
-                                    <input type="button" class = "btn btn-primary btn-xs" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Editar" data-toggle="modal" data-target="#ModalTablaBodega" />
-                                    <input type="button" class = "btn btn-white btn-xs" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Detalles" data-toggle="modal" data-target="#ModalTablaBodegaDetalles" />
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.bodd_CantidadMinima)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bodd_CantidadMaxima)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bodd_PuntoReorden)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bodd_Costo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bodd_CostoPromedio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)*@
+            Producto
+        </th>
+        <th></th>
+    </tr>
 
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.bodd_CantidadMinima)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bodd_CantidadMaxima)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bodd_PuntoReorden)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bodd_Costo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bodd_CostoPromedio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbBodega.bod_ResponsableBodega)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+        </td>
+        <td>
+			@*@Html.ActionLink("Details", "Details", new { id=item.bodd_Id }, new { @class = "btn btn-primary btn-sm"})
+            @Html.ActionLink("Edit", "Edit", new { id=item.bodd_Id }, new { @class = "btn btn-white btn-sm"})*@
+        </td>
+    </tr>
+}
 
-                                    @*@Html.ActionLink("Detalles", "Detalles", null, new { @class = "btn btn-primary btn-xs" })
-                                    @Html.ActionLink("Editar", "Editar", null, new { @class = "btn btn-white btn-xs" })*@
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-
-
-
-                    <!-- Editar MODAL -->
-                    <div class="modal fade" id="ModalTablaBodega" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Editar</label></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group row">
-                                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Cantidad Minima</label>
-                                                <div class="col-sm-7  input-group">
-                                                    <input type="text" class="text-box single-line" value="100" />
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Cantidad Maxima</label>
-                                                <div class="col-sm-7  input-group">
-                                                    <input type="text" class="text-box single-line" value="500" />
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Punto Reorden</label>
-                                                <div class="col-sm-7  input-group">
-                                                    <input type="text" class="text-box single-line" value="S.P.S." />
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Responsable</label>
-                                                <div class="col-sm-7  input-group">
-                                                    <input type="text" class="text-box single-line" value="Mirian Deras" />
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Nombre Producto</label>
-                                                <div class="col-sm-7  input-group">
-                                                    <input type="text" class="text-box single-line" value="Camisetas Polo" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Guardar" />
-                                    <input type="button" class="btn btn-white" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- Detalles MODAL -->
-                    <div class="modal fade" id="ModalTablaBodegaDetalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Detalles</label></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <dl class="dl-horizontal">
-
-                                            <dt>
-                                                Cantidad Minima
-                                            </dt>
-
-                                            <dd>
-                                                100
-                                            </dd>
-
-                                            <dt>
-                                                Cantidad Minima
-                                            </dt>
-
-                                            <dd>
-                                                500
-                                            </dd>
-
-                                            <dt>
-                                                Punto Reorden
-                                            </dt>
-
-                                            <dd>
-                                                S.p.s
-                                            </dd>
-
-                                            <dt>
-                                                Responsable
-                                            </dt>
-
-                                            <dd>
-                                                Mirian Deras
-                                            </dd>
-                                            <dt>
-                                                Producto
-                                            </dt>
-
-                                            <dd>
-                                                Camisetas Polo
-                                            </dd>
-                                        </dl>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <input type="button" class="btn btn-white" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-
-
-
-
+</table>
 
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-
-<script src="~/Scripts/jquery-3.1.1.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#BodegaDetalle').DataTable(
-        {
-            "searching": true,
-
-            "oLanguage": {
-                "oPaginate": {
-                    "sNext": "Siguiente",
-                    "sPrevious": "Anterior",
-                },
-                "sSearch": "Buscar",
-                "sLengthMenu": "Mostrar _MENU_ registros por página",
-                "sInfo": "Mostrando _START_ a _END_ Entradas",
-            }
-        });
-    });
-</script>
+ </div>
 
 
 

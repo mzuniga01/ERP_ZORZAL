@@ -916,6 +916,12 @@
     <Content Include="Views\Usuario\DetallePrueba.cshtml" />
     <Content Include="Views\Usuario\EditarPrueba.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\ProductoCategoria\_CreateSubCategoria.cshtml" />
+    <Content Include="Views\ProductoCategoria\_DetailsSubCategoria.cshtml" />
+    <Content Include="Views\ProductoCategoria\_EditSubCategoria.cshtml" />
+    <Content Include="Views\ProductoCategoria\_IndexSubCategoria.cshtml" />
+    <Content Include="Views\Bodega\_CreateBodegaDetalle.cshtml" />
+    <Content Include="Views\Bodega\_EditBodegaDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
