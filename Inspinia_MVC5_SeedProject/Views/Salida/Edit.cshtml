@@ -19,7 +19,7 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Nuevo", "Index", @*null,*@ new { @class = "btn btn-primary"})
+			@Html.ActionLink("Regresar", "Index", @*null,*@ new { @class = "btn btn-primary"})
         </div>
     </div>
 </div>
@@ -47,32 +47,32 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("bod_Nombre", (IEnumerable<SelectListItem>)ViewBag.bod_Nombre, new { @class = "col-md-5" })
+            <div class="col-md-4">
+                @Html.DropDownList("bod_Nombre", (IEnumerable<SelectListItem>)ViewBag.bod_Nombre, "Seleccion", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.bod_Id)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.fact_Id, "Numero de Factura", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("fact_Id", String.Empty)
+            <div class="col-md-4">
+                @Html.DropDownList("fact_Id", (IEnumerable<SelectListItem>)ViewBag.fact_Id, "Seleccion", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.fact_Id)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.sal_FechaElaboracion,"Fecha de Elaboración", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.sal_FechaElaboracion)
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.sal_FechaElaboracion, new { @class = "col-md-5" })
                 @Html.ValidationMessageFor(model => model.sal_FechaElaboracion)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("estm_Id", String.Empty)
+            <div class="col-md-4">
+                @Html.DropDownList("estm_Id", (IEnumerable<SelectListItem>)ViewBag.estm_Id, "Seleccion", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.estm_Id)
             </div>
         </div>
@@ -87,8 +87,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.tsal_Id, "Tipo de Salida", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("tsal_Id", String.Empty)
+            <div class="col-md-4">
+                @Html.DropDownList("tsal_Id", (IEnumerable<SelectListItem>)ViewBag.tsal_Id, "Seleccion", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.tsal_Id)
             </div>
         </div>
@@ -101,10 +101,10 @@
             </div>
         </div>*@
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.sal_UsuarioCrea,"Creado Por", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.sal_UsuarioCrea,"disabled")
+                @Html.EditorFor(model => model.tbUsuario.usu_NombreUsuario, new { htmlAttributes = new { @class = "col-md-5", @readonly="readonly" } })
                 @Html.ValidationMessageFor(model => model.sal_UsuarioCrea)
             </div>
         </div>
@@ -112,7 +112,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.sal_FechaCrea,"Creado el", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.sal_FechaCrea)
+                @Html.EditorFor(model => model.sal_FechaCrea, new { htmlAttributes = new { @class = "col-md-5", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.sal_FechaCrea)
             </div>
         </div>
@@ -120,7 +120,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.sal_UsuarioModifica,"Modificado Por", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.sal_UsuarioModifica)
+                @Html.EditorFor(model => model.tbUsuario.usu_NombreUsuario, new { @class = "col-md-5" })
                 @Html.ValidationMessageFor(model => model.sal_UsuarioModifica)
             </div>
         </div>
@@ -128,8 +128,83 @@
         <div class="form-group">
             @Html.LabelFor(model => model.sal_FechaModifica,"Modificado el", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.sal_FechaModifica)
+                @Html.EditorFor(model => model.sal_FechaModifica, new { @class = "col-md-5" })
                 @Html.ValidationMessageFor(model => model.sal_FechaModifica)
+            </div>
+        </div>*@
+
+        <div class="ibox-content">
+            <div class="form-group">
+
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
+                            Acción
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
+                            Usuario
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
+                            Fecha
+                        </th>
+                        @*<th>
+                            @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tsal_FechaModifica)
+                        </th>*@
+                        @*<th></th>*@
+                    </tr>
+
+                    @*@foreach (var item in Model) { }*@
+                    <tr>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
+                            Creado por
+                        </td>
+                        <td>
+
+                            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+                            @*brayan.interiano*@
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.sal_FechaCrea)
+                            @*5/12/2018 04:25:11*@ 
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                            @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                            @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                        </td>*@
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
+                            Modificado por
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+                            @*brayan.interiano*@
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.sal_FechaModifica)
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                            @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                            @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                        </td>*@
+                    </tr>
+                </table>
             </div>
         </div>
 
@@ -150,7 +225,7 @@
  </div>
 <div>
     @*@Html.Partial("_SalidaDetalle",new ERP_ZORZAL.Models.tbSalidaDetalle() { sal_Id = Model.tsal_Id })*@
-    @Html.Partial("_SalidaDetalle", Model.tbSalidaDetalle)
+    @Html.Partial("_IndexSalidaDetalle", Model.tbSalidaDetalle)
 </div>
 
 

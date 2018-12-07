@@ -4,7 +4,18 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("check");
+        if (check.checked) {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+    }
+</script>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Producto</h2>
@@ -23,114 +34,116 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado de Productos</h5>
-					<div class="ibox-tools">
-						@Html.ActionLink("Nuevo Producto", "Create", null, new { @class = "btn btn-primary" })
-					</div>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Nuevo Producto", "Create", null, new { @class = "btn btn-primary" })
+                    </div>
                 </div>
                 <div class="ibox-content">
 
-<table class="table table-responsive" id="DataTablei">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.prod_Codigo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.prod_Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.prod_Marca)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.pscat_Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.prod_Modelo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.prod_Talla)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.prod_Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.prod_UsuarioCrea)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.prod_FechaCrea)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.prod_FechaModifica)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-                </th>*@
+                    <table class="table table-responsive" id="DataTablei">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prod_Codigo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prod_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prod_Marca)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pscat_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prod_Modelo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prod_Talla)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prod_Color)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)
+                                </th>
+                                @*<th>
+                                        @Html.DisplayNameFor(model => model.prod_UsuarioCrea)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.prod_FechaCrea)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.prod_FechaModifica)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+                                    </th>*@
 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.prod_Codigo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.prod_Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.prod_Marca)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.pscat_Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.prod_Modelo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.prod_Talla)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.prod_Color)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.prod_UsuarioCrea)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.prod_FechaCrea)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.prod_FechaModifica)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-                    </td>*@
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prod_Codigo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prod_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prod_Marca)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pscat_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prod_Modelo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prod_Talla)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prod_Color)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
+                                    </td>
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.prod_UsuarioCrea)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prod_FechaCrea)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prod_FechaModifica)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+                                        </td>*@
 
-                <td>
+                                    <td>
 
 
 
-                    @Html.ActionLink("Detalles", "Details", new { id = item.prod_Codigo }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-xs" })
-                    @*@Html.ActionLink("Delete", "Delete", new { id=item.prod_Codigo }, new { @class = "btn btn-white btn-sm"})*@
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.prod_Codigo }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-xs" })
+                                        @*@Html.ActionLink("Delete", "Delete", new { id=item.prod_Codigo }, new { @class = "btn btn-white btn-sm"})*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
 
                 </div>
             </div>
         </div>
     </div>
- </div>
+
+</div>
+
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
@@ -139,7 +152,7 @@
     $(document).ready(function () {
         $('#DataTablei').DataTable(
         {
-            "searching": false,
+            "searching": true,
 
             "oLanguage": {
                 "oPaginate": {

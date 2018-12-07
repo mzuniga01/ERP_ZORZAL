@@ -147,6 +147,102 @@
 </div>
 
 
+<div class="modal fade" id="ModalEditarProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Ingresar un producto</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="">Codigo de Producto</label>
+                            <div class="col-sm-7  input-group">
+                                <input class="form-control" type="text" value="PANPJ-102634700" readonly ="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="">Producto</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="">Unidades de Medida</label>
+                            <div class="col-sm-7  input-group">
+                                <select id="Select1" class="form-control">
+                                    <option>--Seleccione Producto--</option>
+                                    <option >Unidad</option>
+                                    <option selected>Docena</option>
+                                    <option>Centena</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="">Marca</label>
+                            <div class="col-sm-7  input-group">
+                                <select id="Select1" class="form-control">
+                                    <option>--Seleccione Producto--</option>
+                                    <option selected>Nike</option>
+                                    <option >Puma</option>
+                                    <option>Van Huesen</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="">Modelo</label>
+                            <select id="Select1" class="form-control" >
+                                <option >Corta Ajustada Slim</option>
+                                <option>Manga Corta</option>
+                                <option>Manga Larga</option>
+                                <option selected>Cuello V</option>
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="">Talla</label>
+                            <div class="col-sm-7  input-group">
+                                <select id="Select1" class="form-control">
+                                    <option>S</option>
+                                    <option>M</option>
+                                    <option>X</option>
+                                    <option selected>XL</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="">Color</label>
+                            <div class="col-sm-7  input-group">
+                                <select id="Select1" class="form-control">
+                                    <option>Negro</option>
+                                    <option>Rojo</option>
+                                    <option>Azul</option>
+                                    <option selected>Azebeche</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="">Color</label>
+                            <div class="col-sm-7  input-group">
+                               <input type="number" min="5" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
+                <input type="button" class="btn btn-primary" id="btnAceptar" style="width:110px;" value="Ingresar" onclick="Aceptar();" />
+            </div>
+        </div>
+    </div>
+</div>
+<!-- INSERT MODAL FIN -->
 
 
 

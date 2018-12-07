@@ -20,6 +20,12 @@ namespace ERP_ZORZAL.Controllers
             return View(db.tbUsuario.ToList());
         }
 
+        public ActionResult ModificarPass(int? id)
+        {
+            ViewBag.UserID = id;
+           return View();
+        }
+
         // GET: /Usuario/Details/5
         public ActionResult Details(int? id)
         {
@@ -66,6 +72,7 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbUsuario tbUsuario = db.tbUsuario.Find(id);
+            ViewBag.User_ID = id;
             if (tbUsuario == null)
             {
                 return HttpNotFound();

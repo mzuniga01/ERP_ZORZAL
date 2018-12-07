@@ -19,7 +19,6 @@ namespace ERP_ZORZAL.Controllers
         {
             var tbproducto = db.tbProducto.Include(t => t.tbUsuario).Include(t => t.tbUnidadMedida);
             return View(tbproducto.ToList());
-            //return View();
         }
 
         // GET: /Producto/Details/5
@@ -42,6 +41,7 @@ namespace ERP_ZORZAL.Controllers
         {
             ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+            ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
             return View();
         }
 

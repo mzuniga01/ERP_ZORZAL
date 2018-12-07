@@ -417,8 +417,8 @@
     </Compile>
     <Compile Include="Models\TipoEntrada.cs" />
     <Compile Include="Models\TipoSalida.cs" />
-    <Compile Include="Models\UnidadesMedida.cs" />
     <Compile Include="Models\UnidadMedida.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -623,6 +623,7 @@
     <Content Include="Scripts\app\MostrarCamposEditar.js" />
     <Content Include="Scripts\app\MostrarCamposEntradajs.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
+    <Content Include="Scripts\app\search.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap.css.map" />
@@ -871,20 +872,12 @@
     <Content Include="Views\Salida\Edit.cshtml" />
     <Content Include="Views\Salida\Index.cshtml" />
     <Content Include="Views\Salida\_IndexSalidaDetalle.cshtml" />
-    <Content Include="Views\TipoSalida\Crear.cshtml" />
     <Content Include="Views\TipoSalida\Create.cshtml" />
     <Content Include="Views\TipoSalida\Delete.cshtml" />
     <Content Include="Views\TipoSalida\Details.cshtml" />
-    <Content Include="Views\TipoSalida\Detalles.cshtml" />
-    <Content Include="Views\TipoSalida\Detalles2.cshtml" />
     <Content Include="Views\TipoSalida\Edit.cshtml" />
-    <Content Include="Views\TipoSalida\Editar.cshtml" />
     <Content Include="Views\TipoSalida\Index.cshtml" />
-    <Content Include="Views\TipoSalida\Index2.cshtml" />
-    <Content Include="Views\Usuario\CrearPrueba.cshtml" />
     <Content Include="Views\Usuario\Delete.cshtml" />
-    <Content Include="Views\Usuario\DetallePrueba.cshtml" />
-    <Content Include="Views\Usuario\EditarPrueba.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Departamento\_CreateMunicipio.cshtml" />
     <Content Include="Views\Departamento\_DetailsMunicipio.cshtml" />
@@ -947,10 +940,20 @@
     <Content Include="Views\TipoEntrada\Details.cshtml" />
     <Content Include="Views\TipoEntrada\Edit.cshtml" />
     <Content Include="Views\TipoEntrada\Index.cshtml" />
+    <Content Include="Views\Usuario\ModificarPass.cshtml" />
+    <Content Include="Views\Box\_Producto.cshtml" />
+    <Content Include="Views\Producto\Create.cshtml" />
+    <Content Include="Views\Producto\Delete.cshtml" />
+    <Content Include="Views\Producto\Details.cshtml" />
+    <Content Include="Views\Producto\Edit.cshtml" />
+    <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\Usuario\Create.cshtml" />
+    <Content Include="Views\Usuario\Details.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Salida\_SalidaDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\UnidadesMedida\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

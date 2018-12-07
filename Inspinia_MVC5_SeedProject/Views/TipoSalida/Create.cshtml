@@ -63,6 +63,77 @@
 }
 
                 </div>
+                
+            </div>
+            <div class="ibox-content">
+
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
+                            Acción
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
+                            Usuario
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
+                            Fecha
+                        </th>
+                        @*<th>
+                        @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tsal_FechaModifica)
+                    </th>*@
+                        @*<th></th>*@
+                    </tr>
+
+                    @*@foreach (var item in Model) { }*@
+                    <tr>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
+                            Creado
+                        </td>
+                        <td>
+
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.tsal_FechaCrea)
+                        </td>
+                        @*<td>
+                        @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                        @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                        @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    </td>*@
+                    </tr>
+                    <tr>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
+                            Modificado
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.tsal_FechaModifica)
+                        </td>
+                        @*<td>
+                        @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                        @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                        @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    </td>*@
+                    </tr>
+
+                </table>
             </div>
         </div>
     </div>
