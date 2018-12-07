@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -16,19 +15,20 @@ namespace ERP_ZORZAL.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
 
         // GET: /ProductoCategoria/
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.tbProductoCategoria.ToListAsync());
+            var tbproductocategoria = db.tbProductoCategoria.Include(t => t.tbUsuario);
+            return View(tbproductocategoria.ToList());
         }
 
         // GET: /ProductoCategoria/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbProductoCategoria tbProductoCategoria = await db.tbProductoCategoria.FindAsync(id);
+            tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
             if (tbProductoCategoria == null)
             {
                 return HttpNotFound();
@@ -39,65 +39,69 @@ namespace ERP_ZORZAL.Controllers
         // GET: /ProductoCategoria/Create
         public ActionResult Create()
         {
+            ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             return View();
         }
 
         // POST: /ProductoCategoria/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica")] tbProductoCategoria tbProductoCategoria)
+        public ActionResult Create([Bind(Include="pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica")] tbProductoCategoria tbProductoCategoria)
         {
             if (ModelState.IsValid)
             {
                 db.tbProductoCategoria.Add(tbProductoCategoria);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
             return View(tbProductoCategoria);
         }
 
         // GET: /ProductoCategoria/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbProductoCategoria tbProductoCategoria = await db.tbProductoCategoria.FindAsync(id);
+            tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
             if (tbProductoCategoria == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
             return View(tbProductoCategoria);
         }
 
         // POST: /ProductoCategoria/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica")] tbProductoCategoria tbProductoCategoria)
+        public ActionResult Edit([Bind(Include="pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica")] tbProductoCategoria tbProductoCategoria)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(tbProductoCategoria).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
             return View(tbProductoCategoria);
         }
 
         // GET: /ProductoCategoria/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbProductoCategoria tbProductoCategoria = await db.tbProductoCategoria.FindAsync(id);
+            tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
             if (tbProductoCategoria == null)
             {
                 return HttpNotFound();
@@ -108,11 +112,11 @@ namespace ERP_ZORZAL.Controllers
         // POST: /ProductoCategoria/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            tbProductoCategoria tbProductoCategoria = await db.tbProductoCategoria.FindAsync(id);
+            tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
             db.tbProductoCategoria.Remove(tbProductoCategoria);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

@@ -9,7 +9,7 @@
                     <h5>Listado Entrada Detalle</h5>
 					<div class="ibox-tools">
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregar">Nuevo</button>
-						@*@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})*@
+						
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -18,22 +18,20 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.entd_Id)
+                                    Código Producto
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.entd_Cantidad)
+                                    Nombre Producto
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.entd_UsuarioCrea)
-                                </th>
-
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbEntrada.ent_NumeroFormato)
+                                    Unidad Medida
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
+                                    Cantidad
                                 </th>
-                                <th>Acciones</th>
+                                <th>
+                                    Acciones
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,31 +39,24 @@
                             {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.entd_Id)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.entd_Cantidad)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.entd_UsuarioCrea)
-                                </td>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tbEntrada.ent_NumeroFormato)
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.tbUnidadMedida.uni_Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.entd_Cantidad)
+                                </td>
+                                <td>
                                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalEditar">Editar</button>
                                     <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalDetalle">Detalles</button>
-                                    @*@Html.ActionLink("Detalles", "Details", new { id = item.entd_Id }, new { @class = "btn btn-primary btn-xs" })
-    @Html.ActionLink("Editar", "Edit", new { id = item.entd_Id }, new { @class = "btn btn-white btn-xs" })
-    @Html.ActionLink("Detalles", "", new { id = item.entd_Id, @data_toggle = "modal", @data_target = "#ModalEditar" }, new { @class = "btn btn-primary btn-xs" })
-    @Html.ActionLink("Editar", "", new { id = item.entd_Id, @data_toggle = "modal", @data_target = "#ModalDetalle" }, new { @class = "btn btn-white btn-xs" })*@
                                 </td>
                             </tr>
                             }
+
                         </tbody>
 </table>
 
@@ -111,8 +102,8 @@
                     @Html.Partial("_CrearDetalleEntrada", new ERP_ZORZAL.Models.tbEntradaDetalle(){entd_Id =5 })
                     <div class="form-group">
                         <div class="col-md-12 text-center">
-                            <button class="btn btn-primary" type="button" id="GuardarCasos">Guardar</button>
-                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                            <a href="@Url.Action("Edit","Entrada")" class="btn btn-primary">Guardar</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         </div>
                     </div>
                 </div>
@@ -135,10 +126,11 @@
                 <div class="modal-body" id="frmAgregarCasoExito">
                     @Html.Partial("_EditarDetalleEntrada", new ERP_ZORZAL.Models.tbEntradaDetalle() { entd_Id = 5 })
                     <div class="form-group">
-                        @*<div class="col-md-12 text-center">
-                            <button class="btn btn-primary" type="button" id="GuardarCasos">Guardar</button>
-                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
-                        </div>*@
+                        <div class="col-md-12 text-center">
+                            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" value="Anular" />
+                            <a href="@Url.Action("Edit","Entrada")" class="btn btn-primary">Guardar</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -166,6 +158,27 @@
                         </div>*@
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*modal para anular*@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular Entrada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de anular el detalle de esta Entrada?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Index","Entrada")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>

@@ -1,10 +1,10 @@
 ﻿@model ERP_ZORZAL.Models.tbBodega
-
+@using ERP_ZORZAL.Models
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Bodegas</h2>
@@ -23,9 +23,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Detalles Bodega</h5>
-                </div>
                 <div class="ibox-content">
                     <div class="form-horizontal">
                         <dl class="dl-horizontal">
@@ -45,19 +42,32 @@
                                 @Html.DisplayFor(model => model.bod_Nombre)
                             </dd>
                             <dt>
+                                @Html.DisplayNameFor(model => model.tbMunicipio.dep_Codigo)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.tbMunicipio.tbDepartamento.dep_Nombre)
+                            </dd>
+                            <dt>
                                 @Html.DisplayNameFor(model => model.tbMunicipio.mun_Nombre)
                             </dt>
 
                             <dd>
                                 @Html.DisplayFor(model => model.tbMunicipio.mun_Nombre)
                             </dd>
-
                             <dt>
-                                @Html.DisplayNameFor(model => model.bod_Telefono)
+                                @Html.DisplayNameFor(model => model.bod_ResponsableBodega)
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.bod_Telefono)
+                                @Html.DisplayFor(model => model.bod_ResponsableBodega)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.bod_Direccion)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.bod_Direccion)
                             </dd>
                             <dt>
                                 @Html.DisplayNameFor(model => model.bod_Correo)
@@ -67,36 +77,28 @@
                                 @Html.DisplayFor(model => model.bod_Correo)
                             </dd>
                             <dt>
-                                @Html.DisplayNameFor(model => model.bod_ResponsableBodega)
+                                @Html.DisplayNameFor(model => model.bod_Telefono)
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.bod_ResponsableBodega)
+                                @Html.DisplayFor(model => model.bod_Telefono)
                             </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.bod_EsActiva)
+                            </dt>
 
+                            <dd>
+                                @*@Html.DisplayFor(model => model.bod_EsActiva)*@
+                                Activa
+                            </dd>
                             @Html.ActionLink("Editar", "Edit", new { id = Model.bod_Id }, new { @class = "btn btn-primary" })
                         </dl>
-
-
-                        @*<div class="row">
-                        <div class="col-lg-12">
-                            <div class="ibox-title">
-                                <div class="title-action">
-                                    <h5>Listado Detalles Bodega</h5>
-                                    <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#CreateInstructorCasoExito"></button>
-                                </div>
-                            </div>
-                            <div class="ibox-content collapse" id="CreateInstructorCasoExito">
-                                @Html.Partial("_IndexBodegaDetalle", new ERP_ZORZAL.Models.tbBodegaDetalle() { bodd_Id = Model.bod_Id })
-                            </div>
-                        </div>
-                    </div>*@
 
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        @Html.Partial("_IndexBodegaDetalle", Model.tbBodegaDetalle, new ViewDataDictionary { { "bod_Id", Model.bod_Id } })
+                                        @Html.Partial("_ListBodegaDetalles", Model.tbBodegaDetalle, new ViewDataDictionary { { "bod_Id", Model.bod_Id } })
                                     </div>
                                 </div>
                             </div>
@@ -107,66 +109,19 @@
             <div class="ibox-content">
                 <table class="table table-striped">
                     <tr>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
-                            Acción
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
-                            Usuario
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
-                            Fecha
-                        </th>
-                        @*<th>
-                    @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)
-                    </th>
-                    <th>
-                    @Html.DisplayNameFor(model => model.tsal_FechaModifica)
-                    </th>*@
-                        @*<th></th>*@
-                    </tr>
-                    @*@foreach (var item in Model) { }*@
-                    <tr>
-                        <td>
-                            @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
-                            Creado
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.bod_UsuarioCrea)
-                        </td>
-                        @*<td>
-                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
-                    </td>
-                    <td>
-                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
-                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                    </td>*@
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
                     </tr>
                     <tr>
-                        <td>
-                            @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
-                            Modificado
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.bod_FechaModifica)
-                        </td>
-                        @*<td>
-                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
-                    </td>
-                    <td>
-                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
-                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                    </td>*@
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.bod_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.bod_FechaModifica)</td>
                     </tr>
                 </table>
             </div>
@@ -176,25 +131,15 @@
 </div>
 
 
-<script src="~/Scripts/jquery-3.1.1.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#BodegaDetalle').DataTable(
-            {
-                "searching": true,
 
-                "oLanguage": {
-                    "oPaginate": {
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior",
-                    },
-                    "sSearch": "Buscar",
-                    "sLengthMenu": "Mostrar _MENU_ registros por página",
-                    "sInfo": "Mostrando _START_ a _END_ Entradas",
-                }
-            });
-    });
-</script>
+
+
+
+
+
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/app/BusquedaGenerica.js"></script>
 
 
 

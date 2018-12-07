@@ -15,15 +15,15 @@ namespace ERP_ZORZAL.Models
 
     public class ProductosSubCategoriasMetada
     {
-        [Display(Name = "ID SubCategoria")]
+        [Display(Name = "Número SubCategoria")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pscat_Id { get; set; }
 
-        [Display(Name = "Descripción SubCategoría")]
+        [Display(Name = "SubCategoría")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string pscat_Descripcion { get; set; }
 
-        [Display(Name = "ID Categoria")]
+        [Display(Name = "Número Categoria")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pcat_Id { get; set; }
 
@@ -35,16 +35,21 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pscat_UsuarioCrea { get; set; }
 
-        [Display(Name = "Creado En")]
+        [Display(Name = "Creado El")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime pscat_FechaCrea { get; set; }
 
-        [Display(Name = "Modificado En")]
+        [Display(Name = "Modificado El")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<int> pscat_UsuarioModifica { get; set; }
 
         [Display(Name = "Modificado El")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public Nullable<System.DateTime> pscat_FechaModifica { get; set; }
+
+        public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }
+        public virtual tbProductoCategoria tbProductoCategoria { get; set; }
+        public virtual tbUsuario tbUsuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbProducto> tbProducto { get; set; }
     }
 }

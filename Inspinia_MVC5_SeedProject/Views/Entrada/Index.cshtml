@@ -32,21 +32,24 @@
                     <table class="table table-responsive" style="width:100%" id="tbEntrada">
                         <thead>
                             <tr>
-
+                                <th>
+                                    Nombre Bodega
+                                    @*@Html.DisplayNameFor(model => model.ent_BodegaDestino)*@
+                                </th>
+                                <th>
+                                    Numero Formato
+                                    @*@Html.DisplayNameFor(model => model.ent_NumeroFormato)*@
+                                </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.ent_FechaElaboracion)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.ent_BodegaDestino)
+                                    Tipo Entrada
+                                    @*@Html.DisplayNameFor(model => model.tbTipoEntrada.tent_Descripcion)*@
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.ent_Id)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbTipoEntrada.tent_Descripcion)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)
+                                    Estado
+                                    @*@Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)*@
                                 </th>
                                 <th>Acciones</th>
                             </tr>
@@ -56,22 +59,26 @@
                             {
                                 <tr>
                                     <td>
+                                        @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ent_NumeroFormato)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.ent_FechaElaboracion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ent_BodegaDestino)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ent_Id)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbTipoEntrada.tent_Descripcion)
                                     </td>
                                     <td>
+                                        <input type="button" id="boton_@item.bod_Id " value="Inactivar" class="btn btn-white btn-xs" onclick="Activar(@item.bod_Id);">
                                         @Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)
                                     </td>
                                     <td>
+                                        
                                         @Html.ActionLink("Editar", "Edit", new { id = item.ent_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#exampleModal" value="Anular" />
+                                        <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
                                          @Html.ActionLink("Detalles", "Details", new { id = item.ent_Id }, new { @class = "btn btn-white btn-xs" })
                                     </td>
                                 </tr>
@@ -85,6 +92,46 @@
     </div>
  </div>
 
+@*modal para imprimir*@
+<div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Imprimir Entrada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea Imprimir Entrada?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Create","Entrada")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*modal para anular*@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular Entrada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de anular esta Entrada?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Index","Entrada")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -103,4 +150,10 @@
             }
         });
     });
+</script>
+<script type="text/javascript">
+    function Activar(Id) {
+        console.log("#boton_" + Id, "#boton_" + Id);
+        $("#boton_"+Id).attr("value", "Activar");
+    }
 </script>

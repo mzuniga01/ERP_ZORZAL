@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbEntradaDetalle>
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbProducto>
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -6,49 +6,47 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado Entrada Detalle</h5>
-                    @*<div class="ibox-tools">
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregar">Nuevo</button>
-                        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})
-                    </div>*@
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" placeholder="Ingresar Producto" />
+                            <br />
+                        </div>
+                    </div>
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-responsive" style="width:100%" id="tbEntradaDetalle">
+                    <table id="Table_BuscarProducto" class="table table table-striped  table-bordered">
                         <thead>
                             <tr>
                                 <th>
-                                    Código Producto
+                                    @Html.DisplayNameFor(model => model.prod_Descripcion)
                                 </th>
                                 <th>
-                                    Nombre Producto
+                                    @Html.DisplayNameFor(model => model.prod_Marca)
                                 </th>
                                 <th>
-                                    Unidad Medida
+                                    @Html.DisplayNameFor(model => model.prod_Modelo)
                                 </th>
-                                <th>
-                                    Cantidad
-                                </th>
-                                
+                                <th>Acciones</th>
                             </tr>
                         </thead>
+
                         <tbody>
                             @foreach (var item in Model)
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
+                                        @Html.DisplayFor(modelItem => item.prod_Marca)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                        @Html.DisplayFor(modelItem => item.prod_Modelo)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.tbUnidadMedida.uni_Descripcion)
+                                        @Html.DisplayFor(modelItem => item.prod_Talla)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.entd_Cantidad)
+                                        <button class="btn btn-primary btn-sm">Agregar</button>
                                     </td>
-                                   
                                 </tr>
                             }
                         </tbody>
@@ -58,28 +56,28 @@
             </div>
         </div>
     </div>
-</div>
+ </div>
 
 
-<script src="~/Scripts/jquery-3.1.1.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#tbEntradaDetalle').DataTable(
+
+<script>
+$(document).ready(function () {
+        $('#Table_BuscarProducto').DataTable(
         {
-            "searching": true,
+            "searching": false,
+            "lengthChange": false,
 
             "oLanguage": {
                 "oPaginate": {
                     "sNext": "Siguiente",
                     "sPrevious": "Anterior",
                 },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
                 "sSearch": "Buscar",
-                "sLengthMenu": "Mostrar _MENU_ registros por página",
                 "sInfo": "Mostrando _START_ a _END_ Entradas",
+
             }
         });
     });
 </script>
-
-
-

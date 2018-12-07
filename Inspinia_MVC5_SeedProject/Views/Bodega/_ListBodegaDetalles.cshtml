@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbBodegaDetalle>
+
+
+@using ERP_ZORZAL.Models
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Detalles</h5>
+                    <div class="ibox-tools">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)*@
+                                Código Producto
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)*@
+                                Producto
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.bodd_PuntoReorden)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.bodd_CantidadMinima)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.bodd_CantidadMaxima)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.bodd_Costo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.bodd_CostoPromedio)
+                            </th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bodd_PuntoReorden)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bodd_CantidadMinima)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bodd_CantidadMaxima)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bodd_Costo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bodd_CostoPromedio)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Tipo Entrada</h2>
@@ -15,134 +15,64 @@
         </div>
     </div>
 </div>
-
-
-
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Details Tipo Entrada</h5>
+                    <h5>Detalles Tipo Entrada</h5>
                 </div>
                 <div class="ibox-content">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tent_Id)
+                        </dt>
 
-                    <div class="form-horizontal">
-                        <dl class="dl-horizontal">
-                            <dt>
-                                @Html.DisplayNameFor(model => model.tent_Id)
-                            </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tent_Id)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tent_Descripcion)
+                        </dt>
 
-                            <dd>
-                                @Html.DisplayFor(model => model.tent_Id)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.tent_Descripcion)
-                            </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tent_Descripcion)
+                        </dd>
+                    </dl>
 
-                            <dd>
-                                @Html.DisplayFor(model => model.tent_Descripcion)
-                            </dd>
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.tent_Id }, new { @class = "btn btn-primary" })
 
-                            @*<dt>
-                @Html.DisplayNameFor(model => model.tent_UsuarioCrea)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.tent_UsuarioCrea)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.tent_FechaCrea)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.tent_FechaCrea)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.tent_UsuarioModifica)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.tent_UsuarioModifica)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.tent_FechaModifica)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.tent_FechaModifica)
-            </dd>*@
-
-                        </dl>
-
-                        @Html.ActionLink("Editar", "Edit", new { id = Model.tent_Id }, new { @class = "btn btn-primary" })
-
-
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-6">
-                                <table class="table table-responsive" style="width:100%" id="TipoEntrada">
-                                    <tr>
-                                        <th></th>
-                                        <th>Usuario</th>
-                                        <th>Fecha</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Creado</td>
-                                        <td>@Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                        <td>@Html.DisplayFor(model => model.tent_FechaCrea)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Modificado</td>
-                                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                        <td>@Html.DisplayFor(model => model.tent_FechaModifica)</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                        
-
-
-                       
-
-
-                    </div>
                 </div>
+            </div>
+                    <div class="ibox-content">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Acción</th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                                <td>@Html.DisplayFor(model => model.tent_FechaCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                                <td>@Html.DisplayFor(model => model.tent_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </div>
         </div>
-    </div>
+     </div>
 </div>
 
 
 
 
+
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#TipoEntrada').DataTable(
-            {
-                "searching": true,
-
-                "oLanguage": {
-                    "oPaginate": {
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior",
-                    },
-                    "sSearch": "Buscar",
-                    "sLengthMenu": "Mostrar _MENU_ registros por página",
-                    "sInfo": "Mostrando _START_ a _END_ Entradas",
-                }
-            });
-    });
-</script>
-
-
+<script src="~/Scripts/app/BusquedaGenerica.js"></script>
 
 
 

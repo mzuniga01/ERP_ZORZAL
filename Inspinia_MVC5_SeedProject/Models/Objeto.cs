@@ -13,7 +13,7 @@ namespace ERP_ZORZAL.Models
     }
     public class Objetometatada
     {
-        [Display(Name ="ID")]
+        [Display(Name ="Número")]
         [Required(AllowEmptyStrings =false,ErrorMessage ="Campo {0} es requerido")]
         public int obj_Id { get; set; }
         [Display(Name = "Pantalla")]

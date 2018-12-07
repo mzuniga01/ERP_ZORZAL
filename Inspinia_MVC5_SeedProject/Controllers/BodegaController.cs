@@ -54,6 +54,11 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
             ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "uni_Id");
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+            ViewBag.Producto = db.tbProducto.ToList();
+            ViewBag.pcat_Id_Nombre = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
+            ViewBag.pscat_Id_Nombre = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
+            ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pcat_Id");
+
             return View();
         }
 
@@ -95,6 +100,12 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbBodega.mun_Codigo);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.mun_Codigo);
+            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+            ViewBag.pcat_Id_Nombre = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
+            ViewBag.pscat_Id_Nombre = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
+            ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pcat_Id");
+            ViewBag.Producto = db.tbProducto.ToList();
+
             return View(tbBodega);
         }
 

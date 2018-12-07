@@ -22,7 +22,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Bodegas</h5>
                     <div class="ibox-tools">
-                        @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs" })
+                        @Html.ActionLink("Registrar", "Create", null, new { @class = "btn btn-primary btn-xs" })
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -33,24 +33,26 @@
                                 <div class="col-md-4">
                                     <input type="text" class="form-control " />
                                 </div>
+                                <label class="control-label col-md-2">Municipio</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control " />
+                                </div>
+                                <div class="">
+                                    <input type="button" value="Buscar" class="btn btn-primary btn-sm-1" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                
                                 <label class="control-label col-md-2">Departamento</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" />
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Municipio</label>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control " />
-                                </div>
-                                <div class="">
-                                    <input type="button" value="Buscar" class="btn btn-primary btn-sm" />
-                                </div>
+
                             </div>
                         </div>
                     </div>
 
-                    <table class="table table-responsive" style="width:100%" id="DataTable">
+                    <table class="table table table-striped  table-bordered" id="DataTable">
                         <thead>
                             <tr>
                                 <th>
@@ -95,8 +97,7 @@
                                     <td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.bod_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.bod_Id }, new { @class = "btn btn-white btn-xs" })
-                                        @*@Html.ActionLink("Inactivar", "", new { id = item.bod_Id }, new { @class = "btn btn-success btn-xs" })*@
-                                        <input type="button" id="boton" value="Inactivar" class="btn btn-success btn-xs">
+                                        <input type="button" id="boton_@item.bod_Id " value="Inactivar" class="btn btn-white btn-xs" onclick="Activar(@item.bod_Id);">
                                     </td>
                                 </tr>
                             }
@@ -112,31 +113,11 @@
 </div>
 
 
-
-<script src="~/Scripts/jquery-3.1.1.min.js"></script>
-<script src="~/Scripts/app/DataTableBusqueda.js"></script>
-<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#Bodegas').DataTable(
-            {
-                "searching": true,
-
-                "oLanguage": {
-                    "oPaginate": {
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior",
-                    },
-                    "sSearch": "Buscar",
-                    "sLengthMenu": "Mostrar _MENU_ registros por página",
-                    "sInfo": "Mostrando _START_ a _END_ Entradas",
-                }
-            });
-    });
-
-    $(document).ready(function () {
-        $("#boton").click(function () {
-            $("#boton").attr("value", "Activar");
-        });
-    });
+    function Activar(Id) {
+        console.log("#boton_" + Id, "#boton_" + Id);
+        $("#boton_"+Id).attr("value", "Activar");
+    }      
 </script>

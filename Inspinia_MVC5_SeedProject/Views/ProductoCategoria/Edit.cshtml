@@ -1,4 +1,5 @@
 ﻿@model ERP_ZORZAL.Models.tbProductoCategoria
+    @using ERP_ZORZAL.Models
 
 @{
     ViewBag.Title = "Edit";
@@ -8,14 +9,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Editar</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Edit</strong>
-            </li>
-        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -23,9 +16,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -60,39 +50,7 @@
                 @Html.ValidationMessageFor(model => model.pcat_Nombre)
             </div>
         </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.pcat_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pcat_UsuarioCrea, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.pcat_UsuarioCrea)
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.pcat_FechaCrea, new { @class = "control-label col-md-2", @readonly= "readonly" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pcat_FechaCrea, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.pcat_FechaCrea)
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.pcat_UsuarioModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pcat_UsuarioModifica, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.pcat_UsuarioModifica)
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.pcat_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pcat_FechaModifica, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.pcat_FechaModifica)
-            </div>
-        </div>*@
-
+       
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
@@ -100,97 +58,20 @@
             </div>
         </div>
     </div>
-}
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="ibox-title">
-                                <div class="title-action">
-                                    <h5>Editar SubCategoría</h5>
-                                    <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#CreateInstructorCasoExito"></button>
-                                </div>
-                            </div>
-                            <div class="ibox-content collapse" id="CreateInstructorCasoExito">
-                                @Html.Partial("_EditSubCategoria", new ERP_ZORZAL.Models.tbProductoSubcategoria() { pscat_Id = Model.pcat_Id })
-                            </div>
-                        </div>
-                    </div>
-
-
+                }
+                </div>
+            </div> 
+        </div>
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="form-horizontal">
+                    @Html.Partial("_ListSubCategoria", Model.tbProductoSubcategoria, new ViewDataDictionary { { "pcat_Id", Model.pcat_Id } })
                 </div>
             </div>
-
-            <div class="ibox-content">
-                <table class="table table-striped">
-                    <tr>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
-                            Acción
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
-                            Usuario
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
-                            Fecha
-                        </th>
-                        @*<th>
-                    @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)
-                    </th>
-                    <th>
-                    @Html.DisplayNameFor(model => model.tsal_FechaModifica)
-                    </th>*@
-                        @*<th></th>*@
-                    </tr>
-                    @*@foreach (var item in Model) { }*@
-                    <tr>
-                        <td>
-                            @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
-                            Creado
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.pcat_UsuarioCrea)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.pcat_FechaCrea)
-                        </td>
-                        @*<td>
-                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
-                    </td>
-                    <td>
-                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
-                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                    </td>*@
-                    </tr>
-                    <tr>
-                        <td>
-                            @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
-                            Modificado
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.pcat_UsuarioModifica)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.pcat_FechaModifica)
-                        </td>
-                        @*<td>
-                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
-                    </td>
-                    <td>
-                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
-                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                    </td>*@
-                    </tr>
-                </table>
-            </div>
         </div>
+
     </div>
- </div>
-
-
-
+    </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

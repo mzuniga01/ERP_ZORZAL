@@ -38,7 +38,7 @@ namespace ERP_ZORZAL.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime entd_FechaCrea { get; set; }
 
-        [Display(Name = "Modiicado Por")]
+        [Display(Name = "Modificado Por")]
         public Nullable<int> entd_UsuarioModifica { get; set; }
 
         [Display(Name = "Modificado en")]

@@ -14,7 +14,7 @@ namespace ERP_ZORZAL.Models
 
     public class BodegaDetalleMetaData
     {
-        [Display(Name = " Codigo Detalle")]
+        [Display(Name = "Número Detalle")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int bodd_Id { get; set; }
 
@@ -22,7 +22,7 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string prod_Codigo { get; set; }
 
-        [Display(Name = "Codigo Bodega")]
+        [Display(Name = "Número Bodega")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int bod_Id { get; set; }
 
@@ -38,21 +38,21 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public decimal bodd_PuntoReorden { get; set; }
 
-        [Display(Name = "Usuario Crea ")]
+        [Display(Name = "Creado Por")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int bodd_UsuarioCrea { get; set; }
 
-        [Display(Name = "Fecha Crea")]
+        [Display(Name = "Creado el")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime bodd_FechaCrea { get; set; }
 
 
-        [Display(Name = " Usuario Modifica ")]
+        [Display(Name = "Modificado por")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<int> bodd_UsuarioModifica { get; set; }
 
-        [Display(Name = "Fecha Modifica")]
+        [Display(Name = "Modificado el")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> bodd_FechaModifica { get; set; }

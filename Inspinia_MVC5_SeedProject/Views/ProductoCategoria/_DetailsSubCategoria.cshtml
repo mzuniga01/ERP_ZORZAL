@@ -13,67 +13,39 @@
 
 
 				    <dl class="dl-horizontal">
+
+         <dt>
+            @Html.DisplayNameFor(model => model.pscat_Id)
+        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.pscat_Id)
+                        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.pscat_Descripcion)
         </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.pscat_Descripcion)
+                        </dd>
 
         <dd>
-            @Html.DisplayFor(model => model.pscat_Descripcion)
+            @Html.DisplayFor(model => model.tbProductoCategoria.pcat_Id)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pscat_UsuarioCrea)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pscat_UsuarioCrea)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pscat_FechaCrea)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pscat_FechaCrea)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pscat_UsuarioModifica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pscat_UsuarioModifica)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pscat_FechaModifica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pscat_FechaModifica)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbEstadoMovimiento.estm_Descripcion)
-        </dd>
-
+                        <dd>
+                            @Html.DisplayFor(model => model.tbProductoCategoria.pcat_Id)
+                        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.tbProductoCategoria.pcat_Nombre)
         </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbProductoCategoria.pcat_Nombre)
+                        </dd>
+      
 
-        <dd>
-            @Html.DisplayFor(model => model.tbProductoCategoria.pcat_Nombre)
-        </dd>
 
     </dl>
 
 
 	    @Html.ActionLink("Editar", "Edit", new { id = Model.pscat_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Regresar", "Index")
 
                 </div>
             </div>

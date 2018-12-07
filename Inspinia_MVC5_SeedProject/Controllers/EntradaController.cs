@@ -37,6 +37,7 @@ namespace ERP_ZORZAL.Controllers
             //vista parcial de entrada detalle
             ViewBag.ent_Id = new SelectList(db.tbEntrada, "ent_Id", "ent_Id");
             ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
+            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
             return View(tbEntrada);
         }
 
@@ -51,6 +52,9 @@ namespace ERP_ZORZAL.Controllers
             //vista parcial de entrada detalle
             ViewBag.ent_Id = new SelectList(db.tbEntrada, "ent_Id", "ent_Id");
             ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
+            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+            ViewBag.Producto = db.tbProducto.ToList();
             return View();
         }
 
@@ -72,6 +76,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbEntrada.estm_Id);
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
             ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
+            ViewBag.Producto = db.tbProducto.ToList();
             return View(tbEntrada);
         }
 
@@ -94,6 +99,8 @@ namespace ERP_ZORZAL.Controllers
             //vista parcial de entrada detalle
             ViewBag.ent_Id = new SelectList(db.tbEntrada, "ent_Id", "ent_Id");
             ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
+            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+            ViewBag.Producto = db.tbProducto.ToList();
             return View(tbEntrada);
         }
 
@@ -114,6 +121,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbEntrada.estm_Id);
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
             ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
+            ViewBag.Producto = db.tbProducto.ToList();
             return View(tbEntrada);
         }
 

@@ -13,7 +13,7 @@ namespace ERP_ZORZAL.Models
 
     public class BodegaMetadata
     {
-        [Display(Name = " Codigo  ")]
+        [Display(Name = "Número")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int bod_Id { get; set; }
 
@@ -70,7 +70,6 @@ namespace ERP_ZORZAL.Models
         [Display(Name = "Municipio")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public virtual tbMunicipio tbMunicipio { get; set; }
-
         
 
     }

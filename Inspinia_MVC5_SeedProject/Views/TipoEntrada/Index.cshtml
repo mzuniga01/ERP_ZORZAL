@@ -17,12 +17,12 @@
                 <div class="ibox-title">
                     <h5>Listado Tipo Entrada</h5>
                     <div class="ibox-tools">
-                        @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Registrar", "Create", null, new { @class = "btn btn-primary" })
                     </div>
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-responsive" style="width:100%" id="TipoEntrada">
+                    <table class="table table-responsive" style="width:100%" id="Datatable">
                         <thead>
 
                             <tr>
@@ -32,18 +32,6 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.tent_Descripcion)
                                 </th>
-                                @*<th>
-                        @Html.DisplayNameFor(model => model.tent_UsuarioCrea)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.tent_FechaCrea)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.tent_UsuarioModifica)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.tent_FechaModifica)
-                    </th>*@
                                 <th>
                                     Acciones
                                 </th>
@@ -59,18 +47,6 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tent_Descripcion)
                                     </td>
-                                    @*<td>
-                            @Html.DisplayFor(modelItem => item.tent_UsuarioCrea)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.tent_FechaCrea)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.tent_UsuarioModifica)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.tent_FechaModifica)
-                        </td>*@
                                     <td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.tent_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.tent_Id }, new { @class = "btn btn-white btn-xs " })
@@ -80,51 +56,6 @@
 
                         </tbody>
                     </table>
-                    @*<table class="table table-responsive" style="width:100%" id="TipoEntrada1">
-                        <thead>
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tent_UsuarioCrea)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tent_FechaCrea)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tent_UsuarioModifica)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tent_FechaModifica)
-                                </th>
-                                <th>
-                                    Acciones
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tent_UsuarioCrea)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tent_FechaCrea)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tent_UsuarioModifica)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tent_FechaModifica)
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Details", "Details", new { id = item.tent_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.tent_Id }, new { @class = "btn btn-white btn-xs " })
-                                    </td>
-                                </tr>
-                            }
-
-                        </tbody>
-                    </table>*@
                 </div>
 
             </div>
@@ -133,23 +64,5 @@
 </div>
 
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#TipoEntrada').DataTable(
-        {
-            "searching": true,
-
-            "oLanguage": {
-                "oPaginate": {
-                    "sNext": "Siguiente",
-                    "sPrevious": "Anterior",
-                },
-                "sSearch": "Buscar",
-                "sLengthMenu": "Mostrar _MENU_ registros por página",
-                "sInfo": "Mostrando _START_ a _END_ Entradas",
-            }
-        });
-    });
-</script>
-
+<script src="~/Scripts/app/DataTable.js"></script>
 

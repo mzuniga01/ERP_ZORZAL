@@ -13,11 +13,11 @@ namespace ERP_ZORZAL.Models
 
     public class ProductosCategoriasmetadata
     {
-        [Display(Name = "ID Categoría")]
+        [Display(Name = "Número Categoría")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pcat_Id { get; set; }
 
-        [Display(Name = "Nombre Categoría")]
+        [Display(Name = "Categoría")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string pcat_Nombre { get; set; }
 
@@ -25,7 +25,7 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pcat_UsuarioCrea { get; set; }
 
-        [Display(Name = "Creado En")]
+        [Display(Name = "Creado El")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime pcat_FechaCrea { get; set; }
 
@@ -33,10 +33,11 @@ namespace ERP_ZORZAL.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<int> pcat_UsuarioModifica { get; set; }
 
-        [Display(Name = "Modificado En")]
+        [Display(Name = "Modificado El")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<System.DateTime> pcat_FechaModifica { get; set; }
 
         public virtual ICollection<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }
+        public virtual tbUsuario tbUsuario { get; set; }
     }
 }

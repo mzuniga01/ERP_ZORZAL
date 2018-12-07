@@ -1,0 +1,97 @@
+﻿@model ERP_ZORZAL.Models.tbBodegaDetalle
+@using ERP_ZORZAL.Models
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.bodd_Id)
+
+                            @*<div class="form-group">
+                                @Html.LabelFor(model => model.bodd_Id, "prod_Codigo", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.bodd_Id)
+                                </div>
+                            </div>*@
+
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.bod_Id, "bod_Id", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("bod_Id", String.Empty)
+                                        @Html.ValidationMessageFor(model => model.bod_Id)
+                                    </div>
+                                </div>*@
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_CantidadMinima)
+                                    @Html.ValidationMessageFor(model => model.bodd_CantidadMinima)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_CantidadMaxima)
+                                    @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_PuntoReorden)
+                                    @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_Costo)
+                                    @Html.ValidationMessageFor(model => model.bodd_Costo)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bodd_CostoPromedio, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_CostoPromedio)
+                                    @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
