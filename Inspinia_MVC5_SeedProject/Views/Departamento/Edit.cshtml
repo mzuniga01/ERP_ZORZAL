@@ -79,7 +79,7 @@
                             Acción
                         </th>
                         <th>
-                            Creado
+                           Usuario
                         </th>
                         <th>
                             Fecha
@@ -89,7 +89,9 @@
                         <td>
                             Creado por
                         </td>
-                        <td></td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        </td>
                         <td>
                             @Html.DisplayFor(model => model.dep_FechaCrea)
                         </td>
@@ -98,7 +100,9 @@
                         <td>
                             Modificado por
                         </td>
-                        <td></td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        </td>
                         <td>
                             @Html.DisplayFor(model => model.dep_FechaModifica)
                         </td>

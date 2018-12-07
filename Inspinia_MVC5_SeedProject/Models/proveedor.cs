@@ -14,7 +14,7 @@ namespace ERP_ZORZAL.Models
     }
     public class proveedor
     {
-        [Display(Name = "Numero Proveedor")]
+        [Display(Name = "Número Proveedor")]
         public int prov_Id { get; set; }
         [Display(Name = "Nombre")]
         public string prov_Nombre { get; set; }
@@ -29,10 +29,12 @@ namespace ERP_ZORZAL.Models
         [Display(Name = "Creado Por")]
         public int prov_UsuarioCrea { get; set; }
         [Display(Name = "Creado El")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public System.DateTime prov_FechaCrea { get; set; }
         [Display(Name = "Modificado Por")]
         public Nullable<int> prov_UsuarioModifica { get; set; }
         [Display(Name = "Modificado El")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> prov_FechaModifica { get; set; }
 
     }

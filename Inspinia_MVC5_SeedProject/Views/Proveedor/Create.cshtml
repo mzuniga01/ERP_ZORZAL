@@ -1,4 +1,10 @@
 ﻿
+@model ERP_ZORZAL.Models.tbProveedor
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Proveedor</h2>
@@ -28,10 +34,17 @@
 
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true)
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.prov_Id , new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.prov_Id, new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.prov_Id)
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Nombre, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
+                                <div class="col-md-4">
                                     @Html.EditorFor(model => model.prov_Nombre)
                                     @Html.ValidationMessageFor(model => model.prov_Nombre)
                                 </div>
@@ -39,7 +52,7 @@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_NombreContacto, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
+                                <div class="col-md-4">
                                     @Html.EditorFor(model => model.prov_NombreContacto)
                                     @Html.ValidationMessageFor(model => model.prov_NombreContacto)
                                 </div>
@@ -47,7 +60,7 @@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Direccion, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
+                                <div class="col-md-4">
                                     @Html.EditorFor(model => model.prov_Direccion)
                                     @Html.ValidationMessageFor(model => model.prov_Direccion)
                                 </div>
@@ -55,7 +68,7 @@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Email, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
+                                <div class="col-md-4">
                                     @Html.EditorFor(model => model.prov_Email)
                                     @Html.ValidationMessageFor(model => model.prov_Email)
                                 </div>
@@ -63,27 +76,12 @@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Telefono, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
+                                <div class="col-md-4">
                                     @Html.EditorFor(model => model.prov_Telefono)
                                     @Html.ValidationMessageFor(model => model.prov_Telefono)
                                 </div>
                             </div>
 
-                            @*<div class="form-group">
-                                    @Html.LabelFor(model => model.prov_UsuarioModifica, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.prov_UsuarioModifica)
-                                        @Html.ValidationMessageFor(model => model.prov_UsuarioModifica)
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.prov_FechaModifica, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.prov_FechaModifica)
-                                        @Html.ValidationMessageFor(model => model.prov_FechaModifica)
-                                    </div>
-                                </div>*@
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">

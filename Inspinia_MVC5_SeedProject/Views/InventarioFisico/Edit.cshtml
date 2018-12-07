@@ -37,88 +37,156 @@
                                 @Html.HiddenFor(model => model.invf_Id)
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.invf_Descripcion, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.invf_Descripcion)
-                                        @Html.ValidationMessageFor(model => model.invf_Descripcion)
+                                    @Html.LabelFor(model => model.invf_FechaInventario, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.invf_FechaInventario)
+                                        @Html.ValidationMessageFor(model => model.invf_FechaInventario)
+                                    </div>
+
+                                    @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.bod_Id)
                                     </div>
                                 </div>
 
                                 <div class="form-group">
+                                    @Html.LabelFor(model => model.invf_Descripcion, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.invf_Descripcion)
+                                        @Html.ValidationMessageFor(model => model.invf_Descripcion)
+                                    </div>
+
                                     @Html.LabelFor(model => model.invf_ResponsableBodega, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
+                                    <div class="col-md-4">
                                         @Html.EditorFor(model => model.invf_ResponsableBodega)
                                         @Html.ValidationMessageFor(model => model.invf_ResponsableBodega)
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.bod_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.bod_Id)
-                                        @Html.ValidationMessageFor(model => model.bod_Id)
+                                    @Html.LabelFor(model => model.estif_Id, "Estado Inventario Fisico", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                       @Html.DropDownList("estif_Id", (IEnumerable<SelectListItem>)ViewBag.estif_Id, new { @class = "form-control" })
+                                       @Html.ValidationMessageFor(model => model.estif_Id)
                                     </div>
                                 </div>
+                               
 
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.estif_Id, "estif_Id", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    <div class="col-md-10">
-                                        @Html.DropDownList("estif_Id", String.Empty)
-                                        @Html.ValidationMessageFor(model => model.estif_Id)
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.invf_FechaInventario, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.invf_FechaInventario)
-                                        @Html.ValidationMessageFor(model => model.invf_FechaInventario)
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.invf_UsuarioCrea, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    <div class="col-md-10">
+                                    @*@Html.LabelFor(model => model.invf_UsuarioCrea, new { @class = "control-label col-md-2"})
+                                    <div class="col-md-4">
                                         @Html.EditorFor(model => model.invf_UsuarioCrea)
                                         @Html.ValidationMessageFor(model => model.invf_UsuarioCrea)
-                                    </div>
-                                </div>
+                                    </div>*@
+                               
 
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.invf_FechaCrea, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @*<div class="form-group">
+                                    @Html.LabelFor(model => model.invf_FechaCrea, new { @class = "control-label col-md-2"})
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.invf_FechaCrea)
                                         @Html.ValidationMessageFor(model => model.invf_FechaCrea)
                                     </div>
-                                </div>
+                                </div>*@
 
-                                <div class="form-group">
+                                @*<div class="form-group">
                                     @Html.LabelFor(model => model.invf_UsuarioModifica, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.invf_UsuarioModifica)
                                         @Html.ValidationMessageFor(model => model.invf_UsuarioModifica)
                                     </div>
-                                </div>
+                                </div>*@
 
-                                <div class="form-group">
+                                @*<div class="form-group">
                                     @Html.LabelFor(model => model.invf_FechaModifica, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.invf_FechaModifica)
                                         @Html.ValidationMessageFor(model => model.invf_FechaModifica)
                                     </div>
-                                </div>
+                                </div>*@
 
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" value="Gurdar" class="btn btn-primary" />
+                                        <input type="submit" value="Guardar" class="btn btn-primary" />
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                     </div>
                                 </div>
                             </div>
                         }
-      @Html.Partial("_IndexInvFisicoDetalle", Model.tbInventarioFisicoDetalle)
 
-                    </div>
+                            @Html.Partial("_IndexInvFisicoDetalle", Model.tbInventarioFisicoDetalle)
+
+
+                        <div class="ibox-content">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>
+                                        @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
+                                        Acción
+                                    </th>
+                                    <th>
+                                        @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
+                                        Usuario
+                                    </th>
+                                    <th>
+                                        @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
+                                        Fecha
+                                    </th>
+                                    @*<th>
+                        @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tsal_FechaModifica)
+                    </th>*@
+                                    @*<th></th>*@
+                                </tr>
+
+                                @*@foreach (var item in Model) { }*@
+                                <tr>
+                                    <td>
+                                        @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
+                                        Creado
+                                    </td>
+                                    <td>
+
+                                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                    </td>
+                                    <td>
+
+                                        @Html.DisplayFor(model => model.invf_FechaCrea)
+                                    </td>
+                                    @*<td>
+                        @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                        @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                        @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
+                                        Modificado
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.invf_FechaModifica)
+                                    </td>
+                                    @*<td>
+                        @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                        @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                        @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    </td>*@
+                                </tr>
+
+                            </table>
+                        </div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -196,6 +264,8 @@
         </div>
     </div>
 </div>*@
-@section Scripts {
+
+
+@*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@

@@ -4,22 +4,18 @@
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
-            
-              
-                
-
-                    <table class="table table-responsive" style="width:100%" id="DataTable">
-                        <thead>
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.mun_Codigo)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.mun_Nombre)
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
+            <table class="table table-responsive" style="width:100%" id="DataTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.mun_Codigo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.mun_Nombre)
+                        </th>
+                    </tr>
+               </thead>
+            <tbody>
     @foreach (var item in Model)
     {
         <tr>
@@ -33,11 +29,11 @@
                           
             }
                       
-            </table>
-           </div>
+           </table>
         </div>
-       </div>
-    
+      </div>
+   </div>
+   
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>

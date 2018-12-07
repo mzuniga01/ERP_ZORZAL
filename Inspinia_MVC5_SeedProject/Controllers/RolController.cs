@@ -97,6 +97,7 @@ namespace ERP_ZORZAL.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            ViewBag.obj_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla");
             tbRol tbRol = db.tbRol.Find(id);
             if (tbRol == null)
             {
@@ -114,6 +115,7 @@ namespace ERP_ZORZAL.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.Entry(tbRol).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

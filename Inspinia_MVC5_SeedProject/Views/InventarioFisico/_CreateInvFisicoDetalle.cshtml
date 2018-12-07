@@ -1,13 +1,12 @@
 ﻿@model ERP_ZORZAL.Models.tbInventarioFisicoDetalle
-
-
+@using ERP_ZORZAL.Models
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Registrar inventario fisico detalle</h5>
+                    <h5>Registrar Inventario Fisico Detalle</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -18,74 +17,46 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.invf_Id, "invf_Id", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("invf_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.invf_Id)
-            </div>
-        </div>*@
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.prod_Codigo, "prod_Codigo", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("prod_Codigo", String.Empty)
+        <div class="form-group">
+            @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.prod_Codigo)
                 @Html.ValidationMessageFor(model => model.prod_Codigo)
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalproductos"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+             </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.uni_Id, "Unidad de Medida", new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.uni_Id)
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.invfd_Cantidad, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.invfd_Cantidad , new {id = "cantidad" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.invfd_Cantidad)
                 @Html.ValidationMessageFor(model => model.invfd_Cantidad)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.invfd_CantidadSistema, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.invfd_CantidadSistema, new { id = "cantidadsistema" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.invfd_CantidadSistema)
                 @Html.ValidationMessageFor(model => model.invfd_CantidadSistema)
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Producto</label>
-            <div class="col-md-10">
-                <select id="Select1" class="form-control">
-                    <option>--Producto--</option>
-                    <option>Producto #1</option>
-                    <option>Producto #2</option>
-                    <option>Producto #3</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Unidad de Medida</label>
-            <div class="col-md-10">
-                <select id="Select1" class="form-control">
-                    <option>--Unidad de Medida--</option>
-                    <option>Unidad de Medida #1</option>
-                    <option>Unidad de Medida #2</option>
-                    <option>Unidad de Medida #3</option>
-                </select>
-            </div>
-        </div>
-
         @*<div class="form-group">
-            @Html.LabelFor(model => model.uni_Id, "uni_Id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.invfd_UsuarioCrea, "invfd_UsuarioCrea", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("uni_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.uni_Id)
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.invfd_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.invfd_UsuarioCrea)
+                @Html.DropDownList("invfd_UsuarioCrea", String.Empty)
                 @Html.ValidationMessageFor(model => model.invfd_UsuarioCrea)
             </div>
         </div>
@@ -113,40 +84,34 @@
                 @Html.ValidationMessageFor(model => model.invfd_FechaModifica)
             </div>
         </div>*@
+
     </div>
 }
-                    <input type="button" value="Agregar" class="btn btn-primary" id="bt_add" onclick="seleccionar()"/>
+
+                    <input type="button" value="Agregar" class="btn btn-primary" id="bt_add" onclick="seleccionar()" />
                     <table class="table table-responsive" style="width:100%" id="tabla">
                         <thead>
                             <tr>
                                 <th>
-                                    Cantidad
-                                </th>
-                                <th>
-                                    Cantidad sistema
-                                </th>
-                                <th>
-                                   Producto
+                                    Producto
                                 </th>
                                 <th>
                                     Unidad de Medida
+                                </th>
+                                <th>
+                                    Cantidad
+                                </th>
+                                <th>
+                                    Cantidad de Sistema
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>
-
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
-
-                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         </tbody>
                     </table>
@@ -162,7 +127,6 @@
 @*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }*@
-
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
 
@@ -175,10 +139,35 @@
     var cont = 0
     function agregar() {
         cont++
-        var fila = '<tr class="selected" id=fila' + cont + '"onclick="seleccionar(this.id);"><td>10.00</td><td>30.15</td><td>Camisa</td><td>Decena</td></</tr>';
+        var fila = '<tr class="selected" id=fila' + cont + '"onclick="seleccionar(this.id);"><td>Pantalon</td><td>Decena</td><td>0.00</td><td>0.00</td></</tr>';
         $('#tabla').append(fila);
     }
 
 
 
 </script>
+
+<!-- Modal Productos -->
+<div>
+    <div class="modal fade" id="modalproductos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Buscar Producto</h4>
+                </div>
+                <div class="modal-body" id="frmAgregarCasoExito">
+                   @Html.Partial("_IndexProductos",(List<tbProducto>)ViewBag.Producto)
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" type="button" id="GuardarCasos">Guardar</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

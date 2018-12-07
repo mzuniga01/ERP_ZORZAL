@@ -6,45 +6,88 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Inventario Fisico Detalle</h5>
+                    <h5>Inventario Fisico Detalle</h5>
                 </div>
                 <div class="ibox-content">
-                    <table class="table table-responsive" style="width:100%" id="DataTable">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Cantidad sistema
-                                </th>
-                                <th>
-                                    Producto
-                                </th>
-                                <th>
-                                    Cantidad
-                                </th>
-                                <th>
-                                    Unidad de Medida
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
 
-                    <tr>
-                        <td>
-                            0.00
-                        </td>
-                        <td>
-                           Camisa Polo 
-                        </td>
-                        <td>
-                           0.00
-                        </td>
-                        <td>
-                           Unidad
-                        </td>
-                    </tr>
-                
-                        </tbody>
-                    </table>
+<table class="table table-responsive" style="width:100%" id="DataTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.prod_Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.invfd_CantidadSistema)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.invfd_Cantidad)
+            </th>
+         
+            @*<th>
+                @Html.DisplayNameFor(model => model.invfd_FechaCrea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.invfd_UsuarioModifica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.invfd_FechaModifica)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+            </th>*@
+         
+            <th>
+            Acciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prod_Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.invfd_CantidadSistema)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.invfd_Cantidad)
+                </td>
+          
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.invfd_FechaCrea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.invfd_UsuarioModifica)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.invfd_FechaModifica)
+                </td>*@
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+                </td>*@
+            
+                <td>
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetails">Detalles</button>
+                    <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Modaledit">Editar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
                 </div>
             </div>
@@ -52,24 +95,54 @@
     </div>
  </div>
 
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#DataTable').DataTable({
+<!-- Modal Details -->
+<div>
+    <div class="modal fade" id="ModalDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Ingresar Caso de Éxito</h4>
+                </div>
+                <div class="modal-body" id="frmAgregarCasoExito">
+                    @Html.Partial("_DetailsInvFisicoDetalle", new ERP_ZORZAL.Models.tbInventarioFisicoDetalle() {  })
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" type="button" id="GuardarCasos">Guardar</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        "searching": false,
-        "oLanguage": {
-            "oPaginate": {
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior",
-            },
-            "sSearch": "Buscar",
-            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
-            "sInfo": "Mostrando _START_ a _END_ Entradas"
+<!-- Modal EDIT -->
+<div>
+    <div class="modal fade" id="Modaledit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Ingresar Caso de Éxito</h4>
+                </div>
+                <div class="modal-body" id="frmAgregarCasoExito">
+                    @Html.Partial("_EditInvFisicoDetalle", new ERP_ZORZAL.Models.tbInventarioFisicoDetalle() { })
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" type="button" id="GuardarCasos">Guardar</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        },
-
-    });
-    });
-</script>
 

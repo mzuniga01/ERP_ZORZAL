@@ -61,7 +61,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="form-horizontal">
-                        @Html.Partial("_IndexAccesoRol_Botones", Model.tbAccesoRol)
+                        @Html.Partial("_EditAccesoRol", new ERP_ZORZAL.Models.tbAccesoRol())
                         <div class="form-group">
                             <div class="col-md-12 text-center">
                                 <input type="button" value="Guardar" class="btn btn-primary" />
@@ -72,46 +72,46 @@
                 </div>
             </div>
             <div class="ibox float-e-margins">
-                
+
                 <div class="ibox-content">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>
-                                    Acción
-                                </th>
-                                <th>
-                                    Creado
-                                </th>
-                                <th>
-                                    Fecha
-                                </th>
-                            </tr>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                Acción
+                            </th>
+                            <th>
+                                Usuario
+                            </th>
+                            <th>
+                                Fecha
+                            </th>
+                        </tr>
 
-                            <tr>
-                                <td>
-                                    Creado por
-                                </td>
-                                <td>
+                        <tr>
+                            <td>
+                                Creado por
+                            </td>
+                            <td>
 
-                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.rol_FechaCrea)
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Modificado por
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.rol_FechaModifica)
-                                </td>
-                            </tr>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.rol_FechaCrea)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Modificado por
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.rol_FechaModifica)
+                            </td>
+                        </tr>
 
-                        </table>
+                    </table>
                 </div>
             </div>
 

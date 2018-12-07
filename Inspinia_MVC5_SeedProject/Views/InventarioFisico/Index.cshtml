@@ -19,7 +19,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Inventario Fisico</h5>
                     <div class="ibox-tools">
-                        @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary"})
+                        @Html.ActionLink("Registrar Inventario Fisico", "Create", null, new { @class = "btn btn-primary"})
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -28,45 +28,39 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.invf_Descripcion)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.invf_ResponsableBodega)
+                                    @Html.DisplayNameFor(model => model.invf_FechaInventario)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.bod_Id)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.invf_FechaInventario)
+                                    @Html.DisplayNameFor(model => model.invf_ResponsableBodega)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.tbEstadoInventarioFisico.estif_Descripcion)
                                 </th>
-                                <th></th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
                                 <tr>
+                                      <td>
+                                        @Html.DisplayFor(modelItem => item.invf_FechaInventario)
+                                    </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.invf_Descripcion)
+                                        @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.invf_ResponsableBodega)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.bod_Id)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.invf_FechaInventario)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.tbEstadoInventarioFisico.estif_Descripcion)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Detalle", "Detalle", new { id = item.invf_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Editar", "Editar", new { id = item.invf_Id }, new { @class = "btn btn-white btn-xs" })
+                                        @Html.ActionLink("Detalle", "Details", new { id = item.invf_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.invf_Id }, new { @class = "btn btn-white btn-xs" })
                                     </td>
                                 </tr>
                             }

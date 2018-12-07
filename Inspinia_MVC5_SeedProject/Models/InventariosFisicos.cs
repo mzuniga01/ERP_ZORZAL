@@ -36,6 +36,7 @@ public class InventariosFisicosMetadata
         public byte estif_Id { get; set; }
 
         [Display(Name = "Fecha de Levantamiento")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime invf_FechaInventario { get; set; }
 

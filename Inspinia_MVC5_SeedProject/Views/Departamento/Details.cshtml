@@ -64,47 +64,47 @@
 
 
 
-            <div class="ibox-content">
-                <table class="table table-striped">
-                    <tr>
-                        <th>
-                            Acción
-                        </th>
-                        <th>
-                            Creado
-                        </th>
-                        <th>
-                            Fecha
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            Creado por
-                        </td>
-                        <td>
-                            
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.dep_FechaCrea)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Modificado por
-                        </td>
-                        <td>
-                            
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.dep_FechaModifica)
-                        </td>
-                      
-                    </tr>
+        <div class="ibox-content">
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        Acción
+                    </th>
+                    <th>
+                        Usuario
+                    </th>
+                    <th>
+                        Fecha
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        Creado por
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dep_FechaCrea)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Modificado por
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dep_FechaModifica)
+                    </td>
 
-                </table>
-                </div>
-            </div>
-    </div>
+                </tr>
+
+            </table>
+        </div>
+     </div>
+  </div>
 
 
 

@@ -43,38 +43,6 @@
             @Html.DisplayFor(model => model.estm_Descripcion)
         </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.estm_UsuarioCrea)
-        </dt>
-
-        <dd>
-            Luis Ochoa
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.estm_FechaCrea)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.estm_FechaCrea)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.estm_UsuarioModifica)
-        </dt>
-
-        <dd>
-            Luis Ochoa
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.estm_FechaModifica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.estm_FechaModifica)
-        </dd>*@
-
     </dl>
 
 
@@ -85,38 +53,24 @@
                 <div class="ibox-content">
                     <table class="table table-striped">
                         <tr>
-                            <th> @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@Acción </th>
-                            <th>
-                                @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@Creado
-                            </th>
-                            <th>
-                                @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@Fecha
-                            </th>@*<th>
-                    @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)</th><th>
-                    @Html.DisplayNameFor(model => model.tsal_FechaModifica) </th>*@
-                            @*<th></th>*@
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
                         </tr>
                         @*@foreach (var item in Model) { }*@
                         <tr>
-                            <td> @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@Creado por  </td>
+                            <td>Creado por  </td>
                             <td>
-                                @*@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)*@
-                                Brayan
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
                             </td>
                             <td>@Html.DisplayFor(model => model.estm_FechaCrea)</td>
-                            @*<td>@Html.DisplayFor(modelItem => item.tsal_FechaModifica)</td>
-                    <td>@Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})                         @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})                         @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})                     </td>*@
+
                         </tr>
                         <tr>
-                            <td>
-
-                                @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@Modificado por
-                            </td>
-                            <td>@*@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)*@ 
-                            Brayan</td>
+                            <td>Modificado por</td>
+                            <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres) </td>
                             <td> @Html.DisplayFor(model => model.estm_FechaModifica)</td>
-                            @*<td> @Html.DisplayFor(modelItem => item.tsal_FechaModifica)</td>
-                            *@
+
                         </tr>
                     </table>
                 </div>

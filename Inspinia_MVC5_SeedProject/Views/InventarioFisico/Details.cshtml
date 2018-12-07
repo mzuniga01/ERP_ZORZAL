@@ -11,7 +11,7 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            @Html.ActionLink("Regresar", "Index", null, new { @class = "" })
+            @Html.ActionLink("Regresar", "Index")
         </div>
     </div>
 </div>
@@ -21,18 +21,26 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Detalle nventario Fisico</h5>
+                        <h5>Detalle inventario Fisico</h5>
                     </div>
                     <div class="ibox-content">
 
 
                         <dl class="dl-horizontal">
                             <dt>
-                                @Html.DisplayNameFor(model => model.invf_Descripcion)
+                                @Html.DisplayNameFor(model => model.invf_FechaInventario)
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.invf_Descripcion)
+                                @Html.DisplayFor(model => model.invf_FechaInventario)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.bod_Id)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.tbBodega.bod_Nombre)
                             </dd>
 
                             <dt>
@@ -44,22 +52,14 @@
                             </dd>
 
                             <dt>
-                                @Html.DisplayNameFor(model => model.bod_Id)
+                                @Html.DisplayNameFor(model => model.invf_Descripcion)
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.bod_Id)
+                                @Html.DisplayFor(model => model.invf_Descripcion)
                             </dd>
 
-                            <dt>
-                                @Html.DisplayNameFor(model => model.invf_FechaInventario)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.invf_FechaInventario)
-                            </dd>
-
-                            <dt>
+                            @*<dt>
                                 @Html.DisplayNameFor(model => model.invf_UsuarioCrea)
                             </dt>
 
@@ -89,7 +89,7 @@
 
                             <dd>
                                 @Html.DisplayFor(model => model.invf_FechaModifica)
-                            </dd>
+                            </dd>*@
 
                             <dt>
                                 @Html.DisplayNameFor(model => model.tbEstadoInventarioFisico.estif_Descripcion)
@@ -101,9 +101,85 @@
 
                         </dl>
 
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.invf_Id }, new { @class = "btn btn-primary" })
 
-                        @Html.ActionLink("Edit", "Edit", new { id = Model.invf_Id }, new { @class = "btn btn-primary" })
 
+                        <div class="form-group">
+                            @*<div class="col-md-offset-2 col-md-10">*@
+                            @Html.Partial("_IndexInvFisicoDetalle", Model.tbInventarioFisicoDetalle)
+                            @*</div>*@
+                        </div>
+
+                        <div class="ibox-content">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
+                                    Acción
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
+                                    Usuario
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
+                                    Fecha
+                                </th>
+                                @*<th>
+                    @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tsal_FechaModifica)
+                </th>*@
+                                @*<th></th>*@
+                            </tr>
+
+                            @*@foreach (var item in Model) { }*@
+                            <tr>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
+                                    Creado
+                                </td>
+                                <td>
+
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                </td>
+                                <td>
+
+                                    @Html.DisplayFor(model => model.invf_FechaCrea)
+                                </td>
+                                @*<td>
+                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
+                                    Modificado
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.invf_FechaModifica)
+                                </td>
+                                @*<td>
+                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
+                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
+                </td>*@
+                            </tr>
+
+                        </table>
+                        </div>
                     </div>
                 </div>
             </div>

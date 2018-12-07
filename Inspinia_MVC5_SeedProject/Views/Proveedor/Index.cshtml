@@ -19,7 +19,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Proveedores</h5>
                     <div class="ibox-tools">
-                        @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Registrar Proveedor", "Create", null, new { @class = "btn btn-primary" })
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -27,6 +27,9 @@
                     <table class="table table-responsive" style="width:100%" id="dataTable">
                         <thead>
                             <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prov_Id)
+                                </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.prov_Nombre)
                                 </th>
@@ -36,9 +39,7 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.prov_Direccion)
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.prov_Email)
-                                </th>
+                               
                                 <th>
                                     @Html.DisplayNameFor(model => model.prov_Telefono)
                                 </th>
@@ -52,6 +53,10 @@
                                 <tr>
                                     <td>
 
+                                        @Html.DisplayFor(modelItem => item.prov_Id)
+                                    </td>
+                                    <td>
+
                                         @Html.DisplayFor(modelItem => item.prov_Nombre)
                                     </td>
                                     <td>
@@ -62,9 +67,7 @@
 
                                         @Html.DisplayFor(modelItem => item.prov_Direccion)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.prov_Email)
-                                    </td>
+                                   
                                     <td>
                                         @Html.DisplayFor(modelItem => item.prov_Telefono)
                                     </td>

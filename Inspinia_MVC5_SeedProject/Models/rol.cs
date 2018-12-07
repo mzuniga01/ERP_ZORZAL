@@ -19,10 +19,12 @@ namespace ERP_ZORZAL.Models
         [Display(Name = "Creado por")]
         public int rol_UsuarioCrea { get; set; }
         [Display(Name = "Creado el")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public System.DateTime rol_FechaCrea { get; set; }
         [Display(Name = "Modificado por")]
         public Nullable<int> rol_UsuarioModifica { get; set; }
         [Display(Name = "Modificado el")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> rol_FechaModifica { get; set; }
     }
 }

@@ -24,23 +24,23 @@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.mun_Codigo, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     @Html.EditorFor(model => model.mun_Codigo)
                                     @Html.ValidationMessageFor(model => model.mun_Codigo)
                                 </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.mun_Nombre, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.mun_Nombre)
+                                        @Html.ValidationMessageFor(model => model.mun_Nombre)
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <button class="btn btn-primary" type="button" id="AgregarMunicipios">Añadir</button>
+                                    </div>
+                                </div>
                             </div>
-                            
                            
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.mun_Nombre, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.mun_Nombre)
-                                    @Html.ValidationMessageFor(model => model.mun_Nombre)
-                                </div>
-                                <div class="form-group col-md-1">
-                                    <button class="btn btn-primary" type="button" id="AgregarMunicipios">Añadir</button>
-                                </div>
-                            </div>
                             <table id="tblMunicipios" class="table table table-striped">
                                 <thead>
                                     <tr>
