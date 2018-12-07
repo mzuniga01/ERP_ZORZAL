@@ -7,15 +7,12 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Detalle Devolución</h2>
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("Lista", "Index")
-            </li>
-            <li class="active">
-                <strong>Detalle</strong>
-            </li>
-        </ol>
+        <h2>Devolución de Producto</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
     </div>
 </div>
 
@@ -35,7 +32,7 @@
                 <div class="ibox-content">
 
 
-				    <dl class="dl-horizontal">
+                    <dl class="dl-horizontal">
 
                         <dt>
                             @Html.DisplayNameFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
@@ -45,7 +42,8 @@
                             @Html.DisplayFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
                         </dd>
 
-                       <br /> <dt>
+                        <br />
+                        <dt>
                             Caja
                         </dt>
 
@@ -53,7 +51,8 @@
                             @Html.DisplayFor(model => model.tbCaja.cja_Descripcion)
                         </dd>
 
-                        <br /> <dt>
+                        <br />
+                        <dt>
                             Factura
                         </dt>
 
@@ -61,48 +60,76 @@
                             @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
                         </dd>
 
-                        <br /> <dt>
+                        <br />
+                        <dt>
                             @Html.DisplayNameFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte)
                         </dt>
 
                         <dd>
                             @Html.DisplayFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte)
                         </dd>
-                        
-                  <br /><dt>
+
+                        <br />
+                        <dt>
                             @Html.DisplayNameFor(model => model.tbFactura.clte_Nombres)
                         </dt>
 
                         <dd>
                             @Html.DisplayFor(model => model.tbFactura.clte_Nombres)
                         </dd>
-                        <br /> <dt>
-                                    @Html.DisplayNameFor(model => model.dev_Fecha)
-                                </dt>
+                        <br />
+                        <dt>
+                            @Html.DisplayNameFor(model => model.dev_Fecha)
+                        </dt>
 
-                                <dd>
-                                    @Html.DisplayFor(model => model.dev_Fecha)
-                                </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.dev_Fecha)
+                        </dd>
 
-                        <br / ><dt>
+                        <br / >
+                        <dt>
                             Codigo Producto
                         </dt>
 
                         <dd>
                             PANPJ-102634700
                         </dd>
-                        <br /><dt>
-                           Producto
+                        <br />
+                        <dt>
+                            Producto
                         </dt>
 
                         <dd>
-                           Pantalon
+                            Pantalon
                         </dd>
-    </dl>
+
+                        <script type="text/javascript">
+                            function NotaCredito()
+                            {
+                                var bResponse = confirm('¿Esta seguro que desea crear una nota de Credito?. Recuerde que no podra volver hacerlo, esta acción es irreversible');
+
+                                if (bResponse === true) {
+                                    console.log("lnkLogout_Confirm clciked.");
+                                    var url = '@Url.Action("Create", "NotaCredito")';
+                                    window.location.href = url;
+                                }
+                                return bResponse;
+                            }
+
+                        </script>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-10 col-md-11">
+                                <button onclick="NotaCredito()" class="btn btn-primary btn-xs">Emitir Nota de Credito</button>
+                            </div>
+                        </div>
+                    </dl>
+
+                
                 </div>
             </div>
-            <div class="form-group">
-                <table id="Auditoria" class="table table-striped">
+            <div class="ibox-content">
+                <table class="table table-striped">
                     <tr>
                         <th></th>
                         <th>Usuario</th>

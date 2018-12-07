@@ -35,5 +35,6 @@ namespace ERP_ZORZAL.Models
         public virtual tbCuentasBanco tbCuentasBanco { get; set; }
         public virtual tbFactura tbFactura { get; set; }
         public virtual tbTipoPago tbTipoPago { get; set; }
+     
     }
 }

@@ -16,7 +16,7 @@ namespace ERP_ZORZAL.Models
     }
     public partial class tbPagoMetaData
     {
-        [Display(Name = "Código")]
+        [Display(Name = "Número Pago")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public int pago_Id { get; set; }
         [Display(Name = "Factura")]
@@ -28,7 +28,7 @@ namespace ERP_ZORZAL.Models
         public short tpa_Id { get; set; }
 
         [Display(Name = "Fecha ")]
-        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "0:yyyy/MM/dd}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public System.DateTime pago_FechaElaboracion { get; set; }
 
@@ -53,7 +53,6 @@ namespace ERP_ZORZAL.Models
         public short bcta_Id { get; set; }
 
         [Display(Name = "Fecha de Vencimiento")]
-        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "0:yyyy/MM/dd}")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public Nullable<System.DateTime> pago_FechaVencimiento { get; set; }
 
@@ -66,7 +65,7 @@ namespace ERP_ZORZAL.Models
         public int pago_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Crea")]
-        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "0:yyyy/MM/dd}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public System.DateTime pago_FechaCrea { get; set; }
 
@@ -75,7 +74,7 @@ namespace ERP_ZORZAL.Models
         public Nullable<int> pago_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modifica")]
-        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "0:yyyy/MM/dd}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public Nullable<System.DateTime> pago_FechaModifica { get; set; }
 

@@ -47,7 +47,9 @@ namespace ERP_ZORZAL.Controllers
 
             tbPago pago = new tbPago();
             pago.TPList = cTest.TPList();
-            return View(pago);
+
+            ViewBag.CLIENTE = db.tbCliente.ToList();
+            return View();
         }
 
         // POST: /Pago/Create
@@ -68,6 +70,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.pago_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPago.pago_UsuarioModifica);
             ViewBag.bcta_Id = new SelectList(db.tbCuentasBanco, "bcta_Id", "bcta_Numero", tbPago.bcta_Id);
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPago.fact_Id);
+            //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPago.tbFactura.clte_Id);
             ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion", tbPago.tpa_Id);
             return View(tbPago);
         }

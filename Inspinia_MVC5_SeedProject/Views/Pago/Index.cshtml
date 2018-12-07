@@ -8,11 +8,7 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Pagos</h2>
-        @*<ol class="breadcrumb">
-            <li class="active">
-                <strong>tbPago</strong>
-            </li>
-        </ol>*@
+        
     </div>
 </div>
 
@@ -24,7 +20,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Pago</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Pago", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Registrar Pago", "Create", null, new { @class = "btn btn-primary "})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -40,7 +36,7 @@
                                 </th>
                                 <th>
                                     Tipo Pago
-                                    @Html.DisplayNameFor(model => model.tbTipoPago.tpa_Descripcion)
+                                    @*@Html.DisplayNameFor(model => model.tbTipoPago.tpa_Descripcion)*@
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.pago_SaldoAnterior)
@@ -49,22 +45,14 @@
                                     @Html.DisplayNameFor(model => model.pago_TotalPago)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbFactura.clte_Nombres)
+                                    Cliente
+                                    @*@Html.DisplayNameFor(model => model.tbFactura.clte_Nombres)*@
                                 </th>
-
-                                @*<th>
-                            @Html.DisplayNameFor(model => model.pago_TotalCambio)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.pago_Emisor)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.pago_FechaVencimiento)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.pago_Titular_)
-                        </th>
-                       *@
+                                <th>
+                                    Acciones
+                                    @*@Html.DisplayNameFor(model => model.tbFactura.clte_Nombres)*@
+                                </th>
+                                
 
 
                                 <th></th>
@@ -81,46 +69,23 @@
                                         @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
                                     </td>
                                     <td>
+                                        @Html.DisplayFor(modelItem => item.tbTipoPago.tpa_Descripcion)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.pago_SaldoAnterior)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.pago_TotalPago)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbTipoPago.tpa_Descripcion)
+                                        @Html.DisplayFor(modelItem => item.tbFactura.tbCliente.clte_Nombres)
                                     </td>
 
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.pago_TotalCambio)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.pago_Emisor)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.pago_FechaVencimiento)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.pago_Titular_)
-                                    </td>
-                                    @*<td>
-                        @Html.DisplayFor(modelItem => item.pago_FechaCrea)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.pago_FechaModifica)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbCuentasBanco.bcta_Numero)
-                    </td>*@
 
                                     <td>
                                         @Html.ActionLink("Detalle", "Details", new { id = item.pago_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.pago_Id }, new { @class = "btn btn-white btn-xs" })
+                                        @Html.ActionLink("Imprimir", "", new { id = item.pago_Id }, new { @class = "btn btn-white btn-xs" })
                                         @*@Html.ActionLink("Delete", "Delete", new { id=item.pago_Id }, new { @class = "btn btn-white btn-sm"})*@
                                     </td>
                                 </tr>

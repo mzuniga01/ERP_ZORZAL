@@ -1,4 +1,5 @@
 ﻿@model ERP_ZORZAL.Models.tbPago
+@using ERP_ZORZAL.Models
 
 @{
     ViewBag.Title = "Create";
@@ -37,25 +38,50 @@
         <div class="form-group">
             @Html.LabelFor(model => model.pago_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.pago_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.pago_Id," ", new { htmlAttributes = new { @disabled = "disabled",@class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.pago_Id)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.fact_Id, "Factura", new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.fact_Id, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.fact_Id)
-            </div>
-        </div>
-        <div class="form-group">
             @Html.LabelFor(model => model.pago_FechaElaboracion, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.pago_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaPago" } })
+                @Html.EditorFor(model => model.pago_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaPago", @readonly="readonly" } })
                 @Html.ValidationMessageFor(model => model.pago_FechaElaboracion)
             </div>
         </div>
+
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte)
+            </div>
+            <div class="col-md-">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbFactura.clte_Nombres, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.tbFactura.clte_Nombres, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.tbFactura.clte_Nombres)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbFactura.fact_Codigo, "Factura", new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.tbFactura.fact_Codigo, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.tbFactura.fact_Codigo)
+            </div>
+        </div>
+        
+        
+        
         <div class="form-group">
             @Html.LabelFor(model => model.pago_SaldoAnterior, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
@@ -75,7 +101,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.tpa_Id, "Tipo de Pago", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.DropDownList("tpa_Id", null, "Seleccione Tipo de Pago", new { @class = "form-control",  @id = "TipoPago" })
+                @Html.DropDownList("tpa_Id", null, "Seleccionar Tipo de Pago", new { @class = "form-control",  @id = "TipoPago" })
                 @*@Html.DropDownList("tpa_id", new SelectList(Model.TPList, "ID_TP", "DESCRIPCION_TP"), "Seleccionar Tipo Pago", new { @class = "form-control", @id = "TipoPago" })*@
                 @Html.ValidationMessageFor(model => model.tpa_Id)
             </div>
@@ -83,19 +109,32 @@
 
         <div id="Efectivo" name="Efectivo">
             <div class="form-group">
-                @Html.LabelFor(model => model.pago_TotalPago,"Monto a Pagar", new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.pago_TotalPago, "Monto a Pagar", new { @class = "control-label col-md-2" })
                 <div class="col-md-5">
                     @Html.EditorFor(model => model.pago_TotalPago)
                     @Html.ValidationMessageFor(model => model.pago_TotalPago)
                 </div>
             </div>
 
-
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_TotalPago, "Monto Efectivo", new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.pago_TotalPago)
+                    @Html.ValidationMessageFor(model => model.pago_TotalPago)
+                </div>
+            </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.pago_TotalCambio, new { @class = "control-label col-md-2" })
                 <div class="col-md-5">
-                    @Html.EditorFor(model => model.pago_TotalCambio,  new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.EditorFor(model => model.pago_TotalCambio, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.pago_TotalCambio)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_TotalCambio, "Cambio Sugerido", new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    <textarea id="TextArea1" rows="2" cols="40"></textarea>
                 </div>
             </div>
         </div>
@@ -141,47 +180,34 @@
                 @Html.ValidationMessageFor(model => model.bcta_Id)
             </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.pago_UsuarioCrea, "pago_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("pago_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.pago_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pago_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pago_FechaCrea)
-                @Html.ValidationMessageFor(model => model.pago_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pago_UsuarioModifica, "pago_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("pago_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.pago_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pago_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pago_FechaModifica)
-                @Html.ValidationMessageFor(model => model.pago_FechaModifica)
-            </div>
-        </div>*@
-
+        *@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Registrar Pago" class="btn btn-primary" />
-				@Html.ActionLink("Salir", "Index", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>
 }
 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
+                    </div>
+                    <div class="modal-body" id="frmEditarMunicipios">
+                        @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
+                    </div>
                 </div>
             </div>
         </div>

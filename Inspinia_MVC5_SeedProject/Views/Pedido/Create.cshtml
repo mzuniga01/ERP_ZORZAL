@@ -39,130 +39,130 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true)
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
 
 
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Número Pedido</label>
-            @*@Html.LabelFor(model => model.ped_Id, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.ped_Id, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.ped_Id)
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Sucursal</label>
-            <div class="col-md-5">
-                <input type="text" value="San Pedro Sula" class="form-control" readonly />
-            </div>
-            @*@Html.LabelFor(model => model.suc_Id, "suc_Id", new { @class = "control-label col-md-2" })*@
-            <div class="col-md-4">
-                @*@Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })*@
-                @Html.ValidationMessageFor(model => model.suc_Id)
-            </div>
-        </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Número Pedido</label>
+                                @*@Html.LabelFor(model => model.ped_Id, new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.ped_Id, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.ped_Id)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Sucursal</label>
+                                <div class="col-md-5">
+                                    <input type="text" value="San Pedro Sula" class="form-control" readonly />
+                                </div>
+                                @*@Html.LabelFor(model => model.suc_Id, "suc_Id", new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-4">
+                                    @*@Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })*@
+                                    @Html.ValidationMessageFor(model => model.suc_Id)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Fecha Elaboración</label>
-            @*@Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.ped_FechaElaboracion)
-                @Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
-            </div>
-        </div>
-
-
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Número Cliente</label>
-            @*@Html.LabelFor(model => model.clte_Id, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.clte_Id)
-                <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)
-            </div>
-            <div class="col-md-">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Cliente</label>
-            @*@Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.ped_FechaCrea)
-                @Html.ValidationMessageFor(model => model.ped_FechaCrea)
-            </div>
-        </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Fecha Elaboración</label>
+                                @*@Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.ped_FechaElaboracion)
+                                    @Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
+                                </div>
+                            </div>
 
 
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Fecha Entrega</label>
-            @*@Html.LabelFor(model => model.ped_FechaEntrega, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.ped_FechaEntrega)
-                @Html.ValidationMessageFor(model => model.ped_FechaEntrega)
-            </div>
-        </div>
-  
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Número Cliente</label>
+                                @*@Html.LabelFor(model => model.clte_Id, new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.clte_Id)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)
+                                </div>
+                                <div class="col-md-">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Factura</label>
-            @*@Html.LabelFor(model => model.fact_Id, "fact_Id", new { @class = "control-label col-md-2" })*@
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.fact_Id, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.fact_Id)
-            </div>
-        </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Cliente</label>
+                                @*@Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.ped_FechaCrea)
+                                    @Html.ValidationMessageFor(model => model.ped_FechaCrea)
+                                </div>
+                            </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.ped_UsuarioCrea, "ped_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ped_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.ped_UsuarioCrea)
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ped_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ped_FechaCrea)
-                @Html.ValidationMessageFor(model => model.ped_FechaCrea)
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ped_UsuarioModifica, "ped_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ped_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.ped_UsuarioModifica)
-            </div>
-        </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Fecha Entrega</label>
+                                @*@Html.LabelFor(model => model.ped_FechaEntrega, new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.ped_FechaEntrega)
+                                    @Html.ValidationMessageFor(model => model.ped_FechaEntrega)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ped_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ped_FechaModifica)
-                @Html.ValidationMessageFor(model => model.ped_FechaModifica)
-            </div>
-        </div>*@
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Factura</label>
+                                @*@Html.LabelFor(model => model.fact_Id, "fact_Id", new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_Id, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.fact_Id)
+                                </div>
+                            </div>
 
-                    @Html.Partial("_ListPedidoDetalle")                    
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.ped_UsuarioCrea, "ped_UsuarioCrea", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("ped_UsuarioCrea", String.Empty)
+                                        @Html.ValidationMessageFor(model => model.ped_UsuarioCrea)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ped_FechaCrea, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ped_FechaCrea)
+                                        @Html.ValidationMessageFor(model => model.ped_FechaCrea)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ped_UsuarioModifica, "ped_UsuarioModifica", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("ped_UsuarioModifica", String.Empty)
+                                        @Html.ValidationMessageFor(model => model.ped_UsuarioModifica)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ped_FechaModifica, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ped_FechaModifica)
+                                        @Html.ValidationMessageFor(model => model.ped_FechaModifica)
+                                    </div>
+                                </div>*@
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="button" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @Html.Partial("_ListPedidoDetalle")
                     }
 
                     <div class="ibox-content">
@@ -206,43 +206,44 @@
 
 
                     </div>
-            </div>
-        </div>
-    </div>
- </div>
-
-
-<div>
-    <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
-                </div>
-                <div class="modal-body" id="frmEditarMunicipios">
-                    @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
                 </div>
             </div>
         </div>
     </div>
-</div>
- 
 
-<div>
-    <div class="modal fade" id="ModalAgregarPedidoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Agregar Pedido Detalle</h4>
+
+    <div>
+        <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
+                    </div>
+                    <div class="modal-body" id="frmEditarMunicipios">
+                        @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
+                    </div>
                 </div>
-                <div class="modal-body" id="frmPedidoDetalle">
-                    @Html.Partial("_CreatePedidoDetalle", new ERP_ZORZAL.Models.tbPedidoDetalle())
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        <div class="modal fade" id="ModalAgregarPedidoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Agregar Pedido Detalle</h4>
+                    </div>
+                    <div class="modal-body" id="frmPedidoDetalle">
+                        @Html.Partial("_CreatePedidoDetalle", new ERP_ZORZAL.Models.tbPedidoDetalle())
+                    </div>
                 </div>
             </div>
         </div>
