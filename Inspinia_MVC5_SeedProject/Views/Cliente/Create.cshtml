@@ -174,7 +174,7 @@
                 </div>
             </div>
 
-            <div class="form-group" name="dep_Codigo" id="dep_Codigo">
+            <div class="form-group">
                 @Html.LabelFor(muni => test.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })
                 <div class="col-md-5">
                     @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
@@ -182,7 +182,7 @@
                 </div>
             </div>
 
-            <div class="form-group" name="mun_Codigo" id="mun_Codigo">
+            <div class="form-group">
                 @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
                 <div class="col-md-5">
                     @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
@@ -249,6 +249,7 @@
 <script src="~/Scripts/app/PersonaNatural.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Activo.js"></script>
+<script src="~/Scripts/app/Departamento.js"></script>
 <script>
     $('#clte_EsActivo').attr('checked', true);
 </script>
