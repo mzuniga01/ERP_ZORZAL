@@ -50,11 +50,20 @@ namespace ERP_ZORZAL.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.tbBanco.Add(tbBanco);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //////////Aqui va la lista//////////////
+                var MensajeError = 0;
+                IEnumerable<object> list = null;
+                list = db.UDP_Gral_tbBanco_Insert(tbBanco.ban_Nombre, tbBanco.ban_NombreContacto, tbBanco.ban_TelefonoContacto);
+                foreach (UDP_Gral_tbBanco_Insert_Result banco in list)
+                    MensajeError = banco.MensajeError;
+                if (MensajeError == -1)
+                {
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
-
             return View(tbBanco);
         }
 
@@ -80,11 +89,23 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="ban_Id,ban_Nombre,ban_NombreContacto,ban_TelefonoContacto,ban_UsuarioCrea,ban_FechaCrea,ban_UsuarioModifica,ban_FechaModifica")] tbBanco tbBanco)
         {
+            
+           
             if (ModelState.IsValid)
             {
-                db.Entry(tbBanco).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //////////Aqui va la lista//////////////
+                var MensajeError = 0;
+                IEnumerable<object> list = null;
+                list = db.UDP_Gral_tbBanco_Update(tbBanco.ban_Id, tbBanco.ban_Nombre, tbBanco.ban_NombreContacto, tbBanco.ban_TelefonoContacto, tbBanco.ban_UsuarioCrea, tbBanco.ban_FechaCrea, tbBanco.ban_UsuarioModifica, tbBanco.ban_FechaModifica);
+                foreach (UDP_Gral_tbBanco_Update_Result banco in list)
+                    MensajeError = banco.MensajeError;
+                if (MensajeError == -1)
+                {
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
             return View(tbBanco);
         }

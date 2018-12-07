@@ -93,5 +93,59 @@ namespace ERP_ZORZAL.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("spGetMunicipios", codDepartamentoParameter);
         }
+    
+        public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
+        {
+            var ban_NombreParameter = ban_Nombre != null ?
+                new ObjectParameter("ban_Nombre", ban_Nombre) :
+                new ObjectParameter("ban_Nombre", typeof(string));
+    
+            var ban_NombreContactoParameter = ban_NombreContacto != null ?
+                new ObjectParameter("ban_NombreContacto", ban_NombreContacto) :
+                new ObjectParameter("ban_NombreContacto", typeof(string));
+    
+            var ban_TelefonoContactoParameter = ban_TelefonoContacto != null ?
+                new ObjectParameter("ban_TelefonoContacto", ban_TelefonoContacto) :
+                new ObjectParameter("ban_TelefonoContacto", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbBanco_Insert_Result>("UDP_Gral_tbBanco_Insert", ban_NombreParameter, ban_NombreContactoParameter, ban_TelefonoContactoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbBanco_Update_Result> UDP_Gral_tbBanco_Update(Nullable<short> ban_Id, string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto, Nullable<int> ban_UsuarioCrea, Nullable<System.DateTime> ban_FechaCrea, Nullable<int> ban_UsuarioModifica, Nullable<System.DateTime> ban_FechaModifica)
+        {
+            var ban_IdParameter = ban_Id.HasValue ?
+                new ObjectParameter("ban_Id", ban_Id) :
+                new ObjectParameter("ban_Id", typeof(short));
+    
+            var ban_NombreParameter = ban_Nombre != null ?
+                new ObjectParameter("ban_Nombre", ban_Nombre) :
+                new ObjectParameter("ban_Nombre", typeof(string));
+    
+            var ban_NombreContactoParameter = ban_NombreContacto != null ?
+                new ObjectParameter("ban_NombreContacto", ban_NombreContacto) :
+                new ObjectParameter("ban_NombreContacto", typeof(string));
+    
+            var ban_TelefonoContactoParameter = ban_TelefonoContacto != null ?
+                new ObjectParameter("ban_TelefonoContacto", ban_TelefonoContacto) :
+                new ObjectParameter("ban_TelefonoContacto", typeof(string));
+    
+            var ban_UsuarioCreaParameter = ban_UsuarioCrea.HasValue ?
+                new ObjectParameter("ban_UsuarioCrea", ban_UsuarioCrea) :
+                new ObjectParameter("ban_UsuarioCrea", typeof(int));
+    
+            var ban_FechaCreaParameter = ban_FechaCrea.HasValue ?
+                new ObjectParameter("ban_FechaCrea", ban_FechaCrea) :
+                new ObjectParameter("ban_FechaCrea", typeof(System.DateTime));
+    
+            var ban_UsuarioModificaParameter = ban_UsuarioModifica.HasValue ?
+                new ObjectParameter("ban_UsuarioModifica", ban_UsuarioModifica) :
+                new ObjectParameter("ban_UsuarioModifica", typeof(int));
+    
+            var ban_FechaModificaParameter = ban_FechaModifica.HasValue ?
+                new ObjectParameter("ban_FechaModifica", ban_FechaModifica) :
+                new ObjectParameter("ban_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbBanco_Update_Result>("UDP_Gral_tbBanco_Update", ban_IdParameter, ban_NombreParameter, ban_NombreContactoParameter, ban_TelefonoContactoParameter, ban_UsuarioCreaParameter, ban_FechaCreaParameter, ban_UsuarioModificaParameter, ban_FechaModificaParameter);
+        }
     }
 }

@@ -437,6 +437,12 @@
     </Compile>
     <Compile Include="Models\TipoPagos.cs" />
     <Compile Include="Models\TiposIdenticacion.cs" />
+    <Compile Include="Models\UDP_Gral_tbBanco_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Gral_tbBanco_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UnidadesMedida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

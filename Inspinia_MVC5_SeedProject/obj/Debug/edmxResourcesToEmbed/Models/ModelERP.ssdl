@@ -1759,6 +1759,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbEntrada_ent_BodegaDestino">
+    <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
+    <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbBodega">
+        <PropertyRef Name="bod_Id" />
+      </Principal>
+      <Dependent Role="tbEntrada">
+        <PropertyRef Name="ent_BodegaDestino" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbEntrada_tbBodega_bod_Id">
     <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
     <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
@@ -2731,6 +2743,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="UDP_Gral_tbBanco_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="ban_Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="ban_NombreContacto" Type="nvarchar" Mode="In" />
+    <Parameter Name="ban_TelefonoContacto" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbBanco_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="ban_Id" Type="smallint" Mode="In" />
+    <Parameter Name="ban_Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="ban_NombreContacto" Type="nvarchar" Mode="In" />
+    <Parameter Name="ban_TelefonoContacto" Type="nvarchar" Mode="In" />
+    <Parameter Name="ban_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="ban_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="ban_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="ban_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="spGetMunicipios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="CodDepartamento" Type="char" Mode="In" />
   </Function>
@@ -3103,6 +3130,10 @@
     <AssociationSet Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" Association="Self.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbBox" EntitySet="tbBox" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbEntrada_ent_BodegaDestino" Association="Self.FK_Inv_tbEntrada_ent_BodegaDestino">
+      <End Role="tbBodega" EntitySet="tbBodega" />
+      <End Role="tbEntrada" EntitySet="tbEntrada" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEntrada_tbBodega_bod_Id" Association="Self.FK_Inv_tbEntrada_tbBodega_bod_Id">
       <End Role="tbBodega" EntitySet="tbBodega" />

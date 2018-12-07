@@ -1764,6 +1764,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inv_tbEntrada_ent_BodegaDestino">
+          <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
+          <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbBodega">
+              <PropertyRef Name="bod_Id" />
+            </Principal>
+            <Dependent Role="tbEntrada">
+              <PropertyRef Name="ent_BodegaDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Inv_tbEntrada_tbBodega_bod_Id">
           <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
           <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
@@ -2736,6 +2748,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="UDP_Gral_tbBanco_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="ban_Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="ban_NombreContacto" Type="nvarchar" Mode="In" />
+          <Parameter Name="ban_TelefonoContacto" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UDP_Gral_tbBanco_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="ban_Id" Type="smallint" Mode="In" />
+          <Parameter Name="ban_Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="ban_NombreContacto" Type="nvarchar" Mode="In" />
+          <Parameter Name="ban_TelefonoContacto" Type="nvarchar" Mode="In" />
+          <Parameter Name="ban_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="ban_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="ban_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="ban_FechaModifica" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="spGetMunicipios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="CodDepartamento" Type="char" Mode="In" />
         </Function>
@@ -3108,6 +3135,10 @@
           <AssociationSet Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" Association="Self.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbBox" EntitySet="tbBox" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbEntrada_ent_BodegaDestino" Association="Self.FK_Inv_tbEntrada_ent_BodegaDestino">
+            <End Role="tbBodega" EntitySet="tbBodega" />
+            <End Role="tbEntrada" EntitySet="tbEntrada" />
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbEntrada_tbBodega_bod_Id" Association="Self.FK_Inv_tbEntrada_tbBodega_bod_Id">
             <End Role="tbBodega" EntitySet="tbBodega" />
@@ -4135,6 +4166,25 @@
             <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbEntrada_ent_BodegaDestino" Association="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_BodegaDestino">
+            <End Role="tbBodega" EntitySet="tbBodega" />
+            <End Role="tbEntrada" EntitySet="tbEntrada" />
+          </AssociationSet>
+          <FunctionImport Name="UDP_Gral_tbBanco_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbBanco_Insert_Result)">
+            <Parameter Name="ban_Nombre" Mode="In" Type="String" />
+            <Parameter Name="ban_NombreContacto" Mode="In" Type="String" />
+            <Parameter Name="ban_TelefonoContacto" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Gral_tbBanco_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbBanco_Update_Result)">
+            <Parameter Name="ban_Id" Mode="In" Type="Int16" />
+            <Parameter Name="ban_Nombre" Mode="In" Type="String" />
+            <Parameter Name="ban_NombreContacto" Mode="In" Type="String" />
+            <Parameter Name="ban_TelefonoContacto" Mode="In" Type="String" />
+            <Parameter Name="ban_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="ban_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="ban_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="ban_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -4484,6 +4534,7 @@
           <NavigationProperty Name="tbInventarioFisico" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisico_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbInventarioFisico" />
           <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_Inv_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbSalida" />
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbBodega_tbSucursal_bod_Id" FromRole="tbBodega" ToRole="tbSucursal" />
+          <NavigationProperty Name="tbEntrada1" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_BodegaDestino" FromRole="tbBodega" ToRole="tbEntrada" />
         </EntityType>
         <EntityType Name="tbBodegaDetalle">
           <Key>
@@ -4542,6 +4593,7 @@
           <NavigationProperty Name="tbProveedor" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbProveedor_prov_Id" FromRole="tbEntrada" ToRole="tbProveedor" />
           <NavigationProperty Name="tbTipoEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbTiposEntrada_tent_Id" FromRole="tbEntrada" ToRole="tbTipoEntrada" />
           <NavigationProperty Name="tbEntradaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbEntradaDetalle_tbEntrada_ent_Id" FromRole="tbEntrada" ToRole="tbEntradaDetalle" />
+          <NavigationProperty Name="tbBodega1" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_BodegaDestino" FromRole="tbEntrada" ToRole="tbBodega" />
         </EntityType>
         <EntityType Name="tbEntradaDetalle">
           <Key>
@@ -7185,6 +7237,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inv_tbEntrada_ent_BodegaDestino">
+          <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbEntrada" Role="tbEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbBodega">
+              <PropertyRef Name="bod_Id" />
+            </Principal>
+            <Dependent Role="tbEntrada">
+              <PropertyRef Name="ent_BodegaDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="UDP_Gral_tbBanco_Insert_Result">
+          <Property Type="Int16" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbBanco_Update_Result">
+          <Property Type="Int16" Name="MensajeError" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8072,6 +8142,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbBanco_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbBanco_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbBanco_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbBanco_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbBanco_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbBanco_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
