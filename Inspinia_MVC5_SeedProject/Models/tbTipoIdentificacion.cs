@@ -18,6 +18,7 @@ namespace ERP_ZORZAL.Models
         public tbTipoIdentificacion()
         {
             this.tbCliente = new HashSet<tbCliente>();
+            this.tbEmpleados = new HashSet<tbEmpleados>();
         }
     
         public byte tpi_Id { get; set; }
@@ -31,5 +32,7 @@ namespace ERP_ZORZAL.Models
         public virtual tbUsuario tbUsuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCliente> tbCliente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbEmpleados> tbEmpleados { get; set; }
     }
 }

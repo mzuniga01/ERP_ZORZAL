@@ -86,6 +86,7 @@ namespace ERP_ZORZAL.Models
         public virtual DbSet<tbEstadoPedido> tbEstadoPedido { get; set; }
         public virtual DbSet<tbFactura> tbFactura { get; set; }
         public virtual DbSet<tbFacturaDetalle> tbFacturaDetalle { get; set; }
+        public virtual DbSet<tbEmpleados> tbEmpleados { get; set; }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
         {
@@ -370,156 +371,6 @@ namespace ERP_ZORZAL.Models
                 new ObjectParameter("dep_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbDepartamento_Update", dep_CodigoParameter, dep_NombreParameter, dep_UsuarioCreaParameter, dep_FechaCreaParameter, dep_UsuarioModificaParameter, dep_FechaModificaParameter);
-        }
-    
-        public virtual ObjectResult<string> UDP_Gral_tbEmpleados_Insert(string emp_Nombres, string emp_Apellidos, string emp_Sexo, Nullable<System.DateTime> emp_FechaNacimiento, Nullable<byte> tpi_Id, string emp_Identificacion, string emp_Telefono, string emp_Correoelectronico, string emp_TipoSangre, string emp_Puesto, Nullable<System.DateTime> emp_FechaIngreso, string emp_Direccion, string emp_Observaciones, Nullable<int> emp_UsuarioCrea, Nullable<System.DateTime> emp_FechaCrea, Nullable<int> emp_UsuarioModifica, Nullable<System.DateTime> emp_FechaModifica)
-        {
-            var emp_NombresParameter = emp_Nombres != null ?
-                new ObjectParameter("emp_Nombres", emp_Nombres) :
-                new ObjectParameter("emp_Nombres", typeof(string));
-    
-            var emp_ApellidosParameter = emp_Apellidos != null ?
-                new ObjectParameter("emp_Apellidos", emp_Apellidos) :
-                new ObjectParameter("emp_Apellidos", typeof(string));
-    
-            var emp_SexoParameter = emp_Sexo != null ?
-                new ObjectParameter("emp_Sexo", emp_Sexo) :
-                new ObjectParameter("emp_Sexo", typeof(string));
-    
-            var emp_FechaNacimientoParameter = emp_FechaNacimiento.HasValue ?
-                new ObjectParameter("emp_FechaNacimiento", emp_FechaNacimiento) :
-                new ObjectParameter("emp_FechaNacimiento", typeof(System.DateTime));
-    
-            var tpi_IdParameter = tpi_Id.HasValue ?
-                new ObjectParameter("tpi_Id", tpi_Id) :
-                new ObjectParameter("tpi_Id", typeof(byte));
-    
-            var emp_IdentificacionParameter = emp_Identificacion != null ?
-                new ObjectParameter("emp_Identificacion", emp_Identificacion) :
-                new ObjectParameter("emp_Identificacion", typeof(string));
-    
-            var emp_TelefonoParameter = emp_Telefono != null ?
-                new ObjectParameter("emp_Telefono", emp_Telefono) :
-                new ObjectParameter("emp_Telefono", typeof(string));
-    
-            var emp_CorreoelectronicoParameter = emp_Correoelectronico != null ?
-                new ObjectParameter("emp_Correoelectronico", emp_Correoelectronico) :
-                new ObjectParameter("emp_Correoelectronico", typeof(string));
-    
-            var emp_TipoSangreParameter = emp_TipoSangre != null ?
-                new ObjectParameter("emp_TipoSangre", emp_TipoSangre) :
-                new ObjectParameter("emp_TipoSangre", typeof(string));
-    
-            var emp_PuestoParameter = emp_Puesto != null ?
-                new ObjectParameter("emp_Puesto", emp_Puesto) :
-                new ObjectParameter("emp_Puesto", typeof(string));
-    
-            var emp_FechaIngresoParameter = emp_FechaIngreso.HasValue ?
-                new ObjectParameter("emp_FechaIngreso", emp_FechaIngreso) :
-                new ObjectParameter("emp_FechaIngreso", typeof(System.DateTime));
-    
-            var emp_DireccionParameter = emp_Direccion != null ?
-                new ObjectParameter("emp_Direccion", emp_Direccion) :
-                new ObjectParameter("emp_Direccion", typeof(string));
-    
-            var emp_ObservacionesParameter = emp_Observaciones != null ?
-                new ObjectParameter("emp_Observaciones", emp_Observaciones) :
-                new ObjectParameter("emp_Observaciones", typeof(string));
-    
-            var emp_UsuarioCreaParameter = emp_UsuarioCrea.HasValue ?
-                new ObjectParameter("emp_UsuarioCrea", emp_UsuarioCrea) :
-                new ObjectParameter("emp_UsuarioCrea", typeof(int));
-    
-            var emp_FechaCreaParameter = emp_FechaCrea.HasValue ?
-                new ObjectParameter("emp_FechaCrea", emp_FechaCrea) :
-                new ObjectParameter("emp_FechaCrea", typeof(System.DateTime));
-    
-            var emp_UsuarioModificaParameter = emp_UsuarioModifica.HasValue ?
-                new ObjectParameter("emp_UsuarioModifica", emp_UsuarioModifica) :
-                new ObjectParameter("emp_UsuarioModifica", typeof(int));
-    
-            var emp_FechaModificaParameter = emp_FechaModifica.HasValue ?
-                new ObjectParameter("emp_FechaModifica", emp_FechaModifica) :
-                new ObjectParameter("emp_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbEmpleados_Insert", emp_NombresParameter, emp_ApellidosParameter, emp_SexoParameter, emp_FechaNacimientoParameter, tpi_IdParameter, emp_IdentificacionParameter, emp_TelefonoParameter, emp_CorreoelectronicoParameter, emp_TipoSangreParameter, emp_PuestoParameter, emp_FechaIngresoParameter, emp_DireccionParameter, emp_ObservacionesParameter, emp_UsuarioCreaParameter, emp_FechaCreaParameter, emp_UsuarioModificaParameter, emp_FechaModificaParameter);
-        }
-    
-        public virtual ObjectResult<string> UDP_Gral_tbEmpleados_Update(Nullable<short> emp_Id, string emp_Nombres, string emp_Apellidos, string emp_Sexo, Nullable<System.DateTime> emp_FechaNacimiento, Nullable<byte> tpi_Id, string emp_Identificacion, string emp_Telefono, string emp_Correoelectronico, string emp_TipoSangre, string emp_Puesto, Nullable<System.DateTime> emp_FechaIngreso, string emp_Direccion, string emp_Observaciones, Nullable<int> emp_UsuarioCrea, Nullable<System.DateTime> emp_FechaCrea, Nullable<int> emp_UsuarioModifica, Nullable<System.DateTime> emp_FechaModifica)
-        {
-            var emp_IdParameter = emp_Id.HasValue ?
-                new ObjectParameter("emp_Id", emp_Id) :
-                new ObjectParameter("emp_Id", typeof(short));
-    
-            var emp_NombresParameter = emp_Nombres != null ?
-                new ObjectParameter("emp_Nombres", emp_Nombres) :
-                new ObjectParameter("emp_Nombres", typeof(string));
-    
-            var emp_ApellidosParameter = emp_Apellidos != null ?
-                new ObjectParameter("emp_Apellidos", emp_Apellidos) :
-                new ObjectParameter("emp_Apellidos", typeof(string));
-    
-            var emp_SexoParameter = emp_Sexo != null ?
-                new ObjectParameter("emp_Sexo", emp_Sexo) :
-                new ObjectParameter("emp_Sexo", typeof(string));
-    
-            var emp_FechaNacimientoParameter = emp_FechaNacimiento.HasValue ?
-                new ObjectParameter("emp_FechaNacimiento", emp_FechaNacimiento) :
-                new ObjectParameter("emp_FechaNacimiento", typeof(System.DateTime));
-    
-            var tpi_IdParameter = tpi_Id.HasValue ?
-                new ObjectParameter("tpi_Id", tpi_Id) :
-                new ObjectParameter("tpi_Id", typeof(byte));
-    
-            var emp_IdentificacionParameter = emp_Identificacion != null ?
-                new ObjectParameter("emp_Identificacion", emp_Identificacion) :
-                new ObjectParameter("emp_Identificacion", typeof(string));
-    
-            var emp_TelefonoParameter = emp_Telefono != null ?
-                new ObjectParameter("emp_Telefono", emp_Telefono) :
-                new ObjectParameter("emp_Telefono", typeof(string));
-    
-            var emp_CorreoelectronicoParameter = emp_Correoelectronico != null ?
-                new ObjectParameter("emp_Correoelectronico", emp_Correoelectronico) :
-                new ObjectParameter("emp_Correoelectronico", typeof(string));
-    
-            var emp_TipoSangreParameter = emp_TipoSangre != null ?
-                new ObjectParameter("emp_TipoSangre", emp_TipoSangre) :
-                new ObjectParameter("emp_TipoSangre", typeof(string));
-    
-            var emp_PuestoParameter = emp_Puesto != null ?
-                new ObjectParameter("emp_Puesto", emp_Puesto) :
-                new ObjectParameter("emp_Puesto", typeof(string));
-    
-            var emp_FechaIngresoParameter = emp_FechaIngreso.HasValue ?
-                new ObjectParameter("emp_FechaIngreso", emp_FechaIngreso) :
-                new ObjectParameter("emp_FechaIngreso", typeof(System.DateTime));
-    
-            var emp_DireccionParameter = emp_Direccion != null ?
-                new ObjectParameter("emp_Direccion", emp_Direccion) :
-                new ObjectParameter("emp_Direccion", typeof(string));
-    
-            var emp_ObservacionesParameter = emp_Observaciones != null ?
-                new ObjectParameter("emp_Observaciones", emp_Observaciones) :
-                new ObjectParameter("emp_Observaciones", typeof(string));
-    
-            var emp_UsuarioCreaParameter = emp_UsuarioCrea.HasValue ?
-                new ObjectParameter("emp_UsuarioCrea", emp_UsuarioCrea) :
-                new ObjectParameter("emp_UsuarioCrea", typeof(int));
-    
-            var emp_FechaCreaParameter = emp_FechaCrea.HasValue ?
-                new ObjectParameter("emp_FechaCrea", emp_FechaCrea) :
-                new ObjectParameter("emp_FechaCrea", typeof(System.DateTime));
-    
-            var emp_UsuarioModificaParameter = emp_UsuarioModifica.HasValue ?
-                new ObjectParameter("emp_UsuarioModifica", emp_UsuarioModifica) :
-                new ObjectParameter("emp_UsuarioModifica", typeof(int));
-    
-            var emp_FechaModificaParameter = emp_FechaModifica.HasValue ?
-                new ObjectParameter("emp_FechaModifica", emp_FechaModifica) :
-                new ObjectParameter("emp_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbEmpleados_Update", emp_IdParameter, emp_NombresParameter, emp_ApellidosParameter, emp_SexoParameter, emp_FechaNacimientoParameter, tpi_IdParameter, emp_IdentificacionParameter, emp_TelefonoParameter, emp_CorreoelectronicoParameter, emp_TipoSangreParameter, emp_PuestoParameter, emp_FechaIngresoParameter, emp_DireccionParameter, emp_ObservacionesParameter, emp_UsuarioCreaParameter, emp_FechaCreaParameter, emp_UsuarioModificaParameter, emp_FechaModificaParameter);
         }
     
         public virtual ObjectResult<string> UDP_Gral_tbMunicipio_Insert(string mun_Codigo, string dep_Codigo, string mun_Nombre)
@@ -1709,6 +1560,148 @@ namespace ERP_ZORZAL.Models
                 new ObjectParameter("tsal_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbTipoSalida_Update", tsal_IdParameter, tsal_DescripcionParameter, tsal_UsuarioCreaParameter, tsal_FechaCreaParameter, tsal_UsuarioModificaParameter, tsal_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbEmpleados_Insert(string emp_Nombres, string emp_Apellidos, string emp_Sexo, Nullable<System.DateTime> emp_FechaNacimiento, Nullable<byte> tpi_Id, string emp_Identificacion, string emp_Telefono, string emp_Correoelectronico, string emp_TipoSangre, string emp_Puesto, Nullable<System.DateTime> emp_FechaIngreso, string emp_Direccion, string emp_Observaciones, Nullable<int> emp_UsuarioCrea, Nullable<System.DateTime> emp_FechaCrea, Nullable<int> emp_UsuarioModifica, Nullable<System.DateTime> emp_FechaModifica)
+        {
+            var emp_NombresParameter = emp_Nombres != null ?
+                new ObjectParameter("emp_Nombres", emp_Nombres) :
+                new ObjectParameter("emp_Nombres", typeof(string));
+    
+            var emp_ApellidosParameter = emp_Apellidos != null ?
+                new ObjectParameter("emp_Apellidos", emp_Apellidos) :
+                new ObjectParameter("emp_Apellidos", typeof(string));
+    
+            var emp_SexoParameter = emp_Sexo != null ?
+                new ObjectParameter("emp_Sexo", emp_Sexo) :
+                new ObjectParameter("emp_Sexo", typeof(string));
+    
+            var emp_FechaNacimientoParameter = emp_FechaNacimiento.HasValue ?
+                new ObjectParameter("emp_FechaNacimiento", emp_FechaNacimiento) :
+                new ObjectParameter("emp_FechaNacimiento", typeof(System.DateTime));
+    
+            var tpi_IdParameter = tpi_Id.HasValue ?
+                new ObjectParameter("tpi_Id", tpi_Id) :
+                new ObjectParameter("tpi_Id", typeof(byte));
+    
+            var emp_IdentificacionParameter = emp_Identificacion != null ?
+                new ObjectParameter("emp_Identificacion", emp_Identificacion) :
+                new ObjectParameter("emp_Identificacion", typeof(string));
+    
+            var emp_TelefonoParameter = emp_Telefono != null ?
+                new ObjectParameter("emp_Telefono", emp_Telefono) :
+                new ObjectParameter("emp_Telefono", typeof(string));
+    
+            var emp_CorreoelectronicoParameter = emp_Correoelectronico != null ?
+                new ObjectParameter("emp_Correoelectronico", emp_Correoelectronico) :
+                new ObjectParameter("emp_Correoelectronico", typeof(string));
+    
+            var emp_TipoSangreParameter = emp_TipoSangre != null ?
+                new ObjectParameter("emp_TipoSangre", emp_TipoSangre) :
+                new ObjectParameter("emp_TipoSangre", typeof(string));
+    
+            var emp_PuestoParameter = emp_Puesto != null ?
+                new ObjectParameter("emp_Puesto", emp_Puesto) :
+                new ObjectParameter("emp_Puesto", typeof(string));
+    
+            var emp_FechaIngresoParameter = emp_FechaIngreso.HasValue ?
+                new ObjectParameter("emp_FechaIngreso", emp_FechaIngreso) :
+                new ObjectParameter("emp_FechaIngreso", typeof(System.DateTime));
+    
+            var emp_DireccionParameter = emp_Direccion != null ?
+                new ObjectParameter("emp_Direccion", emp_Direccion) :
+                new ObjectParameter("emp_Direccion", typeof(string));
+    
+            var emp_ObservacionesParameter = emp_Observaciones != null ?
+                new ObjectParameter("emp_Observaciones", emp_Observaciones) :
+                new ObjectParameter("emp_Observaciones", typeof(string));
+    
+            var emp_UsuarioCreaParameter = emp_UsuarioCrea.HasValue ?
+                new ObjectParameter("emp_UsuarioCrea", emp_UsuarioCrea) :
+                new ObjectParameter("emp_UsuarioCrea", typeof(int));
+    
+            var emp_FechaCreaParameter = emp_FechaCrea.HasValue ?
+                new ObjectParameter("emp_FechaCrea", emp_FechaCrea) :
+                new ObjectParameter("emp_FechaCrea", typeof(System.DateTime));
+    
+            var emp_UsuarioModificaParameter = emp_UsuarioModifica.HasValue ?
+                new ObjectParameter("emp_UsuarioModifica", emp_UsuarioModifica) :
+                new ObjectParameter("emp_UsuarioModifica", typeof(int));
+    
+            var emp_FechaModificaParameter = emp_FechaModifica.HasValue ?
+                new ObjectParameter("emp_FechaModifica", emp_FechaModifica) :
+                new ObjectParameter("emp_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbEmpleados_Insert", emp_NombresParameter, emp_ApellidosParameter, emp_SexoParameter, emp_FechaNacimientoParameter, tpi_IdParameter, emp_IdentificacionParameter, emp_TelefonoParameter, emp_CorreoelectronicoParameter, emp_TipoSangreParameter, emp_PuestoParameter, emp_FechaIngresoParameter, emp_DireccionParameter, emp_ObservacionesParameter, emp_UsuarioCreaParameter, emp_FechaCreaParameter, emp_UsuarioModificaParameter, emp_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbEmpleados_Update(Nullable<short> emp_Id, string emp_Nombres, string emp_Apellidos, string emp_Sexo, Nullable<System.DateTime> emp_FechaNacimiento, Nullable<byte> tpi_Id, string emp_Identificacion, string emp_Telefono, string emp_Correoelectronico, string emp_TipoSangre, string emp_Puesto, Nullable<System.DateTime> emp_FechaIngreso, string emp_Direccion, string emp_Observaciones, Nullable<int> emp_UsuarioCrea, Nullable<System.DateTime> emp_FechaCrea)
+        {
+            var emp_IdParameter = emp_Id.HasValue ?
+                new ObjectParameter("emp_Id", emp_Id) :
+                new ObjectParameter("emp_Id", typeof(short));
+    
+            var emp_NombresParameter = emp_Nombres != null ?
+                new ObjectParameter("emp_Nombres", emp_Nombres) :
+                new ObjectParameter("emp_Nombres", typeof(string));
+    
+            var emp_ApellidosParameter = emp_Apellidos != null ?
+                new ObjectParameter("emp_Apellidos", emp_Apellidos) :
+                new ObjectParameter("emp_Apellidos", typeof(string));
+    
+            var emp_SexoParameter = emp_Sexo != null ?
+                new ObjectParameter("emp_Sexo", emp_Sexo) :
+                new ObjectParameter("emp_Sexo", typeof(string));
+    
+            var emp_FechaNacimientoParameter = emp_FechaNacimiento.HasValue ?
+                new ObjectParameter("emp_FechaNacimiento", emp_FechaNacimiento) :
+                new ObjectParameter("emp_FechaNacimiento", typeof(System.DateTime));
+    
+            var tpi_IdParameter = tpi_Id.HasValue ?
+                new ObjectParameter("tpi_Id", tpi_Id) :
+                new ObjectParameter("tpi_Id", typeof(byte));
+    
+            var emp_IdentificacionParameter = emp_Identificacion != null ?
+                new ObjectParameter("emp_Identificacion", emp_Identificacion) :
+                new ObjectParameter("emp_Identificacion", typeof(string));
+    
+            var emp_TelefonoParameter = emp_Telefono != null ?
+                new ObjectParameter("emp_Telefono", emp_Telefono) :
+                new ObjectParameter("emp_Telefono", typeof(string));
+    
+            var emp_CorreoelectronicoParameter = emp_Correoelectronico != null ?
+                new ObjectParameter("emp_Correoelectronico", emp_Correoelectronico) :
+                new ObjectParameter("emp_Correoelectronico", typeof(string));
+    
+            var emp_TipoSangreParameter = emp_TipoSangre != null ?
+                new ObjectParameter("emp_TipoSangre", emp_TipoSangre) :
+                new ObjectParameter("emp_TipoSangre", typeof(string));
+    
+            var emp_PuestoParameter = emp_Puesto != null ?
+                new ObjectParameter("emp_Puesto", emp_Puesto) :
+                new ObjectParameter("emp_Puesto", typeof(string));
+    
+            var emp_FechaIngresoParameter = emp_FechaIngreso.HasValue ?
+                new ObjectParameter("emp_FechaIngreso", emp_FechaIngreso) :
+                new ObjectParameter("emp_FechaIngreso", typeof(System.DateTime));
+    
+            var emp_DireccionParameter = emp_Direccion != null ?
+                new ObjectParameter("emp_Direccion", emp_Direccion) :
+                new ObjectParameter("emp_Direccion", typeof(string));
+    
+            var emp_ObservacionesParameter = emp_Observaciones != null ?
+                new ObjectParameter("emp_Observaciones", emp_Observaciones) :
+                new ObjectParameter("emp_Observaciones", typeof(string));
+    
+            var emp_UsuarioCreaParameter = emp_UsuarioCrea.HasValue ?
+                new ObjectParameter("emp_UsuarioCrea", emp_UsuarioCrea) :
+                new ObjectParameter("emp_UsuarioCrea", typeof(int));
+    
+            var emp_FechaCreaParameter = emp_FechaCrea.HasValue ?
+                new ObjectParameter("emp_FechaCrea", emp_FechaCrea) :
+                new ObjectParameter("emp_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbEmpleados_Update", emp_IdParameter, emp_NombresParameter, emp_ApellidosParameter, emp_SexoParameter, emp_FechaNacimientoParameter, tpi_IdParameter, emp_IdentificacionParameter, emp_TelefonoParameter, emp_CorreoelectronicoParameter, emp_TipoSangreParameter, emp_PuestoParameter, emp_FechaIngresoParameter, emp_DireccionParameter, emp_ObservacionesParameter, emp_UsuarioCreaParameter, emp_FechaCreaParameter);
         }
     }
 }

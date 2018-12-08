@@ -793,45 +793,6 @@
       <Parameter Name="dep_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="dep_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Gral_tbEmpleados_Insert" ReturnType="Collection(String)">
-      <Parameter Name="emp_Nombres" Mode="In" Type="String" />
-      <Parameter Name="emp_Apellidos" Mode="In" Type="String" />
-      <Parameter Name="emp_Sexo" Mode="In" Type="String" />
-      <Parameter Name="emp_FechaNacimiento" Mode="In" Type="DateTime" />
-      <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
-      <Parameter Name="emp_Identificacion" Mode="In" Type="String" />
-      <Parameter Name="emp_Telefono" Mode="In" Type="String" />
-      <Parameter Name="emp_Correoelectronico" Mode="In" Type="String" />
-      <Parameter Name="emp_TipoSangre" Mode="In" Type="String" />
-      <Parameter Name="emp_Puesto" Mode="In" Type="String" />
-      <Parameter Name="emp_FechaIngreso" Mode="In" Type="DateTime" />
-      <Parameter Name="emp_Direccion" Mode="In" Type="String" />
-      <Parameter Name="emp_Observaciones" Mode="In" Type="String" />
-      <Parameter Name="emp_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="emp_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="emp_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="emp_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Gral_tbEmpleados_Update" ReturnType="Collection(String)">
-      <Parameter Name="emp_Id" Mode="In" Type="Int16" />
-      <Parameter Name="emp_Nombres" Mode="In" Type="String" />
-      <Parameter Name="emp_Apellidos" Mode="In" Type="String" />
-      <Parameter Name="emp_Sexo" Mode="In" Type="String" />
-      <Parameter Name="emp_FechaNacimiento" Mode="In" Type="DateTime" />
-      <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
-      <Parameter Name="emp_Identificacion" Mode="In" Type="String" />
-      <Parameter Name="emp_Telefono" Mode="In" Type="String" />
-      <Parameter Name="emp_Correoelectronico" Mode="In" Type="String" />
-      <Parameter Name="emp_TipoSangre" Mode="In" Type="String" />
-      <Parameter Name="emp_Puesto" Mode="In" Type="String" />
-      <Parameter Name="emp_FechaIngreso" Mode="In" Type="DateTime" />
-      <Parameter Name="emp_Direccion" Mode="In" Type="String" />
-      <Parameter Name="emp_Observaciones" Mode="In" Type="String" />
-      <Parameter Name="emp_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="emp_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="emp_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="emp_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbMunicipio_Insert" ReturnType="Collection(String)">
       <Parameter Name="mun_Codigo" Mode="In" Type="String" />
       <Parameter Name="dep_Codigo" Mode="In" Type="String" />
@@ -1157,6 +1118,52 @@
       <Parameter Name="tsal_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="tsal_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <EntitySet Name="tbEmpleados" EntityType="ERP_ZORZALModel.tbEmpleados" />
+    <AssociationSet Name="FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea" Association="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEmpleados" EntitySet="tbEmpleados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id" Association="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id">
+      <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
+      <End Role="tbEmpleados" EntitySet="tbEmpleados" />
+    </AssociationSet>
+    <FunctionImport Name="UDP_Gral_tbEmpleados_Insert" ReturnType="Collection(String)">
+      <Parameter Name="emp_Nombres" Mode="In" Type="String" />
+      <Parameter Name="emp_Apellidos" Mode="In" Type="String" />
+      <Parameter Name="emp_Sexo" Mode="In" Type="String" />
+      <Parameter Name="emp_FechaNacimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
+      <Parameter Name="emp_Identificacion" Mode="In" Type="String" />
+      <Parameter Name="emp_Telefono" Mode="In" Type="String" />
+      <Parameter Name="emp_Correoelectronico" Mode="In" Type="String" />
+      <Parameter Name="emp_TipoSangre" Mode="In" Type="String" />
+      <Parameter Name="emp_Puesto" Mode="In" Type="String" />
+      <Parameter Name="emp_FechaIngreso" Mode="In" Type="DateTime" />
+      <Parameter Name="emp_Direccion" Mode="In" Type="String" />
+      <Parameter Name="emp_Observaciones" Mode="In" Type="String" />
+      <Parameter Name="emp_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="emp_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="emp_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="emp_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbEmpleados_Update" ReturnType="Collection(String)">
+      <Parameter Name="emp_Id" Mode="In" Type="Int16" />
+      <Parameter Name="emp_Nombres" Mode="In" Type="String" />
+      <Parameter Name="emp_Apellidos" Mode="In" Type="String" />
+      <Parameter Name="emp_Sexo" Mode="In" Type="String" />
+      <Parameter Name="emp_FechaNacimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
+      <Parameter Name="emp_Identificacion" Mode="In" Type="String" />
+      <Parameter Name="emp_Telefono" Mode="In" Type="String" />
+      <Parameter Name="emp_Correoelectronico" Mode="In" Type="String" />
+      <Parameter Name="emp_TipoSangre" Mode="In" Type="String" />
+      <Parameter Name="emp_Puesto" Mode="In" Type="String" />
+      <Parameter Name="emp_FechaIngreso" Mode="In" Type="DateTime" />
+      <Parameter Name="emp_Direccion" Mode="In" Type="String" />
+      <Parameter Name="emp_Observaciones" Mode="In" Type="String" />
+      <Parameter Name="emp_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="emp_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1336,6 +1343,7 @@
     <NavigationProperty Name="tbParametro" Relationship="ERP_ZORZALModel.FK_Gral_tbParametro_tbUsuario_par_UsuarioCrea" FromRole="tbUsuario" ToRole="tbParametro" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbFactura" />
     <NavigationProperty Name="tbFactura1" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbFactura" />
+    <NavigationProperty Name="tbEmpleados" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEmpleados" />
   </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
@@ -3724,6 +3732,7 @@
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioCrea" FromRole="tbTipoIdentificacion" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioModifica" FromRole="tbTipoIdentificacion" ToRole="tbUsuario" />
     <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id" FromRole="tbTipoIdentificacion" ToRole="tbCliente" />
+    <NavigationProperty Name="tbEmpleados" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id" FromRole="tbTipoIdentificacion" ToRole="tbEmpleados" />
   </EntityType>
   <EntityType Name="tbCliente">
     <Key>
@@ -4297,6 +4306,55 @@
       </Principal>
       <Dependent Role="tbFactura">
         <PropertyRef Name="suc_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tbEmpleados">
+    <Key>
+      <PropertyRef Name="emp_Id" />
+    </Key>
+    <Property Name="emp_Id" Type="Int16" Nullable="false" />
+    <Property Name="emp_Nombres" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="emp_Apellidos" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="emp_Sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="emp_FechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tpi_Id" Type="Byte" Nullable="false" />
+    <Property Name="emp_Identificacion" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="emp_Telefono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="emp_Correoelectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="emp_TipoSangre" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="emp_Puesto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="emp_FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="emp_Direccion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="emp_Observaciones" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="emp_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="emp_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="emp_UsuarioModifica" Type="Int32" />
+    <Property Name="emp_FechaModifica" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea" FromRole="tbEmpleados" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbTipoIdentificacion" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id" FromRole="tbEmpleados" ToRole="tbTipoIdentificacion" />
+  </EntityType>
+  <Association Name="FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbEmpleados" Role="tbEmpleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEmpleados">
+        <PropertyRef Name="emp_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id">
+    <End Type="ERP_ZORZALModel.tbTipoIdentificacion" Role="tbTipoIdentificacion" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbEmpleados" Role="tbEmpleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbTipoIdentificacion">
+        <PropertyRef Name="tpi_Id" />
+      </Principal>
+      <Dependent Role="tbEmpleados">
+        <PropertyRef Name="tpi_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

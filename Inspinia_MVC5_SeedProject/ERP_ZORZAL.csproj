@@ -292,6 +292,9 @@
     <Compile Include="Models\tbDocumentoFiscal.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbEmpleados.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbEntrada.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

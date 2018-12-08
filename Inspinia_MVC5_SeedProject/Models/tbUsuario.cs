@@ -102,6 +102,7 @@ namespace ERP_ZORZAL.Models
             this.tbParametro = new HashSet<tbParametro>();
             this.tbFactura = new HashSet<tbFactura>();
             this.tbFactura1 = new HashSet<tbFactura>();
+            this.tbEmpleados = new HashSet<tbEmpleados>();
         }
     
         public int usu_Id { get; set; }
@@ -284,5 +285,7 @@ namespace ERP_ZORZAL.Models
         public virtual ICollection<tbFactura> tbFactura { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFactura> tbFactura1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbEmpleados> tbEmpleados { get; set; }
     }
 }
