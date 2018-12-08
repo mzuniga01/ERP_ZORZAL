@@ -13,6 +13,6 @@ namespace ERP_ZORZAL.Models
     
     public partial class UDP_Inv_tbEntradaDetalle_Insert_Result
     {
-        public int MensajeError { get; set; }
+        public string MensajeError { get; set; }
     }
 }

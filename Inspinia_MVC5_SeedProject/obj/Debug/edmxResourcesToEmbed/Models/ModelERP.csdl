@@ -936,11 +936,6 @@
       <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Insert_Result)">
-      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Update_Result)">
       <Parameter Name="entd_Id" Mode="In" Type="Int32" />
       <Parameter Name="ent_Id" Mode="In" Type="Int32" />
@@ -1163,6 +1158,11 @@
       <Parameter Name="emp_Observaciones" Mode="In" Type="String" />
       <Parameter Name="emp_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="emp_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Insert_Result)">
+      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -4445,9 +4445,6 @@
   <ComplexType Name="UDP_Inv_tbEntrada_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
   </ComplexType>
-  <ComplexType Name="UDP_Inv_tbEntradaDetalle_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
   <ComplexType Name="UDP_Inv_tbEntradaDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
   </ComplexType>
@@ -4507,5 +4504,8 @@
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbTipoEntrada_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbEntradaDetalle_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>
