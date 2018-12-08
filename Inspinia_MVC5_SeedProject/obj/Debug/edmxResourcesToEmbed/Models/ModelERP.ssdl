@@ -2962,6 +2962,25 @@
     <Parameter Name="cja_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="cja_FechaModifica" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbTipoPago_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="tpa_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="tpa_Emisor" Type="bit" Mode="In" />
+    <Parameter Name="tpa_Cuenta" Type="bit" Mode="In" />
+    <Parameter Name="tpa_FechaVencimiento" Type="bit" Mode="In" />
+    <Parameter Name="tpa_Titular" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbTipoPago_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="tpa_Id" Type="smallint" Mode="In" />
+    <Parameter Name="tpa_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="tpa_Emisor" Type="bit" Mode="In" />
+    <Parameter Name="tpa_Cuenta" Type="bit" Mode="In" />
+    <Parameter Name="tpa_FechaVencimiento" Type="bit" Mode="In" />
+    <Parameter Name="tpa_Titular" Type="bit" Mode="In" />
+    <Parameter Name="tpa_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="tpa_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="tpa_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="tpa_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
   <EntityContainer Name="ERP_ZORZALModelStoreContainer">
     <EntitySet Name="tbAccesoRol" EntityType="Self.tbAccesoRol" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbObjeto" EntityType="Self.tbObjeto" Schema="Acce" store:Type="Tables" />

@@ -11,7 +11,7 @@ namespace ERP_ZORZAL.Models
 {
     using System;
     
-    public partial class UDP_Gral_tbBanco_Update_Result
+    public partial class UDP_Vent_tbTipoPago_Insert_Result
     {
         public short MensajeError { get; set; }
     }
