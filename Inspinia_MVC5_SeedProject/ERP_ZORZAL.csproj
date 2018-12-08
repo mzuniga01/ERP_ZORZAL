@@ -198,6 +198,7 @@
     <Compile Include="Controllers\MonedaController.cs" />
     <Compile Include="Controllers\NotaCreditoController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
+    <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\PuntoEmisionController.cs" />
     <Compile Include="Controllers\SolicitudCreditoController.cs" />
     <Compile Include="Controllers\SolicitudEfectivoController.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="Models\cUtilities.cs" />
     <Compile Include="Models\Denominacion.cs" />
     <Compile Include="Models\EstadoFactura.cs" />
+    <Compile Include="Models\EstadoPedido.cs" />
     <Compile Include="Models\EstadosSolicitudCreditos.cs" />
     <Compile Include="Models\Factura.cs" />
     <Compile Include="Models\FacturaDetalle.cs" />
@@ -258,6 +260,7 @@
     </Compile>
     <Compile Include="Models\Monedas.cs" />
     <Compile Include="Models\Pagos.cs" />
+    <Compile Include="Models\Pedidos.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\PuntoEmision.cs" />
     <Compile Include="Models\PuntoEmisionDetalle.cs" />
@@ -485,6 +488,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbCaja_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbFactura_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbTipoPago_Insert_Result.cs">
@@ -1067,6 +1073,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Pedido\" />
     <Folder Include="Views\SolicitudEfectivoDetalle\" />
   </ItemGroup>
   <ItemGroup>

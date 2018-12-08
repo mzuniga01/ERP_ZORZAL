@@ -752,6 +752,7 @@
       <PropertyRef Name="ped_Id" />
     </Key>
     <Property Name="ped_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="esped_Id" Type="tinyint" Nullable="false" />
     <Property Name="ped_FechaElaboracion" Type="datetime" Nullable="false" />
     <Property Name="ped_FechaEntrega" Type="datetime" Nullable="false" />
     <Property Name="clte_Id" Type="int" Nullable="false" />
@@ -2644,6 +2645,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbPedido_tbEstadoPedido_esped_Id">
+    <End Role="tbEstadoPedido" Type="Self.tbEstadoPedido" Multiplicity="1" />
+    <End Role="tbPedido" Type="Self.tbPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbEstadoPedido">
+        <PropertyRef Name="esped_Id" />
+      </Principal>
+      <Dependent Role="tbPedido">
+        <PropertyRef Name="esped_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo">
     <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="1" />
     <End Role="tbPedidoDetalle" Type="Self.tbPedidoDetalle" Multiplicity="*" />
@@ -2961,6 +2974,9 @@
     <Parameter Name="cja_FechaCrea" Type="datetime" Mode="In" />
     <Parameter Name="cja_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="cja_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbFactura_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="fact_Id" Type="bigint" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbTipoPago_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="tpa_Descripcion" Type="varchar" Mode="In" />
@@ -3629,6 +3645,10 @@
     <AssociationSet Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" Association="Self.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
       <End Role="tbDevolucion" EntitySet="tbDevolucion" />
       <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbPedido_tbEstadoPedido_esped_Id" Association="Self.FK_Vent_tbPedido_tbEstadoPedido_esped_Id">
+      <End Role="tbEstadoPedido" EntitySet="tbEstadoPedido" />
+      <End Role="tbPedido" EntitySet="tbPedido" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" Association="Self.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo">
       <End Role="tbProducto" EntitySet="tbProducto" />

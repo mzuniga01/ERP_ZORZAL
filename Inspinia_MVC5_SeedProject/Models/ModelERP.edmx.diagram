@@ -225,6 +225,7 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbPuntoEmision_pemi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSolicitudEfectivo_tbSolicitudEfectivoDetalle_solef_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPedido_tbEstadoPedido_esped_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -858,6 +858,7 @@
     <EntitySetMapping Name="tbPedido">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPedido">
         <MappingFragment StoreEntitySet="tbPedido">
+          <ScalarProperty Name="esped_Id" ColumnName="esped_Id" />
           <ScalarProperty Name="ped_FechaModifica" ColumnName="ped_FechaModifica" />
           <ScalarProperty Name="ped_UsuarioModifica" ColumnName="ped_UsuarioModifica" />
           <ScalarProperty Name="ped_FechaCrea" ColumnName="ped_FechaCrea" />
@@ -1053,5 +1054,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Select" />
   </EntityContainerMapping>
 </Mapping>

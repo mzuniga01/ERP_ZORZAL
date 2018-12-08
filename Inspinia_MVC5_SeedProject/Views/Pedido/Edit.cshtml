@@ -1,0 +1,217 @@
+﻿@model ERP_ZORZAL.Models.tbPedido
+
+@{
+    ViewBag.Title = "Pedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+        margin-left: 5%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        
+    }
+</style>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Editar Pedidos</h2>
+  
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="/Pedido/Index">Regresar</a>
+			@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Pedidos</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.ped_Id)
+
+                
+        <div class="form-group">
+            <label class="control-label col-md-2">Número Pedido</label>
+            @*@Html.LabelFor(model => model.suc_Id, "suc_Id", new { @class = "control-label col-md-2" })*@
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.ped_Id, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.ped_Id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.suc_Id, "Estado", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("esped_Id", null, "Seleccione Estado Pedido", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ped_Id)
+            </div>
+        </div>
+
+        <div class="form-group">
+        <label class="control-label col-md-2">Sucursal</label>
+        @*@Html.LabelFor(model => model.suc_Id, "suc_Id", new { @class = "control-label col-md-2" })*@
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.ped_UsuarioModifica, new { @Value = "San Pedro Sula"})
+            @Html.ValidationMessageFor(model => model.suc_Id)
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.ped_FechaElaboracion, "{0:yyyy-MM-dd}")
+                @Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Número Cliente</label>
+            @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.clte_Id)
+                @Html.ValidationMessageFor(model => model.clte_Id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Cliente</label>
+            @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.ped_FechaCrea)
+                @Html.ValidationMessageFor(model => model.clte_Id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ped_FechaEntrega, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.ped_FechaEntrega)
+                @Html.ValidationMessageFor(model => model.ped_FechaEntrega)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Número Factura</label>
+            @*@Html.LabelFor(model => model.fact_Id, "fact_Id", new { @class = "control-label col-md-2" })*@
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.ped_FechaCrea)
+                @Html.ValidationMessageFor(model => model.fact_Id)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ped_UsuarioCrea, "ped_UsuarioCrea", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ped_UsuarioCrea", String.Empty)
+                @Html.ValidationMessageFor(model => model.ped_UsuarioCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ped_FechaCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ped_FechaCrea)
+                @Html.ValidationMessageFor(model => model.ped_FechaCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ped_UsuarioModifica, "ped_UsuarioModifica", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ped_UsuarioModifica", String.Empty)
+                @Html.ValidationMessageFor(model => model.ped_UsuarioModifica)
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ped_FechaModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ped_FechaModifica)
+                @Html.ValidationMessageFor(model => model.ped_FechaModifica)
+            </div>
+        </div>*@
+
+
+        <div class="form-group">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+                <tr>
+                    <td>Creado</td>
+                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                    <td>@Html.DisplayFor(model => model.ped_FechaCrea)</td>
+                </tr>
+                <tr>
+                    <td>Modificado</td>
+                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                    <td>@Html.DisplayFor(model => model.ped_FechaModifica)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+
+
+
+                }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

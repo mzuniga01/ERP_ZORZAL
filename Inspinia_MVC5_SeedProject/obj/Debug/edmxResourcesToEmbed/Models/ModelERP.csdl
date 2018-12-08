@@ -845,6 +845,13 @@
       <Parameter Name="tpa_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="tpa_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <AssociationSet Name="FK_Vent_tbPedido_tbEstadoPedido_esped_Id" Association="ERP_ZORZALModel.FK_Vent_tbPedido_tbEstadoPedido_esped_Id">
+      <End Role="tbEstadoPedido" EntitySet="tbEstadoPedido" />
+      <End Role="tbPedido" EntitySet="tbPedido" />
+    </AssociationSet>
+    <FunctionImport Name="UDP_Vent_tbFactura_Select" ReturnType="Collection(Int16)">
+      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1720,6 +1727,7 @@
     <Property Name="esped_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="esped_UsuarioModifica" Type="Int32" />
     <Property Name="esped_FechaModifica" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbPedido_tbEstadoPedido_esped_Id" FromRole="tbEstadoPedido" ToRole="tbPedido" />
   </EntityType>
   <EntityType Name="tbEstadoSolicitudCredito">
     <Key>
@@ -1922,6 +1930,8 @@
     <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbPedido_clte_id" FromRole="tbPedido" ToRole="tbCliente" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPedido_fact_Id" FromRole="tbPedido" ToRole="tbFactura" />
     <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbPedido_suc_Id" FromRole="tbPedido" ToRole="tbSucursal" />
+    <Property Name="esped_Id" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="tbEstadoPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbPedido_tbEstadoPedido_esped_Id" FromRole="tbPedido" ToRole="tbEstadoPedido" />
   </EntityType>
   <EntityType Name="tbPedidoDetalle">
     <Key>
@@ -4083,5 +4093,38 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <Association Name="FK_Vent_tbPedido_tbEstadoPedido_esped_Id">
+    <End Type="ERP_ZORZALModel.tbEstadoPedido" Role="tbEstadoPedido" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbPedido" Role="tbPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbEstadoPedido">
+        <PropertyRef Name="esped_Id" />
+      </Principal>
+      <Dependent Role="tbPedido">
+        <PropertyRef Name="esped_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="UDP_Vent_tbFactura_Select_Result">
+    <Property Type="Int64" Name="fact_Id" Nullable="false" />
+    <Property Type="String" Name="fact_Codigo" Nullable="false" MaxLength="19" />
+    <Property Type="DateTime" Name="fact_Fecha" Nullable="false" Precision="23" />
+    <Property Type="Byte" Name="esfac_Id" Nullable="false" />
+    <Property Type="Int16" Name="cja_Id" Nullable="false" />
+    <Property Type="Int16" Name="suc_Id" Nullable="false" />
+    <Property Type="Int32" Name="clte_Id" Nullable="false" />
+    <Property Type="String" Name="pemi_NumeroCAI" Nullable="false" MaxLength="30" />
+    <Property Type="Boolean" Name="fact_AlCredito" Nullable="false" />
+    <Property Type="Int32" Name="fact_DiasCredito" Nullable="false" />
+    <Property Type="Decimal" Name="fact_PorcentajeDescuento" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Boolean" Name="fact_AutorizarDescuento" Nullable="false" />
+    <Property Type="String" Name="fact_Vendedor" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="clte_RTN_Identidad_Pasaporte" Nullable="false" MaxLength="26" />
+    <Property Type="String" Name="clte_Nombres" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="fact_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="fact_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="fact_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="fact_FechaModifica" Nullable="true" Precision="23" />
   </ComplexType>
 </Schema>
