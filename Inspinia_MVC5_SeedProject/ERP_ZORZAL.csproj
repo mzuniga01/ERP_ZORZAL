@@ -493,6 +493,9 @@
     <Compile Include="Models\UDP_Vent_tbFactura_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbPedido_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbTipoPago_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1070,10 +1073,18 @@
     <Content Include="Views\Factura\_IndexProducto.cshtml" />
     <Content Include="Views\Factura\IndexFacturaPagar.cshtml" />
     <Content Include="Views\SolicitudCredito\IndexSolicitud.cshtml" />
+    <Content Include="Views\Pedido\IndexFacturar.cshtml" />
+    <Content Include="Views\Pedido\Create.cshtml" />
+    <Content Include="Views\Pedido\Delete.cshtml" />
+    <Content Include="Views\Pedido\Details.cshtml" />
+    <Content Include="Views\Pedido\Edit.cshtml" />
+    <Content Include="Views\Pedido\Index.cshtml" />
+    <Content Include="Views\Pedido\_CreatePedidoDetalle.cshtml" />
+    <Content Include="Views\Pedido\_IndexCliente.cshtml" />
+    <Content Include="Views\Pedido\_ListPedidoDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Pedido\" />
     <Folder Include="Views\SolicitudEfectivoDetalle\" />
   </ItemGroup>
   <ItemGroup>

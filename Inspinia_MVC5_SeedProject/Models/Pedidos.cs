@@ -23,11 +23,12 @@ namespace ERP_ZORZAL.Models
 
         [Display(Name = "Fecha Elaboración")]
         [Required]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}", HtmlEncode = false)]
         public System.DateTime ped_FechaElaboracion { get; set; }
 
         [Display(Name = "Fecha Entrega")]
         [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}", HtmlEncode = false)]
         public System.DateTime ped_FechaEntrega { get; set; }
 
         [Display(Name = "Número Cliente")]

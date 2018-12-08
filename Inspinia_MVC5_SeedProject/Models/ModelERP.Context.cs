@@ -541,5 +541,14 @@ namespace ERP_ZORZAL.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<short>>("UDP_Vent_tbFactura_Select", fact_IdParameter);
         }
+    
+        public virtual ObjectResult<Nullable<short>> UDP_Vent_tbPedido_Select(Nullable<int> ped_Id)
+        {
+            var ped_IdParameter = ped_Id.HasValue ?
+                new ObjectParameter("ped_Id", ped_Id) :
+                new ObjectParameter("ped_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<short>>("UDP_Vent_tbPedido_Select", ped_IdParameter);
+        }
     }
 }

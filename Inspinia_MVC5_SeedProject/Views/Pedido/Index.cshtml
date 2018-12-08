@@ -20,7 +20,8 @@
                 <div class="ibox-title">
                     <h5>Pedidos</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Pedido", "Create", null, new { @class = "btn btn-primary"})
+                        @Html.ActionLink("Pedidos Por Facturar", "IndexFacturar", null, new { @class = "btn btn-primary btn-xs" })
+						@Html.ActionLink("Registrar Pedido", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -137,8 +138,8 @@
                     @Html.DisplayFor(modelItem => item.tbSucursal.mun_Codigo)
                 </td>*@
                 <td>
-                    @Html.ActionLink("Detalles", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-sm" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-sm" })
+                    @Html.ActionLink("Detalles", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs" })
                     @*@Html.ActionLink("Delete", "Delete", new { id = item.ped_Id }, new { @class = "btn btn-white btn-sm" })*@
                 </td>
             </tr>

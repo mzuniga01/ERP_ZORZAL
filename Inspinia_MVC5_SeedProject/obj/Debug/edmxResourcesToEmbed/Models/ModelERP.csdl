@@ -852,6 +852,9 @@
     <FunctionImport Name="UDP_Vent_tbFactura_Select" ReturnType="Collection(Int16)">
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbPedido_Select" ReturnType="Collection(Int16)">
+      <Parameter Name="ped_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -4126,5 +4129,19 @@
     <Property Type="DateTime" Name="fact_FechaCrea" Nullable="false" Precision="23" />
     <Property Type="Int32" Name="fact_UsuarioModifica" Nullable="true" />
     <Property Type="DateTime" Name="fact_FechaModifica" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPedido_Select_Result">
+    <Property Type="Int32" Name="ped_Id" Nullable="false" />
+    <Property Type="Byte" Name="esped_Id" Nullable="false" />
+    <Property Type="String" Name="esped_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="ped_FechaElaboracion" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="ped_FechaEntrega" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="clte_Id" Nullable="false" />
+    <Property Type="Int16" Name="suc_Id" Nullable="false" />
+    <Property Type="Int64" Name="fact_Id" Nullable="false" />
+    <Property Type="Int32" Name="ped_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="ped_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="ped_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="ped_FechaModifica" Nullable="true" Precision="23" />
   </ComplexType>
 </Schema>

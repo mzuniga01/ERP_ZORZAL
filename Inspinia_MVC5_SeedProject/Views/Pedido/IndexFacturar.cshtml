@@ -1,0 +1,115 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbPedido>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Pedidos</h2>
+
+    </div>
+    <div class="title-action">
+        <a href="@Url.Action("Index","Pedido")">Regresar</a>
+    </div>
+
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Pedido Por Facturar</h5>
+                </div>
+                <div class="ibox-content">
+
+                    <table id="DataTable1" class="table table table-striped  table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)
+                                </th>
+
+                                <th>
+                                    Nombre Cliente
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ped_FechaElaboracion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ped_FechaEntrega)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbEstadoPedido.esped_Descripcion)
+                                </th>
+
+                                <th>Acciones</th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbCliente.clte_RTN_Identidad_Pasaporte)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ped_FechaElaboracion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ped_FechaEntrega)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbEstadoPedido.esped_Descripcion)
+                                    </td>
+
+
+                                    <td>
+                                        @Html.ActionLink("Detalle", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.ped_Id }, new { @class = "btn btn-white btn-xs" })
+                                        <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalFacturar">
+                                           Facturar Pedido
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+<div class="modal fade" id="ModalFacturar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Facturar Pedido</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Esta seguro de facturar?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Index","Pedido")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>

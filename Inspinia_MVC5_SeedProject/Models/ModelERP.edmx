@@ -922,30 +922,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Acce_tbObjeto_obj_UsuarioCrea">
-          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-          <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbObjeto">
-              <PropertyRef Name="obj_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Acce_tbObjeto_obj_UsuarioModifica">
-          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-          <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbObjeto">
-              <PropertyRef Name="obj_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
           <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="*" />
@@ -2983,6 +2959,9 @@
         <Function Name="UDP_Vent_tbFactura_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="fact_Id" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbPedido_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="ped_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbTipoPago_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="tpa_Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="tpa_Emisor" Type="bit" Mode="In" />
@@ -3074,14 +3053,6 @@
           <AssociationSet Name="FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea" Association="Self.FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbObjeto_obj_UsuarioCrea" Association="Self.FK_Acce_tbObjeto_obj_UsuarioCrea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbObjeto" EntitySet="tbObjeto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbObjeto_obj_UsuarioModifica" Association="Self.FK_Acce_tbObjeto_obj_UsuarioModifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbObjeto" EntitySet="tbObjeto" />
           </AssociationSet>
           <AssociationSet Name="FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" Association="Self.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -4582,7 +4553,10 @@
             <End Role="tbPedido" EntitySet="tbPedido" />
           </AssociationSet>
           <FunctionImport Name="UDP_Vent_tbFactura_Select" ReturnType="Collection(Int16)">
-            <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+          <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbPedido_Select" ReturnType="Collection(Int16)">
+          <Parameter Name="ped_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -7859,6 +7833,20 @@
           <Property Type="Int32" Name="fact_UsuarioModifica" Nullable="true" />
           <Property Type="DateTime" Name="fact_FechaModifica" Nullable="true" Precision="23" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbPedido_Select_Result">
+          <Property Type="Int32" Name="ped_Id" Nullable="false" />
+          <Property Type="Byte" Name="esped_Id" Nullable="false" />
+          <Property Type="String" Name="esped_Descripcion" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="ped_FechaElaboracion" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ped_FechaEntrega" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="clte_Id" Nullable="false" />
+          <Property Type="Int16" Name="suc_Id" Nullable="false" />
+          <Property Type="Int64" Name="fact_Id" Nullable="false" />
+          <Property Type="Int32" Name="ped_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="ped_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="ped_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="ped_FechaModifica" Nullable="true" Precision="23" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8919,6 +8907,8 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Select">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedido_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedido_Select">
           </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>

@@ -1055,5 +1055,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Select" />
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedido_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedido_Select" />
   </EntityContainerMapping>
 </Mapping>
