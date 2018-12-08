@@ -20,6 +20,7 @@ namespace ERP_ZORZAL.Models
             this.tbCuentasBanco = new HashSet<tbCuentasBanco>();
             this.tbDenominacion = new HashSet<tbDenominacion>();
             this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
+            this.tbParametro = new HashSet<tbParametro>();
         }
     
         public short mnda_Id { get; set; }
@@ -38,5 +39,7 @@ namespace ERP_ZORZAL.Models
         public virtual ICollection<tbDenominacion> tbDenominacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbParametro> tbParametro { get; set; }
     }
 }

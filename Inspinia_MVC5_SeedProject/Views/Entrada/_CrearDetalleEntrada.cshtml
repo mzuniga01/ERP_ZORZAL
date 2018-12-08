@@ -23,38 +23,35 @@
                             @Html.ValidationSummary(true)
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.ent_Id, "Código Entrada", new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.DropDownList("ent_Id", (IEnumerable<SelectListItem>)ViewBag.ent_Id, new { @class = "form-control" })
+                                @Html.LabelFor(model => model.ent_Id, "Numero Entrada", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("ent_Id", (IEnumerable<SelectListItem>)ViewBag.ent_Id, new { @class = "form-control" ,@readonly="readonly" })
                                     @Html.ValidationMessageFor(model => model.ent_Id)
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.prod_Codigo, "Código Producto", new { @class = "control-label col-md-2" })
-                                <div class="col-md-9">
+                                @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
                                     @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.prod_Codigo)
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
+                                <div class="col-md-1">
+                                    <input type="reset" value="Agregar" class="btn btn-primary" />
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.entd_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
+                                <div class="col-md-4">
                                     @Html.EditorFor(model => model.entd_Cantidad)
                                     @Html.ValidationMessageFor(model => model.entd_Cantidad)
                                 </div>
                             </div>
 
-                            @*<div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" value="Guardar" class="btn btn-primary" />
-                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-                                    </div>
-                                </div>*@
                         </div>
                     }
 

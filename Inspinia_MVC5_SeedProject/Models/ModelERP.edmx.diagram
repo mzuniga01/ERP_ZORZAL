@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e3cdae754a7b458288829a69167bdea2" Name="Diagram1" ZoomLevel="68">
+      <Diagram DiagramId="e3cdae754a7b458288829a69167bdea2" Name="Diagram1" ZoomLevel="57">
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbAccesoRol" Width="1.5" PointX="11.25" PointY="64.375" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbObjeto" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbRol" Width="1.5" PointX="6.75" PointY="68.5" />
@@ -36,8 +36,6 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbDocumentoFiscal" Width="1.5" PointX="3" PointY="95.25" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbEstadoFactura" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbExoneracion" Width="1.5" PointX="8" PointY="49" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbFactura" Width="1.5" PointX="3.75" PointY="69" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbFacturaDetalle" Width="1.5" PointX="8" PointY="44.375" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbListaPrecio" Width="1.5" PointX="3" PointY="40.125" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbNotaCredito" Width="1.5" PointX="6" PointY="58.875" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbPedidoDetalle" Width="1.5" PointX="3" PointY="49" />
@@ -92,19 +90,15 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbEstadoMovimiento_estm_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbProducto_prod_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbFactura_fact_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoSalida_tsal_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbSalida_sal_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbSolicitudEfectivo_cja_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_suc_Codigo" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbArqueoCaja" Width="1.5" PointX="15.75" PointY="48.625" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbDevolucionDetalle" Width="1.5" PointX="21" PointY="46.25" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbEstadoSolicitudCredito" Width="1.5" PointX="3" PointY="59.625" />
@@ -124,7 +118,6 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbPedido" Width="1.5" PointX="13.5" PointY="44" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPedido_ped_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPedido_ped_UsuarioModifica" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbPedido_fact_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbPedido_suc_Id" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbDenominacion" Width="1.5" PointX="9.25" PointY="72" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbFacturaHistorica" Width="1.5" PointX="8" PointY="36.25" />
@@ -151,16 +144,10 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbTipoEntrada_tent_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbTipoSalida_tbUsuario_tsal_UsuarioCrea" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Crea" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Modifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Crea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbFacturaHistorica_esfac_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbFacturaHistorica_fact_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbCuentasBanco" Width="1.5" PointX="5.625" PointY="80.625" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbMoneda" Width="1.5" PointX="3.375" PointY="80.875" />
@@ -193,7 +180,6 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCuentasBanco_tbPago_bcta_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbUnidadesMedida_uni_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbProducto_Gral_tbUnidadesMedida_uni_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbTipoIdentificacion" Width="1.5" PointX="3" PointY="99.5" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbCliente" Width="1.5" PointX="14.75" PointY="67.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbPuntoEmision" Width="1.5" PointX="3" PointY="89.625" />
@@ -209,7 +195,6 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbMunicipio_tbCliente_mun_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbExoneracion_clte_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbPedido_clte_id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSolicitudCredito_tbCliente_clte_Id" />
@@ -217,6 +202,26 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbPuntoEmisionDetalle_pemi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbPuntoEmision_pemi_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_BodegaDestino" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbParametro" Width="1.5" PointX="6" PointY="72.625" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbEstadoPedido" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbFactura" Width="1.5" PointX="17.375" PointY="34.875" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbFacturaDetalle" Width="1.5" PointX="19.625" PointY="36" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbParametro_tbUsuario_par_UsuarioCrea" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Crea" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Modifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbParametro_tbMoneda_mnda_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbFactura_fact_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbFacturaHistorica_fact_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbPedido_fact_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -76,8 +76,6 @@ namespace ERP_ZORZAL.Models
             this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
             this.tbTipoEntrada = new HashSet<tbTipoEntrada>();
             this.tbTipoSalida = new HashSet<tbTipoSalida>();
-            this.tbFactura = new HashSet<tbFactura>();
-            this.tbFactura1 = new HashSet<tbFactura>();
             this.tbPuntoEmisionDetalle = new HashSet<tbPuntoEmisionDetalle>();
             this.tbMoneda = new HashSet<tbMoneda>();
             this.tbMoneda1 = new HashSet<tbMoneda>();
@@ -101,6 +99,9 @@ namespace ERP_ZORZAL.Models
             this.tbCliente1 = new HashSet<tbCliente>();
             this.tbPuntoEmision = new HashSet<tbPuntoEmision>();
             this.tbPuntoEmision1 = new HashSet<tbPuntoEmision>();
+            this.tbParametro = new HashSet<tbParametro>();
+            this.tbFactura = new HashSet<tbFactura>();
+            this.tbFactura1 = new HashSet<tbFactura>();
         }
     
         public int usu_Id { get; set; }
@@ -232,10 +233,6 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbTipoSalida> tbTipoSalida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbFactura> tbFactura { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbFactura> tbFactura1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPuntoEmisionDetalle> tbPuntoEmisionDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbMoneda> tbMoneda { get; set; }
@@ -281,5 +278,11 @@ namespace ERP_ZORZAL.Models
         public virtual ICollection<tbPuntoEmision> tbPuntoEmision { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPuntoEmision> tbPuntoEmision1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbParametro> tbParametro { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFactura> tbFactura { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFactura> tbFactura1 { get; set; }
     }
 }

@@ -46,14 +46,25 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="tent_Id,tent_Descripcion,tent_UsuarioCrea,tent_FechaCrea,tent_UsuarioModifica,tent_FechaModifica")] tbTipoEntrada tbTipoEntrada)
+        public ActionResult Create([Bind(Include="tent_Descripcion")] tbTipoEntrada tbTipoEntrada)
         {
-            if (ModelState.IsValid)
-            {
-                db.tbTipoEntrada.Add(tbTipoEntrada);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            //if (ModelState.IsValid)
+            //{
+            //    try
+            //    {
+            //        IEnumerable<object> List = null;
+            //        List = db.UDP_Inv_tbTipoEntrada_Insert(tbTipoEntrada.tent_Descripcion,)
+            //        foreach (UDP_Inv_tbTipoEntrada_Insert_Result TipoEntrada in List)
+            //        {
+
+            //        }
+            //    }
+            //    catch (Exception Ex)
+            //    {
+
+            //    }
+            //    return RedirectToAction("Index");
+            //}
 
             return View(tbTipoEntrada);
         }

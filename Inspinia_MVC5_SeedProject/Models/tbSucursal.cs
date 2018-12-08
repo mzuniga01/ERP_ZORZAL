@@ -20,8 +20,8 @@ namespace ERP_ZORZAL.Models
             this.tbCaja = new HashSet<tbCaja>();
             this.tbCuponDescuento = new HashSet<tbCuponDescuento>();
             this.tbPedido = new HashSet<tbPedido>();
-            this.tbFactura = new HashSet<tbFactura>();
             this.tbNotaCredito = new HashSet<tbNotaCredito>();
+            this.tbFactura = new HashSet<tbFactura>();
         }
     
         public short suc_Id { get; set; }
@@ -48,9 +48,9 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedido> tbPedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbFactura> tbFactura { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbNotaCredito> tbNotaCredito { get; set; }
         public virtual tbPuntoEmision tbPuntoEmision { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFactura> tbFactura { get; set; }
     }
 }

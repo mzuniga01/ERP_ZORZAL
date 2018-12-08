@@ -19,10 +19,10 @@ namespace ERP_ZORZAL.Models
         {
             this.tbSalida = new HashSet<tbSalida>();
             this.tbDevolucion = new HashSet<tbDevolucion>();
-            this.tbFacturaDetalle = new HashSet<tbFacturaDetalle>();
-            this.tbPedido = new HashSet<tbPedido>();
             this.tbFacturaHistorica = new HashSet<tbFacturaHistorica>();
             this.tbPago = new HashSet<tbPago>();
+            this.tbPedido = new HashSet<tbPedido>();
+            this.tbFacturaDetalle = new HashSet<tbFacturaDetalle>();
         }
     
         public long fact_Id { get; set; }
@@ -41,27 +41,27 @@ namespace ERP_ZORZAL.Models
         public string clte_RTN_Identidad_Pasaporte { get; set; }
         public string clte_Nombres { get; set; }
         public int fact_UsuarioCrea { get; set; }
-        public System.DateTime fact__FechaCrea { get; set; }
-        public Nullable<int> fact__UsuarioModifica { get; set; }
+        public System.DateTime fact_FechaCrea { get; set; }
+        public Nullable<int> fact_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> fact_FechaModifica { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSalida> tbSalida { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbDevolucion> tbDevolucion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbPedido> tbPedido { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSalida> tbSalida { get; set; }
         public virtual tbCaja tbCaja { get; set; }
+        public virtual tbCliente tbCliente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbDevolucion> tbDevolucion { get; set; }
         public virtual tbEstadoFactura tbEstadoFactura { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFacturaHistorica> tbFacturaHistorica { get; set; }
-        public virtual tbSucursal tbSucursal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPago> tbPago { get; set; }
-        public virtual tbCliente tbCliente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPedido> tbPedido { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
+        public virtual tbSucursal tbSucursal { get; set; }
     }
 }

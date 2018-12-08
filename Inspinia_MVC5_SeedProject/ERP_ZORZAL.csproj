@@ -307,6 +307,9 @@
     <Compile Include="Models\tbEstadoMovimiento.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbEstadoPedido.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbEstadoSolicitudCredito.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -347,6 +350,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbPago.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbParametro.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbPedido.cs">
@@ -417,6 +423,9 @@
     </Compile>
     <Compile Include="Models\TipoEntrada.cs" />
     <Compile Include="Models\TipoSalida.cs" />
+    <Compile Include="Models\UDP_Inv_tbTipoEntrada_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UnidadMedida.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

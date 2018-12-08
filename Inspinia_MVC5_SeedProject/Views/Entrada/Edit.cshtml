@@ -37,111 +37,111 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal">
-
-                        @Html.ValidationSummary(true)
-                        @Html.HiddenFor(model => model.ent_Id)
                         <div class="form-horizontal">
-                            <div class="form-group">
 
-                                @Html.LabelFor(model => model.ent_BodegaDestino, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.ent_BodegaDestino, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.ent_BodegaDestino)
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.ent_Id)
+                            <div class="form-horizontal">
+                                <div class="form-group">
+
+                                    @Html.LabelFor(model => model.ent_BodegaDestino, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.ent_BodegaDestino, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.ent_BodegaDestino)
+                                    </div>
+                                    @Html.LabelFor(model => model.bod_Id, "Encargado Bodega", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.bod_Id)
+                                    </div>
                                 </div>
-                                @Html.LabelFor(model => model.bod_Id, "Encargado Bodega", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.bod_Id)
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ent_NumeroFormato, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.ent_NumeroFormato, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.ent_NumeroFormato)
+                                    </div>
+
+                                    @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.ent_FechaElaboracion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.ent_FechaElaboracion)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+
+                                    @Html.LabelFor(model => model.tent_Id, "Tipo Entrada", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("tent_Id", (IEnumerable<SelectListItem>)ViewBag.tent_Id, "Selecione", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.tent_Id)
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-horizontal" name="compra" id="CamposCompra" style="display:none">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ent_FacturaCompra, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.ent_FacturaCompra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.ent_FacturaCompra)
+                                    </div>
+
+                                    @Html.LabelFor(model => model.ent_FechaCompra, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.ent_FechaCompra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.ent_FechaCompra)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.fact_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.fact_Id)
+                                    </div>
+
+                                    @Html.LabelFor(model => model.tbProveedor.prov_Nombre, "Proveedor", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("prov_Id", (IEnumerable<SelectListItem>)ViewBag.prov_Id, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.prov_Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-horizontal" name="compra" id="CamposDevoluciones" style="display:none">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ent_RazonDevolucion, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.ent_RazonDevolucion)
+                                        @Html.ValidationMessageFor(model => model.ent_RazonDevolucion)
+                                    </div>
+                                    @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.fact_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.fact_Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-horizontal" name="compra" id="CamposTraslado" style="display:none">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.bod_Id, "Bodega Destino", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.bod_Id)
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.ent_NumeroFormato, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.ent_NumeroFormato, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.ent_NumeroFormato)
-                                </div>
+                                <div class="col-md-offset-2 col-md-10">
 
-                                @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.ent_FechaElaboracion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.ent_FechaElaboracion)
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
-
-                            <div class="form-group">
-
-                                @Html.LabelFor(model => model.tent_Id, "Tipo Entrada", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("tent_Id", (IEnumerable<SelectListItem>)ViewBag.tent_Id, "Selecione", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.tent_Id)
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="form-horizontal" name="compra" id="CamposCompra" style="display:none">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.ent_FacturaCompra, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.ent_FacturaCompra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.ent_FacturaCompra)
-                                </div>
-
-                                @Html.LabelFor(model => model.ent_FechaCompra, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.ent_FechaCompra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.ent_FechaCompra)
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.fact_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.fact_Id)
-                                </div>
-
-                                @Html.LabelFor(model => model.tbProveedor.prov_Nombre, "Proveedor", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("prov_Id", (IEnumerable<SelectListItem>)ViewBag.prov_Id, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.prov_Id)
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-horizontal" name="compra" id="CamposDevoluciones" style="display:none">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.ent_RazonDevolucion, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.ent_RazonDevolucion)
-                                    @Html.ValidationMessageFor(model => model.ent_RazonDevolucion)
-                                </div>
-                                @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.fact_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.fact_Id)
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-horizontal" name="compra" id="CamposTraslado" style="display:none">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.bod_Id, "Bodega Destino", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.bod_Id)
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-
-                                <input type="submit" value="Guardar" class="btn btn-primary" />
-                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                            </div>
-                        </div>
-                        @*<div class="row">
+                            @*<div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <div class="col-md-12">
@@ -150,37 +150,96 @@
                                 </div>
                             </div>
                         </div>*@
-                        <div class="form-group">
-                            @*<div class="col-md-offset-2 col-md-10">*@
-                            @Html.Partial("_IndexEditar", Model.tbEntradaDetalle)
-                            @*</div>*@
+                            <div class="form-group">
+                                @*<div class="col-md-offset-2 col-md-10">*@
+                                @Html.Partial("_IndexEditar", Model.tbEntradaDetalle)
+                                @*</div>*@
+                            </div>
                         </div>
+                    }
 
 
-                        <table class="table table-striped" style="width:100%" id="">
-                            <tr>
-                                <th>Acciones</th>
-                                <th>Usuario</th>
-                                <th>Fecha</th>
-                            </tr>
-                            <tr>
-                                <td>Creado</td>
-                                <td>Brayan Interiano</td>
-                                <td>@Html.DisplayFor(model => model.ent_FechaCrea)</td>
-                            </tr>
-                            <tr>
-                                <td>Modificado</td>
-                                <td></td>
-                                <td>@Html.DisplayFor(model => model.ent_FechaModifica)</td>
-                            </tr>
-                        </table>
 
-
+                    <div class="ibox-content">
+                        <fieldset class="box-border">
+                            <legend class="box-border">Detalles</legend>
+                            <table class="table table-striped table-bordered table-hover dataTables-example" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Código Producto</th>
+                                        <th>Descripción Producto</th>
+                                        <th>Categoría</th>
+                                        @*<th>SubCategoría</th>*@
+                                        <th>Punto Reorden</th>
+                                        <th>Cantidad Mínima</th>
+                                        <th>Cantidad Máxima</th>
+                                        <th>Costo</th>
+                                        <th>Costo Promedio</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><input type="reset" value="-" class="btn btn-danger btn-xs" /></th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><input type="reset" value="-" class="btn btn-danger btn-xs" /></th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><input type="reset" value="-" class="btn btn-danger btn-xs" /></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </fieldset>
                     </div>
-}
-
-
-                </div>
+                    <div class="ibox-content">
+                        <fieldset class="box-border">
+                            <legend class="box-border">Datos Auditoria</legend>
+                            <table class="table table-striped" style="width:100%" id="">
+                                <tr>
+                                    <th>Acciones</th>
+                                    <th>Usuario</th>
+                                    <th>Fecha</th>
+                                </tr>
+                                <tr>
+                                    <td>Creado</td>
+                                    <td>Brayan Interiano</td>
+                                    <td>@Html.DisplayFor(model => model.ent_FechaCrea)</td>
+                                </tr>
+                                <tr>
+                                    <td>Modificado</td>
+                                    <td></td>
+                                    <td>@Html.DisplayFor(model => model.ent_FechaModifica)</td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </div>
+                 </div>
             </div>
         </div>
     </div>

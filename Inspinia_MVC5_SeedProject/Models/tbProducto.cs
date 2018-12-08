@@ -21,10 +21,10 @@ namespace ERP_ZORZAL.Models
             this.tbEntradaDetalle = new HashSet<tbEntradaDetalle>();
             this.tbInventarioFisicoDetalle = new HashSet<tbInventarioFisicoDetalle>();
             this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
-            this.tbFacturaDetalle = new HashSet<tbFacturaDetalle>();
             this.tbPedidoDetalle = new HashSet<tbPedidoDetalle>();
             this.tbDevolucionDetalle = new HashSet<tbDevolucionDetalle>();
             this.tbListadoPrecioDetalle = new HashSet<tbListadoPrecioDetalle>();
+            this.tbFacturaDetalle = new HashSet<tbFacturaDetalle>();
         }
     
         public string prod_Codigo { get; set; }
@@ -39,6 +39,8 @@ namespace ERP_ZORZAL.Models
         public System.DateTime prod_FechaCrea { get; set; }
         public Nullable<int> prod_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> prod_FechaModifica { get; set; }
+        public Nullable<bool> prod_EsActivo { get; set; }
+        public string prod_Razon_Inactivacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodegaDetalle> tbBodegaDetalle { get; set; }
@@ -49,8 +51,6 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedidoDetalle> tbPedidoDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
@@ -60,5 +60,7 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
         public virtual tbUnidadMedida tbUnidadMedida { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
     }
 }

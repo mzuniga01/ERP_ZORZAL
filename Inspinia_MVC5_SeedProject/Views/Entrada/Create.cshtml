@@ -46,7 +46,7 @@
                                 <legend class="box-border">Datos Generales</legend>
                                 <div class="form-group">
 
-                                    @Html.LabelFor(model => model.bod_Id, "Numero Bodega", new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.bod_Id, "Bodega", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.bod_Id)
@@ -171,23 +171,91 @@
                                 </div>
                             </div>
                         </div>
-                        @* Llama la vista  *@
+                        @*botones*@
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
                                 <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
                                 <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
-                                <input type="submit" value="Guardar" class="btn btn-primary" />
+
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                             </div>
                         </div>
-
                     }
 
+                    @*tabla q muestra detalle producto*@
+                    <div class="ibox-content">
+                        <fieldset class="box-border">
+                            
+                            <legend class="box-border">Detalles</legend>
+
+                            <table class="table table-striped table-bordered table-hover dataTables-example" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Código Producto</th>
+                                        <th>Descripción Producto</th>
+                                        <th>Categoría</th>
+                                        @*<th>SubCategoría</th>*@
+                                        <th>Punto Reorden</th>
+                                        <th>Cantidad Mínima</th>
+                                        <th>Cantidad Máxima</th>
+                                        <th>Costo</th>
+                                        <th>Costo Promedio</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><input type="reset" value="-" class="btn btn-danger btn-xs" /></th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><input type="reset" value="-" class="btn btn-danger btn-xs" /></th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><input type="reset" value="-" class="btn btn-danger btn-xs" /></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </fieldset>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
  </div>
+
+@**********************************************************************************MODALES*****************************************************************************@
+@**********************************************************************************MODALES*****************************************************************************@
+@**********************************************************************************MODALES*****************************************************************************@
+
+
+
+
 @*modal para Aplicar*@
 <div class="modal fade" id="ModalAplicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

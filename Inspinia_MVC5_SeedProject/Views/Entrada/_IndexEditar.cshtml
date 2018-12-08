@@ -8,8 +8,8 @@
                 <div class="ibox-title">
                     <h5>Listado Entrada Detalle</h5>
 					<div class="ibox-tools">
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregar">Nuevo</button>
-						
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -62,6 +62,7 @@
 
                 </div>
             </div>
+           
         </div>
     </div>
  </div>
@@ -72,14 +73,14 @@
     $(document).ready(function () {
         $('#tbEntradaDetalle').DataTable(
         {
-            "searching": true,
+            
 
             "oLanguage": {
                 "oPaginate": {
                     "sNext": "Siguiente",
                     "sPrevious": "Anterior",
                 },
-                "sSearch": "Buscar",
+                
                 "sLengthMenu": "Mostrar _MENU_ registros por página",
                 "sInfo": "Mostrando _START_ a _END_ Entradas",
             }
@@ -179,6 +180,22 @@
             <div class="modal-footer">
                 <a href="@Url.Action("Index","Entrada")" class="btn btn-primary">Si</a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*PARA AGREGAR NUEVO PRODUCTO*@
+<div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+            </div>
+            <div class="modal-body" id="frmEditarMunicipios">
+                @*@Html.Partial("_BuscarProducto", (List<tbProducto>)ViewBag.Producto)*@
             </div>
         </div>
     </div>

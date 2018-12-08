@@ -72,14 +72,15 @@
                                     </td>
                                     <td>
                                         <input type="button" id="boton_@item.bod_Id " value="Inactivar" class="btn btn-white btn-xs" onclick="Activar(@item.bod_Id);">
-                                        @Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)
+                                        @*@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)*@
                                     </td>
                                     <td>
                                         
                                         @Html.ActionLink("Editar", "Edit", new { id = item.ent_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#exampleModal" value="Anular" />
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.ent_Id }, new { @class = "btn btn-white btn-xs" })
                                         <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
-                                         @Html.ActionLink("Detalles", "Details", new { id = item.ent_Id }, new { @class = "btn btn-white btn-xs" })
+                                        <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#exampleModal" value="Anular" />
+                                         
                                     </td>
                                 </tr>
                             }
