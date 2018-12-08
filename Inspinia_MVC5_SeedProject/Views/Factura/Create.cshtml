@@ -1,0 +1,177 @@
+﻿@model ERP_ZORZAL.Models.tbFactura
+@using ERP_ZORZAL.Models
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+</style>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Factura</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Factura")">Regresar</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Registrar Factura</h5>
+                </div>
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <span class="validation-error">  @Html.ValidationMessageFor(model => model.suc_Id)</span>
+                                </div>
+                                @Html.LabelFor(model => model.cja_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <span class="validation-error">  @Html.ValidationMessageFor(model => model.cja_Id)</span>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label col-md-2", })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <span class="validation-error">  @Html.ValidationMessageFor(model => model.pemi_NumeroCAI)</span>
+                                </div>
+                                @Html.LabelFor(model => model.fact_Codigo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <span class="validation-error">  @Html.ValidationMessageFor(model => model.fact_Codigo)</span>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fact_Fecha, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafactura" } })
+                                    <span class="validation-error"> @Html.ValidationMessageFor(model => model.fact_Fecha)</span>
+                                </div>
+                                @Html.LabelFor(model => model.clte_RTN_Identidad_Pasaporte, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.clte_RTN_Identidad_Pasaporte)
+                                    <span class="validation-error"> @Html.ValidationMessageFor(model => model.clte_RTN_Identidad_Pasaporte)</span>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fact_AlCredito, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_AlCredito)
+                                    <span class="validation-error"> @Html.ValidationMessageFor(model => model.fact_AlCredito)</span>
+                                </div>
+                                @Html.LabelFor(model => model.fact_Vendedor, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_Vendedor)
+                                    <span class="validation-error">  @Html.ValidationMessageFor(model => model.fact_Vendedor)</span>
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-horizontal" name="Cred1" id="Cred1">
+                                    @Html.LabelFor(model => model.fact_DiasCredito, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.fact_DiasCredito)
+                                        <span class="validation-error">  @Html.ValidationMessageFor(model => model.fact_DiasCredito)</span>
+                                    </div>
+                                </div>
+                                <div class="form-horizontal" name="Cred2" id="Cred2">
+                                    @Html.LabelFor(model => model.fact_PorcentajeDescuento, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.fact_PorcentajeDescuento)
+                                        <span class="validation-error"> @Html.ValidationMessageFor(model => model.fact_PorcentajeDescuento)</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.esfac_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <span class="validation-error"> @Html.ValidationMessageFor(model => model.esfac_Id)</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    }
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.Partial("_CreateFacturaDetalle", new tbFacturaDetalle())
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="form-group">
+                            <div class="col-md-offset-4 col-md-10">
+                                <input type="submit" value="Guardar" class="btn btn-primary btn-xs" />
+                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
+                                    Imprimir
+                                </button>
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-xs" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Imprimir Factura</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea Imprimir Factura?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Create","Factura")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/Credito.js"></script>

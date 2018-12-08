@@ -191,6 +191,7 @@
     <Compile Include="Controllers\EstadoFacturaController.cs" />
     <Compile Include="Controllers\EstadoSolicitudCreditoController.cs" />
     <Compile Include="Controllers\ExoneracionController.cs" />
+    <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListaPreciosController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -236,6 +237,8 @@
     <Compile Include="Models\Denominacion.cs" />
     <Compile Include="Models\EstadoFactura.cs" />
     <Compile Include="Models\EstadosSolicitudCreditos.cs" />
+    <Compile Include="Models\Factura.cs" />
+    <Compile Include="Models\FacturaDetalle.cs" />
     <Compile Include="Models\FacturaHistorica.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListasPrecios.cs" />
@@ -1057,6 +1060,16 @@
     <Content Include="Views\ListaPrecios\_PrecioDetalle.cshtml" />
     <Content Include="Views\SolicitudCredito\_IndexCliente.cshtml" />
     <Content Include="Views\SolicitudCredito\_ListAprobacion.cshtml" />
+    <Content Include="Views\Factura\Create.cshtml" />
+    <Content Include="Views\Factura\Delete.cshtml" />
+    <Content Include="Views\Factura\Details.cshtml" />
+    <Content Include="Views\Factura\Edit.cshtml" />
+    <Content Include="Views\Factura\Index.cshtml" />
+    <Content Include="Views\Factura\_CreateFacturaDetalle.cshtml" />
+    <Content Include="Views\Factura\_CreateFacturaDetalleModal.cshtml" />
+    <Content Include="Views\Factura\_IndexFacturaDetalle.cshtml" />
+    <Content Include="Views\Factura\_IndexFacturaHistorica.cshtml" />
+    <Content Include="Views\Factura\_IndexProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
