@@ -18,14 +18,7 @@ namespace ERP_ZORZAL.Controllers
         public ActionResult Index()
         {
             var tbdenominacion = db.tbDenominacion.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbMoneda);
-
-
-          
-
             return View(tbdenominacion.ToList());
-
-           
-
         }
 
         // GET: /Denominacion/Details/5
@@ -47,15 +40,13 @@ namespace ERP_ZORZAL.Controllers
         public ActionResult Create()
         {
 
-            
+            tbDenominacion TipoDenominacion = new tbDenominacion();
+            TipoDenominacion.DenominacionList = cUtilities.DenominacionList();
 
             ViewBag.deno_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.deno_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
-            ViewBag.mnda_Nombre = new SelectList(db.tbMoneda, "mnda_Id","mnda_Nombre");
-           
-
-            return View();
+            return View(TipoDenominacion);
         }
 
         // POST: /Denominacion/Create
@@ -63,18 +54,41 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include= "deno_Id,deno_Descripcion,deno_Tipo,deno_valor,mnda_Id")] tbDenominacion tbDenominacion)
+        public ActionResult Create([Bind(Include="deno_Id,deno_Descripcion,deno_Tipo,deno_valor,mnda_Id,deno_UsuarioCrea,deno_FechaCrea,deno_UsuarioModifica,deno_FechaModifica")] tbDenominacion tbDenominacion)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.tbDenominacion.Add(tbDenominacion);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Gral_tbDenominacion_Insert(tbDenominacion.deno_Descripcion, tbDenominacion.deno_Tipo, tbDenominacion.deno_valor, tbDenominacion.mnda_Id);
+                    foreach (UDP_Gral_tbDenominacion_Insert_Result Denominacion in list)
+                        MensajeError = Denominacion.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    db.tbDenominacion.Add(tbDenominacion);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            } catch (Exception Ex)
+            {
+                Ex.Message.ToString();
             }
+            
 
             ViewBag.deno_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacion.deno_UsuarioCrea);
             ViewBag.deno_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacion.deno_UsuarioModifica);
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbDenominacion.mnda_Id);
+
+            tbDenominacion TipoDenominacion = new tbDenominacion();
+            TipoDenominacion.DenominacionList = cUtilities.DenominacionList();
+
             return View(tbDenominacion);
         }
 
@@ -90,15 +104,15 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
-
-            ////tbDenominacion Denominacion = new tbDenominacion();
-            ////Denominacion. = cDenominaciones.deno_Tipo();
-
             ViewBag.deno_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacion.deno_UsuarioCrea);
             ViewBag.deno_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacion.deno_UsuarioModifica);
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbDenominacion.mnda_Id);
+
+            tbDenominacion TipoDenominacion = db.tbDenominacion.Find(id);
+            TipoDenominacion.DenominacionList = cUtilities.DenominacionList();        
             return View(tbDenominacion);
         }
+
         // POST: /Denominacion/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -108,13 +122,29 @@ namespace ERP_ZORZAL.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbDenominacion).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var MensajeError = 0;
+                IEnumerable<object> list = null;
+                list = db.UDP_Gral_tbDenominacion_Update(tbDenominacion.deno_Id,tbDenominacion.deno_Descripcion,tbDenominacion.deno_Tipo,tbDenominacion.deno_valor,tbDenominacion.mnda_Id,tbDenominacion.deno_UsuarioCrea,tbDenominacion.deno_FechaCrea,tbDenominacion.deno_UsuarioModifica,tbDenominacion.deno_FechaModifica);
+                foreach (UDP_Gral_tbDenominacion_Update_Result denominacion in list)
+                    MensajeError = denominacion.MensajeError;
+                if (MensajeError == -1)
+                {
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+
+                //db.Entry(tbDenominacion).State = EntityState.Modified;
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
             }
             ViewBag.deno_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacion.deno_UsuarioCrea);
             ViewBag.deno_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacion.deno_UsuarioModifica);
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbDenominacion.mnda_Id);
+
+            tbDenominacion TipoDenominacion = new tbDenominacion();
+            TipoDenominacion.DenominacionList = cUtilities.DenominacionList();
             return View(tbDenominacion);
         }
 

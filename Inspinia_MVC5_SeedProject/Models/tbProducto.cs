@@ -39,6 +39,8 @@ namespace ERP_ZORZAL.Models
         public System.DateTime prod_FechaCrea { get; set; }
         public Nullable<int> prod_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> prod_FechaModifica { get; set; }
+        public Nullable<bool> prod_EsActivo { get; set; }
+        public string prod_Razon_Inactivacion { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

@@ -7,24 +7,14 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Registro de Denominación</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Create</strong>
-            </li>
-        </ol>*@
+        <h2>Registro de Denominación</h2>        
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
             <a href="/Denominacion/Index">Regresar</a>
         </div>
     </div>
 </div>
-
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -43,61 +33,32 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.mnda_Id, "Moneda", new { @class = "control-label col-md-2" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_Tipo, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
-                @Html.DropDownList("mnda_Nombre", String.Empty)
+                @Html.DropDownListFor(model => model.deno_Tipo, new SelectList(Model.DenominacionList, "ID_TipoDenominacion", "Tipo_Denominacion"), "Seleccione Tipo Denominación", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.deno_Tipo)
+            </div>
+        </div>
+               
+        <div class="form-group">
+            @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.DropDownList("mnda_Id", @*String.Empty*@ null, "Seleccione la Moneda", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.mnda_Id)
             </div>
-        </div>*@
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.deno_Descripcion, "Denominación", new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-
-                @Html.DropDownListFor(x => x.deno_Tipo, new List<SelectListItem>
-    {                   
-                        new SelectListItem() {Text = "Billete", Value="1"},
-                        new SelectListItem() {Text = "Moneda", Value="2"},
-
-    }, "Seleccione la Denominación", new { @class = "form-control" } )
-
-
-            </div>
         </div>
 
-
-
-
         <div class="form-group">
-            @Html.LabelFor(model => model.deno_Descripcion, "Moneda", new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-
-                @Html.DropDownListFor(x => x.deno_Tipo, new List<SelectListItem>
-    {                   
-                        new SelectListItem() {Text = "Lempira", Value="1"},
-                        new SelectListItem() {Text = "Euro", Value="2"},
-
-    }, "Seleccione la Moneda", new { @class = "form-control" })
-
-
-            </div>
-        </div>
-
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.deno_Descripcion, "Descripción", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.deno_Descripcion, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.deno_Descripcion)
                 @Html.ValidationMessageFor(model => model.deno_Descripcion)
             </div>
         </div>
-
+       
         <div class="form-group">
-            @Html.LabelFor(model => model.deno_valor,"Valor", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.deno_valor, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.deno_valor)
                 @Html.ValidationMessageFor(model => model.deno_valor)
@@ -153,7 +114,3 @@
  </div>
 
  
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

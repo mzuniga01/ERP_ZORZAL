@@ -33,11 +33,12 @@
 				@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.tpi_Id)
+        @Html.HiddenFor(model => model.tpi_UsuarioCrea)
+        @Html.HiddenFor(model => model.tpi_FechaCrea)
 
 
         <div class="form-group">

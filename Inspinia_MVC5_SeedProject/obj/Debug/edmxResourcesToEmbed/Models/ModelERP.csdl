@@ -716,6 +716,48 @@
       <Parameter Name="ban_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="ban_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbTipoIdentificacion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbTipoIdentificacion_Update_Result)">
+      <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
+      <Parameter Name="tpi_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="tpi_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="tpi_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="tpi_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="tpi_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbDenominacion_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDenominacion_Insert_Result)">
+      <Parameter Name="deno_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="deno_Tipo" Mode="In" Type="Byte" />
+      <Parameter Name="deno_valor" Mode="In" Type="Decimal" />
+      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbDenominacion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDenominacion_Update_Result)">
+      <Parameter Name="deno_Id" Mode="In" Type="Int16" />
+      <Parameter Name="deno_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="deno_Tipo" Mode="In" Type="Byte" />
+      <Parameter Name="deno_valor" Mode="In" Type="Decimal" />
+      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+      <Parameter Name="deno_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="deno_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="deno_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="deno_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbTipoIdentificacion_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbTipoIdentificacion_Insert_Result)">
+      <Parameter Name="tpi_Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbCaja_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCaja_Insert_Result)">
+      <Parameter Name="cja_Id" Mode="In" Type="Int16" />
+      <Parameter Name="cja_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbCaja_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCaja_Update_Result)">
+      <Parameter Name="cja_Id" Mode="In" Type="Int16" />
+      <Parameter Name="cja_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="cja_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="cja_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="cja_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="cja_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -806,7 +848,7 @@
     <Property Name="usu_Apellidos" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="usu_Correo" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="usu_EsActivo" Type="Boolean" Nullable="false" />
-    <Property Name="usu_RazonInactivo" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="usu_RazonInactivo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="usu_EsAdministrador" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="tbAccesoRol" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea" FromRole="tbUsuario" ToRole="tbAccesoRol" />
     <NavigationProperty Name="tbObjeto" Relationship="ERP_ZORZALModel.FK_Acce_tbObjeto_obj_UsuarioCrea" FromRole="tbUsuario" ToRole="tbObjeto" />
@@ -1216,6 +1258,8 @@
     <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbFacturaDetalle" />
     <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbListadoPrecioDetalle" />
     <NavigationProperty Name="tbPedidoDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbPedidoDetalle" />
+    <Property Name="prod_EsActivo" Type="Boolean" />
+    <Property Name="prod_Razon_Inactivacion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="tbProductoCategoria">
     <Key>
@@ -3784,6 +3828,24 @@
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Gral_tbBanco_Update_Result">
+    <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbTipoIdentificacion_Update_Result">
+    <Property Type="Byte" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbDenominacion_Insert_Result">
+    <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbDenominacion_Update_Result">
+    <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbTipoIdentificacion_Insert_Result">
+    <Property Type="Byte" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbCaja_Update_Result">
+    <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbCaja_Insert_Result">
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
   </ComplexType>
 </Schema>

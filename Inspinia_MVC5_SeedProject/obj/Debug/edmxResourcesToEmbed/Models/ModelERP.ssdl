@@ -58,7 +58,7 @@
     <Property Name="usu_Apellidos" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="usu_Correo" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="usu_EsActivo" Type="bit" Nullable="false" />
-    <Property Name="usu_RazonInactivo" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="usu_RazonInactivo" Type="varchar" MaxLength="150" />
     <Property Name="usu_EsAdministrador" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="tbActividadEconomica">
@@ -89,7 +89,7 @@
     <Key>
       <PropertyRef Name="bcta_Id" />
     </Key>
-    <Property Name="bcta_Id" Type="smallint" Nullable="false" />
+    <Property Name="bcta_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ban_Id" Type="smallint" Nullable="false" />
     <Property Name="mnda_Id" Type="smallint" Nullable="false" />
     <Property Name="bcta_TipoCuenta" Type="tinyint" Nullable="false" />
@@ -322,6 +322,8 @@
     <Property Name="prod_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="prod_UsuarioModifica" Type="int" />
     <Property Name="prod_FechaModifica" Type="datetime" />
+    <Property Name="prod_EsActivo" Type="bit" />
+    <Property Name="prod_Razon_Inactivacion" Type="varchar" MaxLength="150" />
   </EntityType>
   <EntityType Name="tbProductoCategoria">
     <Key>
@@ -880,6 +882,18 @@
       </Principal>
       <Dependent Role="tbObjeto">
         <PropertyRef Name="obj_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbObjeto">
+        <PropertyRef Name="obj_UsuarioCrea" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2758,8 +2772,47 @@
     <Parameter Name="ban_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="ban_FechaModifica" Type="datetime" Mode="In" />
   </Function>
-  <Function Name="spGetMunicipios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-    <Parameter Name="CodDepartamento" Type="char" Mode="In" />
+  <Function Name="UDP_Gral_tbDenominacion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="deno_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="deno_Tipo" Type="tinyint" Mode="In" />
+    <Parameter Name="deno_valor" Type="decimal" Mode="In" />
+    <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbDenominacion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="deno_Id" Type="smallint" Mode="In" />
+    <Parameter Name="deno_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="deno_Tipo" Type="tinyint" Mode="In" />
+    <Parameter Name="deno_valor" Type="decimal" Mode="In" />
+    <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
+    <Parameter Name="deno_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="deno_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="deno_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="deno_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbTipoIdentificacion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="tpi_Descripcion" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbTipoIdentificacion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="tpi_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="tpi_Descripcion" Type="nvarchar" Mode="In" />
+    <Parameter Name="tpi_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="tpi_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="tpi_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="tpi_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbCaja_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="cja_Id" Type="smallint" Mode="In" />
+    <Parameter Name="cja_Descripcion" Type="nvarchar" Mode="In" />
+    <Parameter Name="suc_Id" Type="smallint" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbCaja_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="cja_Id" Type="smallint" Mode="In" />
+    <Parameter Name="cja_Descripcion" Type="nvarchar" Mode="In" />
+    <Parameter Name="suc_Id" Type="smallint" Mode="In" />
+    <Parameter Name="cja_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="cja_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="cja_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="cja_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <EntityContainer Name="ERP_ZORZALModelStoreContainer">
     <EntitySet Name="tbAccesoRol" EntityType="Self.tbAccesoRol" Schema="Acce" store:Type="Tables" />
@@ -2836,6 +2889,10 @@
       <End Role="tbObjeto" EntitySet="tbObjeto" />
     </AssociationSet>
     <AssociationSet Name="FK_Acce_tbObjeto_obj_UsuarioModifica" Association="Self.FK_Acce_tbObjeto_obj_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbObjeto" EntitySet="tbObjeto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" Association="Self.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbObjeto" EntitySet="tbObjeto" />
     </AssociationSet>

@@ -122,6 +122,24 @@ namespace ERP_ZORZAL.Models
 
             return list;
         }
+        public static List<cDenominacion> DenominacionList()
+        {
+            List<cDenominacion> list = new List<cDenominacion>();
 
+            list.Add(new cDenominacion()
+            {
+                ID_TipoDenominacion = 1,
+                Tipo_Denominacion = "Billete"
+            });
+            list.Add(new cDenominacion()
+            {
+                ID_TipoDenominacion = 2,
+                Tipo_Denominacion = "Moneda"
+            });
+
+
+            return list;
+        }
     }
 }
+
