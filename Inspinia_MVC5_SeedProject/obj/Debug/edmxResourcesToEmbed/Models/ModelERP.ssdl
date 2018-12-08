@@ -2875,6 +2875,27 @@
     <Parameter Name="ban_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="ban_FechaModifica" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Gral_tbCuentasBanco_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="ban_Id" Type="smallint" Mode="In" />
+    <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
+    <Parameter Name="bcta_TipoCuenta" Type="tinyint" Mode="In" />
+    <Parameter Name="bcta_TotalCredito" Type="decimal" Mode="In" />
+    <Parameter Name="bcta_TotalDebito" Type="decimal" Mode="In" />
+    <Parameter Name="bcta_FechaApertura" Type="datetime" Mode="In" />
+    <Parameter Name="bcta_Numero" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbCuentasBanco_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="bcta_Id" Type="smallint" Mode="In" />
+    <Parameter Name="ban_Id" Type="smallint" Mode="In" />
+    <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
+    <Parameter Name="bcta_TipoCuenta" Type="tinyint" Mode="In" />
+    <Parameter Name="bcta_TotalCredito" Type="decimal" Mode="In" />
+    <Parameter Name="bcta_TotalDebito" Type="decimal" Mode="In" />
+    <Parameter Name="bcta_FechaApertura" Type="datetime" Mode="In" />
+    <Parameter Name="bcta_Numero" Type="nvarchar" Mode="In" />
+    <Parameter Name="bcta_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="bcta_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="UDP_Gral_tbDenominacion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="deno_Descripcion" Type="varchar" Mode="In" />
     <Parameter Name="deno_Tipo" Type="tinyint" Mode="In" />

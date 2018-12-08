@@ -300,5 +300,83 @@ namespace ERP_ZORZAL.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCaja_Update_Result>("UDP_Vent_tbCaja_Update", cja_IdParameter, cja_DescripcionParameter, suc_IdParameter, cja_UsuarioCreaParameter, cja_FechaCreaParameter, cja_UsuarioModificaParameter, cja_FechaModificaParameter);
         }
+    
+        public virtual ObjectResult<UDP_Gral_tbCuentasBanco_Insert_Result> UDP_Gral_tbCuentasBanco_Insert(Nullable<short> ban_Id, Nullable<short> mnda_Id, Nullable<byte> bcta_TipoCuenta, Nullable<decimal> bcta_TotalCredito, Nullable<decimal> bcta_TotalDebito, Nullable<System.DateTime> bcta_FechaApertura, string bcta_Numero)
+        {
+            var ban_IdParameter = ban_Id.HasValue ?
+                new ObjectParameter("ban_Id", ban_Id) :
+                new ObjectParameter("ban_Id", typeof(short));
+    
+            var mnda_IdParameter = mnda_Id.HasValue ?
+                new ObjectParameter("mnda_Id", mnda_Id) :
+                new ObjectParameter("mnda_Id", typeof(short));
+    
+            var bcta_TipoCuentaParameter = bcta_TipoCuenta.HasValue ?
+                new ObjectParameter("bcta_TipoCuenta", bcta_TipoCuenta) :
+                new ObjectParameter("bcta_TipoCuenta", typeof(byte));
+    
+            var bcta_TotalCreditoParameter = bcta_TotalCredito.HasValue ?
+                new ObjectParameter("bcta_TotalCredito", bcta_TotalCredito) :
+                new ObjectParameter("bcta_TotalCredito", typeof(decimal));
+    
+            var bcta_TotalDebitoParameter = bcta_TotalDebito.HasValue ?
+                new ObjectParameter("bcta_TotalDebito", bcta_TotalDebito) :
+                new ObjectParameter("bcta_TotalDebito", typeof(decimal));
+    
+            var bcta_FechaAperturaParameter = bcta_FechaApertura.HasValue ?
+                new ObjectParameter("bcta_FechaApertura", bcta_FechaApertura) :
+                new ObjectParameter("bcta_FechaApertura", typeof(System.DateTime));
+    
+            var bcta_NumeroParameter = bcta_Numero != null ?
+                new ObjectParameter("bcta_Numero", bcta_Numero) :
+                new ObjectParameter("bcta_Numero", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbCuentasBanco_Insert_Result>("UDP_Gral_tbCuentasBanco_Insert", ban_IdParameter, mnda_IdParameter, bcta_TipoCuentaParameter, bcta_TotalCreditoParameter, bcta_TotalDebitoParameter, bcta_FechaAperturaParameter, bcta_NumeroParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbCuentasBanco_Update_Result> UDP_Gral_tbCuentasBanco_Update(Nullable<short> bcta_Id, Nullable<short> ban_Id, Nullable<short> mnda_Id, Nullable<byte> bcta_TipoCuenta, Nullable<decimal> bcta_TotalCredito, Nullable<decimal> bcta_TotalDebito, Nullable<System.DateTime> bcta_FechaApertura, string bcta_Numero, Nullable<int> bcta_UsuarioCrea, Nullable<System.DateTime> bcta_FechaCrea)
+        {
+            var bcta_IdParameter = bcta_Id.HasValue ?
+                new ObjectParameter("bcta_Id", bcta_Id) :
+                new ObjectParameter("bcta_Id", typeof(short));
+    
+            var ban_IdParameter = ban_Id.HasValue ?
+                new ObjectParameter("ban_Id", ban_Id) :
+                new ObjectParameter("ban_Id", typeof(short));
+    
+            var mnda_IdParameter = mnda_Id.HasValue ?
+                new ObjectParameter("mnda_Id", mnda_Id) :
+                new ObjectParameter("mnda_Id", typeof(short));
+    
+            var bcta_TipoCuentaParameter = bcta_TipoCuenta.HasValue ?
+                new ObjectParameter("bcta_TipoCuenta", bcta_TipoCuenta) :
+                new ObjectParameter("bcta_TipoCuenta", typeof(byte));
+    
+            var bcta_TotalCreditoParameter = bcta_TotalCredito.HasValue ?
+                new ObjectParameter("bcta_TotalCredito", bcta_TotalCredito) :
+                new ObjectParameter("bcta_TotalCredito", typeof(decimal));
+    
+            var bcta_TotalDebitoParameter = bcta_TotalDebito.HasValue ?
+                new ObjectParameter("bcta_TotalDebito", bcta_TotalDebito) :
+                new ObjectParameter("bcta_TotalDebito", typeof(decimal));
+    
+            var bcta_FechaAperturaParameter = bcta_FechaApertura.HasValue ?
+                new ObjectParameter("bcta_FechaApertura", bcta_FechaApertura) :
+                new ObjectParameter("bcta_FechaApertura", typeof(System.DateTime));
+    
+            var bcta_NumeroParameter = bcta_Numero != null ?
+                new ObjectParameter("bcta_Numero", bcta_Numero) :
+                new ObjectParameter("bcta_Numero", typeof(string));
+    
+            var bcta_UsuarioCreaParameter = bcta_UsuarioCrea.HasValue ?
+                new ObjectParameter("bcta_UsuarioCrea", bcta_UsuarioCrea) :
+                new ObjectParameter("bcta_UsuarioCrea", typeof(int));
+    
+            var bcta_FechaCreaParameter = bcta_FechaCrea.HasValue ?
+                new ObjectParameter("bcta_FechaCrea", bcta_FechaCrea) :
+                new ObjectParameter("bcta_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbCuentasBanco_Update_Result>("UDP_Gral_tbCuentasBanco_Update", bcta_IdParameter, ban_IdParameter, mnda_IdParameter, bcta_TipoCuentaParameter, bcta_TotalCreditoParameter, bcta_TotalDebitoParameter, bcta_FechaAperturaParameter, bcta_NumeroParameter, bcta_UsuarioCreaParameter, bcta_FechaCreaParameter);
+        }
     }
 }

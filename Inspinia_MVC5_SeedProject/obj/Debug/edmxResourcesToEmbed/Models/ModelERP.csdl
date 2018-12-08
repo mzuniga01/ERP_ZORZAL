@@ -781,6 +781,27 @@
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
     </AssociationSet>
+    <FunctionImport Name="UDP_Gral_tbCuentasBanco_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbCuentasBanco_Insert_Result)">
+      <Parameter Name="ban_Id" Mode="In" Type="Int16" />
+      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+      <Parameter Name="bcta_TipoCuenta" Mode="In" Type="Byte" />
+      <Parameter Name="bcta_TotalCredito" Mode="In" Type="Decimal" />
+      <Parameter Name="bcta_TotalDebito" Mode="In" Type="Decimal" />
+      <Parameter Name="bcta_FechaApertura" Mode="In" Type="DateTime" />
+      <Parameter Name="bcta_Numero" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbCuentasBanco_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbCuentasBanco_Update_Result)">
+      <Parameter Name="bcta_Id" Mode="In" Type="Int16" />
+      <Parameter Name="ban_Id" Mode="In" Type="Int16" />
+      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+      <Parameter Name="bcta_TipoCuenta" Mode="In" Type="Byte" />
+      <Parameter Name="bcta_TotalCredito" Mode="In" Type="Decimal" />
+      <Parameter Name="bcta_TotalDebito" Mode="In" Type="Decimal" />
+      <Parameter Name="bcta_FechaApertura" Mode="In" Type="DateTime" />
+      <Parameter Name="bcta_Numero" Mode="In" Type="String" />
+      <Parameter Name="bcta_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="bcta_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -3996,4 +4017,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="UDP_Gral_tbCuentasBanco_Insert_Result">
+    <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbCuentasBanco_Update_Result">
+    <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
 </Schema>

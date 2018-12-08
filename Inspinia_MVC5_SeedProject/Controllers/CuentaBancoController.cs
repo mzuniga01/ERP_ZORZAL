@@ -42,9 +42,9 @@ namespace ERP_ZORZAL.Controllers
             tbCuentasBanco CuentasBanco = new tbCuentasBanco();
             ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre");
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
-            //TipoCuenta.TipoCuentaList = Utileria.TipoCuentaList();
-            
+            /////////Aqui lleno la lista/////////
             CuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
+
             return View(CuentasBanco);
         }
 
@@ -57,19 +57,43 @@ namespace ERP_ZORZAL.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.tbCuentasBanco.Add(tbCuentasBanco);
-                db.SaveChanges();
-
-                return RedirectToAction("Index");
+                try
+                {
+                    //////////Aqui va la lista//////////////
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Gral_tbCuentasBanco_Insert(
+                        tbCuentasBanco.ban_Id,
+                        tbCuentasBanco.mnda_Id,
+                        tbCuentasBanco.bcta_TipoCuenta, 
+                        tbCuentasBanco.bcta_TotalCredito,
+                        tbCuentasBanco.bcta_TotalDebito, 
+                        tbCuentasBanco.bcta_FechaApertura,
+                        tbCuentasBanco.bcta_Numero);
+                    foreach (UDP_Gral_tbCuentasBanco_Insert_Result cuentasbanco in list)
+                    MensajeError = cuentasbanco.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                    }
+                    else
+                    {
+                         return RedirectToAction("Index");
+                     }
+                  }
+                  catch (Exception Ex)
+                    {
+                      ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
+                      return View(tbCuentasBanco);
+                    }   
             }
+
+            
 
             ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", tbCuentasBanco.ban_Id);
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbCuentasBanco.mnda_Id);
             tbCuentasBanco CuentasBanco = new tbCuentasBanco();
             CuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
-
             return View(tbCuentasBanco);
-
         }
 
         // GET: /CuentaBanco/Edit/5
@@ -97,13 +121,42 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="bcta_Id,ban_Id,mnda_Id,bcta_TipoCuenta,bcta_TotalCredito,bcta_TotalDebito,bcta_FechaApertura,bcta_Numero,bcta_UsuarioCrea,bcta_FechaCrea,bcta_UsuarioModifica,bcta_FechaModifica") ] tbCuentasBanco tbCuentasBanco)
         {
-            if (ModelState.IsValid)
+              if (ModelState.IsValid)
             {
-                db.Entry(tbCuentasBanco).State = EntityState.Modified;
-                db.SaveChanges();
-               
-                return RedirectToAction("Index");
+                try
+                {
+                    //////////Aqui va la lista//////////////
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Gral_tbCuentasBanco_Update(
+                        tbCuentasBanco.bcta_Id,
+                        tbCuentasBanco.ban_Id,
+                        tbCuentasBanco.mnda_Id,
+                        tbCuentasBanco.bcta_TipoCuenta,
+                        tbCuentasBanco.bcta_TotalCredito,
+                        tbCuentasBanco.bcta_TotalDebito,
+                        tbCuentasBanco.bcta_FechaApertura,
+                        tbCuentasBanco.bcta_Numero,
+                        tbCuentasBanco.bcta_UsuarioCrea,
+                        tbCuentasBanco.bcta_FechaCrea);
+                    foreach (UDP_Gral_tbCuentasBanco_Update_Result cuentasbanco in list)
+                    MensajeError = cuentasbanco.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                
+                catch (Exception Ex)
+            {
+                ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
+                return View(tbCuentasBanco);
             }
+        }
+
             ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", tbCuentasBanco.ban_Id);
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbCuentasBanco.mnda_Id);
             tbCuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
