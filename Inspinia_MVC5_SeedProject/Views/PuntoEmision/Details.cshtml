@@ -32,22 +32,26 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.pemi_Id)
-                        </dt>
+                  
+                        <dl class="dl-horizontal">
+                            
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pemi_Id)
+                            </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.pemi_Id)
-                        </dd>
-                        <dt>
-                            @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
-                        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.pemi_Id)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
+                            </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.pemi_NumeroCAI)
-                        </dd>
-                    </dl>
+                            <dd>
+                                @Html.DisplayFor(model => model.pemi_NumeroCAI)
+                            </dd>
+                        </dl>
+                    
+
                 </div>
             </div>
             <div class="row">
@@ -60,7 +64,7 @@
                         <div class="tab-content">
                             <div id="tab-1" class="tab-pane active">
                                 <div class="panel-body">
-                                    @Html.Partial("_IndexNumeracion", Model.tbPuntoEmisionDetalle)
+                                    @Html.Partial("_IndexNumeracionWithouBottomNew", Model.tbPuntoEmisionDetalle)
 
                                 </div>
                             </div>
@@ -73,13 +77,13 @@
                     </div>
                 </div>
             </div>
-            
+
 
         </div>
-            </div>
-        </div>
+    </div>
+</div>
 
- <div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
@@ -108,7 +112,5 @@
 </div>
 
 
-
-
-
-
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>

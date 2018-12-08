@@ -20,7 +20,8 @@
                 <div class="ibox-title">
                     <h5>Listado Solicitud de Crédito</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Solicitud Crédito", "Create", null, new { @class = "btn btn-primary"})
+                        @Html.ActionLink("Solicitudes por autorizar", "IndexSolicitud", null, new { @class = "btn btn-primary btn-xs" })
+						@Html.ActionLink("Registrar Solicitud Crédito", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -102,6 +103,7 @@
                 <td>
                     @Html.ActionLink("Detalles", "Details", new { id = item.cred_Id }, new { @class = "btn btn-primary btn-xs" })
                     @Html.ActionLink("Editar", "Edit", new { id = item.cred_Id }, new { @class = "btn btn-white btn-xs" })
+                    <a href="@Url.Action("IndexFacturaPagar", "Factura")" class="btn btn-primary btn-xs">Registrar Liquidacion</a>
         
                 </td>
             </tr>

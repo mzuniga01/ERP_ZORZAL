@@ -20,6 +20,13 @@ namespace ERP_ZORZAL.Controllers
             var tbsolicitudcredito = db.tbSolicitudCredito.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbEstadoSolicitudCredito);
             return View(tbsolicitudcredito.ToList());
         }
+        public ActionResult IndexSolicitud()
+        {
+            var tbsolicitudcredito = db.tbSolicitudCredito.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbEstadoSolicitudCredito);
+            return View(tbsolicitudcredito.ToList());
+        }
+
+
 
         // GET: /SolicitudCredito/Details/5
         public ActionResult Details(int? id)

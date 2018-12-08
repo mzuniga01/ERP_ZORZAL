@@ -61,7 +61,13 @@
                         <dt>
                             @Html.DisplayNameFor(model => model.pemid_UsuarioCrea)
                         </dt>
-                        <dd>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</dd>
+
+                        <dd>
+                        @Html.DisplayFor(model => model.pemid_UsuarioCrea)
+                        </dd>
+
+
+                        @*<dd>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</dd>*@
 
                         <dt>
                             @Html.DisplayNameFor(model => model.pemid_FechaCrea)
@@ -75,10 +81,12 @@
                             @Html.DisplayNameFor(model => model.pemid_UsuarioModifica)
                         </dt>
                            
-
                         <dd>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+                            @Html.DisplayFor(model => model.pemid_UsuarioModifica)
                         </dd>
+                        @*<dd>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+                        </dd>*@
 
                         <dt>
                             @Html.DisplayNameFor(model => model.pemid_FechaModifica)

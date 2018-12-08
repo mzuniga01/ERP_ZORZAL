@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<ERP_ZORZAL.Models.tbSucursal>
 
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
+
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado de Sucursales</h5>
@@ -10,7 +8,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table table-striped  table-bordered">
+                    <table class="table table table-striped  table-bordered" id="Sucursal">
                         <thead>
                             <tr>
                                 <th>
@@ -19,35 +17,14 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.suc_Descripcion)
                                 </th>
-                                @*<th>
-                                    @Html.DisplayNameFor(model => model.suc_Correo)
-                                </th>*@
+                               
                                 <th>
                                     @Html.DisplayNameFor(model => model.suc_Direccion)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.suc_Telefono)
                                 </th>
-                                @*<th>
-                                    @Html.DisplayNameFor(model => model.suc_FechaCrea)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.suc_FechaModifica)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-                                </th>*@
-                                @*<th>
-                                    Municipio
-                                    @Html.DisplayNameFor(model => model.tbMunicipio.dep_Codigo)
-                                </th>*@
-                                @*<th>
-                                    Bodega
-                                    @Html.DisplayNameFor(model => model.tbBodega.bod_Nombre)
-                                </th>*@
+                                
                                 
                                 
                             </tr>
@@ -62,51 +39,22 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.suc_Descripcion)
                                     </td>
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.suc_Correo)
-                                    </td>*@
+                                   
                                     <td>
                                         @Html.DisplayFor(modelItem => item.suc_Direccion)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.suc_Telefono)
                                     </td>
-                                                @*<td>
-                                        @Html.DisplayFor(modelItem => item.suc_FechaCrea)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.suc_FechaModifica)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-                                    </td>*@
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.tbMunicipio.dep_Codigo)
-                                    </td>*@
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
-                                    </td>*@
-                                    
-                                    @*<td>
-                                        <button type="button" class="btn btn-primary btn-xs">Detalle</button>
-                                        <button type="button" class="btn btn-white btn-xs">Editar</button>
-                                        @Html.ActionLink("Detalle", "Index", new { id = item.suc_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.suc_Id }, new { @class = "btn btn-white btn-xs" })
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.suc_Id }, new { @class = "btn btn-white btn-sm" })
-                                    </td>*@
+                                               
                                 </tr>
                             }
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
- </div>
+   
 
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/DataTable.js"></script>
+<script src="~/Scripts/app/Sucursal.js"></script>

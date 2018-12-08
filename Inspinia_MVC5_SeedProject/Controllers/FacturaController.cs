@@ -17,6 +17,12 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Factura/
         public ActionResult Index()
         {
+           
+            return View(db.tbFactura.ToList());
+        }
+        public ActionResult IndexFacturaPagar()
+        {
+
             return View(db.tbFactura.ToList());
         }
 

@@ -1,9 +1,11 @@
 ﻿@model ERP_ZORZAL.Models.tbPuntoEmisionDetalle
 
 
+@*@using (Ajax.BeginForm("EditNumeracion", "PuntoEmision", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "AjaxEditNumeracion" }))
+{
 
+}*@
 
-    
 
 				@using (Html.BeginForm())
 {
@@ -15,19 +17,20 @@
         @Html.HiddenFor(model => model.pemid_Id)
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.pemi_Id, "pemi_Id", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("pemi_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.pemi_Id)
-            </div>
-        </div>*@
+        @Html.LabelFor(model => model.pemi_Id, "pemi_Id", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("pemi_Id", String.Empty)
+            @Html.ValidationMessageFor(model => model.pemi_Id)
+        </div>
+    </div>*@
+
+       
 
         <div class="form-group">
             @Html.LabelFor(model => model.dfisc_Id, "Documento Fiscal", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.DropDownList("dfisc_Id", String.Empty)*@
                 @Html.DropDownList("dfisc_Id", null, "Seleccione Documento Fiscal", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.dfisc_Id)
+                 @Html.ValidationMessageFor(model => model.dfisc_Id)
             </div>
         </div>
 
@@ -86,7 +89,7 @@
                 @Html.ValidationMessageFor(model => model.pemid_FechaModifica)
             </div>
         </div>*@
-
+    
         @*<div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-primary" />

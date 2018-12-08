@@ -198,7 +198,6 @@
     <Compile Include="Controllers\MonedaController.cs" />
     <Compile Include="Controllers\NotaCreditoController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
-    <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\PuntoEmisionController.cs" />
     <Compile Include="Controllers\SolicitudCreditoController.cs" />
     <Compile Include="Controllers\SolicitudEfectivoController.cs" />
@@ -259,7 +258,6 @@
     </Compile>
     <Compile Include="Models\Monedas.cs" />
     <Compile Include="Models\Pagos.cs" />
-    <Compile Include="Models\Pedidos.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\PuntoEmision.cs" />
     <Compile Include="Models\PuntoEmisionDetalle.cs" />
@@ -744,6 +742,8 @@
     <Content Include="Scripts\app\Departamento.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
+    <Content Include="Scripts\app\PuntoEmision.js" />
+    <Content Include="Scripts\app\Sucursal.js" />
     <Content Include="Scripts\app\TipoPago.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1038,14 +1038,6 @@
     <Content Include="Views\Sucursal\Index.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexNumeracionWithouBottomNew.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexNumeracionWithoutBottom.cshtml" />
-    <Content Include="Views\Pedido\_CreatePedidoDetalle.cshtml" />
-    <Content Include="Views\Pedido\_IndexCliente.cshtml" />
-    <Content Include="Views\Pedido\_ListPedidoDetalle.cshtml" />
-    <Content Include="Views\Pedido\Create.cshtml" />
-    <Content Include="Views\Pedido\Delete.cshtml" />
-    <Content Include="Views\Pedido\Details.cshtml" />
-    <Content Include="Views\Pedido\Edit.cshtml" />
-    <Content Include="Views\Pedido\Index.cshtml" />
     <Content Include="Views\ListaPrecios\Delete.cshtml" />
     <Content Include="Views\ListaPrecios\Details.cshtml" />
     <Content Include="Views\ListaPrecios\Edit.cshtml" />
@@ -1070,6 +1062,8 @@
     <Content Include="Views\Factura\_IndexFacturaDetalle.cshtml" />
     <Content Include="Views\Factura\_IndexFacturaHistorica.cshtml" />
     <Content Include="Views\Factura\_IndexProducto.cshtml" />
+    <Content Include="Views\Factura\IndexFacturaPagar.cshtml" />
+    <Content Include="Views\SolicitudCredito\IndexSolicitud.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

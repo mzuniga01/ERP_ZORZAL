@@ -16,7 +16,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table table-striped  table-bordered">
+                    <table class="table table table-striped  table-bordered" id="PuntoEmision">
                         <thead>
                             <tr>
                                 <th>
@@ -34,18 +34,7 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.pemid_FechaLimite)
                                 </th>
-                                @*<th>
-                                    @Html.DisplayNameFor(model => model.pemid_UsuarioCrea)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.pemid_FechaCrea)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.pemid_UsuarioModifica)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.pemid_FechaModifica)
-                                </th>*@
+                                
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -80,6 +69,11 @@
                                         </button>
                                     </td>
                                 </tr>
+                                
+                               
+
+
+
                                 <div class="modal fade" id="Editar_@item.pemid_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -89,8 +83,9 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
-                                                @Html.Partial("_EditNumeracion", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle() { pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal=item.pemid_RangoFinal, pemid_FechaLimite=item.pemid_FechaLimite, })
+                                            <div class="modal-body" id="AjaxEditNumeracion">
+
+                                                @Html.Partial("_EditNumeracion", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle(){ pemid_UsuarioCrea=item.pemid_UsuarioCrea, pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal=item.pemid_RangoFinal, pemid_FechaLimite=item.pemid_FechaLimite })
                                             </div>
                                             <div class="modal-footer">
                                                 <a href="@Url.Action("Details","PuntoEmision")" class="btn btn-primary ">Guardar</a>
@@ -99,7 +94,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                           
                                 <div class="modal fade" id="Detalle_@item.pemid_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -109,12 +104,12 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
-                                            @Html.Partial("_DetailsNumeracion", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle() { pemi_Id = item.pemi_Id, pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea=item.pemid_UsuarioCrea, pemid_FechaCrea=item.pemid_FechaCrea, pemid_UsuarioModifica=item.pemid_UsuarioModifica, pemid_FechaModifica=item.pemid_FechaModifica})
+                                        <div class="modal-body" >
+                                            @Html.Partial("_DetailsNumeracion", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle() {pemi_Id = item.pemi_Id, pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea=item.pemid_UsuarioCrea, pemid_FechaCrea=item.pemid_FechaCrea, pemid_UsuarioModifica=item.pemid_UsuarioModifica, pemid_FechaModifica=item.pemid_FechaModifica})
                                            
                                         </div>
                                         <div class="modal-footer">
-                                            @*<a href = "@Url.Action("_EditNumeracion","PuntoEmision")" class="btn btn-primary ">Editar</a>*@
+                                           
                                             <a href = "@Url.Action("Index","PuntoEmision")" class = "btn btn-white">Cerrar</a>
                                         </div>
                                     </div>
@@ -130,7 +125,7 @@
     </div>
  </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/DataTable.js"></script>
+<script src="~/Scripts/app/PuntoEmision.js"></script>
 
 <!-- Modal -->
 <div class="modal fade" id="Nuevo" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
@@ -142,7 +137,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="AjaxCreateNumeracion">
                 @Html.Partial("_CreateNumeracion", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle())
             </div>
             <div class="modal-footer">
@@ -152,10 +147,4 @@
         </div>
     </div>
 </div>
-
-
-<!-- Modal -->
-
-
-<!-- Modal -->
 
