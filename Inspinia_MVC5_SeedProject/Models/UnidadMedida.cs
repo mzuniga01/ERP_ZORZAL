@@ -17,7 +17,7 @@ namespace ERP_ZORZAL.Models
     public class UnidadMedidaMetaData
     {
         [Display(Name = "Número")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int uni_Id { get; set; }
 
         [Display(Name = "Descripción")]
@@ -29,11 +29,11 @@ namespace ERP_ZORZAL.Models
         public string uni_Abreviatura { get; set; }
 
         [Display(Name = "Creado por")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string uni_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha de Creación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime uni_FechaCrea { get; set; }
 
         [Display(Name = "Modificado Por")]

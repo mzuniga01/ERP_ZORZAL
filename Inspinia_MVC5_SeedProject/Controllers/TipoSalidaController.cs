@@ -46,12 +46,36 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="tsal_Id,tsal_Descripcion,tsal_UsuarioCrea,tsal_FechaCrea,tsal_UsuarioModifica,tsal_FechaModifica")] tbTipoSalida tbTipoSalida)
+        public ActionResult Create([Bind(Include="tsal_Descripcion")] tbTipoSalida tbTipoSalida)
         {
             if (ModelState.IsValid)
             {
-                db.tbTipoSalida.Add(tbTipoSalida);
-                db.SaveChanges();
+                //db.tbTipoSalida.Add(tbTipoSalida);
+                //db.SaveChanges();
+                try
+                {
+                    IEnumerable<object> List = null;
+                    var MsjError = "";
+                    List = db.UDP_Inv_tbTipoSalida_Insert(tbTipoSalida.tsal_Descripcion);
+                    foreach (UDP_Inv_tbTipoSalida_Insert_Result TipoSalida in List)
+                        MsjError = TipoSalida.MensajeError;
+
+                    if (MsjError == "-1")
+                    {
+                        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                }
                 return RedirectToAction("Index");
             }
 
