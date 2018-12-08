@@ -127,6 +127,29 @@
     <Property Name="dep_UsuarioModifica" Type="int" />
     <Property Name="dep_FechaModifica" Type="datetime" />
   </EntityType>
+  <EntityType Name="tbEmpleados">
+    <Key>
+      <PropertyRef Name="emp_Id" />
+    </Key>
+    <Property Name="emp_Id" Type="smallint" Nullable="false" />
+    <Property Name="emp_Nombres" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="emp_Apellidos" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="emp_Sexo" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="emp_FechaNacimiento" Type="datetime" Nullable="false" />
+    <Property Name="tpi_Id" Type="tinyint" Nullable="false" />
+    <Property Name="emp_Identificacion" Type="nvarchar" MaxLength="14" Nullable="false" />
+    <Property Name="emp_Telefono" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="emp_Correoelectronico" Type="nvarchar" MaxLength="50" />
+    <Property Name="emp_TipoSangre" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="emp_Puesto" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="emp_FechaIngreso" Type="date" Nullable="false" />
+    <Property Name="emp_Direccion" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="emp_Observaciones" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="emp_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="emp_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="emp_UsuarioModifica" Type="int" />
+    <Property Name="emp_FechaModifica" Type="datetime" />
+  </EntityType>
   <EntityType Name="tbMoneda">
     <Key>
       <PropertyRef Name="mnda_Id" />
@@ -150,6 +173,27 @@
     <Property Name="mun_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="mun_UsuarioModifica" Type="int" />
     <Property Name="mun_FechaModifica" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbParametro">
+    <Key>
+      <PropertyRef Name="par_Id" />
+    </Key>
+    <Property Name="par_Id" Type="tinyint" Nullable="false" />
+    <Property Name="par_NombreEmpresa" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="par_TelefonoEmpresa" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="par_CorreoEmpresa" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="par_PathLogo" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="mnda_Id" Type="smallint" Nullable="false" />
+    <Property Name="par_RolGerenteTienda" Type="int" Nullable="false" />
+    <Property Name="par_RolCreditoCobranza" Type="int" Nullable="false" />
+    <Property Name="par_RolSupervisorCaja" Type="int" Nullable="false" />
+    <Property Name="par_RolCajero" Type="int" Nullable="false" />
+    <Property Name="par_RolAuditor" Type="int" Nullable="false" />
+    <Property Name="par_SucursalPrincipal" Type="smallint" Nullable="false" />
+    <Property Name="par_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="par_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="par_UsuarioModifica" Type="int" />
+    <Property Name="par_FechaModifica" Type="datetime" />
   </EntityType>
   <EntityType Name="tbTipoIdentificacion">
     <Key>
@@ -549,6 +593,17 @@
     <Property Name="esfac_UsuarioModifica" Type="int" />
     <Property Name="esfac_FechaModifica" Type="datetime" />
   </EntityType>
+  <EntityType Name="tbEstadoPedido">
+    <Key>
+      <PropertyRef Name="esped_Id" />
+    </Key>
+    <Property Name="esped_Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="esped_Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="esped_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="esped_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="esped_UsuarioModifica" Type="int" />
+    <Property Name="esped_FechaModifica" Type="datetime" />
+  </EntityType>
   <EntityType Name="tbEstadoSolicitudCredito">
     <Key>
       <PropertyRef Name="escre_Id" />
@@ -595,8 +650,8 @@
     <Property Name="clte_RTN_Identidad_Pasaporte" Type="nvarchar" MaxLength="26" Nullable="false" />
     <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="fact_UsuarioCrea" Type="int" Nullable="false" />
-    <Property Name="fact_ FechaCrea" Type="datetime" Nullable="false" />
-    <Property Name="fact_ UsuarioModifica" Type="int" />
+    <Property Name="fact_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="fact_UsuarioModifica" Type="int" />
     <Property Name="fact_FechaModifica" Type="datetime" />
   </EntityType>
   <EntityType Name="tbFacturaDetalle">
@@ -607,7 +662,7 @@
     <Property Name="factd_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="factd_Cantidad" Type="decimal" Precision="5" Scale="2" Nullable="false" />
-    <Property Name="factd_&#x9;MontoDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="factd_MontoDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="factd_PorcentajeDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="factd_Impuesto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="factd_UsuarioCrea" Type="int" Nullable="false" />
@@ -909,7 +964,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Acce_tbRolesUsuario_tbRoles_rol_Id">
+  <Association Name="FK_Acce_tbRolesUsuario_tbRol_rol_Id">
     <End Role="tbRol" Type="Self.tbRol" Multiplicity="1" />
     <End Role="tbRolesUsuario" Type="Self.tbRolesUsuario" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1581,6 +1636,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id">
+    <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="1" />
+    <End Role="tbEmpleados" Type="Self.tbEmpleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbTipoIdentificacion">
+        <PropertyRef Name="tpi_Id" />
+      </Principal>
+      <Dependent Role="tbEmpleados">
+        <PropertyRef Name="tpi_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbEmpleados" Type="Self.tbEmpleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEmpleados">
+        <PropertyRef Name="emp_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id">
     <End Role="tbMoneda" Type="Self.tbMoneda" Multiplicity="1" />
     <End Role="tbCuentasBanco" Type="Self.tbCuentasBanco" Multiplicity="*" />
@@ -1650,6 +1729,30 @@
       </Principal>
       <Dependent Role="tbMunicipio">
         <PropertyRef Name="mun_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbParametro_tbMoneda_mnda_Id">
+    <End Role="tbMoneda" Type="Self.tbMoneda" Multiplicity="1" />
+    <End Role="tbParametro" Type="Self.tbParametro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbMoneda">
+        <PropertyRef Name="mnda_Id" />
+      </Principal>
+      <Dependent Role="tbParametro">
+        <PropertyRef Name="mnda_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbParametro_tbUsuario_par_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbParametro" Type="Self.tbParametro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbParametro">
+        <PropertyRef Name="par_UsuarioCrea" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2453,7 +2556,7 @@
         <PropertyRef Name="usu_Id" />
       </Principal>
       <Dependent Role="tbFactura">
-        <PropertyRef Name="fact_ UsuarioModifica" />
+        <PropertyRef Name="fact_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2825,8 +2928,10 @@
     <EntitySet Name="tbCuentasBanco" EntityType="Self.tbCuentasBanco" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbDenominacion" EntityType="Self.tbDenominacion" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbDepartamento" EntityType="Self.tbDepartamento" Schema="Gral" store:Type="Tables" />
+    <EntitySet Name="tbEmpleados" EntityType="Self.tbEmpleados" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbMoneda" EntityType="Self.tbMoneda" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbMunicipio" EntityType="Self.tbMunicipio" Schema="Gral" store:Type="Tables" />
+    <EntitySet Name="tbParametro" EntityType="Self.tbParametro" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbTipoIdentificacion" EntityType="Self.tbTipoIdentificacion" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbUnidadMedida" EntityType="Self.tbUnidadMedida" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbBodega" EntityType="Self.tbBodega" Schema="Inv" store:Type="Tables" />
@@ -2854,6 +2959,7 @@
     <EntitySet Name="tbDevolucionDetalle" EntityType="Self.tbDevolucionDetalle" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbDocumentoFiscal" EntityType="Self.tbDocumentoFiscal" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbEstadoFactura" EntityType="Self.tbEstadoFactura" Schema="Vent" store:Type="Tables" />
+    <EntitySet Name="tbEstadoPedido" EntityType="Self.tbEstadoPedido" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbEstadoSolicitudCredito" EntityType="Self.tbEstadoSolicitudCredito" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbExoneracion" EntityType="Self.tbExoneracion" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbFactura" EntityType="Self.tbFactura" Schema="Vent" store:Type="Tables" />
@@ -2900,7 +3006,7 @@
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbRol" EntitySet="tbRol" />
     </AssociationSet>
-    <AssociationSet Name="FK_Acce_tbRolesUsuario_tbRoles_rol_Id" Association="Self.FK_Acce_tbRolesUsuario_tbRoles_rol_Id">
+    <AssociationSet Name="FK_Acce_tbRolesUsuario_tbRol_rol_Id" Association="Self.FK_Acce_tbRolesUsuario_tbRol_rol_Id">
       <End Role="tbRol" EntitySet="tbRol" />
       <End Role="tbRolesUsuario" EntitySet="tbRolesUsuario" />
     </AssociationSet>
@@ -3124,6 +3230,14 @@
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbDepartamento" EntitySet="tbDepartamento" />
     </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id" Association="Self.FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id">
+      <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
+      <End Role="tbEmpleados" EntitySet="tbEmpleados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea" Association="Self.FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEmpleados" EntitySet="tbEmpleados" />
+    </AssociationSet>
     <AssociationSet Name="FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id" Association="Self.FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id">
       <End Role="tbMoneda" EntitySet="tbMoneda" />
       <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
@@ -3147,6 +3261,14 @@
     <AssociationSet Name="FK_Gral_tbMunicipio_tbUsuario_mun_UsuarioCrea" Association="Self.FK_Gral_tbMunicipio_tbUsuario_mun_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbMunicipio" EntitySet="tbMunicipio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbParametro_tbMoneda_mnda_Id" Association="Self.FK_Gral_tbParametro_tbMoneda_mnda_Id">
+      <End Role="tbMoneda" EntitySet="tbMoneda" />
+      <End Role="tbParametro" EntitySet="tbParametro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbParametro_tbUsuario_par_UsuarioCrea" Association="Self.FK_Gral_tbParametro_tbUsuario_par_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbParametro" EntitySet="tbParametro" />
     </AssociationSet>
     <AssociationSet Name="FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id" Association="Self.FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id">
       <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />

@@ -191,7 +191,6 @@
     <Compile Include="Controllers\EstadoFacturaController.cs" />
     <Compile Include="Controllers\EstadoSolicitudCreditoController.cs" />
     <Compile Include="Controllers\ExoneracionController.cs" />
-    <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListaPreciosController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -237,8 +236,6 @@
     <Compile Include="Models\Denominacion.cs" />
     <Compile Include="Models\EstadoFactura.cs" />
     <Compile Include="Models\EstadosSolicitudCreditos.cs" />
-    <Compile Include="Models\Factura.cs" />
-    <Compile Include="Models\FacturaDetalle.cs" />
     <Compile Include="Models\FacturaHistorica.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListasPrecios.cs" />
@@ -313,6 +310,9 @@
     <Compile Include="Models\tbDocumentoFiscal.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbEmpleados.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbEntrada.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -326,6 +326,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbEstadoMovimiento.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbEstadoPedido.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbEstadoSolicitudCredito.cs">
@@ -368,6 +371,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbPago.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbParametro.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbPedido.cs">
@@ -933,13 +939,6 @@
     <Content Include="Views\UnidadesMedida\Details.cshtml" />
     <Content Include="Views\UnidadesMedida\Edit.cshtml" />
     <Content Include="Views\UnidadesMedida\Index.cshtml" />
-    <Content Include="Views\Factura\Create.cshtml" />
-    <Content Include="Views\Factura\Delete.cshtml" />
-    <Content Include="Views\Factura\Details.cshtml" />
-    <Content Include="Views\Factura\Edit.cshtml" />
-    <Content Include="Views\Factura\Index.cshtml" />
-    <Content Include="Views\Factura\_CreateFacturaDetalle.cshtml" />
-    <Content Include="Views\Factura\_IndexFacturaDetalle.cshtml" />
     <Content Include="Views\CuponDescuento\Create.cshtml" />
     <Content Include="Views\CuponDescuento\Delete.cshtml" />
     <Content Include="Views\CuponDescuento\Details.cshtml" />
@@ -970,7 +969,6 @@
     <Content Include="Views\Cliente\Details.cshtml" />
     <Content Include="Views\Cliente\Edit.cshtml" />
     <Content Include="Views\Cliente\Index.cshtml" />
-    <Content Include="Views\Factura\_BusquedaProducto.cshtml" />
     <Content Include="Views\PuntoEmision\Create.cshtml" />
     <Content Include="Views\PuntoEmision\Delete.cshtml" />
     <Content Include="Views\PuntoEmision\Details.cshtml" />
@@ -1013,8 +1011,6 @@
     <Content Include="Views\Sucursal\Index.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexNumeracionWithouBottomNew.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexNumeracionWithoutBottom.cshtml" />
-    <Content Include="Views\Factura\_IndexFacturaHistorica.cshtml" />
-    <Content Include="Views\Factura\_CreateFacturaDetalleModal.cshtml" />
     <Content Include="Views\Pedido\_CreatePedidoDetalle.cshtml" />
     <Content Include="Views\Pedido\_IndexCliente.cshtml" />
     <Content Include="Views\Pedido\_ListPedidoDetalle.cshtml" />

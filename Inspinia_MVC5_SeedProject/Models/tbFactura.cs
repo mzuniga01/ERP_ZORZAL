@@ -41,8 +41,8 @@ namespace ERP_ZORZAL.Models
         public string clte_RTN_Identidad_Pasaporte { get; set; }
         public string clte_Nombres { get; set; }
         public int fact_UsuarioCrea { get; set; }
-        public System.DateTime fact__FechaCrea { get; set; }
-        public Nullable<int> fact__UsuarioModifica { get; set; }
+        public System.DateTime fact_FechaCrea { get; set; }
+        public Nullable<int> fact_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> fact_FechaModifica { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }

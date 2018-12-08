@@ -18,7 +18,7 @@ namespace ERP_ZORZAL.Models
         public short factd_Id { get; set; }
         public string prod_Codigo { get; set; }
         public decimal factd_Cantidad { get; set; }
-        public decimal factd__MontoDescuento { get; set; }
+        public decimal factd_MontoDescuento { get; set; }
         public decimal factd_PorcentajeDescuento { get; set; }
         public decimal factd_Impuesto { get; set; }
         public int factd_UsuarioCrea { get; set; }

@@ -38,11 +38,11 @@ namespace ERP_ZORZAL.Models
         public Nullable<System.DateTime> ent_FechaModifica { get; set; }
     
         public virtual tbBodega tbBodega { get; set; }
+        public virtual tbBodega tbBodega1 { get; set; }
         public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }
         public virtual tbProveedor tbProveedor { get; set; }
         public virtual tbTipoEntrada tbTipoEntrada { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEntradaDetalle> tbEntradaDetalle { get; set; }
-        public virtual tbBodega tbBodega1 { get; set; }
     }
 }
