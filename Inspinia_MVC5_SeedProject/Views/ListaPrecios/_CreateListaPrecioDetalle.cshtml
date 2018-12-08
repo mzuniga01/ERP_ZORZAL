@@ -7,125 +7,122 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Lista PrecioDetalle </h5>
+                    <div class="form-group">
+                        <div class="col-md-offset-10 col-md-2">
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarPedidoDetalle">Agregar Lista Precio Detalle</button>
+
+
+                        </div>
+                    </div>
                 </div>
+               
                 <div class="ibox-content">
 
-				@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true)
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
 
-        <div class="form-group">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.listp_Id, "Número ", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("listp_Id", null, "Seleccione Número", new { @class = "form-control" })
 
-            @Html.LabelFor(model => model.listp_Id,"Numero Lista", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("listp_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.listp_Id)
-            </div>
-        
+                                    @Html.ValidationMessageFor(model => model.listp_Id)
+                                </div>
+                                @*</div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.prod_Codigo, "prod_Codigo", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("prod_Codigo", String.Empty)
-                @Html.ValidationMessageFor(model => model.prod_Codigo)
-            </div>
-        </div>*@
-            <br/><br /><br />
-        
-            @Html.LabelFor(model => model.lispd_PrecioMayorista,"Precio Minorista", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.lispd_PrecioMayorista)
-                @Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)
-            </div>
-        </div>
+                                    <div class="form-group">*@
+                                @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.prod_Codigo)
+                                    @*@Html.DropDownList("prod_Codigo", String.Empty)*@
+                                    @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                </div>
+                            </div>
 
-        @*<div class="form-group">
-            
-        </div>@Html.LabelFor(model => model.lispd_PrecioMinorista, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lispd_PrecioMinorista)
-                @Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)
-            </div>*@
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.lispd_PrecioMayorista, "Precio Mayorista", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.lispd_PrecioMayorista)
+                                    @Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)
+                                </div>
+                                @*</div>
 
-        
-            @Html.LabelFor(model => model.lispd_FechaInicioVigencia, "Fecha Vigencia", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.lispd_FechaInicioVigencia)
-                @Html.ValidationMessageFor(model => model.lispd_FechaInicioVigencia)
-            </div>
-       
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.lispd_FechaFinalVigencia, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lispd_FechaFinalVigencia)
-                @Html.ValidationMessageFor(model => model.lispd_FechaFinalVigencia)
-            </div>
-        </div>*@
-
-            @Html.LabelFor(model => model.lispd_DescCaja,"Descuento Caja", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.lispd_DescCaja)
-                @Html.ValidationMessageFor(model => model.lispd_DescCaja)
-            </div>
-        
+                                    <div class="form-group">*@
+                                @Html.LabelFor(model => model.lispd_PrecioMinorista, "Precio Minorista", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.lispd_PrecioMinorista)
+                                    @Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)
+                                </div>
+                            </div>
 
 
-            @Html.LabelFor(model => model.lispd_DescGerente,"Descuento Gerente", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.lispd_DescGerente)
-                @Html.ValidationMessageFor(model => model.lispd_DescGerente)
-            </div>
-        </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.lispd_UsuarioCrea, "lispd_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("lispd_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.lispd_UsuarioCrea)
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.lispd_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lispd_FechaCrea)
-                @Html.ValidationMessageFor(model => model.lispd_FechaCrea)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.lispd_DescCaja)
+                                    @Html.ValidationMessageFor(model => model.lispd_DescCaja)
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.lispd_UsuarioModifica, "lispd_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("lispd_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.lispd_UsuarioModifica)
-            </div>
-        </div>
+                                @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.lispd_DescGerente)
+                                    @Html.ValidationMessageFor(model => model.lispd_DescGerente)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.lispd_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lispd_FechaModifica)
-                @Html.ValidationMessageFor(model => model.lispd_FechaModifica)
-            </div>
-        </div>*@
+                        </div>
+                        <div class="ibox-content">
+                            <br />
+                          
+                            <div class="ibox-content">
+                                <table class="table table-striped table-bordered table-hover dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre Producto</th>
+                                            <th> Precio Mayorista</th>
+                                            <th> Precio Minorista</th>
+                                            <th>Descuento Caja</th>
+                                            <th>Descuento Gerente</th>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Crear" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="gradeX">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="center"></td>
+                                            <td class="center"></td>
+                                            <td class="center"></td>
+                                        </tr>
 
-}
+                                       
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+                    }
+
+
+
 
                 </div>
             </div>
         </div>
-    </div>
- </div>
 
- 
+
+    </div>
+
+</div>

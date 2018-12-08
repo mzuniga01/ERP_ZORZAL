@@ -78,6 +78,10 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbSolicitudCredito tbSolicitudCredito = db.tbSolicitudCredito.Find(id);
+
+            //Para que sirva la redireccion**************
+
+            ViewBag.Aprobacion = db.tbSolicitudCredito.ToList();
             if (tbSolicitudCredito == null)
             {
                 return HttpNotFound();

@@ -1,5 +1,5 @@
 ﻿@model ERP_ZORZAL.Models.tbNotaCredito
-
+@using ERP_ZORZAL.Models
 @{
     ViewBag.Title = "Registrar";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -89,6 +89,7 @@
             @Html.LabelFor(model => model.dev_Id, "Devolución", new { @class = "control-label col-md-4" })
             <div class="col-md-4">
                 @Html.DropDownList("dev_Id", String.Empty)
+                @*@Html.DropDownList("dev_Id", String.Empty)*@
                 @Html.ValidationMessageFor(model => model.dev_Id)
             </div>
         </div>
@@ -96,7 +97,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nocre_Estado, new { @class = "control-label col-md-4" })
             <div class="col-md-4">
-                <select id="nocre_Estado">
+                <select id="nocre_Estado" class="form-control">
                     <option>Seleccionar</option>
                     <option value="true">Activo</option>
                     <option value="false">Inactivo</option>
@@ -109,7 +110,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nocre_Anulado, new { @class = "control-label col-md-4" })
             <div class="col-md-4">
-                <select id="nocre_Anulado">
+                <select id="nocre_Anulado" class="form-control">
                     <option>Seleccionar</option>
                     <option value="true">Si</option>
                     <option value="false">No</option>
@@ -118,58 +119,8 @@
                 @Html.ValidationMessageFor(model => model.nocre_Anulado)
             </div>
         </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.nocre_UsuarioCrea, "nocre_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("nocre_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.nocre_UsuarioCrea)
-            </div>
-        </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.nocre_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nocre_FechaCrea)
-                @Html.ValidationMessageFor(model => model.nocre_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.nocre_UsuarioModifica, "nocre_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("nocre_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.nocre_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.nocre_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nocre_FechaModifica)
-                @Html.ValidationMessageFor(model => model.nocre_FechaModifica)
-            </div>
-        </div>*@
-        @*<div>
-            <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
-                        </div>
-                        <div class="modal-body" id="frmEditarMunicipios">
-                            @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-12 text-center">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
@@ -182,7 +133,29 @@
         </div>
     </div>
  </div>
-<script>
+
+<div>
+    <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
  $.datepicker.regional['es'] = {
  closeText: 'Cerrar',
  prevText: '< Ant',
@@ -202,8 +175,8 @@
  };
  $.datepicker.setDefaults($.datepicker.regional['es']);
 $(function () {
-    $("#nocre_FechaEmision").datepicker({ dateFormat: 'yy-mm-dd' });
+    $("#nocre_FechaEmision").datepicker({ dateFormat: 'dd-mm-yy' });
 });
-</script>
+    </script>
 
- 
+}

@@ -42,7 +42,8 @@
                 @Html.DisplayNameFor(model => model.nocre_Monto)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)
+                Código Devolución
+                @*@Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)*@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.nocre_Estado)
@@ -120,10 +121,11 @@
                     @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
                 </td>*@
                 <td> 
-                    @Html.ActionLink("Imprimir", "", null, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Anular", "", null, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
-                     @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
+
+                    @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Imprimir", "", null, new { @class = "btn btn-white btn-xs" })
+                    @Html.ActionLink("Anular", "", null, new { @class = "btn btn-white btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.nocre_Id }, new { @class = "btn btn-white btn-xs" })
                    </td>
             </tr>
         }

@@ -5,25 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 50%;
-        margin-left: 17%;
-    }
-
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        /*background-color: #dddddd;*/
-    }
-</style>
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Nota Crédito</h2>
@@ -117,7 +98,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nocre_Estado, new { @class = "control-label col-md-4" })
             <div class="col-md-4">
-                <select id="nocre_Estado">
+                <select id="nocre_Estado" class="form-control">
                     <option>Seleccionar</option>
                     <option value="true">Activo</option>
                     <option value="false">Inactivo</option>
@@ -130,7 +111,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nocre_Anulado, new { @class = "control-label col-md-4" })
             <div class="col-md-4">
-                <select id="nocre_Anulado">
+                <select id="nocre_Anulado" class="form-control">
                     <option>Seleccionar</option>
                     <option value="true">Si</option>
                     <option value="false">No</option>
@@ -140,58 +121,9 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.nocre_UsuarioCrea, "nocre_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("nocre_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.nocre_UsuarioCrea)
-            </div>
-        </div>
-
+       
         <div class="form-group">
-            @Html.LabelFor(model => model.nocre_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nocre_FechaCrea)
-                @Html.ValidationMessageFor(model => model.nocre_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.nocre_UsuarioModifica, "nocre_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("nocre_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.nocre_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.nocre_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nocre_FechaModifica)
-                @Html.ValidationMessageFor(model => model.nocre_FechaModifica)
-            </div>
-        </div>*@
-        <div class="form-group">
-            <table>
-                <tr>
-                    <th></th>
-                    <th>Usuario</th>
-                    <th>Fecha</th>
-                </tr>
-                <tr>
-                    <td>Creado</td>
-                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                    <td>@Html.DisplayFor(model => model.nocre_FechaCrea)</td>
-                </tr>
-                <tr>
-                    <td>Modificado</td>
-                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                    <td>@Html.DisplayFor(model => model.nocre_FechaModifica)</td>
-                </tr>
-            </table>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-12 text-center">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
@@ -201,6 +133,25 @@
 
 
                 </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.nocre_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.nocre_FechaModifica)</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

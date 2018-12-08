@@ -35,54 +35,61 @@
 				@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal" >
+                    <div class="form-horizontal">
 
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.mnda_Id)
-
-
-        <div class="form-group" >
-            <label class="control-label col-md-2">Número Moneda</label>
-             @*@Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2"} )*@
-            <div class="col-md-5" >
-              @Html.EditorFor(model => model.mnda_Id,new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.mnda_Id)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Abreviatura</label>
-            @*@Html.LabelFor(model => model.mnda_Abreviatura, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.mnda_Abreviatura)
-                @Html.ValidationMessageFor(model => model.mnda_Abreviatura)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Nombre</label>
-            @*@Html.LabelFor(model => model.mnda_Nombre, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.mnda_Nombre)
-                @Html.ValidationMessageFor(model => model.mnda_Nombre)
-            </div>
-        </div>
-        <br />
-
-        
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.mnda_Id)
+                        @Html.HiddenFor(model => model.mnda_UsuarioCrea)
+                        @Html.HiddenFor(model => model.mnda_FechaCrea)
 
 
- 
-                }  
-                </div>
+                        @*<div class="form-horizontal">
+
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.mnda_Id)*@
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Número Moneda</label>
+                                @*@Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2"} )*@
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.mnda_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.mnda_Id)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Abreviatura</label>
+                                @*@Html.LabelFor(model => model.mnda_Abreviatura, new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.mnda_Abreviatura)
+                                    @Html.ValidationMessageFor(model => model.mnda_Abreviatura)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Nombre</label>
+                                @*@Html.LabelFor(model => model.mnda_Nombre, new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.mnda_Nombre)
+                                    @Html.ValidationMessageFor(model => model.mnda_Nombre)
+                                </div>
+                            </div>
+                            <br />
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        }
+                    </div>
             </div>
             <div class="ibox-content">
                 <table class="table table-striped">

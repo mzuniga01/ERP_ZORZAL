@@ -802,6 +802,30 @@
       <Parameter Name="bcta_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="bcta_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbActividadEconomica_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbActividadEconomica_Insert_Result)">
+      <Parameter Name="acte_Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbActividadEconomica_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbActividadEconomica_Update_Result)">
+      <Parameter Name="acte_Id" Mode="In" Type="Int16" />
+      <Parameter Name="acte_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="acte_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="acte_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="acte_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="acte_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbMoneda_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbMoneda_Insert_Result)">
+      <Parameter Name="mnda_Abreviatura" Mode="In" Type="String" />
+      <Parameter Name="mnda_Nombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbMoneda_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbMoneda_Update_Result)">
+      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+      <Parameter Name="mnda_Abreviatura" Mode="In" Type="String" />
+      <Parameter Name="mnda_Nombre" Mode="In" Type="String" />
+      <Parameter Name="mnda_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="mnda_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="mnda_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="mnda_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -4021,6 +4045,18 @@
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Gral_tbCuentasBanco_Update_Result">
+    <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbActividadEconomica_Insert_Result">
+    <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbActividadEconomica_Update_Result">
+    <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbMoneda_Insert_Result">
+    <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbMoneda_Update_Result">
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
   </ComplexType>
 </Schema>

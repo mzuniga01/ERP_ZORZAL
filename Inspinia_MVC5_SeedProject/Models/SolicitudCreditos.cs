@@ -4,77 +4,57 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace ERP_Zorzal.Models
+namespace ERP_ZORZAL.Models
 {
-
     [MetadataType(typeof(SolicitudCreditosMetaData))]
+
     public partial class tbSolicitudCredito
     {
 
     }
 
-
     public class SolicitudCreditosMetaData
     {
-        [Display(Name = "Código Crédito")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name ="Número")]
+        [Required]
         public int cred_Id { get; set; }
-
-        [Display(Name = "Código Cliente")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Número Cliente")]
+        [Required]
         public int clte_Id { get; set; }
-
-        [Display(Name = "Estado Crédito")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Número Estado")]
+        [Required]
         public byte escre_Id { get; set; }
-
-        [Display(Name = "Fecha de Solicitud")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Fecha Solicitud")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
         public System.DateTime cred_FechaSolicitud { get; set; }
-
-        [Display(Name = "Fecha de Aprobación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Fecha Aprobación")]
+  
+        [DisplayFormat(ApplyFormatInEditMode = true,DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
         public System.DateTime cred_FechaAprobacion { get; set; }
-
         [Display(Name = "Monto Solicitado")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required]
         public decimal cred_MontoSolicitado { get; set; }
-
         [Display(Name = "Monto Aprobado")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required]
         public decimal cred_MontoAprobado { get; set; }
-
-        [Display(Name = "Dias Solicitado")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Días Solicitados")]
+        [Required]
         public int cred_DiasSolicitado { get; set; }
-
-        [Display(Name = "Dias Aprobado")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Días Aprobados")]
+        [Required]
         public int cred_DiasAprobado { get; set; }
-
-        [Display(Name = "Usuario Creó")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Usuario Creación")]
+        [Required]
         public int cred_UsuarioCrea { get; set; }
-
-        [Display(Name = "Fecha Creó")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Fecha Creación")]
+        [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
         public System.DateTime cred_FechaCrea { get; set; }
-
-        [Display(Name = "Usuario Modifica")]
-
+        [Display(Name = "Usuario Modificación")]
+        [Required]
         public Nullable<int> cred_UsuarioModifica { get; set; }
-
-        [Display(Name = "Fecha Modifica")]
-
+        [Display(Name = "Fecha Modificación")]
+        [Required]
         public Nullable<System.DateTime> cred_FechaModifica { get; set; }
-
-        //public virtual tbUsuario tbUsuario { get; set; }
-        //public virtual tbUsuario tbUsuario1 { get; set; }
-
-        //[Display(Name = "Identificación")]
-        //public virtual tbCliente tbCliente { get; set; }
-
-        //[Display(Name = "Estado")]
-        //public virtual tbEstadoSolicitudCredito tbEstadoSolicitudCredito { get; set; }
     }
 }

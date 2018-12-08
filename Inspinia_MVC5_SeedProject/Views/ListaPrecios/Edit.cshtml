@@ -9,7 +9,7 @@
         font-family: arial, sans-serif;
         border-collapse: collapse;
         width: 30%;
-        margin-left: 40%;
+        margin-left: 5%;
     }
 
     td, th {
@@ -19,7 +19,7 @@
     }
 
     tr:nth-child(even) {
-        /*background-color: #dddddd;*/
+       
     }
 </style>
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -73,47 +73,42 @@
         <div class="form-group">
             @Html.LabelFor(model => model.listp_EsActivo, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.listp_EsActivo)
-                @Html.ValidationMessageFor(model => model.listp_EsActivo)
+            
+                @Html.CheckBox("listp_EsActivo", true)
+                @*@Html.EditorFor(model => model.listp_EsActivo)
+                @Html.ValidationMessageFor(model => model.listp_EsActivo)*@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.listp_UsuarioCrea, "listp_UsuarioCrea", new { @class = "control-label col-md-2" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.listp_UsuarioCrea, "Usuario Crea", new { @class = "control-label col-md-2", @disabled = "disabled"  })
             <div class="col-md-10">
                 @Html.DropDownList("listp_UsuarioCrea", String.Empty)
                 @Html.ValidationMessageFor(model => model.listp_UsuarioCrea)
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.listp_FechaCrea, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.listp_FechaCrea)
                 @Html.ValidationMessageFor(model => model.listp_FechaCrea)
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.listp_UsuarioModifica, "listp_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("listp_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.listp_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
+       
+        @*<div class="form-group">
             @Html.LabelFor(model => model.listp_FechaModifica, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.listp_FechaModifica)
                 @Html.ValidationMessageFor(model => model.listp_FechaModifica)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>

@@ -378,5 +378,89 @@ namespace ERP_ZORZAL.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbCuentasBanco_Update_Result>("UDP_Gral_tbCuentasBanco_Update", bcta_IdParameter, ban_IdParameter, mnda_IdParameter, bcta_TipoCuentaParameter, bcta_TotalCreditoParameter, bcta_TotalDebitoParameter, bcta_FechaAperturaParameter, bcta_NumeroParameter, bcta_UsuarioCreaParameter, bcta_FechaCreaParameter);
         }
+    
+        public virtual ObjectResult<UDP_Gral_tbActividadEconomica_Insert_Result> UDP_Gral_tbActividadEconomica_Insert(string acte_Descripcion)
+        {
+            var acte_DescripcionParameter = acte_Descripcion != null ?
+                new ObjectParameter("acte_Descripcion", acte_Descripcion) :
+                new ObjectParameter("acte_Descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbActividadEconomica_Insert_Result>("UDP_Gral_tbActividadEconomica_Insert", acte_DescripcionParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbActividadEconomica_Update_Result> UDP_Gral_tbActividadEconomica_Update(Nullable<short> acte_Id, string acte_Descripcion, Nullable<int> acte_UsuarioCrea, Nullable<System.DateTime> acte_FechaCrea, Nullable<int> acte_UsuarioModifica, Nullable<System.DateTime> acte_FechaModifica)
+        {
+            var acte_IdParameter = acte_Id.HasValue ?
+                new ObjectParameter("acte_Id", acte_Id) :
+                new ObjectParameter("acte_Id", typeof(short));
+    
+            var acte_DescripcionParameter = acte_Descripcion != null ?
+                new ObjectParameter("acte_Descripcion", acte_Descripcion) :
+                new ObjectParameter("acte_Descripcion", typeof(string));
+    
+            var acte_UsuarioCreaParameter = acte_UsuarioCrea.HasValue ?
+                new ObjectParameter("acte_UsuarioCrea", acte_UsuarioCrea) :
+                new ObjectParameter("acte_UsuarioCrea", typeof(int));
+    
+            var acte_FechaCreaParameter = acte_FechaCrea.HasValue ?
+                new ObjectParameter("acte_FechaCrea", acte_FechaCrea) :
+                new ObjectParameter("acte_FechaCrea", typeof(System.DateTime));
+    
+            var acte_UsuarioModificaParameter = acte_UsuarioModifica.HasValue ?
+                new ObjectParameter("acte_UsuarioModifica", acte_UsuarioModifica) :
+                new ObjectParameter("acte_UsuarioModifica", typeof(int));
+    
+            var acte_FechaModificaParameter = acte_FechaModifica.HasValue ?
+                new ObjectParameter("acte_FechaModifica", acte_FechaModifica) :
+                new ObjectParameter("acte_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbActividadEconomica_Update_Result>("UDP_Gral_tbActividadEconomica_Update", acte_IdParameter, acte_DescripcionParameter, acte_UsuarioCreaParameter, acte_FechaCreaParameter, acte_UsuarioModificaParameter, acte_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbMoneda_Insert_Result> UDP_Gral_tbMoneda_Insert(string mnda_Abreviatura, string mnda_Nombre)
+        {
+            var mnda_AbreviaturaParameter = mnda_Abreviatura != null ?
+                new ObjectParameter("mnda_Abreviatura", mnda_Abreviatura) :
+                new ObjectParameter("mnda_Abreviatura", typeof(string));
+    
+            var mnda_NombreParameter = mnda_Nombre != null ?
+                new ObjectParameter("mnda_Nombre", mnda_Nombre) :
+                new ObjectParameter("mnda_Nombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbMoneda_Insert_Result>("UDP_Gral_tbMoneda_Insert", mnda_AbreviaturaParameter, mnda_NombreParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbMoneda_Update_Result> UDP_Gral_tbMoneda_Update(Nullable<short> mnda_Id, string mnda_Abreviatura, string mnda_Nombre, Nullable<int> mnda_UsuarioCrea, Nullable<System.DateTime> mnda_FechaCrea, Nullable<int> mnda_UsuarioModifica, Nullable<System.DateTime> mnda_FechaModifica)
+        {
+            var mnda_IdParameter = mnda_Id.HasValue ?
+                new ObjectParameter("mnda_Id", mnda_Id) :
+                new ObjectParameter("mnda_Id", typeof(short));
+    
+            var mnda_AbreviaturaParameter = mnda_Abreviatura != null ?
+                new ObjectParameter("mnda_Abreviatura", mnda_Abreviatura) :
+                new ObjectParameter("mnda_Abreviatura", typeof(string));
+    
+            var mnda_NombreParameter = mnda_Nombre != null ?
+                new ObjectParameter("mnda_Nombre", mnda_Nombre) :
+                new ObjectParameter("mnda_Nombre", typeof(string));
+    
+            var mnda_UsuarioCreaParameter = mnda_UsuarioCrea.HasValue ?
+                new ObjectParameter("mnda_UsuarioCrea", mnda_UsuarioCrea) :
+                new ObjectParameter("mnda_UsuarioCrea", typeof(int));
+    
+            var mnda_FechaCreaParameter = mnda_FechaCrea.HasValue ?
+                new ObjectParameter("mnda_FechaCrea", mnda_FechaCrea) :
+                new ObjectParameter("mnda_FechaCrea", typeof(System.DateTime));
+    
+            var mnda_UsuarioModificaParameter = mnda_UsuarioModifica.HasValue ?
+                new ObjectParameter("mnda_UsuarioModifica", mnda_UsuarioModifica) :
+                new ObjectParameter("mnda_UsuarioModifica", typeof(int));
+    
+            var mnda_FechaModificaParameter = mnda_FechaModifica.HasValue ?
+                new ObjectParameter("mnda_FechaModifica", mnda_FechaModifica) :
+                new ObjectParameter("mnda_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbMoneda_Update_Result>("UDP_Gral_tbMoneda_Update", mnda_IdParameter, mnda_AbreviaturaParameter, mnda_NombreParameter, mnda_UsuarioCreaParameter, mnda_FechaCreaParameter, mnda_UsuarioModificaParameter, mnda_FechaModificaParameter);
+        }
     }
 }

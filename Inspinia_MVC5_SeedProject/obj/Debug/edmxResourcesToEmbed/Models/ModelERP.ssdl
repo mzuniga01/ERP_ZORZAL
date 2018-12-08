@@ -2860,6 +2860,17 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="UDP_Gral_tbActividadEconomica_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="acte_Descripcion" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbActividadEconomica_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="acte_Id" Type="smallint" Mode="In" />
+    <Parameter Name="acte_Descripcion" Type="nvarchar" Mode="In" />
+    <Parameter Name="acte_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="acte_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="acte_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="acte_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="UDP_Gral_tbBanco_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="ban_Nombre" Type="nvarchar" Mode="In" />
     <Parameter Name="ban_NombreContacto" Type="nvarchar" Mode="In" />
@@ -2912,6 +2923,19 @@
     <Parameter Name="deno_FechaCrea" Type="datetime" Mode="In" />
     <Parameter Name="deno_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="deno_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbMoneda_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="mnda_Abreviatura" Type="varchar" Mode="In" />
+    <Parameter Name="mnda_Nombre" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbMoneda_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
+    <Parameter Name="mnda_Abreviatura" Type="varchar" Mode="In" />
+    <Parameter Name="mnda_Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="mnda_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="mnda_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="mnda_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="mnda_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbTipoIdentificacion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="tpi_Descripcion" Type="nvarchar" Mode="In" />

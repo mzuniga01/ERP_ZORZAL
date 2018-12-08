@@ -39,8 +39,8 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Moneda/Create
         public ActionResult Create()
         {
-            ViewBag.mnda_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            ViewBag.mnda_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            //ViewBag.mnda_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            //ViewBag.mnda_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             return View();
         }
 
@@ -51,16 +51,36 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="mnda_Id,mnda_Abreviatura,mnda_Nombre,mnda_UsuarioCrea,mnda_FechaCrea,mnda_UsuarioModifica,mnda_FechaModifica")] tbMoneda tbMoneda)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.tbMoneda.Add(tbMoneda);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.mnda_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMoneda.mnda_UsuarioCrea);
-            ViewBag.mnda_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMoneda.mnda_UsuarioModifica);
+                if (ModelState.IsValid)
+               {
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Gral_tbMoneda_Insert(tbMoneda.mnda_Abreviatura,tbMoneda.mnda_Nombre);
+                    foreach (UDP_Gral_tbTipoIdentificacion_Insert_Result Moneda in list)
+                        MensajeError = Moneda.MensajeError;
+                    if(MensajeError == -1)
+                    {
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+               }
+
+               
+
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
             return View(tbMoneda);
+
+
         }
 
         // GET: /Moneda/Edit/5
@@ -75,8 +95,8 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.mnda_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMoneda.mnda_UsuarioCrea);
-            ViewBag.mnda_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMoneda.mnda_UsuarioModifica);
+            //ViewBag.mnda_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMoneda.mnda_UsuarioCrea);
+            //ViewBag.mnda_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMoneda.mnda_UsuarioModifica);
             return View(tbMoneda);
         }
 
@@ -87,14 +107,37 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="mnda_Id,mnda_Abreviatura,mnda_Nombre,mnda_UsuarioCrea,mnda_FechaCrea,mnda_UsuarioModifica,mnda_FechaModifica")] tbMoneda tbMoneda)
         {
-            if (ModelState.IsValid)
+
+            try
             {
-                db.Entry(tbMoneda).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                if (ModelState.IsValid)
+                {  
+                    //    db.Entry(tbMoneda).State = EntityState.Modified;
+                   //    db.SaveChanges();
+                   //    return RedirectToAction("Index");
+
+
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Gral_tbMoneda_Update(tbMoneda.mnda_Id, tbMoneda.mnda_Abreviatura, tbMoneda.mnda_Nombre, tbMoneda.mnda_UsuarioCrea,tbMoneda.mnda_FechaCrea, tbMoneda.mnda_UsuarioModifica, tbMoneda.mnda_FechaModifica);
+                    foreach (UDP_Gral_tbActividadEconomica_Update_Result Moneda in list)
+                        MensajeError = Moneda.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+                }
             }
-            ViewBag.mnda_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMoneda.mnda_UsuarioCrea);
-            ViewBag.mnda_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMoneda.mnda_UsuarioModifica);
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+
             return View(tbMoneda);
         }
 

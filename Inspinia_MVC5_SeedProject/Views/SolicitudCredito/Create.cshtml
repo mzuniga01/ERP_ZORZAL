@@ -1,26 +1,19 @@
 ﻿@model ERP_ZORZAL.Models.tbSolicitudCredito
-
+@using ERP_ZORZAL.Models
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "SC";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Solicitud Crédito</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Creaer</strong>
-            </li>
-        </ol>*@
+
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="@Url.Action("Index","SolicitudCredito")">Regresar</a>
-			@*@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})*@
+            <a href="/SolicitudCredito/Index">Regresar</a>
+			@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
 </div>
@@ -32,7 +25,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5> Crear Solicitud Credito</h5>
+                    <h5>Ingresar Solicitud Crédito</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -43,109 +36,108 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
 
-        <div class="form-group"> 
-            @Html.LabelFor(model => model.clte_Id, "Cliente", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("clte_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.clte_Id)
-            </div>
-        </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.escre_Id, "Estado Crédito", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("escre_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.escre_Id)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cred_FechaSolicitud, "Fecha Solicitud", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cred_FechaSolicitud)
+            @Html.LabelFor(model => model.cred_FechaSolicitud, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.cred_FechaSolicitud, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.cred_FechaSolicitud)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cred_FechaAprobacion, "Fecha Aprobación", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.cred_FechaAprobacion, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.cred_FechaAprobacion)
-                @Html.ValidationMessageFor(model => model.cred_FechaAprobacion)
+                <p style="color:red">@Html.ValidationMessageFor(model => model.cred_FechaAprobacion)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cred_MontoSolicitado, "Monto Solicitado", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cred_MontoSolicitado)
-                @Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
+            <label class="control-label col-md-2">Número Cliente</label>
+            @*@Html.LabelFor(model => model.clte_Id, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.clte_Id) 
+                <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)
+           </div>
+            <div class="col-md-">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </div>
 
+
         <div class="form-group">
-            @Html.LabelFor(model => model.cred_MontoAprobado, "Monto Aprobado", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+
+            <label class="control-label col-md-2">Nombre Cliente</label>
+            @*@@Html.LabelFor(model => model.clte_Nombre, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.cred_MontoAprobado)
-                @Html.ValidationMessageFor(model => model.cred_MontoAprobado)
+                <p style="color:red">@Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cred_DiasSolicitado, "Dias Solicitado", new { @class = "control-label col-md-2" })
+
+            <label class="control-label col-md-2">RTN/Identidad Cliente</label>
+            @*@@Html.LabelFor(model => model.clte_Nombre, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.clte_Id)
+                <p style="color:red">@Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label class="control-label col-md-2">Estado Solicitud Crédito</label>
+            @*@Html.LabelFor(model => model.cred_MontoAprobado, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.cred_MontoAprobado)
+                <p style="color:red">@Html.ValidationMessageFor(model => model.cred_MontoAprobado)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cred_MontoSolicitado, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.cred_MontoSolicitado)
+                <p style="color:red">@Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cred_MontoAprobado, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.cred_MontoAprobado)
+                <p style="color:red">@Html.ValidationMessageFor(model => model.cred_MontoAprobado)
+</div>
+        </div>
+
+
+
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.cred_DiasSolicitado, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.cred_DiasSolicitado)
                 @Html.ValidationMessageFor(model => model.cred_DiasSolicitado)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cred_DiasAprobado, "Dias Aprobado", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.cred_DiasAprobado, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.cred_DiasAprobado)
-                @Html.ValidationMessageFor(model => model.cred_DiasAprobado)
-            </div>
+                <p style="color:red">@Html.ValidationMessageFor(model => model.cred_DiasAprobado)
         </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.cred_UsuarioCrea, "cred_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("cred_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.cred_UsuarioCrea)
-            </div>
         </div>
+  
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cred_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cred_FechaCrea)
-                @Html.ValidationMessageFor(model => model.cred_FechaCrea)
+            <div class="col-md-12 text-center">
+                <input type="button" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cred_UsuarioModifica, "cred_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("cred_UsuarioModifica", String.Empty)s
-                @Html.ValidationMessageFor(model => model.cred_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cred_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cred_FechaModifica)
-                @Html.ValidationMessageFor(model => model.cred_FechaModifica)
-            </div>*@
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    @*</div>*@
+    </div>
 }
 
                 </div>
@@ -154,8 +146,51 @@
     </div>
  </div>
 
+
+<div>
+    <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
  
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+ $.datepicker.regional['es'] = {
+ closeText: 'Cerrar',
+ prevText: '< Ant',
+ nextText: 'Sig >',
+ currentText: 'Hoy',
+ monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+ monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+ dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+ dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+ dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+ weekHeader: 'Sm',
+ dateFormat: 'dd/mm/yy',
+ firstDay: 1,
+ isRTL: false,
+ showMonthAfterYear: false,
+ yearSuffix: ''
+ };
+ $.datepicker.setDefaults($.datepicker.regional['es']);
+$(function () {
+    $("#cred_FechaAprobacion").datepicker({ dateFormat: 'yy-mm-dd' });
+    $("#cred_FechaSolicitud").datepicker({ dateFormat: 'yy-mm-dd' });
+});
+</script>
 }

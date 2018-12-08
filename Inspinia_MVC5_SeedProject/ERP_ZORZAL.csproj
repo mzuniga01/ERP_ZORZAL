@@ -444,6 +444,12 @@
     </Compile>
     <Compile Include="Models\TipoPagos.cs" />
     <Compile Include="Models\TiposIdenticacion.cs" />
+    <Compile Include="Models\UDP_Gral_tbActividadEconomica_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Gral_tbActividadEconomica_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Gral_tbBanco_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -460,6 +466,12 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Gral_tbDenominacion_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Gral_tbMoneda_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Gral_tbMoneda_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Gral_tbTipoIdentificacion_Insert_Result.cs">
@@ -1035,6 +1047,10 @@
     <Content Include="Views\Exoneracion\_IndexCliente.cshtml" />
     <Content Include="Views\Devolucion\_ProductoDevolucion.cshtml" />
     <Content Include="Views\Pago\_IndexCliente.cshtml" />
+    <Content Include="Views\NotaCredito\_IndexCliente.cshtml" />
+    <Content Include="Views\ListaPrecios\_PrecioDetalle.cshtml" />
+    <Content Include="Views\SolicitudCredito\_IndexCliente.cshtml" />
+    <Content Include="Views\SolicitudCredito\_ListAprobacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

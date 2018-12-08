@@ -8,11 +8,7 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Listado Precio</h2>
-        @*<ol class="breadcrumb">
-            <li class="active">
-                <strong>ListaPrecio</strong>
-            </li>
-        </ol>*@
+  
     </div>
 </div>
 
@@ -69,7 +65,7 @@
 
       
         <td>
-            &nbsp; &nbsp; &nbsp; &nbsp; @Html.CheckBox("listp_EsActivo", true)
+            &nbsp; &nbsp; &nbsp; &nbsp; @Html.CheckBox("listp_EsActivo", true, new { @disabled = "disabled" })
             @*@Html.DisplayFor(modelItem => item.listp_EsActivo)*@
 
             @*<td>
