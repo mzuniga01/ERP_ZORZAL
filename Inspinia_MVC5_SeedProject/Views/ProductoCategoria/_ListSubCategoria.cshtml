@@ -1,6 +1,6 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbProductoSubcategoria>
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbProductoSubcategoria>
 
-@using ERP_ZORZAL.Models
+@using ERP_GMEDINA.Models
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -83,7 +83,7 @@
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
                                                             <div class="col-md-12">
-                                                                @Html.Partial("_DetailsSubCategoria", new ERP_ZORZAL.Models.tbProductoSubcategoria() { pscat_Id = item.pscat_Id, pscat_Descripcion = item.pscat_Descripcion, pscat_EsActiva = item.pscat_EsActiva, pcat_Id = item.pcat_Id })
+                                                                @Html.Partial("_DetailsSubCategoria", new ERP_GMEDINA.Models.tbProductoSubcategoria() { pscat_Id = item.pscat_Id, pscat_Descripcion = item.pscat_Descripcion, pscat_EsActiva = item.pscat_EsActiva, pcat_Id = item.pcat_Id })
                                                             </div>
                                                         </div>
                                                     </div>
@@ -104,7 +104,7 @@
                                                     <div class="col-lg-14">
                                                         <div class="form-group">
                                                             <div class="col-md-18">
-                                                                @Html.Partial("_EditSubCategoriaModal", new ERP_ZORZAL.Models.tbProductoSubcategoria() { pscat_Id = item.pscat_Id, pscat_Descripcion = item.pscat_Descripcion })
+                                                                @Html.Partial("_EditSubCategoriaModal", new ERP_GMEDINA.Models.tbProductoSubcategoria() { pscat_Id = item.pscat_Id, pscat_Descripcion = item.pscat_Descripcion })
                                                             </div>
                                                         </div>
                                                     </div>

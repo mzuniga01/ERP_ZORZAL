@@ -1,5 +1,5 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbBodegaDetalle>
-@using ERP_ZORZAL.Models
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbBodegaDetalle>
+@using ERP_GMEDINA.Models
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -92,7 +92,7 @@
                                                 <div class="col-lg-12">
                                                     <div class="form-group">
                                                         <div class="col-md-12">
-                                                            @Html.Partial("_DetailsBodegaDetalle", new ERP_ZORZAL.Models.tbBodegaDetalle() { bodd_CantidadMinima = item.bodd_CantidadMinima, bodd_CantidadMaxima = item.bodd_CantidadMaxima, bodd_PuntoReorden = item.bodd_PuntoReorden, bodd_Costo = item.bodd_Costo, bodd_CostoPromedio = item.bodd_CostoPromedio, prod_Codigo = item.prod_Codigo})
+                                                            @Html.Partial("_DetailsBodegaDetalle", new ERP_GMEDINA.Models.tbBodegaDetalle() { bodd_CantidadMinima = item.bodd_CantidadMinima, bodd_CantidadMaxima = item.bodd_CantidadMaxima, bodd_PuntoReorden = item.bodd_PuntoReorden, bodd_Costo = item.bodd_Costo, bodd_CostoPromedio = item.bodd_CostoPromedio, prod_Codigo = item.prod_Codigo})
                                                         </div>
                                                     </div>
                                                 </div>
@@ -118,7 +118,7 @@
                                                 <div class="col-lg-12">
                                                     <div class="form-group">
                                                         <div class="col-md-12">
-                                                            @Html.Partial("_EditBodegaDetalleModal", new ERP_ZORZAL.Models.tbBodegaDetalle() { bodd_CantidadMinima = item.bodd_CantidadMinima, bodd_CantidadMaxima = item.bodd_CantidadMaxima, bodd_PuntoReorden = item.bodd_PuntoReorden, bodd_Costo = item.bodd_Costo, bodd_CostoPromedio = item.bodd_CostoPromedio, })
+                                                            @Html.Partial("_EditBodegaDetalleModal", new ERP_GMEDINA.Models.tbBodegaDetalle() { bodd_CantidadMinima = item.bodd_CantidadMinima, bodd_CantidadMaxima = item.bodd_CantidadMaxima, bodd_PuntoReorden = item.bodd_PuntoReorden, bodd_Costo = item.bodd_Costo, bodd_CostoPromedio = item.bodd_CostoPromedio, })
                                                         </div>
                                                     </div>
                                                 </div>

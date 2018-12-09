@@ -780,40 +780,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbCliente">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCliente">
-        <MappingFragment StoreEntitySet="tbCliente">
-          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
-          <ScalarProperty Name="clte_FechaModifica" ColumnName="clte_FechaModifica" />
-          <ScalarProperty Name="clte_UsuarioModifica" ColumnName="clte_UsuarioModifica" />
-          <ScalarProperty Name="clte_FechaCrea" ColumnName="clte_FechaCrea" />
-          <ScalarProperty Name="clte_UsuarioCrea" ColumnName="clte_UsuarioCrea" />
-          <ScalarProperty Name="clte_Observaciones_" ColumnName="clte_Observaciones " />
-          <ScalarProperty Name="clte_EsMinorista" ColumnName="clte_EsMinorista" />
-          <ScalarProperty Name="clte_ConCredito" ColumnName="clte_ConCredito" />
-          <ScalarProperty Name="clte_RazonInactivo" ColumnName="clte_RazonInactivo" />
-          <ScalarProperty Name="clte_EsActivo" ColumnName="clte_EsActivo" />
-          <ScalarProperty Name="clte_CorreoElectronico" ColumnName="clte_CorreoElectronico" />
-          <ScalarProperty Name="clte_Direccion" ColumnName="clte_Direccion" />
-          <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
-          <ScalarProperty Name="clte_FechaConstitucion" ColumnName="clte_FechaConstitucion" />
-          <ScalarProperty Name="clte_ContactoTelefono" ColumnName="clte_ContactoTelefono" />
-          <ScalarProperty Name="clte_ContactoEmail" ColumnName="clte_ContactoEmail" />
-          <ScalarProperty Name="clte_ContactoNombre" ColumnName="clte_ContactoNombre" />
-          <ScalarProperty Name="clte_RazonSocial" ColumnName="clte_RazonSocial" />
-          <ScalarProperty Name="clte_NombreComercial" ColumnName="clte_NombreComercial" />
-          <ScalarProperty Name="clte_Telefono" ColumnName="clte_Telefono" />
-          <ScalarProperty Name="clte_Sexo" ColumnName="clte_Sexo" />
-          <ScalarProperty Name="clte_Nacionalidad" ColumnName="clte_Nacionalidad" />
-          <ScalarProperty Name="clte_FechaNacimiento" ColumnName="clte_FechaNacimiento" />
-          <ScalarProperty Name="clte_Apellidos" ColumnName="clte_Apellidos" />
-          <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
-          <ScalarProperty Name="clte_EsPersonaNatural" ColumnName="clte_EsPersonaNatural" />
-          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
-          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbPuntoEmision">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPuntoEmision">
         <MappingFragment StoreEntitySet="tbPuntoEmision">
@@ -1300,5 +1266,39 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="tbCliente">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCliente">
+        <MappingFragment StoreEntitySet="tbCliente">
+          <ScalarProperty Name="clte_FechaModifica" ColumnName="clte_FechaModifica" />
+          <ScalarProperty Name="clte_UsuarioModifica" ColumnName="clte_UsuarioModifica" />
+          <ScalarProperty Name="clte_FechaCrea" ColumnName="clte_FechaCrea" />
+          <ScalarProperty Name="clte_UsuarioCrea" ColumnName="clte_UsuarioCrea" />
+          <ScalarProperty Name="clte_Observaciones_" ColumnName="clte_Observaciones " />
+          <ScalarProperty Name="clte_EsMinorista" ColumnName="clte_EsMinorista" />
+          <ScalarProperty Name="clte_ConCredito" ColumnName="clte_ConCredito" />
+          <ScalarProperty Name="clte_RazonInactivo" ColumnName="clte_RazonInactivo" />
+          <ScalarProperty Name="clte_EsActivo" ColumnName="clte_EsActivo" />
+          <ScalarProperty Name="clte_CorreoElectronico" ColumnName="clte_CorreoElectronico" />
+          <ScalarProperty Name="clte_Direccion" ColumnName="clte_Direccion" />
+          <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
+          <ScalarProperty Name="clte_FechaConstitucion" ColumnName="clte_FechaConstitucion" />
+          <ScalarProperty Name="clte_ContactoTelefono" ColumnName="clte_ContactoTelefono" />
+          <ScalarProperty Name="clte_ContactoEmail" ColumnName="clte_ContactoEmail" />
+          <ScalarProperty Name="clte_ContactoNombre" ColumnName="clte_ContactoNombre" />
+          <ScalarProperty Name="clte_RazonSocial" ColumnName="clte_RazonSocial" />
+          <ScalarProperty Name="clte_NombreComercial" ColumnName="clte_NombreComercial" />
+          <ScalarProperty Name="clte_Telefono" ColumnName="clte_Telefono" />
+          <ScalarProperty Name="clte_Sexo" ColumnName="clte_Sexo" />
+          <ScalarProperty Name="clte_Nacionalidad" ColumnName="clte_Nacionalidad" />
+          <ScalarProperty Name="clte_FechaNacimiento" ColumnName="clte_FechaNacimiento" />
+          <ScalarProperty Name="clte_Apellidos" ColumnName="clte_Apellidos" />
+          <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
+          <ScalarProperty Name="clte_EsPersonaNatural" ColumnName="clte_EsPersonaNatural" />
+          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
+          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

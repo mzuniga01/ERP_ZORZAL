@@ -1,5 +1,5 @@
-﻿@model ERP_ZORZAL.Models.tbSalida
-@using ERP_ZORZAL.Models
+﻿@model ERP_GMEDINA.Models.tbSalida
+@using ERP_GMEDINA.Models
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -224,7 +224,7 @@
     </div>
  </div>
 <div>
-    @*@Html.Partial("_SalidaDetalle",new ERP_ZORZAL.Models.tbSalidaDetalle() { sal_Id = Model.tsal_Id })*@
+    @*@Html.Partial("_SalidaDetalle",new ERP_GMEDINA.Models.tbSalidaDetalle() { sal_Id = Model.tsal_Id })*@
     @Html.Partial("_IndexSalidaDetalle", Model.tbSalidaDetalle)
 </div>
 

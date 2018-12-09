@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ERP_ZORZAL.Models;
+using ERP_GMEDINA.Models;
 
 namespace ERP_ZORZAL.Controllers
 {
