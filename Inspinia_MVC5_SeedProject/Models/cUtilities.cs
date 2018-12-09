@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ERP_ZORZAL.Models;
+using ERP_GMEDINA.Models;
 
-namespace ERP_ZORZAL.Models
+namespace ERP_GMEDINA.Models
 {
     public class cUtilities
     {

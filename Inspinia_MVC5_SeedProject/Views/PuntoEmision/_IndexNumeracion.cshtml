@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbPuntoEmisionDetalle>
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbPuntoEmisionDetalle>
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -85,7 +85,7 @@
                                             </div>
                                             <div class="modal-body" id="AjaxEditNumeracion">
 
-                                                @Html.Partial("_EditNumeracion", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle(){ pemid_UsuarioCrea=item.pemid_UsuarioCrea, pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal=item.pemid_RangoFinal, pemid_FechaLimite=item.pemid_FechaLimite })
+                                                @Html.Partial("_EditNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle(){ pemid_UsuarioCrea=item.pemid_UsuarioCrea, pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal=item.pemid_RangoFinal, pemid_FechaLimite=item.pemid_FechaLimite })
                                             </div>
                                             <div class="modal-footer">
                                                 <a href="@Url.Action("Details","PuntoEmision")" class="btn btn-primary ">Guardar</a>
@@ -105,7 +105,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body" >
-                                            @Html.Partial("_DetailsNumeracion", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle() {pemi_Id = item.pemi_Id, pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea=item.pemid_UsuarioCrea, pemid_FechaCrea=item.pemid_FechaCrea, pemid_UsuarioModifica=item.pemid_UsuarioModifica, pemid_FechaModifica=item.pemid_FechaModifica})
+                                            @Html.Partial("_DetailsNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle() {pemi_Id = item.pemi_Id, pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea=item.pemid_UsuarioCrea, pemid_FechaCrea=item.pemid_FechaCrea, pemid_UsuarioModifica=item.pemid_UsuarioModifica, pemid_FechaModifica=item.pemid_FechaModifica})
                                            
                                         </div>
                                         <div class="modal-footer">
@@ -138,7 +138,7 @@
                 </button>
             </div>
             <div class="modal-body" id="AjaxCreateNumeracion">
-                @Html.Partial("_CreateNumeracion", new ERP_ZORZAL.Models.tbPuntoEmisionDetalle())
+                @Html.Partial("_CreateNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle())
             </div>
             <div class="modal-footer">
                 <a href="@Url.Action("Details","PuntoEmision")" class="btn btn-primary ">Guardar</a>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ERP_ZORZAL.Models
+namespace ERP_GMEDINA.Models
 {
     using System;
     using System.Collections.Generic;

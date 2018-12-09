@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace ERP_ZORZAL.Models
+namespace ERP_GMEDINA.Models
 {
     [MetadataType(typeof(ClientesMetaData))]
     public partial class tbCliente

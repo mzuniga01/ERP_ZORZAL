@@ -1,4 +1,4 @@
-﻿@model ERP_ZORZAL.Models.tbDenominacion
+﻿@model ERP_GMEDINA.Models.tbDenominacion
 
 @{
     ViewBag.Title = "Create";
@@ -7,7 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Registro de Denominación</h2>        
+        <h2>Denominaciones</h2>        
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -35,7 +35,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.deno_Tipo, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
+            <div class="col-md-4">
                 @Html.DropDownListFor(model => model.deno_Tipo, new SelectList(Model.DenominacionList, "ID_TipoDenominacion", "Tipo_Denominacion"), "Seleccione Tipo Denominación", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.deno_Tipo)
             </div>
@@ -43,7 +43,7 @@
                
         <div class="form-group">
             @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
+            <div class="col-md-4">
                 @Html.DropDownList("mnda_Id", @*String.Empty*@ null, "Seleccione la Moneda", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.mnda_Id)
             </div>
@@ -51,7 +51,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.deno_Descripcion, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.deno_Descripcion)
                 @Html.ValidationMessageFor(model => model.deno_Descripcion)
             </div>
@@ -59,7 +59,7 @@
        
         <div class="form-group">
             @Html.LabelFor(model => model.deno_valor, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.deno_valor)
                 @Html.ValidationMessageFor(model => model.deno_valor)
             </div>
@@ -97,9 +97,8 @@
                 @Html.ValidationMessageFor(model => model.deno_FechaModifica)
             </div>
         </div>*@
-
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-12 text-box center">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
