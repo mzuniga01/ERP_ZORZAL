@@ -102,12 +102,44 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="tsal_Id,tsal_Descripcion,tsal_UsuarioCrea,tsal_FechaCrea,tsal_UsuarioModifica,tsal_FechaModifica")] tbTipoSalida tbTipoSalida)
+        public ActionResult Edit(byte? id,[Bind(Include="tsal_Id,tsal_Descripcion,tsal_UsuarioCrea,tsal_FechaCrea")] tbTipoSalida tbTipoSalida)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbTipoSalida).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(tbUnidadMedida).State = EntityState.Modified;
+                //db.SaveChanges();
+                try
+                {
+                    tbTipoSalida vtbTipoSalida = db.tbTipoSalida.Find(id);
+                    /*:ssTZD*/
+                    IEnumerable<object> List = null;
+                    var MsjError = "";
+                    //,uni_UsuarioModifica, uni_FechaModifica
+                    //tbUnidadMedida.uni_UsuarioModifica = 1;
+                    //var uni_UsuarioCrea = vtbUnidadMedida.uni_UsuarioCrea;
+                    //var uni_FechaCrea = Convert.ToDateTime(String.Format("{0:d/M/yyyy HH:mm:ss}", vtbUnidadMedida.uni_FechaCrea));
+
+                    //tbUnidadMedida.uni_FechaModifica = DateTime.Now;tbUnidadMedida.uni_FechaCrea
+                    //var FechaCreo = Convert.ToDateTime(uni_FechaCrea);
+                    List = db.UDP_Inv_tbTipoSalida_Update(tbTipoSalida.tsal_Id, tbTipoSalida.tsal_Descripcion, vtbTipoSalida.tsal_UsuarioCrea, vtbTipoSalida.tsal_FechaCrea);
+                    foreach (UDP_Inv_tbTipoSalida_Update_Result UnidadMedida in List)
+                        MsjError = UnidadMedida.MensajeError;
+
+                    if (MsjError == "-1")
+                    {
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                }
                 return RedirectToAction("Index");
             }
             return View(tbTipoSalida);

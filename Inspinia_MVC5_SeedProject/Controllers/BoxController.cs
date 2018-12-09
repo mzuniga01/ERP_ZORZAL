@@ -1,4 +1,6 @@
 ﻿using ERP_ZORZAL.Models;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -48,13 +50,34 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "box_Codigo,box_Descripcion,box_UsuarioCrea,box_FechaCrea,box_UsuarioModifica,box_FechaModifica")] tbBox tbBox)
+        public ActionResult Create([Bind(Include = "box_Codigo,box_Descripcion")] tbBox tbBox)
         {
             if (ModelState.IsValid)
             {
-                db.tbBox.Add(tbBox);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    IEnumerable<object> List = null;
+                    var MsjError = "";
+                    List = db.UDP_Inv_tbBox_Insert(tbBox.box_Codigo,tbBox.box_Descripcion);
+                    foreach (UDP_Inv_tbBox_Insert_Result Box in List)
+                        MsjError = Box.MensajeError;
+
+                    if (MsjError == "-1")
+                    {
+                        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                }
             }
 
             return View(tbBox);
@@ -80,13 +103,35 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "box_Codigo,box_Descripcion,box_UsuarioCrea,box_FechaCrea,box_UsuarioModifica,box_FechaModifica")] tbBox tbBox)
+        public ActionResult Edit(string id,[Bind(Include = "box_Codigo,box_Descripcion,box_UsuarioCrea,box_FechaCrea")] tbBox tbBox)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbBox).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    tbBox vBox = db.tbBox.Find(id);
+                    IEnumerable<object> List = null;
+                    var MsjError = "";
+                    List = db.UDP_Inv_tbBox_Update(tbBox.box_Codigo, tbBox.box_Descripcion, vBox.box_UsuarioCrea, vBox.box_FechaCrea);
+                    foreach (UDP_Inv_tbBox_Update_Result Box in List)
+                        MsjError = Box.MensajeError;
+
+                    if (MsjError == "-1")
+                    {
+                        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                }
             }
             return View(tbBox);
         }
