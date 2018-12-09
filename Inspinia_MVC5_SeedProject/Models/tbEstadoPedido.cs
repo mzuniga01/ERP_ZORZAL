@@ -14,11 +14,20 @@ namespace ERP_ZORZAL.Models
     
     public partial class tbEstadoPedido
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbEstadoPedido()
+        {
+            this.tbPedido = new HashSet<tbPedido>();
+        }
+    
         public byte esped_Id { get; set; }
         public string esped_Descripcion { get; set; }
         public int esped_UsuarioCrea { get; set; }
         public System.DateTime esped_FechaCrea { get; set; }
         public Nullable<int> esped_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> esped_FechaModifica { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPedido> tbPedido { get; set; }
     }
 }

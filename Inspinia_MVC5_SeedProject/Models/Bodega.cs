@@ -14,7 +14,7 @@ namespace ERP_ZORZAL.Models
     public class BodegaMetadata
     {
         [Display(Name = "Número")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int bod_Id { get; set; }
 
         [Display(Name = "Responsable ")]
@@ -46,20 +46,20 @@ namespace ERP_ZORZAL.Models
         public byte bod_EsActiva { get; set; }
 
         [Display(Name = "Usuario Crea")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int bod_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Crea")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime bod_FechaCrea { get; set; }
 
         [Display(Name = "Usuario Modifica")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<int> bod_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modifica")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> bod_FechaModifica { get; set; }
 

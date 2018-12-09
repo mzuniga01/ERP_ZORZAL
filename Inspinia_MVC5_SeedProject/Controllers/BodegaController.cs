@@ -67,12 +67,26 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="bod_Id,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva,bod_UsuarioCrea,bod_FechaCrea,bod_UsuarioModifica,bod_FechaModifica,bod_Nombre")] tbBodega tbBodega)
+        public ActionResult Create([Bind(Include="bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva,bod_Nombre")] tbBodega tbBodega)
         {
             if (ModelState.IsValid)
             {
-                db.tbBodega.Add(tbBodega);
-                db.SaveChanges();
+                //db.tbBodega.Add(tbBodega);
+                //db.SaveChanges();
+                //try
+                //{
+                //    IEnumerable<object> List = null;
+                //    String MsjError = "";
+                //    List = db.UDP_Inv_tbBodega_Insert(t)
+                //}
+                //catch(Exception Ex)
+                //{
+
+                //}
+
+
+
+
                 return RedirectToAction("Index");
             }
 

@@ -48,27 +48,39 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="tent_Descripcion")] tbTipoEntrada tbTipoEntrada)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    try
-            //    {
-            //        IEnumerable<object> List = null;
-            //        List = db.UDP_Inv_tbTipoEntrada_Insert(tbTipoEntrada.tent_Descripcion,)
-            //        foreach (UDP_Inv_tbTipoEntrada_Insert_Result TipoEntrada in List)
-            //        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    IEnumerable<object> list = null;
+                    string MsError = "";
+                    list = db.UDP_Inv_tbTipoEntrada_Insert(tbTipoEntrada.tent_Descripcion);
+                    //list = db.udp_inv_tbtipoentrada_insert(tbtipoentrada.tent_descripcion,);
+                    foreach (UDP_Inv_tbTipoEntrada_Insert_Result TipoEntrada in list)
+                        MsError = TipoEntrada.MensajeError;
 
-            //        }
-            //    }
-            //    catch (Exception Ex)
-            //    {
+                    if (MsError.Substring(0,2)=="-1"){
+                        ModelState.AddModelError("", "No se pudo almacenar el registro");
+                        return View(tbTipoEntrada);
+                    }
+                    else
+                    {
+                        //db.tbTipoEntrada.Add(tbTipoEntrada);
+                        //db.SaveChanges();
+                        return RedirectToAction("Index");
 
-            //    }
-            //    return RedirectToAction("Index");
-            //}
+                    }                        
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "No se pudo ingresar el registro " + ex.Message);
+                    return View(tbTipoEntrada);
+                }
+            }
 
             return View(tbTipoEntrada);
         }
-
+       
         // GET: /TipoEntrada/Edit/5
         public ActionResult Edit(byte? id)
         {
@@ -89,13 +101,37 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="tent_Id,tent_Descripcion,tent_UsuarioCrea,tent_FechaCrea,tent_UsuarioModifica,tent_FechaModifica")] tbTipoEntrada tbTipoEntrada)
+        public ActionResult Edit(byte? id,[Bind(Include="tent_Id,tent_Descripcion,tent_UsuarioCrea,tent_FechaCrea")] tbTipoEntrada tbTipoEntrada)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbTipoEntrada).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    tbTipoEntrada vTipoEntrada = db.tbTipoEntrada.Find(id);
+                    IEnumerable<object> list = null;
+                    string MsjError = "";
+                    list = db.UDP_Inv_tbTipoEntrada_Update(tbTipoEntrada.tent_Id, tbTipoEntrada.tent_Descripcion, vTipoEntrada.tent_UsuarioCrea, vTipoEntrada.tent_FechaCrea);
+                    foreach (UDP_Inv_tbTipoEntrada_Update_Result TipoEntrada in list)
+                        MsjError = TipoEntrada.MensajeError;
+
+                    if (MsjError.Substring(0, 2) == "-1")
+                    {
+                        ModelState.AddModelError("", "No se pudo almacenar el registro");
+                        return View(tbTipoEntrada);
+                    }
+                    else
+                    {
+                        //db.Entry(tbTipoEntrada).State = EntityState.Modified;
+                        //db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+
+                }
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "No se pudo Actualizar el registro" + Ex.Message);
+                    return View(tbTipoEntrada);
+                }
             }
             return View(tbTipoEntrada);
         }

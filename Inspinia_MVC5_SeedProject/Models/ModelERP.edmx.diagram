@@ -225,6 +225,7 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbEmpleados" Width="1.5" PointX="10.25" PointY="76.5" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPedido_tbEstadoPedido_esped_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
