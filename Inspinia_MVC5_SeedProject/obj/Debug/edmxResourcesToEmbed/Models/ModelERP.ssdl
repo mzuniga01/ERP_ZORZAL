@@ -499,7 +499,7 @@
     </Key>
     <Property Name="clte_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tpi_Id" Type="tinyint" Nullable="false" />
-    <Property Name="clte_RTN_Identidad_Pasaporte" Type="nvarchar" MaxLength="26" Nullable="false" />
+    <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
     <Property Name="clte_EsPersonaNatural" Type="bit" Nullable="false" />
     <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="clte_Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />

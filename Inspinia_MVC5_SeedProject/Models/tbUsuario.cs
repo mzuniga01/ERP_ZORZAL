@@ -19,8 +19,6 @@ namespace ERP_ZORZAL.Models
         {
             this.tbAccesoRol = new HashSet<tbAccesoRol>();
             this.tbObjeto = new HashSet<tbObjeto>();
-            this.tbObjeto1 = new HashSet<tbObjeto>();
-            this.tbObjeto2 = new HashSet<tbObjeto>();
             this.tbRol = new HashSet<tbRol>();
             this.tbRolesUsuario = new HashSet<tbRolesUsuario>();
             this.tbRolesUsuario1 = new HashSet<tbRolesUsuario>();
@@ -120,10 +118,6 @@ namespace ERP_ZORZAL.Models
         public virtual ICollection<tbAccesoRol> tbAccesoRol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbObjeto> tbObjeto { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbObjeto> tbObjeto1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbObjeto> tbObjeto2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbRol> tbRol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

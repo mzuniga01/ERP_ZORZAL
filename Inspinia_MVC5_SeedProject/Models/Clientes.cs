@@ -27,7 +27,7 @@ namespace ERP_ZORZAL.Models
 
         [Display(Name = "RTN/Identificación")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public string clte_RTN_Identidad_Pasaporte { get; set; }
+        public string clte_Identificacion { get; set; }
 
         [Display(Name = "¿Es Persona Natural?")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]

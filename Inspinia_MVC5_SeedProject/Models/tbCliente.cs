@@ -26,7 +26,7 @@ namespace ERP_ZORZAL.Models
     
         public int clte_Id { get; set; }
         public byte tpi_Id { get; set; }
-        public string clte_RTN_Identidad_Pasaporte { get; set; }
+        public string clte_Identificacion { get; set; }
         public bool clte_EsPersonaNatural { get; set; }
         public string clte_Nombres { get; set; }
         public string clte_Apellidos { get; set; }
