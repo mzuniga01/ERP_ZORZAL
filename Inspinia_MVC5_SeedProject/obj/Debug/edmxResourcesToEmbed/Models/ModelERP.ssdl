@@ -520,7 +520,7 @@
     <Property Name="clte_RazonInactivo" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="clte_ConCredito" Type="bit" Nullable="false" />
     <Property Name="clte_EsMinorista" Type="bit" Nullable="false" />
-    <Property Name="clte_Observaciones " Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="clte_Observaciones" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="clte_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="clte_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="clte_UsuarioModifica" Type="int" />
@@ -2896,8 +2896,6 @@
     <Parameter Name="usu_Id" Type="int" Mode="In" />
     <Parameter Name="rolu_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="rolu_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="rolu_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="rolu_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbUsuario_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="usu_NombreUsuario" Type="varchar" Mode="In" />
@@ -3188,8 +3186,6 @@
     <Parameter Name="uni_Id" Type="int" Mode="In" />
     <Parameter Name="prod_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="prod_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="prod_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="prod_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProductoCategoria_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_Nombre" Type="varchar" Mode="In" />
@@ -3265,8 +3261,6 @@
     <Parameter Name="sal_Cantidad" Type="decimal" Mode="In" />
     <Parameter Name="sald_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="sald_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="sald_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="sald_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbTipoEntrada_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="tent_Descripcion" Type="nvarchar" Mode="In" />

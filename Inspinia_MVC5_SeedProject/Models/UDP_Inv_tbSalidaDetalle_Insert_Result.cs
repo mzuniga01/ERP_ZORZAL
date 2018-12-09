@@ -13,6 +13,6 @@ namespace ERP_GMEDINA.Models
     
     public partial class UDP_Inv_tbSalidaDetalle_Insert_Result
     {
-        public int MensajeError { get; set; }
+        public string MensajeError { get; set; }
     }
 }

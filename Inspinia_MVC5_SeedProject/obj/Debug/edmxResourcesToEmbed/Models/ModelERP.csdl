@@ -713,37 +713,6 @@
       <Parameter Name="rol_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="rol_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Acce_tbRolesUsuario_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Insert_Result)">
-      <Parameter Name="rol_Id" Mode="In" Type="Int32" />
-      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Acce_tbRolesUsuario_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Update_Result)">
-      <Parameter Name="rolu_Id" Mode="In" Type="Int32" />
-      <Parameter Name="rol_Id" Mode="In" Type="Int32" />
-      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
-      <Parameter Name="rolu_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="rolu_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="rolu_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="rolu_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Acce_tbUsuario_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Insert_Result)">
-      <Parameter Name="usu_NombreUsuario" Mode="In" Type="String" />
-      <Parameter Name="usu_Password" Mode="In" Type="Binary" />
-      <Parameter Name="usu_Nombres" Mode="In" Type="String" />
-      <Parameter Name="usu_Apellidos" Mode="In" Type="String" />
-      <Parameter Name="usu_Correo" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Acce_tbUsuario_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Update_Result)">
-      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
-      <Parameter Name="usu_NombreUsuario" Mode="In" Type="String" />
-      <Parameter Name="usu_Password" Mode="In" Type="Binary" />
-      <Parameter Name="usu_Nombres" Mode="In" Type="String" />
-      <Parameter Name="usu_Apellidos" Mode="In" Type="String" />
-      <Parameter Name="usu_Correo" Mode="In" Type="String" />
-      <Parameter Name="usu_EsActivo" Mode="In" Type="Boolean" />
-      <Parameter Name="usu_RazonInactivo" Mode="In" Type="String" />
-      <Parameter Name="usu_EsAdministrador" Mode="In" Type="Boolean" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbDepartamento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDepartamento_Insert_Result)">
       <Parameter Name="dep_Codigo" Mode="In" Type="String" />
       <Parameter Name="dep_Nombre" Mode="In" Type="String" />
@@ -803,17 +772,6 @@
       <Parameter Name="par_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="par_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Gral_tbUnidadMedida_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbUnidadMedida_Insert_Result)">
-      <Parameter Name="uni_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="uni_Abreviatura" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Gral_tbUnidadMedida_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbUnidadMedida_Update_Result)">
-      <Parameter Name="uni_Id" Mode="In" Type="Int32" />
-      <Parameter Name="uni_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="uni_Abreviatura" Mode="In" Type="String" />
-      <Parameter Name="uni_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="uni_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbBodega_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodega_Insert_Result)">
       <Parameter Name="bod_Nombre" Mode="In" Type="String" />
       <Parameter Name="bod_ResponsableBodega" Mode="In" Type="String" />
@@ -857,16 +815,6 @@
       <Parameter Name="bodd_FechaCrea" Mode="In" Type="DateTime" />
       <Parameter Name="bodd_Costo" Mode="In" Type="Decimal" />
       <Parameter Name="bodd_CostoPromedio" Mode="In" Type="Decimal" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbBox_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBox_Insert_Result)">
-      <Parameter Name="box_Codigo" Mode="In" Type="String" />
-      <Parameter Name="box_Descripcion" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbBox_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBox_Update_Result)">
-      <Parameter Name="box_Codigo" Mode="In" Type="String" />
-      <Parameter Name="box_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="box_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="box_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbEntrada_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Insert_Result)">
       <Parameter Name="ent_NumeroFormato" Mode="In" Type="String" />
@@ -952,30 +900,6 @@
       <Parameter Name="invfd_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="invfd_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbProducto_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_Insert_Result)">
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="prod_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="prod_Marca" Mode="In" Type="String" />
-      <Parameter Name="prod_Modelo" Mode="In" Type="String" />
-      <Parameter Name="prod_Talla" Mode="In" Type="String" />
-      <Parameter Name="prod_Color" Mode="In" Type="String" />
-      <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
-      <Parameter Name="uni_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbProducto_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_Update_Result)">
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="prod_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="prod_Marca" Mode="In" Type="String" />
-      <Parameter Name="prod_Modelo" Mode="In" Type="String" />
-      <Parameter Name="prod_Talla" Mode="In" Type="String" />
-      <Parameter Name="prod_Color" Mode="In" Type="String" />
-      <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
-      <Parameter Name="uni_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="prod_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="prod_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="prod_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbProductoCategoria_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Insert_Result)">
       <Parameter Name="pcat_Nombre" Mode="In" Type="String" />
     </FunctionImport>
@@ -1016,51 +940,6 @@
       <Parameter Name="prov_FechaCrea" Mode="In" Type="DateTime" />
       <Parameter Name="prov_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="prov_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbSalida_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalida_Insert_Result)">
-      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
-      <Parameter Name="sal_FechaElaboracion" Mode="In" Type="DateTime" />
-      <Parameter Name="estm_Id" Mode="In" Type="Byte" />
-      <Parameter Name="box_Codigo" Mode="In" Type="String" />
-      <Parameter Name="tsal_Id" Mode="In" Type="Byte" />
-      <Parameter Name="sal_RazonDevolucion" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbSalida_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalida_Update_Result)">
-      <Parameter Name="sal_Id" Mode="In" Type="Int32" />
-      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
-      <Parameter Name="sal_FechaElaboracion" Mode="In" Type="DateTime" />
-      <Parameter Name="estm_Id" Mode="In" Type="Byte" />
-      <Parameter Name="box_Codigo" Mode="In" Type="String" />
-      <Parameter Name="tsal_Id" Mode="In" Type="Byte" />
-      <Parameter Name="sal_RazonDevolucion" Mode="In" Type="String" />
-      <Parameter Name="sal_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="sal_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Insert_Result)">
-      <Parameter Name="sal_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="sal_Cantidad" Mode="In" Type="Decimal" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Update_Result)">
-      <Parameter Name="sald_Id" Mode="In" Type="Int32" />
-      <Parameter Name="sal_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="sal_Cantidad" Mode="In" Type="Decimal" />
-      <Parameter Name="sald_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="sald_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="sald_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="sald_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbTipoSalida_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbTipoSalida_Insert_Result)">
-      <Parameter Name="tsal_Descripcion" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbTipoSalida_Update" ReturnType="Collection(String)">
-      <Parameter Name="tsal_Id" Mode="In" Type="Byte" />
-      <Parameter Name="tsal_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="tsal_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="tsal_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <EntitySet Name="tbEmpleados" EntityType="ERP_ZORZALModel.tbEmpleados" />
     <AssociationSet Name="FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea" Association="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea">
@@ -1160,6 +1039,121 @@
       <End Role="tbCliente" EntitySet="tbCliente" />
       <End Role="tbSolicitudCredito" EntitySet="tbSolicitudCredito" />
     </AssociationSet>
+    <FunctionImport Name="UDP_Acce_tbRolesUsuario_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Insert_Result)">
+      <Parameter Name="rol_Id" Mode="In" Type="Int32" />
+      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Acce_tbRolesUsuario_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Update_Result)">
+      <Parameter Name="rolu_Id" Mode="In" Type="Int32" />
+      <Parameter Name="rol_Id" Mode="In" Type="Int32" />
+      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+      <Parameter Name="rolu_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="rolu_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Acce_tbUsuario_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Insert_Result)">
+      <Parameter Name="usu_NombreUsuario" Mode="In" Type="String" />
+      <Parameter Name="usu_Password" Mode="In" Type="Binary" />
+      <Parameter Name="usu_Nombres" Mode="In" Type="String" />
+      <Parameter Name="usu_Apellidos" Mode="In" Type="String" />
+      <Parameter Name="usu_Correo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Acce_tbUsuario_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Update_Result)">
+      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+      <Parameter Name="usu_NombreUsuario" Mode="In" Type="String" />
+      <Parameter Name="usu_Password" Mode="In" Type="Binary" />
+      <Parameter Name="usu_Nombres" Mode="In" Type="String" />
+      <Parameter Name="usu_Apellidos" Mode="In" Type="String" />
+      <Parameter Name="usu_Correo" Mode="In" Type="String" />
+      <Parameter Name="usu_EsActivo" Mode="In" Type="Boolean" />
+      <Parameter Name="usu_RazonInactivo" Mode="In" Type="String" />
+      <Parameter Name="usu_EsAdministrador" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbUnidadMedida_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbUnidadMedida_Insert_Result)">
+      <Parameter Name="uni_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="uni_Abreviatura" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbUnidadMedida_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbUnidadMedida_Update_Result)">
+      <Parameter Name="uni_Id" Mode="In" Type="Int32" />
+      <Parameter Name="uni_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="uni_Abreviatura" Mode="In" Type="String" />
+      <Parameter Name="uni_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="uni_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbBox_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBox_Insert_Result)">
+      <Parameter Name="box_Codigo" Mode="In" Type="String" />
+      <Parameter Name="box_Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbBox_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBox_Update_Result)">
+      <Parameter Name="box_Codigo" Mode="In" Type="String" />
+      <Parameter Name="box_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="box_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="box_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbProducto_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_Insert_Result)">
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="prod_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="prod_Marca" Mode="In" Type="String" />
+      <Parameter Name="prod_Modelo" Mode="In" Type="String" />
+      <Parameter Name="prod_Talla" Mode="In" Type="String" />
+      <Parameter Name="prod_Color" Mode="In" Type="String" />
+      <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
+      <Parameter Name="uni_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbProducto_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_Update_Result)">
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="prod_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="prod_Marca" Mode="In" Type="String" />
+      <Parameter Name="prod_Modelo" Mode="In" Type="String" />
+      <Parameter Name="prod_Talla" Mode="In" Type="String" />
+      <Parameter Name="prod_Color" Mode="In" Type="String" />
+      <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
+      <Parameter Name="uni_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="prod_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbSalida_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalida_Update_Result)">
+      <Parameter Name="sal_Id" Mode="In" Type="Int32" />
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+      <Parameter Name="sal_FechaElaboracion" Mode="In" Type="DateTime" />
+      <Parameter Name="estm_Id" Mode="In" Type="Byte" />
+      <Parameter Name="box_Codigo" Mode="In" Type="String" />
+      <Parameter Name="tsal_Id" Mode="In" Type="Byte" />
+      <Parameter Name="sal_RazonDevolucion" Mode="In" Type="String" />
+      <Parameter Name="sal_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="sal_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Insert_Result)">
+      <Parameter Name="sal_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="sal_Cantidad" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Update_Result)">
+      <Parameter Name="sald_Id" Mode="In" Type="Int32" />
+      <Parameter Name="sal_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="sal_Cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="sald_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="sald_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbTipoSalida_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbTipoSalida_Insert_Result)">
+      <Parameter Name="tsal_Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbTipoSalida_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbTipoSalida_Update_Result)">
+      <Parameter Name="tsal_Id" Mode="In" Type="Byte" />
+      <Parameter Name="tsal_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="tsal_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="tsal_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbSalida_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalida_Insert_Result)">
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+      <Parameter Name="sal_FechaElaboracion" Mode="In" Type="DateTime" />
+      <Parameter Name="estm_Id" Mode="In" Type="Byte" />
+      <Parameter Name="box_Codigo" Mode="In" Type="String" />
+      <Parameter Name="tsal_Id" Mode="In" Type="Byte" />
+      <Parameter Name="sal_RazonDevolucion" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -4204,15 +4198,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <ComplexType Name="UDP_Inv_tbTipoSalida_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Gral_tbUnidadMedida_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Gral_tbUnidadMedida_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
   <ComplexType Name="UDP_Acce_tbAccesoRol_Insert_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
@@ -4230,18 +4215,6 @@
   </ComplexType>
   <ComplexType Name="UDP_Acce_tbRol_Update_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_tbRolesUsuario_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_tbRolesUsuario_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_tbUsuario_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_tbUsuario_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Gral_tbDepartamento_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="2" />
@@ -4279,12 +4252,6 @@
   <ComplexType Name="UDP_Inv_tbBodegaDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
   </ComplexType>
-  <ComplexType Name="UDP_Inv_tbBox_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="20" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbBox_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="20" />
-  </ComplexType>
   <ComplexType Name="UDP_Inv_tbEntrada_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
@@ -4312,12 +4279,6 @@
   <ComplexType Name="UDP_Inv_tbInventarioFisicoDetalle_Update_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
-  <ComplexType Name="UDP_Inv_tbProducto_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="15" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbProducto_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="15" />
-  </ComplexType>
   <ComplexType Name="UDP_Inv_tbProductoCategoria_Insert_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
@@ -4334,18 +4295,6 @@
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbProveedor_Update_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbSalida_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbSalida_Update_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbSalidaDetalle_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbSalidaDetalle_Update_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbEntradaDetalle_Insert_Result">
@@ -4396,7 +4345,6 @@
     <Property Name="clte_RazonInactivo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="clte_ConCredito" Type="Boolean" Nullable="false" />
     <Property Name="clte_EsMinorista" Type="Boolean" Nullable="false" />
-    <Property Name="clte_Observaciones_" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="clte_UsuarioCrea" Type="Int32" Nullable="false" />
     <Property Name="clte_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="clte_UsuarioModifica" Type="Int32" />
@@ -4410,6 +4358,7 @@
     <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbPedido_clte_id" FromRole="tbCliente" ToRole="tbPedido" />
     <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbCliente" ToRole="tbNotaCredito" />
     <NavigationProperty Name="tbSolicitudCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbSolicitudCredito_tbCliente_clte_Id" FromRole="tbCliente" ToRole="tbSolicitudCredito" />
+    <Property Name="clte_Observaciones" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_Vent_tbCliente_tbUsuario_usu_Id_Crea">
     <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
@@ -4519,4 +4468,52 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="UDP_Acce_tbRolesUsuario_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_tbRolesUsuario_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_tbUsuario_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_tbUsuario_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbUnidadMedida_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbUnidadMedida_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbBox_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbBox_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbProducto_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbProducto_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbSalida_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbSalida_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbSalidaDetalle_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbSalidaDetalle_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbTipoSalida_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbTipoSalida_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
 </Schema>
