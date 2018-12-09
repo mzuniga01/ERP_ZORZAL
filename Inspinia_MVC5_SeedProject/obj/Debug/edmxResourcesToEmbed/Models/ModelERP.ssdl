@@ -499,7 +499,7 @@
     </Key>
     <Property Name="clte_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tpi_Id" Type="tinyint" Nullable="false" />
-    <Property Name="clte_RTN_Identidad_Pasaporte" Type="nvarchar" MaxLength="26" Nullable="false" />
+    <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
     <Property Name="clte_EsPersonaNatural" Type="bit" Nullable="false" />
     <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="clte_Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -752,6 +752,7 @@
       <PropertyRef Name="ped_Id" />
     </Key>
     <Property Name="ped_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="esped_Id" Type="tinyint" Nullable="false" />
     <Property Name="ped_FechaElaboracion" Type="datetime" Nullable="false" />
     <Property Name="ped_FechaEntrega" Type="datetime" Nullable="false" />
     <Property Name="clte_Id" Type="int" Nullable="false" />
@@ -913,30 +914,6 @@
       </Principal>
       <Dependent Role="tbAccesoRol">
         <PropertyRef Name="acrol_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Acce_tbObjeto_obj_UsuarioCrea">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-    <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbObjeto">
-        <PropertyRef Name="obj_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Acce_tbObjeto_obj_UsuarioModifica">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-    <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbObjeto">
-        <PropertyRef Name="obj_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2644,6 +2621,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbPedido_tbEstadoPedido_esped_Id">
+    <End Role="tbEstadoPedido" Type="Self.tbEstadoPedido" Multiplicity="1" />
+    <End Role="tbPedido" Type="Self.tbPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbEstadoPedido">
+        <PropertyRef Name="esped_Id" />
+      </Principal>
+      <Dependent Role="tbPedido">
+        <PropertyRef Name="esped_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo">
     <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="1" />
     <End Role="tbPedidoDetalle" Type="Self.tbPedidoDetalle" Multiplicity="*" />
@@ -2881,7 +2870,7 @@
     <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbObjeto_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
-    <Parameter Name="ban_Id" Type="int" Mode="In" />
+    <Parameter Name="obj_Id" Type="int" Mode="In" />
     <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
     <Parameter Name="obj_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="obj_FechaCrea" Type="datetime" Mode="In" />
@@ -3088,8 +3077,6 @@
     <Parameter Name="box_Descripcion" Type="varchar" Mode="In" />
     <Parameter Name="box_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="box_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="box_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="box_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbEntrada_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="ent_NumeroFormato" Type="varchar" Mode="In" />
@@ -3160,8 +3147,6 @@
     <Parameter Name="invf_FechaInventario" Type="datetime" Mode="In" />
     <Parameter Name="invf_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="invf_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="invf_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="invf_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbInventarioFisicoDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="invf_Id" Type="int" Mode="In" />
@@ -3267,8 +3252,6 @@
     <Parameter Name="sal_RazonDevolucion" Type="varchar" Mode="In" />
     <Parameter Name="sal_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="sal_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="sal_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="sal_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbSalidaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sal_Id" Type="int" Mode="In" />
@@ -3302,8 +3285,6 @@
     <Parameter Name="tsal_Descripcion" Type="nvarchar" Mode="In" />
     <Parameter Name="tsal_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="tsal_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="tsal_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="tsal_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <EntityContainer Name="ERP_ZORZALModelStoreContainer">
     <EntitySet Name="tbAccesoRol" EntityType="Self.tbAccesoRol" Schema="Acce" store:Type="Tables" />
@@ -3377,14 +3358,6 @@
     <AssociationSet Name="FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea" Association="Self.FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Acce_tbObjeto_obj_UsuarioCrea" Association="Self.FK_Acce_tbObjeto_obj_UsuarioCrea">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbObjeto" EntitySet="tbObjeto" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Acce_tbObjeto_obj_UsuarioModifica" Association="Self.FK_Acce_tbObjeto_obj_UsuarioModifica">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbObjeto" EntitySet="tbObjeto" />
     </AssociationSet>
     <AssociationSet Name="FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" Association="Self.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -3953,6 +3926,10 @@
     <AssociationSet Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" Association="Self.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
       <End Role="tbDevolucion" EntitySet="tbDevolucion" />
       <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbPedido_tbEstadoPedido_esped_Id" Association="Self.FK_Vent_tbPedido_tbEstadoPedido_esped_Id">
+      <End Role="tbEstadoPedido" EntitySet="tbEstadoPedido" />
+      <End Role="tbPedido" EntitySet="tbPedido" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" Association="Self.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo">
       <End Role="tbProducto" EntitySet="tbProducto" />

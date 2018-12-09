@@ -79,7 +79,6 @@ namespace ERP_ZORZAL.Models
         public virtual DbSet<tbUnidadMedida> tbUnidadMedida { get; set; }
         public virtual DbSet<tbPago> tbPago { get; set; }
         public virtual DbSet<tbTipoIdentificacion> tbTipoIdentificacion { get; set; }
-        public virtual DbSet<tbCliente> tbCliente { get; set; }
         public virtual DbSet<tbPuntoEmision> tbPuntoEmision { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
         public virtual DbSet<tbParametro> tbParametro { get; set; }
@@ -87,6 +86,7 @@ namespace ERP_ZORZAL.Models
         public virtual DbSet<tbFactura> tbFactura { get; set; }
         public virtual DbSet<tbFacturaDetalle> tbFacturaDetalle { get; set; }
         public virtual DbSet<tbEmpleados> tbEmpleados { get; set; }
+        public virtual DbSet<tbCliente> tbCliente { get; set; }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
         {

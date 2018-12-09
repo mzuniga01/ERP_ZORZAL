@@ -18,15 +18,15 @@ namespace ERP_ZORZAL.Models
         public tbCliente()
         {
             this.tbExoneracion = new HashSet<tbExoneracion>();
+            this.tbFactura = new HashSet<tbFactura>();
             this.tbPedido = new HashSet<tbPedido>();
             this.tbNotaCredito = new HashSet<tbNotaCredito>();
             this.tbSolicitudCredito = new HashSet<tbSolicitudCredito>();
-            this.tbFactura = new HashSet<tbFactura>();
         }
     
         public int clte_Id { get; set; }
         public byte tpi_Id { get; set; }
-        public string clte_RTN_Identidad_Pasaporte { get; set; }
+        public string clte_Identificacion { get; set; }
         public bool clte_EsPersonaNatural { get; set; }
         public string clte_Nombres { get; set; }
         public string clte_Apellidos { get; set; }
@@ -52,7 +52,6 @@ namespace ERP_ZORZAL.Models
         public System.DateTime clte_FechaCrea { get; set; }
         public Nullable<int> clte_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
-        public string clte_Identificacion { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
@@ -61,12 +60,12 @@ namespace ERP_ZORZAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbExoneracion> tbExoneracion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFactura> tbFactura { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedido> tbPedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbNotaCredito> tbNotaCredito { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbFactura> tbFactura { get; set; }
     }
 }
