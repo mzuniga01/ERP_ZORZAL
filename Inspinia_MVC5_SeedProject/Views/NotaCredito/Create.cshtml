@@ -88,7 +88,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.dev_Id, "Devolución", new { @class = "control-label col-md-4" })
             <div class="col-md-4">
-                @Html.DropDownList("dev_Id", String.Empty)
+                <input type="text" class="form-control" />
+               @* @Html.DropDownList("dev_Id", String.Empty,new { Attribute = new { @class = "form-control" } })*@
                 @*@Html.DropDownList("dev_Id", String.Empty)*@
                 @Html.ValidationMessageFor(model => model.dev_Id)
             </div>
