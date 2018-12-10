@@ -2,9 +2,6 @@
 <Schema Namespace="ERP_ZORZALModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="ERP_ZORZALEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="tbInventarioFisico" EntityType="ERP_ZORZALModel.tbInventarioFisico" />
-    <FunctionImport Name="spGetMunicipios" ReturnType="Collection(String)">
-      <Parameter Name="CodDepartamento" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbBanco_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbBanco_Insert_Result)">
       <Parameter Name="ban_Nombre" Mode="In" Type="String" />
       <Parameter Name="ban_NombreContacto" Mode="In" Type="String" />
@@ -17,8 +14,6 @@
       <Parameter Name="ban_TelefonoContacto" Mode="In" Type="String" />
       <Parameter Name="ban_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="ban_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="ban_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="ban_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbTipoIdentificacion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbTipoIdentificacion_Update_Result)">
       <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
@@ -131,6 +126,9 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbPedido_Select" ReturnType="Collection(Int16)">
       <Parameter Name="ped_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetMunicipios" ReturnType="Collection(String)">
+      <Parameter Name="CodDepartamento" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="tbAccesoRol" EntityType="ERP_ZORZALModel.tbAccesoRol" />
     <EntitySet Name="tbObjeto" EntityType="ERP_ZORZALModel.tbObjeto" />
@@ -1376,8 +1374,8 @@
     <Property Name="ent_FacturaCompra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="ent_FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="fact_Id" Type="Int32" Nullable="false" />
-    <Property Name="ent_RazonDevolucion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="ent_BodegaDestino" Type="Int32" Nullable="false" />
+    <Property Name="ent_RazonDevolucion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ent_BodegaDestino" Type="Int32" />
     <Property Name="tent_Id" Type="Byte" Nullable="false" />
     <Property Name="ent_UsuarioCrea" Type="Int32" Nullable="false" />
     <Property Name="ent_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
@@ -1667,7 +1665,7 @@
     <Property Name="clte_RazonInactivo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="clte_ConCredito" Type="Boolean" Nullable="false" />
     <Property Name="clte_EsMinorista" Type="Boolean" Nullable="false" />
-    <Property Name="clte_Observaciones_" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="clte_Observaciones" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="clte_UsuarioCrea" Type="Int32" Nullable="false" />
     <Property Name="clte_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="clte_UsuarioModifica" Type="Int32" />
@@ -3401,7 +3399,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Inv_tbEntrada_ent_BodegaDestino">
-    <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="0..1" />
     <End Type="ERP_ZORZALModel.tbEntrada" Role="tbEntrada" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbBodega">

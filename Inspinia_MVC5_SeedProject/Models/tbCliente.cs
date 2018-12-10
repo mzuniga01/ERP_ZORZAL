@@ -47,7 +47,7 @@ namespace ERP_GMEDINA.Models
         public string clte_RazonInactivo { get; set; }
         public bool clte_ConCredito { get; set; }
         public bool clte_EsMinorista { get; set; }
-        public string clte_Observaciones_ { get; set; }
+        public string clte_Observaciones { get; set; }
         public int clte_UsuarioCrea { get; set; }
         public System.DateTime clte_FechaCrea { get; set; }
         public Nullable<int> clte_UsuarioModifica { get; set; }

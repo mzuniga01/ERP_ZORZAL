@@ -113,7 +113,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Observaciones")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public string clte_Observaciones_ { get; set; }
+        public string clte_Observaciones { get; set; }
 
         [Display(Name = "Usuario Creación")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]

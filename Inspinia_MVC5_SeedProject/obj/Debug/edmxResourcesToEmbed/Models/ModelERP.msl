@@ -115,22 +115,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbTipoPago_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbTipoPago_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbTipoPago_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbTipoPago_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbTipoPago_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbTipoPago_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Select" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedido_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedido_Select" />
+    <FunctionImportMapping FunctionImportName="spGetMunicipios" FunctionName="ERP_ZORZALModel.Store.spGetMunicipios" />
     <EntitySetMapping Name="tbAccesoRol">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbAccesoRol">
         <MappingFragment StoreEntitySet="tbAccesoRol">
@@ -650,7 +637,7 @@
           <ScalarProperty Name="clte_UsuarioModifica" ColumnName="clte_UsuarioModifica" />
           <ScalarProperty Name="clte_FechaCrea" ColumnName="clte_FechaCrea" />
           <ScalarProperty Name="clte_UsuarioCrea" ColumnName="clte_UsuarioCrea" />
-          <ScalarProperty Name="clte_Observaciones_" ColumnName="clte_Observaciones " />
+          <ScalarProperty Name="clte_Observaciones" ColumnName="clte_Observaciones" />
           <ScalarProperty Name="clte_EsMinorista" ColumnName="clte_EsMinorista" />
           <ScalarProperty Name="clte_ConCredito" ColumnName="clte_ConCredito" />
           <ScalarProperty Name="clte_RazonInactivo" ColumnName="clte_RazonInactivo" />

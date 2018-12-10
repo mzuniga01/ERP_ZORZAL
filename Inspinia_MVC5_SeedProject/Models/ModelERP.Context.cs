@@ -88,15 +88,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
     
-        public virtual ObjectResult<string> spGetMunicipios(string codDepartamento)
-        {
-            var codDepartamentoParameter = codDepartamento != null ?
-                new ObjectParameter("CodDepartamento", codDepartamento) :
-                new ObjectParameter("CodDepartamento", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("spGetMunicipios", codDepartamentoParameter);
-        }
-    
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {
             var ban_NombreParameter = ban_Nombre != null ?
@@ -114,7 +105,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbBanco_Insert_Result>("UDP_Gral_tbBanco_Insert", ban_NombreParameter, ban_NombreContactoParameter, ban_TelefonoContactoParameter);
         }
     
-        public virtual ObjectResult<UDP_Gral_tbBanco_Update_Result> UDP_Gral_tbBanco_Update(Nullable<short> ban_Id, string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto, Nullable<int> ban_UsuarioCrea, Nullable<System.DateTime> ban_FechaCrea, Nullable<int> ban_UsuarioModifica, Nullable<System.DateTime> ban_FechaModifica)
+        public virtual ObjectResult<UDP_Gral_tbBanco_Update_Result> UDP_Gral_tbBanco_Update(Nullable<short> ban_Id, string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto, Nullable<int> ban_UsuarioCrea, Nullable<System.DateTime> ban_FechaCrea)
         {
             var ban_IdParameter = ban_Id.HasValue ?
                 new ObjectParameter("ban_Id", ban_Id) :
@@ -140,15 +131,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("ban_FechaCrea", ban_FechaCrea) :
                 new ObjectParameter("ban_FechaCrea", typeof(System.DateTime));
     
-            var ban_UsuarioModificaParameter = ban_UsuarioModifica.HasValue ?
-                new ObjectParameter("ban_UsuarioModifica", ban_UsuarioModifica) :
-                new ObjectParameter("ban_UsuarioModifica", typeof(int));
-    
-            var ban_FechaModificaParameter = ban_FechaModifica.HasValue ?
-                new ObjectParameter("ban_FechaModifica", ban_FechaModifica) :
-                new ObjectParameter("ban_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbBanco_Update_Result>("UDP_Gral_tbBanco_Update", ban_IdParameter, ban_NombreParameter, ban_NombreContactoParameter, ban_TelefonoContactoParameter, ban_UsuarioCreaParameter, ban_FechaCreaParameter, ban_UsuarioModificaParameter, ban_FechaModificaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbBanco_Update_Result>("UDP_Gral_tbBanco_Update", ban_IdParameter, ban_NombreParameter, ban_NombreContactoParameter, ban_TelefonoContactoParameter, ban_UsuarioCreaParameter, ban_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Gral_tbTipoIdentificacion_Update_Result> UDP_Gral_tbTipoIdentificacion_Update(Nullable<byte> tpi_Id, string tpi_Descripcion, Nullable<int> tpi_UsuarioCrea, Nullable<System.DateTime> tpi_FechaCrea, Nullable<int> tpi_UsuarioModifica, Nullable<System.DateTime> tpi_FechaModifica)
@@ -549,6 +532,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("ped_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<short>>("UDP_Vent_tbPedido_Select", ped_IdParameter);
+        }
+    
+        public virtual ObjectResult<string> spGetMunicipios(string codDepartamento)
+        {
+            var codDepartamentoParameter = codDepartamento != null ?
+                new ObjectParameter("CodDepartamento", codDepartamento) :
+                new ObjectParameter("CodDepartamento", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("spGetMunicipios", codDepartamentoParameter);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace ERP_GMEDINA.Models
         public System.DateTime ent_FechaCompra { get; set; }
         public int fact_Id { get; set; }
         public string ent_RazonDevolucion { get; set; }
-        public int ent_BodegaDestino { get; set; }
+        public Nullable<int> ent_BodegaDestino { get; set; }
         public byte tent_Id { get; set; }
         public int ent_UsuarioCrea { get; set; }
         public System.DateTime ent_FechaCrea { get; set; }

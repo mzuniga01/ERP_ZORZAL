@@ -282,8 +282,8 @@
           <Property Name="ent_FacturaCompra" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ent_FechaCompra" Type="datetime" Nullable="false" />
           <Property Name="fact_Id" Type="int" Nullable="false" />
-          <Property Name="ent_RazonDevolucion" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="ent_BodegaDestino" Type="int" Nullable="false" />
+          <Property Name="ent_RazonDevolucion" Type="varchar" MaxLength="150" />
+          <Property Name="ent_BodegaDestino" Type="int" />
           <Property Name="tent_Id" Type="tinyint" Nullable="false" />
           <Property Name="ent_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="ent_FechaCrea" Type="datetime" Nullable="false" />
@@ -525,7 +525,7 @@
           <Property Name="clte_RazonInactivo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="clte_ConCredito" Type="bit" Nullable="false" />
           <Property Name="clte_EsMinorista" Type="bit" Nullable="false" />
-          <Property Name="clte_Observaciones " Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="clte_Observaciones" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="clte_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="clte_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="clte_UsuarioModifica" Type="int" />
@@ -1859,7 +1859,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Inv_tbEntrada_ent_BodegaDestino">
-          <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
+          <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="0..1" />
           <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbBodega">
@@ -2877,8 +2877,6 @@
           <Parameter Name="ban_TelefonoContacto" Type="nvarchar" Mode="In" />
           <Parameter Name="ban_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="ban_FechaCrea" Type="datetime" Mode="In" />
-          <Parameter Name="ban_UsuarioModifica" Type="int" Mode="In" />
-          <Parameter Name="ban_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Gral_tbCuentasBanco_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="ban_Id" Type="smallint" Mode="In" />
@@ -2942,6 +2940,9 @@
           <Parameter Name="tpi_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="tpi_FechaModifica" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="spGetMunicipios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="CodDepartamento" Type="char" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbCaja_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="cja_Id" Type="smallint" Mode="In" />
           <Parameter Name="cja_Descripcion" Type="nvarchar" Mode="In" />
@@ -2961,25 +2962,6 @@
         </Function>
         <Function Name="UDP_Vent_tbPedido_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="ped_Id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="UDP_Vent_tbTipoPago_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-          <Parameter Name="tpa_Descripcion" Type="varchar" Mode="In" />
-          <Parameter Name="tpa_Emisor" Type="bit" Mode="In" />
-          <Parameter Name="tpa_Cuenta" Type="bit" Mode="In" />
-          <Parameter Name="tpa_FechaVencimiento" Type="bit" Mode="In" />
-          <Parameter Name="tpa_Titular" Type="bit" Mode="In" />
-        </Function>
-        <Function Name="UDP_Vent_tbTipoPago_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-          <Parameter Name="tpa_Id" Type="smallint" Mode="In" />
-          <Parameter Name="tpa_Descripcion" Type="varchar" Mode="In" />
-          <Parameter Name="tpa_Emisor" Type="bit" Mode="In" />
-          <Parameter Name="tpa_Cuenta" Type="bit" Mode="In" />
-          <Parameter Name="tpa_FechaVencimiento" Type="bit" Mode="In" />
-          <Parameter Name="tpa_Titular" Type="bit" Mode="In" />
-          <Parameter Name="tpa_UsuarioCrea" Type="int" Mode="In" />
-          <Parameter Name="tpa_FechaCrea" Type="datetime" Mode="In" />
-          <Parameter Name="tpa_UsuarioModifica" Type="int" Mode="In" />
-          <Parameter Name="tpa_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <EntityContainer Name="ERP_ZORZALModelStoreContainer">
           <EntitySet Name="tbAccesoRol" EntityType="Self.tbAccesoRol" Schema="Acce" store:Type="Tables" />
@@ -3705,9 +3687,6 @@
       <Schema Namespace="ERP_ZORZALModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ERP_ZORZALEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tbInventarioFisico" EntityType="ERP_ZORZALModel.tbInventarioFisico" />
-          <FunctionImport Name="spGetMunicipios" ReturnType="Collection(String)">
-          <Parameter Name="CodDepartamento" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbBanco_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbBanco_Insert_Result)">
             <Parameter Name="ban_Nombre" Mode="In" Type="String" />
             <Parameter Name="ban_NombreContacto" Mode="In" Type="String" />
@@ -3720,8 +3699,6 @@
             <Parameter Name="ban_TelefonoContacto" Mode="In" Type="String" />
             <Parameter Name="ban_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="ban_FechaCrea" Mode="In" Type="DateTime" />
-            <Parameter Name="ban_UsuarioModifica" Mode="In" Type="Int32" />
-            <Parameter Name="ban_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbTipoIdentificacion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbTipoIdentificacion_Update_Result)">
             <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
@@ -3834,6 +3811,9 @@
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbPedido_Select" ReturnType="Collection(Int16)">
           <Parameter Name="ped_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetMunicipios" ReturnType="Collection(String)">
+          <Parameter Name="CodDepartamento" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="tbAccesoRol" EntityType="ERP_ZORZALModel.tbAccesoRol" />
           <EntitySet Name="tbObjeto" EntityType="ERP_ZORZALModel.tbObjeto" />
@@ -5079,8 +5059,8 @@
           <Property Name="ent_FacturaCompra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ent_FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="fact_Id" Type="Int32" Nullable="false" />
-          <Property Name="ent_RazonDevolucion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="ent_BodegaDestino" Type="Int32" Nullable="false" />
+          <Property Name="ent_RazonDevolucion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ent_BodegaDestino" Type="Int32" />
           <Property Name="tent_Id" Type="Byte" Nullable="false" />
           <Property Name="ent_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="ent_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
@@ -5370,7 +5350,7 @@
           <Property Name="clte_RazonInactivo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="clte_ConCredito" Type="Boolean" Nullable="false" />
           <Property Name="clte_EsMinorista" Type="Boolean" Nullable="false" />
-          <Property Name="clte_Observaciones_" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="clte_Observaciones" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="clte_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="clte_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="clte_UsuarioModifica" Type="Int32" />
@@ -7104,7 +7084,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Inv_tbEntrada_ent_BodegaDestino">
-          <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="0..1" />
           <End Type="ERP_ZORZALModel.tbEntrada" Role="tbEntrada" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbBodega">
@@ -7931,24 +7911,11 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbTipoPago_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbTipoPago_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbTipoPago_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbTipoPago_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbTipoPago_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbTipoPago_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Select">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedido_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedido_Select">
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetMunicipios" FunctionName="ERP_ZORZALModel.Store.spGetMunicipios" />
           <EntitySetMapping Name="tbAccesoRol">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbAccesoRol">
               <MappingFragment StoreEntitySet="tbAccesoRol">
@@ -8468,7 +8435,7 @@
                 <ScalarProperty Name="clte_UsuarioModifica" ColumnName="clte_UsuarioModifica" />
                 <ScalarProperty Name="clte_FechaCrea" ColumnName="clte_FechaCrea" />
                 <ScalarProperty Name="clte_UsuarioCrea" ColumnName="clte_UsuarioCrea" />
-                <ScalarProperty Name="clte_Observaciones_" ColumnName="clte_Observaciones " />
+                <ScalarProperty Name="clte_Observaciones" ColumnName="clte_Observaciones" />
                 <ScalarProperty Name="clte_EsMinorista" ColumnName="clte_EsMinorista" />
                 <ScalarProperty Name="clte_ConCredito" ColumnName="clte_ConCredito" />
                 <ScalarProperty Name="clte_RazonInactivo" ColumnName="clte_RazonInactivo" />
