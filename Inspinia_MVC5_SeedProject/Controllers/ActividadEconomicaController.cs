@@ -108,10 +108,7 @@ namespace ERP_ZORZAL.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    //db.Entry(tbActividadEconomica).State = EntityState.Modified;
-                    //db.SaveChanges();
-                    //return RedirectToAction("Index");
-
+                  
 
                     var MensajeError = 0;
                     IEnumerable<object> list = null;

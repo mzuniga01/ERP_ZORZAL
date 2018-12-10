@@ -37,7 +37,11 @@
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true)
+
         @Html.HiddenFor(model => model.acte_Id)
+        @Html.HiddenFor(model => model.acte_UsuarioCrea)
+        @Html.HiddenFor(model => model.acte_FechaCrea)
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.acte_Id, new { @class = "control-label col-md-2" })
@@ -57,37 +61,6 @@
 </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.acte_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.acte_UsuarioCrea)
-                @Html.ValidationMessageFor(model => model.acte_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.acte_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.acte_FechaCrea)
-                @Html.ValidationMessageFor(model => model.acte_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.acte_UsuarioModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.acte_UsuarioModifica)
-                @Html.ValidationMessageFor(model => model.acte_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.acte_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.acte_FechaModifica)
-                @Html.ValidationMessageFor(model => model.acte_FechaModifica)
-            </div>
-        </div>*@
 
       
 
