@@ -17,9 +17,9 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbMunicipio()
         {
-            this.tbBodega = new HashSet<tbBodega>();
-            this.tbSucursal = new HashSet<tbSucursal>();
             this.tbCliente = new HashSet<tbCliente>();
+            this.tbSucursal = new HashSet<tbSucursal>();
+            this.tbBodega = new HashSet<tbBodega>();
         }
     
         public string mun_Codigo { get; set; }
@@ -30,13 +30,13 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> mun_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> mun_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbDepartamento tbDepartamento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbBodega> tbBodega { get; set; }
+        public virtual ICollection<tbCliente> tbCliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSucursal> tbSucursal { get; set; }
-        public virtual tbUsuario tbUsuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCliente> tbCliente { get; set; }
+        public virtual ICollection<tbBodega> tbBodega { get; set; }
     }
 }

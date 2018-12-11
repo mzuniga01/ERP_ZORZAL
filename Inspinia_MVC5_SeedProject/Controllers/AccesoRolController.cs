@@ -17,8 +17,9 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /AccesoRol/
         public ActionResult Index()
         {
-            var tbaccesorol = db.tbAccesoRol.Include(t => t.obj_Id).Include(t => t.obj_Id).Include(t => t.tbRol).Include(t => t.tbRolesUsuario);
-            return View(tbaccesorol.ToList());
+            //var tbaccesorol = db.tbAccesoRol.Include(t => t.obj_Id).Include(t => t.obj_Id).Include(t => t.tbRol).Include(t => t.tbRolesUsuario);
+            //return View(tbaccesorol.ToList());
+            return View();
         }
 
         public ActionResult CrearPrueba()

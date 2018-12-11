@@ -26,8 +26,8 @@ namespace ERP_GMEDINA.Models
         public Nullable<System.DateTime> pemid_FechaModifica { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
-        public virtual tbDocumentoFiscal tbDocumentoFiscal { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbDocumentoFiscal tbDocumentoFiscal { get; set; }
         public virtual tbPuntoEmision tbPuntoEmision { get; set; }
         public virtual tbPuntoEmision tbPuntoEmision1 { get; set; }
     }

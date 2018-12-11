@@ -1083,23 +1083,6 @@
     <Content Include="Views\Entrada\_EditarDetalleEntrada.cshtml" />
     <Content Include="Views\Entrada\_IndexDetalle.cshtml" />
     <Content Include="Views\Entrada\_IndexEditar.cshtml" />
-    <Content Include="Views\Objeto\Create.cshtml" />
-    <Content Include="Views\Objeto\Delete.cshtml" />
-    <Content Include="Views\Objeto\Details.cshtml" />
-    <Content Include="Views\Objeto\Edit.cshtml" />
-    <Content Include="Views\Objeto\Index.cshtml" />
-    <Content Include="Views\ProductoCategoria\Create.cshtml" />
-    <Content Include="Views\ProductoCategoria\Delete.cshtml" />
-    <Content Include="Views\ProductoCategoria\Details.cshtml" />
-    <Content Include="Views\ProductoCategoria\Edit.cshtml" />
-    <Content Include="Views\ProductoCategoria\Index.cshtml" />
-    <Content Include="Views\ProductoCategoria\_CreateSubCategoria.cshtml" />
-    <Content Include="Views\ProductoCategoria\_CreateSubCategoriaModal.cshtml" />
-    <Content Include="Views\ProductoCategoria\_DetailsSubCategoria.cshtml" />
-    <Content Include="Views\ProductoCategoria\_EditarSubCategoria.cshtml" />
-    <Content Include="Views\ProductoCategoria\_EditSubCategoriaModal.cshtml" />
-    <Content Include="Views\ProductoCategoria\_IndexSubCategoria.cshtml" />
-    <Content Include="Views\ProductoCategoria\_ListSubCategoria.cshtml" />
     <Content Include="Views\TipoEntrada\Create.cshtml" />
     <Content Include="Views\TipoEntrada\Delete.cshtml" />
     <Content Include="Views\TipoEntrada\Details.cshtml" />
@@ -1116,6 +1099,23 @@
     <Content Include="Views\Usuario\Details.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Salida\_SalidaDetalle.cshtml" />
+    <Content Include="Views\ProductoCategoria\Create.cshtml" />
+    <Content Include="Views\ProductoCategoria\Delete.cshtml" />
+    <Content Include="Views\ProductoCategoria\Details.cshtml" />
+    <Content Include="Views\ProductoCategoria\Edit.cshtml" />
+    <Content Include="Views\ProductoCategoria\Index.cshtml" />
+    <Content Include="Views\ProductoCategoria\_CreateSubCategoria.cshtml" />
+    <Content Include="Views\ProductoCategoria\_CreateSubCategoriaModal.cshtml" />
+    <Content Include="Views\ProductoCategoria\_DetailsSubCategoria.cshtml" />
+    <Content Include="Views\ProductoCategoria\_EditarSubCategoria.cshtml" />
+    <Content Include="Views\ProductoCategoria\_EditSubCategoriaModal.cshtml" />
+    <Content Include="Views\ProductoCategoria\_IndexSubCategoria.cshtml" />
+    <Content Include="Views\ProductoCategoria\_ListSubCategoria.cshtml" />
+    <Content Include="Views\Objeto\Create.cshtml" />
+    <Content Include="Views\Objeto\Delete.cshtml" />
+    <Content Include="Views\Objeto\Details.cshtml" />
+    <Content Include="Views\Objeto\Edit.cshtml" />
+    <Content Include="Views\Objeto\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

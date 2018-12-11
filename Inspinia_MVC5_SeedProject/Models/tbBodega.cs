@@ -19,13 +19,14 @@ namespace ERP_GMEDINA.Models
         {
             this.tbBodegaDetalle = new HashSet<tbBodegaDetalle>();
             this.tbEntrada = new HashSet<tbEntrada>();
+            this.tbEntrada1 = new HashSet<tbEntrada>();
             this.tbInventarioFisico = new HashSet<tbInventarioFisico>();
             this.tbSalida = new HashSet<tbSalida>();
             this.tbSucursal = new HashSet<tbSucursal>();
-            this.tbEntrada1 = new HashSet<tbEntrada>();
         }
     
         public int bod_Id { get; set; }
+        public string bod_Nombre { get; set; }
         public string bod_ResponsableBodega { get; set; }
         public string bod_Direccion { get; set; }
         public string bod_Correo { get; set; }
@@ -37,7 +38,6 @@ namespace ERP_GMEDINA.Models
         public System.DateTime bod_FechaCrea { get; set; }
         public Nullable<int> bod_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> bod_FechaModifica { get; set; }
-        public string bod_Nombre { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbMunicipio tbMunicipio { get; set; }
@@ -47,12 +47,12 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEntrada> tbEntrada { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbEntrada> tbEntrada1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbInventarioFisico> tbInventarioFisico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalida> tbSalida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSucursal> tbSucursal { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbEntrada> tbEntrada1 { get; set; }
     }
 }

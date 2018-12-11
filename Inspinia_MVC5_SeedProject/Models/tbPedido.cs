@@ -15,6 +15,7 @@ namespace ERP_GMEDINA.Models
     public partial class tbPedido
     {
         public int ped_Id { get; set; }
+        public byte esped_Id { get; set; }
         public System.DateTime ped_FechaElaboracion { get; set; }
         public System.DateTime ped_FechaEntrega { get; set; }
         public int clte_Id { get; set; }
@@ -24,13 +25,12 @@ namespace ERP_GMEDINA.Models
         public System.DateTime ped_FechaCrea { get; set; }
         public Nullable<int> ped_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> ped_FechaModifica { get; set; }
-        public byte esped_Id { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
-        public virtual tbSucursal tbSucursal { get; set; }
-        public virtual tbFactura tbFactura { get; set; }
-        public virtual tbEstadoPedido tbEstadoPedido { get; set; }
         public virtual tbCliente tbCliente { get; set; }
+        public virtual tbEstadoPedido tbEstadoPedido { get; set; }
+        public virtual tbFactura tbFactura { get; set; }
+        public virtual tbSucursal tbSucursal { get; set; }
     }
 }

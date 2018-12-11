@@ -15,12 +15,12 @@ namespace ERP_GMEDINA.Models
     public partial class tbListaPrecio
     {
         public int listp_Id { get; set; }
+        public string listp_Nombre { get; set; }
         public Nullable<bool> listp_EsActivo { get; set; }
         public int listp_UsuarioCrea { get; set; }
         public System.DateTime listp_FechaCrea { get; set; }
         public Nullable<int> listp_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> listp_FechaModifica { get; set; }
-        public string listp_Nombre { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

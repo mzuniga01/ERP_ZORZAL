@@ -18,6 +18,8 @@ namespace ERP_GMEDINA.Models
         public string nocre_Codigo { get; set; }
         public int dev_Id { get; set; }
         public int clte_Id { get; set; }
+        public short suc_Id { get; set; }
+        public Nullable<bool> nocre_Anulado { get; set; }
         public System.DateTime nocre_FechaEmision { get; set; }
         public string nocre_MotivoEmision { get; set; }
         public Nullable<decimal> nocre_Monto { get; set; }
@@ -25,14 +27,12 @@ namespace ERP_GMEDINA.Models
         public System.DateTime nocre_FechaCrea { get; set; }
         public Nullable<int> nocre_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> nocre_FechaModifica { get; set; }
-        public short suc_Id { get; set; }
-        public Nullable<bool> nocre_Anulado { get; set; }
         public byte nocre_Estado { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbCliente tbCliente { get; set; }
         public virtual tbDevolucion tbDevolucion { get; set; }
         public virtual tbSucursal tbSucursal { get; set; }
-        public virtual tbCliente tbCliente { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace ERP_GMEDINA.Models
     public class ProductosSubCategoriasMetada
     {
         [Display(Name = "Número SubCategoria")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pscat_Id { get; set; }
 
         [Display(Name = "SubCategoría")]
@@ -24,27 +24,27 @@ namespace ERP_GMEDINA.Models
         public string pscat_Descripcion { get; set; }
 
         [Display(Name = "Número Categoria")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pcat_Id { get; set; }
 
         [Display(Name = "Estado")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte pscat_EsActiva { get; set; }
 
-        [Display(Name = "Creado Por")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public int pscat_UsuarioCrea { get; set; }
+        //[Display(Name = "Creado Por")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //public int pscat_UsuarioCrea { get; set; }
 
-        [Display(Name = "Creado El")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public System.DateTime pscat_FechaCrea { get; set; }
+        //[Display(Name = "Creado El")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //public System.DateTime pscat_FechaCrea { get; set; }
 
-        [Display(Name = "Modificado El")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public Nullable<int> pscat_UsuarioModifica { get; set; }
+        //[Display(Name = "Modificado El")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //public Nullable<int> pscat_UsuarioModifica { get; set; }
 
-        [Display(Name = "Modificado El")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Display(Name = "Modificado El")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
 
         public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }
         public virtual tbProductoCategoria tbProductoCategoria { get; set; }

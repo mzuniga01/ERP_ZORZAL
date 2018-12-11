@@ -25,9 +25,9 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> invfd_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> invfd_FechaModifica { get; set; }
     
-        public virtual tbInventarioFisico tbInventarioFisico { get; set; }
-        public virtual tbProducto tbProducto { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUnidadMedida tbUnidadMedida { get; set; }
+        public virtual tbInventarioFisico tbInventarioFisico { get; set; }
+        public virtual tbProducto tbProducto { get; set; }
     }
 }

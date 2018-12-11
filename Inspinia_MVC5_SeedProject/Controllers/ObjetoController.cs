@@ -17,8 +17,7 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Objeto/
         public ActionResult Index()
         {
-            var tbobjeto = db.tbObjeto.Include(t => t.tbUsuario).Include(t => t.tbUsuario1);
-            return View(tbobjeto.ToList());
+             return View(db.tbObjeto.ToList());
         }
 
         // GET: /Objeto/Details/5
@@ -39,8 +38,8 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Objeto/Create
         public ActionResult Create()
         {
-            ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            //ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            //ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             return View();
         }
 
@@ -49,19 +48,37 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="obj_Id,obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica")] tbObjeto tbObjeto)
+        public ActionResult Create([Bind(Include= "obj_Id,obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica")] tbObjeto tbObjeto)
         {
             if (ModelState.IsValid)
             {
-                db.tbObjeto.Add(tbObjeto);
-                db.SaveChanges();
+                try
+                {
+                    IEnumerable<object> list = null;
+                    var MsjError = "";
+                    list = db.UDP_Acce_tbObjeto_Insert(tbObjeto.obj_Pantalla);
+                    foreach (UDP_Inv_tbProductoCategoria_Insert_Result obejto in list)
+                        MsjError = obejto.MensajeError;
+                    if (MsjError == "-1")
+                    {
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro");
+                }
                 return RedirectToAction("Index");
             }
-
-            ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
-            ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
             return View(tbObjeto);
         }
+
 
         // GET: /Objeto/Edit/5
         public ActionResult Edit(int? id)
@@ -85,17 +102,40 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="obj_Id,obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica")] tbObjeto tbObjeto)
+        public ActionResult Edit( int? id, [Bind(Include="obj_Id, obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica")] tbObjeto tbObjeto)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbObjeto).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    tbObjeto obj = db.tbObjeto.Find(id);
+                    IEnumerable<object> list = null;
+                    var MsjError = "";
+                    list = db.UDP_Acce_tbObjeto_Update(tbObjeto.obj_Id,
+                        tbObjeto.obj_Pantalla, obj.obj_UsuarioCrea,
+                        obj.obj_FechaCrea);
+                    foreach (UDP_Acce_tbObjeto_Update_Result obje in list)
+                        MsjError = obje.MensajeError;
+
+                    if (MsjError == "-1")
+                    {
+                        ModelState.AddModelError("", "No se guardo el registro");
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro");
+                }
                 return RedirectToAction("Index");
             }
-            ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
-            ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
             return View(tbObjeto);
+
         }
 
         // GET: /Objeto/Delete/5

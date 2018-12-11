@@ -20,11 +20,11 @@ namespace ERP_GMEDINA.Models
             this.tbBodegaDetalle = new HashSet<tbBodegaDetalle>();
             this.tbEntradaDetalle = new HashSet<tbEntradaDetalle>();
             this.tbInventarioFisicoDetalle = new HashSet<tbInventarioFisicoDetalle>();
-            this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
-            this.tbPedidoDetalle = new HashSet<tbPedidoDetalle>();
             this.tbDevolucionDetalle = new HashSet<tbDevolucionDetalle>();
-            this.tbListadoPrecioDetalle = new HashSet<tbListadoPrecioDetalle>();
+            this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
             this.tbFacturaDetalle = new HashSet<tbFacturaDetalle>();
+            this.tbListadoPrecioDetalle = new HashSet<tbListadoPrecioDetalle>();
+            this.tbPedidoDetalle = new HashSet<tbPedidoDetalle>();
         }
     
         public string prod_Codigo { get; set; }
@@ -42,6 +42,9 @@ namespace ERP_GMEDINA.Models
         public Nullable<bool> prod_EsActivo { get; set; }
         public string prod_Razon_Inactivacion { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbUnidadMedida tbUnidadMedida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodegaDetalle> tbBodegaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -49,18 +52,15 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbPedidoDetalle> tbPedidoDetalle { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
-        public virtual tbUsuario tbUsuario { get; set; }
-        public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbProductoSubcategoria tbProductoSubcategoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
-        public virtual tbUnidadMedida tbUnidadMedida { get; set; }
+        public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPedidoDetalle> tbPedidoDetalle { get; set; }
     }
 }

@@ -31,8 +31,8 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> prov_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> prov_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEntrada> tbEntrada { get; set; }
-        public virtual tbUsuario tbUsuario { get; set; }
     }
 }
