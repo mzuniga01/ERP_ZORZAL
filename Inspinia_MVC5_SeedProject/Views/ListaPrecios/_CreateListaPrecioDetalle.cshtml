@@ -1,18 +1,13 @@
 ﻿@model ERP_GMEDINA.Models.tbListadoPrecioDetalle
-
-
+@using ERP_GMEDINA.Models
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Lista PrecioDetalle </h5>
+                    <h5>Lista Precio Detalle </h5>
                     <div class="form-group">
-                        <div class="col-md-offset-10 col-md-2">
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarPedidoDetalle">Agregar Lista Precio Detalle</button>
-
-
-                        </div>
+                        
                     </div>
                 </div>
                
@@ -24,23 +19,30 @@
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true)
 
+
+
                             <div class="form-group">
+                                @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4 ">
+                                    @Html.EditorFor(model => model.prod_Codigo)
+                                    @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                               
+                            </div>
+
+                            @*<div class="form-group">
                                 @Html.LabelFor(model => model.listp_Id, "Número ", new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.DropDownList("listp_Id", null, "Seleccione Número", new { @class = "form-control" })
 
                                     @Html.ValidationMessageFor(model => model.listp_Id)
                                 </div>
-                                @*</div>
+                                </div>*@
 
-                                    <div class="form-group">*@
-                                @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Codigo)
-                                    @*@Html.DropDownList("prod_Codigo", String.Empty)*@
-                                    @Html.ValidationMessageFor(model => model.prod_Codigo)
-                                </div>
-                            </div>
+                                    
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.lispd_PrecioMayorista, "Precio Mayorista", new { @class = "control-label col-md-2" })
@@ -108,16 +110,7 @@
                             </div>
 
                         </div>
-
-
-
-
-
                     }
-
-
-
-
                 </div>
             </div>
         </div>
@@ -125,4 +118,21 @@
 
     </div>
 
+</div>
+<div>
+    <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexProducto", (List<tbProducto>)ViewBag.Producto)
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

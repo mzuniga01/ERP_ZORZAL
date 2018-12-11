@@ -53,7 +53,7 @@
             @Html.LabelFor(model => model.deno_Tipo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.DropDownListFor(model => model.deno_Tipo, new SelectList(Model.DenominacionList, "ID_TipoDenominacion", "Tipo_Denominacion"), new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.deno_Tipo)
+                @Html.ValidationMessageFor(model => model.deno_Tipo, "", new { @style = "color:red" })
             </div>
         </div>
 
@@ -61,7 +61,7 @@
             @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.DropDownList("mnda_Id", @*String.Empty*@ null, new { @class = "form-control"})
-                @Html.ValidationMessageFor(model => model.mnda_Id)
+                @Html.ValidationMessageFor(model => model.mnda_Id, "", new { @style = "color:red" })
             </div>
         </div>
 
@@ -69,7 +69,7 @@
             @Html.LabelFor(model => model.deno_Descripcion, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.deno_Descripcion)
-                @Html.ValidationMessageFor(model => model.deno_Descripcion)
+                @Html.ValidationMessageFor(model => model.deno_Descripcion, "", new { @style = "color:red" })
             </div>
         </div>
               
@@ -78,7 +78,7 @@
             @Html.LabelFor(model => model.deno_valor, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.deno_valor)
-                @Html.ValidationMessageFor(model => model.deno_valor)
+                @Html.ValidationMessageFor(model => model.deno_valor, "", new { @style = "color:red" })
             </div>
         </div>      
 
@@ -109,7 +109,7 @@
                 </tr>
                 <tr>
                     <td>Modificado</td>
-                    <td>@Html.DisplayFor(model => model.deno_UsuarioModifica)</td>
+                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
                     <td>@Html.DisplayFor(model => model.deno_FechaModifica)</td>
                 </tr>
             </table>

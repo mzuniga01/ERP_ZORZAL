@@ -201,8 +201,6 @@
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\PuntoEmisionController.cs" />
     <Compile Include="Controllers\SolicitudCreditoController.cs" />
-    <Compile Include="Controllers\SolicitudEfectivoController.cs" />
-    <Compile Include="Controllers\SolicitudEfectivoDetalleController.cs" />
     <Compile Include="Controllers\SucursalController.cs" />
     <Compile Include="Controllers\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\TipoPagoController.cs" />
@@ -241,6 +239,9 @@
     <Compile Include="Models\Factura.cs" />
     <Compile Include="Models\FacturaDetalle.cs" />
     <Compile Include="Models\FacturaHistorica.cs" />
+    <Compile Include="Models\Hijos.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListasPrecios.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
@@ -259,6 +260,9 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Monedas.cs" />
+    <Compile Include="Models\Padres.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Pagos.cs" />
     <Compile Include="Models\Pedidos.cs" />
     <Compile Include="Models\Producto.cs" />
@@ -488,6 +492,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbCaja_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbEstadoSolicitudCredito_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbFactura_Select_Result.cs">

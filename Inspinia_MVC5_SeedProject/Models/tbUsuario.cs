@@ -60,10 +60,8 @@ namespace ERP_GMEDINA.Models
             this.tbPedidoDetalle1 = new HashSet<tbPedidoDetalle>();
             this.tbSolicitudCredito = new HashSet<tbSolicitudCredito>();
             this.tbSolicitudCredito1 = new HashSet<tbSolicitudCredito>();
-            this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
             this.tbSolicitudEfectivoDetalle = new HashSet<tbSolicitudEfectivoDetalle>();
             this.tbSolicitudEfectivoDetalle1 = new HashSet<tbSolicitudEfectivoDetalle>();
-            this.tbSolicitudEfectivo1 = new HashSet<tbSolicitudEfectivo>();
             this.tbSucursal = new HashSet<tbSucursal>();
             this.tbSucursal1 = new HashSet<tbSucursal>();
             this.tbTipoIdentificacion = new HashSet<tbTipoIdentificacion>();
@@ -79,6 +77,8 @@ namespace ERP_GMEDINA.Models
             this.tbUnidadMedida = new HashSet<tbUnidadMedida>();
             this.tbUnidadMedida1 = new HashSet<tbUnidadMedida>();
             this.tbUnidadMedida2 = new HashSet<tbUnidadMedida>();
+            this.Hijos = new HashSet<Hijos>();
+            this.Hijos1 = new HashSet<Hijos>();
             this.tbBodega = new HashSet<tbBodega>();
             this.tbBox = new HashSet<tbBox>();
             this.tbEstadoMovimiento = new HashSet<tbEstadoMovimiento>();
@@ -94,6 +94,8 @@ namespace ERP_GMEDINA.Models
             this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
             this.tbTipoEntrada = new HashSet<tbTipoEntrada>();
             this.tbTipoSalida = new HashSet<tbTipoSalida>();
+            this.Padres = new HashSet<Padres>();
+            this.Padres1 = new HashSet<Padres>();
             this.tbCliente = new HashSet<tbCliente>();
             this.tbCliente1 = new HashSet<tbCliente>();
             this.tbFactura = new HashSet<tbFactura>();
@@ -201,13 +203,9 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSucursal> tbSucursal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -239,6 +237,10 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbUnidadMedida> tbUnidadMedida2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Hijos> Hijos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Hijos> Hijos1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodega> tbBodega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBox> tbBox { get; set; }
@@ -268,6 +270,10 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbTipoEntrada> tbTipoEntrada { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbTipoSalida> tbTipoSalida { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Padres> Padres { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Padres> Padres1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCliente> tbCliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

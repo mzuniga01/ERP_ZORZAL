@@ -39,8 +39,8 @@ namespace ERP_ZORZAL.Controllers
         // GET: /EstadoSolicitudCredito/Create
         public ActionResult Create()
         {
-            ViewBag.escre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            ViewBag.escre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            //ViewBag.escre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            //ViewBag.escre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             return View();
         }
 
@@ -51,16 +51,44 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="escre_Id,escre_Descripcion,escre_UsuarioCrea,escre_UsuarioModifica,escre_FechaAgrego,escre_FechaModifica")] tbEstadoSolicitudCredito tbEstadoSolicitudCredito)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.tbEstadoSolicitudCredito.Add(tbEstadoSolicitudCredito);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.escre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioCrea);
-            ViewBag.escre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioModifica);
+                if (ModelState.IsValid)
+                {
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbEstadoSolicitudCredito_Insert(tbEstadoSolicitudCredito.escre_Descripcion);
+                    foreach (UDP_Gral_tbActividadEconomica_Insert_Result EstadoSolicitudCredito in list)
+                        MensajeError = EstadoSolicitudCredito.MensajeError;
+                    if (MensajeError == -1)
+                    {
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+
+
+
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
             return View(tbEstadoSolicitudCredito);
+            //if (ModelState.IsValid)
+            //{
+            //    db.tbEstadoSolicitudCredito.Add(tbEstadoSolicitudCredito);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+
+            //ViewBag.escre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioCrea);
+            //ViewBag.escre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioModifica);
+            //return View(tbEstadoSolicitudCredito);
         }
 
         // GET: /EstadoSolicitudCredito/Edit/5

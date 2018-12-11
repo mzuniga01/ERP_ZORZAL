@@ -56,39 +56,42 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="deno_Id,deno_Descripcion,deno_Tipo,deno_valor,mnda_Id,deno_UsuarioCrea,deno_FechaCrea,deno_UsuarioModifica,deno_FechaModifica")] tbDenominacion tbDenominacion)
         {
-            try
-            {
+           
                 if (ModelState.IsValid)
                 {
-                    var MensajeError = 0;
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Gral_tbDenominacion_Insert(tbDenominacion.deno_Descripcion, tbDenominacion.deno_Tipo, tbDenominacion.deno_valor, tbDenominacion.mnda_Id);
-                    foreach (UDP_Gral_tbDenominacion_Insert_Result Denominacion in list)
-                        MensajeError = Denominacion.MensajeError;
-                    if (MensajeError == -1)
-                    {
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    db.tbDenominacion.Add(tbDenominacion);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-            } catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-            }
-            
+                     try
+                      {
+                        var MensajeError = 0;
+                        IEnumerable<object> list = null;
+                        list = db.UDP_Gral_tbDenominacion_Insert(tbDenominacion.deno_Descripcion, tbDenominacion.deno_Tipo, tbDenominacion.deno_valor, tbDenominacion.mnda_Id);
+                        foreach (UDP_Gral_tbDenominacion_Insert_Result Denominacion in list)
+                            MensajeError = Denominacion.MensajeError;
+                        if (MensajeError == -1)
+                        {
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index");
+                        }                    
+                        }
+                        catch (Exception Ex)
+                        {
+                        ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());                   
+                        }
+            //db.tbDenominacion.Add(tbDenominacion);
+            //db.SaveChanges();
+            //return RedirectToAction("Index");
 
+           
+
+           
+        }
             ViewBag.deno_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacion.deno_UsuarioCrea);
             ViewBag.deno_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacion.deno_UsuarioModifica);
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbDenominacion.mnda_Id);
 
             tbDenominacion TipoDenominacion = new tbDenominacion();
             TipoDenominacion.DenominacionList = cUtilities.DenominacionList();
-
             return View(tbDenominacion);
         }
 
@@ -124,7 +127,7 @@ namespace ERP_ZORZAL.Controllers
             {
                 var MensajeError = 0;
                 IEnumerable<object> list = null;
-                list = db.UDP_Gral_tbDenominacion_Update(tbDenominacion.deno_Id,tbDenominacion.deno_Descripcion,tbDenominacion.deno_Tipo,tbDenominacion.deno_valor,tbDenominacion.mnda_Id,tbDenominacion.deno_UsuarioCrea,tbDenominacion.deno_FechaCrea,tbDenominacion.deno_UsuarioModifica,tbDenominacion.deno_FechaModifica);
+                list = db.UDP_Gral_tbDenominacion_Update(tbDenominacion.deno_Id,tbDenominacion.deno_Descripcion,tbDenominacion.deno_Tipo,tbDenominacion.deno_valor,tbDenominacion.mnda_Id,tbDenominacion.deno_UsuarioCrea,tbDenominacion.deno_FechaCrea);
                 foreach (UDP_Gral_tbDenominacion_Update_Result denominacion in list)
                     MensajeError = denominacion.MensajeError;
                 if (MensajeError == -1)

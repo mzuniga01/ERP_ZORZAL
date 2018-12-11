@@ -12,24 +12,25 @@ namespace ERP_GMEDINA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbSolicitudEfectivo
+    public partial class Padres
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbSolicitudEfectivo()
+        public Padres()
         {
-            this.tbSolicitudEfectivoDetalle = new HashSet<tbSolicitudEfectivoDetalle>();
+            this.Hijos = new HashSet<Hijos>();
         }
     
-        public int solef_Id { get; set; }
-        public short cja_Id { get; set; }
-        public Nullable<decimal> solef_MontoSolicitud { get; set; }
-        public short mnda_Id { get; set; }
-        public int solef_UsuarioCrea { get; set; }
-        public System.DateTime solef_FechaCrea { get; set; }
-        public Nullable<int> solef_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> solef_FechaModifica { get; set; }
+        public int CodPadre { get; set; }
+        public string NombresPadre { get; set; }
+        public string ApellidosPadre { get; set; }
+        public System.DateTime FechaCreo { get; set; }
+        public int UsuarioCreo { get; set; }
+        public Nullable<System.DateTime> FechaModifico { get; set; }
+        public Nullable<int> UsuarioModifico { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
+        public virtual ICollection<Hijos> Hijos { get; set; }
     }
 }

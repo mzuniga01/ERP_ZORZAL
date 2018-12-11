@@ -61,6 +61,32 @@
     <Property Name="usu_RazonInactivo" Type="varchar" MaxLength="150" />
     <Property Name="usu_EsAdministrador" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="Hijos">
+    <Key>
+      <PropertyRef Name="CodPadre" />
+      <PropertyRef Name="CodHijo" />
+    </Key>
+    <Property Name="CodPadre" Type="int" Nullable="false" />
+    <Property Name="CodHijo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombresHijo" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ApellidosHijo" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="FechaCreo" Type="datetime" Nullable="false" />
+    <Property Name="UsuarioCreo" Type="int" Nullable="false" />
+    <Property Name="FechaModifico" Type="datetime" />
+    <Property Name="UsuarioModifico" Type="int" />
+  </EntityType>
+  <EntityType Name="Padres">
+    <Key>
+      <PropertyRef Name="CodPadre" />
+    </Key>
+    <Property Name="CodPadre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombresPadre" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ApellidosPadre" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="FechaCreo" Type="datetime" Nullable="false" />
+    <Property Name="UsuarioCreo" Type="int" Nullable="false" />
+    <Property Name="FechaModifico" Type="datetime" />
+    <Property Name="UsuarioModifico" Type="int" />
+  </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
       <PropertyRef Name="acte_Id" />
@@ -505,7 +531,7 @@
     <Property Name="clte_Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="clte_FechaNacimiento" Type="date" />
     <Property Name="clte_Nacionalidad" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="clte_Sexo" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="clte_Sexo" Type="char" MaxLength="1" />
     <Property Name="clte_Telefono" Type="nvarchar" MaxLength="25" />
     <Property Name="clte_NombreComercial" Type="nvarchar" MaxLength="50" />
     <Property Name="clte_RazonSocial" Type="nvarchar" MaxLength="50" />
@@ -828,8 +854,8 @@
     </Key>
     <Property Name="solef_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="cja_Id" Type="smallint" Nullable="false" />
+    <Property Name="solef_MontoSolicitud" Type="decimal" Precision="10" Scale="2" />
     <Property Name="mnda_Id" Type="smallint" Nullable="false" />
-    <Property Name="solef_MontoSolicitud" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="solef_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="solef_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="solef_UsuarioModifica" Type="int" />
@@ -1433,18 +1459,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioCrea">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-    <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbSolicitudEfectivo">
-        <PropertyRef Name="solef_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioCrea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbSolicitudEfectivoDetalle" Type="Self.tbSolicitudEfectivoDetalle" Multiplicity="*" />
@@ -1466,18 +1480,6 @@
       </Principal>
       <Dependent Role="tbSolicitudEfectivoDetalle">
         <PropertyRef Name="soled_UsuarioModifica" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-    <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbSolicitudEfectivo">
-        <PropertyRef Name="solef_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1661,18 +1663,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Gral_tbMoneda_tbSolicitudEfectivo_mnda_Id">
-    <End Role="tbMoneda" Type="Self.tbMoneda" Multiplicity="1" />
-    <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbMoneda">
-        <PropertyRef Name="mnda_Id" />
-      </Principal>
-      <Dependent Role="tbSolicitudEfectivo">
-        <PropertyRef Name="mnda_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Gral_tbMunicipio_dep_Codigo">
     <End Role="tbDepartamento" Type="Self.tbDepartamento" Multiplicity="1" />
     <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="*" />
@@ -1778,6 +1768,42 @@
       </Principal>
       <Dependent Role="tbUnidadMedida">
         <PropertyRef Name="uni_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hijos_Padres">
+    <End Role="Padres" Type="Self.Padres" Multiplicity="1" />
+    <End Role="Hijos" Type="Self.Hijos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Padres">
+        <PropertyRef Name="CodPadre" />
+      </Principal>
+      <Dependent Role="Hijos">
+        <PropertyRef Name="CodPadre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hijos_tbUsuarioCreo">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="Hijos" Type="Self.Hijos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="Hijos">
+        <PropertyRef Name="UsuarioCreo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hijos_tbUsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="Hijos" Type="Self.Hijos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="Hijos">
+        <PropertyRef Name="UsuarioModifico" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2297,6 +2323,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Padres_tbUsuarioCreo">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="Padres" Type="Self.Padres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="Padres">
+        <PropertyRef Name="UsuarioCreo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Padres_tbUsuarioModifico">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="Padres" Type="Self.Padres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="Padres">
+        <PropertyRef Name="UsuarioModifico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbBodega_tbSucursal_bod_Id">
     <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
     <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="*" />
@@ -2341,18 +2391,6 @@
         <PropertyRef Name="cja_Id" />
       </Principal>
       <Dependent Role="tbFactura">
-        <PropertyRef Name="cja_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbCaja_tbSolicitudEfectivo_cja_Id">
-    <End Role="tbCaja" Type="Self.tbCaja" Multiplicity="1" />
-    <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbCaja">
-        <PropertyRef Name="cja_Id" />
-      </Principal>
-      <Dependent Role="tbSolicitudEfectivo">
         <PropertyRef Name="cja_Id" />
       </Dependent>
     </ReferentialConstraint>
@@ -2908,8 +2946,6 @@
     <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
     <Parameter Name="deno_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="deno_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="deno_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="deno_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbMoneda_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="mnda_Abreviatura" Type="varchar" Mode="In" />
@@ -2952,6 +2988,9 @@
     <Parameter Name="cja_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="cja_FechaModifica" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbEstadoSolicitudCredito_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="escre_Descripcion" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbFactura_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
   </Function>
@@ -2964,6 +3003,8 @@
     <EntitySet Name="tbRol" EntityType="Self.tbRol" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbRolesUsuario" EntityType="Self.tbRolesUsuario" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbUsuario" EntityType="Self.tbUsuario" Schema="Acce" store:Type="Tables" />
+    <EntitySet Name="Hijos" EntityType="Self.Hijos" Schema="Gral" store:Type="Tables" />
+    <EntitySet Name="Padres" EntityType="Self.Padres" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbActividadEconomica" EntityType="Self.tbActividadEconomica" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbBanco" EntityType="Self.tbBanco" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbCuentasBanco" EntityType="Self.tbCuentasBanco" Schema="Gral" store:Type="Tables" />
@@ -3203,10 +3244,6 @@
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbSolicitudCredito" EntitySet="tbSolicitudCredito" />
     </AssociationSet>
-    <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioCrea">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
-    </AssociationSet>
     <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
@@ -3214,10 +3251,6 @@
     <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
     </AssociationSet>
     <AssociationSet Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea" Association="Self.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -3279,10 +3312,6 @@
       <End Role="tbMoneda" EntitySet="tbMoneda" />
       <End Role="tbDenominacion" EntitySet="tbDenominacion" />
     </AssociationSet>
-    <AssociationSet Name="FK_Gral_tbMoneda_tbSolicitudEfectivo_mnda_Id" Association="Self.FK_Gral_tbMoneda_tbSolicitudEfectivo_mnda_Id">
-      <End Role="tbMoneda" EntitySet="tbMoneda" />
-      <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
-    </AssociationSet>
     <AssociationSet Name="FK_Gral_tbMunicipio_dep_Codigo" Association="Self.FK_Gral_tbMunicipio_dep_Codigo">
       <End Role="tbDepartamento" EntitySet="tbDepartamento" />
       <End Role="tbMunicipio" EntitySet="tbMunicipio" />
@@ -3318,6 +3347,18 @@
     <AssociationSet Name="FK_Gral_tbUnidadMedida_uni_UsuarioModifica" Association="Self.FK_Gral_tbUnidadMedida_uni_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hijos_Padres" Association="Self.FK_Hijos_Padres">
+      <End Role="Padres" EntitySet="Padres" />
+      <End Role="Hijos" EntitySet="Hijos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hijos_tbUsuarioCreo" Association="Self.FK_Hijos_tbUsuarioCreo">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="Hijos" EntitySet="Hijos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hijos_tbUsuarioModifica" Association="Self.FK_Hijos_tbUsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="Hijos" EntitySet="Hijos" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbBodega_tbEstadoMovimiento_estm_Id" Association="Self.FK_Inv_tbBodega_tbEstadoMovimiento_estm_Id">
       <End Role="tbEstadoMovimiento" EntitySet="tbEstadoMovimiento" />
@@ -3491,6 +3532,14 @@
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbTipoSalida" EntitySet="tbTipoSalida" />
     </AssociationSet>
+    <AssociationSet Name="FK_Padres_tbUsuarioCreo" Association="Self.FK_Padres_tbUsuarioCreo">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="Padres" EntitySet="Padres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Padres_tbUsuarioModifico" Association="Self.FK_Padres_tbUsuarioModifico">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="Padres" EntitySet="Padres" />
+    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbBodega_tbSucursal_bod_Id" Association="Self.FK_Vent_tbBodega_tbSucursal_bod_Id">
       <End Role="tbBodega" EntitySet="tbBodega" />
       <End Role="tbSucursal" EntitySet="tbSucursal" />
@@ -3506,10 +3555,6 @@
     <AssociationSet Name="FK_Vent_tbCaja_tbFactura_cja_Id" Association="Self.FK_Vent_tbCaja_tbFactura_cja_Id">
       <End Role="tbCaja" EntitySet="tbCaja" />
       <End Role="tbFactura" EntitySet="tbFactura" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbCaja_tbSolicitudEfectivo_cja_Id" Association="Self.FK_Vent_tbCaja_tbSolicitudEfectivo_cja_Id">
-      <End Role="tbCaja" EntitySet="tbCaja" />
-      <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbCliente_tbExoneracion_clte_Id" Association="Self.FK_Vent_tbCliente_tbExoneracion_clte_Id">
       <End Role="tbCliente" EntitySet="tbCliente" />

@@ -20,7 +20,6 @@ namespace ERP_GMEDINA.Models
             this.tbArqueoCaja = new HashSet<tbArqueoCaja>();
             this.tbDevolucion = new HashSet<tbDevolucion>();
             this.tbFactura = new HashSet<tbFactura>();
-            this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
         }
     
         public short cja_Id { get; set; }
@@ -39,8 +38,6 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbDevolucion> tbDevolucion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFactura> tbFactura { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
         public virtual tbSucursal tbSucursal { get; set; }
     }
 }
