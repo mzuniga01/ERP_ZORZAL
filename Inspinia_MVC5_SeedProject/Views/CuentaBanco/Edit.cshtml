@@ -42,23 +42,15 @@
                         <div class="form-horizontal">
 
                             @Html.ValidationSummary(true)
-                            @Html.HiddenFor(model => model.bcta_Id)
-
-                            @*<div class="form-group">
-                                @Html.LabelFor(model => model.bcta_Id, "Cuenta Banco", new { @class = "control-label col-md-2" })
-                                <div class="col-md-5">
-                                    @Html.EditorFor(model => model.bcta_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.bcta_Id)
-                                </div>
-                            </div>*@
+                            @Html.HiddenFor(model => model.bcta_Id)  
 
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.ban_Id, "Banco", new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
                                     @Html.DropDownList("ban_Id", null, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.ban_Id)
-                                </div>
+                                    <p style="color:red"> @Html.ValidationMessageFor(model => model.ban_Id)</p>
+                              </div>
                             </div>
 
 
@@ -66,22 +58,23 @@
                                 @Html.LabelFor(model => model.bcta_Numero, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.bcta_Numero)
-                                    @Html.ValidationMessageFor(model => model.bcta_Numero)
-                                </div>
+                                    <p style="color:red"> @Html.ValidationMessageFor(model => model.bcta_Numero)</p>
+                             </div>
                             </div>
+
                             <div class="form-group">
                                 @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
                                     @Html.DropDownList("mnda_Id", null, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.mnda_Id)
-                                </div>
+                                    <p style="color:red"> @Html.ValidationMessageFor(model => model.mnda_Id)</p>
+                                     </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bcta_TipoCuenta, "Tipo Cuenta", new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
                                     @Html.DropDownListFor(model => model.bcta_TipoCuenta, new SelectList(Model.TipoCuentaList, "ID_TIPOCUENTA", "DESCRIPCION"), new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.bcta_TipoCuenta)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_TipoCuenta)</p>
                                 </div>
                             </div>
 
@@ -105,7 +98,7 @@
                                 @Html.LabelFor(model => model.bcta_FechaApertura, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.bcta_FechaApertura, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "fechaapertura" } })
-                                    @Html.ValidationMessageFor(model => model.bcta_FechaApertura)
+                                    <p style="color:red">  @Html.ValidationMessageFor(model => model.bcta_FechaApertura)</p>
                                 </div>
                             </div>
 

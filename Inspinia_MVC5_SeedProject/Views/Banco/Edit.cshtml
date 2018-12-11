@@ -58,7 +58,7 @@
                             @Html.LabelFor(model => model.ban_Nombre, new { @class = "control-label col-md-2" })
                             <div class="col-md-5">
                                 @Html.EditorFor(model => model.ban_Nombre)
-                                @Html.ValidationMessageFor(model => model.ban_Nombre)
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.ban_Nombre)</p>
                             </div>
                         </div>
 
@@ -66,7 +66,7 @@
                             @Html.LabelFor(model => model.ban_NombreContacto, new { @class = "control-label col-md-2" })
                             <div class="col-md-5">
                                 @Html.EditorFor(model => model.ban_NombreContacto)
-                                @Html.ValidationMessageFor(model => model.ban_NombreContacto)
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.ban_NombreContacto)</p>
                             </div>
                         </div>
 
@@ -74,7 +74,7 @@
                             @Html.LabelFor(model => model.ban_TelefonoContacto, new { @class = "control-label col-md-2" })
                             <div class="col-md-5">
                                 @Html.EditorFor(model => model.ban_TelefonoContacto)
-                                @Html.ValidationMessageFor(model => model.ban_TelefonoContacto)
+                                <p style="color:red"> @Html.ValidationMessageFor(model => model.ban_TelefonoContacto)</p>
                             </div>
                         </div>
    
