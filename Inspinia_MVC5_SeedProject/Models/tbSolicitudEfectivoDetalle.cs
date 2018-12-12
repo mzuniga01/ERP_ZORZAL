@@ -17,8 +17,9 @@ namespace ERP_GMEDINA.Models
         public int soled_Id { get; set; }
         public int solef_Id { get; set; }
         public short deno_Id { get; set; }
-        public decimal soled_CantidadSolicitada { get; set; }
-        public decimal soled_CantidadEntregada { get; set; }
+        public short soled_CantidadSolicitada { get; set; }
+        public short soled_CantidadEntregada { get; set; }
+        public decimal soled_MontoEntregado { get; set; }
         public int soled_UsuarioCrea { get; set; }
         public System.DateTime soled_FechaCrea { get; set; }
         public Nullable<int> soled_UsuarioModifica { get; set; }

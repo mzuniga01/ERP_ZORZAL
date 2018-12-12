@@ -16,7 +16,7 @@ namespace ERP_GMEDINA.Models
     {
         public int pemid_Id { get; set; }
         public int pemi_Id { get; set; }
-        public byte dfisc_Id { get; set; }
+        public string dfisc_Id { get; set; }
         public string pemid_RangoInicio { get; set; }
         public string pemid_RangoFinal { get; set; }
         public System.DateTime pemid_FechaLimite { get; set; }

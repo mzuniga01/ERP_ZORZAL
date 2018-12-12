@@ -27,8 +27,8 @@ namespace ERP_GMEDINA.Models
         public byte estm_Id { get; set; }
         public int prov_Id { get; set; }
         public string ent_FacturaCompra { get; set; }
-        public System.DateTime ent_FechaCompra { get; set; }
-        public int fact_Id { get; set; }
+        public Nullable<System.DateTime> ent_FechaCompra { get; set; }
+        public Nullable<int> fact_Id { get; set; }
         public string ent_RazonDevolucion { get; set; }
         public Nullable<int> ent_BodegaDestino { get; set; }
         public byte tent_Id { get; set; }
@@ -37,6 +37,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> ent_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> ent_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbBodega tbBodega { get; set; }
         public virtual tbBodega tbBodega1 { get; set; }
         public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }

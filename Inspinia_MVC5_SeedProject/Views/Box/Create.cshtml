@@ -5,6 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Caja</h2>
@@ -56,7 +60,14 @@
                                     @Html.ValidationMessageFor(model => model.box_Descripcion)
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.box_FechaCrea, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.box_FechaCrea, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "boxFechaCrea" } })
+                                    <span class="validation-error"> @Html.ValidationMessageFor(model => model.box_FechaCrea)</span>
+                                </div>
+                            </div>
+                            
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Registrar" class="btn btn-primary" />
@@ -144,7 +155,6 @@
 
         </div>
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
