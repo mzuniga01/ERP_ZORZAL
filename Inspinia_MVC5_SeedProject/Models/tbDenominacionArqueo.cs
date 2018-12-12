@@ -12,22 +12,21 @@ namespace ERP_GMEDINA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbSolicitudEfectivoDetalle
+    public partial class tbDenominacionArqueo
     {
-        public int soled_Id { get; set; }
-        public int solef_Id { get; set; }
+        public int arqde_Id { get; set; }
+        public int mocja_Id { get; set; }
         public short deno_Id { get; set; }
-        public short soled_CantidadSolicitada { get; set; }
-        public short soled_CantidadEntregada { get; set; }
-        public decimal soled_MontoEntregado { get; set; }
-        public int soled_UsuarioCrea { get; set; }
-        public System.DateTime soled_FechaCrea { get; set; }
-        public Nullable<int> soled_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> soled_FechaModifica { get; set; }
+        public short arqde_CantidadDenominacion { get; set; }
+        public decimal arqde_MontoDenominacion { get; set; }
+        public Nullable<int> arqde_UsuarioCrea { get; set; }
+        public System.DateTime arqde_FechaCrea { get; set; }
+        public Nullable<int> arqde_UsuarioModifica { get; set; }
+        public System.DateTime arqde_FechaModifica { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbDenominacion tbDenominacion { get; set; }
-        public virtual tbSolicitudEfectivo tbSolicitudEfectivo { get; set; }
+        public virtual tbMovimientoCaja tbMovimientoCaja { get; set; }
     }
 }

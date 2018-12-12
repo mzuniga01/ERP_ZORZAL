@@ -28,6 +28,7 @@
           <Property Name="obj_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="obj_UsuarioModifica" Type="int" />
           <Property Name="obj_FechaModifica" Type="datetime" />
+          <Property Name="obj_Estado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tbRol">
           <Key>
@@ -39,6 +40,7 @@
           <Property Name="rol_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="rol_UsuarioModifica" Type="int" />
           <Property Name="rol_FechaModifica" Type="datetime" />
+          <Property Name="rol_Estado" Type="tinyint" />
         </EntityType>
         <EntityType Name="tbRolesUsuario">
           <Key>
@@ -65,32 +67,6 @@
           <Property Name="usu_EsActivo" Type="bit" Nullable="false" />
           <Property Name="usu_RazonInactivo" Type="varchar" MaxLength="150" />
           <Property Name="usu_EsAdministrador" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Hijos">
-          <Key>
-            <PropertyRef Name="CodPadre" />
-            <PropertyRef Name="CodHijo" />
-          </Key>
-          <Property Name="CodPadre" Type="int" Nullable="false" />
-          <Property Name="CodHijo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NombresHijo" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ApellidosHijo" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="FechaCreo" Type="datetime" Nullable="false" />
-          <Property Name="UsuarioCreo" Type="int" Nullable="false" />
-          <Property Name="FechaModifico" Type="datetime" />
-          <Property Name="UsuarioModifico" Type="int" />
-        </EntityType>
-        <EntityType Name="Padres">
-          <Key>
-            <PropertyRef Name="CodPadre" />
-          </Key>
-          <Property Name="CodPadre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NombresPadre" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ApellidosPadre" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="FechaCreo" Type="datetime" Nullable="false" />
-          <Property Name="UsuarioCreo" Type="int" Nullable="false" />
-          <Property Name="FechaModifico" Type="datetime" />
-          <Property Name="UsuarioModifico" Type="int" />
         </EntityType>
         <EntityType Name="tbActividadEconomica">
           <Key>
@@ -158,7 +134,7 @@
           <Property Name="dep_UsuarioModifica" Type="int" />
           <Property Name="dep_FechaModifica" Type="datetime" />
         </EntityType>
-        <EntityType Name="tbEmpleados">
+        <EntityType Name="tbEmpleado">
           <Key>
             <PropertyRef Name="emp_Id" />
           </Key>
@@ -259,7 +235,6 @@
           <Property Name="bod_Direccion" Type="varchar" MaxLength="200" />
           <Property Name="bod_Correo" Type="varchar(max)" />
           <Property Name="bod_Telefono" Type="varchar" MaxLength="13" />
-          <Property Name="usu_Id" Type="int" />
           <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
           <Property Name="bod_EsActiva" Type="tinyint" Nullable="false" />
           <Property Name="bod_UsuarioCrea" Type="int" Nullable="false" />
@@ -300,14 +275,14 @@
             <PropertyRef Name="ent_Id" />
           </Key>
           <Property Name="ent_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ent_NumeroFormato" Type="varchar" MaxLength="20" />
+          <Property Name="ent_NumeroFormato" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ent_FechaElaboracion" Type="datetime" Nullable="false" />
           <Property Name="bod_Id" Type="int" Nullable="false" />
           <Property Name="estm_Id" Type="tinyint" Nullable="false" />
           <Property Name="prov_Id" Type="int" Nullable="false" />
-          <Property Name="ent_FacturaCompra" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="ent_FechaCompra" Type="datetime" Nullable="false" />
-          <Property Name="fact_Id" Type="int" Nullable="false" />
+          <Property Name="ent_FacturaCompra" Type="varchar" MaxLength="20" />
+          <Property Name="ent_FechaCompra" Type="datetime" />
+          <Property Name="fact_Id" Type="int" />
           <Property Name="ent_RazonDevolucion" Type="varchar" MaxLength="150" />
           <Property Name="ent_BodegaDestino" Type="int" />
           <Property Name="tent_Id" Type="tinyint" Nullable="false" />
@@ -397,7 +372,7 @@
           <Property Name="prod_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="prod_UsuarioModifica" Type="int" />
           <Property Name="prod_FechaModifica" Type="datetime" />
-          <Property Name="prod_EsActivo" Type="bit" />
+          <Property Name="prod_EsActivo" Type="bit" Nullable="false" />
           <Property Name="prod_Razon_Inactivacion" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="tbProductoCategoria">
@@ -491,32 +466,11 @@
           <Property Name="tsal_UsuarioModifica" Type="int" />
           <Property Name="tsal_FechaModifica" Type="datetime" />
         </EntityType>
-        <EntityType Name="tbArqueoCaja">
-          <Key>
-            <PropertyRef Name="aqcja_Id" />
-          </Key>
-          <Property Name="aqcja_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cja_Id" Type="smallint" Nullable="false" />
-          <Property Name="aqcja_Fecha" Type="datetime" Nullable="false" />
-          <Property Name="aqcja_FechaInicio" Type="datetime" Nullable="false" />
-          <Property Name="aqcja_FechaFin" Type="datetime" Nullable="false" />
-          <Property Name="aqcja_SaldoInicial" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="aqcja_SaldoFinal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="aqcja_MontoEfectivo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="aqcja_MontoCheque" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="aqcja_MontoTCoTD" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="aqcja_MontoNotaCredito" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="aqcja_MontoCupon" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="aqcja_UsuarioCrea" Type="int" Nullable="false" />
-          <Property Name="aqcja_FechaCrea" Type="datetime" Nullable="false" />
-          <Property Name="aqcja_UsuarioModifica" Type="int" />
-          <Property Name="aqcja_FechaModifica" Type="datetime" />
-        </EntityType>
         <EntityType Name="tbCaja">
           <Key>
             <PropertyRef Name="cja_Id" />
           </Key>
-          <Property Name="cja_Id" Type="smallint" Nullable="false" />
+          <Property Name="cja_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cja_Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="suc_Id" Type="smallint" Nullable="false" />
           <Property Name="cja_UsuarioCrea" Type="int" Nullable="false" />
@@ -575,6 +529,20 @@
           <Property Name="cdto_UsuarioModifica" Type="int" />
           <Property Name="cdto_FechaModifica" Type="datetime" />
         </EntityType>
+        <EntityType Name="tbDenominacionArqueo">
+          <Key>
+            <PropertyRef Name="arqde_Id" />
+          </Key>
+          <Property Name="arqde_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mocja_Id" Type="int" Nullable="false" />
+          <Property Name="deno_Id" Type="smallint" Nullable="false" />
+          <Property Name="arqde_CantidadDenominacion" Type="smallint" Nullable="false" />
+          <Property Name="arqde_MontoDenominacion" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="arqde_UsuarioCrea" Type="int" />
+          <Property Name="arqde_FechaCrea" Type="datetime" Nullable="false" />
+          <Property Name="arqde_UsuarioModifica" Type="int" />
+          <Property Name="arqde_FechaModifica" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="tbDevolucion">
           <Key>
             <PropertyRef Name="dev_Id" />
@@ -606,7 +574,7 @@
           <Key>
             <PropertyRef Name="dfisc_Id" />
           </Key>
-          <Property Name="dfisc_Id" Type="tinyint" Nullable="false" />
+          <Property Name="dfisc_Id" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="dfisc_Descripcion" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="dfisc_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="dfisc_FechaCrea" Type="datetime" Nullable="false" />
@@ -650,7 +618,7 @@
           <Key>
             <PropertyRef Name="exo_Id" />
           </Key>
-          <Property Name="exo_Id" Type="int" Nullable="false" />
+          <Property Name="exo_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="exo_Documento" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="exo_ExoneracionActiva" Type="bit" Nullable="false" />
           <Property Name="exo_FechaInicialVigencia" Type="date" Nullable="false" />
@@ -739,6 +707,23 @@
           <Property Name="listp_UsuarioModifica" Type="int" />
           <Property Name="listp_FechaModifica" Type="datetime" />
         </EntityType>
+        <EntityType Name="tbMovimientoCaja">
+          <Key>
+            <PropertyRef Name="mocja_Id" />
+          </Key>
+          <Property Name="mocja_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cja_Id" Type="smallint" Nullable="false" />
+          <Property Name="mocja_FechaApetura" Type="datetime" Nullable="false" />
+          <Property Name="mocja_UsuarioApertura" Type="int" />
+          <Property Name="mocja_FechaArqueo" Type="datetime" Nullable="false" />
+          <Property Name="mocja_UsuarioArquea" Type="int" />
+          <Property Name="mocja_FechaAceptacion" Type="datetime" Nullable="false" />
+          <Property Name="mocja_UsuarioAceptacion" Type="int" />
+          <Property Name="mocja_UsuarioCrea" Type="int" />
+          <Property Name="mocja_FechaCrea" Type="datetime" Nullable="false" />
+          <Property Name="mocja_UsuarioModifica" Type="int" />
+          <Property Name="mocja_FechaModifica" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="tbNotaCredito">
           <Key>
             <PropertyRef Name="nocre_Id" />
@@ -756,7 +741,7 @@
           <Property Name="nocre_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="nocre_UsuarioModifica" Type="int" />
           <Property Name="nocre_FechaModifica" Type="datetime" />
-          <Property Name="nocre_Estado" Type="tinyint" Nullable="false" />
+          <Property Name="nocre_Estado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tbPago">
           <Key>
@@ -813,7 +798,7 @@
           <Key>
             <PropertyRef Name="pemi_Id" />
           </Key>
-          <Property Name="pemi_Id" Type="int" Nullable="false" />
+          <Property Name="pemi_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="40" Nullable="false" />
           <Property Name="pemi_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="pemi_FechaCrea" Type="datetime" Nullable="false" />
@@ -826,7 +811,7 @@
           </Key>
           <Property Name="pemid_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="pemi_Id" Type="int" Nullable="false" />
-          <Property Name="dfisc_Id" Type="tinyint" Nullable="false" />
+          <Property Name="dfisc_Id" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="pemid_RangoInicio" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="pemid_RangoFinal" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
@@ -858,9 +843,12 @@
             <PropertyRef Name="solef_Id" />
           </Key>
           <Property Name="solef_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cja_Id" Type="smallint" Nullable="false" />
-          <Property Name="solef_MontoSolicitud" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="mocja_Id" Type="int" Nullable="false" />
+          <Property Name="solef_EsApertura" Type="bit" />
+          <Property Name="solef_FechaEntrega" Type="datetime" />
+          <Property Name="solef_UsuarioEntrega" Type="int" />
           <Property Name="mnda_Id" Type="smallint" Nullable="false" />
+          <Property Name="solef_EsAnulada" Type="bit" Nullable="false" />
           <Property Name="solef_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="solef_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="solef_UsuarioModifica" Type="int" />
@@ -873,8 +861,9 @@
           <Property Name="soled_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="solef_Id" Type="int" Nullable="false" />
           <Property Name="deno_Id" Type="smallint" Nullable="false" />
-          <Property Name="soled_CantidadSolicitada" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="soled_CantidadEntregada" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="soled_CantidadSolicitada" Type="smallint" Nullable="false" />
+          <Property Name="soled_CantidadEntregada" Type="smallint" Nullable="false" />
+          <Property Name="soled_MontoEntregado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="soled_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="soled_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="soled_UsuarioModifica" Type="int" />
@@ -1032,30 +1021,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioCrea">
-          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-          <End Role="tbArqueoCaja" Type="Self.tbArqueoCaja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbArqueoCaja">
-              <PropertyRef Name="aqcja_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioModifica">
-          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-          <End Role="tbArqueoCaja" Type="Self.tbArqueoCaja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbArqueoCaja">
-              <PropertyRef Name="aqcja_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Acce_tbUsuario_tbCaja_cja_UsuarioCrea">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
           <End Role="tbCaja" Type="Self.tbCaja" Multiplicity="*" />
@@ -1125,6 +1090,30 @@
             </Principal>
             <Dependent Role="tbDenominacion">
               <PropertyRef Name="deno_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioCrea">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbDenominacionArqueo" Type="Self.tbDenominacionArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbDenominacionArqueo">
+              <PropertyRef Name="arqde_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbDenominacionArqueo" Type="Self.tbDenominacionArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbDenominacionArqueo">
+              <PropertyRef Name="arqde_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1320,6 +1309,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioCrea">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbMovimientoCaja">
+              <PropertyRef Name="mocja_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbMovimientoCaja">
+              <PropertyRef Name="mocja_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
           <End Role="tbNotaCredito" Type="Self.tbNotaCredito" Multiplicity="*" />
@@ -1464,6 +1477,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioCrea">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+          <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbSolicitudEfectivo">
+              <PropertyRef Name="solef_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioCrea">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
           <End Role="tbSolicitudEfectivoDetalle" Type="Self.tbSolicitudEfectivoDetalle" Multiplicity="*" />
@@ -1485,6 +1510,18 @@
             </Principal>
             <Dependent Role="tbSolicitudEfectivoDetalle">
               <PropertyRef Name="soled_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbSolicitudEfectivo">
+              <PropertyRef Name="solef_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1622,24 +1659,24 @@
         </Association>
         <Association Name="FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id">
           <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="1" />
-          <End Role="tbEmpleados" Type="Self.tbEmpleados" Multiplicity="*" />
+          <End Role="tbEmpleado" Type="Self.tbEmpleado" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbTipoIdentificacion">
               <PropertyRef Name="tpi_Id" />
             </Principal>
-            <Dependent Role="tbEmpleados">
+            <Dependent Role="tbEmpleado">
               <PropertyRef Name="tpi_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-          <End Role="tbEmpleados" Type="Self.tbEmpleados" Multiplicity="*" />
+          <End Role="tbEmpleado" Type="Self.tbEmpleado" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbUsuario">
               <PropertyRef Name="usu_Id" />
             </Principal>
-            <Dependent Role="tbEmpleados">
+            <Dependent Role="tbEmpleado">
               <PropertyRef Name="emp_UsuarioCrea" />
             </Dependent>
           </ReferentialConstraint>
@@ -1664,6 +1701,18 @@
               <PropertyRef Name="mnda_Id" />
             </Principal>
             <Dependent Role="tbDenominacion">
+              <PropertyRef Name="mnda_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tbMoneda_tbSolicitudEfectivo_mnda_Id">
+          <End Role="tbMoneda" Type="Self.tbMoneda" Multiplicity="1" />
+          <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMoneda">
+              <PropertyRef Name="mnda_Id" />
+            </Principal>
+            <Dependent Role="tbSolicitudEfectivo">
               <PropertyRef Name="mnda_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -1776,51 +1825,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Hijos_Padres">
-          <End Role="Padres" Type="Self.Padres" Multiplicity="1" />
-          <End Role="Hijos" Type="Self.Hijos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Padres">
-              <PropertyRef Name="CodPadre" />
-            </Principal>
-            <Dependent Role="Hijos">
-              <PropertyRef Name="CodPadre" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Hijos_tbUsuarioCreo">
-          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-          <End Role="Hijos" Type="Self.Hijos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="Hijos">
-              <PropertyRef Name="UsuarioCreo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Hijos_tbUsuarioModifica">
+        <Association Name="FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-          <End Role="Hijos" Type="Self.Hijos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="Hijos">
-              <PropertyRef Name="UsuarioModifico" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inv_tbBodega_tbEstadoMovimiento_estm_Id">
-          <End Role="tbEstadoMovimiento" Type="Self.tbEstadoMovimiento" Multiplicity="1" />
           <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbEstadoMovimiento">
-              <PropertyRef Name="estm_Id" />
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
             </Principal>
             <Dependent Role="tbBodega">
-              <PropertyRef Name="bod_EsActiva" />
+              <PropertyRef Name="bod_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1836,15 +1849,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inv_tbBodega_tbUsuario_usu_Id">
-          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+        <Association Name="FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
           <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbUsuario">
               <PropertyRef Name="usu_Id" />
             </Principal>
             <Dependent Role="tbBodega">
-              <PropertyRef Name="usu_Id" />
+              <PropertyRef Name="bod_UsuarioCrea" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1941,6 +1954,18 @@
             </Principal>
             <Dependent Role="tbEntrada">
               <PropertyRef Name="tent_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+          <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEntrada">
+              <PropertyRef Name="ent_UsuarioCrea" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2124,6 +2149,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+          <End Role="tbProductoCategoria" Type="Self.tbProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbProductoCategoria">
+              <PropertyRef Name="pcat_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
           <End Role="tbProductoCategoria" Type="Self.tbProductoCategoria" Multiplicity="*" />
@@ -2133,6 +2170,18 @@
             </Principal>
             <Dependent Role="tbProductoCategoria">
               <PropertyRef Name="pcat_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+          <End Role="tbProductoSubcategoria" Type="Self.tbProductoSubcategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbProductoSubcategoria">
+              <PropertyRef Name="pscat_UsuarioCrea" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2328,30 +2377,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Padres_tbUsuarioCreo">
-          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-          <End Role="Padres" Type="Self.Padres" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="Padres">
-              <PropertyRef Name="UsuarioCreo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Padres_tbUsuarioModifico">
-          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-          <End Role="Padres" Type="Self.Padres" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="Padres">
-              <PropertyRef Name="UsuarioModifico" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vent_tbBodega_tbSucursal_bod_Id">
           <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
           <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="*" />
@@ -2361,18 +2386,6 @@
             </Principal>
             <Dependent Role="tbSucursal">
               <PropertyRef Name="bod_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Vent_tbCaja_tbArqueoCaja_cja_Id">
-          <End Role="tbCaja" Type="Self.tbCaja" Multiplicity="1" />
-          <End Role="tbArqueoCaja" Type="Self.tbArqueoCaja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbCaja">
-              <PropertyRef Name="cja_Id" />
-            </Principal>
-            <Dependent Role="tbArqueoCaja">
-              <PropertyRef Name="cja_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2388,14 +2401,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vent_tbCaja_tbFactura_cja_Id">
+        <Association Name="FK_Vent_tbCaja_tbMovimientoCaja_cja_Id">
           <End Role="tbCaja" Type="Self.tbCaja" Multiplicity="1" />
-          <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
+          <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbCaja">
               <PropertyRef Name="cja_Id" />
             </Principal>
-            <Dependent Role="tbFactura">
+            <Dependent Role="tbMovimientoCaja">
               <PropertyRef Name="cja_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -2469,6 +2482,18 @@
             </Principal>
             <Dependent Role="tbPago">
               <PropertyRef Name="bcta_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id">
+          <End Role="tbDenominacion" Type="Self.tbDenominacion" Multiplicity="1" />
+          <End Role="tbDenominacionArqueo" Type="Self.tbDenominacionArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbDenominacion">
+              <PropertyRef Name="deno_Id" />
+            </Principal>
+            <Dependent Role="tbDenominacionArqueo">
+              <PropertyRef Name="deno_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2625,6 +2650,30 @@
             </Principal>
             <Dependent Role="tbListadoPrecioDetalle">
               <PropertyRef Name="listp_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id">
+          <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="1" />
+          <End Role="tbDenominacionArqueo" Type="Self.tbDenominacionArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMovimientoCaja">
+              <PropertyRef Name="mocja_Id" />
+            </Principal>
+            <Dependent Role="tbDenominacionArqueo">
+              <PropertyRef Name="mocja_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
+          <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="1" />
+          <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMovimientoCaja">
+              <PropertyRef Name="mocja_Id" />
+            </Principal>
+            <Dependent Role="tbSolicitudEfectivo">
+              <PropertyRef Name="mocja_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2990,8 +3039,6 @@
           <Parameter Name="suc_Id" Type="smallint" Mode="In" />
           <Parameter Name="cja_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="cja_FechaCrea" Type="datetime" Mode="In" />
-          <Parameter Name="cja_UsuarioModifica" Type="int" Mode="In" />
-          <Parameter Name="cja_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbEstadoSolicitudCredito_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="escre_Descripcion" Type="nvarchar" Mode="In" />
@@ -3008,14 +3055,12 @@
           <EntitySet Name="tbRol" EntityType="Self.tbRol" Schema="Acce" store:Type="Tables" />
           <EntitySet Name="tbRolesUsuario" EntityType="Self.tbRolesUsuario" Schema="Acce" store:Type="Tables" />
           <EntitySet Name="tbUsuario" EntityType="Self.tbUsuario" Schema="Acce" store:Type="Tables" />
-          <EntitySet Name="Hijos" EntityType="Self.Hijos" Schema="Gral" store:Type="Tables" />
-          <EntitySet Name="Padres" EntityType="Self.Padres" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbActividadEconomica" EntityType="Self.tbActividadEconomica" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbBanco" EntityType="Self.tbBanco" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbCuentasBanco" EntityType="Self.tbCuentasBanco" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbDenominacion" EntityType="Self.tbDenominacion" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbDepartamento" EntityType="Self.tbDepartamento" Schema="Gral" store:Type="Tables" />
-          <EntitySet Name="tbEmpleados" EntityType="Self.tbEmpleados" Schema="Gral" store:Type="Tables" />
+          <EntitySet Name="tbEmpleado" EntityType="Self.tbEmpleado" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbMoneda" EntityType="Self.tbMoneda" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbMunicipio" EntityType="Self.tbMunicipio" Schema="Gral" store:Type="Tables" />
           <EntitySet Name="tbParametro" EntityType="Self.tbParametro" Schema="Gral" store:Type="Tables" />
@@ -3038,10 +3083,10 @@
           <EntitySet Name="tbSalidaDetalle" EntityType="Self.tbSalidaDetalle" Schema="Inv" store:Type="Tables" />
           <EntitySet Name="tbTipoEntrada" EntityType="Self.tbTipoEntrada" Schema="Inv" store:Type="Tables" />
           <EntitySet Name="tbTipoSalida" EntityType="Self.tbTipoSalida" Schema="Inv" store:Type="Tables" />
-          <EntitySet Name="tbArqueoCaja" EntityType="Self.tbArqueoCaja" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbCaja" EntityType="Self.tbCaja" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbCliente" EntityType="Self.tbCliente" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbCuponDescuento" EntityType="Self.tbCuponDescuento" Schema="Vent" store:Type="Tables" />
+          <EntitySet Name="tbDenominacionArqueo" EntityType="Self.tbDenominacionArqueo" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbDevolucion" EntityType="Self.tbDevolucion" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbDevolucionDetalle" EntityType="Self.tbDevolucionDetalle" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbDocumentoFiscal" EntityType="Self.tbDocumentoFiscal" Schema="Vent" store:Type="Tables" />
@@ -3054,6 +3099,7 @@
           <EntitySet Name="tbFacturaHistorica" EntityType="Self.tbFacturaHistorica" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbListadoPrecioDetalle" EntityType="Self.tbListadoPrecioDetalle" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbListaPrecio" EntityType="Self.tbListaPrecio" Schema="Vent" store:Type="Tables" />
+          <EntitySet Name="tbMovimientoCaja" EntityType="Self.tbMovimientoCaja" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbNotaCredito" EntityType="Self.tbNotaCredito" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbPago" EntityType="Self.tbPago" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbPedido" EntityType="Self.tbPedido" Schema="Vent" store:Type="Tables" />
@@ -3105,14 +3151,6 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbActividadEconomica" EntitySet="tbActividadEconomica" />
           </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioCrea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbArqueoCaja" EntitySet="tbArqueoCaja" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioModifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbArqueoCaja" EntitySet="tbArqueoCaja" />
-          </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbCaja_cja_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbCaja_cja_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbCaja" EntitySet="tbCaja" />
@@ -3136,6 +3174,14 @@
           <AssociationSet Name="FK_Acce_tbUsuario_tbDenominacion_deno_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbDenominacion_deno_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbDenominacion" EntitySet="tbDenominacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
           </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -3201,6 +3247,14 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbMoneda" EntitySet="tbMoneda" />
           </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+          </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
@@ -3249,6 +3303,10 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbSolicitudCredito" EntitySet="tbSolicitudCredito" />
           </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
+          </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
@@ -3256,6 +3314,10 @@
           <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
           </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea" Association="Self.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -3303,11 +3365,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id" Association="Self.FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id">
             <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
-            <End Role="tbEmpleados" EntitySet="tbEmpleados" />
+            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
           </AssociationSet>
           <AssociationSet Name="FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea" Association="Self.FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbEmpleados" EntitySet="tbEmpleados" />
+            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
           </AssociationSet>
           <AssociationSet Name="FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id" Association="Self.FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id">
             <End Role="tbMoneda" EntitySet="tbMoneda" />
@@ -3316,6 +3378,10 @@
           <AssociationSet Name="FK_Gral_tbMoneda_tbDenominacion_mnda_Id" Association="Self.FK_Gral_tbMoneda_tbDenominacion_mnda_Id">
             <End Role="tbMoneda" EntitySet="tbMoneda" />
             <End Role="tbDenominacion" EntitySet="tbDenominacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbMoneda_tbSolicitudEfectivo_mnda_Id" Association="Self.FK_Gral_tbMoneda_tbSolicitudEfectivo_mnda_Id">
+            <End Role="tbMoneda" EntitySet="tbMoneda" />
+            <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
           </AssociationSet>
           <AssociationSet Name="FK_Gral_tbMunicipio_dep_Codigo" Association="Self.FK_Gral_tbMunicipio_dep_Codigo">
             <End Role="tbDepartamento" EntitySet="tbDepartamento" />
@@ -3353,27 +3419,15 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
           </AssociationSet>
-          <AssociationSet Name="FK_Hijos_Padres" Association="Self.FK_Hijos_Padres">
-            <End Role="Padres" EntitySet="Padres" />
-            <End Role="Hijos" EntitySet="Hijos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Hijos_tbUsuarioCreo" Association="Self.FK_Hijos_tbUsuarioCreo">
+          <AssociationSet Name="FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica" Association="Self.FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="Hijos" EntitySet="Hijos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Hijos_tbUsuarioModifica" Association="Self.FK_Hijos_tbUsuarioModifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="Hijos" EntitySet="Hijos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbBodega_tbEstadoMovimiento_estm_Id" Association="Self.FK_Inv_tbBodega_tbEstadoMovimiento_estm_Id">
-            <End Role="tbEstadoMovimiento" EntitySet="tbEstadoMovimiento" />
             <End Role="tbBodega" EntitySet="tbBodega" />
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbBodega_tbMunicipio_mun_Id" Association="Self.FK_Inv_tbBodega_tbMunicipio_mun_Id">
             <End Role="tbMunicipio" EntitySet="tbMunicipio" />
             <End Role="tbBodega" EntitySet="tbBodega" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbBodega_tbUsuario_usu_Id" Association="Self.FK_Inv_tbBodega_tbUsuario_usu_Id">
+          <AssociationSet Name="FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea" Association="Self.FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbBodega" EntitySet="tbBodega" />
           </AssociationSet>
@@ -3407,6 +3461,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbEntrada_tbTiposEntrada_tent_Id" Association="Self.FK_Inv_tbEntrada_tbTiposEntrada_tent_Id">
             <End Role="tbTipoEntrada" EntitySet="tbTipoEntrada" />
+            <End Role="tbEntrada" EntitySet="tbEntrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea" Association="Self.FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbEntrada" EntitySet="tbEntrada" />
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbEntradaDetalle_tbEntrada_ent_Id" Association="Self.FK_Inv_tbEntradaDetalle_tbEntrada_ent_Id">
@@ -3469,9 +3527,17 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbProducto" EntitySet="tbProducto" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" Association="Self.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+          </AssociationSet>
           <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" Association="Self.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea" Association="Self.FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbProductoSubcategoria_pscat_UsuarioModifica" Association="Self.FK_Inv_tbProductoSubcategoria_pscat_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -3537,29 +3603,17 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbTipoSalida" EntitySet="tbTipoSalida" />
           </AssociationSet>
-          <AssociationSet Name="FK_Padres_tbUsuarioCreo" Association="Self.FK_Padres_tbUsuarioCreo">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="Padres" EntitySet="Padres" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Padres_tbUsuarioModifico" Association="Self.FK_Padres_tbUsuarioModifico">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="Padres" EntitySet="Padres" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbBodega_tbSucursal_bod_Id" Association="Self.FK_Vent_tbBodega_tbSucursal_bod_Id">
             <End Role="tbBodega" EntitySet="tbBodega" />
             <End Role="tbSucursal" EntitySet="tbSucursal" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbCaja_tbArqueoCaja_cja_Id" Association="Self.FK_Vent_tbCaja_tbArqueoCaja_cja_Id">
-            <End Role="tbCaja" EntitySet="tbCaja" />
-            <End Role="tbArqueoCaja" EntitySet="tbArqueoCaja" />
           </AssociationSet>
           <AssociationSet Name="FK_Vent_tbCaja_tbDevolucion_cja_Id" Association="Self.FK_Vent_tbCaja_tbDevolucion_cja_Id">
             <End Role="tbCaja" EntitySet="tbCaja" />
             <End Role="tbDevolucion" EntitySet="tbDevolucion" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbCaja_tbFactura_cja_Id" Association="Self.FK_Vent_tbCaja_tbFactura_cja_Id">
+          <AssociationSet Name="FK_Vent_tbCaja_tbMovimientoCaja_cja_Id" Association="Self.FK_Vent_tbCaja_tbMovimientoCaja_cja_Id">
             <End Role="tbCaja" EntitySet="tbCaja" />
-            <End Role="tbFactura" EntitySet="tbFactura" />
+            <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
           </AssociationSet>
           <AssociationSet Name="FK_Vent_tbCliente_tbExoneracion_clte_Id" Association="Self.FK_Vent_tbCliente_tbExoneracion_clte_Id">
             <End Role="tbCliente" EntitySet="tbCliente" />
@@ -3584,6 +3638,10 @@
           <AssociationSet Name="FK_Vent_tbCuentasBanco_tbPago_bcta_Id" Association="Self.FK_Vent_tbCuentasBanco_tbPago_bcta_Id">
             <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
             <End Role="tbPago" EntitySet="tbPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id" Association="Self.FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id">
+            <End Role="tbDenominacion" EntitySet="tbDenominacion" />
+            <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
           </AssociationSet>
           <AssociationSet Name="FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" Association="Self.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id">
             <End Role="tbDevolucion" EntitySet="tbDevolucion" />
@@ -3636,6 +3694,14 @@
           <AssociationSet Name="FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id" Association="Self.FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id">
             <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
             <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" Association="Self.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id">
+            <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+            <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" Association="Self.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
+            <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+            <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
           </AssociationSet>
           <AssociationSet Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
             <End Role="tbMunicipio" EntitySet="tbMunicipio" />
@@ -3765,8 +3831,6 @@
             <Parameter Name="suc_Id" Mode="In" Type="Int16" />
             <Parameter Name="cja_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="cja_FechaCrea" Mode="In" Type="DateTime" />
-            <Parameter Name="cja_UsuarioModifica" Mode="In" Type="Int32" />
-            <Parameter Name="cja_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbCuentasBanco_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbCuentasBanco_Insert_Result)">
             <Parameter Name="ban_Id" Mode="In" Type="Int16" />
@@ -3852,19 +3916,26 @@
           <FunctionImport Name="UDP_Vent_tbEstadoSolicitudCredito_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Insert_Result)">
           <Parameter Name="escre_Descripcion" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Gral_tbDenominacion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDenominacion_Update_Result)">
+            <Parameter Name="deno_Id" Mode="In" Type="Int16" />
+            <Parameter Name="deno_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="deno_Tipo" Mode="In" Type="Byte" />
+            <Parameter Name="deno_valor" Mode="In" Type="Decimal" />
+            <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+            <Parameter Name="deno_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="deno_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
           <EntitySet Name="tbAccesoRol" EntityType="ERP_ZORZALModel.tbAccesoRol" />
           <EntitySet Name="tbObjeto" EntityType="ERP_ZORZALModel.tbObjeto" />
           <EntitySet Name="tbRol" EntityType="ERP_ZORZALModel.tbRol" />
           <EntitySet Name="tbRolesUsuario" EntityType="ERP_ZORZALModel.tbRolesUsuario" />
           <EntitySet Name="tbUsuario" EntityType="ERP_ZORZALModel.tbUsuario" />
-          <EntitySet Name="Hijos" EntityType="ERP_ZORZALModel.Hijos" />
-          <EntitySet Name="Padres" EntityType="ERP_ZORZALModel.Padres" />
           <EntitySet Name="tbActividadEconomica" EntityType="ERP_ZORZALModel.tbActividadEconomica" />
           <EntitySet Name="tbBanco" EntityType="ERP_ZORZALModel.tbBanco" />
           <EntitySet Name="tbCuentasBanco" EntityType="ERP_ZORZALModel.tbCuentasBanco" />
           <EntitySet Name="tbDenominacion" EntityType="ERP_ZORZALModel.tbDenominacion" />
           <EntitySet Name="tbDepartamento" EntityType="ERP_ZORZALModel.tbDepartamento" />
-          <EntitySet Name="tbEmpleados" EntityType="ERP_ZORZALModel.tbEmpleados" />
+          <EntitySet Name="tbEmpleado" EntityType="ERP_ZORZALModel.tbEmpleado" />
           <EntitySet Name="tbMoneda" EntityType="ERP_ZORZALModel.tbMoneda" />
           <EntitySet Name="tbMunicipio" EntityType="ERP_ZORZALModel.tbMunicipio" />
           <EntitySet Name="tbParametro" EntityType="ERP_ZORZALModel.tbParametro" />
@@ -3886,10 +3957,10 @@
           <EntitySet Name="tbSalidaDetalle" EntityType="ERP_ZORZALModel.tbSalidaDetalle" />
           <EntitySet Name="tbTipoEntrada" EntityType="ERP_ZORZALModel.tbTipoEntrada" />
           <EntitySet Name="tbTipoSalida" EntityType="ERP_ZORZALModel.tbTipoSalida" />
-          <EntitySet Name="tbArqueoCaja" EntityType="ERP_ZORZALModel.tbArqueoCaja" />
           <EntitySet Name="tbCaja" EntityType="ERP_ZORZALModel.tbCaja" />
           <EntitySet Name="tbCliente" EntityType="ERP_ZORZALModel.tbCliente" />
           <EntitySet Name="tbCuponDescuento" EntityType="ERP_ZORZALModel.tbCuponDescuento" />
+          <EntitySet Name="tbDenominacionArqueo" EntityType="ERP_ZORZALModel.tbDenominacionArqueo" />
           <EntitySet Name="tbDevolucion" EntityType="ERP_ZORZALModel.tbDevolucion" />
           <EntitySet Name="tbDevolucionDetalle" EntityType="ERP_ZORZALModel.tbDevolucionDetalle" />
           <EntitySet Name="tbDocumentoFiscal" EntityType="ERP_ZORZALModel.tbDocumentoFiscal" />
@@ -3902,6 +3973,7 @@
           <EntitySet Name="tbFacturaHistorica" EntityType="ERP_ZORZALModel.tbFacturaHistorica" />
           <EntitySet Name="tbListadoPrecioDetalle" EntityType="ERP_ZORZALModel.tbListadoPrecioDetalle" />
           <EntitySet Name="tbListaPrecio" EntityType="ERP_ZORZALModel.tbListaPrecio" />
+          <EntitySet Name="tbMovimientoCaja" EntityType="ERP_ZORZALModel.tbMovimientoCaja" />
           <EntitySet Name="tbNotaCredito" EntityType="ERP_ZORZALModel.tbNotaCredito" />
           <EntitySet Name="tbPago" EntityType="ERP_ZORZALModel.tbPago" />
           <EntitySet Name="tbPedido" EntityType="ERP_ZORZALModel.tbPedido" />
@@ -3953,14 +4025,6 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbActividadEconomica" EntitySet="tbActividadEconomica" />
           </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioCrea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbArqueoCaja" EntitySet="tbArqueoCaja" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioModifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbArqueoCaja" EntitySet="tbArqueoCaja" />
-          </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbCaja_cja_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCaja_cja_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbCaja" EntitySet="tbCaja" />
@@ -3984,6 +4048,14 @@
           <AssociationSet Name="FK_Acce_tbUsuario_tbDenominacion_deno_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacion_deno_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbDenominacion" EntitySet="tbDenominacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
           </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -4049,6 +4121,14 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbMoneda" EntitySet="tbMoneda" />
           </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+          </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
@@ -4097,6 +4177,10 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbSolicitudCredito" EntitySet="tbSolicitudCredito" />
           </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
+          </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
@@ -4104,6 +4188,10 @@
           <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
           </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -4143,7 +4231,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea" Association="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbEmpleados" EntitySet="tbEmpleados" />
+            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
           </AssociationSet>
           <AssociationSet Name="FK_Gral_tbMunicipio_tbUsuario_mun_UsuarioCrea" Association="ERP_ZORZALModel.FK_Gral_tbMunicipio_tbUsuario_mun_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -4165,21 +4253,21 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
           </AssociationSet>
-          <AssociationSet Name="FK_Hijos_tbUsuarioCreo" Association="ERP_ZORZALModel.FK_Hijos_tbUsuarioCreo">
+          <AssociationSet Name="FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="Hijos" EntitySet="Hijos" />
+            <End Role="tbBodega" EntitySet="tbBodega" />
           </AssociationSet>
-          <AssociationSet Name="FK_Hijos_tbUsuarioModifica" Association="ERP_ZORZALModel.FK_Hijos_tbUsuarioModifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="Hijos" EntitySet="Hijos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbBodega_tbUsuario_usu_Id" Association="ERP_ZORZALModel.FK_Inv_tbBodega_tbUsuario_usu_Id">
+          <AssociationSet Name="FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbBodega" EntitySet="tbBodega" />
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbBox" EntitySet="tbBox" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEntrada" EntitySet="tbEntrada" />
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbEstadoMovimiento_tbUsuario_estm_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbEstadoMovimiento_tbUsuario_estm_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -4201,9 +4289,17 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbProducto" EntitySet="tbProducto" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+          </AssociationSet>
           <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbProductoSubcategoria_pscat_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -4232,14 +4328,6 @@
           <AssociationSet Name="FK_Inv_tbTipoSalida_tbUsuario_tsal_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbTipoSalida_tbUsuario_tsal_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbTipoSalida" EntitySet="tbTipoSalida" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Padres_tbUsuarioCreo" Association="ERP_ZORZALModel.FK_Padres_tbUsuarioCreo">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="Padres" EntitySet="Padres" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Padres_tbUsuarioModifico" Association="ERP_ZORZALModel.FK_Padres_tbUsuarioModifico">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="Padres" EntitySet="Padres" />
           </AssociationSet>
           <AssociationSet Name="FK_Vent_tbCliente_tbUsuario_usu_Id_Crea" Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbUsuario_usu_Id_Crea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -4273,10 +4361,6 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbPuntoEmisionDetalle" EntitySet="tbPuntoEmisionDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK_Hijos_Padres" Association="ERP_ZORZALModel.FK_Hijos_Padres">
-            <End Role="Padres" EntitySet="Padres" />
-            <End Role="Hijos" EntitySet="Hijos" />
-          </AssociationSet>
           <AssociationSet Name="FK_Gral_tbBanco_tbCuentasBanco_ban_Id" Association="ERP_ZORZALModel.FK_Gral_tbBanco_tbCuentasBanco_ban_Id">
             <End Role="tbBanco" EntitySet="tbBanco" />
             <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
@@ -4297,13 +4381,21 @@
             <End Role="tbMoneda" EntitySet="tbMoneda" />
             <End Role="tbDenominacion" EntitySet="tbDenominacion" />
           </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id" Association="ERP_ZORZALModel.FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id">
+            <End Role="tbDenominacion" EntitySet="tbDenominacion" />
+            <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
+          </AssociationSet>
           <AssociationSet Name="FK_Gral_tbMunicipio_dep_Codigo" Association="ERP_ZORZALModel.FK_Gral_tbMunicipio_dep_Codigo">
             <End Role="tbDepartamento" EntitySet="tbDepartamento" />
             <End Role="tbMunicipio" EntitySet="tbMunicipio" />
           </AssociationSet>
           <AssociationSet Name="FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id" Association="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id">
             <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
-            <End Role="tbEmpleados" EntitySet="tbEmpleados" />
+            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbMoneda_tbSolicitudEfectivo_mnda_Id" Association="ERP_ZORZALModel.FK_Gral_tbMoneda_tbSolicitudEfectivo_mnda_Id">
+            <End Role="tbMoneda" EntitySet="tbMoneda" />
+            <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
           </AssociationSet>
           <AssociationSet Name="FK_Gral_tbParametro_tbMoneda_mnda_Id" Association="ERP_ZORZALModel.FK_Gral_tbParametro_tbMoneda_mnda_Id">
             <End Role="tbMoneda" EntitySet="tbMoneda" />
@@ -4332,10 +4424,6 @@
           <AssociationSet Name="FK_Inv_tbProducto_Gral_tbUnidadesMedida_uni_Id" Association="ERP_ZORZALModel.FK_Inv_tbProducto_Gral_tbUnidadesMedida_uni_Id">
             <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
             <End Role="tbProducto" EntitySet="tbProducto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbBodega_tbEstadoMovimiento_estm_Id" Association="ERP_ZORZALModel.FK_Inv_tbBodega_tbEstadoMovimiento_estm_Id">
-            <End Role="tbEstadoMovimiento" EntitySet="tbEstadoMovimiento" />
-            <End Role="tbBodega" EntitySet="tbBodega" />
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbBodegaDetalle_tbbodega_bod_Id" Association="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbbodega_bod_Id">
             <End Role="tbBodega" EntitySet="tbBodega" />
@@ -4449,17 +4537,13 @@
             <End Role="tbSalida" EntitySet="tbSalida" />
             <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbCaja_tbArqueoCaja_cja_Id" Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbArqueoCaja_cja_Id">
-            <End Role="tbCaja" EntitySet="tbCaja" />
-            <End Role="tbArqueoCaja" EntitySet="tbArqueoCaja" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbCaja_tbDevolucion_cja_Id" Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id">
             <End Role="tbCaja" EntitySet="tbCaja" />
             <End Role="tbDevolucion" EntitySet="tbDevolucion" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbCaja_tbFactura_cja_Id" Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id">
+          <AssociationSet Name="FK_Vent_tbCaja_tbMovimientoCaja_cja_Id" Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbMovimientoCaja_cja_Id">
             <End Role="tbCaja" EntitySet="tbCaja" />
-            <End Role="tbFactura" EntitySet="tbFactura" />
+            <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
           </AssociationSet>
           <AssociationSet Name="FK_Vent_tbSucursal_tbCaja_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id">
             <End Role="tbSucursal" EntitySet="tbSucursal" />
@@ -4488,6 +4572,10 @@
           <AssociationSet Name="FK_Vent_tbSucursal_tbCuponDescuento_suc_Codigo" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_suc_Codigo">
             <End Role="tbSucursal" EntitySet="tbSucursal" />
             <End Role="tbCuponDescuento" EntitySet="tbCuponDescuento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" Association="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id">
+            <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+            <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
           </AssociationSet>
           <AssociationSet Name="FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" Association="ERP_ZORZALModel.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id">
             <End Role="tbDevolucion" EntitySet="tbDevolucion" />
@@ -4545,6 +4633,10 @@
             <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
             <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
           </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" Association="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
+            <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+            <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
+          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
             <End Role="tbSucursal" EntitySet="tbSucursal" />
             <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
@@ -4573,15 +4665,6 @@
             <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
           </AssociationSet>
-          <FunctionImport Name="UDP_Gral_tbDenominacion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDenominacion_Update_Result)">
-            <Parameter Name="deno_Id" Mode="In" Type="Int16" />
-            <Parameter Name="deno_Descripcion" Mode="In" Type="String" />
-            <Parameter Name="deno_Tipo" Mode="In" Type="Byte" />
-            <Parameter Name="deno_valor" Mode="In" Type="Decimal" />
-            <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
-            <Parameter Name="deno_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="deno_FechaCrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -4682,6 +4765,12 @@
         <ComplexType Name="UDP_Gral_tbTipoIdentificacion_Update_Result">
           <Property Type="Byte" Name="MensajeError" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbEstadoSolicitudCredito_Insert_Result">
+          <Property Type="Byte" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbDenominacion_Update_Result">
+          <Property Type="Int16" Name="MensajeError" Nullable="false" />
+        </ComplexType>
         <EntityType Name="tbAccesoRol">
           <Key>
             <PropertyRef Name="acrol_Id" />
@@ -4708,6 +4797,7 @@
           <Property Name="obj_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="obj_UsuarioModifica" Type="Int32" />
           <Property Name="obj_FechaModifica" Type="DateTime" Precision="3" />
+          <Property Name="obj_Estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="tbAccesoRol" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" FromRole="tbObjeto" ToRole="tbAccesoRol" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" FromRole="tbObjeto" ToRole="tbUsuario" />
         </EntityType>
@@ -4721,6 +4811,7 @@
           <Property Name="rol_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="rol_UsuarioModifica" Type="Int32" />
           <Property Name="rol_FechaModifica" Type="DateTime" Precision="3" />
+          <Property Name="rol_Estado" Type="Byte" />
           <NavigationProperty Name="tbAccesoRol" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbRoles_Rol_Id" FromRole="tbRol" ToRole="tbAccesoRol" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbRol_tbUsuario_rol_UsuarioCrea" FromRole="tbRol" ToRole="tbUsuario" />
           <NavigationProperty Name="tbRolesUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbRol_rol_Id" FromRole="tbRol" ToRole="tbRolesUsuario" />
@@ -4760,14 +4851,14 @@
           <NavigationProperty Name="tbRolesUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbUsuario_rolu_UsuarioCrea" FromRole="tbUsuario" ToRole="tbRolesUsuario" />
           <NavigationProperty Name="tbActividadEconomica" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioCrea" FromRole="tbUsuario" ToRole="tbActividadEconomica" />
           <NavigationProperty Name="tbActividadEconomica1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioModifica" FromRole="tbUsuario" ToRole="tbActividadEconomica" />
-          <NavigationProperty Name="tbArqueoCaja" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioCrea" FromRole="tbUsuario" ToRole="tbArqueoCaja" />
-          <NavigationProperty Name="tbArqueoCaja1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioModifica" FromRole="tbUsuario" ToRole="tbArqueoCaja" />
           <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCaja_cja_UsuarioCrea" FromRole="tbUsuario" ToRole="tbCaja" />
           <NavigationProperty Name="tbCaja1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCaja_cja_UsuarioModifica" FromRole="tbUsuario" ToRole="tbCaja" />
           <NavigationProperty Name="tbCuponDescuento" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCuponDescuanto_cdto_UsuarioModifica" FromRole="tbUsuario" ToRole="tbCuponDescuento" />
           <NavigationProperty Name="tbCuponDescuento1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCuponDescuento_cdto_UsuarioCrea" FromRole="tbUsuario" ToRole="tbCuponDescuento" />
           <NavigationProperty Name="tbDenominacion" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacion_deno_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDenominacion" />
           <NavigationProperty Name="tbDenominacion1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacion_deno_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDenominacion" />
+          <NavigationProperty Name="tbDenominacionArqueo" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDenominacionArqueo" />
+          <NavigationProperty Name="tbDenominacionArqueo1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDenominacionArqueo" />
           <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDevolucion" />
           <NavigationProperty Name="tbDevolucion1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDevolucion" />
           <NavigationProperty Name="tbDevolucionDetalle" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDevolucionDetalle" />
@@ -4784,6 +4875,8 @@
           <NavigationProperty Name="tbListaPrecio1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioModifica" FromRole="tbUsuario" ToRole="tbListaPrecio" />
           <NavigationProperty Name="tbMoneda" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMoneda_mnda_UsuarioCrea" FromRole="tbUsuario" ToRole="tbMoneda" />
           <NavigationProperty Name="tbMoneda1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMoneda_mnda_UsuarioModifica" FromRole="tbUsuario" ToRole="tbMoneda" />
+          <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioCrea" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
+          <NavigationProperty Name="tbMovimientoCaja1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
           <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea" FromRole="tbUsuario" ToRole="tbNotaCredito" />
           <NavigationProperty Name="tbNotaCredito1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" FromRole="tbUsuario" ToRole="tbNotaCredito" />
           <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea" FromRole="tbUsuario" ToRole="tbPago" />
@@ -4796,8 +4889,10 @@
           <NavigationProperty Name="tbPedidoDetalle1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPedidoDetalle_pedd_UsuarioModifica" FromRole="tbUsuario" ToRole="tbPedidoDetalle" />
           <NavigationProperty Name="tbSolicitudCredito" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudCredito_cred_UsuarioCrea" FromRole="tbUsuario" ToRole="tbSolicitudCredito" />
           <NavigationProperty Name="tbSolicitudCredito1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudCredito_cred_UsuarioModifica" FromRole="tbUsuario" ToRole="tbSolicitudCredito" />
+          <NavigationProperty Name="tbSolicitudEfectivo" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioCrea" FromRole="tbUsuario" ToRole="tbSolicitudEfectivo" />
           <NavigationProperty Name="tbSolicitudEfectivoDetalle" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioCrea" FromRole="tbUsuario" ToRole="tbSolicitudEfectivoDetalle" />
           <NavigationProperty Name="tbSolicitudEfectivoDetalle1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioModifica" FromRole="tbUsuario" ToRole="tbSolicitudEfectivoDetalle" />
+          <NavigationProperty Name="tbSolicitudEfectivo1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica" FromRole="tbUsuario" ToRole="tbSolicitudEfectivo" />
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea" FromRole="tbUsuario" ToRole="tbSucursal" />
           <NavigationProperty Name="tbSucursal1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuarioModifica" FromRole="tbUsuario" ToRole="tbSucursal" />
           <NavigationProperty Name="tbTipoIdentificacion" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioCrea" FromRole="tbUsuario" ToRole="tbTipoIdentificacion" />
@@ -4807,31 +4902,31 @@
           <NavigationProperty Name="tbCuentasBanco" Relationship="ERP_ZORZALModel.FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbCuentasBanco" />
           <NavigationProperty Name="tbCuentasBanco1" Relationship="ERP_ZORZALModel.FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbCuentasBanco" />
           <NavigationProperty Name="tbDepartamento" Relationship="ERP_ZORZALModel.FK_Gral_tbDepartamento_tbUsuario_dep_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDepartamento" />
-          <NavigationProperty Name="tbEmpleados" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEmpleados" />
+          <NavigationProperty Name="tbEmpleado" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEmpleado" />
           <NavigationProperty Name="tbMunicipio" Relationship="ERP_ZORZALModel.FK_Gral_tbMunicipio_tbUsuario_mun_UsuarioCrea" FromRole="tbUsuario" ToRole="tbMunicipio" />
           <NavigationProperty Name="tbParametro" Relationship="ERP_ZORZALModel.FK_Gral_tbParametro_tbUsuario_par_UsuarioCrea" FromRole="tbUsuario" ToRole="tbParametro" />
           <NavigationProperty Name="tbUnidadMedida" Relationship="ERP_ZORZALModel.FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioCrea" FromRole="tbUsuario" ToRole="tbUnidadMedida" />
           <NavigationProperty Name="tbUnidadMedida1" Relationship="ERP_ZORZALModel.FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioModifica" FromRole="tbUsuario" ToRole="tbUnidadMedida" />
           <NavigationProperty Name="tbUnidadMedida2" Relationship="ERP_ZORZALModel.FK_Gral_tbUnidadMedida_uni_UsuarioModifica" FromRole="tbUsuario" ToRole="tbUnidadMedida" />
-          <NavigationProperty Name="Hijos" Relationship="ERP_ZORZALModel.FK_Hijos_tbUsuarioCreo" FromRole="tbUsuario" ToRole="Hijos" />
-          <NavigationProperty Name="Hijos1" Relationship="ERP_ZORZALModel.FK_Hijos_tbUsuarioModifica" FromRole="tbUsuario" ToRole="Hijos" />
-          <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_tbUsuario_usu_Id" FromRole="tbUsuario" ToRole="tbBodega" />
+          <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica" FromRole="tbUsuario" ToRole="tbBodega" />
+          <NavigationProperty Name="tbBodega1" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBodega" />
           <NavigationProperty Name="tbBox" Relationship="ERP_ZORZALModel.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBox" />
+          <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEntrada" />
           <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoMovimiento_tbUsuario_estm_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEstadoMovimiento" />
           <NavigationProperty Name="tbInventarioFisico" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisico_tbUsuario_invf_UsuarioCrea" FromRole="tbUsuario" ToRole="tbInventarioFisico" />
           <NavigationProperty Name="tbInventarioFisicoDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbUsuario_invfd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbInventarioFisicoDetalle" />
           <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_prod_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProducto" />
           <NavigationProperty Name="tbProducto1" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProducto" />
-          <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
-          <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProductoSubcategoria" />
+          <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
+          <NavigationProperty Name="tbProductoCategoria1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
+          <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoSubcategoria" />
+          <NavigationProperty Name="tbProductoSubcategoria1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProductoSubcategoria" />
           <NavigationProperty Name="tbProveedor" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProveedor" />
           <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_Sal_UsuarioModifica" FromRole="tbUsuario" ToRole="tbSalida" />
           <NavigationProperty Name="tbSalida1" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbUsuario_sal_UsuarioCrea" FromRole="tbUsuario" ToRole="tbSalida" />
           <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea" FromRole="tbUsuario" ToRole="tbSalidaDetalle" />
           <NavigationProperty Name="tbTipoEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoEntrada_tent_UsuarioModifica" FromRole="tbUsuario" ToRole="tbTipoEntrada" />
           <NavigationProperty Name="tbTipoSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoSalida_tbUsuario_tsal_UsuarioCrea" FromRole="tbUsuario" ToRole="tbTipoSalida" />
-          <NavigationProperty Name="Padres" Relationship="ERP_ZORZALModel.FK_Padres_tbUsuarioCreo" FromRole="tbUsuario" ToRole="Padres" />
-          <NavigationProperty Name="Padres1" Relationship="ERP_ZORZALModel.FK_Padres_tbUsuarioModifico" FromRole="tbUsuario" ToRole="Padres" />
           <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbCliente" />
           <NavigationProperty Name="tbCliente1" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbCliente" />
           <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbFactura" />
@@ -4840,38 +4935,6 @@
           <NavigationProperty Name="tbPuntoEmision1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmision" />
           <NavigationProperty Name="tbPuntoEmisionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
           <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
-        </EntityType>
-        <EntityType Name="Hijos">
-          <Key>
-            <PropertyRef Name="CodPadre" />
-            <PropertyRef Name="CodHijo" />
-          </Key>
-          <Property Name="CodPadre" Type="Int32" Nullable="false" />
-          <Property Name="CodHijo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NombresHijo" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ApellidosHijo" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="FechaCreo" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UsuarioCreo" Type="Int32" Nullable="false" />
-          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
-          <Property Name="UsuarioModifico" Type="Int32" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Hijos_tbUsuarioCreo" FromRole="Hijos" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Hijos_tbUsuarioModifica" FromRole="Hijos" ToRole="tbUsuario" />
-          <NavigationProperty Name="Padres" Relationship="ERP_ZORZALModel.FK_Hijos_Padres" FromRole="Hijos" ToRole="Padres" />
-        </EntityType>
-        <EntityType Name="Padres">
-          <Key>
-            <PropertyRef Name="CodPadre" />
-          </Key>
-          <Property Name="CodPadre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NombresPadre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ApellidosPadre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="FechaCreo" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UsuarioCreo" Type="Int32" Nullable="false" />
-          <Property Name="FechaModifico" Type="DateTime" Precision="3" />
-          <Property Name="UsuarioModifico" Type="Int32" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Padres_tbUsuarioCreo" FromRole="Padres" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Padres_tbUsuarioModifico" FromRole="Padres" ToRole="tbUsuario" />
-          <NavigationProperty Name="Hijos" Relationship="ERP_ZORZALModel.FK_Hijos_Padres" FromRole="Padres" ToRole="Hijos" />
         </EntityType>
         <EntityType Name="tbActividadEconomica">
           <Key>
@@ -4941,6 +5004,7 @@
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacion_deno_UsuarioModifica" FromRole="tbDenominacion" ToRole="tbUsuario" />
           <NavigationProperty Name="tbSolicitudEfectivoDetalle" Relationship="ERP_ZORZALModel.FK_Gral_tbDenominacion_tbSolicitudEfectivoDetalle_deno_Id" FromRole="tbDenominacion" ToRole="tbSolicitudEfectivoDetalle" />
           <NavigationProperty Name="tbMoneda" Relationship="ERP_ZORZALModel.FK_Gral_tbMoneda_tbDenominacion_mnda_Id" FromRole="tbDenominacion" ToRole="tbMoneda" />
+          <NavigationProperty Name="tbDenominacionArqueo" Relationship="ERP_ZORZALModel.FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id" FromRole="tbDenominacion" ToRole="tbDenominacionArqueo" />
         </EntityType>
         <EntityType Name="tbDepartamento">
           <Key>
@@ -4955,7 +5019,7 @@
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Gral_tbDepartamento_tbUsuario_dep_UsuarioCrea" FromRole="tbDepartamento" ToRole="tbUsuario" />
           <NavigationProperty Name="tbMunicipio" Relationship="ERP_ZORZALModel.FK_Gral_tbMunicipio_dep_Codigo" FromRole="tbDepartamento" ToRole="tbMunicipio" />
         </EntityType>
-        <EntityType Name="tbEmpleados">
+        <EntityType Name="tbEmpleado">
           <Key>
             <PropertyRef Name="emp_Id" />
           </Key>
@@ -4977,8 +5041,8 @@
           <Property Name="emp_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="emp_UsuarioModifica" Type="Int32" />
           <Property Name="emp_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea" FromRole="tbEmpleados" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbTipoIdentificacion" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id" FromRole="tbEmpleados" ToRole="tbTipoIdentificacion" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea" FromRole="tbEmpleado" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbTipoIdentificacion" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id" FromRole="tbEmpleado" ToRole="tbTipoIdentificacion" />
         </EntityType>
         <EntityType Name="tbMoneda">
           <Key>
@@ -4995,6 +5059,7 @@
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMoneda_mnda_UsuarioModifica" FromRole="tbMoneda" ToRole="tbUsuario" />
           <NavigationProperty Name="tbCuentasBanco" Relationship="ERP_ZORZALModel.FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id" FromRole="tbMoneda" ToRole="tbCuentasBanco" />
           <NavigationProperty Name="tbDenominacion" Relationship="ERP_ZORZALModel.FK_Gral_tbMoneda_tbDenominacion_mnda_Id" FromRole="tbMoneda" ToRole="tbDenominacion" />
+          <NavigationProperty Name="tbSolicitudEfectivo" Relationship="ERP_ZORZALModel.FK_Gral_tbMoneda_tbSolicitudEfectivo_mnda_Id" FromRole="tbMoneda" ToRole="tbSolicitudEfectivo" />
           <NavigationProperty Name="tbParametro" Relationship="ERP_ZORZALModel.FK_Gral_tbParametro_tbMoneda_mnda_Id" FromRole="tbMoneda" ToRole="tbParametro" />
         </EntityType>
         <EntityType Name="tbMunicipio">
@@ -5049,7 +5114,7 @@
           <Property Name="tpi_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioCrea" FromRole="tbTipoIdentificacion" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioModifica" FromRole="tbTipoIdentificacion" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbEmpleados" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id" FromRole="tbTipoIdentificacion" ToRole="tbEmpleados" />
+          <NavigationProperty Name="tbEmpleado" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id" FromRole="tbTipoIdentificacion" ToRole="tbEmpleado" />
           <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Gral_tbTipoIdentificacion_tbCliente_tpi_Id" FromRole="tbTipoIdentificacion" ToRole="tbCliente" />
         </EntityType>
         <EntityType Name="tbUnidadMedida">
@@ -5079,16 +5144,15 @@
           <Property Name="bod_Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="bod_Correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="bod_Telefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
-          <Property Name="usu_Id" Type="Int32" />
           <Property Name="mun_Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="bod_EsActiva" Type="Byte" Nullable="false" />
           <Property Name="bod_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="bod_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="bod_UsuarioModifica" Type="Int32" />
           <Property Name="bod_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_tbUsuario_usu_Id" FromRole="tbBodega" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica" FromRole="tbBodega" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea" FromRole="tbBodega" ToRole="tbUsuario" />
           <NavigationProperty Name="tbMunicipio" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_tbMunicipio_mun_Id" FromRole="tbBodega" ToRole="tbMunicipio" />
-          <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_tbEstadoMovimiento_estm_Id" FromRole="tbBodega" ToRole="tbEstadoMovimiento" />
           <NavigationProperty Name="tbBodegaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbbodega_bod_Id" FromRole="tbBodega" ToRole="tbBodegaDetalle" />
           <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_BodegaDestino" FromRole="tbBodega" ToRole="tbEntrada" />
           <NavigationProperty Name="tbEntrada1" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbEntrada" />
@@ -5133,14 +5197,14 @@
             <PropertyRef Name="ent_Id" />
           </Key>
           <Property Name="ent_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ent_NumeroFormato" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ent_NumeroFormato" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ent_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="bod_Id" Type="Int32" Nullable="false" />
           <Property Name="estm_Id" Type="Byte" Nullable="false" />
           <Property Name="prov_Id" Type="Int32" Nullable="false" />
-          <Property Name="ent_FacturaCompra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="ent_FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="fact_Id" Type="Int32" Nullable="false" />
+          <Property Name="ent_FacturaCompra" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ent_FechaCompra" Type="DateTime" Precision="3" />
+          <Property Name="fact_Id" Type="Int32" />
           <Property Name="ent_RazonDevolucion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ent_BodegaDestino" Type="Int32" />
           <Property Name="tent_Id" Type="Byte" Nullable="false" />
@@ -5148,6 +5212,7 @@
           <Property Name="ent_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ent_UsuarioModifica" Type="Int32" />
           <Property Name="ent_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea" FromRole="tbEntrada" ToRole="tbUsuario" />
           <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_BodegaDestino" FromRole="tbEntrada" ToRole="tbBodega" />
           <NavigationProperty Name="tbBodega1" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbBodega_bod_Id" FromRole="tbEntrada" ToRole="tbBodega" />
           <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbEstadoMovimiento_estm_Id" FromRole="tbEntrada" ToRole="tbEstadoMovimiento" />
@@ -5193,7 +5258,6 @@
           <Property Name="estm_UsuarioModifica" Type="Int32" />
           <Property Name="estm_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoMovimiento_tbUsuario_estm_UsuarioCrea" FromRole="tbEstadoMovimiento" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_tbEstadoMovimiento_estm_Id" FromRole="tbEstadoMovimiento" ToRole="tbBodega" />
           <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbEstadoMovimiento_estm_Id" FromRole="tbEstadoMovimiento" ToRole="tbEntrada" />
           <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbEstadoMovimiento_estm_Id" FromRole="tbEstadoMovimiento" ToRole="tbProductoSubcategoria" />
           <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbEstadoMovimiento_estm_Id" FromRole="tbEstadoMovimiento" ToRole="tbSalida" />
@@ -5233,7 +5297,7 @@
           <Property Name="prod_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="prod_UsuarioModifica" Type="Int32" />
           <Property Name="prod_FechaModifica" Type="DateTime" Precision="3" />
-          <Property Name="prod_EsActivo" Type="Boolean" />
+          <Property Name="prod_EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="prod_Razon_Inactivacion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_prod_UsuarioModifica" FromRole="tbProducto" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea" FromRole="tbProducto" ToRole="tbUsuario" />
@@ -5258,7 +5322,8 @@
           <Property Name="pcat_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="pcat_UsuarioModifica" Type="Int32" />
           <Property Name="pcat_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
           <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoCategoria" ToRole="tbProductoSubcategoria" />
         </EntityType>
         <EntityType Name="tbProductoSubcategoria">
@@ -5273,7 +5338,8 @@
           <Property Name="pscat_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="pscat_UsuarioModifica" Type="Int32" />
           <Property Name="pscat_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioModifica" FromRole="tbProductoSubcategoria" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea" FromRole="tbProductoSubcategoria" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioModifica" FromRole="tbProductoSubcategoria" ToRole="tbUsuario" />
           <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbEstadoMovimiento_estm_Id" FromRole="tbProductoSubcategoria" ToRole="tbEstadoMovimiento" />
           <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProducto" />
           <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProductoCategoria" />
@@ -5362,35 +5428,11 @@
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoSalida_tbUsuario_tsal_UsuarioCrea" FromRole="tbTipoSalida" ToRole="tbUsuario" />
           <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoSalida_tsal_Id" FromRole="tbTipoSalida" ToRole="tbSalida" />
         </EntityType>
-        <EntityType Name="tbArqueoCaja">
-          <Key>
-            <PropertyRef Name="aqcja_Id" />
-          </Key>
-          <Property Name="aqcja_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cja_Id" Type="Int16" Nullable="false" />
-          <Property Name="aqcja_Fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="aqcja_FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="aqcja_FechaFin" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="aqcja_SaldoInicial" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="aqcja_SaldoFinal" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="aqcja_MontoEfectivo" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="aqcja_MontoCheque" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="aqcja_MontoTCoTD" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="aqcja_MontoNotaCredito" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="aqcja_MontoCupon" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="aqcja_UsuarioCrea" Type="Int32" Nullable="false" />
-          <Property Name="aqcja_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="aqcja_UsuarioModifica" Type="Int32" />
-          <Property Name="aqcja_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioCrea" FromRole="tbArqueoCaja" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioModifica" FromRole="tbArqueoCaja" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbArqueoCaja_cja_Id" FromRole="tbArqueoCaja" ToRole="tbCaja" />
-        </EntityType>
         <EntityType Name="tbCaja">
           <Key>
             <PropertyRef Name="cja_Id" />
           </Key>
-          <Property Name="cja_Id" Type="Int16" Nullable="false" />
+          <Property Name="cja_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="suc_Id" Type="Int16" Nullable="false" />
           <Property Name="cja_UsuarioCrea" Type="Int32" Nullable="false" />
@@ -5399,9 +5441,8 @@
           <Property Name="cja_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCaja_cja_UsuarioCrea" FromRole="tbCaja" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCaja_cja_UsuarioModifica" FromRole="tbCaja" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbArqueoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbArqueoCaja_cja_Id" FromRole="tbCaja" ToRole="tbArqueoCaja" />
           <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" FromRole="tbCaja" ToRole="tbDevolucion" />
-          <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" FromRole="tbCaja" ToRole="tbFactura" />
+          <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbMovimientoCaja_cja_Id" FromRole="tbCaja" ToRole="tbMovimientoCaja" />
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id" FromRole="tbCaja" ToRole="tbSucursal" />
         </EntityType>
         <EntityType Name="tbCliente">
@@ -5467,6 +5508,24 @@
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCuponDescuento_cdto_UsuarioCrea" FromRole="tbCuponDescuento" ToRole="tbUsuario" />
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_suc_Codigo" FromRole="tbCuponDescuento" ToRole="tbSucursal" />
         </EntityType>
+        <EntityType Name="tbDenominacionArqueo">
+          <Key>
+            <PropertyRef Name="arqde_Id" />
+          </Key>
+          <Property Name="arqde_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mocja_Id" Type="Int32" Nullable="false" />
+          <Property Name="deno_Id" Type="Int16" Nullable="false" />
+          <Property Name="arqde_CantidadDenominacion" Type="Int16" Nullable="false" />
+          <Property Name="arqde_MontoDenominacion" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="arqde_UsuarioCrea" Type="Int32" />
+          <Property Name="arqde_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="arqde_UsuarioModifica" Type="Int32" />
+          <Property Name="arqde_FechaModifica" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioCrea" FromRole="tbDenominacionArqueo" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica" FromRole="tbDenominacionArqueo" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbDenominacion" Relationship="ERP_ZORZALModel.FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id" FromRole="tbDenominacionArqueo" ToRole="tbDenominacion" />
+          <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" FromRole="tbDenominacionArqueo" ToRole="tbMovimientoCaja" />
+        </EntityType>
         <EntityType Name="tbDevolucion">
           <Key>
             <PropertyRef Name="dev_Id" />
@@ -5508,7 +5567,7 @@
           <Key>
             <PropertyRef Name="dfisc_Id" />
           </Key>
-          <Property Name="dfisc_Id" Type="Byte" Nullable="false" />
+          <Property Name="dfisc_Id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="dfisc_Descripcion" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="dfisc_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="dfisc_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
@@ -5561,7 +5620,7 @@
           <Key>
             <PropertyRef Name="exo_Id" />
           </Key>
-          <Property Name="exo_Id" Type="Int32" Nullable="false" />
+          <Property Name="exo_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="exo_Documento" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="exo_ExoneracionActiva" Type="Boolean" Nullable="false" />
           <Property Name="exo_FechaInicialVigencia" Type="DateTime" Nullable="false" Precision="0" />
@@ -5601,7 +5660,6 @@
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Crea" FromRole="tbFactura" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Modifica" FromRole="tbFactura" ToRole="tbUsuario" />
           <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbSalida" />
-          <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" FromRole="tbFactura" ToRole="tbCaja" />
           <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id" FromRole="tbFactura" ToRole="tbCliente" />
           <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" FromRole="tbFactura" ToRole="tbDevolucion" />
           <NavigationProperty Name="tbEstadoFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo" FromRole="tbFactura" ToRole="tbEstadoFactura" />
@@ -5676,6 +5734,28 @@
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioModifica" FromRole="tbListaPrecio" ToRole="tbUsuario" />
           <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id" FromRole="tbListaPrecio" ToRole="tbListadoPrecioDetalle" />
         </EntityType>
+        <EntityType Name="tbMovimientoCaja">
+          <Key>
+            <PropertyRef Name="mocja_Id" />
+          </Key>
+          <Property Name="mocja_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cja_Id" Type="Int16" Nullable="false" />
+          <Property Name="mocja_FechaApetura" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="mocja_UsuarioApertura" Type="Int32" />
+          <Property Name="mocja_FechaArqueo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="mocja_UsuarioArquea" Type="Int32" />
+          <Property Name="mocja_FechaAceptacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="mocja_UsuarioAceptacion" Type="Int32" />
+          <Property Name="mocja_UsuarioCrea" Type="Int32" />
+          <Property Name="mocja_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="mocja_UsuarioModifica" Type="Int32" />
+          <Property Name="mocja_FechaModifica" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioCrea" FromRole="tbMovimientoCaja" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica" FromRole="tbMovimientoCaja" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbMovimientoCaja_cja_Id" FromRole="tbMovimientoCaja" ToRole="tbCaja" />
+          <NavigationProperty Name="tbDenominacionArqueo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbDenominacionArqueo" />
+          <NavigationProperty Name="tbSolicitudEfectivo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbSolicitudEfectivo" />
+        </EntityType>
         <EntityType Name="tbNotaCredito">
           <Key>
             <PropertyRef Name="nocre_Id" />
@@ -5693,7 +5773,7 @@
           <Property Name="nocre_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="nocre_UsuarioModifica" Type="Int32" />
           <Property Name="nocre_FechaModifica" Type="DateTime" Precision="3" />
-          <Property Name="nocre_Estado" Type="Byte" Nullable="false" />
+          <Property Name="nocre_Estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea" FromRole="tbNotaCredito" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" FromRole="tbNotaCredito" ToRole="tbUsuario" />
           <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbNotaCredito" ToRole="tbCliente" />
@@ -5769,7 +5849,7 @@
           <Key>
             <PropertyRef Name="pemi_Id" />
           </Key>
-          <Property Name="pemi_Id" Type="Int32" Nullable="false" />
+          <Property Name="pemi_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="pemi_NumeroCAI" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
           <Property Name="pemi_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="pemi_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
@@ -5787,7 +5867,7 @@
           </Key>
           <Property Name="pemid_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="pemi_Id" Type="Int32" Nullable="false" />
-          <Property Name="dfisc_Id" Type="Byte" Nullable="false" />
+          <Property Name="dfisc_Id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="pemid_RangoInicio" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="pemid_RangoFinal" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="pemid_FechaLimite" Type="DateTime" Nullable="false" Precision="0" />
@@ -5828,13 +5908,20 @@
             <PropertyRef Name="solef_Id" />
           </Key>
           <Property Name="solef_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cja_Id" Type="Int16" Nullable="false" />
-          <Property Name="solef_MontoSolicitud" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="mocja_Id" Type="Int32" Nullable="false" />
+          <Property Name="solef_EsApertura" Type="Boolean" />
+          <Property Name="solef_FechaEntrega" Type="DateTime" Precision="3" />
+          <Property Name="solef_UsuarioEntrega" Type="Int32" />
           <Property Name="mnda_Id" Type="Int16" Nullable="false" />
+          <Property Name="solef_EsAnulada" Type="Boolean" Nullable="false" />
           <Property Name="solef_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="solef_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="solef_UsuarioModifica" Type="Int32" />
           <Property Name="solef_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioCrea" FromRole="tbSolicitudEfectivo" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica" FromRole="tbSolicitudEfectivo" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbMoneda" Relationship="ERP_ZORZALModel.FK_Gral_tbMoneda_tbSolicitudEfectivo_mnda_Id" FromRole="tbSolicitudEfectivo" ToRole="tbMoneda" />
+          <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" FromRole="tbSolicitudEfectivo" ToRole="tbMovimientoCaja" />
           <NavigationProperty Name="tbSolicitudEfectivoDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbSolicitudEfectivo_tbSolicitudEfectivoDetalle_solef_Id" FromRole="tbSolicitudEfectivo" ToRole="tbSolicitudEfectivoDetalle" />
         </EntityType>
         <EntityType Name="tbSolicitudEfectivoDetalle">
@@ -5844,8 +5931,9 @@
           <Property Name="soled_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="solef_Id" Type="Int32" Nullable="false" />
           <Property Name="deno_Id" Type="Int16" Nullable="false" />
-          <Property Name="soled_CantidadSolicitada" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="soled_CantidadEntregada" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="soled_CantidadSolicitada" Type="Int16" Nullable="false" />
+          <Property Name="soled_CantidadEntregada" Type="Int16" Nullable="false" />
+          <Property Name="soled_MontoEntregado" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="soled_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="soled_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="soled_UsuarioModifica" Type="Int32" />
@@ -6020,30 +6108,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioCrea">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbArqueoCaja" Role="tbArqueoCaja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbArqueoCaja">
-              <PropertyRef Name="aqcja_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Acce_tbUsuario_tbArqueoCaja_aqcja_UsuarioModifica">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbArqueoCaja" Role="tbArqueoCaja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbArqueoCaja">
-              <PropertyRef Name="aqcja_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Acce_tbUsuario_tbCaja_cja_UsuarioCrea">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="*" />
@@ -6113,6 +6177,30 @@
             </Principal>
             <Dependent Role="tbDenominacion">
               <PropertyRef Name="deno_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbDenominacionArqueo" Role="tbDenominacionArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbDenominacionArqueo">
+              <PropertyRef Name="arqde_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbDenominacionArqueo" Role="tbDenominacionArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbDenominacionArqueo">
+              <PropertyRef Name="arqde_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6308,6 +6396,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbMovimientoCaja" Role="tbMovimientoCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbMovimientoCaja">
+              <PropertyRef Name="mocja_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbMovimientoCaja" Role="tbMovimientoCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbMovimientoCaja">
+              <PropertyRef Name="mocja_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
@@ -6452,6 +6564,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbSolicitudEfectivo" Role="tbSolicitudEfectivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbSolicitudEfectivo">
+              <PropertyRef Name="solef_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioCrea">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbSolicitudEfectivoDetalle" Role="tbSolicitudEfectivoDetalle" Multiplicity="*" />
@@ -6473,6 +6597,18 @@
             </Principal>
             <Dependent Role="tbSolicitudEfectivoDetalle">
               <PropertyRef Name="soled_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbSolicitudEfectivo" Role="tbSolicitudEfectivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbSolicitudEfectivo">
+              <PropertyRef Name="solef_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6586,12 +6722,12 @@
         </Association>
         <Association Name="FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbEmpleados" Role="tbEmpleados" Multiplicity="*" />
+          <End Type="ERP_ZORZALModel.tbEmpleado" Role="tbEmpleado" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbUsuario">
               <PropertyRef Name="usu_Id" />
             </Principal>
-            <Dependent Role="tbEmpleados">
+            <Dependent Role="tbEmpleado">
               <PropertyRef Name="emp_UsuarioCrea" />
             </Dependent>
           </ReferentialConstraint>
@@ -6656,31 +6792,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Hijos_tbUsuarioCreo">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.Hijos" Role="Hijos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="Hijos">
-              <PropertyRef Name="UsuarioCreo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Hijos_tbUsuarioModifica">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.Hijos" Role="Hijos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="Hijos">
-              <PropertyRef Name="UsuarioModifico" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inv_tbBodega_tbUsuario_usu_Id">
+        <Association Name="FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
           <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="*" />
           <ReferentialConstraint>
@@ -6688,7 +6800,19 @@
               <PropertyRef Name="usu_Id" />
             </Principal>
             <Dependent Role="tbBodega">
+              <PropertyRef Name="bod_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
               <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbBodega">
+              <PropertyRef Name="bod_UsuarioCrea" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6701,6 +6825,18 @@
             </Principal>
             <Dependent Role="tbBox">
               <PropertyRef Name="box_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbEntrada" Role="tbEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEntrada">
+              <PropertyRef Name="ent_UsuarioCrea" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6764,6 +6900,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbProductoCategoria">
+              <PropertyRef Name="pcat_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
           <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
@@ -6773,6 +6921,18 @@
             </Principal>
             <Dependent Role="tbProductoCategoria">
               <PropertyRef Name="pcat_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbProductoSubcategoria" Role="tbProductoSubcategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbProductoSubcategoria">
+              <PropertyRef Name="pscat_UsuarioCrea" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6857,30 +7017,6 @@
             </Principal>
             <Dependent Role="tbTipoSalida">
               <PropertyRef Name="tsal_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Padres_tbUsuarioCreo">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.Padres" Role="Padres" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="Padres">
-              <PropertyRef Name="UsuarioCreo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Padres_tbUsuarioModifico">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.Padres" Role="Padres" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="Padres">
-              <PropertyRef Name="UsuarioModifico" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6980,18 +7116,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Hijos_Padres">
-          <End Type="ERP_ZORZALModel.Padres" Role="Padres" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.Hijos" Role="Hijos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Padres">
-              <PropertyRef Name="CodPadre" />
-            </Principal>
-            <Dependent Role="Hijos">
-              <PropertyRef Name="CodPadre" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Gral_tbBanco_tbCuentasBanco_ban_Id">
           <End Type="ERP_ZORZALModel.tbBanco" Role="tbBanco" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbCuentasBanco" Role="tbCuentasBanco" Multiplicity="*" />
@@ -7052,6 +7176,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id">
+          <End Type="ERP_ZORZALModel.tbDenominacion" Role="tbDenominacion" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbDenominacionArqueo" Role="tbDenominacionArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbDenominacion">
+              <PropertyRef Name="deno_Id" />
+            </Principal>
+            <Dependent Role="tbDenominacionArqueo">
+              <PropertyRef Name="deno_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Gral_tbMunicipio_dep_Codigo">
           <End Type="ERP_ZORZALModel.tbDepartamento" Role="tbDepartamento" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbMunicipio" Role="tbMunicipio" Multiplicity="*" />
@@ -7066,13 +7202,25 @@
         </Association>
         <Association Name="FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id">
           <End Type="ERP_ZORZALModel.tbTipoIdentificacion" Role="tbTipoIdentificacion" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbEmpleados" Role="tbEmpleados" Multiplicity="*" />
+          <End Type="ERP_ZORZALModel.tbEmpleado" Role="tbEmpleado" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbTipoIdentificacion">
               <PropertyRef Name="tpi_Id" />
             </Principal>
-            <Dependent Role="tbEmpleados">
+            <Dependent Role="tbEmpleado">
               <PropertyRef Name="tpi_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tbMoneda_tbSolicitudEfectivo_mnda_Id">
+          <End Type="ERP_ZORZALModel.tbMoneda" Role="tbMoneda" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbSolicitudEfectivo" Role="tbSolicitudEfectivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMoneda">
+              <PropertyRef Name="mnda_Id" />
+            </Principal>
+            <Dependent Role="tbSolicitudEfectivo">
+              <PropertyRef Name="mnda_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7157,18 +7305,6 @@
             </Principal>
             <Dependent Role="tbProducto">
               <PropertyRef Name="uni_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inv_tbBodega_tbEstadoMovimiento_estm_Id">
-          <End Type="ERP_ZORZALModel.tbEstadoMovimiento" Role="tbEstadoMovimiento" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbEstadoMovimiento">
-              <PropertyRef Name="estm_Id" />
-            </Principal>
-            <Dependent Role="tbBodega">
-              <PropertyRef Name="bod_EsActiva" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7508,18 +7644,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vent_tbCaja_tbArqueoCaja_cja_Id">
-          <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbArqueoCaja" Role="tbArqueoCaja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbCaja">
-              <PropertyRef Name="cja_Id" />
-            </Principal>
-            <Dependent Role="tbArqueoCaja">
-              <PropertyRef Name="cja_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vent_tbCaja_tbDevolucion_cja_Id">
           <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
@@ -7532,14 +7656,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vent_tbCaja_tbFactura_cja_Id">
+        <Association Name="FK_Vent_tbCaja_tbMovimientoCaja_cja_Id">
           <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="*" />
+          <End Type="ERP_ZORZALModel.tbMovimientoCaja" Role="tbMovimientoCaja" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbCaja">
               <PropertyRef Name="cja_Id" />
             </Principal>
-            <Dependent Role="tbFactura">
+            <Dependent Role="tbMovimientoCaja">
               <PropertyRef Name="cja_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -7625,6 +7749,18 @@
             </Principal>
             <Dependent Role="tbCuponDescuento">
               <PropertyRef Name="suc_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id">
+          <End Type="ERP_ZORZALModel.tbMovimientoCaja" Role="tbMovimientoCaja" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbDenominacionArqueo" Role="tbDenominacionArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMovimientoCaja">
+              <PropertyRef Name="mocja_Id" />
+            </Principal>
+            <Dependent Role="tbDenominacionArqueo">
+              <PropertyRef Name="mocja_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7796,6 +7932,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
+          <End Type="ERP_ZORZALModel.tbMovimientoCaja" Role="tbMovimientoCaja" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbSolicitudEfectivo" Role="tbSolicitudEfectivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMovimientoCaja">
+              <PropertyRef Name="mocja_Id" />
+            </Principal>
+            <Dependent Role="tbSolicitudEfectivo">
+              <PropertyRef Name="mocja_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
           <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
@@ -7880,12 +8028,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="UDP_Vent_tbEstadoSolicitudCredito_Insert_Result">
-          <Property Type="Byte" Name="MensajeError" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="UDP_Gral_tbDenominacion_Update_Result">
-          <Property Type="Int16" Name="MensajeError" Nullable="false" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8011,6 +8153,13 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbDenominacion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbDenominacion_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbDenominacion_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="tbAccesoRol">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbAccesoRol">
               <MappingFragment StoreEntitySet="tbAccesoRol">
@@ -8028,6 +8177,7 @@
           <EntitySetMapping Name="tbObjeto">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbObjeto">
               <MappingFragment StoreEntitySet="tbObjeto">
+                <ScalarProperty Name="obj_Estado" ColumnName="obj_Estado" />
                 <ScalarProperty Name="obj_FechaModifica" ColumnName="obj_FechaModifica" />
                 <ScalarProperty Name="obj_UsuarioModifica" ColumnName="obj_UsuarioModifica" />
                 <ScalarProperty Name="obj_FechaCrea" ColumnName="obj_FechaCrea" />
@@ -8040,6 +8190,7 @@
           <EntitySetMapping Name="tbRol">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbRol">
               <MappingFragment StoreEntitySet="tbRol">
+                <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
                 <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
                 <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
                 <ScalarProperty Name="rol_FechaCrea" ColumnName="rol_FechaCrea" />
@@ -8074,33 +8225,6 @@
                 <ScalarProperty Name="usu_Password" ColumnName="usu_Password" />
                 <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
                 <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Hijos">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.Hijos">
-              <MappingFragment StoreEntitySet="Hijos">
-                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
-                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
-                <ScalarProperty Name="UsuarioCreo" ColumnName="UsuarioCreo" />
-                <ScalarProperty Name="FechaCreo" ColumnName="FechaCreo" />
-                <ScalarProperty Name="ApellidosHijo" ColumnName="ApellidosHijo" />
-                <ScalarProperty Name="NombresHijo" ColumnName="NombresHijo" />
-                <ScalarProperty Name="CodHijo" ColumnName="CodHijo" />
-                <ScalarProperty Name="CodPadre" ColumnName="CodPadre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Padres">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.Padres">
-              <MappingFragment StoreEntitySet="Padres">
-                <ScalarProperty Name="UsuarioModifico" ColumnName="UsuarioModifico" />
-                <ScalarProperty Name="FechaModifico" ColumnName="FechaModifico" />
-                <ScalarProperty Name="UsuarioCreo" ColumnName="UsuarioCreo" />
-                <ScalarProperty Name="FechaCreo" ColumnName="FechaCreo" />
-                <ScalarProperty Name="ApellidosPadre" ColumnName="ApellidosPadre" />
-                <ScalarProperty Name="NombresPadre" ColumnName="NombresPadre" />
-                <ScalarProperty Name="CodPadre" ColumnName="CodPadre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -8175,9 +8299,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbEmpleados">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEmpleados">
-              <MappingFragment StoreEntitySet="tbEmpleados">
+          <EntitySetMapping Name="tbEmpleado">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEmpleado">
+              <MappingFragment StoreEntitySet="tbEmpleado">
                 <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
                 <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
                 <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
@@ -8281,7 +8405,6 @@
                 <ScalarProperty Name="bod_UsuarioCrea" ColumnName="bod_UsuarioCrea" />
                 <ScalarProperty Name="bod_EsActiva" ColumnName="bod_EsActiva" />
                 <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
-                <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
                 <ScalarProperty Name="bod_Telefono" ColumnName="bod_Telefono" />
                 <ScalarProperty Name="bod_Correo" ColumnName="bod_Correo" />
                 <ScalarProperty Name="bod_Direccion" ColumnName="bod_Direccion" />
@@ -8515,28 +8638,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbArqueoCaja">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbArqueoCaja">
-              <MappingFragment StoreEntitySet="tbArqueoCaja">
-                <ScalarProperty Name="aqcja_FechaModifica" ColumnName="aqcja_FechaModifica" />
-                <ScalarProperty Name="aqcja_UsuarioModifica" ColumnName="aqcja_UsuarioModifica" />
-                <ScalarProperty Name="aqcja_FechaCrea" ColumnName="aqcja_FechaCrea" />
-                <ScalarProperty Name="aqcja_UsuarioCrea" ColumnName="aqcja_UsuarioCrea" />
-                <ScalarProperty Name="aqcja_MontoCupon" ColumnName="aqcja_MontoCupon" />
-                <ScalarProperty Name="aqcja_MontoNotaCredito" ColumnName="aqcja_MontoNotaCredito" />
-                <ScalarProperty Name="aqcja_MontoTCoTD" ColumnName="aqcja_MontoTCoTD" />
-                <ScalarProperty Name="aqcja_MontoCheque" ColumnName="aqcja_MontoCheque" />
-                <ScalarProperty Name="aqcja_MontoEfectivo" ColumnName="aqcja_MontoEfectivo" />
-                <ScalarProperty Name="aqcja_SaldoFinal" ColumnName="aqcja_SaldoFinal" />
-                <ScalarProperty Name="aqcja_SaldoInicial" ColumnName="aqcja_SaldoInicial" />
-                <ScalarProperty Name="aqcja_FechaFin" ColumnName="aqcja_FechaFin" />
-                <ScalarProperty Name="aqcja_FechaInicio" ColumnName="aqcja_FechaInicio" />
-                <ScalarProperty Name="aqcja_Fecha" ColumnName="aqcja_Fecha" />
-                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
-                <ScalarProperty Name="aqcja_Id" ColumnName="aqcja_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbCaja">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCaja">
               <MappingFragment StoreEntitySet="tbCaja">
@@ -8600,6 +8701,21 @@
                 <ScalarProperty Name="cdto_FechaEmision" ColumnName="cdto_FechaEmision" />
                 <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
                 <ScalarProperty Name="cdto_ID" ColumnName="cdto_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbDenominacionArqueo">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDenominacionArqueo">
+              <MappingFragment StoreEntitySet="tbDenominacionArqueo">
+                <ScalarProperty Name="arqde_FechaModifica" ColumnName="arqde_FechaModifica" />
+                <ScalarProperty Name="arqde_UsuarioModifica" ColumnName="arqde_UsuarioModifica" />
+                <ScalarProperty Name="arqde_FechaCrea" ColumnName="arqde_FechaCrea" />
+                <ScalarProperty Name="arqde_UsuarioCrea" ColumnName="arqde_UsuarioCrea" />
+                <ScalarProperty Name="arqde_MontoDenominacion" ColumnName="arqde_MontoDenominacion" />
+                <ScalarProperty Name="arqde_CantidadDenominacion" ColumnName="arqde_CantidadDenominacion" />
+                <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
+                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+                <ScalarProperty Name="arqde_Id" ColumnName="arqde_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -8779,6 +8895,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbMovimientoCaja">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbMovimientoCaja">
+              <MappingFragment StoreEntitySet="tbMovimientoCaja">
+                <ScalarProperty Name="mocja_FechaModifica" ColumnName="mocja_FechaModifica" />
+                <ScalarProperty Name="mocja_UsuarioModifica" ColumnName="mocja_UsuarioModifica" />
+                <ScalarProperty Name="mocja_FechaCrea" ColumnName="mocja_FechaCrea" />
+                <ScalarProperty Name="mocja_UsuarioCrea" ColumnName="mocja_UsuarioCrea" />
+                <ScalarProperty Name="mocja_UsuarioAceptacion" ColumnName="mocja_UsuarioAceptacion" />
+                <ScalarProperty Name="mocja_FechaAceptacion" ColumnName="mocja_FechaAceptacion" />
+                <ScalarProperty Name="mocja_UsuarioArquea" ColumnName="mocja_UsuarioArquea" />
+                <ScalarProperty Name="mocja_FechaArqueo" ColumnName="mocja_FechaArqueo" />
+                <ScalarProperty Name="mocja_UsuarioApertura" ColumnName="mocja_UsuarioApertura" />
+                <ScalarProperty Name="mocja_FechaApetura" ColumnName="mocja_FechaApetura" />
+                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbNotaCredito">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbNotaCredito">
               <MappingFragment StoreEntitySet="tbNotaCredito">
@@ -8907,9 +9041,12 @@
                 <ScalarProperty Name="solef_UsuarioModifica" ColumnName="solef_UsuarioModifica" />
                 <ScalarProperty Name="solef_FechaCrea" ColumnName="solef_FechaCrea" />
                 <ScalarProperty Name="solef_UsuarioCrea" ColumnName="solef_UsuarioCrea" />
+                <ScalarProperty Name="solef_EsAnulada" ColumnName="solef_EsAnulada" />
                 <ScalarProperty Name="mnda_Id" ColumnName="mnda_Id" />
-                <ScalarProperty Name="solef_MontoSolicitud" ColumnName="solef_MontoSolicitud" />
-                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+                <ScalarProperty Name="solef_UsuarioEntrega" ColumnName="solef_UsuarioEntrega" />
+                <ScalarProperty Name="solef_FechaEntrega" ColumnName="solef_FechaEntrega" />
+                <ScalarProperty Name="solef_EsApertura" ColumnName="solef_EsApertura" />
+                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
                 <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -8921,6 +9058,7 @@
                 <ScalarProperty Name="soled_UsuarioModifica" ColumnName="soled_UsuarioModifica" />
                 <ScalarProperty Name="soled_FechaCrea" ColumnName="soled_FechaCrea" />
                 <ScalarProperty Name="soled_UsuarioCrea" ColumnName="soled_UsuarioCrea" />
+                <ScalarProperty Name="soled_MontoEntregado" ColumnName="soled_MontoEntregado" />
                 <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
                 <ScalarProperty Name="soled_CantidadSolicitada" ColumnName="soled_CantidadSolicitada" />
                 <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
@@ -8963,13 +9101,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbDenominacion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbDenominacion_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbDenominacion_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

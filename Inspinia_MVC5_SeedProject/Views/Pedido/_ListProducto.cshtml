@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ERP_ZORZAL.Models.tbProducto>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado De Productos</h5>
+					<div class="ibox-tools">
+						
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            Código Producto
+        </th>
+        <th>
+            Descripción
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.prod_Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prod_Descripcion)
+        </td>
+      
+        <td>
+			
+            @Html.ActionLink("Seleccionar", "Create", new { id=item.prod_Codigo }, new { @class = "btn btn-primary btn-xs"})
+          
+        </td>
+    </tr>
+}
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+

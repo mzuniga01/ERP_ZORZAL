@@ -33,14 +33,12 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbRol> tbRol { get; set; }
         public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
         public virtual DbSet<tbUsuario> tbUsuario { get; set; }
-        public virtual DbSet<Hijos> Hijos { get; set; }
-        public virtual DbSet<Padres> Padres { get; set; }
         public virtual DbSet<tbActividadEconomica> tbActividadEconomica { get; set; }
         public virtual DbSet<tbBanco> tbBanco { get; set; }
         public virtual DbSet<tbCuentasBanco> tbCuentasBanco { get; set; }
         public virtual DbSet<tbDenominacion> tbDenominacion { get; set; }
         public virtual DbSet<tbDepartamento> tbDepartamento { get; set; }
-        public virtual DbSet<tbEmpleados> tbEmpleados { get; set; }
+        public virtual DbSet<tbEmpleado> tbEmpleado { get; set; }
         public virtual DbSet<tbMoneda> tbMoneda { get; set; }
         public virtual DbSet<tbMunicipio> tbMunicipio { get; set; }
         public virtual DbSet<tbParametro> tbParametro { get; set; }
@@ -62,10 +60,10 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSalidaDetalle> tbSalidaDetalle { get; set; }
         public virtual DbSet<tbTipoEntrada> tbTipoEntrada { get; set; }
         public virtual DbSet<tbTipoSalida> tbTipoSalida { get; set; }
-        public virtual DbSet<tbArqueoCaja> tbArqueoCaja { get; set; }
         public virtual DbSet<tbCaja> tbCaja { get; set; }
         public virtual DbSet<tbCliente> tbCliente { get; set; }
         public virtual DbSet<tbCuponDescuento> tbCuponDescuento { get; set; }
+        public virtual DbSet<tbDenominacionArqueo> tbDenominacionArqueo { get; set; }
         public virtual DbSet<tbDevolucion> tbDevolucion { get; set; }
         public virtual DbSet<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
         public virtual DbSet<tbDocumentoFiscal> tbDocumentoFiscal { get; set; }
@@ -78,6 +76,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbFacturaHistorica> tbFacturaHistorica { get; set; }
         public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
         public virtual DbSet<tbListaPrecio> tbListaPrecio { get; set; }
+        public virtual DbSet<tbMovimientoCaja> tbMovimientoCaja { get; set; }
         public virtual DbSet<tbNotaCredito> tbNotaCredito { get; set; }
         public virtual DbSet<tbPago> tbPago { get; set; }
         public virtual DbSet<tbPedido> tbPedido { get; set; }
@@ -183,7 +182,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCaja_Insert_Result>("UDP_Vent_tbCaja_Insert", cja_IdParameter, cja_DescripcionParameter, suc_IdParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbCaja_Update_Result> UDP_Vent_tbCaja_Update(Nullable<short> cja_Id, string cja_Descripcion, Nullable<short> suc_Id, Nullable<int> cja_UsuarioCrea, Nullable<System.DateTime> cja_FechaCrea, Nullable<int> cja_UsuarioModifica, Nullable<System.DateTime> cja_FechaModifica)
+        public virtual ObjectResult<UDP_Vent_tbCaja_Update_Result> UDP_Vent_tbCaja_Update(Nullable<short> cja_Id, string cja_Descripcion, Nullable<short> suc_Id, Nullable<int> cja_UsuarioCrea, Nullable<System.DateTime> cja_FechaCrea)
         {
             var cja_IdParameter = cja_Id.HasValue ?
                 new ObjectParameter("cja_Id", cja_Id) :
@@ -205,15 +204,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("cja_FechaCrea", cja_FechaCrea) :
                 new ObjectParameter("cja_FechaCrea", typeof(System.DateTime));
     
-            var cja_UsuarioModificaParameter = cja_UsuarioModifica.HasValue ?
-                new ObjectParameter("cja_UsuarioModifica", cja_UsuarioModifica) :
-                new ObjectParameter("cja_UsuarioModifica", typeof(int));
-    
-            var cja_FechaModificaParameter = cja_FechaModifica.HasValue ?
-                new ObjectParameter("cja_FechaModifica", cja_FechaModifica) :
-                new ObjectParameter("cja_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCaja_Update_Result>("UDP_Vent_tbCaja_Update", cja_IdParameter, cja_DescripcionParameter, suc_IdParameter, cja_UsuarioCreaParameter, cja_FechaCreaParameter, cja_UsuarioModificaParameter, cja_FechaModificaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCaja_Update_Result>("UDP_Vent_tbCaja_Update", cja_IdParameter, cja_DescripcionParameter, suc_IdParameter, cja_UsuarioCreaParameter, cja_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Gral_tbCuentasBanco_Insert_Result> UDP_Gral_tbCuentasBanco_Insert(Nullable<short> ban_Id, Nullable<short> mnda_Id, Nullable<byte> bcta_TipoCuenta, Nullable<decimal> bcta_TotalCredito, Nullable<decimal> bcta_TotalDebito, Nullable<System.DateTime> bcta_FechaApertura, string bcta_Numero)

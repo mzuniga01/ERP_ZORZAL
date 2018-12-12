@@ -115,7 +115,7 @@ namespace ERP_ZORZAL.Controllers
             {
                 var MensajeError = 0;
                 IEnumerable<object> list = null;
-                list = db.UDP_Vent_tbCaja_Update(tbCaja.cja_Id,tbCaja.cja_Descripcion,tbCaja.suc_Id,tbCaja.cja_UsuarioCrea,tbCaja.cja_FechaCrea,tbCaja.cja_UsuarioCrea,tbCaja.cja_FechaModifica);
+                //list = db.UDP_Vent_tbCaja_Update(tbCaja.cja_Id,tbCaja.cja_Descripcion,tbCaja.suc_Id,tbCaja.cja_UsuarioCrea,tbCaja.cja_FechaCrea,tbCaja.cja_UsuarioCrea,tbCaja.cja_FechaModifica);
                 foreach (UDP_Vent_tbCaja_Update_Result caja in list)
                     MensajeError = caja.MensajeError;
                 if (MensajeError == -1)

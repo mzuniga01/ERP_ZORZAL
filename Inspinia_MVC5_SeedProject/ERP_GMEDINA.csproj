@@ -179,7 +179,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadEconomicaController.cs" />
-    <Compile Include="Controllers\ArqueoCajaController.cs" />
     <Compile Include="Controllers\BancoController.cs" />
     <Compile Include="Controllers\CajaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
@@ -239,9 +238,6 @@
     <Compile Include="Models\Factura.cs" />
     <Compile Include="Models\FacturaDetalle.cs" />
     <Compile Include="Models\FacturaHistorica.cs" />
-    <Compile Include="Models\Hijos.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListasPrecios.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
@@ -260,9 +256,6 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Monedas.cs" />
-    <Compile Include="Models\Padres.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Pagos.cs" />
     <Compile Include="Models\Pedidos.cs" />
     <Compile Include="Models\Producto.cs" />
@@ -274,9 +267,6 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbActividadEconomica.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbArqueoCaja.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbBanco.cs">
@@ -306,6 +296,9 @@
     <Compile Include="Models\tbDenominacion.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbDenominacionArqueo.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbDepartamento.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -318,7 +311,7 @@
     <Compile Include="Models\tbDocumentoFiscal.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbEmpleados.cs">
+    <Compile Include="Models\tbEmpleado.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbEntrada.cs">
@@ -367,6 +360,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbMoneda.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbMovimientoCaja.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbMunicipio.cs">
@@ -1080,7 +1076,6 @@
     <Content Include="Views\Factura\_IndexProducto.cshtml" />
     <Content Include="Views\Factura\IndexFacturaPagar.cshtml" />
     <Content Include="Views\SolicitudCredito\IndexSolicitud.cshtml" />
-    <Content Include="Views\Pedido\IndexFacturar.cshtml" />
     <Content Include="Views\Pedido\Create.cshtml" />
     <Content Include="Views\Pedido\Delete.cshtml" />
     <Content Include="Views\Pedido\Details.cshtml" />

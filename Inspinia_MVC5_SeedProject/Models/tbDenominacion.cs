@@ -18,6 +18,7 @@ namespace ERP_GMEDINA.Models
         public tbDenominacion()
         {
             this.tbSolicitudEfectivoDetalle = new HashSet<tbSolicitudEfectivoDetalle>();
+            this.tbDenominacionArqueo = new HashSet<tbDenominacionArqueo>();
         }
     
         public short deno_Id { get; set; }
@@ -35,5 +36,7 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
         public virtual tbMoneda tbMoneda { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbDenominacionArqueo> tbDenominacionArqueo { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace ERP_GMEDINA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbEmpleados
+    public partial class tbEmpleado
     {
         public short emp_Id { get; set; }
         public string emp_Nombres { get; set; }

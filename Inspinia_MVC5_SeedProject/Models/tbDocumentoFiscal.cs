@@ -20,7 +20,7 @@ namespace ERP_GMEDINA.Models
             this.tbPuntoEmisionDetalle = new HashSet<tbPuntoEmisionDetalle>();
         }
     
-        public byte dfisc_Id { get; set; }
+        public string dfisc_Id { get; set; }
         public string dfisc_Descripcion { get; set; }
         public int dfisc_UsuarioCrea { get; set; }
         public System.DateTime dfisc_FechaCrea { get; set; }
