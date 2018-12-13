@@ -63,9 +63,10 @@ namespace ERP_GMEDINA.Models
             this.tbSolicitudCredito = new HashSet<tbSolicitudCredito>();
             this.tbSolicitudCredito1 = new HashSet<tbSolicitudCredito>();
             this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
+            this.tbSolicitudEfectivo1 = new HashSet<tbSolicitudEfectivo>();
+            this.tbSolicitudEfectivo2 = new HashSet<tbSolicitudEfectivo>();
             this.tbSolicitudEfectivoDetalle = new HashSet<tbSolicitudEfectivoDetalle>();
             this.tbSolicitudEfectivoDetalle1 = new HashSet<tbSolicitudEfectivoDetalle>();
-            this.tbSolicitudEfectivo1 = new HashSet<tbSolicitudEfectivo>();
             this.tbSucursal = new HashSet<tbSucursal>();
             this.tbSucursal1 = new HashSet<tbSucursal>();
             this.tbTipoIdentificacion = new HashSet<tbTipoIdentificacion>();
@@ -213,11 +214,13 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSucursal> tbSucursal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -1484,6 +1484,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioEntrega">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbSolicitudEfectivo">
+        <PropertyRef Name="solef_UsuarioEntrega" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbSolicitudEfectivo">
+        <PropertyRef Name="solef_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioCrea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbSolicitudEfectivoDetalle" Type="Self.tbSolicitudEfectivoDetalle" Multiplicity="*" />
@@ -1505,18 +1529,6 @@
       </Principal>
       <Dependent Role="tbSolicitudEfectivoDetalle">
         <PropertyRef Name="soled_UsuarioModifica" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-    <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbSolicitudEfectivo">
-        <PropertyRef Name="solef_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3302,6 +3314,14 @@
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
     </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioEntrega" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioEntrega">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
+    </AssociationSet>
     <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
@@ -3309,10 +3329,6 @@
     <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbSolicitudEfectivon_solef_UsuarioModifica">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
     </AssociationSet>
     <AssociationSet Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea" Association="Self.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
