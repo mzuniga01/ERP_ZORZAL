@@ -14,24 +14,28 @@ namespace ERP_GMEDINA.Models
     }
     public class PuntoEmisionDetalleMetaData
     {
-        [Display(Name = "Id Punto Emisión Detalle")]
+        [Display(Name = "Id Punto Emisión Detalle")]        
         public int pemid_Id { get; set; }
 
         [Display(Name = "Id Punto Emisión")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo Numero CAI es requerido")]
         public int pemi_Id { get; set; }
 
         [Display(Name ="Documento Fiscal")]
-        public byte dfisc_Id { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public string dfisc_Id { get; set; }
 
         [Display(Name = "Rango Inicial")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string pemid_RangoInicio { get; set; }
 
         [Display(Name = "Rango Final")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string pemid_RangoFinal { get; set; }
 
         [Display(Name = "Fecha Límite")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        //[DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime pemid_FechaLimite { get; set; }
 
         [Display(Name = "Usuario Creación")]

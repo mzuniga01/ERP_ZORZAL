@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using System.Transactions;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -45,15 +46,21 @@ namespace ERP_ZORZAL.Controllers
         // GET: /PuntoEmision/Create
         public ActionResult Create()
         {
+            //PuntoEmision
+            tbPuntoEmision PuntoEmision = new tbPuntoEmision();
+            ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", PuntoEmision.pemi_Id);
+
             //PuntoEmisionDetalle
             tbPuntoEmisionDetalle tbPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
             ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", tbPuntoEmisionDetalle.dfisc_Id);
-            ViewBag.pemid_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmisionDetalle.pemid_UsuarioCrea);
-            ViewBag.pemid_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmisionDetalle.pemid_UsuarioModifica);
+            
 
             //Vistas parciales
             ViewBag.PuntoEmisionDetalle = db.tbPuntoEmisionDetalle.ToList();
             ViewBag.Sucursal = db.tbSucursal.ToList();
+
+
+            Session["PuntoEmision"] = null;
             return View();
         }
 
@@ -63,20 +70,86 @@ namespace ERP_ZORZAL.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Create([Bind(Include="pemi_Id,pemi_NumeroCAI,pemi_UsuarioCrea,pemi_FechaCrea,pemi_UsuarioModifica,pemi_FechaModifica")] tbPuntoEmision tbPuntoEmision)
+        public ActionResult Create([Bind(Include="pemi_NumeroCAI")] tbPuntoEmision tbPuntoEmision)
         {
+            var list = (List<tbPuntoEmisionDetalle>)Session["PuntoEmision"];
+            var MensajeError = 0;
+            var MensajeErrorDetalle = 0;
+            IEnumerable<object> listPuntoEmision = null;
+            IEnumerable<object> listPuntoEmisionDetalle = null;
+            tbPuntoEmisionDetalle cPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
+
             if (ModelState.IsValid)
             {
-                db.tbPuntoEmision.Add(tbPuntoEmision);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                try
+                {
+                    using (TransactionScope Tran = new TransactionScope())
+                    {
+                        listPuntoEmision = db.UDP_Vent_tbPuntoEmision_Insert(
+                            tbPuntoEmision.pemi_NumeroCAI
+                            );
+                        foreach (UDP_Vent_tbPuntoEmision_Insert_Result PuntoEmisionL in listPuntoEmision)
+                        MensajeError = PuntoEmisionL.MensajeError;
+                        if (MensajeError == -1)
+                        {
+                            ModelState.AddModelError("", "No se pudo agregar el registro");
+                            return View(tbPuntoEmision);
+                        }
+                        else
+                        {
+                            if (MensajeError > 0)
+                            {
+                                if (list != null)
+                                {
+                                    if (list.Count != 0)
+                                    {
+                                        foreach (tbPuntoEmisionDetalle Detalle in list)
+                                        {
+
+                                            Detalle.pemi_Id = MensajeError;
+                                            listPuntoEmisionDetalle = db.UDP_Vent_tbPuntoEmisionDetalle_Insert(
+                                                Detalle.pemi_Id,
+                                                Detalle.dfisc_Id,
+                                                Detalle.pemid_RangoInicio,
+                                                Detalle.pemid_RangoFinal,
+                                                Detalle.pemid_FechaLimite
+                                                );
+
+                                            foreach (UDP_Vent_tbPuntoEmisionDetalle_Insert_Result SPpuntoemisiondet in listPuntoEmisionDetalle)
+                                            {
+                                                MensajeErrorDetalle = SPpuntoemisiondet.MensajeError;
+                                                if (MensajeError == -1)
+                                                {
+                                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                                    return View(tbPuntoEmision);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("", "No se pudo agregar el registro");
+                                return View(tbPuntoEmision);
+                            }
+                        }
+                        Tran.Complete();
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", cPuntoEmisionDetalle.dfisc_Id);
+                    ModelState.AddModelError("","No se pudo agregar el registro");
+                    return View(tbPuntoEmision);
+                }
+                
             }
 
-            tbPuntoEmisionDetalle tbPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
-            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", tbPuntoEmisionDetalle.dfisc_Id);
-            ViewBag.pemid_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmisionDetalle.pemid_UsuarioCrea);
-            ViewBag.pemid_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmisionDetalle.pemid_UsuarioModifica);
-
+    
+            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", cPuntoEmisionDetalle.dfisc_Id);
 
             return View(tbPuntoEmision);
         }
@@ -122,8 +195,7 @@ namespace ERP_ZORZAL.Controllers
             //PuntoEmisionDetalle
             tbPuntoEmisionDetalle tbPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
             ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", tbPuntoEmisionDetalle.dfisc_Id);
-            ViewBag.pemid_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmisionDetalle.pemid_UsuarioCrea);
-            ViewBag.pemid_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmisionDetalle.pemid_UsuarioModifica);
+            
 
             return View(tbPuntoEmision);
         }
@@ -143,50 +215,6 @@ namespace ERP_ZORZAL.Controllers
             return View(tbPuntoEmision);
         }
 
-
-
-
-
-        //Modal
-        //EditarPuntoEmisionDetalle
-        public ActionResult EditNumeracion(tbPuntoEmisionDetalle PuntoEmisionDetalle)
-        {
-            try
-            {
-                db.Entry(PuntoEmisionDetalle).State = EntityState.Modified;
-                db.SaveChanges();
-                return PartialView("_EditNumeracion");
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se guardaron los cambios");
-                return PartialView("_EditNumeracion", PuntoEmisionDetalle);
-            }
-        }
-        //CreatePuntoEmisionDetalle
-        public ActionResult CreateNumeracion(tbPuntoEmisionDetalle PuntoEmisionDetalle)
-        {
-            try
-            {
-
-                db.Entry(PuntoEmisionDetalle).State = EntityState.Modified;
-                db.SaveChanges();
-               
-                return PartialView("_CreateNumeracion");
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se guardaron los cambios");
-                return PartialView("_CreateNumeracion", PuntoEmisionDetalle);
-            }
-        }
-        //Modal
-
-
-
-
         // POST: /PuntoEmision/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -205,6 +233,56 @@ namespace ERP_ZORZAL.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        //CreatePuntoEmisionDetalle
+        public ActionResult CreateNumeracion(tbPuntoEmisionDetalle PuntoEmisionDetalle)
+        {
+            try
+            {
+                db.tbPuntoEmisionDetalle.Add(PuntoEmisionDetalle);
+                db.SaveChanges();
+                ViewBag.CerrarModal = "1";
+                return PartialView("_CreateNumeracion");
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se guardaron los cambios");
+                return PartialView("_CreateNumeracion", PuntoEmisionDetalle);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult SavePuntoEmisionDetalle(tbPuntoEmisionDetalle PuntoEmisionDet)
+        {
+            List<tbPuntoEmisionDetalle> sessionPuntoEmisionDetalle = new List<tbPuntoEmisionDetalle>();
+            var list = (List<tbPuntoEmisionDetalle>)Session["PuntoEmision"];
+            if (list == null)
+            {
+                sessionPuntoEmisionDetalle.Add(PuntoEmisionDet);
+                Session["PuntoEmision"] = sessionPuntoEmisionDetalle;
+            }
+            else
+            {
+                list.Add(PuntoEmisionDet);
+                Session["PuntoEmision"] = list;
+            }
+            return Json("Exito", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult RemovePuntoEmisionDetalle(tbPuntoEmisionDetalle PuntoEmisionDet)
+        {
+            var list = (List<tbPuntoEmisionDetalle>)Session["PuntoEmision"];
+
+            if (list != null)
+            {
+                var itemToRemove = list.Single(r => r.pemid_Id == PuntoEmisionDet.pemid_Id);
+                list.Remove(itemToRemove);
+                Session["PuntoEmision"] = list;
+            }
+            return Json("", JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -107,10 +107,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -498,6 +500,12 @@
     <Compile Include="Models\UDP_Vent_tbPedido_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbPuntoEmisionDetalle_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbPuntoEmision_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbTipoPago_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -757,6 +765,7 @@
     <Content Include="Scripts\app\PersonaNatural.js" />
     <Content Include="Scripts\app\Producto.js" />
     <Content Include="Scripts\app\PuntoEmision.js" />
+    <Content Include="Scripts\app\PuntoEmisionDetalle.js" />
     <Content Include="Scripts\app\Sucursal.js" />
     <Content Include="Scripts\app\TipoPago.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1086,6 +1095,7 @@
     <Content Include="Views\Pedido\_CreatePedidoDetalle.cshtml" />
     <Content Include="Views\Pedido\_IndexCliente.cshtml" />
     <Content Include="Views\Pedido\_ListPedidoDetalle.cshtml" />
+    <Content Include="Views\PuntoEmision\_IndexNumeracionWithoutBottomDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -57,7 +57,7 @@ namespace ERP_GMEDINA.Models
         public string fact_Vendedor { get; set; }
         [Display(Name = "RTN")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
-        public string clte_RTN_Identidad_Pasaporte { get; set; }
+        public string clte_Identificacion { get; set; }
         [Display(Name = "Nombre Cliente")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string clte_Nombres { get; set; }

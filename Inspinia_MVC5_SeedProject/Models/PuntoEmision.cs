@@ -17,6 +17,7 @@ namespace ERP_GMEDINA.Models
         public int pemi_Id { get; set; }
 
         [Display(Name ="Número CAI")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string pemi_NumeroCAI { get; set; }
 
         [Display(Name = "Usuario Creación")]

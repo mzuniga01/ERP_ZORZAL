@@ -1,102 +1,79 @@
 ﻿@model ERP_GMEDINA.Models.tbPuntoEmisionDetalle
 
-@using ERP_GMEDINA.Models
 
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="form-horizontal">
 
-@*@using (Ajax.BeginForm("CreateNumeracion", "PuntoEmision", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "AjaxCreateNumeracion" }))
-{
+                        <div class="form-group col-md-5">
+                            @Html.LabelFor(model => model.dfisc_Id, new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DropDownList("dfisc_Id", null, "Seleccione Documento Fiscal", new { @class = "form-control" })
+                                <div id="validacionDocumentoFiscalCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.dfisc_Id)</p>
+                                </div>
+                                </div>
+                        </div>
 
-}*@
+                        <div class="form-group col-md-5">
+                            @Html.LabelFor(model => model.pemid_RangoInicio, new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.pemid_RangoInicio)
+                                <div id="validacionRangoInicioCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoInicio)</p>
+                                </div>
+                                </div>
+                        </div>
 
-				@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true)
+                        <div class="form-group col-md-5">
+                            @Html.LabelFor(model => model.pemid_RangoFinal, new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.pemid_RangoFinal)
+                                <div id="validacionRangoFinalCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoFinal)</p>
+                                </div>
+                                </div>
+                        </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.pemi_Id, "pemi_Id", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("pemi_Id", String.Empty)
-                @Html.EditorFor(model => model.pemi_Id, new { htmlAttributes = new { @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.pemi_Id)
-            </div>
-        </div>*@
+                        <div class="form-group col-md-1">
+                            <button class="btn btn-primary btn-xs" type="button" id="AgregarPuntoEmisionDetalle">Registrar Numeración</button>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.dfisc_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.DropDownList("dfisc_Id", String.Empty)*@
-                @Html.DropDownList("dfisc_Id", null, "Seleccione Documento Fiscal", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.dfisc_Id)
-            </div>
-        </div>
+                        <div class="form-group col-md-5">
+                            @Html.LabelFor(model => model.pemid_FechaLimite, new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.pemid_FechaLimite, "{0:MM/dd/yyyy}")
+                                <div id="validacionFechaLimiteCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_FechaLimite)</p>
+                                </div>
+                                </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.pemid_RangoInicio, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pemid_RangoInicio)
-                @Html.ValidationMessageFor(model => model.pemid_RangoInicio)
-            </div>
-        </div>
+                        
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.pemid_RangoFinal, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pemid_RangoFinal)
-                @Html.ValidationMessageFor(model => model.pemid_RangoFinal)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pemid_FechaLimite, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pemid_FechaLimite, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "fechalimite" } })
-                @Html.ValidationMessageFor(model => model.pemid_FechaLimite)
-            </div>
-        </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.pemid_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pemid_UsuarioCrea)
-                @Html.ValidationMessageFor(model => model.pemid_UsuarioCrea)
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pemid_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pemid_FechaCrea)
-                @Html.ValidationMessageFor(model => model.pemid_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pemid_UsuarioModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pemid_UsuarioModifica)
-                @Html.ValidationMessageFor(model => model.pemid_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pemid_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pemid_FechaModifica)
-                @Html.ValidationMessageFor(model => model.pemid_FechaModifica)
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>*@
     </div>
-}
+    <table id="tblPuntoEmisionDetalle" class="table table table-striped">
+        <thead>
+            <tr>
+                <th>Documento Fiscal</th>
+                <th>Rango Inicial</th>
+                <th>Rango Final</th>
+                <th>Fecha Límite</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+<div id="validationSummary">
+    <p style="color:red"></p>
+</div>
+
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>

@@ -17,8 +17,8 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Pago/
         public ActionResult Index()
         {
-            var tbpago = db.tbPago.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCuentasBanco).Include(t => t.tbFactura).Include(t => t.tbTipoPago);
-            return View(tbpago.ToList());
+            //var tbpago = db.tbPago.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCuentasBanco).Include(t => t.tbFactura).Include(t => t.tbTipoPago);
+            return View();
         }
 
         // GET: /Pago/Details/5
