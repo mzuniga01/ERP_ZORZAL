@@ -13,9 +13,7 @@
                
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
+                   
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true)
 
@@ -25,15 +23,17 @@
                                 @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4 ">
                                     @Html.EditorFor(model => model.prod_Codigo)
-                                    @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                    <div id="validacionCodigoProductoCreate">
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
+                                    </div>
+                                   
                                 </div>
                                 <div class="col-md-3">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
-                                <div class="col-md-2">
-                                    <button type="button" class="btn btn-primary">Añadir</button>
+                                <div class="form-group col-md-1">
+                                    <button class="btn btn-primary" type="button" id="AgregarListaPrecioDetalle">Añadir</button>
                                 </div>
-                               
                             </div>
 
 
@@ -53,8 +53,10 @@
                                 @Html.LabelFor(model => model.lispd_PrecioMayorista, "Precio Mayorista", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.lispd_PrecioMayorista, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
-                                    @*@Html.EditorFor(model => model.lispd_PrecioMayorista)*@
-                                    @Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)
+                                    <div id="validacionPrecioMayoristaCreate">
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)</p>
+                                    </div>
+                                   
                                 </div>
                                 @*</div>
 
@@ -62,8 +64,10 @@
                                 @Html.LabelFor(model => model.lispd_PrecioMinorista, "Precio Minorista", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.lispd_PrecioMinorista, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
-                                    @*@Html.EditorFor(model => model.lispd_PrecioMinorista)*@
-                                    @Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)
+                                    <div id="validacionPrecioMinoristaCreate">
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)</p>
+                                    </div>
+                                   
                                 </div>
                             </div>
 
@@ -74,15 +78,20 @@
                                 @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
-                                    @*@Html.EditorFor(model => model.lispd_DescCaja)*@
-                                    @Html.ValidationMessageFor(model => model.lispd_DescCaja)
+                                    <div id="validacionDescuentoCajaCreate">
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.lispd_DescCaja)</p>
+                                    </div>
+
+                                  
                                 </div>
 
                                 @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
-                                    @*@Html.EditorFor(model => model.lispd_DescGerente)*@
-                                    @Html.ValidationMessageFor(model => model.lispd_DescGerente)
+                                    <div id="validacionDescuentoGerenteCreate">
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.lispd_DescGerente)</p>
+                                    </div>
+                                   
                                 </div>
                             </div>
 
@@ -90,36 +99,11 @@
                         <div class="ibox-content">
                             <br />
                           
-                            <div class="ibox-content">
-                                <table class="table table-striped table-bordered table-hover dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre Producto</th>
-                                            <th> Precio Mayorista</th>
-                                            <th> Precio Minorista</th>
-                                            <th>Descuento Caja</th>
-                                            <th>Descuento Gerente</th>
+                        
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="gradeX">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                            <td class="center"></td>
-                                        </tr>
-
-                                       
-                                    </tbody>
-                                </table>
-
-                            </div>
 
                         </div>
-                    }
+                    
                 </div>
             </div>
         </div>
@@ -128,6 +112,29 @@
     </div>
 
 </div>
+
+<table id="tbListaPrecioDetalle" class="table table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre Producto</th>
+            <th> Precio Mayorista</th>
+            <th> Precio Minorista</th>
+            <th>Descuento Caja</th>
+            <th>Descuento Gerente</th>
+            <th></th>
+
+        </tr>
+    </thead>
+
+    <tbody></tbody>
+</table>
+
+<div id="validationSummary">     
+<p style="color:red"></p> 
+</div>  
+
+
+
 <div>
     <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -138,9 +145,9 @@
                     </button>
                     <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
                 </div>
-                <div class="modal-body" id="frmEditarMunicipios">
+                @*<div class="modal-body" id="frmEditarMunicipios">
                     @Html.Partial("_IndexProducto", (List<tbProducto>)ViewBag.Producto)
-                </div>
+                </div>*@
             </div>
         </div>
     </div>

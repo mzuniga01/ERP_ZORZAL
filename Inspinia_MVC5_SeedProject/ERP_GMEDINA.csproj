@@ -241,6 +241,7 @@
     <Compile Include="Models\FacturaDetalle.cs" />
     <Compile Include="Models\FacturaHistorica.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ListaPrecioDetalle.cs" />
     <Compile Include="Models\ListasPrecios.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
       <AutoGen>True</AutoGen>
@@ -768,6 +769,7 @@
     <Content Include="Scripts\app\Factura.js" />
     <Content Include="Scripts\app\FacturaDetalle.js" />
     <Content Include="Scripts\app\inspinia.js" />
+    <Content Include="Scripts\app\ListaPrecioDetalle.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
     <Content Include="Scripts\app\Producto.js" />
     <Content Include="Scripts\app\PuntoEmision.js" />

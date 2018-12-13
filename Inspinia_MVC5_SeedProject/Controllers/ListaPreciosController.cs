@@ -138,5 +138,23 @@ namespace ERP_ZORZAL.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public JsonResult SaveListaPrecioDetalle(tbListadoPrecioDetalle cPrecioDetalle)
+        {
+            List<tbListadoPrecioDetalle> sessionCasoExito = new List<tbListadoPrecioDetalle>();
+            var list = (List<tbListadoPrecioDetalle>)Session["ListadoPrecioDetalle"];
+            if (list == null)
+            {
+                sessionCasoExito.Add(cPrecioDetalle);
+                Session["ListadoPrecioDetalle"] = sessionCasoExito;
+            }
+            else
+            {
+                list.Add(cPrecioDetalle);
+                Session["ListadoPrecioDetalle"] = list;
+            }
+            return Json("Exito", JsonRequestBehavior.AllowGet);
+        }
     }
 }
