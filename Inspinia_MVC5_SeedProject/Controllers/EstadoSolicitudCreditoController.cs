@@ -88,20 +88,72 @@ namespace ERP_ZORZAL.Controllers
         // POST: /EstadoSolicitudCredito/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="escre_Id,escre_Descripcion,escre_UsuarioCrea,escre_UsuarioModifica,escre_FechaAgrego,escre_FechaModifica")] tbEstadoSolicitudCredito tbEstadoSolicitudCredito)
+        // GET: /EstadoSolicitudCredito/Edit/5
+        public ActionResult Edit(byte? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(tbEstadoSolicitudCredito).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.escre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioCrea);
-            ViewBag.escre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioModifica);
+            tbEstadoSolicitudCredito tbEstadoSolicitudCredito = db.tbEstadoSolicitudCredito.Find(id);
+            if (tbEstadoSolicitudCredito == null)
+            {
+                return HttpNotFound();
+            }
+            //ViewBag.escre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioCrea);
+            //ViewBag.escre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioModifica);
             return View(tbEstadoSolicitudCredito);
         }
+
+        // POST: /EstadoSolicitudCredito/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "escre_Id,escre_Descripcion,escre_UsuarioCrea,escre_UsuarioModifica,escre_FechaAgrego,escre_FechaModifica")] tbEstadoSolicitudCredito tbEstadoSolicitudCredito)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    //////////Aqui va la lista//////////////
+
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbEstadoSolicitudCredito_Update(tbEstadoSolicitudCredito.escre_Id,
+                        tbEstadoSolicitudCredito.escre_Descripcion,
+                        tbEstadoSolicitudCredito.escre_UsuarioCrea,
+                        tbEstadoSolicitudCredito.escre_UsuarioModifica,
+                        tbEstadoSolicitudCredito.escre_FechaAgrego,
+                        tbEstadoSolicitudCredito.escre_FechaModifica);
+                    foreach (UDP_Vent_tbEstadoSolicitudCredito_Update_Result EstadoSolicitudCredito in list)
+                        MensajeError = EstadoSolicitudCredito.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+
+            return View(tbEstadoSolicitudCredito);
+            //if (ModelState.IsValid)
+            //{
+            //    db.Entry(tbEstadoSolicitudCredito).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            //ViewBag.escre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioCrea);
+            //ViewBag.escre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioModifica);
+            //return View(tbEstadoSolicitudCredito);
+        }
+
 
         // GET: /EstadoSolicitudCredito/Delete/5
         public ActionResult Delete(byte? id)

@@ -830,5 +830,34 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbCliente_Update", clte_IdParameter, clte_IdentificacionParameter, clte_EsPersonaNaturalParameter, clte_NombresParameter, clte_ApellidosParameter, clte_FechaNacimientoParameter, clte_NacionalidadParameter, clte_SexoParameter, clte_TelefonoParameter, clte_NombreComercialParameter, clte_RazonSocialParameter, clte_ContactoNombreParameter, clte_ContactoEmailParameter, clte_ContactoTelefonoParameter, clte_FechaConstitucionParameter, mun_CodigoParameter, clte_DireccionParameter, clte_CorreoElectronicoParameter, clte_EsActivoParameter, clte_RazonInactivoParameter, clte_ConCreditoParameter, clte_EsMinoristaParameter, clte_ObservacionesParameter, clte_UsuarioCreaParameter, clte_FechaCreaParameter);
         }
+    
+        public virtual ObjectResult<UDP_Vent_tbEstadoSolicitudCredito_Update_Result> UDP_Vent_tbEstadoSolicitudCredito_Update(Nullable<byte> escre_Id, string escre_Descripcion, Nullable<int> escre_UsuarioCrea, Nullable<int> escre_UsuarioModifica, Nullable<System.DateTime> escre_FechaAgrego, Nullable<System.DateTime> escre_FechaModifica)
+        {
+            var escre_IdParameter = escre_Id.HasValue ?
+                new ObjectParameter("escre_Id", escre_Id) :
+                new ObjectParameter("escre_Id", typeof(byte));
+    
+            var escre_DescripcionParameter = escre_Descripcion != null ?
+                new ObjectParameter("escre_Descripcion", escre_Descripcion) :
+                new ObjectParameter("escre_Descripcion", typeof(string));
+    
+            var escre_UsuarioCreaParameter = escre_UsuarioCrea.HasValue ?
+                new ObjectParameter("escre_UsuarioCrea", escre_UsuarioCrea) :
+                new ObjectParameter("escre_UsuarioCrea", typeof(int));
+    
+            var escre_UsuarioModificaParameter = escre_UsuarioModifica.HasValue ?
+                new ObjectParameter("escre_UsuarioModifica", escre_UsuarioModifica) :
+                new ObjectParameter("escre_UsuarioModifica", typeof(int));
+    
+            var escre_FechaAgregoParameter = escre_FechaAgrego.HasValue ?
+                new ObjectParameter("escre_FechaAgrego", escre_FechaAgrego) :
+                new ObjectParameter("escre_FechaAgrego", typeof(System.DateTime));
+    
+            var escre_FechaModificaParameter = escre_FechaModifica.HasValue ?
+                new ObjectParameter("escre_FechaModifica", escre_FechaModifica) :
+                new ObjectParameter("escre_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbEstadoSolicitudCredito_Update_Result>("UDP_Vent_tbEstadoSolicitudCredito_Update", escre_IdParameter, escre_DescripcionParameter, escre_UsuarioCreaParameter, escre_UsuarioModificaParameter, escre_FechaAgregoParameter, escre_FechaModificaParameter);
+        }
     }
 }

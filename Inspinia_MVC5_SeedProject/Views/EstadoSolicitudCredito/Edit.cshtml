@@ -46,6 +46,10 @@
 
                         @Html.ValidationSummary(true)
                         @Html.HiddenFor(model => model.escre_Id)
+       
+                 
+                        @Html.HiddenFor(model => model.escre_UsuarioCrea)
+                        @Html.HiddenFor(model => model.escre_FechaAgrego)
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.escre_Id, new { @class = "control-label col-md-2" })
@@ -118,11 +122,11 @@
                     <tr>
                         <td>Creado</td>
                         <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
-                        <td>@Html.DisplayFor(model => model.escre_FechaAgrego)</td>
+                        <td>@Html.DisplayFor(model => model.escre_UsuarioCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
                         <td>@Html.DisplayFor(model => model.escre_FechaModifica)</td>
                     </tr>
                 </table>

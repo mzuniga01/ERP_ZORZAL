@@ -30,7 +30,7 @@ namespace ERP_GMEDINA.Models
         public bool clte_EsPersonaNatural { get; set; }
         public string clte_Nombres { get; set; }
         public string clte_Apellidos { get; set; }
-        public Nullable<System.DateTime> clte_FechaNacimiento { get; set; }
+        public System.DateTime clte_FechaNacimiento { get; set; }
         public string clte_Nacionalidad { get; set; }
         public string clte_Sexo { get; set; }
         public string clte_Telefono { get; set; }

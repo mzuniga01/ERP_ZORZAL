@@ -943,6 +943,26 @@
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
     </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbCuentasBanco_tbPago_bcta_Id" Association="ERP_ZORZALModel.FK_Vent_tbCuentasBanco_tbPago_bcta_Id">
+      <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
+      <End Role="tbPago" EntitySet="tbPago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbFactura_tbPago_fact_Id" Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id">
+      <End Role="tbFactura" EntitySet="tbFactura" />
+      <End Role="tbPago" EntitySet="tbPago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbTipoPago_tbPago_tpa_Id" Association="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id">
+      <End Role="tbTipoPago" EntitySet="tbTipoPago" />
+      <End Role="tbPago" EntitySet="tbPago" />
+    </AssociationSet>
+    <FunctionImport Name="UDP_Vent_tbEstadoSolicitudCredito_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Update_Result)">
+      <Parameter Name="escre_Id" Mode="In" Type="Byte" />
+      <Parameter Name="escre_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="escre_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="escre_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="escre_FechaAgrego" Mode="In" Type="DateTime" />
+      <Parameter Name="escre_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1270,6 +1290,7 @@
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Modifica" FromRole="tbCuentasBanco" ToRole="tbUsuario" />
     <NavigationProperty Name="tbBanco" Relationship="ERP_ZORZALModel.FK_Gral_tbBanco_tbCuentasBanco_ban_Id" FromRole="tbCuentasBanco" ToRole="tbBanco" />
     <NavigationProperty Name="tbMoneda" Relationship="ERP_ZORZALModel.FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id" FromRole="tbCuentasBanco" ToRole="tbMoneda" />
+    <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Vent_tbCuentasBanco_tbPago_bcta_Id" FromRole="tbCuentasBanco" ToRole="tbPago" />
   </EntityType>
   <EntityType Name="tbDenominacion">
     <Key>
@@ -1738,9 +1759,9 @@
     <Property Name="tpi_Id" Type="Byte" Nullable="false" />
     <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
     <Property Name="clte_EsPersonaNatural" Type="Boolean" Nullable="false" />
-    <Property Name="clte_Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="clte_Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="clte_FechaNacimiento" Type="DateTime" Precision="0" />
+    <Property Name="clte_Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="clte_Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="clte_FechaNacimiento" Type="DateTime" Precision="0" Nullable="false" />
     <Property Name="clte_Nacionalidad" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="clte_Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="clte_Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
@@ -1953,6 +1974,7 @@
     <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPedido_fact_Id" FromRole="tbFactura" ToRole="tbPedido" />
     <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbFacturaDetalle" />
     <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" FromRole="tbFactura" ToRole="tbSucursal" />
+    <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" FromRole="tbFactura" ToRole="tbPago" />
   </EntityType>
   <EntityType Name="tbFacturaDetalle">
     <Key>
@@ -2086,6 +2108,9 @@
     <Property Name="pago_FechaModifica" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea" FromRole="tbPago" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica" FromRole="tbPago" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbCuentasBanco" Relationship="ERP_ZORZALModel.FK_Vent_tbCuentasBanco_tbPago_bcta_Id" FromRole="tbPago" ToRole="tbCuentasBanco" />
+    <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" FromRole="tbPago" ToRole="tbFactura" />
+    <NavigationProperty Name="tbTipoPago" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id" FromRole="tbPago" ToRole="tbTipoPago" />
   </EntityType>
   <EntityType Name="tbPedido">
     <Key>
@@ -2269,6 +2294,7 @@
     <Property Name="tpa_FechaModifica" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioCrea" FromRole="tbTipoPago" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioModifica" FromRole="tbTipoPago" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id" FromRole="tbTipoPago" ToRole="tbPago" />
   </EntityType>
   <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
     <End Type="ERP_ZORZALModel.tbObjeto" Role="tbObjeto" Multiplicity="1" />
@@ -4298,4 +4324,43 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbCuentasBanco_tbPago_bcta_Id">
+    <End Type="ERP_ZORZALModel.tbCuentasBanco" Role="tbCuentasBanco" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCuentasBanco">
+        <PropertyRef Name="bcta_Id" />
+      </Principal>
+      <Dependent Role="tbPago">
+        <PropertyRef Name="bcta_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbFactura_tbPago_fact_Id">
+    <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbFactura">
+        <PropertyRef Name="fact_Id" />
+      </Principal>
+      <Dependent Role="tbPago">
+        <PropertyRef Name="fact_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbTipoPago_tbPago_tpa_Id">
+    <End Type="ERP_ZORZALModel.tbTipoPago" Role="tbTipoPago" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbTipoPago">
+        <PropertyRef Name="tpa_Id" />
+      </Principal>
+      <Dependent Role="tbPago">
+        <PropertyRef Name="tpa_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="UDP_Vent_tbEstadoSolicitudCredito_Update_Result">
+    <Property Type="Byte" Name="MensajeError" Nullable="false" />
+  </ComplexType>
 </Schema>
