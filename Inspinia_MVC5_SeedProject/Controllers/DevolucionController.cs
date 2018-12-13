@@ -42,8 +42,15 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.dev_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             //ViewBag.dev_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             //ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
-            //ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
+            //ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "Codigo Factura");
+            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
+            return View();
+        }
+
+        public ActionResult _CreateDevolucionDetalle()
+        {
+            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
             return View();
         }
 

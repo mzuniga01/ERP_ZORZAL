@@ -38,8 +38,21 @@
         <td>
             @Html.DisplayFor(modelItem => item.clte_Identificacion)
         </td>
+        @{ if (Convert.ToInt32(item.clte_EsPersonaNatural) == 1)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.clte_Nombres)
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.clte_NombreComercial)
+                </td>
+            }
+        }
         <td>
-            @Html.DisplayFor(modelItem => item.clte_Nombres)
+           
         </td>
        
         <td>

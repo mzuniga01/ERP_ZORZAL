@@ -79,10 +79,13 @@
                                     @Html.EditorFor(model => model.fact_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafactura" } })
                                     <span class="validation-error"> @Html.ValidationMessageFor(model => model.fact_Fecha)</span>
                                 </div>
-                                @Html.LabelFor(model => model.clte_RTN_Identidad_Pasaporte, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.clte_RTN_Identidad_Pasaporte)
-                                    <span class="validation-error"> @Html.ValidationMessageFor(model => model.clte_RTN_Identidad_Pasaporte)</span>
+                                @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.clte_Identificacion)
+                                    <span class="validation-error"> @Html.ValidationMessageFor(model => model.clte_Identificacion)</span>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
 
                             </div>
@@ -169,6 +172,23 @@
         </div>
     </div>
 </div>
+<div>
+    <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @section Scripts {
@@ -177,4 +197,5 @@
     <script src="~/Scripts/app/Datepicker.js"></script>
     <script src="~/Scripts/app/Credito.js"></script>
     <script src="~/Scripts/app/FacturaDetalle.js"></script>
+    <script src="~/Scripts/app/Cliente.js"></script>
 }

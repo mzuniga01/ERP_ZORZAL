@@ -58,7 +58,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "RTN")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string clte_Identificacion { get; set; }
-        [Display(Name = "Nombre Cliente")]
+        [Display(Name = "Cliente")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string clte_Nombres { get; set; }
 

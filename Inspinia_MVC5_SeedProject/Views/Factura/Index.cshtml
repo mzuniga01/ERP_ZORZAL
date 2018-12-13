@@ -52,7 +52,7 @@
                                         @Html.DisplayNameFor(model => model.clte_Nombres)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)
+                                        @Html.DisplayNameFor(model => model.clte_Identificacion)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.cja_Id)
@@ -74,14 +74,24 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.fact_Fecha)
                                         </td>
+                                        @{ if (Convert.ToInt32(item.tbCliente.clte_EsPersonaNatural) == 1)
+                                            {
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.clte_Nombres)
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.tbCliente.clte_NombreComercial)
+                                                </td>
+                                            }
+                                        }
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.clte_Nombres)
+                                            @Html.DisplayFor(modelItem => item.clte_Identificacion)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.clte_RTN_Identidad_Pasaporte)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => item.tbCaja.cja_Descripcion)
+                                            @Html.DisplayFor(model => item.cja_Id)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(model => item.tbEstadoFactura.esfac_Descripcion)

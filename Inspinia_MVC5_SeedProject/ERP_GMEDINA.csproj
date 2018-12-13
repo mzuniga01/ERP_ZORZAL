@@ -754,12 +754,14 @@
     </Content>
     <Content Include="Scripts\app\Activo.js" />
     <Content Include="Scripts\app\Banco.js" />
+    <Content Include="Scripts\app\Cliente.js" />
     <Content Include="Scripts\app\Credito.js" />
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\DataTableBusquedaGenerica.js" />
     <Content Include="Scripts\app\Datepicker.js" />
     <Content Include="Scripts\app\Denominacion.js" />
     <Content Include="Scripts\app\Departamento.js" />
+    <Content Include="Scripts\app\DevolucionDetalle.js" />
     <Content Include="Scripts\app\Factura.js" />
     <Content Include="Scripts\app\FacturaDetalle.js" />
     <Content Include="Scripts\app\inspinia.js" />
@@ -1105,6 +1107,14 @@
     <Content Include="Views\MovimientoCaja\Index.cshtml" />
     <Content Include="Views\MovimientoCaja\IndexApertura.cshtml" />
     <Content Include="Views\MovimientoCaja\_CreateAperturaDetalle.cshtml" />
+    <Content Include="Views\Factura\_IndexCliente.cshtml" />
+    <Content Include="Views\Devolucion\_CreateDevolucionDetalle1.cshtml" />
+    <Content Include="Views\Devolucion\_DetalleProductoDevolucion.cshtml" />
+    <Content Include="Views\Devolucion\_EditDevolucionDetalle.cshtml" />
+    <Content Include="Views\Devolucion\_IndexCliente.cshtml" />
+    <Content Include="Views\Devolucion\_IndexDetalleDevolucion.cshtml" />
+    <Content Include="Views\Devolucion\_IndexProductoDDevolucion.cshtml" />
+    <Content Include="Views\Devolucion\_ProductoDevolucionFactura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

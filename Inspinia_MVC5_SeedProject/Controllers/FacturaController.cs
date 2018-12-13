@@ -58,6 +58,7 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion");
             //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
             ViewBag.Producto = db.tbProducto.ToList();
+            ViewBag.Cliente = db.tbCliente.ToList();
 
             return View();
         }

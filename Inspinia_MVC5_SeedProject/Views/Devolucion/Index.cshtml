@@ -29,12 +29,6 @@
 					</div>
                 </div>
                 <div class="ibox-content">
-                   @*<div class="ibox-tools">
-                       <input type="button" value="Buscar" class="btn btn-primary btn-xl" />
-                            <div class="col-md-4">
-                             <input type="text" class="form-control" placeholder="Buscar Devolución..." />
-                        </div>
-                    </div>*@
 
 <table class="table table table-striped  table-bordered" id="DataTable">
     <thead>
@@ -70,9 +64,20 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbFactura.clte_Nombres)
-                </td>
+           
+                @{ if (Convert.ToInt32(item.tbFactura.tbCliente.clte_EsPersonaNatural) == 1 )
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbFactura.clte_Nombres)
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbFactura.tbCliente.clte_NombreComercial)
+                        </td>
+                    }
+                }
                 <td>
                     @Html.DisplayFor(modelItem => item.dev_Fecha)
                 </td>
@@ -85,7 +90,6 @@
         }
     </tbody>
 </table>
-
                 </div>
             </div>
         </div>
@@ -94,4 +98,5 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
+
 

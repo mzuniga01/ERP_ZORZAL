@@ -18,3 +18,12 @@ $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", fun
     //CargarAsignaciones();
 });
 
+$(document).on("click", "#tbProductoDevolucion tbody tr td button#Agregar", function () {
+    idItem = $(this).closest('tr').data('id');
+    DescItem = $(this).closest('tr').data('desc');
+    $("#prod_Codigo").val(idItem);
+    $("#devd_Descripcion").val(DescItem);
+    $('#ModalBuscarProducto').modal('hide');
+    //CargarAsignaciones();
+});
+
