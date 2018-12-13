@@ -30,7 +30,7 @@
 
 
 
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
@@ -146,20 +146,11 @@
                         <div class="col-lg-12">
                             <div class="tabs-container">
                                 <ul class="nav nav-tabs">
-                                    <li class="active"><a data-toggle="tab" href="#tab-1">Estado</a></li>
-                                    <li class=""><a data-toggle="tab" href="#tab-2">Detalle factura</a></li>
-                                </ul>
+                                    <li  class="active"><a data-toggle="tab" href="#tab-1">Detalle factura</a></li>
+                                    <li><a data-toggle="tab" href="#tab-2">Estado</a></li>
+                               </ul>
                                 <div class="tab-content">
                                     <div id="tab-1" class="tab-pane active">
-                                        <div class="panel-body">
-                                            <div class="ibox-title">
-                                                <div class="ibox-tools">
-                                                </div>
-                                            </div>
-                                            @Html.Partial("_IndexFacturaHistorica", (List<tbFacturaHistorica>)ViewBag.FacturaHistorica)
-                                        </div>
-                                    </div>
-                                    <div id="tab-2" class="tab-pane">
                                         <div class="panel-body">
                                             <div class="ibox-title">
                                                 <div class="col-md-offset-11">
@@ -211,6 +202,16 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div id="tab-2" class="tab-pane">
+                                        <div class="panel-body">
+                                            <div class="ibox-title">
+                                                <div class="ibox-tools">
+                                                </div>
+                                            </div>
+                                            @Html.Partial("_IndexFacturaHistorica", (List<tbFacturaHistorica>)ViewBag.FacturaHistorica)
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -223,26 +224,12 @@
 
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Credito.js"></script>
+<script src="~/Scripts/app/Productos.js"></script>
 
-<div>
-    <div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg " role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
-                </div>
-                <div class="modal-body" id="frmEditarMunicipios">
-                    @Html.Partial("_CreateFacturaDetalleModal", new tbFacturaDetalle())
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -262,4 +249,22 @@
         </div>
     </div>
 </div>
+<div>
+    <div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_CreateFacturaDetalleModal", new tbFacturaDetalle())
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 

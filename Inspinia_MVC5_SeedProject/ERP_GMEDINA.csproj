@@ -225,7 +225,6 @@
     <Compile Include="Models\cMinorista.cs" />
     <Compile Include="Models\cNacionalidad.cs" />
     <Compile Include="Models\cNotaCredito.cs" />
-    <Compile Include="Models\cSolicitudEfectivo.cs" />
     <Compile Include="Models\cTest.cs" />
     <Compile Include="Models\cTipoCuenta.cs" />
     <Compile Include="Models\cTP.cs" />
@@ -752,8 +751,11 @@
     <Content Include="Scripts\app\Datepicker.js" />
     <Content Include="Scripts\app\Denominacion.js" />
     <Content Include="Scripts\app\Departamento.js" />
+    <Content Include="Scripts\app\Factura.js" />
+    <Content Include="Scripts\app\FacturaDetalle.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
+    <Content Include="Scripts\app\Producto.js" />
     <Content Include="Scripts\app\PuntoEmision.js" />
     <Content Include="Scripts\app\Sucursal.js" />
     <Content Include="Scripts\app\TipoPago.js" />

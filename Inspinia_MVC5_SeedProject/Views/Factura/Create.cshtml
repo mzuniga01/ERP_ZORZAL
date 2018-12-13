@@ -28,7 +28,7 @@
 
 
 
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
@@ -37,7 +37,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("Create", "Factura", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -137,11 +137,8 @@
                     </div>
                     <div class="ibox-content">
                         <div class="form-group">
-                            <div class="col-md-offset-4 col-md-10">
+                            <div class="col-md-offset-4 col-md-8">
                                 <input type="submit" value="Guardar" class="btn btn-primary btn-xs" />
-                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
-                                    Imprimir
-                                </button>
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-xs" })
                             </div>
                         </div>
@@ -172,6 +169,12 @@
         </div>
     </div>
 </div>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/Datepicker.js"></script>
-<script src="~/Scripts/app/Credito.js"></script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/app/Producto.js"></script>
+    <script src="~/Scripts/app/Datepicker.js"></script>
+    <script src="~/Scripts/app/Credito.js"></script>
+    <script src="~/Scripts/app/FacturaDetalle.js"></script>
+}
