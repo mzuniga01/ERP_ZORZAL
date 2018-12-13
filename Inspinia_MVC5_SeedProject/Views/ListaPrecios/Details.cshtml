@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
+@*<style>
     table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
@@ -24,7 +24,7 @@
     tr:nth-child(even) {
         /*background-color: #dddddd;*/
     }
-</style>
+</style>*@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Lista Precio</h2>
@@ -114,31 +114,33 @@
 
     </dl>
 
-                    <div class="form-group">
-                        <table>
-                            <tr>
-                                <th></th>
-                                <th>Usuario</th>
-                                <th>Fecha</th>
-                            </tr>
-                            <tr>
-                                <td>Creado</td>
-                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                <td>@Html.DisplayFor(model => model.listp_FechaModifica)</td>
-                            </tr>
-                            <tr>
-                                <td>Modificado</td>
-                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                                <td>@Html.DisplayFor(model => model.listp_FechaModifica)</td>
-                            </tr>
-                        </table>
-                    </div>
+                  
 
 
 	    @Html.ActionLink("Editar", "Edit", new { id = Model.listp_Id }, new { @class = "btn btn-primary"})
     @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white"})
 
+                  
                 </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th></th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>@Html.DisplayFor(model => model.listp_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>@Html.DisplayFor(model => model.listp_FechaModifica)</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

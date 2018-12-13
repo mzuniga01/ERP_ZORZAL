@@ -5,16 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Listado Precio</h2>
     </div>
-
-
-
-
-
-
     <div class="col-sm-8">
         <div class="title-action">
             <a href="@Url.Action("Index","ListaPrecios")">Regresar</a>
@@ -34,11 +29,11 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm()) 
-{
+				@using (Html.BeginForm("Create", "ListaPrecios", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
     @Html.AntiForgeryToken()
               
-                    <div class="form-horizontal">
+                    @*<div class="form-horizontal">
                         @Html.ValidationSummary(true)
 
 
@@ -49,15 +44,15 @@
                                 @Html.ValidationMessageFor(model => model.listp_Id)
                             </div>
                         </div>
-                    </div>
+                    </div>*@
 
                     <div class="form-group">
                         <label class="control-label col-md-2">Nombre Lista</label>
                         @*@Html.LabelFor(model => model.listp_EsActivo, new { @class = "control-label col-md-2" })*@
                         <div class="col-md-8">
                             @Html.EditorFor(model => model.listp_Nombre)
-                            @Html.ValidationMessageFor(model => model.listp_Nombre)
-                        </div>
+                            <p style="color:red">@Html.ValidationMessageFor(model => model.listp_Nombre)
+                    </div>
 
                         <br /><br />
                                 <div class="form-group">
@@ -66,9 +61,10 @@
                                         @*@Html.EditorFor(model => model.listp_EsActivo)*@
 
                                         @Html.CheckBox("listp_EsActivo", true)
-                                        @Html.ValidationMessageFor(model => model.listp_EsActivo)
+                                        <p style="color:red">
+                                            @Html.ValidationMessageFor(model => model.listp_EsActivo)
                                         <span class="validation-error">  @Html.ValidationMessageFor(model => model.listp_EsActivo)</span>
-                                    </div>
+</div>
                                 </div>
                             </div>
               
@@ -83,7 +79,8 @@
                         </div>
 
                         }
-                        @Html.Partial("_CreateListaPrecioDetalle")
+
+                        @Html.Partial("_CreateListaPrecioDetalle", new tbListadoPrecioDetalle())
 
 
                     </div>
@@ -95,4 +92,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/app/Producto.js"></script>
 }

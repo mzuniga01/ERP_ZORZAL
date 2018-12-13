@@ -27,11 +27,16 @@
                                     @Html.EditorFor(model => model.prod_Codigo)
                                     @Html.ValidationMessageFor(model => model.prod_Codigo)
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-3">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-primary">Añadir</button>
                                 </div>
                                
                             </div>
+
+
 
                             @*<div class="form-group">
                                 @Html.LabelFor(model => model.listp_Id, "Número ", new { @class = "control-label col-md-2" })
@@ -47,7 +52,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.lispd_PrecioMayorista, "Precio Mayorista", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.lispd_PrecioMayorista)
+                                    @Html.EditorFor(model => model.lispd_PrecioMayorista, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                    @*@Html.EditorFor(model => model.lispd_PrecioMayorista)*@
                                     @Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)
                                 </div>
                                 @*</div>
@@ -55,7 +61,8 @@
                                     <div class="form-group">*@
                                 @Html.LabelFor(model => model.lispd_PrecioMinorista, "Precio Minorista", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.lispd_PrecioMinorista)
+                                    @Html.EditorFor(model => model.lispd_PrecioMinorista, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                    @*@Html.EditorFor(model => model.lispd_PrecioMinorista)*@
                                     @Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)
                                 </div>
                             </div>
@@ -66,13 +73,15 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.lispd_DescCaja)
+                                    @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                    @*@Html.EditorFor(model => model.lispd_DescCaja)*@
                                     @Html.ValidationMessageFor(model => model.lispd_DescCaja)
                                 </div>
 
                                 @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.lispd_DescGerente)
+                                    @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                    @*@Html.EditorFor(model => model.lispd_DescGerente)*@
                                     @Html.ValidationMessageFor(model => model.lispd_DescGerente)
                                 </div>
                             </div>

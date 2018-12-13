@@ -7,14 +7,14 @@
                 <div class="ibox-title">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="text" class="form-control" placeholder="Ingresar producto" />
+                            <input id="search" type="text" class="form-control" placeholder="Ingresar producto" />
                             <br />
                         </div>
                     </div>
                 </div>
                 <div class="ibox-content">
 
-                    <table id="DataTableModal" class="table table table-striped  table-bordered">
+                    <table id="tbProductoFactura" class="table table table-striped  table-bordered">
                         <thead>
                             <tr>
                                 <th>
@@ -33,7 +33,10 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
+                                <tr data-id="@item.prod_Codigo" data-desc="@item.prod_Descripcion">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prod_Descripcion)
+                                    </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.prod_Marca)
                                     </td>
@@ -41,10 +44,7 @@
                                         @Html.DisplayFor(modelItem => item.prod_Modelo)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.prod_Talla)
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">Agregar</button>
+                                        <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
                                     </td>
                                 </tr>
                             }
@@ -56,12 +56,10 @@
         </div>
     </div>
 </div>
-
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('#DataTableModal').DataTable(
+        $('#tbProductoFactura').DataTable(
         {
             "searching": false,
             "lengthChange": false,
@@ -80,6 +78,5 @@
         });
     });
 </script>
-
 
 
