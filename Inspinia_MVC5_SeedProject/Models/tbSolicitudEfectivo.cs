@@ -37,5 +37,6 @@ namespace ERP_GMEDINA.Models
         public virtual tbMoneda tbMoneda { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
+        public virtual tbUsuario tbUsuario11 { get; set; }
     }
 }

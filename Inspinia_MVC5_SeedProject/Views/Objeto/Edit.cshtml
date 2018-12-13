@@ -48,15 +48,15 @@
                             @Html.LabelFor(model => model.obj_Id, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.obj_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                @Html.ValidationMessageFor(model => model.obj_Id)
-                            </div>
+                                <p style="color:red"> @Html.ValidationMessageFor(model => model.obj_Id)</p>
+</div>
                         </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.obj_Pantalla, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.obj_Pantalla, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.obj_Pantalla)
-                                </div>
+                                    <p style="color:red">  @Html.ValidationMessageFor(model => model.obj_Pantalla)</p>
+</div>
                             </div>
                         
                             <div class="form-group ">

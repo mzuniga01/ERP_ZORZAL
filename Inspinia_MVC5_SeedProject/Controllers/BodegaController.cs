@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 
-namespace ERP_ZORZAL.Controllers
+namespace ERP_GMEDINA.Controllers
 {
     public class BodegaController : Controller
     {
@@ -17,9 +17,8 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Bodega/
         public ActionResult Index()
         {
-            var tbbodega = db.tbBodega.Include(t => t.tbUsuario).Include(t => t.tbMunicipio).Include(t => t.tbEstadoMovimiento);
+            var tbbodega = db.tbBodega.Include(t => t.tbUsuario).Include(t => t.tbMunicipio);
             return View(tbbodega.ToList());
-            
         }
 
         // GET: /Bodega/Details/5
@@ -40,24 +39,11 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Bodega/Create
         public ActionResult Create()
         {
-            ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            //ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo");
-            ViewBag.mun_Nombre = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
-            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
-            ViewBag.bod_EsActiva = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
-            //ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
-            ViewBag.bodd_Id = new SelectList(db.tbBodegaDetalle, "bodd_Id", "prod_Codigo");
-            ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
-            ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "pscat_Id");
-            ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
-            //ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pcat_Id");
-            ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
-            ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "uni_Id");
-            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
-            ViewBag.Producto = db.tbProducto.ToList();
-            ViewBag.pcat_Id_Nombre = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
-            ViewBag.pscat_Id_Nombre = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
-            ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pcat_Id");
+            ViewBag.dep_codigo = new SelectList(db.tbMunicipio, "dep_codigo", "dep_Nombre");
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
+            ViewBag.dep_codigo = new SelectList(db.tbDepartamento, "dep_codigo", "dep_Nombre");
 
             return View();
         }
@@ -67,33 +53,57 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva,bod_Nombre")] tbBodega tbBodega)
+        public ActionResult Create([Bind(Include="bod_Id,bod_Nombre,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva,bod_UsuarioCrea,bod_FechaCrea,bod_UsuarioModifica,bod_FechaModifica")] tbBodega tbBodega)
         {
+            //if (ModelState.IsValid)
+            //{
+            //    db.tbBodega.Add(tbBodega);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+
+            //ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBodega.usu_Id);
+            //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbBodega.mun_Codigo);
+            //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
+            //return View(tbBodega);
             if (ModelState.IsValid)
             {
-                //db.tbBodega.Add(tbBodega);
-                //db.SaveChanges();
-                //try
-                //{
-                //    IEnumerable<object> List = null;
-                //    String MsjError = "";
-                //    List = db.UDP_Inv_tbBodega_Insert(t)
-                //}
-                //catch(Exception Ex)
-                //{
+                try
+                {
+                    IEnumerable<object> list = null;
+                    var MsjError = "";
+                    list = db.UDP_Inv_tbBodega_Insert(   tbBodega.bod_Nombre, 
+                                                         tbBodega.bod_ResponsableBodega
+                                                        , tbBodega.bod_Direccion 
+                                                        , tbBodega.bod_Correo
+                                                        , tbBodega.bod_Telefono 
+                                                        , tbBodega.mun_Codigo
+                                                        , tbBodega.bod_EsActiva);
+                    foreach (UDP_Inv_tbBodega_Insert_Result bodega in list)
+                        MsjError = bodega.MensajeError;
+                    if (MsjError == "-1")
+                    {
 
-                //}
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
 
-
-
-
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro");
+                }
                 return RedirectToAction("Index");
             }
-
-            ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBodega.usu_Id);
+            //ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBodega.usu_Id);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbBodega.mun_Codigo);
-            ViewBag.bod_EsActiva = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbBodega.bod_EsActiva);
+            //ViewBag.dep_codigo = new SelectList(db.tbMunicipio, "dep_codigo", "dep_Nombre", tbBodega.mun_Codigo);
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
             return View(tbBodega);
+            
         }
 
         // GET: /Bodega/Edit/5
@@ -108,18 +118,9 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBodega.usu_Id);
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbBodega.mun_Codigo);
-            ViewBag.bod_EsActiva = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbBodega.bod_EsActiva);
+           
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbBodega.mun_Codigo);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
-            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.mun_Codigo);
-            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
-            ViewBag.pcat_Id_Nombre = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
-            ViewBag.pscat_Id_Nombre = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
-            ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pcat_Id");
-            ViewBag.Producto = db.tbProducto.ToList();
-
             return View(tbBodega);
         }
 
@@ -128,18 +129,60 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="bod_Id,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva,bod_UsuarioCrea,bod_FechaCrea,bod_UsuarioModifica,bod_FechaModifica,bod_Nombre")] tbBodega tbBodega)
+        public ActionResult Edit(int? id, [Bind(Include="bod_Id,bod_Nombre,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva,bod_UsuarioCrea,bod_FechaCrea,bod_UsuarioModifica,bod_FechaModifica")] tbBodega tbBodega)
         {
+            //if (ModelState.IsValid)
+            //{
+            //    db.Entry(tbBodega).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+
+            //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbBodega.mun_Codigo);
+            //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
+            //return View(tbBodega);
             if (ModelState.IsValid)
             {
-                db.Entry(tbBodega).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    tbBodega bod = db.tbBodega.Find(id);
+                    IEnumerable<object> list = null;
+                    var MsjError = "";
+                    list = db.UDP_Inv_tbBodega_Update(tbBodega.bod_Id
+                                                        , tbBodega.bod_Nombre
+                                                        , tbBodega.bod_ResponsableBodega
+                                                        , tbBodega.bod_Direccion
+                                                        , tbBodega.bod_Correo
+                                                        , tbBodega.bod_Telefono
+                                                        , tbBodega.mun_Codigo
+                                                        , tbBodega.bod_EsActiva
+                                                        , bod.bod_UsuarioCrea
+                                                        , bod.bod_FechaCrea);
+                    foreach (UDP_Inv_tbBodega_Update_Result bode in list)
+                        MsjError = bode.MensajeError;
+                    if (MsjError == "-1")
+                    {
+                        ModelState.AddModelError("", "No se guardo el cambio");
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se guardo el cambio");
+                }
                 return RedirectToAction("Index");
             }
-            ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBodega.usu_Id);
+            //ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBodega.usu_Id);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbBodega.mun_Codigo);
-            ViewBag.bod_EsActiva = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbBodega.bod_EsActiva);
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
             return View(tbBodega);
+
         }
 
         // GET: /Bodega/Delete/5
@@ -177,10 +220,17 @@ namespace ERP_ZORZAL.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult _EditBodegaDetalle()
-        {
-            return PartialView();
-        }
+
+        //public List<tbMunicipio> MostrarMunicipioPorDeparatamento(tbMunicipio lstMunicipio)
+        //{
+        //    tbDepartamento _Departamento = new tbDepartamento();
+
+        //    var ListaMunicipios = from municipio in db.tbMunicipio.ToList()
+        //                          where municipio._Departamento.Contains(lstMunicipio.tbDepartamento)
+        //                          select municipio;
+
+        //    return ListaMunicipios.ToList();
+        //}
 
 
     }

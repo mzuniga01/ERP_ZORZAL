@@ -250,9 +250,6 @@
     <Compile Include="Models\tbActividadEconomica.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbArqueoCaja.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tbBanco.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -292,7 +289,7 @@
     <Compile Include="Models\tbDocumentoFiscal.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbEmpleados.cs">
+    <Compile Include="Models\tbEmpleado.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbEntrada.cs">

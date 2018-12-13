@@ -115,12 +115,12 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
                         <td>@Html.DisplayFor(model => model.bod_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)</td>
                         <td>@Html.DisplayFor(model => model.bod_FechaModifica)</td>
                     </tr>
                 </table>
@@ -133,7 +133,13 @@
 
 
 
+@*@if (Convert.ToString(tbBodega_bod_usuarioModifica))== ""
+                                {
 
+}
+                else{
+    @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+                }*@
 
 
 

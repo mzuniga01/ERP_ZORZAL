@@ -46,20 +46,20 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="tent_Descripcion")] tbTipoEntrada tbTipoEntrada)
+        public ActionResult Create([Bind(Include="tent_Id,tent_Descripcion,tent_UsuarioCrea,tent_FechaCrea,tent_UsarioModifica,tent_FechaCrea")] tbTipoEntrada tbTipoEntrada)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
                     IEnumerable<object> list = null;
-                    string MsError = "";
+                    var MsjError = "";
                     list = db.UDP_Inv_tbTipoEntrada_Insert(tbTipoEntrada.tent_Descripcion);
                     //list = db.udp_inv_tbtipoentrada_insert(tbtipoentrada.tent_descripcion,);
                     foreach (UDP_Inv_tbTipoEntrada_Insert_Result TipoEntrada in list)
-                        MsError = TipoEntrada.MensajeError;
-
-                    if (MsError.Substring(0,2)=="-1"){
+                        MsjError = TipoEntrada.MensajeError;
+                    if (MsjError == "-1")
+                    {
                         ModelState.AddModelError("", "No se pudo almacenar el registro");
                         return View(tbTipoEntrada);
                     }
@@ -71,11 +71,12 @@ namespace ERP_ZORZAL.Controllers
 
                     }                        
                 }
-                catch (Exception ex)
+                catch (Exception Ex)
                 {
-                    ModelState.AddModelError("", "No se pudo ingresar el registro " + ex.Message);
-                    return View(tbTipoEntrada);
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro");
                 }
+                return RedirectToAction("Index");
             }
 
             return View(tbTipoEntrada);

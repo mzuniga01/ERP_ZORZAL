@@ -37,7 +37,7 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.obj_Pantalla)
                                 </th>
-                                <th></th>
+                                <th>Actividad</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,6 +53,7 @@
                                     <td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.obj_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.obj_Id }, new { @class = "btn btn-white btn-xs" })
+
                                     </td>
                                 </tr>
                             }

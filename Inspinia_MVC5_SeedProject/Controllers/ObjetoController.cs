@@ -57,11 +57,11 @@ namespace ERP_ZORZAL.Controllers
                     IEnumerable<object> list = null;
                     var MsjError = "";
                     list = db.UDP_Acce_tbObjeto_Insert(tbObjeto.obj_Pantalla);
-                    foreach (UDP_Inv_tbProductoCategoria_Insert_Result obejto in list)
+                    foreach (UDP_Acce_tbObjeto_Insert_Result obejto in list)
                         MsjError = obejto.MensajeError;
                     if (MsjError == "-1")
                     {
-
+                        ModelState.AddModelError("", "No se Guardo el registro");
                     }
                     else
                     {
@@ -119,7 +119,7 @@ namespace ERP_ZORZAL.Controllers
 
                     if (MsjError == "-1")
                     {
-                        ModelState.AddModelError("", "No se guardo el registro");
+                        ModelState.AddModelError("", "No se Actualizo el registro");
                         return RedirectToAction("Index");
                     }
                     else
@@ -130,7 +130,7 @@ namespace ERP_ZORZAL.Controllers
                 catch (Exception Ex)
                 {
                     Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro");
+                    ModelState.AddModelError("", "No se Actualizo el registro");
                 }
                 return RedirectToAction("Index");
             }

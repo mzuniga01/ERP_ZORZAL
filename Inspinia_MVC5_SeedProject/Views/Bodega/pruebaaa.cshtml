@@ -1,0 +1,72 @@
+﻿@*@model ERP_GMEDINA.Models.tbMunicipio
+
+@{
+    ViewBag.Title = "pruebaaa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    var types = ViewBag.TypesList as List<SelectListItem>;
+
+    var subtypes = ViewBag.SubTypesList as List<SelectListItem>;
+
+
+}
+
+<h2>pruebaaa</h2>
+
+
+
+
+<div class="row">
+
+    <h2>Index</h2>
+
+    @using (Html.BeginForm("Index", "Home", new { @class = "form" }))
+
+    {
+
+        <div class="form-group">
+
+            @Html.LabelFor(x => x.TypeId, new { @class = "control-label col-lg-2" })
+
+
+
+            <div class="col-lg-4">
+
+                @Html.DropDownListFor(x => x.TypeId, types, new { @class = "form-control" ,
+
+                 data_cascade_combo ="#stypes",
+
+                 data_cascade_combo_source =Url.Action("GetSubTypes","Home"),
+
+                 data_cascade_combo_param_name="id"
+
+            })
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(x => x.SubTypeId, new { @class = "control-label col-lg-2" })
+
+
+
+            <div class="col-lg-4">
+
+                @Html.DropDownListFor(x => x.SubTypeId, subtypes, new { @class = "form-control", id = "stypes" })
+
+            </div>
+
+        </div>
+
+    }
+
+</div>
+
+@section scripts{
+
+    <script defer src="~/Scripts/cascade.combo.js"></script>
+
+}*@
