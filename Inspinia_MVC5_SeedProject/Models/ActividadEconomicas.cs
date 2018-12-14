@@ -6,17 +6,18 @@ using System.Web;
 
 namespace ERP_GMEDINA.Models
 {
-    [MetadataType(typeof(ActividadEconomicasMetaData))]
+    [MetadataType(typeof(ActividadEconomicaMetaData))]
     public partial class tbActividadEconomica
     {
  
     }
-    public class ActividadEconomicasMetaData
+    public class ActividadEconomicaMetaData
     {
         [Display(Name = "Número")]
         public short acte_Id { get; set; }
 
         [Display(Name = "Descripción")]
+        [Required]
         public string acte_Descripcion { get; set; }
 
         [Display(Name = "Usuario Crea")]

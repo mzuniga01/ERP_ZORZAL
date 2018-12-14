@@ -8,14 +8,7 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Actividad Económica</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Crear</strong>
-            </li>
-        </ol>*@
+
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -41,21 +34,13 @@
     
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
-        <div class="form-group">
-            @Html.LabelFor(model => model.acte_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.acte_Id, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@ } })
-                @Html.ValidationMessageFor(model => model.acte_Id)
-
-
-            </div>
-        </div>
+  
 
         <div class="form-group">
             @Html.LabelFor(model => model.acte_Descripcion, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.acte_Descripcion)
-                <p style="color:red"> @Html.ValidationMessageFor(model => model.acte_Descripcion)</p>
+                <p style="color:red">@Html.ValidationMessageFor(model => model.acte_Descripcion)</p>
        </div>
         </div>
 

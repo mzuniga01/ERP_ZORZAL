@@ -19,6 +19,7 @@ namespace ERP_GMEDINA.Models
         public byte tpi_Id { get; set; }
 
         [Display(Name = "Descripción")]
+        [Required]
         public string tpi_Descripcion { get; set; }
 
         [Display(Name = "Usuario Crea")]

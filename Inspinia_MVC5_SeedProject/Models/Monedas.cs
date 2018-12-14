@@ -8,15 +8,16 @@ namespace ERP_GMEDINA.Models
 {
     [MetadataType(typeof(MonedasMetaData))]
 
-    public partial class tbMonedas
+    public partial class tbMoneda
     {
+
     }
 
 
     public class MonedasMetaData
     {
         [Display (Name ="Número")]
-        [Required]
+
         public short mnda_Id { get; set; }
         [Display(Name = "Abreviatura")]
         [Required]
