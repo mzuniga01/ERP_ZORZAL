@@ -33,7 +33,7 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public bool clte_EsPersonaNatural { get; set; }
 
-        [Display(Name = "Nombre")]
+        [Display(Name = "Nombres")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_Nombres { get; set; }
 
@@ -51,7 +51,7 @@ namespace ERP_GMEDINA.Models
         public string clte_Nacionalidad { get; set; }
 
         [Display(Name = "Sexo")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_Sexo { get; set; }
 
         [Display(Name = "Teléfono")]
@@ -71,7 +71,7 @@ namespace ERP_GMEDINA.Models
         public string clte_ContactoNombre { get; set; }
 
         [Display(Name = "Contacto Email")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_ContactoEmail { get; set; }
 
         [Display(Name = "Contacto Teléfono")]
@@ -92,7 +92,7 @@ namespace ERP_GMEDINA.Models
         public string clte_Direccion { get; set; }
 
         [Display(Name = "Correo Electrónico")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_CorreoElectronico { get; set; }
 
         [Display(Name = "¿Es Activo?")]
@@ -100,7 +100,7 @@ namespace ERP_GMEDINA.Models
         public bool clte_EsActivo { get; set; }
 
         [Display(Name = "Razón Inactivación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_RazonInactivo { get; set; }
 
         [Display(Name = "¿Con Crédito?")]
@@ -112,7 +112,7 @@ namespace ERP_GMEDINA.Models
         public bool clte_EsMinorista { get; set; }
 
         [Display(Name = "Observaciones")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_Observaciones { get; set; }
 
         [Display(Name = "Usuario Creación")]

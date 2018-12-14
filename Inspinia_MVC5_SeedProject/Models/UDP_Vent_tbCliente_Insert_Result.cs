@@ -11,8 +11,8 @@ namespace ERP_GMEDINA.Models
 {
     using System;
     
-    public partial class UDP_Gral_tbMoneda_Update_Result
+    public partial class UDP_Vent_tbCliente_Insert_Result
     {
-        public short MensajeError { get; set; }
+        public int MensajeError { get; set; }
     }
 }

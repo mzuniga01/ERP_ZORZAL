@@ -36,7 +36,12 @@
                         <div class="row">
                             <div class="col-md-4" id="natural" name="natural">
                                 <dl class="dl-horizontal">
-
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.tpi_Id)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.tbTipoIdentificacion.tpi_Descripcion)
+                                    </dd>
                                     <dt>
                                         @Html.DisplayNameFor(model => model.clte_Identificacion)
                                     </dt>
@@ -70,11 +75,14 @@
                                         <dt>
                                             @Html.DisplayNameFor(model => model.clte_Sexo)
                                         </dt>
-
-                                        <dd>
-                                            @Html.DisplayFor(model => model.clte_Sexo)
-                                        </dd>
-
+                                        if (Model.clte_Sexo=="H")
+                                        {
+                                            <dd>Hombre</dd>
+                                        }
+                                        else
+                                        {
+                                            <dd>Mujer</dd>
+                                        }
                                         <dt>
                                             @Html.DisplayNameFor(model => model.clte_Telefono)
                                         </dt>

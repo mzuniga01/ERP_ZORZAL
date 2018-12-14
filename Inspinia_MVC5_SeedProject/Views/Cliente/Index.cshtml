@@ -59,9 +59,6 @@
                                     @Html.DisplayNameFor(model => model.clte_Nombres)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.clte_NombreComercial)
-                                </th>
-                                <th>
                                     @Html.DisplayNameFor(model => model.clte_Telefono)
                                 </th>
                                 <th>
@@ -82,13 +79,27 @@
                                         @Html.DisplayFor(modelItem => item.clte_Identificacion)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.clte_Nombres)
+                                        @if (item.clte_EsPersonaNatural)
+                                        {
+                                            <p>
+                                                @Html.DisplayFor(modelItem => item.clte_Nombres)&nbsp
+                                            @Html.DisplayFor(modelItem => item.clte_Apellidos)
+                                        </p>
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayFor(modelItem => item.clte_NombreComercial)
+                                        }
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.clte_NombreComercial)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.clte_Telefono)
+                                        @if (item.clte_EsPersonaNatural)
+                                        {
+                                            @Html.DisplayFor(modelItem => item.clte_Telefono)
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayFor(modelItem => item.clte_ContactoTelefono)
+                                        }
                                     </td>
                                         @if (item.clte_EsActivo )
                                         {

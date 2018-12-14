@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 
-namespace ERP_ZORZAL.Controllers
+namespace ERP_GMEDINA.Controllers
 {
     public class ClienteController : Controller
     {
@@ -39,18 +39,12 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Cliente/Create
         public ActionResult Create()
         {
-            tbCliente Cliente = new tbCliente();
-            Cliente.GeneroList = cUtilities.GeneroList();
-            Cliente.NacionalidadList = cUtilities.NacionalidadList();
-
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
             ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
-
-
-            return View(Cliente);
+            return View();
         }
 
         // POST: /Cliente/Create
@@ -58,23 +52,62 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include= "clte_Id,tpi_Id,clte_Identificacion,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica")] tbCliente tbCliente)
+        public ActionResult Create([Bind(Include="clte_Id,tpi_Id,clte_Identificacion,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica")] tbCliente tbCliente)
         {
             if (ModelState.IsValid)
             {
-                db.tbCliente.Add(tbCliente);
-                db.SaveChanges();
+                try
+                {
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbCliente_Insert(tbCliente.tpi_Id, tbCliente.clte_Identificacion,
+                                                        tbCliente.clte_EsPersonaNatural,
+                                                        tbCliente.clte_Nombres,
+                                                        tbCliente.clte_Apellidos,
+                                                        tbCliente.clte_FechaNacimiento,
+                                                        tbCliente.clte_Nacionalidad,
+                                                        tbCliente.clte_Sexo,
+                                                        tbCliente.clte_Telefono,
+                                                        tbCliente.clte_NombreComercial,
+                                                        tbCliente.clte_RazonSocial,
+                                                        tbCliente.clte_ContactoNombre,
+                                                        tbCliente.clte_ContactoEmail,
+                                                        tbCliente.clte_ContactoTelefono,
+                                                        tbCliente.clte_FechaConstitucion,
+                                                        tbCliente.mun_Codigo,
+                                                        tbCliente.clte_Direccion,
+                                                        tbCliente.clte_CorreoElectronico,
+                                                        tbCliente.clte_EsActivo,
+                                                        tbCliente.clte_RazonInactivo,
+                                                        tbCliente.clte_ConCredito,
+                                                        tbCliente.clte_EsMinorista,
+                                                        tbCliente.clte_Observaciones);
+                    foreach (UDP_Vent_tbCliente_Insert_Result cliente in list)
+                        MensajeError = cliente.MensajeError;
+                    if (MensajeError == -1)
+                    {
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+                }
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
+                    return View(tbCliente);
+                }
                 return RedirectToAction("Index");
             }
-            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbCliente.tbMunicipio.dep_Codigo);
-            ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
-            ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
+            tbCliente Cliente = new tbCliente();
+            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
+            //ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
+            //ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
 
-            tbCliente Cliente = new tbCliente();
-            Cliente.GeneroList = cUtilities.GeneroList();
-            Cliente.NacionalidadList = cUtilities.NacionalidadList();
             return View(tbCliente);
         }
 
@@ -93,12 +126,8 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
             ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
             ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbCliente.mun_Codigo);
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
-
-            tbCliente Cliente = db.tbCliente.Find(id);
-            Cliente.GeneroList = cUtilities.GeneroList();
-            Cliente.NacionalidadList = cUtilities.NacionalidadList();
             return View(tbCliente);
         }
 
@@ -107,23 +136,63 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "clte_Id,tpi_Id,clte_Identificacion_Pasaporte,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica")] tbCliente tbCliente)
+        public ActionResult Edit([Bind(Include="clte_Id,tpi_Id,clte_Identificacion,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica")] tbCliente tbCliente)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbCliente).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbCliente_Update(tbCliente.tpi_Id, 
+                                                        tbCliente.clte_Identificacion,
+                                                        tbCliente.clte_EsPersonaNatural,
+                                                        tbCliente.clte_Nombres,
+                                                        tbCliente.clte_Apellidos,
+                                                        tbCliente.clte_FechaNacimiento,
+                                                        tbCliente.clte_Nacionalidad,
+                                                        tbCliente.clte_Sexo,
+                                                        tbCliente.clte_Telefono,
+                                                        tbCliente.clte_NombreComercial,
+                                                        tbCliente.clte_RazonSocial,
+                                                        tbCliente.clte_ContactoNombre,
+                                                        tbCliente.clte_ContactoEmail,
+                                                        tbCliente.clte_ContactoTelefono,
+                                                        tbCliente.clte_FechaConstitucion,
+                                                        tbCliente.mun_Codigo,
+                                                        tbCliente.clte_Direccion,
+                                                        tbCliente.clte_CorreoElectronico,
+                                                        tbCliente.clte_EsActivo,
+                                                        tbCliente.clte_RazonInactivo,
+                                                        tbCliente.clte_ConCredito,
+                                                        tbCliente.clte_EsMinorista,
+                                                        tbCliente.clte_Observaciones,
+                                                        tbCliente.clte_UsuarioCrea,
+                                                        tbCliente.clte_FechaCrea);
+                    foreach (UDP_Vent_tbCliente_Update_Result cliente in list)
+                        MensajeError = cliente.MensajeError;
+                    if (MensajeError == -1)
+                    {
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+                }
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
+                    return View(tbCliente);
+                }
                 return RedirectToAction("Index");
             }
-            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbCliente.tbMunicipio.dep_Codigo);
-            ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
-            ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbCliente.mun_Codigo);
+            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
+            //ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
+            //ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
-
-
-            tbCliente.GeneroList = cUtilities.GeneroList();
-            tbCliente.NacionalidadList = cUtilities.NacionalidadList();
             return View(tbCliente);
         }
 
@@ -161,14 +230,5 @@ namespace ERP_ZORZAL.Controllers
             }
             base.Dispose(disposing);
         }
-
-        [HttpPost]
-        public JsonResult GetMunicipios(string CodDepartamento)
-        {
-            var list = db.spGetMunicipios(CodDepartamento).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-
-
     }
 }
