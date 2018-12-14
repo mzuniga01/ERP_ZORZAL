@@ -49,13 +49,26 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.deno_Tipo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.DropDownListFor(model => model.deno_Tipo, new SelectList(Model.DenominacionList, "ID_TipoDenominacion", "Tipo_Denominacion"), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.deno_Tipo, "", new { @style = "color:red" })
             </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_Tipo, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.deno_Tipo, new List<SelectListItem>
+    {
+                        new SelectListItem() {Text = "Billete", Value="1"},
+                        new SelectListItem() {Text = "Moneda", Value="2"},
+    }, "Seleccione Tipo Denominación", new { @class = "form-control" })               
+                @Html.ValidationMessageFor(model => model.deno_Tipo, "", new { @style = "color:red" })
+            </div>
         </div>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })

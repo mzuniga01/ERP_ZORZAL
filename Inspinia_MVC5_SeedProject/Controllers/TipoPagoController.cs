@@ -49,11 +49,12 @@ namespace ERP_ZORZAL.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="tpa_Id,tpa_Descripcion,tpa_Emisor,tpa_Cuenta,tpa_FechaVencimiento,tpa_Titular,tpa_UsuarioCrea,tpa_FechaCrea,tpa_UsuarioModifica,tpa_FechaModifica")] tbTipoPago tbTipoPago)
+        public ActionResult Create([Bind(Include = "tpa_Id,tpa_Descripcion,tpa_Emisor,tpa_Cuenta,tpa_FechaVencimiento,tpa_Titular,tpa_UsuarioCrea,tpa_FechaCrea,tpa_UsuarioModifica,tpa_FechaModifica")] tbTipoPago tbTipoPago)
         {
-            try
+
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                try
                 {
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
@@ -67,17 +68,20 @@ namespace ERP_ZORZAL.Controllers
                     else
                     {
                         return RedirectToAction("Index");
-                    }
-                    db.tbTipoPago.Add(tbTipoPago);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-            }
 
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "Error al agregar el registro " + Ex.Message.ToString());
+                    return View(tbTipoPago);
+                }
+                //db.tbTipoPago.Add(tbTipoPago);
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
+            }
+        
+         
             ViewBag.tpa_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoPago.tpa_UsuarioCrea);
             ViewBag.tpa_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoPago.tpa_UsuarioModifica);
             return View(tbTipoPago);
@@ -109,18 +113,26 @@ namespace ERP_ZORZAL.Controllers
         {
             if (ModelState.IsValid)
             {
-                var MensajeError = 0;
-                IEnumerable<object> list = null;
-                list = db.UDP_Vent_tbTipoPago_Update(tbTipoPago.tpa_Id, tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_Emisor, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular, tbTipoPago.tpa_UsuarioCrea, tbTipoPago.tpa_FechaCrea, tbTipoPago.tpa_UsuarioModifica, tbTipoPago.tpa_FechaModifica);
-                foreach (UDP_Vent_tbTipoPago_Update_Result tipopago in list)
-                    MensajeError = tipopago.MensajeError;
-                if (MensajeError == -1)
+                try
                 {
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbTipoPago_Update(tbTipoPago.tpa_Id, tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_Emisor, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular);
+                    foreach (UDP_Vent_tbTipoPago_Update_Result tipopago in list)
+                        MensajeError = tipopago.MensajeError;
+                    if (MensajeError == -1)
+                    {
 
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
-                else
+                catch (Exception Ex)
                 {
-                    return RedirectToAction("Index");
+                    ModelState.AddModelError("", "Error al actualizar el registro " + Ex.Message.ToString());
+                    return View(tbTipoPago);
                 }
                
                 //db.Entry(tbTipoPago).State = EntityState.Modified;

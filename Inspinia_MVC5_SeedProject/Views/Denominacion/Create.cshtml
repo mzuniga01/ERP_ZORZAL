@@ -36,11 +36,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.deno_Tipo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.DropDownListFor(model => model.deno_Tipo, new SelectList(Model.DenominacionList, "ID_TipoDenominacion", "Tipo_Denominacion"), "Seleccione Tipo Denominación", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.deno_Tipo, new List<SelectListItem>
+    {
+                        new SelectListItem() {Text = "Billete", Value="1"},
+                        new SelectListItem() {Text = "Moneda", Value="2"},
+    }, "Seleccione Tipo Denominación", new { @class = "form-control" })               
                 @Html.ValidationMessageFor(model => model.deno_Tipo, "", new { @style = "color:red" })
             </div>
         </div>
-               
+
+                 
         <div class="form-group">
             @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
@@ -98,9 +103,9 @@
             </div>
         </div>*@
         <div class="form-group">
-            <div class="col-md-12 text-box center">
+            <div class="col-md-12 text-center">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
             </div>
         </div>
     </div>

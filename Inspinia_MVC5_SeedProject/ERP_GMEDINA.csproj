@@ -499,7 +499,19 @@
     <Compile Include="Models\UDP_Vent_tbEstadoSolicitudCredito_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbExoneracion_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbExoneracion_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbFactura_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbPago_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbPago_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbPedido_Select_Result.cs">
@@ -951,16 +963,6 @@
     <Content Include="Views\EstadoFactura\Details.cshtml" />
     <Content Include="Views\EstadoFactura\Edit.cshtml" />
     <Content Include="Views\EstadoFactura\Index.cshtml" />
-    <Content Include="Views\Pago\Create.cshtml" />
-    <Content Include="Views\Pago\Delete.cshtml" />
-    <Content Include="Views\Pago\Details.cshtml" />
-    <Content Include="Views\Pago\Edit.cshtml" />
-    <Content Include="Views\Pago\Index.cshtml" />
-    <Content Include="Views\TipoPago\Create.cshtml" />
-    <Content Include="Views\TipoPago\Delete.cshtml" />
-    <Content Include="Views\TipoPago\Details.cshtml" />
-    <Content Include="Views\TipoPago\Edit.cshtml" />
-    <Content Include="Views\TipoPago\Index.cshtml" />
     <Content Include="Views\ActividadEconomica\Create.cshtml" />
     <Content Include="Views\ActividadEconomica\Delete.cshtml" />
     <Content Include="Views\ActividadEconomica\Details.cshtml" />
@@ -1079,7 +1081,6 @@
     <Content Include="Views\PuntoEmision\_DetailsNumeracion.cshtml" />
     <Content Include="Views\Exoneracion\_IndexCliente.cshtml" />
     <Content Include="Views\Devolucion\_ProductoDevolucion.cshtml" />
-    <Content Include="Views\Pago\_IndexCliente.cshtml" />
     <Content Include="Views\NotaCredito\_IndexCliente.cshtml" />
     <Content Include="Views\ListaPrecios\_PrecioDetalle.cshtml" />
     <Content Include="Views\SolicitudCredito\_IndexCliente.cshtml" />
@@ -1124,6 +1125,17 @@
     <Content Include="Views\ListaPrecios\_IndexProducto.cshtml" />
     <Content Include="Views\Pedido\IndexFacturar.cshtml" />
     <Content Include="Views\Factura\_Create.cshtml" />
+    <Content Include="Views\Pago\Create.cshtml" />
+    <Content Include="Views\Pago\Delete.cshtml" />
+    <Content Include="Views\Pago\Details.cshtml" />
+    <Content Include="Views\Pago\Edit.cshtml" />
+    <Content Include="Views\Pago\Index.cshtml" />
+    <Content Include="Views\TipoPago\Create.cshtml" />
+    <Content Include="Views\TipoPago\Delete.cshtml" />
+    <Content Include="Views\TipoPago\Details.cshtml" />
+    <Content Include="Views\TipoPago\Edit.cshtml" />
+    <Content Include="Views\TipoPago\Index.cshtml" />
+    <Content Include="Views\Pago\_IndexCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

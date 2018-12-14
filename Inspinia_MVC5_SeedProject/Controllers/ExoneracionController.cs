@@ -54,11 +54,37 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="exo_Id,exo_Documento,exo_ExoneracionActiva,exo_FechaInicialVigencia,exo_FechaIFinalVigencia,clte_Id,exo_UsuarioCrea,exo_FechaCrea,exo_UsuarioModifa,exo_FechaModifica")] tbExoneracion tbExoneracion)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.tbExoneracion.Add(tbExoneracion);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbExoneracion_Insert(tbExoneracion.exo_Documento,
+                                                            tbExoneracion.exo_ExoneracionActiva,
+                                                            tbExoneracion.exo_FechaInicialVigencia,
+                                                            tbExoneracion.exo_FechaIFinalVigencia,
+                                                            tbExoneracion.clte_Id);
+                    foreach (UDP_Vent_tbExoneracion_Insert_Result Exoneracion in list)
+                        MensajeError = Exoneracion.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    db.tbExoneracion.Add(tbExoneracion);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+            }
+            catch (Exception Ex)
+            {
+                ModelState.AddModelError("", "Error al Agregar Registro " + Ex.Message.ToString());
+                return View(tbExoneracion);
             }
 
             ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioCrea);
@@ -79,12 +105,12 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioCrea);
-            //ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);
-            //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
-            //return View(tbExoneracion);
-            ViewBag.Cliente = db.tbCliente.ToList();
-            return View();
+            ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioCrea);
+            ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);
+            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
+            return View(tbExoneracion);
+            //ViewBag.Cliente = db.tbCliente.ToList();
+            //return View();
         }
 
         // POST: /Exoneracion/Edit/5
@@ -94,11 +120,40 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="exo_Id,exo_Documento,exo_ExoneracionActiva,exo_FechaInicialVigencia,exo_FechaIFinalVigencia,clte_Id,exo_UsuarioCrea,exo_FechaCrea,exo_UsuarioModifa,exo_FechaModifica")] tbExoneracion tbExoneracion)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(tbExoneracion).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbExoneracion_Update(tbExoneracion.exo_Id,
+                                                            tbExoneracion.exo_Documento,
+                                                            tbExoneracion.exo_ExoneracionActiva,
+                                                            tbExoneracion.exo_FechaInicialVigencia,
+                                                            tbExoneracion.exo_FechaIFinalVigencia,
+                                                            tbExoneracion.clte_Id,
+                                                            tbExoneracion.exo_UsuarioCrea,
+                                                            tbExoneracion.exo_FechaCrea);
+                    foreach (UDP_Vent_tbExoneracion_Update_Result Exoneracion in list)
+                        MensajeError = Exoneracion.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    db.tbExoneracion.Add(tbExoneracion);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+            }
+            catch (Exception Ex)
+            {
+                ModelState.AddModelError("", "Error al Agregar Registro " + Ex.Message.ToString());
+                return View(tbExoneracion);
             }
             ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioCrea);
             ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);

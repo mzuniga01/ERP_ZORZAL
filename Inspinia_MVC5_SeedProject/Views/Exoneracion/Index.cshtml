@@ -29,6 +29,9 @@
                         <thead>
                             <tr>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.exo_Id)
+                                </th>
+                                <th>
                                     @Html.DisplayNameFor(model => model.exo_Documento)
                                 </th>
                                 <th>
@@ -45,13 +48,17 @@
                                    
                                     Cliente
                                 </th>
-                                <th></th>
+                                <th>Acciones</th>
                             </tr>
+
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
                                 <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.exo_Id)
+                                    </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.exo_Documento)
                                     </td>
@@ -66,12 +73,12 @@
                                     </td>
                                    
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbCliente.clte_RTN_Identidad_Pasaporte)
+                                        @Html.DisplayFor(modelItem => item.tbCliente.clte_Id)
                                      
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.exo_Id }, new { @class = "btn btn-white btn-xs" })
                                         @Html.ActionLink("Detalle", "Details", new { id = item.exo_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Actualizar", "Edit", new { id = item.exo_Id }, new { @class = "btn btn-white btn-xs" })
                                        
                                     </td>
                                 </tr>

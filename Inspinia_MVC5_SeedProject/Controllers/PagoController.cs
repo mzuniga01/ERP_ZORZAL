@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 
-namespace ERP_ZORZAL.Controllers
+namespace ERP_GMEDINA.Controllers
 {
     public class PagoController : Controller
     {
@@ -17,8 +17,8 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Pago/
         public ActionResult Index()
         {
-            //var tbpago = db.tbPago.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCuentasBanco).Include(t => t.tbFactura).Include(t => t.tbTipoPago);
-            return View();
+            var tbpago = db.tbPago.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCuentasBanco).Include(t => t.tbFactura).Include(t => t.tbTipoPago);
+            return View(tbpago.ToList());
         }
 
         // GET: /Pago/Details/5
@@ -45,10 +45,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
             ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion");
 
-            tbPago pago = new tbPago();
-            pago.TPList = cTest.TPList();
-
-            ViewBag.CLIENTE = db.tbCliente.ToList();
+            ViewBag.Cliente = db.tbCliente.ToList();
             return View();
         }
 
@@ -57,20 +54,39 @@ namespace ERP_ZORZAL.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="pago_Id,fact_Id,tpa_Id,pago_FechaElaboracion,pago_SaldoAnterior,pago_TotalPago,pago_TotalCambio,pago_Emisor,bcta_Id,pago_FechaVencimiento,pago_Titular_,pago_UsuarioCrea,pago_FechaCrea,pago_UsuarioModifica,pago_FechaModifica")] tbPago tbPago)
+        public ActionResult Create([Bind(Include="pago_Id,fact_Id,tpa_Id,pago_FechaElaboracion,pago_SaldoAnterior,pago_TotalPago,pago_TotalCambio,pago_Emisor,bcta_Id,pago_FechaVencimiento,pago_Titular,pago_UsuarioCrea,pago_FechaCrea,pago_UsuarioModifica,pago_FechaModifica")] tbPago tbPago)
         {
             if (ModelState.IsValid)
             {
-                db.tbPago.Add(tbPago);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbPago_Insert(tbPago.fact_Id, tbPago.tpa_Id, tbPago.pago_FechaElaboracion, tbPago.pago_SaldoAnterior, tbPago.pago_TotalPago, tbPago.pago_TotalCambio, tbPago.pago_Emisor, tbPago.bcta_Id, tbPago.pago_FechaVencimiento, tbPago.pago_Titular);
+                    foreach (UDP_Vent_tbPago_Insert_Result pago in list)
+                        MensajeError = pago.MensajeError;
+                    if (MensajeError == -1)
+                    {
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "Error al agregar el registro " + Ex.Message.ToString());
+                    return View(tbPago);
+                }
+              
             }
 
             ViewBag.pago_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPago.pago_UsuarioCrea);
             ViewBag.pago_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPago.pago_UsuarioModifica);
             ViewBag.bcta_Id = new SelectList(db.tbCuentasBanco, "bcta_Id", "bcta_Numero", tbPago.bcta_Id);
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPago.fact_Id);
-            //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPago.tbFactura.clte_Id);
             ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion", tbPago.tpa_Id);
             return View(tbPago);
         }
@@ -100,13 +116,33 @@ namespace ERP_ZORZAL.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="pago_Id,fact_Id,tpa_Id,pago_FechaElaboracion,pago_SaldoAnterior,pago_TotalPago,pago_TotalCambio,pago_Emisor,bcta_Id,pago_FechaVencimiento,pago_Titular_,pago_UsuarioCrea,pago_FechaCrea,pago_UsuarioModifica,pago_FechaModifica")] tbPago tbPago)
+        public ActionResult Edit([Bind(Include="pago_Id,fact_Id,tpa_Id,pago_FechaElaboracion,pago_SaldoAnterior,pago_TotalPago,pago_TotalCambio,pago_Emisor,bcta_Id,pago_FechaVencimiento,pago_Titular,pago_UsuarioCrea,pago_FechaCrea,pago_UsuarioModifica,pago_FechaModifica")] tbPago tbPago)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbPago).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbPago_Update(tbPago.pago_Id, tbPago.fact_Id, tbPago.tpa_Id, tbPago.pago_FechaElaboracion, tbPago.pago_SaldoAnterior, tbPago.pago_TotalPago, tbPago.pago_TotalCambio, tbPago.pago_Emisor, tbPago.bcta_Id, tbPago.pago_FechaVencimiento, tbPago.pago_Titular);
+                    foreach (UDP_Vent_tbPago_Update_Result pago in list)
+                        MensajeError = pago.MensajeError;
+                    if (MensajeError == -1)
+                    {
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "Error al actualizar el registro " + Ex.Message.ToString());
+                    return View(tbPago);
+                }
+
+                
             }
             ViewBag.pago_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPago.pago_UsuarioCrea);
             ViewBag.pago_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPago.pago_UsuarioModifica);

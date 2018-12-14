@@ -4,20 +4,17 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Editar</h2>
-        
+        <h2>Editar</h2>       
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index", null, new { @class = "" })
+            @Html.ActionLink("Regresar", "Index")
         </div>
     </div>
 </div>
-
 
 
 
@@ -33,7 +30,10 @@
 				@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+                   
+
+
+
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true)
@@ -63,9 +63,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.exo_Documento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <input type="file" class="form-control" />
-                @*@Html.EditorFor(model => model.exo_Documento)
-                @Html.ValidationMessageFor(model => model.exo_Documento)*@
+                @*<input type="file" class="form-control" />*@
+                @Html.EditorFor(model => model.exo_Documento)
+                @Html.ValidationMessageFor(model => model.exo_Documento)
             </div>
         </div>
 
@@ -80,7 +80,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.exo_FechaInicialVigencia, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.exo_FechaInicialVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechainicio" } })
+                @Html.EditorFor(model => model.exo_FechaInicialVigencia)
                 @Html.ValidationMessageFor(model => model.exo_FechaInicialVigencia)
             </div>
         </div>
@@ -88,7 +88,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.exo_FechaIFinalVigencia, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.exo_FechaIFinalVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafin" } })
+                @Html.EditorFor(model => model.exo_FechaIFinalVigencia)
                 @Html.ValidationMessageFor(model => model.exo_FechaIFinalVigencia)
             </div>
         </div>
@@ -149,6 +149,31 @@
 </div>*@
 
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+ $.datepicker.regional['es'] = {
+ closeText: 'Cerrar',
+ prevText: '< Ant',
+ nextText: 'Sig >',
+ currentText: 'Hoy',
+ monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+ monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+ dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+ dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+ dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+ weekHeader: 'Sm',
+ dateFormat: 'dd/mm/yy',
+ firstDay: 1,
+ isRTL: false,
+ showMonthAfterYear: false,
+ yearSuffix: ''
+ };
+ $.datepicker.setDefaults($.datepicker.regional['es']);
+$(function () {
+    $("#exo_FechaInicialVigencia").datepicker({ dateFormat: 'yy-mm-dd' });
+    $("#exo_FechaIFinalVigencia").datepicker({ dateFormat: 'yy-mm-dd' });
+});
+    </script>
+}
 
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/Datepicker.js"></script>

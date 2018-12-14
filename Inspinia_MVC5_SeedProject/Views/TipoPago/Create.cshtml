@@ -37,9 +37,9 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.tpa_Descripcion, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-5">
                 @Html.EditorFor(model => model.tpa_Descripcion)
-                @Html.ValidationMessageFor(model => model.tpa_Descripcion)
+                @Html.ValidationMessageFor(model => model.tpa_Descripcion, "", new { @style = "color:red" })
             </div>
         </div>
 

@@ -58,7 +58,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Titular")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
-        public string pago_Titular_ { get; set; }
+        public string pago_Titular{ get; set; }
 
         [Display(Name = "Usuario Crea")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]

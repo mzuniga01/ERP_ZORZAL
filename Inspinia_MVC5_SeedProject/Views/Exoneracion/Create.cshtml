@@ -36,13 +36,13 @@
         @Html.ValidationSummary(true)
 
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.exo_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.exo_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.exo_Id)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.clte_Id, new { @class = "control-label col-md-2" })
@@ -60,9 +60,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.exo_Documento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <input type="file" class="form-control" />
-                @*@Html.EditorFor(model => model.exo_Documento)
-                @Html.ValidationMessageFor(model => model.exo_Documento)*@
+                @*<input type="file" class="form-control" />*@
+                @Html.EditorFor(model => model.exo_Documento)
+                @Html.ValidationMessageFor(model => model.exo_Documento)
             </div>
         </div>
 
@@ -77,7 +77,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.exo_FechaInicialVigencia, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.exo_FechaInicialVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechainicio" } })
+                @Html.EditorFor(model => model.exo_FechaInicialVigencia@*, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechainicio" } }*@)
                 @Html.ValidationMessageFor(model => model.exo_FechaInicialVigencia)
             </div>
         </div>
@@ -85,7 +85,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.exo_FechaIFinalVigencia, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.exo_FechaIFinalVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafin" } })
+                @Html.EditorFor(model => model.exo_FechaIFinalVigencia@*, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafin" } }*@)
                 @Html.ValidationMessageFor(model => model.exo_FechaIFinalVigencia)
             </div>
         </div>
@@ -127,5 +127,32 @@
     </div>
 </div>*@
 
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/Datepicker.js"></script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+ $.datepicker.regional['es'] = {
+ closeText: 'Cerrar',
+ prevText: '< Ant',
+ nextText: 'Sig >',
+ currentText: 'Hoy',
+ monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+ monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+ dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+ dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+ dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+ weekHeader: 'Sm',
+ dateFormat: 'dd/mm/yy',
+ firstDay: 1,
+ isRTL: false,
+ showMonthAfterYear: false,
+ yearSuffix: ''
+ };
+ $.datepicker.setDefaults($.datepicker.regional['es']);
+$(function () {
+    $("#exo_FechaInicialVigencia").datepicker({ dateFormat: 'yy-mm-dd' });
+    $("#exo_FechaIFinalVigencia").datepicker({ dateFormat: 'yy-mm-dd' });
+});
+    </script>
+}

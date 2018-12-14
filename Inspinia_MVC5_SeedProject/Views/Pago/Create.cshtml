@@ -53,12 +53,12 @@
 
         
         <div class="form-group">
-            @Html.LabelFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tbFactura.clte_Identificacion, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte)
+                @Html.EditorFor(model => model.tbFactura.clte_Identificacion, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
             </div>
-            <div class="col-md-">
+            <div class="col-md-1">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </div>
@@ -165,10 +165,10 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.pago_Titular_, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
                 <div class="col-md-5">
-                    @Html.EditorFor(model => model.pago_Titular_)
-                    @Html.ValidationMessageFor(model => model.pago_Titular_)
+                    @Html.EditorFor(model => model.pago_Titular)
+                    @Html.ValidationMessageFor(model => model.pago_Titular)
                 </div>
             </div>
         </div>
@@ -195,26 +195,26 @@
         </div>
     </div>
 
-    <div>
-        <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
-                    </div>
-                    <div class="modal-body" id="frmEditarMunicipios">
-                        @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
-                    </div>
+    <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
                 </div>
             </div>
         </div>
     </div>
  </div>
 
- 
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/Datepicker.js"></script>
-<script src="~/Scripts/app/TipoPago.js"></script>
+ @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/app/TipoPago.js"></script>
+    <script src="~/Scripts/app/Datepicker.js"></script>
+    <script src="~/Scripts/app/Cliente.js"></script>
+}
