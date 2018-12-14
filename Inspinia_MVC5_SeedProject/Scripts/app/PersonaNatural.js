@@ -50,7 +50,7 @@ $(document).ready(function () {
         $("#clte_FechaNacimiento").val('');
         $("#clte_Sexo").val('**');
         $("#clte_Telefono").val('**');
-        $("#clte_Direccion").val('**');
+        $("#clte_Direccion").val('');
         $('#natural').hide();
     }
 });

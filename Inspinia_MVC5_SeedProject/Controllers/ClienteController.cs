@@ -240,5 +240,15 @@ namespace ERP_GMEDINA.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public JsonResult GetMunicipios(string CodDepartamento)
+        {
+            var list = db.spGetMunicipios(CodDepartamento).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
+
     }
 }

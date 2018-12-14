@@ -64,7 +64,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.clte_EsPersonaNatural, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.clte_EsPersonaNatural)
+                                    @Html.EditorFor(model => model.clte_EsPersonaNatural,new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsPersonaNatural)</p>
                                 </div>
                             </div>
