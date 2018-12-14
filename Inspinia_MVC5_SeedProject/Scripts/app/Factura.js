@@ -1,5 +1,5 @@
 ﻿$("#search").click(function () {
-    var $rows = $('#tbody tr');
+    var $rows = $('#FacturaTbody tr');
     $('#post').each(function () {
         var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 

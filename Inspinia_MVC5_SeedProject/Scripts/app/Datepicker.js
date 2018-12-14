@@ -28,8 +28,8 @@
         }).datepicker("setDate", new Date());
 
         //PuntoEmisionDetalle
-        $("#fechalimite").datepicker({
-            dateFormat: 'dd-mm-yy',
+        $("#pemid_FechaLimite").datepicker({
+            dateFormat: 'mm/dd/yy',
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
         }).datepicker("setDate", new Date());

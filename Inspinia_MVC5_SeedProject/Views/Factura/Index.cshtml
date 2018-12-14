@@ -30,7 +30,7 @@
                             <div class="form-horizontal">
                                 <div class="form-group">
                                     <div class="col-md-offset-6 col-md-4">
-                                        <input id="post" type="text" class="form-control" placeholder=""/>
+                                        <input id="post" type="text" class="form-control" placeholder="" />
                                     </div>
                                     <div class="col-md-offset-6">
                                         <button id="search" class="btn btn-primary btn-sm">Buscar</button>
@@ -38,8 +38,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <table id="DataTable1" class="table table table-striped  table-bordered" style="width:100%">
+                        <table id="DataTable1" class="table table table-striped  table-bordered">
                             <thead>
                                 <tr>
                                     <th>
@@ -64,7 +63,7 @@
                                 </tr>
                             </thead>
 
-                            <tbody id="tbody">
+                            <tbody id="FacturaTbody">
                                 @foreach (var item in Model)
                                 {
                                     <tr>
@@ -91,7 +90,7 @@
                                             @Html.DisplayFor(modelItem => item.clte_Identificacion)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(model => item.cja_Id)
+                                            @Html.DisplayFor(model => item.tbCaja.cja_Descripcion)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(model => item.tbEstadoFactura.esfac_Descripcion)

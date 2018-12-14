@@ -81,10 +81,10 @@
                                     @Html.EditorFor(model => model.fact_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafactura" } })
                                     <span class="validation-error"> @Html.ValidationMessageFor(model => model.fact_Fecha)</span>
                                 </div>
-                                @Html.LabelFor(model => model.clte_RTN_Identidad_Pasaporte, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.clte_RTN_Identidad_Pasaporte)
-                                    <span class="validation-error"> @Html.ValidationMessageFor(model => model.clte_RTN_Identidad_Pasaporte)</span>
+                                    @Html.EditorFor(model => model.clte_Identificacion)
+                                    <span class="validation-error"> @Html.ValidationMessageFor(model => model.clte_Identificacion)</span>
                                 </div>
 
                             </div>
