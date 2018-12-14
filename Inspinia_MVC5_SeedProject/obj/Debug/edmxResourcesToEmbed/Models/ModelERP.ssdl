@@ -3126,6 +3126,16 @@
     <Parameter Name="clte_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="clte_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbDevolucion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="fact_Id" Type="bigint" Mode="In" />
+    <Parameter Name="cja_Id" Type="smallint" Mode="In" />
+    <Parameter Name="dev_Fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbDevolucionDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="devd_CantidadProducto" Type="decimal" Mode="In" />
+    <Parameter Name="devd_Descripcion" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbEstadoSolicitudCredito_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="escre_Descripcion" Type="nvarchar" Mode="In" />
   </Function>

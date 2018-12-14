@@ -999,5 +999,39 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbExoneracion_Update_Result>("UDP_Vent_tbExoneracion_Update", exo_IdParameter, exo_DocumentoParameter, exo_ExoneracionActivaParameter, exo_FechaInicialVigenciaParameter, exo_FechaIFinalVigenciaParameter, clte_IdParameter, exo_UsuarioCreaParameter, exo_FechaCreaParameter);
         }
+    
+        public virtual ObjectResult<UDP_Vent_tbDevolucion_Insert_Result> UDP_Vent_tbDevolucion_Insert(Nullable<long> fact_Id, Nullable<short> cja_Id, Nullable<System.DateTime> dev_Fecha)
+        {
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(long));
+    
+            var cja_IdParameter = cja_Id.HasValue ?
+                new ObjectParameter("cja_Id", cja_Id) :
+                new ObjectParameter("cja_Id", typeof(short));
+    
+            var dev_FechaParameter = dev_Fecha.HasValue ?
+                new ObjectParameter("dev_Fecha", dev_Fecha) :
+                new ObjectParameter("dev_Fecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucion_Insert_Result>("UDP_Vent_tbDevolucion_Insert", fact_IdParameter, cja_IdParameter, dev_FechaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbDevolucionDetalle_Insert_Result> UDP_Vent_tbDevolucionDetalle_Insert(string prod_Codigo, Nullable<decimal> devd_CantidadProducto, string devd_Descripcion)
+        {
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var devd_CantidadProductoParameter = devd_CantidadProducto.HasValue ?
+                new ObjectParameter("devd_CantidadProducto", devd_CantidadProducto) :
+                new ObjectParameter("devd_CantidadProducto", typeof(decimal));
+    
+            var devd_DescripcionParameter = devd_Descripcion != null ?
+                new ObjectParameter("devd_Descripcion", devd_Descripcion) :
+                new ObjectParameter("devd_Descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucionDetalle_Insert_Result>("UDP_Vent_tbDevolucionDetalle_Insert", prod_CodigoParameter, devd_CantidadProductoParameter, devd_DescripcionParameter);
+        }
     }
 }

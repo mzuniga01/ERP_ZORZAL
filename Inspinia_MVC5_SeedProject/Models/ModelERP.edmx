@@ -3131,6 +3131,16 @@
           <Parameter Name="clte_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="clte_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbDevolucion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="fact_Id" Type="bigint" Mode="In" />
+          <Parameter Name="cja_Id" Type="smallint" Mode="In" />
+          <Parameter Name="dev_Fecha" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbDevolucionDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+          <Parameter Name="devd_CantidadProducto" Type="decimal" Mode="In" />
+          <Parameter Name="devd_Descripcion" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbEstadoSolicitudCredito_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="escre_Descripcion" Type="nvarchar" Mode="In" />
         </Function>
@@ -4992,6 +5002,16 @@
             <Parameter Name="clte_Id" Mode="In" Type="Int32" />
             <Parameter Name="exo_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="exo_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbDevolucion_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Insert_Result)">
+            <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+            <Parameter Name="cja_Id" Mode="In" Type="Int16" />
+            <Parameter Name="dev_Fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbDevolucionDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucionDetalle_Insert_Result)">
+            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+            <Parameter Name="devd_CantidadProducto" Mode="In" Type="Decimal" />
+            <Parameter Name="devd_Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -8426,6 +8446,12 @@
         <ComplexType Name="UDP_Vent_tbCliente_Update_Result">
           <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbDevolucion_Insert_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbDevolucionDetalle_Insert_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9575,6 +9601,20 @@
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucionDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucionDetalle_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucionDetalle_Insert_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

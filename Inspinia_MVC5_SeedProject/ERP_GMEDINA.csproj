@@ -493,6 +493,18 @@
     <Compile Include="Models\UDP_Vent_tbCaja_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbCliente_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbCliente_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbDevolucionDetalle_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbDevolucion_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbEstadoSolicitudCredito_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -780,6 +792,7 @@
     <Content Include="Scripts\app\DevolucionDetalle.js" />
     <Content Include="Scripts\app\Factura.js" />
     <Content Include="Scripts\app\FacturaDetalle.js" />
+    <Content Include="Scripts\app\FacturaDevolucion.js" />
     <Content Include="Scripts\app\FacturaPagar.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\ListaPrecioDetalle.js" />
@@ -1136,6 +1149,7 @@
     <Content Include="Views\TipoPago\Edit.cshtml" />
     <Content Include="Views\TipoPago\Index.cshtml" />
     <Content Include="Views\Pago\_IndexCliente.cshtml" />
+    <Content Include="Views\Devolucion\_BuscarFacturaDevolucion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

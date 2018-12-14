@@ -8,7 +8,7 @@
                     <div class="form-horizontal">
                         <div class="form-group">
                             @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4 ">
+                            <div class="col-md-4">
                                 @Html.EditorFor(model => model.prod_Codigo)
                                 <div id="validationCodigoProductoCreate">
                                     @Html.ValidationMessageFor(model => model.prod_Codigo)
@@ -20,7 +20,9 @@
                             @Html.LabelFor(model => model.factd_MontoDescuento, new { @class = "control-label col-md-2" })
                             <div class="col-md-2">
                                 @Html.EditorFor(model => model.factd_MontoDescuento)
-                                @Html.ValidationMessageFor(model => model.factd_MontoDescuento)
+                                <div id="validationMontoDescuentoCreate">
+                                    @Html.ValidationMessageFor(model => model.factd_MontoDescuento)
+                                </div>
                             </div>
                             <div class="col-md-1">
                                 <button class="btn btn-primary" type="button" id="AgregarDetalleFactura">Añadir</button>
@@ -37,83 +39,91 @@
                             </div>
                             @Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = "control-label col-md-3" })
                             <div class="col-md-2">
-                                <input class="form-control" value="" />
-                                @Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)
+                                @Html.EditorFor(model => model.factd_PorcentajeDescuento)
+                                <div id="validationPorcentajeDescuentoCreate">
+                                    @Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)
+                                </div>
                             </div>
-
                         </div>
-
                         <div class="form-group">
                             @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label col-md-2" })
                             <div class="col-md-2">
                                 @Html.EditorFor(model => model.factd_Cantidad)
-                                @Html.ValidationMessageFor(model => model.factd_Cantidad)
+                                <div id="validationCantidadProductoCreate">
+                                    @Html.ValidationMessageFor(model => model.factd_Cantidad)
+                                </div>
                             </div>
                             <label class="control-label col-md-5">Subtotal</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control " />
+                                <input id="Subtotal" type="text" class="form-control " />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2">Precio Unitario</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control " />
+                                <input id="PrecioUnitario" type="text" class="form-control " />
                             </div>
                             @Html.LabelFor(model => model.factd_Impuesto, new { @class = "control-label col-md-5" })
-                                <div class="col-md-2">
-                                    @*@Html.EditorFor(model => model.factd_Impuesto, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })*@
-                                    <input type="text" value="15%" class="form-control " readonly />
+                            <div class="col-md-2">
+                                @*@Html.EditorFor(model => model.factd_Impuesto, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })*@
+                                <input type="text" value="15%" class="form-control " readonly />
+                                <div id="validationImpuestoProductoCreate">
                                     @Html.ValidationMessageFor(model => model.factd_Impuesto)
                                 </div>
-                           
-                        </div>
-                        <table id="tblDetalleFactura" class="table table-striped table-bordered table-hover dataTables-example">
-                            <thead>
-                                <tr>
-                                    <th>ID Producto</th>
-                                    <th>Descripción Producto</th>
-                                    <th>Cantidad</th>
-                                    <th>Valor Unit.</th>
-                                    <th>Descuento</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                            <tfoot>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th>Sub-Total</th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th>ISV %</th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th>Total a Pagar</th>
-                                    <th></th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                        <div id="validationSummary">
-                            <p style="color:red"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<table id="tblDetalleFactura" class="table table-striped table-bordered table-hover dataTables-example">
+    <thead>
+        <tr>
+            <th>ID Producto</th>
+            <th>Descripción Producto</th>
+            <th>Cantidad</th>
+            <th>Valor Unit.</th>
+            <th>Descuento</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Sub-Total</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>ISV %</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Total a Pagar</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </tfoot>
+</table>
+<div id="validationSummary">
+    <p style="color:red"></p>
 </div>
 <div>
     <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

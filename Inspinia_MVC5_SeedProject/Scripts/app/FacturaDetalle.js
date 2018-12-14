@@ -1,5 +1,102 @@
 ﻿var contador = 0;
 
+$('#AgregarDetalleFactura').click(function () {
+    var CodigoProducto = $('#prod_Codigo').val();
+    var MontoDescuento = $('#factd_MontoDescuento').val();
+    var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
+    var PorcentajeDescuento = $('#factd_PorcentajeDescuento').val();
+    var CantidadProducto = $('#factd_Cantidad').val();
+    var Subtotal = $('#Subtotal').val();
+    var PrecioUnitario = $('#PrecioUnitario').val();
+    var Impuesto = $('#factd_Impuesto').val();
+    
+    if (CodigoProducto == '')
+    {
+        $('#ErrorCodigoProductoCreate').text('');
+        $('#ErrorMontoDescuentoCreate').text('');
+        $('#ErrorPorcentajeDescuentoCreate').text('');
+        $('#ErrorCantidadCreate').text('');
+        $('#ErrorImpuestoCreate').text('');
+        $('#validationCodigoProductoCreate').after('<ul id="ErrorCodigoProductoCreate" class="validation-summary-errors text-danger">Campo Código Producto requerido</ul>');
+    }
+    else if (MontoDescuento == '') {
+        $('#ErrorCodigoProductoCreate').text('');
+        $('#ErrorMontoDescuentoCreate').text('');
+        $('#ErrorPorcentajeDescuentoCreate').text('');
+        $('#ErrorCantidadCreate').text('');
+        $('#ErrorImpuestoCreate').text('');
+        $('#validationMontoDescuentoCreate').after('<ul id="ErrorMontoDescuentoCreate" class="validation-summary-errors text-danger">Campo Monto Descuento requerido</ul>');
+    }
+    else if (PorcentajeDescuento == '') {
+        $('#ErrorCodigoProductoCreate').text('');
+        $('#ErrorMontoDescuentoCreate').text('');
+        $('#ErrorPorcentajeDescuentoCreate').text('');
+        $('#ErrorCantidadCreate').text('');
+        $('#ErrorImpuestoCreate').text('');
+        $('#validationPorcentajeDescuentoCreate').after('<ul id="ErrorPorcentajeDescuentoCreate" class="validation-summary-errors text-danger">Campo Porcentaje Descuento requerido</ul>');
+    }
+    else if (CantidadProducto == '') {
+        $('#ErrorCodigoProductoCreate').text('');
+        $('#ErrorMontoDescuentoCreate').text('');
+        $('#ErrorPorcentajeDescuentoCreate').text('');
+        $('#ErrorCantidadCreate').text('');
+        $('#ErrorImpuestoCreate').text('');
+        $('#validationCantidadProductoCreate').after('<ul id="ErrorCantidadCreate" class="validation-summary-errors text-danger">Campo Cantidad requerido</ul>');
+    }
+    else if (Impuesto == '') {
+        $('#ErrorCodigoProductoCreate').text('');
+        $('#ErrorMontoDescuentoCreate').text('');
+        $('#ErrorPorcentajeDescuentoCreate').text('');
+        $('#ErrorCantidadCreate').text('');
+        $('#ErrorImpuestoCreate').text('');
+        $('#validationImpuestoProductoCreate').after('<ul id="ErrorImpuestoCreate" class="validation-summary-errors text-danger">Campo Impuesto requerido</ul>');
+    }
+    else {
+        contador = contador + 1;
+        copiar = "<tr data-id=" + contador + ">";
+        copiar += "<td id = 'prod_CodigoCreate'>" + $('#prod_Codigo').val() + "</td>";
+        copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + $('#tbProducto_prod_Descripcion').val() + "</td>";
+        copiar += "<td id = 'factd_CantidadCreate'>" + $('#factd_Cantidad').val() + "</td>";
+        copiar += "<td id = 'PrecioUnitarioCreate'>" + $('#PrecioUnitario').val() + "</td>";
+        copiar += "<td id = 'factd_PorcentajeDescuentoCreate'>" + $('#factd_PorcentajeDescuento').val() + "</td>";
+        copiar += "<td id = 'SubtotalCreate'>" + $('#Subtotal').val() + "</td>";
+        copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+        copiar += "</tr>";
+        $('#tblDetalleFactura').append(copiar);
+
+        var FacturaDetalle = GetFacturaDetalle();
+        $.ajax({
+            url: "/PuntoEmision/SavePuntoEmisionDetalle",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ PuntoEmisionDet: PuntoEmisionDetalle }),
+        })
+        .done(function (data) {
+            $('#ErrorCodigoProductoCreate').text('');
+            $('#ErrorMontoDescuentoCreate').text('');
+            $('#ErrorPorcentajeDescuentoCreate').text('');
+            $('#ErrorCantidadCreate').text('');
+            $('#ErrorImpuestoCreate').text('');
+
+        });
+    }
+
+});
+
+function GetFacturaDetalle() {
+
+    var FacturaDetalle = {
+        dfisc_Id: $('#dfisc_Id').val(),
+        pemid_RangoInicio: $('#pemid_RangoInicio').val(),
+        pemid_RangoFinal: $('#pemid_RangoFinal').val(),
+        pemid_FechaLimite: new Date($('#pemid_FechaLimite').val()),
+        pemid_Id: contador
+    }
+    return FacturaDetalle
+};
+
+
 $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDetalle", function () {
     $(this).closest('tr').remove();
     idItem = $(this).closest('tr').data('id');
@@ -13,47 +110,4 @@ $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDeta
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify({ CasoExito: CasoExitos }),
     });
-});
-
-$('#AgregarDetalleFactura').click(function () {
-    var date = $('#fechaCreate').val();
-    if ($('#prod_Codigo').val() == '') {
-        $('#MessageError').text('');
-        $('#ErrorFecha').text('');
-        $('#ErrorDescripcion').text('');
-        $('#validationDescripcion').after('<ul id="ErrorDescripcion" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
-    }
-    else if ($('#tbProducto_prod_Descripcion').val() == '') {
-        $('#MessageError').text('');
-        $('#ErrorDescripcion').text('');
-        $('#ErrorFecha').text('');
-        $('#validationFecha').after('<ul id="ErrorFecha" class="validation-summary-errors text-danger">Campo´Descripìon Requerido</ul>');
-    }
-    else {
-        contador = contador + 1;
-        copiar = "<tr data-id=" + contador + ">";
-        copiar += "<td id = 'prod_Codigo'>" + $('#prod_Codigo').val() + "</td>";
-        copiar += "<td id = 'tbProducto_prod_Descripcion'>" + $('#tbProducto_prod_Descripcion').val() + "</td>";
-        copiar += "<td id = 'factd_Cantidad'>" + $('#factd_Cantidad').val() + "</td>";
-        copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
-        copiar += "</tr>";
-        //console.log('CodTipoCasoExito', $('#CodTipoCasoExito option:selected').text());
-        $('#tblDetalleFactura').append(copiar);
-
-        var CasoExito = GetCasosExito();
-        $.ajax({
-            url: "/Instructor/SaveCasoExito",
-            method: "POST",
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ CasoExito: CasoExito }),
-        })
-        .done(function (data) {
-            $('#prod_Codigo').val('');
-            $('#tbProducto_prod_Descripcion').val('');
-            $('#MessageError').text('');
-            $('#ErrorDescripcion').text('');
-            $('#ErrorFecha').text('');
-        });
-    }
 });

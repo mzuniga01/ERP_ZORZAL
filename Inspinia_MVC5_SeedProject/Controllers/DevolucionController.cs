@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using System.Transactions;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -21,6 +22,42 @@ namespace ERP_ZORZAL.Controllers
             return View(tbdevolucion.ToList());
         }
 
+
+        [HttpPost]
+        public JsonResult InsertDevolucion(tbDevolucionDetalle DetalleDevolucioncont)
+        {
+            List<tbDevolucionDetalle> sessionDevolucionDetalle = new List<tbDevolucionDetalle>();
+            var list = (List<tbDevolucionDetalle>)Session["Devolucion"];
+            if (list == null)
+            {
+                sessionDevolucionDetalle.Add(DetalleDevolucioncont);
+                Session["Devolucion"] = sessionDevolucionDetalle;
+            }
+            else
+            {
+                list.Add(DetalleDevolucioncont);
+                Session["Devolucion"] = list;
+            }
+            return Json("Exito", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult RemoveDevolucionDetalle(tbDevolucionDetalle DetalleDevolucioncont)
+        {
+            var list = (List<tbDevolucionDetalle>)Session["Devolucion"];
+
+            if (list != null)
+            {
+                var itemToRemove = list.Single(r => r.devd_Id == DetalleDevolucioncont.devd_Id);
+                list.Remove(itemToRemove);
+                Session["Devolucion"] = list;
+            }
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        /// Post
         // GET: /Devolucion/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,7 +73,7 @@ namespace ERP_ZORZAL.Controllers
             return View(tbDevolucion);
         }
 
-        // GET: /Devolucion/Create
+        //GET: /Devolucion/Create
         public ActionResult Create()
         {
             //ViewBag.dev_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
@@ -44,7 +81,11 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
             //ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "Codigo Factura");
             ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
+            ViewBag.Factura = db.tbFactura.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
+     
+
+            Session["Devolucion"] = null;
             return View();
         }
 
@@ -54,26 +95,94 @@ namespace ERP_ZORZAL.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "fact_Id, cja_Id, dev_Fecha")] tbDevolucion tbDevolucion)
+        {
+            var list = (List<tbDevolucionDetalle>)Session["Devolucion"];
+            var MensajeError = 0;
+            var MensajeErrorDetalle = 0;
+            IEnumerable<object> listDevolucion = null;
+            IEnumerable<object> listDevolucionDetalle = null;
+            tbDevolucionDetalle cDevolucionDetalle = new tbDevolucionDetalle();
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    using (TransactionScope Tran = new TransactionScope())
+                    {
+                        listDevolucion = db.UDP_Vent_tbDevolucion_Insert(tbDevolucion.fact_Id, tbDevolucion.cja_Id, tbDevolucion.dev_Fecha);
+                        foreach (UDP_Vent_tbDevolucion_Insert_Result DevolucionL in listDevolucion)
+                            MensajeError = DevolucionL.MensajeError;
+                        if (MensajeError == -1)
+                        {
+                            ModelState.AddModelError("", "No se pudo agregar el registro");
+                            return View(tbDevolucion);
+                        }
+                        else
+                        {
+                            if (MensajeError > 0)
+                            {
+                                if (list != null)
+                                {
+                                    if (list.Count != 0)
+                                    {
+                                        foreach (tbDevolucionDetalle Detalle in list)
+                                        {
+                                            Detalle.dev_Id = MensajeError; listDevolucionDetalle = db.UDP_Vent_tbDevolucionDetalle_Insert(Detalle.prod_Codigo, Detalle.devd_CantidadProducto, Detalle.devd_Descripcion);
+                                            foreach (UDP_Vent_tbDevolucionDetalle_Insert_Result SPDevolucionDetalleDet in listDevolucionDetalle)
+                                            {
+                                                MensajeErrorDetalle = SPDevolucionDetalleDet.MensajeError;
+                                                if (MensajeError == -1)
+                                                {
+                                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                                    return View(tbDevolucion);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else { ModelState.AddModelError("", "No se pudo agregar el registro"); return View(tbDevolucion); }
+                        }
+                        Tran.Complete(); return RedirectToAction("Index");
+                    }
+                }
+
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "No se pudo agregar el registro");
+                    return View(tbDevolucion);
+
+                }
+               
+            }
+            return View(tbDevolucion);
+        }
+          
+
+
         // POST: /Devolucion/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="dev_Id,fact_Id,cja_Id,dev_Fecha,dev_UsuarioCrea,dev_FechaCrea,dev_UsuarioModifica,dev_FechaModifica")] tbDevolucion tbDevolucion)
-        {
-            if (ModelState.IsValid)
-            {
-                db.tbDevolucion.Add(tbDevolucion);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include="dev_Id,fact_Id,cja_Id,dev_Fecha,dev_UsuarioCrea,dev_FechaCrea,dev_UsuarioModifica,dev_FechaModifica")] tbDevolucion tbDevolucion)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.tbDevolucion.Add(tbDevolucion);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            ViewBag.dev_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDevolucion.dev_UsuarioCrea);
-            ViewBag.dev_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDevolucion.dev_UsuarioModifica);
-            ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbDevolucion.cja_Id);
-            ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbDevolucion.fact_Id);
-            return View(tbDevolucion);
-        }
+        //    ViewBag.dev_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDevolucion.dev_UsuarioCrea);
+        //    ViewBag.dev_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDevolucion.dev_UsuarioModifica);
+        //    ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbDevolucion.cja_Id);
+        //    ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbDevolucion.fact_Id);
+        //    return View(tbDevolucion);
+        //}
 
         // GET: /Devolucion/Edit/5
         public ActionResult Edit(int? id)

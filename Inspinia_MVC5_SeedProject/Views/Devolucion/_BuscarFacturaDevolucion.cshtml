@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbFactura>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+
+<table class="table table-striped" id="tbFacturaDevolucion">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fact_Codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fact_Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_Identificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clte_Nombres)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.tbEstadoFactura.esfac_Descripcion)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr data-id="@item.fact_Codigo" data-desc="@item.tbCliente.clte_Identificacion">
+        <td>
+            @Html.DisplayFor(modelItem => item.fact_Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fact_Fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clte_Identificacion)
+        </td>
+        <th>
+            @Html.DisplayFor(model => item.clte_Nombres)
+        </th>
+        <td>
+            <button id="AgregarFactura" class="btn btn-primary btn-xs">Agregar</button>
+        </td>
+    </tr>
+}
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
