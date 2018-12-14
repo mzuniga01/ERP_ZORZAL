@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_GMEDINA.Models.tbDenominacionArqueo>
+﻿@model ERP_GMEDINA.Models.tbDenominacionArqueo
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -8,52 +8,55 @@
                 <div class="ibox-title">
                     <h5>Detalle Denominación</h5>
                 </div>
-                <div class="ibox-content">
-
-<table id="tblApertura" class="table table-striped table-bordered table-hover dataTables-example">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.tbDenominacion.deno_Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.arqde_CantidadDenominacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.arqde_MontoDenominacion)
-            </th>
-            <th>
-                Subtotal
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbDenominacion.deno_Descripcion)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.arqde_CantidadDenominacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.arqde_MontoDenominacion)
-                </td>
-                <td>
-
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.deno_Id, "Denominación", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("deno_Id", null, "Seleccione Denominación", new { @class = "form-control" })
+                            <div id="validacionDenominacionCreate">
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.deno_Id)</p>
+                            </div>
+                        </div>
+                        @*<div class="form-group">
+            @Html.LabelFor(model => model.arqde_CantidadDenominacion, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.arqde_CantidadDenominacion)
+                <div id="validacionCantidadDenominacionCreate">
+                    <p style="color:red"> @Html.ValidationMessageFor(model => model.arqde_CantidadDenominacion)</p>
                 </div>
-            </div>
+             </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.arqde_MontoDenominacion, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.arqde_MontoDenominacion)
+                <div id="validacionMontoDenominacionCreate">
+                    <p style="color:red"> @Html.ValidationMessageFor(model => model.arqde_MontoDenominacion)</p>
+                </div>
         </div>
     </div>
- </div>
-
-
-
+        <div class="col-md-1">
+            <button class="btn btn-primary btn-sm" type="button" id="AgregarDenominacionDetalle">Registrar</button>
+        </div>*@
+        </div>
+    </div>
+            </div>
+        </div>
+     </div>
+</div>
+<table id="DenominacionDetalle" class="table table-striped table-bordered table-hover dataTables-example">
+    <thead>
+        <tr>
+            <th>Denominacion</th>
+            <th>Cantidad</th>
+            <th>Valor</th>
+            <th>Subtotal</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+    <div id="validationSummary">
+        <p style="color:red"></p>
+    </div>

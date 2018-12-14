@@ -1,13 +1,7 @@
 ﻿@model ERP_GMEDINA.Models.tbPuntoEmisionDetalle
 
 
-@*@using (Ajax.BeginForm("EditNumeracion", "PuntoEmision", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "AjaxEditNumeracion" }))
-{
-
-}*@
-
-
-				@using (Html.BeginForm())
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
@@ -58,37 +52,6 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.pemid_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pemid_UsuarioCrea)
-                @Html.ValidationMessageFor(model => model.pemid_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pemid_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pemid_FechaCrea)
-                @Html.ValidationMessageFor(model => model.pemid_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pemid_UsuarioModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pemid_UsuarioModifica)
-                @Html.ValidationMessageFor(model => model.pemid_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pemid_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pemid_FechaModifica)
-                @Html.ValidationMessageFor(model => model.pemid_FechaModifica)
-            </div>
-        </div>*@
     
         @*<div class="form-group">
             <div class="col-md-offset-2 col-md-10">

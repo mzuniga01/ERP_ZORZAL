@@ -30,7 +30,7 @@ namespace ERP_GMEDINA.Controllers
         {
             var tbmovimientocaja = db.tbMovimientoCaja.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCaja);
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
-            ViewBag.deno_Id = new SelectList(db.tbCaja, "deno_Id", "deno_Descripcion");
+            ViewBag.deno_Id = new SelectList(db.tbDenominacion, "deno_Id", "deno_Descripcion");
 
             ViewBag.DenominacionArqueo = db.tbDenominacionArqueo.ToList();
             return View();
