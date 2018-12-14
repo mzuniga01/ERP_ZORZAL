@@ -22,7 +22,7 @@ $(document).on("click", "#tbProductoDevolucion tbody tr td button#Agregar", func
     idItem = $(this).closest('tr').data('id');
     DescItem = $(this).closest('tr').data('desc');
     $("#prod_Codigo").val(idItem);
-    $("#devd_Descripcion").val(DescItem);
+    $("#tbProducto_prod_Descripcion").val(DescItem);
     $('#ModalBuscarProducto').modal('hide');
     //CargarAsignaciones();
 });
