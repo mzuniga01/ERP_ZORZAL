@@ -1,6 +1,6 @@
-﻿$("#search").click(function () {
-    var $rows = $('#tbody tr');
-    $('#post').each(function () {
+﻿$("#Pagar").click(function () {
+    var $rows = $('#Facturatbody tr');
+    $('#rtn').each(function () {
         var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 
         $rows.show().filter(function () {
@@ -11,7 +11,7 @@
 });
 
 $(document).ready(function () {
-    $('#DataTable1').DataTable(
+    $('#Factura').DataTable(
     {
         "searching": false,
 

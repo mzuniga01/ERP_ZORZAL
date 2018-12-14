@@ -768,6 +768,7 @@
     <Content Include="Scripts\app\DevolucionDetalle.js" />
     <Content Include="Scripts\app\Factura.js" />
     <Content Include="Scripts\app\FacturaDetalle.js" />
+    <Content Include="Scripts\app\FacturaPagar.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\ListaPrecioDetalle.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
