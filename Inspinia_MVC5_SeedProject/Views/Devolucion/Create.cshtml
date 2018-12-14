@@ -8,15 +8,15 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-       <h2>Devolución de Producto</h2>
-    @*<ol class="breadcrumb">
-        <li>
-            @Html.ActionLink("Lista", "Index")
-        </li>
-        <li class="active">
-            <strong>Nueva Devolución</strong>
-        </li>
-    </ol>*@
+        <h2>Devolución de Producto</h2>
+        @*<ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Lista", "Index")
+                </li>
+                <li class="active">
+                    <strong>Nueva Devolución</strong>
+                </li>
+            </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -35,154 +35,156 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm("Create", "Devolucion", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                                @Html.AntiForgeryToken()
+                    @using (Html.BeginForm("Create", "Devolucion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
 
 
-                                                <div class="form-horizontal">
+                        <div class="form-horizontal">
 
-                        @Html.ValidationSummary(true)
-                      
-                       <div class="form-group">
-                                @Html.LabelFor(model => model.tbCaja.tbSucursal.suc_Descripcion, "Sucursal",  new { @class = "control-label col-md-2"})
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbCaja.tbSucursal.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     <input type="text" value="San Pedro Sula" class="form-control " readonly />
-                                 @Html.ValidationMessageFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+                                    @Html.ValidationMessageFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
                                 </div>
 
-                           <div class="form-group">
-                               @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
-                               <div class="col-md-3">
-                                   <input type="text" value="Caja 1" class="form-control " />
-                                   @*@Html.DropDownList("cja_Id", String.Empty)*@
-                                   @Html.ValidationMessageFor(model => model.cja_Id)
-                               </div>
-                           </div>
-                            </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.tbFactura.clte_Identificacion, "RTN Cliente", new { @class = "control-label col-md-2" })
-                            <div class="col-md-3">
-                                @Html.EditorFor(model => model.tbFactura.clte_Identificacion, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
-                              
-                                @*@Html.DropDownList("fact_Id", String.Empty)
-                                @Html.ValidationMessageFor(model => model.fact_Id)*@
-                            </div>
-                            <div class="col-md-">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarFactura"><span class="glyphicon glyphicon-search"></span></button>
-                                @Html.LabelFor(model => model.fact_Id, "Factura", new { @class = "control-label col-md-2" })
-                              
-                                <div class="col-md-3">
-                                    <input type="text" value="" class="form-control " />
-                                </div>
-                                @*<div class="col-md-">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
-                                </div>*@
-                            </div>
-                        </div>
-
-                     
-                    
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.dev_Fecha, new { @class = "control-label col-md-2" })
-                            <div class="col-md-3">
-                                @Html.EditorFor(model => model.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafactura" } })
-                                @Html.ValidationMessageFor(model => model.dev_Fecha)
-                            </div>
-                            <div class="form-group">
-                            @Html.LabelFor(model => model.tbFactura.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
-                            <div class="col-md-3">
-                                @Html.EditorFor(model => model.tbFactura.clte_Nombres, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@ } })
-                                @Html.ValidationMessageFor(model => model.tbFactura.clte_Nombres)
-                            </div>
-                        </div>
-                        </div>
-                       
-                       
-
-
-                       
-                        @*<div class="form-group">
-                            @Html.LabelFor(model => model.dev_Id, new { @class = "control-label col-md-2" })
-                            <div class="col-md-5">
-                                @Html.EditorFor(model => model.dev_Id)
-                                @Html.ValidationMessageFor(model => model.dev_Id)
-                            </div>
-                        </div>*@
-                   
-                        @*<div class="form-group">
-                            <div class="col-md-offset-2 col-md-2">
-                                <input type="submit" value="Registrar" class="btn btn-primary" />
-                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                            </div>
-                        </div>*@
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            @Html.Partial("_CreateDevolucionDetalle")
-                        </div>
-                    </div>
-
-                    <div class="ibox-content">
-
-                        <script type="text/javascript">
-                            function NotaCredito()
-                            {
-                                var bResponse = confirm('¿Esta seguro que desea crear una nota de Credito?. Recuerde que no podra volver hacerlo, esta acción es irreversible');
-
-                                if (bResponse === true) {
-
-                                    console.log("lnkLogout_Confirm clciked.");
-                                    //detalle.disabled = true;
-                                    var url = '@Url.Action("Create", "NotaCredito")';
-                                    window.location.href = url;
-                                }
-                                return bResponse;
-                            }
-
-                        </script>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="ibox float-e-margins">
-                                    <div class="ibox-content">
-                                        <div class="form-group">
-                                            <div class="col-md-12 text-center">
-                                                <input type="submit" value="Guardar" class="btn btn-primary" />
-                                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                            </div>
-                                        </div>
-                                        <br />
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        <input type="text" id="cja_Id" value="1" class="form-control " readonly/>
+                                        @*@Html.DropDownList("cja_Id", String.Empty)*@
+                                        @Html.ValidationMessageFor(model => model.cja_Id)
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fact_Id, "Factura", new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    <input type="text" id="fact_Codigo" value="" class="form-control " />
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarFactura"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+
+                                @*<div class="col-md-">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>*@
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.tbFactura.clte_Identificacion, "RTN Cliente", new { @class = "control-label col-md-1" })
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.tbFactura.clte_Identificacion, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
+
+                                        @*@Html.DropDownList("fact_Id", String.Empty)
+                                     @Html.ValidationMessageFor(model => model.fact_Id)*@
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.dev_Fecha, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafactura" } })
+                                    @Html.ValidationMessageFor(model => model.dev_Fecha)
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.tbFactura.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.tbFactura.clte_Nombres, new
+                      {
+                          htmlAttributes = new
+                          {
+                              @class = "form-control"@*, @readonly = "readonly"*@ }
+                      })
+                                        @Html.ValidationMessageFor(model => model.tbFactura.clte_Nombres)
+                                    </div>
+                                </div>
+                            </div>
+
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.dev_Id, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-5">
+                                        @Html.EditorFor(model => model.dev_Id)
+                                        @Html.ValidationMessageFor(model => model.dev_Id)
+                                    </div>
+                                </div>*@
+
+                            @*<div class="form-group">
+                                    <div class="col-md-offset-2 col-md-2">
+                                        <input type="submit" value="Registrar" class="btn btn-primary" />
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    </div>
+                                </div>*@
                         </div>
                         <div class="form-group">
-                            <div class="col-md-offset-10 col-md-11">
-                                <button onclick="NotaCredito()" class="btn btn-primary btn-xs">Emitir Nota de Credito</button>
+                            <div class="col-md-12">
+                                @Html.Partial("_CreateDevolucionDetalle")
                             </div>
                         </div>
 
+                        <div class="ibox-content">
 
-                    </div>
-                }
+                            <script type="text/javascript">
+                                function NotaCredito() {
+                                    var bResponse = confirm('¿Esta seguro que desea crear una nota de Credito?. Recuerde que no podra volver hacerlo, esta acción es irreversible');
+
+                                    if (bResponse === true) {
+
+                                        console.log("lnkLogout_Confirm clciked.");
+                                        //detalle.disabled = true;
+                                        var url = '@Url.Action("Create", "NotaCredito")';
+                                        window.location.href = url;
+                                    }
+                                    return bResponse;
+                                }
+
+                            </script>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-content">
+                                            <div class="form-group">
+                                                <div class="col-md-12 text-center">
+                                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                                </div>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-10 col-md-11">
+                                    <button onclick="NotaCredito()" class="btn btn-primary btn-xs">Emitir Nota de Credito</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
-  
- </div>
+
+</div>
 
 @*<div class="form-group">
-    <div class="col-md-offset-10 col-md-2">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CrearDevolucion">
-            Registrar Producto
-        </button>
-    </div>
-</div>*@
+        <div class="col-md-offset-10 col-md-2">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CrearDevolucion">
+                Registrar Producto
+            </button>
+        </div>
+    </div>*@
 
-  <!-- Modal -->
+<!-- Modal -->
 <div>
     <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -201,7 +203,7 @@
     </div>
 </div>
 
- <!-- Modal -->
+<!-- Modal -->
 <div>
     <div class="modal fade" id="ModalAgregarFactura" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -221,6 +223,8 @@
 </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
-<script src="~/Scripts/app/Producto.js"></script>   
+<script src="~/Scripts/app/Producto.js"></script>
 <script src="~/Scripts/app/DevolucionDetalle.js"></script>
 <script src="~/Scripts/app/FacturaDevolucion.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+<script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>

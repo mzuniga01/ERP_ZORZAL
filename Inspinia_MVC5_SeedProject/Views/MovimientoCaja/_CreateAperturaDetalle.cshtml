@@ -9,9 +9,9 @@
                     <h5>Detalle Denominación</h5>
                 </div>
                 <div class="form-horizontal">
-                    <div class="form-group">
+                    <div class="form-group col-md-8">
                         @Html.LabelFor(model => model.deno_Id, "Denominación", new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                        <div class="col-md-6">
                             @Html.DropDownList("deno_Id", null, "Seleccione Denominación", new { @class = "form-control" })
                             <div id="validacionDenominacionCreate">
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.deno_Id)</p>
@@ -52,10 +52,11 @@
             <th>Cantidad</th>
             <th>Valor</th>
             <th>Subtotal</th>
-            <th></th>
+           
         </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+    </tbody>
 </table>
     <div id="validationSummary">
         <p style="color:red"></p>

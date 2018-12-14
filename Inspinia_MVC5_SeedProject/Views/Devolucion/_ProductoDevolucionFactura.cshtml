@@ -12,45 +12,47 @@
                 </div>*@
                 <div class="ibox-content">
 
-<table id="tbProductoDevolucion" class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.factd_Cantidad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.factd_MontoDescuento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.factd_PorcentajeDescuento)
-        </th>
-        <th></th>
-    </tr>
+<table id="DataTable1" class="table table table-striped  table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.factd_Cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.factd_MontoDescuento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.factd_PorcentajeDescuento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr data-id="@item.prod_Codigo" data-desc="@item.tbProducto.prod_Descripcion">
 
-@foreach (var item in Model)
-{
-    <tr data-id="@item.prod_Codigo" data-desc="@item.tbProducto.prod_Descripcion">
-       
-         <td>
-            @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.factd_Cantidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.factd_MontoDescuento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.factd_PorcentajeDescuento)
-        </td>
-        <td>
-            <button id="Agregar" class="btn btn-primary btn-xs">Agregar</button>
-        </td>
-    </tr>
-}
-
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.factd_Cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.factd_MontoDescuento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.factd_PorcentajeDescuento)
+                </td>
+                <td>
+                    <button id="Agregar" class="btn btn-primary btn-xs">Agregar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
                 </div>

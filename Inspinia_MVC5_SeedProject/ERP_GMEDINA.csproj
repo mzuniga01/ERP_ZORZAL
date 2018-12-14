@@ -782,6 +782,7 @@
     </Content>
     <Content Include="Scripts\app\Activo.js" />
     <Content Include="Scripts\app\Banco.js" />
+    <Content Include="Scripts\app\CalculoFactura.js" />
     <Content Include="Scripts\app\Cliente.js" />
     <Content Include="Scripts\app\Credito.js" />
     <Content Include="Scripts\app\DataTable.js" />

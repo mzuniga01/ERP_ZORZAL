@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿
+
+$(document).ready(function () {
     $('#DataTable1').DataTable(
     {
         "searching": false,
