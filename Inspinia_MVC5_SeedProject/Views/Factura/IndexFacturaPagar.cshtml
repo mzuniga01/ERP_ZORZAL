@@ -21,21 +21,16 @@
                 <div class="ibox-content">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label col-md-2">RTN</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control " />
+                            <div class="col-md-offset-6 col-md-5">
+                                <input type="text" class="form-control " id="rtn" />
                             </div>
-                            <label class="control-label col-md-2">Numero Factura</label>
-                            <div class="col-md-3">
-                                <input id="FechaBuscar" type="text" class="form-control" />
-                            </div>
-                            <div class="">
-                                <input type="button" value="Buscar" class="btn btn-primary btn-sm" />
+                            <div class="col-md-offset-6">
+                                <input type="button" id="Pagar" value="Buscar" class="btn btn-primary btn-sm" />
                             </div>
                         </div>
 
                     </div>
-                        <table id="DataTable1" class="table table table-striped  table-bordered" style="width:100%">
+                        <table id="Factura" class="table table table-striped  table-bordered">
                             <thead>
                                 <tr>
                                     <th>
@@ -48,7 +43,7 @@
                                         @Html.DisplayNameFor(model => model.clte_Nombres)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)
+                                        @Html.DisplayNameFor(model => model.clte_Identificacion)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.cja_Id)
@@ -60,37 +55,41 @@
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody id="Facturatbody">
                                 @foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fact_Codigo)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fact_Fecha)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.clte_Nombres)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.clte_RTN_Identidad_Pasaporte)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => item.tbCaja.cja_Descripcion)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => item.tbEstadoFactura.esfac_Descripcion)
-                                        </td>
+                                    if (item.esfac_Id == 2)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.fact_Codigo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.fact_Fecha)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.clte_Nombres)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.clte_Identificacion)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(model => item.tbCaja.cja_Descripcion)
+                                            </td>
+                                            <td class="danger">
+                                                @Html.DisplayFor(model => item.tbEstadoFactura.esfac_Descripcion)
+                                            </td>
 
-                                        <td>
-                                            @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
-                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalCancelar">
-                                                Cancelar
-                                            </button>
-                                        </td>
+                                            <td>
+                                                @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
+                                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalCancelar">
+                                                    Cancelar
+                                                </button>
+                                            </td>
 
-                                    </tr>
+                                        </tr>
+                                    }
+
                                 }
 </tbody>
                         </table>
@@ -127,3 +126,4 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>
+<script src="~/Scripts/app/FacturaPagar.js"></script>

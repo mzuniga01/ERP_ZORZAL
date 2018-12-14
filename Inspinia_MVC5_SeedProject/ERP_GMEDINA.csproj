@@ -1150,6 +1150,7 @@
     <Content Include="Views\TipoPago\Index.cshtml" />
     <Content Include="Views\Pago\_IndexCliente.cshtml" />
     <Content Include="Views\Devolucion\_BuscarFacturaDevolucion.cshtml" />
+    <Content Include="Views\MovimientoCaja\_CreateDenominacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
