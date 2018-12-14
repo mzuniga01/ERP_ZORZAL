@@ -42,6 +42,8 @@
 
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.clte_Id)
+                            @Html.HiddenFor(model => model.clte_FechaCrea)
+                            @Html.HiddenFor(model => model.clte_UsuarioCrea)
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tpi_Id, "Tipo Identificacion", new { @class = "control-label col-md-2" })
@@ -59,8 +61,15 @@
                                 </div>
                             </div>
 
-                            @if (Model.clte_EsPersonaNatural)
-                            {
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.clte_EsPersonaNatural, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.clte_EsPersonaNatural)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsPersonaNatural)</p>
+                                </div>
+                            </div>
+
+                            <div class="form-horizontal" name="natural" id="natural">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
@@ -80,7 +89,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_FechaNacimiento, new { @class = "control-label col-md-2" })
                                     <div class="col-md-5">
-                                        @Html.EditorFor(model => model.clte_FechaNacimiento, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "fechanacimiento" } })
+                                        @Html.EditorFor(model => model.clte_FechaNacimiento, "{0:MM/dd/yyyy}")
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_FechaNacimiento)</p>
                                     </div>
                                 </div>
@@ -88,12 +97,12 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_Sexo, new { @class = "control-label col-md-2" })
                                     <div class="col-md-5">
-                                    <select class="form-control" id="clte_Sexo">
-                                        <option selected disabled>Seleccione Sexo</option>
-                                        <option value="H">Hombre</option>
-                                        <option value="M">Mujer</option>
-                                    </select>
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Sexo)</p>
+                                        <select class="form-control" id="clte_Sexo">
+                                            <option selected disabled>Seleccione Sexo</option>
+                                            <option value="H">Hombre</option>
+                                            <option value="M">Mujer</option>
+                                        </select>
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Sexo)</p>
                                     </div>
                                 </div>
 
@@ -112,9 +121,9 @@
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_CorreoElectronico)</p>
                                     </div>
                                 </div>
-                            }
-                            else
-                            {
+                            </div>
+
+                            <div class="form-horizontal" id="juridica" name="juridica">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_NombreComercial, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
@@ -158,99 +167,99 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_FechaConstitucion, new { @class = "control-label col-md-2" })
                                     <div class="col-md-5">
-                                        @Html.EditorFor(model => model.clte_FechaConstitucion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "fechaconstitucion" } })
+                                        @Html.EditorFor(model => model.clte_FechaConstitucion, "{0:MM/dd/yyyy}")
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_FechaConstitucion)</p>
                                     </div>
                                 </div>
-                            }
+                                </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.clte_Nacionalidad, new { @class = "control-label col-md-2" })
-                                <div class="col-md-5">
-                                    @Html.EditorFor(model => model.clte_Nacionalidad)
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Nacionalidad)</p>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.clte_Nacionalidad, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-5">
+                                        @Html.EditorFor(model => model.clte_Nacionalidad)
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Nacionalidad)</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(muni => test.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-5">
+                                        @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
+                                        <p style="color:red">@Html.ValidationMessageFor(muni => test.dep_Codigo)</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-5">
+                                        @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.clte_Direccion, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.clte_Direccion)
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Direccion)</p>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" id="Activo">
+                                    @Html.LabelFor(model => model.clte_EsActivo, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.clte_EsActivo)
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsActivo)</p>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" id="RazonInactivo">
+                                    @Html.LabelFor(model => model.clte_RazonInactivo, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.clte_RazonInactivo)
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_RazonInactivo)</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.clte_ConCredito, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.clte_ConCredito)
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_ConCredito)</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.clte_EsMinorista, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.clte_EsMinorista)
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsMinorista)</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.clte_Observaciones, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.clte_Observaciones, new { @class = "form-control" })
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Observaciones)</p>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        <button type="button" class="btn btn-white" data-toggle="modal" data-target="#ModalAnular1">
+                                            Activar
+                                        </button>
+                                        <button type="button" class="btn btn-white" data-toggle="modal" data-target="#ModalAnular">
+                                            Inactivar
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(muni => test.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })
-                                <div class="col-md-5">
-                                    @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
-                                    <p style="color:red">@Html.ValidationMessageFor(muni => test.dep_Codigo)</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
-                                <div class="col-md-5">
-                                    @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.clte_Direccion, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.clte_Direccion)
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Direccion)</p>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group" id="Activo">
-                                @Html.LabelFor(model => model.clte_EsActivo, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.clte_EsActivo)
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsActivo)</p>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group" id="RazonInactivo">
-                                @Html.LabelFor(model => model.clte_RazonInactivo, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.clte_RazonInactivo)
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_RazonInactivo)</p>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.clte_ConCredito, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.clte_ConCredito)
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_ConCredito)</p>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.clte_EsMinorista, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.clte_EsMinorista)
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsMinorista)</p>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.clte_Observaciones, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.TextAreaFor(model => model.clte_Observaciones, new { @class = "form-control" })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Observaciones)</p>
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                    <button type="button" class="btn btn-white" data-toggle="modal" data-target="#ModalAnular1">
-                                        Activar
-                                    </button>
-                                    <button type="button" class="btn btn-white" data-toggle="modal" data-target="#ModalAnular">
-                                        Inactivar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                     }
 
                 </div>

@@ -5,34 +5,34 @@
             dateFormat: 'dd-mm-yy',
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
-        }).datepicker("setDate", new Date());
+        }).datepicker('setDate', new Date());
 
         //Cliente
-        $("#fechanacimiento").datepicker({
-            dateFormat: 'dd-mm-yy',
+    $("#clte_FechaNacimiento").datepicker({
+        dateFormat: 'dd-mm-yy',
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
-        }).datepicker("setDate", new Date());
+        }).datepicker('setDate', new Date());
 
-        $("#fechaconstitucion").datepicker({
-            dateFormat: 'dd-mm-yy',
+    $("#clte_FechaConstitucion").datepicker({
+        dateFormat: 'dd-mm-yy',
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
-        }).datepicker("setDate", new Date());
+        }).datepicker('setDate', new Date());
         
         //Factura
         $("#fechafactura").datepicker({
             dateFormat: 'dd-mm-yy',
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
-        }).datepicker("setDate", new Date());
+        }).datepicker('setDate', new Date());
 
         //PuntoEmisionDetalle
-        $("#pemid_FechaLimite").datepicker({
+    $("#pemid_FechaLimite").datepicker({
             dateFormat: 'mm/dd/yy',
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
-        }).datepicker("setDate", new Date());
+        }).datepicker('setDate', new Date());
     //Grupo1
 
 

@@ -75,10 +75,21 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.tbCliente.clte_Identificacion)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres )
-                    @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
-                </td>
+                @{ if (Convert.ToInt32(item.tbCliente.clte_EsPersonaNatural) == 1)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres)
+                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbCliente.clte_NombreComercial)
+                        </td>
+                    }
+                }
+               
                 <td>
                     @Html.DisplayFor(modelItem => item.cred_FechaAprobacion)
                 </td>

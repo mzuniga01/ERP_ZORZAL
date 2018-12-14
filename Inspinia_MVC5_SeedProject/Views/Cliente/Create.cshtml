@@ -79,7 +79,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.clte_FechaNacimiento, new { @class = "control-label col-md-2" })
                     <div class="col-md-5">
-                        @Html.EditorFor(model => model.clte_FechaNacimiento, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "fechanacimiento" } })
+                        @Html.EditorFor(model => model.clte_FechaNacimiento, "{0:MM/dd/yyyy}")
                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_FechaNacimiento)</p>
                     </div>
                 </div>
@@ -157,7 +157,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.clte_FechaConstitucion, new { @class = "control-label col-md-2" })
                     <div class="col-md-5">
-                        @Html.EditorFor(model => model.clte_FechaConstitucion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "fechaconstitucion" } })
+                        @Html.EditorFor(model => model.clte_FechaConstitucion, "{0:MM/dd/yyyy}")
                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_FechaConstitucion)</p>
                     </div>
                 </div>

@@ -8,7 +8,7 @@
         $("#clte_ContactoNombre").val('**');
         $("#clte_ContactoEmail").val('');
         $("#clte_ContactoTelefono").val('**');
-        $("#clte_FechaConstitucion").val('**');
+        $("#clte_FechaConstitucion").val('');
         $("#clte_Nombres").val('');
         $("#clte_Apellidos").val('');
         $("#clte_FechaNacimiento").val('');
@@ -22,7 +22,7 @@
         $('#natural').hide();
         $("#clte_Nombres").val('**');
         $("#clte_Apellidos").val('**');
-        $("#clte_FechaNacimiento").val('**');
+        $("#clte_FechaNacimiento").val('');
         $("#clte_Sexo").val('**');
         $("#clte_Telefono").val('**');
         $("#clte_Direccion").val('');
@@ -47,7 +47,7 @@ $(document).ready(function () {
         $('#juridica').show();
         $("#clte_Nombres").val('**');
         $("#clte_Apellidos").val('**');
-        $("#clte_FechaNacimiento").val('**');
+        $("#clte_FechaNacimiento").val('');
         $("#clte_Sexo").val('**');
         $("#clte_Telefono").val('**');
         $("#clte_Direccion").val('**');
