@@ -55,8 +55,7 @@
         {
             <tr>
                 <td>
-                    San Pedro Sula
-                    @*@Html.DisplayFor(modelItem => item.tbSucursal.mun_Codigo)*@
+                    @Html.DisplayFor(modelItem => item.tbSucursal.suc_Descripcion)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.cdto_PorcentajeDescuento)
@@ -67,10 +66,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.cdto_MaximoMontoDescuento)
                 </td>
-                <td>
-                    No
-                    @*@Html.DisplayFor(modelItem => item.cdto_Anulado)*@
-                </td>
+                @if (item.cdto_Anulado == true)
+                {
+                    <td>Si</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
                 <td>
                     @Html.DisplayFor(modelItem => item.cdto_Redimido)
                 </td>

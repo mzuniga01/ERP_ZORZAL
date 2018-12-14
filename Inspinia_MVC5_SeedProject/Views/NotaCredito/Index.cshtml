@@ -54,21 +54,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.nocre_FechaEmision)
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.nocre_MotivoEmision)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nocre_FechaCrea)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nocre_FechaModifica)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-            </th>*@
             <th>Opción</th>
         </tr>
     </thead>
@@ -77,49 +62,50 @@
         {
             <tr>
                 <td>
-                    San Pedro Sula
-                    @*@Html.DisplayFor(modelItem => item.tbSucursal.mun_Codigo)*@
+                    @Html.DisplayFor(modelItem => item.tbSucursal.suc_Descripcion)
                 </td>
                 <td>
-                    2
-                    @*@Html.DisplayFor(modelItem => item.nocre_Codigo)*@
+                    @Html.DisplayFor(modelItem => item.nocre_Codigo)
                 </td>
-                <td>
-                    Luis Eduardo
-                    @*@Html.DisplayFor(modelItem => item.tbCliente.clte_RTN_Identidad_Pasaporte)*@
-                </td>
+                @if(item.tbCliente.clte_EsPersonaNatural == true)
+                {
+                    <td>
+                         @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres)  @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbCliente.clte_NombreComercial)
+                    </td>
+                }
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.nocre_Monto)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.tbDevolucion.dev_Id)
                 </td>
-                <td>
-                    Activo
-                    @*@Html.DisplayFor(modelItem => item.nocre_Estado)*@
-                </td>
-                <td>
-                    No
-                    @*@Html.DisplayFor(modelItem => item.nocre_Anulado)*@
-                </td>
+                @if (item.nocre_Estado == true)
+                {
+                    <td>Activo</td>
+                }
+                else
+                {
+                    <td>Inactivo</td>
+                }
+                @if (item.nocre_Anulado == true)
+                {
+                    <td>Si</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+               
                 <td>
                     @Html.DisplayFor(modelItem => item.nocre_FechaEmision)
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.nocre_MotivoEmision)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nocre_FechaCrea)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nocre_FechaModifica)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-                </td>*@
                 <td> 
 
                     @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
