@@ -16,12 +16,11 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <a href="~/Views/Pedido/IndexFacturar.cshtml">~/Views/Pedido/IndexFacturar.cshtml</a>
                     <h5>Listado de Pedido Por Facturar</h5>
                 </div>
                 <div class="ibox-content">
 
-                    <table id="DataTable1" class="table table table-striped  table-bordered" style="width:100%">
+                    <table id="DataTable1" class="table table table-striped  table-bordered">
                         <thead>
                             <tr>
                                 <th>
@@ -48,37 +47,43 @@
                             </tr>
                             </thead>
                         <tbody>
+                            
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbCliente.clte_Identificacion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ped_FechaElaboracion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ped_FechaEntrega)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbEstadoPedido.esped_Descripcion)
-                                    </td>
+
+                                if (item.esped_Id == 1)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Identificacion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ped_FechaElaboracion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ped_FechaEntrega)
+                                        </td>
+                                        <td class="danger">
+                                            @Html.DisplayFor(modelItem => item.tbEstadoPedido.esped_Descripcion)
+                                        </td>
 
 
-                                    <td>
-                                        @Html.ActionLink("Detalle", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.ped_Id }, new { @class = "btn btn-white btn-xs" })
-                                        <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalFacturar">
-                                           Facturar Pedido
-                                        </button>
-                                    </td>
-                                </tr>
+                                        <td>
+                                            @Html.ActionLink("Detalle", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.ped_Id }, new { @class = "btn btn-white btn-xs" })
+                                            <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalFacturar">
+                                                Facturar Pedido
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+
                             }
                         </tbody>
                     </table>

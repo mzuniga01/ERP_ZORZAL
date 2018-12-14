@@ -1121,6 +1121,7 @@
     <Content Include="Views\Devolucion\_IndexProductoDDevolucion.cshtml" />
     <Content Include="Views\Devolucion\_ProductoDevolucionFactura.cshtml" />
     <Content Include="Views\ListaPrecios\_IndexProducto.cshtml" />
+    <Content Include="Views\Pedido\IndexFacturar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

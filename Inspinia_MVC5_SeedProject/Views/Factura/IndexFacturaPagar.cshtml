@@ -21,11 +21,11 @@
                 <div class="ibox-content">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label col-md-2">RTN</label>
+                            <label class="control-label col-md-1">RTN</label>
                             <div class="col-md-4">
                                 <input type="text" class="form-control " />
                             </div>
-                            <label class="control-label col-md-2">Numero Factura</label>
+                            <label class="control-label col-md-2">Número Factura</label>
                             <div class="col-md-3">
                                 <input id="FechaBuscar" type="text" class="form-control" />
                             </div>
@@ -48,7 +48,7 @@
                                         @Html.DisplayNameFor(model => model.clte_Nombres)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)
+                                        @Html.DisplayNameFor(model => model.clte_Identificacion)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.cja_Id)
@@ -63,34 +63,38 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fact_Codigo)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fact_Fecha)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.clte_Nombres)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.clte_RTN_Identidad_Pasaporte)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => item.tbCaja.cja_Descripcion)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => item.tbEstadoFactura.esfac_Descripcion)
-                                        </td>
+                                    if (item.esfac_Id == 2)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.fact_Codigo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.fact_Fecha)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.clte_Nombres)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.clte_Identificacion)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(model => item.tbCaja.cja_Descripcion)
+                                            </td>
+                                            <td class="danger">
+                                                @Html.DisplayFor(model => item.tbEstadoFactura.esfac_Descripcion)
+                                            </td>
 
-                                        <td>
-                                            @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
-                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalCancelar">
-                                                Cancelar
-                                            </button>
-                                        </td>
+                                            <td>
+                                                @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
+                                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalCancelar">
+                                                    Cancelar
+                                                </button>
+                                            </td>
 
-                                    </tr>
+                                        </tr>
+                                    }
+
                                 }
 </tbody>
                         </table>
