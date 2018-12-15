@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tent_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.tent_Id , new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.tent_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.tent_Id)
                                 </div>
                             </div>
@@ -68,12 +68,12 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@ViewBag.UsuarioCrea</td>
                         <td>@Html.DisplayFor(model => model.tent_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@ViewBag.UsuarioModfica</td>
                         <td>@Html.DisplayFor(model => model.tent_FechaModifica)</td>
                     </tr>
                 </table>

@@ -55,7 +55,23 @@
                         <dd>
                             @Html.DisplayFor(model => model.ent_FechaElaboracion)
                         </dd>
+                        <dt>
+                            @*@Html.DisplayNameFor(model => model.tbProveedor.prov_Nombre)*@
+                            Nombre Proveedor
+                        </dt>
 
+                        <dd>
+                            @Html.DisplayFor(model => model.tbProveedor.prov_Nombre)
+                        </dd>
+
+                        <dt>
+                            @*@Html.DisplayNameFor(model => model.tbTipoEntrada.tent_Descripcion)*@
+                            Tipo Entrada
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbTipoEntrada.tent_Descripcion)
+                        </dd>
                         <dt>
                             @Html.DisplayNameFor(model => model.ent_FacturaCompra)
                         </dt>
@@ -96,37 +112,6 @@
                             @Html.DisplayFor(model => model.ent_BodegaDestino)
                         </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.ent_UsuarioCrea)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.ent_UsuarioCrea)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.ent_FechaCrea)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.ent_FechaCrea)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.ent_UsuarioModifica)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.ent_UsuarioModifica)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.ent_FechaModifica)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.ent_FechaModifica)
-                        </dd>
 
                         <dt>
                             @Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)
@@ -144,21 +129,6 @@
                             @Html.DisplayFor(model => model.tbEstadoMovimiento.estm_Descripcion)
                         </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tbProveedor.prov_Nombre)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tbProveedor.prov_Nombre)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tbTipoEntrada.tent_Descripcion)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tbTipoEntrada.tent_Descripcion)
-                        </dd>
 
                     </dl>
 
@@ -180,12 +150,12 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>Brayan Interiano</td>
+                        <td>@ViewBag.UsuarioCrea</td>
                         <td>@Html.DisplayFor(model => model.ent_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td></td>
+                        <td>@ViewBag.UsuarioModfica </td>
                         <td>@Html.DisplayFor(model => model.ent_FechaModifica)</td>
                     </tr>
                 </table>

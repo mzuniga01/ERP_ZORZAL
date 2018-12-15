@@ -181,9 +181,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BancoController.cs" />
     <Compile Include="Controllers\BodegaController.cs" />
-    <Compile Include="Controllers\BodegaDetalleController.cs" />
     <Compile Include="Controllers\BoxController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
+    <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\EntradaController.cs" />
     <Compile Include="Controllers\EstadoMovimientoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -214,9 +214,12 @@
     <Compile Include="Models\Box.cs" />
     <Compile Include="Models\departamento.cs" />
     <Compile Include="Models\DetalleEntrada.cs" />
+    <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Entrada.cs" />
     <Compile Include="Models\EstadoInventariosFisico.cs" />
     <Compile Include="Models\estadomovimientos.cs" />
+    <Compile Include="Models\Estados.cs" />
+    <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InventariosFisicos.cs" />
     <Compile Include="Models\InventariosFisicosDetalle.cs" />
@@ -244,6 +247,9 @@
     <Compile Include="Models\rol.cs" />
     <Compile Include="Models\RolesUsuario.cs" />
     <Compile Include="Models\Salida.cs" />
+    <Compile Include="Models\spGetMunicipios_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -430,6 +436,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Acce_tbObjeto_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Acce_tbObjeto_Update_Estado_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Acce_tbObjeto_Update_Result.cs">
@@ -820,9 +829,12 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
       <LastGenOutput>ModelERP.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\app\BodegaDetalle.js" />
     <Content Include="Scripts\app\BusquedaGenerica.js" />
+    <Content Include="Scripts\app\Categoria.js" />
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\Datepicker.js" />
+    <Content Include="Scripts\app\EntradaDetalle.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\MostrarCamposEditar.js" />
     <Content Include="Scripts\app\MostrarCamposEntradajs.js" />
@@ -1157,6 +1169,12 @@
     <Content Include="Views\Objeto\Details.cshtml" />
     <Content Include="Views\Objeto\Edit.cshtml" />
     <Content Include="Views\Objeto\Index.cshtml" />
+    <Content Include="Views\Bodega\_Pruebaaaa.cshtml" />
+    <Content Include="Views\Empleado\Create.cshtml" />
+    <Content Include="Views\Empleado\Delete.cshtml" />
+    <Content Include="Views\Empleado\Details.cshtml" />
+    <Content Include="Views\Empleado\Edit.cshtml" />
+    <Content Include="Views\Empleado\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

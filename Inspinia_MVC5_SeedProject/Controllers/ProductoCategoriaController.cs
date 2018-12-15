@@ -17,9 +17,9 @@ namespace ERP_ZORZAL.Controllers
         // GET: /ProductoCategoria/
         public ActionResult Index()
         {
+            var tbproductocategoria = db.tbProductoCategoria.Include(t => t.tbProductoSubcategoria);
             return View(db.tbProductoCategoria.ToList());
         }
-
 
         // GET: /ProductoCategoria/Details/5
         public ActionResult Details(int? id)
@@ -36,12 +36,21 @@ namespace ERP_ZORZAL.Controllers
             return View(tbProductoCategoria);
         }
 
+
         // GET: /ProductoCategoria/Create
         public ActionResult Create()
         {
-            //ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            //ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            LlenarLista();
             return View();
+        }
+
+        private void LlenarLista()
+        {
+
+            ViewBag.CateList = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre", "seleccione");
+            ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pcat_Id", "pscat_Id");
+            ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pcat_Id", "pcat_Nombre");
+
         }
 
         // POST: /ProductoCategoria/Create
@@ -51,6 +60,7 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica")] tbProductoCategoria tbProductoCategoria)
         {
+            
             if (ModelState.IsValid)
             { 
                 try
@@ -60,12 +70,14 @@ namespace ERP_ZORZAL.Controllers
                     list = db.UDP_Inv_tbProductoCategoria_Insert(tbProductoCategoria.pcat_Nombre);
                     foreach (UDP_Inv_tbProductoCategoria_Insert_Result categoria in list)
                         MsjError = categoria.MensajeError;
-                    if (MsjError == "-1")
+                    if (MsjError.Substring(0, 2) == "-1")
                     {
-                        
+                        ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
+                        return RedirectToAction("Index");
                     }
                     else
                     {
+
                         return RedirectToAction("Index");
                     }
 
@@ -77,9 +89,13 @@ namespace ERP_ZORZAL.Controllers
                 }
             return RedirectToAction("Index");
         }
-         return View(tbProductoCategoria);
-        //ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
-        //    return View(tbProductoCategoria);
+            else
+            {
+                ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+            }
+            
+            return View(tbProductoCategoria);
+       
     }
 
         // GET: /ProductoCategoria/Edit/5
@@ -94,7 +110,6 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
             return View(tbProductoCategoria);
         }
 
@@ -103,8 +118,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, [Bind(Include= 
-            "pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea")]
+        public ActionResult Edit(int? id, [Bind(Include= "pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea")]
         tbProductoCategoria tbProductoCategoria)
         {
            
@@ -121,9 +135,9 @@ namespace ERP_ZORZAL.Controllers
                     foreach (UDP_Inv_tbProductoCategoria_Update_Result categoria in list) 
                         MsjError = categoria.MensajeError;
 
-                    if (MsjError == "-1")
+                    if (MsjError.Substring(0, 2) == "-1")
                     {
-                        ModelState.AddModelError("", "No se guardo el registro");
+                        ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
                         return RedirectToAction("Index");
                     }
                     else      
@@ -136,19 +150,11 @@ namespace ERP_ZORZAL.Controllers
                     Ex.Message.ToString();
                     ModelState.AddModelError("", "No se Guardo el registro");
                 }
+
                 return RedirectToAction("Index");
             }
             return View(tbProductoCategoria);
         }
-
-            //if (ModelState.IsValid)
-            //{
-            //    db.Entry(tbProductoCategoria).State = EntityState.Modified;
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-            //ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
-            //return View(tbProductoCategoria);
         // GET: /ProductoCategoria/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -169,9 +175,14 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
-            db.tbProductoCategoria.Remove(tbProductoCategoria);
-            db.SaveChanges();
+            //tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
+            //IEnumerable<object> list = null;
+            //var MsjError = "";
+            //list = db.UDP_Inv_tbProductoCategoria_Delete(tbProductoCategoria.pcat_Id);
+            //foreach (UDP_Inv_tbProductoCategoria_Delete_Result categoria in list)
+            //    MsjError = categoria.MensajeError;
+            //db.tbProductoCategoria.Remove(tbProductoCategoria);
+            //db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -183,5 +194,27 @@ namespace ERP_ZORZAL.Controllers
             }
             base.Dispose(disposing);
         }
+        //VISTAS DE ProductoSubCategoía
+
+        [HttpPost]
+        public JsonResult GuardarSubCategoria(tbProductoSubcategoria tbsubcategoria)
+        {
+            List<tbProductoSubcategoria> sessionCate = new List<tbProductoSubcategoria>();
+            var list = (List<tbProductoSubcategoria>)Session["Descripcion"];
+            if (list == null)
+            {
+                sessionCate.Add(tbsubcategoria);
+                Session["Descripcion"] = sessionCate;
+            }
+            else
+            {
+                list.Add(tbsubcategoria);
+                Session["Descripcion"] = list;
+            }
+            return Json("Exito", JsonRequestBehavior.AllowGet);
+        }
+
+
+
     }
 }

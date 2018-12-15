@@ -52,7 +52,8 @@
                                     <td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.pcat_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.pcat_Id }, new { @class = "btn btn-white btn-xs" })
-
+                                        <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#exampleModal" value="Anular" />
+                                        @*@Html.ActionLink("Eliminar", "Delete", new { id=item.pcat_Id }, new { @class = "btn btn-white btn-xs"})*@
                                     </td>
                                 </tr>
                             }
@@ -63,6 +64,26 @@
         </div>
     </div>
  </div>
-<script src="~/Scripts/app/DataTables.js"></script>
-<script src="~/Scripts/app/BusquedaGenerica.js"></script>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular Categorìa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de anular esta Categorìa?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Index","ProductoCategoria")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+<script src="~/Scripts/app/Categoria.js"></script>
 

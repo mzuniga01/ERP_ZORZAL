@@ -28,6 +28,16 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbObjeto tbObjeto = db.tbObjeto.Find(id);
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbObjeto.obj_UsuarioCrea).usu_NombreUsuario;
+            var UsuarioModfica = tbObjeto.obj_UsuarioModifica;
+            if (UsuarioModfica == null)
+            {
+                ViewBag.UsuarioModifica = "";
+            }
+            else
+            {
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+            };
             if (tbObjeto == null)
             {
                 return HttpNotFound();
@@ -48,7 +58,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include= "obj_Id,obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica")] tbObjeto tbObjeto)
+        public ActionResult Create([Bind(Include= "obj_Id,obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto tbObjeto)
         {
             if (ModelState.IsValid)
             {
@@ -83,11 +93,22 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Objeto/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.id = id;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbObjeto tbObjeto = db.tbObjeto.Find(id);
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbObjeto.obj_UsuarioCrea).usu_NombreUsuario;
+            var UsuarioModfica = tbObjeto.obj_UsuarioModifica;
+            if (UsuarioModfica == null)
+            {
+                ViewBag.UsuarioModifica = "";
+            }
+            else
+            {
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+            };
             if (tbObjeto == null)
             {
                 return HttpNotFound();
@@ -102,7 +123,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( int? id, [Bind(Include="obj_Id, obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica")] tbObjeto tbObjeto)
+        public ActionResult Edit( int? id, [Bind(Include= "obj_Id, obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto tbObjeto)
         {
             if (ModelState.IsValid)
             {
@@ -113,7 +134,7 @@ namespace ERP_ZORZAL.Controllers
                     var MsjError = "";
                     list = db.UDP_Acce_tbObjeto_Update(tbObjeto.obj_Id,
                         tbObjeto.obj_Pantalla, obj.obj_UsuarioCrea,
-                        obj.obj_FechaCrea);
+                        obj.obj_FechaCrea, tbObjeto.obj_Estado);
                     foreach (UDP_Acce_tbObjeto_Update_Result obje in list)
                         MsjError = obje.MensajeError;
 
@@ -136,6 +157,39 @@ namespace ERP_ZORZAL.Controllers
             }
             return View(tbObjeto);
 
+        }
+        
+        public ActionResult Estado(int? id)
+        {
+            
+                try
+                {
+                    tbObjeto obj = db.tbObjeto.Find(id);
+                    IEnumerable<object> list = null;
+                    var MsjError = "";
+                    list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.Inactivo);
+                    foreach (UDP_Acce_tbObjeto_Update_Estado_Result obje in list)
+                        MsjError = obje.MensajeError;
+
+                    if (MsjError == "-1")
+                    {
+                        ModelState.AddModelError("", "No se Actualizo el registro");
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+                    return RedirectToAction("Index");
+                }
+
+            
+            //return RedirectToAction("Index");
         }
 
         // GET: /Objeto/Delete/5

@@ -59,7 +59,7 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
+                                       @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ent_NumeroFormato)
@@ -79,7 +79,6 @@
                                         @Html.ActionLink("Editar", "Edit", new { id = item.ent_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Detalles", "Details", new { id = item.ent_Id }, new { @class = "btn btn-white btn-xs" })
                                         <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
-                                        <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#exampleModal" value="Anular" />
                                          
                                     </td>
                                 </tr>
@@ -92,7 +91,9 @@
         </div>
     </div>
  </div>
-
+@**********************************************************************************MODALES*****************************************************************************@
+@**********************************************************************************MODALES*****************************************************************************@
+@**********************************************************************************MODALES*****************************************************************************@
 @*modal para imprimir*@
 <div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -113,26 +114,7 @@
         </div>
     </div>
 </div>
-@*modal para anular*@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Anular Entrada</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro de anular esta Entrada?
-            </div>
-            <div class="modal-footer">
-                <a href="@Url.Action("Index","Entrada")" class="btn btn-primary">Si</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {

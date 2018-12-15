@@ -87,11 +87,14 @@
         });
     });
 </script>
-
+@**********************************************************************************MODALES*****************************************************************************@
+@**********************************************************************************MODALES*****************************************************************************@
+@**********************************************************************************MODALES*****************************************************************************@
  @*Modal Nuevo*@ 
 <div>
     <div class="modal fade" id="ModalAgregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
+            
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -99,8 +102,8 @@
                     </button>
                     <h4 class="modal-title" id="myModalLabel">Nuevo Detalle Entrada</h4>
                 </div>
-                <div class="modal-body" id="frmAgregarCasoExito">
-                    @Html.Partial("_CrearDetalleEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle(){entd_Id =5 })
+                <div style="position:center;" class="modal-body" id="frmAgregarCasoExito">
+                    @Html.Partial("_CrearDetalleEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle())
                     <div class="form-group">
                         <div class="col-md-12 text-center">
                             <a href="@Url.Action("Edit","Entrada")" class="btn btn-primary">Guardar</a>
@@ -109,6 +112,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
@@ -125,7 +129,7 @@
                     <h4 class="modal-title" id="myModalLabel">Editar Detalle Entrada</h4>
                 </div>
                 <div class="modal-body" id="frmAgregarCasoExito">
-                    @Html.Partial("_EditarDetalleEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() { entd_Id = 5 })
+                    @Html.Partial("_EditarDetalleEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() { ent_Id = 5 })
                     <div class="form-group">
                         <div class="col-md-12 text-center">
                             <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" value="Anular" />
@@ -151,7 +155,7 @@
                     <h4 class="modal-title" id="myModalLabel">Detalle Detalle Entrada</h4>
                 </div>
                 <div class="modal-body" id="frmAgregarCasoExito">
-                    @Html.Partial("_DetalleDeEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() { entd_Id = 5 })
+                    @Html.Partial("_DetalleDeEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() { ent_Id = 5 })
                     <div class="form-group">
                         @*<div class="col-md-12 text-center">
                             <button class="btn btn-primary" type="button" id="GuardarCasos">Guardar</button>

@@ -33,8 +33,10 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string bod_Direccion { get; set; }
 
-        [Display(Name = "Correo")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Email")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Se requiere un correo electrónico")]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress(ErrorMessage = "Es un Correo Electronico")]
         public string bod_Correo { get; set; }
 
         [Display(Name = "Telèfono ")]

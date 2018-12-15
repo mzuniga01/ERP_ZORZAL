@@ -7,8 +7,8 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado de Detalles</h5>
-                    <div class="ibox-tools">
-                       
+                    <div class="col-md-1">
+                        @*<input type="button" value="Nuevo Detalle" id="Modal_NuevoDetalle" class="btn btn-primary" />*@
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -125,6 +125,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
+                                            <input type="submit" value="Guardar" class="btn btn-primary" />
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                         </div>
                                     </div>
@@ -144,3 +145,18 @@
 </div>
 
 
+<div class="modal fade" id="Modal_NuevoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Agregar Productos</h4>
+            </div>
+            <div class="modal-body" id="frmEditarMunicipios">
+                @*@Html.Partial("_CreateBodegaDetalle", new tbBodegaDetalle())*@
+            </div>
+        </div>
+    </div>
+</div>

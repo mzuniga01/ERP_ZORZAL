@@ -24,7 +24,7 @@ namespace ERP_GMEDINA.Models
         public string pago_Emisor { get; set; }
         public Nullable<short> bcta_Id { get; set; }
         public Nullable<System.DateTime> pago_FechaVencimiento { get; set; }
-        public string pago_Titular_ { get; set; }
+        public string pago_Titular { get; set; }
         public int pago_UsuarioCrea { get; set; }
         public System.DateTime pago_FechaCrea { get; set; }
         public Nullable<int> pago_UsuarioModifica { get; set; }

@@ -1,4 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbProductoCategoria
+    @using ERP_GMEDINA.Models
 
 @{
     ViewBag.Title = "Details";
@@ -55,7 +56,7 @@
         </div>
         <div class="ibox-content">
             <div class="form-horizontal">
-                @Html.Partial("_IndexSubCategoria", Model.tbProductoSubcategoria)
+                @Html.Partial("_ListSubCategoriaDetalle", Model.tbProductoSubcategoria, new ViewDataDictionary { { "pcat_Id", Model.pcat_Id } })
             </div>
         </div>
     </div>
@@ -78,7 +79,7 @@
                     Creado
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.pcat_UsuarioCrea)
+                    @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.pcat_FechaCrea)
@@ -89,7 +90,7 @@
                     Modificado
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.pcat_UsuarioModifica)
+                    @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.pcat_FechaModifica)

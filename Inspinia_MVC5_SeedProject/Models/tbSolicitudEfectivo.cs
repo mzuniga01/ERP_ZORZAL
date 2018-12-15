@@ -22,7 +22,7 @@ namespace ERP_GMEDINA.Models
     
         public int solef_Id { get; set; }
         public int mocja_Id { get; set; }
-        public Nullable<bool> solef_EsApertura { get; set; }
+        public bool solef_EsApertura { get; set; }
         public Nullable<System.DateTime> solef_FechaEntrega { get; set; }
         public Nullable<int> solef_UsuarioEntrega { get; set; }
         public short mnda_Id { get; set; }

@@ -12,14 +12,14 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
+				@*@using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()*@
     
     <div class="form-horizontal">
 
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.entd_Id)
+        @*@Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.entd_Id)*@
         <div class="form-group">
             @Html.LabelFor(model => model.prod_Codigo, "Código Producto", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
@@ -56,7 +56,7 @@
 
 
     </div>
-}
+@*}*@
 
 
                 </div>

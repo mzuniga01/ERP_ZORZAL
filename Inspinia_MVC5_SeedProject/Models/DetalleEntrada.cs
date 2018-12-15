@@ -14,11 +14,11 @@ namespace ERP_GMEDINA.Models
     public class DetalleEntradaMetaData
     {
         [Display(Name = "Código Entrada Detalle")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int entd_Id { get; set; }
 
         [Display(Name = "Código Entrada")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int ent_Id { get; set; }
 
         [Display(Name = "Código Producto")]

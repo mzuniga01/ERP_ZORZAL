@@ -35,5 +35,8 @@ namespace ERP_GMEDINA.Models
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbTipoIdentificacion tbTipoIdentificacion { get; set; }
+        
+
+
     }
 }

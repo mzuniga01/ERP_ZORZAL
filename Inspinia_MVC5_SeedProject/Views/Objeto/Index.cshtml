@@ -54,6 +54,19 @@
                                         @Html.ActionLink("Detalles", "Details", new { id = item.obj_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.obj_Id }, new { @class = "btn btn-white btn-xs" })
 
+                                        @{if (item.obj_Estado)
+                                            {
+                                                @Html.ActionLink("Inactivar", "Estado", new { id = item.obj_Id }, new { @class = "btn btn-white btn-xs" })
+                                            }
+                                            else
+                                            {
+                                                <button type="button" class="btn btn-white btn-xs" disabled>Inactivar</button>
+                                            }
+
+                                        }
+
+                                        
+                                        
                                     </td>
                                 </tr>
                             }

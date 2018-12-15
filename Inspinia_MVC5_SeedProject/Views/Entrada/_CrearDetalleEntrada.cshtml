@@ -15,32 +15,33 @@
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
-                            @Html.ValidationSummary(true)
-
                             <div class="form-group">
-                                @Html.LabelFor(model => model.ent_Id, "Numero Entrada", new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.ent_Id, "Codigó Entrada", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.DropDownList("ent_Id", (IEnumerable<SelectListItem>)ViewBag.ent_Id, new { @class = "form-control" ,@readonly="readonly" })
-                                    @Html.ValidationMessageFor(model => model.ent_Id)
+                                    @Html.DropDownList("ent_Id", (IEnumerable<SelectListItem>)ViewBag.ent_Id, "Seleccione", new { @class = "form-control" ,@readonly="readonly" })
+                                    <div id="validationentrada">
+                                       @Html.ValidationMessageFor(model => model.ent_Id)
+                                    </div>
+                                    
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                    @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, "Seleccione", new { @class = "form-control" })
+                                    <div id="validationcodigoproducto">
+                                        @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                    </div>
+                                    
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                                    
                                 </div>
-                                <div class="col-md-1">
-                                    <input type="reset" value="Agregar" class="btn btn-primary" />
+                                <div class="form-group col-md-1">
+                                    <button class="btn btn-primary" type="button" id="AgregarDetalleEntrada">Añadir</button>
                                 </div>
                             </div>
 
@@ -48,19 +49,31 @@
                                 @Html.LabelFor(model => model.entd_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.entd_Cantidad)
-                                    @Html.ValidationMessageFor(model => model.entd_Cantidad)
+                                    <div id="validationcantidad">
+                                        @Html.ValidationMessageFor(model => model.entd_Cantidad)
+                                    </div>
+                                    
                                 </div>
                             </div>
-
+                            <table id="tbentrada" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Codigó Entrada</th>
+                                        <th>Producto</th>
+                                        <th>Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
                         </div>
-                    }
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+@**********************************************************************************MODALES*****************************************************************************@
+@**********************************************************************************MODALES*****************************************************************************@
+@**********************************************************************************MODALES*****************************************************************************@
 @*PARA AGREGAR NUEVO PRODUCTO*@
 <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -77,3 +90,4 @@
         </div>
     </div>
 </div>
+<script src="~/Scripts/app/EntradaDetalle.js"></script>

@@ -105,34 +105,34 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(string id,[Bind(Include = "box_Codigo,box_Descripcion,box_UsuarioCrea,box_FechaCrea")] tbBox tbBox)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    tbBox vBox = db.tbBox.Find(id);
-                    IEnumerable<object> List = null;
-                    var MsjError = "";
-                    List = db.UDP_Inv_tbBox_Update(tbBox.box_Codigo, tbBox.box_Descripcion, vBox.box_UsuarioCrea, vBox.box_FechaCrea);
-                    foreach (UDP_Inv_tbBox_Update_Result Box in List)
-                        MsjError = Box.MensajeError;
+            //if (ModelState.IsValid)
+            //{
+            //    try
+            //    {
+            //        tbBox vBox = db.tbBox.Find(id);
+            //        IEnumerable<object> List = null;
+            //        var MsjError = "";
+            //        List = db.UDP_Inv_tbBox_Update(tbBox.box_Codigo, tbBox.box_Descripcion, vBox.box_UsuarioCrea, vBox.box_FechaCrea);
+            //        foreach (UDP_Inv_tbBox_Update_Result Box in List)
+            //            MsjError = Box.MensajeError;
 
-                    if (MsjError == "-1")
-                    {
-                        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index");
-                    }
+            //        if (MsjError == "-1")
+            //        {
+            //            ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+            //        }
+            //        else
+            //        {
+            //            return RedirectToAction("Index");
+            //        }
 
 
-                }
-                catch (Exception Ex)
-                {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
-                }
-            }
+            //    }
+            //    catch (Exception Ex)
+            //    {
+            //        Ex.Message.ToString();
+            //        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+            //    }
+            //}
             return View(tbBox);
         }
 

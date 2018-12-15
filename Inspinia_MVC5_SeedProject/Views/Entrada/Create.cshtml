@@ -5,7 +5,12 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Entradas</h2>
@@ -36,40 +41,35 @@
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-
+                   
                         <div class="form-horizontal">
-                            @Html.ValidationSummary(true)
+                            
                             <fieldset class="box-border">
                                 <legend class="box-border">Datos Generales</legend>
                                 <div class="form-group">
 
                                     @Html.LabelFor(model => model.bod_Id, "Bodega", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
+                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, "Seleccione", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.bod_Id)
                                     </div>
-
-
                                     @Html.LabelFor(model => model.ent_NumeroFormato, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.ent_NumeroFormato)
-                                        @Html.ValidationMessageFor(model => model.ent_NumeroFormato)
+                                        <p><span class="validation-error"> @Html.ValidationMessageFor(model => model.ent_NumeroFormato)</span></p>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.ent_FechaElaboracion)
-                                        @Html.ValidationMessageFor(model => model.ent_FechaElaboracion)
+                                        @Html.EditorFor(model => model.ent_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion" } })
+                                        <span class="validation-error"> @Html.ValidationMessageFor(model => model.ent_FechaElaboracion)</span>
                                     </div>
 
                                     @Html.LabelFor(model => model.prov_Id, "Nombre Proveedor", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.DropDownList("prov_Id", (IEnumerable<SelectListItem>)ViewBag.prov_Id, new { @class = "form-control" })
+                                        @Html.DropDownList("prov_Id", (IEnumerable<SelectListItem>)ViewBag.prov_Id, "Seleccione", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.prov_Id)
                                     </div>
                                 </div>
@@ -77,10 +77,14 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tent_Id, "Tipo Entrada", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.DropDownList("tent_Id", (IEnumerable<SelectListItem>)ViewBag.tent_Id, "Selecione", new { @class = "form-control" })
+                                        @Html.DropDownList("tent_Id", (IEnumerable<SelectListItem>)ViewBag.tent_Id, "Seleccione", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.tent_Id)
                                     </div>
-
+                                    @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("estm_Id", (IEnumerable<SelectListItem>)ViewBag.estm_Id, "Seleccione", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.estm_Id)
+                                    </div>
                                 </div>
                             </fieldset>
                         </div>
@@ -104,15 +108,15 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ent_FechaCompra, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.ent_FechaCompra)
+                                        @Html.EditorFor(model => model.ent_FechaCompra, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaCompra" } })
                                         @Html.ValidationMessageFor(model => model.ent_FechaCompra)
                                     </div>
 
-                                    @Html.LabelFor(model => model.tbProveedor.prov_Nombre, "Proveedor", new { @class = "control-label col-md-2" })
+                                    @*@Html.LabelFor(model => model.tbProveedor.prov_Nombre, "Proveedor", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.DropDownList("prov_Id", (IEnumerable<SelectListItem>)ViewBag.prov_Id, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.prov_Id)
-                                    </div>
+                                    </div>*@
                                 </div>
 
                             </fieldset>
@@ -124,7 +128,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ent_BodegaDestino, "Bodega Destino", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.ent_BodegaDestino)
+                                        @Html.DropDownList("ent_BodegaDestino", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.ent_BodegaDestino)
                                     </div>
                                     @*@Html.LabelFor(model => model.tbBodega.bod_Nombre, "Bodega Responsable", new { @class = "control-label col-md-2" })
@@ -150,24 +154,30 @@
                                     @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.fact_Id)
-                                        @Html.ValidationMessageFor(model => model.fact_Id)
+                                        <p style="color:red">
+                                            @Html.ValidationMessageFor(model => model.fact_Id)
+                                        </p>
+
                                     </div>
                                 </div>
                             </fieldset>
                         </div>
-                        @* Llama la vista  *@
+                        @* Llama la vista de detalle *@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
                                         <div class="title-action">
-                                            <h5>Detalle Entrada</h5>
+                                            <div class="box-border">
+                                                <h5>Detalle Entrada</h5>
+                                                <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#Crear"></button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="ibox-content" id="Crear">
-                                        @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
-                                        @Html.Partial("_CrearDetalleEntrada", new tbEntradaDetalle())
-                                    </div>
+                                    <div class="ibox-content collapse" id="Crear">
+                                            @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
+                                            @Html.Partial("_CrearDetalleEntrada", new tbEntradaDetalle())
+                                   </div>
                                 </div>
                             </div>
                         </div>
@@ -181,74 +191,15 @@
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                             </div>
                         </div>
-                    }
-
-                    @*tabla q muestra detalle producto*@
-                    <div class="ibox-content">
-                        <fieldset class="box-border">
-                            
-                            <legend class="box-border">Detalles</legend>
-
-                            <table class="table table-striped table-bordered table-hover dataTables-example" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Código Producto</th>
-                                        <th>Descripción Producto</th>
-                                        <th>Categoría</th>
-                                        @*<th>SubCategoría</th>*@
-                                        <th>Punto Reorden</th>
-                                        <th>Cantidad Mínima</th>
-                                        <th>Cantidad Máxima</th>
-                                        <th>Costo</th>
-                                        <th>Costo Promedio</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th><input type="reset" value="-" class="btn btn-danger btn-xs" /></th>
-                                    </tr>
-                                    <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th><input type="reset" value="-" class="btn btn-danger btn-xs" /></th>
-                                    </tr>
-                                    <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th><input type="reset" value="-" class="btn btn-danger btn-xs" /></th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </fieldset>
+                    <div class="form-group">
                     </div>
+                    <br />
                 </div>
             </div>
         </div>
     </div>
  </div>
-
+}
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
@@ -297,6 +248,8 @@
     </div>
 </div>
 
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/PersonaNatural.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/app/MostrarCamposEntradajs.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/EntradaDetalle.js"></script>

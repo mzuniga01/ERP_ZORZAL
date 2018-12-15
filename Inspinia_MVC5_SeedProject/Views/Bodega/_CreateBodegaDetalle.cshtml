@@ -1,4 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbBodegaDetalle
+
 @using ERP_GMEDINA.Models
 
 
@@ -7,151 +8,144 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-                    
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-                        <div class="form-horizontal">
-                            @Html.ValidationSummary(true)
+                    <div class="form-horizontal">
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.tbProducto.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Codigo)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.prod_Codigo)
+                                <div id="ErrorProducto_Create">
                                     @Html.ValidationMessageFor(model => model.prod_Codigo)
                                 </div>
-                                <div class="col-md-1">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                            <div class="col-md-1">
+                                <input type="button" value="Agregar" id="AgregarBodegaDetalle" class="btn btn-primary" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.prod_Codigo, "Descripcion",new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.prod_Codigo)
+                                <div id="">
+                                    @Html.ValidationMessageFor(model => model.prod_Codigo)
                                 </div>
-                                @Html.LabelFor(model => model.tbProducto.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
-                                <div class="col-md-2">
-                                    @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, new { @class = "form-control" })
+                            </div>
+                            @Html.LabelFor(model => model.tbProducto.pscat_Id, "Categoría ", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.DropDownList("pscat_Id", (IEnumerable<SelectListItem>)ViewBag.CategoriaList, "Seleccione", new { @class = "form-control" })
+                                <div id="ErrorCategoria_Create">
+                                    @Html.ValidationMessageFor(model => model.tbProducto.pscat_Id)
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.bodd_PuntoReorden)
+                                <div id="ErrorPuntoReorden_Create">
+                                    @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
+                                </div>
+                            </div>
+
+                            @Html.LabelFor(model => model.tbProducto.pscat_Id, "Subcategoría ", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.DropDownList("pcat_Id", (IEnumerable<SelectListItem>)ViewBag.SubcategoriaList, "Seleccione", new { @class = "form-control" })
+                                <div id="ErrorSubCat_Create">
+                                    @Html.ValidationMessageFor(model => model.tbProducto.pscat_Id)
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.bodd_CantidadMinima)
+                                <div id="ErrorCantidadMinima_Create">
+                                    @Html.ValidationMessageFor(model => model.bodd_CantidadMinima)
+                                </div>
+                            </div>
+                            @Html.LabelFor(model => model.tbProducto.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.UnidadList, "Seleccione", new { @class = "form-control" })
+                                <div id="ErrorUnidad_Create">
                                     @Html.ValidationMessageFor(model => model.tbProducto.uni_Id)
                                 </div>
-                                <div class="col-md-1">
-                                    <input type="reset" value="Agregar" class="btn btn-primary" />
+                            </div>
+
+
+
+
+                           
+                        </div>
+                           
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.bodd_CantidadMaxima)
+                                <div id="ErrorantidadMaxima_Create">
+                                    @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
                                 </div>
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.tbProducto.pscat_Id, "Categoría ", new { @class = "control-label col-md-2" })
+
+                                @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.DropDownList("pscat_Id", (IEnumerable<SelectListItem>)ViewBag.pscat_Id_Nombre, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
+                                    @Html.EditorFor(model => model.bodd_Costo)
+                                    @Html.ValidationMessageFor(model => model.bodd_Costo)
+                                    <div id="ErrorCosto_Create">
+                                        @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
+                                    </div>
                                 </div>
-                                @Html.LabelFor(model => model.tbProducto.pscat_Id, "Subcategoría ", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("pcat_Id", (IEnumerable<SelectListItem>)ViewBag.pcat_Id_Nombre, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Punto Reorden</label>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control " />
-                                </div>
-                                <label class="control-label col-md-2">Cantidad Mínima</label>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control " />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Cantidad Máxima</label>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control " />
-                                </div>
-                                <label class="control-label col-md-2">Costo</label>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control " />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Costo Promedio</label>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control " />
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.bodd_CostoPromedio, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.bodd_CostoPromedio)
+                                <div id="ErrorCostoPromedio_Create">
+                                @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
                                 </div>
                             </div>
                         </div>
-                    }
-                    <div class="ibox-content">
-                        <table class="table table-striped table-bordered table-hover dataTables-example">
+
+                        <table id="tblBodegadetalle_Create" class="table table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Código Producto</th>
-                                    <th>Descripción Producto</th>
-                                    <th>Categoría</th>
-                                    @*<th>SubCategoría</th>*@
+                                    <th>Producto</th>
+                                    <th>SubCategoria</th>
+                                    <th>Categoria</th>
+                                    <th>Unidad</th>
                                     <th>Punto Reorden</th>
-                                    <th>Cantidad Mínima</th>
-                                    <th>Cantidad Máxima</th>
+                                    <th>Cnt. Minima</th>
+                                    <th>Cnt. Maxima</th>
                                     <th>Costo</th>
                                     <th>Costo Promedio</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
-                            <tfoot>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th><input type="reset" value="-" class="btn btn-danger btn-xs" /></th>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th><input type="reset" value="-" class="btn btn-danger btn-xs" /></th>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th><input type="reset" value="-" class="btn btn-danger btn-xs" /></th>
-                                </tr>
-                            </tfoot>
                         </table>
 
                     </div>
-                    
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    @*@Html.Partial("_ListBodegaDetalles", Model.tbBodega, new ViewDataDictionary { { "bod_Id", Model.bodd_Id } })*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Aplicar Cambios</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Desea Aplicar Cambios?
-            </div>
-            <div class="modal-footer">
-                <a href="@Url.Action("Create","Bodega")" class="btn btn-primary">Si</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -160,10 +154,10 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+                <h4 class="modal-title" id="myModalLabel">Agregar Productos</h4>
             </div>
             <div class="modal-body" id="frmEditarMunicipios">
-                @Html.Partial("_BuscarProducto", (List<tbProducto>)ViewBag.Producto)
+                @Html.Partial("_BuscarProducto",(List<tbProducto>)ViewBag.Producto)
             </div>
         </div>
     </div>
