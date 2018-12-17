@@ -17,26 +17,37 @@ namespace ERP_GMEDINA.Models
     public class MonedasMetaData
     {
         [Display (Name ="Número")]
-
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public short mnda_Id { get; set; }
+
+
         [Display(Name = "Abreviatura")]
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string mnda_Abreviatura { get; set; }
+
+
         [Display(Name = "Nombre")]
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string mnda_Nombre { get; set; }
+
+
         [Display(Name = "Usuario Crea")]
-        [Required]
         public int mnda_UsuarioCrea { get; set; }
+
+
         [Display(Name = "Fecha Crea")]
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime mnda_FechaCrea { get; set; }
+
+
         [Display(Name = "Usuario Modifica")]
-        [Required]
         public Nullable<int> mnda_UsuarioModifica { get; set; }
+
+
         [Display(Name = "Fecha Modifica")]
-        [Required]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> mnda_FechaModifica { get; set; }
     }
 }

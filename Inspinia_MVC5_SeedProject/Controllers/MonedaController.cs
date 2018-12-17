@@ -17,8 +17,8 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Moneda/
         public ActionResult Index()
         {
-            var tbmoneda = db.tbMoneda.Include(t => t.tbUsuario).Include(t => t.tbUsuario1);
-            return View(tbmoneda.ToList());
+            var tbMoneda = db.tbMoneda.Include(t => t.tbUsuario).Include(t => t.tbUsuario1);
+            return View(tbMoneda.ToList());
         }
 
         // GET: /Moneda/Details/5
@@ -53,31 +53,29 @@ namespace ERP_ZORZAL.Controllers
         {
             try
             {
-
                 if (ModelState.IsValid)
-               {
+                {
+                    //////////Aqui va la lista//////////////
+
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Gral_tbMoneda_Insert(tbMoneda.mnda_Abreviatura,tbMoneda.mnda_Nombre);
+                    list = db.UDP_Gral_tbMoneda_Insert(tbMoneda.mnda_Abreviatura, tbMoneda.mnda_Nombre);
                     foreach (UDP_Gral_tbMoneda_Insert_Result Moneda in list)
                         MensajeError = Moneda.MensajeError;
-                    if(MensajeError == -1)
+                    if (MensajeError == -1)
                     {
-
                     }
                     else
                     {
                         return RedirectToAction("Index");
                     }
-               }
-
-               
-
+                }
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
             }
+
             return View(tbMoneda);
 
 

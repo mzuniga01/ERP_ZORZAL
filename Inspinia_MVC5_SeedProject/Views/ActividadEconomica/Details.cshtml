@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Actividad Económica</h2>
@@ -99,12 +100,14 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
                         <td>@Html.DisplayFor(model => model.acte_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
                         <td>@Html.DisplayFor(model => model.acte_FechaModifica)</td>
                     </tr>
                 </table>

@@ -7,12 +7,8 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Tipos De identificación</h2>
-        @*<ol class="breadcrumb">
-            <li class="active">
-                <strong></strong>
-            </li>
-        </ol>*@
+        <h2>Tipos De Identificación</h2>
+     
     </div>
 </div>
 
@@ -80,7 +76,7 @@
                     </td>*@
                 <td>
                     @Html.ActionLink("Detalles", "Details", new { id = item.tpi_Id }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.tpi_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.tpi_Id }, new { @class = "btn btn-white btn-xs" })
                     @*@Html.ActionLink("Delete", "Delete", new { id=item.tpi_Id }, new { @class = "btn btn-white btn-sm"})*@
                 </td>
             </tr>

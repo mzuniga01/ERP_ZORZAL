@@ -6,16 +6,15 @@
 }
 
 
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Moneda</h2>
-        
+        <h2>Moneda</h2>      
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="@Url.Action("Index","Moneda")">Regresar</a>
-			
+            <a href="@Url.Action("Index","Moneda")">Regresar</a>		
         </div>
     </div>
 </div>
@@ -33,91 +32,90 @@
                 <div class="ibox-content">
 
 				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.mnda_UsuarioCrea)
+                    @Html.HiddenFor(model => model.mnda_FechaCrea)
+
+
+
                     <div class="form-horizontal">
 
                         @Html.ValidationSummary(true)
                         @Html.HiddenFor(model => model.mnda_Id)
-                        @Html.HiddenFor(model => model.mnda_UsuarioCrea)
-                        @Html.HiddenFor(model => model.mnda_FechaCrea)
-
-
-                        @*<div class="form-horizontal">
-
-                            @Html.ValidationSummary(true)
-                            @Html.HiddenFor(model => model.mnda_Id)*@
-
 
                             <div class="form-group">
                                 <label class="control-label col-md-2">Número Moneda</label>
-                                @*@Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2"} )*@
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.mnda_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.mnda_Id)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Id)</p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label col-md-2">Abreviatura</label>
-                                @*@Html.LabelFor(model => model.mnda_Abreviatura, new { @class = "control-label col-md-2" })*@
+
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.mnda_Abreviatura)
-                                    @Html.ValidationMessageFor(model => model.mnda_Abreviatura)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Abreviatura)</p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label col-md-2">Nombre</label>
-                                @*@Html.LabelFor(model => model.mnda_Nombre, new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.mnda_Nombre)
-                                    @Html.ValidationMessageFor(model => model.mnda_Nombre)
-                                </div>
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Nombre)</p>
+</div>
                             </div>
                             <br />
 
 
-                            <div class="form-group"><center>
-    <div class="col-md-offset-2 col-md-10">
-        <input type="submit" value="Guardar" class="btn btn-primary" />
-        @Html.ActionLink("Cancelar", "Index", new { @class = "btn btn-white" })
-    </div>
-</center>
+                            <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+
                             </div>
                         </div>
 
 
 
-                        }
-                    </div>
+                }
+                </div>
             </div>
+
             <div class="ibox-content">
                 <table class="table table-striped">
                     <tr>
-                        <th></th>
+                        <th>Acción</th>
                         <th>Usuario</th>
                         <th>Fecha</th>
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
                         <td>@Html.DisplayFor(model => model.mnda_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                        <td>@Html.DisplayFor(model => model.mnda_FechaModifica, "0:dd/MM/yyyy")</td>
-                    </tr>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
+                        <td>@Html.DisplayFor(model => model.mnda_FechaModifica)</td>
+                </tr>
+               
                 </table>
             </div>
 
         </div>
     </div>
  </div>
-
-
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Monedas.js"></script>

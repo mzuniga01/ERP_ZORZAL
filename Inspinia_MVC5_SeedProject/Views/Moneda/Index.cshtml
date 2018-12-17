@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbMoneda>
+@using ERP_GMEDINA.Models
 
 @{
     ViewBag.Title = "Moneda";
@@ -9,9 +10,7 @@
     <div class="col-sm-4">
         <h2> Monedas</h2>
         <ol class="breadcrumb">
-            @*<li class="active">
-                <strong>tbMoneda</strong>
-            </li>*@
+
         </ol>
     </div>
 </div>
@@ -34,28 +33,18 @@
         <tr>
             <th>
                 Número
-                @*@Html.DisplayNameFor(model => model.mnda_Id)*@
+
             </th>
             <th>
                 Abreviatura
-                @*@Html.DisplayNameFor(model => model.mnda_Abreviatura)*@
+
             </th>
             <th>
                 Nombre
-                @*@Html.DisplayNameFor(model => model.mnda_Nombre)*@
+
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.mnda_FechaCrea)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.mnda_FechaModifica)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-                </th>*@
+
+
             <th>
                 Acciones
             </th>
@@ -75,22 +64,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.mnda_Nombre)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.mnda_FechaCrea)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.mnda_FechaModifica)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-                    </td>*@
+
                 <td>
                     @Html.ActionLink("Detalles", "Details", new { id = item.mnda_Id }, new { @class = "btn btn-primary btn-xs" })
                     @Html.ActionLink("Editar", "Edit", new { id = item.mnda_Id }, new { @class = "btn btn-white btn-xs" })
-                    @*@Html.ActionLink("Delete", "Delete", new { id=item.mnda_Id }, new { @class = "btn btn-white btn-sm"})*@
+
                 </td>
             </tr>
         }

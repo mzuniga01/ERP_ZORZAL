@@ -6,7 +6,7 @@
 }
 
 
-
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -51,18 +51,10 @@
                             @Html.DisplayFor(model => model.tpi_Descripcion)
                         </dd>
 
-
                     </dl>
 
-
-
-
-                    
-
                     @Html.ActionLink("Editar", "Edit", new { id = Model.tpi_Id }, new { @class = "btn btn-primary" })
-                   
-
-
+                  
                    
                 </div>
 
@@ -76,12 +68,14 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos) </td>
                         <td>@Html.DisplayFor(model => model.tpi_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
                         <td>@Html.DisplayFor(model => model.tpi_FechaModifica)</td>
                     </tr>
                 </table>
