@@ -97,15 +97,16 @@
                     <li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "Moneda")"><i class="fa fa-money"></i> <span class="nav-label">Moneda</span> </a>
                     </li>
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "CuentaBanco")"><i class="fa fa-money"></i> <span class="nav-label">Cuentas Bancarias</span> </a>
+                    </li>
                 </ul>
             </li>
 
             <li>
                 <a href="#"><i class="fa fa-cogs fa-fw"></i><span class="nav-label">Configuración</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "CuentaBanco")"><i class="fa fa-money"></i> <span class="nav-label">Cuentas Banco</span> </a>
-                    </li>
+                   
                     <li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "Sucursal")"><i class="fa fa-ticket fa-fw"></i> <span class="nav-label">Sucursal</span> </a>
                     </li>

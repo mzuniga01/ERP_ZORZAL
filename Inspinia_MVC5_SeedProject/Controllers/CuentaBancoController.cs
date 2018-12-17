@@ -33,7 +33,9 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
+            tbCuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
             return View(tbCuentasBanco);
+            
         }
 
         // GET: /CuentaBanco/Create
@@ -103,15 +105,16 @@ namespace ERP_ZORZAL.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbCuentasBanco tbCuentasBanco = db.tbCuentasBanco.Find(id);
-            if (tbCuentasBanco == null)
+            tbCuentasBanco CuentasBanco = db.tbCuentasBanco.Find(id);
+            CuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
+            if (CuentasBanco == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", tbCuentasBanco.ban_Id);
-            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbCuentasBanco.mnda_Id);
-            tbCuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
-            return View(tbCuentasBanco);
+            ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", CuentasBanco.ban_Id);
+            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", CuentasBanco.mnda_Id);
+            
+            return View(CuentasBanco);
         }
 
         // POST: /CuentaBanco/Edit/5
@@ -119,26 +122,26 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="bcta_Id,ban_Id,mnda_Id,bcta_TipoCuenta,bcta_TotalCredito,bcta_TotalDebito,bcta_FechaApertura,bcta_Numero,bcta_UsuarioCrea,bcta_FechaCrea,bcta_UsuarioModifica,bcta_FechaModifica") ] tbCuentasBanco tbCuentasBanco)
+        public ActionResult Edit([Bind(Include="bcta_Id,ban_Id,mnda_Id,bcta_TipoCuenta,bcta_TotalCredito,bcta_TotalDebito,bcta_FechaApertura,bcta_Numero,bcta_UsuarioCrea,bcta_FechaCrea,bcta_UsuarioModifica,bcta_FechaModifica") ] tbCuentasBanco CuentasBanco)
         {
               if (ModelState.IsValid)
             {
-                try
+            try
                 {
                     //////////Aqui va la lista//////////////
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
                     list = db.UDP_Gral_tbCuentasBanco_Update(
-                        tbCuentasBanco.bcta_Id,
-                        tbCuentasBanco.ban_Id,
-                        tbCuentasBanco.mnda_Id,
-                        tbCuentasBanco.bcta_TipoCuenta,
-                        tbCuentasBanco.bcta_TotalCredito,
-                        tbCuentasBanco.bcta_TotalDebito,
-                        tbCuentasBanco.bcta_FechaApertura,
-                        tbCuentasBanco.bcta_Numero,
-                        tbCuentasBanco.bcta_UsuarioCrea,
-                        tbCuentasBanco.bcta_FechaCrea);
+                        CuentasBanco.bcta_Id,
+                        CuentasBanco.ban_Id,
+                        CuentasBanco.mnda_Id,
+                        CuentasBanco.bcta_TipoCuenta,
+                        CuentasBanco.bcta_TotalCredito,
+                        CuentasBanco.bcta_TotalDebito,
+                        CuentasBanco.bcta_FechaApertura,
+                        CuentasBanco.bcta_Numero,
+                        CuentasBanco.bcta_UsuarioCrea,
+                        CuentasBanco.bcta_FechaCrea);
                     foreach (UDP_Gral_tbCuentasBanco_Update_Result cuentasbanco in list)
                     MensajeError = cuentasbanco.MensajeError;
                     if (MensajeError == -1)
@@ -151,16 +154,18 @@ namespace ERP_ZORZAL.Controllers
                 }
                 
                 catch (Exception Ex)
-            {
-                ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
-                return View(tbCuentasBanco);
+                {
+                    ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
+                    CuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
+                    return View(CuentasBanco);
+                }
+            
             }
-        }
 
-            ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", tbCuentasBanco.ban_Id);
-            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbCuentasBanco.mnda_Id);
-            tbCuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
-            return View(tbCuentasBanco);
+            ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", CuentasBanco.ban_Id);
+            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", CuentasBanco.mnda_Id);
+            
+            return View(CuentasBanco);
         }
 
         // GET: /CuentaBanco/Delete/5
