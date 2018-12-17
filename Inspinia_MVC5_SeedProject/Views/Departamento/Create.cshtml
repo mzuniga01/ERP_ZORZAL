@@ -5,6 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+    @using (Html.BeginForm("Create", "Departamento", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+    {
+
+        @Html.AntiForgeryToken()
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Departamento</h2>
@@ -27,9 +32,7 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
+
     
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
@@ -38,7 +41,7 @@
             @Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.dep_Codigo)
-                @Html.ValidationMessageFor(model => model.dep_Codigo)
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.dep_Codigo)</p>
             </div>
         </div>
 
@@ -46,12 +49,12 @@
             @Html.LabelFor(model => model.dep_Nombre, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.dep_Nombre)
-                @Html.ValidationMessageFor(model => model.dep_Nombre)
+                <p style="color:red">@Html.ValidationMessageFor(model => model.dep_Nombre)</p>
             </div>
         </div>
         
     </div>
-       }
+     
        </div>
       </div>
 
@@ -67,7 +70,7 @@
 
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                                <input type="button" value="Guardar" class="btn btn-primary" />
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                             </div> 
                         </div>
@@ -79,8 +82,9 @@
     </div>
   </div>
 </div>
-
-
+}
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/app/AgregarMunicipio.js"></script>
 
 
 

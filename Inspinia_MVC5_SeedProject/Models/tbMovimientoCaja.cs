@@ -12,31 +12,34 @@ namespace ERP_GMEDINA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbDevolucion
+    public partial class tbMovimientoCaja
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbDevolucion()
+        public tbMovimientoCaja()
         {
-            this.tbDevolucionDetalle = new HashSet<tbDevolucionDetalle>();
-            this.tbNotaCredito = new HashSet<tbNotaCredito>();
+            this.tbDenominacionArqueo = new HashSet<tbDenominacionArqueo>();
+            this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
         }
     
-        public int dev_Id { get; set; }
-        public long fact_Id { get; set; }
+        public int mocja_Id { get; set; }
         public short cja_Id { get; set; }
-        public System.DateTime dev_Fecha { get; set; }
-        public Nullable<int> dev_UsuarioCrea { get; set; }
-        public Nullable<System.DateTime> dev_FechaCrea { get; set; }
-        public Nullable<int> dev_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> dev_FechaModifica { get; set; }
+        public System.DateTime mocja_FechaApetura { get; set; }
+        public Nullable<int> mocja_UsuarioApertura { get; set; }
+        public System.DateTime mocja_FechaArqueo { get; set; }
+        public Nullable<int> mocja_UsuarioArquea { get; set; }
+        public System.DateTime mocja_FechaAceptacion { get; set; }
+        public Nullable<int> mocja_UsuarioAceptacion { get; set; }
+        public Nullable<int> mocja_UsuarioCrea { get; set; }
+        public System.DateTime mocja_FechaCrea { get; set; }
+        public Nullable<int> mocja_UsuarioModifica { get; set; }
+        public System.DateTime mocja_FechaModifica { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbCaja tbCaja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
-        public virtual tbFactura tbFactura { get; set; }
+        public virtual ICollection<tbDenominacionArqueo> tbDenominacionArqueo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbNotaCredito> tbNotaCredito { get; set; }
+        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
     }
 }

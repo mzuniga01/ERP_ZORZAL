@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Rol</h2>
@@ -27,48 +28,85 @@
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
 
-                        <div class="form-horizontal">
-                            @Html.ValidationSummary(true)
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.rol_Id, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.rol_Id, new { @class="form-control", @readonly = "readonly"})
-                                    @Html.ValidationMessageFor(model => model.rol_Descripcion)
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.rol_Descripcion, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.rol_Descripcion)
-                                    @Html.ValidationMessageFor(model => model.rol_Descripcion)
+                        
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.rol_Descripcion, new { @class = "control-label col-md-2"})
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.rol_Descripcion)
+                                <div id="validationDescripcionRol">
+                                    <p style="color:red"></p>
                                 </div>
                             </div>
                         </div>
-                    }
-                </div>
-            </div>
-                                    <div class="ibox float-e-margins">
-                                        <div class="ibox-title">
-                                            <h5>Acceso Rol</h5>
-                                        </div>
-                                        <div class="ibox-content">
-                                            <div class="form-horizontal">
-                                                @Html.Partial("_CreateAccesoRol", new ERP_GMEDINA.Models.tbAccesoRol())
-                                
+                        <div class="ibox-content">
+                            <div class="col-md-5">
+                                <label class="col-md-10" style="text-align:center">Objetos No Asignados</label>
+
+                                <table class="table table-responsive" style="width:100%" id="NoAsignados">
+                                    <thead>
+                                        <tr>
+                                            <td id="RegistrosNoAsignados" style="background-color:#1ab394;color:white">Pantallas</td>
+                                            <td style="background-color:#1ab394"></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+
+                            <div class="col-md-2" align="center">
+                                <br /><br /><br>
+                                <div>
+                                    <input id="Add" type="button" value="Agregar &#9658;" class="btn btn-primary btn-xs" />
+                                </div>
+                                <div>
+                                    <input id="Remove" type="button" value="&#9668; Quitar &nbsp;&nbsp;" class="btn btn-primary btn-xs" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <label class="col-md-10" style="text-align:center">Objetos Asignados</label>
+                                <table class="table table-responsive" style="width:100%" id="Asignados">
+                                    <thead>
+                                        <tr>
+                                            <td id="RegistrosAsignados" style="background-color:#1ab394;color:white">Pantallas</td>
+                                            <td style="background-color:#1ab394"></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
-                                    <input type="button" value="Guardar" id="btnGuardarRol" class="btn btn-primary" />
+                                    <button type="button" id="btnGuardarRol" class="btn btn-primary" >Guardar</button>
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
                         </div>
-
+                    
+                    </div>
                 </div>
             </div>
-        </div>
+                     </div>                    
+                        </div>
     </div>
-</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/app/RolObjetos.js"></script>
+<script>
+    //$(document).ready(function () {
+    //    $('#rol_Descripcion').change(function () {
+    //        var descripcionRol = document.getElementById("#rol_Descripcion").val();
+    //        if (descripcionRol != "") {
+    //            document.getElementById("#Add").removeAttribute('disabled', 'false');
+    //        }
+    //        else {
+    //            document.getElementById("#Add").setAttribute('disabled', 'true');
+    //        }
+    //    });
+
+
+    //});
+    </script>

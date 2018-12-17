@@ -17,7 +17,6 @@ namespace ERP_GMEDINA.Models
         public int acrol_Id { get; set; }
         public int rol_Id { get; set; }
         public int obj_Id { get; set; }
-        public string acrol_Descripcion { get; set; }
         public int acrol_UsuarioCrea { get; set; }
         public System.DateTime acrol_FechaCrea { get; set; }
         public Nullable<int> acrol_UsuarioModifica { get; set; }

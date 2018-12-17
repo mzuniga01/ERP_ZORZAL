@@ -16,7 +16,7 @@ namespace ERP_GMEDINA.Models
 public class InventariosFisicosMetadata
     {
         [Display(Name = "Inventario Id")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int invf_Id { get; set; }
 
         [Display(Name = "Descripción")]
@@ -40,20 +40,20 @@ public class InventariosFisicosMetadata
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime invf_FechaInventario { get; set; }
 
-        [Display(Name = "Creado Por")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public int invf_UsuarioCrea { get; set; }
+        //[Display(Name = "Creado Por")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //public int invf_UsuarioCrea { get; set; }
 
-        [Display(Name = "Creado el")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public System.DateTime invf_FechaCrea { get; set; }
+        //[Display(Name = "Creado el")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //public System.DateTime invf_FechaCrea { get; set; }
 
-        [Display(Name = "Modificado por")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public Nullable<int> invf_UsuarioModifica { get; set; }
+        //[Display(Name = "Modificado por")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //public Nullable<int> invf_UsuarioModifica { get; set; }
 
-        [Display(Name = "Modificado el")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Display(Name = "Modificado el")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<System.DateTime> invf_FechaModifica { get; set; }
     }
 }

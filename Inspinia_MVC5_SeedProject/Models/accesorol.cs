@@ -19,8 +19,6 @@ namespace ERP_GMEDINA.Models
         public int rol_Id { get; set; }
         [Display(Name = "Código Objeto")]
         public int obj_Id { get; set; }
-        [Display(Name = "Descripción Acceso Rol")]
-        public string acrol_Descripcion { get; set; }
         [Display(Name = "Creado por")]
         public int acrol_UsuarioCrea { get; set; }
         [Display(Name = "Creado el")]

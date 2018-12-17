@@ -11,8 +11,13 @@ namespace ERP_GMEDINA.Models
 {
     using System;
     
-    public partial class UDP_Acce_tbAccesoRol_Insert_Result
+    public partial class SDP_Acce_GetObjetos_Result
     {
-        public string MensajeError { get; set; }
+        public int obj_Id { get; set; }
+        public string obj_Pantalla { get; set; }
+        public int obj_UsuarioCrea { get; set; }
+        public System.DateTime obj_FechaCrea { get; set; }
+        public Nullable<int> obj_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> obj_FechaModifica { get; set; }
     }
 }

@@ -24,22 +24,20 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Registrar Inventario Fisico</h5>
+                    <h5>Levantar Inventario Fisico</h5>
                 </div>
                 <div class="ibox-content">
-
-				@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-
                     <div class="form-horizontal">
+
                         @Html.ValidationSummary(true)
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.invf_FechaInventario, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.invf_FechaInventario)
-                                @Html.ValidationMessageFor(model => model.invf_FechaInventario)
+                                @Html.EditorFor(model => model.invf_FechaInventario, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "boxFechaCrea" } })
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.invf_FechaInventario)</p>
                             </div>
                         </div>
 
@@ -55,51 +53,25 @@
                             @Html.LabelFor(model => model.invf_ResponsableBodega, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.invf_ResponsableBodega)
-                                @Html.ValidationMessageFor(model => model.invf_ResponsableBodega)
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.invf_ResponsableBodega)</p>
                             </div>
                         </div>
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.invf_Descripcion, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.invf_Descripcion)
-                                @Html.ValidationMessageFor(model => model.invf_Descripcion)
+                                @Html.TextAreaFor(model => model.invf_Descripcion, new { @class = "form-control"})
+                               <p style="color:red"> @Html.ValidationMessageFor(model => model.invf_Descripcion)</p>
                             </div>
                         </div>
 
-                       
-
-                        @*<div class="form-group">
-                            @Html.LabelFor(model => model.invf_UsuarioCrea, "invf_UsuarioCrea", new { @class = "control-label col-md-2" })
+                        <div class="form-group" hidden="hidden">
+                            @Html.LabelFor(model => model.estif_Id, "Estado Inventario Fisico", new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.DropDownList("invf_UsuarioCrea", String.Empty)
-                                @Html.ValidationMessageFor(model => model.invf_UsuarioCrea)
+                                @Html.DropDownList("estif_Id", (IEnumerable<SelectListItem>)ViewBag.estif_Id, new { @class = "form-control"  })
+                                @Html.ValidationMessageFor(model => model.estif_Id)
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.invf_FechaCrea, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.invf_FechaCrea)
-                                @Html.ValidationMessageFor(model => model.invf_FechaCrea)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.invf_UsuarioModifica, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.invf_UsuarioModifica)
-                                @Html.ValidationMessageFor(model => model.invf_UsuarioModifica)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.invf_FechaModifica, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.invf_FechaModifica)
-                                @Html.ValidationMessageFor(model => model.invf_FechaModifica)
-                            </div>
-                        </div>*@
 
                         <div class="row">
                             <div class="col-lg-12">
@@ -118,8 +90,9 @@
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                             </div>
                         </div>
+
                     </div>
-                }
+}
 
                 </div>
             </div>
@@ -127,8 +100,12 @@
     </div>
  </div>
 
- 
 
-@section Scripts {
+@*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/InvFisicoDetalle.js"></script>

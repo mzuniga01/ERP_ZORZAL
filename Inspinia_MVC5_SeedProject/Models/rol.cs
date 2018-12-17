@@ -15,6 +15,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Código")]
         public int rol_Id { get; set; }
         [Display(Name = "Descripción Rol")]
+        [MaxLength(100)]
         public string rol_Descripcion { get; set; }
         [Display(Name = "Creado por")]
         public int rol_UsuarioCrea { get; set; }
@@ -26,5 +27,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Modificado el")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> rol_FechaModifica { get; set; }
+        [Display(Name = "Estado")]
+        public Nullable<bool> rol_Estado { get; set; }
     }
 }

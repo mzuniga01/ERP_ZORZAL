@@ -22,7 +22,9 @@
             @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
             <div class="col-md-8">
                 @Html.EditorFor(model => model.prod_Codigo)
-                @Html.ValidationMessageFor(model => model.prod_Codigo)
+                <div id="validationproducto">
+                    @Html.ValidationMessageFor(model => model.prod_Codigo)
+                </div>
                 </div>
                 <div class="col-md-1">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalproductos"><span class="glyphicon glyphicon-search"></span></button>
@@ -32,8 +34,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.uni_Id, "Unidad de Medida", new { @class = "control-label col-md-2" })
             <div class="col-md-8">
-                @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.uni_Id)
+                @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id,"Seleccione", new { @class = "form-control" })
+                <div id="validationUnidadMedida">
+                    @Html.ValidationMessageFor(model => model.uni_Id)
+                </div> 
             </div>
         </div>
 
@@ -41,7 +45,9 @@
             @Html.LabelFor(model => model.invfd_Cantidad, new { @class = "control-label col-md-2" })
             <div class="col-md-8">
                 @Html.EditorFor(model => model.invfd_Cantidad)
-                @Html.ValidationMessageFor(model => model.invfd_Cantidad)
+                <div id="validationCantidadFisica">
+                    @Html.ValidationMessageFor(model => model.invfd_Cantidad)
+                </div>
             </div>
         </div>
 
@@ -49,47 +55,20 @@
             @Html.LabelFor(model => model.invfd_CantidadSistema, new { @class = "control-label col-md-2" })
             <div class="col-md-8">
                 @Html.EditorFor(model => model.invfd_CantidadSistema)
-                @Html.ValidationMessageFor(model => model.invfd_CantidadSistema)
+                <div id="validationCantidadSistema">
+                    @Html.ValidationMessageFor(model => model.invfd_CantidadSistema)
+                </div>
             </div>
         </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.invfd_UsuarioCrea, "invfd_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("invfd_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.invfd_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.invfd_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.invfd_FechaCrea)
-                @Html.ValidationMessageFor(model => model.invfd_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.invfd_UsuarioModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.invfd_UsuarioModifica)
-                @Html.ValidationMessageFor(model => model.invfd_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.invfd_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.invfd_FechaModifica)
-                @Html.ValidationMessageFor(model => model.invfd_FechaModifica)
-            </div>
-        </div>*@
 
     </div>
 }
 
-                    <input type="button" value="Agregar" class="btn btn-primary" id="bt_add" onclick="seleccionar()" />
-                    <table class="table table-responsive" style="width:100%" id="tabla">
+                    @* Tabla del detalle *@
+                    <div class="form-group col-md-1">
+                        <button class="btn btn-primary" type="button" id="AgregarInvFisicoDetalle">Añadir</button>
+                    </div>
+                    <table class="table table-responsive" style="width:100%" id="detalle">
                         <thead>
                             <tr>
                                 <th>
@@ -107,12 +86,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                        
                         </tbody>
                     </table>
 
@@ -128,24 +102,6 @@
     @Scripts.Render("~/bundles/jqueryval")
 }*@
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
-<script type="text/javascript">
-
-
-    $(document).ready(function () {
-        $('#bt_add').click(function () {
-            agregar();
-        });
-    });
-    var cont = 0
-    function agregar() {
-        cont++
-        var fila = '<tr class="selected" id=fila' + cont + '"onclick="seleccionar(this.id);"><td>Pantalon</td><td>Decena</td><td>0.00</td><td>0.00</td></</tr>';
-        $('#tabla').append(fila);
-    }
-
-
-
-</script>
 
 <!-- Modal Productos -->
 <div>

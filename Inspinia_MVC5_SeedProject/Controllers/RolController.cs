@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using System.Transactions;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -20,37 +21,6 @@ namespace ERP_ZORZAL.Controllers
             return View(db.tbRol.ToList());
         }
 
-        public ActionResult _IndexAccesoRol()
-        {
-            return View();
-        }
-
-        public ActionResult _EditAccesoRol()
-        {
-            return View();
-        }
-
-        public ActionResult _IndexAccesoRol_Botones()
-        {
-            return View();
-        }
-
-        public ActionResult _IndexAccesoRol_Create()
-        {
-            return View();
-        }
-
-        public ActionResult _DetailsAccesoRol()
-        {
-            return PartialView();
-        }
-
-        public ActionResult _CreateAccesoRol()
-        {
-            
-            return View();
-        }
-
         // GET: /Rol/Details/5
         public ActionResult Details(int? id)
         {
@@ -59,6 +29,17 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbRol tbRol = db.tbRol.Find(id);
+
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbRol.rol_UsuarioCrea).usu_NombreUsuario;
+            var UsuarioModfica = tbRol.rol_UsuarioModifica;
+            if (UsuarioModfica == null)
+            {
+                ViewBag.UsuarioModifica = "";
+            }
+            else
+            {
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+            };
             if (tbRol == null)
             {
                 return HttpNotFound();
@@ -78,12 +59,25 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="rol_Id,rol_Descripcion,rol_UsuarioCrea,rol_FechaCrea,rol_UsuarioModifica,rol_FechaModifica")] tbRol tbRol)
+        public ActionResult Create([Bind(Include="rol_Descripcion,rol_Estado")] tbRol tbRol)
         {
             if (ModelState.IsValid)
             {
-                db.tbRol.Add(tbRol);
-                db.SaveChanges();
+                //db.tbRol.Add(tbRol);
+                //db.SaveChanges();
+                try
+                {
+                    IEnumerable<Object> List = null;
+                    var Msj = "";
+                    List = db.UDP_Acce_tbRol_Insert(tbRol.rol_Descripcion, Helpers.Activo);
+                    foreach (UDP_Acce_tbRol_Insert_Result Rol in List)
+                        Msj = Rol.MensajeError;
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                }
                 return RedirectToAction("Index");
             }
 
@@ -98,7 +92,19 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ViewBag.obj_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla");
+            ViewBag.ListEstado = ListEstado();
+            
             tbRol tbRol = db.tbRol.Find(id);
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbRol.rol_UsuarioCrea).usu_NombreUsuario;
+            var UsuarioModfica = tbRol.rol_UsuarioModifica;
+            if (UsuarioModfica == null)
+            {
+                ViewBag.UsuarioModifica = "";
+            }
+            else
+            {
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+            };
             if (tbRol == null)
             {
                 return HttpNotFound();
@@ -111,13 +117,32 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="rol_Id,rol_Descripcion,rol_UsuarioCrea,rol_FechaCrea,rol_UsuarioModifica,rol_FechaModifica")] tbRol tbRol)
+        public ActionResult Edit(byte? id,[Bind(Include="rol_Id,rol_Descripcion,rol_UsuarioCrea,rol_FechaCrea,rol_Estado")] tbRol tbRol)
         {
             if (ModelState.IsValid)
             {
-                
-                db.Entry(tbRol).State = EntityState.Modified;
-                db.SaveChanges();
+                 
+                //db.Entry(tbRol).State = EntityState.Modified;
+                //db.SaveChanges();
+                try
+                {
+                    tbRol vRol = db.tbRol.Find(id);
+                    IEnumerable<Object> List = null;
+                    var Msj = "";
+                    if (true)
+                    {
+
+                    }
+                    tbRol.rol_Estado = false;
+                    List = db.UDP_Acce_tbRol_Update(tbRol.rol_Id, tbRol.rol_Descripcion, vRol.rol_UsuarioCrea, vRol.rol_FechaCrea, tbRol.rol_Estado);
+                    foreach (UDP_Acce_tbRol_Update_Result Rol in List)
+                        Msj = Rol.MensajeError;
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                }
                 return RedirectToAction("Index");
             }
             return View(tbRol);
@@ -156,6 +181,109 @@ namespace ERP_ZORZAL.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult EstadoRol(int id)
+        {
+            try
+            {
+                IEnumerable<Object> List = null;
+                var Msj = "";
+                tbRol tbRol = db.tbRol.Find(id);
+                List = db.UDP_Acce_tbRolEstado_Update(tbRol.rol_Id, Helpers.Inactivo);
+                foreach (UDP_Acce_tbRolEstado_Update_Result Rol in List)
+                    Msj = Rol.MensajeError;
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+            }
+            return RedirectToAction("Index");
+        }
+
+        public List<SelectListItem> ListEstado()
+        {
+            return new List<SelectListItem>()
+            {
+                new SelectListItem()
+                {
+                    Text = "Activo",
+                    Value = "1"
+                },
+                new SelectListItem()
+                {
+                    Text = "Inactivo",
+                    Value = "0"
+                }
+            };
+         }
+
+        [HttpPost]
+        public JsonResult GetObjetosDisponibles(int rolId)
+        {
+            
+            var list = db.SDP_Acce_GetObjetosDisponibles(rolId).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult GetObjetos()
+        {
+            var list = db.SDP_Acce_GetObjetos().ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult InsertAccesoRol(string descripcionRol, int id)
+        {
+            var list = db.SDP_Acce_GetObjetos().ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult InsertRol(string DescripcionRol, ICollection<tbAccesoRol> AccesoRol)
+        {
+            IEnumerable<Object> Rol = null;
+            IEnumerable<Object> RolAcceso = null;
+            int idRol = 0;
+            var Msj1 = "";
+            var Msj2 = "";
+            using (TransactionScope Tran = new TransactionScope())
+            {
+                
+                try
+                {
+                    if (DescripcionRol != "")
+                    {
+                        Rol = db.UDP_Acce_tbRol_Insert(DescripcionRol, Helpers.Activo);
+                        foreach (UDP_Acce_tbRol_Insert_Result vRol in Rol)
+                            Msj1 = vRol.MensajeError;
+                        if (Msj1.Substring(0, 1) != "-")
+                        {
+                            if (AccesoRol != null)
+                            {
+                                if (AccesoRol.Count > 0)
+                                {
+                                    idRol = Convert.ToInt32(Msj1);
+                                    foreach (tbAccesoRol vAccesoRol in AccesoRol)
+                                    {
+                                        RolAcceso = db.UDP_Acce_tbAccesoRol_Insert(idRol, vAccesoRol.obj_Id);
+                                        foreach (UDP_Acce_tbAccesoRol_Insert_Result item in RolAcceso)
+                                        {
+                                            Msj2 = Convert.ToString(item.MensajeError);
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        Tran.Complete();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Msj1 = "-1";
+                }
+                
+            }
+            return Json(Msj1, JsonRequestBehavior.AllowGet);
         }
     }
 }

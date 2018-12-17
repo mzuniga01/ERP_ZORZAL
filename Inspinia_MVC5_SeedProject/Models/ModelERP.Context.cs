@@ -33,11 +33,13 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbRol> tbRol { get; set; }
         public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
         public virtual DbSet<tbUsuario> tbUsuario { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tbActividadEconomica> tbActividadEconomica { get; set; }
         public virtual DbSet<tbBanco> tbBanco { get; set; }
         public virtual DbSet<tbCuentasBanco> tbCuentasBanco { get; set; }
         public virtual DbSet<tbDenominacion> tbDenominacion { get; set; }
         public virtual DbSet<tbDepartamento> tbDepartamento { get; set; }
+        public virtual DbSet<tbEmpleado> tbEmpleado { get; set; }
         public virtual DbSet<tbMoneda> tbMoneda { get; set; }
         public virtual DbSet<tbMunicipio> tbMunicipio { get; set; }
         public virtual DbSet<tbParametro> tbParametro { get; set; }
@@ -62,6 +64,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbCaja> tbCaja { get; set; }
         public virtual DbSet<tbCliente> tbCliente { get; set; }
         public virtual DbSet<tbCuponDescuento> tbCuponDescuento { get; set; }
+        public virtual DbSet<tbDenominacionArqueo> tbDenominacionArqueo { get; set; }
         public virtual DbSet<tbDevolucion> tbDevolucion { get; set; }
         public virtual DbSet<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
         public virtual DbSet<tbDocumentoFiscal> tbDocumentoFiscal { get; set; }
@@ -69,11 +72,14 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbEstadoPedido> tbEstadoPedido { get; set; }
         public virtual DbSet<tbEstadoSolicitudCredito> tbEstadoSolicitudCredito { get; set; }
         public virtual DbSet<tbExoneracion> tbExoneracion { get; set; }
+        public virtual DbSet<tbFactura> tbFactura { get; set; }
         public virtual DbSet<tbFacturaDetalle> tbFacturaDetalle { get; set; }
         public virtual DbSet<tbFacturaHistorica> tbFacturaHistorica { get; set; }
         public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
         public virtual DbSet<tbListaPrecio> tbListaPrecio { get; set; }
+        public virtual DbSet<tbMovimientoCaja> tbMovimientoCaja { get; set; }
         public virtual DbSet<tbNotaCredito> tbNotaCredito { get; set; }
+        public virtual DbSet<tbPago> tbPago { get; set; }
         public virtual DbSet<tbPedido> tbPedido { get; set; }
         public virtual DbSet<tbPedidoDetalle> tbPedidoDetalle { get; set; }
         public virtual DbSet<tbPuntoEmision> tbPuntoEmision { get; set; }
@@ -83,9 +89,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
-        public virtual DbSet<tbEmpleado> tbEmpleado { get; set; }
-        public virtual DbSet<tbFactura> tbFactura { get; set; }
-        public virtual DbSet<tbPago> tbPago { get; set; }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
         {
@@ -94,52 +97,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("tent_Descripcion", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbTipoEntrada_Insert_Result>("UDP_Inv_tbTipoEntrada_Insert", tent_DescripcionParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Acce_tbAccesoRol_Insert_Result> UDP_Acce_tbAccesoRol_Insert(Nullable<int> rol_Id, Nullable<int> obj_Id, string acrol_Descripcion)
-        {
-            var rol_IdParameter = rol_Id.HasValue ?
-                new ObjectParameter("rol_Id", rol_Id) :
-                new ObjectParameter("rol_Id", typeof(int));
-    
-            var obj_IdParameter = obj_Id.HasValue ?
-                new ObjectParameter("obj_Id", obj_Id) :
-                new ObjectParameter("obj_Id", typeof(int));
-    
-            var acrol_DescripcionParameter = acrol_Descripcion != null ?
-                new ObjectParameter("acrol_Descripcion", acrol_Descripcion) :
-                new ObjectParameter("acrol_Descripcion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbAccesoRol_Insert_Result>("UDP_Acce_tbAccesoRol_Insert", rol_IdParameter, obj_IdParameter, acrol_DescripcionParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Acce_tbAccesoRol_Update_Result> UDP_Acce_tbAccesoRol_Update(Nullable<int> acrol_Id, Nullable<int> rol_Id, Nullable<int> obj_Id, string acrol_Descripcion, Nullable<int> acrol_UsuarioCrea, Nullable<System.DateTime> acrol_FechaCrea)
-        {
-            var acrol_IdParameter = acrol_Id.HasValue ?
-                new ObjectParameter("acrol_Id", acrol_Id) :
-                new ObjectParameter("acrol_Id", typeof(int));
-    
-            var rol_IdParameter = rol_Id.HasValue ?
-                new ObjectParameter("rol_Id", rol_Id) :
-                new ObjectParameter("rol_Id", typeof(int));
-    
-            var obj_IdParameter = obj_Id.HasValue ?
-                new ObjectParameter("obj_Id", obj_Id) :
-                new ObjectParameter("obj_Id", typeof(int));
-    
-            var acrol_DescripcionParameter = acrol_Descripcion != null ?
-                new ObjectParameter("acrol_Descripcion", acrol_Descripcion) :
-                new ObjectParameter("acrol_Descripcion", typeof(string));
-    
-            var acrol_UsuarioCreaParameter = acrol_UsuarioCrea.HasValue ?
-                new ObjectParameter("acrol_UsuarioCrea", acrol_UsuarioCrea) :
-                new ObjectParameter("acrol_UsuarioCrea", typeof(int));
-    
-            var acrol_FechaCreaParameter = acrol_FechaCrea.HasValue ?
-                new ObjectParameter("acrol_FechaCrea", acrol_FechaCrea) :
-                new ObjectParameter("acrol_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbAccesoRol_Update_Result>("UDP_Acce_tbAccesoRol_Update", acrol_IdParameter, rol_IdParameter, obj_IdParameter, acrol_DescripcionParameter, acrol_UsuarioCreaParameter, acrol_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Gral_tbDepartamento_Insert_Result> UDP_Gral_tbDepartamento_Insert(string dep_Codigo, string dep_Nombre)
@@ -500,7 +457,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodegaDetalle_Update_Result>("UDP_Inv_tbBodegaDetalle_Update", bodd_IdParameter, prod_CodigoParameter, bod_IdParameter, bodd_CantidadMinimaParameter, bodd_CantidadMaximaParameter, bodd_PuntoReordenParameter, bodd_UsuarioCreaParameter, bodd_FechaCreaParameter, bodd_CostoParameter, bodd_CostoPromedioParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbEntradaDetalle_Update_Result> UDP_Inv_tbEntradaDetalle_Update(Nullable<int> entd_Id, Nullable<int> ent_Id, string prod_Codigo, Nullable<decimal> entd_Cantidad, Nullable<int> entd_UsuarioCrea, Nullable<System.DateTime> entd_FechaCrea)
+        public virtual ObjectResult<UDP_Inv_tbEntradaDetalle_Update_Result> UDP_Inv_tbEntradaDetalle_Update(Nullable<int> entd_Id, Nullable<int> ent_Id, string prod_Codigo, Nullable<decimal> entd_Cantidad, Nullable<int> entd_UsuarioCrea, Nullable<System.DateTime> entd_FechaCrea, Nullable<int> uni_Id)
         {
             var entd_IdParameter = entd_Id.HasValue ?
                 new ObjectParameter("entd_Id", entd_Id) :
@@ -526,7 +483,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("entd_FechaCrea", entd_FechaCrea) :
                 new ObjectParameter("entd_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntradaDetalle_Update_Result>("UDP_Inv_tbEntradaDetalle_Update", entd_IdParameter, ent_IdParameter, prod_CodigoParameter, entd_CantidadParameter, entd_UsuarioCreaParameter, entd_FechaCreaParameter);
+            var uni_IdParameter = uni_Id.HasValue ?
+                new ObjectParameter("uni_Id", uni_Id) :
+                new ObjectParameter("uni_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntradaDetalle_Update_Result>("UDP_Inv_tbEntradaDetalle_Update", entd_IdParameter, ent_IdParameter, prod_CodigoParameter, entd_CantidadParameter, entd_UsuarioCreaParameter, entd_FechaCreaParameter, uni_IdParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_tbEstadoMovimiento_Insert_Result> UDP_Inv_tbEstadoMovimiento_Insert(string estm_Descripcion)
@@ -557,68 +518,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("estm_FechaCrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEstadoMovimiento_Update_Result>("UDP_Inv_tbEstadoMovimiento_Update", estm_IdParameter, estm_DescripcionParameter, estm_UsuarioCreaParameter, estm_FechaCreaParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Inv_tbInventarioFisico_Insert_Result> UDP_Inv_tbInventarioFisico_Insert(string invf_Descripcion, string invf_ResponsableBodega, Nullable<int> bod_Id, Nullable<byte> estif_Id, Nullable<System.DateTime> invf_FechaInventario)
-        {
-            var invf_DescripcionParameter = invf_Descripcion != null ?
-                new ObjectParameter("invf_Descripcion", invf_Descripcion) :
-                new ObjectParameter("invf_Descripcion", typeof(string));
-    
-            var invf_ResponsableBodegaParameter = invf_ResponsableBodega != null ?
-                new ObjectParameter("invf_ResponsableBodega", invf_ResponsableBodega) :
-                new ObjectParameter("invf_ResponsableBodega", typeof(string));
-    
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var estif_IdParameter = estif_Id.HasValue ?
-                new ObjectParameter("estif_Id", estif_Id) :
-                new ObjectParameter("estif_Id", typeof(byte));
-    
-            var invf_FechaInventarioParameter = invf_FechaInventario.HasValue ?
-                new ObjectParameter("invf_FechaInventario", invf_FechaInventario) :
-                new ObjectParameter("invf_FechaInventario", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbInventarioFisico_Insert_Result>("UDP_Inv_tbInventarioFisico_Insert", invf_DescripcionParameter, invf_ResponsableBodegaParameter, bod_IdParameter, estif_IdParameter, invf_FechaInventarioParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Inv_tbInventarioFisico_Update_Result> UDP_Inv_tbInventarioFisico_Update(Nullable<int> invf_Id, string invf_Descripcion, string invf_ResponsableBodega, Nullable<int> bod_Id, Nullable<byte> estif_Id, Nullable<System.DateTime> invf_FechaInventario, Nullable<int> invf_UsuarioCrea, Nullable<System.DateTime> invf_FechaCrea)
-        {
-            var invf_IdParameter = invf_Id.HasValue ?
-                new ObjectParameter("invf_Id", invf_Id) :
-                new ObjectParameter("invf_Id", typeof(int));
-    
-            var invf_DescripcionParameter = invf_Descripcion != null ?
-                new ObjectParameter("invf_Descripcion", invf_Descripcion) :
-                new ObjectParameter("invf_Descripcion", typeof(string));
-    
-            var invf_ResponsableBodegaParameter = invf_ResponsableBodega != null ?
-                new ObjectParameter("invf_ResponsableBodega", invf_ResponsableBodega) :
-                new ObjectParameter("invf_ResponsableBodega", typeof(string));
-    
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var estif_IdParameter = estif_Id.HasValue ?
-                new ObjectParameter("estif_Id", estif_Id) :
-                new ObjectParameter("estif_Id", typeof(byte));
-    
-            var invf_FechaInventarioParameter = invf_FechaInventario.HasValue ?
-                new ObjectParameter("invf_FechaInventario", invf_FechaInventario) :
-                new ObjectParameter("invf_FechaInventario", typeof(System.DateTime));
-    
-            var invf_UsuarioCreaParameter = invf_UsuarioCrea.HasValue ?
-                new ObjectParameter("invf_UsuarioCrea", invf_UsuarioCrea) :
-                new ObjectParameter("invf_UsuarioCrea", typeof(int));
-    
-            var invf_FechaCreaParameter = invf_FechaCrea.HasValue ?
-                new ObjectParameter("invf_FechaCrea", invf_FechaCrea) :
-                new ObjectParameter("invf_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbInventarioFisico_Update_Result>("UDP_Inv_tbInventarioFisico_Update", invf_IdParameter, invf_DescripcionParameter, invf_ResponsableBodegaParameter, bod_IdParameter, estif_IdParameter, invf_FechaInventarioParameter, invf_UsuarioCreaParameter, invf_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_tbInventarioFisicoDetalle_Insert_Result> UDP_Inv_tbInventarioFisicoDetalle_Insert(Nullable<int> invf_Id, string prod_Codigo, Nullable<decimal> invfd_Cantidad, Nullable<decimal> invfd_CantidadSistema, Nullable<int> uni_Id)
@@ -917,7 +816,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbEmpleados_Update_Result>("UDP_Gral_tbEmpleados_Update", emp_IdParameter, emp_NombresParameter, emp_ApellidosParameter, emp_SexoParameter, emp_FechaNacimientoParameter, tpi_IdParameter, emp_IdentificacionParameter, emp_TelefonoParameter, emp_CorreoelectronicoParameter, emp_TipoSangreParameter, emp_PuestoParameter, emp_FechaIngresoParameter, emp_DireccionParameter, emp_ObservacionesParameter, emp_UsuarioCreaParameter, emp_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbEntradaDetalle_Insert_Result> UDP_Inv_tbEntradaDetalle_Insert(Nullable<int> ent_Id, string prod_Codigo, Nullable<decimal> entd_Cantidad)
+        public virtual ObjectResult<UDP_Inv_tbEntradaDetalle_Insert_Result> UDP_Inv_tbEntradaDetalle_Insert(Nullable<int> ent_Id, string prod_Codigo, Nullable<decimal> entd_Cantidad, Nullable<int> uni_Id)
         {
             var ent_IdParameter = ent_Id.HasValue ?
                 new ObjectParameter("ent_Id", ent_Id) :
@@ -931,7 +830,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("entd_Cantidad", entd_Cantidad) :
                 new ObjectParameter("entd_Cantidad", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntradaDetalle_Insert_Result>("UDP_Inv_tbEntradaDetalle_Insert", ent_IdParameter, prod_CodigoParameter, entd_CantidadParameter);
+            var uni_IdParameter = uni_Id.HasValue ?
+                new ObjectParameter("uni_Id", uni_Id) :
+                new ObjectParameter("uni_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntradaDetalle_Insert_Result>("UDP_Inv_tbEntradaDetalle_Insert", ent_IdParameter, prod_CodigoParameter, entd_CantidadParameter, uni_IdParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Update_Result> UDP_Inv_tbTipoEntrada_Update(Nullable<byte> tent_Id, string tent_Descripcion, Nullable<int> tent_UsuarioCrea, Nullable<System.DateTime> tent_FechaCrea)
@@ -1545,7 +1448,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntrada_Update_Result>("UDP_Inv_tbEntrada_Update", ent_IdParameter, ent_NumeroFormatoParameter, ent_FechaElaboracionParameter, bod_IdParameter, estm_IdParameter, prov_IdParameter, ent_FacturaCompraParameter, ent_FechaCompraParameter, fact_IdParameter, ent_RazonDevolucionParameter, ent_BodegaDestinoParameter, tent_IdParameter, ent_UsuarioCreaParameter, ent_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Acce_tbRol_Insert_Result> UDP_Acce_tbRol_Insert(string rol_Descripcion, Nullable<byte> rol_Estado)
+        public virtual ObjectResult<UDP_Acce_tbRol_Insert_Result> UDP_Acce_tbRol_Insert(string rol_Descripcion, Nullable<bool> rol_Estado)
         {
             var rol_DescripcionParameter = rol_Descripcion != null ?
                 new ObjectParameter("rol_Descripcion", rol_Descripcion) :
@@ -1553,12 +1456,12 @@ namespace ERP_GMEDINA.Models
     
             var rol_EstadoParameter = rol_Estado.HasValue ?
                 new ObjectParameter("rol_Estado", rol_Estado) :
-                new ObjectParameter("rol_Estado", typeof(byte));
+                new ObjectParameter("rol_Estado", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRol_Insert_Result>("UDP_Acce_tbRol_Insert", rol_DescripcionParameter, rol_EstadoParameter);
         }
     
-        public virtual ObjectResult<UDP_Acce_tbRol_Update_Result> UDP_Acce_tbRol_Update(Nullable<int> rol_Id, string rol_Descripcion, Nullable<int> rol_UsuarioCrea, Nullable<System.DateTime> rol_FechaCrea, Nullable<byte> rol_Estado)
+        public virtual ObjectResult<UDP_Acce_tbRol_Update_Result> UDP_Acce_tbRol_Update(Nullable<int> rol_Id, string rol_Descripcion, Nullable<int> rol_UsuarioCrea, Nullable<System.DateTime> rol_FechaCrea, Nullable<bool> rol_Estado)
         {
             var rol_IdParameter = rol_Id.HasValue ?
                 new ObjectParameter("rol_Id", rol_Id) :
@@ -1578,7 +1481,7 @@ namespace ERP_GMEDINA.Models
     
             var rol_EstadoParameter = rol_Estado.HasValue ?
                 new ObjectParameter("rol_Estado", rol_Estado) :
-                new ObjectParameter("rol_Estado", typeof(byte));
+                new ObjectParameter("rol_Estado", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRol_Update_Result>("UDP_Acce_tbRol_Update", rol_IdParameter, rol_DescripcionParameter, rol_UsuarioCreaParameter, rol_FechaCreaParameter, rol_EstadoParameter);
         }
@@ -1603,6 +1506,133 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("obj_Estado", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbObjeto_Update_Estado_Result>("UDP_Acce_tbObjeto_Update_Estado", obj_IdParameter, obj_EstadoParameter);
+        }
+    
+        public virtual ObjectResult<SDP_Acce_GetObjetos_Result> SDP_Acce_GetObjetos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Acce_GetObjetos_Result>("SDP_Acce_GetObjetos");
+        }
+    
+        public virtual ObjectResult<SDP_Acce_GetObjetosDisponibles_Result> SDP_Acce_GetObjetosDisponibles(Nullable<int> rol_Id)
+        {
+            var rol_IdParameter = rol_Id.HasValue ?
+                new ObjectParameter("rol_Id", rol_Id) :
+                new ObjectParameter("rol_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Acce_GetObjetosDisponibles_Result>("SDP_Acce_GetObjetosDisponibles", rol_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Acce_tbAccesoRol_Insert_Result> UDP_Acce_tbAccesoRol_Insert(Nullable<int> rol_Id, Nullable<int> obj_Id)
+        {
+            var rol_IdParameter = rol_Id.HasValue ?
+                new ObjectParameter("rol_Id", rol_Id) :
+                new ObjectParameter("rol_Id", typeof(int));
+    
+            var obj_IdParameter = obj_Id.HasValue ?
+                new ObjectParameter("obj_Id", obj_Id) :
+                new ObjectParameter("obj_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbAccesoRol_Insert_Result>("UDP_Acce_tbAccesoRol_Insert", rol_IdParameter, obj_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Acce_tbAccesoRol_Update_Result> UDP_Acce_tbAccesoRol_Update(Nullable<int> acrol_Id, Nullable<int> rol_Id, Nullable<int> obj_Id, Nullable<int> acrol_UsuarioCrea, Nullable<System.DateTime> acrol_FechaCrea)
+        {
+            var acrol_IdParameter = acrol_Id.HasValue ?
+                new ObjectParameter("acrol_Id", acrol_Id) :
+                new ObjectParameter("acrol_Id", typeof(int));
+    
+            var rol_IdParameter = rol_Id.HasValue ?
+                new ObjectParameter("rol_Id", rol_Id) :
+                new ObjectParameter("rol_Id", typeof(int));
+    
+            var obj_IdParameter = obj_Id.HasValue ?
+                new ObjectParameter("obj_Id", obj_Id) :
+                new ObjectParameter("obj_Id", typeof(int));
+    
+            var acrol_UsuarioCreaParameter = acrol_UsuarioCrea.HasValue ?
+                new ObjectParameter("acrol_UsuarioCrea", acrol_UsuarioCrea) :
+                new ObjectParameter("acrol_UsuarioCrea", typeof(int));
+    
+            var acrol_FechaCreaParameter = acrol_FechaCrea.HasValue ?
+                new ObjectParameter("acrol_FechaCrea", acrol_FechaCrea) :
+                new ObjectParameter("acrol_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbAccesoRol_Update_Result>("UDP_Acce_tbAccesoRol_Update", acrol_IdParameter, rol_IdParameter, obj_IdParameter, acrol_UsuarioCreaParameter, acrol_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbInventarioFisico_Insert_Result> UDP_Inv_tbInventarioFisico_Insert(string invf_Descripcion, string invf_ResponsableBodega, Nullable<int> bod_Id, Nullable<byte> estif_Id, Nullable<System.DateTime> invf_FechaInventario)
+        {
+            var invf_DescripcionParameter = invf_Descripcion != null ?
+                new ObjectParameter("invf_Descripcion", invf_Descripcion) :
+                new ObjectParameter("invf_Descripcion", typeof(string));
+    
+            var invf_ResponsableBodegaParameter = invf_ResponsableBodega != null ?
+                new ObjectParameter("invf_ResponsableBodega", invf_ResponsableBodega) :
+                new ObjectParameter("invf_ResponsableBodega", typeof(string));
+    
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var estif_IdParameter = estif_Id.HasValue ?
+                new ObjectParameter("estif_Id", estif_Id) :
+                new ObjectParameter("estif_Id", typeof(byte));
+    
+            var invf_FechaInventarioParameter = invf_FechaInventario.HasValue ?
+                new ObjectParameter("invf_FechaInventario", invf_FechaInventario) :
+                new ObjectParameter("invf_FechaInventario", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbInventarioFisico_Insert_Result>("UDP_Inv_tbInventarioFisico_Insert", invf_DescripcionParameter, invf_ResponsableBodegaParameter, bod_IdParameter, estif_IdParameter, invf_FechaInventarioParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbInventarioFisico_Update_Result> UDP_Inv_tbInventarioFisico_Update(Nullable<int> invf_Id, string invf_Descripcion, string invf_ResponsableBodega, Nullable<int> bod_Id, Nullable<byte> estif_Id, Nullable<System.DateTime> invf_FechaInventario, Nullable<int> invf_UsuarioCrea, Nullable<System.DateTime> invf_FechaCrea)
+        {
+            var invf_IdParameter = invf_Id.HasValue ?
+                new ObjectParameter("invf_Id", invf_Id) :
+                new ObjectParameter("invf_Id", typeof(int));
+    
+            var invf_DescripcionParameter = invf_Descripcion != null ?
+                new ObjectParameter("invf_Descripcion", invf_Descripcion) :
+                new ObjectParameter("invf_Descripcion", typeof(string));
+    
+            var invf_ResponsableBodegaParameter = invf_ResponsableBodega != null ?
+                new ObjectParameter("invf_ResponsableBodega", invf_ResponsableBodega) :
+                new ObjectParameter("invf_ResponsableBodega", typeof(string));
+    
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var estif_IdParameter = estif_Id.HasValue ?
+                new ObjectParameter("estif_Id", estif_Id) :
+                new ObjectParameter("estif_Id", typeof(byte));
+    
+            var invf_FechaInventarioParameter = invf_FechaInventario.HasValue ?
+                new ObjectParameter("invf_FechaInventario", invf_FechaInventario) :
+                new ObjectParameter("invf_FechaInventario", typeof(System.DateTime));
+    
+            var invf_UsuarioCreaParameter = invf_UsuarioCrea.HasValue ?
+                new ObjectParameter("invf_UsuarioCrea", invf_UsuarioCrea) :
+                new ObjectParameter("invf_UsuarioCrea", typeof(int));
+    
+            var invf_FechaCreaParameter = invf_FechaCrea.HasValue ?
+                new ObjectParameter("invf_FechaCrea", invf_FechaCrea) :
+                new ObjectParameter("invf_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbInventarioFisico_Update_Result>("UDP_Inv_tbInventarioFisico_Update", invf_IdParameter, invf_DescripcionParameter, invf_ResponsableBodegaParameter, bod_IdParameter, estif_IdParameter, invf_FechaInventarioParameter, invf_UsuarioCreaParameter, invf_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Acce_tbRolEstado_Update_Result> UDP_Acce_tbRolEstado_Update(Nullable<int> rol_Id, Nullable<bool> rol_Estado)
+        {
+            var rol_IdParameter = rol_Id.HasValue ?
+                new ObjectParameter("rol_Id", rol_Id) :
+                new ObjectParameter("rol_Id", typeof(int));
+    
+            var rol_EstadoParameter = rol_Estado.HasValue ?
+                new ObjectParameter("rol_Estado", rol_Estado) :
+                new ObjectParameter("rol_Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRolEstado_Update_Result>("UDP_Acce_tbRolEstado_Update", rol_IdParameter, rol_EstadoParameter);
         }
     }
 }

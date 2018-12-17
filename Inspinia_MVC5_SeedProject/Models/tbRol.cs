@@ -27,7 +27,7 @@ namespace ERP_GMEDINA.Models
         public System.DateTime rol_FechaCrea { get; set; }
         public Nullable<int> rol_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> rol_FechaModifica { get; set; }
-        public Nullable<byte> rol_Estado { get; set; }
+        public Nullable<bool> rol_Estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbAccesoRol> tbAccesoRol { get; set; }

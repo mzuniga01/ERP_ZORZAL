@@ -32,11 +32,6 @@ namespace ERP_GMEDINA.Models
         public System.DateTime emp_FechaCrea { get; set; }
         public Nullable<int> emp_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> emp_FechaModifica { get; set; }
-    
-        public virtual tbUsuario tbUsuario { get; set; }
-        public virtual tbTipoIdentificacion tbTipoIdentificacion { get; set; }
-        
-
-
+        public Nullable<bool> emp_Estado { get; set; }
     }
 }

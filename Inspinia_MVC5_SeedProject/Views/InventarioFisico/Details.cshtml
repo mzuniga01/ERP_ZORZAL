@@ -59,38 +59,6 @@
                                 @Html.DisplayFor(model => model.invf_Descripcion)
                             </dd>
 
-                            @*<dt>
-                                @Html.DisplayNameFor(model => model.invf_UsuarioCrea)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.invf_UsuarioCrea)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.invf_FechaCrea)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.invf_FechaCrea)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.invf_UsuarioModifica)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.invf_UsuarioModifica)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.invf_FechaModifica)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.invf_FechaModifica)
-                            </dd>*@
-
                             <dt>
                                 @Html.DisplayNameFor(model => model.tbEstadoInventarioFisico.estif_Descripcion)
                             </dt>
@@ -104,78 +72,53 @@
                         @Html.ActionLink("Editar", "Edit", new { id = Model.invf_Id }, new { @class = "btn btn-primary" })
 
 
+                        @* Index del Inventario Fisico Detalle *@
                         <div class="form-group">
                             @*<div class="col-md-offset-2 col-md-10">*@
                             @Html.Partial("_IndexInvFisicoDetalle", Model.tbInventarioFisicoDetalle)
                             @*</div>*@
                         </div>
 
+
+                        @* Tabla de los datos de auditoria *@
                         <div class="ibox-content">
                         <table class="table table-striped">
                             <tr>
                                 <th>
-                                    @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
                                     Acción
                                 </th>
                                 <th>
-                                    @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
                                     Usuario
                                 </th>
                                 <th>
-                                    @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
                                     Fecha
                                 </th>
-                                @*<th>
-                    @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tsal_FechaModifica)
-                </th>*@
-                                @*<th></th>*@
                             </tr>
 
-                            @*@foreach (var item in Model) { }*@
                             <tr>
                                 <td>
-                                    @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
                                     Creado
                                 </td>
                                 <td>
-
-                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                  @ViewBag.UsuarioCrea 
                                 </td>
                                 <td>
 
                                     @Html.DisplayFor(model => model.invf_FechaCrea)
                                 </td>
-                                @*<td>
-                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
-                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                </td>*@
+                                
                             </tr>
                             <tr>
                                 <td>
-                                    @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
                                     Modificado
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                    @ViewBag.UsuarioModifica
                                 </td>
                                 <td>
                                     @Html.DisplayFor(model => model.invf_FechaModifica)
                                 </td>
-                                @*<td>
-                    @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
-                    @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                    @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                </td>*@
+                              
                             </tr>
 
                         </table>
@@ -186,99 +129,6 @@
         </div>
     </div>
 
-@*<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Detalle Inventario Fisico</h5>
-                </div>
-                <div class="ibox-content">
-
-                    <dl class="dl-horizontal">
-                        <dt>
-                            <label class="control-label col-md-2">Descripcion</label>
-                        </dt>
-
-                        <dd>
-                            Bodega
-                        </dd>
-
-                        <dt>
-                            <label class="control-label col-md-2">Responsable Bodega</label>
-                        </dt>
-
-                        <dd>
-                            Antony Fugon
-                        </dd>
-
-                        <dt>
-                            <label class="control-label col-md-2">Bodega</label>
-                        </dt>
-
-                        <dd>
-                            01
-                        </dd>
-
-                        <dt>
-                            <label class="control-label col-md-2">Fecha Levantamiento</label>
-                        </dt>
-
-                        <dd>
-                            28/11/2018
-                        </dd>
-
-                        <dt>
-                            <label class="control-label col-md-2">Creado por</label>
-                        </dt>
-
-                        <dd>
-                            Keilin_R
-                        </dd>
-
-                        <dt>
-                            <label class="control-label col-md-2">Creado el</label>
-                        </dt>
-
-                        <dd>
-                            28/11/2018
-                        </dd>
-
-                        <dt>
-                            <label class="control-label col-md-2">Modificado por</label>
-                        </dt>
-
-                        <dd>
-                            BR
-                        </dd>
-
-                        <dt>
-                            <label class="control-label col-md-2">Modificado el</label>
-                        </dt>
-
-                        <dd>
-                            28/11/2018
-                        </dd>
-
-                        <dt>
-                            <label class="control-label col-md-2">Estado</label>
-                        </dt>
-
-                        <dd>
-                            Activo
-                        </dd>
-
-                    </dl>*@
-
-
-                    @*@Html.ActionLink("Editar", "Edit", new { @class = "" })*@
-                    @*@Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "" })*@
-
-                @*</div>
-            </div>
-        </div>
-    </div>
-</div>*@
 
 
 

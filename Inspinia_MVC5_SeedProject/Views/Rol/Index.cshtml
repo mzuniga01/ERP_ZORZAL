@@ -34,6 +34,9 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.rol_Descripcion)
                                 </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.rol_Estado)
+                                </th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -47,6 +50,16 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.rol_Descripcion)
                                     </td>
+                                    @*<td>@Html.DisplayFor(modelItem => item.rol_Estado)</td>*@
+                                    @if (Convert.ToString(item.rol_Estado) == "True")
+                                    { 
+                                             <td>Activo</td>  
+                                    }
+                                    @if (Convert.ToString(item.rol_Estado) == "false")
+                                    {
+                                            <td>Inactivo</td>
+
+                                    }
                                     <td>
                                         @Html.ActionLink("Detalle", "Details", new { id = item.rol_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.rol_Id }, new { @class = "btn btn-white btn-xs" })

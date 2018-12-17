@@ -29,6 +29,16 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbInventarioFisico tbInventarioFisico = db.tbInventarioFisico.Find(id);
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbInventarioFisico.invf_UsuarioCrea).usu_NombreUsuario;
+            var UsuarioModfica = tbInventarioFisico.invf_UsuarioModifica;
+            if (UsuarioModfica == null)
+            {
+                ViewBag.UsuarioModifica = "";
+            }
+            else
+            {
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+            };
             if (tbInventarioFisico == null)
             {
                 return HttpNotFound();
@@ -80,15 +90,51 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="invf_Id,invf_Descripcion,invf_ResponsableBodega,bod_Id,estif_Id,invf_FechaInventario,invf_UsuarioCrea,invf_FechaCrea,invf_UsuarioModifica,invf_FechaModifica")] tbInventarioFisico tbInventarioFisico)
+        public ActionResult Create([Bind(Include="invf_Id,invf_Descripcion,invf_ResponsableBodega,bod_Id,estif_Id,invf_FechaInventario")] tbInventarioFisico tbInventarioFisico)
         {
+            ViewBag.estif_Id = new SelectList(db.tbEstadoInventarioFisico, "estif_Id", "estif_Descripcion");
+            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+            ViewBag.invf_Id = new SelectList(db.tbInventarioFisico, "invf_Id", "invf_Descripcion");
+            ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Codigo");
+            ViewBag.prod_Descripcion = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
+            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
             if (ModelState.IsValid)
             {
-                db.tbInventarioFisico.Add(tbInventarioFisico);
-                db.SaveChanges();
+                try
+                {
+                    IEnumerable<object> List = null;
+                    string MsjError = "";
+                    List = db.UDP_Inv_tbInventarioFisico_Insert(tbInventarioFisico.invf_Descripcion,tbInventarioFisico.invf_ResponsableBodega,tbInventarioFisico.bod_Id,tbInventarioFisico.estif_Id,tbInventarioFisico.invf_FechaInventario);
+                    foreach (UDP_Inv_tbInventarioFisico_Insert_Result InventarioFisico in List)
+                        MsjError = InventarioFisico.MensajeError;
+
+                    if (MsjError.Substring(0,2) == "-1")
+                    {
+                        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    }
+                    else
+                    {
+                        db.tbInventarioFisico.Add(tbInventarioFisico);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+
+
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                }
+                //db.tbInventarioFisico.Add(tbInventarioFisico);
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            else
+            {
+                ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
 
+            }
             ViewBag.estif_Id = new SelectList(db.tbEstadoInventarioFisico, "estif_Id", "estif_Descripcion", tbInventarioFisico.estif_Id);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             ViewBag.invf_Id = new SelectList(db.tbInventarioFisico, "invf_Id", "invf_Descripcion");
@@ -107,6 +153,16 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbInventarioFisico tbInventarioFisico = db.tbInventarioFisico.Find(id);
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbInventarioFisico.invf_UsuarioCrea).usu_NombreUsuario;
+            var UsuarioModfica = tbInventarioFisico.invf_UsuarioModifica;
+            if (UsuarioModfica == null)
+            {
+                ViewBag.UsuarioModifica = "";
+            }
+            else
+            {
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+            };
             if (tbInventarioFisico == null)
             {
                 return HttpNotFound();
@@ -126,13 +182,41 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="invf_Id,invf_Descripcion,invf_ResponsableBodega,bod_Id,estif_Id,invf_FechaInventario,invf_UsuarioCrea,invf_FechaCrea,invf_UsuarioModifica,invf_FechaModifica")] tbInventarioFisico tbInventarioFisico)
+        public ActionResult Edit(int? id,[Bind(Include="invf_Id,invf_Descripcion,invf_ResponsableBodega,bod_Id,estif_Id,invf_FechaInventario,invf_UsuarioCrea,invf_FechaCrea")] tbInventarioFisico tbInventarioFisico)
         {
+            
             if (ModelState.IsValid)
             {
-                db.Entry(tbInventarioFisico).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    try
+                    {
+                        tbInventarioFisico pInventarioFisico = db.tbInventarioFisico.Find(id);
+                        IEnumerable<object> List = null;
+                        string MsjError = "";
+                        List = db.UDP_Inv_tbInventarioFisico_Update(tbInventarioFisico.invf_Id,tbInventarioFisico.invf_Descripcion, tbInventarioFisico.invf_ResponsableBodega, tbInventarioFisico.bod_Id, tbInventarioFisico.estif_Id, tbInventarioFisico.invf_FechaInventario, pInventarioFisico.invf_UsuarioCrea, pInventarioFisico.invf_FechaCrea);
+                        foreach (UDP_Inv_tbInventarioFisico_Update_Result InventarioFisico in List)
+                            MsjError = InventarioFisico.MensajeError;
+
+                        if (MsjError.Substring(0, 2) == "-1")
+                        {
+                            ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                        }
+                        else
+                        {
+                            db.tbInventarioFisico.Add(tbInventarioFisico);
+                            db.SaveChanges();
+                            return RedirectToAction("Index");
+                        }
+
+
+                    }
+                    catch (Exception Ex)
+                    {
+                        Ex.Message.ToString();
+                        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    }
+                    //db.tbInventarioFisico.Add(tbInventarioFisico);
+                    //db.SaveChanges();
+                    return RedirectToAction("Index");
             }
             ViewBag.estif_Id = new SelectList(db.tbEstadoInventarioFisico, "estif_Id", "estif_Descripcion", tbInventarioFisico.estif_Id);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
@@ -178,5 +262,24 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             }
             base.Dispose(disposing);
         }
+        [HttpPost]
+        public JsonResult GuardarInventarioDetalle(tbInventarioFisicoDetalle inventariofisicodetalle)
+        {
+            List<tbInventarioFisicoDetalle> sessionInventarioFisicoDetalle = new List<tbInventarioFisicoDetalle>();
+            var list = (List<tbInventarioFisicoDetalle>)Session["CreateInvFisicoDetalle"];
+            if (list == null)
+            {
+                sessionInventarioFisicoDetalle.Add(inventariofisicodetalle);
+                Session["CreateInvFisicoDetalle"] = sessionInventarioFisicoDetalle;
+            }
+            else
+            {
+                list.Add(inventariofisicodetalle);
+                Session["CreateInvFisicoDetalle"] = list;
+            }
+            return Json("Exito", JsonRequestBehavior.AllowGet);
+        }
     }
 }
+
+

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbProducto>
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbProducto>
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -36,18 +36,7 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.prod_Color)
                                     </th>
-                                    @*<th>
-                            @Html.DisplayNameFor(model => model.prod_FechaCrea)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.prod_FechaModifica)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-                        </th>*@
+      
                                     <th>
                                         @Html.DisplayNameFor(model => model.tbProductoSubcategoria.pscat_Descripcion)
                                     </th>
@@ -75,28 +64,15 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.prod_Color)
                                         </td>
-                                        @*<td>
-                                @Html.DisplayFor(modelItem => item.prod_FechaCrea)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.prod_FechaModifica)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-                            </td>*@
+          
                                         <td>
                                             @Html.DisplayFor(modelItem => item.tbProductoSubcategoria.pscat_Descripcion)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
                                         </td>
-                                        @*<td>
-                                @Html.ActionLink("Details", "Details", new { id=item.prod_Codigo }, new { @class = "btn btn-primary btn-sm"})
-                                @Html.ActionLink("Edit", "Edit", new { id=item.prod_Codigo }, new { @class = "btn btn-white btn-sm"})
-                            </td>*@
+                                        @* Boton seleccionar producto *@
+                                        <td><button class="btn-primary" value="@item.prod_Codigo" id="seleccionar" data-dismiss="modal">Seleccionar</button></td>
                                     </tr>
                                 }
 

@@ -111,6 +111,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -183,7 +184,6 @@
     <Compile Include="Controllers\BodegaController.cs" />
     <Compile Include="Controllers\BoxController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
-    <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\EntradaController.cs" />
     <Compile Include="Controllers\EstadoMovimientoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -247,7 +247,16 @@
     <Compile Include="Models\rol.cs" />
     <Compile Include="Models\RolesUsuario.cs" />
     <Compile Include="Models\Salida.cs" />
+    <Compile Include="Models\SDP_Acce_GetObjetosDisponibles_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SDP_Acce_GetObjetos_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\spGetMunicipios_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbAccesoRol.cs">
@@ -281,6 +290,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbDenominacion.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbDenominacionArqueo.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbDepartamento.cs">
@@ -344,6 +356,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbMoneda.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbMovimientoCaja.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbMunicipio.cs">
@@ -442,6 +457,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Acce_tbObjeto_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Acce_tbRolEstado_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Acce_tbRolesUsuario_Insert_Result.cs">
@@ -829,6 +847,7 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
       <LastGenOutput>ModelERP.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\app\AgregarMunicipio.js" />
     <Content Include="Scripts\app\BodegaDetalle.js" />
     <Content Include="Scripts\app\BusquedaGenerica.js" />
     <Content Include="Scripts\app\Categoria.js" />
@@ -836,9 +855,11 @@
     <Content Include="Scripts\app\Datepicker.js" />
     <Content Include="Scripts\app\EntradaDetalle.js" />
     <Content Include="Scripts\app\inspinia.js" />
+    <Content Include="Scripts\app\InvFisicoDetalle.js" />
     <Content Include="Scripts\app\MostrarCamposEditar.js" />
     <Content Include="Scripts\app\MostrarCamposEntradajs.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
+    <Content Include="Scripts\app\RolObjetos.js" />
     <Content Include="Scripts\app\search.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1068,8 +1089,6 @@
     <Content Include="Views\Rol\Details.cshtml" />
     <Content Include="Views\Rol\Edit.cshtml" />
     <Content Include="Views\Rol\Index.cshtml" />
-    <Content Include="Views\Rol\_IndexAccesoRol.cshtml" />
-    <Content Include="Views\Rol\_IndexAccesoRol_Botones.cshtml" />
     <Content Include="Views\tbProveedors\Create.cshtml" />
     <Content Include="Views\tbProveedors\Details.cshtml" />
     <Content Include="Views\tbProveedors\Edit.cshtml" />
@@ -1109,9 +1128,6 @@
     <Content Include="Views\Proveedor\Details.cshtml" />
     <Content Include="Views\Proveedor\Edit.cshtml" />
     <Content Include="Views\Proveedor\Index.cshtml" />
-    <Content Include="Views\Rol\_CreateAccesoRol.cshtml" />
-    <Content Include="Views\Rol\_DetailsAccesoRol.cshtml" />
-    <Content Include="Views\Rol\_IndexAccesoRol_Create.cshtml" />
     <Content Include="Views\Bodega\Create.cshtml" />
     <Content Include="Views\Bodega\Delete.cshtml" />
     <Content Include="Views\Bodega\Details.cshtml" />
@@ -1175,6 +1191,7 @@
     <Content Include="Views\Empleado\Details.cshtml" />
     <Content Include="Views\Empleado\Edit.cshtml" />
     <Content Include="Views\Empleado\Index.cshtml" />
+    <Content Include="Views\InventarioFisico\_IndexProductos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
