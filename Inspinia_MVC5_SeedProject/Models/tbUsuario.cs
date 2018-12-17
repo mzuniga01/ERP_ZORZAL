@@ -19,7 +19,6 @@ namespace ERP_GMEDINA.Models
         {
             this.tbAccesoRol = new HashSet<tbAccesoRol>();
             this.tbObjeto = new HashSet<tbObjeto>();
-            this.tbRol = new HashSet<tbRol>();
             this.tbRolesUsuario = new HashSet<tbRolesUsuario>();
             this.tbRolesUsuario1 = new HashSet<tbRolesUsuario>();
             this.tbActividadEconomica = new HashSet<tbActividadEconomica>();
@@ -109,6 +108,7 @@ namespace ERP_GMEDINA.Models
             this.tbPuntoEmisionDetalle1 = new HashSet<tbPuntoEmisionDetalle>();
             this.tbPago = new HashSet<tbPago>();
             this.tbPago1 = new HashSet<tbPago>();
+            this.tbRol = new HashSet<tbRol>();
         }
     
         public int usu_Id { get; set; }
@@ -125,8 +125,6 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbAccesoRol> tbAccesoRol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbObjeto> tbObjeto { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbRol> tbRol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbRolesUsuario> tbRolesUsuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -305,5 +303,7 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbPago> tbPago { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPago> tbPago1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbRol> tbRol { get; set; }
     }
 }

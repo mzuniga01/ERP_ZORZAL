@@ -182,19 +182,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbRol">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbRol">
-        <MappingFragment StoreEntitySet="tbRol">
-          <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
-          <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
-          <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
-          <ScalarProperty Name="rol_FechaCrea" ColumnName="rol_FechaCrea" />
-          <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
-          <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
-          <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbRolesUsuario">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbRolesUsuario">
         <MappingFragment StoreEntitySet="tbRolesUsuario">
@@ -297,6 +284,7 @@
     <EntitySetMapping Name="tbEmpleado">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEmpleado">
         <MappingFragment StoreEntitySet="tbEmpleado">
+          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
           <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
           <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
           <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
@@ -430,6 +418,7 @@
     <EntitySetMapping Name="tbBox">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbBox">
         <MappingFragment StoreEntitySet="tbBox">
+          <ScalarProperty Name="box_Estado" ColumnName="box_Estado" />
           <ScalarProperty Name="box_FechaModifica" ColumnName="box_FechaModifica" />
           <ScalarProperty Name="box_UsuarioModifica" ColumnName="box_UsuarioModifica" />
           <ScalarProperty Name="box_FechaCrea" ColumnName="box_FechaCrea" />
@@ -464,6 +453,7 @@
     <EntitySetMapping Name="tbEntradaDetalle">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEntradaDetalle">
         <MappingFragment StoreEntitySet="tbEntradaDetalle">
+          <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
           <ScalarProperty Name="entd_FechaModifica" ColumnName="entd_FechaModifica" />
           <ScalarProperty Name="entd_UsuarioModifica" ColumnName="entd_UsuarioModifica" />
           <ScalarProperty Name="entd_FechaCrea" ColumnName="entd_FechaCrea" />
@@ -684,6 +674,7 @@
     <EntitySetMapping Name="tbCuponDescuento">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCuponDescuento">
         <MappingFragment StoreEntitySet="tbCuponDescuento">
+          <ScalarProperty Name="cdto_FechaRedencion" ColumnName="cdto_FechaRedencion" />
           <ScalarProperty Name="cdto_FechaModifica" ColumnName="cdto_FechaModifica" />
           <ScalarProperty Name="cdto_UsuarioModifica" ColumnName="cdto_UsuarioModifica" />
           <ScalarProperty Name="cdto_FechaCrea" ColumnName="cdto_FechaCrea" />
@@ -1160,5 +1151,26 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="UDV_Inv_Nombre_Empleado">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado">
+        <MappingFragment StoreEntitySet="UDV_Inv_Nombre_Empleado">
+          <ScalarProperty Name="Empleados" ColumnName="Empleados" />
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbRol">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbRol">
+        <MappingFragment StoreEntitySet="tbRol">
+          <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
+          <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
+          <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
+          <ScalarProperty Name="rol_FechaCrea" ColumnName="rol_FechaCrea" />
+          <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
+          <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
+          <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

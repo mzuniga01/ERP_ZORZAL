@@ -41,6 +41,7 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbFactura tbFactura = db.tbFactura.Find(id);
+            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
             if (tbFactura == null)
             {
                 return HttpNotFound();
@@ -59,7 +60,6 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
             ViewBag.Producto = db.tbProducto.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
-
             return View();
         }
 
@@ -154,6 +154,13 @@ namespace ERP_ZORZAL.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public JsonResult GetEmpleados(string term)
+        {
+            var results = db.UDV_Inv_Nombre_Empleado.Where(s => term == null || s.Empleados.ToLower().Contains(term.ToLower())).Select(x => new { id = x.emp_Id, value = x.Empleados}).Take(5).ToList();
+
+            return Json(results, JsonRequestBehavior.AllowGet);
         }
     }
 }

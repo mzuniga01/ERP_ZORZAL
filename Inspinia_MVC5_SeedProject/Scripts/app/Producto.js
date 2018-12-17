@@ -1,5 +1,6 @@
-﻿$(document).ready(function () {
-    var $rows = $('#tbProductoFactura tr');
+﻿//Factura Buscar Producto
+$(document).ready(function () {
+    var $rows = $('#ProductoTbody tr');
     $("#search").keyup(function () {
         var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 
@@ -9,6 +10,7 @@
     })
 });
 
+// Factura Seleccionar Producto
 $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", function () {
     idItem = $(this).closest('tr').data('id');
     DescItem = $(this).closest('tr').data('desc');
@@ -18,6 +20,7 @@ $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", fun
     //CargarAsignaciones();
 });
 
+//Devolucion Seleccionar Producto
 $(document).on("click", "#DataTable1 tbody tr td button#Agregar", function () {
     idItem = $(this).closest('tr').data('id');
     DescItem = $(this).closest('tr').data('desc');

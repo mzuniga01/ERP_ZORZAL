@@ -30,7 +30,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbInventarioFisico> tbInventarioFisico { get; set; }
         public virtual DbSet<tbAccesoRol> tbAccesoRol { get; set; }
         public virtual DbSet<tbObjeto> tbObjeto { get; set; }
-        public virtual DbSet<tbRol> tbRol { get; set; }
         public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
         public virtual DbSet<tbUsuario> tbUsuario { get; set; }
         public virtual DbSet<tbActividadEconomica> tbActividadEconomica { get; set; }
@@ -88,6 +87,8 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
         public virtual DbSet<tbPago> tbPago { get; set; }
+        public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
+        public virtual DbSet<tbRol> tbRol { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {
@@ -182,7 +183,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCaja_Insert_Result>("UDP_Vent_tbCaja_Insert", cja_IdParameter, cja_DescripcionParameter, suc_IdParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbCaja_Update_Result> UDP_Vent_tbCaja_Update(Nullable<short> cja_Id, string cja_Descripcion, Nullable<short> suc_Id, Nullable<int> cja_UsuarioCrea, Nullable<System.DateTime> cja_FechaCrea, Nullable<int> cja_UsuarioModifica, Nullable<System.DateTime> cja_FechaModifica)
+        public virtual ObjectResult<UDP_Vent_tbCaja_Update_Result> UDP_Vent_tbCaja_Update(Nullable<short> cja_Id, string cja_Descripcion, Nullable<short> suc_Id, Nullable<int> cja_UsuarioCrea, Nullable<System.DateTime> cja_FechaCrea)
         {
             var cja_IdParameter = cja_Id.HasValue ?
                 new ObjectParameter("cja_Id", cja_Id) :
@@ -204,15 +205,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("cja_FechaCrea", cja_FechaCrea) :
                 new ObjectParameter("cja_FechaCrea", typeof(System.DateTime));
     
-            var cja_UsuarioModificaParameter = cja_UsuarioModifica.HasValue ?
-                new ObjectParameter("cja_UsuarioModifica", cja_UsuarioModifica) :
-                new ObjectParameter("cja_UsuarioModifica", typeof(int));
-    
-            var cja_FechaModificaParameter = cja_FechaModifica.HasValue ?
-                new ObjectParameter("cja_FechaModifica", cja_FechaModifica) :
-                new ObjectParameter("cja_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCaja_Update_Result>("UDP_Vent_tbCaja_Update", cja_IdParameter, cja_DescripcionParameter, suc_IdParameter, cja_UsuarioCreaParameter, cja_FechaCreaParameter, cja_UsuarioModificaParameter, cja_FechaModificaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCaja_Update_Result>("UDP_Vent_tbCaja_Update", cja_IdParameter, cja_DescripcionParameter, suc_IdParameter, cja_UsuarioCreaParameter, cja_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Gral_tbCuentasBanco_Insert_Result> UDP_Gral_tbCuentasBanco_Insert(Nullable<short> ban_Id, Nullable<short> mnda_Id, Nullable<byte> bcta_TipoCuenta, Nullable<decimal> bcta_TotalCredito, Nullable<decimal> bcta_TotalDebito, Nullable<System.DateTime> bcta_FechaApertura, string bcta_Numero)

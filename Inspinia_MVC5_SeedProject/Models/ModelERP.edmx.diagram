@@ -7,7 +7,6 @@
       <Diagram DiagramId="e3cdae754a7b458288829a69167bdea2" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbAccesoRol" Width="1.5" PointX="8.25" PointY="91.5" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbObjeto" Width="1.5" PointX="3" PointY="83.375" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbRol" Width="1.5" PointX="3" PointY="91.125" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbRolesUsuario" Width="1.5" PointX="5.25" PointY="99.125" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbUsuario" Width="1.5" PointX="0.75" PointY="88.375" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbActividadEconomica" Width="1.5" PointX="3" PointY="72.5" />
@@ -65,11 +64,8 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbSucursal" Width="1.5" PointX="5.25" PointY="116.125" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbTipoPago" Width="1.5" PointX="3" PointY="79.25" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbRoles_Rol_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbRol_tbUsuario_rol_UsuarioCrea" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbRol_rol_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbtbUsuario_usu_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbUsuario_rolu_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioCrea" />
@@ -234,6 +230,12 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCuentasBanco_tbPago_bcta_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" Width="1.5" PointX="3.375" PointY="0.75" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEntradaDetalle_tbUnidadMedida_uni_Id" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbRol" Width="1.5" PointX="3" PointY="92.125" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbRoles_Rol_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbRol_tbUsuario_rol_UsuarioCrea" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbRol_rol_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

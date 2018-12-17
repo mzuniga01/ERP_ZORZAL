@@ -35,7 +35,7 @@
     <Property Name="rol_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="rol_UsuarioModifica" Type="int" />
     <Property Name="rol_FechaModifica" Type="datetime" />
-    <Property Name="rol_Estado" Type="tinyint" />
+    <Property Name="rol_Estado" Type="bit" />
   </EntityType>
   <EntityType Name="tbRolesUsuario">
     <Key>
@@ -151,6 +151,7 @@
     <Property Name="emp_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="emp_UsuarioModifica" Type="int" />
     <Property Name="emp_FechaModifica" Type="datetime" />
+    <Property Name="emp_Estado" Type="bit" />
   </EntityType>
   <EntityType Name="tbMoneda">
     <Key>
@@ -260,6 +261,7 @@
     </Key>
     <Property Name="box_Codigo" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="box_Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="box_Estado" Type="bit" Nullable="false" />
     <Property Name="box_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="box_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="box_UsuarioModifica" Type="int" />
@@ -293,11 +295,12 @@
     <Property Name="entd_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ent_Id" Type="int" Nullable="false" />
     <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
-    <Property Name="entd_Cantidad" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="entd_Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="entd_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="entd_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="entd_UsuarioModifica" Type="int" />
     <Property Name="entd_FechaModifica" Type="datetime" />
+    <Property Name="uni_Id" Type="int" />
   </EntityType>
   <EntityType Name="tbEstadoInventarioFisico">
     <Key>
@@ -519,6 +522,7 @@
     <Property Name="cdto_MontoDescuento" Type="decimal" Precision="10" Scale="2" />
     <Property Name="cdto_MaximoMontoDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="cdto_Redimido" Type="bit" Nullable="false" />
+    <Property Name="cdto_FechaRedencion" Type="datetime" Nullable="false" />
     <Property Name="cdto_Anulado" Type="bit" />
     <Property Name="cdto_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="cdto_FechaCrea" Type="datetime" Nullable="false" />
@@ -896,6 +900,16 @@
     <Property Name="tpa_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="tpa_UsuarioModifica" Type="int" />
     <Property Name="tpa_FechaModifica" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDV_Inv_Nombre_Empleado">
+    <Key>
+      <PropertyRef Name="emp_Id" />
+      <PropertyRef Name="Empleados" />
+    </Key>
+    <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
   </EntityType>
   <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
     <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="1" />
@@ -1665,30 +1679,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id">
-    <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="1" />
-    <End Role="tbEmpleado" Type="Self.tbEmpleado" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbTipoIdentificacion">
-        <PropertyRef Name="tpi_Id" />
-      </Principal>
-      <Dependent Role="tbEmpleado">
-        <PropertyRef Name="tpi_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-    <End Role="tbEmpleado" Type="Self.tbEmpleado" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbEmpleado">
-        <PropertyRef Name="emp_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id">
     <End Role="tbMoneda" Type="Self.tbMoneda" Multiplicity="1" />
     <End Role="tbCuentasBanco" Type="Self.tbCuentasBanco" Multiplicity="*" />
@@ -1974,6 +1964,18 @@
       </Principal>
       <Dependent Role="tbEntradaDetalle">
         <PropertyRef Name="prod_Codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbEntradaDetalle_tbUnidadMedida_uni_Id">
+    <End Role="tbUnidadMedida" Type="Self.tbUnidadMedida" Multiplicity="0..1" />
+    <End Role="tbEntradaDetalle" Type="Self.tbEntradaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUnidadMedida">
+        <PropertyRef Name="uni_Id" />
+      </Principal>
+      <Dependent Role="tbEntradaDetalle">
+        <PropertyRef Name="uni_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3071,8 +3073,6 @@
     <Parameter Name="suc_Id" Type="smallint" Mode="In" />
     <Parameter Name="cja_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="cja_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="cja_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="cja_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbCliente_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="tpi_Id" Type="tinyint" Mode="In" />
@@ -3296,6 +3296,12 @@
     <EntitySet Name="tbSolicitudEfectivoDetalle" EntityType="Self.tbSolicitudEfectivoDetalle" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbSucursal" EntityType="Self.tbSucursal" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbTipoPago" EntityType="Self.tbTipoPago" Schema="Vent" store:Type="Tables" />
+    <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="Self.UDV_Inv_Nombre_Empleado" store:Type="Views" store:Schema="Gral">
+      <DefiningQuery>SELECT 
+    [UDV_Inv_Nombre_Empleado].[emp_Id] AS [emp_Id], 
+    [UDV_Inv_Nombre_Empleado].[Empleados] AS [Empleados]
+    FROM [Gral].[UDV_Inv_Nombre_Empleado] AS [UDV_Inv_Nombre_Empleado]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" Association="Self.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
       <End Role="tbObjeto" EntitySet="tbObjeto" />
       <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
@@ -3552,14 +3558,6 @@
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbDepartamento" EntitySet="tbDepartamento" />
     </AssociationSet>
-    <AssociationSet Name="FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id" Association="Self.FK_Gral_tbEmpleados_tbTipoIdentificacion_tpi_Id">
-      <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
-      <End Role="tbEmpleado" EntitySet="tbEmpleado" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea" Association="Self.FK_Gral_tbEmpleados_tbUsuario_emp_UsuarioCrea">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbEmpleado" EntitySet="tbEmpleado" />
-    </AssociationSet>
     <AssociationSet Name="FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id" Association="Self.FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id">
       <End Role="tbMoneda" EntitySet="tbMoneda" />
       <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
@@ -3654,6 +3652,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEntradaDetalle_tbProducto_prod_Codigo" Association="Self.FK_Inv_tbEntradaDetalle_tbProducto_prod_Codigo">
       <End Role="tbProducto" EntitySet="tbProducto" />
+      <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbEntradaDetalle_tbUnidadMedida_uni_Id" Association="Self.FK_Inv_tbEntradaDetalle_tbUnidadMedida_uni_Id">
+      <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
       <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEstadoMovimiento_tbUsuario_estm_UsuarioCrea" Association="Self.FK_Inv_tbEstadoMovimiento_tbUsuario_estm_UsuarioCrea">

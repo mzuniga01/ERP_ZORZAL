@@ -67,7 +67,7 @@ namespace ERP_GMEDINA.Models
         public int fact_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Creación")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime fact_FechaCrea { get; set; }
 
@@ -75,7 +75,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> fact_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modificación")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> fact_FechaModifica { get; set; }
     }
 }
