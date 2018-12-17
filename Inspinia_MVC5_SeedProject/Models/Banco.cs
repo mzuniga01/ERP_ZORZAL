@@ -17,12 +17,15 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public short ban_Id { get; set; }
         [Display(Name = "Banco")]
+        [StringLength(50, ErrorMessage = "El nombre no puede tener más de 50 caracteres")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string ban_Nombre { get; set; }
         [Display(Name = "Nombre Contacto")]
+        [StringLength(50, ErrorMessage = "El nombre no puede tener más de 50 caracteres")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string ban_NombreContacto { get; set; }
         [Display(Name = "Teléfono Contacto")]
+        [StringLength(25, ErrorMessage = "El nombre no puede tener más de 25 caracteres")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string ban_TelefonoContacto { get; set; }
 

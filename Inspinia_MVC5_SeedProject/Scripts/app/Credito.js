@@ -21,6 +21,7 @@ $("#fact_AlCredito").ready(function () {
         $('#Credito').hide();
     }
 });
+
 $("#fact_AlCredito").change(function () {
     if (this.checked) {
         //Do stuff
@@ -44,8 +45,6 @@ $("#fact_AlCredito").ready(function () {
         $('#Credito1').hide();
     }
 });
-
-
 
 $(document).ready(function () {
     if (fact_AlCredito.checked) {
@@ -81,7 +80,7 @@ $("#fact_AlCredito").ready(function () {
     }
 });
 
-$("#fact_AlCredito").change(function () {
+$("#fact_AutorizarDescuento").change(function () {
     if (this.checked) {
         //Do stuff
         console.log("Hola");
@@ -93,7 +92,7 @@ $("#fact_AlCredito").change(function () {
     }
 });
 
-$("#fact_AlCredito").ready(function () {
+$("#fact_AutorizarDescuento").ready(function () {
     if (this.checked) {
         //Do stuff
         console.log("Hola");
@@ -104,3 +103,11 @@ $("#fact_AlCredito").ready(function () {
         $('#Cred2').hide();
     }
 });
+
+
+
+
+
+
+
+

@@ -55,7 +55,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.bcta_Numero, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.bcta_Numero)
+                @Html.EditorFor(model => model.bcta_Numero, new { htmlAttributes = new { maxlength = 50 } })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.bcta_Numero)</p>
             </div>
         </div>
@@ -124,3 +124,4 @@
 }
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/CuentaBanco.js"></script>

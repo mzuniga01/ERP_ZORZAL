@@ -45,7 +45,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Días Crédito")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public int fact_DiasCredito { get; set; }
-        [Display(Name = "Porcentaje Crédito")]
+        [Display(Name = "Porcentaje Descuento")]
         [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal fact_PorcentajeDescuento { get; set; }
@@ -67,7 +67,7 @@ namespace ERP_GMEDINA.Models
         public int fact_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Creación")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy  H:mm:ss tt}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime fact_FechaCrea { get; set; }
 
@@ -75,7 +75,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> fact_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modificación")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy  H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> fact_FechaModifica { get; set; }
     }
 }

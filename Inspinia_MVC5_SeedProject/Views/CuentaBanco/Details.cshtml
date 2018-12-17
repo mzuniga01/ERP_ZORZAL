@@ -4,6 +4,22 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .myInput {
+        border-style: none;
+    }
+
+        .myInput:hover {
+            border-style: none;
+        }
+
+        .myInput:focus {
+            border-style: none;
+        }
+    .single-line{
+        padding:0;
+    }
+</style>
 
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -79,33 +95,38 @@
                             @Html.DisplayNameFor(model => model.bcta_TotalCredito)
                         </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.bcta_TotalCredito)
-                        </dd>
+                       
+                            <dd>
+                                @Html.EditorFor(model => model.bcta_TotalCredito, new { htmlAttributes = new { @readonly = "readonly" } })
+                            </dd>
+                      
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.bcta_TotalDebito)
-                        </dt>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.bcta_TotalDebito)
+                            </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.bcta_TotalDebito)
-                        </dd>
-                        <dt>
-                            Saldo Actual
-                        </dt>
 
-                        <dd>
-                          <label>0.00</label>
-                        </dd>
+                            <dd>
+                                @Html.EditorFor(model => model.bcta_TotalDebito, new { htmlAttributes = new { @readonly = "readonly" } })
+                            </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.bcta_FechaApertura)
-                        </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.bcta_FechaApertura, "{0:dd-MM-yyyy}", new { htmlAttributes = new { @id = "fechaapertura" } })
-                        </dd>
-                    </dl>
+                            <dt>
+                                <label>Saldo Actual</label>
+                            </dt>
+                            <dd>
+                                <input id="SaldoActual" type="text" class="myInput" readonly />
+                            </dd>
+
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.bcta_FechaApertura)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.bcta_FechaApertura, "{0:dd-MM-yyyy}", new { htmlAttributes = new { @id = "fechaapertura" } })
+                            </dd>
+</dl>
 
 
                     @Html.ActionLink("Editar", "Edit", new { id = Model.bcta_Id }, new { @class = "btn btn-primary" })
@@ -121,22 +142,28 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
                         <td>@Html.DisplayFor(model => model.bcta_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
                         <td>@Html.DisplayFor(model => model.bcta_FechaModifica)</td>
                     </tr>
                 </table>
             </div>
-          </div>
-      </div>
-  </div>
-  
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/FuncionResta.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#bcta_TotalDebito").css("border", "none");
+        $("#bcta_TotalCredito").css("border", "none");
+    });
+</script>
 
 
 

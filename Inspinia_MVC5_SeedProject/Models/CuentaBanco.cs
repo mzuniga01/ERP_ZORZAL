@@ -40,6 +40,7 @@ namespace ERP_GMEDINA.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}", HtmlEncode = false)]
         public System.DateTime bcta_FechaApertura { get; set; }
         [Display(Name = "Número Cuenta")]
+        [StringLength(50, ErrorMessage = "El nombre no puede tener más de 50 caracteres")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string bcta_Numero { get; set; }
         [Display(Name = "Usuario Creación")]

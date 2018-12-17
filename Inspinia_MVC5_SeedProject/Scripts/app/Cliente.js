@@ -10,6 +10,7 @@ $(document).ready(function () {
         }).hide();
     })
 });
+
 //Factura Seleccionar Cliente
 $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function () {
     idItem = $(this).closest('tr').data('id');

@@ -45,9 +45,9 @@
         </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ban_Nombre, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ban_Nombre,  new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.ban_Nombre)
+                @Html.EditorFor(model => model.ban_Nombre, new { htmlAttributes = new { maxlength = 50 } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.ban_Nombre)</p>
             </div>
         </div>
@@ -55,7 +55,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ban_NombreContacto, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.ban_NombreContacto)
+                @Html.EditorFor(model => model.ban_NombreContacto, new { htmlAttributes = new { maxlength = 50 } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.ban_NombreContacto)</p>
             </div>
         </div>
@@ -63,7 +63,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ban_TelefonoContacto, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.ban_TelefonoContacto)
+                @Html.EditorFor(model => model.ban_TelefonoContacto, new { htmlAttributes = new { maxlength = 25 } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.ban_TelefonoContacto) </p>
             </div>
         </div>

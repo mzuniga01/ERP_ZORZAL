@@ -11,6 +11,10 @@ $(ban_Nombre).on("keypress", function () {
     }, 50);
 })
 
-//$(document).ready(function () {
-//    $('#ban_TelefonoContacto').mask('(00) 0000-0000');
-//});
+$(ban_TelefonoContacto).on("keypress keyup blur", function (event) {
+    //this.value = this.value.replace(/[^0-9\.]/g,'');
+    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+});

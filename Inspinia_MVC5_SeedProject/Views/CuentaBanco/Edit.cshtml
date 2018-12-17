@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -64,10 +63,9 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.DropDownList("mnda_Id",null, new { @class = "form-control" })
+                                    @Html.DropDownList("mnda_Id", null, new { @class = "form-control" })
                                     <p style="color:red"> @Html.ValidationMessageFor(model => model.mnda_Id)</p>
                                      </div>
-                                <a href="~/Moneda/Create" class = "btn btn-primary btn-xs">Registrar Moneda</a>
                             </div>
 
                             <div class="form-group">
@@ -95,28 +93,27 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.Label("Saldo actual", new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2">Saldo Actual</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" readonly/>
+                                    <input id="SaldoActual" class="form-control" type="text" readonly/>
                                 </div>
                             </div>
 
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.bcta_FechaApertura, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-5">
+                                        @Html.EditorFor(model => model.bcta_FechaApertura, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "fechaapertura" } })
+                                        <p style="color:red">  @Html.ValidationMessageFor(model => model.bcta_FechaApertura)</p>
+                                    </div>
+                                </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.bcta_FechaApertura, new { @class = "control-label col-md-2" })
-                                <div class="col-md-5">
-                                    @Html.EditorFor(model => model.bcta_FechaApertura, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "fechaapertura" } })
-                                    <p style="color:red">  @Html.ValidationMessageFor(model => model.bcta_FechaApertura)</p>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                </div>
-                            </div>
-                        </div>
 
 
                     }
@@ -134,14 +131,12 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
                         <td>@Html.DisplayFor(model => model.bcta_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
                         <td>@Html.DisplayFor(model => model.bcta_FechaModifica)</td>
                     </tr>
                 </table>
@@ -160,3 +155,4 @@
 }
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/FuncionResta.js"></script>
