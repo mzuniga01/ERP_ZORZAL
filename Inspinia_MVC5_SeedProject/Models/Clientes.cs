@@ -120,7 +120,7 @@ namespace ERP_GMEDINA.Models
         public int clte_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Creación")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime clte_FechaCrea { get; set; }
 
@@ -128,7 +128,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> clte_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modificación")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
         
 

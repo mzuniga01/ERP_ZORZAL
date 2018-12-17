@@ -237,12 +237,14 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
                         <td>@Html.DisplayFor(model => model.clte_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
                         <td>@Html.DisplayFor(model => model.clte_FechaModifica)</td>
                     </tr>
                 </table>
