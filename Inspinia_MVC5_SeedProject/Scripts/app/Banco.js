@@ -1,4 +1,11 @@
-﻿$("#ban_Nombre").change(function () {
+﻿$(document).ready(function ()
+{
+    $("#ban_Nombre")[0].maxLength = 50;
+    $("#ban_NombreContacto")[0].maxLength = 50;
+    $("#ban_TelefonoContacto")[0].maxLength = 25;
+})
+
+$("#ban_Nombre").change(function () {
     var str = $("#ban_Nombre").val();
     var res = str.toUpperCase();
     $("#ban_Nombre").val(res);
