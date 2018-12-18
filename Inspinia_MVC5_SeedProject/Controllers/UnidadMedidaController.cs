@@ -28,6 +28,16 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbUnidadMedida tbUnidadMedida = db.tbUnidadMedida.Find(id);
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbUnidadMedida.uni_UsuarioCrea).usu_NombreUsuario;
+            var UsuarioModifica = tbUnidadMedida.uni_UsuarioModifica;
+            if (UsuarioModifica == null)
+            {
+                ViewBag.UsuarioModifica = "";
+            }
+            else
+            {
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModifica).usu_NombreUsuario;
+            };
             if (tbUnidadMedida == null)
             {
                 return HttpNotFound();
@@ -91,6 +101,16 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbUnidadMedida tbUnidadMedida = db.tbUnidadMedida.Find(id);
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbUnidadMedida.uni_UsuarioCrea).usu_NombreUsuario;
+            var UsuarioModifica = tbUnidadMedida.uni_UsuarioModifica;
+            if (UsuarioModifica == null)
+            {
+                ViewBag.UsuarioModifica = "";
+            }
+            else
+            {
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModifica).usu_NombreUsuario;
+            };
             if (tbUnidadMedida == null)
             {
                 return HttpNotFound();

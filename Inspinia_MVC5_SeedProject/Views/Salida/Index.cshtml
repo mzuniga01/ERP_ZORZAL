@@ -8,11 +8,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Salida</h2>
-        @*<ol class="breadcrumb">
-            <li class="active">
-                <strong>tbSalida</strong>
-            </li>
-        </ol>*@
     </div>
 </div>
 
@@ -33,44 +28,23 @@
     <thead>
         <tr>
             <th>
-                @*@Html.DisplayNameFor(model => model.sal_FechaElaboracion)*@
                 Fecha de Elaboración
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.sal_RazonDevolucion)
-                </th>
-                
                 <th>
-                    @Html.DisplayNameFor(model => model.sal_FechaCrea)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.sal_UsuarioModifica)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.sal_FechaModifica)
-                </th>*@
-                <th>
-                    @*@Html.DisplayNameFor(model => model.tbBodega.bod_Nombre)*@
                     Nombre de Bodega
                 </th>
-                @*<th>
-                    @Html.DisplayNameFor(model => model.tbBox.box_Descripcion)
-                </th>*@
             <th>
-                @*@Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)*@
-                Estado
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)
-                </th>*@
-            <th>
-                @*@Html.DisplayNameFor(model => model.tbTipoSalida.tsal_Descripcion)*@
                 Tipo de Salida
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.sal_UsuarioCrea)
-            </th>*@
-            <th></th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Responsable de Bodega
+            </th>
+            <th>
+                Acciones
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -79,44 +53,22 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.sal_FechaElaboracion)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.sal_RazonDevolucion)
-                </td>*@
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.sal_UsuarioCrea)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.sal_FechaCrea)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.sal_UsuarioModifica)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.sal_FechaModifica)
-                    </td>*@
+                </td> 
                     <td>
                         @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
-                    </td>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.tbBox.box_Descripcion)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
-                    </td>*@
+                    </td> 
                 <td>
                     @Html.DisplayFor(modelItem => item.tbTipoSalida.tsal_Descripcion)
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.sal_UsuarioCrea)
-                </td>*@
                 <td>
-                    @Html.ActionLink("Detalles", "Details", new { id = item.sal_Id }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.sal_Id }, new { @class = "btn btn-white btn-xs" })
-                    @*@Html.ActionLink("Delete", "Delete", new { id=item.sal_Id }, new { @class = "btn btn-white btn-sm"})*@
+                    @Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbBodega.bod_ResponsableBodega)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.sal_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Detalles", "Details", new { id = item.sal_Id }, new { @class = "btn btn-white btn-xs" })
                 </td>
             </tr>
         }
@@ -128,6 +80,10 @@
         </div>
     </div>
  </div>
+
+
+
+
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
 

@@ -27,7 +27,7 @@ namespace ERP_GMEDINA.Models
         public long fact_Id { get; set; }
 
         [Display(Name = "Fecha de Salida")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime sal_FechaElaboracion { get; set; }
 
         [Display(Name = "Estado Movimiento")]
@@ -43,7 +43,7 @@ namespace ERP_GMEDINA.Models
         public byte tsal_Id { get; set; }
 
         [Display(Name = "Razon de Devolucion")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string sal_RazonDevolucion { get; set; }
 
         [Display(Name = "Creado por")]
@@ -55,12 +55,13 @@ namespace ERP_GMEDINA.Models
         public System.DateTime sal_FechaCrea { get; set; }
 
         [Display(Name = "Modificado por")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<int> sal_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha de Modificaion")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<System.DateTime> sal_FechaModifica { get; set; }
+   
 
 
     }

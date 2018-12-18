@@ -8,24 +8,13 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Editar</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Edit</strong>
-            </li>
-        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index", @*null,*@ new { @class = "btn btn-primary"})
+            @Html.ActionLink("Regresar", "Index", @*null,*@ new { @class = "btn btn-primary" })
         </div>
     </div>
 </div>
-
-
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -36,200 +25,176 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.sal_Id)
+        <div class="form-horizontal">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.DropDownList("bod_Nombre", (IEnumerable<SelectListItem>)ViewBag.bod_Nombre, "Seleccion", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.bod_Id)
-            </div>
-        </div>
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.sal_Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.fact_Id, "Numero de Factura", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.DropDownList("fact_Id", (IEnumerable<SelectListItem>)ViewBag.fact_Id, "Seleccion", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.fact_Id)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.sal_FechaElaboracion,"Fecha de Elaboración", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.sal_FechaElaboracion, new { @class = "col-md-5" })
-                @Html.ValidationMessageFor(model => model.sal_FechaElaboracion)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.DropDownList("estm_Id", (IEnumerable<SelectListItem>)ViewBag.estm_Id, "Seleccion", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.estm_Id)
-            </div>
-        </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.box_Codigo, "Numero de Caja", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("box_Codigo", String.Empty)
-                @Html.ValidationMessageFor(model => model.box_Codigo)
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.tsal_Id, "Tipo de Salida", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.DropDownList("tsal_Id", (IEnumerable<SelectListItem>)ViewBag.tsal_Id, "Seleccion", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.tsal_Id)
-            </div>
-        </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.sal_RazonDevolucion,"Razon de Devolución", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.sal_RazonDevolucion)
-                @Html.ValidationMessageFor(model => model.sal_RazonDevolucion)
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.sal_UsuarioCrea,"Creado Por", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.tbUsuario.usu_NombreUsuario, new { htmlAttributes = new { @class = "col-md-5", @readonly="readonly" } })
-                @Html.ValidationMessageFor(model => model.sal_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.sal_FechaCrea,"Creado el", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.sal_FechaCrea, new { htmlAttributes = new { @class = "col-md-5", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.sal_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.sal_UsuarioModifica,"Modificado Por", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.tbUsuario.usu_NombreUsuario, new { @class = "col-md-5" })
-                @Html.ValidationMessageFor(model => model.sal_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.sal_FechaModifica,"Modificado el", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.sal_FechaModifica, new { @class = "col-md-5" })
-                @Html.ValidationMessageFor(model => model.sal_FechaModifica)
-            </div>
-        </div>*@
-
-        <div class="ibox-content">
             <div class="form-group">
-
-                <table class="table table-striped">
-                    <tr>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.tsal_Descripcion)*@
-                            Acción
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.tsal_UsuarioCrea)*@
-                            Usuario
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.tsal_FechaCrea)*@
-                            Fecha
-                        </th>
-                        @*<th>
-                            @Html.DisplayNameFor(model => model.tsal_UsuarioModifica)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tsal_FechaModifica)
-                        </th>*@
-                        @*<th></th>*@
-                    </tr>
-
-                    @*@foreach (var item in Model) { }*@
-                    <tr>
-                        <td>
-                            @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
-                            Creado por
-                        </td>
-                        <td>
-
-                            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
-                            @*brayan.interiano*@
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.sal_FechaCrea)
-                            @*5/12/2018 04:25:11*@ 
-                        </td>
-                        @*<td>
-                            @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
-                            @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                            @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                        </td>*@
-                    </tr>
-                    <tr>
-                        <td>
-                            @*@Html.DisplayFor(modelItem => item.tsal_UsuarioCrea)*@
-                            Modificado por
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
-                            @*brayan.interiano*@
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.sal_FechaModifica)
-                        </td>
-                        @*<td>
-                            @Html.DisplayFor(modelItem => item.tsal_FechaModifica)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Details", "Details", new { id=item.tsal_Id }, new { @class = "btn btn-primary btn-sm"})
-                            @Html.ActionLink("Edit", "Edit", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                            @Html.ActionLink("Delete", "Delete", new { id=item.tsal_Id }, new { @class = "btn btn-white btn-sm"})
-                        </td>*@
-                    </tr>
-                </table>
+                @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Nombre, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.bod_Id)
+                </div>
             </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.fact_Id, "Numero de Factura", new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("fact_Id", (IEnumerable<SelectListItem>)ViewBag.fact_Id, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.fact_Id)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.box_Codigo, "Caja", new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("box_Codigo", (IEnumerable<SelectListItem>)ViewBag.box_Codigo, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.estm_Id)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.sal_FechaElaboracion, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.sal_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "FechaElaboracionSalida" } })
+                    @Html.ValidationMessageFor(model => model.sal_FechaElaboracion)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("estm_Id", (IEnumerable<SelectListItem>)ViewBag.estm_Id, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.estm_Id)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.tsal_Id, "Tipo de Salida", new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("tsal_Id", (IEnumerable<SelectListItem>)ViewBag.tsal_Id, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.tsal_Id)
+                </div>
+            </div>
+            <div id="Devolucion" style="display:none">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sal_RazonDevolucion, new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.sal_RazonDevolucion)
+                        @Html.ValidationMessageFor(model => model.sal_RazonDevolucion)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                    <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
+                    <input type="button" class="btn btn-primary" style="border-bottom-color:red;" data-toggle="modal" data-target="#exampleModal" value="Anular" />
+                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                </div>
+            </div>
+
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}
+
+    }
 
 
                 </div>
             </div>
+            <div class="ibox-content">
+
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            Acción
+                        </th>
+                        <th>
+                            Usuario
+                        </th>
+                        <th>
+                            Fecha
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Creado
+                        </td>
+                        <td>
+                           @Html.DisplayFor(model => model.tbUsuario.usu_Nombres) 
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.sal_FechaCrea)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Modificado
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres) 
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.sal_FechaModifica)
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
         </div>
     </div>
  </div>
-<div>
-    @*@Html.Partial("_SalidaDetalle",new ERP_GMEDINA.Models.tbSalidaDetalle() { sal_Id = Model.tsal_Id })*@
-    @Html.Partial("_IndexSalidaDetalle", Model.tbSalidaDetalle)
+@*modal para anular*@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Anular Salida</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro de anular esta Salida?
+                </div>
+                <div class="modal-footer">
+                    <a href="@Url.Action("Index","Salida")" class="btn btn-primary">Si</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@*modal para Aplicar*@
+<div class="modal fade" id="ModalAplicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Aplicar Salida</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea Aplicar Salida?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Create", "Salida")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
 </div>
 
-
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/app/MostrarCamposSalida.js"></script>
+
 }

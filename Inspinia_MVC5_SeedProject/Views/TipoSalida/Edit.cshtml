@@ -8,18 +8,13 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Tipos de Salida</h2>
-       
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="@Url.Action("Index","TipoSalida")">Regresar</a>
-            
+            <a href="@Url.Action("Index", "TipoSalida")">Regresar</a>
         </div>
     </div>
 </div>
-
-
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -30,42 +25,42 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.tsal_Id)
+                        <div class="form-horizontal">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tsal_Id, new { @class = "control-label col-md-2"})
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.tsal_Id, new { htmlAttributes = new { @class = "form-control" ,@readonly = "readonly" } })
-              
-                @Html.ValidationMessageFor(model => model.tsal_Id)
-            </div>
-        </div>
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.tsal_Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tsal_Descripcion, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.tsal_Descripcion)
-                @Html.ValidationMessageFor(model => model.tsal_Descripcion)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tsal_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tsal_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}
+                                    @Html.ValidationMessageFor(model => model.tsal_Id)
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tsal_Descripcion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tsal_Descripcion)
+                                    @Html.ValidationMessageFor(model => model.tsal_Descripcion)
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    @Html.ActionLink("Editar", "Inactivar", new { id = Model.tsal_Id }, new { @class = "btn btn-white btn-xs" })
+                                </div>
+                            </div>
+                        </div>
+
+                    }
                 </div>
             </div>
             <div class="ibox-content">
@@ -73,58 +68,45 @@
                 <table class="table table-striped">
                     <tr>
                         <th>
-                           
+
                             Acción
                         </th>
                         <th>
-                           
+
                             Usuario
                         </th>
                         <th>
-                           
+
                             Fecha
                         </th>
-                       
                     </tr>
-
-                   
-                    <tr>
-                        <td>
-                            
-                            Creado 
-                        </td>
-                        <td>
-
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.tsal_FechaCrea)
-                        </td>
-                        
-                    </tr>
-                    <tr>
-                        <td>
-                           
-                            Modificado
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.tsal_FechaModifica)
-                        </td>
-                        
-                    </tr>
-
+                        <tr>
+                            <td>
+                                Creado
+                            </td>
+                            <td>
+                                @ViewBag.UsuarioCrea
+                            </td>
+                            <td>
+                                @Html.DisplayFor(Model => Model.tsal_FechaCrea)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Modificado
+                            </td>
+                            <td>
+                                @ViewBag.UsuarioModifica
+                            </td>
+                            <td>
+                                @Html.DisplayFor(Model => Model.tsal_FechaModifica)
+                            </td>
+                        </tr>
                 </table>
-
-
             </div>
         </div>
     </div>
- </div>
-
-
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
