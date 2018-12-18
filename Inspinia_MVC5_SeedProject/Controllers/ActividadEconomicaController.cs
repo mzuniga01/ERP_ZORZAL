@@ -112,7 +112,7 @@ namespace ERP_ZORZAL.Controllers
 
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Gral_tbActividadEconomica_Update(tbActividadEconomica.acte_Id, tbActividadEconomica.acte_Descripcion, tbActividadEconomica.acte_UsuarioCrea, tbActividadEconomica.acte_FechaCrea, tbActividadEconomica.acte_UsuarioModifica, tbActividadEconomica.acte_FechaModifica);
+                    list = db.UDP_Gral_tbActividadEconomica_Update(tbActividadEconomica.acte_Id, tbActividadEconomica.acte_Descripcion, tbActividadEconomica.acte_UsuarioCrea, tbActividadEconomica.acte_FechaCrea);
                     foreach (UDP_Gral_tbActividadEconomica_Update_Result ActividadEconomica in list)
                         MensajeError = ActividadEconomica.MensajeError;
                     if (MensajeError == -1)

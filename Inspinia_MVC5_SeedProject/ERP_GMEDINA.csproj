@@ -266,9 +266,6 @@
     <Compile Include="Models\PuntoEmisionDetalle.cs" />
     <Compile Include="Models\SolicitudCreditos.cs" />
     <Compile Include="Models\Sucursal.cs" />
-    <Compile Include="Models\tbAccesoRol.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tbActividadEconomica.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -785,6 +782,7 @@
     </Content>
     <Content Include="Scripts\app\Activo.js" />
     <Content Include="Scripts\app\Banco.js" />
+    <Content Include="Scripts\app\BCliente.js" />
     <Content Include="Scripts\app\CalculoFactura.js" />
     <Content Include="Scripts\app\Cliente.js" />
     <Content Include="Scripts\app\Credito.js" />

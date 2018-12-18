@@ -28,7 +28,6 @@ namespace ERP_GMEDINA.Models
         }
     
         public virtual DbSet<tbInventarioFisico> tbInventarioFisico { get; set; }
-        public virtual DbSet<tbAccesoRol> tbAccesoRol { get; set; }
         public virtual DbSet<tbObjeto> tbObjeto { get; set; }
         public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
         public virtual DbSet<tbUsuario> tbUsuario { get; set; }
@@ -295,7 +294,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbActividadEconomica_Insert_Result>("UDP_Gral_tbActividadEconomica_Insert", acte_DescripcionParameter);
         }
     
-        public virtual ObjectResult<UDP_Gral_tbActividadEconomica_Update_Result> UDP_Gral_tbActividadEconomica_Update(Nullable<short> acte_Id, string acte_Descripcion, Nullable<int> acte_UsuarioCrea, Nullable<System.DateTime> acte_FechaCrea, Nullable<int> acte_UsuarioModifica, Nullable<System.DateTime> acte_FechaModifica)
+        public virtual ObjectResult<UDP_Gral_tbActividadEconomica_Update_Result> UDP_Gral_tbActividadEconomica_Update(Nullable<short> acte_Id, string acte_Descripcion, Nullable<int> acte_UsuarioCrea, Nullable<System.DateTime> acte_FechaCrea)
         {
             var acte_IdParameter = acte_Id.HasValue ?
                 new ObjectParameter("acte_Id", acte_Id) :
@@ -313,15 +312,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("acte_FechaCrea", acte_FechaCrea) :
                 new ObjectParameter("acte_FechaCrea", typeof(System.DateTime));
     
-            var acte_UsuarioModificaParameter = acte_UsuarioModifica.HasValue ?
-                new ObjectParameter("acte_UsuarioModifica", acte_UsuarioModifica) :
-                new ObjectParameter("acte_UsuarioModifica", typeof(int));
-    
-            var acte_FechaModificaParameter = acte_FechaModifica.HasValue ?
-                new ObjectParameter("acte_FechaModifica", acte_FechaModifica) :
-                new ObjectParameter("acte_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbActividadEconomica_Update_Result>("UDP_Gral_tbActividadEconomica_Update", acte_IdParameter, acte_DescripcionParameter, acte_UsuarioCreaParameter, acte_FechaCreaParameter, acte_UsuarioModificaParameter, acte_FechaModificaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbActividadEconomica_Update_Result>("UDP_Gral_tbActividadEconomica_Update", acte_IdParameter, acte_DescripcionParameter, acte_UsuarioCreaParameter, acte_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Gral_tbMoneda_Insert_Result> UDP_Gral_tbMoneda_Insert(string mnda_Abreviatura, string mnda_Nombre)

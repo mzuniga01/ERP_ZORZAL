@@ -1,7 +1,6 @@
 ﻿$("#clte_EsPersonaNatural").change(function () {
     if (this.checked) {
         //Do stuff
-        console.log("Hola");
         $('#natural').show();
         $("#clte_NombreComercial").val('**');
         $("#clte_RazonSocial").val('**');
@@ -77,3 +76,21 @@ $("#tpi_Id").on("change", function () {
         $('#identificacion').show();
 });
 
+$('#clte_EsPersonaNatural').on('click', function () {
+    var x;
+    var r = confirm("¿Esta seguro de borrar los datos ya Ingresados?");
+    if (r == true) {
+    }
+    else {
+        return false
+    }
+
+});
+
+$("#clte_ContactoTelefono").on("keypress keyup blur", function (event) {
+    //this.value = this.value.replace(/[^0-9\.]/g,'');
+    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+});

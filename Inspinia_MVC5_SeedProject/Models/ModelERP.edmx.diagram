@@ -4,8 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e3cdae754a7b458288829a69167bdea2" Name="Diagram1" ZoomLevel="72">
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbAccesoRol" Width="1.5" PointX="8.25" PointY="91.5" />
+      <Diagram DiagramId="e3cdae754a7b458288829a69167bdea2" Name="Diagram1" ZoomLevel="19">
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbObjeto" Width="1.5" PointX="3" PointY="83.375" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbRolesUsuario" Width="1.5" PointX="5.25" PointY="99.125" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbUsuario" Width="1.5" PointX="0.75" PointY="88.375" />
@@ -63,8 +62,6 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbSolicitudEfectivoDetalle" Width="1.5" PointX="21.75" PointY="108.5" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbSucursal" Width="1.5" PointX="5.25" PointY="116.125" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbTipoPago" Width="1.5" PointX="3" PointY="79.25" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbtbUsuario_usu_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbUsuario_rolu_UsuarioCrea" />
@@ -233,7 +230,6 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" Width="1.5" PointX="3.375" PointY="0.75" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEntradaDetalle_tbUnidadMedida_uni_Id" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbRol" Width="1.5" PointX="3" PointY="92.125" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbRoles_Rol_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbRol_tbUsuario_rol_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbRol_rol_Id" />
       </Diagram>

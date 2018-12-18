@@ -5,19 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ERP_ZORZALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="tbAccesoRol">
-          <Key>
-            <PropertyRef Name="acrol_Id" />
-          </Key>
-          <Property Name="acrol_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="rol_Id" Type="int" Nullable="false" />
-          <Property Name="obj_Id" Type="int" Nullable="false" />
-          <Property Name="acrol_Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="acrol_UsuarioCrea" Type="int" Nullable="false" />
-          <Property Name="acrol_FechaCrea" Type="datetime" Nullable="false" />
-          <Property Name="acrol_UsuarioModifica" Type="int" />
-          <Property Name="acrol_FechaModifica" Type="datetime" />
-        </EntityType>
         <EntityType Name="tbObjeto">
           <Key>
             <PropertyRef Name="obj_Id" />
@@ -492,7 +479,7 @@
           <Property Name="clte_EsPersonaNatural" Type="bit" Nullable="false" />
           <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="clte_Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="clte_FechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="clte_FechaNacimiento" Type="date" />
           <Property Name="clte_Nacionalidad" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="clte_Sexo" Type="char" MaxLength="1" />
           <Property Name="clte_Telefono" Type="nvarchar" MaxLength="25" Nullable="false" />
@@ -501,7 +488,7 @@
           <Property Name="clte_ContactoNombre" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="clte_ContactoEmail" Type="nvarchar" MaxLength="50" />
           <Property Name="clte_ContactoTelefono" Type="nvarchar" MaxLength="25" Nullable="false" />
-          <Property Name="clte_FechaConstitucion" Type="date" Nullable="false" />
+          <Property Name="clte_FechaConstitucion" Type="date" />
           <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
           <Property Name="clte_Direccion" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="clte_CorreoElectronico" Type="nvarchar" MaxLength="50" />
@@ -916,42 +903,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
-          <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="1" />
-          <End Role="tbAccesoRol" Type="Self.tbAccesoRol" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbObjeto">
-              <PropertyRef Name="obj_Id" />
-            </Principal>
-            <Dependent Role="tbAccesoRol">
-              <PropertyRef Name="obj_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Acce_tbAccesoRol_tbRoles_Rol_Id">
-          <End Role="tbRol" Type="Self.tbRol" Multiplicity="1" />
-          <End Role="tbAccesoRol" Type="Self.tbAccesoRol" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbRol">
-              <PropertyRef Name="rol_Id" />
-            </Principal>
-            <Dependent Role="tbAccesoRol">
-              <PropertyRef Name="rol_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea">
-          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-          <End Role="tbAccesoRol" Type="Self.tbAccesoRol" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbAccesoRol">
-              <PropertyRef Name="acrol_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
           <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="*" />
@@ -2988,8 +2939,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="acte_Descripcion" Type="nvarchar" Mode="In" />
           <Parameter Name="acte_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="acte_FechaCrea" Type="datetime" Mode="In" />
-          <Parameter Name="acte_UsuarioModifica" Type="int" Mode="In" />
-          <Parameter Name="acte_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Gral_tbBanco_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="ban_Nombre" Type="nvarchar" Mode="In" />
@@ -3240,7 +3189,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="tpa_Titular" Type="bit" Mode="In" />
         </Function>
         <EntityContainer Name="ERP_ZORZALModelStoreContainer">
-          <EntitySet Name="tbAccesoRol" EntityType="Self.tbAccesoRol" Schema="Acce" store:Type="Tables" />
           <EntitySet Name="tbObjeto" EntityType="Self.tbObjeto" Schema="Acce" store:Type="Tables" />
           <EntitySet Name="tbRol" EntityType="Self.tbRol" Schema="Acce" store:Type="Tables" />
           <EntitySet Name="tbRolesUsuario" EntityType="Self.tbRolesUsuario" Schema="Acce" store:Type="Tables" />
@@ -3307,18 +3255,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     [UDV_Inv_Nombre_Empleado].[Empleados] AS [Empleados]
     FROM [Gral].[UDV_Inv_Nombre_Empleado] AS [UDV_Inv_Nombre_Empleado]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" Association="Self.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
-            <End Role="tbObjeto" EntitySet="tbObjeto" />
-            <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbAccesoRol_tbRoles_Rol_Id" Association="Self.FK_Acce_tbAccesoRol_tbRoles_Rol_Id">
-            <End Role="tbRol" EntitySet="tbRol" />
-            <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea" Association="Self.FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
-          </AssociationSet>
           <AssociationSet Name="FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" Association="Self.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbObjeto" EntitySet="tbObjeto" />
@@ -4065,8 +4001,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="acte_Descripcion" Mode="In" Type="String" />
             <Parameter Name="acte_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="acte_FechaCrea" Mode="In" Type="DateTime" />
-            <Parameter Name="acte_UsuarioModifica" Mode="In" Type="Int32" />
-            <Parameter Name="acte_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbMoneda_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbMoneda_Insert_Result)">
             <Parameter Name="mnda_Abreviatura" Mode="In" Type="String" />
@@ -4186,7 +4120,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="clte_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="clte_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <EntitySet Name="tbAccesoRol" EntityType="ERP_ZORZALModel.tbAccesoRol" />
           <EntitySet Name="tbObjeto" EntityType="ERP_ZORZALModel.tbObjeto" />
           <EntitySet Name="tbRolesUsuario" EntityType="ERP_ZORZALModel.tbRolesUsuario" />
           <EntitySet Name="tbUsuario" EntityType="ERP_ZORZALModel.tbUsuario" />
@@ -4244,14 +4177,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <EntitySet Name="tbSolicitudEfectivoDetalle" EntityType="ERP_ZORZALModel.tbSolicitudEfectivoDetalle" />
           <EntitySet Name="tbSucursal" EntityType="ERP_ZORZALModel.tbSucursal" />
           <EntitySet Name="tbTipoPago" EntityType="ERP_ZORZALModel.tbTipoPago" />
-          <AssociationSet Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
-            <End Role="tbObjeto" EntitySet="tbObjeto" />
-            <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
-          </AssociationSet>
           <AssociationSet Name="FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbObjeto" EntitySet="tbObjeto" />
@@ -5006,10 +4931,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
           </AssociationSet>
           <EntitySet Name="tbRol" EntityType="ERP_ZORZALModel.tbRol" />
-          <AssociationSet Name="FK_Acce_tbAccesoRol_tbRoles_Rol_Id" Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbRoles_Rol_Id">
-            <End Role="tbRol" EntitySet="tbRol" />
-            <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
-          </AssociationSet>
           <AssociationSet Name="FK_Acce_tbRol_tbUsuario_rol_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbRol_tbUsuario_rol_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbRol" EntitySet="tbRol" />
@@ -5124,22 +5045,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
         <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Insert_Result">
           <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
-        <EntityType Name="tbAccesoRol">
-          <Key>
-            <PropertyRef Name="acrol_Id" />
-          </Key>
-          <Property Name="acrol_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="rol_Id" Type="Int32" Nullable="false" />
-          <Property Name="obj_Id" Type="Int32" Nullable="false" />
-          <Property Name="acrol_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="acrol_UsuarioCrea" Type="Int32" Nullable="false" />
-          <Property Name="acrol_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="acrol_UsuarioModifica" Type="Int32" />
-          <Property Name="acrol_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbObjeto" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" FromRole="tbAccesoRol" ToRole="tbObjeto" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea" FromRole="tbAccesoRol" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbRol" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbRoles_Rol_Id" FromRole="tbAccesoRol" ToRole="tbRol" />
-        </EntityType>
         <EntityType Name="tbObjeto">
           <Key>
             <PropertyRef Name="obj_Id" />
@@ -5151,7 +5056,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Name="obj_UsuarioModifica" Type="Int32" />
           <Property Name="obj_FechaModifica" Type="DateTime" Precision="3" />
           <Property Name="obj_Estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="tbAccesoRol" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" FromRole="tbObjeto" ToRole="tbAccesoRol" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" FromRole="tbObjeto" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbRolesUsuario">
@@ -5182,7 +5086,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Name="usu_EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="usu_RazonInactivo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="usu_EsAdministrador" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="tbAccesoRol" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea" FromRole="tbUsuario" ToRole="tbAccesoRol" />
           <NavigationProperty Name="tbObjeto" Relationship="ERP_ZORZALModel.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" FromRole="tbUsuario" ToRole="tbObjeto" />
           <NavigationProperty Name="tbRolesUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbtbUsuario_usu_Id" FromRole="tbUsuario" ToRole="tbRolesUsuario" />
           <NavigationProperty Name="tbRolesUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbUsuario_rolu_UsuarioCrea" FromRole="tbUsuario" ToRole="tbRolesUsuario" />
@@ -5802,7 +5705,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Name="clte_EsPersonaNatural" Type="Boolean" Nullable="false" />
           <Property Name="clte_Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="clte_Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="clte_FechaNacimiento" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="clte_FechaNacimiento" Type="DateTime" Precision="0" />
           <Property Name="clte_Nacionalidad" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="clte_Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="clte_Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
@@ -5811,7 +5714,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Name="clte_ContactoNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="clte_ContactoEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="clte_ContactoTelefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="clte_FechaConstitucion" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="clte_FechaConstitucion" Type="DateTime" Precision="0" />
           <Property Name="mun_Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="clte_Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="clte_CorreoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -6314,30 +6217,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioModifica" FromRole="tbTipoPago" ToRole="tbUsuario" />
           <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id" FromRole="tbTipoPago" ToRole="tbPago" />
         </EntityType>
-        <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
-          <End Type="ERP_ZORZALModel.tbObjeto" Role="tbObjeto" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbAccesoRol" Role="tbAccesoRol" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbObjeto">
-              <PropertyRef Name="obj_Id" />
-            </Principal>
-            <Dependent Role="tbAccesoRol">
-              <PropertyRef Name="obj_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbAccesoRol" Role="tbAccesoRol" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbAccesoRol">
-              <PropertyRef Name="acrol_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbObjeto" Role="tbObjeto" Multiplicity="*" />
@@ -8443,22 +8322,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Name="rol_UsuarioModifica" Type="Int32" />
           <Property Name="rol_FechaModifica" Type="DateTime" Precision="3" />
           <Property Name="rol_Estado" Type="Boolean" />
-          <NavigationProperty Name="tbAccesoRol" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbRoles_Rol_Id" FromRole="tbRol" ToRole="tbAccesoRol" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbRol_tbUsuario_rol_UsuarioCrea" FromRole="tbRol" ToRole="tbUsuario" />
           <NavigationProperty Name="tbRolesUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbRol_rol_Id" FromRole="tbRol" ToRole="tbRolesUsuario" />
         </EntityType>
-        <Association Name="FK_Acce_tbAccesoRol_tbRoles_Rol_Id">
-          <End Type="ERP_ZORZALModel.tbRol" Role="tbRol" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbAccesoRol" Role="tbAccesoRol" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbRol">
-              <PropertyRef Name="rol_Id" />
-            </Principal>
-            <Dependent Role="tbAccesoRol">
-              <PropertyRef Name="rol_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Acce_tbRol_tbUsuario_rol_UsuarioCrea">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbRol" Role="tbRol" Multiplicity="*" />
@@ -8645,20 +8511,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="tbAccesoRol">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbAccesoRol">
-              <MappingFragment StoreEntitySet="tbAccesoRol">
-                <ScalarProperty Name="acrol_FechaModifica" ColumnName="acrol_FechaModifica" />
-                <ScalarProperty Name="acrol_UsuarioModifica" ColumnName="acrol_UsuarioModifica" />
-                <ScalarProperty Name="acrol_FechaCrea" ColumnName="acrol_FechaCrea" />
-                <ScalarProperty Name="acrol_UsuarioCrea" ColumnName="acrol_UsuarioCrea" />
-                <ScalarProperty Name="acrol_Descripcion" ColumnName="acrol_Descripcion" />
-                <ScalarProperty Name="obj_Id" ColumnName="obj_Id" />
-                <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
-                <ScalarProperty Name="acrol_Id" ColumnName="acrol_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbObjeto">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbObjeto">
               <MappingFragment StoreEntitySet="tbObjeto">

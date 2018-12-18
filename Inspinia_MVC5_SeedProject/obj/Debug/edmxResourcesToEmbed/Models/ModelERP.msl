@@ -155,20 +155,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="tbAccesoRol">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbAccesoRol">
-        <MappingFragment StoreEntitySet="tbAccesoRol">
-          <ScalarProperty Name="acrol_FechaModifica" ColumnName="acrol_FechaModifica" />
-          <ScalarProperty Name="acrol_UsuarioModifica" ColumnName="acrol_UsuarioModifica" />
-          <ScalarProperty Name="acrol_FechaCrea" ColumnName="acrol_FechaCrea" />
-          <ScalarProperty Name="acrol_UsuarioCrea" ColumnName="acrol_UsuarioCrea" />
-          <ScalarProperty Name="acrol_Descripcion" ColumnName="acrol_Descripcion" />
-          <ScalarProperty Name="obj_Id" ColumnName="obj_Id" />
-          <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
-          <ScalarProperty Name="acrol_Id" ColumnName="acrol_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbObjeto">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbObjeto">
         <MappingFragment StoreEntitySet="tbObjeto">

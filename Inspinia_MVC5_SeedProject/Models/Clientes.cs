@@ -42,7 +42,7 @@ namespace ERP_GMEDINA.Models
         public string clte_Apellidos { get; set; }
 
         [Display(Name = "Fecha Nacimiento")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> clte_FechaNacimiento { get; set; }
 
@@ -79,7 +79,7 @@ namespace ERP_GMEDINA.Models
         public string clte_ContactoTelefono { get; set; }
 
         [Display(Name = "Fecha Constitución")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> clte_FechaConstitucion { get; set; }
 

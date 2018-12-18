@@ -23,32 +23,30 @@
 					</div>
                 </div>
                 <div class="ibox-content">
+                    <form onsubmit="return false;">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Identificación</label>
+                                <div class="col-md-4">
+                                    <input type="text" id="identificacion" onclick="BCliente();" class="form-control" />
+                                </div>
+                                <label class="control-label col-md-1">Nombres</label>
+                                <div class="col-md-4">
+                                    <input type="text" id="Nombres" onclick="BCliente();" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Teléfono</label>
+                                <div class="col-md-3">
+                                    <input type="text" id="telefono" class="form-control" />
+                                </div>
+                                <div class="">
+                                    <button id="search" class="btn btn-primary btn-sm">Buscar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
 
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label class="control-label col-md-2">Identificación</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control " />
-                            </div>
-                            <label class="control-label col-md-1">Nombres</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2">Apellidos</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control " />
-                            </div>
-                            <label class="control-label col-md-1">Teléfono</label>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" />
-                            </div>
-                            <div class="">
-                                <input type="button" value="Buscar" class="btn btn-primary btn-sm" />
-                            </div>
-                        </div>
-                    </div>
                     <table class="table table table-striped  table-bordered" id="DataTable1">
                         <thead>
                             <tr>
@@ -70,7 +68,7 @@
                                 <th>Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="Cliente">
 
                             @foreach (var item in Model)
                             {
@@ -134,3 +132,4 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>
 <script src="~/Scripts/app/Departamento.js"></script>
+<script src="~/Scripts/app/BCliente.js"></script>

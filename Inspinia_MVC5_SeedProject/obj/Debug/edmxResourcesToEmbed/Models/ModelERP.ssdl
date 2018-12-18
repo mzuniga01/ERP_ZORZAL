@@ -1,18 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ERP_ZORZALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="tbAccesoRol">
-    <Key>
-      <PropertyRef Name="acrol_Id" />
-    </Key>
-    <Property Name="acrol_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="rol_Id" Type="int" Nullable="false" />
-    <Property Name="obj_Id" Type="int" Nullable="false" />
-    <Property Name="acrol_Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
-    <Property Name="acrol_UsuarioCrea" Type="int" Nullable="false" />
-    <Property Name="acrol_FechaCrea" Type="datetime" Nullable="false" />
-    <Property Name="acrol_UsuarioModifica" Type="int" />
-    <Property Name="acrol_FechaModifica" Type="datetime" />
-  </EntityType>
   <EntityType Name="tbObjeto">
     <Key>
       <PropertyRef Name="obj_Id" />
@@ -487,7 +474,7 @@
     <Property Name="clte_EsPersonaNatural" Type="bit" Nullable="false" />
     <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="clte_Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="clte_FechaNacimiento" Type="date" Nullable="false" />
+    <Property Name="clte_FechaNacimiento" Type="date" />
     <Property Name="clte_Nacionalidad" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="clte_Sexo" Type="char" MaxLength="1" />
     <Property Name="clte_Telefono" Type="nvarchar" MaxLength="25" Nullable="false" />
@@ -496,7 +483,7 @@
     <Property Name="clte_ContactoNombre" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="clte_ContactoEmail" Type="nvarchar" MaxLength="50" />
     <Property Name="clte_ContactoTelefono" Type="nvarchar" MaxLength="25" Nullable="false" />
-    <Property Name="clte_FechaConstitucion" Type="date" Nullable="false" />
+    <Property Name="clte_FechaConstitucion" Type="date" />
     <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
     <Property Name="clte_Direccion" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="clte_CorreoElectronico" Type="nvarchar" MaxLength="50" />
@@ -911,42 +898,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
   </EntityType>
-  <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
-    <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="1" />
-    <End Role="tbAccesoRol" Type="Self.tbAccesoRol" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbObjeto">
-        <PropertyRef Name="obj_Id" />
-      </Principal>
-      <Dependent Role="tbAccesoRol">
-        <PropertyRef Name="obj_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Acce_tbAccesoRol_tbRoles_Rol_Id">
-    <End Role="tbRol" Type="Self.tbRol" Multiplicity="1" />
-    <End Role="tbAccesoRol" Type="Self.tbAccesoRol" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbRol">
-        <PropertyRef Name="rol_Id" />
-      </Principal>
-      <Dependent Role="tbAccesoRol">
-        <PropertyRef Name="rol_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-    <End Role="tbAccesoRol" Type="Self.tbAccesoRol" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbAccesoRol">
-        <PropertyRef Name="acrol_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="*" />
@@ -2983,8 +2934,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="acte_Descripcion" Type="nvarchar" Mode="In" />
     <Parameter Name="acte_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="acte_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="acte_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="acte_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbBanco_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="ban_Nombre" Type="nvarchar" Mode="In" />
@@ -3235,7 +3184,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="tpa_Titular" Type="bit" Mode="In" />
   </Function>
   <EntityContainer Name="ERP_ZORZALModelStoreContainer">
-    <EntitySet Name="tbAccesoRol" EntityType="Self.tbAccesoRol" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbObjeto" EntityType="Self.tbObjeto" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbRol" EntityType="Self.tbRol" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbRolesUsuario" EntityType="Self.tbRolesUsuario" Schema="Acce" store:Type="Tables" />
@@ -3302,18 +3250,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     [UDV_Inv_Nombre_Empleado].[Empleados] AS [Empleados]
     FROM [Gral].[UDV_Inv_Nombre_Empleado] AS [UDV_Inv_Nombre_Empleado]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" Association="Self.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
-      <End Role="tbObjeto" EntitySet="tbObjeto" />
-      <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Acce_tbAccesoRol_tbRoles_Rol_Id" Association="Self.FK_Acce_tbAccesoRol_tbRoles_Rol_Id">
-      <End Role="tbRol" EntitySet="tbRol" />
-      <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea" Association="Self.FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
-    </AssociationSet>
     <AssociationSet Name="FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" Association="Self.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbObjeto" EntitySet="tbObjeto" />

@@ -71,7 +71,11 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bcta_TipoCuenta, "Tipo Cuenta", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.DropDownListFor(model => model.bcta_TipoCuenta, new SelectList(Model.TipoCuentaList, "ID_TIPOCUENTA", "DESCRIPCION"), new { @class = "form-control" })
+                                    <select class="form-control" id="bcta_TipoCuenta" name="bcta_TipoCuenta">
+                                        <option value="" selected disabled>Seleccione Tipo Cuenta</option>
+                                        <option value="1">Ahorro</option>
+                                        <option value="0">Cheques</option>
+                                    </select>
                                     @Html.ValidationMessageFor(model => model.bcta_TipoCuenta, "", new { @class = "text-danger" })
                                 </div>
                             </div>
