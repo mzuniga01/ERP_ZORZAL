@@ -39,7 +39,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cred_FechaSolicitud, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cred_FechaSolicitud, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.cred_FechaSolicitud)
                 @Html.ValidationMessageFor(model => model.cred_FechaSolicitud)
             </div>
         </div>
@@ -47,43 +47,56 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cred_FechaAprobacion, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cred_FechaAprobacion)
+                @Html.EditorFor(model => model.cred_FechaAprobacion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafactura", disabled = "disabled", @readonly = "readonly" } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.cred_FechaAprobacion)
             </div>
         </div>
 
+
+        @* Datos de Cliente *@
         <div class="form-group">
             <label class="control-label col-md-2">Número Cliente</label>
             @*@Html.LabelFor(model => model.clte_Id, new { @class = "control-label col-md-2" })*@
             <div class="col-md-4">
-                @Html.EditorFor(model => model.clte_Id) 
+                @Html.EditorFor(model => model.clte_Id)
                 <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)
-           </div>
-            <div class="col-md-">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
             </div>
+            @* Boton de agregar rtn de Cliente *@
+            <div class="col-md-1">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+            @*<div class="col-md-">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
+            </div>*@
         </div>
-
 
         <div class="form-group">
-
-            <label class="control-label col-md-2">Nombre Cliente</label>
-            @*@@Html.LabelFor(model => model.clte_Nombre, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cred_MontoAprobado)
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
+            @Html.LabelFor(model => model.tbCliente.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.tbCliente.clte_Nombres, new
+                                   {
+                                       htmlAttributes = new
+                                       {
+                                           @class = "form-control"@*, @readonly = "readonly"*@ }
+                                   })
+                @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
             </div>
         </div>
+
 
         <div class="form-group">
 
             <label class="control-label col-md-2">RTN/Identidad Cliente</label>
             @*@@Html.LabelFor(model => model.clte_Nombre, new { @class = "control-label col-md-2" })*@
             <div class="col-md-4">
-                @Html.EditorFor(model => model.clte_Id)
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
+                @Html.EditorFor(model => model.tbCliente.clte_Identificacion)
+                <p style="color:red">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)
             </div>
         </div>
+
+        @* Fin datos de cliente *@
+
+
 
         <div class="form-group">
 
@@ -148,7 +161,7 @@
 
 
 <div>
-    <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="ModalAgregarClientes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -157,6 +170,7 @@
                     </button>
                     <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
                 </div>
+                @*         ViewBag.Cliente = db.tbCliente.ToList(); *@
                 <div class="modal-body" id="frmEditarMunicipios">
                     @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
                 </div>
@@ -193,4 +207,7 @@ $(function () {
     $("#cred_FechaSolicitud").datepicker({ dateFormat: 'yy-mm-dd' });
 });
 </script>
+<script src="~/Scripts/app/Cliente.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
 }
+

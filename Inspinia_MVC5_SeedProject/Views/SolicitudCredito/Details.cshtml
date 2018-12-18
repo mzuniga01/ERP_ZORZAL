@@ -68,25 +68,45 @@
             @Html.DisplayFor(model => model.tbCliente.clte_Identificacion)
         </dd>
 
+
+
                         <dt>
                            Nombre Cliente
                             @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
                         </dt>
+                        @{ if (Convert.ToInt32(Model.tbCliente.clte_EsPersonaNatural) == 1)
+                            {
 
-                        <dd>
-                            @Html.DisplayFor(model => model.tbCliente.clte_Nombres)
-                            @Html.DisplayFor(model => model.tbCliente.clte_Apellidos)
-                        </dd>
-                        <dt>
-                            Es Cliente Natural
-                            @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
-                        </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbCliente.clte_Nombres)
+                                </dd>
+                                <dt>
+                                    Tipo Cliente
 
-                        <dd>
-                            @*<input id="Checkbox1" type="checkbox" />*@
-                            @Html.DisplayFor(model => model.tbCliente.clte_EsPersonaNatural)
-       
-                        </dd>
+                                </dt>
+
+                                <dd>
+                                    Natural
+
+                                </dd>
+                            }
+                            else
+                            {
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbCliente.clte_NombreComercial)
+                                </dd>
+                                <dt>
+                                    Tipo Cliente
+
+                                </dt>
+
+                                <dd>
+                                    Júridico
+                                </dd>
+                            }
+                        }
+
 
         <dt>
             Monto Solicitado

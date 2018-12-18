@@ -22,7 +22,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table id="DataTable1" class="table table table-striped  table-bordered">
+                    <table id="DataTable1" class="table table table-striped  table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>
@@ -34,15 +34,15 @@
                                 </th>
 
                                 <th>
-                                    @Html.DisplayNameFor(model => model.cred_FechaSolicitud)
+                                    @Html.DisplayNameFor(model => model.cred_FechaAprobacion)
                                 </th>
 
                                 <th>
-                                    @Html.DisplayNameFor(model => model.cred_MontoSolicitado)
+                                    @Html.DisplayNameFor(model => model.cred_MontoAprobado)
                                 </th>
 
                                 <th>
-                                    @Html.DisplayNameFor(model => model.cred_DiasSolicitado)
+                                    @Html.DisplayNameFor(model => model.cred_DiasAprobado)
                                 </th>
 
                                 
@@ -60,23 +60,22 @@
                                     <tr>
 
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.tbUsuario.usu_Nombres)
-                                            @Html.DisplayFor(modelItem => item.tbUsuario.usu_Apellidos)
+                                            @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
                                         </td>
 
                                         <td>
                                             @Html.DisplayFor(modelItem => item.tbCliente.clte_Identificacion)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.cred_FechaSolicitud)
+                                            @Html.DisplayFor(modelItem => item.cred_FechaAprobacion)
                                         </td>
 
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.cred_MontoSolicitado)
+                                            @Html.DisplayFor(modelItem => item.cred_MontoAprobado)
                                         </td>
 
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.cred_DiasSolicitado)
+                                            @Html.DisplayFor(modelItem => item.cred_DiasAprobado)
                                         </td>
 
 
