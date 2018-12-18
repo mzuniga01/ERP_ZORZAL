@@ -54,7 +54,7 @@ namespace ERP_GMEDINA.Models
             });
             list.Add(new cTipoCuenta()
             {
-                ID_TIPOCUENTA = 2,
+                ID_TIPOCUENTA = 0,
                 DESCRIPCION = "Cheques"
             });
             return list;

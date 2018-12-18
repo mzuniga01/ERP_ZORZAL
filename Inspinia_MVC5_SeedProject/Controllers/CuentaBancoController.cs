@@ -109,14 +109,14 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbCuentasBanco CuentasBanco = db.tbCuentasBanco.Find(id);
-            CuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
             if (CuentasBanco == null)
             {
                 return HttpNotFound();
             }
             ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", CuentasBanco.ban_Id);
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", CuentasBanco.mnda_Id);
-            
+            var Lista = cUtilities.TipoCuentaList();
+            ViewBag.TipoCuentaList = new SelectList(Lista, "ID_TIPOCUENTA", "DESCRIPCION", CuentasBanco.mnda_Id);
             return View(CuentasBanco);
         }
 
@@ -162,7 +162,10 @@ namespace ERP_ZORZAL.Controllers
                 {
                     Ex.Message.ToString();
                     ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                    CuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
+                    ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", CuentasBanco.ban_Id);
+                    ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", CuentasBanco.mnda_Id);
+                    var Lista = cUtilities.TipoCuentaList();
+                    ViewBag.TipoCuentaList = new SelectList(Lista, "ID_TIPOCUENTA", "DESCRIPCION", CuentasBanco.mnda_Id);
                     return View(CuentasBanco);
                 }
             
