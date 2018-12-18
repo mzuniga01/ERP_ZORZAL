@@ -103,7 +103,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="mnda_Id,mnda_Abreviatura,mnda_Nombre,mnda_UsuarioCrea,mnda_FechaCrea,mnda_UsuarioModifica,mnda_FechaModifica")] tbMoneda tbMoneda)
+        public ActionResult Edit([Bind(Include= "mnda_Id,mnda_Abreviatura,mnda_Nombre,mnda_UsuarioCrea,mnda_FechaCrea,mnda_UsuarioModifica,mnda_FechaModifica, tbUsuario, tbUsuario1")] tbMoneda tbMoneda)
         {
 
             try
