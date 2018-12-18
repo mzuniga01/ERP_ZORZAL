@@ -123,7 +123,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( int? id, [Bind(Include= "obj_Id, obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto tbObjeto)
+        public ActionResult Edit( int? id, [Bind(Include= "obj_Id, obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto Objeto)
         {
             if (ModelState.IsValid)
             {
@@ -132,9 +132,9 @@ namespace ERP_ZORZAL.Controllers
                     tbObjeto obj = db.tbObjeto.Find(id);
                     IEnumerable<object> list = null;
                     var MsjError = "";
-                    list = db.UDP_Acce_tbObjeto_Update(tbObjeto.obj_Id,
-                        tbObjeto.obj_Pantalla, obj.obj_UsuarioCrea,
-                        obj.obj_FechaCrea, tbObjeto.obj_Estado);
+                    list = db.UDP_Acce_tbObjeto_Update(Objeto.obj_Id,
+                        Objeto.obj_Pantalla, obj.obj_UsuarioCrea,
+                        obj.obj_FechaCrea, Objeto.obj_Estado);
                     foreach (UDP_Acce_tbObjeto_Update_Result obje in list)
                         MsjError = obje.MensajeError;
 
@@ -155,11 +155,12 @@ namespace ERP_ZORZAL.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(tbObjeto);
+            return View(Objeto);
 
         }
-        
-        public ActionResult Estado(int? id)
+        //para que cambie estado a activar
+        public ActionResult EstadoInactivar(int? id)
+
         {
             
                 try
@@ -171,26 +172,62 @@ namespace ERP_ZORZAL.Controllers
                     foreach (UDP_Acce_tbObjeto_Update_Estado_Result obje in list)
                         MsjError = obje.MensajeError;
 
-                    if (MsjError == "-1")
-                    {
+                if (MsjError == "-1")
+                {
                         ModelState.AddModelError("", "No se Actualizo el registro");
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index");
-                    }
+                    return RedirectToAction("Edit/" + id);
+                    //return View(Objeto);
+                }
+                else
+                {
+                    return RedirectToAction("Edit/" + id);
+
+                }
                 }
                 catch (Exception Ex)
                 {
                     Ex.Message.ToString();
                     ModelState.AddModelError("", "No se Actualizo el registro");
-                    return RedirectToAction("Index");
-                }
+                return RedirectToAction("Edit/" + id);
+            }
 
-            
+
+            //return View(tbObjeto);
+        }
+        //para que cambie estado a inactivar
+        public ActionResult Estadoactivar(int? id)
+        {
+
+            try
+            {
+                tbObjeto obj = db.tbObjeto.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.Activo);
+                foreach (UDP_Acce_tbObjeto_Update_Estado_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError == "-1")
+                {
+                    ModelState.AddModelError("", "No se Actualizo el registro");               
+                    return RedirectToAction("Edit/" + id);
+                }
+                else
+                {
+                    return RedirectToAction("Edit/" + id);
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+                return RedirectToAction("Edit/" + id);
+            }
+
+
             //return RedirectToAction("Index");
         }
+
 
         // GET: /Objeto/Delete/5
         public ActionResult Delete(int? id)

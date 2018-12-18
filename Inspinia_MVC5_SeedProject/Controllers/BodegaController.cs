@@ -150,8 +150,7 @@ namespace ERP_GMEDINA.Controllers
                                                         , tbBodega.bod_Direccion 
                                                         , tbBodega.bod_Correo
                                                         , tbBodega.bod_Telefono 
-                                                        , tbBodega.mun_Codigo
-                                                        , tbBodega.bod_EsActiva);
+                                                        , tbBodega.mun_Codigo);
                     foreach (UDP_Inv_tbBodega_Insert_Result bodega in list)
                         MsjError = bodega.MensajeError;
                     if (MsjError == "-1")
@@ -319,7 +318,72 @@ namespace ERP_GMEDINA.Controllers
             base.Dispose(disposing);
         }
 
-        
+        //para que cambie estado a activar
+        public ActionResult EstadoInactivar(int? id)
+        {
+
+            try
+            {
+                tbBodega obj = db.tbBodega.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Inv_tbBodega_Update_Estado(id, EstadoBodega.Inactivo);
+                foreach (UDP_Inv_tbBodega_Update_Estado_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError == "-1")
+                {
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+                    return RedirectToAction("Edit/" + id);
+                }
+                else
+                {
+                    return RedirectToAction("Edit/" + id);
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+                return RedirectToAction("Edit/" + id);
+            }
+
+
+            //return RedirectToAction("Index");
+        }
+        //para que cambie estado a inactivar
+        public ActionResult Estadoactivar(int? id)
+        {
+
+            try
+            {
+                tbBodega obj = db.tbBodega.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Inv_tbBodega_Update_Estado(id, EstadoBodega.Activo);
+                foreach (UDP_Inv_tbBodega_Update_Estado_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError == "-1")
+                {
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+                    return RedirectToAction("Edit/" + id);
+                }
+                else
+                {
+                    return RedirectToAction("Edit/" + id);
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+                return RedirectToAction("Edit/" + id);
+            }
+
+
+            //return RedirectToAction("Index");
+        }
 
     }
 }

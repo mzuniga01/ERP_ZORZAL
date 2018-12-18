@@ -216,6 +216,7 @@
     <Compile Include="Models\DetalleEntrada.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Entrada.cs" />
+    <Compile Include="Models\EstadoBodega.cs" />
     <Compile Include="Models\EstadoInventariosFisico.cs" />
     <Compile Include="Models\estadomovimientos.cs" />
     <Compile Include="Models\Estados.cs" />
@@ -520,6 +521,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbBodega_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Inv_tbBodega_Update_Estado_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbBodega_Update_Result.cs">

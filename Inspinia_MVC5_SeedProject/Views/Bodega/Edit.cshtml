@@ -1,9 +1,12 @@
 ﻿@model ERP_GMEDINA.Models.tbBodega
 @using ERP_GMEDINA.Models
 @{
+    /**/
 
 }
 @{
+    /**/
+
 
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -85,14 +88,12 @@
                                 </div>*@
                             <div class="form-group">
                                 @Html.LabelFor(muni => ListadoMunicipio.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
                                     <p style="color:red">@Html.ValidationMessageFor(muni => ListadoMunicipio.dep_Codigo)</p>
                                 </div>
-                            </div>
-                            <div class="form-group">
                                 @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
                                 </div>
@@ -110,22 +111,20 @@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_ResponsableBodega)</p>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                @*@Html.LabelFor(model => model.bod_EsActiva, "Estado", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.DropDownList("bod_EsActiva", (IEnumerable<SelectListItem>)ViewBag.EstadoList, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.bod_EsActiva)
-                                    </div>*@
-                                @*@Html.LabelFor(model => model.bod_EsActiva, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.EditorFor(model => model.bod_EsActiva)
-                                        @Html.ValidationMessageFor(model => model.bod_EsActiva)
-                                    </div>*@
-                            </div>
                             <div class="form-group ">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    @{if (Model.bod_EsActiva == 1)
+                                        {
+                                            <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
+                                            @*@Html.ActionLink("Inactivar", "EstadoInactivar", new { id = Model.bod_Id }, new { @class = "btn btn-danger" })*@
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("Activar", "Estadoactivar", new { id = Model.bod_Id }, new { @class = "btn btn-success" })
+                                        }
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -185,11 +184,27 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="ModalEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Imprimir Entrada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que quiere Inactivar esta Bodega?
+                </div>
+                <div class="modal-footer">
+                    @Html.ActionLink("Sí", "EstadoInactivar", new { id = Model.bod_Id }, new { @class = "btn btn-danger" })
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 }
-
-
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

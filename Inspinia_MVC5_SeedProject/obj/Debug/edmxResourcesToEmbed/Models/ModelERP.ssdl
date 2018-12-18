@@ -393,6 +393,7 @@
     <Property Name="pcat_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="pcat_UsuarioModifica" Type="int" />
     <Property Name="pcat_FechaModifica" Type="datetime" />
+    <Property Name="pcat_Estado" Type="bit" />
   </EntityType>
   <EntityType Name="tbProductoSubcategoria">
     <Key>
@@ -3157,7 +3158,6 @@
     <Parameter Name="bod_Correo" Type="varchar(max)" Mode="In" />
     <Parameter Name="bod_Telefono" Type="varchar" Mode="In" />
     <Parameter Name="mun_Codigo" Type="char" Mode="In" />
-    <Parameter Name="bod_EsActiva" Type="tinyint" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbBodega_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bod_Id" Type="int" Mode="In" />
@@ -3170,6 +3170,10 @@
     <Parameter Name="bod_EsActiva" Type="tinyint" Mode="In" />
     <Parameter Name="bod_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="bod_Fechacrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbBodega_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="bod_EsActiva" Type="tinyint" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbBodegaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />

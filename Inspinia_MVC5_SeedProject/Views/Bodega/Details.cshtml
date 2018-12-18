@@ -88,18 +88,17 @@
                             </dt>
 
                             <dd>
-                                @*@Html.DisplayFor(model => model.bod_EsActiva)*@
-                                Activa
-                                @*@{if (bod_EsActiva)
-                                {
-                                    @Html.ActionLink("Inactivar", "Estado", new { id = item.obj_Id }, new { @class = "btn btn-white btn-xs" })
-                                }
-                                else
-                                {
-                                    <button type="button" class="btn btn-white btn-xs" disabled>Inactivar</button>
-                                }
+                                @{if (Model.bod_EsActiva == 1)
+                                    {
+                                        <p>Activa</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Inactiva</p>;
+                                    }
 
-                            }*@
+
+                                }
                             </dd>
                             @Html.ActionLink("Editar", "Edit", new { id = Model.bod_Id }, new { @class = "btn btn-primary" })
                         </dl>

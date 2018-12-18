@@ -18,21 +18,6 @@
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.bodd_Id)
 
-                            @*<div class="form-group">
-                                @Html.LabelFor(model => model.bodd_Id, "prod_Codigo", new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.bodd_Id)
-                                </div>
-                            </div>*@
-
-                            @*<div class="form-group">
-                                    @Html.LabelFor(model => model.bod_Id, "bod_Id", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.DropDownList("bod_Id", String.Empty)
-                                        @Html.ValidationMessageFor(model => model.bod_Id)
-                                    </div>
-                                </div>*@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })

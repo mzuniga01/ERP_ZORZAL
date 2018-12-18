@@ -37,6 +37,9 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.obj_Pantalla)
                                 </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.obj_Estado)
+                                </th>
                                 <th>Actividad</th>
                             </tr>
                         </thead>
@@ -51,22 +54,19 @@
                                         @Html.DisplayFor(modelItem => item.obj_Pantalla)
                                     </td>
                                     <td>
+                                      @if (item.obj_Estado==true)
+                                      {
+                                        <p> Activo</p>
+                                      }
+                                      else
+                                      {
+                                        <p>Inactivo</p>
+                                      }
+                                    </td>
+                                    <td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.obj_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.obj_Id }, new { @class = "btn btn-white btn-xs" })
-
-                                        @{if (item.obj_Estado)
-                                            {
-                                                @Html.ActionLink("Inactivar", "Estado", new { id = item.obj_Id }, new { @class = "btn btn-white btn-xs" })
-                                            }
-                                            else
-                                            {
-                                                <button type="button" class="btn btn-white btn-xs" disabled>Inactivar</button>
-                                            }
-
-                                        }
-
-                                        
-                                        
+                               
                                     </td>
                                 </tr>
                             }

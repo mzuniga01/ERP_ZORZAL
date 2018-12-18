@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion,"Descripcion", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 <input type="text" id="prod_Descripcion" placeholder="" class="form-control" readonly />
                                 @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
@@ -98,6 +98,9 @@
                         <div class="ibox-tools">
                             <input type="button" value="Agregar" id="AgregarBodegaDetalle" class="btn btn-primary" />
                         </div>
+                        @*<div class="form-group col-md-1">
+                            <button class="btn btn-primary" type="button" id="AgregarBodegaDetalle">Añadir</button>
+                        </div>*@
                         <table id="tblBodegadetalle_Create" class="table table table-striped">
                             <thead>
                                 <tr>
