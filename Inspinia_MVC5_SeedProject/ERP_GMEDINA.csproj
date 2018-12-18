@@ -1010,7 +1010,6 @@
     <Content Include="Views\Banco\Edit.cshtml" />
     <Content Include="Views\Banco\Index.cshtml" />
     <Content Include="Views\CuentaBanco\Create.cshtml" />
-    <Content Include="Views\CuentaBanco\Delete.cshtml" />
     <Content Include="Views\CuentaBanco\Details.cshtml" />
     <Content Include="Views\CuentaBanco\Edit.cshtml" />
     <Content Include="Views\CuentaBanco\Index.cshtml" />

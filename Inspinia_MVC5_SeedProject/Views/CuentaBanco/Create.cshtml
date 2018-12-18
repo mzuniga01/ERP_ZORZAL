@@ -33,7 +33,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        @Html.ValidationSummary(true)
+        <p style="color:red">@Html.ValidationSummary(true)</p>
 
         <div class="form-group">
             @Html.LabelFor(model => model.ban_Id, "Banco", new { @class = "control-label col-md-2" })

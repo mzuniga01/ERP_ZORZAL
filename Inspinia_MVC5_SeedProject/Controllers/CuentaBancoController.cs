@@ -76,6 +76,8 @@ namespace ERP_ZORZAL.Controllers
                     MensajeError = cuentasbanco.MensajeError;
                     if (MensajeError == -1)
                     {
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        return View(tbCuentasBanco);
                     }
                     else
                     {
@@ -84,8 +86,9 @@ namespace ERP_ZORZAL.Controllers
                   }
                   catch (Exception Ex)
                     {
-                      ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
-                      return View(tbCuentasBanco);
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                    return View(tbCuentasBanco);
                     }   
             }
 
@@ -146,6 +149,8 @@ namespace ERP_ZORZAL.Controllers
                     MensajeError = cuentasbanco.MensajeError;
                     if (MensajeError == -1)
                     {
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        return View(CuentasBanco);
                     }
                     else
                     {
@@ -155,7 +160,8 @@ namespace ERP_ZORZAL.Controllers
                 
                 catch (Exception Ex)
                 {
-                    ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                     CuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
                     return View(CuentasBanco);
                 }
