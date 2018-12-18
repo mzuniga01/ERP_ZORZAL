@@ -17,14 +17,13 @@ namespace ERP_GMEDINA.Models
         public short acte_Id { get; set; }
 
         [Display(Name = "Descripción")]
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public string acte_Descripcion { get; set; }
 
         [Display(Name = "Usuario Crea")]
         public int acte_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Crea")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime acte_FechaCrea { get; set; }
 
@@ -32,7 +31,6 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> acte_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modifica")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> acte_FechaModifica { get; set; }
     }
