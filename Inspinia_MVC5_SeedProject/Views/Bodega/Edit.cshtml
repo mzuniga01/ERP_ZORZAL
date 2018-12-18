@@ -1,16 +1,16 @@
 ﻿@model ERP_GMEDINA.Models.tbBodega
 @using ERP_GMEDINA.Models
 @{
-    /**/
 
 }
 @{
-    /**/
 
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{
+    var ListadoMunicipio = new ERP_GMEDINA.Models.tbMunicipio();
+}
 <style>
     .validation-error {
         color: red;
@@ -28,7 +28,6 @@
         </div>
     </div>
 </div>
-
 
 
 @using (Html.BeginForm("Edit", "Bodega", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -57,46 +56,52 @@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Direccion)
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Direccion) </p>
-                                    
                                 </div>
-
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Nombre, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Nombre)
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Nombre) </p>
-                                    
                                 </div>
                                 @Html.LabelFor(model => model.bod_Correo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Correo)
                                     <p style="color:red"> @Html.ValidationMessageFor(model => model.bod_Correo)</p>
-                                   
                                 </div>
                             </div>
 
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.tbMunicipio.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("dep_Codigo", (IEnumerable<SelectListItem>)ViewBag.dep_Codigo, new { @class = "form-control" })
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.tbMunicipio.dep_Codigo)</p>
+                                    </div>
+                                    @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("mun_Codigo", (IEnumerable<SelectListItem>)ViewBag.mun_Codigo, new { @class = "form-control" })
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
+                                    </div>
+                                </div>*@
                             <div class="form-group">
-                                @Html.LabelFor(model => model.tbMunicipio.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("dep_Codigo", (IEnumerable<SelectListItem>)ViewBag.dep_Codigo, "Seleccione", new { @class = "form-control" })
-                                    
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbMunicipio.dep_Codigo)</p>
+                                @Html.LabelFor(muni => ListadoMunicipio.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
+                                    <p style="color:red">@Html.ValidationMessageFor(muni => ListadoMunicipio.dep_Codigo)</p>
                                 </div>
+                            </div>
+                            <div class="form-group">
                                 @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("mun_Codigo", (IEnumerable<SelectListItem>)ViewBag.mun_Codigo, "Seleccione", new { @class = "form-control" })
-                                    
+                                <div class="col-md-5">
+                                    @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
                                 </div>
-
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Telefono, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Telefono)
-                                    
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
                                 </div>
                                 @Html.LabelFor(model => model.bod_ResponsableBodega, new { @class = "control-label col-md-2" })
@@ -125,15 +130,10 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        @*@Html.Partial("_CreateBodegaDetalle", new tbBodegaDetalle())*@
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
+                            @Html.Partial("_CreateNuevoBodegaDetalle_Modal", new tbBodegaDetalle())
                         </div>
+
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
@@ -148,61 +148,43 @@
                 <div class="ibox-content">
                     <table class="table table-striped">
                         <tr>
-                            <th>Acción</th>
-                            <th>Usuario</th>
-                            <th>Fecha</th>
+                            <th>
+                                Acción
+                            </th>
+                            <th>
+                                Usuario
+                            </th>
+                            <th>
+                                Fecha
+                            </th>
                         </tr>
                         <tr>
-                            <td>Creado</td>
-                            <td>@ViewBag.UsuarioCrea</td>
-                            <td>@Html.DisplayFor(model => model.bod_FechaCrea)</td>
+                            <td>
+                                Creado
+                            </td>
+                            <td>
+                                @ViewBag.UsuarioCrea
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.bod_FechaCrea)
+                            </td>
                         </tr>
                         <tr>
-                            <td>Modificado</td>
-                            <td>@ViewBag.UsuarioModfica</td>
-                            <td>@Html.DisplayFor(model => model.bod_FechaModifica)</td>
+                            <td>
+                                Modificado
+                            </td>
+                            <td>
+                                @ViewBag.UsuarioModifica
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.bod_FechaModifica)
+                            </td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="ModalNuevoDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <div class="col-md-12">
-                                                    @*@Html.Partial("_CreateBodegaDetalle", new tbBodegaDetalle())*@
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 }
 
@@ -215,3 +197,4 @@
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script src="~/Scripts/app/BusquedaGenerica.js"></script>
 <script src="~/Scripts/app/BodegaDetalle.js"></script>
+<script src="~/Scripts/app/Departamento.js"></script>

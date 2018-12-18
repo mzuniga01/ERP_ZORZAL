@@ -26,22 +26,8 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <div class="form-horizontal">
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Nombre</label>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control " />
-                                </div>
-                                <div class="">
-                                    <input type="button" value="Buscar" class="btn btn-primary btn-sm-1" />
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
 
-                    <table class="table table table-striped  table-bordered" id="DataTable">
+                    <table class="table table-striped" id="tbBodega">
                         <thead>
                             <tr>
                                 <th>
@@ -60,6 +46,9 @@
                                     @Html.DisplayNameFor(model => model.bod_ResponsableBodega)
                                 </th>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.bod_EsActiva)
+                                </th>
+                                <th>
                                     Acciones
                                 </th>
                             </tr>
@@ -67,28 +56,30 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.bod_Id)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.bod_Nombre)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbMunicipio.tbDepartamento.dep_Nombre)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbMunicipio.mun_Nombre)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.bod_ResponsableBodega)
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Detalles", "Details", new { id = item.bod_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.bod_Id }, new { @class = "btn btn-white btn-xs" })
-                                        <input type="button" id="boton_@item.bod_Id " value="Inactivar" class="btn btn-white btn-xs" onclick="Activar(@item.bod_Id);">
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bod_Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bod_Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbMunicipio.tbDepartamento.dep_Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbMunicipio.mun_Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bod_ResponsableBodega)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bod_EsActiva)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Detalles", "Details", new { id = item.bod_Id }, new { @class = "btn btn-primary btn-xs" })
+                                    @Html.ActionLink("Editar", "Edit", new { id = item.bod_Id }, new { @class = "btn btn-white btn-xs" })
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -104,9 +95,24 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
-<script type="text/javascript">
-    function Activar(Id) {
-        console.log("#boton_" + Id, "#boton_" + Id);
-        $("#boton_"+Id).attr("value", "Activar");
-    }      
+<script>
+    $(document).ready(function () {
+        $('#tbBodega').DataTable({
+
+            "searching": true,
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+            },
+
+        });
+
+    });
+
 </script>

@@ -18,6 +18,7 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult Index()
         {
             var tbbodega = db.tbBodega.Include(t => t.tbUsuario).Include(t => t.tbMunicipio);
+            this.AllLists();
             return View(tbbodega.ToList());
         }
 
@@ -43,8 +44,27 @@ namespace ERP_GMEDINA.Controllers
             {
                 return HttpNotFound();
             }
+
+            this.AllLists();
             return View(tbBodega);
         }
+
+
+
+        public ActionResult _DetallesProductos(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbProducto tbProducto = db.tbProducto.Find(id);
+            if (tbProducto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tbProducto);
+        }
+
 
 
         private void AllLists()
@@ -57,36 +77,57 @@ namespace ERP_GMEDINA.Controllers
 
             var _departamentos = db.tbDepartamento.Select(s => new
             {
-                dep_codigo = s.dep_Codigo, dep_Nombre = string.Concat(s.dep_Codigo + " - " + s.dep_Nombre)
+                dep_Codigo = s.dep_Codigo, dep_Nombre = string.Concat(s.dep_Codigo + " - " + s.dep_Nombre)
             }).ToList();
 
 
             ViewBag.Producto = db.tbProducto.ToList();
-            ViewBag.UnidadList = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", "Seleccione");
-            ViewBag.ProductoList = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion", "Seleccione");
+            //ViewBag.UnidadList = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", "Seleccione");
+            //ViewBag.ProductoList = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion", "Seleccione");
             //ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "pscat_Id");
-            ViewBag.CategoriaList = new SelectList(db.tbProductoCategoria, "pcat_Id","pcat_Nombre");
-            ViewBag.SubcategoriaList = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
-            ViewBag.mun_Codigo = new SelectList(_municipios, "mun_Codigo", "mun_Nombre");
-            ViewBag.dep_codigo = new SelectList(_departamentos, "dep_codigo", "dep_Nombre");
+            //ViewBag.CategoriaList = new SelectList(db.tbProductoCategoria, "pcat_Id","pcat_Nombre");
+            //ViewBag.SubcategoriaList = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
+            ViewBag.dep_Codigo = new SelectList(_departamentos, "dep_Codigo", "dep_Nombre");
             //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
-            //ViewBag.dep_codigo = new SelectList(db.tbDepartamento, "dep_codigo", "dep_Nombre");
+            //ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
             //ViewBag.EstadoList = new SelectList(Estados.EstadoList(), "estif_Id", "estif_Descripcion", "Seleccione");
 
         }
 
         [HttpPost]
-        public JsonResult GetMunicipios(string dep_Codigo)
+        public JsonResult GetMunicipios(string CodDepartamento)
         {
-            var list = db.spGetMunicipios(dep_Codigo).ToList();
+            var list = db.spGetMunicipios(CodDepartamento).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        //[HttpPost]
+        //public JsonResult GetDepartamento(string mun_Codigo)
+        //{
+        //    var list = db.spGetMunicipios(mun_Codigo).ToList();
+        //    return Json(list, JsonRequestBehavior.AllowGet);
+        //}
+
+        [HttpPost]
+        public JsonResult removeBodegaDetalle(tbBodegaDetalle bodedaDetalle)
+        {
+            var list = (List<tbBodegaDetalle>)Session["tbBodegaDetalles"];
+
+            if (list != null)
+            {
+                var itemToRemove = list.Single(r => r.bodd_Id == bodedaDetalle.bodd_Id);
+                list.Remove(itemToRemove);
+                Session["tbBodegaDetalless"] = list;
+            }
+            return Json("", JsonRequestBehavior.AllowGet);
+
         }
 
 
         // GET: /Bodega/Create
         public ActionResult Create()
         {
-           
             this.AllLists();
             return View();
         }
@@ -115,7 +156,7 @@ namespace ERP_GMEDINA.Controllers
                         MsjError = bodega.MensajeError;
                     if (MsjError == "-1")
                     {
-
+                        //ModelState.AddModelError("", "No se Guardo el registro");
                     }
                     else
                     {
@@ -130,9 +171,10 @@ namespace ERP_GMEDINA.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            AllLists();
+            this.AllLists();
+            //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbBodega.mun_Codigo);
+            //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
             return View(tbBodega);
-            
         }
 
         // GET: /Bodega/Edit/5
@@ -151,32 +193,38 @@ namespace ERP_GMEDINA.Controllers
             }
             else
             {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(tbBodega.bod_UsuarioModifica).usu_NombreUsuario;
             };
             if (tbBodega == null)
             {
                 return HttpNotFound();
             }
             this.AllLists();
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbBodega.mun_Codigo);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
+            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
             return View(tbBodega);
         }
 
+        [HttpPost]
+        public JsonResult Getbodegadetalle()
+        {
+            var list = (List<tbBodegaDetalle>)Session["tbBodegaDetalle"];
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
-        public JsonResult SaveBodegaDetalle(tbBodegaDetalle bodegadetalle)
+        public JsonResult SaveBodegaDetalle(tbBodegaDetalle BODEGADETALLE)
         {
             List<tbBodegaDetalle> sessionbodegadetalle = new List<tbBodegaDetalle>();
             var list = (List<tbBodegaDetalle>)Session["tbBodegaDetalle"];
             if (list == null)
             {
-                sessionbodegadetalle.Add(bodegadetalle);
+                sessionbodegadetalle.Add(BODEGADETALLE);
                 Session["tbBodegaDetalle"] = sessionbodegadetalle;
             }
             else
             {
-                list.Add(bodegadetalle);
+                list.Add(BODEGADETALLE);
                 Session["tbBodegaDetalle"] = list;
             }
             return Json("Exito", JsonRequestBehavior.AllowGet);
@@ -224,12 +272,14 @@ namespace ERP_GMEDINA.Controllers
                 {
                     Ex.Message.ToString();
                     ModelState.AddModelError("", "No se guardo el cambio");
+                    ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
+                    ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
                 }
                 return RedirectToAction("Index");
             }
             this.AllLists();
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbBodega.mun_Codigo);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
+            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
             return View(tbBodega);
 
         }
@@ -269,18 +319,7 @@ namespace ERP_GMEDINA.Controllers
             base.Dispose(disposing);
         }
 
-
-        //public List<tbMunicipio> MostrarMunicipioPorDeparatamento(tbMunicipio lstMunicipio)
-        //{
-        //    tbDepartamento _Departamento = new tbDepartamento();
-
-        //    var ListaMunicipios = from municipio in db.tbMunicipio.ToList()
-        //                          where municipio._Departamento.Contains(lstMunicipio.tbDepartamento)
-        //                          select municipio;
-
-        //    return ListaMunicipios.ToList();
-        //}
-
+        
 
     }
 }

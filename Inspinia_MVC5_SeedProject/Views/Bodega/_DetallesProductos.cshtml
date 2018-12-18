@@ -1,0 +1,48 @@
+﻿@model ERP_GMEDINA.Models.tbProducto
+
+<div class="ibox-content">
+
+    @using (Html.BeginForm())
+    {
+        @Html.TextBoxFor(model => model.prod_Codigo, new { @class = "hidden" })
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.prod_Codigo)
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbProductoSubcategoria.pcat_Id, "Categoria", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.tbProductoSubcategoria.pcat_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.tbProductoSubcategoria.pcat_Id)
+            </div>
+            @Html.LabelFor(model => model.tbProductoSubcategoria.pscat_Id, "SubCategoria", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.tbProductoSubcategoria.pscat_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.tbProductoSubcategoria.pscat_Id)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.uni_Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.uni_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.uni_Id)
+            </div>
+            @Html.LabelFor(model => model.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.prod_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @placeholder = " " } })
+                <div id="">
+                    @Html.ValidationMessageFor(model => model.prod_Descripcion)
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+ </div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -44,25 +44,43 @@
 
                 </div>
             </div>
-                    <div class="ibox-content">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>Acción</th>
-                                <th>Usuario</th>
-                                <th>Fecha</th>
-                            </tr>
-                            <tr>
-                                <td>Creado</td>
-                                <td>@ViewBag.UsuarioCrea</td>
-                                <td>@Html.DisplayFor(model => model.tent_FechaCrea)</td>
-                            </tr>
-                            <tr>
-                                <td>Modificado</td>
-                                <td>@ViewBag.UsuarioModfica</td>
-                                <td>@Html.DisplayFor(model => model.tent_FechaModifica)</td>
-                            </tr>
-                        </table>
-                    </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            Acción
+                        </th>
+                        <th>
+                            Usuario
+                        </th>
+                        <th>
+                            Fecha
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Creado
+                        </td>
+                        <td>
+                            @ViewBag.UsuarioCrea
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.tent_FechaCrea)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Modificado
+                        </td>
+                        <td>
+                            @ViewBag.UsuarioModifica
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.tent_FechaModifica)
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
      </div>
 </div>

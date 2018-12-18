@@ -1196,6 +1196,8 @@
     <Content Include="Views\Empleado\Edit.cshtml" />
     <Content Include="Views\Empleado\Index.cshtml" />
     <Content Include="Views\InventarioFisico\_IndexProductos.cshtml" />
+    <Content Include="Views\Bodega\_CreateNuevoBodegaDetalle_Modal.cshtml" />
+    <Content Include="Views\Bodega\_DetallesProductos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

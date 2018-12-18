@@ -7,8 +7,10 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado de Detalles</h5>
-                    <div class="col-md-1">
-                        @*<input type="button" value="Nuevo Detalle" id="Modal_NuevoDetalle" class="btn btn-primary" />*@
+                    <div class="title-action">
+                        <div class="box-border">
+                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#RegistrarNuevoDetalle">Registrar Nuevo Detalle</button>
+                        </div>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -24,20 +26,10 @@
                                 Producto
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.bodd_PuntoReorden)
-                            </th>
-                            <th>
                                 @Html.DisplayNameFor(model => model.bodd_CantidadMinima)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.bodd_CantidadMaxima)
-                            </th>
-
-                            <th>
-                                @Html.DisplayNameFor(model => model.bodd_Costo)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.bodd_CostoPromedio)
+                                Cantidad Real
                             </th>
                             <th>
                                 Acciones
@@ -54,19 +46,10 @@
                                     @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.bodd_PuntoReorden)
-                                </td>
-                                <td>
                                     @Html.DisplayFor(modelItem => item.bodd_CantidadMinima)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.bodd_CantidadMaxima)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.bodd_Costo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.bodd_CostoPromedio)
+                                    @*@Html.DisplayFor(modelItem => item.bodd_CostoPromedio)*@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalles_@item.bodd_Id">
@@ -92,7 +75,7 @@
                                                 <div class="col-lg-12">
                                                     <div class="form-group">
                                                         <div class="col-md-12">
-                                                            @Html.Partial("_DetailsBodegaDetalle", new ERP_GMEDINA.Models.tbBodegaDetalle() { bodd_CantidadMinima = item.bodd_CantidadMinima, bodd_CantidadMaxima = item.bodd_CantidadMaxima, bodd_PuntoReorden = item.bodd_PuntoReorden, bodd_Costo = item.bodd_Costo, bodd_CostoPromedio = item.bodd_CostoPromedio, prod_Codigo = item.prod_Codigo})
+                                                            @Html.Partial("_DetailsBodegaDetalle", new ERP_GMEDINA.Models.tbBodegaDetalle() { bodd_CantidadMinima = item.bodd_CantidadMinima, bodd_CantidadMaxima = item.bodd_CantidadMaxima, bodd_PuntoReorden = item.bodd_PuntoReorden, bodd_Costo = item.bodd_Costo, bodd_CostoPromedio = item.bodd_CostoPromedio, prod_Codigo = item.prod_Codigo })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -144,19 +127,3 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="Modal_NuevoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Agregar Productos</h4>
-            </div>
-            <div class="modal-body" id="frmEditarMunicipios">
-                @*@Html.Partial("_CreateBodegaDetalle", new tbBodegaDetalle())*@
-            </div>
-        </div>
-    </div>
-</div>

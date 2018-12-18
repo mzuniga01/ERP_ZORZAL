@@ -90,6 +90,16 @@
                             <dd>
                                 @*@Html.DisplayFor(model => model.bod_EsActiva)*@
                                 Activa
+                                @*@{if (bod_EsActiva)
+                                {
+                                    @Html.ActionLink("Inactivar", "Estado", new { id = item.obj_Id }, new { @class = "btn btn-white btn-xs" })
+                                }
+                                else
+                                {
+                                    <button type="button" class="btn btn-white btn-xs" disabled>Inactivar</button>
+                                }
+
+                            }*@
                             </dd>
                             @Html.ActionLink("Editar", "Edit", new { id = Model.bod_Id }, new { @class = "btn btn-primary" })
                         </dl>
@@ -109,19 +119,37 @@
             <div class="ibox-content">
                 <table class="table table-striped">
                     <tr>
-                        <th>Acción</th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
+                        <th>
+                            Acción
+                        </th>
+                        <th>
+                            Usuario
+                        </th>
+                        <th>
+                            Fecha
+                        </th>
                     </tr>
                     <tr>
-                        <td>Creado</td>
-                        <td>@ViewBag.UsuarioCrea</td>
-                        <td>@Html.DisplayFor(model => model.bod_FechaCrea)</td>
+                        <td>
+                            Creado
+                        </td>
+                        <td>
+                            @ViewBag.UsuarioCrea
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.bod_FechaCrea)
+                        </td>
                     </tr>
                     <tr>
-                        <td>Modificado</td>
-                        <td>@ViewBag.UsuarioModfica</td>
-                        <td>@Html.DisplayFor(model => model.bod_FechaModifica)</td>
+                        <td>
+                            Modificado
+                        </td>
+                        <td>
+                            @ViewBag.UsuarioModifica
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.bod_FechaModifica)
+                        </td>
                     </tr>
                 </table>
             </div>

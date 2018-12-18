@@ -1,5 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbBodegaDetalle
-
+@using ERP_GMEDINA.Models
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -9,60 +9,61 @@
                 <div class="ibox-content">
 
 
-				    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.bodd_CantidadMinima)
-        </dt>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.prod_Codigo)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.bodd_CantidadMinima)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.prod_Codigo)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.bodd_CantidadMinima)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.bodd_CantidadMaxima)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.bodd_CantidadMinima)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.bodd_CantidadMaxima)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.bodd_CantidadMaxima)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.bodd_PuntoReorden)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.bodd_CantidadMaxima)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.bodd_PuntoReorden)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.bodd_PuntoReorden)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.bodd_Costo)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.bodd_PuntoReorden)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.bodd_Costo)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.bodd_Costo)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.bodd_CostoPromedio)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.bodd_Costo)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.bodd_CostoPromedio)
-        </dd>
-        @*<dt>
-            @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.bodd_CostoPromedio)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbProducto.prod_Descripcion)
-        </dd>*@
+                        <dd>
+                            @Html.DisplayFor(model => model.bodd_CostoPromedio)
+                        </dd>
 
-    </dl>
 
+                    </dl>
+
+                </div>
             </div>
         </div>
     </div>
- </div>
 
 
 

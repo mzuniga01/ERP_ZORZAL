@@ -23,7 +23,7 @@ namespace ERP_GMEDINA.Models
 
         //[Display(Name = "Municipio")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        //public virtual tbMunicipio tbMunicipio { get; set; }
+        public virtual tbMunicipio tbMunicipio { get; set; }
 
         [Display(Name = "Responsable ")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
