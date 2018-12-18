@@ -110,7 +110,8 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "escre_Id,escre_Descripcion,escre_UsuarioCrea,escre_UsuarioModifica,escre_FechaAgrego,escre_FechaModifica")] tbEstadoSolicitudCredito tbEstadoSolicitudCredito)
+        public ActionResult Edit([Bind(Include = "escre_Id,escre_Descripcion,escre_UsuarioCrea,escre_UsuarioModifica,escre_FechaAgrego,escre_FechaModifica,tbUsuario,tbUsuario1")] tbEstadoSolicitudCredito tbEstadoSolicitudCredito)
+            
         {
             try
             {

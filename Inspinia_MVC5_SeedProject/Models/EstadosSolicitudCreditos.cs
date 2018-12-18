@@ -28,15 +28,13 @@ namespace ERP_GMEDINA.Models
 
 
         [Display(Name = "Usuario Crea")]
-       
         public int escre_UsuarioCrea { get; set; }
 
         [Display(Name = "Usuario Modifica")]
-
         public Nullable<int> escre_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Agrego ")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy }", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime escre_FechaAgrego { get; set; }
 
         [Display(Name = "Fecha Modifica")]
