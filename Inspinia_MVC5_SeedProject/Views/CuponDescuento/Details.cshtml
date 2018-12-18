@@ -18,7 +18,6 @@
 
 
 
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -27,26 +26,23 @@
                     <h5>Detalle Cupón Descuento</h5>
                 </div>
                 <div class="ibox-content">
+
+
 				    <dl class="dl-horizontal">
 
         <dt>
-            Sucursal
-            @*@Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)*@
+            @Html.DisplayNameFor(model => model.tbSucursal.suc_Descripcion)
         </dt>
 
         <dd>
-            San Pedro Sula
-            @*@Html.DisplayFor(model => model.tbSucursal.mun_Codigo)*@
+            @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
         </dd>
-
         <dt>
-            Código
-            @*@Html.DisplayNameFor(model => model.cdto_FechaEmision)*@
+            @Html.DisplayNameFor(model => model.cdto_ID)
         </dt>
 
         <dd>
-            2
-            @*@Html.DisplayFor(model => model.cdto_FechaEmision)*@
+            @Html.DisplayFor(model => model.cdto_ID)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.cdto_PorcentajeDescuento)
@@ -62,8 +58,10 @@
         <dd>
             @Html.DisplayFor(model => model.cdto_MontoDescuento)
         </dd>
+
         <dt>
-            @Html.DisplayNameFor(model => model.cdto_MaximoMontoDescuento)
+            Máximo Descuento
+            @*@Html.DisplayNameFor(model => model.cdto_MaximoMontoDescuento)*@
         </dt>
 
         <dd>
@@ -72,10 +70,18 @@
         <dt>
             @Html.DisplayNameFor(model => model.cdto_Anulado)
         </dt>
-
-        <dd>
+         @if (Model.cdto_Anulado == true)
+         {
+             <dd>Si</dd>
+         }
+         else
+         {
+             <dd>No</dd>
+         }
+        @*<dd>
             @Html.DisplayFor(model => model.cdto_Anulado)
-        </dd>
+        </dd>*@
+
         <dt>
             @Html.DisplayNameFor(model => model.cdto_Redimido)
         </dt>
@@ -98,14 +104,57 @@
         <dd>
             @Html.DisplayFor(model => model.cdto_FechaVencimiento)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.cdto_FechaRedencion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cdto_FechaRedencion)
+        </dd>
 
         
+
+        
+
+        
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.cdto_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cdto_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cdto_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cdto_FechaModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
+        </dd>*@
 
     </dl>
 
 
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.cdto_ID }, new { @class = "btn btn-primary"})
-    
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.cdto_ID }, new { @class = "btn btn-primary" })
+
                 </div>
             </div>
             <div class="ibox-content">
@@ -117,16 +166,22 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
-                        <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
-                    </tr>
-                    <tr>
-                        <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
-                        <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
-                    </tr>
-                </table>
-            </div>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                    </td>
+                    <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
+                </tr>
+                <tr>
+                    <td>Modificado</td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                    @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                </td>
+                <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
+            </tr>
+        </table>
+        </div>
         </div>
     </div>
  </div>

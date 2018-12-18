@@ -3128,6 +3128,29 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="clte_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="clte_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbCuponDescuento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="suc_Id" Type="smallint" Mode="In" />
+          <Parameter Name="cdto_FechaEmision" Type="date" Mode="In" />
+          <Parameter Name="cdto_FechaVencimiento" Type="date" Mode="In" />
+          <Parameter Name="cdto_PorcentajeDescuento" Type="decimal" Mode="In" />
+          <Parameter Name="cdto_MontoDescuento" Type="decimal" Mode="In" />
+          <Parameter Name="cdto_MaximoMontoDescuento" Type="decimal" Mode="In" />
+          <Parameter Name="cdto_Redimido" Type="bit" Mode="In" />
+          <Parameter Name="cdto_Anulado" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbCuponDescuento_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="cdto_ID" Type="int" Mode="In" />
+          <Parameter Name="suc_Id" Type="smallint" Mode="In" />
+          <Parameter Name="cdto_FechaEmision" Type="date" Mode="In" />
+          <Parameter Name="cdto_FechaVencimiento" Type="date" Mode="In" />
+          <Parameter Name="cdto_PorcentajeDescuento" Type="decimal" Mode="In" />
+          <Parameter Name="cdto_MontoDescuento" Type="decimal" Mode="In" />
+          <Parameter Name="cdto_MaximoMontoDescuento" Type="decimal" Mode="In" />
+          <Parameter Name="cdto_Redimido" Type="bit" Mode="In" />
+          <Parameter Name="cdto_Anulado" Type="bit" Mode="In" />
+          <Parameter Name="cdto_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="cdto_FechaCrea" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbDevolucion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="fact_Id" Type="bigint" Mode="In" />
           <Parameter Name="cja_Id" Type="smallint" Mode="In" />
@@ -5005,6 +5028,29 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
           </AssociationSet>
           <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
+          <FunctionImport Name="UDP_Vent_tbCuponDescuento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Insert_Result)">
+            <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+            <Parameter Name="cdto_FechaEmision" Mode="In" Type="DateTime" />
+            <Parameter Name="cdto_FechaVencimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="cdto_PorcentajeDescuento" Mode="In" Type="Decimal" />
+            <Parameter Name="cdto_MontoDescuento" Mode="In" Type="Decimal" />
+            <Parameter Name="cdto_MaximoMontoDescuento" Mode="In" Type="Decimal" />
+            <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
+            <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbCuponDescuento_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Update_Result)">
+            <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
+            <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+            <Parameter Name="cdto_FechaEmision" Mode="In" Type="DateTime" />
+            <Parameter Name="cdto_FechaVencimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="cdto_PorcentajeDescuento" Mode="In" Type="Decimal" />
+            <Parameter Name="cdto_MontoDescuento" Mode="In" Type="Decimal" />
+            <Parameter Name="cdto_MaximoMontoDescuento" Mode="In" Type="Decimal" />
+            <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
+            <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
+            <Parameter Name="cdto_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="cdto_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -8441,6 +8487,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Name="emp_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Empleados" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="UDP_Vent_tbCuponDescuento_Insert_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbCuponDescuento_Update_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9619,6 +9671,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuento_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuento_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuento_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuento_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

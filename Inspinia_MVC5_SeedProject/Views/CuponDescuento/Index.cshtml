@@ -19,7 +19,7 @@
                 <div class="ibox-title">
                     <h5>Lista Cupón Descuento</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Cupón Descuento", "Create", null, new { @class = "btn btn-primary"})
+						@Html.ActionLink("Registrar Cupón Descuento", "Create", null, new { @class = "btn btn-primary" })
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -28,8 +28,7 @@
     <thead>
         <tr>
             <th>
-                Sucursal
-                @*@Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)*@
+                @Html.DisplayNameFor(model => model.tbSucursal.suc_Descripcion)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.cdto_PorcentajeDescuento)
@@ -46,7 +45,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.cdto_Redimido)
             </th>
-           
             <th>Opción</th>
         </tr>
     </thead>
@@ -66,7 +64,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.cdto_MaximoMontoDescuento)
                 </td>
-                @if (item.cdto_Anulado == true)
+                @if(item.cdto_Anulado == true)
                 {
                     <td>Si</td>
                 }
@@ -77,10 +75,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.cdto_Redimido)
                 </td>
-               
                 <td>
                     @Html.ActionLink("Detalles", "Details", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Imprimir", "", null, new { @class = "btn btn-white btn-xs" })
+                    @Html.ActionLink("Imprimir", "",null, new { @class = "btn btn-white btn-xs" })
                     @Html.ActionLink("Anular", "", null, new { @class = "btn btn-white btn-xs" })
                     @Html.ActionLink("Editar", "Edit", new { id = item.cdto_ID }, new { @class = "btn btn-white btn-xs" })
                 </td>

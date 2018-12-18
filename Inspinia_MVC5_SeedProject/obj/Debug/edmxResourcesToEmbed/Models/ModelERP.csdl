@@ -1008,6 +1008,29 @@
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
     </AssociationSet>
     <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
+    <FunctionImport Name="UDP_Vent_tbCuponDescuento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Insert_Result)">
+      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="cdto_FechaEmision" Mode="In" Type="DateTime" />
+      <Parameter Name="cdto_FechaVencimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="cdto_PorcentajeDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cdto_MontoDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cdto_MaximoMontoDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
+      <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbCuponDescuento_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Update_Result)">
+      <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="cdto_FechaEmision" Mode="In" Type="DateTime" />
+      <Parameter Name="cdto_FechaVencimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="cdto_PorcentajeDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cdto_MontoDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cdto_MaximoMontoDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
+      <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
+      <Parameter Name="cdto_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="cdto_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -4444,4 +4467,10 @@
     <Property Name="emp_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Empleados" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
   </EntityType>
+  <ComplexType Name="UDP_Vent_tbCuponDescuento_Insert_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbCuponDescuento_Update_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
 </Schema>

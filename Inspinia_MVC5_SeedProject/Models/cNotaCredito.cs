@@ -56,9 +56,7 @@ namespace ERP_GMEDINA.Models
         public int nocre_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Crea")]
-        [DisplayFormat(ApplyFormatInEditMode = true,
-            DataFormatString = "{0:yyyy-MM-dd}",
-            HtmlEncode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy }", ApplyFormatInEditMode = true)]
         public System.DateTime nocre_FechaCrea { get; set; }
 
         [Display(Name = "Usuario Modifica")]
@@ -66,9 +64,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> nocre_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modifica")]
-        [DisplayFormat(ApplyFormatInEditMode = true,
-            DataFormatString = "{0:yyyy-MM-dd}",
-            HtmlEncode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> nocre_FechaModifica { get; set; }
 
         [Display(Name = "Estado")]

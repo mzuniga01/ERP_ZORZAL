@@ -17,14 +17,12 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
     //CargarAsignaciones();
 });
 
-//wilson
-$(document).on("click", "#tbClienteSC tbody tr td button#seleccionar", function () {
+$(document).on("click", "#tbClientes tbody tr td button#seleccionar", function () {
     idItem = $(this).closest('tr').data('id');
-    rtnItem = $(this).closest('tr').data('rtn');
     nombreItem = $(this).closest('tr').data('nombre');
-    $("#clte_Id").val(idItem);
-    $("#tbCliente_clte_Identificacion").val(rtnItem);
+
     $("#tbCliente_clte_Nombres").val(nombreItem);
-    $('#ModalAgregarClientes').modal('hide');
+    $("#tbCliente_clte_Identificacion").val(idItem);
+    $('#ModalAgregarCliente').modal('hide');
     //CargarAsignaciones();
 });

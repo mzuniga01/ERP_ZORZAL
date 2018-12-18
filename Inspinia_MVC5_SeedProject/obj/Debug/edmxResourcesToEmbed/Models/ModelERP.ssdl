@@ -3123,6 +3123,29 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="clte_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="clte_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbCuponDescuento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="suc_Id" Type="smallint" Mode="In" />
+    <Parameter Name="cdto_FechaEmision" Type="date" Mode="In" />
+    <Parameter Name="cdto_FechaVencimiento" Type="date" Mode="In" />
+    <Parameter Name="cdto_PorcentajeDescuento" Type="decimal" Mode="In" />
+    <Parameter Name="cdto_MontoDescuento" Type="decimal" Mode="In" />
+    <Parameter Name="cdto_MaximoMontoDescuento" Type="decimal" Mode="In" />
+    <Parameter Name="cdto_Redimido" Type="bit" Mode="In" />
+    <Parameter Name="cdto_Anulado" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbCuponDescuento_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="cdto_ID" Type="int" Mode="In" />
+    <Parameter Name="suc_Id" Type="smallint" Mode="In" />
+    <Parameter Name="cdto_FechaEmision" Type="date" Mode="In" />
+    <Parameter Name="cdto_FechaVencimiento" Type="date" Mode="In" />
+    <Parameter Name="cdto_PorcentajeDescuento" Type="decimal" Mode="In" />
+    <Parameter Name="cdto_MontoDescuento" Type="decimal" Mode="In" />
+    <Parameter Name="cdto_MaximoMontoDescuento" Type="decimal" Mode="In" />
+    <Parameter Name="cdto_Redimido" Type="bit" Mode="In" />
+    <Parameter Name="cdto_Anulado" Type="bit" Mode="In" />
+    <Parameter Name="cdto_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="cdto_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbDevolucion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
     <Parameter Name="cja_Id" Type="smallint" Mode="In" />

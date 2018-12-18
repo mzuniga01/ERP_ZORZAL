@@ -36,8 +36,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-4" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @*<input type="text" value="San Pedro Sula" class="form-control" readonly/>*@
+                @*@Html.EditorFor(model => model.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })*@
+                <input id="suc_Id" type="text" value="San Pedro Sula" class="form-control " readonly />
                 @*@Html.DropDownList("suc_Id", String.Empty)*@
                 @Html.ValidationMessageFor(model => model.suc_Id)
             </div>
@@ -60,10 +60,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.clte_Id, "Cliente", new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.tbCliente.clte_Nombres, "Cliente", new { @class = "control-label col-md-4" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.tbCliente.clte_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" } })
-                <span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Id)</span>
+                @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" } })
+                 <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
                 @*@if (Model.tbCliente.clte_EsPersonaNatural == true)
                 {
                     @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" } })
@@ -92,7 +92,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-4" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0", maxlength = "4" } })
                 <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
 </div>
         </div>
@@ -201,5 +201,6 @@ $(function () {
 });
     </script>
     
-
+<script src="~/Scripts/app/Cliente.js"></script>
+<script src="~/Scripts/app/NotaCredito.js"></script>
 }

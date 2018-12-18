@@ -4,6 +4,7 @@
     ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Cupón Descuento</h2>
@@ -14,6 +15,7 @@
         </div>
     </div>
 </div>
+
 
 
 
@@ -38,20 +40,18 @@
         <div class="form-group">
             @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <input type="text" value="San Pedro Sula" readonly class="form-control" />
-                @*@Html.DropDownList("suc_Id", String.Empty)*@
+                @Html.EditorFor(model => model.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.suc_Id)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.suc_Id, "Código Cupón Descuento", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.cdto_ID, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <input type="text" value="2" readonly class="form-control" />
-                @*@Html.DropDownList("suc_Id", String.Empty)*@
+                @Html.EditorFor(model => model.cdto_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.cdto_ID)
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
@@ -71,7 +71,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_MaximoMontoDescuento)
+                @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" } })
                 @Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)
             </div>
         </div>
@@ -87,12 +87,16 @@
                 @*@Html.EditorFor(model => model.cdto_Anulado)*@
                 @Html.ValidationMessageFor(model => model.cdto_Anulado)
             </div>
+            @*<div class="col-md-4">
+                @Html.EditorFor(model => model.cdto_Anulado)
+                @Html.ValidationMessageFor(model => model.cdto_Anulado)
+            </div>*@
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_Redimido, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_Redimido)
+                @Html.EditorFor(model => model.cdto_Redimido, new { htmlAttributes = new { @readonly = "readonly", @disabled = "disabled" } })
                 @Html.ValidationMessageFor(model => model.cdto_Redimido)
             </div>
         </div>
@@ -112,6 +116,46 @@
                 @Html.ValidationMessageFor(model => model.cdto_FechaVencimiento)
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cdto_FechaRedencion, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.cdto_FechaRedencion)
+            </div>
+        </div>
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.cdto_UsuarioCrea, "cdto_UsuarioCrea", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("cdto_UsuarioCrea", String.Empty)
+                @Html.ValidationMessageFor(model => model.cdto_UsuarioCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cdto_FechaCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cdto_FechaCrea)
+                @Html.ValidationMessageFor(model => model.cdto_FechaCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cdto_UsuarioModifica, "cdto_UsuarioModifica", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("cdto_UsuarioModifica", String.Empty)
+                @Html.ValidationMessageFor(model => model.cdto_UsuarioModifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cdto_FechaModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cdto_FechaModifica)
+                @Html.ValidationMessageFor(model => model.cdto_FechaModifica)
+            </div>
+        </div>*@
+
         <div class="form-group">
             <div class="col-md-12 text-center">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
@@ -133,16 +177,54 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
-                        <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
-                    </tr>
-                    <tr>
-                        <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
-                        <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
-                    </tr>
-                </table>
-            </div>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                    </td>
+                    <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
+                </tr>
+                <tr>
+                    <td>Modificado</td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                    @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                </td>
+                <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
+            </tr>
+        </table>
+        </div>
         </div>
     </div>
  </div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $('#cdto_PorcentajeDescuento').click(function () {
+        $('#cdto_MontoDescuento').val('')
+        $('#cdto_MaximoMontoDescuento').val('1000.00')
+    });
+</script>
+
+<script type="text/javascript">
+    $('#cdto_MontoDescuento').click(function () {
+        $('#cdto_PorcentajeDescuento').val('0')
+        $('#cdto_MaximoMontoDescuento').val('0.00')
+    });
+</script>
+<script>
+    //$(document).ready(function () {
+        $('#cdto_PorcentajeDescuento').change(function () {
+            //if (e.keyCode == 13) {
+                var descuento = $('#cdto_PorcentajeDescuento').val();
+                var valormax = $('#cdto_MaximoMontoDescuento').val();
+                var resultado = valormax -(((descuento) / 100) * valormax);
+
+                $('#cdto_MontoDescuento').val(resultado);
+            //}
+        });
+    //});
+</script>
+}

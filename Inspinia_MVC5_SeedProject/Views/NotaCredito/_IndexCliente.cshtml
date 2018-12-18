@@ -15,7 +15,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table id="tbCliente" class="table table table-striped  table-bordered">
+                    <table id="tbClientes" class="table table table-striped  table-bordered">
                         <thead>
                             <tr>
                                 <th>
@@ -34,7 +34,7 @@
 
                             @foreach (var item in Model)
                             {
-                                <tr data-id="@item.clte_Id">
+                                <tr data-id="@item.clte_Identificacion" data-nombre="@item.clte_Nombres">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.clte_Id)
                                     </td>
@@ -90,10 +90,27 @@
     });
 </script>
 <script>
+    $(document).ready(function () {
+        var $rows = $('#tbCliente tr');
+        $("#searchCliente").keyup(function () {
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+            $rows.show().filter(function () {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        })
+    });
+</script>
+<script>
     $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function () {
         idItem = $(this).closest('tr').data('id');
-        $("#clte_Id").val(idItem);
+        nombreItem = $(this).closest('tr').data('nombre');
+
+        $("#tbCliente_clte_Identificacion").val(idItem);
+        $("#tbCliente_clte_Nombres").val(idItem);
         $('#ModalAgregarCliente').modal('hide');
+        //CargarAsignaciones();
     });
 </script>
 
