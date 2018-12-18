@@ -39,8 +39,15 @@
 
                         @Html.ValidationSummary(true)
                         @Html.HiddenFor(model => model.ban_Id)
+                        @*Auditoria*@
                         @Html.HiddenFor(model => model.ban_UsuarioCrea)
                         @Html.HiddenFor(model => model.ban_FechaCrea)
+                        @Html.HiddenFor(model => model.ban_UsuarioModifica)
+                        @Html.HiddenFor(model => model.ban_FechaModifica)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                        @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                        @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
 
 

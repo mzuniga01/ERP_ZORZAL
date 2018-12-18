@@ -97,3 +97,8 @@ $(document).on("click", "#tblPuntoEmisionDetalle tbody tr td button#removePuntoE
         data: JSON.stringify({ PuntoEmisionDet: PuntoEmisionDetalle }),
     });
 });
+
+$(document).ready(function () {
+    $("#pemid_RangoInicio")[0].maxLength = 20;
+    $("#pemid_RangoFinal")[0].maxLength = 20;
+})

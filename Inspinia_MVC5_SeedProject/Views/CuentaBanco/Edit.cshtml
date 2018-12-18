@@ -34,13 +34,19 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        @Html.HiddenFor(model => model.bcta_UsuarioCrea)
-                        @Html.HiddenFor(model => model.bcta_FechaCrea)
-
                         <div class="form-horizontal">
 
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.bcta_Id)  
+                            //Auditoria
+                            @Html.HiddenFor(model => model.bcta_UsuarioCrea)
+                            @Html.HiddenFor(model => model.bcta_FechaCrea)
+                            @Html.HiddenFor(model => model.bcta_UsuarioModifica)
+                            @Html.HiddenFor(model => model.bcta_FechaModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
 
                             <div class="form-group">
@@ -71,13 +77,14 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bcta_TipoCuenta, "Tipo Cuenta", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
+                                    
                                     <select class="form-control" id="bcta_TipoCuenta" name="bcta_TipoCuenta">
                                         <option value="" selected disabled>Seleccione Tipo Cuenta</option>
                                         <option value="1">Ahorro</option>
                                         <option value="0">Cheques</option>
                                     </select>
-                                    @Html.ValidationMessageFor(model => model.bcta_TipoCuenta, "", new { @class = "text-danger" })
-                                </div>
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_TipoCuenta)</p>
+</div>
                             </div>
 
                             <div class="form-group">

@@ -1,4 +1,22 @@
 ﻿$(document).ready(function () {
+    $("#pemi_NumeroCAI")[0].maxLength = 40;
+})
+
+
+$("#pemi_NumeroCAI").change(function () {
+    var str = $("#pemi_NumeroCAI").val();
+    var res = str.toUpperCase();
+    $("#pemi_NumeroCAI").val(res);
+});
+
+$(pemi_NumeroCAI).on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50);
+})
+
+$(document).ready(function () {
     $('#PuntoEmision').DataTable(
     {
         "searching": true,
