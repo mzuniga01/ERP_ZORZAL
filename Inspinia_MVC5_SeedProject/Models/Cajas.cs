@@ -37,7 +37,7 @@ namespace ERP_GMEDINA.Models
 
 
             [Display(Name = "Fecha Crea")]
-            [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+            [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
             [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
             public System.DateTime cja_FechaCrea { get; set; }
 
@@ -47,7 +47,7 @@ namespace ERP_GMEDINA.Models
 
 
             [Display(Name = "Fecha Modifica")]
-            [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+            [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
             public Nullable<System.DateTime> cja_FechaModifica { get; set; }
     }
 

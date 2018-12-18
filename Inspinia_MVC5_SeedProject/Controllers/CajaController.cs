@@ -17,8 +17,7 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Caja/
         public ActionResult Index()
         {
-            var tbcaja = db.tbCaja.Include(t => t.tbSucursal);
-            return View(tbcaja.ToList());
+            return View(db.tbCaja.ToList());
         }
 
         // GET: /Caja/Details/5
@@ -40,7 +39,9 @@ namespace ERP_ZORZAL.Controllers
         public ActionResult Create()
         {
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
-            return View();
+            tbCaja caja = new tbCaja();
+            caja.suc_Id = 1;
+            return View(caja);
         }
 
         // POST: /Caja/Create
@@ -113,31 +114,36 @@ namespace ERP_ZORZAL.Controllers
         {
             if (ModelState.IsValid)
             {
-                var MensajeError = 0;
-                IEnumerable<object> list = null;
-                //list = db.UDP_Vent_tbCaja_Update(tbCaja.cja_Id,tbCaja.cja_Descripcion,tbCaja.suc_Id,tbCaja.cja_UsuarioCrea,tbCaja.cja_FechaCrea,tbCaja.cja_UsuarioCrea,tbCaja.cja_FechaModifica);
-                foreach (UDP_Vent_tbCaja_Update_Result caja in list)
-                    MensajeError = caja.MensajeError;
-                if (MensajeError == -1)
+                try
                 {
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbCaja_Update(tbCaja.cja_Id, tbCaja.cja_Descripcion, tbCaja.suc_Id, tbCaja.cja_UsuarioCrea, tbCaja.cja_FechaCrea);
+                    foreach (UDP_Vent_tbCaja_Update_Result caja in list)
+                        MensajeError = caja.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
-                else
+                catch (Exception Ex)
                 {
-                    return RedirectToAction("Index");
-                }
+                    ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbCaja.suc_Id);
+                    ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
+                    return View(tbCaja);
 
-                //db.Entry(tbCaja).State = EntityState.Modified
-                //    db.SaveChanges();
-                //    return RedirectToAction("Index");
+                }
+                return RedirectToAction("Index");
+
             }
 
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbCaja.suc_Id);
             
             return View(tbCaja);
-
-            
-            
-        }
+       }
 
         // GET: /Caja/Delete/5
         public ActionResult Delete(short? id)

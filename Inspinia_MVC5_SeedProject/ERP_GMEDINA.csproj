@@ -266,6 +266,8 @@
     <Compile Include="Models\PuntoEmision.cs" />
     <Compile Include="Models\PuntoEmisionDetalle.cs" />
     <Compile Include="Models\SolicitudCreditos.cs" />
+    <Compile Include="Models\SolicitudEfectivo.cs" />
+    <Compile Include="Models\SolicitudEfectivoDetalle.cs" />
     <Compile Include="Models\Sucursal.cs" />
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
@@ -1170,6 +1172,9 @@
     <Content Include="Views\MovimientoCaja\_CreateDenominacion.cshtml" />
     <Content Include="Views\Pedido\_ListProducto.cshtml" />
     <Content Include="Views\Pago\_BuscarFacturaDevolucion.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\_CreateSolicitudEfectivoDetallecccc.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\_IndexDenominacion.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\_maloCreateSolicitudEfectivoDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -44,20 +44,20 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tbSucursal.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@ } })
-                <span class="validation-error">@Html.ValidationMessageFor(model => model.suc_Id)</span>
+                @Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } } )
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.tbSucursal.suc_Descripcion)</span>
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.cja_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@ } })
+                @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.cja_Descripcion, new { @class = "control-label col-md-2" })
@@ -68,7 +68,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-5 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-primary"/>
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
