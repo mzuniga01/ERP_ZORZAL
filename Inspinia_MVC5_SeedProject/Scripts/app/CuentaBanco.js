@@ -13,3 +13,4 @@ $(bcta_TotalDebito).on("keypress keyup blur", function (event) {
         event.preventDefault();
     }
 });
+

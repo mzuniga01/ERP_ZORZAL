@@ -60,7 +60,9 @@ namespace ERP_ZORZAL.Controllers
                      MensajeError = banco.MensajeError;
                 if (MensajeError == -1)
                 {
-                }
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        return View(tbBanco);
+                    }
                 else
                 {
                     return RedirectToAction("Index");
@@ -68,7 +70,8 @@ namespace ERP_ZORZAL.Controllers
                 }
                 catch (Exception Ex)
                 {
-                    ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                     return View(tbBanco);
                 }
             }
