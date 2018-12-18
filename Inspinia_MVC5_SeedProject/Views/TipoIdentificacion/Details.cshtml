@@ -16,13 +16,10 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="@Url.Action("Index","TipoIdentificacion")">Regresar</a>
-           
+            <a href="@Url.Action("Index","TipoIdentificacion")">Regresar</a>        
         </div>
     </div>
 </div>
-
-
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -68,7 +65,7 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
                         @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos) </td>
                         <td>@Html.DisplayFor(model => model.tpi_FechaCrea)</td>
                     </tr>
