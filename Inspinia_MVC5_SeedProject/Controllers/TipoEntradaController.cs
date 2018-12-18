@@ -28,16 +28,6 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbTipoEntrada tbTipoEntrada = db.tbTipoEntrada.Find(id);
-            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbTipoEntrada.tent_UsuarioCrea).usu_NombreUsuario;
-            var UsuarioModfica = tbTipoEntrada.tent_UsuarioModifica;
-            if (UsuarioModfica == null)
-            {
-                ViewBag.UsuarioModifica = "";
-            }
-            else
-            {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
-            };
             if (tbTipoEntrada == null)
             {
                 return HttpNotFound();
@@ -122,18 +112,18 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(byte? id,[Bind(Include="tent_Id,tent_Descripcion,tent_UsuarioCrea,tent_FechaCrea")] tbTipoEntrada tbTipoEntrada)
+        public ActionResult Edit(byte? id,[Bind(Include= "tent_Id,tent_Descripcion,tent_UsuarioCrea,tent_FechaCrea,tbUsuario,tbUsuario1")] tbTipoEntrada tbTipoEntrada)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    tbTipoEntrada vTipoEntrada = db.tbTipoEntrada.Find(id);
+                    tbTipoEntrada TipoEntrada = db.tbTipoEntrada.Find(id);
                     IEnumerable<object> list = null;
                     string MsjError = "";
-                    list = db.UDP_Inv_tbTipoEntrada_Update(tbTipoEntrada.tent_Id, tbTipoEntrada.tent_Descripcion, vTipoEntrada.tent_UsuarioCrea, vTipoEntrada.tent_FechaCrea);
-                    foreach (UDP_Inv_tbTipoEntrada_Update_Result TipoEntrada in list)
-                        MsjError = TipoEntrada.MensajeError;
+                    list = db.UDP_Inv_tbTipoEntrada_Update(tbTipoEntrada.tent_Id, tbTipoEntrada.tent_Descripcion, tbTipoEntrada.tent_UsuarioCrea, tbTipoEntrada.tent_FechaCrea);
+                    foreach (UDP_Inv_tbTipoEntrada_Update_Result tent in list)
+                        MsjError = tent.MensajeError;
 
                     if (MsjError.Substring(0, 2) == "-1")
                     {

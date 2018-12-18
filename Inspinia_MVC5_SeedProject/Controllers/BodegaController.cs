@@ -30,16 +30,7 @@ namespace ERP_GMEDINA.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbBodega tbBodega = db.tbBodega.Find(id);
-            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbBodega.bod_UsuarioCrea).usu_NombreUsuario;
-            var UsuarioModfica = tbBodega.bod_UsuarioModifica;
-            if (UsuarioModfica == null)
-            {
-                ViewBag.UsuarioModifica = "";
-            }
-            else
-            {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
-            };
+            
             if (tbBodega == null)
             {
                 return HttpNotFound();
@@ -155,7 +146,8 @@ namespace ERP_GMEDINA.Controllers
                         MsjError = bodega.MensajeError;
                     if (MsjError == "-1")
                     {
-                        //ModelState.AddModelError("", "No se Guardo el registro");
+                        ModelState.AddModelError("", "No se Guardo el Registro");
+                        return View(tbBodega);
                     }
                     else
                     {
@@ -235,7 +227,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, [Bind(Include="bod_Id,bod_Nombre,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva,bod_UsuarioCrea,bod_FechaCrea,bod_UsuarioModifica,bod_FechaModifica")] tbBodega tbBodega)
+        public ActionResult Edit(int? id, [Bind(Include="bod_Id,bod_Nombre,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva,bod_UsuarioCrea,bod_FechaCrea,bod_UsuarioModifica,bod_FechaModifica, tbUsuario ,tbUsuario1")] tbBodega tbBodega)
         {
             if (ModelState.IsValid)
             {

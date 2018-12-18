@@ -123,7 +123,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( int? id, [Bind(Include= "obj_Id, obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto Objeto)
+        public ActionResult Edit( int? id, [Bind(Include= "obj_Id, obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado,tbUsuario,tbUsuari1")] tbObjeto Objeto)
         {
             if (ModelState.IsValid)
             {
