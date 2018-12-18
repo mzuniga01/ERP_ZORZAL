@@ -23,6 +23,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Cantidad")]
         [DisplayFormat(DataFormatString = "", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
+        [RegularExpression("[^0-9]", ErrorMessage = "UPRN must be numeric")]
         public decimal factd_Cantidad { get; set; }
         [Display(Name = "Monto Descuento")]
         [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]

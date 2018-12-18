@@ -97,14 +97,15 @@
                                     @Html.EditorFor(model => model.fact_AlCredito)
                                     <span class="validation-error"> @Html.ValidationMessageFor(model => model.fact_AlCredito)</span>
                                 </div>
-                                @Html.LabelFor(model => model.fact_AutorizarDescuento, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.fact_AutorizarDescuento)
-                                    @Html.ValidationMessageFor(model => model.fact_AutorizarDescuento)
+                                    @Html.EditorFor(model => model.clte_Nombres)
+                                    <span class="validation-error">  @Html.ValidationMessageFor(model => model.clte_Nombres)</span>
                                 </div>
+                               
                             </div>
 
-                            <div class="form-group">
+                           <div class="form-group">
                                 <div class="form-horizontal" name="Cred1" id="Cred1">
                                     @Html.LabelFor(model => model.fact_DiasCredito, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
@@ -112,7 +113,21 @@
                                         <span class="validation-error">  @Html.ValidationMessageFor(model => model.fact_DiasCredito)</span>
                                     </div>
                                 </div>
-
+                          </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fact_AutorizarDescuento, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_AutorizarDescuento)
+                                    @Html.ValidationMessageFor(model => model.fact_AutorizarDescuento)
+                                </div>
+         
+                                @Html.LabelFor(model => model.fact_Vendedor, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_Vendedor)
+                                    <span class="validation-error">  @Html.ValidationMessageFor(model => model.fact_Vendedor)</span>
+                                </div>
+                           </div>
+                            <div class="form-group">
                                 <div class="form-horizontal" name="Cred2" id="Cred2">
                                     @Html.LabelFor(model => model.fact_PorcentajeDescuento, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
@@ -121,25 +136,13 @@
                                     </div>
                                 </div>
 
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.fact_Vendedor, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.fact_Vendedor)
-                                    <span class="validation-error">  @Html.ValidationMessageFor(model => model.fact_Vendedor)</span>
-                                </div>
-                               @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.esfac_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <span class="validation-error"> @Html.ValidationMessageFor(model => model.esfac_Id)</span>
                                 </div>
-                            </div>
-                            <div class="form-group">
-
-                            </div>
-
+                          </div>
                         </div>
-
                     }
                     <div class="form-group">
                         <div class="col-md-12">

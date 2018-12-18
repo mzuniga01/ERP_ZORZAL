@@ -20,6 +20,19 @@ $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", fun
     //CargarAsignaciones();
 });
 
+//Facturar RowSeleccionar Producto
+$(document).ready(function () {
+    var table = $('#tbProductoFactura').DataTable();
+
+    $('#tbProductoFactura tbody').on('click', 'tr', function () {
+        idItem = $(this).closest('tr').data('id');
+        DescItem = $(this).closest('tr').data('desc');
+        $("#prod_Codigo").val(idItem);
+        $("#tbProducto_prod_Descripcion").val(DescItem);
+        $('#ModalAgregarProducto').modal('hide');
+    });
+});
+
 //Devolucion Seleccionar Producto
 $(document).on("click", "#DataTable1 tbody tr td button#Agregar", function () {
     idItem = $(this).closest('tr').data('id');
@@ -29,4 +42,6 @@ $(document).on("click", "#DataTable1 tbody tr td button#Agregar", function () {
     $('#ModalBuscarProducto').modal('hide');
     //CargarAsignaciones();
 });
+
+
 

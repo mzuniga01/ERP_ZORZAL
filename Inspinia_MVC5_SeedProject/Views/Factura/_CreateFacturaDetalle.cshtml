@@ -38,15 +38,15 @@
                                 </div>
                             </div>
                             @*@Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = "control-label col-md-3" })
-                            <div class="col-md-2">
-                                @Html.EditorFor(model => model.factd_PorcentajeDescuento)
-                                <div id="validationPorcentajeDescuentoCreate">
-                                    @Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)
-                                </div>
-                            </div>*@
+                                <div class="col-md-2">
+                                    @Html.EditorFor(model => model.factd_PorcentajeDescuento)
+                                    <div id="validationPorcentajeDescuentoCreate">
+                                        @Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)
+                                    </div>
+                                </div>*@
                             <label class="control-label col-md-3">Subtotal</label>
                             <div class="col-md-2">
-                                <input id="Subtotal" type="text" class="form-control" />
+                                <input id="SubtotalProducto" type="text" class="form-control" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -60,7 +60,7 @@
                             @Html.LabelFor(model => model.factd_Impuesto, new { @class = "control-label col-md-5" })
                             <div class="col-md-2">
                                 @*@Html.EditorFor(model => model.factd_Impuesto, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })*@
-                                <input type="text" value="15%" class="form-control " readonly />
+                                <input type="text" value="15" class="form-control " readonly />
                                 <div id="validationImpuestoProductoCreate">
                                     @Html.ValidationMessageFor(model => model.factd_Impuesto)
                                 </div>
@@ -71,7 +71,14 @@
                             <div class="col-md-2">
                                 <input id="PrecioUnitario" type="text" class="form-control " />
                             </div>
-                       </div>
+                            <label class="control-label col-md-5">Total</label>
+                            <div class="col-md-2">
+                                <input id="TotalProducto" type="text" value="" class="form-control " readonly />
+                                <div id="validationTotalImpuestoCreate">
+                                    @Html.ValidationMessageFor(model => model.factd_Impuesto)
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -144,3 +151,4 @@
 </div>
 
 <script src="~/Scripts/app/CalculoFactura.js"></script>
+

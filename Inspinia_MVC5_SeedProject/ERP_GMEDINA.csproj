@@ -790,6 +790,7 @@
       <LastGenOutput>ModelERP.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\app\Activo.js" />
+    <Content Include="Scripts\app\Apertura.js" />
     <Content Include="Scripts\app\Banco.js" />
     <Content Include="Scripts\app\BCliente.js" />
     <Content Include="Scripts\app\CalculoFactura.js" />
@@ -810,6 +811,7 @@
     <Content Include="Scripts\app\FuncionResta.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\ListaPrecioDetalle.js" />
+    <Content Include="Scripts\app\NotaCredito.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
     <Content Include="Scripts\app\Producto.js" />
     <Content Include="Scripts\app\PuntoEmision.js" />
@@ -1151,7 +1153,6 @@
     <Content Include="Views\Devolucion\_ProductoDevolucionFactura.cshtml" />
     <Content Include="Views\ListaPrecios\_IndexProducto.cshtml" />
     <Content Include="Views\Pedido\IndexFacturar.cshtml" />
-    <Content Include="Views\Factura\_Create.cshtml" />
     <Content Include="Views\Pago\Create.cshtml" />
     <Content Include="Views\Pago\Delete.cshtml" />
     <Content Include="Views\Pago\Details.cshtml" />
