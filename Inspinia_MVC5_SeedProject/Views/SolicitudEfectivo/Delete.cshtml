@@ -36,11 +36,27 @@
 				<h4 class="text-danger">Are you sure you want to delete this?</h4>
 				 <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.solef_MontoSolicitud)
+            @Html.DisplayNameFor(model => model.solef_EsApertura)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.solef_MontoSolicitud)
+            @Html.DisplayFor(model => model.solef_EsApertura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.solef_FechaEntrega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.solef_FechaEntrega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.solef_EsAnulada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.solef_EsAnulada)
         </dd>
 
         <dt>
@@ -76,6 +92,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.tbUsuario2.usu_NombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuario2.usu_NombreUsuario)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.tbMoneda.mnda_Abreviatura)
         </dt>
 
@@ -84,11 +108,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.tbCaja.cja_Descripcion)
+            @Html.DisplayNameFor(model => model.tbMovimientoCaja.mocja_Id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.tbCaja.cja_Descripcion)
+            @Html.DisplayFor(model => model.tbMovimientoCaja.mocja_Id)
         </dd>
 
     </dl>

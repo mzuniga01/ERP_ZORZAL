@@ -117,4 +117,13 @@
     </div>
  </div>
 
- 
+ @*<script>
+$('#AgregarDetalleSolicitudEfectico').click(function () {
+    var SolicitudEfectivoDetalle = $('#deno_valor').val();
+    
+    if (SolicitudEfectivoDetalle == '') {
+        $('#ErrorSolicitudEfectivoDetalleCreate').text('');        
+        $('#validationSolicitudEfectivoDetalleCreate').after('<ul id="ErrorSolicitudEfectivoDetalleCreate" class="validation-summary-errors text-danger">Campo Solicitud Efectivo Detalle requerido</ul>');
+    }    
+});
+</script>*@

@@ -62,10 +62,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tbFactura.clte_Identificacion, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.tbFactura.clte_Identificacion, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
+                @Html.EditorFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.tbFactura.clte_RTN_Identidad_Pasaporte)
             </div>
         </div>
         <div class="form-group">
@@ -158,10 +158,10 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.pago_Titular_, new { @class = "control-label col-md-2" })
                 <div class="col-md-5">
-                    @Html.EditorFor(model => model.pago_Titular)
-                    @Html.ValidationMessageFor(model => model.pago_Titular)
+                    @Html.EditorFor(model => model.pago_Titular_)
+                    @Html.ValidationMessageFor(model => model.pago_Titular_)
                 </div>
             </div>
         </div>

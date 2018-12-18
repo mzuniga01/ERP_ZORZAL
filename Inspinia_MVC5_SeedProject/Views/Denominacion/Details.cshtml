@@ -8,10 +8,10 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Detalle Denominación</h2>
-        
+
     </div>
     <div class="col-sm-8">
-        <div class="title-action">           
+        <div class="title-action">
             <a href="/Denominacion/Index">Regresar</a>
         </div>
     </div>
@@ -25,56 +25,56 @@
                     <h5>Details tbDenominacion</h5>
                 </div>
                 <div class="ibox-content">
-			 <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.deno_Id)
-        </dt>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.deno_Id)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.deno_Id)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.deno_Id)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.mnda_Id)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.mnda_Id)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbMoneda.mnda_Nombre)
-        </dd>
-                        
-        <dt>
-            @Html.DisplayNameFor(model => model.deno_Descripcion)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbMoneda.mnda_Nombre)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.deno_Descripcion)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.deno_Descripcion)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.deno_Tipo)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.deno_Descripcion)
+                        </dd>
 
-        @if (Model.deno_Tipo == 1)
-        {
-            <dd>Billete</dd>
-        }
-        else
-        {
-            <dd>Moneda</dd>
-        }    
+                        <dt>
+                            @Html.DisplayNameFor(model => model.deno_Tipo)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.deno_valor)
-        </dt>
+                        @if (Model.deno_Tipo == 1)
+                        {
+                            <dd>Billete</dd>
+                        }
+                        else
+                        {
+                            <dd>Moneda</dd>
+                        }
 
-        <dd>
-            @Html.DisplayFor(model => model.deno_valor)
-        </dd>                              
-    </dl>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.deno_valor)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.deno_valor)
+                        </dd>
+                    </dl>
 
 
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.deno_Id }, new { @class = "btn btn-primary"})
-    
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.deno_Id }, new { @class = "btn btn-primary" })
+
 
                 </div>
             </div>
@@ -88,29 +88,22 @@
                 </tr>
                 <tr>
                     <td>Creado</td>
-                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                    </td>
                     <td>@Html.DisplayFor(model => model.deno_FechaCrea)</td>
                 </tr>
                 <tr>
                     <td>Modificado</td>
-                    <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                    </td>
                     <td>@Html.DisplayFor(model => model.deno_FechaModifica)</td>
                 </tr>
             </table>
         </div>
 
     </div>
- </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>

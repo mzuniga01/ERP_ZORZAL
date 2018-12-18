@@ -45,6 +45,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
             ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion");
 
+            ViewBag.Factura = db.tbFactura.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
             return View();
         }

@@ -1,5 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbSolicitudEfectivo
-
+@using ERP_GMEDINA.Models
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,12 +7,10 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Registro de Solicitud</h2>
-       
+        <h2>Solicitud de Efectivo</h2>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			
             <a href="/SolicitudEfectivo/Index">Regresar</a>
         </div>
     </div>
@@ -20,191 +18,111 @@
 
 
 
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Registrar Solicitud</h5>
+                    <h5>Registrar Solicitud Efectivo</h5>
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true)
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
+                                </div>
+
+                                @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.mocja_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.DropDownList("mocja_Id", @*String.Empty*@null, "Seleccione Movimiento Caja", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.mocja_Id, "", new { style = "Color:red" })
+                                </div>
+                                @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.DropDownList("mnda_Id", @*String.Empty*@null, "Seleccione la Moneda", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.solef_EsApertura, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.solef_EsApertura)
+                                    @Html.ValidationMessageFor(model => model.solef_EsApertura)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Monto Solictado</label>
+                                <div class="col-md-3">
+                                    <input id="MontoSolictado" type="text" class="form-control " readonly />
+                                </div>    
+                                <label class="control-label col-md-2">Monto Entregado</label>
+                                <div class="col-md-3">
+                                    <input id="MontoEntregado" type="text" class="form-control " readonly />
+                                </div>                           
+                            </div>
+
+                           
 
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Sucursal</label>
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.solef_MontoSolicitud, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })              
-            </div>           
-        </div>
+                            @*<div class="form-group">
+                                <div class="col-md-offset-10 col-md-2">
+                                    <button id="detalle" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarSolicitudEfectivoDetalleDenominacion">Agregar Denominacion</button>
+                                </div>
+                            </div>*@
 
+                            
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    @Html.Partial("_CreateSolicitudEfectivoDetalle", new tbSolicitudEfectivoDetalle())
+                                </div>
+                            </div>
 
+                        </div>
+                    }
 
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
-            <div class="col-md-3">              
-                @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.cja_Id)
-            </div>
-        </div>
-
-       
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.mnda_Id, "Moneda", new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-
-                @Html.DropDownListFor(x => x.mnda_Id, new List<SelectListItem>
-    {                   new SelectListItem() {Text = "Seleccione Moneda", Value="0"},
-                        new SelectListItem() {Text = "Lempira", Value="1"},
-                        new SelectListItem() {Text = "Euro", Value="2"},
-
-    }, new { @class = "form-control col-md-1" })
-
-
-            </div>
-        </div>
-
-
-
-
-
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Monto Solicitado</label>
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.solef_MontoSolicitud, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.solef_MontoSolicitud )
-            </div>
-        </div>
-
-        <div class="form-group">
-           <label  class = "control-label col-md-2" >Monto Entregado</label>
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.solef_MontoSolicitud)
-                @Html.ValidationMessageFor(model => model.solef_MontoSolicitud)
-            </div>
-        </div>
-        
-
-      
-        <div class="form-group">
-            <div class="col-md-offset-10 col-md-2">
-                <button id="detalle" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarSolicitudEfectivoDetalle">Agregar Solicitud Detalle</button>
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-               @* <input type="submit" value="Imprimir Comprobante" class="btn btn-info"   />*@
-
-                <label class="btn btn-info" onclick="alerta()">Imprimir Solicitud de Efectivo </label></div>
-        </div>
-    </div>
-
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Denominación</th>
-                    <th scope="col"> Cantidad Solicitada</th>
-                    <th scope="col"> Monto Solicitado</th>
-                    <th scope="col">Cantdad Entregada</th>
-                    <th scope="col">Monto Entregado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-            </tbody>
-        </table>
-    </div>
-
-   
-
-
-
-                }
-
-    </div>
-            </div>
-        </div>
-    </div>
- </div>
-
- 
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-
-
-
-}
-
-
-
-
-<script type="text/javascript">
-
-
-    function alerta() {
-        var mensaje;
-        var opcion = confirm("Imprimir Comprobante");
-        if (opcion == true) {
-        detalle.disabled = true;
-        } else {
-            mensaje = "Has clickado Cancelar";
-            detalle.disabled = false;
-        }
-        document.getElementById("ejemplo").innerHTML = mensaje;
-    }
-
-
-
-</script>
-
-
-
-
-
-
-
-<div>
-    <div class="modal fade" id="ModalAgregarSolicitudEfectivoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel"> Solicitud Efectivo Detalle</h4>
-                </div>
-                <div class="modal-body" id="frmPedidoDetalle">
-                    @Html.Partial("_CreateSolicitudEfectivoDetalle", new ERP_GMEDINA.Models.tbSolicitudEfectivoDetalle())
-
-                  
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/app/Denominacion.js"></script>
+    <script src="~/Scripts/app/SolicitudEfectivo.js"></script>
+<script src="~/Scripts/app/SolicitudEfectivoDetalle.js"></script>
+}
 
 
 

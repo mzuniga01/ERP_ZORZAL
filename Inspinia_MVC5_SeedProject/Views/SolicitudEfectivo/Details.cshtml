@@ -7,25 +7,13 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Solicitud Efectivo</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Details</strong>
-            </li>
-        </ol>*@
+        <h2>Solicitud Efectivo</h2>        
     </div>
-
     <div class="col-sm-8">
         <div class="title-action">
-            @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
             <a href="/SolicitudEfectivo/Index">Regresar</a>
         </div>
     </div>
-
-   
 </div>
 
 
@@ -36,130 +24,133 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Detalle de Solicitud</h5>
+                    <h5>Detalle Solicitud Efectivo</h5>
                 </div>
                 <div class="ibox-content">
 
 
 				    <dl class="dl-horizontal">
 
-
+        <dt>
+            @Html.DisplayNameFor(model => model.solef_Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.solef_Id)
+        </dd>
                         <dt>
-                            Número
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.solef_Id)
-                        </dd>
-
-                        <dt>
-                            Caja
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tbCaja.cja_Descripcion)
-                        </dd>
-                        <dt>
-                            Fecha Solicitud
+                            @*@Html.DisplayNameFor(model => model.tbMovimientoCaja.mocja_Id)*@
+                            Movimiento Caja
                         </dt>
                         <dd>
-                            @Html.DisplayFor(model => model.solef_FechaCrea)
+                            @Html.DisplayFor(model => model.tbMovimientoCaja.mocja_Id)
                         </dd>
+                        
+        <dt>
+            @Html.DisplayNameFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)                           
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
+        </dd>
 
                         <dt>
+                            @*@Html.DisplayNameFor(model => model.tbMoneda.mnda_Nombre)*@
                             Moneda
                         </dt>
-
                         <dd>
                             @Html.DisplayFor(model => model.tbMoneda.mnda_Nombre)
                         </dd>
 
+        <dt>
+            @*@Html.DisplayNameFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)*@
+            Caja
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
+        </dd>
                         <dt>
-                            Monto Solicitado
+                            @*@Html.DisplayNameFor(model => model.solef_FechaCrea)*@
+                            Fecha de Solicitud
                         </dt>
-
                         <dd>
-                            @Html.DisplayFor(model => model.solef_MontoSolicitud)
+                            @Html.DisplayFor(model => model.solef_FechaCrea)
                         </dd>
-                        
+        <dt>
+            @Html.DisplayNameFor(model => model.solef_FechaEntrega)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.solef_FechaEntrega)
+        </dd>
+
                         <dt>
-                            Monto Entregado
+                        @Html.DisplayNameFor(model => model.solef_EsApertura)
                         </dt>
-
                         <dd>
-                            
+                        @Html.DisplayFor(model => model.solef_EsApertura)
                         </dd>
+
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.solef_EsAnulada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.solef_EsAnulada)
+        </dd>
+
+                        <dt>
+                           Monto Solictado
+                        </dt>
+                        <dd>                            
+                        </dd>
+
+        <dt>
+            Monto Entregado
+        </dt>
+        <dd>
+        </dd>
                         
                         
-                          
-                        <br />
+                       
+        
+                        
 
-                        <div class="table-responsive ">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Denominación</th>
-                                        <th> Cantidad Solicitada</th>
-                                        <th> Monto Solicitado</th>
-                                        <th>Cantdad Entregada</th>
-                                        <th>Monto Entregado</th>
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>100</th>
-                                        <td>1</td>
-                                        <td>100</td>
-                                        <td>  </td>
-                                        <td>  </td>
-                                      
-                                    </tr>
-                                    <tr>
-                                        <th>50</th>
-                                        <td>2</td>
-                                        <td>100</td>
-                                        <td>   </td>
-                                        <td>  </td>
-                                    
-                                    </tr>
+       
 
-                                </tbody>
-                            </table>
-                        </div>
-
-
-
-           
+        
 
     </dl>
 
+                    <div class="table-responsive">
+                        <table id="tblSolicitudEfectivoDetalle" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Denominación</th>
+                                    <th scope="col"> Cantidad Solicitada</th>
+                                    <th scope="col"> Monto Solicitado</th>
+                                    <th scope="col">Cantdad Entregada</th>
+                                    <th scope="col">Monto Entregado</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                            </tfoot>
+                        </table>
+                    </div>
 
 	    @Html.ActionLink("Editar", "Edit", new { id = Model.solef_Id }, new { @class = "btn btn-primary"})
-    
+   
 
                 </div>
             </div>
         </div>
-    </div>
-    <div class="ibox-content">
-        <table class="table table-striped">
-            <tr>
-                <th></th>
-                <th>Usuario</th>
-                <th>Fecha</th>
-            </tr>
-            <tr>
-                <td>Creado</td>
-                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
-                <td>@Html.DisplayFor(model => model.solef_FechaCrea)</td>
-            </tr>
-            <tr>
-                <td>Modificado</td>
-                <td>@Html.DisplayFor(model => model.solef_UsuarioModifica)</td>
-                <td>@Html.DisplayFor(model => model.solef_FechaModifica)</td>
-            </tr>
-        </table>
     </div>
  </div>
 

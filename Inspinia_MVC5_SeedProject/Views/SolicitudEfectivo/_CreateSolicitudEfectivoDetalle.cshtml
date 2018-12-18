@@ -1,89 +1,155 @@
 ﻿@model ERP_GMEDINA.Models.tbSolicitudEfectivoDetalle
+@using ERP_GMEDINA.Models
 
 
-
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content ">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                @*<div class="ibox-title">
-                    <h5>Detalle de Solicitud Efectivo</h5>
-                </div>*@
+               
                 <div class="ibox-content">
 
-				@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
+	
+
+   
     <div class="form-horizontal">
-        @Html.ValidationSummary(true)
+      
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.deno_Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.deno_Id)
+                @Html.ValidationMessageFor(model => model.deno_Id)
+            </div>
+        </div>*@
 
 
-
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.solef_Id, "Número", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.DropDownList("solef_Id", String.Empty)*@
-                @Html.EditorFor(model => model.soled_Id, new { htmlAttributes = new { disabled = true } })
+        @*@Html.LabelFor(model => model.solef_Id, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.soled_Id)
+            <div class="validationSolefIdCreate">
                 @Html.ValidationMessageFor(model => model.solef_Id)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.solef_Id, "Moneda", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.DropDownList("solef_Id", String.Empty)*@
-                @Html.EditorFor(model => model.tbSolicitudEfectivo.mnda_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-               
+            
+            @Html.LabelFor(model => model.tbDenominacion.deno_Descripcion, "Denominación", new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.tbDenominacion.deno_Descripcion)
+                <div class="validationDenoDescripcionCreate">
+                    @Html.ValidationMessageFor(model => model.tbDenominacion.deno_Descripcion)
+                </div>
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarSolicitudEfectivoDetalleDenominacion"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+
+            @Html.LabelFor(model => model.tbDenominacion.deno_Tipo, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.tbDenominacion.deno_Tipo)
+                <div class="validationDenoTipoDenominacionCreate">
+                    @Html.ValidationMessageFor(model => model.tbDenominacion.deno_Tipo)
+                </div>
             </div>
         </div>
 
-
-
-        <div class="form-group">
-            <label class="control-label col-md-3">Denominación</label>
-            <div class="col-md-9">
-
-                @Html.DropDownListFor(x => x.soled_Id, new List<SelectListItem>
-    {
-                        new SelectListItem() {Text = "500", Value="1"},
-                        new SelectListItem() {Text = "100", Value="2"},
-
-    }, "Seleccione la Denominación", new { @class = "form-control" })
-
-
-            </div>
-        </div>
-
-
-
-
-
-
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Cantidad Solicitada</label>
-            <div class="col-md-10">
+        <div class="form-group">           
+            @Html.LabelFor(model => model.soled_CantidadSolicitada, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.soled_CantidadSolicitada)
-                @Html.ValidationMessageFor(model => model.soled_CantidadSolicitada)
+                <div class="validationCantidadSolicitadaCreate">
+                    @Html.ValidationMessageFor(model => model.soled_CantidadSolicitada)
+                </div>
+                </div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-primary" type="button" id="AgregarDetalleSolicitudEfectico">Añadir</button>
             </div>
         </div>
 
-       
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.soled_CantidadEntregada, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.soled_CantidadEntregada)
+                @Html.ValidationMessageFor(model => model.soled_CantidadEntregada)
+            </div>
+        </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Agregar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Create", null, new { @class = "btn btn-white"})
+            @Html.LabelFor(model => model.soled_MontoEntregado, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.soled_MontoEntregado)
+                @Html.ValidationMessageFor(model => model.soled_MontoEntregado)
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.soled_UsuarioCrea, "soled_UsuarioCrea", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("soled_UsuarioCrea", String.Empty)
+                @Html.ValidationMessageFor(model => model.soled_UsuarioCrea)
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.soled_FechaCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.soled_FechaCrea)
+                @Html.ValidationMessageFor(model => model.soled_FechaCrea)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.soled_UsuarioModifica, "soled_UsuarioModifica", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("soled_UsuarioModifica", String.Empty)
+                @Html.ValidationMessageFor(model => model.soled_UsuarioModifica)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.soled_FechaModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.soled_FechaModifica)
+                @Html.ValidationMessageFor(model => model.soled_FechaModifica)
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>*@
     </div>
-}
+
 
                 </div>
+            </div>
+            <div class="table-responsive">
+                <table id="tblSolicitudEfectivoDetalle" class="table table-striped table-bordered table-hover dataTables-example">
+                    <thead>
+                        <tr>
+                            <th scope="col">Denominación</th>
+                            <th scope="col"> Cantidad Solicitada</th>
+                            <th scope="col"> Monto Solicitado</th>
+                            <th scope="col">Cantdad Entregada</th>
+                            <th scope="col">Monto Entregado</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                    </tfoot>
+                </table>
             </div>
         </div>
     </div>
@@ -91,6 +157,21 @@
 
  
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<div>
+    <div class="modal fade" id="ModalAgregarSolicitudEfectivoDetalleDenominacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel"> Solicitud Efectivo Detalle</h4>
+                </div>
+                <div class="modal-body" id="frmSolicituEfectivoDetalle">
+                    @Html.Partial("_IndexDenominacion", (List<tbDenominacion>)ViewBag.Denominacion)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

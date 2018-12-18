@@ -38,7 +38,7 @@ namespace ERP_GMEDINA.Models
         public int tpa_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Crea")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public System.DateTime tpa_FechaCrea { get; set; }
 
@@ -47,7 +47,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> tpa_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modifica")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public Nullable<System.DateTime> tpa_FechaModifica { get; set; }
 

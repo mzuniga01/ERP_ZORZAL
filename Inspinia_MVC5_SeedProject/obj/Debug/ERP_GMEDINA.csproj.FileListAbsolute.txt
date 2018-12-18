@@ -674,3 +674,14 @@ C:\Users\joshu\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.
 C:\Users\joshu\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Razor.xml
 C:\Users\joshu\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.dll
 C:\Users\joshu\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.pdb
+C:\Users\gollumti\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll.config
+C:\Users\gollumti\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll
+C:\Users\gollumti\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.pdb
+C:\Users\gollumti\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\EntityFramework.dll
+C:\Users\gollumti\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\EntityFramework.SqlServer.dll
+C:\Users\gollumti\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.Mvc.dll
+C:\Users\gollumti\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\EntityFramework.xml
+C:\Users\gollumti\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\EntityFramework.SqlServer.xml
+C:\Users\gollumti\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.Mvc.xml
+C:\Users\gollumti\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.dll
+C:\Users\gollumti\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.pdb

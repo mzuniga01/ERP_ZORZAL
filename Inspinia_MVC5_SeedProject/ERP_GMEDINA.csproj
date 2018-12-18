@@ -203,6 +203,7 @@
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\PuntoEmisionController.cs" />
     <Compile Include="Controllers\SolicitudCreditoController.cs" />
+    <Compile Include="Controllers\SolicitudEfectivoController.cs" />
     <Compile Include="Controllers\SucursalController.cs" />
     <Compile Include="Controllers\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\TipoPagoController.cs" />
@@ -816,6 +817,8 @@
     <Content Include="Scripts\app\Producto.js" />
     <Content Include="Scripts\app\PuntoEmision.js" />
     <Content Include="Scripts\app\PuntoEmisionDetalle.js" />
+    <Content Include="Scripts\app\SolicitudEfectivo.js" />
+    <Content Include="Scripts\app\SolicitudEfectivoDetalle.js" />
     <Content Include="Scripts\app\Sucursal.js" />
     <Content Include="Scripts\app\TipoPago.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1167,6 +1170,7 @@
     <Content Include="Views\Devolucion\_BuscarFacturaDevolucion.cshtml" />
     <Content Include="Views\MovimientoCaja\_CreateDenominacion.cshtml" />
     <Content Include="Views\Pedido\_ListProducto.cshtml" />
+    <Content Include="Views\Pago\_BuscarFacturaDevolucion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
