@@ -31,8 +31,8 @@
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm())
-                    {
+                  @using (Html.BeginForm("Create", "Pedido", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                  {
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
@@ -98,10 +98,11 @@
 
 
                         </div>
+
+                        @Html.Partial("_ListPedidoDetalle")
                     }
 
-
-                    @Html.Partial("_ListPedidoDetalle")       
+ 
                 </div>
             </div>
         </div>
@@ -179,5 +180,6 @@
 
 <script src="~/Scripts/app/Cliente.js"></script>
 
+    <script src="~/Scripts/app/Producto.js"></script>
 
 
