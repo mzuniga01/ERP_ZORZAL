@@ -29,6 +29,16 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbEstadoMovimiento tbEstadoMovimiento = db.tbEstadoMovimiento.Find(id);
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbEstadoMovimiento.estm_UsuarioCrea).usu_NombreUsuario;
+            var UsuarioModfica = tbEstadoMovimiento.estm_UsuarioModifica;
+            if (UsuarioModfica == null)
+            {
+                ViewBag.UsuarioModifica = "";
+            }
+            else
+            {
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+            };
             if (tbEstadoMovimiento == null)
             {
                 return HttpNotFound();
@@ -47,18 +57,32 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="estm_Id,estm_Descripcion,estm_UsuarioCrea,estm_FechaCrea,estm_UsuarioModifica,estm_FechaModifica")] tbEstadoMovimiento tbEstadoMovimiento)
+        public ActionResult Create([Bind(Include = "estm_Descripcion")] tbEstadoMovimiento tbEstadoMovimiento)
         {
-            if (ModelState.IsValid)
             {
-                db.tbEstadoMovimiento.Add(tbEstadoMovimiento);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    //db.tbRol.Add(tbRol);
+                    //db.SaveChanges();
+                    try
+                    {
+                        IEnumerable<Object> List = null;
+                        var Msj = "";
+                        List = db.UDP_Inv_tbEstadoMovimiento_Insert(tbEstadoMovimiento.estm_Descripcion);
+                        foreach (UDP_Inv_tbEstadoMovimiento_Insert_Result EstadoMovimientos in List)
+                            Msj = EstadoMovimientos.MensajeError;
+                    }
+                    catch (Exception Ex)
+                    {
+                        Ex.Message.ToString();
+                        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    }
+                    return RedirectToAction("Index");
+                }
+
+                return View(tbEstadoMovimiento);
             }
-
-            return View(tbEstadoMovimiento);
         }
-
         // GET: /EstadoMovimiento/Edit/5
         public ActionResult Edit(byte? id)
         {
@@ -67,6 +91,16 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbEstadoMovimiento tbEstadoMovimiento = db.tbEstadoMovimiento.Find(id);
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbEstadoMovimiento.estm_UsuarioCrea).usu_NombreUsuario;
+            var UsuarioModfica = tbEstadoMovimiento.estm_UsuarioModifica;
+            if (UsuarioModfica == null)
+            {
+                ViewBag.UsuarioModifica = "";
+            }
+            else
+            {
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+            };
             if (tbEstadoMovimiento == null)
             {
                 return HttpNotFound();
@@ -79,16 +113,32 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="estm_Id,estm_Descripcion,estm_UsuarioCrea,estm_FechaCrea,estm_UsuarioModifica,estm_FechaModifica")] tbEstadoMovimiento tbEstadoMovimiento)
+        public ActionResult Edit(byte? id, [Bind(Include="estm_Id,estm_Descripcion,estm_UsuarioCrea,estm_FechaCrea")] tbEstadoMovimiento tbEstadoMovimiento)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbEstadoMovimiento).State = EntityState.Modified;
-                db.SaveChanges();
+
+                //db.Entry(tbRol).State = EntityState.Modified;
+                //db.SaveChanges();
+                try
+                {
+                    tbEstadoMovimiento VtbEstadoMovimiento = db.tbEstadoMovimiento.Find(id);
+                    IEnumerable<Object> List = null;
+                    var Msj = "";
+                    List = db.UDP_Inv_tbEstadoMovimiento_Update(tbEstadoMovimiento.estm_Id, tbEstadoMovimiento.estm_Descripcion, tbEstadoMovimiento.estm_UsuarioCrea, tbEstadoMovimiento.estm_FechaCrea);
+                    foreach (UDP_Inv_tbEstadoMovimiento_Update_Result EstadoMovimiento in List)
+                        Msj = EstadoMovimiento.MensajeError;
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                }
                 return RedirectToAction("Index");
             }
             return View(tbEstadoMovimiento);
         }
+
 
         // GET: /EstadoMovimiento/Delete/5
         public ActionResult Delete(byte? id)

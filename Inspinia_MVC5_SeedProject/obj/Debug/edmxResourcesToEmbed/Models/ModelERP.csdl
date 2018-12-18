@@ -111,15 +111,6 @@
       <Parameter Name="entd_FechaCrea" Mode="In" Type="DateTime" />
       <Parameter Name="uni_Id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoMovimiento_Insert_Result)">
-      <Parameter Name="estm_Descripcion" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoMovimiento_Update_Result)">
-      <Parameter Name="estm_Id" Mode="In" Type="Byte" />
-      <Parameter Name="estm_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="estm_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="estm_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbInventarioFisicoDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisicoDetalle_Insert_Result)">
       <Parameter Name="invf_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
@@ -149,23 +140,6 @@
       <Parameter Name="pscat_EsActiva" Mode="In" Type="Byte" />
       <Parameter Name="pscat_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="pscat_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbProveedor_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProveedor_Insert_Result)">
-      <Parameter Name="prov_Nombre" Mode="In" Type="String" />
-      <Parameter Name="prov_NombreContacto" Mode="In" Type="String" />
-      <Parameter Name="prov_Direccion" Mode="In" Type="String" />
-      <Parameter Name="prov_Email" Mode="In" Type="String" />
-      <Parameter Name="prov_Telefono" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbProveedor_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProveedor_Update_Result)">
-      <Parameter Name="prov_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prov_Nombre" Mode="In" Type="String" />
-      <Parameter Name="prov_NombreContacto" Mode="In" Type="String" />
-      <Parameter Name="prov_Direccion" Mode="In" Type="String" />
-      <Parameter Name="prov_Email" Mode="In" Type="String" />
-      <Parameter Name="prov_Telefono" Mode="In" Type="String" />
-      <Parameter Name="prov_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="prov_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbEmpleados_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbEmpleados_Insert_Result)">
       <Parameter Name="emp_Nombres" Mode="In" Type="String" />
@@ -1179,6 +1153,35 @@
       <Parameter Name="rol_Id" Mode="In" Type="Int32" />
       <Parameter Name="rol_Estado" Mode="In" Type="Boolean" />
     </FunctionImport>
+    <FunctionImport Name="SDP_Acce_GetObjetosAsignados" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetosAsignados_Result)">
+      <Parameter Name="rol_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoMovimiento_Insert_Result)">
+      <Parameter Name="estm_Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoMovimiento_Update_Result)">
+      <Parameter Name="estm_Id" Mode="In" Type="Byte" />
+      <Parameter Name="estm_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="estm_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="estm_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbProveedor_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProveedor_Insert_Result)">
+      <Parameter Name="prov_Nombre" Mode="In" Type="String" />
+      <Parameter Name="prov_NombreContacto" Mode="In" Type="String" />
+      <Parameter Name="prov_Direccion" Mode="In" Type="String" />
+      <Parameter Name="prov_Email" Mode="In" Type="String" />
+      <Parameter Name="prov_Telefono" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbProveedor_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProveedor_Update_Result)">
+      <Parameter Name="prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prov_Nombre" Mode="In" Type="String" />
+      <Parameter Name="prov_NombreContacto" Mode="In" Type="String" />
+      <Parameter Name="prov_Direccion" Mode="In" Type="String" />
+      <Parameter Name="prov_Email" Mode="In" Type="String" />
+      <Parameter Name="prov_Telefono" Mode="In" Type="String" />
+      <Parameter Name="prov_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="prov_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1238,12 +1241,6 @@
   <ComplexType Name="UDP_Inv_tbEntradaDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
   </ComplexType>
-  <ComplexType Name="UDP_Inv_tbEstadoMovimiento_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbEstadoMovimiento_Update_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
   <ComplexType Name="UDP_Inv_tbInventarioFisicoDetalle_Insert_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
@@ -1255,12 +1252,6 @@
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbProductoSubcategoria_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbProveedor_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbProveedor_Update_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbEntradaDetalle_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -4677,6 +4668,26 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Acce_tbRolEstado_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="SDP_Acce_GetObjetosAsignados_Result">
+    <Property Type="Int32" Name="obj_Id" Nullable="false" />
+    <Property Type="String" Name="obj_Pantalla" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="obj_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="obj_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="obj_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="obj_FechaModifica" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbProveedor_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbProveedor_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbEstadoMovimiento_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbEstadoMovimiento_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

@@ -20,12 +20,12 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Creado por")]
         public int rol_UsuarioCrea { get; set; }
         [Display(Name = "Creado el")]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm:ss}", ApplyFormatInEditMode = true)]
         public System.DateTime rol_FechaCrea { get; set; }
         [Display(Name = "Modificado por")]
         public Nullable<int> rol_UsuarioModifica { get; set; }
         [Display(Name = "Modificado el")]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm:ss}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> rol_FechaModifica { get; set; }
         [Display(Name = "Estado")]
         public Nullable<bool> rol_Estado { get; set; }

@@ -30,7 +30,7 @@ namespace ERP_ZORZAL.Controllers
             }
             tbRol tbRol = db.tbRol.Find(id);
 
-            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbRol.rol_UsuarioCrea).usu_NombreUsuario;
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbRol.rol_UsuarioCrea).usu_Nombres;
             var UsuarioModfica = tbRol.rol_UsuarioModifica;
             if (UsuarioModfica == null)
             {
@@ -38,7 +38,7 @@ namespace ERP_ZORZAL.Controllers
             }
             else
             {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_Nombres;
             };
             if (tbRol == null)
             {
@@ -95,7 +95,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.ListEstado = ListEstado();
             
             tbRol tbRol = db.tbRol.Find(id);
-            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbRol.rol_UsuarioCrea).usu_NombreUsuario;
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbRol.rol_UsuarioCrea).usu_Nombres;
             var UsuarioModfica = tbRol.rol_UsuarioModifica;
             if (UsuarioModfica == null)
             {
@@ -103,7 +103,7 @@ namespace ERP_ZORZAL.Controllers
             }
             else
             {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_Nombres;
             };
             if (tbRol == null)
             {
@@ -129,12 +129,7 @@ namespace ERP_ZORZAL.Controllers
                     tbRol vRol = db.tbRol.Find(id);
                     IEnumerable<Object> List = null;
                     var Msj = "";
-                    if (true)
-                    {
-
-                    }
-                    tbRol.rol_Estado = false;
-                    List = db.UDP_Acce_tbRol_Update(tbRol.rol_Id, tbRol.rol_Descripcion, vRol.rol_UsuarioCrea, vRol.rol_FechaCrea, tbRol.rol_Estado);
+                    List = db.UDP_Acce_tbRol_Update(tbRol.rol_Id, tbRol.rol_Descripcion, vRol.rol_UsuarioCrea, vRol.rol_FechaCrea, vRol.rol_Estado);
                     foreach (UDP_Acce_tbRol_Update_Result Rol in List)
                         Msj = Rol.MensajeError;
                 }
@@ -182,14 +177,34 @@ namespace ERP_ZORZAL.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult EstadoRol(int id)
+
+        public ActionResult EstadoRolInactivo(int id)
         {
             try
             {
                 IEnumerable<Object> List = null;
                 var Msj = "";
                 tbRol tbRol = db.tbRol.Find(id);
-                List = db.UDP_Acce_tbRolEstado_Update(tbRol.rol_Id, Helpers.Inactivo);
+                List = db.UDP_Acce_tbRolEstado_Update(id, Helpers.Inactivo);
+                foreach (UDP_Acce_tbRolEstado_Update_Result Rol in List)
+                    Msj = Rol.MensajeError;
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult EstadoRolActivo(int id)
+        {
+            try
+            {
+                IEnumerable<Object> List = null;
+                var Msj = "";
+                tbRol tbRol = db.tbRol.Find(id);
+                List = db.UDP_Acce_tbRolEstado_Update(id, Helpers.Activo);
                 foreach (UDP_Acce_tbRolEstado_Update_Result Rol in List)
                     Msj = Rol.MensajeError;
             }
@@ -221,22 +236,24 @@ namespace ERP_ZORZAL.Controllers
         [HttpPost]
         public JsonResult GetObjetosDisponibles(int rolId)
         {
-            
-            var list = db.SDP_Acce_GetObjetosDisponibles(rolId).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
+            var list1 = db.SDP_Acce_GetObjetosDisponibles(rolId).ToList();
+            return Json(list1, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult GetObjetosAsignados(int rolId)
+        {
+            var list2 = db.SDP_Acce_GetObjetosAsignados(rolId).ToList();
+            return Json(list2, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public JsonResult GetObjetos()
         {
             var list = db.SDP_Acce_GetObjetos().ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
-        public JsonResult InsertAccesoRol(string descripcionRol, int id)
-        {
-            var list = db.SDP_Acce_GetObjetos().ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
+
         [HttpPost]
         public JsonResult InsertRol(string DescripcionRol, ICollection<tbAccesoRol> AccesoRol)
         {
@@ -277,7 +294,7 @@ namespace ERP_ZORZAL.Controllers
                         Tran.Complete();
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     Msj1 = "-1";
                 }

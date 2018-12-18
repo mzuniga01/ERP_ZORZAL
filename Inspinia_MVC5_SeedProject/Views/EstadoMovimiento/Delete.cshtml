@@ -19,7 +19,7 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+			@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})
         </div>
     </div>
 </div>
@@ -33,7 +33,7 @@
                     <h5>tbEstadoMovimiento</h5>
                 </div>
                 <div class="ibox-content">
-				<h4 class="text-danger">Are you sure you want to delete this?</h4>
+				<h4 class="text-danger">Esta Seguro Que Quiere Borrar El Registro?</h4>
 				 <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.estm_Descripcion)
@@ -81,8 +81,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-primary" />
-            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            @Html.ActionLink("Regresar Al Listado", "Index", null, new { @class = "btn btn-white"})
         </div>
     }
 

@@ -48,11 +48,11 @@
                             @Html.DisplayNameFor(model => model.rol_Estado)
                         </dt>
 
-                        @if (Convert.ToString(Model.rol_Estado) == "1")
+                        @if (Model.rol_Estado == true)
                         {
                             <dd>Activo</dd>
                         }
-                        @if (Convert.ToString(Model.rol_Estado) == "0")
+                        @if (Model.rol_Estado == false)
                         {
                             <dd>Inactivo</dd>
 
@@ -109,7 +109,7 @@
                     }
                     else
                     {
-                        Html.DisplayFor(model => model.tbUsuario.usu_Nombres);
+                        @ViewBag.UsuarioModifica
                     }
                 </td>
                 <td>

@@ -34,19 +34,13 @@
 
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true)
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.prov_Id , new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.prov_Id, new { @class = "form-control", @readonly = "readonly" })
-                                    @Html.ValidationMessageFor(model => model.prov_Id)
-                                </div>
-                            </div>
+                          
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Nombre, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.prov_Nombre)
-                                    @Html.ValidationMessageFor(model => model.prov_Nombre)
+                                   <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Nombre)</p> 
                                 </div>
                             </div>
 
@@ -54,15 +48,16 @@
                                 @Html.LabelFor(model => model.prov_NombreContacto, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.prov_NombreContacto)
-                                    @Html.ValidationMessageFor(model => model.prov_NombreContacto)
+                                   <p style="color:red">@Html.ValidationMessageFor(model => model.prov_NombreContacto)</p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Direccion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prov_Direccion)
-                                    @Html.ValidationMessageFor(model => model.prov_Direccion)
+                                   
+                                    @Html.TextAreaFor(model => model.prov_Direccion, new { @class = "form-control"})
+                                   <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Direccion)</p>
                                 </div>
                             </div>
 
@@ -70,7 +65,7 @@
                                 @Html.LabelFor(model => model.prov_Email, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.prov_Email)
-                                    @Html.ValidationMessageFor(model => model.prov_Email)
+                                   <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Email)</p>
                                 </div>
                             </div>
 
@@ -78,7 +73,7 @@
                                 @Html.LabelFor(model => model.prov_Telefono, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.prov_Telefono)
-                                    @Html.ValidationMessageFor(model => model.prov_Telefono)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Telefono)</p>
                                 </div>
                             </div>
 
@@ -97,8 +92,8 @@
         </div>
     </div>
 </div>
-
-
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/app/ValidationNumber.js"></script>
 
 @*@section Scripts {
         @Scripts.Render("~/bundles/jqueryval")

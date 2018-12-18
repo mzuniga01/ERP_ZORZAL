@@ -247,6 +247,9 @@
     <Compile Include="Models\rol.cs" />
     <Compile Include="Models\RolesUsuario.cs" />
     <Compile Include="Models\Salida.cs" />
+    <Compile Include="Models\SDP_Acce_GetObjetosAsignados_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SDP_Acce_GetObjetosDisponibles_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -859,6 +862,7 @@
     <Content Include="Scripts\app\MostrarCamposEditar.js" />
     <Content Include="Scripts\app\MostrarCamposEntradajs.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
+    <Content Include="Scripts\app\RolObjetosEdit.js" />
     <Content Include="Scripts\app\RolObjetos.js" />
     <Content Include="Scripts\app\search.js" />
     <Content Include="Scripts\bootstrap.js" />

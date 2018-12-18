@@ -99,14 +99,17 @@
                         <tr>
                             <td>Creado por  </td>
                             <td>
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @ViewBag.UsuarioCrea
                             </td>
                             <td>@Html.DisplayFor(model => model.prov_FechaCrea)</td>
 
                         </tr>
                         <tr>
                             <td>Modificado por</td>
-                            <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres) </td>
+                            <td>
+                              
+                                @ViewBag.UsuarioModifica
+                            </td>
                             <td> @Html.DisplayFor(model => model.prov_FechaModifica)</td>
 
                         </tr>

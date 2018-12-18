@@ -28,6 +28,16 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbProveedor tbProveedor = db.tbProveedor.Find(id);
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbProveedor.prov_UsuarioCrea).usu_NombreUsuario;
+            var UsuarioModfica = tbProveedor.prov_UsuarioModifica;
+            if (UsuarioModfica == null)
+            {
+                ViewBag.UsuarioModifica = "";
+            }
+            else
+            {
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+            };
             if (tbProveedor == null)
             {
                 return HttpNotFound();
@@ -46,12 +56,37 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="prov_Id,prov_Nombre,prov_NombreContacto,prov_Direccion,prov_Email,prov_Telefono,prov_UsuarioCrea,prov_FechaCrea,prov_UsuarioModifica,prov_FechaModifica")] tbProveedor tbProveedor)
+        public ActionResult Create([Bind(Include="prov_Nombre,prov_NombreContacto,prov_Direccion,prov_Email,prov_Telefono,prov_UsuarioCrea,prov_FechaCrea")] tbProveedor tbProveedor)
         {
             if (ModelState.IsValid)
             {
-                db.tbProveedor.Add(tbProveedor);
-                db.SaveChanges();
+                //db.tbUnidadMedida.Add(tbProveedor);
+                //db.SaveChanges();
+                try
+                {
+                    IEnumerable<object> List = null;
+                    var MsjError = "";
+                    List = db.UDP_Inv_tbProveedor_Insert(tbProveedor.prov_Nombre,tbProveedor.prov_NombreContacto,tbProveedor.prov_Direccion,tbProveedor.prov_Email,tbProveedor.prov_Telefono);
+                    foreach (UDP_Inv_tbProveedor_Insert_Result Proveedor in List)
+                        MsjError = Proveedor.MensajeError;
+
+                    if (MsjError == "-1")
+                    {
+                        ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro, Contacte al Administrador");
+                }
                 return RedirectToAction("Index");
             }
 
@@ -66,6 +101,16 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbProveedor tbProveedor = db.tbProveedor.Find(id);
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbProveedor.prov_UsuarioCrea).usu_NombreUsuario;
+            var UsuarioModfica = tbProveedor.prov_UsuarioModifica;
+            if (UsuarioModfica == null)
+            {
+                ViewBag.UsuarioModifica = "";
+            }
+            else
+            {
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+            };
             if (tbProveedor == null)
             {
                 return HttpNotFound();
@@ -78,19 +123,48 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="prov_Id,prov_Nombre,prov_NombreContacto,prov_Direccion,prov_Email,prov_Telefono,prov_UsuarioCrea,prov_FechaCrea,prov_UsuarioModifica,prov_FechaModifica")] tbProveedor tbProveedor)
+        public ActionResult Edit(byte? id,[Bind(Include="prov_Id,prov_Nombre,prov_NombreContacto,prov_Direccion,prov_Email,prov_Telefono")] tbProveedor tbProveedor)
         {
+           
             if (ModelState.IsValid)
             {
-                db.Entry(tbProveedor).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(tbProveedor).State = EntityState.Modified;
+                //db.SaveChanges();
+                try
+                {
+                    tbProveedor vtbProveedor = db.tbProveedor.Find(id);
+                    /*:ssTZD*/
+                    IEnumerable<object> List = null;
+                    var MsjError ="";
+                    List = db.UDP_Inv_tbProveedor_Update(tbProveedor.prov_Id,tbProveedor.prov_Nombre,tbProveedor.prov_NombreContacto,tbProveedor.prov_Direccion,
+                        tbProveedor.prov_Email,tbProveedor.prov_Telefono, vtbProveedor.prov_UsuarioCrea, vtbProveedor.prov_FechaCrea);
+                    foreach (UDP_Inv_tbProveedor_Update_Result Proveedor in List)
+                        MsjError = Proveedor.MensajeError;
+
+                    if (MsjError == "-1")
+                    {
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                }
                 return RedirectToAction("Index");
             }
             return View(tbProveedor);
         }
 
-        // GET: /Proveedor/Delete/5
-        public ActionResult Delete(int? id)
+    
+
+    // GET: /Proveedor/Delete/5
+    public ActionResult Delete(int? id)
         {
             if (id == null)
             {

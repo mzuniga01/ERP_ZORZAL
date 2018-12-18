@@ -165,50 +165,10 @@ $('#btnGuardarRol').click(function () {
     }
     })
 
-$('#btnGuardarRol').click(function () {
-    var DescripcionRol = $("#rol_Descripcion").val();
-    if (DescripcionRol == '') {
-        $('#DescripcionRol').text('');
-        $('#errorDescripcionRol').text('');
-        $('#validationDescripcionRol').after('<ul id="errorDescripcionRol" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
-    }
-    else {
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////EDITAR///////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        var TableLeght = $("#Asignados tr").length;
-        var DescripcionRol = $('#rol_Descripcion').val()
-        var AccesoRol = []
 
-        if (TableLeght > 1) {
 
-            $('#Asignados> tbody > tr').each(function () {
-                var idItem = $(this).attr('data-id')
-                console.log(idItem);
 
-                var item = {
-                    obj_Id: idItem,
-                }
-                AccesoRol.push(item)
-                console.log(item);
-
-            })
-        }
-        console.log(AccesoRol);
-
-        $.ajax({
-            url: "/Rol/InsertRol",
-            method: "POST",
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ DescripcionRol: DescripcionRol, AccesoRol: AccesoRol }),
-        })
-                .done(function (data) {
-                    if (data == '') {
-                        $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo actualizar el registro</ul>');
-                    }
-                    else {
-                        window.location.href = "Index/Rol";
-                    }
-                    console.log(data);
-                })
-    }
-})

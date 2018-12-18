@@ -5,9 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("Edit", "Rol", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -49,33 +46,69 @@
                                 @Html.LabelFor(model => model.rol_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.rol_Descripcion)
-                                    @Html.ValidationMessageFor(model => model.rol_Descripcion)
+                                    <div id="validationDescripcionRol">
+                                        <p style="color:red"></p>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.rol_Estado, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @*@Html.DropDownList("DropDownListEstado",(List<SelectListItem>)ViewBag.ListEstado)*@
-                                    @*@Html.DropDownListFor(model => model.rol_Estado, (List<SelectListItem>)ViewBag.ListEstado, new { @class = "form-control" })*@
                                     @if (Model.rol_Estado == true)
                                     {
-                                        @*@Html.ActionLink("Inactivar", "EstadoRol", new { @class = "btn btn-primary btn-xs" })*@
-                                        <button class="btn btn-danger btn-xs" id="Inactivar">Inactivar</button>
+                                        @Html.ActionLink("Inactivar", "EstadoRolInactivo", new { id = Model.rol_Id }, new { @class = "btn btn-danger btn-sm" })
                                     }
                                     else
                                     {
-                                        @*@Html.ActionLink("Activar", "EstadoRol", new { @class = "btn btn-primary btn-xs" })*@
-                                        <button class="btn btn-primary btn-xs" id="Activar">Activar</button>
+                                        @Html.ActionLink("Activar", "EstadoRolActivo", new { id = Model.rol_Id }, new { @class = "btn btn-primary btn-sm" })
                                     }
                                     @Html.ValidationMessageFor(model => model.rol_Estado)
                                     
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12 text-center">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" onclick="GetEstado();" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            <div class="ibox-content">
+                                <div class="col-md-5">
+                                    <label class="col-md-10" style="text-align:center">Objetos No Asignados</label>
+
+                                    <table class="table table-responsive" style="width:100%" id="NoAsignados">
+                                        <thead>
+                                            <tr>
+                                                <td id="RegistrosNoAsignados" style="background-color:#1ab394;color:white">Pantallas</td>
+                                                <td style="background-color:#1ab394"></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-md-2" align="center">
+                                    <br /><br /><br>
+                                    <div>
+                                        <input id="Add" type="button" value="Agregar &#9658;" class="btn btn-primary btn-xs" />
+                                    </div>
+                                    <div>
+                                        <input id="Remove" type="button" value="&#9668; Quitar &nbsp;&nbsp;" class="btn btn-primary btn-xs" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <label class="col-md-10" style="text-align:center">Objetos Asignados</label>
+                                    <table class="table table-responsive" style="width:100%" id="Asignados">
+                                        <thead>
+                                            <tr>
+                                                <td id="RegistrosAsignados" style="background-color:#1ab394;color:white">Pantallas</td>
+                                                <td style="background-color:#1ab394"></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 text-center">
+                                        <button type="button" id="btnActualizarRol" class="btn btn-primary">Guardar</button>
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -120,14 +153,14 @@
                                 Modificado por
                             </td>
                             <td>
-                                @if (Convert.ToString(Model.rol_FechaModifica) == "")
-                                {
+                            @if (Convert.ToString(Model.rol_FechaModifica) == "")
+                            {
 
-                                }
-                                else
-                                {
-                                    Html.DisplayFor(model => model.tbUsuario.usu_Nombres);
-                                }
+                            }
+                            else
+                            {
+                            @ViewBag.UsuarioModifica
+                            }
                             </td>
                             <td>
                                 @Html.DisplayFor(model => model.rol_FechaModifica)
@@ -137,24 +170,5 @@
                     </table>
                 </div>
             </div>
-}
-@*<script>
-    $('#Inactivar').click(function () {
-        $.ajax({
-            url: "/Rol/EstadoRol",
-            method: "POST",
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ id_: id, AccesoRol: AccesoRol }),
-        })
-                    .done(function (data) {
-                        if (data == '') {
-                            $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo ingresar el registro</ul>');
-                        }
-                        else {
-                            window.location.href = "Index/Rol";
-                        }
-                        console.log(data);
-                    })
-    });
-</script>*@
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/app/RolObjetosEdit.js"></script>
