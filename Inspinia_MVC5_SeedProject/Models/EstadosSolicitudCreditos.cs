@@ -22,6 +22,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Descripción")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [StringLength(50)]
         public string escre_Descripcion { get; set; }
 
 

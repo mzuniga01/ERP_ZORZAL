@@ -20,6 +20,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Descripción")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
+        [StringLength(25)]
         public string tpi_Descripcion { get; set; }
 
         [Display(Name = "Usuario Crea")]
