@@ -29,7 +29,11 @@
 <table id="DataTable" class="table table-striped table-bordered table-hover">
     <thead>
         <tr>
-         
+
+            <th>
+                @Html.DisplayNameFor(model => model.ped_Id)
+            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.tbEstadoPedido.esped_Descripcion)
             </th>
@@ -62,22 +66,22 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.ped_Id)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.tbEstadoPedido.esped_Descripcion)
                 </td>
                 <td>
-                    "San Pedro Sula"
-
+                      @Html.DisplayFor(modelItem => item.tbSucursal.suc_Descripcion)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ped_FechaElaboracion)
                 </td>
                 <td>
                     0401199900876
-
                 </td>
                 <td>
                     Samuel Salcedo
-
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ped_FechaEntrega)
@@ -91,7 +95,7 @@
 
                 <td>
                     @Html.ActionLink("Detalles", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ped_Id }, new { @class = "btn btn-white btn-xs" })
                 </td>
             </tr>
         }

@@ -1166,6 +1166,7 @@
     <Content Include="Views\Pago\_IndexCliente.cshtml" />
     <Content Include="Views\Devolucion\_BuscarFacturaDevolucion.cshtml" />
     <Content Include="Views\MovimientoCaja\_CreateDenominacion.cshtml" />
+    <Content Include="Views\Pedido\_ListProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
