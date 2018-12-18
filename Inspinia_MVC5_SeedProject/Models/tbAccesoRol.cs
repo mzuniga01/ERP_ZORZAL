@@ -12,18 +12,18 @@ namespace ERP_GMEDINA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbRolesUsuario
+    public partial class tbAccesoRol
     {
-        public int rolu_Id { get; set; }
+        public int acrol_Id { get; set; }
         public int rol_Id { get; set; }
-        public int usu_Id { get; set; }
-        public int rolu_UsuarioCrea { get; set; }
-        public System.DateTime rolu_FechaCrea { get; set; }
-        public Nullable<int> rolu_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> rolu_FechaModifica { get; set; }
+        public int obj_Id { get; set; }
+        public int acrol_UsuarioCrea { get; set; }
+        public System.DateTime acrol_FechaCrea { get; set; }
+        public Nullable<int> acrol_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> acrol_FechaModifica { get; set; }
     
+        public virtual tbObjeto tbObjeto { get; set; }
         public virtual tbRol tbRol { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
-        public virtual tbUsuario tbUsuario1 { get; set; }
     }
 }

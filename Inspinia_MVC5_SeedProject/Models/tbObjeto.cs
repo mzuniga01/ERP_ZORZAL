@@ -14,6 +14,12 @@ namespace ERP_GMEDINA.Models
     
     public partial class tbObjeto
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbObjeto()
+        {
+            this.tbAccesoRol = new HashSet<tbAccesoRol>();
+        }
+    
         public int obj_Id { get; set; }
         public string obj_Pantalla { get; set; }
         public int obj_UsuarioCrea { get; set; }
@@ -22,6 +28,8 @@ namespace ERP_GMEDINA.Models
         public Nullable<System.DateTime> obj_FechaModifica { get; set; }
         public bool obj_Estado { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbAccesoRol> tbAccesoRol { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
     }
 }

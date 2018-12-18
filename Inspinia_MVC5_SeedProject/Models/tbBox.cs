@@ -22,11 +22,11 @@ namespace ERP_GMEDINA.Models
     
         public string box_Codigo { get; set; }
         public string box_Descripcion { get; set; }
+        public bool box_Estado { get; set; }
         public int box_UsuarioCrea { get; set; }
         public System.DateTime box_FechaCrea { get; set; }
         public Nullable<int> box_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> box_FechaModifica { get; set; }
-        public bool box_Estado { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

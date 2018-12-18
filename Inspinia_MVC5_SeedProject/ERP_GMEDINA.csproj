@@ -266,6 +266,9 @@
     <Compile Include="Models\PuntoEmisionDetalle.cs" />
     <Compile Include="Models\SolicitudCreditos.cs" />
     <Compile Include="Models\Sucursal.cs" />
+    <Compile Include="Models\tbAccesoRol.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbActividadEconomica.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

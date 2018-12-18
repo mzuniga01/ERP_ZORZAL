@@ -24,8 +24,8 @@ namespace ERP_GMEDINA.Models
         public Nullable<System.DateTime> entd_FechaModifica { get; set; }
         public Nullable<int> uni_Id { get; set; }
     
+        public virtual tbUnidadMedida tbUnidadMedida { get; set; }
         public virtual tbEntrada tbEntrada { get; set; }
         public virtual tbProducto tbProducto { get; set; }
-        public virtual tbUnidadMedida tbUnidadMedida { get; set; }
     }
 }
