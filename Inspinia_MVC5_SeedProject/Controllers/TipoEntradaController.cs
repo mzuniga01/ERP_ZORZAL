@@ -112,7 +112,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(byte? id,[Bind(Include= "tent_Id,tent_Descripcion,tent_UsuarioCrea,tent_FechaCrea,tbUsuario,tbUsuario1")] tbTipoEntrada tbTipoEntrada)
+        public ActionResult Edit(byte? id,[Bind(Include= "tent_Id,tent_Descripcion,tent_UsuarioCrea,tent_FechaCrea, tent_UsuarioModifica, tent_FechaModifica, tbUsuario,tbUsuario1")] tbTipoEntrada tbTipoEntrada)
         {
             if (ModelState.IsValid)
             {

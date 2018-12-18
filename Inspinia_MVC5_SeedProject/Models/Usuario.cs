@@ -42,7 +42,6 @@ namespace ERP_GMEDINA.Models
         public bool usu_EsActivo { get; set; }
 
         [Display(Name = "Razón Inactivación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string usu_RazonInactivo { get; set; }
 
         [Display(Name = "Administrador")]

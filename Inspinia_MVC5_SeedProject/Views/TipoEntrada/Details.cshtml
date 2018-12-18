@@ -62,7 +62,8 @@
                             Creado
                         </td>
                         <td>
-                            @ViewBag.UsuarioCrea
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
                         </td>
                         <td>
                             @Html.DisplayFor(model => model.tent_FechaCrea)
@@ -73,7 +74,8 @@
                             Modificado
                         </td>
                         <td>
-                            @ViewBag.UsuarioModifica
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
                         </td>
                         <td>
                             @Html.DisplayFor(model => model.tent_FechaModifica)
