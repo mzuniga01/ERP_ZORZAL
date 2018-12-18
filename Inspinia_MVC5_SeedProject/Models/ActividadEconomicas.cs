@@ -24,7 +24,7 @@ namespace ERP_GMEDINA.Models
         public int acte_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Crea")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime acte_FechaCrea { get; set; }
 
         [Display(Name = "Usuario Modifica")]

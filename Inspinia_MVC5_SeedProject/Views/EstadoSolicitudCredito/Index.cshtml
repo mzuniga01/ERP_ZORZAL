@@ -7,11 +7,7 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Estado Solicitud Crédito</h2>
-        @*<ol class="breadcrumb">
-            <li class="active">
-                <strong>tbEstadoSolicitudCredito</strong>
-            </li>
-        </ol>*@
+
     </div>
 </div>
 
@@ -37,18 +33,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.escre_Descripcion)
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.escre_FechaAgrego)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.escre_FechaModifica)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-            </th>*@
+        
             <th>Acciones</th>
         </tr>
     </thead>
@@ -62,22 +47,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.escre_Descripcion)
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.escre_FechaAgrego)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.escre_FechaModifica)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-                </td>*@
+         
                 <td>
                     @Html.ActionLink("Detalles", "Details", new { id = item.escre_Id }, new { @class = "btn btn-primary btn-xs" })
                     @Html.ActionLink("Editar", "Edit", new { id = item.escre_Id }, new { @class = "btn btn-white btn-xs" })
-                    @*@Html.ActionLink("Delete", "Delete", new { id = item.escre_Id }, new { @class = "btn btn-white btn-sm" })*@
+              
                 </td>
             </tr>
         }
