@@ -928,6 +928,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Acce_tbAccesoRol_acrol_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbAccesoRol" Type="Self.tbAccesoRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbAccesoRol">
+              <PropertyRef Name="acrol_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Acce_tbAccesoRol_tbRoles_Rol_Id">
           <End Role="tbRol" Type="Self.tbRol" Multiplicity="1" />
           <End Role="tbAccesoRol" Type="Self.tbAccesoRol" Multiplicity="*" />
@@ -952,6 +964,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Acce_tbObjeto_obj_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbObjeto">
+              <PropertyRef Name="obj_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
           <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="*" />
@@ -961,6 +985,18 @@
             </Principal>
             <Dependent Role="tbObjeto">
               <PropertyRef Name="obj_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbRol_rol_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbRol" Type="Self.tbRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbRol">
+              <PropertyRef Name="rol_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1672,6 +1708,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Gral_tbDepartamento_dep_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbDepartamento" Type="Self.tbDepartamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbDepartamento">
+              <PropertyRef Name="dep_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Gral_tbDepartamento_tbUsuario_dep_UsuarioCrea">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
           <End Role="tbDepartamento" Type="Self.tbDepartamento" Multiplicity="*" />
@@ -1681,6 +1729,18 @@
             </Principal>
             <Dependent Role="tbDepartamento">
               <PropertyRef Name="dep_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tbEmpleado_emp_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbEmpleado" Type="Self.tbEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEmpleado">
+              <PropertyRef Name="emp_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1732,6 +1792,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Gral_tbMunicipio_mun_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbMunicipio">
+              <PropertyRef Name="mun_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Gral_tbMunicipio_tbUsuario_mun_UsuarioCrea">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
           <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="*" />
@@ -1741,6 +1813,18 @@
             </Principal>
             <Dependent Role="tbMunicipio">
               <PropertyRef Name="mun_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tbParametro_par_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbParametro" Type="Self.tbParametro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbParametro">
+              <PropertyRef Name="par_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1888,6 +1972,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inv_tbEntrada_ent_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEntrada">
+              <PropertyRef Name="ent_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbEntrada_pcat_UsuarioCrea">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+          <End Role="tbProductoCategoria" Type="Self.tbProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbProductoCategoria">
+              <PropertyRef Name="pcat_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Inv_tbEntrada_tbBodega_bod_Id">
           <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
           <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
@@ -1984,6 +2092,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbEstadoMovimiento" Type="Self.tbEstadoMovimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEstadoMovimiento">
+              <PropertyRef Name="estm_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Inv_tbEstadoMovimiento_tbUsuario_estm_UsuarioCrea">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
           <End Role="tbEstadoMovimiento" Type="Self.tbEstadoMovimiento" Multiplicity="*" />
@@ -1993,6 +2113,18 @@
             </Principal>
             <Dependent Role="tbEstadoMovimiento">
               <PropertyRef Name="estm_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbInventarioFisico_invf_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbInventarioFisico" Type="Self.tbInventarioFisico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbInventarioFisico">
+              <PropertyRef Name="invf_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2029,6 +2161,18 @@
             </Principal>
             <Dependent Role="tbInventarioFisico">
               <PropertyRef Name="invf_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbInventarioFisicoDetalle_invfd_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbInventarioFisicoDetalle" Type="Self.tbInventarioFisicoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbInventarioFisicoDetalle">
+              <PropertyRef Name="invfd_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2225,6 +2369,18 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Inv_tbProveedor_prov_UsuarioCrea">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+          <End Role="tbProveedor" Type="Self.tbProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbProveedor">
+              <PropertyRef Name="prov_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbProveedor_prov_UsuarioModifica">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
           <End Role="tbProveedor" Type="Self.tbProveedor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2353,6 +2509,18 @@
             </Principal>
             <Dependent Role="tbSalidaDetalle">
               <PropertyRef Name="sald_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbTipoEntrada_tent_UsuarioCrea">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+          <End Role="tbTipoEntrada" Type="Self.tbTipoEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbTipoEntrada">
+              <PropertyRef Name="tent_UsuarioCrea" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3321,6 +3489,7 @@
           <Parameter Name="prod_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="prod_FechaCrea" Type="datetime" Mode="In" />
           <Parameter Name="prod_EsActivo" Type="bit" Mode="In" />
+          <Parameter Name="prod_Razon_Inactivacion" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbProductoCategoria_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="pcat_Nombre" Type="varchar" Mode="In" />
@@ -3483,6 +3652,10 @@
             <End Role="tbObjeto" EntitySet="tbObjeto" />
             <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
           </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbAccesoRol_acrol_UsuarioModifica" Association="Self.FK_Acce_tbAccesoRol_acrol_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
+          </AssociationSet>
           <AssociationSet Name="FK_Acce_tbAccesoRol_tbRoles_Rol_Id" Association="Self.FK_Acce_tbAccesoRol_tbRoles_Rol_Id">
             <End Role="tbRol" EntitySet="tbRol" />
             <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
@@ -3491,9 +3664,17 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
           </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbObjeto_obj_UsuarioModifica" Association="Self.FK_Acce_tbObjeto_obj_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbObjeto" EntitySet="tbObjeto" />
+          </AssociationSet>
           <AssociationSet Name="FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" Association="Self.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbObjeto" EntitySet="tbObjeto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbRol_rol_UsuarioModifica" Association="Self.FK_Acce_tbRol_rol_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbRol" EntitySet="tbRol" />
           </AssociationSet>
           <AssociationSet Name="FK_Acce_tbRol_tbUsuario_rol_UsuarioCrea" Association="Self.FK_Acce_tbRol_tbUsuario_rol_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -3731,9 +3912,17 @@
             <End Role="tbDenominacion" EntitySet="tbDenominacion" />
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
           </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbDepartamento_dep_UsuarioModifica" Association="Self.FK_Gral_tbDepartamento_dep_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbDepartamento" EntitySet="tbDepartamento" />
+          </AssociationSet>
           <AssociationSet Name="FK_Gral_tbDepartamento_tbUsuario_dep_UsuarioCrea" Association="Self.FK_Gral_tbDepartamento_tbUsuario_dep_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbDepartamento" EntitySet="tbDepartamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbEmpleado_emp_UsuarioModifica" Association="Self.FK_Gral_tbEmpleado_emp_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
           </AssociationSet>
           <AssociationSet Name="FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id" Association="Self.FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id">
             <End Role="tbMoneda" EntitySet="tbMoneda" />
@@ -3751,9 +3940,17 @@
             <End Role="tbDepartamento" EntitySet="tbDepartamento" />
             <End Role="tbMunicipio" EntitySet="tbMunicipio" />
           </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbMunicipio_mun_UsuarioModifica" Association="Self.FK_Gral_tbMunicipio_mun_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbMunicipio" EntitySet="tbMunicipio" />
+          </AssociationSet>
           <AssociationSet Name="FK_Gral_tbMunicipio_tbUsuario_mun_UsuarioCrea" Association="Self.FK_Gral_tbMunicipio_tbUsuario_mun_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbMunicipio" EntitySet="tbMunicipio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbParametro_par_UsuarioModifica" Association="Self.FK_Gral_tbParametro_par_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbParametro" EntitySet="tbParametro" />
           </AssociationSet>
           <AssociationSet Name="FK_Gral_tbParametro_tbMoneda_mnda_Id" Association="Self.FK_Gral_tbParametro_tbMoneda_mnda_Id">
             <End Role="tbMoneda" EntitySet="tbMoneda" />
@@ -3803,6 +4000,14 @@
             <End Role="tbBodega" EntitySet="tbBodega" />
             <End Role="tbEntrada" EntitySet="tbEntrada" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbEntrada_ent_UsuarioModifica" Association="Self.FK_Inv_tbEntrada_ent_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEntrada" EntitySet="tbEntrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbEntrada_pcat_UsuarioCrea" Association="Self.FK_Inv_tbEntrada_pcat_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+          </AssociationSet>
           <AssociationSet Name="FK_Inv_tbEntrada_tbBodega_bod_Id" Association="Self.FK_Inv_tbEntrada_tbBodega_bod_Id">
             <End Role="tbBodega" EntitySet="tbBodega" />
             <End Role="tbEntrada" EntitySet="tbEntrada" />
@@ -3835,9 +4040,17 @@
             <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
             <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica" Association="Self.FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEstadoMovimiento" EntitySet="tbEstadoMovimiento" />
+          </AssociationSet>
           <AssociationSet Name="FK_Inv_tbEstadoMovimiento_tbUsuario_estm_UsuarioCrea" Association="Self.FK_Inv_tbEstadoMovimiento_tbUsuario_estm_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbEstadoMovimiento" EntitySet="tbEstadoMovimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbInventarioFisico_invf_UsuarioModifica" Association="Self.FK_Inv_tbInventarioFisico_invf_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbInventarioFisico" EntitySet="tbInventarioFisico" />
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbInventarioFisico_tbBodega_bod_Id" Association="Self.FK_Inv_tbInventarioFisico_tbBodega_bod_Id">
             <End Role="tbBodega" EntitySet="tbBodega" />
@@ -3850,6 +4063,10 @@
           <AssociationSet Name="FK_Inv_tbInventarioFisico_tbUsuario_invf_UsuarioCrea" Association="Self.FK_Inv_tbInventarioFisico_tbUsuario_invf_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbInventarioFisico" EntitySet="tbInventarioFisico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbInventarioFisicoDetalle_invfd_UsuarioModifica" Association="Self.FK_Inv_tbInventarioFisicoDetalle_invfd_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbInventarioFisicoDetalle" EntitySet="tbInventarioFisicoDetalle" />
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbInventarioFisicoDetalle_tbInventarioFisico_invf_Id" Association="Self.FK_Inv_tbInventarioFisicoDetalle_tbInventarioFisico_invf_Id">
             <End Role="tbInventarioFisico" EntitySet="tbInventarioFisico" />
@@ -3919,6 +4136,10 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbProveedor" EntitySet="tbProveedor" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbProveedor_prov_UsuarioModifica" Association="Self.FK_Inv_tbProveedor_prov_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbProveedor" EntitySet="tbProveedor" />
+          </AssociationSet>
           <AssociationSet Name="FK_Inv_tbSalida_box_Codigo" Association="Self.FK_Inv_tbSalida_box_Codigo">
             <End Role="tbBox" EntitySet="tbBox" />
             <End Role="tbSalida" EntitySet="tbSalida" />
@@ -3958,6 +4179,10 @@
           <AssociationSet Name="FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea" Association="Self.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbTipoEntrada_tent_UsuarioCrea" Association="Self.FK_Inv_tbTipoEntrada_tent_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbTipoEntrada" EntitySet="tbTipoEntrada" />
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbTipoEntrada_tent_UsuarioModifica" Association="Self.FK_Inv_tbTipoEntrada_tent_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -4411,6 +4636,7 @@
             <Parameter Name="prod_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="prod_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="prod_EsActivo" Mode="In" Type="Boolean" />
+            <Parameter Name="prod_Razon_Inactivacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbSalida_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalida_Update_Result)">
             <Parameter Name="sal_Id" Mode="In" Type="Int32" />
@@ -5357,6 +5583,58 @@
             <Parameter Name="bod_Telefono" Mode="In" Type="String" />
             <Parameter Name="mun_Codigo" Mode="In" Type="String" />
           </FunctionImport>
+          <AssociationSet Name="FK_Acce_tbAccesoRol_acrol_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_acrol_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbObjeto_obj_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbObjeto_obj_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbObjeto" EntitySet="tbObjeto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbRol_rol_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbRol_rol_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbRol" EntitySet="tbRol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbDepartamento_dep_UsuarioModifica" Association="ERP_ZORZALModel.FK_Gral_tbDepartamento_dep_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbDepartamento" EntitySet="tbDepartamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbEmpleado_emp_UsuarioModifica" Association="ERP_ZORZALModel.FK_Gral_tbEmpleado_emp_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbMunicipio_mun_UsuarioModifica" Association="ERP_ZORZALModel.FK_Gral_tbMunicipio_mun_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbMunicipio" EntitySet="tbMunicipio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbParametro_par_UsuarioModifica" Association="ERP_ZORZALModel.FK_Gral_tbParametro_par_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbParametro" EntitySet="tbParametro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbEntrada_ent_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEntrada" EntitySet="tbEntrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEstadoMovimiento" EntitySet="tbEstadoMovimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbInventarioFisico_invf_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbInventarioFisico_invf_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbInventarioFisico" EntitySet="tbInventarioFisico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbInventarioFisicoDetalle_invfd_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_invfd_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbInventarioFisicoDetalle" EntitySet="tbInventarioFisicoDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbProveedor_prov_UsuarioCrea1" Association="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioCrea1">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbProveedor" EntitySet="tbProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbTipoEntrada_tent_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbTipoEntrada_tent_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbTipoEntrada" EntitySet="tbTipoEntrada" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -5376,6 +5654,7 @@
           <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisico_tbBodega_bod_Id" FromRole="tbInventarioFisico" ToRole="tbBodega" />
           <NavigationProperty Name="tbEstadoInventarioFisico" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisico_tbEstadoInventarioFisico_estif_Id" FromRole="tbInventarioFisico" ToRole="tbEstadoInventarioFisico" />
           <NavigationProperty Name="tbInventarioFisicoDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbInventarioFisico_invf_Id" FromRole="tbInventarioFisico" ToRole="tbInventarioFisicoDetalle" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisico_invf_UsuarioModifica" FromRole="tbInventarioFisico" ToRole="tbUsuario" />
           </EntityType>
         <ComplexType Name="UDP_Gral_tbDepartamento_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="2" />
@@ -5548,6 +5827,7 @@
           <NavigationProperty Name="tbObjeto" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" FromRole="tbAccesoRol" ToRole="tbObjeto" />
           <NavigationProperty Name="tbRol" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbRoles_Rol_Id" FromRole="tbAccesoRol" ToRole="tbRol" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea" FromRole="tbAccesoRol" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_acrol_UsuarioModifica" FromRole="tbAccesoRol" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbObjeto">
           <Key>
@@ -5562,6 +5842,7 @@
           <Property Name="obj_Estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="tbAccesoRol" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" FromRole="tbObjeto" ToRole="tbAccesoRol" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" FromRole="tbObjeto" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbObjeto_obj_UsuarioModifica" FromRole="tbObjeto" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbRol">
           <Key>
@@ -5577,6 +5858,7 @@
           <NavigationProperty Name="tbAccesoRol" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbRoles_Rol_Id" FromRole="tbRol" ToRole="tbAccesoRol" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbRol_tbUsuario_rol_UsuarioCrea" FromRole="tbRol" ToRole="tbUsuario" />
           <NavigationProperty Name="tbRolesUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbRol_rol_Id" FromRole="tbRol" ToRole="tbRolesUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbRol_rol_UsuarioModifica" FromRole="tbRol" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbRolesUsuario">
           <Key>
@@ -5697,6 +5979,19 @@
           <NavigationProperty Name="tbPuntoEmision1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmision" />
           <NavigationProperty Name="tbPuntoEmisionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
           <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
+          <NavigationProperty Name="tbAccesoRol1" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_acrol_UsuarioModifica" FromRole="tbUsuario" ToRole="tbAccesoRol" />
+          <NavigationProperty Name="tbObjeto1" Relationship="ERP_ZORZALModel.FK_Acce_tbObjeto_obj_UsuarioModifica" FromRole="tbUsuario" ToRole="tbObjeto" />
+          <NavigationProperty Name="tbRol1" Relationship="ERP_ZORZALModel.FK_Acce_tbRol_rol_UsuarioModifica" FromRole="tbUsuario" ToRole="tbRol" />
+          <NavigationProperty Name="tbDepartamento1" Relationship="ERP_ZORZALModel.FK_Gral_tbDepartamento_dep_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDepartamento" />
+          <NavigationProperty Name="tbEmpleado" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_emp_UsuarioModifica" FromRole="tbUsuario" ToRole="tbEmpleado" />
+          <NavigationProperty Name="tbMunicipio1" Relationship="ERP_ZORZALModel.FK_Gral_tbMunicipio_mun_UsuarioModifica" FromRole="tbUsuario" ToRole="tbMunicipio" />
+          <NavigationProperty Name="tbParametro1" Relationship="ERP_ZORZALModel.FK_Gral_tbParametro_par_UsuarioModifica" FromRole="tbUsuario" ToRole="tbParametro" />
+          <NavigationProperty Name="tbEntrada1" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_UsuarioModifica" FromRole="tbUsuario" ToRole="tbEntrada" />
+          <NavigationProperty Name="tbEstadoMovimiento1" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica" FromRole="tbUsuario" ToRole="tbEstadoMovimiento" />
+          <NavigationProperty Name="tbInventarioFisico1" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisico_invf_UsuarioModifica" FromRole="tbUsuario" ToRole="tbInventarioFisico" />
+          <NavigationProperty Name="tbInventarioFisicoDetalle1" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_invfd_UsuarioModifica" FromRole="tbUsuario" ToRole="tbInventarioFisicoDetalle" />
+          <NavigationProperty Name="tbProveedor1" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioCrea1" FromRole="tbUsuario" ToRole="tbProveedor" />
+          <NavigationProperty Name="tbTipoEntrada1" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoEntrada_tent_UsuarioCrea" FromRole="tbUsuario" ToRole="tbTipoEntrada" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -5790,6 +6085,7 @@
           <Property Name="dep_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Gral_tbDepartamento_tbUsuario_dep_UsuarioCrea" FromRole="tbDepartamento" ToRole="tbUsuario" />
           <NavigationProperty Name="tbMunicipio" Relationship="ERP_ZORZALModel.FK_Gral_tbMunicipio_dep_Codigo" FromRole="tbDepartamento" ToRole="tbMunicipio" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Gral_tbDepartamento_dep_UsuarioModifica" FromRole="tbDepartamento" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbEmpleado">
           <Key>
@@ -5814,6 +6110,7 @@
           <Property Name="emp_UsuarioModifica" Type="Int32" />
           <Property Name="emp_FechaModifica" Type="DateTime" Precision="3" />
           <Property Name="emp_Estado" Type="Boolean" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_emp_UsuarioModifica" FromRole="tbEmpleado" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbMoneda">
           <Key>
@@ -5849,6 +6146,7 @@
           <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_tbMunicipio_mun_Id" FromRole="tbMunicipio" ToRole="tbBodega" />
           <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbCliente_mun_Codigo" FromRole="tbMunicipio" ToRole="tbCliente" />
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" FromRole="tbMunicipio" ToRole="tbSucursal" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Gral_tbMunicipio_mun_UsuarioModifica" FromRole="tbMunicipio" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbParametro">
           <Key>
@@ -5872,6 +6170,7 @@
           <Property Name="par_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Gral_tbParametro_tbUsuario_par_UsuarioCrea" FromRole="tbParametro" ToRole="tbUsuario" />
           <NavigationProperty Name="tbMoneda" Relationship="ERP_ZORZALModel.FK_Gral_tbParametro_tbMoneda_mnda_Id" FromRole="tbParametro" ToRole="tbMoneda" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Gral_tbParametro_par_UsuarioModifica" FromRole="tbParametro" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbTipoIdentificacion">
           <Key>
@@ -5991,6 +6290,7 @@
           <NavigationProperty Name="tbProveedor" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbProveedor_prov_Id" FromRole="tbEntrada" ToRole="tbProveedor" />
           <NavigationProperty Name="tbTipoEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbTiposEntrada_tent_Id" FromRole="tbEntrada" ToRole="tbTipoEntrada" />
           <NavigationProperty Name="tbEntradaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbEntradaDetalle_tbEntrada_ent_Id" FromRole="tbEntrada" ToRole="tbEntradaDetalle" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_UsuarioModifica" FromRole="tbEntrada" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbEntradaDetalle">
           <Key>
@@ -6035,6 +6335,7 @@
           <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbEstadoMovimiento_estm_Id" FromRole="tbEstadoMovimiento" ToRole="tbEntrada" />
           <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbEstadoMovimiento_estm_Id" FromRole="tbEstadoMovimiento" ToRole="tbProductoSubcategoria" />
           <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbEstadoMovimiento_estm_Id" FromRole="tbEstadoMovimiento" ToRole="tbSalida" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica" FromRole="tbEstadoMovimiento" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbInventarioFisicoDetalle">
           <Key>
@@ -6054,6 +6355,7 @@
           <NavigationProperty Name="tbUnidadMedida" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbUnidadesMedida_uni_Id" FromRole="tbInventarioFisicoDetalle" ToRole="tbUnidadMedida" />
           <NavigationProperty Name="tbInventarioFisico" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbInventarioFisico_invf_Id" FromRole="tbInventarioFisicoDetalle" ToRole="tbInventarioFisico" />
           <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbProducto_prod_Codigo" FromRole="tbInventarioFisicoDetalle" ToRole="tbProducto" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_invfd_UsuarioModifica" FromRole="tbInventarioFisicoDetalle" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbProducto">
           <Key>
@@ -6137,6 +6439,7 @@
           <Property Name="prov_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioCrea" FromRole="tbProveedor" ToRole="tbUsuario" />
           <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbProveedor_prov_Id" FromRole="tbProveedor" ToRole="tbEntrada" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioCrea1" FromRole="tbProveedor" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbSalida">
           <Key>
@@ -6191,6 +6494,7 @@
           <Property Name="tent_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoEntrada_tent_UsuarioModifica" FromRole="tbTipoEntrada" ToRole="tbUsuario" />
           <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbTiposEntrada_tent_Id" FromRole="tbTipoEntrada" ToRole="tbEntrada" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoEntrada_tent_UsuarioCrea" FromRole="tbTipoEntrada" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbTipoSalida">
           <Key>
@@ -8869,6 +9173,162 @@
         <ComplexType Name="UDP_Inv_tbBodega_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <Association Name="FK_Acce_tbAccesoRol_acrol_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbAccesoRol" Role="tbAccesoRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbAccesoRol">
+              <PropertyRef Name="acrol_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbObjeto_obj_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbObjeto" Role="tbObjeto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbObjeto">
+              <PropertyRef Name="obj_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbRol_rol_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbRol" Role="tbRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbRol">
+              <PropertyRef Name="rol_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tbDepartamento_dep_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbDepartamento" Role="tbDepartamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbDepartamento">
+              <PropertyRef Name="dep_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tbEmpleado_emp_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbEmpleado" Role="tbEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEmpleado">
+              <PropertyRef Name="emp_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tbMunicipio_mun_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbMunicipio" Role="tbMunicipio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbMunicipio">
+              <PropertyRef Name="mun_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tbParametro_par_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbParametro" Role="tbParametro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbParametro">
+              <PropertyRef Name="par_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbEntrada_ent_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbEntrada" Role="tbEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEntrada">
+              <PropertyRef Name="ent_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbEstadoMovimiento" Role="tbEstadoMovimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEstadoMovimiento">
+              <PropertyRef Name="estm_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbInventarioFisico_invf_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbInventarioFisico" Role="tbInventarioFisico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbInventarioFisico">
+              <PropertyRef Name="invf_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbInventarioFisicoDetalle_invfd_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbInventarioFisicoDetalle" Role="tbInventarioFisicoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbInventarioFisicoDetalle">
+              <PropertyRef Name="invfd_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbProveedor_prov_UsuarioCrea1">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbProveedor" Role="tbProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbProveedor">
+              <PropertyRef Name="prov_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbTipoEntrada_tent_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbTipoEntrada" Role="tbTipoEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbTipoEntrada">
+              <PropertyRef Name="tent_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

@@ -234,6 +234,18 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbPuntoEmision_pemi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSolicitudEfectivo_tbSolicitudEfectivoDetalle_solef_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_acrol_UsuarioModifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbObjeto_obj_UsuarioModifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbRol_rol_UsuarioModifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbDepartamento_dep_UsuarioModifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbEmpleado_emp_UsuarioModifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbMunicipio_mun_UsuarioModifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbParametro_par_UsuarioModifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_UsuarioModifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_invfd_UsuarioModifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioCrea1" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbTipoEntrada_tent_UsuarioCrea" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
