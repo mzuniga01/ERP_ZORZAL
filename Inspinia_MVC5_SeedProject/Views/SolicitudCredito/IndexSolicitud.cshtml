@@ -17,16 +17,16 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado Solicitud Credito</h5>
+                    <h5>Listado Solicitud Credito Por Autorizar</h5>
 
                 </div>
                 <div class="ibox-content">
 
-                    <table id="DataTable1" class="table table table-striped  table-bordered">
+                    <table id="DataTable1" class="table table table-striped  table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbCliente.clte_Nombres)
+                                    Nombre Cliente
                                 </th>
 
                                 <th>
@@ -34,15 +34,15 @@
                                 </th>
 
                                 <th>
-                                    @Html.DisplayNameFor(model => model.cred_FechaSolicitud)
+                                    @Html.DisplayNameFor(model => model.cred_FechaAprobacion)
                                 </th>
 
                                 <th>
-                                    @Html.DisplayNameFor(model => model.cred_MontoSolicitado)
+                                    @Html.DisplayNameFor(model => model.cred_MontoAprobado)
                                 </th>
 
                                 <th>
-                                    @Html.DisplayNameFor(model => model.cred_DiasSolicitado)
+                                    @Html.DisplayNameFor(model => model.cred_DiasAprobado)
                                 </th>
 
                                 
@@ -59,33 +59,26 @@
                                      {
                                     <tr>
 
-                                        @{ if (Convert.ToInt32(item.tbCliente.clte_EsPersonaNatural) == 1)
-                                            {
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres)
-                                                </td>
-                                            }
-                                            else
-                                            {
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.tbCliente.clte_NombreComercial)
-                                                </td>
-                                            }
-                                        }
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres)
+                                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
+
+
+                                        </td>
 
                                         <td>
                                             @Html.DisplayFor(modelItem => item.tbCliente.clte_Identificacion)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.cred_FechaSolicitud)
+                                            @Html.DisplayFor(modelItem => item.cred_FechaAprobacion)
                                         </td>
 
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.cred_MontoSolicitado)
+                                            @Html.DisplayFor(modelItem => item.cred_MontoAprobado)
                                         </td>
 
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.cred_DiasSolicitado)
+                                            @Html.DisplayFor(modelItem => item.cred_DiasAprobado)
                                         </td>
 
 
@@ -94,7 +87,9 @@
                                         </td>
                                         <td>
                                             @Html.ActionLink("Detalle", "Details", new { id = item.cred_Id }, new { @class = "btn btn-primary btn-xs" })
-                                            @Html.ActionLink("Autorizar Crédito", "Edit", new { id = item.cred_Id }, new { @class = "btn btn-white btn-xs" })
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalAutorizar">
+                                                Autorizar Crédito
+                                            </button>
                                         </td>
                                     </tr>
                                 }
@@ -109,6 +104,25 @@
     </div>
  </div>
 
+<div class="modal fade" id="ModalAutorizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Autorizar Credito</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Esta seguro de Autorizar el Crédito?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Index","SolicitudCredito")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>

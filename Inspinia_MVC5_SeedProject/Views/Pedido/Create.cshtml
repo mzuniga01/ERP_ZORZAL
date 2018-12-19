@@ -60,19 +60,16 @@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
 
 
                                 <label class="control-label col-md-1">Cliente</label>
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.ped_FechaCrea)
-                                    @Html.ValidationMessageFor(model => model.ped_FechaCrea)
+                                    @Html.EditorFor(model => model.tbCliente.clte_Nombres)
+                                    @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
                                 </div>
-
-
                             </div>
-
                             <div class="form-group">
                                 <label class="control-label col-md-2">Fecha Elaboración</label>
 
@@ -110,7 +107,7 @@
 
 
     <div>
-        <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="ModalAgregarClientes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -129,25 +126,6 @@
 
 
 
-
-    @*<div>
-        <div class="modal fade" id="ModalAgregarPedidoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">Agregar Pedido Detalle</h4>
-                    </div>
-                    <div class="modal-body" id="frmPedidoDetalle">
-                        @Html.Partial("_CreatePedidoDetalle", new ERP_GMEDINA.Models.tbPedidoDetalle())
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -176,10 +154,18 @@
             $("#cred_FechaSolicitud").datepicker({ dateFormat: 'yy-mm-dd' });
         });
     </script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/app/Producto.js"></script>
+    <script src="~/Scripts/app/Datepicker.js"></script>
+    <script src="~/Scripts/app/Credito.js"></script>
+    <script src="~/Scripts/app/FacturaDetalle.js"></script>
+
+    <script src="~/Scripts/app/Empleados.js"></script>
+    <script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
 }
 
-<script src="~/Scripts/app/Cliente.js"></script>
 
-    <script src="~/Scripts/app/Producto.js"></script>
 
+   
 

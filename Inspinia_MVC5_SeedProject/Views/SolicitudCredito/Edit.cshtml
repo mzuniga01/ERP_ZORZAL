@@ -69,7 +69,8 @@
             </div>
         </div>*@
 
-
+        @*ERROR INICIO  *@
+   <div>
         <div class="form-group">
             <label class="control-label col-md-2">Identificación Cliente</label>
             @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
@@ -81,8 +82,8 @@
         </div>
 
     
-
-             @if (Model.tbCliente.clte_EsPersonaNatural)
+        
+            @if (Model.tbCliente.clte_EsPersonaNatural)
             {
                 <div class="form-group">
                     <label class="control-label col-md-2">Nombres Cliente</label>
@@ -109,14 +110,14 @@
                     <label class="control-label col-md-2">Tipo de Cliente</label>
                     @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
                     <div class="col-md-5">
-           
+
                         <input class="col-md-5 form-control" id="Text1" type="text" value="Natural" readonly />
-            
+
                     </div>
                 </div>
-             }
-             else
-             {
+            }
+            else
+            {
                 <div class="form-group">
                     <label class="control-label col-md-2">Nombre Comercial</label>
                     @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
@@ -127,23 +128,27 @@
                         @Html.ValidationMessageFor(model => model.tbCliente.clte_NombreComercial)
                     </div>
                 </div>
- 
+
 
                 <div class="form-group">
                     <label class="control-label col-md-2">Tipo de Cliente</label>
                     @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
                     <div class="col-md-5">
                         @*<select id="Select1" class = "form-control"  >
-                            <option>Júridico</option>
-                            <option>Natural</option>*@
-                        <input id="Text1" type="text" value="Júridico" readonly class="text-center col-md-5"/>
+                        <option>Júridico</option>
+                        <option>Natural</option>*@
+                        <input class="col-md-5 form-control" id="Text1" type="text" value="Júridico" readonly />
+                        @* <input id="Text1" type="text" value="Júridico" readonly class="form-group text-center col-md-5"/>*@
                         @*@Html.DropDownList("clte_Id", String.Empty)*@
                         @Html.ValidationMessageFor(model => model.clte_Id)
                     </div>
                 </div>
-             }
+            }
 
-       
+        </div>
+
+        @* fin conbdicion *@
+
 
 
         <div class="form-group">
@@ -227,12 +232,14 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
                         <td>@Html.DisplayFor(model => model.cred_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
                         <td>@Html.DisplayFor(model => model.cred_FechaModifica)</td>
                     </tr>
                 </table>
