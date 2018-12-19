@@ -26,6 +26,7 @@ namespace ERP_GMEDINA.Models
         public System.DateTime pcat_FechaCrea { get; set; }
         public Nullable<int> pcat_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> pcat_FechaModifica { get; set; }
+        public bool pcat_Estado { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

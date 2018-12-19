@@ -383,6 +383,7 @@
     <Property Name="pcat_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="pcat_UsuarioModifica" Type="int" />
     <Property Name="pcat_FechaModifica" Type="datetime" />
+    <Property Name="pcat_Estado" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="tbProductoSubcategoria">
     <Key>
@@ -508,6 +509,7 @@
     <Property Name="clte_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="clte_UsuarioModifica" Type="int" />
     <Property Name="clte_FechaModifica" Type="datetime" />
+    <Property Name="clte_ConsumidorFinal" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="tbCuponDescuento">
     <Key>
@@ -922,6 +924,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Acce_tbAccesoRol_acrol_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbAccesoRol" Type="Self.tbAccesoRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbAccesoRol">
+        <PropertyRef Name="acrol_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Acce_tbAccesoRol_tbRoles_Rol_Id">
     <End Role="tbRol" Type="Self.tbRol" Multiplicity="1" />
     <End Role="tbAccesoRol" Type="Self.tbAccesoRol" Multiplicity="*" />
@@ -946,6 +960,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Acce_tbObjeto_obj_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbObjeto">
+        <PropertyRef Name="obj_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="*" />
@@ -955,6 +981,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Principal>
       <Dependent Role="tbObjeto">
         <PropertyRef Name="obj_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbRol_rol_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbRol" Type="Self.tbRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbRol">
+        <PropertyRef Name="rol_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1666,6 +1704,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Gral_tbDepartamento_dep_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbDepartamento" Type="Self.tbDepartamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbDepartamento">
+        <PropertyRef Name="dep_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Gral_tbDepartamento_tbUsuario_dep_UsuarioCrea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbDepartamento" Type="Self.tbDepartamento" Multiplicity="*" />
@@ -1675,6 +1725,42 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Principal>
       <Dependent Role="tbDepartamento">
         <PropertyRef Name="dep_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbEmpleado_emp_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbEmpleado" Type="Self.tbEmpleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEmpleado">
+        <PropertyRef Name="emp_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id">
+    <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="1" />
+    <End Role="tbEmpleado" Type="Self.tbEmpleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbTipoIdentificacion">
+        <PropertyRef Name="tpi_Id" />
+      </Principal>
+      <Dependent Role="tbEmpleado">
+        <PropertyRef Name="tpi_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbEmpleado" Type="Self.tbEmpleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEmpleado">
+        <PropertyRef Name="emp_UsuarioCrea" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1726,6 +1812,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Gral_tbMunicipio_mun_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbMunicipio">
+        <PropertyRef Name="mun_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Gral_tbMunicipio_tbUsuario_mun_UsuarioCrea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="*" />
@@ -1735,6 +1833,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Principal>
       <Dependent Role="tbMunicipio">
         <PropertyRef Name="mun_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbParametro_par_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbParametro" Type="Self.tbParametro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbParametro">
+        <PropertyRef Name="par_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1786,18 +1896,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Gral_tbUnidadMedida_uni_UsuarioModifica">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-    <End Role="tbUnidadMedida" Type="Self.tbUnidadMedida" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbUnidadMedida">
-        <PropertyRef Name="uni_UsuarioModifica" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
     <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="*" />
@@ -1834,6 +1932,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbBodegaDetalle_bodd_tbUsuario_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbBodegaDetalle" Type="Self.tbBodegaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbBodegaDetalle">
+        <PropertyRef Name="bodd_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbBodegaDetalle_tbbodega_bod_Id">
     <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
     <End Role="tbBodegaDetalle" Type="Self.tbBodegaDetalle" Multiplicity="*" />
@@ -1858,6 +1968,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbBodegaDetalle_tbUsuario_bodd_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbBodegaDetalle" Type="Self.tbBodegaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbBodegaDetalle">
+        <PropertyRef Name="bodd_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbBox" Type="Self.tbBox" Multiplicity="*" />
@@ -1879,6 +2001,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Principal>
       <Dependent Role="tbEntrada">
         <PropertyRef Name="ent_BodegaDestino" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbEntrada_ent_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEntrada">
+        <PropertyRef Name="ent_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbEntrada_pcat_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbProductoCategoria" Type="Self.tbProductoCategoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbProductoCategoria">
+        <PropertyRef Name="pcat_UsuarioCrea" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1978,6 +2124,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbEstadoMovimiento" Type="Self.tbEstadoMovimiento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoMovimiento">
+        <PropertyRef Name="estm_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbEstadoMovimiento_tbUsuario_estm_UsuarioCrea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbEstadoMovimiento" Type="Self.tbEstadoMovimiento" Multiplicity="*" />
@@ -1987,6 +2145,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Principal>
       <Dependent Role="tbEstadoMovimiento">
         <PropertyRef Name="estm_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbInventarioFisico_invf_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbInventarioFisico" Type="Self.tbInventarioFisico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbInventarioFisico">
+        <PropertyRef Name="invf_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2023,6 +2193,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Principal>
       <Dependent Role="tbInventarioFisico">
         <PropertyRef Name="invf_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbInventarioFisicoDetalle_invfd_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbInventarioFisicoDetalle" Type="Self.tbInventarioFisicoDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbInventarioFisicoDetalle">
+        <PropertyRef Name="invfd_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2219,6 +2401,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Inv_tbProveedor_prov_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbProveedor" Type="Self.tbProveedor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbProveedor">
+        <PropertyRef Name="prov_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbProveedor_prov_UsuarioModifica">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
     <End Role="tbProveedor" Type="Self.tbProveedor" Multiplicity="*" />
     <ReferentialConstraint>
@@ -2350,6 +2544,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbTipoEntrada_tent_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbTipoEntrada" Type="Self.tbTipoEntrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbTipoEntrada">
+        <PropertyRef Name="tent_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbTipoEntrada_tent_UsuarioModifica">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
     <End Role="tbTipoEntrada" Type="Self.tbTipoEntrada" Multiplicity="*" />
@@ -2371,6 +2577,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Principal>
       <Dependent Role="tbTipoSalida">
         <PropertyRef Name="tsal_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbTipoSalida_tsal_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbTipoSalida" Type="Self.tbTipoSalida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbTipoSalida">
+        <PropertyRef Name="tsal_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3187,6 +3405,42 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
   <Function Name="UDP_Vent_tbFactura_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbListadoPrecioDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="lispd_PrecioMayorista" Type="decimal" Mode="In" />
+    <Parameter Name="lispd_PrecioMinorista" Type="decimal" Mode="In" />
+    <Parameter Name="lispd_FechaInicioVigencia" Type="date" Mode="In" />
+    <Parameter Name="lispd_FechaFinalVigencia" Type="date" Mode="In" />
+    <Parameter Name="lispd_DescCaja" Type="decimal" Mode="In" />
+    <Parameter Name="lispd_DescGerente" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbListadoPrecioDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="listp_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="lispd_PrecioMayorista" Type="decimal" Mode="In" />
+    <Parameter Name="lispd_PrecioMinorista" Type="decimal" Mode="In" />
+    <Parameter Name="lispd_FechaInicioVigencia" Type="date" Mode="In" />
+    <Parameter Name="lispd_FechaFinalVigencia" Type="date" Mode="In" />
+    <Parameter Name="lispd_DescCaja" Type="decimal" Mode="In" />
+    <Parameter Name="lispd_DescGerente" Type="decimal" Mode="In" />
+    <Parameter Name="lispd_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="lispd_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="lispd_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="lispd_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbListaPrecio_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="listp_Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="listp_EsActivo" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbListaPrecio_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="listp_Id" Type="int" Mode="In" />
+    <Parameter Name="listp_Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="listp_EsActivo" Type="bit" Mode="In" />
+    <Parameter Name="listp_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="listp_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="listp_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="listp_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbPago_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
     <Parameter Name="tpa_Id" Type="smallint" Mode="In" />
@@ -3239,6 +3493,31 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="pemid_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="pemid_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbSolicitudCredito_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="clte_Id" Type="int" Mode="In" />
+    <Parameter Name="escre_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="cred_FechaSolicitud" Type="datetime" Mode="In" />
+    <Parameter Name="cred_FechaAprobacion" Type="datetime" Mode="In" />
+    <Parameter Name="cred_MontoSolicitado" Type="decimal" Mode="In" />
+    <Parameter Name="cred_MontoAprobado" Type="decimal" Mode="In" />
+    <Parameter Name="cred_DiasSolicitado" Type="int" Mode="In" />
+    <Parameter Name="cred_DiasAprobado" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbSolicitudCredito_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="cred_Id" Type="int" Mode="In" />
+    <Parameter Name="clte_Id" Type="int" Mode="In" />
+    <Parameter Name="escre_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="cred_FechaSolicitud" Type="datetime" Mode="In" />
+    <Parameter Name="cred_FechaAprobacion" Type="datetime" Mode="In" />
+    <Parameter Name="cred_MontoSolicitado" Type="decimal" Mode="In" />
+    <Parameter Name="cred_MontoAprobado" Type="decimal" Mode="In" />
+    <Parameter Name="cred_DiasSolicitado" Type="int" Mode="In" />
+    <Parameter Name="cred_DiasAprobado" Type="int" Mode="In" />
+    <Parameter Name="cred_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="cred_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="cred_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="cred_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbTipoPago_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="tpa_Descripcion" Type="varchar" Mode="In" />
     <Parameter Name="tpa_Emisor" Type="bit" Mode="In" />
@@ -3253,6 +3532,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="tpa_Cuenta" Type="bit" Mode="In" />
     <Parameter Name="tpa_FechaVencimiento" Type="bit" Mode="In" />
     <Parameter Name="tpa_Titular" Type="bit" Mode="In" />
+    <Parameter Name="tpa_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="tpa_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <EntityContainer Name="ERP_ZORZALModelStoreContainer">
     <EntitySet Name="tbAccesoRol" EntityType="Self.tbAccesoRol" Schema="Acce" store:Type="Tables" />
@@ -3326,6 +3607,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       <End Role="tbObjeto" EntitySet="tbObjeto" />
       <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
     </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbAccesoRol_acrol_UsuarioModifica" Association="Self.FK_Acce_tbAccesoRol_acrol_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
+    </AssociationSet>
     <AssociationSet Name="FK_Acce_tbAccesoRol_tbRoles_Rol_Id" Association="Self.FK_Acce_tbAccesoRol_tbRoles_Rol_Id">
       <End Role="tbRol" EntitySet="tbRol" />
       <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
@@ -3334,9 +3619,17 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
     </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbObjeto_obj_UsuarioModifica" Association="Self.FK_Acce_tbObjeto_obj_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbObjeto" EntitySet="tbObjeto" />
+    </AssociationSet>
     <AssociationSet Name="FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" Association="Self.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbObjeto" EntitySet="tbObjeto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbRol_rol_UsuarioModifica" Association="Self.FK_Acce_tbRol_rol_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbRol" EntitySet="tbRol" />
     </AssociationSet>
     <AssociationSet Name="FK_Acce_tbRol_tbUsuario_rol_UsuarioCrea" Association="Self.FK_Acce_tbRol_tbUsuario_rol_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -3574,9 +3867,25 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       <End Role="tbDenominacion" EntitySet="tbDenominacion" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
     </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbDepartamento_dep_UsuarioModifica" Association="Self.FK_Gral_tbDepartamento_dep_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbDepartamento" EntitySet="tbDepartamento" />
+    </AssociationSet>
     <AssociationSet Name="FK_Gral_tbDepartamento_tbUsuario_dep_UsuarioCrea" Association="Self.FK_Gral_tbDepartamento_tbUsuario_dep_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbDepartamento" EntitySet="tbDepartamento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbEmpleado_emp_UsuarioModifica" Association="Self.FK_Gral_tbEmpleado_emp_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEmpleado" EntitySet="tbEmpleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id" Association="Self.FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id">
+      <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
+      <End Role="tbEmpleado" EntitySet="tbEmpleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea" Association="Self.FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEmpleado" EntitySet="tbEmpleado" />
     </AssociationSet>
     <AssociationSet Name="FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id" Association="Self.FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id">
       <End Role="tbMoneda" EntitySet="tbMoneda" />
@@ -3594,9 +3903,17 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       <End Role="tbDepartamento" EntitySet="tbDepartamento" />
       <End Role="tbMunicipio" EntitySet="tbMunicipio" />
     </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbMunicipio_mun_UsuarioModifica" Association="Self.FK_Gral_tbMunicipio_mun_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbMunicipio" EntitySet="tbMunicipio" />
+    </AssociationSet>
     <AssociationSet Name="FK_Gral_tbMunicipio_tbUsuario_mun_UsuarioCrea" Association="Self.FK_Gral_tbMunicipio_tbUsuario_mun_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbMunicipio" EntitySet="tbMunicipio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbParametro_par_UsuarioModifica" Association="Self.FK_Gral_tbParametro_par_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbParametro" EntitySet="tbParametro" />
     </AssociationSet>
     <AssociationSet Name="FK_Gral_tbParametro_tbMoneda_mnda_Id" Association="Self.FK_Gral_tbParametro_tbMoneda_mnda_Id">
       <End Role="tbMoneda" EntitySet="tbMoneda" />
@@ -3614,10 +3931,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
     </AssociationSet>
-    <AssociationSet Name="FK_Gral_tbUnidadMedida_uni_UsuarioModifica" Association="Self.FK_Gral_tbUnidadMedida_uni_UsuarioModifica">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
-    </AssociationSet>
     <AssociationSet Name="FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica" Association="Self.FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbBodega" EntitySet="tbBodega" />
@@ -3630,12 +3943,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbBodega" EntitySet="tbBodega" />
     </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbBodegaDetalle_bodd_tbUsuario_UsuarioModifica" Association="Self.FK_Inv_tbBodegaDetalle_bodd_tbUsuario_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
+    </AssociationSet>
     <AssociationSet Name="FK_Inv_tbBodegaDetalle_tbbodega_bod_Id" Association="Self.FK_Inv_tbBodegaDetalle_tbbodega_bod_Id">
       <End Role="tbBodega" EntitySet="tbBodega" />
       <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo" Association="Self.FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo">
       <End Role="tbProducto" EntitySet="tbProducto" />
+      <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbBodegaDetalle_tbUsuario_bodd_UsuarioCrea" Association="Self.FK_Inv_tbBodegaDetalle_tbUsuario_bodd_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" Association="Self.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
@@ -3645,6 +3966,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <AssociationSet Name="FK_Inv_tbEntrada_ent_BodegaDestino" Association="Self.FK_Inv_tbEntrada_ent_BodegaDestino">
       <End Role="tbBodega" EntitySet="tbBodega" />
       <End Role="tbEntrada" EntitySet="tbEntrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbEntrada_ent_UsuarioModifica" Association="Self.FK_Inv_tbEntrada_ent_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEntrada" EntitySet="tbEntrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbEntrada_pcat_UsuarioCrea" Association="Self.FK_Inv_tbEntrada_pcat_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEntrada_tbBodega_bod_Id" Association="Self.FK_Inv_tbEntrada_tbBodega_bod_Id">
       <End Role="tbBodega" EntitySet="tbBodega" />
@@ -3678,9 +4007,17 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
       <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
     </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica" Association="Self.FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoMovimiento" EntitySet="tbEstadoMovimiento" />
+    </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEstadoMovimiento_tbUsuario_estm_UsuarioCrea" Association="Self.FK_Inv_tbEstadoMovimiento_tbUsuario_estm_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbEstadoMovimiento" EntitySet="tbEstadoMovimiento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbInventarioFisico_invf_UsuarioModifica" Association="Self.FK_Inv_tbInventarioFisico_invf_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbInventarioFisico" EntitySet="tbInventarioFisico" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbInventarioFisico_tbBodega_bod_Id" Association="Self.FK_Inv_tbInventarioFisico_tbBodega_bod_Id">
       <End Role="tbBodega" EntitySet="tbBodega" />
@@ -3693,6 +4030,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <AssociationSet Name="FK_Inv_tbInventarioFisico_tbUsuario_invf_UsuarioCrea" Association="Self.FK_Inv_tbInventarioFisico_tbUsuario_invf_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbInventarioFisico" EntitySet="tbInventarioFisico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbInventarioFisicoDetalle_invfd_UsuarioModifica" Association="Self.FK_Inv_tbInventarioFisicoDetalle_invfd_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbInventarioFisicoDetalle" EntitySet="tbInventarioFisicoDetalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbInventarioFisicoDetalle_tbInventarioFisico_invf_Id" Association="Self.FK_Inv_tbInventarioFisicoDetalle_tbInventarioFisico_invf_Id">
       <End Role="tbInventarioFisico" EntitySet="tbInventarioFisico" />
@@ -3762,6 +4103,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbProveedor" EntitySet="tbProveedor" />
     </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbProveedor_prov_UsuarioModifica" Association="Self.FK_Inv_tbProveedor_prov_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbProveedor" EntitySet="tbProveedor" />
+    </AssociationSet>
     <AssociationSet Name="FK_Inv_tbSalida_box_Codigo" Association="Self.FK_Inv_tbSalida_box_Codigo">
       <End Role="tbBox" EntitySet="tbBox" />
       <End Role="tbSalida" EntitySet="tbSalida" />
@@ -3802,11 +4147,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
     </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbTipoEntrada_tent_UsuarioCrea" Association="Self.FK_Inv_tbTipoEntrada_tent_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbTipoEntrada" EntitySet="tbTipoEntrada" />
+    </AssociationSet>
     <AssociationSet Name="FK_Inv_tbTipoEntrada_tent_UsuarioModifica" Association="Self.FK_Inv_tbTipoEntrada_tent_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbTipoEntrada" EntitySet="tbTipoEntrada" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbTipoSalida_tbUsuario_tsal_UsuarioCrea" Association="Self.FK_Inv_tbTipoSalida_tbUsuario_tsal_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbTipoSalida" EntitySet="tbTipoSalida" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbTipoSalida_tsal_UsuarioModifica" Association="Self.FK_Inv_tbTipoSalida_tsal_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbTipoSalida" EntitySet="tbTipoSalida" />
     </AssociationSet>
