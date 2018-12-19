@@ -907,8 +907,8 @@
           <Property Name="tpa_UsuarioModifica" Type="int" />
           <Property Name="tpa_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDV_Inv_Nombre_Empleado">
           <Key>
             <PropertyRef Name="emp_Id" />
@@ -4572,16 +4572,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="tpa_FechaVencimiento" Mode="In" Type="Boolean" />
             <Parameter Name="tpa_Titular" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbTipoPago_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbTipoPago_Update_Result)">
-            <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
-            <Parameter Name="tpa_Descripcion" Mode="In" Type="String" />
-            <Parameter Name="tpa_Emisor" Mode="In" Type="Boolean" />
-            <Parameter Name="tpa_Cuenta" Mode="In" Type="Boolean" />
-            <Parameter Name="tpa_FechaVencimiento" Mode="In" Type="Boolean" />
-            <Parameter Name="tpa_Titular" Mode="In" Type="Boolean" />
-            <Parameter Name="tpa_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="tpa_FechaCrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbPago_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Insert_Result)">
             <Parameter Name="fact_Id" Mode="In" Type="Int64" />
             <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
@@ -5539,6 +5529,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="cred_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="cred_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbTipoPago_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbTipoPago_Update_Result)">
+            <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
+            <Parameter Name="tpa_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="tpa_Emisor" Mode="In" Type="Boolean" />
+            <Parameter Name="tpa_Cuenta" Mode="In" Type="Boolean" />
+            <Parameter Name="tpa_FechaVencimiento" Mode="In" Type="Boolean" />
+            <Parameter Name="tpa_Titular" Mode="In" Type="Boolean" />
+            <Parameter Name="tpa_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="tpa_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -5650,9 +5650,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Type="Byte" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbTipoPago_Insert_Result">
-          <Property Type="Int16" Name="MensajeError" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
           <Property Type="Int16" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbPago_Insert_Result">
@@ -9253,6 +9250,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
         <ComplexType Name="UDP_Vent_tbSolicitudCredito_Update_Result">
           <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
+          <Property Type="Int16" Name="MensajeError" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9425,13 +9425,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbTipoPago_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbTipoPago_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbTipoPago_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbTipoPago_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbTipoPago_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbTipoPago_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -10485,6 +10478,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbTipoPago_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbTipoPago_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbTipoPago_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

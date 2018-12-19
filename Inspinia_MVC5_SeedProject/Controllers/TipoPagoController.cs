@@ -111,36 +111,36 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="tpa_Id,tpa_Descripcion,tpa_Emisor,tpa_Cuenta,tpa_FechaVencimiento,tpa_Titular,tpa_UsuarioCrea,tpa_FechaCrea,tpa_UsuarioModifica,tpa_FechaModifica")] tbTipoPago tbTipoPago)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    try
-            //    {
-            //        var MensajeError = 0;
-            //        IEnumerable<object> list = null;
-            //        list = db.UDP_Vent_tbTipoPago_Update(tbTipoPago.tpa_Id, tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Emisor,tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular);
-            //        foreach (UDP_Vent_tbTipoPago_Update_Result tipopago in list)
-            //            MensajeError = tipopago.MensajeError;
-            //        if (MensajeError == -1)
-            //        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbTipoPago_Update(tbTipoPago.tpa_Id, tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Emisor, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular, tbTipoPago.tpa_UsuarioCrea, tbTipoPago.tpa_FechaCrea);
+                    foreach (UDP_Vent_tbTipoPago_Update_Result tipopago in list)
+                        MensajeError = tipopago.MensajeError;
+                    if (MensajeError == -1)
+                    {
 
-            //        }
-            //        else
-            //        {
-            //            return RedirectToAction("Index");
-            //        }
-            //    }
-            //    catch (Exception Ex)
-            //    {
-            //        ModelState.AddModelError("", "No se ha podido actualizar el registro, favor contacte al administrador" + Ex.Message.ToString());
-            //        return View(tbTipoPago);
-            //    }
-               
-            //    //db.Entry(tbTipoPago).State = EntityState.Modified;
-            //    //db.SaveChanges();
-            //    //return RedirectToAction("Index");
-            //}
-            //ViewBag.tpa_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoPago.tpa_UsuarioCrea);
-            //ViewBag.tpa_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoPago.tpa_UsuarioModifica);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "No se ha podido actualizar el registro, favor contacte al administrador" + Ex.Message.ToString());
+                    return View(tbTipoPago);
+                }
+
+                //db.Entry(tbTipoPago).State = EntityState.Modified;
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
+            }
+            ViewBag.tpa_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoPago.tpa_UsuarioCrea);
+            ViewBag.tpa_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoPago.tpa_UsuarioModifica);
             return View(tbTipoPago);
         }
 
