@@ -101,6 +101,8 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.cja_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCaja.cja_UsuarioCrea);
+            ViewBag.cja_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCaja.cja_UsuarioModifica);
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbCaja.suc_Id);
             return View(tbCaja);
         }
@@ -110,7 +112,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="cja_Id,cja_Descripcion,suc_Id,cja_UsuarioCrea,cja_FechaCrea,cja_UsuarioModifica,cja_FechaModifica")] tbCaja tbCaja)
+        public ActionResult Edit([Bind(Include= "cja_Id,cja_Descripcion,suc_Id,cja_UsuarioCrea,cja_FechaCrea,cja_UsuarioModifica,cja_FechaModifica,tbUsuario,tbUsuario1")] tbCaja tbCaja)
         {
             if (ModelState.IsValid)
             {
@@ -131,15 +133,18 @@ namespace ERP_ZORZAL.Controllers
                 }
                 catch (Exception Ex)
                 {
+
+                    
                     ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbCaja.suc_Id);
-                    ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
+                    ModelState.AddModelError("", "No se ha podido actualizar el registro, favor contacte al administrador" + Ex.Message.ToString());
                     return View(tbCaja);
 
                 }
                 return RedirectToAction("Index");
 
             }
-
+            ViewBag.cja_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCaja.cja_UsuarioCrea);
+            ViewBag.cja_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCaja.cja_UsuarioModifica);
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbCaja.suc_Id);
             
             return View(tbCaja);

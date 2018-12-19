@@ -68,6 +68,8 @@ namespace ERP_ZORZAL.Controllers
                             MensajeError = Denominacion.MensajeError;
                         if (MensajeError == -1)
                         {
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        return View(tbDenominacion);
                         }
                         else
                         {
@@ -76,8 +78,10 @@ namespace ERP_ZORZAL.Controllers
                         }
                         catch (Exception Ex)
                         {
-                        ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());                   
-                        }
+                        Ex.Message.ToString();
+                         ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                    return View(tbDenominacion);
+                }
             //db.tbDenominacion.Add(tbDenominacion);
             //db.SaveChanges();
             //return RedirectToAction("Index");
@@ -121,26 +125,37 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="deno_Id,deno_Descripcion,deno_Tipo,deno_valor,mnda_Id,deno_UsuarioCrea,deno_FechaCrea,deno_UsuarioModifica,deno_FechaModifica")] tbDenominacion tbDenominacion)
+        public ActionResult Edit([Bind(Include = "deno_Id,deno_Descripcion,deno_Tipo,deno_valor,mnda_Id,deno_UsuarioCrea,deno_FechaCrea,deno_UsuarioModifica,deno_FechaModifica ,tbUsuario, tbUsuario1")] tbDenominacion tbDenominacion)
         {
             if (ModelState.IsValid)
             {
-                var MensajeError = 0;
-                IEnumerable<object> list = null;
-                list = db.UDP_Gral_tbDenominacion_Update(tbDenominacion.deno_Id,tbDenominacion.deno_Descripcion,tbDenominacion.deno_Tipo,tbDenominacion.deno_valor,tbDenominacion.mnda_Id,tbDenominacion.deno_UsuarioCrea,tbDenominacion.deno_FechaCrea);
-                foreach (UDP_Gral_tbDenominacion_Update_Result denominacion in list)
-                    MensajeError = denominacion.MensajeError;
-                if (MensajeError == -1)
+                try
                 {
-                }
-                else
-                {
-                    return RedirectToAction("Index");
-                }
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Gral_tbDenominacion_Update(tbDenominacion.deno_Id, tbDenominacion.deno_Descripcion, tbDenominacion.deno_Tipo, tbDenominacion.deno_valor, tbDenominacion.mnda_Id, tbDenominacion.deno_UsuarioCrea, tbDenominacion.deno_FechaCrea);
+                    foreach (UDP_Gral_tbDenominacion_Update_Result denominacion in list)
+                        MensajeError = denominacion.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                        ModelState.AddModelError("", "No se ha podido actualizar el registro, favor contacte al administrador.");
+                        return View(tbDenominacion);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
 
-                //db.Entry(tbDenominacion).State = EntityState.Modified;
-                //db.SaveChanges();
-                //return RedirectToAction("Index");
+                    //db.Entry(tbDenominacion).State = EntityState.Modified;
+                    //db.SaveChanges();
+                    //return RedirectToAction("Index");
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se ha podido actualizar el registro, favor contacte al administrador.");
+                    return View(tbDenominacion);
+                }               
             }
             ViewBag.deno_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacion.deno_UsuarioCrea);
             ViewBag.deno_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacion.deno_UsuarioModifica);
@@ -150,7 +165,6 @@ namespace ERP_ZORZAL.Controllers
             TipoDenominacion.DenominacionList = cUtilities.DenominacionList();
             return View(tbDenominacion);
         }
-
         // GET: /Denominacion/Delete/5
         public ActionResult Delete(short? id)
         {

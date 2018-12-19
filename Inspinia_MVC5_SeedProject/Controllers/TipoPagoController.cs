@@ -58,7 +58,7 @@ namespace ERP_ZORZAL.Controllers
                 {
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbTipoPago_Insert(tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_Emisor, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular);
+                    list = db.UDP_Vent_tbTipoPago_Insert(tbTipoPago.tpa_Descripcion,  tbTipoPago.tpa_Emisor, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular);
                     foreach (UDP_Vent_tbTipoPago_Insert_Result tipopago in list)
                         MensajeError = tipopago.MensajeError;
                     if (MensajeError == -1)
@@ -73,7 +73,7 @@ namespace ERP_ZORZAL.Controllers
                 }
                 catch (Exception Ex)
                 {
-                    ModelState.AddModelError("", "Error al agregar el registro " + Ex.Message.ToString());
+                    ModelState.AddModelError("", "No se ha podido actualizar el registro, favor contacte al administrador " + Ex.Message.ToString());
                     return View(tbTipoPago);
                 }
                 //db.tbTipoPago.Add(tbTipoPago);
@@ -117,7 +117,7 @@ namespace ERP_ZORZAL.Controllers
                 {
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbTipoPago_Update(tbTipoPago.tpa_Id, tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_Emisor, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular);
+                    list = db.UDP_Vent_tbTipoPago_Update(tbTipoPago.tpa_Id, tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Emisor,tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular);
                     foreach (UDP_Vent_tbTipoPago_Update_Result tipopago in list)
                         MensajeError = tipopago.MensajeError;
                     if (MensajeError == -1)
@@ -131,7 +131,7 @@ namespace ERP_ZORZAL.Controllers
                 }
                 catch (Exception Ex)
                 {
-                    ModelState.AddModelError("", "Error al actualizar el registro " + Ex.Message.ToString());
+                    ModelState.AddModelError("", "No se ha podido actualizar el registro, favor contacte al administrador" + Ex.Message.ToString());
                     return View(tbTipoPago);
                 }
                
