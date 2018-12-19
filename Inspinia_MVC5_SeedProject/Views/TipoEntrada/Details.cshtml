@@ -47,39 +47,25 @@
             <div class="ibox-content">
                 <table class="table table-striped">
                     <tr>
-                        <th>
-                            Acción
-                        </th>
-                        <th>
-                            Usuario
-                        </th>
-                        <th>
-                            Fecha
-                        </th>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
                     </tr>
                     <tr>
-                        <td>
-                            Creado
-                        </td>
+                        <td>Creado</td>
                         <td>
                             @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
                             @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
                         </td>
-                        <td>
-                            @Html.DisplayFor(model => model.tent_FechaCrea)
-                        </td>
+                        <td>@Html.DisplayFor(model => model.tent_FechaCrea)</td>
                     </tr>
                     <tr>
-                        <td>
-                            Modificado
-                        </td>
+                        <td>Modificado</td>
                         <td>
                             @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
                             @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
                         </td>
-                        <td>
-                            @Html.DisplayFor(model => model.tent_FechaModifica)
-                        </td>
+                        <td>@Html.DisplayFor(model => model.tent_FechaModifica)</td>
                     </tr>
                 </table>
             </div>
