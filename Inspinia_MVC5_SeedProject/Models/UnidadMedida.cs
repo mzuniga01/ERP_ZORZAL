@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace ERP_GMEDINA.Models
 {
@@ -18,6 +19,7 @@ namespace ERP_GMEDINA.Models
     {
         [Display(Name = "Número")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [ReadOnly(true)]
         public int uni_Id { get; set; }
 
         [Display(Name = "Descripción")]

@@ -19,16 +19,16 @@
                 <div class="ibox-title">
                     <h5>Lista de Salida</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Salida", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>
                 <div class="ibox-content">
 
-<table class="table table-striped" style="width:100%"  id="Datatable">
+<table class="table table-responsive" style="width:100%"  id="tbSalida">
     <thead>
         <tr>
             <th>
-                Fecha de Elaboración
+                Fecha Elaboracion
             </th>
                 <th>
                     Nombre de Bodega
@@ -86,5 +86,28 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tbSalida').DataTable(
+        {
+            "searching": true,
 
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_ registros por página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    function Activar(Id) {
+        console.log("#boton_" + Id, "#boton_" + Id);
+        $("#boton_"+Id).attr("value", "Activar");
+    }
+</script>
 

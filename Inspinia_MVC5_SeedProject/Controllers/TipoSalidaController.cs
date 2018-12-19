@@ -93,6 +93,18 @@ namespace ERP_ZORZAL.Controllers
         }
 
         // GET: /TipoSalida/Edit/5
+
+
+        //ViewBag.UsuarioCrea = db.tbUsuario.Find(tbTipoSalida.tsal_UsuarioCrea).usu_NombreUsuario;
+        //    var UsuarioModifica = tbTipoSalida.tsal_UsuarioModifica;
+        //    if (UsuarioModifica == null)
+        //    {
+        //        ViewBag.UsuarioModifica = "";
+        //    }
+        //    else
+        //    {
+        //        ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModifica).usu_NombreUsuario;
+        //    };
         public ActionResult Edit(byte? id)
         {
             if (id == null)
@@ -100,16 +112,6 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbTipoSalida tbTipoSalida = db.tbTipoSalida.Find(id);
-            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbTipoSalida.tsal_UsuarioCrea).usu_NombreUsuario;
-            var UsuarioModifica = tbTipoSalida.tsal_UsuarioModifica;
-            if (UsuarioModifica == null)
-            {
-                ViewBag.UsuarioModifica = "";
-            }
-            else
-            {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModifica).usu_NombreUsuario;
-            };
             if (tbTipoSalida == null)
             {
                 return HttpNotFound();
@@ -122,7 +124,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(byte? id,[Bind(Include="tsal_Id,tsal_Descripcion,tsal_UsuarioCrea,tsal_FechaCrea")] tbTipoSalida tbTipoSalida)
+        public ActionResult Edit(byte? id,[Bind(Include= "tsal_Id,tsal_Descripcion,tsal_UsuarioCrea,tsal_FechaCrea,tsal_FechaModifica, tbUsuario, tbUsuario1")] tbTipoSalida tbTipoSalida)
         {
             if (ModelState.IsValid)
             {
@@ -142,7 +144,7 @@ namespace ERP_ZORZAL.Controllers
                     //tbUnidadMedida.uni_FechaModifica = DateTime.Now;tbUnidadMedida.uni_FechaCrea
                     //var FechaCreo = Convert.ToDateTime(uni_FechaCrea);
 
-                    List = db.UDP_Inv_tbTipoSalida_Update(tbTipoSalida.tsal_Id, tbTipoSalida.tsal_Descripcion, vtbTipoSalida.tsal_UsuarioCrea, vtbTipoSalida.tsal_FechaCrea);
+                    List = db.UDP_Inv_tbTipoSalida_Update(vtbTipoSalida.tsal_Id, tbTipoSalida.tsal_Descripcion, vtbTipoSalida.tsal_UsuarioCrea, vtbTipoSalida.tsal_FechaCrea);
                     foreach (UDP_Inv_tbTipoSalida_Update_Result UnidadMedida in List)
                         MsjError = UnidadMedida.MensajeError;
 

@@ -1,5 +1,4 @@
 ﻿@model ERP_GMEDINA.Models.tbSalida
-@using ERP_GMEDINA.Models
 
 @{
     ViewBag.Title = "Details";
@@ -8,11 +7,12 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Detalles</h2>
+        <h2>Salidas</h2>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            @Html.ActionLink("Regresar", "Index", @*null,*@ new { @class = "btn btn-primary" })
+            <a href="@Url.Action("Index","Salida")">Regresar</a>
+           
         </div>
     </div>
 </div>
@@ -30,119 +30,81 @@
                 <div class="ibox-content">
 
 
-				    <dl class="dl-horizontal">
-        <dt>
-            Fecha de Elaboración
-        </dt>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.sal_FechaElaboracion)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.sal_FechaElaboracion)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.sal_FechaElaboracion)
+                        </dd>
 
-        <dt>
-            Nombre de Bodega
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbBodega.bod_Nombre)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbBodega.bod_Nombre)
-        </dd>
-        <dt>
-            Estado
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbBodega.bod_Nombre)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbEstadoMovimiento.estm_Descripcion)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbEstadoMovimiento.estm_Descripcion)
+                        </dd>
 
-        <dt>
-            Numero de Factura
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
+                        </dd>
 
-        <dt>
-            Tipo de Salida
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbTipoSalida.tsal_Descripcion)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbTipoSalida.tsal_Descripcion)
-        </dd>
-    </dl>
-                   
+                        <dd>
+                            @Html.DisplayFor(model => model.tbTipoSalida.tsal_Descripcion)
+                        </dd>
+                    </dl>
 
-                    @* Llama la vista  *@
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-title">
-                                    <div class="title-action">
-                                        <h5>Detalle Salida</h5>
-                                    </div>
-                                </div>
-                                <div class="ibox-content" id="_SalidaDetalle">
-                                    @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
-                                    @Html.Partial("_SalidaDetalle", Model.tbSalidaDetalle)
-                                </div>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        @*<div class="col-md-offset-2 col-md-10">*@
+                        @Html.Partial("_IndexSalidaDetalle", Model.tbSalidaDetalle)
+                        @*</div>*@
                     </div>
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.sal_Id }, new { @class = "btn btn-primary"})
-
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.sal_Id }, new { @class = "btn btn-primary" })
+                    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
                 </div>
+
+                @*Campos de Auditoria*@
+                <div class="ibox-content">
+                    <fieldset class="box-border">
+                        <legend class="box-border">Datos Auditoria</legend>
+                        <table class="table table-striped" style="width:100%">
+                            <tr>
+                                <th>Acciones</th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.sal_FechaCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.sal_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </div>
+
             </div>
         </div>
     </div>
- </div>
-<div class="ibox-content">
-    <table class="table table-striped">
-        <tr>
-            <th>
-                Acción
-            </th>
-            <th>
-                Usuario
-            </th>
-            <th>
-                Fecha
-            </th>
-        </tr>
-        <tr>
-            <td>
-                Creado
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres) 
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.sal_FechaCrea)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Modificado
-            </td>
-            <td>
-               @Html.DisplayFor(model => model.tbUsuario.usu_Nombres) 
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.sal_FechaModifica)
-            </td>
-        </tr>
-
-    </table>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-

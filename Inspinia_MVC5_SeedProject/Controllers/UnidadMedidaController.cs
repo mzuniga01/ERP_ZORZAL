@@ -123,11 +123,12 @@ namespace ERP_ZORZAL.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id,[Bind(Include= "uni_Id,uni_Descripcion,uni_Abreviatura,uni_UsuarioCrea, uni_FechaCrea")] tbUnidadMedida tbUnidadMedida)
+        public ActionResult Edit(int? id,[Bind(Include= "uni_Id,uni_Descripcion,uni_Abreviatura,uni_UsuarioCrea, uni_FechaCrea, uni_FechaModifica, tbUsuario,tbUsuario1")] tbUnidadMedida tbUnidadMedida)
         {
-            tbUnidadMedida vtbUnidadMedida = db.tbUnidadMedida.Find(id);
+            
             if (ModelState.IsValid)
             {
+                tbUnidadMedida vtbUnidadMedida = db.tbUnidadMedida.Find(id);
                 //db.Entry(tbUnidadMedida).State = EntityState.Modified;
                 //db.SaveChanges();
                 try
@@ -142,7 +143,7 @@ namespace ERP_ZORZAL.Controllers
 
                     //tbUnidadMedida.uni_FechaModifica = DateTime.Now;tbUnidadMedida.uni_FechaCrea
                     //var FechaCreo = Convert.ToDateTime(uni_FechaCrea);
-                    List = db.UDP_Gral_tbUnidadMedida_Update(tbUnidadMedida.uni_Id, tbUnidadMedida.uni_Descripcion, tbUnidadMedida.uni_Abreviatura, vtbUnidadMedida.uni_UsuarioCrea, vtbUnidadMedida.uni_FechaCrea);
+                    List = db.UDP_Gral_tbUnidadMedida_Update(vtbUnidadMedida.uni_Id, tbUnidadMedida.uni_Descripcion, tbUnidadMedida.uni_Abreviatura, vtbUnidadMedida.uni_UsuarioCrea, vtbUnidadMedida.uni_FechaCrea);
                     foreach (UDP_Gral_tbUnidadMedida_Update_Result UnidadMedida in List)
                         MsjError = UnidadMedida.MensajeError;
 

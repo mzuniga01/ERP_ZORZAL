@@ -8,16 +8,14 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Ingresar Salida Detalle</h5>
+                    </div>
+    
                 <div class="ibox-content">
 
-				@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
-        @Html.ValidationSummary(true)
-
-
+      
         <div class="form-group">
             @Html.LabelFor(model => model.sal_Id, "Codigo Salida", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
@@ -31,18 +29,19 @@
         <div class="form-group">
             @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { @class = "form-control"})
+                @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { @class = "form-control" })
                 <div id="validationprod_CodigoCreate">
                     @Html.ValidationMessageFor(model => model.prod_Codigo)
-                </div>  
+                </div>
             </div>
             <div class="col-md-1">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
             </div>
-            <div class="col-md-1">
-                <input type="reset" value="Agregar" class="btn btn-primary" />
+
+            <div class="form-group col-md-1">
+                <button class="btn btn-primary" type="button" id="AgregarSalidaDetalle">Añadir</button>
             </div>
-            
+        </div>
         </div>
 
         <div class="form-group">
@@ -56,12 +55,9 @@
             </div>
             
 
-            <div class="form-group col-md-1">
-                <button class="btn btn-primary" type="button" id="AgregarSalidaDetalle">Añadir</button>
-            </div>
-        </div>
+    
 
-        <table id="tblSalidaDetalle" class="table table table-striped">
+        <table id="tblSalidaDetalle" class="table table-hover">
             <thead>
                 <tr>
                     <th>Código Salida</th>
@@ -102,6 +98,4 @@
 </div>
  
 
-@*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@
+<script src="~/Scripts/app/SalidaDetalle.js"></script>

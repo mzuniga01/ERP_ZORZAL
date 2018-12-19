@@ -1,0 +1,59 @@
+﻿@model ERP_GMEDINA.Models.tbSalidaDetalle
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Salida Detalle</h5>
+                </div>
+                <div class="ibox-content">
+
+                    <div class="form-horizontal">
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.sal_Id, "sal_Id", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("sal_Id", String.Empty)
+                                    @Html.ValidationMessageFor(model => model.sal_Id)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.prod_Codigo, "prod_Codigo", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("prod_Codigo", String.Empty)
+                                    @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.sal_Cantidad, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.sal_Cantidad)
+                                    @Html.ValidationMessageFor(model => model.sal_Cantidad)
+                                </div>
+                            </div>
+
+                            
+                            
+                        </div>
+                 
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

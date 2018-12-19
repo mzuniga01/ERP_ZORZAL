@@ -4,197 +4,199 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-sm-4">
-        <h2>Editar</h2>
-    </div>
-    <div class="col-sm-8">
-        <div class="title-action">
-            @Html.ActionLink("Regresar", "Index", @*null,*@ new { @class = "btn btn-primary" })
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.sal_Id)
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>Salidas</h2>
+        </div>
+        <div class="col-sm-8">
+            <div class="title-action">
+                <a href="@Url.Action("Index", "Salida")">Regresar</a>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Editar Salida</h5>
-                </div>
-                <div class="ibox-content">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Editar Salida</h5>
+                    </div>
+                    <div class="ibox-content">
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
 
-        <div class="form-horizontal">
+                            <div class="form-horizontal">
 
-            @Html.ValidationSummary(true)
-            @Html.HiddenFor(model => model.sal_Id)
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Nombre, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.bod_Id)
+                                    </div>
+                                </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Nombre, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.bod_Id)
-                </div>
-            </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.fact_Id, "Numero de Factura", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("fact_Id", (IEnumerable<SelectListItem>)ViewBag.fact_Id, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.fact_Id)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.sal_FechaElaboracion, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.sal_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "FechaElaboracionSalida" } })
+                                        @Html.ValidationMessageFor(model => model.sal_FechaElaboracion)
+                                    </div>
+                                </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.fact_Id, "Numero de Factura", new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.DropDownList("fact_Id", (IEnumerable<SelectListItem>)ViewBag.fact_Id, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.fact_Id)
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.box_Codigo, "Caja", new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.DropDownList("box_Codigo", (IEnumerable<SelectListItem>)ViewBag.box_Codigo, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.estm_Id)
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.sal_FechaElaboracion, new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.sal_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "FechaElaboracionSalida" } })
-                    @Html.ValidationMessageFor(model => model.sal_FechaElaboracion)
-                </div>
-            </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.tsal_Id, "Tipo de Salida", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("tsal_Id", (IEnumerable<SelectListItem>)ViewBag.tsal_Id, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.tsal_Id)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.bod_Id, "Encargado Bodega", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, "Seleccione", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.bod_Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.DropDownList("estm_Id", (IEnumerable<SelectListItem>)ViewBag.estm_Id, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.estm_Id)
-                </div>
-            </div>
+                                @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("estm_Id", (IEnumerable<SelectListItem>)ViewBag.estm_Id, "Seleccione", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.estm_Id)
+                                </div>
+                            </div>
+                            <div id="Devolucion" style="display:none">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.sal_RazonDevolucion, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-5">
+                                        @Html.EditorFor(model => model.sal_RazonDevolucion)
+                                        @Html.ValidationMessageFor(model => model.sal_RazonDevolucion)
+                                    </div>
+                                </div>
+                            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.tsal_Id, "Tipo de Salida", new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.DropDownList("tsal_Id", (IEnumerable<SelectListItem>)ViewBag.tsal_Id, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.tsal_Id)
-                </div>
-            </div>
-            <div id="Devolucion" style="display:none">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.sal_RazonDevolucion, new { @class = "control-label col-md-2" })
-                    <div class="col-md-5">
-                        @Html.EditorFor(model => model.sal_RazonDevolucion)
-                        @Html.ValidationMessageFor(model => model.sal_RazonDevolucion)
+                           
+                            @*//Botones*@
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    <input type="button" class="btn btn-white" data-toggle="modal" data-target="#exampleModal" value="Anular" />
+                                    <input type="button" class="btn btn-white" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
+                                </div>
+                            </div>
+
+                            @*Llamar la vista pasrcial de salida detalle*@
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <div class="title-action">
+                                                <div class="box-border">
+                                                    <h5> Listado Salida Detalle</h5>
+                                                    <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#Crear"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ibox-content collapse" id="Crear">
+                                            @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
+                                            @Html.Partial("_IndexSalidaDetalle", Model.tbSalidaDetalle)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            </div>
+                            <br />
+                            @*Campos de Auditoria*@
+                            <div class="ibox-content">
+                                <fieldset class="box-border">
+                                    <legend class="box-border">Datos Auditoria</legend>
+                                    <table class="table table-striped" style="width:100%">
+                                        <tr>
+                                            <th>Acciones</th>
+                                            <th>Usuario</th>
+                                            <th>Fecha</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Creado</td>
+                                            <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                            <td>@Html.DisplayFor(model => model.sal_FechaCrea)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Modificado</td>
+                                            <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                            <td>@Html.DisplayFor(model => model.sal_FechaModifica)</td>
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                    <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
-                    <input type="button" class="btn btn-primary" style="border-bottom-color:red;" data-toggle="modal" data-target="#exampleModal" value="Anular" />
-                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                </div>
-            </div>
-
-        </div>
-
-
-    }
-
-
-                </div>
-            </div>
-            <div class="ibox-content">
-
-                <table class="table table-striped">
-                    <tr>
-                        <th>
-                            Acción
-                        </th>
-                        <th>
-                            Usuario
-                        </th>
-                        <th>
-                            Fecha
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            Creado
-                        </td>
-                        <td>
-                           @Html.DisplayFor(model => model.tbUsuario.usu_Nombres) 
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.sal_FechaCrea)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Modificado
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres) 
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.sal_FechaModifica)
-                        </td>
-                    </tr>
-
-                </table>
-            </div>
         </div>
     </div>
- </div>
-@*modal para anular*@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Anular Salida</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ¿Está seguro de anular esta Salida?
-                </div>
-                <div class="modal-footer">
-                    <a href="@Url.Action("Index","Salida")" class="btn btn-primary">Si</a>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-@*modal para Aplicar*@
-<div class="modal fade" id="ModalAplicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Aplicar Salida</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Desea Aplicar Salida?
-            </div>
-            <div class="modal-footer">
-                <a href="@Url.Action("Create", "Salida")" class="btn btn-primary">Si</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/app/Datepicker.js"></script>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-
-    <script src="~/Scripts/app/MostrarCamposSalida.js"></script>
-
 }
+            @*modal para anular*@
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Anular Salida</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Está seguro de anular esta Salida?
+                        </div>
+                        <div class="modal-footer">
+                            <a href="@Url.Action("Index","Salida")" class="btn btn-primary">Si</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*modal para Aplicar*@
+            <div class="modal fade" id="ModalAplicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Aplicar Salida</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Desea Aplicar Salida?
+                        </div>
+                        <div class="modal-footer">
+                            <a href="@Url.Action("Index", "Salida")" class="btn btn-primary">Si</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+            <script src="~/Scripts/app/Datepicker.js"></script>
+            <script src="~/Scripts/app/MostrarCamposSalida.js"></script>
+            <script src="~/Scripts/jquery-3.3.1.js"></script>
