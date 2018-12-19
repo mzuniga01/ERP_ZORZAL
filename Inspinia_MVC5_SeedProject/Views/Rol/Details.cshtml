@@ -91,8 +91,8 @@
                     Creado por
                 </td>
                 <td>
-
                     @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.rol_FechaCrea)
@@ -103,14 +103,16 @@
                     Modificado por
                 </td>
                 <td>
-                    @if (Convert.ToString(Model.rol_FechaModifica) == "")
+                    @*@if (Convert.ToString(Model.rol_FechaModifica) == "")
                     {
 
                     }
                     else
                     {
                         @ViewBag.UsuarioModifica
-                    }
+                    }*@
+                    @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                    @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.rol_FechaModifica)

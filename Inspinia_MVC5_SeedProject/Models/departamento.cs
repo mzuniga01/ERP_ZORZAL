@@ -22,7 +22,6 @@ namespace ERP_GMEDINA.Models
 
         [Required(ErrorMessage = "Campo {0} requerido")]
         [Display(Name = "Departamento")]
-        [RegularExpression("^[A-ZÑÁÉÍÓÚ]+$", ErrorMessage = "Solo letras mayúsculas.")]
         public string dep_Nombre { get; set; }
 
         [Display(Name = "Creado por")]

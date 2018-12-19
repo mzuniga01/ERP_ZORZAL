@@ -46,7 +46,7 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Departamento/Create
         public ActionResult Create()
         {
-            ViewBag.dep_Codigo = new SelectList( db.tbDepartamento, "dep_Codigo", "dep_Nombre", "Seleccione");
+            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", "Seleccione");
             return View();
         }
 
@@ -55,7 +55,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
+        public ActionResult Create([Bind(Include = "dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
         {
             IEnumerable<object> list = null;
             IEnumerable<object> lista = null;
@@ -72,15 +72,16 @@ namespace ERP_ZORZAL.Controllers
 
                         list = db.UDP_Gral_tbDepartamento_Insert(tbDepartamento.dep_Codigo, tbDepartamento.dep_Nombre);
                         foreach (UDP_Gral_tbDepartamento_Insert_Result departamento in list)
-                            MsjError = (departamento.MensajeError);
-                        if (MsjError.Substring(0, 1) == "")
+                            MsjError = departamento.MensajeError;
+                        if (MsjError.Substring(0, 1) == "-")
                         {
                             ModelState.AddModelError("", "No se Guardo el Registro");
                             return View(tbDepartamento);
                         }
                         else
                         {
-                            if (listMunicipios != null )
+
+                            if (listMunicipios != null)
                             {
                                 if (listMunicipios.Count > 0)
                                 {
@@ -88,43 +89,26 @@ namespace ERP_ZORZAL.Controllers
                                     {
                                         lista = db.UDP_Gral_tbMunicipio_Insert(mun.mun_Codigo, tbDepartamento.dep_Codigo, mun.mun_Nombre);
                                         foreach (UDP_Gral_tbMunicipio_Insert_Result municipios in lista)
-                                            MensajeError = (municipios.MensajeError);
 
-                                        if (MensajeError.Substring(0, 1) == "")
                                         {
-                                            ModelState.AddModelError("", "No se Guardo el Registro");
-                                            return View(tbDepartamento);
-                                        }
-                                        else
-                                        {
-                                            _Tran.Complete();
-                                            return RedirectToAction("Index");
+                                            MensajeError = (municipios.MensajeError);
                                         }
                                     }
                                 }
                             }
-
-                            else
-                            {
-                                _Tran.Complete();
-                                return RedirectToAction("Index");
-                            }
-                            
+                            _Tran.Complete();
                         }
-
                     }
-                    catch (Exception Ex)
+                    catch (Exception)
                     {
-                        Ex.Message.ToString();
-                        ModelState.AddModelError("", "No se Guardo el Registro");
-                        return View(tbDepartamento);
+                        MsjError = "-1";
                     }
-                   
+
                 }
-            }
 
+                return RedirectToAction("Index");
             
-
+        }
             return View(tbDepartamento);
         }
 
@@ -136,6 +120,16 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbDepartamento tbDepartamento = db.tbDepartamento.Find(id);
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbDepartamento.dep_UsuarioCrea).usu_NombreUsuario;
+            var UsuarioModfica = tbDepartamento.dep_UsuarioModifica;
+            if (UsuarioModfica == null)
+            {
+                ViewBag.UsuarioModifica = "";
+            }
+            else
+            {
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+            };
             if (tbDepartamento == null)
             {
                 return HttpNotFound();
@@ -148,16 +142,40 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
+        public ActionResult Edit(string id,[Bind(Include="dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbDepartamento).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    IEnumerable<object> list = null;
+                    var MsjError = "";
+                    list = db.UDP_Gral_tbDepartamento_Update(tbDepartamento.dep_Codigo, tbDepartamento.dep_Nombre, tbDepartamento.dep_UsuarioCrea, tbDepartamento.dep_FechaCrea);
+                    foreach (UDP_Gral_tbDepartamento_Update_Result departamento in list)
+                        MsjError = departamento.MensajeError;
+
+                    if (MsjError == "-1")
+                    {
+                        ModelState.AddModelError("", "No se Guardo el Registro");
+                        return View(tbDepartamento);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro");
+                }
                 return RedirectToAction("Index");
             }
+
             return View(tbDepartamento);
         }
+        
 
         // GET: /Departamento/Delete/5
         public ActionResult Delete(string id)
@@ -214,6 +232,10 @@ namespace ERP_ZORZAL.Controllers
         }
 
 
+
+
+
+
         [HttpPost]
         public JsonResult RemoveMunicipios(tbMunicipio Municipios)
         {
@@ -227,5 +249,6 @@ namespace ERP_ZORZAL.Controllers
             }
             return Json("", JsonRequestBehavior.AllowGet);
         }
+        
     }
 }

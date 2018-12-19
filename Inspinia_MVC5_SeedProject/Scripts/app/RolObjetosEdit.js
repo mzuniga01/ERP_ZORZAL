@@ -4,7 +4,7 @@
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(),
+        data: JSON.stringify({ rolId: $('#rol_Id').val() }),
     })
     .done(function (data) {
         if (data.length < 1) {
@@ -17,9 +17,9 @@
                 newTr += '<td id="objpantalla' + item.obj_Id + '">' + item.obj_Pantalla + '</td>'
                 newTr += '<td><input name="id02" style="background-color:#1ab394" type="checkbox" id="check' + item.obj_Id + '" /></td>'
                 newTr += '</tr>'
-                $('#NoAsignados tbody').append(newTr)
+                $('#NoAsignadosEdit tbody').append(newTr)
             })
-            $('#NoAsignados').DataTable({
+            $('#NoAsignadosEdit').DataTable({
 
                 "searching": false,
                 "oLanguage": {
@@ -32,11 +32,8 @@
                     "sInfo": "Mostrando _START_ a _END_ Entradas"
 
                 },
-            })
 
-            $('#Asignados> tbody > tr').each(function () {
-                $(this).remove();
-            })
+            });
         }
     })
     $.ajax({
@@ -44,22 +41,40 @@
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(),
+        data: JSON.stringify({ rolId: $('#rol_Id').val() }),
     })
     .done(function (data) {
         if (data.length < 1) {
+            $('#AsignadosEdit').DataTable({
+
+                "searching": false,
+                "oLanguage": {
+                    "oPaginate": {
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior",
+                    },
+                    "sSearch": "Buscar",
+                    "sLengthMenu": "Mostrar _MENU_ Registros Por Página",
+                    "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+                },
+
+            });
+            $('#AsignadosEdit> tbody > tr').each(function () {
+                $(this).remove();
+            })
         }
         else {
             $.each(data, function (i, item) {
-
+                
                 newTr = '';
                 newTr += '<tr data-id="' + item.obj_Id + '">'
                 newTr += '<td id="objpantalla' + item.obj_Id + '">' + item.obj_Pantalla + '</td>'
                 newTr += '<td><input name="id02" style="background-color:#1ab394" type="checkbox" id="check' + item.obj_Id + '" /></td>'
                 newTr += '</tr>'
-                $('#Asignados tbody').append(newTr)
+                $('#AsignadosEdit tbody').append(newTr)
             })
-            $('#Asignados').DataTable({
+            $('#AsignadosEdit').DataTable({
 
                 "searching": false,
                 "oLanguage": {
@@ -77,85 +92,131 @@
         }
     })
 });
-
 $('#Add').click(function () {
-    $('#NoAsignados> tbody > tr').each(function () {
-        idItem = $(this).data('id');
-        var objpantalla;
+        var idRol = $('#rol_Id').val()
+        var RolAcceso = []
+        $('#NoAsignadosEdit> tbody > tr').each(function () {
+            idItem = $(this).data('id');
+            var objpantalla;
+            if ($('#check' + idItem).is(':checked')) {
+                active = $(this)
+                var Asignados = $('#AsignadosEdit').length
+                $('#NoAsignadosEdit tbody').append(active)
+                $('#check' + idItem).prop('checked', false);
+                $(this).remove();
+                $('#AsignadosEdit tbody').append(active)
+                //var idItem = $(this).attr('data-id')
 
-        if ($('#check' + idItem).is(':checked')) {
-            active = $(this)
-            var Asignados = $('#Asignados').length
-            $('#NoAsignados tbody').append(active)
-            $('#check' + idItem).prop('checked', false);
-            $(this).remove();
-            $('#Asignados tbody').append(active)
+                var item = {
+                    obj_Id: idItem,
+                }
+                RolAcceso.push(item)
 
-        }
+                //    })
+                
+            }
+        })
+        $.ajax({
+            url: "/Rol/AgregarObjeto",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ idRol: idRol, RolAcceso: RolAcceso }),
+        })
+                    .done(function (data) {
+                        if (data == '') {
+                            //$('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo añadir la pantalla, contacte con el administrador</ul>');
+                            location.reload();
+                        }
+                        else {
+                        }
+                    })
+            var TableLeght = $("#AsignadosEdit tr").length;
+                
+        })
+                //if (TableLeght > 1) {
+
+                //    $('#AsignadosEdit> tbody > tr').each(function () {
+                        
+
+                //$.ajax({
+                //    url: "/Rol/AgregarObjeto",
+                //    method: "POST",
+                //    dataType: 'json',
+                //    contentType: "application/json; charset=utf-8",
+                //    data: JSON.stringify({ idRol: idRol, RolAcceso: RolAcceso }),
+                //})
+                //        .done(function (data) {
+                //            if (data == '') {
+                //                $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo ingresar el registro</ul>');
+                //            }
+                //            else {
+                //                window.location.reload = "Edit/" + IdRol;
+                //            }
+                //            console.log(data);
+                //        })
+        //})
+
+    $('#Remove').click(function () {
+        var idRol = $('#rol_Id').val()
+        var RolAcceso = []
+        $('#AsignadosEdit> tbody > tr').each(function () {
+            idItem = $(this).data('id');
+            var objpantalla;
+
+            if ($('#check' + idItem).is(':checked')) {
+                active = $(this)
+                //var Asignados = $('#NoAsignadosEdit').length
+                //$('#AsignadosEdit tbody').append(active)
+                //$('#check' + idItem).prop('checked', false);
+                //$(this).remove();
+                //$('#NoAsignadosEdit tbody').append(active)
+                var item = {
+                    obj_Id: idItem,
+                }
+                RolAcceso.push(item)
+            }
+        })
+        $.ajax({
+            url: "/Rol/QuitarObjeto",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ idRol: idRol, RolAcceso: RolAcceso }),
+        })
+                    .done(function (data) {
+                        if (data == '') {
+                            //$('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo añadir la pantalla, contacte con el administrador</ul>');
+                            location.reload();
+                        }
+                        else {
+                        }
+                    })
+        var TableLeght = $("#NoAsignadosEdit tr").length;
     })
-})
-
-$('#Remove').click(function () {
-    $('#Asignados> tbody > tr').each(function () {
-        idItem = $(this).data('id');
-        var objpantalla;
-
-        if ($('#check' + idItem).is(':checked')) {
-            active = $(this)
-            $('#check' + idItem).prop('checked', false);
-            $(this).remove();
+    $('#btnActualizarRol').click(function () {
+        var rolId = $("#rol_Id").val();
+        var Descripcion = $("#rol_Descripcion").val();
+        if (Descripcion == '') {
+            $('#DescripcionRol').text('');
+            $('#errorDescripcionRol').text('');
+            $('#validationDescripcionRol').after('<ul id="errorDescripcionRol" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
         }
-    })
-})
-
-$('#btnActualizarRol').click(function () {
-    var DescripcionRol = $("#rol_Descripcion").val();
-    if (DescripcionRol == '') {
-        $('#DescripcionRol').text('');
-        $('#errorDescripcionRol').text('');
-        $('#validationDescripcionRol').after('<ul id="errorDescripcionRol" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
-    }
-//    else {
-
-//        var TableLeght = $("#Asignados tr").length;
-//        var DescripcionRol = $('#rol_Descripcion').val()
-//        var AccesoRol = []
-
-//        if (TableLeght > 1) {
-
-//            $('#Asignados> tbody > tr').each(function () {
-//                var idItem = $(this).attr('data-id')
-//                console.log(idItem);
-
-//                var item = {
-//                    obj_Id: idItem,
-//                }
-//                AccesoRol.push(item)
-//                console.log(item);
-
-//            })
-//        }
-//        console.log(AccesoRol);
-
-//        $.ajax({
-//            url: "/Rol/InsertRol",
-//            method: "POST",
-//            dataType: 'json',
-//            contentType: "application/json; charset=utf-8",
-//            data: JSON.stringify({ DescripcionRol: DescripcionRol, AccesoRol: AccesoRol }),
-//        })
-//                .done(function (data) {
-//                    if (data == '') {
-//                        $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo ingresar el registro</ul>');
-//                    }
-//                    else {
-//                        window.location.href = "Index/Rol";
-//                    }
-//                    console.log(data);
-//                })
-//    }
-//});
-
-    
-
-
+        else {
+            $.ajax({
+                url: "/Rol/UpdateRol",
+                method: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ rolId: rolId, Descripcion: Descripcion }),
+            })
+                        .done(function (data) {
+                            if (data == '') {
+                                $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo actualizar el registro, contacte con el administrador</ul>');
+                            }
+                            else {
+                                window.location.href = '/Rol/Index';
+                            }
+                        })
+        }
+    });

@@ -35,5 +35,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<bool> emp_Estado { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbTipoIdentificacion tbTipoIdentificacion { get; set; }
     }
 }

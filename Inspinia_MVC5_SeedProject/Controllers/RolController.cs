@@ -59,7 +59,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="rol_Descripcion,rol_Estado")] tbRol tbRol)
+        public ActionResult Create([Bind(Include = "rol_Descripcion,rol_Estado")] tbRol tbRol)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +76,7 @@ namespace ERP_ZORZAL.Controllers
                 catch (Exception Ex)
                 {
                     Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    ModelState.AddModelError("", "No se pudo guardar el registro , Contacte al Administrador");
                 }
                 return RedirectToAction("Index");
             }
@@ -93,7 +93,7 @@ namespace ERP_ZORZAL.Controllers
             }
             ViewBag.obj_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla");
             ViewBag.ListEstado = ListEstado();
-            
+
             tbRol tbRol = db.tbRol.Find(id);
             ViewBag.UsuarioCrea = db.tbUsuario.Find(tbRol.rol_UsuarioCrea).usu_Nombres;
             var UsuarioModfica = tbRol.rol_UsuarioModifica;
@@ -117,29 +117,28 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(byte? id,[Bind(Include="rol_Id,rol_Descripcion,rol_UsuarioCrea,rol_FechaCrea,rol_Estado")] tbRol tbRol)
+        public ActionResult Edit(byte? id, [Bind(Include = "rol_Id,rol_Descripcion,rol_UsuarioCrea,rol_FechaCrea,rol_Estado")] tbRol tbRol)
         {
             if (ModelState.IsValid)
             {
-                 
-                //db.Entry(tbRol).State = EntityState.Modified;
-                //db.SaveChanges();
-                try
-                {
-                    tbRol vRol = db.tbRol.Find(id);
-                    IEnumerable<Object> List = null;
-                    var Msj = "";
-                    List = db.UDP_Acce_tbRol_Update(tbRol.rol_Id, tbRol.rol_Descripcion, vRol.rol_UsuarioCrea, vRol.rol_FechaCrea, vRol.rol_Estado);
-                    foreach (UDP_Acce_tbRol_Update_Result Rol in List)
-                        Msj = Rol.MensajeError;
+                    //try
+                    //{
+                    //    tbRol vRol = db.tbRol.Find(id);
+                    //    IEnumerable<Object> List = null;
+                    //    var Msj = "";
+                    //    List = db.UDP_Acce_tbRol_Update(tbRol.rol_Id, tbRol.rol_Descripcion, vRol.rol_UsuarioCrea, vRol.rol_FechaCrea, vRol.rol_Estado);
+                    //    foreach (UDP_Acce_tbRol_Update_Result Rol in List)
+                    //        Msj = Rol.MensajeError;
+                    //}
+                    //catch (Exception Ex)
+                    //{
+                    //    Ex.Message.ToString();
+                    //    ModelState.AddModelError("", "No se pudo actualizar el registro , Contacte al Administrador");
+                    //}
+                    //return RedirectToAction("Index");
                 }
-                catch (Exception Ex)
-                {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
-                }
-                return RedirectToAction("Index");
-            }
+                
+            
             return View(tbRol);
         }
 
@@ -192,9 +191,9 @@ namespace ERP_ZORZAL.Controllers
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                ModelState.AddModelError("", "No se pudo actualizar el Estado , Contacte al Administrador");
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit/" + id);
         }
 
         public ActionResult EstadoRolActivo(int id)
@@ -211,9 +210,9 @@ namespace ERP_ZORZAL.Controllers
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                ModelState.AddModelError("", "No se pudo actualizar el Estado , Contacte al Administrador");
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit/" + id);
         }
 
         public List<SelectListItem> ListEstado()
@@ -231,8 +230,8 @@ namespace ERP_ZORZAL.Controllers
                     Value = "0"
                 }
             };
-         }
-
+        }
+        
         [HttpPost]
         public JsonResult GetObjetosDisponibles(int rolId)
         {
@@ -264,7 +263,7 @@ namespace ERP_ZORZAL.Controllers
             var Msj2 = "";
             using (TransactionScope Tran = new TransactionScope())
             {
-                
+
                 try
                 {
                     if (DescripcionRol != "")
@@ -298,9 +297,104 @@ namespace ERP_ZORZAL.Controllers
                 {
                     Msj1 = "-1";
                 }
-                
+
             }
             return Json(Msj1, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateRol(int rolId, string Descripcion)
+        {
+            var Msj = "";
+            try
+            {
+                if (Descripcion != null)
+                {
+                   db.UDP_Acce_tbRol_Update(rolId, Descripcion);
+                   Msj = "1";
+                }
+            }
+            catch (Exception)
+            {
+                Msj = "-1";
+            }
+            return Json(Msj, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AgregarObjeto(int idRol, ICollection<tbAccesoRol> RolAcceso)
+        {
+            var Msj = "";
+            IEnumerable<Object> Acceso = null;
+            using (TransactionScope Tran = new TransactionScope())
+            {
+
+                try
+                {
+                    //Rol = db.UDP_Acce_tbAccesoRol_Insert(idRol, AccesoRol);
+                    //foreach (UDP_Acce_tbAccesoRol_Update_Result vRol in Rol)
+                    //    Msj1 = vRol.MensajeError;
+                    //if (Msj1.Substring(0, 1) != "-")
+                    //{
+                    if (RolAcceso != null)
+                    {
+                        if (RolAcceso.Count > 0)
+                        {
+                            foreach (tbAccesoRol vAccesoRol in RolAcceso)
+                            {
+                                Acceso = db.UDP_Acce_tbAccesoRol_Insert(idRol, vAccesoRol.obj_Id);
+                                foreach (UDP_Acce_tbAccesoRol_Insert_Result item in Acceso)
+                                {
+                                    Msj = Convert.ToString(item.MensajeError);
+                                }
+                            }
+                        }
+                    }
+                    Tran.Complete();
+                }
+                catch (Exception)
+                {
+                    Msj = "-1";
+                }
+                return Json(Msj, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+        [HttpPost]
+        public JsonResult QuitarObjeto(int idRol, ICollection<tbAccesoRol> RolAcceso)
+        {
+            var Msj = "";
+            //IEnumerable<Object> Acceso = null;
+            using (TransactionScope Tran = new TransactionScope())
+            {
+
+                try
+                {
+                    //Rol = db.UDP_Acce_tbAccesoRol_Insert(idRol, AccesoRol);
+                    //foreach (UDP_Acce_tbAccesoRol_Update_Result vRol in Rol)
+                    //    Msj1 = vRol.MensajeError;
+                    //if (Msj1.Substring(0, 1) != "-")
+                    //{
+                    if (RolAcceso != null)
+                    {
+                        if (RolAcceso.Count > 0)
+                        {
+                            foreach (tbAccesoRol vAccesoRol in RolAcceso)
+                            {
+                               db.UDP_Acce_tbAccesoRol_Delete(idRol, vAccesoRol.obj_Id);
+                                
+                            }
+                        }
+                    }
+                    Tran.Complete();
+                }
+                catch (Exception)
+                {
+                    Msj = "-1";
+                }
+                return Json(Msj, JsonRequestBehavior.AllowGet);
+
+            }
         }
     }
 }

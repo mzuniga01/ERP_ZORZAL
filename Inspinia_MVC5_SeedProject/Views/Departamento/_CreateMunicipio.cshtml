@@ -7,57 +7,56 @@
             <div class="ibox float-e-margins">
 
                 
-                        <div class="form-horizontal">
-                            @Html.ValidationSummary(true)
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
 
-                            <div class="form-group">
-                                @*<label class="control-label col-md-2">Departamento</label>*@
-                                @*@Html.LabelFor(model => model.dep_Codigo, "dep_Codigo", new { @class = "control-label col-md-2" })*@
-                                <div class="col-md-4">
-                                    @*@Html.DropDownList("dep_Codigo", (IEnumerable<SelectListItem>)ViewBag.dep_Codigo, new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" })*@
-                                    @*@Html.ValidationMessageFor(model => model.dep_Codigo)*@
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.mun_Codigo, new { @class = "control-label col-md-2" })
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.mun_Codigo)
-                                    <div id="ValidationCodigoCreate">
-                                        @Html.ValidationMessageFor(model => model.mun_Codigo)
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.mun_Nombre, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-3">
-                                        @Html.EditorFor(model => model.mun_Nombre)
-                                        <div id="ValidationNombreCreate">
-                                            @Html.ValidationMessageFor(model => model.mun_Nombre)
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-1">
-                                        <button class="btn btn-primary" type="button" id="AgregarMunicipios">Añadir</button>
-                                    </div>
-                                </div>
-                            </div>
-                           
-                            <table id="tblMunicipios" class="table table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Código Municipio</th>
-                                        <th>Municipio</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
+                    <div class="form-group">
+                        @*<label class="control-label col-md-2">Departamento</label>*@
+                        @*@Html.LabelFor(model => model.dep_Codigo, "dep_Codigo", new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-4">
+                            @*@Html.DropDownList("dep_Codigo", (IEnumerable<SelectListItem>)ViewBag.dep_Codigo, new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" })*@
+                            @*@Html.ValidationMessageFor(model => model.dep_Codigo)*@
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.mun_Codigo, new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.mun_Codigo)
+                            <div id="ValidationCodigoCreate">
+                                @Html.ValidationMessageFor(model => model.mun_Codigo)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.mun_Nombre, new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.mun_Nombre)
+                                <div id="ValidationNombreCreate">
+                                    @Html.ValidationMessageFor(model => model.mun_Nombre)
+                                </div>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <button class="btn btn-primary" type="button" id="AgregarMunicipios">Añadir</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table id="tblMunicipios" class="table table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Código Municipio</th>
+                                <th>Municipio</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 
 
 @section Scripts {

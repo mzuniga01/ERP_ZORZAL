@@ -129,9 +129,9 @@ namespace ERP_ZORZAL.Controllers
                     tbProductoCategoria categorias = db.tbProductoCategoria.Find(id);
                     IEnumerable<object> list = null;
                     var MsjError = "";
-                    list = db.UDP_Inv_tbProductoCategoria_Update(tbProductoCategoria.pcat_Id,
-                        tbProductoCategoria.pcat_Nombre, categorias.pcat_UsuarioCrea,
-                        categorias.pcat_FechaCrea);
+                    //list = db.UDP_Inv_tbProductoCategoria_Update(tbProductoCategoria.pcat_Id,
+                    //    tbProductoCategoria.pcat_Nombre, categorias.pcat_UsuarioCrea,
+                    //    categorias.pcat_FechaCrea);
                     foreach (UDP_Inv_tbProductoCategoria_Update_Result categoria in list) 
                         MsjError = categoria.MensajeError;
 

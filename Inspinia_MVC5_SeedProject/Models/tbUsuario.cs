@@ -123,6 +123,8 @@ namespace ERP_GMEDINA.Models
             this.tbTipoEntrada1 = new HashSet<tbTipoEntrada>();
             this.tbBodegaDetalle = new HashSet<tbBodegaDetalle>();
             this.tbBodegaDetalle1 = new HashSet<tbBodegaDetalle>();
+            this.tbEmpleado1 = new HashSet<tbEmpleado>();
+            this.tbTipoSalida1 = new HashSet<tbTipoSalida>();
         }
     
         public int usu_Id { get; set; }
@@ -347,5 +349,9 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbBodegaDetalle> tbBodegaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodegaDetalle> tbBodegaDetalle1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbEmpleado> tbEmpleado1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbTipoSalida> tbTipoSalida1 { get; set; }
     }
 }
