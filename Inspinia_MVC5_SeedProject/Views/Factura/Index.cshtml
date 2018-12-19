@@ -21,13 +21,12 @@
                 <div class="ibox-title">
                     <h5>Listado de Facturas</h5>
 
-                     <div class="ibox-tools">
-                   
-                         @Html.ActionLink("Facturas Por Pagar", "_IndexFacturaPagar", null, new { @class = "btn btn-primary btn-xs" })
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Facturas Por Pagar", "IndexFacturaPagar", null, new { @class = "btn btn-primary btn-sm" })
                         @Html.ActionLink("Registrar Factura", "Create", null, new { @class = "btn btn-primary btn-sm" })
                     </div>
                     <div class="ibox-content">
-                        <table id="DataTable1" class="table table table-striped  table-bordered">
+                       <table id="DataTable1" class="table table table-striped  table-bordered">
                             <thead>
                                 <tr>
                                     <th>
@@ -48,7 +47,7 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.esfac_Id)
                                     </th>
-                                   <th> Acciones</th>
+                                    <th> Acciones</th>
                                 </tr>
                             </thead>
 
@@ -86,14 +85,14 @@
                                         </td>
                                         <td>
                                             @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
-                                            
-                                            @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })                                          
+
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
                                             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
                                                 Imprimir
                                             </button>
                                         </td>
                                     </tr>
-                                }
+                                            }
                             </tbody>
                         </table>
 
@@ -115,11 +114,11 @@
                 </button>
             </div>
             <div class="modal-body">
-               ¿Está seguro de anular esta factura?
+                ¿Está seguro de anular esta factura?
             </div>
             <div class="modal-footer">
                 <a href="@Url.Action("Index","Factura")" class="btn btn-primary">Si</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>               
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>

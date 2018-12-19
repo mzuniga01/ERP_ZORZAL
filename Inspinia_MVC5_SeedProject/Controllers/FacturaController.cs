@@ -25,12 +25,7 @@ namespace ERP_ZORZAL.Controllers
 
             return View(db.tbFactura.ToList());
         }
-
-        public ActionResult _IndexFacturaPagar()
-        {
-
-            return View(db.tbPago.ToList());
-        }
+ 
         //[HttpPost]
         //public JsonResult GetProducto(string prod_Codigo)
         //{

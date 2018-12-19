@@ -4,17 +4,16 @@ $('#AgregarDetalleFactura').click(function () {
     var CodigoProducto = $('#prod_Codigo').val();
     var MontoDescuento = $('#factd_MontoDescuento').val();
     var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
-    var PorcentajeDescuento = $('#factd_PorcentajeDescuento').val();
     var CantidadProducto = $('#factd_Cantidad').val();
-    var Subtotal = $('#Subtotal').val();
+    var Subtotal = $('#SubtotalProducto').val();
     var PrecioUnitario = $('#PrecioUnitario').val();
     var Impuesto = $('#factd_Impuesto').val();
+    var Total = $('#TotalProducto').val();
     
     if (CodigoProducto == '')
     {
         $('#ErrorCodigoProductoCreate').text('');
         $('#ErrorMontoDescuentoCreate').text('');
-        $('#ErrorPorcentajeDescuentoCreate').text('');
         $('#ErrorCantidadCreate').text('');
         $('#ErrorImpuestoCreate').text('');
         $('#validationCodigoProductoCreate').after('<ul id="ErrorCodigoProductoCreate" class="validation-summary-errors text-danger">Campo Código Producto requerido</ul>');
@@ -22,23 +21,13 @@ $('#AgregarDetalleFactura').click(function () {
     else if (MontoDescuento == '') {
         $('#ErrorCodigoProductoCreate').text('');
         $('#ErrorMontoDescuentoCreate').text('');
-        $('#ErrorPorcentajeDescuentoCreate').text('');
         $('#ErrorCantidadCreate').text('');
         $('#ErrorImpuestoCreate').text('');
         $('#validationMontoDescuentoCreate').after('<ul id="ErrorMontoDescuentoCreate" class="validation-summary-errors text-danger">Campo Monto Descuento requerido</ul>');
     }
-    else if (PorcentajeDescuento == '') {
-        $('#ErrorCodigoProductoCreate').text('');
-        $('#ErrorMontoDescuentoCreate').text('');
-        $('#ErrorPorcentajeDescuentoCreate').text('');
-        $('#ErrorCantidadCreate').text('');
-        $('#ErrorImpuestoCreate').text('');
-        $('#validationPorcentajeDescuentoCreate').after('<ul id="ErrorPorcentajeDescuentoCreate" class="validation-summary-errors text-danger">Campo Porcentaje Descuento requerido</ul>');
-    }
     else if (CantidadProducto == '') {
         $('#ErrorCodigoProductoCreate').text('');
         $('#ErrorMontoDescuentoCreate').text('');
-        $('#ErrorPorcentajeDescuentoCreate').text('');
         $('#ErrorCantidadCreate').text('');
         $('#ErrorImpuestoCreate').text('');
         $('#validationCantidadProductoCreate').after('<ul id="ErrorCantidadCreate" class="validation-summary-errors text-danger">Campo Cantidad requerido</ul>');
@@ -46,7 +35,6 @@ $('#AgregarDetalleFactura').click(function () {
     else if (Impuesto == '') {
         $('#ErrorCodigoProductoCreate').text('');
         $('#ErrorMontoDescuentoCreate').text('');
-        $('#ErrorPorcentajeDescuentoCreate').text('');
         $('#ErrorCantidadCreate').text('');
         $('#ErrorImpuestoCreate').text('');
         $('#validationImpuestoProductoCreate').after('<ul id="ErrorImpuestoCreate" class="validation-summary-errors text-danger">Campo Impuesto requerido</ul>');
@@ -58,15 +46,15 @@ $('#AgregarDetalleFactura').click(function () {
         copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + $('#tbProducto_prod_Descripcion').val() + "</td>";
         copiar += "<td id = 'factd_CantidadCreate'>" + $('#factd_Cantidad').val() + "</td>";
         copiar += "<td id = 'PrecioUnitarioCreate'>" + $('#PrecioUnitario').val() + "</td>";
-        copiar += "<td id = 'factd_PorcentajeDescuentoCreate'>" + $('#factd_PorcentajeDescuento').val() + "</td>";
-        copiar += "<td id = 'SubtotalCreate'>" + $('#Subtotal').val() + "</td>";
+        copiar += "<td id = 'factd_MontoDescuentoCreate'>" + $('#factd_MontoDescuento').val() + "</td>";
+        copiar += "<td id = 'TotalProductoCreate'>" + $('#TotalProducto').val() + "</td>";
         copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
         copiar += "</tr>";
         $('#tblDetalleFactura').append(copiar);
 
         var FacturaDetalle = GetFacturaDetalle();
         $.ajax({
-            url: "/PuntoEmision/SavePuntoEmisionDetalle",
+            url: "/Factura/SavePuntoEmisionDetalle",
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
@@ -75,7 +63,6 @@ $('#AgregarDetalleFactura').click(function () {
         .done(function (data) {
             $('#ErrorCodigoProductoCreate').text('');
             $('#ErrorMontoDescuentoCreate').text('');
-            $('#ErrorPorcentajeDescuentoCreate').text('');
             $('#ErrorCantidadCreate').text('');
             $('#ErrorImpuestoCreate').text('');
 

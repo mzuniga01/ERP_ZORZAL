@@ -3,10 +3,17 @@ $(document).ready(function () {
     var $rows = $('#ProductoTbody tr');
     $("#search").keyup(function () {
         var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+        if (val.length >= 3) {
+            $rows.show().filter(function () {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        }
+        else if (val.length >= 1) {
+            $rows.show().filter(function () {
+            }).hide();
+        }
 
-        $rows.show().filter(function () {
-            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-            return !~text.indexOf(val);}).hide();
     })
 });
 
@@ -24,7 +31,7 @@ $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", fun
 $(document).ready(function () {
     var table = $('#tbProductoFactura').DataTable();
 
-    $('#tbProductoFactura tbody').on('click', 'tr', function () {
+    $('#tbProductoFactura tbody').on('dblclick', 'tr', function () {
         idItem = $(this).closest('tr').data('id');
         DescItem = $(this).closest('tr').data('desc');
         $("#prod_Codigo").val(idItem);

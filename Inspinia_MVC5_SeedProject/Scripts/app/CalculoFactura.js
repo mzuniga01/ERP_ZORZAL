@@ -23,16 +23,16 @@ $(function () {
 
         var val1 = $("#factd_MontoDescuento").val(),
             val2 = $("#SubtotalProducto").val(),
-            descuento = parseInt(val1 / 100);
         result = "";
         if (val1.length > 0) {
         }
         if (val2.length > 0) {
-            result += (val2 * descuento);
+            result += (val2 * val1);
         }
         $("#TotalProducto").val(result);
 
     });
 
 });
+
 
