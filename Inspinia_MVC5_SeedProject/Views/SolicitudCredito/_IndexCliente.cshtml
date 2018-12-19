@@ -6,85 +6,72 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Clientes</h5>
-					<div class="ibox-tools">
-						@*@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})*@
-					</div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input id="searchCliente" type="text" class="form-control" placeholder="Ingresar Cliente" />
+                            <br />
+                        </div>
+                    </div>
                 </div>
                 <div class="ibox-content">
 
-<table id="tbClienteSC" class="table table-striped">
-    <thead>
-        <tr>
-            <th>
-                Número
-                @*@Html.DisplayNameFor(model => model.clte_Id)*@
-            </th>
-            <th>
-                RTN/Identidad/Pasaporte
-                @*@Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)*@
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.clte_EsPersonaNatural)
-                </th>*@
-            <th>
-                Nombres
-                @*@Html.DisplayNameFor(model => model.clte_Nombres)*@
-            </th>
-          
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+                    <table id="tbCliente" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.clte_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.clte_Identificacion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.clte_Nombres)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="ClienteTbody">
 
-        @foreach (var item in Model)
-        {
-            <tr data-id="@item.clte_Id" data-rtn="@item.clte_Identificacion" data-nombre="@item.clte_Nombres" data-comercial="@item.clte_NombreComercial">
-                <td>
-                    @Html.DisplayFor(modelItem => item.clte_Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.clte_Identificacion)
-                </td>
-               @{ if (Convert.ToInt32(item.clte_EsPersonaNatural) == 1)
-                   {
-                    <td>
-                        @Html.DisplayFor(modelItem => item.clte_Nombres)
-                    </td>
-                   }
-                   else
-                   {
-                    <td>
-                        @Html.DisplayFor(modelItem => item.clte_NombreComercial)
-                    </td>
-                   }
-            }
-               
-                <td>
-                    @*@Html.ActionLink("Details", "Details", new { id=item.clte_Id }, new { @class = "btn btn-primary btn-sm"})*@
-                    @*@Html.ActionLink("Seleccionar", "Create", null, new { @class = "btn btn-primary btn-xs" })*@
-                    @*@Html.ActionLink("Edit", "Edit", new { id=item.clte_Id }, new { @class = "btn btn-white btn-sm"})*@
-                    @*@Html.ActionLink("Delete", "Delete", new { id=item.clte_Id }, new { @class = "btn btn-white btn-sm"})*@
-                    <button id="seleccionar" class="btn btn-primary btn-xs">Seleccionar</button>
-                
-                </td>
-            </tr>
-        }
-
-    </tbody>
-
-</table>
+                            @foreach (var item in Model)
+                            {
+                                <tr data-id="@item.clte_Identificacion" data-name="@item.clte_Nombres">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.clte_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.clte_Identificacion)
+                                    </td>
+                                    @{ if (Convert.ToInt32(item.clte_EsPersonaNatural) == 1)
+                                        {
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.clte_Nombres)
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.clte_NombreComercial)
+                                            </td>
+                                        }
+                                    }
+                                    <td>
+                                        <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
+                                    </td>
+                                </tr>
+                                        }
+                        </tbody>
+                    </table>
 
                 </div>
             </div>
         </div>
     </div>
- </div>
-
+</div>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
 <script>
     $(document).ready(function () {
-        $('#tbClienteSC').DataTable(
+        $('#tbCliente').DataTable(
         {
             "searching": false,
             "lengthChange": false,

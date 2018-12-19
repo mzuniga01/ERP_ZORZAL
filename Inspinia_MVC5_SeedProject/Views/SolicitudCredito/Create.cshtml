@@ -170,7 +170,7 @@
                     </button>
                     <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
                 </div>
-                @*         ViewBag.Cliente = db.tbCliente.ToList(); *@
+                        ViewBag.Cliente = db.tbCliente.ToList(); 
                 <div class="modal-body" id="frmEditarMunicipios">
                     @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
                 </div>

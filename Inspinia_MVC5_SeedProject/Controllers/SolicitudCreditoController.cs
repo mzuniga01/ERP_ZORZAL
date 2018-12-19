@@ -107,42 +107,42 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="cred_Id,clte_Id,escre_Id,cred_FechaSolicitud,cred_FechaAprobacion,cred_MontoSolicitado,cred_MontoAprobado,cred_DiasSolicitado,cred_DiasAprobado,cred_UsuarioCrea,cred_FechaCrea,cred_UsuarioModifica,cred_FechaModifica")] tbSolicitudCredito tbSolicitudCredito)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    //////////Aqui va la lista//////////////
+            //try
+            //{
+            //    if (ModelState.IsValid)
+            //    {
+            //        //////////Aqui va la lista//////////////
 
-                    var MensajeError = 0;
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbSolicitudCredito_Update(tbSolicitudCredito.cred_Id,
-                        tbSolicitudCredito.clte_Id,
-                        tbSolicitudCredito.escre_Id,
-                        tbSolicitudCredito.cred_FechaSolicitud,
-                        tbSolicitudCredito.cred_FechaAprobacion,
-                        tbSolicitudCredito.cred_MontoSolicitado,
-                        tbSolicitudCredito.cred_MontoAprobado,
-                        tbSolicitudCredito.cred_DiasSolicitado,
-                        tbSolicitudCredito.cred_DiasAprobado,
-                        tbSolicitudCredito.cred_UsuarioCrea,
-                        tbSolicitudCredito.cred_FechaCrea,
-                        tbSolicitudCredito.cred_UsuarioModifica,
-                        tbSolicitudCredito.cred_FechaModifica);
-                    foreach (UDP_Vent_tbSolicitudCredito_Update_Result SolicitudCredito in list)
-                        MensajeError = SolicitudCredito.MensajeError;
-                    if (MensajeError == -1)
-                    {
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index");
-                    }
-                }
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-            }
+            //        var MensajeError = 0;
+            //        IEnumerable<object> list = null;
+            //        list = db.UDP_Vent_tbSolicitudCredito_Update(tbSolicitudCredito.cred_Id,
+            //            tbSolicitudCredito.clte_Id,
+            //            tbSolicitudCredito.escre_Id,
+            //            tbSolicitudCredito.cred_FechaSolicitud,
+            //            tbSolicitudCredito.cred_FechaAprobacion,
+            //            tbSolicitudCredito.cred_MontoSolicitado,
+            //            tbSolicitudCredito.cred_MontoAprobado,
+            //            tbSolicitudCredito.cred_DiasSolicitado,
+            //            tbSolicitudCredito.cred_DiasAprobado,
+            //            tbSolicitudCredito.cred_UsuarioCrea,
+            //            tbSolicitudCredito.cred_FechaCrea,
+            //            tbSolicitudCredito.cred_UsuarioModifica,
+            //            tbSolicitudCredito.cred_FechaModifica);
+            //        foreach (UDP_Vent_tbSolicitudCredito_Update_Result SolicitudCredito in list)
+            //            MensajeError = SolicitudCredito.MensajeError;
+            //        if (MensajeError == -1)
+            //        {
+            //        }
+            //        else
+            //        {
+            //            return RedirectToAction("Index");
+            //        }
+            //    }
+            //}
+            //catch (Exception Ex)
+            //{
+            //    Ex.Message.ToString();
+            //}
 
             return View(tbSolicitudCredito);
             //if (ModelState.IsValid)
