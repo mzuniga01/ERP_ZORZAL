@@ -121,14 +121,17 @@ namespace ERP_ZORZAL.Controllers
                     tbTipoEntrada TipoEntrada = db.tbTipoEntrada.Find(id);
                     IEnumerable<object> list = null;
                     string MsjError = "";
-                    list = db.UDP_Inv_tbTipoEntrada_Update(tbTipoEntrada.tent_Id, tbTipoEntrada.tent_Descripcion, tbTipoEntrada.tent_UsuarioCrea, tbTipoEntrada.tent_FechaCrea);
+                    list = db.UDP_Inv_tbTipoEntrada_Update(tbTipoEntrada.tent_Id
+                                                            ,tbTipoEntrada.tent_Descripcion
+                                                            , tbTipoEntrada.tent_UsuarioCrea
+                                                            , tbTipoEntrada.tent_FechaCrea);
                     foreach (UDP_Inv_tbTipoEntrada_Update_Result tent in list)
                         MsjError = tent.MensajeError;
 
                     if (MsjError.Substring(0, 2) == "-1")
                     {
-                        ModelState.AddModelError("", "No se pudo almacenar el registro");
-                        return View(tbTipoEntrada);
+                        ModelState.AddModelError("", "No se guardo el cambio");
+                        return RedirectToAction("Index");
                     }
                     else
                     {
@@ -140,9 +143,10 @@ namespace ERP_ZORZAL.Controllers
                 }
                 catch (Exception Ex)
                 {
-                    ModelState.AddModelError("", "No se pudo Actualizar el registro" + Ex.Message);
-                    return View(tbTipoEntrada);
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se guardo el cambio");
                 }
+                return RedirectToAction("Index");
             }
             return View(tbTipoEntrada);
         }

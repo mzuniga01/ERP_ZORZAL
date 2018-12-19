@@ -235,7 +235,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     tbBodega bod = db.tbBodega.Find(id);
                     IEnumerable<object> list = null;
-                    var MsjError = "";
+                    string MsjError = "";
                     list = db.UDP_Inv_tbBodega_Update(tbBodega.bod_Id
                                                         , tbBodega.bod_Nombre
                                                         , tbBodega.bod_ResponsableBodega
@@ -244,11 +244,11 @@ namespace ERP_GMEDINA.Controllers
                                                         , tbBodega.bod_Telefono
                                                         , tbBodega.mun_Codigo
                                                         , tbBodega.bod_EsActiva
-                                                        , bod.bod_UsuarioCrea
-                                                        , bod.bod_FechaCrea);
+                                                        , tbBodega.bod_UsuarioCrea
+                                                        , tbBodega.bod_FechaCrea);
                     foreach (UDP_Inv_tbBodega_Update_Result bode in list)
                         MsjError = bode.MensajeError;
-                    if (MsjError == "-1")
+                    if (MsjError.Substring(0, 2) == "-1")
                     {
                         ModelState.AddModelError("", "No se guardo el cambio");
                         return RedirectToAction("Index");

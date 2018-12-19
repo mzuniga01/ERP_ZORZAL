@@ -28,16 +28,6 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbObjeto tbObjeto = db.tbObjeto.Find(id);
-            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbObjeto.obj_UsuarioCrea).usu_NombreUsuario;
-            var UsuarioModfica = tbObjeto.obj_UsuarioModifica;
-            if (UsuarioModfica == null)
-            {
-                ViewBag.UsuarioModifica = "";
-            }
-            else
-            {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
-            };
             if (tbObjeto == null)
             {
                 return HttpNotFound();
@@ -48,8 +38,6 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Objeto/Create
         public ActionResult Create()
         {
-            //ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            //ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             return View();
         }
 
@@ -123,7 +111,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( int? id, [Bind(Include= "obj_Id, obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado,tbUsuario,tbUsuari1")] tbObjeto Objeto)
+        public ActionResult Edit( int? id, [Bind(Include= "obj_Id, obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado,tbUsuario,tbUsuari1")] tbObjeto tbObjeto)
         {
             if (ModelState.IsValid)
             {
@@ -132,13 +120,15 @@ namespace ERP_ZORZAL.Controllers
                     tbObjeto obj = db.tbObjeto.Find(id);
                     IEnumerable<object> list = null;
                     var MsjError = "";
-                    list = db.UDP_Acce_tbObjeto_Update(Objeto.obj_Id,
-                        Objeto.obj_Pantalla, obj.obj_UsuarioCrea,
-                        obj.obj_FechaCrea, Objeto.obj_Estado);
+                    list = db.UDP_Acce_tbObjeto_Update(tbObjeto.obj_Id,
+                                                         tbObjeto.obj_Pantalla
+                                                         , tbObjeto.obj_UsuarioCrea
+                                                         , tbObjeto.obj_FechaCrea
+                                                         , tbObjeto.obj_Estado);
                     foreach (UDP_Acce_tbObjeto_Update_Result obje in list)
                         MsjError = obje.MensajeError;
 
-                    if (MsjError == "-1")
+                    if (MsjError.Substring(0, 2) == "-1")
                     {
                         ModelState.AddModelError("", "No se Actualizo el registro");
                         return RedirectToAction("Index");
@@ -155,7 +145,7 @@ namespace ERP_ZORZAL.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(Objeto);
+            return View(tbObjeto);
 
         }
         //para que cambie estado a activar
