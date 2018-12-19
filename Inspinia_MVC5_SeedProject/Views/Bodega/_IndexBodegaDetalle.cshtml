@@ -26,10 +26,10 @@
                                 Producto
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.bodd_CantidadMinima)
+                                @Html.DisplayNameFor(model => model.bodd_Costo)
                             </th>
                             <th>
-                                Cantidad Real
+                                @Html.DisplayNameFor(model => model.bodd_CostoPromedio)
                             </th>
                             <th>
                                 Acciones
@@ -46,10 +46,10 @@
                                     @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.bodd_CantidadMinima)
+                                    @Html.DisplayFor(modelItem => item.bodd_Costo)
                                 </td>
                                 <td>
-                                    @*@Html.DisplayFor(modelItem => item.bodd_CostoPromedio)*@
+                                    @Html.DisplayFor(modelItem => item.bodd_CostoPromedio)
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalles_@item.bodd_Id">
@@ -75,7 +75,12 @@
                                                 <div class="col-lg-12">
                                                     <div class="form-group">
                                                         <div class="col-md-12">
-                                                            @Html.Partial("_DetailsBodegaDetalle", new ERP_GMEDINA.Models.tbBodegaDetalle() { bodd_CantidadMinima = item.bodd_CantidadMinima, bodd_CantidadMaxima = item.bodd_CantidadMaxima, bodd_PuntoReorden = item.bodd_PuntoReorden, bodd_Costo = item.bodd_Costo, bodd_CostoPromedio = item.bodd_CostoPromedio, prod_Codigo = item.prod_Codigo })
+                                                            @Html.Partial("_DetailsBodegaDetalle", new ERP_GMEDINA.Models.tbBodegaDetalle() { bodd_CantidadMinima = item.bodd_CantidadMinima
+                                                                                                                                                , bodd_CantidadMaxima = item.bodd_CantidadMaxima
+                                                                                                                                                , bodd_PuntoReorden = item.bodd_PuntoReorden
+                                                                                                                                                , bodd_Costo = item.bodd_Costo
+                                                                                                                                                , bodd_CostoPromedio = item.bodd_CostoPromedio
+                                                                                                                                                , prod_Codigo = item.prod_Codigo })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -101,7 +106,16 @@
                                                 <div class="col-lg-12">
                                                     <div class="form-group">
                                                         <div class="col-md-12">
-                                                            @Html.Partial("_EditBodegaDetalleModal", new ERP_GMEDINA.Models.tbBodegaDetalle() { bodd_CantidadMinima = item.bodd_CantidadMinima, bodd_CantidadMaxima = item.bodd_CantidadMaxima, bodd_PuntoReorden = item.bodd_PuntoReorden, bodd_Costo = item.bodd_Costo, bodd_CostoPromedio = item.bodd_CostoPromedio, })
+                                                            @Html.Partial("_EditBodegaDetalleModal", new ERP_GMEDINA.Models.tbBodegaDetalle() { bodd_CantidadMinima = item.bodd_CantidadMinima
+                                                                                                                                                , bodd_CantidadMaxima = item.bodd_CantidadMaxima
+                                                                                                                                                , bodd_PuntoReorden = item.bodd_PuntoReorden
+                                                                                                                                                , bodd_Costo = item.bodd_Costo
+                                                                                                                                                , bodd_CostoPromedio = item.bodd_CostoPromedio
+                                                                                                                                                , bodd_FechaCrea=item.bodd_FechaCrea
+                                                                                                                                                , bodd_UsuarioCrea = item.bodd_UsuarioCrea
+                                                                                                                                                , bodd_FechaModifica = item.bodd_FechaModifica
+                                                                                                                                                , bodd_UsuarioModifica = item.bodd_UsuarioModifica })
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -115,8 +129,6 @@
                                 </div>
                             </div>
 
-
-
                         }
 
                     </table>
@@ -126,4 +138,3 @@
         </div>
     </div>
 </div>
-

@@ -81,28 +81,28 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Objeto/Edit/5
         public ActionResult Edit(int? id)
         {
-            ViewBag.id = id;
+            //ViewBag.id = id;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbObjeto tbObjeto = db.tbObjeto.Find(id);
-            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbObjeto.obj_UsuarioCrea).usu_NombreUsuario;
-            var UsuarioModfica = tbObjeto.obj_UsuarioModifica;
-            if (UsuarioModfica == null)
-            {
-                ViewBag.UsuarioModifica = "";
-            }
-            else
-            {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
-            };
+            //ViewBag.UsuarioCrea = db.tbUsuario.Find(tbObjeto.obj_UsuarioCrea).usu_NombreUsuario;
+            //var UsuarioModfica = tbObjeto.obj_UsuarioModifica;
+            //if (UsuarioModfica == null)
+            //{
+            //    ViewBag.UsuarioModifica = "";
+            //}
+            //else
+            //{
+            //    ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+            //};
             if (tbObjeto == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
-            ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
+            //ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
+            //ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
             return View(tbObjeto);
         }
 
@@ -111,7 +111,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( int? id, [Bind(Include= "obj_Id, obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado,tbUsuario,tbUsuari1")] tbObjeto tbObjeto)
+        public ActionResult Edit( int? id, [Bind(Include= "obj_Id, obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado,tbUsuario,tbUsuario1")] tbObjeto tbObjeto)
         {
             if (ModelState.IsValid)
             {

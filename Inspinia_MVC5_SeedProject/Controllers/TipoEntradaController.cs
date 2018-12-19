@@ -90,16 +90,16 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbTipoEntrada tbTipoEntrada = db.tbTipoEntrada.Find(id);
-            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbTipoEntrada.tent_UsuarioCrea).usu_NombreUsuario;
-            var UsuarioModfica = tbTipoEntrada.tent_UsuarioModifica;
-            if (UsuarioModfica == null)
-            {
-                ViewBag.UsuarioModifica = "";
-            }
-            else
-            {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
-            };
+            //ViewBag.UsuarioCrea = db.tbUsuario.Find(tbTipoEntrada.tent_UsuarioCrea).usu_NombreUsuario;
+            //var UsuarioModfica = tbTipoEntrada.tent_UsuarioModifica;
+            //if (UsuarioModfica == null)
+            //{
+            //    ViewBag.UsuarioModifica = "";
+            //}
+            //else
+            //{
+            //    ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+            //};
             if (tbTipoEntrada == null)
             {
                 return HttpNotFound();

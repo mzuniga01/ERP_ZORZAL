@@ -860,11 +860,13 @@
     <Content Include="Scripts\app\Categoria.js" />
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\Datepicker.js" />
+    <Content Include="Scripts\app\Departamento.js" />
     <Content Include="Scripts\app\EntradaDetalle.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\InvFisicoDetalle.js" />
     <Content Include="Scripts\app\MostrarCamposEditar.js" />
     <Content Include="Scripts\app\MostrarCamposEntradajs.js" />
+    <Content Include="Scripts\app\Municipio.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
     <Content Include="Scripts\app\RolObjetosEdit.js" />
     <Content Include="Scripts\app\RolObjetos.js" />

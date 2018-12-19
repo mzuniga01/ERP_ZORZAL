@@ -50,7 +50,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
-                            <input type="number" id="bodd_PuntoReorden" placeholder="" class="form-control" />
+                            <input type="number" id="bodd_PuntoReorden" placeholder="" class="form-control" readonly/>
                             <div id="ErrorPuntoReorden_Create">
                                 @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
                             </div>
@@ -104,7 +104,7 @@
                                 <th>Cnt. Maxima</th>
                                 <th>Costo</th>
                                 <th>Costo Promedio</th>
-                                <th></th>
+                                <th>Quitar</th>
                             </tr>
                         </thead>
                         <tbody></tbody>

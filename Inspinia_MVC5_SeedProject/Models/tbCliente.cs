@@ -52,6 +52,7 @@ namespace ERP_GMEDINA.Models
         public System.DateTime clte_FechaCrea { get; set; }
         public Nullable<int> clte_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
+        public Nullable<bool> clte_ConsumidorFinal { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

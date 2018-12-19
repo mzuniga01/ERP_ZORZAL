@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
@@ -87,9 +88,9 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetMunicipios(string CodDepartamento)
+        public JsonResult GetMunicipios_Create(string dep_Codigo)
         {
-            var list = db.spGetMunicipios(CodDepartamento).ToList();
+            var list = db.spGetMunicipios(dep_Codigo).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
@@ -130,43 +131,85 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="bod_Id,bod_Nombre,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva,bod_UsuarioCrea,bod_FechaCrea,bod_UsuarioModifica,bod_FechaModifica")] tbBodega tbBodega)
         {
+            IEnumerable<object> BODEGA = null;
+            IEnumerable<object> DETALLE = null;
+            var MensajeError = "";
+            var MsjError = "";
+            var listaDetalle = (List<tbBodegaDetalle>)Session["tbBodegaDetalle"];
             if (ModelState.IsValid)
             {
-                try
+
+                using (TransactionScope _Tran = new TransactionScope())
                 {
-                    IEnumerable<object> list = null;
-                    var MsjError = "";
-                    list = db.UDP_Inv_tbBodega_Insert(   tbBodega.bod_Nombre, 
-                                                         tbBodega.bod_ResponsableBodega
-                                                        , tbBodega.bod_Direccion 
-                                                        , tbBodega.bod_Correo
-                                                        , tbBodega.bod_Telefono 
-                                                        , tbBodega.mun_Codigo);
-                    foreach (UDP_Inv_tbBodega_Insert_Result bodega in list)
-                        MsjError = bodega.MensajeError;
-                    if (MsjError == "-1")
+                    try
                     {
+
+                        BODEGA = db.UDP_Inv_tbBodega_Insert(tbBodega.bod_Nombre,
+                                                         tbBodega.bod_ResponsableBodega
+                                                        , tbBodega.bod_Direccion
+                                                        , tbBodega.bod_Correo
+                                                        , tbBodega.bod_Telefono
+                                                        , tbBodega.mun_Codigo);
+                        foreach (UDP_Inv_tbBodega_Insert_Result bodega in BODEGA)
+                            MsjError = bodega.MensajeError;
+                        if (MsjError == "-1")
+                        {
+                            ModelState.AddModelError("", "No se Guardo el Registro");
+                            return View(tbBodega);
+                        }
+                        else
+                        {
+                            if (listaDetalle != null)
+                            {
+                                if (listaDetalle.Count > 0)
+                                {
+                                    foreach (tbBodegaDetalle bodd in listaDetalle)
+                                    {
+                                        DETALLE = db.UDP_Inv_tbBodegaDetalle_Insert(bodd.prod_Codigo
+                                                                                    , tbBodega.bod_Id
+                                                                                    , bodd.bodd_CantidadMinima
+                                                                                    , bodd.bodd_CantidadMaxima
+                                                                                    , bodd.bodd_PuntoReorden
+                                                                                    , bodd.bodd_Costo
+                                                                                    , bodd.bodd_CostoPromedio);
+                                        foreach (UDP_Inv_tbBodegaDetalle_Insert_Result B_detalle in DETALLE)
+                                            MensajeError = (B_detalle.MensajeError);
+
+                                        if (MensajeError == "-1")
+                                        {
+                                            ModelState.AddModelError("", "No se Guardo el Registro");
+                                            return View(tbBodega);
+                                        }
+                                        else
+                                        {
+                                            _Tran.Complete();
+                                            return RedirectToAction("Index");
+                                        }
+                                    }
+                                }
+                            }
+
+                            else
+                            {
+                                _Tran.Complete();
+                                return RedirectToAction("Index");
+                            }
+
+                        }
+
+                    }
+                    catch (Exception Ex)
+                    {
+                        Ex.Message.ToString();
                         ModelState.AddModelError("", "No se Guardo el Registro");
                         return View(tbBodega);
                     }
-                    else
-                    {
-                        return RedirectToAction("Index");
-                    }
-
                 }
-                catch (Exception Ex)
-                {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro");
-                }
-                return RedirectToAction("Index");
             }
             this.AllLists();
-            //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbBodega.mun_Codigo);
-            //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
             return View(tbBodega);
         }
+
 
         // GET: /Bodega/Edit/5
         public ActionResult Edit(int? id)
