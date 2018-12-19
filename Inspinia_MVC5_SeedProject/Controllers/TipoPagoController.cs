@@ -73,7 +73,7 @@ namespace ERP_ZORZAL.Controllers
                 }
                 catch (Exception Ex)
                 {
-                    ModelState.AddModelError("", "No se ha podido actualizar el registro, favor contacte al administrador " + Ex.Message.ToString());
+                    ModelState.AddModelError("", "No se ha podido ingresar el registro, favor contacte al administrador " + Ex.Message.ToString());
                     return View(tbTipoPago);
                 }
                 //db.tbTipoPago.Add(tbTipoPago);
