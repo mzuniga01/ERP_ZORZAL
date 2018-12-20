@@ -63,8 +63,10 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
             $('#ErrorRangoInicioCreate').text('');
             $('#ErrorRangoFinalCreate').text('');
             $('#ErrorFechaLimiteCreate').text('');
+            $('#dfisc_Id').val('');
             $('#pemid_RangoInicio').val('');
             $('#pemid_RangoFinal').val('');
+            $('#pemid_FechaLimite').val('');
 
         });
     }
