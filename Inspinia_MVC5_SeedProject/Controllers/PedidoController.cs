@@ -20,11 +20,7 @@ namespace ERP_ZORZAL.Controllers
             var tbpedido = db.tbPedido.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbEstadoPedido).Include(t => t.tbFactura).Include(t => t.tbSucursal);
             return View(tbpedido.ToList());
         }
-        public ActionResult IndexFacturar()
-        {
-            var tbpedido = db.tbPedido.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbEstadoPedido).Include(t => t.tbFactura).Include(t => t.tbSucursal);
-            return View(tbpedido.ToList());
-        }
+       
 
         // GET: /Pedido/Details/5
         public ActionResult Details(int? id)
