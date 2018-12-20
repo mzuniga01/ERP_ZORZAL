@@ -8,7 +8,7 @@
                 <div class="ibox-title">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input id="searchCliente" type="text" class="form-control" placeholder="Buscar Cliente..." />
+                            <input id="searchClientes" type="text" class="form-control" placeholder="Buscar Cliente..." />
                             <br />
                         </div>
                     </div>
@@ -34,17 +34,18 @@
 
                             @foreach (var item in Model)
                             {
-                                <tr data-id="@item.clte_Identificacion" data-nombre="@item.clte_Nombres">
+                                <tr data-id="@item.clte_Identificacion" data-nombre="@item.clte_Nombres" data-apellido="@item.clte_Apellidos" data-comercial="@item.clte_NombreComercial">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.clte_Id)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.clte_Identificacion)
                                     </td>
-                                    @{ if (Convert.ToInt32(item.clte_EsPersonaNatural) == 1)
+                                    @{ if (item.clte_EsPersonaNatural == true)
                                         {
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.clte_Nombres)
+                                                @Html.DisplayFor(modelItem => item.clte_Apellidos)
                                             </td>
                                         }
                                         else
@@ -70,7 +71,7 @@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('#tbCliente').DataTable(
+        $('#tbClientes').DataTable(
         {
             "searching": false,
             "lengthChange": false,
@@ -91,8 +92,8 @@
 </script>
 <script>
     $(document).ready(function () {
-        var $rows = $('#tbCliente tr');
-        $("#searchCliente").keyup(function () {
+        var $rows = $('#tbClientes tr');
+        $("#searchClientes").keyup(function () {
             var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 
             $rows.show().filter(function () {
@@ -103,12 +104,17 @@
     });
 </script>
 <script>
-    $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function () {
+    $(document).on("click", "#tbClientes tbody tr td button#seleccionar", function () {
         idItem = $(this).closest('tr').data('id');
         nombreItem = $(this).closest('tr').data('nombre');
+        apellidoItem = $(this).closest('tr').data('apellido');
+        completoItem = nombreItem + " " + apellidoItem;
+        comercialItem = $(this).closest('tr').data('comercial');
 
-        $("#tbCliente_clte_Identificacion").val(idItem);
-        $("#tbCliente_clte_Nombres").val(idItem);
+            $("#tbCliente_clte_Identificacion").val(idItem);
+            $("#tbCliente_clte_Nombres").val(comercialItem);
+            $("#tbCliente_clte_Identificacion").val(idItem);
+            $("#tbCliente_clte_Nombres").val(completoItem);
         $('#ModalAgregarCliente').modal('hide');
         //CargarAsignaciones();
     });

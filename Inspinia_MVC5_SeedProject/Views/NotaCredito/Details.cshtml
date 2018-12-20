@@ -29,32 +29,38 @@
 
 
         <dt>
-            Sucursal
-            @*@Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)*@
+            @Html.DisplayNameFor(model => model.suc_Id)
         </dt>
 
         <dd>
-            San Pedro Sula
-            @*@Html.DisplayFor(model => model.tbSucursal.mun_Codigo)*@
+            @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
         </dd>
         <dt>
-            Número Nota Crédito
-            @*@Html.DisplayNameFor(model => model.nocre_Codigo)*@
+            @Html.DisplayNameFor(model => model.nocre_Codigo)
         </dt>
 
-        <dd>2
-            @*@Html.DisplayFor(model => model.nocre_Codigo)*@
+        <dd>
+            @Html.DisplayFor(model => model.nocre_Codigo)
         </dd>
 
         <dt>
             Cliente
             @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
         </dt>
-
+       @if (Model.tbCliente.clte_EsPersonaNatural == true)
+       {
         <dd>
-            Luis Eduardo
-            @*@Html.DisplayFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
+            @Html.DisplayFor(model => model.tbCliente.clte_Nombres)
+            @Html.DisplayFor(model => model.tbCliente.clte_Apellidos)
         </dd>
+       }
+       else
+       {
+           <dd>
+               @Html.DisplayFor(model => model.tbCliente.clte_NombreComercial)
+           </dd>
+       }
+
         <dt>
             @Html.DisplayNameFor(model => model.nocre_FechaEmision)
         </dt>
@@ -91,50 +97,19 @@
         </dt>
 
         <dd>
-            Activo
-            @*@Html.DisplayFor(model => model.nocre_Estado)*@
+            @Html.DisplayFor(model => model.nocre_Estado)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.nocre_Anulado)
         </dt>
-
-        <dd>
-            No
-            @*@Html.DisplayFor(model => model.nocre_Anulado)*@
-        </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.nocre_FechaCrea)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nocre_FechaCrea)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.nocre_FechaModifica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nocre_FechaModifica)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
-        </dd>*@
-
+        @if(Model.nocre_Anulado==true)
+        {
+            <dd>Si</dd>
+        }
+        else
+        {
+            <dd>No</dd>
+        }
     </dl>
 
 
@@ -151,12 +126,18 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
                         <td>@Html.DisplayFor(model => model.nocre_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
                         <td>@Html.DisplayFor(model => model.nocre_FechaModifica)</td>
                     </tr>
                 </table>
