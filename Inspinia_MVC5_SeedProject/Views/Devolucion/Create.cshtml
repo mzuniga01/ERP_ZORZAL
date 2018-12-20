@@ -70,9 +70,7 @@
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarFactura"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
 
-                                @*<div class="col-md-">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
-                            </div>*@
+                                
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tbFactura.clte_Identificacion, "RTN Cliente", new { @class = "control-label col-md-1" })
                                     <div class="col-md-3">
@@ -81,6 +79,9 @@
 
                                         @*@Html.DropDownList("fact_Id", String.Empty)
                                      @Html.ValidationMessageFor(model => model.fact_Id)*@
+                                    </div>
+                                    <div class="col-md-">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +151,8 @@
                                     <div class="ibox float-e-margins">
                                         <div class="ibox-content">
                                             <div class="form-group">
-                                                <div class="col-md-12 text-center">
+                                                <div class="col-md-12 text">
+                                                    <button onclick="NotaCredito()" class="btn btn-primary btn-ms">Emitir Nota de Credito</button>
                                                     <input type="submit" value="Guardar" class="btn btn-primary" />
                                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                                 </div>
@@ -160,11 +162,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 <div class="col-md-offset-10 col-md-11">
-                                    <button onclick="NotaCredito()" class="btn btn-primary btn-xs">Emitir Nota de Credito</button>
+                                    
                                 </div>
-                            </div>
+                            </div>*@
 
 
                         </div>
