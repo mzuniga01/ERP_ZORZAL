@@ -198,6 +198,7 @@
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\RolesUsuarioController.cs" />
     <Compile Include="Controllers\SalidaController.cs" />
+    <Compile Include="Controllers\tbBodegaDetallesController.cs" />
     <Compile Include="Controllers\tbProveedorsController.cs" />
     <Compile Include="Controllers\TipoEntradaController.cs" />
     <Compile Include="Controllers\TipoSalidaController.cs" />
@@ -1222,6 +1223,15 @@
     <Content Include="Views\InventarioFisico\_IndexProductos.cshtml" />
     <Content Include="Views\Bodega\_CreateNuevoBodegaDetalle_Modal.cshtml" />
     <Content Include="Views\Bodega\_DetallesProductos.cshtml" />
+    <Content Include="Views\ProductoCategoria\_ListSubCategoriaDetalle.cshtml" />
+    <Content Include="Views\ProductoCategoria\_ListSubCategoriaEditar.cshtml" />
+    <Content Include="Views\tbBodegaDetalles\Create.cshtml" />
+    <Content Include="Views\tbBodegaDetalles\Delete.cshtml" />
+    <Content Include="Views\tbBodegaDetalles\Details.cshtml" />
+    <Content Include="Views\tbBodegaDetalles\Edit.cshtml" />
+    <Content Include="Views\tbBodegaDetalles\Index.cshtml" />
+    <Content Include="Views\Entrada\_IndexDetalleEntrada.cshtml" />
+    <Content Include="Views\Entrada\_DetallesDeEntrada.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

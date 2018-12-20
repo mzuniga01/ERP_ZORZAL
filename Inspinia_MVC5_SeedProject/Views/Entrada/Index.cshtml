@@ -16,7 +16,6 @@
     </div>
 </div>
 
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -24,7 +23,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Entradas</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Registrar Entrada", "Create", null, new { @class = "btn btn-primary"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -34,7 +33,7 @@
                             <tr>
                                 <th>
                                     Nombre Bodega
-                                    @*@Html.DisplayNameFor(model => model.ent_BodegaDestino)*@
+                                    @*@Html.DisplayNameFor(model => model.tbBodega1.bod_Nombre)*@
                                 </th>
                                 <th>
                                     Numero Formato
@@ -59,7 +58,7 @@
                             {
                                 <tr>
                                     <td>
-                                       @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
+                                        @Html.DisplayFor(modelItem => item.tbBodega1.bod_Nombre)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ent_NumeroFormato)
@@ -71,13 +70,23 @@
                                         @Html.DisplayFor(modelItem => item.tbTipoEntrada.tent_Descripcion)
                                     </td>
                                     <td>
-                                        <input type="button" id="boton_@item.bod_Id " value="Inactivar" class="btn btn-white btn-xs" onclick="Activar(@item.bod_Id);">
-                                        @*@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)*@
+                                        @if (item.estm_Id == 1)
+                                        {
+                                            <p> Activo</p>
+                                        }
+                                        else if (item.estm_Id == 2)
+                                        {
+                                            <p>Inactivo</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Anulado</p>
+                                        }
                                     </td>
+
                                     <td>
-                                        
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.ent_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Detalles", "Details", new { id = item.ent_Id }, new { @class = "btn btn-white btn-xs" })
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.ent_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.ent_Id }, new { @class = "btn btn-white btn-xs" })
                                         <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
                                          
                                     </td>
@@ -134,9 +143,9 @@
         });
     });
 </script>
-<script type="text/javascript">
+@*<script type="text/javascript">
     function Activar(Id) {
         console.log("#boton_" + Id, "#boton_" + Id);
         $("#boton_"+Id).attr("value", "Activar");
     }
-</script>
+</script>*@

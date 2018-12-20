@@ -25,6 +25,7 @@ namespace ERP_GMEDINA.Models
         public System.DateTime factd_FechaCrea { get; set; }
         public Nullable<int> factd_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> factd_FechaModifica { get; set; }
+        public decimal factd_PrecioUnitario { get; set; }
     
         public virtual tbProducto tbProducto { get; set; }
         public virtual tbFactura tbFactura { get; set; }

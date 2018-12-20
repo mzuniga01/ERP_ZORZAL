@@ -107,8 +107,10 @@
                             <div class="form-group ">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @* Boton de activar/inactivar *@
                                     @{if (Model.obj_Estado == true)
-                                        { <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
+                                        {
+                                            <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
                                         }
                                         else
                                         {
@@ -117,7 +119,10 @@
 
 
                                     }
+                                   
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+
+                                  
                                 </div>
                             </div>
                         </div>
@@ -145,10 +150,16 @@
                     <tr>
                         <td>Modificado</td>
                         <td>
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            @*@if (Model.obj_UsuarioModifica == null) { }
+                            else*@
+                            @*{*@ @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos) @*}*@
+                           
                         </td>
-                        <td>@Html.DisplayFor(model => model.obj_FechaModifica)</td>
+                        <td>@if (Model.obj_UsuarioModifica == null) { }
+                        else
+                        {  @Html.DisplayFor(model => model.obj_FechaModifica) }
+                      </td>
                     </tr>
                 </table>
             </div>

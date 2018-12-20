@@ -5,23 +5,19 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+</style>
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+
     
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Entradas</h2>
-        @*<ol class="breadcrumb">
-                <li>
-                    @Html.ActionLink("List", "Index")
-                </li>
-                <li class="active">
-                    <strong>Create</strong>
-                </li>
-            </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -30,7 +26,8 @@
     </div>
 </div>
 
-
+@using (Html.BeginForm("Create", "Entrada", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -40,10 +37,9 @@
                     <h5>Ingresar Entrada</h5>
                 </div>
                 <div class="ibox-content">
-
-                   
+                    @Html.AntiForgeryToken()
                         <div class="form-horizontal">
-                            
+                            @Html.ValidationSummary(true)
                             <fieldset class="box-border">
                                 <legend class="box-border">Datos Generales</legend>
                                 <div class="form-group">
@@ -51,12 +47,17 @@
                                     @Html.LabelFor(model => model.bod_Id, "Bodega", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, "Seleccione", new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.bod_Id)
+                                        
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
+                                        </div>
                                     </div>
                                     @Html.LabelFor(model => model.ent_NumeroFormato, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.ent_NumeroFormato)
-                                        <p><span class="validation-error"> @Html.ValidationMessageFor(model => model.ent_NumeroFormato)</span></p>
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.ent_NumeroFormato)</p>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -64,13 +65,18 @@
                                     @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.ent_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion" } })
-                                        <span class="validation-error"> @Html.ValidationMessageFor(model => model.ent_FechaElaboracion)</span>
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.ent_FechaElaboracion)</p>
+                                        </div>
                                     </div>
 
                                     @Html.LabelFor(model => model.prov_Id, "Nombre Proveedor", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.DropDownList("prov_Id", (IEnumerable<SelectListItem>)ViewBag.prov_Id, "Seleccione", new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.prov_Id)
+                                        
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Id)</p>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -78,12 +84,18 @@
                                     @Html.LabelFor(model => model.tent_Id, "Tipo Entrada", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.DropDownList("tent_Id", (IEnumerable<SelectListItem>)ViewBag.tent_Id, "Seleccione", new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.tent_Id)
+                                        
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.tent_Id)</p>
+                                        </div>
                                     </div>
                                     @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.DropDownList("estm_Id", (IEnumerable<SelectListItem>)ViewBag.estm_Id, "Seleccione", new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.estm_Id)
+                                        @Html.DropDownList("estm_Id", (IEnumerable<SelectListItem>)ViewBag.estm_Id, new { @class = "form-control", @readonly = "readonly"})
+                                        
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.estm_Id)</p>
+                                        </div>
                                     </div>
                                 </div>
                             </fieldset>
@@ -97,19 +109,28 @@
                                     @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.fact_Id)
-                                        @Html.ValidationMessageFor(model => model.fact_Id)
+                                        
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.fact_Id)</p>
+                                        </div>
                                     </div>
                                     @Html.LabelFor(model => model.ent_FacturaCompra, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.ent_FacturaCompra)
-                                        @Html.ValidationMessageFor(model => model.ent_FacturaCompra)
+                                        
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.ent_FacturaCompra)</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ent_FechaCompra, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.ent_FechaCompra, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaCompra" } })
-                                        @Html.ValidationMessageFor(model => model.ent_FechaCompra)
+                                        
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.ent_FechaCompra)</p>
+                                        </div>
                                     </div>
 
                                     @*@Html.LabelFor(model => model.tbProveedor.prov_Nombre, "Proveedor", new { @class = "control-label col-md-2" })
@@ -129,7 +150,10 @@
                                     @Html.LabelFor(model => model.ent_BodegaDestino, "Bodega Destino", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.DropDownList("ent_BodegaDestino", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.ent_BodegaDestino)
+                                        
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.ent_BodegaDestino)</p>
+                                        </div>
                                     </div>
                                     @*@Html.LabelFor(model => model.tbBodega.bod_Nombre, "Bodega Responsable", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
@@ -148,49 +172,54 @@
                                     @Html.LabelFor(model => model.ent_RazonDevolucion, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.ent_RazonDevolucion)
-                                        @Html.ValidationMessageFor(model => model.ent_RazonDevolucion)
+                                        
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.ent_RazonDevolucion)</p>
+                                        </div>
                                     </div>
 
                                     @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.fact_Id)
-                                        <p style="color:red">
-                                            @Html.ValidationMessageFor(model => model.fact_Id)
-                                        </p>
-
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.fact_Id)</p>
+                                        </div>
                                     </div>
                                 </div>
                             </fieldset>
                         </div>
-                        @* Llama la vista de detalle *@
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="ibox float-e-margins">
-                                    <div class="ibox-title">
-                                        <div class="title-action">
-                                            <div class="box-border">
-                                                <h5>Detalle Entrada</h5>
-                                                <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#Crear"></button>
-                                            </div>
+                        
+
+                    @* Llama la vista de detalle *@
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <div class="title-action">
+                                        <div class="box-border">
+                                            <h5>Detalle Entrada</h5>
+                                            <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#Crear"></button>
                                         </div>
                                     </div>
-                                    <div class="ibox-content collapse" id="Crear">
-                                            @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
-                                            @Html.Partial("_CrearDetalleEntrada", new tbEntradaDetalle())
-                                   </div>
+                                </div>
+                                <div class="ibox-content collapse" id="Crear">
+                                    @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
+                                    @Html.Partial("_CrearDetalleEntrada", new tbEntradaDetalle())
                                 </div>
                             </div>
                         </div>
-                        @*botones*@
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Guardar" class="btn btn-primary" />
-                                <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
-                                <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
-
-                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                            </div>
+                    </div>
+                    @*botones*@
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
+                            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
+                            
+                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modalanular" value="Anular" />
                         </div>
+                    </div>
                     <div class="form-group">
                     </div>
                     <br />
@@ -247,9 +276,32 @@
         </div>
     </div>
 </div>
-
+@*modal para anular*@
+<div class="modal fade" id="Modalanular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular Entrada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de anular esta Entrada?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Index","Entrada")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/app/MostrarCamposEntradajs.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/EntradaDetalle.js"></script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

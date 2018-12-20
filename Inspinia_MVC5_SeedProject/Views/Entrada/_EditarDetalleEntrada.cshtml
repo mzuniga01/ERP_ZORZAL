@@ -3,6 +3,7 @@
 
 
 
+
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -12,58 +13,47 @@
                 </div>
                 <div class="ibox-content">
 
-				@*@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()*@
-    
-    <div class="form-horizontal">
+                    <div class="form-horizontal">
 
-        @*@Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.entd_Id)*@
-        <div class="form-group">
-            @Html.LabelFor(model => model.prod_Codigo, "Código Producto", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.prod_Codigo)
-            </div>
-            @Html.LabelFor(model => model.prod_Codigo, "Nombre Producto", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.prod_Codigo)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.ent_Id, "Numero Entrada", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.DropDownList("ent_Id", (IEnumerable<SelectListItem>)ViewBag.ent_Id, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ent_Id)
-            </div>
-            @Html.LabelFor(model => model.tbProducto.tbUnidadMedida.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.tbProducto.tbUnidadMedida.uni_Id)
-            </div>
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ent_Id, "Numero Entrada", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.ent_Id)
+                                @Html.ValidationMessageFor(model => model.ent_Id)
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.entd_Cantidad,"Cantidad", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.entd_Cantidad)
-                @Html.ValidationMessageFor(model => model.entd_Cantidad)
-            </div>
-           
-        </div>
+                            @Html.LabelFor(model => model.prod_Codigo, "Código Producto", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.prod_Codigo)
+                                @Html.ValidationMessageFor(model => model.prod_Codigo)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.prod_Codigo, "Nombre Producto", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.prod_Codigo)
+                            </div>
+                        </div>
 
-
-    </div>
-@*}*@
-
-
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.entd_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.entd_Cantidad)
+                                @Html.ValidationMessageFor(model => model.entd_Cantidad)
+                            </div>
+                            @Html.LabelFor(model => model.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.uni_Id)
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
- </div>
+</div>
 
 
 

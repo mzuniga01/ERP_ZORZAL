@@ -1,0 +1,103 @@
+﻿@model ERP_GMEDINA.Models.tbEntradaDetalle
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Entrada</h5>
+                </div>
+                <div class="ibox-content">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Codigó Detalle
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.entd_Id)
+                        </dd>
+
+                        <dt>
+                            Codigó Entrada
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ent_Id)
+                        </dd>
+
+                        <dt>
+                            Codigó Producto
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.prod_Codigo)
+                        </dd>
+
+                        <dt>
+                            Unidad Medida
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.uni_Id)
+                        </dd>
+                        <dt>
+                            Cantidad
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.entd_Cantidad)
+                        </dd>
+
+                        <dt>
+                            Creado Por:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.entd_UsuarioCrea)
+                        </dd>
+
+                        <dt>
+                            Creado En:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.entd_FechaCrea)
+                        </dd>
+
+                        <dt>
+                            Modificado Por:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.entd_UsuarioModifica)
+                        </dd>
+
+                        <dt>
+                            Modificado en:
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.entd_FechaModifica)
+                        </dd>
+                    </dl>
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.entd_Id }, new { @class = "btn btn-primary" })
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,6 +13,7 @@
 }
 @{
     var ListadoMunicipio = new ERP_GMEDINA.Models.tbMunicipio();
+    var ListadoDepartamento = new ERP_GMEDINA.Models.tbDepartamento();
 }
 <style>
     .validation-error {
@@ -111,10 +112,15 @@
             </div>
         </div>*@
                             <div class="form-group">
-                                @Html.LabelFor(muni => ListadoMunicipio.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })
+                                @*@Html.LabelFor(muni => ListadoMunicipio.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
+            <p style="color:red">@Html.ValidationMessageFor(muni => ListadoMunicipio.dep_Codigo)</p>
+        </div>*@
+                                @Html.LabelFor(model => model.tbMunicipio.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
-                                    <p style="color:red">@Html.ValidationMessageFor(muni => ListadoMunicipio.dep_Codigo)</p>
+                                    @Html.DropDownList("dep_Codigo", (IEnumerable<SelectListItem>)ViewBag.dep_Codigo, new { @class = "form-control" })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbMunicipio.dep_Codigo)</p>
                                 </div>
                                 @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">

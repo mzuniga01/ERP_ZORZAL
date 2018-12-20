@@ -509,7 +509,7 @@
     <Property Name="clte_ContactoTelefono" Type="nvarchar" MaxLength="25" Nullable="false" />
     <Property Name="clte_FechaConstitucion" Type="date" />
     <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
-    <Property Name="clte_Direccion" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="clte_Direccion" Type="nvarchar" MaxLength="100" />
     <Property Name="clte_CorreoElectronico" Type="nvarchar" MaxLength="50" />
     <Property Name="clte_EsActivo" Type="bit" Nullable="false" />
     <Property Name="clte_RazonInactivo" Type="nvarchar" MaxLength="50" />
@@ -676,6 +676,7 @@
     <Property Name="factd_MontoDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="factd_PorcentajeDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="factd_Impuesto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="factd_PrecioUnitario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="factd_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="factd_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="factd_UsuarioModifica" Type="int" />
@@ -3225,7 +3226,6 @@
     <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
     <Parameter Name="obj_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="obj_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="obj_Estado" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbObjeto_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="obj_Id" Type="int" Mode="In" />
@@ -3327,8 +3327,6 @@
     <Parameter Name="mun_Codigo" Type="char" Mode="In" />
     <Parameter Name="dep_Codigo" Type="char" Mode="In" />
     <Parameter Name="mun_Nombre" Type="varchar" Mode="In" />
-    <Parameter Name="mun_UsuarioCrea" Type="int" Mode="In" />
-    <Parameter Name="mun_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbParametro_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="par_NombreEmpresa" Type="nvarchar" Mode="In" />
@@ -3568,6 +3566,7 @@
     <Parameter Name="pscat_Descripcion" Type="varchar" Mode="In" />
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
     <Parameter Name="pscat_EsActiva" Type="tinyint" Mode="In" />
+    <Parameter Name="pscat_ISV" Type="decimal" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProductoSubcategoria_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pscat_Id" Type="int" Mode="In" />
@@ -3576,6 +3575,7 @@
     <Parameter Name="pscat_EsActiva" Type="tinyint" Mode="In" />
     <Parameter Name="pscat_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="pscat_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="pscat_ISV" Type="decimal" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProductoSubCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pscat_Id" Type="int" Mode="In" />

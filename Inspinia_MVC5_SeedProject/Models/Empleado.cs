@@ -63,13 +63,13 @@ namespace ERP_GMEDINA.Models
         public int emp_UsuarioCrea { get; set; }
         [Display(Name = "Creado El")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        
         public System.DateTime emp_FechaCrea { get; set; }
         [Display(Name = "Modificado Por")]
         public Nullable<int> emp_UsuarioModifica { get; set; }
         [Display(Name = "Modificado El")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        
         public Nullable<System.DateTime> emp_FechaModifica { get; set; }
     }
 }

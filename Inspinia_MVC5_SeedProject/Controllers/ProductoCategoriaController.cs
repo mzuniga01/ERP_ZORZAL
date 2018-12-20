@@ -89,9 +89,9 @@ namespace ERP_ZORZAL.Controllers
                                     foreach (tbProductoSubcategoria sub in listasubcategoria)
                                     {
 
-                                        lista = db.UDP_Inv_tbProductoSubcategoria_Insert(sub.pscat_Descripcion, sub.pcat_Id, sub.pscat_EsActiva);
-                                        foreach (UDP_Inv_tbProductoSubcategoria_Update_Result subcategoria in lista)
-                                            MensajeError = (subcategoria.MensajeError);
+                                        //lista = db.UDP_Inv_tbProductoSubcategoria_Insert(sub.pscat_Descripcion, sub.pcat_Id, sub.pscat_EsActiva);
+                                        //foreach (UDP_Inv_tbProductoSubcategoria_Update_Result subcategoria in lista)
+                                            //MensajeError = (subcategoria.MensajeError);
 
                                         if (MensajeError.Substring(0, 1) == "")
                                         {
@@ -290,12 +290,12 @@ namespace ERP_ZORZAL.Controllers
 
             try
             {
-                tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
-                IEnumerable<object> list = null;
+                //tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
+                //IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbProductoCategoria_Update_Estado(id, Helpers.Activo);
-                foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
-                    MsjError = obje.MensajeError;
+                //list = db.UDP_Inv_tbProductoCategoria_Update_Estado(id, Helpers.Activo);
+                //foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
+                //MsjError = obje.MensajeError;
 
                 if (MsjError == "-1")
                 {
@@ -357,9 +357,9 @@ namespace ERP_ZORZAL.Controllers
                 tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbProductoCategoria_Update_Estado(id, Helpers.Inactivo);
-                foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
-                    MsjError = obje.MensajeError;
+                //list = db.UDP_Inv_tbProductoCategoria_Update_Estado(id, Helpers.Inactivo);
+                //foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
+                    //MsjError = obje.MensajeError;
 
                 if (MsjError == "-1")
                 {

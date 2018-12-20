@@ -85,12 +85,14 @@ namespace ERP_ZORZAL.Controllers
         // GET: /TipoEntrada/Edit/5
         public ActionResult Edit(byte? id)
         {
+            ViewBag.id = id;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbTipoEntrada tbTipoEntrada = db.tbTipoEntrada.Find(id);
-            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbTipoEntrada.tent_UsuarioCrea).usu_NombreUsuario;
+            ViewBag.UsuarioCrea_N = db.tbUsuario.Find(tbTipoEntrada.tent_UsuarioCrea).usu_NombreUsuario;
+            ViewBag.UsuarioCrea_A = db.tbUsuario.Find(tbTipoEntrada.tent_UsuarioCrea).usu_Apellidos;
             var UsuarioModfica = tbTipoEntrada.tent_UsuarioModifica;
             if (UsuarioModfica == null)
             {
@@ -98,12 +100,16 @@ namespace ERP_ZORZAL.Controllers
             }
             else
             {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+                ViewBag.UsuarioModifica_N = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+                ViewBag.UsuarioModifica_A = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
             };
             if (tbTipoEntrada == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.tent_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoEntrada.tent_UsuarioCrea);
+            ViewBag.tent_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoEntrada.tent_UsuarioModifica);
+
             return View(tbTipoEntrada);
         }
 
@@ -148,6 +154,8 @@ namespace ERP_ZORZAL.Controllers
                 }
                 return RedirectToAction("Index");
             }
+            ViewBag.tent_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoEntrada.tent_UsuarioCrea);
+            ViewBag.tent_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoEntrada.tent_UsuarioModifica);
             return View(tbTipoEntrada);
         }
 

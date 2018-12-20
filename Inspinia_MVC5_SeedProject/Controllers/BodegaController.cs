@@ -18,7 +18,7 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Bodega/
         public ActionResult Index()
         {
-            var tbbodega = db.tbBodega.Include(t => t.tbUsuario).Include(t => t.tbMunicipio);
+            var tbbodega = db.tbBodega.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbMunicipio);
             this.AllLists();
             return View(tbbodega.ToList());
         }
@@ -81,6 +81,7 @@ namespace ERP_GMEDINA.Controllers
             //ViewBag.SubcategoriaList = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
             ViewBag.dep_Codigo = new SelectList(_departamentos, "dep_Codigo", "dep_Nombre");
+            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
             //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
             //ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
             //ViewBag.EstadoList = new SelectList(Estados.EstadoList(), "estif_Id", "estif_Descripcion", "Seleccione");
@@ -227,7 +228,7 @@ namespace ERP_GMEDINA.Controllers
             }
             this.AllLists();
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
-            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
+            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo",  "dep_Nombre");
             return View(tbBodega);
         }
 
@@ -263,7 +264,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int? id, [Bind(Include="bod_Id,bod_Nombre,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva,bod_UsuarioCrea,bod_FechaCrea,bod_UsuarioModifica,bod_FechaModifica, tbUsuario ,tbUsuario1")] tbBodega tbBodega)
-        {
+        {   
             IEnumerable<object> BODEGA = null;
             IEnumerable<object> DETALLE = null;
             var idMaster = 0;
@@ -309,7 +310,7 @@ namespace ERP_GMEDINA.Controllers
                                                                                     , bodd.bodd_CantidadMaxima
                                                                                     , bodd.bodd_PuntoReorden
                                                                                     , bodd.bodd_UsuarioCrea
-                                                                                    , bodd.bodd_FechaCrea
+                                                                                    ,Convert.ToDateTime( bodd.bodd_FechaCrea)
                                                                                     , bodd.bodd_Costo
                                                                                     , bodd.bodd_CostoPromedio);
                                         foreach (UDP_Inv_tbBodegaDetalle_Update_Result B_detalle in DETALLE)

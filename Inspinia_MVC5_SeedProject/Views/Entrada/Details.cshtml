@@ -37,132 +37,145 @@
                     <h5>Detalles Entrada</h5>
                 </div>
                 <div class="ibox-content">
-
-
+                    
                     <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.ent_NumeroFormato)
-                        </dt>
+                            
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)
+                                </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.ent_NumeroFormato)
-                        </dd>
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbBodega.bod_ResponsableBodega)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.ent_NumeroFormato)
+                                </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.ent_FechaElaboracion)
-                        </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.ent_NumeroFormato)
+                                </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.ent_FechaElaboracion)
-                        </dd>
-                        <dt>
-                            @*@Html.DisplayNameFor(model => model.tbProveedor.prov_Nombre)*@
-                            Nombre Proveedor
-                        </dt>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.ent_FechaElaboracion)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.ent_FechaElaboracion)
+                                </dd>
+                                <dt>
+                                    Nombre Proveedor
+                                </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.tbProveedor.prov_Nombre)
-                        </dd>
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbProveedor.prov_Nombre)
+                                </dd>
+                                <dt>
+                                    Tipo Entrada
+                                </dt>
 
-                        <dt>
-                            @*@Html.DisplayNameFor(model => model.tbTipoEntrada.tent_Descripcion)*@
-                            Tipo Entrada
-                        </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbTipoEntrada.tent_Descripcion)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.ent_FacturaCompra)
+                                </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.tbTipoEntrada.tent_Descripcion)
-                        </dd>
-                        <dt>
-                            @Html.DisplayNameFor(model => model.ent_FacturaCompra)
-                        </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.ent_FacturaCompra)
+                                </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.ent_FacturaCompra)
-                        </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.ent_FechaCompra)
+                                </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.ent_FechaCompra)
-                        </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.ent_FechaCompra)
+                                </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.ent_FechaCompra)
-                        </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.fact_Id)
+                                </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.fact_Id)
-                        </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.fact_Id)
+                                </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.fact_Id)
-                        </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.ent_RazonDevolucion)
+                                </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.ent_RazonDevolucion)
-                        </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.ent_RazonDevolucion)
+                                </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.ent_RazonDevolucion)
-                        </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.ent_BodegaDestino)
+                                </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.ent_BodegaDestino)
-                        </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.ent_BodegaDestino)
+                                </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.ent_BodegaDestino)
-                        </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)
+                                </dt>
 
+                                <dd>
+                                    @*@Html.DisplayFor(model => model.tbEstadoMovimiento.estm_Descripcion)*@
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)
-                        </dt>
+                                    @{if (Model.estm_Id == 1)
+                                        {
+                                             <p>Activo</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Inactivo</p>
+                                        }
 
-                        <dd>
-                            @Html.DisplayFor(model => model.tbBodega.bod_ResponsableBodega)
-                        </dd>
+                                    }
+                                </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tbEstadoMovimiento.estm_Descripcion)
-                        </dd>
-
-
-                    </dl>
+                                </dl>
 
 
                     <div class="form-group">
                         @*<div class="col-md-offset-2 col-md-10">*@
-                        @Html.Partial("_IndexDetalle", Model.tbEntradaDetalle)
+                        @Html.Partial("_IndexDetalleEntrada", Model.tbEntradaDetalle)
                         @*</div>*@
                     </div>
                     @Html.ActionLink("Editar", "Edit", new { id = Model.ent_Id }, new { @class = "btn btn-primary" })
                     @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
-                </div>
+                
 
-                <table class="table table-striped" style="width:100%" id="">
-                    <tr>
-                        <th>Acciones</th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
-                    </tr>
-                    <tr>
-                        <td>Creado</td>
-                        <td>@ViewBag.UsuarioCrea</td>
-                        <td>@Html.DisplayFor(model => model.ent_FechaCrea)</td>
-                    </tr>
-                    <tr>
-                        <td>Modificado</td>
-                        <td>@ViewBag.UsuarioModfica </td>
-                        <td>@Html.DisplayFor(model => model.ent_FechaModifica)</td>
-                    </tr>
-                </table>
+                    <div class="ibox-content">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Acción</th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                                </td>
+                                <td>@Html.DisplayFor(model => model.ent_FechaCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                    @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                                </td>
+                                <td>@Html.DisplayFor(model => model.ent_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </div>
             </div>
         </div>
     </div>
  </div>
+    </div>
 
 
 

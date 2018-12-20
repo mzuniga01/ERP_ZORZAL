@@ -18,15 +18,15 @@ namespace ERP_GMEDINA.Models
         public int ent_Id { get; set; }
 
         [Display(Name = "Numero Formato")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string ent_NumeroFormato { get; set; }
 
         [Display(Name = "Fecha Elaboracion")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime ent_FechaElaboracion { get; set; }
 
         [Display(Name = "Nombre Bodega")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int bod_Id { get; set; }
 
         [Display(Name = "Estado")]
@@ -34,7 +34,7 @@ namespace ERP_GMEDINA.Models
         public byte estm_Id { get; set; }
 
         [Display(Name = "Nombre Proveedor")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int prov_Id { get; set; }
 
         [Display(Name = "Factura Compra")]
@@ -50,7 +50,7 @@ namespace ERP_GMEDINA.Models
         public int fact_Id { get; set; }
 
         [Display(Name = "Razon Devolucion")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string ent_RazonDevolucion { get; set; }
 
         [Display(Name = "Código Bodega")]
