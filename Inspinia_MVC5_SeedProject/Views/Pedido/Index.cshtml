@@ -20,7 +20,7 @@
                 <div class="ibox-title">
                     <h5>Pedidos</h5>
 					<div class="ibox-tools">
-                        <a class="btn btn-primary btn-sm" href="@Url.Action("IndexFacturar","Factura")">Pedidos Por Facturar</a>
+                        @Html.ActionLink("Pedidos Por Facturar", "IndexFacturar", null, new { @class = "btn btn-primary btn-xs" })
 						@Html.ActionLink("Registrar Pedido", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>

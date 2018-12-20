@@ -53,7 +53,9 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
             ViewBag.Cliente = db.tbCliente.ToList();
             ViewBag.Producto = db.tbProducto.ToList();
-            return View();
+            tbPedido Pedido = new tbPedido();
+            Pedido.suc_Id = 1;
+            return View(Pedido);
         }
 
         // POST: /Pedido/Create

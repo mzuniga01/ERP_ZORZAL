@@ -46,7 +46,7 @@
         @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 <input type="text" value="San Pedro Sula" class="form-control" readonly />
                 @*@Html.DropDownList("suc_Id", String.Empty)*@
@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.nocre_Codigo, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.nocre_Codigo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 <input type="text" value="2" class="form-control" readonly />
                 @*@Html.EditorFor(model => model.nocre_Codigo)*@
@@ -63,7 +63,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.clte_Id, "Cliente", new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.clte_Id, "Cliente", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 <input type="text" value="Luis Eduardo" class="form-control" />
                 @*@Html.DropDownList("clte_Id", String.Empty)*@
@@ -72,7 +72,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nocre_FechaEmision, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.nocre_FechaEmision, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.nocre_FechaEmision, new { htmlAttributes = new { @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.nocre_FechaEmision)
@@ -80,7 +80,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.nocre_Monto)
                 @Html.ValidationMessageFor(model => model.nocre_Monto)
@@ -88,7 +88,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.nocre_MotivoEmision)
                 @Html.ValidationMessageFor(model => model.nocre_MotivoEmision)
@@ -96,15 +96,15 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.dev_Id, "Devolución", new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.dev_Id, "Devolución", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.DropDownList("dev_Id", String.Empty)
+               @Html.DropDownList("dev_Id", (IEnumerable<SelectListItem>)ViewBag.dev_Id, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.dev_Id)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nocre_Estado, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.nocre_Estado, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 <select id="nocre_Estado" class="form-control">
                     <option>Seleccionar</option>
@@ -117,7 +117,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nocre_Anulado, new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.nocre_Anulado, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 <select id="nocre_Anulado" class="form-control">
                     <option>Seleccionar</option>

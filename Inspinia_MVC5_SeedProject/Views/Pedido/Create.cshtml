@@ -31,8 +31,8 @@
                 </div>
                 <div class="ibox-content">
 
-                  @using (Html.BeginForm("Create", "Pedido", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                  {
+                    @using (Html.BeginForm("Create", "Pedido", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
@@ -85,7 +85,7 @@
                                 </div>
                             </div>
 
-                               <div class="form-group">
+                            <div class="form-group">
                                 <label class="control-label col-md-2">Factura</label>
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.fact_Id, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
@@ -96,10 +96,12 @@
 
                         </div>
 
-                        @Html.Partial("_ListPedidoDetalle")
+               
+                                @Html.Partial("_ListPedidoDetalle", new tbPedidoDetalle())
+                   
                     }
 
- 
+
                 </div>
             </div>
         </div>
@@ -123,6 +125,7 @@
             </div>
         </div>
     </div>
+</div>
 
 
 
