@@ -1,4 +1,4 @@
-﻿@model ERP_GMEDINA.Models.tbProducto
+﻿@model ERP_ZORZAL.Models.tbProducto
 
 @{
     ViewBag.Title = "Delete";
@@ -141,5 +141,100 @@
         </div>
     </div>
  </div>
+<table class="table table-responsive" id="DataTablei">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.prod_Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prod_Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prod_Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pscat_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prod_Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prod_Talla)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prod_Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.prod_UsuarioCrea)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.prod_FechaCrea)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.prod_FechaModifica)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+                </th>*@
 
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prod_Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prod_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prod_Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pscat_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prod_Modelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prod_Talla)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prod_Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.prod_UsuarioCrea)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.prod_FechaCrea)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.prod_FechaModifica)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+                    </td>*@
+
+                <td>
+
+
+
+                    @Html.ActionLink("Detalles", "Details", new { id = item.prod_Codigo }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-xs" })
+                    @*@Html.ActionLink("Delete", "Delete", new { id=item.prod_Codigo }, new { @class = "btn btn-white btn-sm"})*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 

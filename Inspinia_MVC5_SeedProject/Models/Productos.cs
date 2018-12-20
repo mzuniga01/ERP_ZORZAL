@@ -51,22 +51,32 @@ namespace ERP_GMEDINA.Models
         public int uni_Id { get; set; }
 
         [Display(Name = "Usuario")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int prod_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Crea")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime prod_FechaCrea { get; set; }
 
         [Display(Name = "Modificado Por")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<int> prod_UsuarioModifica { get; set; }
 
         [Display(Name = "Modificado El")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<System.DateTime> prod_FechaModifica { get; set; }
 
+        [Display(Name = "Es Activo?")]
+        public bool prod_EsActivo { get; set; }
+
+        [Display(Name = "Razon Inactivación")]        
+        public string prod_Razon_Inactivacion { get; set; }
+
+        [Display(Name = "Precio")]    
+        public Nullable<int> listp_Id { get; set; }
+
         public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbProductoCategoria tbProductoCategoria { get; set; }
         public virtual tbUnidadMedida tbUnidadMedida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodegaDetalle> tbBodegaDetalle { get; set; }

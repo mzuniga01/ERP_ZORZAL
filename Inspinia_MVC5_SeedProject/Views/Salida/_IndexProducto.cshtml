@@ -18,6 +18,9 @@
                         <thead>
                             <tr>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.prod_Codigo)
+                                </th>
+                                <th>
                                     @Html.DisplayNameFor(model => model.prod_Descripcion)
                                 </th>
                                 <th>
@@ -34,6 +37,9 @@
                             @foreach (var item in Model)
                             {
                                 <tr data-id="@item.prod_Codigo" data-desc="@item.prod_Descripcion">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prod_Codigo)
+                                    </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.prod_Descripcion)
                                     </td>
@@ -57,6 +63,7 @@
     </div>
 </div>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/app/Producto.js"></script>
 <script>
     $(document).ready(function () {
         $('#tbProductoFactura').DataTable(

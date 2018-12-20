@@ -2,9 +2,8 @@
 
 $('#AgregarSubCategoria').click(function () {
     var Descripcion = $('#pscat_Descripcion').val();
-    
-    if (Descripcion == '') 
-    {
+
+    if ($Descripcion == '') {
         $('#ErrorDescripcionCreate').text('');
         $('#DescripcionValidation').after('<ul id="ErrorDescripcionCreate" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
 

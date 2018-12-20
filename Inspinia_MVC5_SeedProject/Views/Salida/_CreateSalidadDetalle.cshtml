@@ -8,94 +8,114 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                <div class="ibox-title ">
                     <h5>Ingresar Salida Detalle</h5>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            
+                                <button type="button" class="btn btn-white glyphicon glyphicon-download col-md-offset-11 col-md-1 " data-toggle="collapse" data-target="#Crear"></button>
+                            
+                        </div>
                     </div>
+                </div>
     
                 <div class="ibox-content">
 
-    <div class="form-horizontal">
-      
-        <div class="form-group">
-            @Html.LabelFor(model => model.sal_Id, "Codigo Salida", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.DropDownList("sal_Id", (IEnumerable<SelectListItem>)ViewBag.sal_Id,"Seleccionar", new { @class = "form-control", @readonly= "readonly" })
-                <div id="validationCodigoSalida">
-                    @Html.ValidationMessageFor(model => model.sal_Id)
-                </div>
-        </div>
-            </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { @class = "form-control" })
-                <div id="validationprod_CodigoCreate">
-                    @Html.ValidationMessageFor(model => model.prod_Codigo)
-                </div>
-            </div>
-            <div class="col-md-1">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
-            </div>
-
-            <div class="form-group col-md-1">
-                <button class="btn btn-primary" type="button" id="AgregarSalidaDetalle">Añadir</button>
-            </div>
-        </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.sal_Cantidad,"Cantidad", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @{string Cantidad = "CantidadCreate";}
-                @Html.EditorFor(model => model.sal_Cantidad ,new { id =@Cantidad})
-                <div id="validationCantidadCreate">
-                    @Html.ValidationMessageFor(model => model.sal_Cantidad)
-                </div>
-            </div>
-            
-
-    
-
-        <table id="tblSalidaDetalle" class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Código Salida</th>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-offset-10 col-md-2">
+                                <button type="button" class="btn btn-primary btn-sm" >Añadir Salida Detalle</button>
+                            </div>
+                        </div>
 
 
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.sal_Id, "Codigo Salida", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.DropDownList("sal_Id", (IEnumerable<SelectListItem>)ViewBag.sal_Id, "Seleccionar", new { @class = "form-control", @readonly = "readonly" })
+                                <div id="validationCodigoSalida">
+                                    @Html.ValidationMessageFor(model => model.sal_Id)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.prod_Codigo, "Código Producto", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.prod_Codigo, new { @class = "form-control" })
+                                <div id="validacionCodigoProductoCreate">
+                                    @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                        </div>
 
 
-    </div>
-}
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Producto</label>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.tbProducto.prod_Descripcion)
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.sal_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @{string Cantidad = "CantidadCreate";}
+                                @Html.EditorFor(model => model.sal_Cantidad, new { id = @Cantidad })
+                                <div id="validationCantidadCreate">
+                                    @Html.ValidationMessageFor(model => model.sal_Cantidad)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+        
+
 
                 </div>
             </div>
         </div>
     </div>
  </div>
+
+
+
+<table id="tblSalidaDetalle" class="table table-hover">
+    <thead>
+        <tr>
+            <th>Código Salida</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<div id="validationSummary">
+    <p style="color:red"></p>
+</div> 
 @*PARA AGREGAR NUEVO PRODUCTO*@
-<div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
-            </div>
-            <div class="modal-body" id="frmEditarMunicipios">
-                @Html.Partial("_BuscarProducto", (List<tbProducto>)ViewBag.Producto)
+<div>
+    <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexProducto", (List<tbProducto>)ViewBag.Producto)
+                </div>
             </div>
         </div>
     </div>
 </div>
- 
 
-<script src="~/Scripts/app/SalidaDetalle.js"></script>
+
+@*<script src="~/Scripts/app/SalidaDetalle.js"></script>*@
