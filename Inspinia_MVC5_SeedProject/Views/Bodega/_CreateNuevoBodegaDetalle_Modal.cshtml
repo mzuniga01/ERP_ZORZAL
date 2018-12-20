@@ -50,7 +50,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
-                            <input type="number" id="bodd_PuntoReorden" placeholder="" class="form-control" readonly/>
+                            <input type="number" id="bodd_PuntoReorden" placeholder="" class="form-control" />
                             <div id="ErrorPuntoReorden_Create">
                                 @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
                             </div>
@@ -109,12 +109,6 @@
                         </thead>
                         <tbody></tbody>
                     </table>
-                    <div class="form-group ">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Guardar" class="btn btn-primary" />
-                            @Html.ActionLink("Cancelar", "Edit", null, new { @class = "btn btn-white" })
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

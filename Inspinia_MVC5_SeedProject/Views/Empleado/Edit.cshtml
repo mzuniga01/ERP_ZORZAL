@@ -40,116 +40,163 @@
         @Html.HiddenFor(model => model.emp_FechaCrea)
         @Html.HiddenFor(model => model.emp_UsuarioModifica)
         @Html.HiddenFor(model => model.emp_FechaModifica)
+        @*datos de auitoria*@
+        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+        @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+        @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)      
+       
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.emp_Nombres, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.emp_Nombres)
-                @Html.ValidationMessageFor(model => model.emp_Nombres)
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Nombres)</p>
             </div>
+            
+                @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.emp_Apellidos)
+                    <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Apellidos)</p>
+                </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2" })
-            <div class="col-md-4"">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.emp_Apellidos)
-                @Html.ValidationMessageFor(model => model.emp_Apellidos)
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Apellidos)</p>
             </div>
+           
+                @Html.LabelFor(model => model.emp_Sexo, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">   
+                    @*@Html.EditorFor(model => model.emp_Sexo)*@                
+                    <select class="form-control" id="emp_Sexo" name="emp_Sexo"> 
+                        @if (Model.emp_Sexo == "M")
+                        {                            
+                            <option value="M">Mujer</option>
+                            <option value="H">Hombre</option>
+                        }
+                        else
+                        {
+                            <option value="H">Hombre</option>
+                            <option value="M">Mujer</option>
+                        }                        
+                        
+                    </select>                    
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Sexo)</p>
+                </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.emp_Sexo, new { @class = "control-label col-md-2" })
-            <div class="col-md-4"">
-                @Html.EditorFor(model => model.emp_Sexo)
-                @Html.ValidationMessageFor(model => model.emp_Sexo)
-            </div>
-        </div>
+
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.emp_FechaNacimiento, new { @class = "control-label col-md-2" })
-            <div class="col-md-4"">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.emp_FechaNacimiento)
-                @Html.ValidationMessageFor(model => model.emp_FechaNacimiento)
+                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_FechaNacimiento)</p>
             </div>
+
+                @Html.LabelFor(model => model.tpi_Id, "Tipo Identificación", new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("tpi_Id", (IEnumerable<SelectListItem>)ViewBag.TipoIList, "seleccione", new { @class = "form-control" })
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.tpi_Id)</p>
+                </div>
+
+
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tpi_Id, "tpi_Id", new { @class = "control-label col-md-2" })
-            <div class="col-md-4"">
-                @Html.DropDownList("tpi_Id", (IEnumerable<SelectListItem>)ViewBag.TipoIList, "seleccione",new{@class="form-control" })
-                @Html.ValidationMessageFor(model => model.tpi_Id)
-            </div>
-        </div>
+
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2" })
-            <div class="col-md-4"">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.emp_Identificacion)
-                @Html.ValidationMessageFor(model => model.emp_Identificacion)
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
             </div>
+
+                @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.emp_Telefono)
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Telefono)</p>
+                </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2" })
-            <div class="col-md-4"">
-                @Html.EditorFor(model => model.emp_Telefono)
-                @Html.ValidationMessageFor(model => model.emp_Telefono)
-            </div>
-        </div>
+
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.emp_Correoelectronico, new { @class = "control-label col-md-2" })
-            <div class="col-md-4"">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.emp_Correoelectronico)
-                @Html.ValidationMessageFor(model => model.emp_Correoelectronico)
+                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Correoelectronico)</p>
             </div>
+
+
+                @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.emp_TipoSangre)
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.emp_TipoSangre)</p>
+</div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2" })
-            <div class="col-md-4"">
-                @Html.EditorFor(model => model.emp_TipoSangre)
-                @Html.ValidationMessageFor(model => model.emp_TipoSangre)
-            </div>
-        </div>
+
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.emp_Puesto, new { @class = "control-label col-md-2" })
-            <div class="col-md-4"">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.emp_Puesto)
-                @Html.ValidationMessageFor(model => model.emp_Puesto)
-            </div>
+                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Puesto)</p>
+</div>
+
+
+                @Html.LabelFor(model => model.emp_FechaIngreso, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.emp_FechaIngreso)
+                    <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_FechaIngreso)</p>
+</div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.emp_FechaIngreso, new { @class = "control-label col-md-2" })
-            <div class="col-md-4"">
-                @Html.EditorFor(model => model.emp_FechaIngreso)
-                @Html.ValidationMessageFor(model => model.emp_FechaIngreso)
-            </div>
-        </div>
+
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.emp_Direccion, new { @class = "control-label col-md-2" })
-            <div class="col-md-4"">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.emp_Direccion)
-                @Html.ValidationMessageFor(model => model.emp_Direccion)
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Direccion)</p>
+            </div>
+
+            @Html.LabelFor(model => model.emp_Observaciones, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.emp_Observaciones)
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Observaciones)</p>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.emp_Observaciones, new { @class = "control-label col-md-2" })
-            <div class="col-md-4"">
-                @Html.EditorFor(model => model.emp_Observaciones)
-                @Html.ValidationMessageFor(model => model.emp_Observaciones)
-            </div>
-        </div>
-        
+
+
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+                @{if (Model.emp_Estado == true)
+                    {  @*<input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />*@
+                    @Html.ActionLink("Inactivar", "EstadoInactivar", new { id = Model.emp_Id }, new { @class = "btn btn-danger" })
+                    }
+                    else
+                    {@*<input type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalEstado" value="Activar" />*@
+                        @Html.ActionLink("Activar", "Estadoactivar", new { id = Model.emp_Id }, new { @class = "btn btn-success" })
+                    }
+
+
+                }
             </div>
         </div>
     </div>
@@ -165,12 +212,12 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
                         <td>@Html.DisplayFor(model => model.emp_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td> @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td> @Html.DisplayFor(model => model.tbUsuario.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
                         <td>@Html.DisplayFor(model => model.emp_FechaModifica)</td>
                     </tr>
                 </table>
@@ -183,4 +230,14 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    @*<script>
+        var sexo = document.getElementById('emp_Sexo');
+        var select = document.getElementById('provincia');
+        select.addEventListener('change',
+          function () {
+              var selectedOption = this.options[select.selectedIndex];
+              console.log(selectedOption.value + ': ' + selectedOption.text);
+          });
+    </script>*@
 }

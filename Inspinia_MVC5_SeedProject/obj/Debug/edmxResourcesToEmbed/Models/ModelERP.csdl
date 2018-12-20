@@ -1260,6 +1260,28 @@
       <Parameter Name="mun_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="mun_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="spGetSubCategoria" ReturnType="Collection(String)">
+      <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbEntrada_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Estado_Result)">
+      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
+      <Parameter Name="estm_Id" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbProductoCategoria_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Delete_Result)">
+      <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbProductoCategoria_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Update_Estado_Result)">
+      <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
+      <Parameter Name="pcat_Estado" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbProductoSubCategoria_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Update_Estado_Result)">
+      <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
+      <Parameter Name="pscat_EsActiva" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbEmpleado_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbEmpleado_Update_Estado_Result)">
+      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -2032,6 +2054,7 @@
     <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbEstadoMovimiento_estm_Id" FromRole="tbProductoSubcategoria" ToRole="tbEstadoMovimiento" />
     <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProducto" />
     <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProductoCategoria" />
+    <Property Name="pscat_ISV" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
   </EntityType>
   <EntityType Name="tbProveedor">
     <Key>
@@ -5023,6 +5046,21 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Gral_tbMunicipio_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbProductoCategoria_Update_Estado_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbProductoSubCategoria_Update_Estado_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbProductoCategoria_Delete_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbEntrada_Update_Estado_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbEmpleado_Update_Estado_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

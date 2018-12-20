@@ -412,6 +412,7 @@
           <Property Name="pscat_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="pscat_UsuarioModifica" Type="int" />
           <Property Name="pscat_FechaModifica" Type="datetime" />
+          <Property Name="pscat_ISV" Type="decimal" Precision="5" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="tbProveedor">
           <Key>
@@ -3285,6 +3286,10 @@
           <Parameter Name="dep_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="dep_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Gral_tbEmpleado_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="emp_Id" Type="int" Mode="In" />
+          <Parameter Name="emp_Estado" Type="bit" Mode="In" />
+        </Function>
         <Function Name="UDP_Gral_tbEmpleados_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="emp_Nombres" Type="nvarchar" Mode="In" />
           <Parameter Name="emp_Apellidos" Type="nvarchar" Mode="In" />
@@ -3374,6 +3379,9 @@
           <Parameter Name="uni_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="uni_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="spGetSubCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="pcat_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Inv_tbBodega_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="bod_Nombre" Type="varchar" Mode="In" />
           <Parameter Name="bod_ResponsableBodega" Type="varchar" Mode="In" />
@@ -3459,6 +3467,10 @@
           <Parameter Name="ent_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="ent_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Inv_tbEntrada_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="ent_Id" Type="int" Mode="In" />
+          <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
+        </Function>
         <Function Name="UDP_Inv_tbEntradaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="ent_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
@@ -3541,6 +3553,9 @@
           <Parameter Name="prod_EsActivo" Type="bit" Mode="In" />
           <Parameter Name="prod_Razon_Inactivacion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="UDP_Inv_tbProductoCategoria_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="pcat_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Inv_tbProductoCategoria_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="pcat_Nombre" Type="varchar" Mode="In" />
         </Function>
@@ -3549,6 +3564,10 @@
           <Parameter Name="pcat_Nombre" Type="varchar" Mode="In" />
           <Parameter Name="pcat_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="pcat_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="pcat_Estado" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UDP_Inv_tbProductoCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="pcat_Id" Type="int" Mode="In" />
           <Parameter Name="pcat_Estado" Type="bit" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbProductoSubcategoria_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
@@ -3563,6 +3582,10 @@
           <Parameter Name="pscat_EsActiva" Type="tinyint" Mode="In" />
           <Parameter Name="pscat_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="pscat_FechaCrea" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDP_Inv_tbProductoSubCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="pscat_Id" Type="int" Mode="In" />
+          <Parameter Name="pscat_EsActiva" Type="tinyint" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbProveedor_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="prov_Nombre" Type="varchar" Mode="In" />
@@ -5724,6 +5747,28 @@
             <Parameter Name="mun_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="mun_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="spGetSubCategoria" ReturnType="Collection(String)">
+          <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbEntrada_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Estado_Result)">
+            <Parameter Name="ent_Id" Mode="In" Type="Int32" />
+            <Parameter Name="estm_Id" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbProductoCategoria_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Delete_Result)">
+          <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbProductoCategoria_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Update_Estado_Result)">
+            <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
+            <Parameter Name="pcat_Estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbProductoSubCategoria_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Update_Estado_Result)">
+            <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
+            <Parameter Name="pscat_EsActiva" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Gral_tbEmpleado_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbEmpleado_Update_Estado_Result)">
+            <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+            <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -6496,6 +6541,7 @@
           <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbEstadoMovimiento_estm_Id" FromRole="tbProductoSubcategoria" ToRole="tbEstadoMovimiento" />
           <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProducto" />
           <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProductoCategoria" />
+          <Property Name="pscat_ISV" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
         </EntityType>
         <EntityType Name="tbProveedor">
           <Key>
@@ -9489,6 +9535,21 @@
         <ComplexType Name="UDP_Gral_tbMunicipio_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProductoCategoria_Update_Estado_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProductoSubCategoria_Update_Estado_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProductoCategoria_Delete_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbEntrada_Update_Estado_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbEmpleado_Update_Estado_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10218,6 +10279,7 @@
           <EntitySetMapping Name="tbProductoSubcategoria">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProductoSubcategoria">
               <MappingFragment StoreEntitySet="tbProductoSubcategoria">
+                <ScalarProperty Name="pscat_ISV" ColumnName="pscat_ISV" />
                 <ScalarProperty Name="pscat_FechaModifica" ColumnName="pscat_FechaModifica" />
                 <ScalarProperty Name="pscat_UsuarioModifica" ColumnName="pscat_UsuarioModifica" />
                 <ScalarProperty Name="pscat_FechaCrea" ColumnName="pscat_FechaCrea" />
@@ -10894,6 +10956,42 @@
           <FunctionImportMapping FunctionImportName="UDP_Gral_tbMunicipio_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbMunicipio_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbMunicipio_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetSubCategoria" FunctionName="ERP_ZORZALModel.Store.spGetSubCategoria" />
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update_Estado" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Estado_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Delete" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Delete_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Update_Estado" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Update_Estado_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubCategoria_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubCategoria_Update_Estado" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Update_Estado_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleado_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleado_Update_Estado" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleado_Update_Estado_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

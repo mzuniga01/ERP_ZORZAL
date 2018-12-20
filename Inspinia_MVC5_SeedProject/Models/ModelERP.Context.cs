@@ -1661,5 +1661,75 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbMunicipio_Update_Result>("UDP_Gral_tbMunicipio_Update", mun_CodigoParameter, dep_CodigoParameter, mun_NombreParameter, mun_UsuarioCreaParameter, mun_FechaCreaParameter);
         }
+    
+        public virtual ObjectResult<string> spGetSubCategoria(Nullable<int> pcat_Id)
+        {
+            var pcat_IdParameter = pcat_Id.HasValue ?
+                new ObjectParameter("pcat_Id", pcat_Id) :
+                new ObjectParameter("pcat_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("spGetSubCategoria", pcat_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbEntrada_Update_Estado_Result> UDP_Inv_tbEntrada_Update_Estado(Nullable<int> ent_Id, Nullable<byte> estm_Id)
+        {
+            var ent_IdParameter = ent_Id.HasValue ?
+                new ObjectParameter("ent_Id", ent_Id) :
+                new ObjectParameter("ent_Id", typeof(int));
+    
+            var estm_IdParameter = estm_Id.HasValue ?
+                new ObjectParameter("estm_Id", estm_Id) :
+                new ObjectParameter("estm_Id", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntrada_Update_Estado_Result>("UDP_Inv_tbEntrada_Update_Estado", ent_IdParameter, estm_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Delete_Result> UDP_Inv_tbProductoCategoria_Delete(Nullable<int> pcat_Id)
+        {
+            var pcat_IdParameter = pcat_Id.HasValue ?
+                new ObjectParameter("pcat_Id", pcat_Id) :
+                new ObjectParameter("pcat_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Delete_Result>("UDP_Inv_tbProductoCategoria_Delete", pcat_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Update_Estado_Result> UDP_Inv_tbProductoCategoria_Update_Estado(Nullable<int> pcat_Id, Nullable<bool> pcat_Estado)
+        {
+            var pcat_IdParameter = pcat_Id.HasValue ?
+                new ObjectParameter("pcat_Id", pcat_Id) :
+                new ObjectParameter("pcat_Id", typeof(int));
+    
+            var pcat_EstadoParameter = pcat_Estado.HasValue ?
+                new ObjectParameter("pcat_Estado", pcat_Estado) :
+                new ObjectParameter("pcat_Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Update_Estado_Result>("UDP_Inv_tbProductoCategoria_Update_Estado", pcat_IdParameter, pcat_EstadoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProductoSubCategoria_Update_Estado_Result> UDP_Inv_tbProductoSubCategoria_Update_Estado(Nullable<int> pscat_Id, Nullable<byte> pscat_EsActiva)
+        {
+            var pscat_IdParameter = pscat_Id.HasValue ?
+                new ObjectParameter("pscat_Id", pscat_Id) :
+                new ObjectParameter("pscat_Id", typeof(int));
+    
+            var pscat_EsActivaParameter = pscat_EsActiva.HasValue ?
+                new ObjectParameter("pscat_EsActiva", pscat_EsActiva) :
+                new ObjectParameter("pscat_EsActiva", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoSubCategoria_Update_Estado_Result>("UDP_Inv_tbProductoSubCategoria_Update_Estado", pscat_IdParameter, pscat_EsActivaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbEmpleado_Update_Estado_Result> UDP_Gral_tbEmpleado_Update_Estado(Nullable<int> emp_Id, Nullable<bool> emp_Estado)
+        {
+            var emp_IdParameter = emp_Id.HasValue ?
+                new ObjectParameter("emp_Id", emp_Id) :
+                new ObjectParameter("emp_Id", typeof(int));
+    
+            var emp_EstadoParameter = emp_Estado.HasValue ?
+                new ObjectParameter("emp_Estado", emp_Estado) :
+                new ObjectParameter("emp_Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbEmpleado_Update_Estado_Result>("UDP_Gral_tbEmpleado_Update_Estado", emp_IdParameter, emp_EstadoParameter);
+        }
     }
 }

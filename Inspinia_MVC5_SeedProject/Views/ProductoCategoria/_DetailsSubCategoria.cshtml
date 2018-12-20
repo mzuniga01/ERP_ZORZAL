@@ -13,46 +13,49 @@
 
 
 				    <dl class="dl-horizontal">
-
-         <dt>
-            @Html.DisplayNameFor(model => model.pscat_Id)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pscat_Id)
+                        </dt>
                         <dd>
                             @Html.DisplayFor(model => model.pscat_Id)
                         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.pscat_Descripcion)
-        </dt>
+
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pscat_Descripcion)
+                        </dt>
                         <dd>
                             @Html.DisplayFor(model => model.pscat_Descripcion)
                         </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbProductoCategoria.pcat_Id)
-        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pcat_Id)
+                        </dt>
                         <dd>
-                            @Html.DisplayFor(model => model.tbProductoCategoria.pcat_Id)
+                            @Html.DisplayFor(model => model.pcat_Id)
                         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.tbProductoCategoria.pcat_Nombre)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pscat_EsActiva)
+                        </dt>
                         <dd>
-                            @Html.DisplayFor(model => model.tbProductoCategoria.pcat_Nombre)
+                            @if (Model.pscat_EsActiva == 1)
+                            {
+                                <p> Activo</p>
+                            }
+                            else
+                            {
+                                <p>Inactivo</p>
+                            }
                         </dd>
-      
-
-
-    </dl>
-
-
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.pscat_Id }, new { @class = "btn btn-primary"})
+                        
+                    </dl>
 
                 </div>
             </div>
         </div>
     </div>
  </div>
-
 
 
 

@@ -53,7 +53,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                <input type="number" id="bodd_PuntoReorden" placeholder="" class="form-control" />
+                                @Html.EditorFor(model => model.bodd_PuntoReorden)
                                 <div id="ErrorPuntoReorden_Create">
                                     @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
                                 </div>
@@ -70,7 +70,7 @@
                             @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 <input type="number" id="bodd_CantidadMaxima" placeholder="" class="form-control" />
-                                <div id="ErrorantidadMaxima_Create">
+                                <div id="ErrorCantidadMaxima_Create">
                                     @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
                                 </div>
                             </div>

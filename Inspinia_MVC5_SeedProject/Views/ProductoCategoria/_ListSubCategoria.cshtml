@@ -25,7 +25,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                                    @Html.Partial("_CreateSubCategoria", new tbProductoSubcategoria())
+                                    @Html.Partial("_CreateSubCategoriaModal", new tbProductoSubcategoria())
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -36,8 +36,7 @@
         </div>
     </div>
                 <div class="ibox-content">
-
-                    <table class="table table-striped table-bordered" style="width:100%" id="DataTable">
+                    <table class="table table-striped table-bordered" style="width:100%" id="Datatable">
                         <thead>
                             <tr>
                                 <th>
@@ -48,6 +47,12 @@
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.tbProductoCategoria.pcat_Nombre)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pscat_EsActiva)
+                                </th>
+                                <th>
+                                    Acciones
                                 </th>
                             </tr>
                         </thead>
@@ -65,13 +70,22 @@
                                         @Html.DisplayFor(modelItem => item.tbProductoCategoria.pcat_Nombre)
                                     </td>
                                     <td>
+                                        @if (item.pscat_EsActiva == 1)
+                                        {
+                                            <p> Activo</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Inactivo</p>
+                                        }
+                                    </td>
+                                    <td>
                                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalles_@item.pscat_Id">
                                             Detalle
                                         </button>
                                         <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalEditar_@item.pscat_Id">
                                             Editar
                                         </button>
-                                        <input type="button" id="boton" value="Inactivar" class="btn btn-white btn-xs">
                                     </td>
                                 </tr>
 
@@ -126,6 +140,4 @@
         </div>
     </div>
  </div>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/DataTables.js"></script>
-<script src="~/Scripts/app/BusquedaGenerica.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>

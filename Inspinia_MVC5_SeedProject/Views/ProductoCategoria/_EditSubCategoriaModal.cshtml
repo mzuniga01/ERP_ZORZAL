@@ -28,7 +28,10 @@
             @Html.LabelFor(model => model.pscat_Descripcion, new { @class = "control-label col-sm-2" })
             <div class="col-sm-10">
                 @Html.EditorFor(model => model.pscat_Descripcion)
+                <p style="color:red">
                 @Html.ValidationMessageFor(model => model.pscat_Descripcion)
+                </p>
+                
             </div>
         </div>
 
@@ -36,6 +39,17 @@
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+                @{if (Model.pscat_EsActiva == 1)
+                    {
+                        @Html.ActionLink("Inactivar", "InactivarSub", new { id = Model.pscat_EsActiva }, new { @class = "btn btn-danger" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Activar", "ActivarSub", new { id = Model.pscat_EsActiva }, new { @class = "btn btn-danger" })
+                    }
+                }
+
+
             </div>
         </div>
     </div>
@@ -46,8 +60,6 @@
             </div>
         </div>
     </div>
-
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

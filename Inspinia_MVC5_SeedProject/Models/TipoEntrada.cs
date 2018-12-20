@@ -24,20 +24,22 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string tent_Descripcion { get; set; }
 
-        //[Display(Name = "Usuario Crea")]
+        [Display(Name = "Creado Por")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        //public int tent_UsuarioCrea { get; set; }
+        public int tent_UsuarioCrea { get; set; }
 
-        //[Display(Name = "Fecha Crea")]
+        [Display(Name = "Creado El")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        //public System.DateTime tent_FechaCrea { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public System.DateTime tent_FechaCrea { get; set; }
 
-        //[Display(Name = "Usuario Modifica")]
-        //public Nullable<int> tent_UsuarioModifica { get; set; }
+        [Display(Name = "Modificado Por")]
+        public int tent_UsuarioModifica { get; set; }
 
-        //[Display(Name = "Fecha Modifica")]
-        //public Nullable<System.DateTime> tent_FechaModifica { get; set; }
-        
+        [Display(Name = "ModiFicado El")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public System.DateTime tent_FechaModifica { get; set; }
+
     }
 }

@@ -59,115 +59,130 @@ $('#AgregarBodegaDetalle').click(function () {
     var Cmaxima = $('#bodd_CantidadMaxima').val();
     var Costo = $('#bodd_Costo').val();
     var Cpromedio = $('#bodd_CostoPromedio').val();
-    
 
-    if (Producto == '')
-    {
-        $('#bodd_PuntoReorden').text('');
-        $('#bodd_CantidadMinima').text('');
-        $('#bodd_CantidadMaxima').text('');
-        $('#bodd_Costo').text('');
-        $('#bodd_CostoPromedio').text('');
-        $('#ErrorProducto_Create').after('<ul id="ErrorProducto_Create" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
+
+    if (Producto == '') {
+        $('#MessageError').text('');
+        $('#Error_Producto').text('');
+        $('#Error_PuntoReorden').text('');
+        $('#Error_CantidadMinima').text('');
+        $('#Error_CantidadMaxima').text('');
+        $('#Error_Costo').text('');
+        $('#Error_CostoPromedioo').text('');
+        $('#ErrorProducto_Create').after('<ul id="Error_Producto" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
     }
-    else if (Preorden == '') 
-    {
-        $('#bodd_PuntoReorden').text('');
-        $('#bodd_CantidadMinima').text('');
-        $('#bodd_CantidadMaxima').text('');
-        $('#bodd_Costo').text('');
-        $('#bodd_CostoPromedio').text('');
-        $('#ErrorPuntoReorden_Create').after('<ul id="ErrorPuntoReorden_Create" class="validation-summary-errors text-danger">Campo Punto Reorden Requerido</ul>');
+    else if (Preorden == '') {
+        $('#MessageError').text('');
+        $('#Error_Producto').text('');
+        $('#Error_PuntoReorden').text('');
+        $('#Error_CantidadMinima').text('');
+        $('#Error_CantidadMaxima').text('');
+        $('#Error_Costo').text('');
+        $('#Error_CostoPromedioo').text('');
+        $('#ErrorPuntoReorden_Create').after('<ul id="Error_PuntoReorden" class="validation-summary-errors text-danger">Campo Punto Reorden Requerido</ul>');
     }
-    else if (Cminima == '') 
-    {
-        
-        $('#bodd_PuntoReorden').text('');
-        $('#bodd_CantidadMinima').text('');
-        $('#bodd_CantidadMaxima').text('');
-        $('#bodd_Costo').text('');
-        $('#bodd_CostoPromedio').text('');
-        $('#ErrorCantidadMinima_Create').after('<ul id="ErrorCantidadMinima_Create" class="validation-summary-errors text-danger">Campo Canidad Mínima Requerido</ul>');
+    else if (Cminima == '') {
+
+        $('#MessageError').text('');
+        $('#Error_Producto').text('');
+        $('#Error_PuntoReorden').text('');
+        $('#Error_CantidadMinima').text('');
+        $('#Error_CantidadMaxima').text('');
+        $('#Error_Costo').text('');
+        $('#Error_CostoPromedioo').text('');
+        $('#ErrorCantidadMinima_Create').after('<ul id="Error_CantidadMinima" class="validation-summary-errors text-danger">Campo Canidad Mínima Requerido</ul>');
     }
-    else if (Cmaxima == '') 
-    {
-        
-        $('#bodd_PuntoReorden').text('');
-        $('#bodd_CantidadMinima').text('');
-        $('#bodd_CantidadMaxima').text('');
-        $('#bodd_Costo').text('');
-        $('#bodd_CostoPromedio').text('');
-        $('#ErrorantidadMaxima_Create').after('<ul id="ErrorantidadMaxima_Create" class="validation-summary-errors text-danger">Campo Cantidad Máxima Requerido</ul>');
+    else if (Cmaxima == '') {
+
+        $('#MessageError').text('');
+        $('#Error_Producto').text('');
+        $('#Error_PuntoReorden').text('');
+        $('#Error_CantidadMinima').text('');
+        $('#Error_CantidadMaxima').text('');
+        $('#Error_Costo').text('');
+        $('#Error_CostoPromedioo').text('');
+        $('#ErrorCantidadMaxima_Create').after('<ul id="Error_CantidadMaxima" class="validation-summary-errors text-danger">Campo Cantidad Máxima Requerido</ul>');
     }
-    else if (Costo == '') 
-    {
-        
-        $('#bodd_PuntoReorden').text('');
-        $('#bodd_CantidadMinima').text('');
-        $('#bodd_CantidadMaxima').text('');
-        $('#bodd_Costo').text('');
-        $('#bodd_CostoPromedio').text('');
-        $('#ErrorCosto_Create').after('<ul id="ErrorCosto_Create" class="validation-summary-errors text-danger">Campo Costo Requerido</ul>');
+    else if (Costo == '') {
+
+        $('#MessageError').text('');
+        $('#Error_Producto').text('');
+        $('#Error_PuntoReorden').text('');
+        $('#Error_CantidadMinima').text('');
+        $('#Error_CantidadMaxima').text('');
+        $('#Error_Costo').text('');
+        $('#Error_CostoPromedioo').text('');
+        $('#ErrorCosto_Create').after('<ul id="Error_Costo" class="validation-summary-errors text-danger">Campo Costo Requerido</ul>');
     }
-    else if (Cpromedio == '') 
-    {
-       
-        $('#bodd_PuntoReorden').text('');
-        $('#bodd_CantidadMinima').text('');
-        $('#bodd_CantidadMaxima').text('');
-        $('#bodd_Costo').text('');
-        $('#bodd_CostoPromedio').text('');
-        $('#ErrorCostoPromedio_Create').after('<ul id="ErrorCostoPromedio_Create" class="validation-summary-errors text-danger">Campo Costo Promedio Requerido</ul>');
+    else if (Cpromedio == '') {
+
+        $('#MessageError').text('');
+        $('#Error_Producto').text('');
+        $('#Error_PuntoReorden').text('');
+        $('#Error_CantidadMinima').text('');
+        $('#Error_CantidadMaxima').text('');
+        $('#Error_Costo').text('');
+        $('#Error_CostoPromedioo').text('');
+        $('#ErrorCostoPromedio_Create').after('<ul id="Error_CostoPromedioo" class="validation-summary-errors text-danger">Campo Costo Promedio Requerido</ul>');
     }
-   
+
     else {
         //Aqui importa el orden
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
-        copiar += "<td id = 'prod_Codigo'>" + $('#prod_Codigo').val() + "</td>";
-        copiar += "<td id = 'bodd_PuntoReorden'>" + $('#bodd_PuntoReorden').val() + "</td>";// aqui va el campo y luego se llena con el id del mismo, que ya ha capturado el valor
-        copiar += "<td id = 'bodd_CantidadMinima'>" + $('#bodd_CantidadMinima').val() + "</td>";
-        copiar += "<td id = 'bodd_CantidadMaxima'>" + $('#bodd_CantidadMaxima').val() + "</td>";
-        copiar += "<td id = 'bodd_Costo'>" + $('#bodd_Costo').val() + "</td>";
-        copiar += "<td id = 'bodd_CostoPromedio'>" + $('#bodd_CostoPromedio').val() + "</td>";
+        copiar += "<td id = 'Producto'>" + $('#prod_Codigo').val() + "</td>";
+        copiar += "<td id = 'Preorden'>" + $('#bodd_PuntoReorden').val() + "</td>";// aqui va el campo y luego se llena con el id del mismo, que ya ha capturado el valor
+        copiar += "<td id = 'Cminima'>" + $('#bodd_CantidadMinima').val() + "</td>";
+        copiar += "<td id = 'Cmaxima'>" + $('#bodd_CantidadMaxima').val() + "</td>";
+        copiar += "<td id = 'Costo'>" + $('#bodd_Costo').val() + "</td>";
+        copiar += "<td id = 'Cpromedio'>" + $('#bodd_CostoPromedio').val() + "</td>";
         copiar += "<td>" + '<button id="removeBodegaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
         copiar += "</tr>";
-
         $('#tblBodegadetalle_Create').append(copiar);
 
-        var BODEGADETALLE = Getbodegadetalle
+        var tbBodegaDetalle = Getbodegadetalle();
         $.ajax({
             url: "/Bodega/SaveBodegaDetalle",
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ BODEGADETALLE: BODEGADETALLE }),
+            data: JSON.stringify({ BODEGADETALLE: tbBodegaDetalle }),
         })
             .done(function (data) {
-                $('#prod_Codigo').text('');
-                $('#bodd_PuntoReorden').text('');
-                $('#bodd_CantidadMinima').text('');
-                $('#bodd_CantidadMaxima').text('');
-                $('#bodd_Costo').text('');
-                $('#bodd_CostoPromedio').text('');
+                $('#prod_Codigo').val('');
+                $('#bodd_PuntoReorden').val('');
+                $('#bodd_CantidadMinima').val('');
+                $('#bodd_CantidadMaxima').val('');
+                $('#bodd_Costo').val('');
+                $('#bodd_CostoPromedio').val('');
+
+                $('#MessageError').text('');
+                $('#Error_Producto').text('');
+                $('#Error_PuntoReorden').text('');
+                $('#Error_CantidadMinima').text('');
+                $('#Error_CantidadMaxima').text('');
+                $('#Error_Costo').text('');
+                $('#Error_CostoPromedioo').text('');
             });
 
 
 
     }
-})
+});
+
 function Getbodegadetalle() {
-    var bodegadetalle = {
+    var BODEGADETALLE = {
         prod_Codigo: $('#prod_Codigo').val(),
         bodd_puntoReorden: $('#bodd_PuntoReorden').val(),
         bodd_cantidadMinima: $('#bodd_CantidadMinima').val(),
         bodd_cantidadMaxima: $('#bodd_CantidadMaxima').val(), 
         bodd_costo: $('#bodd_Costo').val(),
         bodd_costoPromedio: $('#bodd_CostoPromedio').val(),
+        bodd_UsuarioCrea: contador,
         bodd_Id : contador,
         //Fecha: $('#fechaCreate').val(),
     };
-    return bodegadetalle;
+    return BODEGADETALLE;
 }
 //Fin
 

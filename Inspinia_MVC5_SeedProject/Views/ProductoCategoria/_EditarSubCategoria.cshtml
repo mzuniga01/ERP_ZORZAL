@@ -41,7 +41,18 @@
                                 <input type="submit" value="Guardar" class="btn btn-primary" />
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                             </div>
+                            @{if (Model.pscat_EsActiva == 1)
+                                {
+                                    @Html.ActionLink("Inactivar", "InactivarSub", new { id = Model.pscat_EsActiva }, new { @class = "btn btn-danger" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Activar", "ActivarSub", new { id = Model.pscat_EsActiva }, new { @class = "btn btn-danger" })
+                                }
+                            }
                         </div>
+
+
                     </div>
                 }
 
@@ -50,8 +61,6 @@
         </div>
     </div>
 </div>
-
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -184,6 +184,7 @@
     <Compile Include="Controllers\BodegaController.cs" />
     <Compile Include="Controllers\BoxController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
+    <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\EntradaController.cs" />
     <Compile Include="Controllers\EstadoMovimientoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -217,9 +218,11 @@
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Entrada.cs" />
     <Compile Include="Models\EstadoBodega.cs" />
+    <Compile Include="Models\EstadoCategoria.cs" />
     <Compile Include="Models\EstadoInventariosFisico.cs" />
     <Compile Include="Models\estadomovimientos.cs" />
     <Compile Include="Models\Estados.cs" />
+    <Compile Include="Models\EstadoSubCategoria.cs" />
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InventariosFisicos.cs" />
@@ -496,6 +499,9 @@
     <Compile Include="Models\UDP_Gral_tbEmpleados_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Gral_tbEmpleado_Update_Estado_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Gral_tbMunicipio_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -544,6 +550,9 @@
     <Compile Include="Models\UDP_Inv_tbEntrada_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Inv_tbEntrada_Update_Estado_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Inv_tbEntrada_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -565,13 +574,22 @@
     <Compile Include="Models\UDP_Inv_tbInventarioFisico_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Inv_tbProductoCategoria_Delete_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Inv_tbProductoCategoria_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Inv_tbProductoCategoria_Update_Estado_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbProductoCategoria_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbProductoSubcategoria_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Inv_tbProductoSubCategoria_Update_Estado_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbProductoSubcategoria_Update_Result.cs">

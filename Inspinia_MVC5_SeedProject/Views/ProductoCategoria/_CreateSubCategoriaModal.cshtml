@@ -4,10 +4,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Crear SubCategoría</h5>
-                </div>
-
                 <div class="ibox-content">
                     @using (Html.BeginForm())
                     {
@@ -18,22 +14,33 @@
                             @Html.ValidationSummary(true)
                             <div class="form-group">
                                 @Html.LabelFor(model => model.pscat_Descripcion, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     @Html.EditorFor(model => model.pscat_Descripcion)
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.pscat_Descripcion)
                                     </p>
                                 </div>
+                                <div class="form-group col-md-1">
+                                    <button class="btn btn-primary" type="button" id="AgregarSubCategoria">Añadir</button>
+                                </div>
                             </div>
-
+                            
                             <div class="form-group">
-                                @Html.LabelFor(model => model.pscat_EsActiva, "¿Activo?", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.CheckBox("¿Activo?", true)
-                                    @Html.ValidationMessageFor(model => model.pscat_EsActiva)
+                                <div class="col-md-offset-2 col-md-10">
+                                    @*<button class="btn btn-primary" type="button" id="AgregarSubCategoria">Añadir</button>*@
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
 
+                            <table id="SubCategoria" class="table table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Descripción</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
                         </div>
                     }
 
@@ -43,9 +50,13 @@
          </div>
     </div>
 </div>
+
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/app/DataTable.js"></script>
 <script src="~/Scripts/app/Categoria.js"></script>
+
+
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -11,7 +11,6 @@
     </div>
 </div>
 
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -19,7 +18,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Empleados</h5>
                     <div class="ibox-tools">
-                        @Html.ActionLink("Registrar", "Create", null, new { @class = "btn btn-primary btn-xs" })
+                        @Html.ActionLink("Registrar Empleado", "Create", null, new { @class = "btn btn-primary btn-xs" })
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -37,17 +36,13 @@
                                     @Html.DisplayNameFor(model => model.emp_Identificacion)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.emp_Correoelectronico)
-                                </th>
-                                <th>
                                     @Html.DisplayNameFor(model => model.emp_Puesto)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.emp_FechaIngreso)
                                 </th>
                                 <th>
-                                    @*@Html.DisplayNameFor(model => model.tbTipoIdentificacion.tpi_Descripcion)*@
-                                    Tipo Identificación
+                                    Estado
                                 </th>
                                 <th>
                                     Acciones
@@ -68,21 +63,25 @@
                                         @Html.DisplayFor(modelItem => item.emp_Identificacion)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.emp_Correoelectronico)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.emp_Puesto)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.emp_FechaIngreso)
                                     </td>
+                                    
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbTipoIdentificacion.tpi_Descripcion)
+                                        @if (item.emp_Estado == true)
+                                        {
+                                            <p> Activo</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Inactivo</p>
+                                        }
                                     </td>
                                     <td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.emp_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.emp_Id }, new { @class = "btn btn-white btn-xs" })
-                                        <input type="button" id="boton_@item.emp_Id " value="Inactivar" class="btn btn-white btn-xs" onclick="Activar(@item.emp_Id);">
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.emp_Id }, new { @class = "btn btn-white btn-xs" })                                        
                                     </td>
                                 </tr>
                             }

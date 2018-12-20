@@ -28,6 +28,7 @@ namespace ERP_GMEDINA.Models
         public System.DateTime pscat_FechaCrea { get; set; }
         public Nullable<int> pscat_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> pscat_FechaModifica { get; set; }
+        public decimal pscat_ISV { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

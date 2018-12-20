@@ -38,9 +38,22 @@
                             <dt>
                                 @Html.DisplayNameFor(model => model.pcat_Nombre)
                             </dt>
-
                             <dd>
                                 @Html.DisplayFor(model => model.pcat_Nombre)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pcat_Estado)
+                            </dt>
+
+                            <dd>
+                                @if (Model.pcat_Estado == true)
+                                {
+                                    <p> Activo</p>
+                                }
+                                else
+                                {
+                                    <p>Inactivo</p>
+                                }
                             </dd>
                         </dl>
                         @Html.ActionLink("Editar", "Edit", new { id = Model.pcat_Id }, new { @class = "btn btn-primary" })
@@ -51,12 +64,9 @@
     </div>
 
     <div class="ibox float-e-margins">
-        <div class="ibox-title">
-            <h5>Listado de SubCategoría</h5>
-        </div>
         <div class="ibox-content">
-            <div class="form-horizontal">
-                @Html.Partial("_ListSubCategoriaDetalle", Model.tbProductoSubcategoria, new ViewDataDictionary { { "pcat_Id", Model.pcat_Id } })
+            <div class="form-horizontal"> @* ListaSinAcciones *@
+                @Html.Partial("_IndexSubCategoria", Model.tbProductoSubcategoria, new ViewDataDictionary { { "pcat_Id", Model.pcat_Id } })
             </div>
         </div>
     </div>
@@ -79,7 +89,8 @@
                     Creado
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.pcat_FechaCrea)
@@ -90,7 +101,8 @@
                     Modificado
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
+                    @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                    @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.pcat_FechaModifica)
@@ -98,11 +110,7 @@
             </tr>
         </table>
     </div>
-
 </div>
-<script src="~/Scripts/app/BusquedaGenerica.js"></script>
-<script src="~/Scripts/app/DataTables.js"></script>
-
 
 
 
