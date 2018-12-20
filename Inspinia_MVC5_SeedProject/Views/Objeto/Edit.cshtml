@@ -107,20 +107,17 @@
                             <div class="form-group ">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-
-
                                     @{if (Model.obj_Estado == true)
                                         { <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
                                         }
                                         else
                                         {
-                                            @Html.ActionLink("Activar", "Estadoactivar", new { id = Model.obj_Id }, new { @class = "btn btn-success" })
+                                            @Html.ActionLink("Activar", "Estadoactivar", new { id = Model.obj_Id }, new { @class = "btn btn-primary" })
                                         }
 
 
                                     }
-
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
                         </div>

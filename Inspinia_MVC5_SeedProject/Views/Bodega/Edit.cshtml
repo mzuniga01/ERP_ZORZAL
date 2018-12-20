@@ -135,10 +135,27 @@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_ResponsableBodega)</p>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bod_EsActiva, "Estado", new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @if (Model.bod_EsActiva == 1)
+                                    {
+                                        <p> Activa</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Inactiva</p>
+                                    }
+                                </div>
+                                <div class="col-md-4">
+
+                                    <p style="color:red">  @Html.ValidationMessageFor(model => model.bod_EsActiva)</p>
+                                </div>
+
+                            </div>
                             <div class="form-group ">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                     @{if (Model.bod_EsActiva == 1)
                                         {
                                             <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
@@ -146,9 +163,10 @@
                                         }
                                         else
                                         {
-                                            @Html.ActionLink("Activar", "Estadoactivar", new { id = Model.bod_Id }, new { @class = "btn btn-success" })
+                                            @Html.ActionLink("Activar", "Estadoactivar", new { id = Model.bod_Id }, new { @class = "btn btn-primary" })
                                         }
                                     }
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
                         </div>

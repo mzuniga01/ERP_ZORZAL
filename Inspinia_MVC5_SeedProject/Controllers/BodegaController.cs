@@ -175,24 +175,24 @@ namespace ERP_GMEDINA.Controllers
                                                                                     , bodd.bodd_CostoPromedio);
                                         foreach (UDP_Inv_tbBodegaDetalle_Insert_Result B_detalle in DETALLE)
 
-                                        if (MensajeError == "-1")
+                                        //if (MensajeError == "-1")
                                         {
                                             ModelState.AddModelError("", "No se Guardo el Registro");
-                                            return View(tbBodega);
-                                        }
-                                        else
-                                        {
-                                            _Tran.Complete();
-                                            return RedirectToAction("Index");
+                                            //return View(tbBodega);
+                                        //}
+                                        //else
+                                        //{
+                                        //    _Tran.Complete();
+                                        //    return RedirectToAction("Index");
                                         }
                                     }
                                 }
                             }
 
-                            else
+                            //else
                             {
                                 _Tran.Complete();
-                                return RedirectToAction("Index");
+                                //return RedirectToAction("Index");
                             }
 
                         }
@@ -200,11 +200,13 @@ namespace ERP_GMEDINA.Controllers
                     }
                     catch (Exception Ex)
                     {
-                        Ex.Message.ToString();
-                        ModelState.AddModelError("", "No se Guardo el Registro");
-                        return View(tbBodega);
+                        //Ex.Message.ToString();
+                        //ModelState.AddModelError("", "No se Guardo el Registro");
+                        //return View(tbBodega);
+                        MsjError = "-1"; 
                     }
                 }
+                return RedirectToAction("Index");
             }
             this.AllLists();
             return View(tbBodega);
@@ -283,14 +285,13 @@ namespace ERP_GMEDINA.Controllers
                                                             , tbBodega.bod_Correo
                                                             , tbBodega.bod_Telefono
                                                             , tbBodega.mun_Codigo
-                                                            , tbBodega.bod_EsActiva
                                                             , tbBodega.bod_UsuarioCrea
                                                             , tbBodega.bod_FechaCrea);
                         foreach (UDP_Inv_tbBodega_Update_Result bodega in BODEGA)
                             idMaster = Convert.ToInt32(bodega.MensajeError);
                         if (MsjError == "-")
                         {
-                            ModelState.AddModelError("", "No se Guardo el Registro");
+                            ModelState.AddModelError("", "No se Actualizó el Registro");
                             return View(tbBodega);
                         }
                         else
@@ -313,24 +314,24 @@ namespace ERP_GMEDINA.Controllers
                                                                                     , bodd.bodd_CostoPromedio);
                                         foreach (UDP_Inv_tbBodegaDetalle_Update_Result B_detalle in DETALLE)
 
-                                            if (MensajeError == "-1")
+                                            //if (MensajeError == "-1")
                                             {
                                                 ModelState.AddModelError("", "No se Actualizó el Registro");
                                                 return View(tbBodega);
-                                            }
-                                            else
-                                            {
-                                                _Tran.Complete();
-                                                return RedirectToAction("Index");
+                                            //}
+                                            //else
+                                            //{
+                                            //    _Tran.Complete();
+                                            //    return RedirectToAction("Index");
                                             }
                                     }
                                 }
                             }
 
-                            else
+                            //else
                             {
                                 _Tran.Complete();
-                                return RedirectToAction("Index");
+                                //return RedirectToAction("Index");
                             }
 
                         }
@@ -341,14 +342,15 @@ namespace ERP_GMEDINA.Controllers
                         Ex.Message.ToString();
                         ModelState.AddModelError("", "No se Actualizó el Registro");
                         return View(tbBodega);
+                        //MsjError = "-1";
                     }
                 }
+                return RedirectToAction("Index");
             }
             this.AllLists();
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
             return View(tbBodega);
-
         }
 
         // GET: /Bodega/Delete/5

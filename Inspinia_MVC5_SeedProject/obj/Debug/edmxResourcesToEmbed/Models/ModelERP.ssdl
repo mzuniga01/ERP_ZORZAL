@@ -3393,7 +3393,6 @@
     <Parameter Name="bod_Correo" Type="varchar(max)" Mode="In" />
     <Parameter Name="bod_Telefono" Type="varchar" Mode="In" />
     <Parameter Name="mun_Codigo" Type="char" Mode="In" />
-    <Parameter Name="bod_EsActiva" Type="tinyint" Mode="In" />
     <Parameter Name="bod_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="bod_Fechacrea" Type="datetime" Mode="In" />
   </Function>
