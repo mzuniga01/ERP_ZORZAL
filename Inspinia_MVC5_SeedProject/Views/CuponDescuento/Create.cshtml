@@ -37,9 +37,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <input id="suc_Id" type="text" value="San Pedro Sula" class="form-control " readonly />
-                @*@Html.DropDownList("suc_Id", String.Empty)*@
-                @Html.ValidationMessageFor(model => model.suc_Id)
+               <select id="suc_Id" name="suc_Id" class="form-control" readonly>
+                   <option value="1">San Pedro Sula</option>
+               </select>
             </div>
         </div>
 
@@ -47,15 +47,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_PorcentajeDescuento)
+                @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @type = "number" } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
-</div>
+         </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_MontoDescuento)
+                @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new { @type = "number" } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MontoDescuento)</p>
 </div>
         </div>
@@ -63,7 +63,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" } })
+                @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @type = "number", @class = "form-control", @readonly = "readonly"} })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
 </div>
         </div>
@@ -116,38 +116,6 @@
                 <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_FechaRedencion)</p>
 </div>
         </div>
-        
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.cdto_UsuarioCrea, "cdto_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("cdto_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.cdto_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cdto_FechaCrea)
-                @Html.ValidationMessageFor(model => model.cdto_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_UsuarioModifica, "cdto_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("cdto_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.cdto_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cdto_FechaModifica)
-                @Html.ValidationMessageFor(model => model.cdto_FechaModifica)
-            </div>
-        </div>*@
 
         <div class="form-group">
             <div class="col-md-12 text-center">
@@ -219,9 +187,9 @@ $(function () {
     //$(document).ready(function () {
         $('#cdto_PorcentajeDescuento').change(function () {
             //if (e.keyCode == 13) {
-                var descuento = $('#cdto_PorcentajeDescuento').val();
-                var valormax = $('#cdto_MaximoMontoDescuento').val();
-                var resultado = valormax -(((descuento) / 100) * valormax);
+            var descuento = $('#cdto_PorcentajeDescuento').val();
+            var valormax = $('#cdto_MaximoMontoDescuento').val();
+            var resultado = parseInt(valormax) - (((parseInt(descuento)) / 100) * parseInt(valormax));
 
                 $('#cdto_MontoDescuento').val(resultado);
             //}

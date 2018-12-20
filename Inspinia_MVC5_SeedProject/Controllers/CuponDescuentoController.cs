@@ -41,7 +41,7 @@ namespace ERP_GMEDINA.Controllers
         {
             //ViewBag.cdto_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             //ViewBag.cdto_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
+            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
             return View();
         }
 
@@ -95,7 +95,7 @@ namespace ERP_GMEDINA.Controllers
             }
             //ViewBag.cdto_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCuponDescuento.cdto_UsuarioModifica);
             //ViewBag.cdto_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCuponDescuento.cdto_UsuarioCrea);
-            //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbCuponDescuento.suc_Id);
+            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion", tbCuponDescuento.suc_Id);
             return View(tbCuponDescuento);
         }
 
@@ -104,7 +104,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_Redimido,cdto_Anulado,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica,cdto_FechaRedencion")] tbCuponDescuento tbCuponDescuento)
+        public ActionResult Edit([Bind(Include= "cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_Redimido,cdto_Anulado,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica,cdto_FechaRedencion, tbUsuario, tbUsuario1")] tbCuponDescuento tbCuponDescuento)
         {
             if (ModelState.IsValid)
             {
@@ -113,8 +113,8 @@ namespace ERP_GMEDINA.Controllers
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbCuponDescuento_Update(tbCuponDescuento.cdto_ID,tbCuponDescuento.suc_Id, tbCuponDescuento.cdto_FechaEmision, tbCuponDescuento.cdto_FechaVencimiento, tbCuponDescuento.cdto_PorcentajeDescuento,
-                                                              tbCuponDescuento.cdto_MontoDescuento, tbCuponDescuento.cdto_MaximoMontoDescuento, tbCuponDescuento.cdto_Redimido,
-                                                              tbCuponDescuento.cdto_Anulado, tbCuponDescuento.cdto_UsuarioCrea, tbCuponDescuento.cdto_FechaCrea);
+                        tbCuponDescuento.cdto_MontoDescuento, tbCuponDescuento.cdto_MaximoMontoDescuento, tbCuponDescuento.cdto_Redimido,
+                        tbCuponDescuento.cdto_Anulado, tbCuponDescuento.cdto_UsuarioCrea, tbCuponDescuento.cdto_FechaCrea);
                     foreach (UDP_Vent_tbCuponDescuento_Update_Result CuponDescuento in list)
                         MensajeError = CuponDescuento.MensajeError;
                     if (MensajeError == -1)
@@ -127,7 +127,7 @@ namespace ERP_GMEDINA.Controllers
                 }
                 catch(Exception Ex)
                 {
-                    ModelState.AddModelError("", "Error al editar el registro" + Ex.Message.ToString());
+                    ModelState.AddModelError("", "Error al Editar el registro" + Ex.Message.ToString());
                     return View(tbCuponDescuento);
                 }
                 
