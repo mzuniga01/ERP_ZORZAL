@@ -704,3 +704,4 @@ C:\Users\gollumti\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Syst
 C:\Users\gollumti\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.xml
 C:\Users\gollumti\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Deployment.xml
 C:\Users\gollumti\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Razor.xml
+C:\Users\Pauli\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojResolveAssemblyReference.cache
