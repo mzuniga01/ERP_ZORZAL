@@ -21,6 +21,12 @@ namespace ERP_GMEDINA.Controllers
             return View(tbpago.ToList());
         }
 
+        public ActionResult IndexPagoFactura()
+        {
+
+            return View(db.tbPago.ToList());
+        }
+
         // GET: /Pago/Details/5
         public ActionResult Details(int? id)
         {

@@ -16,7 +16,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Pedido Por Facturar</h5>
+                    <h5>Pedidos Por Facturar</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -76,10 +76,7 @@
 
                                         <td>
                                             @Html.ActionLink("Detalle", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs" })
-                                            @Html.ActionLink("Editar", "Edit", new { id = item.ped_Id }, new { @class = "btn btn-white btn-xs" })
-                                            <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalFacturar">
-                                                Facturar Pedido
-                                            </button>
+                                            @Html.ActionLink("Facturar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-white btn-xs" })
                                         </td>
                                     </tr>
                                 }
@@ -95,25 +92,7 @@
  </div>
 
 
-<div class="modal fade" id="ModalFacturar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Facturar Pedido</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Esta seguro de facturar?
-            </div>
-            <div class="modal-footer">
-                <a href="@Url.Action("Index","Factura")" class="btn btn-primary">Si</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>

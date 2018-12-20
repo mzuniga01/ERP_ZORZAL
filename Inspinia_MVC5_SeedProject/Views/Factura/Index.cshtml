@@ -22,7 +22,7 @@
                     <h5>Listado de Facturas</h5>
 
                     <div class="ibox-tools">
-                        @Html.ActionLink("Facturas Por Pagar", "IndexFacturaPagar", null, new { @class = "btn btn-primary btn-sm" })
+                        <a class="btn btn-primary btn-sm"  href="@Url.Action("IndexPagoFactura","Pago")">Facturas Por Pagar</a>
                         @Html.ActionLink("Registrar Factura", "Create", null, new { @class = "btn btn-primary btn-sm" })
                     </div>
                     <div class="ibox-content">

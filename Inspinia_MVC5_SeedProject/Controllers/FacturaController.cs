@@ -20,12 +20,13 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
             return View(db.tbFactura.ToList());
         }
-        public ActionResult IndexFacturaPagar()
+        public ActionResult IndexFacturar()
         {
 
-            return View(db.tbFactura.ToList());
+            return View(db.tbPedido.ToList());
         }
- 
+
+
         //[HttpPost]
         //public JsonResult GetProducto(string prod_Codigo)
         //{
