@@ -1125,7 +1125,6 @@
     <Content Include="Views\Sucursal\Edit.cshtml" />
     <Content Include="Views\Sucursal\Index.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexNumeracionWithouBottomNew.cshtml" />
-    <Content Include="Views\PuntoEmision\_IndexNumeracionWithoutBottom.cshtml" />
     <Content Include="Views\ListaPrecios\Delete.cshtml" />
     <Content Include="Views\ListaPrecios\Details.cshtml" />
     <Content Include="Views\ListaPrecios\Edit.cshtml" />
@@ -1158,7 +1157,6 @@
     <Content Include="Views\Pedido\_CreatePedidoDetalle.cshtml" />
     <Content Include="Views\Pedido\_IndexCliente.cshtml" />
     <Content Include="Views\Pedido\_ListPedidoDetalle.cshtml" />
-    <Content Include="Views\PuntoEmision\_IndexNumeracionWithoutBottomDetails.cshtml" />
     <Content Include="Views\MovimientoCaja\Create.cshtml" />
     <Content Include="Views\MovimientoCaja\CreateApertura.cshtml" />
     <Content Include="Views\MovimientoCaja\Delete.cshtml" />

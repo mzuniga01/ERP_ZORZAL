@@ -35,10 +35,8 @@ namespace ERP_ZORZAL.Controllers
                 return HttpNotFound();
             }
             //PuntoEmisionDetalle
-            //tbPuntoEmisionDetalle tbPuntoEmisionDetalle = db.tbPuntoEmisionDetalle.Find(id);
-            //ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", tbPuntoEmisionDetalle.dfisc_Id);
-            //ViewBag.pemid_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmisionDetalle.pemid_UsuarioCrea);
-            //ViewBag.pemid_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmisionDetalle.pemid_UsuarioModifica);
+            tbPuntoEmisionDetalle tbPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
+            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", tbPuntoEmisionDetalle.dfisc_Id);
 
             return View(tbPuntoEmision);
         }
@@ -169,11 +167,9 @@ namespace ERP_ZORZAL.Controllers
             }
 
             //PuntoEmisionDetalle
-            //tbPuntoEmisionDetalle tbPuntoEmisionDetalle = db.tbPuntoEmisionDetalle.Find(id);
-            //ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", tbPuntoEmisionDetalle.dfisc_Id);
-            //ViewBag.pemid_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmisionDetalle.pemid_UsuarioCrea);
-            //ViewBag.pemid_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPuntoEmisionDetalle.pemid_UsuarioModifica);
-            
+            tbPuntoEmisionDetalle tbPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
+            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", tbPuntoEmisionDetalle.dfisc_Id);
+
             return View(tbPuntoEmision);
         }
 
@@ -193,9 +189,9 @@ namespace ERP_ZORZAL.Controllers
 
 
             //PuntoEmisionDetalle
-            //tbPuntoEmisionDetalle tbPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
-            //ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", tbPuntoEmisionDetalle.dfisc_Id);
-            
+            tbPuntoEmisionDetalle tbPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
+            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", tbPuntoEmisionDetalle.dfisc_Id);
+
 
             return View(tbPuntoEmision);
         }
