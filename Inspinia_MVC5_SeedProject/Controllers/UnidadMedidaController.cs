@@ -28,16 +28,16 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbUnidadMedida tbUnidadMedida = db.tbUnidadMedida.Find(id);
-            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbUnidadMedida.uni_UsuarioCrea).usu_NombreUsuario;
-            var UsuarioModifica = tbUnidadMedida.uni_UsuarioModifica;
-            if (UsuarioModifica == null)
-            {
-                ViewBag.UsuarioModifica = "";
-            }
-            else
-            {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModifica).usu_NombreUsuario;
-            };
+            //ViewBag.UsuarioCrea = db.tbUsuario.Find(tbUnidadMedida.uni_UsuarioCrea).usu_NombreUsuario;
+            //var UsuarioModifica = tbUnidadMedida.uni_UsuarioModifica;
+            //if (UsuarioModifica == null)
+            //{
+            //    ViewBag.UsuarioModifica = "";
+            //}
+            //else
+            //{
+            //    ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModifica).usu_NombreUsuario;
+            //};
             if (tbUnidadMedida == null)
             {
                 return HttpNotFound();
@@ -67,8 +67,8 @@ namespace ERP_ZORZAL.Controllers
                     IEnumerable<object> List = null;
                     var MsjError = "";
                     List = db.UDP_Gral_tbUnidadMedida_Insert(tbUnidadMedida.uni_Descripcion, tbUnidadMedida.uni_Abreviatura);
-                    foreach (UDP_Gral_tbUnidadMedida_Insert_Result UnidadMedida in List)
-                        MsjError = UnidadMedida.MensajeError;
+                    foreach (UDP_Gral_tbUnidadMedida_Insert_Result uni in List)
+                        MsjError = uni.MensajeError;
 
                     if (MsjError == "-1")
                     {
@@ -123,33 +123,30 @@ namespace ERP_ZORZAL.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id,[Bind(Include= "uni_Id,uni_Descripcion,uni_Abreviatura,uni_UsuarioCrea, uni_FechaCrea, uni_FechaModifica, tbUsuario,tbUsuario1")] tbUnidadMedida tbUnidadMedida)
+        public ActionResult Edit(int? id,[Bind(Include= "uni_Id,uni_Descripcion,uni_Abreviatura,uni_UsuarioCrea, uni_FechaCrea,uni_UsuarioModifica,uni_FechaModifica,tbUsuario,tbUsuario1")] tbUnidadMedida tbUnidadMedida)
         {
-            
+            /*tbUnidadMedida vtbUnidadMedida = db.tbUnidadMedida.Find(id)*/;
             if (ModelState.IsValid)
             {
-                tbUnidadMedida vtbUnidadMedida = db.tbUnidadMedida.Find(id);
                 //db.Entry(tbUnidadMedida).State = EntityState.Modified;
                 //db.SaveChanges();
                 try
                 {
-                    /*:ssTZD*/
+                    tbUnidadMedida UnidadMedida = db.tbUnidadMedida.Find(id);
                     IEnumerable<object> List = null;
                     var MsjError = "";
-                    //,uni_UsuarioModifica, uni_FechaModifica
-                    //tbUnidadMedida.uni_UsuarioModifica = 1;
-                    //var uni_UsuarioCrea = vtbUnidadMedida.uni_UsuarioCrea;
-                    //var uni_FechaCrea = Convert.ToDateTime(String.Format("{0:d/M/yyyy HH:mm:ss}", vtbUnidadMedida.uni_FechaCrea));
+                    List = db.UDP_Gral_tbUnidadMedida_Update(tbUnidadMedida.uni_Id,
+                                                                tbUnidadMedida.uni_Descripcion,
+                                                                tbUnidadMedida.uni_Abreviatura,
+                                                                tbUnidadMedida.uni_UsuarioCrea,
+                                                                tbUnidadMedida.uni_FechaCrea);
+                    foreach (UDP_Gral_tbUnidadMedida_Update_Result uni in List)
+                        MsjError = uni.MensajeError;
 
-                    //tbUnidadMedida.uni_FechaModifica = DateTime.Now;tbUnidadMedida.uni_FechaCrea
-                    //var FechaCreo = Convert.ToDateTime(uni_FechaCrea);
-                    List = db.UDP_Gral_tbUnidadMedida_Update(vtbUnidadMedida.uni_Id, tbUnidadMedida.uni_Descripcion, tbUnidadMedida.uni_Abreviatura, vtbUnidadMedida.uni_UsuarioCrea, vtbUnidadMedida.uni_FechaCrea);
-                    foreach (UDP_Gral_tbUnidadMedida_Update_Result UnidadMedida in List)
-                        MsjError = UnidadMedida.MensajeError;
-
-                    if (MsjError == "-1")
+                    if (MsjError.Substring(0, 2) == "-1")
                     {
-
+                        ModelState.AddModelError("", "No se guardo el cambio");
+                        return RedirectToAction("Index");
                     }
                     else
                     {

@@ -5,16 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Unidades de Medida</h2>
+        <h2>Unidad de Medida</h2>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="@Url.Action("Index","UnidadMedida")">Regresar</a>
+            @Html.ActionLink("Regresar", "Index")
         </div>
     </div>
-
 </div>
 
 
@@ -33,11 +33,8 @@
                     @Html.AntiForgeryToken()
     
                     <div class="form-horizontal">
-
                         @Html.ValidationSummary(true)
                         @Html.HiddenFor(model => model.uni_Id)
-
-                        @*Auditoria*@
                         @Html.HiddenFor(model => model.uni_UsuarioCrea)
                         @Html.HiddenFor(model => model.uni_FechaCrea)
                         @Html.HiddenFor(model => model.uni_UsuarioModifica)
@@ -47,13 +44,29 @@
                         @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
                         @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
+                        @*Extras usuario crea*@
+                        @Html.HiddenFor(model => model.tbUsuario.usu_NombreUsuario)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Password)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Correo)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_EsActivo)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_EsAdministrador)
+
+                        @*Extras usuario crea*@
+                        @Html.HiddenFor(model => model.tbUsuario1.usu_NombreUsuario)
+                        @Html.HiddenFor(model => model.tbUsuario1.usu_Password)
+                        @Html.HiddenFor(model => model.tbUsuario1.usu_Correo)
+                        @Html.HiddenFor(model => model.tbUsuario1.usu_EsActivo)
+                        @Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador)
+
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.uni_Id)
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.uni_Id, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.uni_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                <p style="color:red">@Html.ValidationMessageFor(model => model.uni_Id)</p>
-</div>
+                                @Html.ValidationMessageFor(model => model.uni_Id)
+                            </div>
                         </div>
 
 
@@ -63,7 +76,7 @@
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.uni_Descripcion)
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.uni_Descripcion)</p>
-</div>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -71,15 +84,15 @@
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.uni_Abreviatura)
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.uni_Abreviatura)</p>
-</div>
+                            </div>
                         </div>
 
-
+        
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Guardar" class="btn btn-primary" />
-                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+				                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
                             </div>
                         </div>
                     </div>
@@ -87,23 +100,14 @@
             </div>
         </div>
             <div class="ibox-content">
-
                 <table class="table table-striped">
                     <tr>
-                        <th>
-                            Acción
-                        </th>
-                        <th>
-                            Usuario
-                        </th>
-                        <th>
-                            Fecha
-                        </th>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
                     </tr>
                     <tr>
-                        <td>
-                            Creado
-                        </td>
+                        <td>Creado</td>
                         <td>
                             @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
                             @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
@@ -111,14 +115,13 @@
                         <td>@Html.DisplayFor(model => model.uni_FechaCrea)</td>
                     </tr>
                     <tr>
+                        <td>Modificado</td>
                         <td>
-                            Modificado
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
                         </td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
                         <td>@Html.DisplayFor(model => model.uni_FechaModifica)</td>
                     </tr>
-
                 </table>
             </div>
     </div>
