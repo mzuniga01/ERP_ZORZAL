@@ -39,23 +39,24 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.pago_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.pago_Id, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.pago_Id)
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pago_FechaElaboracion, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.pago_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly="readonly", @id = "FechaPago" } })
-                @Html.ValidationMessageFor(model => model.pago_FechaElaboracion)
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_FechaElaboracion, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.pago_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "FechaPago" } })
+                    @Html.ValidationMessageFor(model => model.pago_FechaElaboracion)
+                </div>
             </div>
         </div>
 
+        
+
         <div class="form-group">
             @Html.LabelFor(model => model.tbFactura.fact_Codigo, "Factura", new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.tbFactura.fact_Codigo, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.tbFactura.fact_Codigo)
             </div>
@@ -63,18 +64,19 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.tbFactura.clte_Identificacion, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.tbFactura.clte_Identificacion, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.tbFactura.clte_Nombres, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.tbFactura.clte_Nombres, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.tbFactura.clte_Nombres)
+            <div class="form-group">
+                @Html.LabelFor(model => model.tbFactura.clte_Nombres, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.tbFactura.clte_Nombres, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.tbFactura.clte_Nombres)
+                </div>
             </div>
         </div>
+       
        
         <div class="form-group">
             @Html.LabelFor(model => model.pago_SaldoAnterior, new { @class = "control-label col-md-2" })
@@ -83,14 +85,15 @@
                 @Html.ValidationMessageFor(model => model.pago_SaldoAnterior)
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.pago_TotalPago, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.pago_TotalPago , new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.pago_TotalPago, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.pago_TotalPago)
             </div>
         </div>
+
+       
 
         <div class="form-group">
             @Html.LabelFor(model => model.tpa_Id, "Tipo Pago", new { @class = "control-label col-md-2" })
