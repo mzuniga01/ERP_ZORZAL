@@ -72,9 +72,9 @@ namespace ERP_ZORZAL.Controllers
                     try
                     {
 
-                        list = db.UDP_Inv_tbProductoCategoria_Insert(tbProductoCategoria.pcat_Nombre);
-                        foreach (UDP_Inv_tbProductoCategoria_Insert_Result categoria in list)
-                            MsjError = categoria.MensajeError;
+                        //list = db.UDP_Inv_tbProductoCategoria_Insert(tbProductoCategoria.pcat_Nombre);
+                        //foreach (UDP_Inv_tbProductoCategoria_Insert_Result categoria in list)
+                        //    MsjError = categoria.MensajeError;
                         if (MsjError.Substring(0, 2) == "-1")
                         {
                             ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
