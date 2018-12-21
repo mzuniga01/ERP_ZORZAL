@@ -34,7 +34,16 @@
                 <div class="ibox-content">
                   
                         <dl class="dl-horizontal">
-                            
+                            @Html.ValidationSummary(true)
+                            @*Auditoria*@
+                            @Html.HiddenFor(model => model.pemi_UsuarioCrea)
+                            @Html.HiddenFor(model => model.pemi_FechaCrea)
+                            @Html.HiddenFor(model => model.pemi_UsuarioModifica)
+                            @Html.HiddenFor(model => model.pemi_FechaModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
                             <dt>
                                 @Html.DisplayNameFor(model => model.pemi_Id)
                             </dt>
@@ -96,15 +105,19 @@
                         </tr>
                         <tr>
                             <td>Creado</td>
-                            <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
                             <td>@Html.DisplayFor(model => model.pemi_FechaCrea)</td>
                         </tr>
                         <tr>
                             <td>Modificado</td>
-                            <td>@*@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)*@
-                            @*@Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)*@</td>
-                            <td>@*@Html.DisplayFor(model => model.pemi_FechaModifica)*@</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.pemi_FechaModifica)</td>
                         </tr>
                     </table>
                 </div>

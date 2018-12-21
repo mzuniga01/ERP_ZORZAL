@@ -68,7 +68,7 @@ namespace ERP_ZORZAL.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Create([Bind(Include="pemi_NumeroCAI")] tbPuntoEmision tbPuntoEmision)
+        public ActionResult Create([Bind(Include="pemi_NumeroCAI,tbUsuario,tbUsuario1")] tbPuntoEmision tbPuntoEmision)
         {
             var list = (List<tbPuntoEmisionDetalle>)Session["PuntoEmision"];
             var MensajeError = 0;
@@ -179,7 +179,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="pemi_Id,pemi_NumeroCAI,pemi_UsuarioCrea,pemi_FechaCrea,pemi_UsuarioModifica,pemi_FechaModifica")] tbPuntoEmision tbPuntoEmision)
+        public ActionResult Edit([Bind(Include= "pemi_Id,pemi_NumeroCAI,pemi_UsuarioCrea,pemi_FechaCrea,pemi_UsuarioModifica,pemi_FechaModifica,tbUsuario,tbUsuario1")] tbPuntoEmision tbPuntoEmision)
         {
             if (ModelState.IsValid)
             {
