@@ -33,7 +33,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr data-id="@item.prod_Codigo" data-desc="@item.tbProducto.prod_Descripcion">
+            <tr data-id="@item.prod_Codigo" data-desc="@item.tbProducto.prod_Descripcion" data-Valor="@item.factd_PrecioUnitario">
 
                 <td>
                     @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)

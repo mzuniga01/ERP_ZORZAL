@@ -55,6 +55,8 @@ $('#AgregarDetalleDevolucion').click(function () {
             data: JSON.stringify({ DetalleDevolucioncont: DevolucionDetalle }),
         })
         .done(function (data) {
+            $('#MessageError').text('');
+            $('#ErrorFecha').text('');
             $('#ErrorCodigoProductoCreate').val('');
             $('#ErrorProductoDescripcionCreate').val('');
             $('#ErrorDescripcionCreate').val('');
@@ -67,21 +69,20 @@ $('#AgregarDetalleDevolucion').click(function () {
 function GetDevolucionDetalle() {
 
     var DevolucionDetalle = {
-        CodigoProducto : $('#prod_Codigo').val(),
-        Cantidad : $('#devd_CantidadProducto').val(),
-        Comentario : $('#devd_Descripcion').val(),
+        prod_Codigo: $('#prod_Codigo').val(),
+        devd_CantidadProducto: $('#devd_CantidadProducto').val(),
+        devd_Descripcion: $('#devd_Descripcion').val(),
         devd_Id: contador
     }
     return DevolucionDetalle
 };
 
-
-
-
-$(document).on("click", "#tbDetalleDevolucion tbody tr td button#removeDevolucionDetalle",
-    function () {     $(this).closest('tr').remove();     
+$(document).on("click", "#tbDetalleDevolucion tbody tr td button#removeDevolucionDetalle", function () {
+    $(this).closest('tr').remove();
     idItem = $(this).closest('tr').data('id');     
-    var DevolucionDetalle = { devd_Id: idItem, };
+    var DevolucionDetalle = {
+        devd_Id: idItem,
+    };
     $.ajax({
         url: "/Devolucion/RemoveDevolucionDetalle",
         method: "POST",         
@@ -92,45 +93,36 @@ $(document).on("click", "#tbDetalleDevolucion tbody tr td button#removeDevolucio
     });
 
 
+//function GetDevolucionDetalle11() {
+//    var CasosExito = {
+//        CodInstructor: $('#prod_Codigo').val(),
+//        CodTipoCasoExito: $('#CodTipoCasoExitoCreate').val(),
+//        Descripcion: $('#DescripcionCreate').val(),
+//        CodInstructorCasoExito: contador,
+//        Fecha: new Date($('#fechaCreate').val()),
+//        //Fecha: $('#fechaCreate').val(),
+//    };
+//    return CasosExito;
+//}
+
+//copiar = "<tr data-id=" + contador + ">";       
+//copiar += "<td>" + $('#CodTipoCasoExitoCreate option:selected').text() + "</td>";      
+//copiar += "<td hidden id='CodTipoCasoExitoCreate'>" + $('#CodTipoCasoExitoCreate option:selected').val() + "</td>";       
+//copiar += "<td id = 'fechaCreate'>" + $('#fechaCreate').val() + "</td>";         
+//copiar += "<td id = 'DescripcionCreate'>" + $('#DescripcionCreate').val() + "</td>";         
+//copiar += "<td>" + '<button id="removeCasoExito" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";        
+//copiar += "</tr>";       
+//$('#tblCasosExito').append(copiar);
 
 
-
-
-
-
-
-
-
-function GetDevolucionDetalle11() {
-    var CasosExito = {
-        CodInstructor: $('#prod_Codigo').val(),
-        CodTipoCasoExito: $('#CodTipoCasoExitoCreate').val(),
-        Descripcion: $('#DescripcionCreate').val(),
-        CodInstructorCasoExito: contador,
-        Fecha: new Date($('#fechaCreate').val()),
-        //Fecha: $('#fechaCreate').val(),
-    };
-    return CasosExito;
-}
-
-copiar = "<tr data-id=" + contador + ">";       
-copiar += "<td>" + $('#CodTipoCasoExitoCreate option:selected').text() + "</td>";      
-copiar += "<td hidden id='CodTipoCasoExitoCreate'>" + $('#CodTipoCasoExitoCreate option:selected').val() + "</td>";       
-copiar += "<td id = 'fechaCreate'>" + $('#fechaCreate').val() + "</td>";         
-copiar += "<td id = 'DescripcionCreate'>" + $('#DescripcionCreate').val() + "</td>";         
-copiar += "<td>" + '<button id="removeCasoExito" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";        
-copiar += "</tr>";       
-$('#tblCasosExito').append(copiar);
-
-
-function GetDevolucionDetalle122() {
-    var CasosExito = {
-        CodInstructor: $('#CodInstructor').val(),
-        CodTipoCasoExito: $('#CodTipoCasoExitoCreate').val(),
-        Descripcion: $('#DescripcionCreate').val(),
-        CodInstructorCasoExito: contador,
-        Fecha: new Date($('#fechaCreate').val()),
-        //Fecha: $('#fechaCreate').val(),
-    };
-    return CasosExito;
-}
+//function GetDevolucionDetalle122() {
+//    var CasosExito = {
+//        CodInstructor: $('#CodInstructor').val(),
+//        CodTipoCasoExito: $('#CodTipoCasoExitoCreate').val(),
+//        Descripcion: $('#DescripcionCreate').val(),
+//        CodInstructorCasoExito: contador,
+//        Fecha: new Date($('#fechaCreate').val()),
+//        //Fecha: $('#fechaCreate').val(),
+//    };
+//    return CasosExito;
+//}

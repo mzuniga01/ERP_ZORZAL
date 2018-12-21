@@ -80,6 +80,8 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.dev_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             //ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
             //ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "Codigo Factura");
+           tbFacturaDetalle FacturaDetalle = new tbFacturaDetalle();
+
             ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
             ViewBag.Factura = db.tbFactura.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
@@ -112,7 +114,10 @@ namespace ERP_ZORZAL.Controllers
                 {
                     using (TransactionScope Tran = new TransactionScope())
                     {
-                        listDevolucion = db.UDP_Vent_tbDevolucion_Insert(tbDevolucion.fact_Id, tbDevolucion.cja_Id, tbDevolucion.dev_Fecha);
+                        listDevolucion = db.UDP_Vent_tbDevolucion_Insert(
+                            tbDevolucion.fact_Id,
+                            tbDevolucion.cja_Id,
+                            tbDevolucion.dev_Fecha);
                         foreach (UDP_Vent_tbDevolucion_Insert_Result DevolucionL in listDevolucion)
                             MensajeError = DevolucionL.MensajeError;
                         if (MensajeError == -1)
@@ -131,7 +136,11 @@ namespace ERP_ZORZAL.Controllers
                                         foreach (tbDevolucionDetalle Detalle in list)
                                         {
                                             Detalle.dev_Id = MensajeError;
-                                            listDevolucionDetalle = db.UDP_Vent_tbDevolucionDetalle_Insert(Detalle.prod_Codigo, Detalle.devd_CantidadProducto, Detalle.devd_Descripcion);
+                                            listDevolucionDetalle = db.UDP_Vent_tbDevolucionDetalle_Insert(
+                                                Detalle.dev_Id,
+                                                Detalle.prod_Codigo,
+                                                Detalle.devd_CantidadProducto,
+                                                Detalle.devd_Descripcion);
                                             foreach (UDP_Vent_tbDevolucionDetalle_Insert_Result SPDevolucionDetalleDet in listDevolucionDetalle)
                                             {
                                                 MensajeErrorDetalle = SPDevolucionDetalleDet.MensajeError;
@@ -145,9 +154,12 @@ namespace ERP_ZORZAL.Controllers
                                     }
                                 }
                             }
-                            else { ModelState.AddModelError("", "No se pudo agregar el registro"); return View(tbDevolucion); }
-                        }
-                        Tran.Complete(); return RedirectToAction("Index");
+                            else { ModelState.AddModelError("", "No se pudo agregar el registro");
+                                    return View(tbDevolucion);
+                            }
+                         }
+                        Tran.Complete();
+                        return RedirectToAction("Index");
                     }
                 }
 
@@ -155,15 +167,10 @@ namespace ERP_ZORZAL.Controllers
                 {
                     ModelState.AddModelError("", "No se pudo agregar el registro");
                     return View(tbDevolucion);
-
                 }
-               
             }
             return View(tbDevolucion);
         }
-          
-
-
         // POST: /Devolucion/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

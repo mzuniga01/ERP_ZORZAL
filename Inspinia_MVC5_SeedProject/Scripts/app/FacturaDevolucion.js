@@ -14,10 +14,12 @@
 
 $(document).on("click", "#DataTable tbody tr td button#AgregarFactura", function () {
     idItem = $(this).closest('tr').data('id');
+    CodigoItem = $(this).closest('tr').data('codigo');
     DescItem = $(this).closest('tr').data('desc');
     ClienteItem = $(this).closest('tr').data('cliente');
-    console.log('Cliente', ClienteItem)
-    $("#fact_Codigo").val(idItem);
+    console.log('Cliente', CodigoItem)
+    $("#tbFactura_fact_Codigo").val(idItem);
+    $("#fact_Id").val(CodigoItem);
     $("#tbFactura_clte_Identificacion").val(DescItem);
     $("#tbFactura_clte_Nombres").val(ClienteItem);
     $('#ModalAgregarFactura').modal('hide');
