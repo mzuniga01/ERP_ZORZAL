@@ -72,6 +72,14 @@ $(document).ready(function () {
         $("#clte_Telefono").val('**');
         $('#natural').hide();
     }
+    var campo = $('#tpi_Id').val();
+    if (campo === '') {
+        $("#clte_Identificacion").val('')
+        $('#identificacion').hide();
+    }
+    else {
+        $('#identificacion').show();
+    }
 });
 
 

@@ -3435,9 +3435,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="exo_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="exo_FechaCrea" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="UDP_Vent_tbFactura_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-          <Parameter Name="fact_Id" Type="bigint" Mode="In" />
-        </Function>
         <Function Name="UDP_Vent_tbListadoPrecioDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="lispd_PrecioMayorista" Type="decimal" Mode="In" />
@@ -4484,9 +4481,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="mnda_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="mnda_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="mnda_FechaModifica" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbFactura_Select" ReturnType="Collection(Int16)">
-          <Parameter Name="fact_Id" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbPedido_Select" ReturnType="Collection(Int16)">
           <Parameter Name="ped_Id" Mode="In" Type="Int32" />
@@ -5639,27 +5633,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
         </ComplexType>
         <ComplexType Name="UDP_Gral_tbMoneda_Update_Result">
           <Property Type="Int16" Name="MensajeError" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbFactura_Select_Result">
-          <Property Type="Int64" Name="fact_Id" Nullable="false" />
-          <Property Type="String" Name="fact_Codigo" Nullable="false" MaxLength="19" />
-          <Property Type="DateTime" Name="fact_Fecha" Nullable="false" Precision="23" />
-          <Property Type="Byte" Name="esfac_Id" Nullable="false" />
-          <Property Type="Int16" Name="cja_Id" Nullable="false" />
-          <Property Type="Int16" Name="suc_Id" Nullable="false" />
-          <Property Type="Int32" Name="clte_Id" Nullable="false" />
-          <Property Type="String" Name="pemi_NumeroCAI" Nullable="false" MaxLength="30" />
-          <Property Type="Boolean" Name="fact_AlCredito" Nullable="false" />
-          <Property Type="Int32" Name="fact_DiasCredito" Nullable="false" />
-          <Property Type="Decimal" Name="fact_PorcentajeDescuento" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="Boolean" Name="fact_AutorizarDescuento" Nullable="false" />
-          <Property Type="String" Name="fact_Vendedor" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="clte_RTN_Identidad_Pasaporte" Nullable="false" MaxLength="26" />
-          <Property Type="String" Name="clte_Nombres" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="fact_UsuarioCrea" Nullable="false" />
-          <Property Type="DateTime" Name="fact_FechaCrea" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="fact_UsuarioModifica" Nullable="true" />
-          <Property Type="DateTime" Name="fact_FechaModifica" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbPedido_Select_Result">
           <Property Type="Int32" Name="ped_Id" Nullable="false" />
@@ -9430,8 +9403,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Select">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedido_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedido_Select">
           </FunctionImportMapping>

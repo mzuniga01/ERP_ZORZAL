@@ -2,9 +2,6 @@
     GetIdentificacion();
 });
 
-$(document).ready(function () {
-    GetIdentificacion();
-});
 function GetIdentificacion() {
     if (clte_EsPersonaNatural.checked) {
         var CodIdentificacion = 1;

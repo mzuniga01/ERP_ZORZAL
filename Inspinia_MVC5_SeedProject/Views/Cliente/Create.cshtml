@@ -82,15 +82,12 @@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.clte_FechaNacimiento, new { @class = "control-label col-md-2" })
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         @Html.EditorFor(model => model.clte_FechaNacimiento, "{0:MM/dd/yyyy}")
                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_FechaNacimiento)</p>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.clte_Sexo, new { @class = "control-label col-md-2" })
-                    <div class="col-md-5">
+                    @Html.LabelFor(model => model.clte_Sexo, new { @class = "control-label col-md-1" })
+                    <div class="col-md-4">
                         <select class="form-control" id="clte_Sexo" name="clte_Sexo">
                             <option value="" disabled>Seleccione Sexo</option>
                             <option value="H">Hombre</option>
@@ -102,15 +99,12 @@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.clte_Telefono, new { @class = "control-label col-md-2" })
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         @Html.EditorFor(model => model.clte_Telefono)
                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Telefono)</p>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.clte_CorreoElectronico, new { @class = "control-label col-md-2" })
-                    <div class="col-md-5">
+                    @Html.LabelFor(model => model.clte_CorreoElectronico, new { @class = "control-label col-md-1" })
+                    <div class="col-md-4">
                         @Html.TextBoxFor(model => model.clte_CorreoElectronico, new { @class = "form-control", type = "email" })
                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_CorreoElectronico)</p>
                     </div>
@@ -248,4 +242,7 @@
 <script src="~/Scripts/app/Identificacion.js"></script>
 <script>
     $('#clte_EsActivo').attr('checked', true);
+    $(document).ready(function () {
+        GetIdentificacion();
+    });
 </script>

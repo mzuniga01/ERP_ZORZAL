@@ -363,15 +363,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbMoneda_Update_Result>("UDP_Gral_tbMoneda_Update", mnda_IdParameter, mnda_AbreviaturaParameter, mnda_NombreParameter, mnda_UsuarioCreaParameter, mnda_FechaCreaParameter, mnda_UsuarioModificaParameter, mnda_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<Nullable<short>> UDP_Vent_tbFactura_Select(Nullable<long> fact_Id)
-        {
-            var fact_IdParameter = fact_Id.HasValue ?
-                new ObjectParameter("fact_Id", fact_Id) :
-                new ObjectParameter("fact_Id", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<short>>("UDP_Vent_tbFactura_Select", fact_IdParameter);
-        }
-    
         public virtual ObjectResult<Nullable<short>> UDP_Vent_tbPedido_Select(Nullable<int> ped_Id)
         {
             var ped_IdParameter = ped_Id.HasValue ?
