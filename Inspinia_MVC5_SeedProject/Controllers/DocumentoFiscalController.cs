@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 
-namespace ERP_ZORZAL.Controllers
+namespace ERP_GMEDINA.Controllers
 {
     public class DocumentoFiscalController : Controller
     {
@@ -17,11 +17,12 @@ namespace ERP_ZORZAL.Controllers
         // GET: /DocumentoFiscal/
         public ActionResult Index()
         {
-            return View(db.tbDocumentoFiscal.ToList());
+            var tbdocumentofiscal = db.tbDocumentoFiscal.Include(t => t.tbUsuario).Include(t => t.tbUsuario1);
+            return View(tbdocumentofiscal.ToList());
         }
 
         // GET: /DocumentoFiscal/Details/5
-        public ActionResult Details(byte? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -46,20 +47,40 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="dfisc_Id,dfisc_Descripcion,dfisc_UsuarioCrea,dfisc_FechaCrea,dfisc_UsuarioModifica,dfisc_FechaModifica")] tbDocumentoFiscal tbDocumentoFiscal)
+        public ActionResult Create([Bind(Include= "dfisc_Id,dfisc_Descripcion,dfisc_UsuarioCrea,dfisc_FechaCrea,dfisc_UsuarioModifica,dfisc_FechaModifica")] tbDocumentoFiscal tbDocumentoFiscal)
         {
             if (ModelState.IsValid)
             {
-                db.tbDocumentoFiscal.Add(tbDocumentoFiscal);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    //////////Aqui va la lista//////////////
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbDocumentoFiscal_Insert(tbDocumentoFiscal.dfisc_Id, tbDocumentoFiscal.dfisc_Descripcion);
+                    foreach (UDP_Vent_tbDocumentoFiscal_Insert_Result DocumentoFiscal in list)
+                        MensajeError = Convert.ToInt32(DocumentoFiscal.MensajeError);
+                    if (MensajeError == -1)
+                    {
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        return View(tbDocumentoFiscal);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                    return View(tbDocumentoFiscal);
+                }
             }
-
             return View(tbDocumentoFiscal);
         }
 
         // GET: /DocumentoFiscal/Edit/5
-        public ActionResult Edit(byte? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -70,6 +91,8 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.dfisc_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDocumentoFiscal.dfisc_UsuarioCrea);
+            ViewBag.dfisc_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDocumentoFiscal.dfisc_UsuarioModifica);
             return View(tbDocumentoFiscal);
         }
 
@@ -78,19 +101,40 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="dfisc_Id,dfisc_Descripcion,dfisc_UsuarioCrea,dfisc_FechaCrea,dfisc_UsuarioModifica,dfisc_FechaModifica")] tbDocumentoFiscal tbDocumentoFiscal)
+        public ActionResult Edit([Bind(Include = "dfisc_Id,dfisc_Descripcion,dfisc_UsuarioCrea,dfisc_FechaCrea,dfisc_UsuarioModifica,dfisc_FechaModifica")] tbDocumentoFiscal tbDocumentoFiscal)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbDocumentoFiscal).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    //////////Aqui va la lista//////////////
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbDocumentoFiscal_Update(tbDocumentoFiscal.dfisc_Id, tbDocumentoFiscal.dfisc_Descripcion, tbDocumentoFiscal.dfisc_UsuarioCrea, tbDocumentoFiscal.dfisc_FechaCrea);
+                    foreach (UDP_Vent_tbDocumentoFiscal_Update_Result DocumentoFiscal in list)
+                        MensajeError = Convert.ToInt32(DocumentoFiscal.MensajeError);
+                    if (MensajeError == -1)
+                    {
+                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                        return View(tbDocumentoFiscal);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    return View(tbDocumentoFiscal);
+                }
             }
             return View(tbDocumentoFiscal);
         }
 
         // GET: /DocumentoFiscal/Delete/5
-        public ActionResult Delete(byte? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -107,7 +151,7 @@ namespace ERP_ZORZAL.Controllers
         // POST: /DocumentoFiscal/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(byte id)
+        public ActionResult DeleteConfirmed(string id)
         {
             tbDocumentoFiscal tbDocumentoFiscal = db.tbDocumentoFiscal.Find(id);
             db.tbDocumentoFiscal.Remove(tbDocumentoFiscal);

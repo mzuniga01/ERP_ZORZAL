@@ -3406,6 +3406,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="devd_CantidadProducto" Type="decimal" Mode="In" />
           <Parameter Name="devd_Descripcion" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbDocumentoFiscal_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="dfisc_Id" Type="char" Mode="In" />
+          <Parameter Name="dfisc_Descripcion" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbDocumentoFiscal_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="dfisc_Id" Type="char" Mode="In" />
+          <Parameter Name="dfisc_Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="dfisc_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="dfisc_FechaCrea" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbEstadoSolicitudCredito_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="escre_Descripcion" Type="nvarchar" Mode="In" />
         </Function>
@@ -5638,6 +5648,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
             <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />
           </AssociationSet>
+          <FunctionImport Name="UDP_Vent_tbDocumentoFiscal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Insert_Result)">
+            <Parameter Name="dfisc_Id" Mode="In" Type="String" />
+            <Parameter Name="dfisc_Descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbDocumentoFiscal_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Update_Result)">
+            <Parameter Name="dfisc_Id" Mode="In" Type="String" />
+            <Parameter Name="dfisc_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="dfisc_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="dfisc_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -9358,6 +9378,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="UDP_Vent_tbDocumentoFiscal_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="2" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbDocumentoFiscal_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="2" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10611,6 +10637,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDocumentoFiscal_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDocumentoFiscal_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDocumentoFiscal_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDocumentoFiscal_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

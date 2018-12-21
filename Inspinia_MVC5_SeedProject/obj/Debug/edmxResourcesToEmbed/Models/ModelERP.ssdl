@@ -3401,6 +3401,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="devd_CantidadProducto" Type="decimal" Mode="In" />
     <Parameter Name="devd_Descripcion" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbDocumentoFiscal_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="dfisc_Id" Type="char" Mode="In" />
+    <Parameter Name="dfisc_Descripcion" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbDocumentoFiscal_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="dfisc_Id" Type="char" Mode="In" />
+    <Parameter Name="dfisc_Descripcion" Type="nvarchar" Mode="In" />
+    <Parameter Name="dfisc_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="dfisc_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbEstadoSolicitudCredito_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="escre_Descripcion" Type="nvarchar" Mode="In" />
   </Function>

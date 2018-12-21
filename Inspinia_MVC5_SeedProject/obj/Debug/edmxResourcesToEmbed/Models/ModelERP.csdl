@@ -1205,6 +1205,16 @@
       <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
       <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />
     </AssociationSet>
+    <FunctionImport Name="UDP_Vent_tbDocumentoFiscal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Insert_Result)">
+      <Parameter Name="dfisc_Id" Mode="In" Type="String" />
+      <Parameter Name="dfisc_Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbDocumentoFiscal_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Update_Result)">
+      <Parameter Name="dfisc_Id" Mode="In" Type="String" />
+      <Parameter Name="dfisc_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="dfisc_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="dfisc_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -4925,4 +4935,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="UDP_Vent_tbDocumentoFiscal_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="2" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDocumentoFiscal_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="2" />
+  </ComplexType>
 </Schema>

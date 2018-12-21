@@ -1469,5 +1469,39 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("UDP_Vent_tbFactura_Update", fact_IdParameter, fact_CodigoParameter, fact_FechaParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_AutorizarDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_UsuarioCreaParameter, fact_FechaCreaParameter);
         }
+    
+        public virtual ObjectResult<UDP_Vent_tbDocumentoFiscal_Insert_Result> UDP_Vent_tbDocumentoFiscal_Insert(string dfisc_Id, string dfisc_Descripcion)
+        {
+            var dfisc_IdParameter = dfisc_Id != null ?
+                new ObjectParameter("dfisc_Id", dfisc_Id) :
+                new ObjectParameter("dfisc_Id", typeof(string));
+    
+            var dfisc_DescripcionParameter = dfisc_Descripcion != null ?
+                new ObjectParameter("dfisc_Descripcion", dfisc_Descripcion) :
+                new ObjectParameter("dfisc_Descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDocumentoFiscal_Insert_Result>("UDP_Vent_tbDocumentoFiscal_Insert", dfisc_IdParameter, dfisc_DescripcionParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbDocumentoFiscal_Update_Result> UDP_Vent_tbDocumentoFiscal_Update(string dfisc_Id, string dfisc_Descripcion, Nullable<int> dfisc_UsuarioCrea, Nullable<System.DateTime> dfisc_FechaCrea)
+        {
+            var dfisc_IdParameter = dfisc_Id != null ?
+                new ObjectParameter("dfisc_Id", dfisc_Id) :
+                new ObjectParameter("dfisc_Id", typeof(string));
+    
+            var dfisc_DescripcionParameter = dfisc_Descripcion != null ?
+                new ObjectParameter("dfisc_Descripcion", dfisc_Descripcion) :
+                new ObjectParameter("dfisc_Descripcion", typeof(string));
+    
+            var dfisc_UsuarioCreaParameter = dfisc_UsuarioCrea.HasValue ?
+                new ObjectParameter("dfisc_UsuarioCrea", dfisc_UsuarioCrea) :
+                new ObjectParameter("dfisc_UsuarioCrea", typeof(int));
+    
+            var dfisc_FechaCreaParameter = dfisc_FechaCrea.HasValue ?
+                new ObjectParameter("dfisc_FechaCrea", dfisc_FechaCrea) :
+                new ObjectParameter("dfisc_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDocumentoFiscal_Update_Result>("UDP_Vent_tbDocumentoFiscal_Update", dfisc_IdParameter, dfisc_DescripcionParameter, dfisc_UsuarioCreaParameter, dfisc_FechaCreaParameter);
+        }
     }
 }
