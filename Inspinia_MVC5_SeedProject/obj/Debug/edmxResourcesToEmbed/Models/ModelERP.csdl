@@ -79,9 +79,6 @@
       <Parameter Name="mnda_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="mnda_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbFactura_Select" ReturnType="Collection(Int16)">
-      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbPedido_Select" ReturnType="Collection(Int16)">
       <Parameter Name="ped_Id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -374,7 +371,6 @@
     <EntitySet Name="tbEstadoMovimiento" EntityType="ERP_ZORZALModel.tbEstadoMovimiento" />
     <EntitySet Name="tbInventarioFisicoDetalle" EntityType="ERP_ZORZALModel.tbInventarioFisicoDetalle" />
     <EntitySet Name="tbProducto" EntityType="ERP_ZORZALModel.tbProducto" />
-    <EntitySet Name="tbProductoCategoria" EntityType="ERP_ZORZALModel.tbProductoCategoria" />
     <EntitySet Name="tbProductoSubcategoria" EntityType="ERP_ZORZALModel.tbProductoSubcategoria" />
     <EntitySet Name="tbProveedor" EntityType="ERP_ZORZALModel.tbProveedor" />
     <EntitySet Name="tbSalida" EntityType="ERP_ZORZALModel.tbSalida" />
@@ -730,10 +726,6 @@
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbEntrada" EntitySet="tbEntrada" />
     </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbEntrada_pcat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
-    </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbEntrada" EntitySet="tbEntrada" />
@@ -769,14 +761,6 @@
     <AssociationSet Name="FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbProducto" EntitySet="tbProducto" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -1026,10 +1010,6 @@
       <End Role="tbProducto" EntitySet="tbProducto" />
       <End Role="tbPedidoDetalle" EntitySet="tbPedidoDetalle" />
     </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" Association="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id">
-      <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
-      <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />
-    </AssociationSet>
     <AssociationSet Name="FK_Inv_tbSalida_tbFactura_fact_Id" Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbFactura_fact_Id">
       <End Role="tbFactura" EntitySet="tbFactura" />
       <End Role="tbSalida" EntitySet="tbSalida" />
@@ -1177,6 +1157,54 @@
     <FunctionImport Name="spGetTipoIdentificacion" ReturnType="Collection(ERP_ZORZALModel.spGetTipoIdentificacion_Result)">
       <Parameter Name="PersonaNatural" Mode="In" Type="Boolean" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbFactura_Insert" ReturnType="Collection(Int64)">
+      <Parameter Name="fact_Codigo" Mode="In" Type="String" />
+      <Parameter Name="fact_Fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="esfac_Id" Mode="In" Type="Byte" />
+      <Parameter Name="cja_Id" Mode="In" Type="Int16" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+      <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
+      <Parameter Name="fact_AlCredito" Mode="In" Type="Boolean" />
+      <Parameter Name="fact_DiasCredito" Mode="In" Type="Int32" />
+      <Parameter Name="fact_PorcentajeDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="fact_AutorizarDescuento" Mode="In" Type="Boolean" />
+      <Parameter Name="fact_Vendedor" Mode="In" Type="String" />
+      <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
+      <Parameter Name="clte_Nombres" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbFactura_Update" ReturnType="Collection(Int64)">
+      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+      <Parameter Name="fact_Codigo" Mode="In" Type="String" />
+      <Parameter Name="fact_Fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
+      <Parameter Name="fact_AlCredito" Mode="In" Type="Boolean" />
+      <Parameter Name="fact_DiasCredito" Mode="In" Type="Int32" />
+      <Parameter Name="fact_PorcentajeDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="fact_AutorizarDescuento" Mode="In" Type="Boolean" />
+      <Parameter Name="fact_Vendedor" Mode="In" Type="String" />
+      <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
+      <Parameter Name="clte_Nombres" Mode="In" Type="String" />
+      <Parameter Name="fact_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="fact_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <EntitySet Name="tbProductoCategoria" EntityType="ERP_ZORZALModel.tbProductoCategoria" />
+    <AssociationSet Name="FK_Inv_tbEntrada_pcat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" Association="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id">
+      <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+      <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1233,27 +1261,6 @@
   </ComplexType>
   <ComplexType Name="UDP_Gral_tbMoneda_Update_Result">
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbFactura_Select_Result">
-    <Property Type="Int64" Name="fact_Id" Nullable="false" />
-    <Property Type="String" Name="fact_Codigo" Nullable="false" MaxLength="19" />
-    <Property Type="DateTime" Name="fact_Fecha" Nullable="false" Precision="23" />
-    <Property Type="Byte" Name="esfac_Id" Nullable="false" />
-    <Property Type="Int16" Name="cja_Id" Nullable="false" />
-    <Property Type="Int16" Name="suc_Id" Nullable="false" />
-    <Property Type="Int32" Name="clte_Id" Nullable="false" />
-    <Property Type="String" Name="pemi_NumeroCAI" Nullable="false" MaxLength="30" />
-    <Property Type="Boolean" Name="fact_AlCredito" Nullable="false" />
-    <Property Type="Int32" Name="fact_DiasCredito" Nullable="false" />
-    <Property Type="Decimal" Name="fact_PorcentajeDescuento" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Boolean" Name="fact_AutorizarDescuento" Nullable="false" />
-    <Property Type="String" Name="fact_Vendedor" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="clte_RTN_Identidad_Pasaporte" Nullable="false" MaxLength="26" />
-    <Property Type="String" Name="clte_Nombres" Nullable="false" MaxLength="50" />
-    <Property Type="Int32" Name="fact_UsuarioCrea" Nullable="false" />
-    <Property Type="DateTime" Name="fact_FechaCrea" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="fact_UsuarioModifica" Nullable="true" />
-    <Property Type="DateTime" Name="fact_FechaModifica" Nullable="true" Precision="23" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbPedido_Select_Result">
     <Property Type="Int32" Name="ped_Id" Nullable="false" />
@@ -1493,7 +1500,6 @@
     <NavigationProperty Name="tbBodegaDetalle1" Relationship="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbUsuario_bodd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBodegaDetalle" />
     <NavigationProperty Name="tbBox" Relationship="ERP_ZORZALModel.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBox" />
     <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_UsuarioModifica" FromRole="tbUsuario" ToRole="tbEntrada" />
-    <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
     <NavigationProperty Name="tbEntrada1" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEntrada" />
     <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica" FromRole="tbUsuario" ToRole="tbEstadoMovimiento" />
     <NavigationProperty Name="tbEstadoMovimiento1" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoMovimiento_tbUsuario_estm_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEstadoMovimiento" />
@@ -1503,8 +1509,6 @@
     <NavigationProperty Name="tbInventarioFisicoDetalle1" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbUsuario_invfd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbInventarioFisicoDetalle" />
     <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_prod_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProducto" />
     <NavigationProperty Name="tbProducto1" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProducto" />
-    <NavigationProperty Name="tbProductoCategoria1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
-    <NavigationProperty Name="tbProductoCategoria2" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
     <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoSubcategoria" />
     <NavigationProperty Name="tbProductoSubcategoria1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProductoSubcategoria" />
     <NavigationProperty Name="tbProveedor" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProveedor" />
@@ -1524,6 +1528,9 @@
     <NavigationProperty Name="tbPuntoEmision1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmision" />
     <NavigationProperty Name="tbPuntoEmisionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
     <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
+    <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
+    <NavigationProperty Name="tbProductoCategoria1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
+    <NavigationProperty Name="tbProductoCategoria2" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
   </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
@@ -1926,22 +1933,6 @@
     <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbListadoPrecioDetalle" />
     <NavigationProperty Name="tbPedidoDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbPedidoDetalle" />
   </EntityType>
-  <EntityType Name="tbProductoCategoria">
-    <Key>
-      <PropertyRef Name="pcat_Id" />
-    </Key>
-    <Property Name="pcat_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="pcat_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="pcat_UsuarioCrea" Type="Int32" Nullable="false" />
-    <Property Name="pcat_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="pcat_UsuarioModifica" Type="Int32" />
-    <Property Name="pcat_FechaModifica" Type="DateTime" Precision="3" />
-    <Property Name="pcat_Estado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
-    <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
-    <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
-    <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoCategoria" ToRole="tbProductoSubcategoria" />
-  </EntityType>
   <EntityType Name="tbProductoSubcategoria">
     <Key>
       <PropertyRef Name="pscat_Id" />
@@ -1958,8 +1949,8 @@
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioModifica" FromRole="tbProductoSubcategoria" ToRole="tbUsuario" />
     <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbEstadoMovimiento_estm_Id" FromRole="tbProductoSubcategoria" ToRole="tbEstadoMovimiento" />
     <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProducto" />
-    <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProductoCategoria" />
     <Property Name="pscat_ISV" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProductoCategoria" />
   </EntityType>
   <EntityType Name="tbProveedor">
     <Key>
@@ -3583,18 +3574,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inv_tbEntrada_pcat_UsuarioCrea">
-    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbProductoCategoria">
-        <PropertyRef Name="pcat_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea">
     <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbEntrada" Role="tbEntrada" Multiplicity="*" />
@@ -3700,30 +3679,6 @@
       </Principal>
       <Dependent Role="tbProducto">
         <PropertyRef Name="prod_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
-    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbProductoCategoria">
-        <PropertyRef Name="pcat_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
-    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-    <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbProductoCategoria">
-        <PropertyRef Name="pcat_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -4471,18 +4426,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id">
-    <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbProductoSubcategoria" Role="tbProductoSubcategoria" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbProductoCategoria">
-        <PropertyRef Name="pcat_Id" />
-      </Principal>
-      <Dependent Role="tbProductoSubcategoria">
-        <PropertyRef Name="pcat_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Inv_tbSalida_tbFactura_fact_Id">
     <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbSalida" Role="tbSalida" Multiplicity="*" />
@@ -4919,4 +4862,67 @@
     <Property Type="Byte" Name="tpi_Id" Nullable="false" />
     <Property Type="String" Name="tpi_Descripcion" Nullable="false" MaxLength="25" />
   </ComplexType>
+  <EntityType Name="tbProductoCategoria">
+    <Key>
+      <PropertyRef Name="pcat_Id" />
+    </Key>
+    <Property Name="pcat_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pcat_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pcat_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="pcat_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="pcat_UsuarioModifica" Type="Int32" />
+    <Property Name="pcat_FechaModifica" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoCategoria" ToRole="tbProductoSubcategoria" />
+  </EntityType>
+  <Association Name="FK_Inv_tbEntrada_pcat_UsuarioCrea">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbProductoCategoria">
+        <PropertyRef Name="pcat_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbProductoCategoria">
+        <PropertyRef Name="pcat_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbProductoCategoria">
+        <PropertyRef Name="pcat_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id">
+    <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbProductoSubcategoria" Role="tbProductoSubcategoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbProductoCategoria">
+        <PropertyRef Name="pcat_Id" />
+      </Principal>
+      <Dependent Role="tbProductoSubcategoria">
+        <PropertyRef Name="pcat_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

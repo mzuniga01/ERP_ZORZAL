@@ -396,7 +396,6 @@
           <Property Name="pcat_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="pcat_UsuarioModifica" Type="int" />
           <Property Name="pcat_FechaModifica" Type="datetime" />
-          <Property Name="pcat_Estado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tbProductoSubcategoria">
           <Key>
@@ -3435,6 +3434,37 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="exo_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="exo_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbFactura_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="fact_Codigo" Type="nvarchar" Mode="In" />
+          <Parameter Name="fact_Fecha" Type="datetime" Mode="In" />
+          <Parameter Name="esfac_Id" Type="tinyint" Mode="In" />
+          <Parameter Name="cja_Id" Type="smallint" Mode="In" />
+          <Parameter Name="suc_Id" Type="smallint" Mode="In" />
+          <Parameter Name="clte_Id" Type="int" Mode="In" />
+          <Parameter Name="pemi_NumeroCAI" Type="nvarchar" Mode="In" />
+          <Parameter Name="fact_AlCredito" Type="bit" Mode="In" />
+          <Parameter Name="fact_DiasCredito" Type="int" Mode="In" />
+          <Parameter Name="fact_PorcentajeDescuento" Type="decimal" Mode="In" />
+          <Parameter Name="fact_AutorizarDescuento" Type="bit" Mode="In" />
+          <Parameter Name="fact_Vendedor" Type="varchar" Mode="In" />
+          <Parameter Name="clte_Identificacion" Type="nvarchar" Mode="In" />
+          <Parameter Name="clte_Nombres" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbFactura_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="fact_Id" Type="bigint" Mode="In" />
+          <Parameter Name="fact_Codigo" Type="nvarchar" Mode="In" />
+          <Parameter Name="fact_Fecha" Type="datetime" Mode="In" />
+          <Parameter Name="pemi_NumeroCAI" Type="nvarchar" Mode="In" />
+          <Parameter Name="fact_AlCredito" Type="bit" Mode="In" />
+          <Parameter Name="fact_DiasCredito" Type="int" Mode="In" />
+          <Parameter Name="fact_PorcentajeDescuento" Type="decimal" Mode="In" />
+          <Parameter Name="fact_AutorizarDescuento" Type="bit" Mode="In" />
+          <Parameter Name="fact_Vendedor" Type="varchar" Mode="In" />
+          <Parameter Name="clte_Identificacion" Type="nvarchar" Mode="In" />
+          <Parameter Name="clte_Nombres" Type="nvarchar" Mode="In" />
+          <Parameter Name="fact_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="fact_FechaCrea" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbListadoPrecioDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="lispd_PrecioMayorista" Type="decimal" Mode="In" />
@@ -4774,7 +4804,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <EntitySet Name="tbEstadoMovimiento" EntityType="ERP_ZORZALModel.tbEstadoMovimiento" />
           <EntitySet Name="tbInventarioFisicoDetalle" EntityType="ERP_ZORZALModel.tbInventarioFisicoDetalle" />
           <EntitySet Name="tbProducto" EntityType="ERP_ZORZALModel.tbProducto" />
-          <EntitySet Name="tbProductoCategoria" EntityType="ERP_ZORZALModel.tbProductoCategoria" />
           <EntitySet Name="tbProductoSubcategoria" EntityType="ERP_ZORZALModel.tbProductoSubcategoria" />
           <EntitySet Name="tbProveedor" EntityType="ERP_ZORZALModel.tbProveedor" />
           <EntitySet Name="tbSalida" EntityType="ERP_ZORZALModel.tbSalida" />
@@ -5130,10 +5159,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbEntrada" EntitySet="tbEntrada" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbEntrada_pcat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
-          </AssociationSet>
           <AssociationSet Name="FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbEntrada" EntitySet="tbEntrada" />
@@ -5169,14 +5194,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <AssociationSet Name="FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbProducto" EntitySet="tbProducto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -5426,10 +5443,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <End Role="tbProducto" EntitySet="tbProducto" />
             <End Role="tbPedidoDetalle" EntitySet="tbPedidoDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" Association="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id">
-            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
-            <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />
-          </AssociationSet>
           <AssociationSet Name="FK_Inv_tbSalida_tbFactura_fact_Id" Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbFactura_fact_Id">
             <End Role="tbFactura" EntitySet="tbFactura" />
             <End Role="tbSalida" EntitySet="tbSalida" />
@@ -5577,6 +5590,54 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <FunctionImport Name="spGetTipoIdentificacion" ReturnType="Collection(ERP_ZORZALModel.spGetTipoIdentificacion_Result)">
           <Parameter Name="PersonaNatural" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbFactura_Insert" ReturnType="Collection(Int64)">
+            <Parameter Name="fact_Codigo" Mode="In" Type="String" />
+            <Parameter Name="fact_Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="esfac_Id" Mode="In" Type="Byte" />
+            <Parameter Name="cja_Id" Mode="In" Type="Int16" />
+            <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+            <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+            <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
+            <Parameter Name="fact_AlCredito" Mode="In" Type="Boolean" />
+            <Parameter Name="fact_DiasCredito" Mode="In" Type="Int32" />
+            <Parameter Name="fact_PorcentajeDescuento" Mode="In" Type="Decimal" />
+            <Parameter Name="fact_AutorizarDescuento" Mode="In" Type="Boolean" />
+            <Parameter Name="fact_Vendedor" Mode="In" Type="String" />
+            <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
+            <Parameter Name="clte_Nombres" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbFactura_Update" ReturnType="Collection(Int64)">
+            <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+            <Parameter Name="fact_Codigo" Mode="In" Type="String" />
+            <Parameter Name="fact_Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
+            <Parameter Name="fact_AlCredito" Mode="In" Type="Boolean" />
+            <Parameter Name="fact_DiasCredito" Mode="In" Type="Int32" />
+            <Parameter Name="fact_PorcentajeDescuento" Mode="In" Type="Decimal" />
+            <Parameter Name="fact_AutorizarDescuento" Mode="In" Type="Boolean" />
+            <Parameter Name="fact_Vendedor" Mode="In" Type="String" />
+            <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
+            <Parameter Name="clte_Nombres" Mode="In" Type="String" />
+            <Parameter Name="fact_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="fact_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="tbProductoCategoria" EntityType="ERP_ZORZALModel.tbProductoCategoria" />
+          <AssociationSet Name="FK_Inv_tbEntrada_pcat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" Association="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id">
+            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+            <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -5872,7 +5933,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <NavigationProperty Name="tbBodegaDetalle1" Relationship="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbUsuario_bodd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBodegaDetalle" />
           <NavigationProperty Name="tbBox" Relationship="ERP_ZORZALModel.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBox" />
           <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_UsuarioModifica" FromRole="tbUsuario" ToRole="tbEntrada" />
-          <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
           <NavigationProperty Name="tbEntrada1" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEntrada" />
           <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica" FromRole="tbUsuario" ToRole="tbEstadoMovimiento" />
           <NavigationProperty Name="tbEstadoMovimiento1" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoMovimiento_tbUsuario_estm_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEstadoMovimiento" />
@@ -5882,8 +5942,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <NavigationProperty Name="tbInventarioFisicoDetalle1" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbUsuario_invfd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbInventarioFisicoDetalle" />
           <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_prod_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProducto" />
           <NavigationProperty Name="tbProducto1" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProducto" />
-          <NavigationProperty Name="tbProductoCategoria1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
-          <NavigationProperty Name="tbProductoCategoria2" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
           <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoSubcategoria" />
           <NavigationProperty Name="tbProductoSubcategoria1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProductoSubcategoria" />
           <NavigationProperty Name="tbProveedor" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProveedor" />
@@ -5903,6 +5961,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <NavigationProperty Name="tbPuntoEmision1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmision" />
           <NavigationProperty Name="tbPuntoEmisionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
           <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
+          <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
+          <NavigationProperty Name="tbProductoCategoria1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
+          <NavigationProperty Name="tbProductoCategoria2" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
         </EntityType>
         <EntityType Name="tbActividadEconomica">
           <Key>
@@ -6305,22 +6366,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbListadoPrecioDetalle" />
           <NavigationProperty Name="tbPedidoDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbPedidoDetalle" />
         </EntityType>
-        <EntityType Name="tbProductoCategoria">
-          <Key>
-            <PropertyRef Name="pcat_Id" />
-          </Key>
-          <Property Name="pcat_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="pcat_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="pcat_UsuarioCrea" Type="Int32" Nullable="false" />
-          <Property Name="pcat_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="pcat_UsuarioModifica" Type="Int32" />
-          <Property Name="pcat_FechaModifica" Type="DateTime" Precision="3" />
-          <Property Name="pcat_Estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoCategoria" ToRole="tbProductoSubcategoria" />
-        </EntityType>
         <EntityType Name="tbProductoSubcategoria">
           <Key>
             <PropertyRef Name="pscat_Id" />
@@ -6337,8 +6382,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioModifica" FromRole="tbProductoSubcategoria" ToRole="tbUsuario" />
           <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbEstadoMovimiento_estm_Id" FromRole="tbProductoSubcategoria" ToRole="tbEstadoMovimiento" />
           <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProducto" />
-          <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProductoCategoria" />
           <Property Name="pscat_ISV" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProductoCategoria" />
         </EntityType>
         <EntityType Name="tbProveedor">
           <Key>
@@ -7962,18 +8007,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inv_tbEntrada_pcat_UsuarioCrea">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbProductoCategoria">
-              <PropertyRef Name="pcat_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbEntrada" Role="tbEntrada" Multiplicity="*" />
@@ -8079,30 +8112,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             </Principal>
             <Dependent Role="tbProducto">
               <PropertyRef Name="prod_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbProductoCategoria">
-              <PropertyRef Name="pcat_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbProductoCategoria">
-              <PropertyRef Name="pcat_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -8850,18 +8859,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id">
-          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbProductoSubcategoria" Role="tbProductoSubcategoria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbProductoCategoria">
-              <PropertyRef Name="pcat_Id" />
-            </Principal>
-            <Dependent Role="tbProductoSubcategoria">
-              <PropertyRef Name="pcat_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Inv_tbSalida_tbFactura_fact_Id">
           <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbSalida" Role="tbSalida" Multiplicity="*" />
@@ -9298,6 +9295,69 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Type="Byte" Name="tpi_Id" Nullable="false" />
           <Property Type="String" Name="tpi_Descripcion" Nullable="false" MaxLength="25" />
         </ComplexType>
+        <EntityType Name="tbProductoCategoria">
+          <Key>
+            <PropertyRef Name="pcat_Id" />
+          </Key>
+          <Property Name="pcat_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pcat_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pcat_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="pcat_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="pcat_UsuarioModifica" Type="Int32" />
+          <Property Name="pcat_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoCategoria" ToRole="tbProductoSubcategoria" />
+        </EntityType>
+        <Association Name="FK_Inv_tbEntrada_pcat_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbProductoCategoria">
+              <PropertyRef Name="pcat_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbProductoCategoria">
+              <PropertyRef Name="pcat_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbProductoCategoria">
+              <PropertyRef Name="pcat_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id">
+          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbProductoSubcategoria" Role="tbProductoSubcategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProductoCategoria">
+              <PropertyRef Name="pcat_Id" />
+            </Principal>
+            <Dependent Role="tbProductoSubcategoria">
+              <PropertyRef Name="pcat_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9968,19 +10028,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbProductoCategoria">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProductoCategoria">
-              <MappingFragment StoreEntitySet="tbProductoCategoria">
-                <ScalarProperty Name="pcat_Estado" ColumnName="pcat_Estado" />
-                <ScalarProperty Name="pcat_FechaModifica" ColumnName="pcat_FechaModifica" />
-                <ScalarProperty Name="pcat_UsuarioModifica" ColumnName="pcat_UsuarioModifica" />
-                <ScalarProperty Name="pcat_FechaCrea" ColumnName="pcat_FechaCrea" />
-                <ScalarProperty Name="pcat_UsuarioCrea" ColumnName="pcat_UsuarioCrea" />
-                <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
-                <ScalarProperty Name="pcat_Id" ColumnName="pcat_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbProductoSubcategoria">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProductoSubcategoria">
               <MappingFragment StoreEntitySet="tbProductoSubcategoria">
@@ -10550,6 +10597,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Insert" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Update" />
+          <EntitySetMapping Name="tbProductoCategoria">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProductoCategoria">
+              <MappingFragment StoreEntitySet="tbProductoCategoria">
+                <ScalarProperty Name="pcat_FechaModifica" ColumnName="pcat_FechaModifica" />
+                <ScalarProperty Name="pcat_UsuarioModifica" ColumnName="pcat_UsuarioModifica" />
+                <ScalarProperty Name="pcat_FechaCrea" ColumnName="pcat_FechaCrea" />
+                <ScalarProperty Name="pcat_UsuarioCrea" ColumnName="pcat_UsuarioCrea" />
+                <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+                <ScalarProperty Name="pcat_Id" ColumnName="pcat_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -165,7 +165,7 @@ namespace ERP_ZORZAL.Controllers
 
                 catch (Exception Ex)
                 {
-                    ModelState.AddModelError("", "No se pudo agregar el registro");
+                    ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
                     return View(tbDevolucion);
                 }
             }
