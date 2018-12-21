@@ -141,7 +141,7 @@ namespace ERP_ZORZAL.Controllers
                 {
                    
                     ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", cPuntoEmisionDetalle.dfisc_Id);
-                    ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
+                    ModelState.AddModelError("", "No se pudo agregar el registro" + Ex.Message.ToString());
                     return View(tbPuntoEmision);
                 }
                 
