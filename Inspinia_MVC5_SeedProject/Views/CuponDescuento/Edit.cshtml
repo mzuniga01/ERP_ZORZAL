@@ -89,18 +89,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_Anulado, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <select id="cdto_Anulado" class="form-control">
-                    <option>Seleccionar</option>
-                    <option value="true">Si</option>
-                    <option value="false">No</option>
-                </select>
-                @*@Html.EditorFor(model => model.cdto_Anulado)*@
+                @if(Model.cdto_Anulado == true)
+                {
+                    <input type="text" class="form-control" value="Si"/>
+                }
+                else
+                {
+                    <input type="text" class="form-control" value="No" readonly />
+                }
                 @Html.ValidationMessageFor(model => model.cdto_Anulado)
             </div>
-            @*<div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_Anulado)
-                @Html.ValidationMessageFor(model => model.cdto_Anulado)
-            </div>*@
         </div>
 
         <div class="form-group">
@@ -134,37 +132,6 @@
                 @Html.ValidationMessageFor(model => model.cdto_FechaRedencion)
             </div>
         </div>
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.cdto_UsuarioCrea, "cdto_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.DropDownList("cdto_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.cdto_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cdto_FechaCrea)
-                @Html.ValidationMessageFor(model => model.cdto_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_UsuarioModifica, "cdto_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("cdto_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.cdto_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cdto_FechaModifica)
-                @Html.ValidationMessageFor(model => model.cdto_FechaModifica)
-            </div>
-        </div>*@
 
         <div class="form-group">
             <div class="col-md-12 text-center">
@@ -188,16 +155,16 @@
                     <tr>
                         <td>Creado</td>
                         <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
                     </td>
                     <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
                 </tr>
                 <tr>
                     <td>Modificado</td>
                     <td>
-                        @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                    @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
                 </td>
                 <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
             </tr>
@@ -213,7 +180,7 @@
     @Scripts.Render("~/bundles/jqueryval")
 <script type="text/javascript">
     $('#cdto_PorcentajeDescuento').click(function () {
-        $('#cdto_MontoDescuento').val('')
+        $('#cdto_MontoDescuento').val('0')
         $('#cdto_MaximoMontoDescuento').val('1000.00')
     });
 </script>
@@ -221,20 +188,27 @@
 <script type="text/javascript">
     $('#cdto_MontoDescuento').click(function () {
         $('#cdto_PorcentajeDescuento').val('0')
-        $('#cdto_MaximoMontoDescuento').val('0.00')
+        $('#cdto_MaximoMontoDescuento').val('1000.00')
     });
 </script>
 <script>
-    //$(document).ready(function () {
         $('#cdto_PorcentajeDescuento').change(function () {
-            //if (e.keyCode == 13) {
-                var descuento = $('#cdto_PorcentajeDescuento').val();
-                var valormax = $('#cdto_MaximoMontoDescuento').val();
-                var resultado = valormax -(((descuento) / 100) * valormax);
+            var descuento = $('#cdto_PorcentajeDescuento').val();
+            var valormax = $('#cdto_MaximoMontoDescuento').val();
+            var resultado = (((parseInt(descuento)) / 100) * parseInt(valormax));
 
-                $('#cdto_MontoDescuento').val(resultado);
-            //}
+            $('#cdto_MontoDescuento').val(resultado);
         });
-    //});
+</script>
+<script>
+    $('#cdto_MontoDescuento').change(function () {
+        var montoDesc = $('#cdto_MontoDescuento').val();
+        var descuento = $('#cdto_PorcentajeDescuento').val();
+        var valormax = $('#cdto_MaximoMontoDescuento').val();
+
+        var resultadoporc = (parseInt(montoDesc)*100) / parseInt(valormax);
+
+        $('#cdto_PorcentajeDescuento').val(resultadoporc);
+        });
 </script>
 }
