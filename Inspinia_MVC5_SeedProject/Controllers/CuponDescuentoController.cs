@@ -50,7 +50,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_Redimido,cdto_Anulado,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica,cdto_FechaRedencion")] tbCuponDescuento tbCuponDescuento)
+        public ActionResult Create([Bind(Include= "cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_Redimido,cdto_FechaRedencion,cdto_Anulado,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica")] tbCuponDescuento tbCuponDescuento)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +61,7 @@ namespace ERP_GMEDINA.Controllers
                     list = db.UDP_Vent_tbCuponDescuento_Insert(tbCuponDescuento.suc_Id, tbCuponDescuento.cdto_FechaEmision, 
                                                      tbCuponDescuento.cdto_FechaVencimiento, tbCuponDescuento.cdto_PorcentajeDescuento,
                                                      tbCuponDescuento.cdto_MontoDescuento, tbCuponDescuento.cdto_MaximoMontoDescuento,
-                                                     tbCuponDescuento.cdto_Redimido, tbCuponDescuento.cdto_Anulado);
+                                                     tbCuponDescuento.cdto_Redimido, tbCuponDescuento.cdto_FechaRedencion, tbCuponDescuento.cdto_Anulado );
                     foreach (UDP_Vent_tbCuponDescuento_Insert_Result CuponDescuento in list)
                         MensajeError = CuponDescuento.MensajeError;
                     if (MensajeError == -1)
@@ -104,7 +104,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include= "cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_Redimido,cdto_Anulado,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica,cdto_FechaRedencion, tbUsuario, tbUsuario1")] tbCuponDescuento tbCuponDescuento)
+        public ActionResult Edit([Bind(Include= "cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_Redimido,cdto_FechaRedencion, cdto_Anulado,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica, tbUsuario, tbUsuario1")] tbCuponDescuento tbCuponDescuento)
         {
             if (ModelState.IsValid)
             {
@@ -112,9 +112,18 @@ namespace ERP_GMEDINA.Controllers
                 {
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbCuponDescuento_Update(tbCuponDescuento.cdto_ID,tbCuponDescuento.suc_Id, tbCuponDescuento.cdto_FechaEmision, tbCuponDescuento.cdto_FechaVencimiento, tbCuponDescuento.cdto_PorcentajeDescuento,
-                        tbCuponDescuento.cdto_MontoDescuento, tbCuponDescuento.cdto_MaximoMontoDescuento, tbCuponDescuento.cdto_Redimido,
-                        tbCuponDescuento.cdto_Anulado, tbCuponDescuento.cdto_UsuarioCrea, tbCuponDescuento.cdto_FechaCrea);
+                    list = db.UDP_Vent_tbCuponDescuento_Update(tbCuponDescuento.cdto_ID,
+                        tbCuponDescuento.suc_Id, 
+                        tbCuponDescuento.cdto_FechaEmision, 
+                        tbCuponDescuento.cdto_FechaVencimiento, 
+                        tbCuponDescuento.cdto_PorcentajeDescuento,
+                        tbCuponDescuento.cdto_MontoDescuento, 
+                        tbCuponDescuento.cdto_MaximoMontoDescuento, 
+                        tbCuponDescuento.cdto_Redimido,
+                        tbCuponDescuento.cdto_FechaRedencion,
+                        tbCuponDescuento.cdto_Anulado, 
+                        tbCuponDescuento.cdto_UsuarioCrea, 
+                        tbCuponDescuento.cdto_FechaCrea);
                     foreach (UDP_Vent_tbCuponDescuento_Update_Result CuponDescuento in list)
                         MensajeError = CuponDescuento.MensajeError;
                     if (MensajeError == -1)

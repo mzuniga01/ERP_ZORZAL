@@ -145,12 +145,12 @@
     <Property Name="emp_Puesto" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="emp_FechaIngreso" Type="date" Nullable="false" />
     <Property Name="emp_Direccion" Type="nvarchar" MaxLength="250" Nullable="false" />
-    <Property Name="emp_Observaciones" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="emp_Observaciones" Type="nvarchar" MaxLength="500" />
     <Property Name="emp_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="emp_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="emp_UsuarioModifica" Type="int" />
     <Property Name="emp_FechaModifica" Type="datetime" />
-    <Property Name="emp_Estado" Type="bit" />
+    <Property Name="emp_Estado" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="tbIdentificacionCliente">
     <Key>
@@ -531,7 +531,7 @@
     <Property Name="cdto_MontoDescuento" Type="decimal" Precision="10" Scale="2" />
     <Property Name="cdto_MaximoMontoDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="cdto_Redimido" Type="bit" Nullable="false" />
-    <Property Name="cdto_FechaRedencion" Type="datetime" Nullable="false" />
+    <Property Name="cdto_FechaRedencion" Type="date" Nullable="false" />
     <Property Name="cdto_Anulado" Type="bit" />
     <Property Name="cdto_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="cdto_FechaCrea" Type="datetime" Nullable="false" />
@@ -3375,6 +3375,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="cdto_MontoDescuento" Type="decimal" Mode="In" />
     <Parameter Name="cdto_MaximoMontoDescuento" Type="decimal" Mode="In" />
     <Parameter Name="cdto_Redimido" Type="bit" Mode="In" />
+    <Parameter Name="cdto_FechaRedencion" Type="date" Mode="In" />
     <Parameter Name="cdto_Anulado" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbCuponDescuento_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
@@ -3386,6 +3387,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="cdto_MontoDescuento" Type="decimal" Mode="In" />
     <Parameter Name="cdto_MaximoMontoDescuento" Type="decimal" Mode="In" />
     <Parameter Name="cdto_Redimido" Type="bit" Mode="In" />
+    <Parameter Name="cdto_FechaRedencion" Type="date" Mode="In" />
     <Parameter Name="cdto_Anulado" Type="bit" Mode="In" />
     <Parameter Name="cdto_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="cdto_FechaCrea" Type="datetime" Mode="In" />

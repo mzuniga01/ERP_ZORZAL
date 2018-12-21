@@ -994,92 +994,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucionDetalle_Insert_Result>("UDP_Vent_tbDevolucionDetalle_Insert", devd_IdParameter, prod_CodigoParameter, devd_CantidadProductoParameter, devd_DescripcionParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbCuponDescuento_Insert_Result> UDP_Vent_tbCuponDescuento_Insert(Nullable<short> suc_Id, Nullable<System.DateTime> cdto_FechaEmision, Nullable<System.DateTime> cdto_FechaVencimiento, Nullable<decimal> cdto_PorcentajeDescuento, Nullable<decimal> cdto_MontoDescuento, Nullable<decimal> cdto_MaximoMontoDescuento, Nullable<bool> cdto_Redimido, Nullable<bool> cdto_Anulado)
-        {
-            var suc_IdParameter = suc_Id.HasValue ?
-                new ObjectParameter("suc_Id", suc_Id) :
-                new ObjectParameter("suc_Id", typeof(short));
-    
-            var cdto_FechaEmisionParameter = cdto_FechaEmision.HasValue ?
-                new ObjectParameter("cdto_FechaEmision", cdto_FechaEmision) :
-                new ObjectParameter("cdto_FechaEmision", typeof(System.DateTime));
-    
-            var cdto_FechaVencimientoParameter = cdto_FechaVencimiento.HasValue ?
-                new ObjectParameter("cdto_FechaVencimiento", cdto_FechaVencimiento) :
-                new ObjectParameter("cdto_FechaVencimiento", typeof(System.DateTime));
-    
-            var cdto_PorcentajeDescuentoParameter = cdto_PorcentajeDescuento.HasValue ?
-                new ObjectParameter("cdto_PorcentajeDescuento", cdto_PorcentajeDescuento) :
-                new ObjectParameter("cdto_PorcentajeDescuento", typeof(decimal));
-    
-            var cdto_MontoDescuentoParameter = cdto_MontoDescuento.HasValue ?
-                new ObjectParameter("cdto_MontoDescuento", cdto_MontoDescuento) :
-                new ObjectParameter("cdto_MontoDescuento", typeof(decimal));
-    
-            var cdto_MaximoMontoDescuentoParameter = cdto_MaximoMontoDescuento.HasValue ?
-                new ObjectParameter("cdto_MaximoMontoDescuento", cdto_MaximoMontoDescuento) :
-                new ObjectParameter("cdto_MaximoMontoDescuento", typeof(decimal));
-    
-            var cdto_RedimidoParameter = cdto_Redimido.HasValue ?
-                new ObjectParameter("cdto_Redimido", cdto_Redimido) :
-                new ObjectParameter("cdto_Redimido", typeof(bool));
-    
-            var cdto_AnuladoParameter = cdto_Anulado.HasValue ?
-                new ObjectParameter("cdto_Anulado", cdto_Anulado) :
-                new ObjectParameter("cdto_Anulado", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Insert_Result>("UDP_Vent_tbCuponDescuento_Insert", suc_IdParameter, cdto_FechaEmisionParameter, cdto_FechaVencimientoParameter, cdto_PorcentajeDescuentoParameter, cdto_MontoDescuentoParameter, cdto_MaximoMontoDescuentoParameter, cdto_RedimidoParameter, cdto_AnuladoParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbCuponDescuento_Update_Result> UDP_Vent_tbCuponDescuento_Update(Nullable<int> cdto_ID, Nullable<short> suc_Id, Nullable<System.DateTime> cdto_FechaEmision, Nullable<System.DateTime> cdto_FechaVencimiento, Nullable<decimal> cdto_PorcentajeDescuento, Nullable<decimal> cdto_MontoDescuento, Nullable<decimal> cdto_MaximoMontoDescuento, Nullable<bool> cdto_Redimido, Nullable<bool> cdto_Anulado, Nullable<int> cdto_UsuarioCrea, Nullable<System.DateTime> cdto_FechaCrea)
-        {
-            var cdto_IDParameter = cdto_ID.HasValue ?
-                new ObjectParameter("cdto_ID", cdto_ID) :
-                new ObjectParameter("cdto_ID", typeof(int));
-    
-            var suc_IdParameter = suc_Id.HasValue ?
-                new ObjectParameter("suc_Id", suc_Id) :
-                new ObjectParameter("suc_Id", typeof(short));
-    
-            var cdto_FechaEmisionParameter = cdto_FechaEmision.HasValue ?
-                new ObjectParameter("cdto_FechaEmision", cdto_FechaEmision) :
-                new ObjectParameter("cdto_FechaEmision", typeof(System.DateTime));
-    
-            var cdto_FechaVencimientoParameter = cdto_FechaVencimiento.HasValue ?
-                new ObjectParameter("cdto_FechaVencimiento", cdto_FechaVencimiento) :
-                new ObjectParameter("cdto_FechaVencimiento", typeof(System.DateTime));
-    
-            var cdto_PorcentajeDescuentoParameter = cdto_PorcentajeDescuento.HasValue ?
-                new ObjectParameter("cdto_PorcentajeDescuento", cdto_PorcentajeDescuento) :
-                new ObjectParameter("cdto_PorcentajeDescuento", typeof(decimal));
-    
-            var cdto_MontoDescuentoParameter = cdto_MontoDescuento.HasValue ?
-                new ObjectParameter("cdto_MontoDescuento", cdto_MontoDescuento) :
-                new ObjectParameter("cdto_MontoDescuento", typeof(decimal));
-    
-            var cdto_MaximoMontoDescuentoParameter = cdto_MaximoMontoDescuento.HasValue ?
-                new ObjectParameter("cdto_MaximoMontoDescuento", cdto_MaximoMontoDescuento) :
-                new ObjectParameter("cdto_MaximoMontoDescuento", typeof(decimal));
-    
-            var cdto_RedimidoParameter = cdto_Redimido.HasValue ?
-                new ObjectParameter("cdto_Redimido", cdto_Redimido) :
-                new ObjectParameter("cdto_Redimido", typeof(bool));
-    
-            var cdto_AnuladoParameter = cdto_Anulado.HasValue ?
-                new ObjectParameter("cdto_Anulado", cdto_Anulado) :
-                new ObjectParameter("cdto_Anulado", typeof(bool));
-    
-            var cdto_UsuarioCreaParameter = cdto_UsuarioCrea.HasValue ?
-                new ObjectParameter("cdto_UsuarioCrea", cdto_UsuarioCrea) :
-                new ObjectParameter("cdto_UsuarioCrea", typeof(int));
-    
-            var cdto_FechaCreaParameter = cdto_FechaCrea.HasValue ?
-                new ObjectParameter("cdto_FechaCrea", cdto_FechaCrea) :
-                new ObjectParameter("cdto_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Update_Result>("UDP_Vent_tbCuponDescuento_Update", cdto_IDParameter, suc_IdParameter, cdto_FechaEmisionParameter, cdto_FechaVencimientoParameter, cdto_PorcentajeDescuentoParameter, cdto_MontoDescuentoParameter, cdto_MaximoMontoDescuentoParameter, cdto_RedimidoParameter, cdto_AnuladoParameter, cdto_UsuarioCreaParameter, cdto_FechaCreaParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbListadoPrecioDetalle_Insert_Result> UDP_Vent_tbListadoPrecioDetalle_Insert(string prod_Codigo, Nullable<decimal> lispd_PrecioMayorista, Nullable<decimal> lispd_PrecioMinorista, Nullable<System.DateTime> lispd_FechaInicioVigencia, Nullable<System.DateTime> lispd_FechaFinalVigencia, Nullable<decimal> lispd_DescCaja, Nullable<decimal> lispd_DescGerente)
         {
             var prod_CodigoParameter = prod_Codigo != null ?
@@ -1502,6 +1416,100 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("dfisc_FechaCrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDocumentoFiscal_Update_Result>("UDP_Vent_tbDocumentoFiscal_Update", dfisc_IdParameter, dfisc_DescripcionParameter, dfisc_UsuarioCreaParameter, dfisc_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbCuponDescuento_Insert_Result> UDP_Vent_tbCuponDescuento_Insert(Nullable<short> suc_Id, Nullable<System.DateTime> cdto_FechaEmision, Nullable<System.DateTime> cdto_FechaVencimiento, Nullable<decimal> cdto_PorcentajeDescuento, Nullable<decimal> cdto_MontoDescuento, Nullable<decimal> cdto_MaximoMontoDescuento, Nullable<bool> cdto_Redimido, Nullable<System.DateTime> cdto_FechaRedencion, Nullable<bool> cdto_Anulado)
+        {
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(short));
+    
+            var cdto_FechaEmisionParameter = cdto_FechaEmision.HasValue ?
+                new ObjectParameter("cdto_FechaEmision", cdto_FechaEmision) :
+                new ObjectParameter("cdto_FechaEmision", typeof(System.DateTime));
+    
+            var cdto_FechaVencimientoParameter = cdto_FechaVencimiento.HasValue ?
+                new ObjectParameter("cdto_FechaVencimiento", cdto_FechaVencimiento) :
+                new ObjectParameter("cdto_FechaVencimiento", typeof(System.DateTime));
+    
+            var cdto_PorcentajeDescuentoParameter = cdto_PorcentajeDescuento.HasValue ?
+                new ObjectParameter("cdto_PorcentajeDescuento", cdto_PorcentajeDescuento) :
+                new ObjectParameter("cdto_PorcentajeDescuento", typeof(decimal));
+    
+            var cdto_MontoDescuentoParameter = cdto_MontoDescuento.HasValue ?
+                new ObjectParameter("cdto_MontoDescuento", cdto_MontoDescuento) :
+                new ObjectParameter("cdto_MontoDescuento", typeof(decimal));
+    
+            var cdto_MaximoMontoDescuentoParameter = cdto_MaximoMontoDescuento.HasValue ?
+                new ObjectParameter("cdto_MaximoMontoDescuento", cdto_MaximoMontoDescuento) :
+                new ObjectParameter("cdto_MaximoMontoDescuento", typeof(decimal));
+    
+            var cdto_RedimidoParameter = cdto_Redimido.HasValue ?
+                new ObjectParameter("cdto_Redimido", cdto_Redimido) :
+                new ObjectParameter("cdto_Redimido", typeof(bool));
+    
+            var cdto_FechaRedencionParameter = cdto_FechaRedencion.HasValue ?
+                new ObjectParameter("cdto_FechaRedencion", cdto_FechaRedencion) :
+                new ObjectParameter("cdto_FechaRedencion", typeof(System.DateTime));
+    
+            var cdto_AnuladoParameter = cdto_Anulado.HasValue ?
+                new ObjectParameter("cdto_Anulado", cdto_Anulado) :
+                new ObjectParameter("cdto_Anulado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Insert_Result>("UDP_Vent_tbCuponDescuento_Insert", suc_IdParameter, cdto_FechaEmisionParameter, cdto_FechaVencimientoParameter, cdto_PorcentajeDescuentoParameter, cdto_MontoDescuentoParameter, cdto_MaximoMontoDescuentoParameter, cdto_RedimidoParameter, cdto_FechaRedencionParameter, cdto_AnuladoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbCuponDescuento_Update_Result> UDP_Vent_tbCuponDescuento_Update(Nullable<int> cdto_ID, Nullable<short> suc_Id, Nullable<System.DateTime> cdto_FechaEmision, Nullable<System.DateTime> cdto_FechaVencimiento, Nullable<decimal> cdto_PorcentajeDescuento, Nullable<decimal> cdto_MontoDescuento, Nullable<decimal> cdto_MaximoMontoDescuento, Nullable<bool> cdto_Redimido, Nullable<System.DateTime> cdto_FechaRedencion, Nullable<bool> cdto_Anulado, Nullable<int> cdto_UsuarioCrea, Nullable<System.DateTime> cdto_FechaCrea)
+        {
+            var cdto_IDParameter = cdto_ID.HasValue ?
+                new ObjectParameter("cdto_ID", cdto_ID) :
+                new ObjectParameter("cdto_ID", typeof(int));
+    
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(short));
+    
+            var cdto_FechaEmisionParameter = cdto_FechaEmision.HasValue ?
+                new ObjectParameter("cdto_FechaEmision", cdto_FechaEmision) :
+                new ObjectParameter("cdto_FechaEmision", typeof(System.DateTime));
+    
+            var cdto_FechaVencimientoParameter = cdto_FechaVencimiento.HasValue ?
+                new ObjectParameter("cdto_FechaVencimiento", cdto_FechaVencimiento) :
+                new ObjectParameter("cdto_FechaVencimiento", typeof(System.DateTime));
+    
+            var cdto_PorcentajeDescuentoParameter = cdto_PorcentajeDescuento.HasValue ?
+                new ObjectParameter("cdto_PorcentajeDescuento", cdto_PorcentajeDescuento) :
+                new ObjectParameter("cdto_PorcentajeDescuento", typeof(decimal));
+    
+            var cdto_MontoDescuentoParameter = cdto_MontoDescuento.HasValue ?
+                new ObjectParameter("cdto_MontoDescuento", cdto_MontoDescuento) :
+                new ObjectParameter("cdto_MontoDescuento", typeof(decimal));
+    
+            var cdto_MaximoMontoDescuentoParameter = cdto_MaximoMontoDescuento.HasValue ?
+                new ObjectParameter("cdto_MaximoMontoDescuento", cdto_MaximoMontoDescuento) :
+                new ObjectParameter("cdto_MaximoMontoDescuento", typeof(decimal));
+    
+            var cdto_RedimidoParameter = cdto_Redimido.HasValue ?
+                new ObjectParameter("cdto_Redimido", cdto_Redimido) :
+                new ObjectParameter("cdto_Redimido", typeof(bool));
+    
+            var cdto_FechaRedencionParameter = cdto_FechaRedencion.HasValue ?
+                new ObjectParameter("cdto_FechaRedencion", cdto_FechaRedencion) :
+                new ObjectParameter("cdto_FechaRedencion", typeof(System.DateTime));
+    
+            var cdto_AnuladoParameter = cdto_Anulado.HasValue ?
+                new ObjectParameter("cdto_Anulado", cdto_Anulado) :
+                new ObjectParameter("cdto_Anulado", typeof(bool));
+    
+            var cdto_UsuarioCreaParameter = cdto_UsuarioCrea.HasValue ?
+                new ObjectParameter("cdto_UsuarioCrea", cdto_UsuarioCrea) :
+                new ObjectParameter("cdto_UsuarioCrea", typeof(int));
+    
+            var cdto_FechaCreaParameter = cdto_FechaCrea.HasValue ?
+                new ObjectParameter("cdto_FechaCrea", cdto_FechaCrea) :
+                new ObjectParameter("cdto_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Update_Result>("UDP_Vent_tbCuponDescuento_Update", cdto_IDParameter, suc_IdParameter, cdto_FechaEmisionParameter, cdto_FechaVencimientoParameter, cdto_PorcentajeDescuentoParameter, cdto_MontoDescuentoParameter, cdto_MaximoMontoDescuentoParameter, cdto_RedimidoParameter, cdto_FechaRedencionParameter, cdto_AnuladoParameter, cdto_UsuarioCreaParameter, cdto_FechaCreaParameter);
         }
     }
 }

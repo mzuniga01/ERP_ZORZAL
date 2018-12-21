@@ -251,29 +251,6 @@
       <Parameter Name="devd_CantidadProducto" Mode="In" Type="Decimal" />
       <Parameter Name="devd_Descripcion" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbCuponDescuento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Insert_Result)">
-      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
-      <Parameter Name="cdto_FechaEmision" Mode="In" Type="DateTime" />
-      <Parameter Name="cdto_FechaVencimiento" Mode="In" Type="DateTime" />
-      <Parameter Name="cdto_PorcentajeDescuento" Mode="In" Type="Decimal" />
-      <Parameter Name="cdto_MontoDescuento" Mode="In" Type="Decimal" />
-      <Parameter Name="cdto_MaximoMontoDescuento" Mode="In" Type="Decimal" />
-      <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
-      <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbCuponDescuento_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Update_Result)">
-      <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
-      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
-      <Parameter Name="cdto_FechaEmision" Mode="In" Type="DateTime" />
-      <Parameter Name="cdto_FechaVencimiento" Mode="In" Type="DateTime" />
-      <Parameter Name="cdto_PorcentajeDescuento" Mode="In" Type="Decimal" />
-      <Parameter Name="cdto_MontoDescuento" Mode="In" Type="Decimal" />
-      <Parameter Name="cdto_MaximoMontoDescuento" Mode="In" Type="Decimal" />
-      <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
-      <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
-      <Parameter Name="cdto_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="cdto_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Insert_Result)">
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
       <Parameter Name="lispd_PrecioMayorista" Mode="In" Type="Decimal" />
@@ -1215,6 +1192,31 @@
       <Parameter Name="dfisc_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="dfisc_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbCuponDescuento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Insert_Result)">
+      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="cdto_FechaEmision" Mode="In" Type="DateTime" />
+      <Parameter Name="cdto_FechaVencimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="cdto_PorcentajeDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cdto_MontoDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cdto_MaximoMontoDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
+      <Parameter Name="cdto_FechaRedencion" Mode="In" Type="DateTime" />
+      <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbCuponDescuento_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Update_Result)">
+      <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="cdto_FechaEmision" Mode="In" Type="DateTime" />
+      <Parameter Name="cdto_FechaVencimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="cdto_PorcentajeDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cdto_MontoDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cdto_MaximoMontoDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
+      <Parameter Name="cdto_FechaRedencion" Mode="In" Type="DateTime" />
+      <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
+      <Parameter Name="cdto_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="cdto_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1643,12 +1645,12 @@
     <Property Name="emp_Puesto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="emp_FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="emp_Direccion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="emp_Observaciones" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="emp_Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="emp_UsuarioCrea" Type="Int32" Nullable="false" />
     <Property Name="emp_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="emp_UsuarioModifica" Type="Int32" />
     <Property Name="emp_FechaModifica" Type="DateTime" Precision="3" />
-    <Property Name="emp_Estado" Type="Boolean" />
+    <Property Name="emp_Estado" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_emp_UsuarioModifica" FromRole="tbEmpleado" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea" FromRole="tbEmpleado" ToRole="tbUsuario" />
     <NavigationProperty Name="tbTipoIdentificacion" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id" FromRole="tbEmpleado" ToRole="tbTipoIdentificacion" />
@@ -2122,7 +2124,7 @@
     <Property Name="cdto_MontoDescuento" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="cdto_MaximoMontoDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
     <Property Name="cdto_Redimido" Type="Boolean" Nullable="false" />
-    <Property Name="cdto_FechaRedencion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="cdto_FechaRedencion" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="cdto_Anulado" Type="Boolean" />
     <Property Name="cdto_UsuarioCrea" Type="Int32" Nullable="false" />
     <Property Name="cdto_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />

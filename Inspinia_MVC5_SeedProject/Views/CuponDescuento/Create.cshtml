@@ -71,7 +71,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_Anulado, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <select id="cdto_Anulado" class="form-control">
+                @*@Html.EditorFor(model => model.cdto_Anulado)*@
+                <select id="cdto_Anulado" name="cdto_Anulado" class="form-control">
                     <option>Seleccionar</option>
                     <option value="true">Si</option>
                     <option value="false">No</option>
