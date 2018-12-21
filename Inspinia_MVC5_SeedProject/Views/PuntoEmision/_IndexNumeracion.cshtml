@@ -15,7 +15,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table table-striped  table-bordered" id="PuntoEmision">
+                    <table class="table table table-striped  table-bordered" id="PuntoEmisionDetalle">
                         <thead>
                             <tr>
                                 <th>
@@ -124,8 +124,26 @@
     </div>
  </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/PuntoEmision.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#PuntoEmisionDetalle').DataTable(
+        {
+            "searching": true,
 
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_ registros por página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+            }
+        });
+    });
+</script>
 <!-- Modal -->
 <div class="modal fade" id="Nuevo" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">

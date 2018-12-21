@@ -681,6 +681,7 @@
     <EntitySetMapping Name="tbProductoSubcategoria">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProductoSubcategoria">
         <MappingFragment StoreEntitySet="tbProductoSubcategoria">
+          <ScalarProperty Name="pscat_ISV" ColumnName="pscat_ISV" />
           <ScalarProperty Name="pscat_FechaModifica" ColumnName="pscat_FechaModifica" />
           <ScalarProperty Name="pscat_UsuarioModifica" ColumnName="pscat_UsuarioModifica" />
           <ScalarProperty Name="pscat_FechaCrea" ColumnName="pscat_FechaCrea" />
@@ -968,6 +969,7 @@
     <EntitySetMapping Name="tbFacturaDetalle">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbFacturaDetalle">
         <MappingFragment StoreEntitySet="tbFacturaDetalle">
+          <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
           <ScalarProperty Name="factd_FechaModifica" ColumnName="factd_FechaModifica" />
           <ScalarProperty Name="factd_UsuarioModifica" ColumnName="factd_UsuarioModifica" />
           <ScalarProperty Name="factd_FechaCrea" ColumnName="factd_FechaCrea" />
@@ -1237,5 +1239,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spGetTipoIdentificacion" FunctionName="ERP_ZORZALModel.Store.spGetTipoIdentificacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetTipoIdentificacion_Result">
+          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+          <ScalarProperty Name="tpi_Descripcion" ColumnName="tpi_Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

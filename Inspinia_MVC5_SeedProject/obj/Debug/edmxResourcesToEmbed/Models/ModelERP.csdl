@@ -156,6 +156,7 @@
       <Parameter Name="clte_ConCredito" Mode="In" Type="Boolean" />
       <Parameter Name="clte_EsMinorista" Mode="In" Type="Boolean" />
       <Parameter Name="clte_Observaciones" Mode="In" Type="String" />
+      <Parameter Name="clte_ConsumidorFinal" Mode="In" Type="Boolean" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbCliente_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCliente_Update_Result)">
       <Parameter Name="clte_Id" Mode="In" Type="Int32" />
@@ -183,6 +184,7 @@
       <Parameter Name="clte_Observaciones" Mode="In" Type="String" />
       <Parameter Name="clte_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="clte_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="clte_ConsumidorFinal" Mode="In" Type="Boolean" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbEstadoSolicitudCredito_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Update_Result)">
       <Parameter Name="escre_Id" Mode="In" Type="Byte" />
@@ -247,6 +249,7 @@
       <Parameter Name="dev_Fecha" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbDevolucionDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucionDetalle_Insert_Result)">
+      <Parameter Name="devd_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
       <Parameter Name="devd_CantidadProducto" Mode="In" Type="Decimal" />
       <Parameter Name="devd_Descripcion" Mode="In" Type="String" />
@@ -1171,6 +1174,9 @@
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
     </AssociationSet>
+    <FunctionImport Name="spGetTipoIdentificacion" ReturnType="Collection(ERP_ZORZALModel.spGetTipoIdentificacion_Result)">
+      <Parameter Name="PersonaNatural" Mode="In" Type="Boolean" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1953,6 +1959,7 @@
     <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbEstadoMovimiento_estm_Id" FromRole="tbProductoSubcategoria" ToRole="tbEstadoMovimiento" />
     <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProducto" />
     <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProductoCategoria" />
+    <Property Name="pscat_ISV" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
   </EntityType>
   <EntityType Name="tbProveedor">
     <Key>
@@ -2080,7 +2087,7 @@
     <Property Name="clte_ContactoTelefono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
     <Property Name="clte_FechaConstitucion" Type="DateTime" Precision="0" />
     <Property Name="mun_Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
-    <Property Name="clte_Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="clte_Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="clte_CorreoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="clte_EsActivo" Type="Boolean" Nullable="false" />
     <Property Name="clte_RazonInactivo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -2303,6 +2310,7 @@
     <Property Name="factd_FechaModifica" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" FromRole="tbFacturaDetalle" ToRole="tbProducto" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" FromRole="tbFacturaDetalle" ToRole="tbFactura" />
+    <Property Name="factd_PrecioUnitario" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
   </EntityType>
   <EntityType Name="tbFacturaHistorica">
     <Key>
@@ -4907,4 +4915,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="spGetTipoIdentificacion_Result">
+    <Property Type="Byte" Name="tpi_Id" Nullable="false" />
+    <Property Type="String" Name="tpi_Descripcion" Nullable="false" MaxLength="25" />
+  </ComplexType>
 </Schema>

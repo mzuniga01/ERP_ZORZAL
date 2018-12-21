@@ -37,7 +37,7 @@
                             <div class="col-md-4" id="natural" name="natural">
                                 <dl class="dl-horizontal">
                                     <dt>
-                                        @Html.DisplayNameFor(model => model.tpi_Id)
+                                       Tipo Identificación
                                     </dt>
                                     <dd>
                                         @Html.DisplayFor(model => model.tbTipoIdentificacion.tpi_Descripcion)
@@ -206,20 +206,48 @@
                                     {
                                         <dd>No</dd>
                                     }
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.tbMunicipio.tbDepartamento.dep_Codigo)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.tbMunicipio.tbDepartamento.dep_Codigo)
+                                    </dd>
+
+
                                     <dt>
                                         Municipio
                                     </dt>
                                     <dd>
                                         @Html.DisplayFor(model => model.tbMunicipio.mun_Nombre)
                                     </dd>
-
                                     <dt>
                                         @Html.DisplayNameFor(model => model.clte_Observaciones)
                                     </dt>
 
-                                    <dd>
-                                        @Html.DisplayFor(model => model.clte_Observaciones)
-                                    </dd>
+                                    @if (Model.clte_Observaciones=="")
+                                    {
+                                        <dd>Ninguna</dd>
+                                    }
+                                    else
+                                    {
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_Observaciones)
+                                        </dd>
+                                    }
+                                   
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_ConsumidorFinal)
+                                    </dt>
+                                        @if (Model.clte_ConsumidorFinal)
+                                        {
+                                        <dd>Sí</dd>
+                                        }
+                                        else
+                                        {
+                                            <dd>No</dd>
+                                        }
                                 </dl>  
                             </div>
                         </div>
@@ -253,7 +281,6 @@
     </div>
 </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/PersonaNatural.js"></script>
 <script src="~/Scripts/app/Activo.js"></script>
 
 

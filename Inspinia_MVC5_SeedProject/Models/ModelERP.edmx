@@ -410,6 +410,7 @@
           <Property Name="pscat_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="pscat_UsuarioModifica" Type="int" />
           <Property Name="pscat_FechaModifica" Type="datetime" />
+          <Property Name="pscat_ISV" Type="decimal" Precision="5" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="tbProveedor">
           <Key>
@@ -511,7 +512,7 @@
           <Property Name="clte_ContactoTelefono" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="clte_FechaConstitucion" Type="date" />
           <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
-          <Property Name="clte_Direccion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="clte_Direccion" Type="nvarchar" MaxLength="100" />
           <Property Name="clte_CorreoElectronico" Type="nvarchar" MaxLength="50" />
           <Property Name="clte_EsActivo" Type="bit" Nullable="false" />
           <Property Name="clte_RazonInactivo" Type="nvarchar" MaxLength="50" />
@@ -678,6 +679,7 @@
           <Property Name="factd_MontoDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="factd_PorcentajeDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="factd_Impuesto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="factd_PrecioUnitario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="factd_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="factd_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="factd_UsuarioModifica" Type="int" />
@@ -3302,6 +3304,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
         <Function Name="spGetMunicipios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="CodDepartamento" Type="char" Mode="In" />
         </Function>
+        <Function Name="spGetTipoIdentificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="PersonaNatural" Type="bit" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbCaja_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="cja_Id" Type="smallint" Mode="In" />
           <Parameter Name="cja_Descripcion" Type="nvarchar" Mode="In" />
@@ -3338,6 +3343,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="clte_ConCredito" Type="bit" Mode="In" />
           <Parameter Name="clte_EsMinorista" Type="bit" Mode="In" />
           <Parameter Name="clte_Observaciones" Type="nvarchar" Mode="In" />
+          <Parameter Name="clte_ConsumidorFinal" Type="bit" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbCliente_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="clte_Id" Type="int" Mode="In" />
@@ -3365,6 +3371,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="clte_Observaciones" Type="nvarchar" Mode="In" />
           <Parameter Name="clte_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="clte_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="clte_ConsumidorFinal" Type="bit" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbCuponDescuento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="suc_Id" Type="smallint" Mode="In" />
@@ -3395,6 +3402,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="dev_Fecha" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbDevolucionDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="devd_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="devd_CantidadProducto" Type="decimal" Mode="In" />
           <Parameter Name="devd_Descripcion" Type="nvarchar" Mode="In" />
@@ -4554,6 +4562,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="clte_ConCredito" Mode="In" Type="Boolean" />
             <Parameter Name="clte_EsMinorista" Mode="In" Type="Boolean" />
             <Parameter Name="clte_Observaciones" Mode="In" Type="String" />
+            <Parameter Name="clte_ConsumidorFinal" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbCliente_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCliente_Update_Result)">
             <Parameter Name="clte_Id" Mode="In" Type="Int32" />
@@ -4581,6 +4590,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="clte_Observaciones" Mode="In" Type="String" />
             <Parameter Name="clte_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="clte_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="clte_ConsumidorFinal" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbEstadoSolicitudCredito_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Update_Result)">
             <Parameter Name="escre_Id" Mode="In" Type="Byte" />
@@ -4645,6 +4655,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="dev_Fecha" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbDevolucionDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucionDetalle_Insert_Result)">
+            <Parameter Name="devd_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="devd_CantidadProducto" Mode="In" Type="Decimal" />
             <Parameter Name="devd_Descripcion" Mode="In" Type="String" />
@@ -5569,6 +5580,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
           </AssociationSet>
+          <FunctionImport Name="spGetTipoIdentificacion" ReturnType="Collection(ERP_ZORZALModel.spGetTipoIdentificacion_Result)">
+          <Parameter Name="PersonaNatural" Mode="In" Type="Boolean" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -6351,6 +6365,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbEstadoMovimiento_estm_Id" FromRole="tbProductoSubcategoria" ToRole="tbEstadoMovimiento" />
           <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProducto" />
           <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProductoCategoria" />
+          <Property Name="pscat_ISV" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
         </EntityType>
         <EntityType Name="tbProveedor">
           <Key>
@@ -6478,7 +6493,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Name="clte_ContactoTelefono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="clte_FechaConstitucion" Type="DateTime" Precision="0" />
           <Property Name="mun_Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Name="clte_Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clte_Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="clte_CorreoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="clte_EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="clte_RazonInactivo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -6701,6 +6716,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Name="factd_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" FromRole="tbFacturaDetalle" ToRole="tbProducto" />
           <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" FromRole="tbFacturaDetalle" ToRole="tbFactura" />
+          <Property Name="factd_PrecioUnitario" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="tbFacturaHistorica">
           <Key>
@@ -9305,6 +9321,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="spGetTipoIdentificacion_Result">
+          <Property Type="Byte" Name="tpi_Id" Nullable="false" />
+          <Property Type="String" Name="tpi_Descripcion" Nullable="false" MaxLength="25" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9993,6 +10013,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <EntitySetMapping Name="tbProductoSubcategoria">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProductoSubcategoria">
               <MappingFragment StoreEntitySet="tbProductoSubcategoria">
+                <ScalarProperty Name="pscat_ISV" ColumnName="pscat_ISV" />
                 <ScalarProperty Name="pscat_FechaModifica" ColumnName="pscat_FechaModifica" />
                 <ScalarProperty Name="pscat_UsuarioModifica" ColumnName="pscat_UsuarioModifica" />
                 <ScalarProperty Name="pscat_FechaCrea" ColumnName="pscat_FechaCrea" />
@@ -10280,6 +10301,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <EntitySetMapping Name="tbFacturaDetalle">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbFacturaDetalle">
               <MappingFragment StoreEntitySet="tbFacturaDetalle">
+                <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
                 <ScalarProperty Name="factd_FechaModifica" ColumnName="factd_FechaModifica" />
                 <ScalarProperty Name="factd_UsuarioModifica" ColumnName="factd_UsuarioModifica" />
                 <ScalarProperty Name="factd_FechaCrea" ColumnName="factd_FechaCrea" />
@@ -10549,6 +10571,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetTipoIdentificacion" FunctionName="ERP_ZORZALModel.Store.spGetTipoIdentificacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetTipoIdentificacion_Result">
+                <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+                <ScalarProperty Name="tpi_Descripcion" ColumnName="tpi_Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

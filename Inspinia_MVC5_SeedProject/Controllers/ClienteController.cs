@@ -52,7 +52,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="clte_Id,tpi_Id,clte_Identificacion,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica")] tbCliente tbCliente)
+        public ActionResult Create([Bind(Include= "clte_Id,tpi_Id,clte_Identificacion,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica,clte_ConsumidorFinal")] tbCliente tbCliente)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +81,8 @@ namespace ERP_GMEDINA.Controllers
                                                         tbCliente.clte_RazonInactivo,
                                                         tbCliente.clte_ConCredito,
                                                         tbCliente.clte_EsMinorista,
-                                                        tbCliente.clte_Observaciones);
+                                                        tbCliente.clte_Observaciones,
+                                                        tbCliente.clte_ConsumidorFinal);
                     foreach (UDP_Vent_tbCliente_Insert_Result cliente in list)
                         MensajeError = cliente.MensajeError;
                     if (MensajeError == -1)
@@ -133,6 +134,8 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+            var Lista = cUtilities.GeneroList();
+            ViewBag.GeneroList = new SelectList(Lista, "ID_GENERO", "DESCRIPCION", tbCliente.clte_Sexo);
             return View(tbCliente);
         }
 
@@ -141,8 +144,9 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="clte_Id,tpi_Id,clte_Identificacion,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica")] tbCliente tbCliente)
+        public ActionResult Edit([Bind(Include= "clte_Id,tpi_Id,clte_Identificacion,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica,clte_ConsumidorFinal")] tbCliente tbCliente)
         {
+            var Lista = cUtilities.GeneroList();
             if (ModelState.IsValid)
             {
                 try
@@ -173,7 +177,8 @@ namespace ERP_GMEDINA.Controllers
                                                         tbCliente.clte_EsMinorista,
                                                         tbCliente.clte_Observaciones,
                                                         tbCliente.clte_UsuarioCrea,
-                                                        tbCliente.clte_FechaCrea);
+                                                        tbCliente.clte_FechaCrea,
+                                                        tbCliente.clte_ConsumidorFinal);
                     foreach (UDP_Vent_tbCliente_Update_Result cliente in list)
                         MensajeError = cliente.MensajeError;
                     if (MensajeError == -1)
@@ -194,6 +199,8 @@ namespace ERP_GMEDINA.Controllers
                     //ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
                     ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
                     ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+                    ViewBag.GeneroList = new SelectList(Lista, "ID_GENERO", "DESCRIPCION", tbCliente.clte_Sexo);
+                    Lista = cUtilities.GeneroList();
                     return View(tbCliente);
                 }
                 return RedirectToAction("Index");
@@ -203,6 +210,8 @@ namespace ERP_GMEDINA.Controllers
             //ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+            ViewBag.GeneroList = new SelectList(Lista, "ID_GENERO", "DESCRIPCION", tbCliente.clte_Sexo);
+            Lista = cUtilities.GeneroList();
             return View(tbCliente);
         }
 
@@ -247,6 +256,16 @@ namespace ERP_GMEDINA.Controllers
             var list = db.spGetMunicipios(CodDepartamento).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult GetIdentificacion(bool CodIdentificacion)
+        {
+            var list = db.spGetTipoIdentificacion(CodIdentificacion).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
+
 
 
 

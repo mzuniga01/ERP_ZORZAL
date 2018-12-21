@@ -29,6 +29,10 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_Identificacion { get; set; }
 
+        [Display(Name = "¿Es Consumidor Final?")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public bool clte_ConsumidorFinal { get; set; }
+
         [Display(Name = "¿Es Persona Natural?")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public bool clte_EsPersonaNatural { get; set; }
@@ -88,7 +92,7 @@ namespace ERP_GMEDINA.Models
         public string mun_Codigo { get; set; }
 
         [Display(Name = "Dirección")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_Direccion { get; set; }
 
         [Display(Name = "Correo Electrónico")]

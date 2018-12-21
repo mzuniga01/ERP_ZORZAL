@@ -1,4 +1,5 @@
 ﻿$("#clte_EsPersonaNatural").change(function () {
+    $('#tpi_Id').val('');
     if (this.checked) {
         //Do stuff
         $('#natural').show();
@@ -13,7 +14,6 @@
         $("#clte_FechaNacimiento").val('');
         $("#clte_Sexo").val('');
         $("#clte_Telefono").val('');
-        $("#clte_Direccion").val('');
         $("#clte_CorreoElectronico").val('');
         $('#juridica').hide();
     }
@@ -24,7 +24,6 @@
         $("#clte_FechaNacimiento").val('');
         $("#clte_Sexo").val('**');
         $("#clte_Telefono").val('**');
-        $("#clte_Direccion").val('');
         $("#clte_CorreoElectronico").val('');
         $("#clte_NombreComercial").val('');
         $("#clte_RazonSocial").val('');
@@ -34,11 +33,33 @@
         $("#clte_FechaConstitucion").val('');
         $('#juridica').show();
     }
+
+    var campo = $('#tpi_Id').val();
+    if (campo === '') {
+        $("#clte_Identificacion").val('')
+        $('#identificacion').hide();
+    }
 });
 
 $(document).ready(function () {
+    $("#clte_Identificacion")[0].maxLength = 26;
+    $("#clte_Nombres")[0].maxLength = 50;
+    $("#clte_Apellidos")[0].maxLength = 50;
+    $("#clte_FechaNacimiento")[0].maxLength = 10;
+    $("#clte_Nacionalidad")[0].maxLength = 30;
+    $("#clte_Telefono")[0].maxLength = 25;
+    $("#clte_NombreComercial")[0].maxLength = 50;
+    $("#clte_RazonSocial")[0].maxLength = 50;
+    $("#clte_ContactoNombre")[0].maxLength = 100;
+    $("#clte_ContactoEmail")[0].maxLength = 50;
+    $("#clte_ContactoTelefono")[0].maxLength = 25;
+    $("#clte_FechaConstitucion")[0].maxLength = 10;
+    $("#clte_Direccion")[0].maxLength = 100;
+    $("#clte_CorreoElectronico")[0].maxLength = 50;
+    $("#clte_RazonInactivo")[0].maxLength = 50;
+    $("#clte_Observaciones")[0].maxLength = 250;
     $('#identificacion').hide();
-
+    $('#consumidorfinal').hide();
     if (clte_EsPersonaNatural.checked) {
         $('#natural').show();
         $('#juridica').hide();
@@ -49,7 +70,6 @@ $(document).ready(function () {
         $("#clte_FechaNacimiento").val('');
         $("#clte_Sexo").val('**');
         $("#clte_Telefono").val('**');
-        $("#clte_Direccion").val('');
         $('#natural').hide();
     }
 });
@@ -73,7 +93,12 @@ $("#tpi_Id").change(function () {
 });
 
 $("#tpi_Id").on("change", function () {
-        $('#identificacion').show();
+    $('#identificacion').show();
+    var campo = $('#tpi_Id').val();
+    if (campo === '') {
+        $("#clte_Identificacion").val('')
+        $('#identificacion').hide();
+    }
 });
 
 $('#clte_EsPersonaNatural').on('click', function () {
@@ -88,6 +113,13 @@ $('#clte_EsPersonaNatural').on('click', function () {
 });
 
 $("#clte_ContactoTelefono").on("keypress keyup blur", function (event) {
+    //this.value = this.value.replace(/[^0-9\.]/g,'');
+    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+});
+$("#clte_Telefono").on("keypress keyup blur", function (event) {
     //this.value = this.value.replace(/[^0-9\.]/g,'');
     $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
