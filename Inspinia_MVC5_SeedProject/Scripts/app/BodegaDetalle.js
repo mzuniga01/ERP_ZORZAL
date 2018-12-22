@@ -169,7 +169,6 @@ $('#AgregarBodegaDetalle').click(function () {
 
     }
 });
-
 function Getbodegadetalle() {
     var BODEGADETALLE = {
         prod_Codigo: $('#prod_Codigo').val(),
@@ -208,12 +207,12 @@ $(document).on("click", "#tblBodegadetalle_Create tbody tr td button#removeBodeg
 function btnActualizarBodegaDetalle(bodd_Id) {
 
     console.log('Hola');
-    var IdMaster = $("#bod_IdEdit_" + bodd_Id).val();
-    var IdDetalle = $("#bodd_IdEdit_" + bodd_Id).val();
-    var C_MINIMA = $("#bodd_CantidadMinimaEdit_" + bodd_Id).val();
-    var C_MAXIMA = $('#bodd_CantidadMaximaEdit_' + bodd_Id).val();
-    var COSTO =          $('#bodd_CostoEdit_' + bodd_Id).val();
-    var C_PROMEDIO =  $('#bodd_CostoPromedioEdit_' + bodd_Id).val();
+    //var IdMaster = $("#bod_IdEdit_" + bodd_Id).val();
+    //var IdDetalle = $("#bodd_IdEdit_" + bodd_Id).val();
+    //var C_MINIMA = $("#bodd_CantidadMinimaEdit_" + bodd_Id).val();
+    //var C_MAXIMA = $('#bodd_CantidadMaximaEdit_' + bodd_Id).val();
+    //var COSTO =          $('#bodd_CostoEdit_' + bodd_Id).val();
+    //var C_PROMEDIO =  $('#bodd_CostoPromedioEdit_' + bodd_Id).val();
 
     var tbBodegaDetalle = Getbodegadetalle_UPDATE();
 
@@ -255,5 +254,128 @@ function Getbodegadetalle_UPDATE() {
         //Fecha: $('#fechaCreate').val(),
     };
     return ACTUALIZAR_tbBodegaDetalle;
+}
+//Fin
+
+
+//Crear Nuevo Detalle Bodega Atraves de Modal
+$('#btnGuardarNuevoDetalle').click(function () {
+    var Producto = $('#prod_Codigo').val();
+    var Preorden = $('#bodd_PuntoReorden').val();
+    var Cminima = $('#bodd_CantidadMinima').val();
+    var Cmaxima = $('#bodd_CantidadMaxima').val();
+    var Costo = $('#bodd_Costo').val();
+    var Cpromedio = $('#bodd_CostoPromedio').val();
+
+
+    if (Producto == '') {
+        $('#MessageError').text('');
+        $('#Error_Producto').text('');
+        $('#Error_PuntoReorden').text('');
+        $('#Error_CantidadMinima').text('');
+        $('#Error_CantidadMaxima').text('');
+        $('#Error_Costo').text('');
+        $('#Error_CostoPromedioo').text('');
+        $('#ErrorProducto_Create').after('<ul id="Error_Producto" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
+    }
+    else if (Preorden == '') {
+        $('#MessageError').text('');
+        $('#Error_Producto').text('');
+        $('#Error_PuntoReorden').text('');
+        $('#Error_CantidadMinima').text('');
+        $('#Error_CantidadMaxima').text('');
+        $('#Error_Costo').text('');
+        $('#Error_CostoPromedioo').text('');
+        $('#ErrorPuntoReorden_Create').after('<ul id="Error_PuntoReorden" class="validation-summary-errors text-danger">Campo Punto Reorden Requerido</ul>');
+    }
+    else if (Cminima == '') {
+
+        $('#MessageError').text('');
+        $('#Error_Producto').text('');
+        $('#Error_PuntoReorden').text('');
+        $('#Error_CantidadMinima').text('');
+        $('#Error_CantidadMaxima').text('');
+        $('#Error_Costo').text('');
+        $('#Error_CostoPromedioo').text('');
+        $('#ErrorCantidadMinima_Create').after('<ul id="Error_CantidadMinima" class="validation-summary-errors text-danger">Campo Canidad Mínima Requerido</ul>');
+    }
+    else if (Cmaxima == '') {
+
+        $('#MessageError').text('');
+        $('#Error_Producto').text('');
+        $('#Error_PuntoReorden').text('');
+        $('#Error_CantidadMinima').text('');
+        $('#Error_CantidadMaxima').text('');
+        $('#Error_Costo').text('');
+        $('#Error_CostoPromedioo').text('');
+        $('#ErrorCantidadMaxima_Create').after('<ul id="Error_CantidadMaxima" class="validation-summary-errors text-danger">Campo Cantidad Máxima Requerido</ul>');
+    }
+    else if (Costo == '') {
+
+        $('#MessageError').text('');
+        $('#Error_Producto').text('');
+        $('#Error_PuntoReorden').text('');
+        $('#Error_CantidadMinima').text('');
+        $('#Error_CantidadMaxima').text('');
+        $('#Error_Costo').text('');
+        $('#Error_CostoPromedioo').text('');
+        $('#ErrorCosto_Create').after('<ul id="Error_Costo" class="validation-summary-errors text-danger">Campo Costo Requerido</ul>');
+    }
+    else if (Cpromedio == '') {
+
+        $('#MessageError').text('');
+        $('#Error_Producto').text('');
+        $('#Error_PuntoReorden').text('');
+        $('#Error_CantidadMinima').text('');
+        $('#Error_CantidadMaxima').text('');
+        $('#Error_Costo').text('');
+        $('#Error_CostoPromedioo').text('');
+        $('#ErrorCostoPromedio_Create').after('<ul id="Error_CostoPromedioo" class="validation-summary-errors text-danger">Campo Costo Promedio Requerido</ul>');
+    }
+
+    else {
+        //Aqui importa el orden
+        var tbBodegaDetalle = Getbodegadetalle();
+        $.ajax({
+            url: "/Bodega/SaveNuevoDetalle",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ GUARDAR_NUEVO_DETALLE: tbBodegaDetalle }),
+                })
+            .done(function (data) {
+                $('#prod_Codigo').val('');
+                $('#bodd_PuntoReorden').val('');
+                $('#bodd_CantidadMinima').val('');
+                $('#bodd_CantidadMaxima').val('');
+                $('#bodd_Costo').val('');
+                $('#bodd_CostoPromedio').val('');
+
+                $('#MessageError').text('');
+                $('#Error_Producto').text('');
+                $('#Error_PuntoReorden').text('');
+                $('#Error_CantidadMinima').text('');
+                $('#Error_CantidadMaxima').text('');
+                $('#Error_Costo').text('');
+                $('#Error_CostoPromedioo').text('');
+            });
+         }
+});
+function Getbodegadetalle() {
+    var GUARDAR_NUEVO_DETALLE = {
+        bod_Id: $('#bod_Id').val(),
+        bodd_Id: $('#bodd_Id').val(),
+        prod_Codigo: $('#prod_Codigo').val(),
+        bodd_puntoReorden: $('#bodd_PuntoReorden').val(),
+        bodd_cantidadMinima: $('#bodd_CantidadMinima').val(),
+        bodd_cantidadMaxima: $('#bodd_CantidadMaxima').val(),
+        bodd_UsuarioCrea: $('#bodd_UsuarioCrea').val(),
+        bodd_FechaCrea: $('#bodd_FechaCrea').val(),
+        bodd_UsuarioModifica: $('#bodd_UsuarioModifica').val(),
+        bodd_FechaModifica: $('#bodd_FechaModifica').val(),
+        bodd_costo: $('#bodd_Costo').val(),
+        bodd_costoPromedio: $('#bodd_CostoPromedio').val(),
+    };
+    return GUARDAR_NUEVO_DETALLE;
 }
 //Fin

@@ -10,9 +10,6 @@
                 <div class="ibox-content">
                     @Html.AntiForgeryToken()
                     <div class="form-horizontal">
-                        @*<div id="validationSummaryEdit_@Model.bodd_Id">*@
-
-                        @*<p style="color:red">@Html.ValidationSummary(false)</p>*@
                         @Html.ValidationSummary(true)
                         @Html.HiddenFor(model => model.bodd_Id)
                         @Html.HiddenFor(model => model.bod_Id)
@@ -21,7 +18,7 @@
                         @Html.HiddenFor(model => model.bodd_UsuarioModifica)
                         @Html.HiddenFor(model => model.bodd_FechaModifica)
                         @Html.HiddenFor(model => model.prod_Codigo)
-                        @*</div>*@
+                    
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
@@ -41,10 +38,9 @@
                         </div>
 
                         <div class="form-group">
-                            @{string id_bodd_CantidadMinima = "bodd_CantidadMinimaEdit_" + @Model.bodd_Id;}
                             @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.bodd_CantidadMinima, new { @class = "form-control", id = @id_bodd_CantidadMinima })
+                                @Html.EditorFor(model => model.bodd_CantidadMinima, new { @class = "form-control"})
                                 <div id="validationMINIMAEdit_@Model.bodd_Id">
                                     @Html.ValidationMessageFor(model => model.bodd_CantidadMinima)
                                 </div>
@@ -53,10 +49,9 @@
                         </div>
 
                         <div class="form-group">
-                            @{string id_bodd_CantidadMaxima = "bodd_CantidadMaximaEdit_" + @Model.bodd_Id;}
                             @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.bodd_CantidadMaxima, new { @class = "form-control", id = @id_bodd_CantidadMaxima })
+                                @Html.EditorFor(model => model.bodd_CantidadMaxima, new { @class = "form-control"})
                                 <div id="validationMAXIMAEdit_@Model.bodd_Id">
                                     @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
                                 </div>
@@ -66,10 +61,9 @@
 
 
                         <div class="form-group">
-                            @{string id_bodd_Costo = "bodd_CostoEdit_" + @Model.bodd_Id;}
                             @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.bodd_Costo, new { @class = "form-control", id = @id_bodd_Costo })
+                                @Html.EditorFor(model => model.bodd_Costo, new { @class = "form-control" })
                                 <div id="validationCOSTOEdit_@Model.bodd_Id">
                                     @Html.ValidationMessageFor(model => model.bodd_Costo)
                                 </div>
@@ -78,10 +72,9 @@
                         </div>
 
                         <div class="form-group">
-                            @{string id_bodd_CostoPromedio = "bodd_CostoPromedioEdit_" + @Model.bodd_Id;}
                             @Html.LabelFor(model => model.bodd_CostoPromedio, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.bodd_CostoPromedio, new { @class = "form-control", id = @id_bodd_CostoPromedio })
+                                @Html.EditorFor(model => model.bodd_CostoPromedio, new { @class = "form-control" })
                                 <div id="validationCOSTOPROMEDIOEdit_@Model.bodd_Id">
                                     @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
                                 </div>

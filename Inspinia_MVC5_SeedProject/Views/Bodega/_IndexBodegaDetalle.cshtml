@@ -8,9 +8,9 @@
                 <div class="ibox-title">
                     <h5>Listado de Detalles</h5>
                     <div class="title-action">
-                        <div class="box-border">
-                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#RegistrarNuevoDetalle">Registrar Nuevo Detalle</button>
-                        </div>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#RegistrarNuevoDetalle">
+                            Registrar Nuevo Detalle
+                        </button>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -116,7 +116,7 @@
                                                                                       , prod_Codigo = item.prod_Codigo })
                                                 <div class="form-group">
                                                     <div class="col-md-12 text-center">
-                                                        <button class="btn btn-primary" type="button" id="btnActualizarBodegaDetalle" onclick="btnActualizarBodegaDetalle(@item.bodd_Id);">Guardar</button>
+                                                        <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="btnActualizarBodegaDetalle" onclick="btnActualizarBodegaDetalle(@item.bodd_Id);">Guardar</button>
                                                         <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
                                                     </div>
                                                 </div>

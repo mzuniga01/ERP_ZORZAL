@@ -209,7 +209,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo",  "dep_Nombre");
             return View(tbBodega);
         }
-
+       
         //[HttpPost]
         //public JsonResult Getbodegadetalle()
         //{
@@ -235,14 +235,50 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
+        public JsonResult SaveNuevoDetalle(tbBodegaDetalle GUARDAR_NUEVO_DETALLE)
+        {
+            string Msj = "";
+            try
+            {
+                IEnumerable<object> list = null;
+                list = db.UDP_Inv_tbBodegaDetalle_Insert(GUARDAR_NUEVO_DETALLE.prod_Codigo
+                                                         , GUARDAR_NUEVO_DETALLE.bod_Id
+                                                         , GUARDAR_NUEVO_DETALLE.bodd_CantidadMinima
+                                                         , GUARDAR_NUEVO_DETALLE.bodd_CantidadMinima
+                                                         , GUARDAR_NUEVO_DETALLE.bodd_PuntoReorden
+                                                         , GUARDAR_NUEVO_DETALLE.bodd_Costo
+                                                         , GUARDAR_NUEVO_DETALLE.bodd_CostoPromedio
+                                                                            );
+                foreach (UDP_Inv_tbBodegaDetalle_Insert_Result bodega in list)
+                    Msj = bodega.MensajeError;
+
+                if (Msj.Substring(0, 2) == "-1")
+                {
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+
+
+                }
+                else
+                {
+                    //return View("Edit/" + bod_Id);
+                    return Json("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+            }
+            return Json("Index");
+        }
+
+        [HttpPost]
         public JsonResult UpdateBodegaDetalle(tbBodegaDetalle ACTUALIZAR_tbBodegaDetalle)
         {
             string Msj = "";
             try
             {
-                //tbBodegaDetalle obj = db.tbBodegaDetalle.Find(id);
                 IEnumerable<object> list = null;
-                //var MsjError = "";
                 list = db.UDP_Inv_tbBodegaDetalle_Update(ACTUALIZAR_tbBodegaDetalle.bodd_Id
                                                         , ACTUALIZAR_tbBodegaDetalle.prod_Codigo
                                                         , ACTUALIZAR_tbBodegaDetalle.bod_Id
@@ -257,23 +293,24 @@ namespace ERP_GMEDINA.Controllers
                 foreach (UDP_Inv_tbBodegaDetalle_Update_Result bodega in list)
                     Msj = bodega.MensajeError;
 
-                //if (Msj.Substring(0, 2) == "-1")
-                //{
-                //    ModelState.AddModelError("", "No se Actualizo el registro");
-                //    return Json(Msj, JsonRequestBehavior.AllowGet);
-                //}
-                //else
-                //{
-                //    return Json(Msj, JsonRequestBehavior.AllowGet);
-                //}
+                if (Msj.Substring(0, 2) == "-1")
+                {
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+                    
 
+                }
+                else
+                {
+                    //return View("Edit/" + bod_Id);
+                    return Json("Index");
+                }
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se Actualizo el registro");
             }
-            return Json(Msj, JsonRequestBehavior.AllowGet);
+            return Json("Index");
         }
 
         // POST: /Bodega/Edit/5

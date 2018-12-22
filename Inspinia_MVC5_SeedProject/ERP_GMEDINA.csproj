@@ -198,7 +198,6 @@
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\RolesUsuarioController.cs" />
     <Compile Include="Controllers\SalidaController.cs" />
-    <Compile Include="Controllers\tbBodegaDetallesController.cs" />
     <Compile Include="Controllers\tbProveedorsController.cs" />
     <Compile Include="Controllers\TipoEntradaController.cs" />
     <Compile Include="Controllers\TipoSalidaController.cs" />
