@@ -872,7 +872,6 @@
     <Content Include="Scripts\app\Producto.js" />
     <Content Include="Scripts\app\PuntoEmision.js" />
     <Content Include="Scripts\app\PuntoEmisionDetalle.js" />
-    <Content Include="Scripts\app\Rango.js" />
     <Content Include="Scripts\app\SolicitudEfectivo.js" />
     <Content Include="Scripts\app\SolicitudEfectivoDetalle.js" />
     <Content Include="Scripts\app\Sucursal.js" />
