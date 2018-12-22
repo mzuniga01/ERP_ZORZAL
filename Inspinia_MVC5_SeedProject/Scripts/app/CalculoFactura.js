@@ -1,9 +1,15 @@
-﻿$(function () {
+﻿$(document).ready(function () {
 
-    $("#factd_Cantidad,#PrecioUnitario").keyup(function (e) {
+    $("#factd_Cantidad")[0].maxLength = 7;
+    $("#factd_MontoDescuento")[0].maxLength = 12;
+})
+
+$(function () {
+
+    $("#factd_Cantidad,#factd_PrecioUnitario").keyup(function (e) {
 
         var val1 = $("#factd_Cantidad").val(),
-            val2 = $("#PrecioUnitario").val(),
+            val2 = $("#factd_PrecioUnitario").val(),
             result = "";
 
         if (val1.length > 0) {
@@ -20,19 +26,18 @@
 $(function () {
 
     $("#factd_MontoDescuento").keyup(function (e) {
-
-        var val1 = $("#factd_MontoDescuento").val(),
-            val2 = $("#SubtotalProducto").val(),
+        var Descuento = document.getElementById("factd_MontoDescuento").value;
+        var Subtotal = document.getElementById("SubtotalProducto").value;
+        var Porcentaje = (parseFloat(Descuento) / 100);
+        var VarDescuento = (parseFloat(Subtotal) * parseFloat(Porcentaje));
         result = "";
-        if (val1.length > 0) {
-        }
-        if (val2.length > 0) {
-            result += (val2 * val1);
-        }
-        $("#TotalProducto").val(result);
+
+        result += (Subtotal - VarDescuento);
+
+        console.log("Hola")
+       $("#TotalProducto").val(result);
 
     });
 
 });
-
 

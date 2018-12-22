@@ -34,7 +34,7 @@
 
                             @foreach (var item in Model)
                             {
-                                <tr data-id="@item.clte_Identificacion" data-name="@item.clte_Nombres" data-names="@item.clte_NombreComercial">
+                                <tr data-id="@item.clte_Id" data-cliente="@item.clte_Identificacion" data-name="@item.clte_Nombres">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.clte_Id)
                                     </td>
@@ -43,22 +43,22 @@
                                     </td>
                                     @{ if (Convert.ToInt32(item.clte_EsPersonaNatural) == 1)
                                         {
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.clte_Nombres)
-                                        </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.clte_Nombres)
+                                            </td>
                                         }
                                         else
                                         {
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.clte_NombreComercial)
-                                        </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.clte_NombreComercial)
+                                            </td>
                                         }
                                     }
                                     <td>
                                         <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
                                     </td>
                                 </tr>
-                               }
+                                        }
                         </tbody>
                     </table>
 
@@ -89,6 +89,5 @@
         });
     });
 </script>
-
 
 

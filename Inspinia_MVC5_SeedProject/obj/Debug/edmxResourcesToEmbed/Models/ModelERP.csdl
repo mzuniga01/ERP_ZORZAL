@@ -1045,7 +1045,7 @@
     <FunctionImport Name="spGetTipoIdentificacion" ReturnType="Collection(ERP_ZORZALModel.spGetTipoIdentificacion_Result)">
       <Parameter Name="PersonaNatural" Mode="In" Type="Boolean" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbFactura_Insert" ReturnType="Collection(Int64)">
+    <FunctionImport Name="UDP_Vent_tbFactura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Insert_Result)">
       <Parameter Name="fact_Codigo" Mode="In" Type="String" />
       <Parameter Name="fact_Fecha" Mode="In" Type="DateTime" />
       <Parameter Name="esfac_Id" Mode="In" Type="Byte" />
@@ -1061,7 +1061,7 @@
       <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
       <Parameter Name="clte_Nombres" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbFactura_Update" ReturnType="Collection(Int64)">
+    <FunctionImport Name="UDP_Vent_tbFactura_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Update_Result)">
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
       <Parameter Name="fact_Codigo" Mode="In" Type="String" />
       <Parameter Name="fact_Fecha" Mode="In" Type="DateTime" />
@@ -5034,5 +5034,11 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbSolicitudCredito_Insert_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbFactura_Insert_Result">
+    <Property Type="Int64" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbFactura_Update_Result">
+    <Property Type="Int64" Name="MensajeError" Nullable="false" />
   </ComplexType>
 </Schema>

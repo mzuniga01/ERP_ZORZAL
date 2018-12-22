@@ -20,9 +20,11 @@ $(document).ready(function () {
 
 //Factura Seleccionar Cliente
 $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function () {
-    idItem = $(this).closest('tr').data('id');
+    cliente = $(this).closest('tr').data('id');
+    idItem = $(this).closest('tr').data('cliente');
     NombreCliente = $(this).closest('tr').data('name');
     $("#clte_Identificacion").val(idItem);
+    $("#clte_Id").val(cliente);
     $("#clte_Nombres").val(NombreCliente);
     $('#ModalAgregarCliente').modal('hide');
     //CargarAsignaciones();
@@ -39,15 +41,5 @@ $(document).ready(function () {
         $("#clte_Nombres").val(NombreCliente);
         $('#ModalAgregarCliente').modal('hide');
     });
-});
-
-//ExoneracionSeleccionar Cliente
-$(document).on("click", "#tbCliente tbody tr td button#seleccionar", function () {
-    idItem = $(this).closest('tr').data('id');
-    NombreCliente = $(this).closest('tr').data('name');
-    $("#clte_Id").val(idItem);
-    //$("#clte_Nombres").val(NombreCliente);
-    $('#ModalAgregarCliente').modal('hide');
-    //CargarAsignaciones();
 });
 

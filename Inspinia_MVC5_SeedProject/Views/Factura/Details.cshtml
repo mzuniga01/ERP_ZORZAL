@@ -28,7 +28,16 @@
                     <h5>Detalle Factura</h5>
                 </div>
                 <div class="ibox-content">
-                    <dl class="dl-horizontal">
+                    @**Auditoria*@
+                    @Html.HiddenFor(model => model.fact_UsuarioCrea)
+                    @Html.HiddenFor(model => model.fact_FechaCrea)
+                    @Html.HiddenFor(model => model.fact_UsuarioModifica)
+                    @Html.HiddenFor(model => model.fact_FechaModifica)
+                    @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                    @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                    @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                    @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+                    <dl class="dl-horizontal">                       
                         <dt>
                             @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
                         </dt>
@@ -120,10 +129,19 @@
                             @Html.DisplayNameFor(model => model.clte_Id)
                         </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.tbCliente.clte_Nombres)
-                        </dd>
-
+                        @{ if (Convert.ToInt32(Model.tbCliente.clte_EsPersonaNatural) == 1)
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.clte_Nombres)
+                                </dd>
+                            }
+                            else
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbCliente.clte_NombreComercial)
+                                </dd>
+                            }
+                        }
 
                         <dt>
                             @Html.DisplayNameFor(model => model.fact_Vendedor)
@@ -135,7 +153,7 @@
 
                     </dl>
 
-                    @Html.Partial("_IndexFacturaDetalle", (List<tbFacturaDetalle>)ViewBag.FacturaDetalle)
+                    @*@Html.Partial("_IndexFacturaDetalle", (List<tbFacturaDetalle>)ViewBag.FacturaDetalle)*@
                     @Html.ActionLink("Editar", "Edit", new { id = Model.fact_Id }, new { @class = "btn btn-primary btn-sm" })
                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
 
@@ -151,21 +169,21 @@
                     <tr>
                         <td>Creado</td>
                         <td>
-                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                    </td>
-                    <td>@Html.DisplayFor(model => model.fact_FechaCrea)</td>
-                </tr>
-                <tr>
-                    <td>Modificado</td>
-                    <td>
-                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                </td>
-                <td>@Html.DisplayFor(model => model.fact_FechaModifica)</td>
-            </tr>
-        </table>
-        </div>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.fact_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.fact_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>

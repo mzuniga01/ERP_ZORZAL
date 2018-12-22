@@ -6,7 +6,7 @@ $('#AgregarDetalleFactura').click(function () {
     var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
     var CantidadProducto = $('#factd_Cantidad').val();
     var Subtotal = $('#SubtotalProducto').val();
-    var PrecioUnitario = $('#PrecioUnitario').val();
+    var PrecioUnitario = $('#factd_PrecioUnitario').val();
     var Impuesto = $('#factd_Impuesto').val();
     var Total = $('#TotalProducto').val();
     
@@ -45,7 +45,7 @@ $('#AgregarDetalleFactura').click(function () {
         copiar += "<td id = 'prod_CodigoCreate'>" + $('#prod_Codigo').val() + "</td>";
         copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + $('#tbProducto_prod_Descripcion').val() + "</td>";
         copiar += "<td id = 'factd_CantidadCreate'>" + $('#factd_Cantidad').val() + "</td>";
-        copiar += "<td id = 'PrecioUnitarioCreate'>" + $('#PrecioUnitario').val() + "</td>";
+        copiar += "<td id = 'PrecioUnitarioCreate'>" + $('#factd_PrecioUnitario').val() + "</td>";
         copiar += "<td id = 'factd_MontoDescuentoCreate'>" + $('#factd_MontoDescuento').val() + "</td>";
         copiar += "<td id = 'TotalProductoCreate'>" + $('#TotalProducto').val() + "</td>";
         copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
