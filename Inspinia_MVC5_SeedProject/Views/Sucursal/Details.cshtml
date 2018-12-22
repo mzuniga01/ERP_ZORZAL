@@ -4,22 +4,14 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Sucursal</h2>
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("Lista", "Index")
-            </li>
-            <li class="active">
-                <strong>Detalle</strong>
-            </li>
-        </ol>
+       
     </div>
 </div>
-
-
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -28,9 +20,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Detalle Sucursal</h5>
-                    <div class="ibox-tools">
-                        @Html.ActionLink("Editar", "Edit", new { id = Model.suc_Id }, new { @class = "btn btn-primary" })
-                    </div>
+                    
                 </div>
                 <div class="ibox-content">
 
@@ -85,28 +75,32 @@
         </dd>
 
     </dl>
-	    @Html.ActionLink("Aceptar", "Index", new { id = Model.suc_Id }, new { @class = "btn btn-primary"})
-  
+                    <Center>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.suc_Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white" })
+                    </Center>
 
-                    <div class="form-group">
-                        <table id="Auditoria" class="table table-striped">
+                    <div class="ibox-content">
+                        <table class="table table-striped">
                             <tr>
-                                <th></th>
+                                <th>Acción</th>
                                 <th>Usuario</th>
                                 <th>Fecha</th>
                             </tr>
                             <tr>
                                 <td>Creado</td>
-                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
                                 <td>@Html.DisplayFor(model => model.suc_FechaCrea)</td>
                             </tr>
                             <tr>
                                 <td>Modificado</td>
-                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
                                 <td>@Html.DisplayFor(model => model.suc_FechaModifica)</td>
                             </tr>
                         </table>
                     </div>
+
+             
                 </div>
             </div>
         </div>

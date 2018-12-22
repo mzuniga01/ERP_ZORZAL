@@ -108,8 +108,9 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioCrea);
             ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
+            ViewBag.Cliente = db.tbCliente.ToList();
             return View(tbExoneracion);
-            //ViewBag.Cliente = db.tbCliente.ToList();
+            
             //return View();
         }
 
@@ -118,13 +119,13 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="exo_Id,exo_Documento,exo_ExoneracionActiva,exo_FechaInicialVigencia,exo_FechaIFinalVigencia,clte_Id,exo_UsuarioCrea,exo_FechaCrea,exo_UsuarioModifa,exo_FechaModifica")] tbExoneracion tbExoneracion)
+        public ActionResult Edit(int? id,[Bind(Include= "exo_Id,exo_Documento,exo_ExoneracionActiva,exo_FechaInicialVigencia,exo_FechaIFinalVigencia,clte_Id,exo_UsuarioCrea,exo_FechaCrea")] tbExoneracion tbExoneracion)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-
+                    tbExoneracion pExoneracion = db.tbExoneracion.Find(id);
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbExoneracion_Update(tbExoneracion.exo_Id,
@@ -133,8 +134,8 @@ namespace ERP_ZORZAL.Controllers
                                                             tbExoneracion.exo_FechaInicialVigencia,
                                                             tbExoneracion.exo_FechaIFinalVigencia,
                                                             tbExoneracion.clte_Id,
-                                                            tbExoneracion.exo_UsuarioCrea,
-                                                            tbExoneracion.exo_FechaCrea);
+                                                            pExoneracion.exo_UsuarioCrea,
+                                                            pExoneracion.exo_FechaCrea);
                     foreach (UDP_Vent_tbExoneracion_Update_Result Exoneracion in list)
                         MensajeError = Exoneracion.MensajeError;
                     if (MensajeError == -1)
@@ -144,8 +145,7 @@ namespace ERP_ZORZAL.Controllers
                     {
                         return RedirectToAction("Index");
                     }
-                    db.tbExoneracion.Add(tbExoneracion);
-                    db.SaveChanges();
+                    
                     return RedirectToAction("Index");
 
                 }

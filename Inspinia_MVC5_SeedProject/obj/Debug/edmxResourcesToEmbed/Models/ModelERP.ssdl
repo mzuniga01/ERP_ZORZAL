@@ -3585,6 +3585,28 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="cred_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="cred_FechaModifica" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbSucursal_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="suc_Id" Type="smallint" Mode="In" />
+    <Parameter Name="mun_Codigo" Type="char" Mode="In" />
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="pemi_Id" Type="int" Mode="In" />
+    <Parameter Name="suc_Descripcion" Type="nvarchar" Mode="In" />
+    <Parameter Name="suc_Correo" Type="nvarchar" Mode="In" />
+    <Parameter Name="suc_Direccion" Type="nvarchar" Mode="In" />
+    <Parameter Name="suc_Telefono" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbSucursal_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="suc_Id" Type="smallint" Mode="In" />
+    <Parameter Name="mun_Codigo" Type="char" Mode="In" />
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="pemi_Id" Type="int" Mode="In" />
+    <Parameter Name="suc_Descripcion" Type="nvarchar" Mode="In" />
+    <Parameter Name="suc_Correo" Type="nvarchar" Mode="In" />
+    <Parameter Name="suc_Direccion" Type="nvarchar" Mode="In" />
+    <Parameter Name="suc_Telefono" Type="nvarchar" Mode="In" />
+    <Parameter Name="suc_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="suc_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbTipoPago_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="tpa_Descripcion" Type="varchar" Mode="In" />
     <Parameter Name="tpa_Emisor" Type="bit" Mode="In" />

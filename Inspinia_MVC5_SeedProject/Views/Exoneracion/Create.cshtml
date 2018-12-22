@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Exoneración</h2>
@@ -36,23 +37,18 @@
         @Html.ValidationSummary(true)
 
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.exo_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.exo_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.exo_Id)
-            </div>
-        </div>*@
+       
 
         <div class="form-group">
             @Html.LabelFor(model => model.clte_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-               @Html.EditorFor(model => model.clte_Id)
+               @Html.EditorFor(model => model.clte_Id) 
+                <input type="hidden" name="" />
             @Html.ValidationMessageFor(model => model.clte_Id)
             </div>
-            @*<div class="col-md-">
+            <div class="col-md-">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
-            </div>*@
+            </div>
         </div>
 
 
@@ -60,7 +56,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.exo_Documento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @*<input type="file" class="form-control" />*@
+               
                 @Html.EditorFor(model => model.exo_Documento)
                 @Html.ValidationMessageFor(model => model.exo_Documento)
             </div>
@@ -109,7 +105,7 @@
     </div>
  </div>
 
- @*<div>
+ <div>
     <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -125,7 +121,7 @@
             </div>
         </div>
     </div>
-</div>*@
+</div>
 
 
 
@@ -156,3 +152,7 @@ $(function () {
 });
     </script>
 }
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+<script src="~/Scripts/app/Cliente.js"></script>

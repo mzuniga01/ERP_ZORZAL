@@ -41,4 +41,13 @@ $(document).ready(function () {
     });
 });
 
+//ExoneracionSeleccionar Cliente
+$(document).on("click", "#tbCliente tbody tr td button#seleccionar", function () {
+    idItem = $(this).closest('tr').data('id');
+    NombreCliente = $(this).closest('tr').data('name');
+    $("#clte_Id").val(idItem);
+    //$("#clte_Nombres").val(NombreCliente);
+    $('#ModalAgregarCliente').modal('hide');
+    //CargarAsignaciones();
+});
 

@@ -52,18 +52,48 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="suc_Id,mun_Codigo,bod_Id,pemi_Id,suc_Correo,suc_Direccion,suc_Telefono,suc_UsuarioCrea,suc_FechaCrea,suc_UsuarioModifica,suc_FechaModifica")] tbSucursal tbSucursal)
+        public ActionResult Create([Bind(Include="suc_Id,mun_Codigo,bod_Id,pemi_Id,suc_Descripcion,suc_Correo,suc_Direccion,suc_Telefono,suc_UsuarioCrea,suc_FechaCrea,suc_UsuarioModifica,suc_FechaModifica")] tbSucursal tbSucursal)
         {
-            if (ModelState.IsValid)
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
+
+            try
             {
-                db.tbSucursal.Add(tbSucursal);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbSucursal_Insert(tbSucursal.suc_Id,
+                                                            tbSucursal.mun_Codigo,
+                                                            tbSucursal.bod_Id,
+                                                            tbSucursal.pemi_Id,
+                                                            tbSucursal.suc_Descripcion,
+                                                            tbSucursal.suc_Correo,
+                                                            tbSucursal.suc_Direccion,
+                                                            tbSucursal.suc_Telefono);
+                    foreach (UDP_Vent_tbSucursal_Insert_Result Exoneracion in list)
+                        MensajeError = Exoneracion.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    
+                    return RedirectToAction("Index");
+
+                }
+            }
+            catch (Exception Ex)
+            {
+                ModelState.AddModelError("", "Error al Agregar Registro " + Ex.Message.ToString());
+                return View(tbSucursal);
             }
 
             ViewBag.suc_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioCrea);
             ViewBag.suc_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioModifica);
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbSucursal.mun_Codigo);
+            //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbSucursal.mun_Codigo);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSucursal.bod_Id);
             ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
             return View(tbSucursal);
@@ -83,9 +113,11 @@ namespace ERP_ZORZAL.Controllers
             }
             ViewBag.suc_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioCrea);
             ViewBag.suc_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioModifica);
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbSucursal.mun_Codigo);
-            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSucursal.bod_Id);
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbSucursal.mun_Codigo);
+            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
             ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
+            //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbSucursal.mun_Codigo);
+
             return View(tbSucursal);
         }
 
@@ -94,18 +126,50 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="suc_Id,mun_Codigo,bod_Id,pemi_Id,suc_Correo,suc_Direccion,suc_Telefono,suc_UsuarioCrea,suc_FechaCrea,suc_UsuarioModifica,suc_FechaModifica")] tbSucursal tbSucursal)
+        public ActionResult Edit(short? id,[Bind(Include= "suc_Id,mun_Codigo,bod_Id,pemi_Id,suc_Descripcion,suc_Correo,suc_Direccion,suc_Telefono,suc_UsuarioCrea,suc_FechaCrea")] tbSucursal tbSucursal)
         {
-            if (ModelState.IsValid)
+          
+
+            try
             {
-                db.Entry(tbSucursal).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    tbSucursal pSucursal = db.tbSucursal.Find(id);
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbSucursal_Update(tbSucursal.suc_Id,
+                                                            tbSucursal.mun_Codigo,
+                                                            tbSucursal.bod_Id,
+                                                            tbSucursal.pemi_Id,
+                                                            tbSucursal.suc_Descripcion,
+                                                            tbSucursal.suc_Correo,
+                                                            tbSucursal.suc_Direccion,
+                                                            tbSucursal.suc_Telefono,
+                                                            pSucursal.suc_UsuarioCrea,
+                                                            pSucursal.suc_FechaCrea);
+                    foreach (UDP_Vent_tbSucursal_Update_Result Exoneracion in list)
+                        MensajeError = Exoneracion.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                  
+                    return RedirectToAction("Index");
+
+                }
+            }
+            catch (Exception Ex)
+            {
+                ModelState.AddModelError("", "Error al Agregar Registro " + Ex.Message.ToString());
+                return View(tbSucursal);
             }
             ViewBag.suc_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioCrea);
             ViewBag.suc_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioModifica);
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbSucursal.mun_Codigo);
-            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSucursal.bod_Id);
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbSucursal.mun_Codigo);
+            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
             ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
             return View(tbSucursal);
         }

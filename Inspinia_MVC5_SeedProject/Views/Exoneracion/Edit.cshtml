@@ -51,12 +51,11 @@
             @Html.LabelFor(model => model.clte_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.clte_Id)
-                @*@Html.DropDownList("clte_Id", String.Empty)*@
                 @Html.ValidationMessageFor(model => model.clte_Id)
             </div>
-            @*<div class="col-md-">
+            <div class="col-md-">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
-            </div>*@
+            </div>
         </div>
 
 
@@ -130,7 +129,7 @@
  </div>
 
 
-@*<div>
+<div>
     <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -146,7 +145,8 @@
             </div>
         </div>
     </div>
-</div>*@
+</div>
+
 
 
 @section Scripts {
@@ -177,3 +177,6 @@ $(function () {
     </script>
 }
 
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+<script src="~/Scripts/app/Cliente.js"></script>

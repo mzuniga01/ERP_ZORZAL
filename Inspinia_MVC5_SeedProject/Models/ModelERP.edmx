@@ -3590,6 +3590,28 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="cred_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="cred_FechaModifica" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbSucursal_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="suc_Id" Type="smallint" Mode="In" />
+          <Parameter Name="mun_Codigo" Type="char" Mode="In" />
+          <Parameter Name="bod_Id" Type="int" Mode="In" />
+          <Parameter Name="pemi_Id" Type="int" Mode="In" />
+          <Parameter Name="suc_Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="suc_Correo" Type="nvarchar" Mode="In" />
+          <Parameter Name="suc_Direccion" Type="nvarchar" Mode="In" />
+          <Parameter Name="suc_Telefono" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbSucursal_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="suc_Id" Type="smallint" Mode="In" />
+          <Parameter Name="mun_Codigo" Type="char" Mode="In" />
+          <Parameter Name="bod_Id" Type="int" Mode="In" />
+          <Parameter Name="pemi_Id" Type="int" Mode="In" />
+          <Parameter Name="suc_Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="suc_Correo" Type="nvarchar" Mode="In" />
+          <Parameter Name="suc_Direccion" Type="nvarchar" Mode="In" />
+          <Parameter Name="suc_Telefono" Type="nvarchar" Mode="In" />
+          <Parameter Name="suc_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="suc_FechaCrea" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbTipoPago_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="tpa_Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="tpa_Emisor" Type="bit" Mode="In" />
@@ -4675,16 +4697,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="exo_FechaIFinalVigencia" Mode="In" Type="DateTime" />
             <Parameter Name="clte_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbExoneracion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result)">
-            <Parameter Name="exo_Id" Mode="In" Type="Int32" />
-            <Parameter Name="exo_Documento" Mode="In" Type="String" />
-            <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />
-            <Parameter Name="exo_FechaInicialVigencia" Mode="In" Type="DateTime" />
-            <Parameter Name="exo_FechaIFinalVigencia" Mode="In" Type="DateTime" />
-            <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-            <Parameter Name="exo_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="exo_FechaCrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbDevolucion_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Insert_Result)">
             <Parameter Name="fact_Id" Mode="In" Type="Int64" />
             <Parameter Name="cja_Id" Mode="In" Type="Int16" />
@@ -5662,6 +5674,38 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="cdto_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="cdto_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbSucursal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSucursal_Insert_Result)">
+            <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+            <Parameter Name="mun_Codigo" Mode="In" Type="String" />
+            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+            <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
+            <Parameter Name="suc_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="suc_Correo" Mode="In" Type="String" />
+            <Parameter Name="suc_Direccion" Mode="In" Type="String" />
+            <Parameter Name="suc_Telefono" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbSucursal_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSucursal_Update_Result)">
+            <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+            <Parameter Name="mun_Codigo" Mode="In" Type="String" />
+            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+            <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
+            <Parameter Name="suc_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="suc_Correo" Mode="In" Type="String" />
+            <Parameter Name="suc_Direccion" Mode="In" Type="String" />
+            <Parameter Name="suc_Telefono" Mode="In" Type="String" />
+            <Parameter Name="suc_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="suc_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbExoneracion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result)">
+            <Parameter Name="exo_Id" Mode="In" Type="Int32" />
+            <Parameter Name="exo_Documento" Mode="In" Type="String" />
+            <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />
+            <Parameter Name="exo_FechaInicialVigencia" Mode="In" Type="DateTime" />
+            <Parameter Name="exo_FechaIFinalVigencia" Mode="In" Type="DateTime" />
+            <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+            <Parameter Name="exo_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="exo_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -5761,9 +5805,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Type="Int16" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbExoneracion_Insert_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbExoneracion_Update_Result">
           <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbCliente_Insert_Result">
@@ -9388,6 +9429,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
         <ComplexType Name="UDP_Vent_tbDocumentoFiscal_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="2" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbSucursal_Insert_Result">
+          <Property Type="Int16" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbSucursal_Update_Result">
+          <Property Type="Int16" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbExoneracion_Update_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9579,13 +9629,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -10651,6 +10694,27 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuento_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuento_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSucursal_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSucursal_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSucursal_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSucursal_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSucursal_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSucursal_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

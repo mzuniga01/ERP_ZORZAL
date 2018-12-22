@@ -571,6 +571,12 @@
     <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbSucursal_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbSucursal_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbTipoPago_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1116,22 +1122,12 @@
     <Content Include="Views\Denominacion\Details.cshtml" />
     <Content Include="Views\Denominacion\Edit.cshtml" />
     <Content Include="Views\Denominacion\Index.cshtml" />
-    <Content Include="Views\Exoneracion\Create.cshtml" />
-    <Content Include="Views\Exoneracion\Delete.cshtml" />
-    <Content Include="Views\Exoneracion\Details.cshtml" />
-    <Content Include="Views\Exoneracion\Edit.cshtml" />
-    <Content Include="Views\Exoneracion\Index.cshtml" />
     <Content Include="Views\SolicitudEfectivo\Create.cshtml" />
     <Content Include="Views\SolicitudEfectivo\Delete.cshtml" />
     <Content Include="Views\SolicitudEfectivo\Details.cshtml" />
     <Content Include="Views\SolicitudEfectivo\Edit.cshtml" />
     <Content Include="Views\SolicitudEfectivo\Index.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_CreateSolicitudEfectivoDetalle.cshtml" />
-    <Content Include="Views\Sucursal\Create.cshtml" />
-    <Content Include="Views\Sucursal\Delete.cshtml" />
-    <Content Include="Views\Sucursal\Details.cshtml" />
-    <Content Include="Views\Sucursal\Edit.cshtml" />
-    <Content Include="Views\Sucursal\Index.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexNumeracionWithouBottomNew.cshtml" />
     <Content Include="Views\ListaPrecios\Delete.cshtml" />
     <Content Include="Views\ListaPrecios\Details.cshtml" />
@@ -1140,7 +1136,6 @@
     <Content Include="Views\ListaPrecios\Create.cshtml" />
     <Content Include="Views\ListaPrecios\_CreateListaPrecioDetalle.cshtml" />
     <Content Include="Views\PuntoEmision\_DetailsNumeracion.cshtml" />
-    <Content Include="Views\Exoneracion\_IndexCliente.cshtml" />
     <Content Include="Views\Devolucion\_ProductoDevolucion.cshtml" />
     <Content Include="Views\NotaCredito\_IndexCliente.cshtml" />
     <Content Include="Views\ListaPrecios\_PrecioDetalle.cshtml" />
@@ -1202,6 +1197,17 @@
     <Content Include="Views\SolicitudEfectivo\_maloCreateSolicitudEfectivoDetalle.cshtml" />
     <Content Include="Views\Pedido\_IndexProducto.cshtml" />
     <Content Include="Views\Pago\IndexPagoFactura.cshtml" />
+    <Content Include="Views\Sucursal\Create.cshtml" />
+    <Content Include="Views\Sucursal\Delete.cshtml" />
+    <Content Include="Views\Sucursal\Details.cshtml" />
+    <Content Include="Views\Sucursal\Edit.cshtml" />
+    <Content Include="Views\Sucursal\Index.cshtml" />
+    <Content Include="Views\Exoneracion\Create.cshtml" />
+    <Content Include="Views\Exoneracion\Delete.cshtml" />
+    <Content Include="Views\Exoneracion\Details.cshtml" />
+    <Content Include="Views\Exoneracion\Edit.cshtml" />
+    <Content Include="Views\Exoneracion\Index.cshtml" />
+    <Content Include="Views\Exoneracion\_IndexCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

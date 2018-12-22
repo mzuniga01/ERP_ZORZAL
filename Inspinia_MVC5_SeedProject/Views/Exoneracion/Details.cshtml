@@ -71,6 +71,11 @@
         </dd>
 
     </dl>
+
+                    <Center>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.exo_Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white" })
+                    </Center>
                     <div class="ibox-content">
                         <table class="table table-striped">
                             <tr>
@@ -92,8 +97,7 @@
                     </div>
 
 
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.exo_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white"})
+                 
 
                 </div>
             </div>
