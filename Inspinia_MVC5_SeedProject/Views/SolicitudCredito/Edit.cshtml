@@ -35,11 +35,14 @@
 				@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.cred_Id)
+        @Html.HiddenFor(model => model.cred_FechaCrea)
+        @Html.HiddenFor(model => model.cred_UsuarioCrea)
+        @Html.HiddenFor(model => model.tbCliente.clte_EsPersonaNatural)
 
     
         <div class="form-group">
@@ -54,7 +57,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cred_FechaSolicitud, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.cred_FechaSolicitud, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.cred_FechaSolicitud, new { htmlAttributes = new {@readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.cred_FechaSolicitud)
             </div>
         </div>
@@ -70,91 +73,83 @@
         </div>*@
 
         @*ERROR INICIO  *@
-   <div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Cliente Número</label>
+            @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
+            <div class="col-md-5">
+                @*@Html.DropDownList("clte_RTN_Identidad_Pasaporte", String.Empty)*@
+                @Html.EditorFor(model => model.clte_Id, new { htmlAttributes = new { @*disabled = "disabled",*@ @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.clte_Id)
+            </div>
+        </div>  
         <div class="form-group">
             <label class="control-label col-md-2">Identificación Cliente</label>
             @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
             <div class="col-md-5">
                 @*@Html.DropDownList("clte_RTN_Identidad_Pasaporte", String.Empty)*@
-                @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)
             </div>
-        </div>
+        </div>        
+        @*    if (Model.tbCliente.clte_EsPersonaNatural)*@
+       <div id="natural"  >
+           <div class="form-group">
+               <label class="control-label col-md-2">Nombres Cliente</label>
+               <div class="col-md-5">
+                   @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
 
-    
+                   @*@Html.ValidationMessageFor(model => model.clte_Id)*@
+               </div>
+           </div>
+           <div class="form-group">
+               <label class="control-label col-md-2">Apellidos Cliente</label>
+               <div class="col-md-5">
+                   @Html.EditorFor(model => model.tbCliente.clte_Apellidos, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
+                   @*@Html.ValidationMessageFor(model => model.clte_Id)*@
+               </div>
+           </div>
+
+           <div class="form-group">
+               <label class="control-label col-md-2">Tipo de Cliente</label>
+               <div class="col-md-5">
+                   <input class="col-md-5 form-control" id="TipoNatural" type="text" value="Natural" readonly />
+               </div>
+           </div>
+       </div>
+       @* si es natural si no *@
+       <div id="juridica" >
+           <div class="form-group">
+               <label class="control-label col-md-2">Nombre Comercial</label>
+               <div class="col-md-5">
+
+                   @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
+                   @Html.ValidationMessageFor(model => model.tbCliente.clte_NombreComercial)
+               </div>
+           </div>
+
+
+           <div class="form-group">
+               <label class="control-label col-md-2">Tipo de Cliente</label>
+               <div class="col-md-5">
+                   <input class="col-md-5 form-control" id="TipoJuridico" type="text" value="Júridico" readonly />
+                   @Html.ValidationMessageFor(model => model.clte_Id)
+               </div>
+           </div>
+           
+
+       </div>
+       @* fin conbdicion *@
+
+
         
-            @if (Model.tbCliente.clte_EsPersonaNatural)
-            {
-                <div class="form-group">
-                    <label class="control-label col-md-2">Nombres Cliente</label>
-                    @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
-                    <div class="col-md-5">
-                        @*@Html.DropDownList("clte_Nombres", String.Empty)*@
-                        @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
 
-                        @Html.ValidationMessageFor(model => model.clte_Id)
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2">Apellidos Cliente</label>
-                    @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
-                    <div class="col-md-5">
-                        @*@Html.DropDownList("clte_Nombres", String.Empty)*@
-
-                        @Html.EditorFor(model => model.tbCliente.clte_Apellidos, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
-                        @Html.ValidationMessageFor(model => model.clte_Id)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-2">Tipo de Cliente</label>
-                    @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
-                    <div class="col-md-5">
-
-                        <input class="col-md-5 form-control" id="Text1" type="text" value="Natural" readonly />
-
-                    </div>
-                </div>
-            }
-            else
-            {
-                <div class="form-group">
-                    <label class="control-label col-md-2">Nombre Comercial</label>
-                    @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
-                    <div class="col-md-5">
-                        @*@Html.DropDownList("clte_Nombres", String.Empty)*@
-
-                        @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
-                        @Html.ValidationMessageFor(model => model.tbCliente.clte_NombreComercial)
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label class="control-label col-md-2">Tipo de Cliente</label>
-                    @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
-                    <div class="col-md-5">
-                        @*<select id="Select1" class = "form-control"  >
-                        <option>Júridico</option>
-                        <option>Natural</option>*@
-                        <input class="col-md-5 form-control" id="Text1" type="text" value="Júridico" readonly />
-                        @* <input id="Text1" type="text" value="Júridico" readonly class="form-group text-center col-md-5"/>*@
-                        @*@Html.DropDownList("clte_Id", String.Empty)*@
-                        @Html.ValidationMessageFor(model => model.clte_Id)
-                    </div>
-                </div>
-            }
-
-        </div>
-
-        @* fin conbdicion *@
-
+ 
 
 
         <div class="form-group">
             @Html.LabelFor(model => model.cred_FechaAprobacion, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.cred_FechaAprobacion)
+                @Html.EditorFor(model => model.cred_FechaAprobacion,"{0:dd-MM-yyyy}",new { htmlAttributes = new { @class = "form-control", @id = "fechafactura"@*, disabled = "disabled"*@, @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.cred_FechaAprobacion)
             </div>
         </div>
@@ -197,13 +192,28 @@
             </div>
         </div>
 
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.escre_Id, "escre_Id", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("escre_Id", String.Empty)
+                @Html.ValidationMessageFor(model => model.escre_Id)
+            </div>
+        </div>*@
+
         <div class="form-group">
             <label class="control-label col-md-2">Estado </label>
             @*@Html.LabelFor(model => model.escre_Id, "escre_Id", new { @class = "control-label col-md-2" })*@
             <div class="col-md-5">
-                @*@Html.DropDownList("escre_Id", String.Empty)*@
-                @Html.EditorFor(model => model.tbEstadoSolicitudCredito.escre_Descripcion)
-                @Html.ValidationMessageFor(model => model.escre_Id)
+                @Html.DropDownList("escre_Id", (IEnumerable<SelectListItem>)ViewBag.escre_Descripcion, new { @class = "form-control" })
+               @* @Html.DropDownList("escre_Id", (IEnumerable<SelectListItem>)ViewBag.escre_Id, new { @class = "form-control" })*@
+                @*@Html.EditorFor(model => model.tbEstadoSolicitudCredito.escre_Descripcion)*@
+                @*@Html.ValidationMessageFor(model => model.escre_Id)*@
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-pull-11">
+                @Html.EditorFor(model => model.tbCliente.clte_EsPersonaNatural, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
             </div>
         </div>
 
@@ -276,6 +286,10 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+<script src="~/Scripts/app/CreditoCambio.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
     <script>
  $.datepicker.regional['es'] = {
  closeText: 'Cerrar',

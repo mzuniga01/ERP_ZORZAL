@@ -48,8 +48,9 @@ namespace ERP_ZORZAL.Controllers
         {
             //ViewBag.cred_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             //ViewBag.cred_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte");
-            //ViewBag.escre_Id = new SelectList(db.tbEstadoSolicitudCredito, "escre_Id", "escre_Descripcion");
+            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion");
+            //ViewBag.bod_Nombre = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+            ViewBag.escre_Descripcion = new SelectList(db.tbEstadoSolicitudCredito, "escre_Id", "escre_Descripcion");
             ViewBag.Cliente = db.tbCliente.ToList();
             return View();
         }
@@ -59,23 +60,66 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="cred_Id,clte_Id,escre_Id,cred_FechaSolicitud,cred_FechaAprobacion,cred_MontoSolicitado,cred_MontoAprobado,cred_DiasSolicitado,cred_DiasAprobado,cred_UsuarioCrea,cred_FechaCrea,cred_UsuarioModifica,cred_FechaModifica")] tbSolicitudCredito tbSolicitudCredito)
+        public ActionResult Create([Bind(Include = "cred_Id,clte_Id,escre_Id,cred_FechaSolicitud,cred_MontoSolicitado,cred_MontoAprobado,cred_DiasSolicitado")] tbSolicitudCredito tbSolicitudCredito)
         {
-            if (ModelState.IsValid)
+            ViewBag.escre_Id = new SelectList(db.tbEstadoSolicitudCredito, "escre_Id", "escre_Descripcion", tbSolicitudCredito.escre_Id);
+            ViewBag.Cliente = db.tbCliente.ToList();
+if (ModelState.IsValid)
+                {
+            try
             {
-                db.tbSolicitudCredito.Add(tbSolicitudCredito);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                
+                    //db.tbTipoIdentificacion.Add(tbTipoIdentificacion);
+                    //db.SaveChanges();
+                    //return RedirectToAction("Index");
+
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbSolicitudCredito_Insert(
+                        tbSolicitudCredito.clte_Id,
+                        tbSolicitudCredito.escre_Id,
+                        tbSolicitudCredito.cred_FechaSolicitud,
+                     //   tbSolicitudCredito.cred_FechaAprobacion,
+                               tbSolicitudCredito.cred_MontoSolicitado,
+                        tbSolicitudCredito.cred_MontoAprobado,
+                        tbSolicitudCredito.cred_DiasSolicitado);
+                    foreach (UDP_Vent_tbSolicitudCredito_Insert_Result SolicitudCredito in list)
+                        MensajeError = SolicitudCredito.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+            }
+            catch (Exception Ex)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                Ex.Message.ToString();
             }
 
-            ViewBag.cred_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudCredito.cred_UsuarioCrea);
-            ViewBag.cred_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudCredito.cred_UsuarioModifica);
-            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbSolicitudCredito.clte_Id);
-            ViewBag.escre_Id = new SelectList(db.tbEstadoSolicitudCredito, "escre_Id", "escre_Descripcion", tbSolicitudCredito.escre_Id);
             return View(tbSolicitudCredito);
-
-            
         }
+            return View(tbSolicitudCredito);
+        }
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.tbSolicitudCredito.Add(tbSolicitudCredito);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    ViewBag.cred_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudCredito.cred_UsuarioCrea);
+        //    ViewBag.cred_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudCredito.cred_UsuarioModifica);
+        //    ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbSolicitudCredito.clte_Id);
+        //    ViewBag.escre_Id = new SelectList(db.tbEstadoSolicitudCredito, "escre_Id", "escre_Descripcion", tbSolicitudCredito.escre_Id);
+        //    return View(tbSolicitudCredito);
+
+
+        //}
 
         // GET: /SolicitudCredito/Edit/5
         public ActionResult Edit(int? id)
@@ -95,7 +139,8 @@ namespace ERP_ZORZAL.Controllers
             }
            // ViewBag.cred_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudCredito.cred_UsuarioCrea);
             //ViewBag.cred_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudCredito.cred_UsuarioModifica);
-            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbSolicitudCredito.clte_Id);
+            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbSolicitudCredito.clte_Id);
+            ViewBag.escre_Descripcion = new SelectList(db.tbEstadoSolicitudCredito, "escre_Id", "escre_Descripcion");
             ViewBag.escre_Id = new SelectList(db.tbEstadoSolicitudCredito, "escre_Id", "escre_Descripcion", tbSolicitudCredito.escre_Id);
             return View(tbSolicitudCredito);
         }
@@ -107,42 +152,44 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="cred_Id,clte_Id,escre_Id,cred_FechaSolicitud,cred_FechaAprobacion,cred_MontoSolicitado,cred_MontoAprobado,cred_DiasSolicitado,cred_DiasAprobado,cred_UsuarioCrea,cred_FechaCrea,cred_UsuarioModifica,cred_FechaModifica")] tbSolicitudCredito tbSolicitudCredito)
         {
-            //try
-            //{
-            //    if (ModelState.IsValid)
-            //    {
-            //        //////////Aqui va la lista//////////////
+            ViewBag.escre_Descripcion = new SelectList(db.tbEstadoSolicitudCredito, "escre_Id", "escre_Descripcion");
+            ViewBag.Aprobacion = db.tbSolicitudCredito.ToList();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    //////////Aqui va la lista//////////////
 
-            //        var MensajeError = 0;
-            //        IEnumerable<object> list = null;
-            //        list = db.UDP_Vent_tbSolicitudCredito_Update(tbSolicitudCredito.cred_Id,
-            //            tbSolicitudCredito.clte_Id,
-            //            tbSolicitudCredito.escre_Id,
-            //            tbSolicitudCredito.cred_FechaSolicitud,
-            //            tbSolicitudCredito.cred_FechaAprobacion,
-            //            tbSolicitudCredito.cred_MontoSolicitado,
-            //            tbSolicitudCredito.cred_MontoAprobado,
-            //            tbSolicitudCredito.cred_DiasSolicitado,
-            //            tbSolicitudCredito.cred_DiasAprobado,
-            //            tbSolicitudCredito.cred_UsuarioCrea,
-            //            tbSolicitudCredito.cred_FechaCrea,
-            //            tbSolicitudCredito.cred_UsuarioModifica,
-            //            tbSolicitudCredito.cred_FechaModifica);
-            //        foreach (UDP_Vent_tbSolicitudCredito_Update_Result SolicitudCredito in list)
-            //            MensajeError = SolicitudCredito.MensajeError;
-            //        if (MensajeError == -1)
-            //        {
-            //        }
-            //        else
-            //        {
-            //            return RedirectToAction("Index");
-            //        }
-            //    }
-            //}
-            //catch (Exception Ex)
-            //{
-            //    Ex.Message.ToString();
-            //}
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbSolicitudCredito_Update(tbSolicitudCredito.cred_Id,
+                        tbSolicitudCredito.clte_Id,
+                        tbSolicitudCredito.escre_Id,
+                        tbSolicitudCredito.cred_FechaSolicitud,
+                        tbSolicitudCredito.cred_FechaAprobacion,
+                        tbSolicitudCredito.cred_MontoSolicitado,
+                        tbSolicitudCredito.cred_MontoAprobado,
+                        tbSolicitudCredito.cred_DiasSolicitado,
+                        tbSolicitudCredito.cred_DiasAprobado,
+                        tbSolicitudCredito.cred_UsuarioCrea,
+                        tbSolicitudCredito.cred_FechaCrea,
+                        tbSolicitudCredito.cred_UsuarioModifica,
+                        tbSolicitudCredito.cred_FechaModifica);
+                    foreach (UDP_Vent_tbSolicitudCredito_Update_Result SolicitudCredito in list)
+                        MensajeError = SolicitudCredito.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
 
             return View(tbSolicitudCredito);
             //if (ModelState.IsValid)

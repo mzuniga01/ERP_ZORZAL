@@ -562,7 +562,19 @@
     <Compile Include="Models\UDP_Vent_tbPago_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbPedidoDetalle_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbPedidoDetalle_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbPedido_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbPedido_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbPedido_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbPuntoEmisionDetalle_Insert_Result.cs">
@@ -839,6 +851,7 @@
     <Content Include="Scripts\app\Cliente.js" />
     <Content Include="Scripts\app\Clientes-Pedido-Credito.js" />
     <Content Include="Scripts\app\Credito.js" />
+    <Content Include="Scripts\app\CreditoCambio.js" />
     <Content Include="Scripts\app\CuentaBanco.js" />
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\DataTableBusquedaGenerica.js" />

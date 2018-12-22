@@ -35,22 +35,25 @@
     
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.cred_DiasAprobado)
+        @Html.HiddenFor(model => model.cred_FechaAprobacion)
 
+        @*  "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafactura" } } *@
         <div class="form-group">
             @Html.LabelFor(model => model.cred_FechaSolicitud, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cred_FechaSolicitud)
+                @Html.EditorFor(model => model.cred_FechaSolicitud,"{0:dd-MM-yyyy}",new { htmlAttributes = new { @class = "form-control", @id = "fechafactura"@*, disabled = "disabled"*@, @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.cred_FechaSolicitud)
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.cred_FechaAprobacion, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cred_FechaAprobacion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafactura", disabled = "disabled", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.cred_FechaAprobacion, "{0:dd-MM-yyyy}")
                 <p style="color:red">@Html.ValidationMessageFor(model => model.cred_FechaAprobacion)
             </div>
-        </div>
+        </div>*@
 
 
         @* Datos de Cliente *@
@@ -70,29 +73,29 @@
             </div>*@
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.tbCliente.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.tbCliente.clte_Nombres, new
                                    {
                                        htmlAttributes = new
                                        {
-                                           @class = "form-control"@*, @readonly = "readonly"*@ }
+                                           @class = "form-control" }
                                    })
                 @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
             </div>
-        </div>
+        </div>*@
 
 
-        <div class="form-group">
+        @*<div class="form-group">
 
             <label class="control-label col-md-2">RTN/Identidad Cliente</label>
-            @*@@Html.LabelFor(model => model.clte_Nombre, new { @class = "control-label col-md-2" })*@
+
             <div class="col-md-4">
                 @Html.EditorFor(model => model.tbCliente.clte_Identificacion)
                 <p style="color:red">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)
             </div>
-        </div>
+        </div>*@
 
         @* Fin datos de cliente *@
 
@@ -100,11 +103,11 @@
 
         <div class="form-group">
 
-            <label class="control-label col-md-2">Estado Solicitud Crédito</label>
+            <label class="control-label col-md-2">Estado</label>
             @*@Html.LabelFor(model => model.cred_MontoAprobado, new { @class = "control-label col-md-2" })*@
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cred_MontoAprobado)
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cred_MontoAprobado)
+                @Html.DropDownList("escre_Id", (IEnumerable<SelectListItem>)ViewBag.escre_Descripcion,"Seleccione", new { @class = "form-control" })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.escre_Id)
             </div>
         </div>
 
@@ -127,26 +130,26 @@
 
 
 
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.cred_DiasSolicitado, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.cred_DiasSolicitado)
                 @Html.ValidationMessageFor(model => model.cred_DiasSolicitado)
             </div>
-        </div>*@
+        </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.cred_DiasAprobado, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.cred_DiasAprobado)
                 <p style="color:red">@Html.ValidationMessageFor(model => model.cred_DiasAprobado)
         </div>
-        </div>
+        </div>*@
   
 
         <div class="form-group">
             <div class="col-md-12 text-center">
-                <input type="button" value="Guardar" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
@@ -172,7 +175,7 @@
                 </div>
                         ViewBag.Cliente = db.tbCliente.ToList(); 
                 <div class="modal-body" id="frmEditarMunicipios">
-                    @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
+                    @Html.Partial("_IndexCliente", (IEnumerable<tbCliente>)ViewBag.Cliente)
                 </div>
             </div>
         </div>
@@ -207,7 +210,7 @@ $(function () {
     $("#cred_FechaSolicitud").datepicker({ dateFormat: 'yy-mm-dd' });
 });
 </script>
-<script src="~/Scripts/app/Cliente.js"></script>
+<script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 }
 

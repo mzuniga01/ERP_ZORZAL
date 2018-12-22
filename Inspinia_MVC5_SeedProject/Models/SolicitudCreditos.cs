@@ -25,10 +25,11 @@ namespace ERP_GMEDINA.Models
         [Required]
         public byte escre_Id { get; set; }
         [Display(Name = "Fecha Solicitud")]
+ //       [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
         public System.DateTime cred_FechaSolicitud { get; set; }
         [Display(Name = "Fecha Aprobación")]
-  
+ //      [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true,DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
         public System.DateTime cred_FechaAprobacion { get; set; }
         [Display(Name = "Monto Solicitado")]
@@ -41,20 +42,20 @@ namespace ERP_GMEDINA.Models
         [Required]
         public int cred_DiasSolicitado { get; set; }
         [Display(Name = "Días Aprobados")]
-        [Required]
+        //[Required]
         public int cred_DiasAprobado { get; set; }
         [Display(Name = "Usuario Creación")]
-        [Required]
+
         public int cred_UsuarioCrea { get; set; }
         [Display(Name = "Fecha Creación")]
-        [Required]
+ 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
         public System.DateTime cred_FechaCrea { get; set; }
         [Display(Name = "Usuario Modificación")]
-        [Required]
+
         public Nullable<int> cred_UsuarioModifica { get; set; }
         [Display(Name = "Fecha Modificación")]
-        [Required]
+
         public Nullable<System.DateTime> cred_FechaModifica { get; set; }
     }
 }
