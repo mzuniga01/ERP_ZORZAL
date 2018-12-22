@@ -461,7 +461,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPuntoEmision_Insert_Result>("UDP_Vent_tbPuntoEmision_Insert", pemi_NumeroCAIParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbPuntoEmision_Update(Nullable<int> pemi_Id, string pemi_NumeroCAI, Nullable<int> pemi_UsuarioCrea, Nullable<System.DateTime> pemi_FechaCrea)
+        public virtual ObjectResult<UDP_Vent_tbPuntoEmision_Update_Result> UDP_Vent_tbPuntoEmision_Update(Nullable<int> pemi_Id, string pemi_NumeroCAI, Nullable<int> pemi_UsuarioCrea, Nullable<System.DateTime> pemi_FechaCrea)
         {
             var pemi_IdParameter = pemi_Id.HasValue ?
                 new ObjectParameter("pemi_Id", pemi_Id) :
@@ -479,10 +479,10 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pemi_FechaCrea", pemi_FechaCrea) :
                 new ObjectParameter("pemi_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbPuntoEmision_Update", pemi_IdParameter, pemi_NumeroCAIParameter, pemi_UsuarioCreaParameter, pemi_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPuntoEmision_Update_Result>("UDP_Vent_tbPuntoEmision_Update", pemi_IdParameter, pemi_NumeroCAIParameter, pemi_UsuarioCreaParameter, pemi_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbPuntoEmisionDetalle_Update(Nullable<int> pemid_Id, string pemid_RangoInicio, string pemid_RangoFinal, Nullable<System.DateTime> pemid_FechaLimite, Nullable<int> pemid_UsuarioCrea, Nullable<System.DateTime> pemid_FechaCrea)
+        public virtual ObjectResult<UDP_Vent_tbPuntoEmisionDetalle_Update_Result> UDP_Vent_tbPuntoEmisionDetalle_Update(Nullable<int> pemid_Id, string pemid_RangoInicio, string pemid_RangoFinal, Nullable<System.DateTime> pemid_FechaLimite, Nullable<int> pemid_UsuarioCrea, Nullable<System.DateTime> pemid_FechaCrea)
         {
             var pemid_IdParameter = pemid_Id.HasValue ?
                 new ObjectParameter("pemid_Id", pemid_Id) :
@@ -508,7 +508,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pemid_FechaCrea", pemid_FechaCrea) :
                 new ObjectParameter("pemid_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbPuntoEmisionDetalle_Update", pemid_IdParameter, pemid_RangoInicioParameter, pemid_RangoFinalParameter, pemid_FechaLimiteParameter, pemid_UsuarioCreaParameter, pemid_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPuntoEmisionDetalle_Update_Result>("UDP_Vent_tbPuntoEmisionDetalle_Update", pemid_IdParameter, pemid_RangoInicioParameter, pemid_RangoFinalParameter, pemid_FechaLimiteParameter, pemid_UsuarioCreaParameter, pemid_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbPuntoEmisionDetalle_Insert_Result> UDP_Vent_tbPuntoEmisionDetalle_Insert(Nullable<int> pemi_Id, string dfisc_Id, string pemid_RangoInicio, string pemid_RangoFinal, Nullable<System.DateTime> pemid_FechaLimite)

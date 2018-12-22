@@ -4619,13 +4619,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <FunctionImport Name="UDP_Vent_tbPuntoEmision_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPuntoEmision_Insert_Result)">
           <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbPuntoEmision_Update" ReturnType="Collection(Int32)">
+          <FunctionImport Name="UDP_Vent_tbPuntoEmision_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPuntoEmision_Update_Result)">
             <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
             <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
             <Parameter Name="pemi_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="pemi_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbPuntoEmisionDetalle_Update" ReturnType="Collection(Int32)">
+          <FunctionImport Name="UDP_Vent_tbPuntoEmisionDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPuntoEmisionDetalle_Update_Result)">
             <Parameter Name="pemid_Id" Mode="In" Type="Int32" />
             <Parameter Name="pemid_RangoInicio" Mode="In" Type="String" />
             <Parameter Name="pemid_RangoFinal" Mode="In" Type="String" />
@@ -9552,6 +9552,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
         <ComplexType Name="UDP_Vent_tbFactura_Update_Result">
           <Property Type="Int64" Name="MensajeError" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbPuntoEmision_Update_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Update_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9689,8 +9695,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbPuntoEmision_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPuntoEmision_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbPuntoEmisionDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPuntoEmisionDetalle_Update" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbPuntoEmision_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPuntoEmision_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPuntoEmision_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbPuntoEmisionDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPuntoEmisionDetalle_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPuntoEmisionDetalle_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbPuntoEmisionDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPuntoEmisionDetalle_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPuntoEmisionDetalle_Insert_Result">

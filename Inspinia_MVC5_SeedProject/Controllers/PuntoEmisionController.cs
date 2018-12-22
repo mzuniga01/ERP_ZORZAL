@@ -206,22 +206,46 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include= "pemi_Id,pemi_NumeroCAI,pemi_UsuarioCrea,pemi_FechaCrea,pemi_UsuarioModifica,pemi_FechaModifica,tbUsuario,tbUsuario1")] tbPuntoEmision tbPuntoEmision)
+        public ActionResult Edit([Bind(Include= "pemi_Id,pemi_NumeroCAI,pemi_UsuarioCrea,pemi_FechaCrea,pemi_UsuarioModifica,pemi_FechaModifica,tbUsuario,tbUsuario1")] tbPuntoEmision PuntoEmision)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbPuntoEmision).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbPuntoEmision_Update(
+                        PuntoEmision.pemi_Id,
+                        PuntoEmision.pemi_NumeroCAI,
+                        PuntoEmision.pemi_UsuarioCrea,
+                        PuntoEmision.pemi_FechaCrea);
+                    foreach (UDP_Vent_tbPuntoEmision_Update_Result puntoemision in list)
+                        MensajeError = puntoemision.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                        return View(PuntoEmision);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    
+                    return View(PuntoEmision);
+                }
+    
+              
             }
-
-
             //PuntoEmisionDetalle
-            tbPuntoEmisionDetalle tbPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
-            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", tbPuntoEmisionDetalle.dfisc_Id);
+            tbPuntoEmisionDetalle PuntoEmisionDetalleP = new tbPuntoEmisionDetalle();
+            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", PuntoEmisionDetalleP.dfisc_Id);
 
-
-            return View(tbPuntoEmision);
+            return View(PuntoEmision);
         }
 
         // GET: /PuntoEmision/Delete/5
