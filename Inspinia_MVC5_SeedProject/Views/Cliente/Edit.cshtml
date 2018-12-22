@@ -231,12 +231,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                </div>
-                            </div>
 
 
 
@@ -330,5 +324,31 @@
 <script src="~/Scripts/app/PersonaNatural.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Activo.js"></script>
-@*<script src="~/Scripts/app/Departamento.js"></script>*@
+<script src="~/Scripts/app/Departamento.js"></script>
+<script src="~/Scripts/app/Departamento1.js"></script>
 <script src="~/Scripts/app/Identificacion.js"></script>
+<script>
+    var elemento = document.getElementById("tpi_Id");
+    console.log(elemento)
+    elemento.onmouseover = function (e) {
+        GetIdentificacion();
+    };
+    //$("#tpi_Id").change(function () {
+    //    var seleccionado=elemento[1];
+    //});
+    //elemento.onmouseout = function (e) {
+    //    console.log("Ya no estas sobre el elemento")
+    //    var selectedOption = this.options[elemento.selectedIndex];
+    //    console.log(selectedOption.value + ': ' + selectedOption.text);
+    //    $('#tpi_Id').append("<option value=" + selectedOption.value + ">" + selectedOption.text + "</option>");
+
+    //    //elemento.addEventListener('change',
+    //    //  function () {
+    //    //      var selectedOption = this.options[elemento.selectedIndex];
+    //    //      console.log(selectedOption.value + ': ' + selectedOption.text);
+    //    //      $('#tpi_Id').append("<option value=" + selectedOption.value + ">" + selectedOption.text + "</option>");
+    //    //  });
+    //};
+
+
+</script>

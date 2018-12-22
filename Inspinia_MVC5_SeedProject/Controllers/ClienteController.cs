@@ -253,7 +253,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult GetMunicipios(string CodDepartamento)
         {
-            var list = db.spGetMunicipios(CodDepartamento).ToList();
+            var list = db.spGetMunicipios1(CodDepartamento).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
@@ -264,7 +264,12 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-
+        [HttpPost]
+        public JsonResult GetDepartamento(string CodMunicipio)
+        {
+            var list = db.spGetDepartamento(CodMunicipio).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
 
 

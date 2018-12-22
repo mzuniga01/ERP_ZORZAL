@@ -22,8 +22,6 @@ function GetIdentificacion() {
             $.each(data, function (key, val) {
                 $('#tpi_Id').append("<option value=" + val.tpi_Id + ">" + val.tpi_Descripcion + "</option>");
             });
-            console.log(tpi_Id)
-            console.log(CodIdentificacion)
             $('#tpi_Id').trigger("chosen:updated");
         }
     });

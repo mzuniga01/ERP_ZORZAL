@@ -34,7 +34,7 @@
 
                     <div class="row">
                         <div class="row">
-                            <div class="col-md-4" id="natural" name="natural">
+                            <div class="col-md-6" id="natural" name="natural">
                                 <dl class="dl-horizontal">
                                     <dt>
                                        Tipo Identificación
@@ -55,13 +55,6 @@
                                         </dt>
                                         <dd>
                                             @Html.DisplayFor(model => model.clte_Nombres)
-                                        </dd>
-
-                                        <dt>
-                                            @Html.DisplayNameFor(model => model.clte_Apellidos)
-                                        </dt>
-
-                                        <dd>
                                             @Html.DisplayFor(model => model.clte_Apellidos)
                                         </dd>
 
@@ -89,14 +82,7 @@
 
                                         <dd>
                                             @Html.DisplayFor(model => model.clte_Telefono)
-                                        </dd>
-                                        <dt>
-                                            @Html.DisplayNameFor(model => model.clte_Direccion)
-                                        </dt>
-
-                                        <dd>
-                                            @Html.DisplayFor(model => model.clte_Direccion)
-                                        </dd>
+                                        </dd>                                        
                                         <dt>
                                             @Html.DisplayNameFor(model => model.clte_CorreoElectronico)
                                         </dt>
@@ -163,7 +149,20 @@
                                             @Html.DisplayFor(model => model.clte_FechaConstitucion)
                                         </dd>
                                     }
-                                                           
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_Direccion)
+                                    </dt>
+
+                                    @if (Model.clte_Direccion == null)
+                                    {
+                                        <dd>Ninguna</dd>
+                                    }
+                                    else
+                                    {
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_Direccion)
+                                        </dd>
+                                    }                    
                                     <dt>
                                         @Html.DisplayNameFor(model => model.clte_EsActivo)
                                     </dt>
@@ -208,11 +207,11 @@
                                     }
 
                                     <dt>
-                                        @Html.DisplayNameFor(model => model.tbMunicipio.tbDepartamento.dep_Codigo)
+                                        Departamento
                                     </dt>
 
                                     <dd>
-                                        @Html.DisplayFor(model => model.tbMunicipio.tbDepartamento.dep_Codigo)
+                                        @Html.DisplayFor(model => model.tbMunicipio.tbDepartamento.dep_Nombre)
                                     </dd>
 
 
@@ -226,7 +225,7 @@
                                         @Html.DisplayNameFor(model => model.clte_Observaciones)
                                     </dt>
 
-                                    @if (Model.clte_Observaciones=="")
+                                    @if (Model.clte_Observaciones==null)
                                     {
                                         <dd>Ninguna</dd>
                                     }

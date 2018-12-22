@@ -3295,7 +3295,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="tpi_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="tpi_FechaModifica" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="spGetDepartamento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="CodMunicipio" Type="char" Mode="In" />
+  </Function>
   <Function Name="spGetMunicipios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="CodDepartamento" Type="char" Mode="In" />
+  </Function>
+  <Function Name="spGetMunicipios1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="CodDepartamento" Type="char" Mode="In" />
   </Function>
   <Function Name="spGetTipoIdentificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">

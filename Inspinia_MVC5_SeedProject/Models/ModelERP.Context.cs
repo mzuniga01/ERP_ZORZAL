@@ -536,216 +536,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPuntoEmisionDetalle_Insert_Result>("UDP_Vent_tbPuntoEmisionDetalle_Insert", pemi_IdParameter, dfisc_IdParameter, pemid_RangoInicioParameter, pemid_RangoFinalParameter, pemid_FechaLimiteParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbCliente_Insert_Result> UDP_Vent_tbCliente_Insert(Nullable<byte> tpi_Id, string clte_Identificacion, Nullable<bool> clte_EsPersonaNatural, string clte_Nombres, string clte_Apellidos, Nullable<System.DateTime> clte_FechaNacimiento, string clte_Nacionalidad, string clte_Sexo, string clte_Telefono, string clte_NombreComercial, string clte_RazonSocial, string clte_ContactoNombre, string clte_ContactoEmail, string clte_ContactoTelefono, Nullable<System.DateTime> clte_FechaConstitucion, string mun_Codigo, string clte_Direccion, string clte_CorreoElectronico, Nullable<bool> clte_EsActivo, string clte_RazonInactivo, Nullable<bool> clte_ConCredito, Nullable<bool> clte_EsMinorista, string clte_Observaciones, Nullable<bool> clte_ConsumidorFinal)
-        {
-            var tpi_IdParameter = tpi_Id.HasValue ?
-                new ObjectParameter("tpi_Id", tpi_Id) :
-                new ObjectParameter("tpi_Id", typeof(byte));
-    
-            var clte_IdentificacionParameter = clte_Identificacion != null ?
-                new ObjectParameter("clte_Identificacion", clte_Identificacion) :
-                new ObjectParameter("clte_Identificacion", typeof(string));
-    
-            var clte_EsPersonaNaturalParameter = clte_EsPersonaNatural.HasValue ?
-                new ObjectParameter("clte_EsPersonaNatural", clte_EsPersonaNatural) :
-                new ObjectParameter("clte_EsPersonaNatural", typeof(bool));
-    
-            var clte_NombresParameter = clte_Nombres != null ?
-                new ObjectParameter("clte_Nombres", clte_Nombres) :
-                new ObjectParameter("clte_Nombres", typeof(string));
-    
-            var clte_ApellidosParameter = clte_Apellidos != null ?
-                new ObjectParameter("clte_Apellidos", clte_Apellidos) :
-                new ObjectParameter("clte_Apellidos", typeof(string));
-    
-            var clte_FechaNacimientoParameter = clte_FechaNacimiento.HasValue ?
-                new ObjectParameter("clte_FechaNacimiento", clte_FechaNacimiento) :
-                new ObjectParameter("clte_FechaNacimiento", typeof(System.DateTime));
-    
-            var clte_NacionalidadParameter = clte_Nacionalidad != null ?
-                new ObjectParameter("clte_Nacionalidad", clte_Nacionalidad) :
-                new ObjectParameter("clte_Nacionalidad", typeof(string));
-    
-            var clte_SexoParameter = clte_Sexo != null ?
-                new ObjectParameter("clte_Sexo", clte_Sexo) :
-                new ObjectParameter("clte_Sexo", typeof(string));
-    
-            var clte_TelefonoParameter = clte_Telefono != null ?
-                new ObjectParameter("clte_Telefono", clte_Telefono) :
-                new ObjectParameter("clte_Telefono", typeof(string));
-    
-            var clte_NombreComercialParameter = clte_NombreComercial != null ?
-                new ObjectParameter("clte_NombreComercial", clte_NombreComercial) :
-                new ObjectParameter("clte_NombreComercial", typeof(string));
-    
-            var clte_RazonSocialParameter = clte_RazonSocial != null ?
-                new ObjectParameter("clte_RazonSocial", clte_RazonSocial) :
-                new ObjectParameter("clte_RazonSocial", typeof(string));
-    
-            var clte_ContactoNombreParameter = clte_ContactoNombre != null ?
-                new ObjectParameter("clte_ContactoNombre", clte_ContactoNombre) :
-                new ObjectParameter("clte_ContactoNombre", typeof(string));
-    
-            var clte_ContactoEmailParameter = clte_ContactoEmail != null ?
-                new ObjectParameter("clte_ContactoEmail", clte_ContactoEmail) :
-                new ObjectParameter("clte_ContactoEmail", typeof(string));
-    
-            var clte_ContactoTelefonoParameter = clte_ContactoTelefono != null ?
-                new ObjectParameter("clte_ContactoTelefono", clte_ContactoTelefono) :
-                new ObjectParameter("clte_ContactoTelefono", typeof(string));
-    
-            var clte_FechaConstitucionParameter = clte_FechaConstitucion.HasValue ?
-                new ObjectParameter("clte_FechaConstitucion", clte_FechaConstitucion) :
-                new ObjectParameter("clte_FechaConstitucion", typeof(System.DateTime));
-    
-            var mun_CodigoParameter = mun_Codigo != null ?
-                new ObjectParameter("mun_Codigo", mun_Codigo) :
-                new ObjectParameter("mun_Codigo", typeof(string));
-    
-            var clte_DireccionParameter = clte_Direccion != null ?
-                new ObjectParameter("clte_Direccion", clte_Direccion) :
-                new ObjectParameter("clte_Direccion", typeof(string));
-    
-            var clte_CorreoElectronicoParameter = clte_CorreoElectronico != null ?
-                new ObjectParameter("clte_CorreoElectronico", clte_CorreoElectronico) :
-                new ObjectParameter("clte_CorreoElectronico", typeof(string));
-    
-            var clte_EsActivoParameter = clte_EsActivo.HasValue ?
-                new ObjectParameter("clte_EsActivo", clte_EsActivo) :
-                new ObjectParameter("clte_EsActivo", typeof(bool));
-    
-            var clte_RazonInactivoParameter = clte_RazonInactivo != null ?
-                new ObjectParameter("clte_RazonInactivo", clte_RazonInactivo) :
-                new ObjectParameter("clte_RazonInactivo", typeof(string));
-    
-            var clte_ConCreditoParameter = clte_ConCredito.HasValue ?
-                new ObjectParameter("clte_ConCredito", clte_ConCredito) :
-                new ObjectParameter("clte_ConCredito", typeof(bool));
-    
-            var clte_EsMinoristaParameter = clte_EsMinorista.HasValue ?
-                new ObjectParameter("clte_EsMinorista", clte_EsMinorista) :
-                new ObjectParameter("clte_EsMinorista", typeof(bool));
-    
-            var clte_ObservacionesParameter = clte_Observaciones != null ?
-                new ObjectParameter("clte_Observaciones", clte_Observaciones) :
-                new ObjectParameter("clte_Observaciones", typeof(string));
-    
-            var clte_ConsumidorFinalParameter = clte_ConsumidorFinal.HasValue ?
-                new ObjectParameter("clte_ConsumidorFinal", clte_ConsumidorFinal) :
-                new ObjectParameter("clte_ConsumidorFinal", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCliente_Insert_Result>("UDP_Vent_tbCliente_Insert", tpi_IdParameter, clte_IdentificacionParameter, clte_EsPersonaNaturalParameter, clte_NombresParameter, clte_ApellidosParameter, clte_FechaNacimientoParameter, clte_NacionalidadParameter, clte_SexoParameter, clte_TelefonoParameter, clte_NombreComercialParameter, clte_RazonSocialParameter, clte_ContactoNombreParameter, clte_ContactoEmailParameter, clte_ContactoTelefonoParameter, clte_FechaConstitucionParameter, mun_CodigoParameter, clte_DireccionParameter, clte_CorreoElectronicoParameter, clte_EsActivoParameter, clte_RazonInactivoParameter, clte_ConCreditoParameter, clte_EsMinoristaParameter, clte_ObservacionesParameter, clte_ConsumidorFinalParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbCliente_Update_Result> UDP_Vent_tbCliente_Update(Nullable<int> clte_Id, string clte_Identificacion, Nullable<bool> clte_EsPersonaNatural, string clte_Nombres, string clte_Apellidos, Nullable<System.DateTime> clte_FechaNacimiento, string clte_Nacionalidad, string clte_Sexo, string clte_Telefono, string clte_NombreComercial, string clte_RazonSocial, string clte_ContactoNombre, string clte_ContactoEmail, string clte_ContactoTelefono, Nullable<System.DateTime> clte_FechaConstitucion, string mun_Codigo, string clte_Direccion, string clte_CorreoElectronico, Nullable<bool> clte_EsActivo, string clte_RazonInactivo, Nullable<bool> clte_ConCredito, Nullable<bool> clte_EsMinorista, string clte_Observaciones, Nullable<int> clte_UsuarioCrea, Nullable<System.DateTime> clte_FechaCrea, Nullable<bool> clte_ConsumidorFinal)
-        {
-            var clte_IdParameter = clte_Id.HasValue ?
-                new ObjectParameter("clte_Id", clte_Id) :
-                new ObjectParameter("clte_Id", typeof(int));
-    
-            var clte_IdentificacionParameter = clte_Identificacion != null ?
-                new ObjectParameter("clte_Identificacion", clte_Identificacion) :
-                new ObjectParameter("clte_Identificacion", typeof(string));
-    
-            var clte_EsPersonaNaturalParameter = clte_EsPersonaNatural.HasValue ?
-                new ObjectParameter("clte_EsPersonaNatural", clte_EsPersonaNatural) :
-                new ObjectParameter("clte_EsPersonaNatural", typeof(bool));
-    
-            var clte_NombresParameter = clte_Nombres != null ?
-                new ObjectParameter("clte_Nombres", clte_Nombres) :
-                new ObjectParameter("clte_Nombres", typeof(string));
-    
-            var clte_ApellidosParameter = clte_Apellidos != null ?
-                new ObjectParameter("clte_Apellidos", clte_Apellidos) :
-                new ObjectParameter("clte_Apellidos", typeof(string));
-    
-            var clte_FechaNacimientoParameter = clte_FechaNacimiento.HasValue ?
-                new ObjectParameter("clte_FechaNacimiento", clte_FechaNacimiento) :
-                new ObjectParameter("clte_FechaNacimiento", typeof(System.DateTime));
-    
-            var clte_NacionalidadParameter = clte_Nacionalidad != null ?
-                new ObjectParameter("clte_Nacionalidad", clte_Nacionalidad) :
-                new ObjectParameter("clte_Nacionalidad", typeof(string));
-    
-            var clte_SexoParameter = clte_Sexo != null ?
-                new ObjectParameter("clte_Sexo", clte_Sexo) :
-                new ObjectParameter("clte_Sexo", typeof(string));
-    
-            var clte_TelefonoParameter = clte_Telefono != null ?
-                new ObjectParameter("clte_Telefono", clte_Telefono) :
-                new ObjectParameter("clte_Telefono", typeof(string));
-    
-            var clte_NombreComercialParameter = clte_NombreComercial != null ?
-                new ObjectParameter("clte_NombreComercial", clte_NombreComercial) :
-                new ObjectParameter("clte_NombreComercial", typeof(string));
-    
-            var clte_RazonSocialParameter = clte_RazonSocial != null ?
-                new ObjectParameter("clte_RazonSocial", clte_RazonSocial) :
-                new ObjectParameter("clte_RazonSocial", typeof(string));
-    
-            var clte_ContactoNombreParameter = clte_ContactoNombre != null ?
-                new ObjectParameter("clte_ContactoNombre", clte_ContactoNombre) :
-                new ObjectParameter("clte_ContactoNombre", typeof(string));
-    
-            var clte_ContactoEmailParameter = clte_ContactoEmail != null ?
-                new ObjectParameter("clte_ContactoEmail", clte_ContactoEmail) :
-                new ObjectParameter("clte_ContactoEmail", typeof(string));
-    
-            var clte_ContactoTelefonoParameter = clte_ContactoTelefono != null ?
-                new ObjectParameter("clte_ContactoTelefono", clte_ContactoTelefono) :
-                new ObjectParameter("clte_ContactoTelefono", typeof(string));
-    
-            var clte_FechaConstitucionParameter = clte_FechaConstitucion.HasValue ?
-                new ObjectParameter("clte_FechaConstitucion", clte_FechaConstitucion) :
-                new ObjectParameter("clte_FechaConstitucion", typeof(System.DateTime));
-    
-            var mun_CodigoParameter = mun_Codigo != null ?
-                new ObjectParameter("mun_Codigo", mun_Codigo) :
-                new ObjectParameter("mun_Codigo", typeof(string));
-    
-            var clte_DireccionParameter = clte_Direccion != null ?
-                new ObjectParameter("clte_Direccion", clte_Direccion) :
-                new ObjectParameter("clte_Direccion", typeof(string));
-    
-            var clte_CorreoElectronicoParameter = clte_CorreoElectronico != null ?
-                new ObjectParameter("clte_CorreoElectronico", clte_CorreoElectronico) :
-                new ObjectParameter("clte_CorreoElectronico", typeof(string));
-    
-            var clte_EsActivoParameter = clte_EsActivo.HasValue ?
-                new ObjectParameter("clte_EsActivo", clte_EsActivo) :
-                new ObjectParameter("clte_EsActivo", typeof(bool));
-    
-            var clte_RazonInactivoParameter = clte_RazonInactivo != null ?
-                new ObjectParameter("clte_RazonInactivo", clte_RazonInactivo) :
-                new ObjectParameter("clte_RazonInactivo", typeof(string));
-    
-            var clte_ConCreditoParameter = clte_ConCredito.HasValue ?
-                new ObjectParameter("clte_ConCredito", clte_ConCredito) :
-                new ObjectParameter("clte_ConCredito", typeof(bool));
-    
-            var clte_EsMinoristaParameter = clte_EsMinorista.HasValue ?
-                new ObjectParameter("clte_EsMinorista", clte_EsMinorista) :
-                new ObjectParameter("clte_EsMinorista", typeof(bool));
-    
-            var clte_ObservacionesParameter = clte_Observaciones != null ?
-                new ObjectParameter("clte_Observaciones", clte_Observaciones) :
-                new ObjectParameter("clte_Observaciones", typeof(string));
-    
-            var clte_UsuarioCreaParameter = clte_UsuarioCrea.HasValue ?
-                new ObjectParameter("clte_UsuarioCrea", clte_UsuarioCrea) :
-                new ObjectParameter("clte_UsuarioCrea", typeof(int));
-    
-            var clte_FechaCreaParameter = clte_FechaCrea.HasValue ?
-                new ObjectParameter("clte_FechaCrea", clte_FechaCrea) :
-                new ObjectParameter("clte_FechaCrea", typeof(System.DateTime));
-    
-            var clte_ConsumidorFinalParameter = clte_ConsumidorFinal.HasValue ?
-                new ObjectParameter("clte_ConsumidorFinal", clte_ConsumidorFinal) :
-                new ObjectParameter("clte_ConsumidorFinal", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCliente_Update_Result>("UDP_Vent_tbCliente_Update", clte_IdParameter, clte_IdentificacionParameter, clte_EsPersonaNaturalParameter, clte_NombresParameter, clte_ApellidosParameter, clte_FechaNacimientoParameter, clte_NacionalidadParameter, clte_SexoParameter, clte_TelefonoParameter, clte_NombreComercialParameter, clte_RazonSocialParameter, clte_ContactoNombreParameter, clte_ContactoEmailParameter, clte_ContactoTelefonoParameter, clte_FechaConstitucionParameter, mun_CodigoParameter, clte_DireccionParameter, clte_CorreoElectronicoParameter, clte_EsActivoParameter, clte_RazonInactivoParameter, clte_ConCreditoParameter, clte_EsMinoristaParameter, clte_ObservacionesParameter, clte_UsuarioCreaParameter, clte_FechaCreaParameter, clte_ConsumidorFinalParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbEstadoSolicitudCredito_Update_Result> UDP_Vent_tbEstadoSolicitudCredito_Update(Nullable<byte> escre_Id, string escre_Descripcion, Nullable<int> escre_UsuarioCrea, Nullable<int> escre_UsuarioModifica, Nullable<System.DateTime> escre_FechaAgrego, Nullable<System.DateTime> escre_FechaModifica)
         {
             var escre_IdParameter = escre_Id.HasValue ?
@@ -1592,6 +1382,234 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("exo_FechaCrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbExoneracion_Update_Result>("UDP_Vent_tbExoneracion_Update", exo_IdParameter, exo_DocumentoParameter, exo_ExoneracionActivaParameter, exo_FechaInicialVigenciaParameter, exo_FechaIFinalVigenciaParameter, clte_IdParameter, exo_UsuarioCreaParameter, exo_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<spGetDepartamento_Result> spGetDepartamento(string codMunicipio)
+        {
+            var codMunicipioParameter = codMunicipio != null ?
+                new ObjectParameter("CodMunicipio", codMunicipio) :
+                new ObjectParameter("CodMunicipio", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetDepartamento_Result>("spGetDepartamento", codMunicipioParameter);
+        }
+    
+        public virtual ObjectResult<spGetMunicipios1_Result> spGetMunicipios1(string codDepartamento)
+        {
+            var codDepartamentoParameter = codDepartamento != null ?
+                new ObjectParameter("CodDepartamento", codDepartamento) :
+                new ObjectParameter("CodDepartamento", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetMunicipios1_Result>("spGetMunicipios1", codDepartamentoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbCliente_Insert_Result> UDP_Vent_tbCliente_Insert(Nullable<byte> tpi_Id, string clte_Identificacion, Nullable<bool> clte_EsPersonaNatural, string clte_Nombres, string clte_Apellidos, Nullable<System.DateTime> clte_FechaNacimiento, string clte_Nacionalidad, string clte_Sexo, string clte_Telefono, string clte_NombreComercial, string clte_RazonSocial, string clte_ContactoNombre, string clte_ContactoEmail, string clte_ContactoTelefono, Nullable<System.DateTime> clte_FechaConstitucion, string mun_Codigo, string clte_Direccion, string clte_CorreoElectronico, Nullable<bool> clte_EsActivo, string clte_RazonInactivo, Nullable<bool> clte_ConCredito, Nullable<bool> clte_EsMinorista, string clte_Observaciones, Nullable<bool> clte_ConsumidorFinal)
+        {
+            var tpi_IdParameter = tpi_Id.HasValue ?
+                new ObjectParameter("tpi_Id", tpi_Id) :
+                new ObjectParameter("tpi_Id", typeof(byte));
+    
+            var clte_IdentificacionParameter = clte_Identificacion != null ?
+                new ObjectParameter("clte_Identificacion", clte_Identificacion) :
+                new ObjectParameter("clte_Identificacion", typeof(string));
+    
+            var clte_EsPersonaNaturalParameter = clte_EsPersonaNatural.HasValue ?
+                new ObjectParameter("clte_EsPersonaNatural", clte_EsPersonaNatural) :
+                new ObjectParameter("clte_EsPersonaNatural", typeof(bool));
+    
+            var clte_NombresParameter = clte_Nombres != null ?
+                new ObjectParameter("clte_Nombres", clte_Nombres) :
+                new ObjectParameter("clte_Nombres", typeof(string));
+    
+            var clte_ApellidosParameter = clte_Apellidos != null ?
+                new ObjectParameter("clte_Apellidos", clte_Apellidos) :
+                new ObjectParameter("clte_Apellidos", typeof(string));
+    
+            var clte_FechaNacimientoParameter = clte_FechaNacimiento.HasValue ?
+                new ObjectParameter("clte_FechaNacimiento", clte_FechaNacimiento) :
+                new ObjectParameter("clte_FechaNacimiento", typeof(System.DateTime));
+    
+            var clte_NacionalidadParameter = clte_Nacionalidad != null ?
+                new ObjectParameter("clte_Nacionalidad", clte_Nacionalidad) :
+                new ObjectParameter("clte_Nacionalidad", typeof(string));
+    
+            var clte_SexoParameter = clte_Sexo != null ?
+                new ObjectParameter("clte_Sexo", clte_Sexo) :
+                new ObjectParameter("clte_Sexo", typeof(string));
+    
+            var clte_TelefonoParameter = clte_Telefono != null ?
+                new ObjectParameter("clte_Telefono", clte_Telefono) :
+                new ObjectParameter("clte_Telefono", typeof(string));
+    
+            var clte_NombreComercialParameter = clte_NombreComercial != null ?
+                new ObjectParameter("clte_NombreComercial", clte_NombreComercial) :
+                new ObjectParameter("clte_NombreComercial", typeof(string));
+    
+            var clte_RazonSocialParameter = clte_RazonSocial != null ?
+                new ObjectParameter("clte_RazonSocial", clte_RazonSocial) :
+                new ObjectParameter("clte_RazonSocial", typeof(string));
+    
+            var clte_ContactoNombreParameter = clte_ContactoNombre != null ?
+                new ObjectParameter("clte_ContactoNombre", clte_ContactoNombre) :
+                new ObjectParameter("clte_ContactoNombre", typeof(string));
+    
+            var clte_ContactoEmailParameter = clte_ContactoEmail != null ?
+                new ObjectParameter("clte_ContactoEmail", clte_ContactoEmail) :
+                new ObjectParameter("clte_ContactoEmail", typeof(string));
+    
+            var clte_ContactoTelefonoParameter = clte_ContactoTelefono != null ?
+                new ObjectParameter("clte_ContactoTelefono", clte_ContactoTelefono) :
+                new ObjectParameter("clte_ContactoTelefono", typeof(string));
+    
+            var clte_FechaConstitucionParameter = clte_FechaConstitucion.HasValue ?
+                new ObjectParameter("clte_FechaConstitucion", clte_FechaConstitucion) :
+                new ObjectParameter("clte_FechaConstitucion", typeof(System.DateTime));
+    
+            var mun_CodigoParameter = mun_Codigo != null ?
+                new ObjectParameter("mun_Codigo", mun_Codigo) :
+                new ObjectParameter("mun_Codigo", typeof(string));
+    
+            var clte_DireccionParameter = clte_Direccion != null ?
+                new ObjectParameter("clte_Direccion", clte_Direccion) :
+                new ObjectParameter("clte_Direccion", typeof(string));
+    
+            var clte_CorreoElectronicoParameter = clte_CorreoElectronico != null ?
+                new ObjectParameter("clte_CorreoElectronico", clte_CorreoElectronico) :
+                new ObjectParameter("clte_CorreoElectronico", typeof(string));
+    
+            var clte_EsActivoParameter = clte_EsActivo.HasValue ?
+                new ObjectParameter("clte_EsActivo", clte_EsActivo) :
+                new ObjectParameter("clte_EsActivo", typeof(bool));
+    
+            var clte_RazonInactivoParameter = clte_RazonInactivo != null ?
+                new ObjectParameter("clte_RazonInactivo", clte_RazonInactivo) :
+                new ObjectParameter("clte_RazonInactivo", typeof(string));
+    
+            var clte_ConCreditoParameter = clte_ConCredito.HasValue ?
+                new ObjectParameter("clte_ConCredito", clte_ConCredito) :
+                new ObjectParameter("clte_ConCredito", typeof(bool));
+    
+            var clte_EsMinoristaParameter = clte_EsMinorista.HasValue ?
+                new ObjectParameter("clte_EsMinorista", clte_EsMinorista) :
+                new ObjectParameter("clte_EsMinorista", typeof(bool));
+    
+            var clte_ObservacionesParameter = clte_Observaciones != null ?
+                new ObjectParameter("clte_Observaciones", clte_Observaciones) :
+                new ObjectParameter("clte_Observaciones", typeof(string));
+    
+            var clte_ConsumidorFinalParameter = clte_ConsumidorFinal.HasValue ?
+                new ObjectParameter("clte_ConsumidorFinal", clte_ConsumidorFinal) :
+                new ObjectParameter("clte_ConsumidorFinal", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCliente_Insert_Result>("UDP_Vent_tbCliente_Insert", tpi_IdParameter, clte_IdentificacionParameter, clte_EsPersonaNaturalParameter, clte_NombresParameter, clte_ApellidosParameter, clte_FechaNacimientoParameter, clte_NacionalidadParameter, clte_SexoParameter, clte_TelefonoParameter, clte_NombreComercialParameter, clte_RazonSocialParameter, clte_ContactoNombreParameter, clte_ContactoEmailParameter, clte_ContactoTelefonoParameter, clte_FechaConstitucionParameter, mun_CodigoParameter, clte_DireccionParameter, clte_CorreoElectronicoParameter, clte_EsActivoParameter, clte_RazonInactivoParameter, clte_ConCreditoParameter, clte_EsMinoristaParameter, clte_ObservacionesParameter, clte_ConsumidorFinalParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbCliente_Update_Result> UDP_Vent_tbCliente_Update(Nullable<int> clte_Id, string clte_Identificacion, Nullable<bool> clte_EsPersonaNatural, string clte_Nombres, string clte_Apellidos, Nullable<System.DateTime> clte_FechaNacimiento, string clte_Nacionalidad, string clte_Sexo, string clte_Telefono, string clte_NombreComercial, string clte_RazonSocial, string clte_ContactoNombre, string clte_ContactoEmail, string clte_ContactoTelefono, Nullable<System.DateTime> clte_FechaConstitucion, string mun_Codigo, string clte_Direccion, string clte_CorreoElectronico, Nullable<bool> clte_EsActivo, string clte_RazonInactivo, Nullable<bool> clte_ConCredito, Nullable<bool> clte_EsMinorista, string clte_Observaciones, Nullable<int> clte_UsuarioCrea, Nullable<System.DateTime> clte_FechaCrea, Nullable<bool> clte_ConsumidorFinal)
+        {
+            var clte_IdParameter = clte_Id.HasValue ?
+                new ObjectParameter("clte_Id", clte_Id) :
+                new ObjectParameter("clte_Id", typeof(int));
+    
+            var clte_IdentificacionParameter = clte_Identificacion != null ?
+                new ObjectParameter("clte_Identificacion", clte_Identificacion) :
+                new ObjectParameter("clte_Identificacion", typeof(string));
+    
+            var clte_EsPersonaNaturalParameter = clte_EsPersonaNatural.HasValue ?
+                new ObjectParameter("clte_EsPersonaNatural", clte_EsPersonaNatural) :
+                new ObjectParameter("clte_EsPersonaNatural", typeof(bool));
+    
+            var clte_NombresParameter = clte_Nombres != null ?
+                new ObjectParameter("clte_Nombres", clte_Nombres) :
+                new ObjectParameter("clte_Nombres", typeof(string));
+    
+            var clte_ApellidosParameter = clte_Apellidos != null ?
+                new ObjectParameter("clte_Apellidos", clte_Apellidos) :
+                new ObjectParameter("clte_Apellidos", typeof(string));
+    
+            var clte_FechaNacimientoParameter = clte_FechaNacimiento.HasValue ?
+                new ObjectParameter("clte_FechaNacimiento", clte_FechaNacimiento) :
+                new ObjectParameter("clte_FechaNacimiento", typeof(System.DateTime));
+    
+            var clte_NacionalidadParameter = clte_Nacionalidad != null ?
+                new ObjectParameter("clte_Nacionalidad", clte_Nacionalidad) :
+                new ObjectParameter("clte_Nacionalidad", typeof(string));
+    
+            var clte_SexoParameter = clte_Sexo != null ?
+                new ObjectParameter("clte_Sexo", clte_Sexo) :
+                new ObjectParameter("clte_Sexo", typeof(string));
+    
+            var clte_TelefonoParameter = clte_Telefono != null ?
+                new ObjectParameter("clte_Telefono", clte_Telefono) :
+                new ObjectParameter("clte_Telefono", typeof(string));
+    
+            var clte_NombreComercialParameter = clte_NombreComercial != null ?
+                new ObjectParameter("clte_NombreComercial", clte_NombreComercial) :
+                new ObjectParameter("clte_NombreComercial", typeof(string));
+    
+            var clte_RazonSocialParameter = clte_RazonSocial != null ?
+                new ObjectParameter("clte_RazonSocial", clte_RazonSocial) :
+                new ObjectParameter("clte_RazonSocial", typeof(string));
+    
+            var clte_ContactoNombreParameter = clte_ContactoNombre != null ?
+                new ObjectParameter("clte_ContactoNombre", clte_ContactoNombre) :
+                new ObjectParameter("clte_ContactoNombre", typeof(string));
+    
+            var clte_ContactoEmailParameter = clte_ContactoEmail != null ?
+                new ObjectParameter("clte_ContactoEmail", clte_ContactoEmail) :
+                new ObjectParameter("clte_ContactoEmail", typeof(string));
+    
+            var clte_ContactoTelefonoParameter = clte_ContactoTelefono != null ?
+                new ObjectParameter("clte_ContactoTelefono", clte_ContactoTelefono) :
+                new ObjectParameter("clte_ContactoTelefono", typeof(string));
+    
+            var clte_FechaConstitucionParameter = clte_FechaConstitucion.HasValue ?
+                new ObjectParameter("clte_FechaConstitucion", clte_FechaConstitucion) :
+                new ObjectParameter("clte_FechaConstitucion", typeof(System.DateTime));
+    
+            var mun_CodigoParameter = mun_Codigo != null ?
+                new ObjectParameter("mun_Codigo", mun_Codigo) :
+                new ObjectParameter("mun_Codigo", typeof(string));
+    
+            var clte_DireccionParameter = clte_Direccion != null ?
+                new ObjectParameter("clte_Direccion", clte_Direccion) :
+                new ObjectParameter("clte_Direccion", typeof(string));
+    
+            var clte_CorreoElectronicoParameter = clte_CorreoElectronico != null ?
+                new ObjectParameter("clte_CorreoElectronico", clte_CorreoElectronico) :
+                new ObjectParameter("clte_CorreoElectronico", typeof(string));
+    
+            var clte_EsActivoParameter = clte_EsActivo.HasValue ?
+                new ObjectParameter("clte_EsActivo", clte_EsActivo) :
+                new ObjectParameter("clte_EsActivo", typeof(bool));
+    
+            var clte_RazonInactivoParameter = clte_RazonInactivo != null ?
+                new ObjectParameter("clte_RazonInactivo", clte_RazonInactivo) :
+                new ObjectParameter("clte_RazonInactivo", typeof(string));
+    
+            var clte_ConCreditoParameter = clte_ConCredito.HasValue ?
+                new ObjectParameter("clte_ConCredito", clte_ConCredito) :
+                new ObjectParameter("clte_ConCredito", typeof(bool));
+    
+            var clte_EsMinoristaParameter = clte_EsMinorista.HasValue ?
+                new ObjectParameter("clte_EsMinorista", clte_EsMinorista) :
+                new ObjectParameter("clte_EsMinorista", typeof(bool));
+    
+            var clte_ObservacionesParameter = clte_Observaciones != null ?
+                new ObjectParameter("clte_Observaciones", clte_Observaciones) :
+                new ObjectParameter("clte_Observaciones", typeof(string));
+    
+            var clte_UsuarioCreaParameter = clte_UsuarioCrea.HasValue ?
+                new ObjectParameter("clte_UsuarioCrea", clte_UsuarioCrea) :
+                new ObjectParameter("clte_UsuarioCrea", typeof(int));
+    
+            var clte_FechaCreaParameter = clte_FechaCrea.HasValue ?
+                new ObjectParameter("clte_FechaCrea", clte_FechaCrea) :
+                new ObjectParameter("clte_FechaCrea", typeof(System.DateTime));
+    
+            var clte_ConsumidorFinalParameter = clte_ConsumidorFinal.HasValue ?
+                new ObjectParameter("clte_ConsumidorFinal", clte_ConsumidorFinal) :
+                new ObjectParameter("clte_ConsumidorFinal", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCliente_Update_Result>("UDP_Vent_tbCliente_Update", clte_IdParameter, clte_IdentificacionParameter, clte_EsPersonaNaturalParameter, clte_NombresParameter, clte_ApellidosParameter, clte_FechaNacimientoParameter, clte_NacionalidadParameter, clte_SexoParameter, clte_TelefonoParameter, clte_NombreComercialParameter, clte_RazonSocialParameter, clte_ContactoNombreParameter, clte_ContactoEmailParameter, clte_ContactoTelefonoParameter, clte_FechaConstitucionParameter, mun_CodigoParameter, clte_DireccionParameter, clte_CorreoElectronicoParameter, clte_EsActivoParameter, clte_RazonInactivoParameter, clte_ConCreditoParameter, clte_EsMinoristaParameter, clte_ObservacionesParameter, clte_UsuarioCreaParameter, clte_FechaCreaParameter, clte_ConsumidorFinalParameter);
         }
     }
 }

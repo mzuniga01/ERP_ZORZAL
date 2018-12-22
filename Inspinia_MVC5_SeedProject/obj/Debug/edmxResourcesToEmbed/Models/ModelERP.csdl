@@ -129,60 +129,6 @@
       <Parameter Name="pemid_RangoFinal" Mode="In" Type="String" />
       <Parameter Name="pemid_FechaLimite" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbCliente_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCliente_Insert_Result)">
-      <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
-      <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
-      <Parameter Name="clte_EsPersonaNatural" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_Nombres" Mode="In" Type="String" />
-      <Parameter Name="clte_Apellidos" Mode="In" Type="String" />
-      <Parameter Name="clte_FechaNacimiento" Mode="In" Type="DateTime" />
-      <Parameter Name="clte_Nacionalidad" Mode="In" Type="String" />
-      <Parameter Name="clte_Sexo" Mode="In" Type="String" />
-      <Parameter Name="clte_Telefono" Mode="In" Type="String" />
-      <Parameter Name="clte_NombreComercial" Mode="In" Type="String" />
-      <Parameter Name="clte_RazonSocial" Mode="In" Type="String" />
-      <Parameter Name="clte_ContactoNombre" Mode="In" Type="String" />
-      <Parameter Name="clte_ContactoEmail" Mode="In" Type="String" />
-      <Parameter Name="clte_ContactoTelefono" Mode="In" Type="String" />
-      <Parameter Name="clte_FechaConstitucion" Mode="In" Type="DateTime" />
-      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
-      <Parameter Name="clte_Direccion" Mode="In" Type="String" />
-      <Parameter Name="clte_CorreoElectronico" Mode="In" Type="String" />
-      <Parameter Name="clte_EsActivo" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_RazonInactivo" Mode="In" Type="String" />
-      <Parameter Name="clte_ConCredito" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_EsMinorista" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_Observaciones" Mode="In" Type="String" />
-      <Parameter Name="clte_ConsumidorFinal" Mode="In" Type="Boolean" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbCliente_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCliente_Update_Result)">
-      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-      <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
-      <Parameter Name="clte_EsPersonaNatural" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_Nombres" Mode="In" Type="String" />
-      <Parameter Name="clte_Apellidos" Mode="In" Type="String" />
-      <Parameter Name="clte_FechaNacimiento" Mode="In" Type="DateTime" />
-      <Parameter Name="clte_Nacionalidad" Mode="In" Type="String" />
-      <Parameter Name="clte_Sexo" Mode="In" Type="String" />
-      <Parameter Name="clte_Telefono" Mode="In" Type="String" />
-      <Parameter Name="clte_NombreComercial" Mode="In" Type="String" />
-      <Parameter Name="clte_RazonSocial" Mode="In" Type="String" />
-      <Parameter Name="clte_ContactoNombre" Mode="In" Type="String" />
-      <Parameter Name="clte_ContactoEmail" Mode="In" Type="String" />
-      <Parameter Name="clte_ContactoTelefono" Mode="In" Type="String" />
-      <Parameter Name="clte_FechaConstitucion" Mode="In" Type="DateTime" />
-      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
-      <Parameter Name="clte_Direccion" Mode="In" Type="String" />
-      <Parameter Name="clte_CorreoElectronico" Mode="In" Type="String" />
-      <Parameter Name="clte_EsActivo" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_RazonInactivo" Mode="In" Type="String" />
-      <Parameter Name="clte_ConCredito" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_EsMinorista" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_Observaciones" Mode="In" Type="String" />
-      <Parameter Name="clte_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="clte_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="clte_ConsumidorFinal" Mode="In" Type="Boolean" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbEstadoSolicitudCredito_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Update_Result)">
       <Parameter Name="escre_Id" Mode="In" Type="Byte" />
       <Parameter Name="escre_Descripcion" Mode="In" Type="String" />
@@ -1239,6 +1185,66 @@
       <Parameter Name="exo_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="exo_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="spGetDepartamento" ReturnType="Collection(ERP_ZORZALModel.spGetDepartamento_Result)">
+      <Parameter Name="CodMunicipio" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetMunicipios1" ReturnType="Collection(ERP_ZORZALModel.spGetMunicipios1_Result)">
+      <Parameter Name="CodDepartamento" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbCliente_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCliente_Insert_Result)">
+      <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
+      <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
+      <Parameter Name="clte_EsPersonaNatural" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_Nombres" Mode="In" Type="String" />
+      <Parameter Name="clte_Apellidos" Mode="In" Type="String" />
+      <Parameter Name="clte_FechaNacimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="clte_Nacionalidad" Mode="In" Type="String" />
+      <Parameter Name="clte_Sexo" Mode="In" Type="String" />
+      <Parameter Name="clte_Telefono" Mode="In" Type="String" />
+      <Parameter Name="clte_NombreComercial" Mode="In" Type="String" />
+      <Parameter Name="clte_RazonSocial" Mode="In" Type="String" />
+      <Parameter Name="clte_ContactoNombre" Mode="In" Type="String" />
+      <Parameter Name="clte_ContactoEmail" Mode="In" Type="String" />
+      <Parameter Name="clte_ContactoTelefono" Mode="In" Type="String" />
+      <Parameter Name="clte_FechaConstitucion" Mode="In" Type="DateTime" />
+      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
+      <Parameter Name="clte_Direccion" Mode="In" Type="String" />
+      <Parameter Name="clte_CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="clte_EsActivo" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_RazonInactivo" Mode="In" Type="String" />
+      <Parameter Name="clte_ConCredito" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_EsMinorista" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_Observaciones" Mode="In" Type="String" />
+      <Parameter Name="clte_ConsumidorFinal" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbCliente_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCliente_Update_Result)">
+      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+      <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
+      <Parameter Name="clte_EsPersonaNatural" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_Nombres" Mode="In" Type="String" />
+      <Parameter Name="clte_Apellidos" Mode="In" Type="String" />
+      <Parameter Name="clte_FechaNacimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="clte_Nacionalidad" Mode="In" Type="String" />
+      <Parameter Name="clte_Sexo" Mode="In" Type="String" />
+      <Parameter Name="clte_Telefono" Mode="In" Type="String" />
+      <Parameter Name="clte_NombreComercial" Mode="In" Type="String" />
+      <Parameter Name="clte_RazonSocial" Mode="In" Type="String" />
+      <Parameter Name="clte_ContactoNombre" Mode="In" Type="String" />
+      <Parameter Name="clte_ContactoEmail" Mode="In" Type="String" />
+      <Parameter Name="clte_ContactoTelefono" Mode="In" Type="String" />
+      <Parameter Name="clte_FechaConstitucion" Mode="In" Type="DateTime" />
+      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
+      <Parameter Name="clte_Direccion" Mode="In" Type="String" />
+      <Parameter Name="clte_CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="clte_EsActivo" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_RazonInactivo" Mode="In" Type="String" />
+      <Parameter Name="clte_ConCredito" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_EsMinorista" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_Observaciones" Mode="In" Type="String" />
+      <Parameter Name="clte_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="clte_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="clte_ConsumidorFinal" Mode="In" Type="Boolean" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1338,12 +1344,6 @@
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbExoneracion_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbCliente_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbCliente_Update_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbDevolucion_Insert_Result">
@@ -4969,6 +4969,20 @@
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbExoneracion_Update_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="spGetDepartamento_Result">
+    <Property Type="String" Name="dep_Codigo" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="dep_Nombre" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spGetMunicipios1_Result">
+    <Property Type="String" Name="mun_Codigo" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbCliente_Insert_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbCliente_Update_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
 </Schema>

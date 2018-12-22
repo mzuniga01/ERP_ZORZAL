@@ -1,7 +1,8 @@
-﻿$(document).on("change", '#dep_Codigo', function () {
+﻿////Get Municipio
+$(document).on("change", "#dep_Codigo", function () {
     GetMunicipios();
 });
- 
+
 function GetMunicipios() {
     var CodDepartamento = $('#dep_Codigo').val();
     $.ajax({
@@ -26,5 +27,6 @@ function GetMunicipios() {
             $('#mun_Codigo').append("<option value=''>Seleccione Municipio</option>");
         }
     });
-
 }
+
+//Fin
