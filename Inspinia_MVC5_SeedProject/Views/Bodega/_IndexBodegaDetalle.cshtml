@@ -92,43 +92,39 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal fade" id="ModalEditar_@item.bodd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Editar Detalles</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <div class="col-md-12">
-                                                            @Html.Partial("_EditBodegaDetalleModal", new ERP_GMEDINA.Models.tbBodegaDetalle() { bodd_CantidadMinima = item.bodd_CantidadMinima
-                                                                                                                                                , bodd_CantidadMaxima = item.bodd_CantidadMaxima
-                                                                                                                                                , bodd_PuntoReorden = item.bodd_PuntoReorden
-                                                                                                                                                , bodd_Costo = item.bodd_Costo
-                                                                                                                                                , bodd_CostoPromedio = item.bodd_CostoPromedio
-                                                                                                                                                , bodd_FechaCrea=item.bodd_FechaCrea
-                                                                                                                                                , bodd_UsuarioCrea = item.bodd_UsuarioCrea
-                                                                                                                                                , bodd_FechaModifica = item.bodd_FechaModifica
-                                                                                                                                                , bodd_UsuarioModifica = item.bodd_UsuarioModifica })
-
-                                                        </div>
+                            <div>
+                                <div class="modal fade" id="ModalEditar_@item.bodd_Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel">Editar Bodega Detalle</h4>
+                                            </div>
+                                            <div class="modal-body" id="frmEditarCursoPolicia">
+                                                @Html.Partial("_EditBodegaDetalleModal", new ERP_GMEDINA.Models.tbBodegaDetalle() {   bodd_Id = item.bodd_Id
+                                                                                      , bodd_CantidadMinima = item.bodd_CantidadMinima
+                                                                                      , bodd_CantidadMaxima = item.bodd_CantidadMaxima
+                                                                                      , bodd_PuntoReorden = item.bodd_PuntoReorden
+                                                                                      , bodd_Costo = item.bodd_Costo
+                                                                                      , bodd_CostoPromedio = item.bodd_CostoPromedio
+                                                                                      , bodd_FechaCrea=item.bodd_FechaCrea
+                                                                                      , bodd_UsuarioCrea = item.bodd_UsuarioCrea
+                                                                                      , bodd_FechaModifica = item.bodd_FechaModifica
+                                                                                      , bodd_UsuarioModifica = item.bodd_UsuarioModifica
+                                                                                      , prod_Codigo = item.prod_Codigo })
+                                                <div class="form-group">
+                                                    <div class="col-md-12 text-center">
+                                                        <button class="btn btn-primary" type="button" id="btnActualizarBodegaDetalle" onclick="btnActualizarBodegaDetalle(@item.bodd_Id);">Guardar</button>
+                                                        <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <input type="submit" value="Guardar" class="btn btn-primary" />
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         }
 
                     </table>

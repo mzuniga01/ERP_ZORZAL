@@ -40,9 +40,7 @@ namespace ERP_GMEDINA.Controllers
             this.AllLists();
             return View(tbBodega);
         }
-
-
-
+        
         public ActionResult _DetallesProductos(string id)
         {
             if (id == null)
@@ -56,42 +54,26 @@ namespace ERP_GMEDINA.Controllers
             }
             return View(tbProducto);
         }
-
-
-
+        
         private void AllLists()
         {
-            var _municipios = db.tbMunicipio.Select(s => new
-            {
-                mun_Codigo = s.mun_Codigo,
-                mun_Nombre = string.Concat(s.mun_Codigo + " - " + s.mun_Nombre)
-            }).ToList();
-
+            ViewBag.Producto = db.tbProducto.ToList();
+            ViewBag.Depto = db.tbDepartamento.ToList();
+            ViewBag.Muni = db.tbMunicipio.ToList();
             var _departamentos = db.tbDepartamento.Select(s => new
             {
-                dep_Codigo = s.dep_Codigo, dep_Nombre = string.Concat(s.dep_Codigo + " - " + s.dep_Nombre)
+                dep_Codigo = s.dep_Codigo,
+                dep_Nombre = string.Concat(s.dep_Codigo + " - " + s.dep_Nombre)
             }).ToList();
 
-
-            ViewBag.Producto = db.tbProducto.ToList();
-            //ViewBag.UnidadList = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", "Seleccione");
-            //ViewBag.ProductoList = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion", "Seleccione");
-            //ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "pscat_Id");
-            //ViewBag.CategoriaList = new SelectList(db.tbProductoCategoria, "pcat_Id","pcat_Nombre");
-            //ViewBag.SubcategoriaList = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
-            ViewBag.dep_Codigo = new SelectList(_departamentos, "dep_Codigo", "dep_Nombre");
-            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
-            //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
-            //ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
-            //ViewBag.EstadoList = new SelectList(Estados.EstadoList(), "estif_Id", "estif_Descripcion", "Seleccione");
-
+            ViewBag.DepartamentoList = new SelectList(_departamentos, "dep_Codigo", "dep_Nombre", "Seleccione");
+            ViewBag.MunicipioList = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
         }
 
         [HttpPost]
-        public JsonResult GetMunicipios_Create(string dep_Codigo)
+        public JsonResult GetMunicipios(string CodDepartamento)
         {
-            var list = db.spGetMunicipios(dep_Codigo).ToList();
+            var list = db.spGetMunicipios(CodDepartamento).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
@@ -101,7 +83,6 @@ namespace ERP_GMEDINA.Controllers
         //    var list = db.spGetMunicipios(mun_Codigo).ToList();
         //    return Json(list, JsonRequestBehavior.AllowGet);
         //}
-
         [HttpPost]
         public JsonResult removeBodegaDetalle(tbBodegaDetalle bodedaDetalle)
         {
@@ -116,8 +97,7 @@ namespace ERP_GMEDINA.Controllers
             return Json("", JsonRequestBehavior.AllowGet);
 
         }
-
-
+        
         // GET: /Bodega/Create
         public ActionResult Create()
         {
@@ -135,7 +115,6 @@ namespace ERP_GMEDINA.Controllers
             IEnumerable<object> BODEGA = null;
             IEnumerable<object> DETALLE = null;
             var idMaster = 0;
-            var MensajeError = "";
             var MsjError = "";
             var listaDetalle = (List<tbBodegaDetalle>)Session["tbBodegaDetalle"];
             if (ModelState.IsValid)
@@ -201,7 +180,7 @@ namespace ERP_GMEDINA.Controllers
                     }
                     catch (Exception Ex)
                     {
-                        //Ex.Message.ToString();
+                        Ex.Message.ToString();
                         //ModelState.AddModelError("", "No se Guardo el Registro");
                         //return View(tbBodega);
                         MsjError = "-1"; 
@@ -212,8 +191,7 @@ namespace ERP_GMEDINA.Controllers
             this.AllLists();
             return View(tbBodega);
         }
-
-
+        
         // GET: /Bodega/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -238,7 +216,6 @@ namespace ERP_GMEDINA.Controllers
         //    var list = (List<tbBodegaDetalle>)Session["tbBodegaDetalle"];
         //    return Json(list, JsonRequestBehavior.AllowGet);
         //}
-
         [HttpPost]
         public JsonResult SaveBodegaDetalle(tbBodegaDetalle BODEGADETALLE)
         {
@@ -257,18 +234,58 @@ namespace ERP_GMEDINA.Controllers
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult UpdateBodegaDetalle(tbBodegaDetalle ACTUALIZAR_tbBodegaDetalle)
+        {
+            string Msj = "";
+            try
+            {
+                //tbBodegaDetalle obj = db.tbBodegaDetalle.Find(id);
+                IEnumerable<object> list = null;
+                //var MsjError = "";
+                list = db.UDP_Inv_tbBodegaDetalle_Update(ACTUALIZAR_tbBodegaDetalle.bodd_Id
+                                                        , ACTUALIZAR_tbBodegaDetalle.prod_Codigo
+                                                        , ACTUALIZAR_tbBodegaDetalle.bod_Id
+                                                        , ACTUALIZAR_tbBodegaDetalle.bodd_CantidadMinima
+                                                        , ACTUALIZAR_tbBodegaDetalle.bodd_CantidadMaxima
+                                                        , ACTUALIZAR_tbBodegaDetalle.bodd_PuntoReorden
+                                                        , ACTUALIZAR_tbBodegaDetalle.bodd_UsuarioCrea
+                                                        , ACTUALIZAR_tbBodegaDetalle.bodd_FechaCrea
+                                                        , ACTUALIZAR_tbBodegaDetalle.bodd_Costo
+                                                        , ACTUALIZAR_tbBodegaDetalle.bodd_CostoPromedio
+                                                                            );
+                foreach (UDP_Inv_tbBodegaDetalle_Update_Result bodega in list)
+                    Msj = bodega.MensajeError;
+
+                //if (Msj.Substring(0, 2) == "-1")
+                //{
+                //    ModelState.AddModelError("", "No se Actualizo el registro");
+                //    return Json(Msj, JsonRequestBehavior.AllowGet);
+                //}
+                //else
+                //{
+                //    return Json(Msj, JsonRequestBehavior.AllowGet);
+                //}
+
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+            }
+            return Json(Msj, JsonRequestBehavior.AllowGet);
+        }
 
         // POST: /Bodega/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, [Bind(Include="bod_Id,bod_Nombre,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva,bod_UsuarioCrea,bod_FechaCrea,bod_UsuarioModifica,bod_FechaModifica, tbUsuario ,tbUsuario1")] tbBodega tbBodega)
+        public ActionResult Edit(int? id, [Bind(Include="bod_Id,bod_Nombre,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva,bod_UsuarioCrea,bod_FechaCrea,bod_UsuarioModifica,bod_FechaModifica")] tbBodega tbBodega)
         {   
             IEnumerable<object> BODEGA = null;
             IEnumerable<object> DETALLE = null;
             var idMaster = 0;
-            var MensajeError = "";
             var MsjError = "";
             var listaDetalle = (List<tbBodegaDetalle>)Session["tbBodegaDetalle"];
             if (ModelState.IsValid)

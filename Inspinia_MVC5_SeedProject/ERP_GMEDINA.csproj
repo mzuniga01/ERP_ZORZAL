@@ -873,6 +873,7 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
       <LastGenOutput>ModelERP.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\app\Activo.js" />
     <Content Include="Scripts\app\AgregarMunicipio.js" />
     <Content Include="Scripts\app\BodegaDetalle.js" />
     <Content Include="Scripts\app\BusquedaGenerica.js" />
@@ -883,8 +884,10 @@
     <Content Include="Scripts\app\EntradaDetalle.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\InvFisicoDetalle.js" />
+    <Content Include="Scripts\app\letras.js" />
     <Content Include="Scripts\app\MostrarCamposEditar.js" />
     <Content Include="Scripts\app\MostrarCamposEntradajs.js" />
+    <Content Include="Scripts\app\MostrarCamposSalida.js" />
     <Content Include="Scripts\app\Municipio.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
     <Content Include="Scripts\app\RolObjetosEdit.js" />

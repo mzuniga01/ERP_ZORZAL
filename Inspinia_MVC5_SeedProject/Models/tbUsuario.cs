@@ -90,8 +90,6 @@ namespace ERP_GMEDINA.Models
             this.tbInventarioFisicoDetalle = new HashSet<tbInventarioFisicoDetalle>();
             this.tbProducto = new HashSet<tbProducto>();
             this.tbProducto1 = new HashSet<tbProducto>();
-            this.tbProductoCategoria = new HashSet<tbProductoCategoria>();
-            this.tbProductoCategoria1 = new HashSet<tbProductoCategoria>();
             this.tbProductoSubcategoria = new HashSet<tbProductoSubcategoria>();
             this.tbProductoSubcategoria1 = new HashSet<tbProductoSubcategoria>();
             this.tbProveedor = new HashSet<tbProveedor>();
@@ -125,6 +123,9 @@ namespace ERP_GMEDINA.Models
             this.tbBodegaDetalle1 = new HashSet<tbBodegaDetalle>();
             this.tbEmpleado1 = new HashSet<tbEmpleado>();
             this.tbTipoSalida1 = new HashSet<tbTipoSalida>();
+            this.tbProductoCategoria = new HashSet<tbProductoCategoria>();
+            this.tbProductoCategoria1 = new HashSet<tbProductoCategoria>();
+            this.tbProductoCategoria2 = new HashSet<tbProductoCategoria>();
         }
     
         public int usu_Id { get; set; }
@@ -284,10 +285,6 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbProducto> tbProducto1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProductoCategoria> tbProductoCategoria { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbProductoCategoria> tbProductoCategoria1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbProductoSubcategoria> tbProductoSubcategoria1 { get; set; }
@@ -353,5 +350,11 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbEmpleado> tbEmpleado1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbTipoSalida> tbTipoSalida1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbProductoCategoria> tbProductoCategoria { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbProductoCategoria> tbProductoCategoria1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbProductoCategoria> tbProductoCategoria2 { get; set; }
     }
 }

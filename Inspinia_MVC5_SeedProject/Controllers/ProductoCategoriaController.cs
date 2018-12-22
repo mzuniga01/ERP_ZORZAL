@@ -72,9 +72,9 @@ namespace ERP_ZORZAL.Controllers
                     try
                     {
 
-                        //list = db.UDP_Inv_tbProductoCategoria_Insert(tbProductoCategoria.pcat_Nombre);
-                        //foreach (UDP_Inv_tbProductoCategoria_Insert_Result categoria in list)
-                        //    MsjError = categoria.MensajeError;
+                        list = db.UDP_Inv_tbProductoCategoria_Insert(tbProductoCategoria.pcat_Nombre);
+                        foreach (UDP_Inv_tbProductoCategoria_Insert_Result categoria in list)
+                            MsjError = categoria.MensajeError;
                         if (MsjError.Substring(0, 2) == "-1")
                         {
                             ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
@@ -90,8 +90,8 @@ namespace ERP_ZORZAL.Controllers
                                     {
 
                                         //lista = db.UDP_Inv_tbProductoSubcategoria_Insert(sub.pscat_Descripcion, sub.pcat_Id, sub.pscat_EsActiva);
-                                        //foreach (UDP_Inv_tbProductoSubcategoria_Update_Result subcategoria in lista)
-                                            //MensajeError = (subcategoria.MensajeError);
+                                        foreach (UDP_Inv_tbProductoSubcategoria_Update_Result subcategoria in lista)
+                                            MensajeError = (subcategoria.MensajeError);
 
                                         if (MensajeError.Substring(0, 1) == "")
                                         {
@@ -183,8 +183,7 @@ namespace ERP_ZORZAL.Controllers
                     list = db.UDP_Inv_tbProductoCategoria_Update(tbProductoCategoria.pcat_Id,
                         tbProductoCategoria.pcat_Nombre,
                         tbProductoCategoria.pcat_UsuarioCrea,
-                        tbProductoCategoria.pcat_FechaCrea,
-                        tbProductoCategoria.pcat_Estado);
+                        tbProductoCategoria.pcat_FechaCrea);
                     foreach (UDP_Inv_tbProductoCategoria_Update_Result categoria in list)
                         MsjError = categoria.MensajeError;
 
@@ -358,8 +357,8 @@ namespace ERP_ZORZAL.Controllers
                 IEnumerable<object> list = null;
                 var MsjError = "";
                 //list = db.UDP_Inv_tbProductoCategoria_Update_Estado(id, Helpers.Inactivo);
-                //foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
-                    //MsjError = obje.MensajeError;
+                foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
+                    MsjError = obje.MensajeError;
 
                 if (MsjError == "-1")
                 {

@@ -160,12 +160,12 @@
           <Property Name="emp_Puesto" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="emp_FechaIngreso" Type="date" Nullable="false" />
           <Property Name="emp_Direccion" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="emp_Observaciones" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="emp_Observaciones" Type="nvarchar" MaxLength="500" />
           <Property Name="emp_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="emp_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="emp_UsuarioModifica" Type="int" />
           <Property Name="emp_FechaModifica" Type="datetime" />
-          <Property Name="emp_Estado" Type="bit" />
+          <Property Name="emp_Estado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tbMoneda">
           <Key>
@@ -398,7 +398,6 @@
           <Property Name="pcat_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="pcat_UsuarioModifica" Type="int" />
           <Property Name="pcat_FechaModifica" Type="datetime" />
-          <Property Name="pcat_Estado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tbProductoSubcategoria">
           <Key>
@@ -539,7 +538,7 @@
           <Property Name="cdto_MontoDescuento" Type="decimal" Precision="10" Scale="2" />
           <Property Name="cdto_MaximoMontoDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="cdto_Redimido" Type="bit" Nullable="false" />
-          <Property Name="cdto_FechaRedencion" Type="datetime" Nullable="false" />
+          <Property Name="cdto_FechaRedencion" Type="date" Nullable="false" />
           <Property Name="cdto_Anulado" Type="bit" />
           <Property Name="cdto_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="cdto_FechaCrea" Type="datetime" Nullable="false" />
@@ -3555,18 +3554,12 @@
         </Function>
         <Function Name="UDP_Inv_tbProductoCategoria_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="pcat_Nombre" Type="varchar" Mode="In" />
-          <Parameter Name="pcat_Estado" Type="bit" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbProductoCategoria_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="pcat_Id" Type="int" Mode="In" />
           <Parameter Name="pcat_Nombre" Type="varchar" Mode="In" />
           <Parameter Name="pcat_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="pcat_FechaCrea" Type="datetime" Mode="In" />
-          <Parameter Name="pcat_Estado" Type="bit" Mode="In" />
-        </Function>
-        <Function Name="UDP_Inv_tbProductoCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
-          <Parameter Name="pcat_Id" Type="int" Mode="In" />
-          <Parameter Name="pcat_Estado" Type="bit" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbProductoSubcategoria_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="pscat_Descripcion" Type="varchar" Mode="In" />
@@ -4534,18 +4527,6 @@
             <Parameter Name="bodd_Costo" Mode="In" Type="Decimal" />
             <Parameter Name="bodd_CostoPromedio" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbBodegaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Update_Result)">
-            <Parameter Name="bodd_Id" Mode="In" Type="Int32" />
-            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-            <Parameter Name="bodd_CantidadMinima" Mode="In" Type="Decimal" />
-            <Parameter Name="bodd_CantidadMaxima" Mode="In" Type="Decimal" />
-            <Parameter Name="bodd_PuntoReorden" Mode="In" Type="Decimal" />
-            <Parameter Name="bodd_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="bodd_FechaCrea" Mode="In" Type="DateTime" />
-            <Parameter Name="bodd_Costo" Mode="In" Type="Decimal" />
-            <Parameter Name="bodd_CostoPromedio" Mode="In" Type="Decimal" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Update_Result)">
             <Parameter Name="entd_Id" Mode="In" Type="Int32" />
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
@@ -4726,14 +4707,12 @@
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProductoCategoria_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Insert_Result)">
           <Parameter Name="pcat_Nombre" Mode="In" Type="String" />
-            <Parameter Name="pcat_Estado" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProductoCategoria_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Update_Result)">
             <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
             <Parameter Name="pcat_Nombre" Mode="In" Type="String" />
             <Parameter Name="pcat_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="pcat_FechaCrea" Mode="In" Type="DateTime" />
-            <Parameter Name="pcat_Estado" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbObjeto_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbObjeto_Insert_Result)">
           <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
@@ -4810,7 +4789,6 @@
           <EntitySet Name="tbEstadoMovimiento" EntityType="ERP_ZORZALModel.tbEstadoMovimiento" />
           <EntitySet Name="tbInventarioFisicoDetalle" EntityType="ERP_ZORZALModel.tbInventarioFisicoDetalle" />
           <EntitySet Name="tbProducto" EntityType="ERP_ZORZALModel.tbProducto" />
-          <EntitySet Name="tbProductoCategoria" EntityType="ERP_ZORZALModel.tbProductoCategoria" />
           <EntitySet Name="tbProductoSubcategoria" EntityType="ERP_ZORZALModel.tbProductoSubcategoria" />
           <EntitySet Name="tbProveedor" EntityType="ERP_ZORZALModel.tbProveedor" />
           <EntitySet Name="tbSalida" EntityType="ERP_ZORZALModel.tbSalida" />
@@ -5149,14 +5127,6 @@
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbProducto" EntitySet="tbProducto" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
-          </AssociationSet>
           <AssociationSet Name="FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />
@@ -5384,10 +5354,6 @@
           <AssociationSet Name="FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" Association="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo">
             <End Role="tbProducto" EntitySet="tbProducto" />
             <End Role="tbPedidoDetalle" EntitySet="tbPedidoDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" Association="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id">
-            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
-            <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbSalida_tbFactura_fact_Id" Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbFactura_fact_Id">
             <End Role="tbFactura" EntitySet="tbFactura" />
@@ -5764,6 +5730,35 @@
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="bod_EsActiva" Mode="In" Type="Byte" />
           </FunctionImport>
+          <EntitySet Name="tbProductoCategoria" EntityType="ERP_ZORZALModel.tbProductoCategoria" />
+          <AssociationSet Name="FK_Inv_tbEntrada_pcat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" Association="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id">
+            <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
+            <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />
+          </AssociationSet>
+          <FunctionImport Name="UDP_Inv_tbBodegaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Update_Result)">
+            <Parameter Name="bodd_Id" Mode="In" Type="Int32" />
+            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+            <Parameter Name="bodd_CantidadMinima" Mode="In" Type="Decimal" />
+            <Parameter Name="bodd_CantidadMaxima" Mode="In" Type="Decimal" />
+            <Parameter Name="bodd_PuntoReorden" Mode="In" Type="Decimal" />
+            <Parameter Name="bodd_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="bodd_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="bodd_Costo" Mode="In" Type="Decimal" />
+            <Parameter Name="bodd_CostoPromedio" Mode="In" Type="Decimal" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -5799,9 +5794,6 @@
         </ComplexType>
         <ComplexType Name="UDP_Inv_tbBodegaDetalle_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="UDP_Inv_tbBodegaDetalle_Update_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
         </ComplexType>
         <ComplexType Name="UDP_Inv_tbEntradaDetalle_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
@@ -6051,8 +6043,6 @@
           <NavigationProperty Name="tbInventarioFisicoDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbUsuario_invfd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbInventarioFisicoDetalle" />
           <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_prod_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProducto" />
           <NavigationProperty Name="tbProducto1" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProducto" />
-          <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
-          <NavigationProperty Name="tbProductoCategoria1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
           <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoSubcategoria" />
           <NavigationProperty Name="tbProductoSubcategoria1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProductoSubcategoria" />
           <NavigationProperty Name="tbProveedor" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProveedor" />
@@ -6086,6 +6076,9 @@
           <NavigationProperty Name="tbBodegaDetalle1" Relationship="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbUsuario_bodd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBodegaDetalle" />
           <NavigationProperty Name="tbEmpleado1" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEmpleado" />
           <NavigationProperty Name="tbTipoSalida1" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoSalida_tsal_UsuarioModifica" FromRole="tbUsuario" ToRole="tbTipoSalida" />
+          <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
+          <NavigationProperty Name="tbProductoCategoria1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
+          <NavigationProperty Name="tbProductoCategoria2" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -6198,12 +6191,12 @@
           <Property Name="emp_Puesto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="emp_FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="emp_Direccion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="emp_Observaciones" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="emp_Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="emp_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="emp_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="emp_UsuarioModifica" Type="Int32" />
           <Property Name="emp_FechaModifica" Type="DateTime" Precision="3" />
-          <Property Name="emp_Estado" Type="Boolean" />
+          <Property Name="emp_Estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_emp_UsuarioModifica" FromRole="tbEmpleado" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea" FromRole="tbEmpleado" ToRole="tbUsuario" />
           <NavigationProperty Name="tbTipoIdentificacion" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id" FromRole="tbEmpleado" ToRole="tbTipoIdentificacion" />
@@ -6489,21 +6482,6 @@
           <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbListadoPrecioDetalle" />
           <NavigationProperty Name="tbPedidoDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbPedidoDetalle" />
         </EntityType>
-        <EntityType Name="tbProductoCategoria">
-          <Key>
-            <PropertyRef Name="pcat_Id" />
-          </Key>
-          <Property Name="pcat_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="pcat_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="pcat_UsuarioCrea" Type="Int32" Nullable="false" />
-          <Property Name="pcat_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="pcat_UsuarioModifica" Type="Int32" />
-          <Property Name="pcat_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoCategoria" ToRole="tbProductoSubcategoria" />
-          <Property Name="pcat_Estado" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityType Name="tbProductoSubcategoria">
           <Key>
             <PropertyRef Name="pscat_Id" />
@@ -6520,8 +6498,8 @@
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_pscat_UsuarioModifica" FromRole="tbProductoSubcategoria" ToRole="tbUsuario" />
           <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbEstadoMovimiento_estm_Id" FromRole="tbProductoSubcategoria" ToRole="tbEstadoMovimiento" />
           <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProducto" />
-          <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProductoCategoria" />
           <Property Name="pscat_ISV" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoSubcategoria" ToRole="tbProductoCategoria" />
         </EntityType>
         <EntityType Name="tbProveedor">
           <Key>
@@ -6683,7 +6661,7 @@
           <Property Name="cdto_MontoDescuento" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="cdto_MaximoMontoDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="cdto_Redimido" Type="Boolean" Nullable="false" />
-          <Property Name="cdto_FechaRedencion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cdto_FechaRedencion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="cdto_Anulado" Type="Boolean" />
           <Property Name="cdto_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="cdto_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
@@ -8089,30 +8067,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbProductoCategoria">
-              <PropertyRef Name="pcat_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbProductoCategoria">
-              <PropertyRef Name="pcat_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Inv_tbProductoSubcategoria_pscat_UsuarioCrea">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbProductoSubcategoria" Role="tbProductoSubcategoria" Multiplicity="*" />
@@ -8794,18 +8748,6 @@
             </Principal>
             <Dependent Role="tbPedidoDetalle">
               <PropertyRef Name="prod_Codigo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id">
-          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbProductoSubcategoria" Role="tbProductoSubcategoria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbProductoCategoria">
-              <PropertyRef Name="pcat_Id" />
-            </Principal>
-            <Dependent Role="tbProductoSubcategoria">
-              <PropertyRef Name="pcat_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -9546,6 +9488,72 @@
         <ComplexType Name="UDP_Inv_tbBodega_Update_Estado_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <EntityType Name="tbProductoCategoria">
+          <Key>
+            <PropertyRef Name="pcat_Id" />
+          </Key>
+          <Property Name="pcat_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pcat_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pcat_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="pcat_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="pcat_UsuarioModifica" Type="Int32" />
+          <Property Name="pcat_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoCategoria_pcat_UsuarioModifica" FromRole="tbProductoCategoria" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" FromRole="tbProductoCategoria" ToRole="tbProductoSubcategoria" />
+        </EntityType>
+        <Association Name="FK_Inv_tbEntrada_pcat_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbProductoCategoria">
+              <PropertyRef Name="pcat_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbProductoCategoria">
+              <PropertyRef Name="pcat_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbProductoCategoria_pcat_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbProductoCategoria">
+              <PropertyRef Name="pcat_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id">
+          <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbProductoSubcategoria" Role="tbProductoSubcategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProductoCategoria">
+              <PropertyRef Name="pcat_Id" />
+            </Principal>
+            <Dependent Role="tbProductoSubcategoria">
+              <PropertyRef Name="pcat_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="UDP_Inv_tbBodegaDetalle_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9592,13 +9600,6 @@
           <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -10221,19 +10222,6 @@
                 <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
                 <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
                 <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbProductoCategoria">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProductoCategoria">
-              <MappingFragment StoreEntitySet="tbProductoCategoria">
-                <ScalarProperty Name="pcat_Estado" ColumnName="pcat_Estado" />
-                <ScalarProperty Name="pcat_FechaModifica" ColumnName="pcat_FechaModifica" />
-                <ScalarProperty Name="pcat_UsuarioModifica" ColumnName="pcat_UsuarioModifica" />
-                <ScalarProperty Name="pcat_FechaCrea" ColumnName="pcat_FechaCrea" />
-                <ScalarProperty Name="pcat_UsuarioCrea" ColumnName="pcat_UsuarioCrea" />
-                <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
-                <ScalarProperty Name="pcat_Id" ColumnName="pcat_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -10982,6 +10970,25 @@
           <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Update_Estado" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Estado_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tbProductoCategoria">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProductoCategoria">
+              <MappingFragment StoreEntitySet="tbProductoCategoria">
+                <ScalarProperty Name="pcat_FechaModifica" ColumnName="pcat_FechaModifica" />
+                <ScalarProperty Name="pcat_UsuarioModifica" ColumnName="pcat_UsuarioModifica" />
+                <ScalarProperty Name="pcat_FechaCrea" ColumnName="pcat_FechaCrea" />
+                <ScalarProperty Name="pcat_UsuarioCrea" ColumnName="pcat_UsuarioCrea" />
+                <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+                <ScalarProperty Name="pcat_Id" ColumnName="pcat_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

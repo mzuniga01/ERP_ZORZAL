@@ -155,12 +155,12 @@
     <Property Name="emp_Puesto" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="emp_FechaIngreso" Type="date" Nullable="false" />
     <Property Name="emp_Direccion" Type="nvarchar" MaxLength="250" Nullable="false" />
-    <Property Name="emp_Observaciones" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="emp_Observaciones" Type="nvarchar" MaxLength="500" />
     <Property Name="emp_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="emp_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="emp_UsuarioModifica" Type="int" />
     <Property Name="emp_FechaModifica" Type="datetime" />
-    <Property Name="emp_Estado" Type="bit" />
+    <Property Name="emp_Estado" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="tbMoneda">
     <Key>
@@ -393,7 +393,6 @@
     <Property Name="pcat_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="pcat_UsuarioModifica" Type="int" />
     <Property Name="pcat_FechaModifica" Type="datetime" />
-    <Property Name="pcat_Estado" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="tbProductoSubcategoria">
     <Key>
@@ -534,7 +533,7 @@
     <Property Name="cdto_MontoDescuento" Type="decimal" Precision="10" Scale="2" />
     <Property Name="cdto_MaximoMontoDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="cdto_Redimido" Type="bit" Nullable="false" />
-    <Property Name="cdto_FechaRedencion" Type="datetime" Nullable="false" />
+    <Property Name="cdto_FechaRedencion" Type="date" Nullable="false" />
     <Property Name="cdto_Anulado" Type="bit" />
     <Property Name="cdto_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="cdto_FechaCrea" Type="datetime" Nullable="false" />
@@ -3550,18 +3549,12 @@
   </Function>
   <Function Name="UDP_Inv_tbProductoCategoria_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_Nombre" Type="varchar" Mode="In" />
-    <Parameter Name="pcat_Estado" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProductoCategoria_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
     <Parameter Name="pcat_Nombre" Type="varchar" Mode="In" />
     <Parameter Name="pcat_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="pcat_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="pcat_Estado" Type="bit" Mode="In" />
-  </Function>
-  <Function Name="UDP_Inv_tbProductoCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
-    <Parameter Name="pcat_Id" Type="int" Mode="In" />
-    <Parameter Name="pcat_Estado" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProductoSubcategoria_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pscat_Descripcion" Type="varchar" Mode="In" />

@@ -418,7 +418,6 @@ namespace ERP_ZORZAL.Controllers
             IEnumerable<object> ENTRADA = null;
             IEnumerable<object> DETALLE = null;
             var idMaster = 0;
-            var MensajeError = "";
             var MsjError = "";
             var listaDetalle = (List<tbEntradaDetalle>)Session["CrearDetalleEntrada"];
 
@@ -491,7 +490,7 @@ namespace ERP_ZORZAL.Controllers
                         }
 
                     }
-                    catch (Exception Ex)
+                    catch (Exception )
                     {
                         //Ex.Message.ToString();
                         //ModelState.AddModelError("", "No se Guardo el Registro");
@@ -513,7 +512,6 @@ namespace ERP_ZORZAL.Controllers
             IEnumerable<object> ENTRADA = null;
             IEnumerable<object> DETALLE = null;
             var idMaster = 0;
-            var MensajeError = "";
             var MsjError = "";
             var listaDetalle = (List<tbEntradaDetalle>)Session["tbEntradaDetalle"];
 
@@ -593,7 +591,7 @@ namespace ERP_ZORZAL.Controllers
                     }
                     catch (Exception Ex)
                     {
-                        //Ex.Message.ToString();
+                        Ex.Message.ToString();
                         //ModelState.AddModelError("", "No se Guardo el Registro");
                         //return View(tbBodega);
                         MsjError = "-1";

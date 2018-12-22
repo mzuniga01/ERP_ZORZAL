@@ -17,7 +17,7 @@
 </div>
 
 
-.
+
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -96,16 +96,17 @@
                     <tr>
                         <td>Creado</td>
                         <td>
-                            @ViewBag.UsuarioCrea_N
-                            @ViewBag.UsuarioCrea_A
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                         
                         </td>
                         <td>@Html.DisplayFor(model => model.tent_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
                         <td>
-                            @ViewBag.UsuarioMod_N
-                            @ViewBag.UsuarioCrea_A
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
 
                         </td>
                         <td>@Html.DisplayFor(model => model.tent_FechaModifica)</td>

@@ -54,7 +54,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbEstadoMovimiento> tbEstadoMovimiento { get; set; }
         public virtual DbSet<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
         public virtual DbSet<tbProducto> tbProducto { get; set; }
-        public virtual DbSet<tbProductoCategoria> tbProductoCategoria { get; set; }
         public virtual DbSet<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }
         public virtual DbSet<tbProveedor> tbProveedor { get; set; }
         public virtual DbSet<tbSalida> tbSalida { get; set; }
@@ -89,6 +88,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
+        public virtual DbSet<tbProductoCategoria> tbProductoCategoria { get; set; }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
         {
@@ -256,51 +256,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("bodd_CostoPromedio", typeof(decimal));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodegaDetalle_Insert_Result>("UDP_Inv_tbBodegaDetalle_Insert", prod_CodigoParameter, bod_IdParameter, bodd_CantidadMinimaParameter, bodd_CantidadMaximaParameter, bodd_PuntoReordenParameter, bodd_CostoParameter, bodd_CostoPromedioParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Inv_tbBodegaDetalle_Update_Result> UDP_Inv_tbBodegaDetalle_Update(Nullable<int> bodd_Id, string prod_Codigo, Nullable<int> bod_Id, Nullable<decimal> bodd_CantidadMinima, Nullable<decimal> bodd_CantidadMaxima, Nullable<decimal> bodd_PuntoReorden, Nullable<int> bodd_UsuarioCrea, Nullable<System.DateTime> bodd_FechaCrea, Nullable<decimal> bodd_Costo, Nullable<decimal> bodd_CostoPromedio)
-        {
-            var bodd_IdParameter = bodd_Id.HasValue ?
-                new ObjectParameter("bodd_Id", bodd_Id) :
-                new ObjectParameter("bodd_Id", typeof(int));
-    
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var bodd_CantidadMinimaParameter = bodd_CantidadMinima.HasValue ?
-                new ObjectParameter("bodd_CantidadMinima", bodd_CantidadMinima) :
-                new ObjectParameter("bodd_CantidadMinima", typeof(decimal));
-    
-            var bodd_CantidadMaximaParameter = bodd_CantidadMaxima.HasValue ?
-                new ObjectParameter("bodd_CantidadMaxima", bodd_CantidadMaxima) :
-                new ObjectParameter("bodd_CantidadMaxima", typeof(decimal));
-    
-            var bodd_PuntoReordenParameter = bodd_PuntoReorden.HasValue ?
-                new ObjectParameter("bodd_PuntoReorden", bodd_PuntoReorden) :
-                new ObjectParameter("bodd_PuntoReorden", typeof(decimal));
-    
-            var bodd_UsuarioCreaParameter = bodd_UsuarioCrea.HasValue ?
-                new ObjectParameter("bodd_UsuarioCrea", bodd_UsuarioCrea) :
-                new ObjectParameter("bodd_UsuarioCrea", typeof(int));
-    
-            var bodd_FechaCreaParameter = bodd_FechaCrea.HasValue ?
-                new ObjectParameter("bodd_FechaCrea", bodd_FechaCrea) :
-                new ObjectParameter("bodd_FechaCrea", typeof(System.DateTime));
-    
-            var bodd_CostoParameter = bodd_Costo.HasValue ?
-                new ObjectParameter("bodd_Costo", bodd_Costo) :
-                new ObjectParameter("bodd_Costo", typeof(decimal));
-    
-            var bodd_CostoPromedioParameter = bodd_CostoPromedio.HasValue ?
-                new ObjectParameter("bodd_CostoPromedio", bodd_CostoPromedio) :
-                new ObjectParameter("bodd_CostoPromedio", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodegaDetalle_Update_Result>("UDP_Inv_tbBodegaDetalle_Update", bodd_IdParameter, prod_CodigoParameter, bod_IdParameter, bodd_CantidadMinimaParameter, bodd_CantidadMaximaParameter, bodd_PuntoReordenParameter, bodd_UsuarioCreaParameter, bodd_FechaCreaParameter, bodd_CostoParameter, bodd_CostoPromedioParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_tbEntradaDetalle_Update_Result> UDP_Inv_tbEntradaDetalle_Update(Nullable<int> entd_Id, Nullable<int> ent_Id, string prod_Codigo, Nullable<decimal> entd_Cantidad, Nullable<int> entd_UsuarioCrea, Nullable<System.DateTime> entd_FechaCrea, Nullable<int> uni_Id)
@@ -949,20 +904,16 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalida_Insert_Result>("UDP_Inv_tbSalida_Insert", bod_IdParameter, fact_IdParameter, sal_FechaElaboracionParameter, estm_IdParameter, box_CodigoParameter, tsal_IdParameter, sal_RazonDevolucionParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Insert_Result> UDP_Inv_tbProductoCategoria_Insert(string pcat_Nombre, Nullable<bool> pcat_Estado)
+        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Insert_Result> UDP_Inv_tbProductoCategoria_Insert(string pcat_Nombre)
         {
             var pcat_NombreParameter = pcat_Nombre != null ?
                 new ObjectParameter("pcat_Nombre", pcat_Nombre) :
                 new ObjectParameter("pcat_Nombre", typeof(string));
     
-            var pcat_EstadoParameter = pcat_Estado.HasValue ?
-                new ObjectParameter("pcat_Estado", pcat_Estado) :
-                new ObjectParameter("pcat_Estado", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Insert_Result>("UDP_Inv_tbProductoCategoria_Insert", pcat_NombreParameter, pcat_EstadoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Insert_Result>("UDP_Inv_tbProductoCategoria_Insert", pcat_NombreParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Update_Result> UDP_Inv_tbProductoCategoria_Update(Nullable<int> pcat_Id, string pcat_Nombre, Nullable<int> pcat_UsuarioCrea, Nullable<System.DateTime> pcat_FechaCrea, Nullable<bool> pcat_Estado)
+        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Update_Result> UDP_Inv_tbProductoCategoria_Update(Nullable<int> pcat_Id, string pcat_Nombre, Nullable<int> pcat_UsuarioCrea, Nullable<System.DateTime> pcat_FechaCrea)
         {
             var pcat_IdParameter = pcat_Id.HasValue ?
                 new ObjectParameter("pcat_Id", pcat_Id) :
@@ -980,11 +931,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pcat_FechaCrea", pcat_FechaCrea) :
                 new ObjectParameter("pcat_FechaCrea", typeof(System.DateTime));
     
-            var pcat_EstadoParameter = pcat_Estado.HasValue ?
-                new ObjectParameter("pcat_Estado", pcat_Estado) :
-                new ObjectParameter("pcat_Estado", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Update_Result>("UDP_Inv_tbProductoCategoria_Update", pcat_IdParameter, pcat_NombreParameter, pcat_UsuarioCreaParameter, pcat_FechaCreaParameter, pcat_EstadoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Update_Result>("UDP_Inv_tbProductoCategoria_Update", pcat_IdParameter, pcat_NombreParameter, pcat_UsuarioCreaParameter, pcat_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Acce_tbObjeto_Insert_Result> UDP_Acce_tbObjeto_Insert(string obj_Pantalla)
@@ -1713,6 +1660,51 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("bod_EsActiva", typeof(byte));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodega_Update_Estado_Result>("UDP_Inv_tbBodega_Update_Estado", bod_IdParameter, bod_EsActivaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbBodegaDetalle_Update_Result> UDP_Inv_tbBodegaDetalle_Update(Nullable<int> bodd_Id, string prod_Codigo, Nullable<int> bod_Id, Nullable<decimal> bodd_CantidadMinima, Nullable<decimal> bodd_CantidadMaxima, Nullable<decimal> bodd_PuntoReorden, Nullable<int> bodd_UsuarioCrea, Nullable<System.DateTime> bodd_FechaCrea, Nullable<decimal> bodd_Costo, Nullable<decimal> bodd_CostoPromedio)
+        {
+            var bodd_IdParameter = bodd_Id.HasValue ?
+                new ObjectParameter("bodd_Id", bodd_Id) :
+                new ObjectParameter("bodd_Id", typeof(int));
+    
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var bodd_CantidadMinimaParameter = bodd_CantidadMinima.HasValue ?
+                new ObjectParameter("bodd_CantidadMinima", bodd_CantidadMinima) :
+                new ObjectParameter("bodd_CantidadMinima", typeof(decimal));
+    
+            var bodd_CantidadMaximaParameter = bodd_CantidadMaxima.HasValue ?
+                new ObjectParameter("bodd_CantidadMaxima", bodd_CantidadMaxima) :
+                new ObjectParameter("bodd_CantidadMaxima", typeof(decimal));
+    
+            var bodd_PuntoReordenParameter = bodd_PuntoReorden.HasValue ?
+                new ObjectParameter("bodd_PuntoReorden", bodd_PuntoReorden) :
+                new ObjectParameter("bodd_PuntoReorden", typeof(decimal));
+    
+            var bodd_UsuarioCreaParameter = bodd_UsuarioCrea.HasValue ?
+                new ObjectParameter("bodd_UsuarioCrea", bodd_UsuarioCrea) :
+                new ObjectParameter("bodd_UsuarioCrea", typeof(int));
+    
+            var bodd_FechaCreaParameter = bodd_FechaCrea.HasValue ?
+                new ObjectParameter("bodd_FechaCrea", bodd_FechaCrea) :
+                new ObjectParameter("bodd_FechaCrea", typeof(System.DateTime));
+    
+            var bodd_CostoParameter = bodd_Costo.HasValue ?
+                new ObjectParameter("bodd_Costo", bodd_Costo) :
+                new ObjectParameter("bodd_Costo", typeof(decimal));
+    
+            var bodd_CostoPromedioParameter = bodd_CostoPromedio.HasValue ?
+                new ObjectParameter("bodd_CostoPromedio", bodd_CostoPromedio) :
+                new ObjectParameter("bodd_CostoPromedio", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodegaDetalle_Update_Result>("UDP_Inv_tbBodegaDetalle_Update", bodd_IdParameter, prod_CodigoParameter, bod_IdParameter, bodd_CantidadMinimaParameter, bodd_CantidadMaximaParameter, bodd_PuntoReordenParameter, bodd_UsuarioCreaParameter, bodd_FechaCreaParameter, bodd_CostoParameter, bodd_CostoPromedioParameter);
         }
     }
 }
