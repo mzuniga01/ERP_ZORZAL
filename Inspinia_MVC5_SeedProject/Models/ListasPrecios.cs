@@ -35,7 +35,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Crea")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy }", ApplyFormatInEditMode = true)]
         public System.DateTime listp_FechaCrea { get; set; }
 
 
@@ -46,12 +46,12 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Modifico")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> listp_FechaModifica { get; set; }
         //[Display(Name = "Código")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        //public virtual tbUsuario tbUsuario { get; set; }
-        //public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
         //public virtual tbListadoPrecioDetalle tbListadoPrecioDetalle { get; set; }
 
 

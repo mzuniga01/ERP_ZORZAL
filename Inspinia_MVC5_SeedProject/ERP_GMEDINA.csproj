@@ -1226,6 +1226,8 @@
     <Content Include="Views\Exoneracion\Edit.cshtml" />
     <Content Include="Views\Exoneracion\Index.cshtml" />
     <Content Include="Views\Exoneracion\_IndexCliente.cshtml" />
+    <Content Include="Views\ListaPrecios\_EditListaPrecioDetalle.cshtml" />
+    <Content Include="Views\ListaPrecios\_DetailsListaPrecioDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -25,73 +25,78 @@
                 </div>
                 <div class="ibox-content">
 
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.listp_Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.listp_Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.listp_EsActivo)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.listp_FechaCrea)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.listp_FechaModifica)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbListadoPrecioDetalle.prod_Codigo)
-        </th>*@
-        <th> Acciones</th>
-    </tr>
+<table class="table table-striped table-bordered table-hover" id="DataTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.listp_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.listp_Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.listp_EsActivo)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.listp_FechaCrea)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.listp_FechaModifica)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbListadoPrecioDetalle.prod_Codigo)
+                </th>*@
+            <th> Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.listp_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.listp_Nombre)
+                </td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.listp_Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.listp_Nombre)
-        </td> 
 
-      
-        <td>
-            &nbsp; &nbsp; &nbsp; &nbsp; @Html.CheckBox("listp_EsActivo", true, new { @disabled = "disabled" })
-            @*@Html.DisplayFor(modelItem => item.listp_EsActivo)*@
+                <td>
+                    &nbsp; &nbsp; &nbsp; &nbsp; @Html.CheckBox("listp_EsActivo", true, new { @disabled = "disabled" })
+                    @*@Html.DisplayFor(modelItem => item.listp_EsActivo)*@
 
-            @*<td>
-                @Html.DisplayFor(modelItem => item.listp_FechaCrea)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.listp_FechaModifica)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tbListadoPrecioDetalle.prod_Codigo)
-            </td>*@
-        </td><td>
-    @Html.ActionLink("Detalles", "Details", new { id = item.listp_Id }, new { @class = "btn btn-primary btn-sm" })
-    @Html.ActionLink("Editar", "Edit", new { id = item.listp_Id }, new { @class = "btn btn-white btn-sm" })
-    @*@Html.ActionLink("Delete", "Delete", new { id=item.listp_Id }, new { @class = "btn btn-white btn-sm"})*@
-</td>
-       
-    </tr>
-}
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.listp_FechaCrea)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.listp_FechaModifica)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbListadoPrecioDetalle.prod_Codigo)
+                        </td>*@
+                </td>
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.listp_Id }, new { @class = "btn btn-primary btn-sm" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.listp_Id }, new { @class = "btn btn-white btn-sm" })
+                    @Html.ActionLink("Anular", "", null, new { @class = "btn btn-danger btn-xs" })
+                    @*@Html.ActionLink("Delete", "Delete", new { id=item.listp_Id }, new { @class = "btn btn-white btn-sm"})*@
+                </td>
 
+            </tr>
+        }
+    </tbody>
 </table>
 
                 </div>
@@ -99,6 +104,11 @@
         </div>
     </div>
  </div>
+
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
 
 
 

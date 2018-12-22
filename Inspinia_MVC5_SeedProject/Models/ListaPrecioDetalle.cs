@@ -59,7 +59,7 @@ namespace ERP_GMEDINA.Models
 
 
         [Display(Name = "Fecha Modificó")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> lispd_FechaModifica { get; set; }
 
     }
