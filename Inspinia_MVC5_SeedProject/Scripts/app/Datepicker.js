@@ -27,12 +27,21 @@
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
         }).datepicker('setDate', new Date());
 
+        var FechaInicio = new Date();
+
         //PuntoEmisionDetalle
     $("#pemid_FechaLimite").datepicker({
             dateFormat: 'mm/dd/yy',
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            minDate: FechaInicio,
+            maxDate: '+3Y',
         }).datepicker('setDate', new Date());
+
+
+   
+
+   
     //Grupo1
 
 

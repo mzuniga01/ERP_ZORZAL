@@ -41,6 +41,33 @@ namespace ERP_ZORZAL.Controllers
             return View(tbPuntoEmision);
         }
 
+        public ActionResult _CreateDevolucionDetalle()
+        {
+            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
+            return View();
+        }
+
+        //public ActionResult _CreateNumeracionP()
+        //{
+
+        //    ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
+        //    return PartialView();
+        //}
+
+        public ActionResult _DetailsNumeracion(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbPuntoEmisionDetalle PuntoEmisionDetalle = db.tbPuntoEmisionDetalle.Find(id);
+            if (PuntoEmisionDetalle == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("_DetailsNumeracion", PuntoEmisionDetalle);
+        }
+
         // GET: /PuntoEmision/Create
         public ActionResult Create()
         {
@@ -51,7 +78,7 @@ namespace ERP_ZORZAL.Controllers
             //PuntoEmisionDetalle
             tbPuntoEmisionDetalle tbPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
             ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", tbPuntoEmisionDetalle.dfisc_Id);
-            
+
 
             //Vistas parciales
             ViewBag.PuntoEmisionDetalle = db.tbPuntoEmisionDetalle.ToList();

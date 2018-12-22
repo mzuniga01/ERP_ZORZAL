@@ -10,7 +10,8 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.dfisc_Id, new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
-                            @Html.DropDownList("dfisc_Id", null, "Seleccione Documento Fiscal", new { @class = "form-control" })
+                           @Html.DropDownList("dfisc_Id", null, "Seleccione Documento Fiscal", new { @class = "form-control" })
+                            @*@Html.DropDownList("dfisc_Id", (IEnumerable<SelectListItem>)ViewBag.dfisc_Id)*@
                             <div id="validacionDocumentoFiscalCreate">
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.dfisc_Id)</p>
                             </div>
