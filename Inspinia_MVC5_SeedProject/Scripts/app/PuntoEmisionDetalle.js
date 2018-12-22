@@ -47,13 +47,13 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
         $('#ErrorEstructuraRangoCreate').text('');
         $('#validacionRangoFinalCreate').after('<ul id="ErrorRangoFinalCreate" class="validation-summary-errors text-danger">Campo Rango Final requerido</ul>');
     }
-    else if (rango1 < rango) {
+    else if (rango1 <= rango) {
         $('#ErrorDocumentoFiscalCreate').text('');
         $('#ErrorRangoInicioCreate').text('');
         $('#ErrorRangoFinalCreate').text('');
         $('#ErrorFechaLimiteCreate').text('');
         $('#ErrorEstructuraRangoCreate').text('');
-        $('#validacionRangoFinalCreate').after('<ul id="ErrorRangoFinalCreate" class="validation-summary-errors text-danger">El Rango Final no puede ser menor al Rango Inicial</ul>');
+        $('#validacionRangoFinalCreate').after('<ul id="ErrorRangoFinalCreate" class="validation-summary-errors text-danger">El Rango Final debe ser mayor al Rango Inicial</ul>');
     }
     else if (RangoFinalLength < RangoInicioLength) {
         $('#ErrorDocumentoFiscalCreate').text('');
