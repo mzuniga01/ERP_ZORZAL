@@ -155,4 +155,25 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#lispd_DescGerente').val('0.00')
+            $('#lispd_DescCaja').val('0.00')
+        })
+</script>
 
+<script>
+    function comprobar()
+    {
+       
+            var PMA = $('#lispd_PrecioMayorista').val();
+            var PMI = $('#lispd_PrecioMinorista').val();
+            if (PMA<PMI)
+            {
+                alert("El precio mayorista debe ser menor que el precio Minorista.");
+                return false;
+            }
+            return true;
+        }
+        
+</script>

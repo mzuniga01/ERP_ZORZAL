@@ -7,12 +7,13 @@ $('#AgregarListaPrecioDetalle').click(function () {
     var PrecioMinorista = $('#lispd_PrecioMinorista').val();
     var DescuentoCaja = $('#lispd_DescCaja').val();
     var DescuentoGerente = $('#lispd_DescGerente').val();
-    console.log(PrecioMayorista);
-    console.log(PrecioMinorista);
-    console.log(DescuentoCaja);
-    console.log(DescuentoGerente);
-
-    if (PrecioMayorista=='')
+    
+    //Mayorista
+    var mayorista = parseInt(PrecioMayorista);
+    //Minorista
+    var minorista = parseInt(PrecioMinorista);
+    01
+    if (PrecioMayorista == '' || PrecioMayorista== "0.00")
     {
         $('#ErrorProductoCreate').text('');
         $('#ErrorPrecioMayoristaCreate').text('');
@@ -22,7 +23,7 @@ $('#AgregarListaPrecioDetalle').click(function () {
         $('#validacionPrecioMayoristaCreate').after('<ul id="ErrorPrecioMayoristaCreate" class="validation-summary-errors text-danger">Campo Precio Mayorista requerido</ul>');
 
     }
-    else if (PrecioMinorista=='')
+    else if (PrecioMinorista == '' || PrecioMinorista == "0.00")
     {
         $('#ErrorProductoCreate').text('');
         $('#ErrorPrecioMayoristaCreate').text('');
@@ -31,6 +32,19 @@ $('#AgregarListaPrecioDetalle').click(function () {
         $('#ErrorDescuentoGerenteCreate').text('');
         $('#validacionPrecioMinoristaCreate').after('<ul id="ErrorPrecioMinoristaCreate" class="validation-summary-errors text-danger">Campo Precio Minorista requerido</ul>');
     }
+    else if (mayorista>minorista) {
+        $('#ErrorProductoCreate').text('');
+        $('#ErrorPrecioMayoristaCreate').text('');
+        $('#ErrorPrecioMinoristaCreate').text('');
+        $('#ErrorDescuentoCajaCreate').text('');
+        $('#ErrorDescuentoGerenteCreate').text('');
+        $('#validacionPrecioMinoristaCreate').after('<ul id="ErrorPrecioMinoristaCreate" class="validation-summary-errors text-danger">Precio Minorista debé ser Mayor a Precio Mayorista</ul>');
+    }
+
+
+
+
+
     else if (DescuentoCaja=='')
     {
         $('#ErrorProductoCreate').text('');
@@ -56,7 +70,7 @@ $('#AgregarListaPrecioDetalle').click(function () {
         $('#ErrorPrecioMinoristaCreate').text('');
         $('#ErrorDescuentoCajaCreate').text('');
         $('#ErrorDescuentoGerenteCreate').text('');
-        $('#validacionDescuentoGerenteCreate').after('<ul id="ErrorProductoCreate" class="validation-summary-errors text-danger">Campo Producto requerido</ul>');
+        $('#validacionCodigoProductoCreate').after('<ul id="ErrorProductoCreate" class="validation-summary-errors text-danger">Campo Producto requerido</ul>');
     }
     else {
         contador = contador + 1;
