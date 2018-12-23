@@ -1,12 +1,13 @@
-﻿$(document).ready(function () {
-    if (this.checked) {
-        $('#RazonInactivo').hide();
-    }
-    else {
-        $('#RazonInactivo').show();
-    }
+﻿//$(document).ready(function () {
+//    if (this.checked) {
+//        $('#RazonInactivo').hide();
+//    }
+//    else {
+//        $('#RazonInactivo').show();
+//    }
 
-});
+//});
+
 
 
 //(document).ready(function () {

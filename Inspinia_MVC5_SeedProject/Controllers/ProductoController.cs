@@ -140,16 +140,16 @@ namespace ERP_GMEDINA.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbProducto tbProducto = db.tbProducto.Find(id);
-            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbProducto.prod_UsuarioCrea).usu_NombreUsuario;
-            var UsuarioModfica = tbProducto.prod_UsuarioModifica;
-            if (UsuarioModfica == null)
-            {
-                ViewBag.UsuarioModifica = "";
-            }
-            else
-            {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
-            };
+            //ViewBag.UsuarioCrea = db.tbUsuario.Find(tbProducto.prod_UsuarioCrea).usu_NombreUsuario;
+            //var UsuarioModfica = tbProducto.prod_UsuarioModifica;
+            //if (UsuarioModfica == null)
+            //{
+            //    ViewBag.UsuarioModifica = "";
+            //}
+            //else
+            //{
+            //    ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+            //};
 
             if (tbProducto == null)
             {
@@ -160,7 +160,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", tbProducto.pscat_Id);
             List<tbProductoCategoria> tbProductoCategoriaList = db.tbProductoCategoria.ToList();
             ViewBag.tbProductoCategoriaList = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre");
-            //ViewBag.pcat_Id = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre");
+            ViewBag.pcat_Id = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre",tbProducto.pscat_Id);
             return View(tbProducto);
         }
 
@@ -216,45 +216,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.tbProductoCategoriaList = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre");
             return View(tbProducto);
         }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Inactivar(string id, [Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_UsuarioCrea,prod_FechaCrea,prod_EsActivo")] tbProducto tbProducto)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            tbProducto vProducto = db.tbProducto.Find(id);
-        //            bool Estado = false;                   
-        //            IEnumerable<object> List = null;
-        //            var MsjError = "";
-        //            List = db.UDP_Inv_tbProducto_Update(vProducto.prod_Codigo, vProducto.prod_Descripcion, vProducto.prod_Marca, vProducto.prod_Modelo, vProducto.prod_Talla, vProducto.prod_Color, vProducto.pscat_Id, vProducto.uni_Id, vProducto.prod_UsuarioCrea, vProducto.prod_FechaCrea, Estado);
-        //            foreach (UDP_Inv_tbProducto_Update_Result Update in List)
-        //                MsjError = Update.MensajeError;
-
-        //            if (MsjError == "-1")
-        //            {
-        //                ModelState.AddModelError("", "No se Inactivo el registro , Contacte al Administrador");
-        //            }
-        //            else
-        //            {
-        //                return RedirectToAction("Index");
-        //            }
-
-
-        //        }
-        //        catch (Exception Ex)
-        //        {
-        //            Ex.Message.ToString();
-        //            ModelState.AddModelError("", "No se Inactivo el registro , Contacte al Administrador");
-        //        }
-        //    }
-
-        //    ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
-        //    ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
-        //    return View(tbProducto);
-        //}
+       
 
         // GET: /Producto/Delete/5
         public ActionResult Delete(string id)

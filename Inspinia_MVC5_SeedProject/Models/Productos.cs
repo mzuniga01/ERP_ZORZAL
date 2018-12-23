@@ -20,6 +20,7 @@ namespace ERP_GMEDINA.Models
     {
         [Display(Name = "Código")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [RegularExpression("^[A-Z]{4}-[0-9]{4}-[A-Z0-9]{4}$|[A-Z0-9]{14}", ErrorMessage = "No es un Codigo válido. Ejemplo AAAA-9999-AA999")]
         public string prod_Codigo { get; set; }
 
         [Display(Name = "Descripcion")]
@@ -76,7 +77,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> listp_Id { get; set; }
 
         public virtual tbUsuario tbUsuario { get; set; }
-        //public virtual tbProductoCategoria tbProductoCategoria { get; set; }
+        public virtual tbProductoCategoria tbProductoCategoria { get; set; }
         public virtual tbUnidadMedida tbUnidadMedida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodegaDetalle> tbBodegaDetalle { get; set; }

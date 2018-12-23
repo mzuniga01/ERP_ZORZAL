@@ -135,86 +135,25 @@
                         </div>
 
 
-                            @*<div class="ibox-content">
-                                <div class="form-group">
-
-                                    <table class="table table-striped">
-                                        <tr>
-                                            <th>
-                                                Acción
-                                            </th>
-                                            <th>
-                                                Usuario
-                                            </th>
-                                            <th>
-                                                Fecha
-                                            </th>
-                                        </tr>
-                                     
-                                        <tr>
-                                            <td>
-                                                Creado por
-                                            </td>
-                                            <td>
-                                                @ViewBag.UsuarioCrea
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(model => model.prod_FechaCrea)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>                                            
-                                                Modificado por
-                                            </td>
-                                            <td>
-                                                @ViewBag.UsuarioModifica
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(model => model.prod_FechaModifica)
-                                            </td>
-
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>*@
-
                         <div class="ibox-content">
-
                             <table class="table table-striped">
                                 <tr>
-                                    <th>
-                                        Acción
-                                    </th>
-                                    <th>
-                                        Usuario
-                                    </th>
-                                    <th>
-                                        Fecha
-                                    </th>
+                                    <th>Acción</th>
+                                    <th>Usuario</th>
+                                    <th>Fecha</th>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        Creado
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                                    </td>
+                                    <td>Creado</td>
+                                    <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
                                     <td>@Html.DisplayFor(model => model.prod_FechaCrea)</td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        Modificado
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                                        @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                                </td>
-                                <td>@Html.DisplayFor(model => model.prod_FechaModifica)</td>
-                            </tr>
-
-                        </table>
-                    </div>
+                                    <td>Modificado</td>
+                                    <td> @Html.DisplayFor(model => model.tbUsuario.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
+                                    <td>@Html.DisplayFor(model => model.prod_FechaModifica)</td>
+                                </tr>
+                            </table>
+                        </div>
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
@@ -235,7 +174,20 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/search.js"></script>
 <script src="~/Scripts/app/Activo.js"></script>
+@*<script type="text/javascript">
+    $(function () {
+        $('.prod_EsActivo').change(function () {
+            if (!$(this).prop('checked')) {
+                $('#RazonInactivo').hide();
+            } else {
+                $('#RazonInactivo').show();
+            }
+        })
+    })
+
+
+</script>*@
 @*<script>
+    
     $('#prod_EsActivo').attr('checked', true);
 </script>*@
-
