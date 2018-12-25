@@ -5,6 +5,7 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
     var RangoInicio = $('#pemid_RangoInicio').val();
     var RangoFinal = $('#pemid_RangoFinal').val();
     var FechaLimite = $('#pemid_FechaLimite').val();
+
     var RangoInicioLength = $('#pemid_RangoInicio').val().length;
     var RangoFinalLength = $('#pemid_RangoFinal').val().length;
 
@@ -109,6 +110,7 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
 });
 
 function GetPuntoEmisionDetalle() {    
+
     var PuntoEmisionDetalle = {        
         dfisc_Id: $('#dfisc_Id').val(),
         pemid_RangoInicio: $('#pemid_RangoInicio').val(),
@@ -138,4 +140,3 @@ $(document).ready(function () {
     $("#pemid_RangoInicio")[0].maxLength = 20;
     $("#pemid_RangoFinal")[0].maxLength = 20;
 })
-

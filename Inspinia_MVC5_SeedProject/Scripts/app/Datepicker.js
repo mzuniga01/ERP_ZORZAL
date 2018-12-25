@@ -4,56 +4,44 @@
         $("#fechaapertura").datepicker({
             dateFormat: 'dd-mm-yy',
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-            prevText: 'Ant',
-            nextText: 'Sig'
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
         }).datepicker('setDate', new Date());
 
         //Cliente
     $("#clte_FechaNacimiento").datepicker({
         dateFormat: 'dd-mm-yy',
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-            prevText: 'Ant',
-            nextText: 'Sig'
-            
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
         }).datepicker('setDate', new Date());
 
     $("#clte_FechaConstitucion").datepicker({
         dateFormat: 'dd-mm-yy',
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-            prevText: 'Ant',
-            nextText: 'Sig'
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
         }).datepicker('setDate', new Date());
         
         //Factura
         $("#fechafactura").datepicker({
             dateFormat: 'dd-mm-yy',
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-            prevText: 'Ant',
-            nextText: 'Sig'
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
         }).datepicker('setDate', new Date());
 
-        
-    //PuntoEmisionDetalle
         var FechaInicio = new Date();
-        $("#pemid_FechaLimite").datepicker({
-                dateFormat: 'mm/dd/yy',
-                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-                minDate: FechaInicio,
-                maxDate: '+3Y',
-                prevText: 'Ant',
-                nextText: 'Sig',
-                changeMonth: true,
-                changeYear: true,
-                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
-                //showOn: 'both',
-                //buttonText: '<i class="fas fa-calendar-day"></i>'
-          
+
+        //PuntoEmisionDetalle
+    $("#pemid_FechaLimite").datepicker({
+            dateFormat: 'mm/dd/yy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            minDate: FechaInicio,
+            maxDate: '+3Y',
         }).datepicker('setDate', new Date());
+
+
+   
+
+   
     //Grupo1
 
 
