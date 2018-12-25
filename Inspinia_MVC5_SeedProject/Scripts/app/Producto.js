@@ -31,7 +31,7 @@ $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", fun
 $(document).ready(function () {
     var table = $('#tbProductoFactura').DataTable();
 
-    $('#tbProductoFactura tbody').on('dblclick', 'tr', function () {
+    $('#tbProductoFactura tbody').on('click', 'tr', function () {
         idItem = $(this).closest('tr').data('id');
         DescItem = $(this).closest('tr').data('desc');
         $("#prod_Codigo").val(idItem);

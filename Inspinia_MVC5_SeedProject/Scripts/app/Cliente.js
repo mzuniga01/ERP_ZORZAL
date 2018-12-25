@@ -20,24 +20,26 @@ $(document).ready(function () {
 
 //Factura Seleccionar Cliente
 $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function () {
-    cliente = $(this).closest('tr').data('id');
-    idItem = $(this).closest('tr').data('cliente');
+    idItem = $(this).closest('tr').data('id');
+    rtnItem = $(this).closest('tr').data('rtn');
     NombreCliente = $(this).closest('tr').data('name');
-    $("#clte_Identificacion").val(idItem);
-    $("#clte_Id").val(cliente);
+    $("#clte_Id").val(idItem);
+    $("#clte_Identificacion").val(rtnItem);
     $("#clte_Nombres").val(NombreCliente);
     $('#ModalAgregarCliente').modal('hide');
-    //CargarAsignaciones();
+
 });
+
 
 //Facturar RowSeleccionar Cliente
 $(document).ready(function () {
     var table = $('#tbCliente').DataTable();
-
-    $('#tbCliente tbody').on('dblclick', 'tr', function () {
+    $('#tbCliente tbody').on('click', 'tr', function () {
         idItem = $(this).closest('tr').data('id');
+        rtnItem = $(this).closest('tr').data('rtn');
         NombreCliente = $(this).closest('tr').data('name');
-        $("#clte_Identificacion").val(idItem);
+        $("#clte_Id").val(idItem);
+        $("#clte_Identificacion").val(rtnItem);
         $("#clte_Nombres").val(NombreCliente);
         $('#ModalAgregarCliente').modal('hide');
     });

@@ -1,8 +1,64 @@
-﻿//Hidden Textbox
+﻿//Edit View CheckBox
 $("#fact_AlCredito").change(function () {
     if (this.checked) {
-        //Do stuff
-        console.log("Hola");
+        $('#Credito').show();
+    }
+    else {
+
+        $('#Credito').hide();
+    }
+});
+
+$("#fact_AlCredito").ready(function () {
+    if (this.checked) {
+        $('#Credito').show();
+    }
+    else {
+
+        $('#Credito').hide();
+    }
+});
+
+$("#fact_AutorizarDescuento").change(function () {
+    if (this.checked) {
+        $('#Credito2').show();
+    }
+    else {
+
+        $('#Credito2').hide();
+    }
+});
+
+$("#fact_AutorizarDescuento").ready(function () {
+    if (this.checked) {
+        $('#Credito2').show();
+    }
+    else {
+
+        $('#Credito2').hide();
+    }
+});
+
+$(document).ready(function () {
+    if (fact_AlCredito.checked) {
+        $('#Credito').show();
+    } else {
+        $('#Credito').hide();
+    }
+});
+
+$(document).ready(function () {
+    if (fact_AutorizarDescuento.checked) {
+        $('#Credito2').show();
+    } else {
+        $('#Credito2').hide();
+    }
+});
+
+
+//Create View CheckBox
+$("#fact_AlCredito").change(function () {
+    if (this.checked) {
         $('#Cred1').show();
     }
     else {
@@ -13,8 +69,6 @@ $("#fact_AlCredito").change(function () {
 
 $("#fact_AlCredito").ready(function () {
     if (this.checked) {
-        //Do stuff
-        console.log("Hola");
         $('#Cred1').show();
     }
     else {
@@ -25,8 +79,6 @@ $("#fact_AlCredito").ready(function () {
 
 $("#fact_AutorizarDescuento").change(function () {
     if (this.checked) {
-        //Do stuff
-        console.log("Hola");
         $('#Cred2').show();
     }
     else {
@@ -37,8 +89,6 @@ $("#fact_AutorizarDescuento").change(function () {
 
 $("#fact_AutorizarDescuento").ready(function () {
     if (this.checked) {
-        //Do stuff
-        console.log("Hola");
         $('#Cred2').show();
     }
     else {
@@ -48,7 +98,7 @@ $("#fact_AutorizarDescuento").ready(function () {
 });
 
 
-//Default Value
+// Default Value
 $(document).ready(function () {
     var isChecked = document.getElementById('fact_AlCredito').checked;
     if (isChecked == false) {
@@ -58,7 +108,25 @@ $(document).ready(function () {
     }
 });
 
+$(document).change(function () {
+    var isChecked = document.getElementById('fact_AlCredito').checked;
+    if (isChecked == false) {
+        $('#fact_DiasCredito').val(0);
+    }
+    else {
+    }
+});
+
 $(document).ready(function () {
+    var isChecked = document.getElementById('fact_AutorizarDescuento').checked;
+    if (isChecked == false) {
+        $('#fact_PorcentajeDescuento').val(0);
+    }
+    else {
+    }
+});
+
+$(document).change(function () {
     var isChecked = document.getElementById('fact_AutorizarDescuento').checked;
     if (isChecked == false) {
         $('#fact_PorcentajeDescuento').val(0);
@@ -89,6 +157,7 @@ $("#fact_AutorizarDescuento").click(function () {
         $('#fact_PorcentajeDescuento').val('');
     }
 });
+
 
 
 

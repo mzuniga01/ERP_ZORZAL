@@ -32,33 +32,26 @@
                         </thead>
                         <tbody id="ClienteTbody">
 
-                            @foreach (var item in Model)
-                            {
-                                <tr data-id="@item.clte_Id" data-cliente="@item.clte_Identificacion" data-name="@item.clte_Nombres">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.clte_Id)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.clte_Identificacion)
-                                    </td>
-                                    @{ if (Convert.ToInt32(item.clte_EsPersonaNatural) == 1)
-                                        {
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.clte_Nombres)
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.clte_NombreComercial)
-                                            </td>
-                                        }
-                                    }
-                                    <td>
-                                        <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
-                                    </td>
-                                </tr>
-                                        }
+                           @foreach (var item in Model)
+                           {
+
+                            var nameuser = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres;
+                            <tr data-id="@item.clte_Id" data-rtn="@item.clte_Identificacion" data-name="@nameuser">
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.clte_Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.clte_Identificacion)
+                                </td>
+                                <td>
+                                    @nameuser
+                                </td>
+                                <td>
+                                    <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
+                                </td>
+                            </tr>
+                           }
                         </tbody>
                     </table>
 

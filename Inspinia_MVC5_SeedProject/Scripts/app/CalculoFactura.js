@@ -1,8 +1,9 @@
 ﻿$(document).ready(function () {
-
     $("#factd_Cantidad")[0].maxLength = 7;
     $("#factd_MontoDescuento")[0].maxLength = 12;
 })
+
+
 
 $(function () {
 

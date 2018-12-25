@@ -36,6 +36,7 @@ namespace ERP_GMEDINA.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbFactura tbFactura = db.tbFactura.Find(id);
+            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
             if (tbFactura == null)
             {
                 return HttpNotFound();
@@ -43,6 +44,11 @@ namespace ERP_GMEDINA.Controllers
             return View(tbFactura);
         }
         public ActionResult _IndexCliente()
+        {
+            return PartialView();
+        }
+
+       public ActionResult _IndexProducto()
         {
             return PartialView();
         }
@@ -56,6 +62,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion");
             ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion");
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
+            ViewBag.Producto = db.tbProducto.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
             return View();
         }
@@ -107,7 +114,6 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
                     ViewBag.Producto = db.tbProducto.ToList();
                     ViewBag.Cliente = db.tbCliente.ToList();
-                    ViewBag.Cliente = db.tbCliente.ToList();
                 }
 
                 return RedirectToAction("Index");
@@ -120,6 +126,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion", tbFactura.esfac_Id);
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbFactura.suc_Id);
             ViewBag.Cliente = db.tbCliente.ToList();
+            ViewBag.Producto = db.tbProducto.ToList();
             return View(tbFactura);
         }
 
@@ -141,6 +148,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbFactura.clte_Id);
             ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion", tbFactura.esfac_Id);
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbFactura.suc_Id);
+            ViewBag.Cliente = db.tbCliente.ToList();
             return View(tbFactura);
         }
 
@@ -190,6 +198,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
                     ViewBag.Producto = db.tbProducto.ToList();
                     ViewBag.Cliente = db.tbCliente.ToList();
+
                 }
 
                 return RedirectToAction("Index");
@@ -200,6 +209,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbFactura.clte_Id);
             ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion", tbFactura.esfac_Id);
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbFactura.suc_Id);
+            ViewBag.Cliente = db.tbCliente.ToList();
             return View(tbFactura);
         }
 
