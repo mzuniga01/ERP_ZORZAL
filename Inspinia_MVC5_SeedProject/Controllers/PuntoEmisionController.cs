@@ -41,13 +41,7 @@ namespace ERP_ZORZAL.Controllers
             return View(tbPuntoEmision);
         }
 
-        public ActionResult _CreateDevolucionDetalle()
-        {
-            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
-            return View();
-        }
-
-        //public ActionResult _CreateNumeracionP()
+        //public ActionResult _CreateNumeracion()
         //{
 
         //    ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
@@ -65,6 +59,10 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
+            //PuntoEmisionDetalle
+     
+            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", PuntoEmisionDetalle.dfisc_Id);
+
             return PartialView("_DetailsNumeracion", PuntoEmisionDetalle);
         }
 
@@ -195,8 +193,9 @@ namespace ERP_ZORZAL.Controllers
             }
 
             //PuntoEmisionDetalle
-            tbPuntoEmisionDetalle tbPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
-            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", tbPuntoEmisionDetalle.dfisc_Id);
+            //tbPuntoEmisionDetalle PuntoEmisionDetalle = db.tbPuntoEmisionDetalle.Find(id);
+            tbPuntoEmisionDetalle PuntoEmisionDetalle = new tbPuntoEmisionDetalle();
+            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", PuntoEmisionDetalle.dfisc_Id);
 
             return View(tbPuntoEmision);
         }
@@ -332,5 +331,44 @@ namespace ERP_ZORZAL.Controllers
             }
             return Json("", JsonRequestBehavior.AllowGet);
         }
-    }
+
+     
+
+        public ActionResult UpdatePuntoEmisionDetalle (tbPuntoEmisionDetalle EditPuntoEmisionDetalle)
+        {
+                try
+                {
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbPuntoEmisionDetalle_Update(
+                        EditPuntoEmisionDetalle.pemid_Id,
+                        EditPuntoEmisionDetalle.pemid_RangoInicio,
+                        EditPuntoEmisionDetalle.pemid_RangoFinal,
+                        EditPuntoEmisionDetalle.pemid_FechaLimite,
+                        EditPuntoEmisionDetalle.pemid_UsuarioCrea,
+                        EditPuntoEmisionDetalle.pemid_FechaCrea);
+                    foreach (UDP_Vent_tbPuntoEmisionDetalle_Update_Result puntoemisiondetalle in list)
+                        MensajeError = puntoemisiondetalle.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                        return PartialView("_EditNumeracion");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    return PartialView("_EditNumeracion", EditPuntoEmisionDetalle);
+                }
+      
+                
+        }
+           
+        }
+
 }

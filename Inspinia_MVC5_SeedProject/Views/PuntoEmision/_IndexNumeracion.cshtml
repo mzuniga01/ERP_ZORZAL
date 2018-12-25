@@ -83,12 +83,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body" id="AjaxEditNumeracion">
-
-                                                @Html.Partial("_EditNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle(){ pemid_UsuarioCrea=item.pemid_UsuarioCrea, pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal=item.pemid_RangoFinal, pemid_FechaLimite=item.pemid_FechaLimite })
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a href="@Url.Action("Details","PuntoEmision")" class="btn btn-primary ">Guardar</a>
-                                                <a href="@Url.Action("Index","PuntoEmision")" class = "btn btn-white">Cancelar</a>
+                                                 @Html.Partial("_EditNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle(){ pemid_UsuarioCrea=item.pemid_UsuarioCrea, pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal=item.pemid_RangoFinal, pemid_FechaLimite=item.pemid_FechaLimite })
                                             </div>
                                         </div>
                                     </div>
@@ -105,10 +100,8 @@
                                         </div>
                                         <div class="modal-body" >
                                             @Html.Partial("_DetailsNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle() {pemi_Id = item.pemi_Id, pemid_Id = item.pemid_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea=item.pemid_UsuarioCrea, pemid_FechaCrea=item.pemid_FechaCrea, pemid_UsuarioModifica=item.pemid_UsuarioModifica, pemid_FechaModifica=item.pemid_FechaModifica})
-                                           
                                         </div>
                                         <div class="modal-footer">
-                                           
                                             <a href = "@Url.Action("Index","PuntoEmision")" class = "btn btn-white">Cerrar</a>
                                         </div>
                                     </div>
