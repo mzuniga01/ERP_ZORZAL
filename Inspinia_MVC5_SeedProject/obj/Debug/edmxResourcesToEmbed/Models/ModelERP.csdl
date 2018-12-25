@@ -108,13 +108,13 @@
     <FunctionImport Name="UDP_Vent_tbPuntoEmision_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPuntoEmision_Insert_Result)">
       <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbPuntoEmision_Update" ReturnType="Collection(Int32)">
+    <FunctionImport Name="UDP_Vent_tbPuntoEmision_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPuntoEmision_Update_Result)">
       <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
       <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
       <Parameter Name="pemi_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="pemi_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbPuntoEmisionDetalle_Update" ReturnType="Collection(Int32)">
+    <FunctionImport Name="UDP_Vent_tbPuntoEmisionDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPuntoEmisionDetalle_Update_Result)">
       <Parameter Name="pemid_Id" Mode="In" Type="Int32" />
       <Parameter Name="pemid_RangoInicio" Mode="In" Type="String" />
       <Parameter Name="pemid_RangoFinal" Mode="In" Type="String" />
@@ -5040,5 +5040,11 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbFactura_Update_Result">
     <Property Type="Int64" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPuntoEmision_Update_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Update_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
 </Schema>

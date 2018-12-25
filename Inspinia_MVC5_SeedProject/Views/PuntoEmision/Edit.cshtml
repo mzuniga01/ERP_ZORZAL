@@ -17,8 +17,6 @@
     </div>
 </div>
 
-
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -33,8 +31,15 @@
 
             @Html.ValidationSummary(true)
             @Html.HiddenFor(model => model.pemi_Id)
-            @Html.HiddenFor(model => model.pemi_FechaCrea)
+            @*Auditoria*@
             @Html.HiddenFor(model => model.pemi_UsuarioCrea)
+            @Html.HiddenFor(model => model.pemi_FechaCrea)
+            @Html.HiddenFor(model => model.pemi_UsuarioModifica)
+            @Html.HiddenFor(model => model.pemi_FechaModifica)
+            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+            @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+            @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
             <div class="form-group">
                 @Html.LabelFor(model => model.pemi_Id, new { @class = "control-label col-md-2" })
@@ -73,7 +78,6 @@
                             <div id="tab-1" class="tab-pane active">
                                 <div class="panel-body">
                                     @Html.Partial("_IndexNumeracionWithouBottomNew", Model.tbPuntoEmisionDetalle)
-
                                 </div>
                             </div>
                             <div id="tab-2" class="tab-pane">
@@ -123,3 +127,4 @@
         </div>
     </div>
 </div>
+<script src="~/Scripts/app/Datepicker.js"></script>
