@@ -336,6 +336,9 @@ namespace ERP_ZORZAL.Controllers
 
         public ActionResult UpdatePuntoEmisionDetalle (tbPuntoEmisionDetalle EditPuntoEmisionDetalle)
         {
+            tbPuntoEmisionDetalle cPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
+            if (ModelState.IsValid)
+            {
                 try
                 {
                     var MensajeError = 0;
@@ -362,11 +365,13 @@ namespace ERP_ZORZAL.Controllers
                 catch (Exception Ex)
                 {
                     Ex.Message.ToString();
+                    ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", cPuntoEmisionDetalle.dfisc_Id);
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                     return PartialView("_EditNumeracion", EditPuntoEmisionDetalle);
                 }
-      
-                
+            }
+            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", cPuntoEmisionDetalle.dfisc_Id);
+            return View(EditPuntoEmisionDetalle);  
         }
            
         }
