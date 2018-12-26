@@ -9,8 +9,8 @@ namespace ERP_GMEDINA.Models
     [MetadataType(typeof(PuntoEmisionDetalleMetaData))]
     public partial class tbPuntoEmisionDetalle
     {
-
         
+
     }
     public class PuntoEmisionDetalleMetaData
     {

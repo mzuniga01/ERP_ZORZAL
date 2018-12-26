@@ -1,6 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbPuntoEmisionDetalle
 
-
 @using (Ajax.BeginForm("UpdatePuntoEmisionDetalle", "PuntoEmision", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "mdlEditNumeracion" }))
 {
     @*@Html.AntiForgeryToken()*@
@@ -54,12 +53,12 @@
                 @Html.ValidationMessageFor(model => model.pemid_FechaLimite)
             </div>
         </div>
+
+
         <div class="modal-footer">
             <input type="submit" value="Guardar" class="btn btn-primary" />
             @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white" })
         </div>
-        
-        
     </div>
 }
 

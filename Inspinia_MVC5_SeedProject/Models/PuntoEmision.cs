@@ -9,7 +9,8 @@ namespace ERP_GMEDINA.Models
     [MetadataType(typeof(PuntoEmisionMetaData))]
     public partial class tbPuntoEmision
     {
-  
+        //Variable validacion de registro
+        //public string ValidacionMessage { get; set; }
     }
     public class PuntoEmisionMetaData
     {
@@ -35,5 +36,6 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Fecha Modificación")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> pemi_FechaModifica { get; set; }
+
     }
 }

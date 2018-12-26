@@ -43,9 +43,8 @@
             nextText: 'Sig'
         }).datepicker();
 
+    //PuntoEmisionDetalle
         var FechaInicio = new Date();
-
-        //PuntoEmisionDetalle
     $("#pemid_FechaLimite").datepicker({
             dateFormat: 'mm/dd/yy',
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
@@ -60,11 +59,6 @@
         //showOn: 'both',
         //buttonText: '<i class="fas fa-calendar-day"></i>'
         }).datepicker('setDate', new Date());
-
-
-   
-
-   
     //Grupo1
 
 

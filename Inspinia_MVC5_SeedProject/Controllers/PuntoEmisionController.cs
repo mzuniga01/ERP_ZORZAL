@@ -34,36 +34,11 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
-            //PuntoEmisionDetalle
+            //***PuntoEmisionDetalle
             tbPuntoEmisionDetalle tbPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
             ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", tbPuntoEmisionDetalle.dfisc_Id);
 
             return View(tbPuntoEmision);
-        }
-
-        //public ActionResult _CreateNumeracion()
-        //{
-
-        //    ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
-        //    return PartialView();
-        //}
-
-        public ActionResult _DetailsNumeracion(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbPuntoEmisionDetalle PuntoEmisionDetalle = db.tbPuntoEmisionDetalle.Find(id);
-            if (PuntoEmisionDetalle == null)
-            {
-                return HttpNotFound();
-            }
-            //PuntoEmisionDetalle
-     
-            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", PuntoEmisionDetalle.dfisc_Id);
-
-            return PartialView("_DetailsNumeracion", PuntoEmisionDetalle);
         }
 
         // GET: /PuntoEmision/Create
@@ -77,11 +52,9 @@ namespace ERP_ZORZAL.Controllers
             tbPuntoEmisionDetalle tbPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
             ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", tbPuntoEmisionDetalle.dfisc_Id);
 
-
             //Vistas parciales
             ViewBag.PuntoEmisionDetalle = db.tbPuntoEmisionDetalle.ToList();
             ViewBag.Sucursal = db.tbSucursal.ToList();
-
 
             Session["PuntoEmision"] = null;
             return View();
@@ -192,8 +165,7 @@ namespace ERP_ZORZAL.Controllers
                 return HttpNotFound();
             }
 
-            //PuntoEmisionDetalle
-            //tbPuntoEmisionDetalle PuntoEmisionDetalle = db.tbPuntoEmisionDetalle.Find(id);
+            //*****PuntoEmisionDetalle
             tbPuntoEmisionDetalle PuntoEmisionDetalle = new tbPuntoEmisionDetalle();
             ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", PuntoEmisionDetalle.dfisc_Id);
 
@@ -211,6 +183,16 @@ namespace ERP_ZORZAL.Controllers
             {
                 try
                 {
+                    //var ValidacionRegistro = db.tbPuntoEmisionDetalle.Where(x => x.pemi_Id == PuntoEmision.pemi_Id);
+                    //if (ValidacionRegistro == )
+                    //{
+                    //    PuntoEmision.ValidacionMessage = "No se puede actualizar el número CAI porque ya existe un documento fiscal con este número";
+                    //    return View("Edit", PuntoEmision);
+                    //}
+                    //else
+                    //{
+
+                    //}
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbPuntoEmision_Update(
@@ -234,11 +216,8 @@ namespace ERP_ZORZAL.Controllers
                 {
                     Ex.Message.ToString();
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                    
                     return View(PuntoEmision);
                 }
-    
-              
             }
             //PuntoEmisionDetalle
             tbPuntoEmisionDetalle PuntoEmisionDetalleP = new tbPuntoEmisionDetalle();
@@ -282,23 +261,7 @@ namespace ERP_ZORZAL.Controllers
             base.Dispose(disposing);
         }
 
-        //CreatePuntoEmisionDetalle
-        public ActionResult CreateNumeracion(tbPuntoEmisionDetalle PuntoEmisionDetalle)
-        {
-            try
-            {
-                db.tbPuntoEmisionDetalle.Add(PuntoEmisionDetalle);
-                db.SaveChanges();
-                ViewBag.CerrarModal = "1";
-                return PartialView("_CreateNumeracion");
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se guardaron los cambios");
-                return PartialView("_CreateNumeracion", PuntoEmisionDetalle);
-            }
-        }
+        
 
         [HttpPost]
         public JsonResult SavePuntoEmisionDetalle(tbPuntoEmisionDetalle PuntoEmisionDet)
@@ -332,48 +295,77 @@ namespace ERP_ZORZAL.Controllers
             return Json("", JsonRequestBehavior.AllowGet);
         }
 
-     
 
+        [HttpPost]
         public ActionResult UpdatePuntoEmisionDetalle (tbPuntoEmisionDetalle EditPuntoEmisionDetalle)
         {
-            tbPuntoEmisionDetalle cPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
-            if (ModelState.IsValid)
-            {
-                try
+            
+            try
                 {
-                    var MensajeError = 0;
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbPuntoEmisionDetalle_Update(
-                        EditPuntoEmisionDetalle.pemid_Id,
-                        EditPuntoEmisionDetalle.pemid_RangoInicio,
-                        EditPuntoEmisionDetalle.pemid_RangoFinal,
-                        EditPuntoEmisionDetalle.pemid_FechaLimite,
-                        EditPuntoEmisionDetalle.pemid_UsuarioCrea,
-                        EditPuntoEmisionDetalle.pemid_FechaCrea);
-                    foreach (UDP_Vent_tbPuntoEmisionDetalle_Update_Result puntoemisiondetalle in list)
-                        MensajeError = puntoemisiondetalle.MensajeError;
-                    if (MensajeError == -1)
-                    {
-                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                        return PartialView("_EditNumeracion");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index");
-                    }
+                        var MensajeError = 0;
+                        IEnumerable<object> list = null;
+                        list = db.UDP_Vent_tbPuntoEmisionDetalle_Update(
+                            EditPuntoEmisionDetalle.pemid_Id,
+                            EditPuntoEmisionDetalle.pemid_RangoInicio,
+                            EditPuntoEmisionDetalle.pemid_RangoFinal,
+                            EditPuntoEmisionDetalle.pemid_FechaLimite,
+                            EditPuntoEmisionDetalle.pemid_UsuarioCrea,
+                            EditPuntoEmisionDetalle.pemid_FechaCrea);
+                        foreach (UDP_Vent_tbPuntoEmisionDetalle_Update_Result puntoemisiondetalle in list)
+                            MensajeError = puntoemisiondetalle.MensajeError;
+                        if (MensajeError == -1)
+                        {
+                            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                            return PartialView("_EditNumeracion");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index");
+                        }
+                   
                 }
                 catch (Exception Ex)
                 {
                     Ex.Message.ToString();
-                    ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", cPuntoEmisionDetalle.dfisc_Id);
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                     return PartialView("_EditNumeracion", EditPuntoEmisionDetalle);
-                }
-            }
-            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", cPuntoEmisionDetalle.dfisc_Id);
-            return View(EditPuntoEmisionDetalle);  
-        }
-           
+                }   
         }
 
+        //public ActionResult _CreateNumeracion()
+        //{
+        //    ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
+        //    return PartialView();
+        //}
+
+        //public ActionResult _DetailsNumeracion(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    tbPuntoEmisionDetalle PuntoEmisionDetalle = db.tbPuntoEmisionDetalle.Find(id);
+        //    if (PuntoEmisionDetalle == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", PuntoEmisionDetalle.dfisc_Id);
+        //    return PartialView("_DetailsNumeracion", PuntoEmisionDetalle);
+        //}
+
+        //public ActionResult _EditNumeracion(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    tbPuntoEmisionDetalle PuntoEmisionDetalle = db.tbPuntoEmisionDetalle.Find(id);
+        //    if (PuntoEmisionDetalle == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", PuntoEmisionDetalle.dfisc_Id);
+        //    return PartialView("_EditNumeracion", PuntoEmisionDetalle);
+        //}
+    }
 }
