@@ -52,7 +52,14 @@
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.emp_Sexo)
+                            @if (Model.emp_Sexo == "M")
+                            {
+                                @Html.DisplayName("Mujer")
+                            }
+                            else
+                            {
+                                @Html.DisplayName("Hombre")
+                            }
                         </dd>
 
                         <dt>
@@ -62,12 +69,20 @@
                         <dd>
                             @Html.DisplayFor(model => model.emp_FechaNacimiento)
                         </dd>
+                        <dt>
+                            @*@Html.DisplayNameFor(model => model.tbTipoIdentificacion.tpi_Descripcion)*@
+                            Tipo Identificación
+                        </dt>
 
+                        <dd>
+                            @Html.DisplayFor(model => model.tbTipoIdentificacion.tpi_Descripcion)
+                        </dd>
                         <dt>
                             @Html.DisplayNameFor(model => model.emp_Identificacion)
 
                         </dt>
 
+                        
                         <dd>
                             @Html.DisplayFor(model => model.emp_Identificacion)
                         </dd>
@@ -110,14 +125,6 @@
 
                         <dd>
                             @Html.DisplayFor(model => model.emp_FechaIngreso)
-                        </dd>
-                        <dt>
-                            @*@Html.DisplayNameFor(model => model.tbTipoIdentificacion.tpi_Descripcion)*@
-                            Tipo Identificación
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tbTipoIdentificacion.tpi_Descripcion)
                         </dd>
                         <dt>
                             @Html.DisplayNameFor(model => model.emp_Direccion)

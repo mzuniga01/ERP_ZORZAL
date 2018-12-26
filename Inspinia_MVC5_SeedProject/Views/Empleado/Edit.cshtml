@@ -51,53 +51,55 @@
         <div class="form-group">
             @Html.LabelFor(model => model.emp_Nombres, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_Nombres)
+                @Html.TextBoxFor(model => model.emp_Nombres,new {@class="single-line", MaxLength=100 })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Nombres)</p>
             </div>
             
                 @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.emp_Apellidos)
+                    @Html.TextBoxFor(model => model.emp_Apellidos, new { @class = "single-line", MaxLength = 100 })
                     <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Apellidos)</p>
                 </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2" })
+
+            @Html.LabelFor(model => model.emp_Sexo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_Apellidos)
-                <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Apellidos)</p>
+                @*@Html.EditorFor(model => model.emp_Sexo)*@
+                <select class="form-control" id="emp_Sexo" name="emp_Sexo">
+                    @if (Model.emp_Sexo == "M")
+                    {
+                        <option value="M">Mujer</option>
+                            <option value="H">Hombre</option>
+                    }
+                    else
+                    {
+                        <option value="H">Hombre</option>
+                            <option value="M">Mujer</option>
+                    }
+
+                </select>
+                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Sexo)</p>
             </div>
-           
-                @Html.LabelFor(model => model.emp_Sexo, new { @class = "control-label col-md-2" })
-                <div class="col-md-4">   
-                    @*@Html.EditorFor(model => model.emp_Sexo)*@                
-                    <select class="form-control" id="emp_Sexo" name="emp_Sexo"> 
-                        @if (Model.emp_Sexo == "M")
-                        {                            
-                            <option value="M">Mujer</option>
-                            <option value="H">Hombre</option>
-                        }
-                        else
-                        {
-                            <option value="H">Hombre</option>
-                            <option value="M">Mujer</option>
-                        }                        
-                        
-                    </select>                    
-                    <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Sexo)</p>
-                </div>
+
+            @Html.LabelFor(model => model.emp_FechaNacimiento, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.emp_FechaNacimiento, new { htmlAttributes = new { @class = "form-control", @id = "emp_FechaNacimientoEdit" } })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_FechaNacimiento)</p>
+            </div>         
+               
         </div>
 
 
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.emp_FechaNacimiento, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_FechaNacimiento)
-                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_FechaNacimiento)</p>
-            </div>
+           @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.emp_Identificacion,new {@class="single-line", MaxLength=14 })
+            <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
+        </div>
 
                 @Html.LabelFor(model => model.tpi_Id, "Tipo Identificación", new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
@@ -112,68 +114,66 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2" })
+
+            @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_Identificacion)
-                <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
+                @Html.TextBoxFor(model => model.emp_Telefono, new { @class = "single-line", MaxLength = 25 })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Telefono)</p>
             </div>
 
-                @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.emp_Correoelectronico, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.emp_Correoelectronico, new { @class = "single-line", MaxLength = 50 })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Correoelectronico)</p>
+            </div>
+                          
+        </div>
+
+
+
+
+        <div class="form-group">
+            
+            @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.emp_TipoSangre, new { @class = "single-line", MaxLength = 2 })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_TipoSangre)</p>
+            </div>
+
+            @Html.LabelFor(model => model.emp_Puesto, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.emp_Puesto, new { @class = "single-line", MaxLength = 50 })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Puesto)</p>
+            </div>
+                           
+        </div>
+
+
+
+
+        <div class="form-group">
+           
+            @Html.LabelFor(model => model.emp_Direccion, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.emp_Direccion, new { @class = "single-line", MaxLength = 250 })
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Direccion)</p>
+            </div>
+
+                @Html.LabelFor(model => model.emp_FechaIngreso, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.emp_Telefono)
-                    <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Telefono)</p>
+                    @Html.EditorFor(model => model.emp_FechaIngreso,new { htmlAttributes = new { @id= "emp_FechaIngresoEdit" } })
+                    <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_FechaIngreso)</p>
                 </div>
         </div>
 
 
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.emp_Correoelectronico, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_Correoelectronico)
-                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Correoelectronico)</p>
-            </div>
-
-
-                @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.emp_TipoSangre)
-                    <p style="color:red">@Html.ValidationMessageFor(model => model.emp_TipoSangre)</p>
-</div>
-        </div>
-
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.emp_Puesto, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_Puesto)
-                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Puesto)</p>
-</div>
-
-
-                @Html.LabelFor(model => model.emp_FechaIngreso, new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.emp_FechaIngreso)
-                    <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_FechaIngreso)</p>
-</div>
-        </div>
-
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.emp_Direccion, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_Direccion)
-                <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Direccion)</p>
-            </div>
+        <div class="form-group">            
 
             @Html.LabelFor(model => model.emp_Observaciones, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_Observaciones)
+                @Html.TextBoxFor(model => model.emp_Observaciones, new { @class = "single-line", MaxLength = 500 })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Observaciones)</p>
             </div>
         </div>
@@ -187,8 +187,8 @@
                 <input type="submit" value="Guardar" class="btn btn-primary" />
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
                 @{if (Model.emp_Estado == true)
-                    {  @*<input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />*@
-                    @Html.ActionLink("Inactivar", "EstadoInactivar", new { id = Model.emp_Id }, new { @class = "btn btn-danger" })
+                    {  <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
+                    @*@Html.ActionLink("Inactivar", "EstadoInactivar", new { id = Model.emp_Id }, new { @class = "btn btn-danger" })*@
                     }
                     else
                     {@*<input type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalEstado" value="Activar" />*@
@@ -221,14 +221,35 @@
                 </table>
             </div>
         </div>
+        <div class="modal fade" id="ModalEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Inactivar Objeto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Está seguro que quiere Inactivar esta Pantalla?
+                    </div>
+                    <div class="modal-footer">
+                        @Html.ActionLink("Sí", "EstadoInactivar", new { id = Model.emp_Id }, new { @class = "btn btn-danger" })
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
  </div>
 
 
+@*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
+    <script src="~/Scripts/app/Datepicker.js"></script>
     @*<script>
         var sexo = document.getElementById('emp_Sexo');
         var select = document.getElementById('provincia');

@@ -49,13 +49,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.emp_Nombres, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_Nombres)
+                @Html.TextBoxFor(model => model.emp_Nombres,new {@class="single-line", MaxLength=100})
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Nombres)</p>
             </div>     
                   
                 @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.emp_Apellidos)
+                    @Html.TextBoxFor(model => model.emp_Apellidos, new { @class = "single-line", MaxLength = 100 })
                     <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Apellidos)</p>
 </div>           
         </div>
@@ -77,7 +77,7 @@
             
                 @Html.LabelFor(model => model.emp_FechaNacimiento, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.emp_FechaNacimiento)
+                    @Html.EditorFor(model => model.emp_FechaNacimiento,"{0:yyyy-mm-dd }",new { HtmlAttribute = new { @id = "emp_FechaNacimiento" } })
                     <p style="color:red">@Html.ValidationMessageFor(model => model.emp_FechaNacimiento)</p>
 </div>          
         </div>
@@ -94,7 +94,7 @@
             
                 @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.emp_Identificacion)
+                    @Html.TextBoxFor(model => model.emp_Identificacion, new { @class = "single-line", MaxLength = 14 })
                     <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
 </div>            
         </div>
@@ -104,13 +104,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_Telefono)
+                @Html.TextBoxFor(model => model.emp_Telefono, new { @class = "single-line", MaxLength = 25 })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Telefono)</p>
 </div>
             
                 @Html.LabelFor(model => model.emp_Correoelectronico, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.emp_Correoelectronico)
+                    @Html.TextBoxFor(model => model.emp_Correoelectronico, new { @class = "single-line", MaxLength = 50 })
                     <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Correoelectronico)</p>
 </div>            
         </div>
@@ -120,13 +120,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_TipoSangre)
+                @Html.TextBoxFor(model => model.emp_TipoSangre, new { @class = "single-line", MaxLength = 2 })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_TipoSangre)</p>
 </div>
             
                 @Html.LabelFor(model => model.emp_Puesto, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.emp_Puesto)
+                    @Html.TextBoxFor(model => model.emp_Puesto, new { @class = "single-line", MaxLength = 50 })
                     <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Puesto)</p>
 </div>            
         </div>
@@ -136,13 +136,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.emp_FechaIngreso, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_FechaIngreso)
+                @Html.EditorFor(model => model.emp_FechaIngreso,"{0:yyyy-mm-dd}",new { HtmlAttribute = new { @id="emp_FechaIngreso"} })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_FechaIngreso)</p>
 </div>
             
                 @Html.LabelFor(model => model.emp_Direccion, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.emp_Direccion)
+                    @Html.TextBoxFor(model => model.emp_Direccion, new { @class = "single-line", MaxLength = 250 })
                     <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Direccion)</p>
 </div>            
         </div>
@@ -152,14 +152,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.emp_Observaciones, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_Observaciones)
+                @Html.TextBoxFor(model => model.emp_Observaciones, new { @class = "single-line", MaxLength = 500 })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Observaciones)</p>
 </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Registrar" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
@@ -173,6 +173,8 @@
  </div>
 
  
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

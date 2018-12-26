@@ -549,10 +549,10 @@
     <Property Name="deno_Id" Type="smallint" Nullable="false" />
     <Property Name="arqde_CantidadDenominacion" Type="smallint" Nullable="false" />
     <Property Name="arqde_MontoDenominacion" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="arqde_UsuarioCrea" Type="int" />
+    <Property Name="arqde_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="arqde_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="arqde_UsuarioModifica" Type="int" />
-    <Property Name="arqde_FechaModifica" Type="datetime" Nullable="false" />
+    <Property Name="arqde_FechaModifica" Type="datetime" />
   </EntityType>
   <EntityType Name="tbDevolucion">
     <Key>
@@ -1142,7 +1142,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioCrea">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbDenominacionArqueo" Type="Self.tbDenominacionArqueo" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbUsuario">
@@ -3559,7 +3559,6 @@
   <Function Name="UDP_Inv_tbProductoSubcategoria_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pscat_Descripcion" Type="varchar" Mode="In" />
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
-    <Parameter Name="pscat_EsActiva" Type="tinyint" Mode="In" />
     <Parameter Name="pscat_ISV" Type="decimal" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProductoSubcategoria_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">

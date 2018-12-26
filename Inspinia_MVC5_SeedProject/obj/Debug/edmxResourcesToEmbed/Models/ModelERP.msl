@@ -821,21 +821,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbDenominacionArqueo">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDenominacionArqueo">
-        <MappingFragment StoreEntitySet="tbDenominacionArqueo">
-          <ScalarProperty Name="arqde_FechaModifica" ColumnName="arqde_FechaModifica" />
-          <ScalarProperty Name="arqde_UsuarioModifica" ColumnName="arqde_UsuarioModifica" />
-          <ScalarProperty Name="arqde_FechaCrea" ColumnName="arqde_FechaCrea" />
-          <ScalarProperty Name="arqde_UsuarioCrea" ColumnName="arqde_UsuarioCrea" />
-          <ScalarProperty Name="arqde_MontoDenominacion" ColumnName="arqde_MontoDenominacion" />
-          <ScalarProperty Name="arqde_CantidadDenominacion" ColumnName="arqde_CantidadDenominacion" />
-          <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
-          <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
-          <ScalarProperty Name="arqde_Id" ColumnName="arqde_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbDevolucion">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucion">
         <MappingFragment StoreEntitySet="tbDevolucion">
@@ -1359,13 +1344,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleado_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleado_Update_Estado">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleado_Update_Estado_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Update">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Result">
@@ -1434,5 +1412,27 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleado_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleado_Update_Estado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleado_Update_Estado_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tbDenominacionArqueo">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDenominacionArqueo">
+        <MappingFragment StoreEntitySet="tbDenominacionArqueo">
+          <ScalarProperty Name="arqde_FechaModifica" ColumnName="arqde_FechaModifica" />
+          <ScalarProperty Name="arqde_UsuarioModifica" ColumnName="arqde_UsuarioModifica" />
+          <ScalarProperty Name="arqde_FechaCrea" ColumnName="arqde_FechaCrea" />
+          <ScalarProperty Name="arqde_UsuarioCrea" ColumnName="arqde_UsuarioCrea" />
+          <ScalarProperty Name="arqde_MontoDenominacion" ColumnName="arqde_MontoDenominacion" />
+          <ScalarProperty Name="arqde_CantidadDenominacion" ColumnName="arqde_CantidadDenominacion" />
+          <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
+          <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+          <ScalarProperty Name="arqde_Id" ColumnName="arqde_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
