@@ -34,9 +34,8 @@
 
                            @foreach (var item in Model)
                            {
-
-                            var nameuser = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres;
-                            <tr data-id="@item.clte_Id" data-rtn="@item.clte_Identificacion" data-name="@nameuser">
+                               var nombrecliente = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
+                            <tr data-id="@item.clte_Id" data-rtn="@item.clte_Identificacion" data-nombrecliente="@nombrecliente">
 
                                 <td>
                                     @Html.DisplayFor(modelItem => item.clte_Id)
@@ -45,7 +44,7 @@
                                     @Html.DisplayFor(modelItem => item.clte_Identificacion)
                                 </td>
                                 <td>
-                                    @nameuser
+                                    @nombrecliente
                                 </td>
                                 <td>
                                     <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>

@@ -2,13 +2,23 @@
 
 $('#AgregarDetalleFactura').click(function () {
     var CodigoProducto = $('#prod_Codigo').val();
+    console.log(CodigoProducto);
+    var PorcentajeDescuento = $('#factd_PorcentajeDescuento').val();
+    console.log(PorcentajeDescuento);
     var MontoDescuento = $('#factd_MontoDescuento').val();
+    console.log(MontoDescuento);
     var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
+    console.log(DescripcionProducto);
     var CantidadProducto = $('#factd_Cantidad').val();
+    console.log(CantidadProducto);
     var Subtotal = $('#SubtotalProducto').val();
+    console.log(Subtotal);
     var PrecioUnitario = $('#factd_PrecioUnitario').val();
+    console.log(PrecioUnitario);
     var Impuesto = $('#factd_Impuesto').val();
+    console.log(Impuesto);
     var Total = $('#TotalProducto').val();
+    console.log(Total);
     
     if (CodigoProducto == '')
     {
@@ -45,7 +55,7 @@ $('#AgregarDetalleFactura').click(function () {
         copiar += "<td id = 'prod_CodigoCreate'>" + $('#prod_Codigo').val() + "</td>";
         copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + $('#tbProducto_prod_Descripcion').val() + "</td>";
         copiar += "<td id = 'factd_CantidadCreate'>" + $('#factd_Cantidad').val() + "</td>";
-        copiar += "<td id = 'PrecioUnitarioCreate'>" + $('#factd_PrecioUnitario').val() + "</td>";
+        copiar += "<td id = 'Precio_UnitarioCreate'>" + $('#factd_PrecioUnitario').val() + "</td>";
         copiar += "<td id = 'factd_MontoDescuentoCreate'>" + $('#factd_MontoDescuento').val() + "</td>";
         copiar += "<td id = 'TotalProductoCreate'>" + $('#TotalProducto').val() + "</td>";
         copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
@@ -54,47 +64,59 @@ $('#AgregarDetalleFactura').click(function () {
 
         var FacturaDetalle = GetFacturaDetalle();
         $.ajax({
-            url: "/Factura/SavePuntoEmisionDetalle",
+            url: "/Factura/SaveFacturaDetalle",
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ PuntoEmisionDet: PuntoEmisionDetalle }),
+            data: JSON.stringify({ FacturaDetalleC: FacturaDetalle }),
         })
         .done(function (data) {
             $('#ErrorCodigoProductoCreate').text('');
             $('#ErrorMontoDescuentoCreate').text('');
             $('#ErrorCantidadCreate').text('');
             $('#ErrorImpuestoCreate').text('');
-
+            //Input
+            $('#prod_Codigo').val('');
+            $('#factd_PorcentajeDescuento').val('');
+            $('#factd_MontoDescuento').val('');
+            $('#tbProducto_prod_Descripcion').val('');
+            $('#factd_Cantidad').val('');
+            $('#SubtotalProducto').val('');
+            $('#factd_PrecioUnitario').val('');
+            $('#factd_Impuesto').val('');
+            $('#TotalProducto').val('');
         });
     }
-
 });
 
 function GetFacturaDetalle() {
 
     var FacturaDetalle = {
-        dfisc_Id: $('#dfisc_Id').val(),
-        pemid_RangoInicio: $('#pemid_RangoInicio').val(),
-        pemid_RangoFinal: $('#pemid_RangoFinal').val(),
-        pemid_FechaLimite: new Date($('#pemid_FechaLimite').val()),
-        pemid_Id: contador
+        prod_Codigo: $('#prod_Codigo').val(),
+        factd_PorcentajeDescuento: $('#factd_PorcentajeDescuento').val(),
+        factd_MontoDescuento: $('#factd_MontoDescuento').val(),
+        tbProducto_prod_Descripcion: $('#tbProducto_prod_Descripcion').val(),
+        factd_Cantidad: $('#factd_Cantidad').val(),
+        SubtotalProducto: $('#SubtotalProducto').val(),
+        factd_PrecioUnitario: $('#factd_PrecioUnitario').val(),
+        factd_Impuesto: $('#factd_Impuesto').val(),
+        TotalProducto: $('#TotalProducto').val(),
+        factd_Id: contador
     }
     return FacturaDetalle
 };
 
-
 $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDetalle", function () {
     $(this).closest('tr').remove();
     idItem = $(this).closest('tr').data('id');
-    var CasoExitos = {
-        CodInstructorCasoExito: idItem,
+    var FacturaDetalle = {
+        factd_Id: idItem,
     };
     $.ajax({
-        url: "/Instructor/RemoveCasoExito",
+        url: "/Factura/RemoveFacturaDetalle",
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ CasoExito: CasoExitos }),
+        data: JSON.stringify({ FacturaDetalleC: FacturaDetalle }),
     });
 });

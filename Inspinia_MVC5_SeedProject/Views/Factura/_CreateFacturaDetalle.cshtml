@@ -10,7 +10,9 @@
                             @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
                             <div class="col-md-3">
                                 @Html.EditorFor(model => model.prod_Codigo)
-                                @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                <div id="validationCodigoProductoCreate">
+                                  <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
+                                </div>
                             </div>
                             <div class="col-md-1">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
@@ -18,7 +20,7 @@
                             @Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = "control-label col-md-3" })
                             <div class="col-md-2">
                                 @Html.EditorFor(model => model.factd_PorcentajeDescuento, new { htmlAttributes = new { @Value = "" } })
-                                @Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)</p>
                             </div>
                             <div class="col-md-1">
                                 <button class="btn btn-primary" type="button" id="AgregarDetalleFactura">Añadir</button>
@@ -30,68 +32,53 @@
                             <div class="col-md-3">
                                 @Html.EditorFor(model => model.tbProducto.prod_Descripcion)
                                 <div id="validationDescripcionProductoCreate">
-                                    @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)</p>
                                 </div>
                             </div>
                             @Html.LabelFor(model => model.factd_MontoDescuento, new { @class = "control-label col-md-4" })
                             <div class="col-md-2">
                                 @Html.EditorFor(model => model.factd_MontoDescuento, new { htmlAttributes = new { @Value = "" } })
-                                @Html.ValidationMessageFor(model => model.factd_MontoDescuento)
+                                <div id="validationMontoDescuentoCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.factd_MontoDescuento)</p>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label col-md-2" })
                             <div class="col-md-2">
-                                @Html.EditorFor(model => model.factd_Cantidad, new { htmlAttributes = new { @Value = "" } })
-                                @Html.ValidationMessageFor(model => model.factd_Cantidad)
+                                @Html.EditorFor(model => model.factd_Cantidad, new { htmlAttributes = new { @Value = ""} })
+                                <div id="validationCantidadProductoCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.factd_Cantidad)</p>
+                                </div>
                             </div>
                             @Html.LabelFor(model => model.factd_Impuesto, new { @class = "control-label col-md-5" })
                             <div class="col-md-2">
                                 @Html.EditorFor(model => model.factd_Impuesto, new { htmlAttributes = new { @Value = "" } })
-                                @Html.ValidationMessageFor(model => model.factd_Impuesto)
+                                <div id="validationImpuestoProductoCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.factd_Impuesto)</p>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.factd_PrecioUnitario, new { @class = "control-label col-md-2" })
                             <div class="col-md-2">
                                 @Html.EditorFor(model => model.factd_PrecioUnitario, new { htmlAttributes = new { @Value = "" } })
-                                @Html.ValidationMessageFor(model => model.factd_PrecioUnitario)
+                                <div id="validationPrecioUnitarioCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.factd_PrecioUnitario)</p>
+                                </div>
                             </div>
                             <label class="control-label col-md-5">Subtotal</label>
                             <div class="col-md-2">
-                                <div id="validationSubtotalProductoCreate">
-                                    <input id="SubtotalProducto" type="text" class="form-control" />
-                                </div>
+                                <input id="SubtotalProducto" type="text" class="form-control" />
                             </div>
-
                         </div>
-
-                        @*<div class="form-group">
-                                @Html.LabelFor(model => model.factd_UsuarioCrea, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.factd_UsuarioCrea)
-                                    @Html.ValidationMessageFor(model => model.factd_UsuarioCrea)
-                                </div>
-                                @Html.LabelFor(model => model.factd_FechaCrea, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.factd_FechaCrea)
-                                    @Html.ValidationMessageFor(model => model.factd_FechaCrea)
-                                </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-4 col-lg-offset-5">Total</label>
+                            <div class="col-md-2">
+                                <input id="TotalProducto" type="text" value="" class="form-control" readonly />
                             </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.factd_UsuarioModifica, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.factd_UsuarioModifica)
-                                    @Html.ValidationMessageFor(model => model.factd_UsuarioModifica)
-                                </div>
-                                @Html.LabelFor(model => model.factd_FechaModifica, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.factd_FechaModifica)
-                                    @Html.ValidationMessageFor(model => model.factd_FechaModifica)
-                                </div>
-                            </div>*@
+                        </div>                   
                     </div>
                 </div>
             </div>
@@ -162,8 +149,12 @@
     </div>
 </div>
 
-@section Scripts {
-    <script src="~/Scripts/app/CalculoFactura.js"></script>
-}
+ <script src="~/Scripts/jquery-3.3.1.js"></script>
+ <script src="~/Scripts/app/CalculoFactura.js"></script>
+
+
+
+
+
 
 
