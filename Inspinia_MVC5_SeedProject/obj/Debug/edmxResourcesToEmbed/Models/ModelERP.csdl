@@ -252,21 +252,6 @@
       <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
       <Parameter Name="clte_Nombres" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbFactura_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Update_Result)">
-      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
-      <Parameter Name="fact_Codigo" Mode="In" Type="String" />
-      <Parameter Name="fact_Fecha" Mode="In" Type="DateTime" />
-      <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
-      <Parameter Name="fact_AlCredito" Mode="In" Type="Boolean" />
-      <Parameter Name="fact_DiasCredito" Mode="In" Type="Int32" />
-      <Parameter Name="fact_PorcentajeDescuento" Mode="In" Type="Decimal" />
-      <Parameter Name="fact_AutorizarDescuento" Mode="In" Type="Boolean" />
-      <Parameter Name="fact_Vendedor" Mode="In" Type="String" />
-      <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
-      <Parameter Name="clte_Nombres" Mode="In" Type="String" />
-      <Parameter Name="fact_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="fact_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbDocumentoFiscal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Insert_Result)">
       <Parameter Name="dfisc_Id" Mode="In" Type="String" />
       <Parameter Name="dfisc_Descripcion" Mode="In" Type="String" />
@@ -1335,6 +1320,23 @@
       <Parameter Name="factd_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="factd_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbFactura_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Update_Result)">
+      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+      <Parameter Name="fact_Codigo" Mode="In" Type="String" />
+      <Parameter Name="fact_Fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="esfac_Id" Mode="In" Type="Byte" />
+      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+      <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
+      <Parameter Name="fact_AlCredito" Mode="In" Type="Boolean" />
+      <Parameter Name="fact_DiasCredito" Mode="In" Type="Int32" />
+      <Parameter Name="fact_PorcentajeDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="fact_AutorizarDescuento" Mode="In" Type="Boolean" />
+      <Parameter Name="fact_Vendedor" Mode="In" Type="String" />
+      <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
+      <Parameter Name="clte_Nombres" Mode="In" Type="String" />
+      <Parameter Name="fact_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="fact_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1515,9 +1517,6 @@
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbFactura_Insert_Result">
-    <Property Type="Int64" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbFactura_Update_Result">
     <Property Type="Int64" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbPuntoEmision_Update_Result">
@@ -5120,5 +5119,8 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbFacturaDetalle_Update_Result">
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbFactura_Update_Result">
+    <Property Type="Int64" Name="MensajeError" Nullable="false" />
   </ComplexType>
 </Schema>

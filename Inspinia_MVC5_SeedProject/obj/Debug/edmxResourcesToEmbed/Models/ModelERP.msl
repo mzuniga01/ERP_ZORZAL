@@ -251,13 +251,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbDocumentoFiscal_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDocumentoFiscal_Insert">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Insert_Result">
@@ -1380,6 +1373,13 @@
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaDetalle_Update">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFacturaDetalle_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_Update_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>

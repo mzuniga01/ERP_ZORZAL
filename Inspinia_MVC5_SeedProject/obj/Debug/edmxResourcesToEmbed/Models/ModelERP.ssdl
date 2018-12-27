@@ -3486,6 +3486,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
     <Parameter Name="fact_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="fact_Fecha" Type="datetime" Mode="In" />
+    <Parameter Name="esfac_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="clte_Id" Type="int" Mode="In" />
     <Parameter Name="pemi_NumeroCAI" Type="nvarchar" Mode="In" />
     <Parameter Name="fact_AlCredito" Type="bit" Mode="In" />
     <Parameter Name="fact_DiasCredito" Type="int" Mode="In" />

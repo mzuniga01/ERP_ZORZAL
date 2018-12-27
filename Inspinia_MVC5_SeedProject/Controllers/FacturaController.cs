@@ -216,6 +216,8 @@ namespace ERP_GMEDINA.Controllers
                         tbFactura.fact_Id,
                         tbFactura.fact_Codigo,
                         tbFactura.fact_Fecha,
+                        tbFactura.esfac_Id,
+                        tbFactura.clte_Id,
                         tbFactura.pemi_NumeroCAI,
                         tbFactura.fact_AlCredito,
                         tbFactura.fact_DiasCredito,

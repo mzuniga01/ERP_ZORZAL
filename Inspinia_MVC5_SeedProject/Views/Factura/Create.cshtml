@@ -11,8 +11,6 @@
         font-size: small;
     }
 </style>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Factura</h2>
@@ -125,7 +123,7 @@
                                 </div>
                                 @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.esfac_Id)
+                                    @Html.DropDownList("esfac_Id", null, "Seleccione Tipo Estado", new { @class = "form-control" })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.esfac_Id)</span>
                                 </div>
                             </div>
