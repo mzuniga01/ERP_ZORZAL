@@ -33,6 +33,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbRol> tbRol { get; set; }
         public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
         public virtual DbSet<tbUsuario> tbUsuario { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tbActividadEconomica> tbActividadEconomica { get; set; }
         public virtual DbSet<tbBanco> tbBanco { get; set; }
         public virtual DbSet<tbCuentasBanco> tbCuentasBanco { get; set; }
@@ -54,6 +55,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbEstadoMovimiento> tbEstadoMovimiento { get; set; }
         public virtual DbSet<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
         public virtual DbSet<tbProducto> tbProducto { get; set; }
+        public virtual DbSet<tbProductoCategoria> tbProductoCategoria { get; set; }
         public virtual DbSet<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }
         public virtual DbSet<tbProveedor> tbProveedor { get; set; }
         public virtual DbSet<tbSalida> tbSalida { get; set; }
@@ -89,7 +91,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
         public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
-        public virtual DbSet<tbProductoCategoria> tbProductoCategoria { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {
@@ -1409,11 +1410,15 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCliente_Insert_Result>("UDP_Vent_tbCliente_Insert", tpi_IdParameter, clte_IdentificacionParameter, clte_EsPersonaNaturalParameter, clte_NombresParameter, clte_ApellidosParameter, clte_FechaNacimientoParameter, clte_NacionalidadParameter, clte_SexoParameter, clte_TelefonoParameter, clte_NombreComercialParameter, clte_RazonSocialParameter, clte_ContactoNombreParameter, clte_ContactoEmailParameter, clte_ContactoTelefonoParameter, clte_FechaConstitucionParameter, mun_CodigoParameter, clte_DireccionParameter, clte_CorreoElectronicoParameter, clte_EsActivoParameter, clte_RazonInactivoParameter, clte_ConCreditoParameter, clte_EsMinoristaParameter, clte_ObservacionesParameter, clte_ConsumidorFinalParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbCliente_Update_Result> UDP_Vent_tbCliente_Update(Nullable<int> clte_Id, string clte_Identificacion, Nullable<bool> clte_EsPersonaNatural, string clte_Nombres, string clte_Apellidos, Nullable<System.DateTime> clte_FechaNacimiento, string clte_Nacionalidad, string clte_Sexo, string clte_Telefono, string clte_NombreComercial, string clte_RazonSocial, string clte_ContactoNombre, string clte_ContactoEmail, string clte_ContactoTelefono, Nullable<System.DateTime> clte_FechaConstitucion, string mun_Codigo, string clte_Direccion, string clte_CorreoElectronico, Nullable<bool> clte_EsActivo, string clte_RazonInactivo, Nullable<bool> clte_ConCredito, Nullable<bool> clte_EsMinorista, string clte_Observaciones, Nullable<int> clte_UsuarioCrea, Nullable<System.DateTime> clte_FechaCrea, Nullable<bool> clte_ConsumidorFinal)
+        public virtual ObjectResult<UDP_Vent_tbCliente_Update_Result> UDP_Vent_tbCliente_Update(Nullable<int> clte_Id, Nullable<int> tpi_Id, string clte_Identificacion, Nullable<bool> clte_EsPersonaNatural, string clte_Nombres, string clte_Apellidos, Nullable<System.DateTime> clte_FechaNacimiento, string clte_Nacionalidad, string clte_Sexo, string clte_Telefono, string clte_NombreComercial, string clte_RazonSocial, string clte_ContactoNombre, string clte_ContactoEmail, string clte_ContactoTelefono, Nullable<System.DateTime> clte_FechaConstitucion, string mun_Codigo, string clte_Direccion, string clte_CorreoElectronico, Nullable<bool> clte_EsActivo, string clte_RazonInactivo, Nullable<bool> clte_ConCredito, Nullable<bool> clte_EsMinorista, string clte_Observaciones, Nullable<int> clte_UsuarioCrea, Nullable<System.DateTime> clte_FechaCrea, Nullable<bool> clte_ConsumidorFinal)
         {
             var clte_IdParameter = clte_Id.HasValue ?
                 new ObjectParameter("clte_Id", clte_Id) :
                 new ObjectParameter("clte_Id", typeof(int));
+    
+            var tpi_IdParameter = tpi_Id.HasValue ?
+                new ObjectParameter("tpi_Id", tpi_Id) :
+                new ObjectParameter("tpi_Id", typeof(int));
     
             var clte_IdentificacionParameter = clte_Identificacion != null ?
                 new ObjectParameter("clte_Identificacion", clte_Identificacion) :
@@ -1515,7 +1520,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("clte_ConsumidorFinal", clte_ConsumidorFinal) :
                 new ObjectParameter("clte_ConsumidorFinal", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCliente_Update_Result>("UDP_Vent_tbCliente_Update", clte_IdParameter, clte_IdentificacionParameter, clte_EsPersonaNaturalParameter, clte_NombresParameter, clte_ApellidosParameter, clte_FechaNacimientoParameter, clte_NacionalidadParameter, clte_SexoParameter, clte_TelefonoParameter, clte_NombreComercialParameter, clte_RazonSocialParameter, clte_ContactoNombreParameter, clte_ContactoEmailParameter, clte_ContactoTelefonoParameter, clte_FechaConstitucionParameter, mun_CodigoParameter, clte_DireccionParameter, clte_CorreoElectronicoParameter, clte_EsActivoParameter, clte_RazonInactivoParameter, clte_ConCreditoParameter, clte_EsMinoristaParameter, clte_ObservacionesParameter, clte_UsuarioCreaParameter, clte_FechaCreaParameter, clte_ConsumidorFinalParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCliente_Update_Result>("UDP_Vent_tbCliente_Update", clte_IdParameter, tpi_IdParameter, clte_IdentificacionParameter, clte_EsPersonaNaturalParameter, clte_NombresParameter, clte_ApellidosParameter, clte_FechaNacimientoParameter, clte_NacionalidadParameter, clte_SexoParameter, clte_TelefonoParameter, clte_NombreComercialParameter, clte_RazonSocialParameter, clte_ContactoNombreParameter, clte_ContactoEmailParameter, clte_ContactoTelefonoParameter, clte_FechaConstitucionParameter, mun_CodigoParameter, clte_DireccionParameter, clte_CorreoElectronicoParameter, clte_EsActivoParameter, clte_RazonInactivoParameter, clte_ConCreditoParameter, clte_EsMinoristaParameter, clte_ObservacionesParameter, clte_UsuarioCreaParameter, clte_FechaCreaParameter, clte_ConsumidorFinalParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbPedido_Insert_Result> UDP_Vent_tbPedido_Insert(Nullable<byte> esped_Id, Nullable<System.DateTime> ped_FechaElaboracion, Nullable<System.DateTime> ped_FechaEntrega, Nullable<int> clte_Id, Nullable<short> suc_Id, Nullable<long> fact_Id)
@@ -1547,7 +1552,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedido_Insert_Result>("UDP_Vent_tbPedido_Insert", esped_IdParameter, ped_FechaElaboracionParameter, ped_FechaEntregaParameter, clte_IdParameter, suc_IdParameter, fact_IdParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbPedido_Update_Result> UDP_Vent_tbPedido_Update(Nullable<int> ped_Id, Nullable<byte> esped_Id, Nullable<System.DateTime> ped_FechaElaboracion, Nullable<System.DateTime> ped_FechaEntrega, Nullable<int> clte_Id, Nullable<short> suc_Id, Nullable<long> fact_Id, Nullable<int> ped_UsuarioCrea, Nullable<System.DateTime> ped_FechaCrea, Nullable<int> ped_UsuarioModifica, Nullable<System.DateTime> ped_FechaModifica)
+        public virtual ObjectResult<UDP_Vent_tbPedido_Update_Result> UDP_Vent_tbPedido_Update(Nullable<int> ped_Id, Nullable<byte> esped_Id, Nullable<System.DateTime> ped_FechaElaboracion, Nullable<System.DateTime> ped_FechaEntrega, Nullable<int> clte_Id, Nullable<short> suc_Id, Nullable<long> fact_Id, Nullable<int> ped_UsuarioCrea, Nullable<System.DateTime> ped_FechaCrea)
         {
             var ped_IdParameter = ped_Id.HasValue ?
                 new ObjectParameter("ped_Id", ped_Id) :
@@ -1585,15 +1590,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("ped_FechaCrea", ped_FechaCrea) :
                 new ObjectParameter("ped_FechaCrea", typeof(System.DateTime));
     
-            var ped_UsuarioModificaParameter = ped_UsuarioModifica.HasValue ?
-                new ObjectParameter("ped_UsuarioModifica", ped_UsuarioModifica) :
-                new ObjectParameter("ped_UsuarioModifica", typeof(int));
-    
-            var ped_FechaModificaParameter = ped_FechaModifica.HasValue ?
-                new ObjectParameter("ped_FechaModifica", ped_FechaModifica) :
-                new ObjectParameter("ped_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedido_Update_Result>("UDP_Vent_tbPedido_Update", ped_IdParameter, esped_IdParameter, ped_FechaElaboracionParameter, ped_FechaEntregaParameter, clte_IdParameter, suc_IdParameter, fact_IdParameter, ped_UsuarioCreaParameter, ped_FechaCreaParameter, ped_UsuarioModificaParameter, ped_FechaModificaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedido_Update_Result>("UDP_Vent_tbPedido_Update", ped_IdParameter, esped_IdParameter, ped_FechaElaboracionParameter, ped_FechaEntregaParameter, clte_IdParameter, suc_IdParameter, fact_IdParameter, ped_UsuarioCreaParameter, ped_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbPedidoDetalle_Insert_Result> UDP_Vent_tbPedidoDetalle_Insert(Nullable<int> ped_Id, string prod_Codigo, string pedd_Descripcion, Nullable<decimal> pedd_Cantidad, Nullable<decimal> pedd_CantidadFacturada)
@@ -1750,6 +1747,32 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("cred_DiasSolicitado", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudCredito_Insert_Result>("UDP_Vent_tbSolicitudCredito_Insert", clte_IdParameter, escre_IdParameter, cred_FechaSolicitudParameter, cred_MontoSolicitadoParameter, cred_MontoAprobadoParameter, cred_DiasSolicitadoParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> spGetDenominacion(Nullable<int> idDenominacion)
+        {
+            var idDenominacionParameter = idDenominacion.HasValue ?
+                new ObjectParameter("IdDenominacion", idDenominacion) :
+                new ObjectParameter("IdDenominacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("spGetDenominacion", idDenominacionParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbCliente_Estado(Nullable<int> clte_Id, Nullable<bool> clte_EsActivo, string clte_RazonInactivo)
+        {
+            var clte_IdParameter = clte_Id.HasValue ?
+                new ObjectParameter("clte_Id", clte_Id) :
+                new ObjectParameter("clte_Id", typeof(int));
+    
+            var clte_EsActivoParameter = clte_EsActivo.HasValue ?
+                new ObjectParameter("clte_EsActivo", clte_EsActivo) :
+                new ObjectParameter("clte_EsActivo", typeof(bool));
+    
+            var clte_RazonInactivoParameter = clte_RazonInactivo != null ?
+                new ObjectParameter("clte_RazonInactivo", clte_RazonInactivo) :
+                new ObjectParameter("clte_RazonInactivo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbCliente_Estado", clte_IdParameter, clte_EsActivoParameter, clte_RazonInactivoParameter);
         }
     }
 }

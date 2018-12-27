@@ -153,7 +153,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbCliente_Update(tbCliente.tpi_Id, 
+                    list = db.UDP_Vent_tbCliente_Update(tbCliente.clte_Id, tbCliente.tpi_Id, 
                                                         tbCliente.clte_Identificacion,
                                                         tbCliente.clte_EsPersonaNatural,
                                                         tbCliente.clte_Nombres,
@@ -271,8 +271,18 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult InactivarCliente(int CodCliente, bool Activo, string RazonInactivo)
+        {
+            var list = db.UDP_Vent_tbCliente_Estado(CodCliente, Activo, RazonInactivo).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
-
-
+        [HttpPost]
+        public JsonResult ActivarCliente(int CodCliente, bool Activo, string RazonInactivo)
+        {
+            var list = db.UDP_Vent_tbCliente_Estado(CodCliente, Activo, RazonInactivo).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }

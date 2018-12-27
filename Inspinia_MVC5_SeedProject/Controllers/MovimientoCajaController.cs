@@ -154,5 +154,13 @@ namespace ERP_GMEDINA.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public JsonResult GetDenominacion(int IdDenominacion)
+        {
+            var list = db.spGetDenominacion(IdDenominacion).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

@@ -278,6 +278,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sucursal.cs" />
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -870,6 +873,7 @@
     <Content Include="Scripts\app\Datepicker.js" />
     <Content Include="Scripts\app\Denominacion.js" />
     <Content Include="Scripts\app\Departamento.js" />
+    <Content Include="Scripts\app\Departamento1.js" />
     <Content Include="Scripts\app\DevolucionDetalle.js" />
     <Content Include="Scripts\app\Empleados.js" />
     <Content Include="Scripts\app\Factura.js" />
@@ -877,6 +881,8 @@
     <Content Include="Scripts\app\FacturaDevolucion.js" />
     <Content Include="Scripts\app\FacturaPagar.js" />
     <Content Include="Scripts\app\FuncionResta.js" />
+    <Content Include="Scripts\app\Identificacion.js" />
+    <Content Include="Scripts\app\InActivarCliente.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\ListaPrecioDetalle.js" />
     <Content Include="Scripts\app\NotaCredito.js" />

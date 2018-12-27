@@ -7,6 +7,8 @@
 @{
     var test = new ERP_GMEDINA.Models.tbMunicipio();
 }
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 
 
@@ -68,7 +70,7 @@
                             <div class="form-group" id="identificacion" name="identificacion">
                                 @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.clte_Identificacion)
+                                    @Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Identificacion)</p>
                                 </div>
                             </div>
@@ -76,7 +78,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.clte_Nombres, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.EditorFor(model => model.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Nombres)</p>
                                     </div>
                                 </div>
@@ -84,7 +86,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_Apellidos, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.clte_Apellidos)
+                                        @Html.EditorFor(model => model.clte_Apellidos, new { htmlAttributes = new { @autocomplete = "off" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Apellidos)</p>
                                     </div>
                                 </div>
@@ -92,7 +94,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_FechaNacimiento, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.clte_FechaNacimiento, "{0:MM/dd/yyyy}")
+                                        @Html.EditorFor(model => model.clte_FechaNacimiento, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_FechaNacimiento)</p>
                                     </div>
                                     @Html.LabelFor(model => model.clte_Sexo, new { @class = "control-label col-md-1" })
@@ -109,12 +111,12 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_Telefono, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.clte_Telefono)
+                                        @Html.EditorFor(model => model.clte_Telefono, new { htmlAttributes = new { @autocomplete = "off" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Telefono)</p>
                                     </div>
                                     @Html.LabelFor(model => model.clte_CorreoElectronico, new { @class = "control-label col-md-1" })
                                     <div class="col-md-4">
-                                        @Html.TextBoxFor(model => model.clte_CorreoElectronico, new { @class = "form-control", type = "email" })
+                                        @Html.TextBoxFor(model => model.clte_CorreoElectronico, new { @autocomplete = "off", type = "email", @class = "form-control" })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_CorreoElectronico)</p>
                                     </div>
                                 </div>
@@ -124,7 +126,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_NombreComercial, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.clte_NombreComercial)
+                                        @Html.EditorFor(model => model.clte_NombreComercial, new { htmlAttributes = new { @autocomplete = "off" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_NombreComercial)</p>
                                     </div>
                                 </div>
@@ -132,7 +134,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_RazonSocial, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.clte_RazonSocial)
+                                        @Html.EditorFor(model => model.clte_RazonSocial, new { htmlAttributes = new { @autocomplete = "off" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_RazonSocial)</p>
                                     </div>
                                 </div>
@@ -140,7 +142,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_ContactoNombre, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.clte_ContactoNombre)
+                                        @Html.EditorFor(model => model.clte_ContactoNombre, new { htmlAttributes = new { @autocomplete = "off" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_ContactoNombre)</p>
                                     </div>
                                 </div>
@@ -148,12 +150,12 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_ContactoEmail, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.TextBoxFor(model => model.clte_ContactoEmail, new { @class = "form-control", type = "email" })
+                                        @Html.TextBoxFor(model => model.clte_ContactoEmail, new { @autocomplete = "off", type = "email", @class = "form-control" })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_ContactoEmail)</p>
                                     </div>
                                     @Html.LabelFor(model => model.clte_ContactoTelefono, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.clte_ContactoTelefono)
+                                        @Html.EditorFor(model => model.clte_ContactoTelefono, new { htmlAttributes = new { @autocomplete = "off" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_ContactoTelefono)</p>
                                     </div>
                                 </div>
@@ -161,7 +163,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_FechaConstitucion, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.clte_FechaConstitucion, "{0:MM/dd/yyyy}")
+                                        @Html.EditorFor(model => model.clte_FechaConstitucion, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_FechaConstitucion)</p>
                                     </div>
                                 </div>
@@ -170,7 +172,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.clte_Nacionalidad, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.clte_Nacionalidad)
+                                    @Html.EditorFor(model => model.clte_Nacionalidad, new { htmlAttributes = new { @autocomplete = "off" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Nacionalidad)</p>
                                 </div>
                             </div>
@@ -190,14 +192,14 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.clte_Direccion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.TextAreaFor(model => model.clte_Direccion, new { @class = "form-control" })
+                                    @Html.TextAreaFor(model => model.clte_Direccion, new { @autocomplete = "off", @class = "form-control" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Direccion)</p>
                                 </div>
                             </div>
                             <div class="form-group" id="Activo">
                                 @Html.LabelFor(model => model.clte_EsActivo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-2">
-                                    @Html.EditorFor(model => model.clte_EsActivo, new { @type = "checkbox", @checked = "true" })
+                                    @Html.EditorFor(model => model.clte_EsActivo, new { htmlAttributes = new { @type = "checkbox", @checked = "true", @disabled = "disabled" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsActivo)</p>
                                 </div>
                                 @Html.LabelFor(model => model.clte_ConCredito, new { @class = "control-label col-md-2" })
@@ -216,7 +218,7 @@
                             <div class="form-group" id="RazonInactivo">
                                 @Html.LabelFor(model => model.clte_RazonInactivo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.clte_RazonInactivo)
+                                    @Html.TextAreaFor(model => model.clte_RazonInactivo, new { @class = "form-control" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_RazonInactivo)</p>
                                 </div>
                             </div>
@@ -231,17 +233,16 @@
 
 
 
-
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
                                         <input type="submit" value="Guardar" class="btn btn-primary" />
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                        <button type="button" class="btn btn-white" data-toggle="modal" data-target="#ModalAnular1">
-                                            Activar
-                                        </button>
-                                        <button type="button" class="btn btn-white" data-toggle="modal" data-target="#ModalAnular">
-                                            Inactivar
-                                        </button>
+                                            <button type="button" id="activar" name="activar" class="btn btn-white" data-toggle="modal" data-target="#ModalAnular1">
+                                                Activar
+                                            </button>
+                                            <button type="button" id="inactivar" name="inactivar" class="btn btn-white" data-toggle="modal" data-target="#ModalAnular">
+                                                Inactivar
+                                            </button>
                                     </div>
                                 </div>
                             </div>
@@ -288,10 +289,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                ¿Está seguro de inactivar este cliente?
+                <p>¿Está seguro de inactivar este cliente?</p>
+                <br />
+                <textarea rows="4" cols="50" placeholder="Ingrese la razon de Inactivación" id="razonInac" name="razonInac"></textarea>
+                <p id="message" name="message"></p>
             </div>
+            
             <div class="modal-footer">
-                <a href="@Url.Action("Index","Cliente")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-primary" name="Si" id="Si" data-dismiss="modal" onclick="InactivarCliente();">Si</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
@@ -312,7 +317,7 @@
                 ¿Está seguro de activar este cliente?
             </div>
             <div class="modal-footer">
-                <a href="@Url.Action("Index","Cliente")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-primary" name="Si" id="Si" data-dismiss="modal" onclick="ActivarCliente();">Si</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
@@ -325,28 +330,28 @@
 <script src="~/Scripts/app/Departamento.js"></script>
 <script src="~/Scripts/app/Departamento1.js"></script>
 <script src="~/Scripts/app/Identificacion.js"></script>
+<script src="~/Scripts/app/InActivarCliente.js"></script>
 <script>
     var elemento = document.getElementById("tpi_Id");
     console.log(elemento)
     elemento.onmouseover = function (e) {
         GetIdentificacion();
     };
-    //$("#tpi_Id").change(function () {
-    //    var seleccionado=elemento[1];
-    //});
-    //elemento.onmouseout = function (e) {
-    //    console.log("Ya no estas sobre el elemento")
-    //    var selectedOption = this.options[elemento.selectedIndex];
-    //    console.log(selectedOption.value + ': ' + selectedOption.text);
-    //    $('#tpi_Id').append("<option value=" + selectedOption.value + ">" + selectedOption.text + "</option>");
 
-    //    //elemento.addEventListener('change',
-    //    //  function () {
-    //    //      var selectedOption = this.options[elemento.selectedIndex];
-    //    //      console.log(selectedOption.value + ': ' + selectedOption.text);
-    //    //      $('#tpi_Id').append("<option value=" + selectedOption.value + ">" + selectedOption.text + "</option>");
-    //    //  });
-    //};
 
+    $(document).ready(function () {
+        if (clte_EsActivo.checked) {
+            $('#inactivar').show();
+            $('#activar').hide();
+            $('#RazonInactivo').hide();
+
+        } else {
+            $('#activar').show();
+            $('#inactivar').hide();
+            $('#RazonInactivo').show();
+        }
+
+
+    });
 
 </script>

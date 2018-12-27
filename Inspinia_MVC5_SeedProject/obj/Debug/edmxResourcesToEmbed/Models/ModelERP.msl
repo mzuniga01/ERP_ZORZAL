@@ -236,6 +236,151 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetTipoIdentificacion" FunctionName="ERP_ZORZALModel.Store.spGetTipoIdentificacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetTipoIdentificacion_Result">
+          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+          <ScalarProperty Name="tpi_Descripcion" ColumnName="tpi_Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbDocumentoFiscal_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDocumentoFiscal_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbDocumentoFiscal_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDocumentoFiscal_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuento_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuento_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuento_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuento_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSucursal_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSucursal_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSucursal_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSucursal_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSucursal_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSucursal_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetDepartamento" FunctionName="ERP_ZORZALModel.Store.spGetDepartamento">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetDepartamento_Result">
+          <ScalarProperty Name="dep_Codigo" ColumnName="dep_Codigo" />
+          <ScalarProperty Name="dep_Nombre" ColumnName="dep_Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetMunicipios1" FunctionName="ERP_ZORZALModel.Store.spGetMunicipios1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetMunicipios1_Result">
+          <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
+          <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCliente_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCliente_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCliente_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCliente_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCliente_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCliente_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedido_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedido_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPedido_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedido_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedido_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPedido_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedidoDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedidoDetalle_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPedidoDetalle_Insert_Result">
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedidoDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedidoDetalle_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPedidoDetalle_Update_Result">
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetDenominacion" FunctionName="ERP_ZORZALModel.Store.spGetDenominacion" />
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCliente_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCliente_Estado" />
     <EntitySetMapping Name="tbAccesoRol">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbAccesoRol">
         <MappingFragment StoreEntitySet="tbAccesoRol">
@@ -300,6 +445,17 @@
           <ScalarProperty Name="usu_Password" ColumnName="usu_Password" />
           <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
           <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -627,6 +783,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbProductoCategoria">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProductoCategoria">
+        <MappingFragment StoreEntitySet="tbProductoCategoria">
+          <ScalarProperty Name="pcat_FechaModifica" ColumnName="pcat_FechaModifica" />
+          <ScalarProperty Name="pcat_UsuarioModifica" ColumnName="pcat_UsuarioModifica" />
+          <ScalarProperty Name="pcat_FechaCrea" ColumnName="pcat_FechaCrea" />
+          <ScalarProperty Name="pcat_UsuarioCrea" ColumnName="pcat_UsuarioCrea" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="pcat_Id" ColumnName="pcat_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tbProductoSubcategoria">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProductoSubcategoria">
         <MappingFragment StoreEntitySet="tbProductoSubcategoria">
@@ -918,11 +1086,11 @@
     <EntitySetMapping Name="tbFacturaDetalle">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbFacturaDetalle">
         <MappingFragment StoreEntitySet="tbFacturaDetalle">
-          <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
           <ScalarProperty Name="factd_FechaModifica" ColumnName="factd_FechaModifica" />
           <ScalarProperty Name="factd_UsuarioModifica" ColumnName="factd_UsuarioModifica" />
           <ScalarProperty Name="factd_FechaCrea" ColumnName="factd_FechaCrea" />
           <ScalarProperty Name="factd_UsuarioCrea" ColumnName="factd_UsuarioCrea" />
+          <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
           <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
           <ScalarProperty Name="factd_PorcentajeDescuento" ColumnName="factd_PorcentajeDescuento" />
           <ScalarProperty Name="factd_MontoDescuento" ColumnName="factd_MontoDescuento" />
@@ -1188,160 +1356,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="spGetTipoIdentificacion" FunctionName="ERP_ZORZALModel.Store.spGetTipoIdentificacion">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetTipoIdentificacion_Result">
-          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
-          <ScalarProperty Name="tpi_Descripcion" ColumnName="tpi_Descripcion" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <EntitySetMapping Name="tbProductoCategoria">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProductoCategoria">
-        <MappingFragment StoreEntitySet="tbProductoCategoria">
-          <ScalarProperty Name="pcat_FechaModifica" ColumnName="pcat_FechaModifica" />
-          <ScalarProperty Name="pcat_UsuarioModifica" ColumnName="pcat_UsuarioModifica" />
-          <ScalarProperty Name="pcat_FechaCrea" ColumnName="pcat_FechaCrea" />
-          <ScalarProperty Name="pcat_UsuarioCrea" ColumnName="pcat_UsuarioCrea" />
-          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
-          <ScalarProperty Name="pcat_Id" ColumnName="pcat_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbDocumentoFiscal_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDocumentoFiscal_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbDocumentoFiscal_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDocumentoFiscal_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuento_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuento_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuento_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuento_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSucursal_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSucursal_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSucursal_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSucursal_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSucursal_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSucursal_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="spGetDepartamento" FunctionName="ERP_ZORZALModel.Store.spGetDepartamento">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetDepartamento_Result">
-          <ScalarProperty Name="dep_Codigo" ColumnName="dep_Codigo" />
-          <ScalarProperty Name="dep_Nombre" ColumnName="dep_Nombre" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="spGetMunicipios1" FunctionName="ERP_ZORZALModel.Store.spGetMunicipios1">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetMunicipios1_Result">
-          <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
-          <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCliente_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCliente_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCliente_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCliente_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCliente_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCliente_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedido_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedido_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPedido_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedido_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedido_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPedido_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedidoDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedidoDetalle_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPedidoDetalle_Insert_Result">
-          <ScalarProperty Name="Column1" ColumnName="Column1" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedidoDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedidoDetalle_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPedidoDetalle_Update_Result">
-          <ScalarProperty Name="Column1" ColumnName="Column1" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
