@@ -3497,6 +3497,25 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="fact_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="fact_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbFacturaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="fact_Id" Type="bigint" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="factd_Cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="factd_MontoDescuento" Type="decimal" Mode="In" />
+    <Parameter Name="factd_PorcentajeDescuento" Type="decimal" Mode="In" />
+    <Parameter Name="factd_Impuesto" Type="decimal" Mode="In" />
+    <Parameter Name="factd_PrecioUnitario" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbFacturaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="factd_Id" Type="smallint" Mode="In" />
+    <Parameter Name="factd_Cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="factd_MontoDescuento" Type="decimal" Mode="In" />
+    <Parameter Name="factd_PorcentajeDescuento" Type="decimal" Mode="In" />
+    <Parameter Name="factd_Impuesto" Type="decimal" Mode="In" />
+    <Parameter Name="factd_PrecioUnitario" Type="decimal" Mode="In" />
+    <Parameter Name="factd_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="factd_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbListadoPrecioDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="lispd_PrecioMayorista" Type="decimal" Mode="In" />

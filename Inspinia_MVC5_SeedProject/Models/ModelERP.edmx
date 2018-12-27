@@ -3502,6 +3502,25 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="fact_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="fact_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbFacturaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="fact_Id" Type="bigint" Mode="In" />
+          <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+          <Parameter Name="factd_Cantidad" Type="decimal" Mode="In" />
+          <Parameter Name="factd_MontoDescuento" Type="decimal" Mode="In" />
+          <Parameter Name="factd_PorcentajeDescuento" Type="decimal" Mode="In" />
+          <Parameter Name="factd_Impuesto" Type="decimal" Mode="In" />
+          <Parameter Name="factd_PrecioUnitario" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbFacturaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="factd_Id" Type="smallint" Mode="In" />
+          <Parameter Name="factd_Cantidad" Type="decimal" Mode="In" />
+          <Parameter Name="factd_MontoDescuento" Type="decimal" Mode="In" />
+          <Parameter Name="factd_PorcentajeDescuento" Type="decimal" Mode="In" />
+          <Parameter Name="factd_Impuesto" Type="decimal" Mode="In" />
+          <Parameter Name="factd_PrecioUnitario" Type="decimal" Mode="In" />
+          <Parameter Name="factd_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="factd_FechaCrea" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbListadoPrecioDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="lispd_PrecioMayorista" Type="decimal" Mode="In" />
@@ -5869,6 +5888,25 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="nocre_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="nocre_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="nocre_Estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbFacturaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFacturaDetalle_Insert_Result)">
+            <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+            <Parameter Name="factd_Cantidad" Mode="In" Type="Decimal" />
+            <Parameter Name="factd_MontoDescuento" Mode="In" Type="Decimal" />
+            <Parameter Name="factd_PorcentajeDescuento" Mode="In" Type="Decimal" />
+            <Parameter Name="factd_Impuesto" Mode="In" Type="Decimal" />
+            <Parameter Name="factd_PrecioUnitario" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbFacturaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFacturaDetalle_Update_Result)">
+            <Parameter Name="factd_Id" Mode="In" Type="Int16" />
+            <Parameter Name="factd_Cantidad" Mode="In" Type="Decimal" />
+            <Parameter Name="factd_MontoDescuento" Mode="In" Type="Decimal" />
+            <Parameter Name="factd_PorcentajeDescuento" Mode="In" Type="Decimal" />
+            <Parameter Name="factd_Impuesto" Mode="In" Type="Decimal" />
+            <Parameter Name="factd_PrecioUnitario" Mode="In" Type="Decimal" />
+            <Parameter Name="factd_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="factd_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -9650,6 +9688,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
         <ComplexType Name="UDP_Vent_tbNotaCredito_Update_Result">
           <Property Type="Int16" Name="MensajeError" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbFacturaDetalle_Insert_Result">
+          <Property Type="Int16" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbFacturaDetalle_Update_Result">
+          <Property Type="Int16" Name="MensajeError" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11022,6 +11066,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaDetalle_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFacturaDetalle_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaDetalle_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFacturaDetalle_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

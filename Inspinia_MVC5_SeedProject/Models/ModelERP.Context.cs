@@ -1868,5 +1868,75 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Update_Result>("UDP_Vent_tbNotaCredito_Update", nocre_IdParameter, nocre_CodigoParameter, dev_IdParameter, clte_IdParameter, suc_IdParameter, nocre_AnuladoParameter, nocre_FechaEmisionParameter, nocre_MotivoEmisionParameter, nocre_MontoParameter, nocre_UsuarioCreaParameter, nocre_FechaCreaParameter, nocre_EstadoParameter);
         }
+    
+        public virtual ObjectResult<UDP_Vent_tbFacturaDetalle_Insert_Result> UDP_Vent_tbFacturaDetalle_Insert(Nullable<long> fact_Id, string prod_Codigo, Nullable<decimal> factd_Cantidad, Nullable<decimal> factd_MontoDescuento, Nullable<decimal> factd_PorcentajeDescuento, Nullable<decimal> factd_Impuesto, Nullable<decimal> factd_PrecioUnitario)
+        {
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(long));
+    
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var factd_CantidadParameter = factd_Cantidad.HasValue ?
+                new ObjectParameter("factd_Cantidad", factd_Cantidad) :
+                new ObjectParameter("factd_Cantidad", typeof(decimal));
+    
+            var factd_MontoDescuentoParameter = factd_MontoDescuento.HasValue ?
+                new ObjectParameter("factd_MontoDescuento", factd_MontoDescuento) :
+                new ObjectParameter("factd_MontoDescuento", typeof(decimal));
+    
+            var factd_PorcentajeDescuentoParameter = factd_PorcentajeDescuento.HasValue ?
+                new ObjectParameter("factd_PorcentajeDescuento", factd_PorcentajeDescuento) :
+                new ObjectParameter("factd_PorcentajeDescuento", typeof(decimal));
+    
+            var factd_ImpuestoParameter = factd_Impuesto.HasValue ?
+                new ObjectParameter("factd_Impuesto", factd_Impuesto) :
+                new ObjectParameter("factd_Impuesto", typeof(decimal));
+    
+            var factd_PrecioUnitarioParameter = factd_PrecioUnitario.HasValue ?
+                new ObjectParameter("factd_PrecioUnitario", factd_PrecioUnitario) :
+                new ObjectParameter("factd_PrecioUnitario", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFacturaDetalle_Insert_Result>("UDP_Vent_tbFacturaDetalle_Insert", fact_IdParameter, prod_CodigoParameter, factd_CantidadParameter, factd_MontoDescuentoParameter, factd_PorcentajeDescuentoParameter, factd_ImpuestoParameter, factd_PrecioUnitarioParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbFacturaDetalle_Update_Result> UDP_Vent_tbFacturaDetalle_Update(Nullable<short> factd_Id, Nullable<decimal> factd_Cantidad, Nullable<decimal> factd_MontoDescuento, Nullable<decimal> factd_PorcentajeDescuento, Nullable<decimal> factd_Impuesto, Nullable<decimal> factd_PrecioUnitario, Nullable<int> factd_UsuarioCrea, Nullable<System.DateTime> factd_FechaCrea)
+        {
+            var factd_IdParameter = factd_Id.HasValue ?
+                new ObjectParameter("factd_Id", factd_Id) :
+                new ObjectParameter("factd_Id", typeof(short));
+    
+            var factd_CantidadParameter = factd_Cantidad.HasValue ?
+                new ObjectParameter("factd_Cantidad", factd_Cantidad) :
+                new ObjectParameter("factd_Cantidad", typeof(decimal));
+    
+            var factd_MontoDescuentoParameter = factd_MontoDescuento.HasValue ?
+                new ObjectParameter("factd_MontoDescuento", factd_MontoDescuento) :
+                new ObjectParameter("factd_MontoDescuento", typeof(decimal));
+    
+            var factd_PorcentajeDescuentoParameter = factd_PorcentajeDescuento.HasValue ?
+                new ObjectParameter("factd_PorcentajeDescuento", factd_PorcentajeDescuento) :
+                new ObjectParameter("factd_PorcentajeDescuento", typeof(decimal));
+    
+            var factd_ImpuestoParameter = factd_Impuesto.HasValue ?
+                new ObjectParameter("factd_Impuesto", factd_Impuesto) :
+                new ObjectParameter("factd_Impuesto", typeof(decimal));
+    
+            var factd_PrecioUnitarioParameter = factd_PrecioUnitario.HasValue ?
+                new ObjectParameter("factd_PrecioUnitario", factd_PrecioUnitario) :
+                new ObjectParameter("factd_PrecioUnitario", typeof(decimal));
+    
+            var factd_UsuarioCreaParameter = factd_UsuarioCrea.HasValue ?
+                new ObjectParameter("factd_UsuarioCrea", factd_UsuarioCrea) :
+                new ObjectParameter("factd_UsuarioCrea", typeof(int));
+    
+            var factd_FechaCreaParameter = factd_FechaCrea.HasValue ?
+                new ObjectParameter("factd_FechaCrea", factd_FechaCrea) :
+                new ObjectParameter("factd_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFacturaDetalle_Update_Result>("UDP_Vent_tbFacturaDetalle_Update", factd_IdParameter, factd_CantidadParameter, factd_MontoDescuentoParameter, factd_PorcentajeDescuentoParameter, factd_ImpuestoParameter, factd_PrecioUnitarioParameter, factd_UsuarioCreaParameter, factd_FechaCreaParameter);
+        }
     }
 }

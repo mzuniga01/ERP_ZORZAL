@@ -1316,6 +1316,25 @@
       <Parameter Name="nocre_FechaCrea" Mode="In" Type="DateTime" />
       <Parameter Name="nocre_Estado" Mode="In" Type="Boolean" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbFacturaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFacturaDetalle_Insert_Result)">
+      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="factd_Cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="factd_MontoDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="factd_PorcentajeDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="factd_Impuesto" Mode="In" Type="Decimal" />
+      <Parameter Name="factd_PrecioUnitario" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbFacturaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFacturaDetalle_Update_Result)">
+      <Parameter Name="factd_Id" Mode="In" Type="Int16" />
+      <Parameter Name="factd_Cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="factd_MontoDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="factd_PorcentajeDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="factd_Impuesto" Mode="In" Type="Decimal" />
+      <Parameter Name="factd_PrecioUnitario" Mode="In" Type="Decimal" />
+      <Parameter Name="factd_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="factd_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -5094,6 +5113,12 @@
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbNotaCredito_Update_Result">
+    <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbFacturaDetalle_Insert_Result">
+    <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbFacturaDetalle_Update_Result">
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
   </ComplexType>
 </Schema>
