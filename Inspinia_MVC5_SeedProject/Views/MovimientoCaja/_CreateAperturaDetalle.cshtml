@@ -8,77 +8,43 @@
                 <div class="ibox-title">
                     <h5>Detalle Denominación</h5>
                 </div>
-                <div class="form-horizontal">
-                    <div class="form-group col-md-8">
-                        @*@Html.LabelFor(model => model.deno_Id, "Denominación", new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
-                            @Html.DropDownList("deno_Id", null, "Seleccione Denominación", new { @class = "form-control" })
-                            <div id="validacionDenominacionCreate">
-                                <p style="color:red">@Html.ValidationMessageFor(model => model.deno_Id)</p>
-                            </div>
-                        </div>*@
-                        @*<div class="form-group">
-            @Html.LabelFor(model => model.arqde_CantidadDenominacion, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.arqde_CantidadDenominacion)
-                <div id="validacionCantidadDenominacionCreate">
-                    <p style="color:red"> @Html.ValidationMessageFor(model => model.arqde_CantidadDenominacion)</p>
-                </div>
-             </div>
-        </div>
+                <table id="DenominacionDetalle" class="table table-striped table-bordered table-hover dataTables-example">
+                    <thead>
+                        <tr>
+                            <th>Denominacion</th>
+                            <th>Cantidad</th>
+                            <th>Valor</th>
+                            <th>Subtotal</th>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.arqde_MontoDenominacion, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.arqde_MontoDenominacion)
-                <div id="validacionMontoDenominacionCreate">
-                    <p style="color:red"> @Html.ValidationMessageFor(model => model.arqde_MontoDenominacion)</p>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-md-3">
+                                @Html.DropDownList("deno_Id", null, "Seleccione Denominación", new { @class = "form-control" })
+                                <div id="validacionDenominacionCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.deno_Id)</p>
+                                </div>
+
+                            </td>
+                            <td class="col-md-3">
+                                <input type="text" id="Cantidad" name="Cantidad" class="form-control" autocomplete="off" />
+                            </td>
+                            <td class="col-md-3">
+                                <input type="text" id="Valor" name="Valor" class="form-control" readonly />
+                            </td>
+                            <td class="col-md-3">
+                                <input type="text" id="Subtotal" name="Subtotal" class="form-control" readonly />
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="validationSummary">
+                    <p style="color:red"></p>
                 </div>
-        </div>
-    </div>
-        <div class="col-md-1">
-            <button class="btn btn-primary btn-sm" type="button" id="AgregarDenominacionDetalle">Registrar</button>
-        </div>*@
-        </div>
-    </div>
+
             </div>
         </div>
      </div>
 </div>
-<table id="DenominacionDetalle" class="table table-striped table-bordered table-hover dataTables-example">
-    <thead>
-        <tr>
-            <th>Denominacion</th>
-            <th>Cantidad</th>
-            <th>Valor</th>
-            <th>Subtotal</th>
-           
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="col-md-3"> 
- 
-                    @Html.DropDownList("deno_Id", null, "Seleccione Denominación", new { @class = "form-control" })
-                    <div id="validacionDenominacionCreate">
-                        <p style="color:red">@Html.ValidationMessageFor(model => model.deno_Id)</p>
-                    </div>
-
-            </td>
-            <td class="col-md-3">
-                    <input type="text" id="Cantidad" name="Cantidad" class="form-control" />
-            </td>
-            <td class="col-md-3">
-            <input type="text" id="Valor" name="Valor" class="form-control" />
-            </td>
-            <td class="col-md-3">
-            <input type="text" id="Subtotal" name="Subtotal" class="form-control" />
-            </td>
-
-        </tr>        
-    </tbody>
-</table>
-    <div id="validationSummary">
-        <p style="color:red"></p>
-    </div>
-<script src="~/Scripts/app/Apertura.js"></script>

@@ -13,43 +13,56 @@
 //    //}
 //    console.log("Hola María Alejandra, Feliz Navidad");
 //});
-$(document).on("change", "deno_Id", function () {
+$('#deno_Id').on("change", function () {
     GetDenominacion();
-    console.log("Entre")
 });
 
+
 function GetDenominacion() {
-    var Denominacion = $('#deno_Id').val();
-    console.log("Denominacion", Denominacion);
-    if (Denominacion != "") {
+    var IdDenominacion = $('#deno_Id').val();
+    if (IdDenominacion != "") {
         $.ajax({
             url: "/MovimientoCaja/GetDenominacion",
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ Denominacion: Denominacion }),
+            data: JSON.stringify({ IdDenominacion: IdDenominacion }),
         })
         .done(function (data) {
             if (data.length > 0) {
                 $.each(data, function (key, val) {
-                    //document.getElementById("Valor").val = ;
-                    $("#Valor").val(deno_valor);
-                    console.log(data)
+                    var Cantidad = $('#Cantidad').val();
+                    $("#Valor").val(data);
+                    var Subtotal = Cantidad * data;
+                    $("#Subtotal").val(Subtotal);
+
                 });
             }
             else {
-                $('#deno_Id').empty();
-                $("#Valor").val('');
+               
             }
         });
     }
     else
     {
-                contador = contador + 1;
-                copiar = "<tr data-id=" + contador + ">";
-                copiar += "<td>" + $('#deno_Id option:selected').text() + "</td>";
-                copiar += "<td hidden id='deno_IdCreate'>" + $('#deno_Id option:selected').val() + "</td>";
-                copiar += "</tr>";
-                $('#DenominacionDetalle').append(copiar);
+        $("#Valor").val('');
+        $("#Cantidad").val('');
+        $("#Subtotal").val('');
     }
 }
+
+
+$('#Cantidad').on("keypress keyup blur", function (event) {
+    var Cantidad = $('#Cantidad').val();
+    var Valor = $('#Valor').val();
+    var Subtotal = Cantidad * Valor;
+    $("#Subtotal").val(Subtotal);
+});
+
+$("#Cantidad").on("keypress keyup blur", function (event) {
+    //this.value = this.value.replace(/[^0-9\.]/g,'');
+    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+});
