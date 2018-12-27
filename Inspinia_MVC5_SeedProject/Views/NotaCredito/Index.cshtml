@@ -28,22 +28,20 @@
     <thead>
         <tr>
             <th>
-                Sucursal
-                @*@Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)*@
+                @Html.DisplayNameFor(model => model.suc_Id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.nocre_Codigo)
             </th>
             <th>
-                Cliente
-                @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
+                @Html.DisplayNameFor(model => model.clte_Id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.nocre_Monto)
             </th>
             <th>
-                Código Devolución
-                @*@Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)*@
+                Código
+                @Html.DisplayNameFor(model => model.dev_Id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.nocre_Estado)
@@ -110,7 +108,7 @@
 
                     @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
                     @Html.ActionLink("Editar", "Edit", new { id = item.nocre_Id }, new { @class = "btn btn-white btn-xs" })
-                    @Html.ActionLink("Imprimir", "", null, new { @class = "btn btn-info btn-xs" })
+                    @Html.ActionLink("Imprimir", "", null, new { id = "btnImprimir", @class = "btn btn-info btn-xs" })
                     @Html.ActionLink("Anular", "", null, new { @class = "btn btn-danger btn-xs" })
                     
                    </td>
@@ -127,5 +125,9 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
-
+<script>
+    $('#btnImprimir').click(function () {
+        confirm('¿Deseas Imprimir Cupón Descuento?');
+    });
+</script>
 

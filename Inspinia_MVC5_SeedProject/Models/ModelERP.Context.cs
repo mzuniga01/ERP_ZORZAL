@@ -1774,5 +1774,99 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbCliente_Estado", clte_IdParameter, clte_EsActivoParameter, clte_RazonInactivoParameter);
         }
+    
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Insert_Result> UDP_Vent_tbNotaCredito_Insert(string nocre_Codigo, Nullable<int> dev_Id, Nullable<int> clte_Id, Nullable<short> suc_Id, Nullable<bool> nocre_Anulado, Nullable<System.DateTime> nocre_FechaEmision, string nocre_MotivoEmision, Nullable<decimal> nocre_Monto, Nullable<bool> nocre_Estado)
+        {
+            var nocre_CodigoParameter = nocre_Codigo != null ?
+                new ObjectParameter("nocre_Codigo", nocre_Codigo) :
+                new ObjectParameter("nocre_Codigo", typeof(string));
+    
+            var dev_IdParameter = dev_Id.HasValue ?
+                new ObjectParameter("dev_Id", dev_Id) :
+                new ObjectParameter("dev_Id", typeof(int));
+    
+            var clte_IdParameter = clte_Id.HasValue ?
+                new ObjectParameter("clte_Id", clte_Id) :
+                new ObjectParameter("clte_Id", typeof(int));
+    
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(short));
+    
+            var nocre_AnuladoParameter = nocre_Anulado.HasValue ?
+                new ObjectParameter("nocre_Anulado", nocre_Anulado) :
+                new ObjectParameter("nocre_Anulado", typeof(bool));
+    
+            var nocre_FechaEmisionParameter = nocre_FechaEmision.HasValue ?
+                new ObjectParameter("nocre_FechaEmision", nocre_FechaEmision) :
+                new ObjectParameter("nocre_FechaEmision", typeof(System.DateTime));
+    
+            var nocre_MotivoEmisionParameter = nocre_MotivoEmision != null ?
+                new ObjectParameter("nocre_MotivoEmision", nocre_MotivoEmision) :
+                new ObjectParameter("nocre_MotivoEmision", typeof(string));
+    
+            var nocre_MontoParameter = nocre_Monto.HasValue ?
+                new ObjectParameter("nocre_Monto", nocre_Monto) :
+                new ObjectParameter("nocre_Monto", typeof(decimal));
+    
+            var nocre_EstadoParameter = nocre_Estado.HasValue ?
+                new ObjectParameter("nocre_Estado", nocre_Estado) :
+                new ObjectParameter("nocre_Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Insert_Result>("UDP_Vent_tbNotaCredito_Insert", nocre_CodigoParameter, dev_IdParameter, clte_IdParameter, suc_IdParameter, nocre_AnuladoParameter, nocre_FechaEmisionParameter, nocre_MotivoEmisionParameter, nocre_MontoParameter, nocre_EstadoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Update_Result> UDP_Vent_tbNotaCredito_Update(Nullable<short> nocre_Id, string nocre_Codigo, Nullable<int> dev_Id, Nullable<int> clte_Id, Nullable<short> suc_Id, Nullable<bool> nocre_Anulado, Nullable<System.DateTime> nocre_FechaEmision, string nocre_MotivoEmision, Nullable<decimal> nocre_Monto, Nullable<int> nocre_UsuarioCrea, Nullable<System.DateTime> nocre_FechaCrea, Nullable<bool> nocre_Estado)
+        {
+            var nocre_IdParameter = nocre_Id.HasValue ?
+                new ObjectParameter("nocre_Id", nocre_Id) :
+                new ObjectParameter("nocre_Id", typeof(short));
+    
+            var nocre_CodigoParameter = nocre_Codigo != null ?
+                new ObjectParameter("nocre_Codigo", nocre_Codigo) :
+                new ObjectParameter("nocre_Codigo", typeof(string));
+    
+            var dev_IdParameter = dev_Id.HasValue ?
+                new ObjectParameter("dev_Id", dev_Id) :
+                new ObjectParameter("dev_Id", typeof(int));
+    
+            var clte_IdParameter = clte_Id.HasValue ?
+                new ObjectParameter("clte_Id", clte_Id) :
+                new ObjectParameter("clte_Id", typeof(int));
+    
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(short));
+    
+            var nocre_AnuladoParameter = nocre_Anulado.HasValue ?
+                new ObjectParameter("nocre_Anulado", nocre_Anulado) :
+                new ObjectParameter("nocre_Anulado", typeof(bool));
+    
+            var nocre_FechaEmisionParameter = nocre_FechaEmision.HasValue ?
+                new ObjectParameter("nocre_FechaEmision", nocre_FechaEmision) :
+                new ObjectParameter("nocre_FechaEmision", typeof(System.DateTime));
+    
+            var nocre_MotivoEmisionParameter = nocre_MotivoEmision != null ?
+                new ObjectParameter("nocre_MotivoEmision", nocre_MotivoEmision) :
+                new ObjectParameter("nocre_MotivoEmision", typeof(string));
+    
+            var nocre_MontoParameter = nocre_Monto.HasValue ?
+                new ObjectParameter("nocre_Monto", nocre_Monto) :
+                new ObjectParameter("nocre_Monto", typeof(decimal));
+    
+            var nocre_UsuarioCreaParameter = nocre_UsuarioCrea.HasValue ?
+                new ObjectParameter("nocre_UsuarioCrea", nocre_UsuarioCrea) :
+                new ObjectParameter("nocre_UsuarioCrea", typeof(int));
+    
+            var nocre_FechaCreaParameter = nocre_FechaCrea.HasValue ?
+                new ObjectParameter("nocre_FechaCrea", nocre_FechaCrea) :
+                new ObjectParameter("nocre_FechaCrea", typeof(System.DateTime));
+    
+            var nocre_EstadoParameter = nocre_Estado.HasValue ?
+                new ObjectParameter("nocre_Estado", nocre_Estado) :
+                new ObjectParameter("nocre_Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Update_Result>("UDP_Vent_tbNotaCredito_Update", nocre_IdParameter, nocre_CodigoParameter, dev_IdParameter, clte_IdParameter, suc_IdParameter, nocre_AnuladoParameter, nocre_FechaEmisionParameter, nocre_MotivoEmisionParameter, nocre_MontoParameter, nocre_UsuarioCreaParameter, nocre_FechaCreaParameter, nocre_EstadoParameter);
+        }
     }
 }

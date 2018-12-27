@@ -1291,6 +1291,31 @@
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
     </AssociationSet>
     <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
+    <FunctionImport Name="UDP_Vent_tbNotaCredito_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Insert_Result)">
+      <Parameter Name="nocre_Codigo" Mode="In" Type="String" />
+      <Parameter Name="dev_Id" Mode="In" Type="Int32" />
+      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="nocre_Anulado" Mode="In" Type="Boolean" />
+      <Parameter Name="nocre_FechaEmision" Mode="In" Type="DateTime" />
+      <Parameter Name="nocre_MotivoEmision" Mode="In" Type="String" />
+      <Parameter Name="nocre_Monto" Mode="In" Type="Decimal" />
+      <Parameter Name="nocre_Estado" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbNotaCredito_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Update_Result)">
+      <Parameter Name="nocre_Id" Mode="In" Type="Int16" />
+      <Parameter Name="nocre_Codigo" Mode="In" Type="String" />
+      <Parameter Name="dev_Id" Mode="In" Type="Int32" />
+      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="nocre_Anulado" Mode="In" Type="Boolean" />
+      <Parameter Name="nocre_FechaEmision" Mode="In" Type="DateTime" />
+      <Parameter Name="nocre_MotivoEmision" Mode="In" Type="String" />
+      <Parameter Name="nocre_Monto" Mode="In" Type="Decimal" />
+      <Parameter Name="nocre_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="nocre_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="nocre_Estado" Mode="In" Type="Boolean" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -5065,4 +5090,10 @@
     <Property Name="emp_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Empleados" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
   </EntityType>
+  <ComplexType Name="UDP_Vent_tbNotaCredito_Insert_Result">
+    <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbNotaCredito_Update_Result">
+    <Property Type="Int16" Name="MensajeError" Nullable="false" />
+  </ComplexType>
 </Schema>

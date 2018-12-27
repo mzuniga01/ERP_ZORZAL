@@ -34,7 +34,11 @@
 
                             @foreach (var item in Model)
                             {
-                                <tr data-id="@item.clte_Identificacion" data-nombre="@item.clte_Nombres" data-apellido="@item.clte_Apellidos" data-comercial="@item.clte_NombreComercial">
+                                var name = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres;
+                                <tr data-clte="@item.clte_Id"
+                                    data-id="@item.clte_Identificacion"
+                                    data-nombre="@name" 
+                                    data-apellido="@item.clte_Apellidos" >
                                     <td>
                                         @Html.DisplayFor(modelItem => item.clte_Id)
                                     </td>
@@ -105,18 +109,16 @@
 </script>
 <script>
     $(document).on("click", "#tbClientes tbody tr td button#seleccionar", function () {
+        clteItem = $(this).closest('tr').data('clte');
         idItem = $(this).closest('tr').data('id');
         nombreItem = $(this).closest('tr').data('nombre');
         apellidoItem = $(this).closest('tr').data('apellido');
         completoItem = nombreItem + " " + apellidoItem;
-        comercialItem = $(this).closest('tr').data('comercial');
 
-            $("#tbCliente_clte_Identificacion").val(idItem);
-            $("#tbCliente_clte_Nombres").val(comercialItem);
-            $("#tbCliente_clte_Identificacion").val(idItem);
-            $("#tbCliente_clte_Nombres").val(completoItem);
+        $("#clte_Id").val(clteItem);
+        $("#tbCliente_clte_Identificacion").val(idItem);
+        $("#tbCliente_clte_Nombres").val(completoItem);
         $('#ModalAgregarCliente').modal('hide');
-        //CargarAsignaciones();
     });
 </script>
 

@@ -39,15 +39,9 @@ namespace ERP_GMEDINA.Controllers
         // GET: /CuponDescuento/Create
         public ActionResult Create()
         {
-            //ViewBag.cdto_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            //ViewBag.cdto_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
             return View();
         }
-
-        // POST: /CuponDescuento/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include= "cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_Redimido,cdto_FechaRedencion,cdto_Anulado,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica")] tbCuponDescuento tbCuponDescuento)
@@ -93,15 +87,10 @@ namespace ERP_GMEDINA.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.cdto_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCuponDescuento.cdto_UsuarioModifica);
-            //ViewBag.cdto_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCuponDescuento.cdto_UsuarioCrea);
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion", tbCuponDescuento.suc_Id);
             return View(tbCuponDescuento);
         }
 
-        // POST: /CuponDescuento/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include= "cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_Redimido,cdto_FechaRedencion, cdto_Anulado,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica, tbUsuario, tbUsuario1")] tbCuponDescuento tbCuponDescuento)
