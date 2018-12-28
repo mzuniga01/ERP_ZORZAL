@@ -24,64 +24,81 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-
                     @using (Html.BeginForm("Create", "PuntoEmision", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    
-                        {
+
+                    {
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
-                            @*@Html.ValidationSummary(true)*@
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <p style="color:red">@Html.ValidationSummary(true)</p>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label col-md-2" })
                                 <div class="col-md-7">
                                     @Html.EditorFor(model => model.pemi_NumeroCAI)
-                                    @Html.ValidationMessageFor(model => model.pemi_NumeroCAI)
+                                    <div id="validacionNumeroCAICreate">
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.pemi_NumeroCAI)</p>
+                                    </div>
                                 </div>
                             </div>
-                          
 
-                        </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="tabs-container">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a data-toggle="tab" href="#tab-1">Numeración</a></li>
+                                                    @*<li class=""><a data-toggle="tab" href="#tab-2">Sucursal</a></li>*@
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div id="tab-1" class="tab-pane active">
+                                                        <div class="panel-body">
+                                                            @Html.Partial("_CreateNumeracion", new tbPuntoEmisionDetalle())
+                                                        </div>
+                                                    </div>
+                                                    @*<div id="tab-2" class="tab-pane">
+                                                        <div class="panel-body">
+                                                            @Html.Partial("_IndexSucursal", (List<tbSucursal>)ViewBag.Sucursal)
+                                                        </div>
+                                                    </div>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="tabs-container">
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a data-toggle="tab" href="#tab-1">Numeración</a></li>
-                                    <li class=""><a data-toggle="tab" href="#tab-2">Sucursal</a></li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div id="tab-1" class="tab-pane active">
-                                        <div class="panel-body">
-                                            @Html.Partial("_CreateNumeracion", new tbPuntoEmisionDetalle())
-                                        </div>
-                                    </div>
-                                    <div id="tab-2" class="tab-pane">
-                                        <div class="panel-body">
-                                            @Html.Partial("_IndexSucursal", (List<tbSucursal>)ViewBag.Sucursal)
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <input type="submit" id="btnGuardar" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+
+                            @*<div class="row">
+                                <div class="col-lg-12">
+                                    <div class="tabs-container">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a data-toggle="tab" href="#tab-1">Numeración</a></li>
+                                            <li class=""><a data-toggle="tab" href="#tab-2">Sucursal</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div id="tab-1" class="tab-pane active">
+                                                <div class="panel-body">
+                                                    @Html.Partial("_CreateNumeracion", new tbPuntoEmisionDetalle())
+                                                </div>
+                                            </div>
+                                            <div id="tab-2" class="tab-pane">
+                                                <div class="panel-body">
+                                                    @Html.Partial("_IndexSucursal", (List<tbSucursal>)ViewBag.Sucursal)
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-content">
-                                    <div class="form-group">
-                                        <div class="col-md-12 text-center">
-                                            <input type="submit" value="Guardar" class="btn btn-primary" />
-                                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                        </div>
-                                    </div>
-                                    <br />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     }
                 </div>
 
@@ -92,3 +109,4 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/PuntoEmision.js"></script>
 <script src="~/Scripts/app/PuntoEmisionDetalle.js"></script>
+

@@ -3663,6 +3663,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
   </Function>
   <Function Name="UDP_Vent_tbPuntoEmisionDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="pemid_Id" Type="int" Mode="In" />
+    <Parameter Name="dfisc_Id" Type="char" Mode="In" />
     <Parameter Name="pemid_RangoInicio" Type="varchar" Mode="In" />
     <Parameter Name="pemid_RangoFinal" Type="varchar" Mode="In" />
     <Parameter Name="pemid_FechaLimite" Type="date" Mode="In" />

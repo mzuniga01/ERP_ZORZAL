@@ -27,10 +27,12 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Rango Inicial")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [StringLength(20, MinimumLength = 19, ErrorMessage = "El campo {0} debe tener 19 caracteres")]
         public string pemid_RangoInicio { get; set; }
 
         [Display(Name = "Rango Final")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [StringLength(20, MinimumLength = 19, ErrorMessage = "El campo {0} debe tener el mismo formato de Rango Inicial")]
         public string pemid_RangoFinal { get; set; }
 
         [Display(Name = "Fecha Límite")]

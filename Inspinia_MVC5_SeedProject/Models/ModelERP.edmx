@@ -3668,6 +3668,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
         </Function>
         <Function Name="UDP_Vent_tbPuntoEmisionDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="pemid_Id" Type="int" Mode="In" />
+          <Parameter Name="dfisc_Id" Type="char" Mode="In" />
           <Parameter Name="pemid_RangoInicio" Type="varchar" Mode="In" />
           <Parameter Name="pemid_RangoFinal" Type="varchar" Mode="In" />
           <Parameter Name="pemid_FechaLimite" Type="date" Mode="In" />
@@ -4691,6 +4692,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbPuntoEmisionDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPuntoEmisionDetalle_Update_Result)">
             <Parameter Name="pemid_Id" Mode="In" Type="Int32" />
+            <Parameter Name="dfisc_Id" Mode="In" Type="String" />
             <Parameter Name="pemid_RangoInicio" Mode="In" Type="String" />
             <Parameter Name="pemid_RangoFinal" Mode="In" Type="String" />
             <Parameter Name="pemid_FechaLimite" Mode="In" Type="DateTime" />
@@ -6095,9 +6097,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Type="Int64" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbPuntoEmision_Update_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Update_Result">
           <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <EntityType Name="tbAccesoRol">
@@ -9697,6 +9696,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbFactura_Update_Result">
           <Property Type="Int64" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Update_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>

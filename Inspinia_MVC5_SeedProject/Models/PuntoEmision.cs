@@ -19,6 +19,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name ="Número CAI")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [StringLength(40, MinimumLength = 37, ErrorMessage = "El campo {0} debe tener 37 caracteres")]
         public string pemi_NumeroCAI { get; set; }
 
         [Display(Name = "Usuario Creación")]

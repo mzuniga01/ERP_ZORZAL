@@ -1,8 +1,9 @@
-﻿$(document).ready(function () {
+﻿//Máximo de caracteres
+$(document).ready(function () {
     $("#pemi_NumeroCAI")[0].maxLength = 40;
-})
+});
 
-
+//Conversión a mayúscula
 $("#pemi_NumeroCAI").change(function () {
     var str = $("#pemi_NumeroCAI").val();
     var res = str.toUpperCase();
@@ -16,6 +17,7 @@ $(pemi_NumeroCAI).on("keypress", function () {
     }, 50);
 })
 
+//Datatables
 $(document).ready(function () {
     $('#PuntoEmision').DataTable(
     {

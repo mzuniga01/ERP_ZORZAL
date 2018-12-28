@@ -4,7 +4,6 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado de Sucursales</h5>
-					
                 </div>
                 <div class="ibox-content">
 
@@ -17,16 +16,13 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.suc_Descripcion)
                                 </th>
-                               
+
                                 <th>
                                     @Html.DisplayNameFor(model => model.suc_Direccion)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.suc_Telefono)
                                 </th>
-                                
-                                
-                                
                             </tr>
                         </thead>
                         <tbody>
@@ -39,22 +35,20 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.suc_Descripcion)
                                     </td>
-                                   
+
                                     <td>
                                         @Html.DisplayFor(modelItem => item.suc_Direccion)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.suc_Telefono)
                                     </td>
-                                               
                                 </tr>
                             }
                         </tbody>
                     </table>
+
                 </div>
             </div>
-   
-
-
+  
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Sucursal.js"></script>
