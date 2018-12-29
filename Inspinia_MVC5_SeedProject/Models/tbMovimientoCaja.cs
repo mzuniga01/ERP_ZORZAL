@@ -23,7 +23,7 @@ namespace ERP_GMEDINA.Models
     
         public int mocja_Id { get; set; }
         public short cja_Id { get; set; }
-        public System.DateTime mocja_FechaApetura { get; set; }
+        public System.DateTime mocja_FechaApertura { get; set; }
         public Nullable<int> mocja_UsuarioApertura { get; set; }
         public System.DateTime mocja_FechaArqueo { get; set; }
         public Nullable<int> mocja_UsuarioArquea { get; set; }
