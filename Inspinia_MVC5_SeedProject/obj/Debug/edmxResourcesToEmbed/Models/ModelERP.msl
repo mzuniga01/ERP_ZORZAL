@@ -975,6 +975,7 @@
     <EntitySetMapping Name="tbDevolucionDetalle">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucionDetalle">
         <MappingFragment StoreEntitySet="tbDevolucionDetalle">
+          <ScalarProperty Name="devd_Monto" ColumnName="devd_Monto" />
           <ScalarProperty Name="devd_FechaModifica" ColumnName="devd_FechaModifica" />
           <ScalarProperty Name="devd_UsuarioModifica" ColumnName="devd_UsuarioModifica" />
           <ScalarProperty Name="devd_FechaCrea" ColumnName="devd_FechaCrea" />
@@ -1380,6 +1381,20 @@
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Update">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoFactura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoFactura_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoFactura_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoFactura_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoFactura_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoFactura_Update_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>

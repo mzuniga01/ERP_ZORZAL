@@ -1950,5 +1950,35 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Update_Result>("UDP_Vent_tbFactura_Update", fact_IdParameter, fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_AutorizarDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_UsuarioCreaParameter, fact_FechaCreaParameter);
         }
+    
+        public virtual ObjectResult<UDP_Vent_tbEstadoFactura_Insert_Result> UDP_Vent_tbEstadoFactura_Insert(string esfac_Descripcion)
+        {
+            var esfac_DescripcionParameter = esfac_Descripcion != null ?
+                new ObjectParameter("esfac_Descripcion", esfac_Descripcion) :
+                new ObjectParameter("esfac_Descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbEstadoFactura_Insert_Result>("UDP_Vent_tbEstadoFactura_Insert", esfac_DescripcionParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbEstadoFactura_Update_Result> UDP_Vent_tbEstadoFactura_Update(Nullable<byte> esfac_Id, string esfac_Descripcion, Nullable<int> esfac_UsuarioCrea, Nullable<System.DateTime> esfac_FechaCrea)
+        {
+            var esfac_IdParameter = esfac_Id.HasValue ?
+                new ObjectParameter("esfac_Id", esfac_Id) :
+                new ObjectParameter("esfac_Id", typeof(byte));
+    
+            var esfac_DescripcionParameter = esfac_Descripcion != null ?
+                new ObjectParameter("esfac_Descripcion", esfac_Descripcion) :
+                new ObjectParameter("esfac_Descripcion", typeof(string));
+    
+            var esfac_UsuarioCreaParameter = esfac_UsuarioCrea.HasValue ?
+                new ObjectParameter("esfac_UsuarioCrea", esfac_UsuarioCrea) :
+                new ObjectParameter("esfac_UsuarioCrea", typeof(int));
+    
+            var esfac_FechaCreaParameter = esfac_FechaCrea.HasValue ?
+                new ObjectParameter("esfac_FechaCrea", esfac_FechaCrea) :
+                new ObjectParameter("esfac_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbEstadoFactura_Update_Result>("UDP_Vent_tbEstadoFactura_Update", esfac_IdParameter, esfac_DescripcionParameter, esfac_UsuarioCreaParameter, esfac_FechaCreaParameter);
+        }
     }
 }

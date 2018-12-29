@@ -46,15 +46,35 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="esfac_Id,esfac_Descripcion,esfac_UsuarioCrea,esfac_UsuarioModifico,esfac_FechaAgrego,esfac_FechaModifico")] tbEstadoFactura tbEstadoFactura)
+        public ActionResult Create([Bind(Include= "esfac_Id,esfac_Descripcion,esfac_UsuarioCrea,esfac_UsuarioModifico,esfac_FechaCrea,esfac_FechaModifico")] tbEstadoFactura tbEstadoFactura)
         {
             if (ModelState.IsValid)
             {
-                db.tbEstadoFactura.Add(tbEstadoFactura);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    //////////Aqui va la lista//////////////
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbEstadoFactura_Insert(tbEstadoFactura.esfac_Descripcion);
+                    foreach (UDP_Vent_tbEstadoFactura_Insert_Result estado in list)
+                        MensajeError = estado.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        return View(tbEstadoFactura);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                    return View(tbEstadoFactura);
+                }
             }
-
             return View(tbEstadoFactura);
         }
 
@@ -78,16 +98,39 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="esfac_Id,esfac_Descripcion,esfac_UsuarioCrea,esfac_UsuarioModifico,esfac_FechaAgrego,esfac_FechaModifico")] tbEstadoFactura tbEstadoFactura)
+        public ActionResult Edit([Bind(Include= "esfac_Id,esfac_Descripcion,esfac_UsuarioCrea,esfac_UsuarioModifico,esfac_FechaCrea,esfac_FechaModifico, tbUsuario, tbUsuario1")] tbEstadoFactura tbEstadoFactura)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbEstadoFactura).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+
+                    //////////Aqui va la lista//////////////
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbEstadoFactura_Update(tbEstadoFactura.esfac_Id, tbEstadoFactura.esfac_Descripcion, tbEstadoFactura.esfac_UsuarioCrea, tbEstadoFactura.esfac_FechaCrea);
+                    foreach (UDP_Vent_tbEstadoFactura_Update_Result estado in list)
+                        MensajeError = estado.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        return View(tbEstadoFactura);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                    return View(tbEstadoFactura);
+                }
             }
             return View(tbEstadoFactura);
         }
+
 
         // GET: /EstadoFactura/Delete/5
         public ActionResult Delete(byte? id)

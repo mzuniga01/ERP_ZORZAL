@@ -8,13 +8,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Estado Factura</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-            </li>
-        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -30,7 +23,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Registrar Estado Factura</h5>
+                    <h5>Registrar</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -39,60 +32,22 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.esfac_Id, new { htmlAttributes = new { @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.esfac_Id)
-            </div>
+        <div>
+            <p style="color:red">@Html.ValidationSummary(true)</p>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.esfac_Descripcion, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.esfac_Descripcion)
-                @Html.ValidationMessageFor(model => model.esfac_Descripcion)
-            </div>
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.esfac_Descripcion)</p>
+</div>
         </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.esfac_UsuarioCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.esfac_UsuarioCrea)
-                @Html.ValidationMessageFor(model => model.esfac_UsuarioCrea)
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.esfac_UsuarioModifico, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.esfac_UsuarioModifico)
-                @Html.ValidationMessageFor(model => model.esfac_UsuarioModifico)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.esfac_FechaAgrego, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.esfac_FechaAgrego)
-                @Html.ValidationMessageFor(model => model.esfac_FechaAgrego)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.esfac_FechaModifico, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.esfac_FechaModifico)
-                @Html.ValidationMessageFor(model => model.esfac_FechaModifico)
-            </div>
-        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary btn-xs" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-xs" })
+                <input type="submit" value="Guardar" class="btn btn-primary " />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
             </div>
         </div>
     </div>
@@ -109,3 +64,5 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Factura.js"></script>

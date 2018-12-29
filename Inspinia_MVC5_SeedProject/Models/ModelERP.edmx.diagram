@@ -254,6 +254,8 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbPuntoEmision_pemi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSolicitudEfectivo_tbSolicitudEfectivoDetalle_solef_Id" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" Width="1.5" PointX="0.75" PointY="4.75" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

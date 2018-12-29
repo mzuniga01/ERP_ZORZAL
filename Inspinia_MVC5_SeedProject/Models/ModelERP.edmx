@@ -593,6 +593,7 @@
           <Property Name="devd_FechaCrea" Type="datetime" />
           <Property Name="devd_UsuarioModifica" Type="int" />
           <Property Name="devd_FechaModifica" Type="datetime" />
+          <Property Name="devd_Monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="tbDocumentoFiscal">
           <Key>
@@ -2796,6 +2797,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+          <End Role="tbEstadoFactura" Type="Self.tbEstadoFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEstadoFactura">
+              <PropertyRef Name="esfac_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbEstadoFactura" Type="Self.tbEstadoFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEstadoFactura">
+              <PropertyRef Name="esfac_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vent_tbFactura_tbDevolucion_fact_Id">
           <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="1" />
           <End Role="tbDevolucion" Type="Self.tbDevolucion" Multiplicity="*" />
@@ -3442,6 +3467,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="dfisc_Descripcion" Type="nvarchar" Mode="In" />
           <Parameter Name="dfisc_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="dfisc_FechaCrea" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbEstadoFactura_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="esfac_Descripcion" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbEstadoFactura_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="esfac_Id" Type="tinyint" Mode="In" />
+          <Parameter Name="esfac_Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="esfac_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="esfac_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbEstadoSolicitudCredito_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="escre_Descripcion" Type="nvarchar" Mode="In" />
@@ -4426,6 +4460,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <AssociationSet Name="FK_Vent_tbEstadoFactura_tbFacturaHistorica_esfac_Id" Association="Self.FK_Vent_tbEstadoFactura_tbFacturaHistorica_esfac_Id">
             <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
             <End Role="tbFacturaHistorica" EntitySet="tbFacturaHistorica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea" Association="Self.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica" Association="Self.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
           </AssociationSet>
           <AssociationSet Name="FK_Vent_tbFactura_tbDevolucion_fact_Id" Association="Self.FK_Vent_tbFactura_tbDevolucion_fact_Id">
             <End Role="tbFactura" EntitySet="tbFactura" />
@@ -5914,6 +5956,23 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="fact_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="fact_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <AssociationSet Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea" Association="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica" Association="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
+          </AssociationSet>
+          <FunctionImport Name="UDP_Vent_tbEstadoFactura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoFactura_Insert_Result)">
+            <Parameter Name="esfac_Descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbEstadoFactura_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoFactura_Update_Result)">
+            <Parameter Name="esfac_Id" Mode="In" Type="Byte" />
+            <Parameter Name="esfac_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="esfac_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="esfac_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -6282,6 +6341,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <NavigationProperty Name="tbPuntoEmision1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmision" />
           <NavigationProperty Name="tbPuntoEmisionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
           <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
+          <NavigationProperty Name="tbEstadoFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbEstadoFactura" />
+          <NavigationProperty Name="tbEstadoFactura1" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbEstadoFactura" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -6952,6 +7013,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioModifica" FromRole="tbDevolucionDetalle" ToRole="tbUsuario" />
           <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbDevolucionDetalle_prod_Codigo" FromRole="tbDevolucionDetalle" ToRole="tbProducto" />
           <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" FromRole="tbDevolucionDetalle" ToRole="tbDevolucion" />
+          <Property Name="devd_Monto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="tbDocumentoFiscal">
           <Key>
@@ -6979,6 +7041,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Name="esfac_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo" FromRole="tbEstadoFactura" ToRole="tbFactura" />
           <NavigationProperty Name="tbFacturaHistorica" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbFacturaHistorica_esfac_Id" FromRole="tbEstadoFactura" ToRole="tbFacturaHistorica" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea" FromRole="tbEstadoFactura" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica" FromRole="tbEstadoFactura" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbEstadoPedido">
           <Key>
@@ -9700,6 +9764,36 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
         <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Update_Result">
           <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
+        <Association Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbEstadoFactura" Role="tbEstadoFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEstadoFactura">
+              <PropertyRef Name="esfac_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbEstadoFactura" Role="tbEstadoFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEstadoFactura">
+              <PropertyRef Name="esfac_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="UDP_Vent_tbEstadoFactura_Insert_Result">
+          <Property Type="Byte" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbEstadoFactura_Update_Result">
+          <Property Type="Byte" Name="MensajeError" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10681,6 +10775,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <EntitySetMapping Name="tbDevolucionDetalle">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucionDetalle">
               <MappingFragment StoreEntitySet="tbDevolucionDetalle">
+                <ScalarProperty Name="devd_Monto" ColumnName="devd_Monto" />
                 <ScalarProperty Name="devd_FechaModifica" ColumnName="devd_FechaModifica" />
                 <ScalarProperty Name="devd_UsuarioModifica" ColumnName="devd_UsuarioModifica" />
                 <ScalarProperty Name="devd_FechaCrea" ColumnName="devd_FechaCrea" />
@@ -11086,6 +11181,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoFactura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoFactura_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoFactura_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoFactura_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoFactura_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoFactura_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

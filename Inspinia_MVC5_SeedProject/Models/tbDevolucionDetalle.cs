@@ -23,6 +23,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<System.DateTime> devd_FechaCrea { get; set; }
         public Nullable<int> devd_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> devd_FechaModifica { get; set; }
+        public decimal devd_Monto { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

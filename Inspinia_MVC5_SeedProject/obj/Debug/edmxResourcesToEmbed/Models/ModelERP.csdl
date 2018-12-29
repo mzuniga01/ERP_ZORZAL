@@ -1338,6 +1338,23 @@
       <Parameter Name="fact_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="fact_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <AssociationSet Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea" Association="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica" Association="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
+    </AssociationSet>
+    <FunctionImport Name="UDP_Vent_tbEstadoFactura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoFactura_Insert_Result)">
+      <Parameter Name="esfac_Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbEstadoFactura_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoFactura_Update_Result)">
+      <Parameter Name="esfac_Id" Mode="In" Type="Byte" />
+      <Parameter Name="esfac_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="esfac_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="esfac_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1706,6 +1723,8 @@
     <NavigationProperty Name="tbPuntoEmision1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmision" />
     <NavigationProperty Name="tbPuntoEmisionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
     <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
+    <NavigationProperty Name="tbEstadoFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbEstadoFactura" />
+    <NavigationProperty Name="tbEstadoFactura1" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbEstadoFactura" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -2376,6 +2395,7 @@
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioModifica" FromRole="tbDevolucionDetalle" ToRole="tbUsuario" />
     <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbDevolucionDetalle_prod_Codigo" FromRole="tbDevolucionDetalle" ToRole="tbProducto" />
     <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" FromRole="tbDevolucionDetalle" ToRole="tbDevolucion" />
+    <Property Name="devd_Monto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
   </EntityType>
   <EntityType Name="tbDocumentoFiscal">
     <Key>
@@ -2403,6 +2423,8 @@
     <Property Name="esfac_FechaModifica" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo" FromRole="tbEstadoFactura" ToRole="tbFactura" />
     <NavigationProperty Name="tbFacturaHistorica" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbFacturaHistorica_esfac_Id" FromRole="tbEstadoFactura" ToRole="tbFacturaHistorica" />
+    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea" FromRole="tbEstadoFactura" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica" FromRole="tbEstadoFactura" ToRole="tbUsuario" />
   </EntityType>
   <EntityType Name="tbEstadoPedido">
     <Key>
@@ -5123,5 +5145,35 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Update_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <Association Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbEstadoFactura" Role="tbEstadoFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoFactura">
+        <PropertyRef Name="esfac_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbEstadoFactura" Role="tbEstadoFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoFactura">
+        <PropertyRef Name="esfac_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="UDP_Vent_tbEstadoFactura_Insert_Result">
+    <Property Type="Byte" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbEstadoFactura_Update_Result">
+    <Property Type="Byte" Name="MensajeError" Nullable="false" />
   </ComplexType>
 </Schema>

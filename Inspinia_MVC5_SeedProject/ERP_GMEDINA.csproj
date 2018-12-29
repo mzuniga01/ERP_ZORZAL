@@ -535,6 +535,12 @@
     <Compile Include="Models\UDP_Vent_tbDocumentoFiscal_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbEstadoFactura_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbEstadoFactura_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbEstadoSolicitudCredito_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1076,7 +1082,6 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\EstadoFactura\Create.cshtml" />
-    <Content Include="Views\EstadoFactura\Delete.cshtml" />
     <Content Include="Views\EstadoFactura\Details.cshtml" />
     <Content Include="Views\EstadoFactura\Edit.cshtml" />
     <Content Include="Views\EstadoFactura\Index.cshtml" />

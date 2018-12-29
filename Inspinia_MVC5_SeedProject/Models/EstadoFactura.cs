@@ -14,7 +14,7 @@ namespace ERP_GMEDINA.Models
 
     public class EstadoFacturaMetaData
     {
-        [Display(Name = "Id Estado Factura")]
+        [Display(Name = "Estado Factura")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte esfac_Id { get; set; }
 
@@ -28,11 +28,15 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Creación")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime esfac_FechaCrea { get; set; }
 
+        [Display(Name = "Usuario Modificación")]
         public Nullable<int> esfac_UsuarioModifica { get; set; }
 
+
+        [Display(Name = "Fecha Modificación")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> esfac_FechaModifica { get; set; }
     }
 

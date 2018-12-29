@@ -588,6 +588,7 @@
     <Property Name="devd_FechaCrea" Type="datetime" />
     <Property Name="devd_UsuarioModifica" Type="int" />
     <Property Name="devd_FechaModifica" Type="datetime" />
+    <Property Name="devd_Monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
   </EntityType>
   <EntityType Name="tbDocumentoFiscal">
     <Key>
@@ -2791,6 +2792,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbEstadoFactura" Type="Self.tbEstadoFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoFactura">
+        <PropertyRef Name="esfac_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbEstadoFactura" Type="Self.tbEstadoFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoFactura">
+        <PropertyRef Name="esfac_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbFactura_tbDevolucion_fact_Id">
     <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="1" />
     <End Role="tbDevolucion" Type="Self.tbDevolucion" Multiplicity="*" />
@@ -3437,6 +3462,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="dfisc_Descripcion" Type="nvarchar" Mode="In" />
     <Parameter Name="dfisc_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="dfisc_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbEstadoFactura_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="esfac_Descripcion" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbEstadoFactura_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="esfac_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="esfac_Descripcion" Type="nvarchar" Mode="In" />
+    <Parameter Name="esfac_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="esfac_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbEstadoSolicitudCredito_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="escre_Descripcion" Type="nvarchar" Mode="In" />
@@ -4421,6 +4455,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <AssociationSet Name="FK_Vent_tbEstadoFactura_tbFacturaHistorica_esfac_Id" Association="Self.FK_Vent_tbEstadoFactura_tbFacturaHistorica_esfac_Id">
       <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
       <End Role="tbFacturaHistorica" EntitySet="tbFacturaHistorica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea" Association="Self.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica" Association="Self.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbFactura_tbDevolucion_fact_Id" Association="Self.FK_Vent_tbFactura_tbDevolucion_fact_Id">
       <End Role="tbFactura" EntitySet="tbFactura" />
