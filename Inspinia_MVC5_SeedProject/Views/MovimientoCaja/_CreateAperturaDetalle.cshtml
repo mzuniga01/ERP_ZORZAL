@@ -8,6 +8,26 @@
                 <div class="ibox-title">
                     <h5>Detalle Denominación</h5>
                 </div>
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
+
+                    <div class="form-horizontal">
+                        <div class="form-group col-md-8">
+                            @Html.LabelFor(model => model.deno_Id, "Denominación", new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.DropDownList("deno_Id", null, "Seleccione Denominación", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.deno_Id)
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label col-md-3">Cantidad</label>
+                            <div class="col-md-9">
+                                <input type="text" id="Cantidad" name="Cantidad" class="form-control" autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <table id="DenominacionDetalle" class="table table-striped table-bordered table-hover dataTables-example">
                     <thead>
                         <tr>
@@ -21,20 +41,19 @@
                     <tbody>
                         <tr>
                             <td class="col-md-3">
-                                @Html.DropDownList("deno_Id", null, "Seleccione Denominación", new { @class = "form-control" })
-                                <div id="validacionDenominacionCreate">
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.deno_Id)</p>
-                                </div>
+                                <label id="deno_Id" name="Cantidad"> </label>
+                            </td>
 
-                            </td>
                             <td class="col-md-3">
-                                <input type="text" id="Cantidad" name="Cantidad" class="form-control" autocomplete="off" />
+                                <label id="Cantidad" name="Cantidad"></label>
                             </td>
+
                             <td class="col-md-3">
-                                <input type="text" id="Valor" name="Valor" class="form-control" readonly />
+                                <label type="text" id="Valor" name="Valor"></label>
                             </td>
+
                             <td class="col-md-3">
-                                <input type="text" id="Subtotal" name="Subtotal" class="form-control" readonly />
+                                <label type="text" id="Subtotal" name="Subtotal"></label>
                             </td>
 
                         </tr>
