@@ -17,7 +17,7 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Pedido/
         public ActionResult Index()
         {
-            var tbpedido = db.tbPedido.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbEstadoPedido).Include(t => t.tbFactura).Include(t => t.tbSucursal);
+            var tbpedido = db.tbPedido.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbEstadoPedido).Include(t => t.tbSucursal);
             return View(tbpedido.ToList());
         }
        
@@ -55,28 +55,61 @@ namespace ERP_ZORZAL.Controllers
         }
 
         // POST: /Pedido/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include= "ped_Id,esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id,ped_UsuarioCrea,ped_FechaCrea,ped_UsuarioModifica,ped_FechaModifica")] tbPedido tbPedido)
+        public ActionResult Create([Bind(Include = "esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id")] tbPedido tbPedido)
         {
             if (ModelState.IsValid)
             {
-                db.tbPedido.Add(tbPedido);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                try
+                {
 
-            ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
-            ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
-            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
-            ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
-            ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion", tbPedido.esped_Id);
-      
+                    //db.tbTipoIdentificacion.Add(tbTipoIdentificacion);
+                    //db.SaveChanges();
+                    //return RedirectToAction("Index");
+
+                    var MensajeError = "";
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbPedido_Insert(tbPedido.esped_Id,
+                                                       tbPedido.ped_FechaElaboracion,
+                                                       tbPedido.ped_FechaEntrega,
+                                                       tbPedido.clte_Id,
+                                                       tbPedido.suc_Id,
+                                                       tbPedido.fact_Id);
+                    foreach (UDP_Vent_tbPedido_Insert_Result Pedido in list)
+                        MensajeError = Pedido.MensajeError;
+                    if (MensajeError == "-1")
+                    {
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+                }
+                catch (Exception Ex)
+                {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                    Ex.Message.ToString();
+                }
+
+                ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
+                ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
+                ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
+                ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
+                ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
+                ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
+            }
+            else
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+            }
             return View(tbPedido);
         }
+
 
         // GET: /Pedido/Edit/5
         public ActionResult Edit(int? id)
@@ -105,13 +138,46 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include= "ped_Id,esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id,ped_UsuarioCrea,ped_FechaCrea,ped_UsuarioModifica,ped_FechaModifica")] tbPedido tbPedido)
+        public ActionResult Edit(int? id,[Bind(Include= "ped_Id,esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id,ped_UsuarioCrea,ped_FechaCrea")] tbPedido tbPedido)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tbPedido).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    tbPedido vPedido = db.tbPedido.Find(id);
+                    //db.tbTipoIdentificacion.Add(tbTipoIdentificacion);
+                    //db.SaveChanges();
+                    //return RedirectToAction("Index");
+
+                    var MensajeError = "";
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbPedido_Update(tbPedido.ped_Id,
+                                                       tbPedido.esped_Id,
+                                                       tbPedido.ped_FechaElaboracion,
+                                                       tbPedido.ped_FechaEntrega,
+                                                       tbPedido.clte_Id,
+                                                       tbPedido.suc_Id,
+                                                       tbPedido.fact_Id,
+                                                       vPedido.ped_UsuarioCrea,
+                                                       vPedido.ped_FechaCrea);
+                    foreach (UDP_Vent_tbPedido_Update_Result Pedido in list)
+                        MensajeError = Pedido.MensajeError;
+                    if (MensajeError == "-1")
+                    {
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+                }
+                catch (Exception Ex)
+                {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                    Ex.Message.ToString();
+                }
+
             }
             ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
             ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);

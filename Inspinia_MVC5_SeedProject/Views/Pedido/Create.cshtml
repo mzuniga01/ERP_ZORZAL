@@ -46,7 +46,7 @@
                                 </div>
                                 @Html.LabelFor(model => model.esped_Id, "Estado", new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    @Html.DropDownList("esped_Id", null, "Seleccione Estado Pedido", new { @class = "form-control" })
+                                    @Html.DropDownList("esped_Id", (IEnumerable<SelectListItem>)ViewBag.esped_Id@*, "Seleccione Estado Pedido"*@, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.esped_Id)
                                 </div>
                             </div>
@@ -152,10 +152,11 @@
         };
         $.datepicker.setDefaults($.datepicker.regional['es']);
         $(function () {
-            $("#ped_FechaElaboracion").datepicker({ dateFormat: 'yy-mm-dd' });
-            $("#ped_FechaEntrega").datepicker({ dateFormat: 'yy-mm-dd' });
-            $("#cred_FechaSolicitud").datepicker({ dateFormat: 'yy-mm-dd' });
+            $("#ped_FechaElaboracion").datepicker({ dateFormat: 'yy-mm-dd' }).datepicker('setDate', new Date());
+            $("#ped_FechaEntrega").datepicker({ dateFormat: 'yy-mm-dd' }).datepicker('setDate', new Date());
+          
         });
+        
     </script>
 
     @Scripts.Render("~/bundles/jqueryval")

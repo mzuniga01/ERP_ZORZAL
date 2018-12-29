@@ -44,19 +44,15 @@ namespace ERP_GMEDINA.Models
         public long fact_Id { get; set; }
 
         [Display(Name = "Usuario Creación")]
-        [Required]
         public int ped_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Creación")]
-        [Required]
         public System.DateTime ped_FechaCrea { get; set; }
 
         [Display(Name = "Usuario Modificación")]
-        [Required]
         public Nullable<int> ped_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modificación")]
-        [Required]
         public Nullable<System.DateTime> ped_FechaModifica { get; set; }
 
     }

@@ -55,9 +55,9 @@
             <th>
                 Factura
             </th>
-            <th>
+            @*<th>
                 Fecha Facturación
-            </th>
+            </th>*@
             <th>Acciones</th>
         </tr>
     </thead>
@@ -78,20 +78,32 @@
                     @Html.DisplayFor(modelItem => item.ped_FechaElaboracion)
                 </td>
                 <td>
-                    0401199900876
+                    @Html.DisplayFor(modelItem => item.tbCliente.clte_Identificacion)
                 </td>
-                <td>
-                    Samuel Salcedo
-                </td>
+
+                @{ if (Convert.ToInt32(item.tbCliente.clte_EsPersonaNatural) == 1)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres) &nbsp; @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tbCliente.clte_NombreComercial)
+                        </td>
+                    }
+                }
+       
                 <td>
                     @Html.DisplayFor(modelItem => item.ped_FechaEntrega)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
                 </td>
-                <td>
+                @*<td>
                    04/12/2018
-                </td>
+                </td>*@
 
                 <td>
                     @Html.ActionLink("Detalles", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs" })
