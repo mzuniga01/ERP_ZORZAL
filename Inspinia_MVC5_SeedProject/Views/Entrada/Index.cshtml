@@ -27,7 +27,6 @@
 					</div>
                 </div>
                 <div class="ibox-content">
-
                     <table class="table table-responsive" style="width:100%" id="tbEntrada">
                         <thead>
                             <tr>
@@ -70,15 +69,19 @@
                                         @Html.DisplayFor(modelItem => item.tbTipoEntrada.tent_Descripcion)
                                     </td>
                                     <td>
-                                        @if (item.estm_Id == 1)
+                                        @if (item.estm_Id == 2)
                                         {
                                             <p> Activo</p>
                                         }
-                                        else if (item.estm_Id == 2)
+                                        else if (item.estm_Id == 16)
                                         {
                                             <p>Inactivo</p>
                                         }
-                                        else
+                                        else if (item.estm_Id == 1)
+                                        {
+                                            <p>Aplicado</p>
+                                        }
+                                        else if (item.estm_Id == 15)
                                         {
                                             <p>Anulado</p>
                                         }

@@ -118,7 +118,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="emp_Id,emp_Nombres,emp_Apellidos,emp_Sexo,emp_FechaNacimiento,tpi_Id,emp_Identificacion,emp_Telefono,emp_Correoelectronico,emp_TipoSangre,emp_Puesto,emp_FechaIngreso,emp_Direccion,emp_Observaciones,emp_UsuarioCrea,emp_FechaCrea,emp_UsuarioModifica,emp_FechaModifica, tbUsuario, tbUsuario1")] tbEmpleado tbEmpleado)
+        public ActionResult Edit([Bind(Include="emp_Id,emp_Nombres,emp_Apellidos,emp_Sexo,emp_FechaNacimiento,tpi_Id,emp_Identificacion,emp_Telefono,emp_Correoelectronico,emp_TipoSangre,emp_Puesto,emp_FechaIngreso,emp_Direccion,emp_Observaciones,emp_UsuarioCrea,emp_FechaCrea,emp_UsuarioModifica,emp_FechaModifica")] tbEmpleado tbEmpleado)
         {
            
             if (ModelState.IsValid)

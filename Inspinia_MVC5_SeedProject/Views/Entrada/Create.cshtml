@@ -28,7 +28,6 @@
 
 @using (Html.BeginForm("Create", "Entrada", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -54,7 +53,8 @@
                                     </div>
                                     @Html.LabelFor(model => model.ent_NumeroFormato, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.ent_NumeroFormato)
+                                        <input type="hidden" id="hdf_Formato_Placa" value="0" />
+                                        @Html.EditorFor(model => model.ent_NumeroFormato, new { htmlAttributes = new { @onKeyUp = "verificaFormatoPlaca(this.value)" } })
                                         <div class="col-md-10">
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.ent_NumeroFormato)</p>
                                         </div>
@@ -89,10 +89,15 @@
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.tent_Id)</p>
                                         </div>
                                     </div>
-                                    @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.estm_Id, "Cambiar Estado.?", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.DropDownList("estm_Id", (IEnumerable<SelectListItem>)ViewBag.estm_Id, new { @class = "form-control", @readonly = "readonly"})
-                                        
+                                        @*@Html.DropDownList("estm_Id", (IEnumerable<SelectListItem>)ViewBag.estm_Id, new { @class = "form-control", @readonly = "readonly"})*@
+                                        <select class="form-control" id="estado" name="estm_Id">
+                                            <option id="" value="2">Si es Necesario...</option>
+                                            <option id="valid15" value="15">Anular</option>
+                                            <option id="valid1" value="1">Aplicar</option>
+                                        </select>
+
                                         <div class="col-md-10">
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.estm_Id)</p>
                                         </div>
@@ -213,11 +218,11 @@
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <input type="submit" value="Guardar" class="btn btn-primary" />
-                            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
+                            @*<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />*@
                             <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
                             
                             @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                            <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modalanular" value="Anular" />
+                            @*<input type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modalanular" value="Anular" />*@
                         </div>
                     </div>
                     <div class="form-group">
@@ -233,29 +238,6 @@
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
 
-
-
-
-@*modal para Aplicar*@
-<div class="modal fade" id="ModalAplicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Aplicar Entrada</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Desea Aplicar Entrada?
-            </div>
-            <div class="modal-footer">
-                <a href="@Url.Action("Create", "Entrada")" class="btn btn-primary">Si</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
 @*modal para imprimir*@
 <div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -270,12 +252,35 @@
                 ¿Desea Imprimir Entrada?
             </div>
             <div class="modal-footer">
-                <a href="@Url.Action("Create", "Entrada")" class="btn btn-primary">Si</a>
+                <a href="@Url.Action("si", "Create")" class="btn btn-primary">Si</a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
 </div>
+
+
+@*modal para estado aPLICAR*@
+<div class="modal fade" id="Modalaplicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Aplicar Entrada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro que quiere Aplicar esta Entrada?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Si","Create")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @*modal para anular*@
 <div class="modal fade" id="Modalanular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -290,7 +295,7 @@
                 ¿Está seguro de anular esta Entrada?
             </div>
             <div class="modal-footer">
-                <a href="@Url.Action("Index","Entrada")" class="btn btn-primary">Si</a>
+                <a href="@Url.Action("Si","Create")" class="btn btn-primary">Si</a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
@@ -305,3 +310,96 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+<script>
+    $('#estado').change(function () {
+        var title = $(this).val();
+            if (document.getElementById('valid15').selected == '') {
+                $('#Modalanular').modal('show');
+            }
+            if (document.getElementById('valid1').selected == '') {
+                $('#Modalaplicar').modal('show');
+            }
+            //if (document.getElementById('').selected == '') {
+            //    $('#estado')=2;
+            //}
+    });
+
+
+
+
+
+
+    //para boton
+    function validBoard(board, formato) {
+        var sizeBoard = 8;
+
+        if (board.length > sizeBoard) {
+            board = board.substr(0, sizeBoard);
+        } else {
+            //verifica se é fomato novo
+            if (formato == 1) {
+                for (i = 0; i < board.length; i++) {
+                    //verifica se é a posição do -
+                    if (i == 3) {
+                        var digitado = board.substr(3, board.length)
+                        board = board.substr(0, 3) + '-' + digitado;
+                    }
+                        //senao é alfanumérico
+                    else if (validaAlfanumerico(board.charAt(i)) == false) {
+                        board = board.substr(0, i) + board.substr(i + 1, board.length - 1);
+                    }
+                }
+            }
+                //senao é formato antigo
+            else {
+                for (i = 0; i < board.length; i++) {
+                    //verifica se é a posição do -
+                    if (i == 3 && board.charAt(3) != '-') {
+                        var digitado = board.substr(3, board.length);
+                        if (validaNumero(board.charAt(i)) == false) {
+                            board = board.substr(0, 3) + '-';
+                        } else {
+                            board = board.substr(0, 3) + '-' + digitado;
+                        }
+                    }
+                        //senao é letras e numeros
+                    else {
+                        if (i < 3) {
+                            if (validaLetra(board.charAt(i)) == false) {
+                                board = board.substr(0, i);
+                            }
+                        }
+                        else if (i > 3 && validaNumero(board.charAt(i)) == false) {
+                            //alert('entrou aqui');
+                            board = board.substr(0, i) + board.substr(i + 1, board.length - 1);
+                        }
+                    }
+                }
+            }
+        }
+
+        //var regex = /^(?=(?:.*[0-9]){3})(?=(?:.*[A-Z]){4})[A-Z0-9]{7}$/;
+        //var result = regex.test(board);
+        document.getElementById('ent_NumeroFormato').value = board.toUpperCase();
+    }
+
+    function validaAlfanumerico(char) {
+        return /^[a-zA-Z0-9]*$/.test(char);
+    }
+
+    function validaLetra(char) {
+        return /^[a-zA-Z]*$/.test(char);
+    }
+
+    function validaNumero(char) {
+        return /^[0-9]*$/.test(char);
+    }
+
+    function verificaFormatoPlaca(board) {
+        //alert(document.getElementById('ctl00$cph_Form$hdf_Formato_Placa').value);
+        var formato = document.getElementById('hdf_Formato_Placa').value;
+        validBoard(board, formato);
+    }
+</script>

@@ -52,13 +52,13 @@
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalle_@item.ent_Id">Detalles</button>
-                                        <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalEditar_@item.ent_Id">Editar</button>
+                                        <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalEditar_@item.entd_Id">Editar</button>
                                         @*@Html.ActionLink("Editar", "_CrearDetalleEntrada", new { id = item.ent_Id }, new { @class = "btn btn-primary btn-xs" })*@
                                     </td>
                                 </tr>
                                 @*Modal Editar*@
                                 <div>
-                                    <div class="modal fade" id="ModalEditar_@item.ent_Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal fade" id="ModalEditar_@item.entd_Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -68,12 +68,19 @@
                                                     <h4 class="modal-title" id="myModalLabel">Editar Detalle Entrada</h4>
                                                 </div>
                                                 <div class="modal-body" id="frmAgregarCasoExito">
-                                                    @Html.Partial("_EditarDetalleEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() { prod_Codigo = item.prod_Codigo, entd_Cantidad=item.entd_Cantidad, uni_Id= item.uni_Id, })
+                                                    @Html.Partial("_EditarDetalleEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() {
+                                                   entd_Id = item.entd_Id,
+                                                   ent_Id = item.ent_Id,
+                                                   prod_Codigo = item.prod_Codigo,
+                                                   entd_Cantidad =item.entd_Cantidad,
+                                                   entd_UsuarioCrea = item.entd_UsuarioCrea,
+                                                   entd_FechaCrea = item.entd_FechaCrea,
+                                                   uni_Id = item.uni_Id
+                                               })
                                                     <div class="form-group">
                                                         <div class="col-md-12 text-center">
-                                                            <a href="@Url.Action("Edit","Entrada")" class="btn btn-primary">Guardar</a>
+                                                            <button class="btn btn-primary" type="button" id="btnActualizarentrada" onclick="btnActualizarentrada(@item.entd_Id);">Guardar</button>
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                            <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" value="Anular" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -96,7 +103,14 @@
 
                                                 <div class="form-group">
                                                     <div class="modal-body" id="frmAgregarCasoExito">
-                                                        @Html.Partial("_DetallesDeEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() { entd_UsuarioCrea = item.entd_UsuarioCrea,entd_FechaCrea=item.entd_FechaCrea,entd_UsuarioModifica=item.entd_UsuarioModifica,entd_FechaModifica=item.entd_FechaModifica,ent_Id=item.ent_Id, prod_Codigo = item.prod_Codigo, entd_Cantidad = item.entd_Cantidad, uni_Id = item.uni_Id, }))
+                                                        @Html.Partial("_DetallesDeEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() { entd_UsuarioCrea = item.entd_UsuarioCrea,
+                                                       entd_FechaCrea =item.entd_FechaCrea,
+                                                       entd_UsuarioModifica =item.entd_UsuarioModifica,
+                                                       entd_FechaModifica =item.entd_FechaModifica,
+                                                       ent_Id =item.ent_Id,
+                                                       prod_Codigo = item.prod_Codigo,
+                                                       entd_Cantidad = item.entd_Cantidad,
+                                                       uni_Id = item.uni_Id, })
                                                         <div class="col-md-12 text-center">
                                                             
                                                         </div>

@@ -879,6 +879,7 @@
     <Content Include="Scripts\app\Categoria.js" />
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\Datepicker.js" />
+    <Content Include="Scripts\app\DatepickerEmpleado.js" />
     <Content Include="Scripts\app\Departamento.js" />
     <Content Include="Scripts\app\EntradaDetalle.js" />
     <Content Include="Scripts\app\inspinia.js" />
@@ -891,6 +892,7 @@
     <Content Include="Scripts\app\PersonaNatural.js" />
     <Content Include="Scripts\app\RolObjetosEdit.js" />
     <Content Include="Scripts\app\RolObjetos.js" />
+    <Content Include="Scripts\app\SalidaDetalle.js" />
     <Content Include="Scripts\app\search.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

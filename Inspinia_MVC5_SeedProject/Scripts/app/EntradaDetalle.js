@@ -50,17 +50,6 @@ $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", 
     //$("#cod").val(idItem);
 });
 
-
-
-
-
-
-
-
-
-
-
-
 //para eliminar
 $(document).on("click", "#tbentrada tbody tr td button#Eliminardetalleentrada", function () {
     $(this).closest('tr').remove();
@@ -118,7 +107,10 @@ $('#AgregarDetalleEntrada').click(function () {
 
         copiar += "<td id = 'codigoproducto'>" + $('#prod_Codigo').val() + "</td>";
 
-        copiar += "<td id = 'unimedida'>" + $('#uni_Id').val() + "</td>";
+        copiar += "<td>" + $('#uni_Id option:selected').text() + "</td>";
+        copiar += "<td hidden id='uni_Id'>" + $('#unimedida option:selected').val() + "</td>";
+
+        //copiar += "<td id = 'unimedida'>" + $('#uni_Id').val() + "</td>";
 
         copiar += "<td id = 'cantidad'>" + $('#entd_Cantidad').val() + "</td>";
 
@@ -135,9 +127,12 @@ $('#AgregarDetalleEntrada').click(function () {
             data: JSON.stringify({ entradadetalle: EntradaDetalle }),
         })
         .done(function (data) {
-            $('#prod_Codigo').text('');
-            $("#uni_Id").val();
-            $('#entd_Cantidad').text('');
+            $('#prod_Codigo').val('');
+            $("#uni_Id").val('Seleccione');
+            $('#entd_Cantidad').val('');
+            //
+            $('#prod_Descripcion').val('');
+            $('#pscat_Id').val('');
             
 
             $('#Mensajecodigo').text('');
@@ -174,41 +169,55 @@ $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", 
     //$("#cod").val(idItem);
 });
 
-//$('#GuardarEntrada').click(function () {
-//    TableLenght = $("#tbentrada tr").length;
-//    var IdEntrada = $("#ent_Id").val();
-//    if (TableLenght == 1) {
-//        $('#MessageError').text('');
-//        $('#ErrorDescripcion').text('');
-//        $('#ErrorFecha').text('');
-//        $('#validationSummary').after('<ul id="MessageError" class="validation-summary-errors text-danger">No se encontró ningún Detalle, favor agregue uno</ul>');
-//    }
-//    else {
-//        $.ajax({
-//            url: "/Entrada/GuardarEntrada",
-//            method: "POST",
-//            dataType: 'json',
-//            contentType: "application/json; charset=utf-8",
-//            data: JSON.stringify({ ent_Id: IdEntrada }),
-//        }).done(function (data) {
-//            if (data == 'Exito') {
-//                location.reload();
-//            }
-//            else if (data == 'Error-01') {
-//                $('#MessageError').text('');
-//                $('#ErrorDescripcion').text('');
-//                $('#ErrorFecha').text('');
-//                $('#validationSummary').after('<ul id="MessageError" class="validation-summary-errors text-danger">No se ha reconocido el usuario, favor inicie sesión.</ul>');
-//            }
-//            else {
-//                $('#MessageError').text('');
-//                $('#ErrorDescripcion').text('');
-//                $('#ErrorFecha').text('');
-//                $('#validationSummary').after('<ul id="MessageError" class="validation-summary-errors text-danger">Se produjo un error, no se guardaron los registros.</ul>');
-//            }
-//        });
-//    }
-//});
 
+//actualizar Detalle Entrada
+function btnActualizarentrada(entd_Id) {
+    console.log('Hola');
+    
+    //var IdMaster = $("#ent_IdEdit_" + ent_Id).val();
+    //var IdDetalle = $("#entd_IdEdit_" + ent_Id).val();
+    //var C_Producto = $("#prod_CodigoEdit_" + ent_Id).val();
+    //var U_Medida = $('#uni_IdEdit_' + ent_Id).val();
+    //var P_producto = $('#entd_CantidadEdit_' + ent_Id).val();
+  
 
+    var tbEntradaDetalle = Getentradadetalle_actualizar();
 
+    $.ajax({
+        url: "/Entrada/entradadetalle_actualizar",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ actualizarEntradaDetalle: tbEntradaDetalle }),
+    }).done(function (data) {
+        if (data == '') {
+            location.reload();
+        }
+        else if (data == '-1') {
+            $('#MensajeError' + entd_Id).text('');
+            $('#ValidationMessageFor' + entd_Id).after('<ul id="MensajeError' + entd_Id + '" class="validation-summary-errors text-danger">No se ha podido Actualizar el registro.</ul>');
+        }
+        else {
+            $('#MensajeError' + entd_Id).text('');
+            $('#ValidationMessageFor' + entd_Id).after('<ul id="MensajeError' + entd_Id + '" class="validation-summary-errors text-danger">Campo Requerido</ul>');
+        }
+    });
+}
+function Getentradadetalle_actualizar() {
+
+    var actualizarEntradaDetalle = {
+        ent_Id: $('#ent_Id').val(),
+        entd_Id: $('#entd_Id').val(),
+        prod_Codigo: $('#producto').val(),
+        //entd_Cantidad: $('#cantidad').val(),
+        entd_Cantidad: $("#cantidad").val(),
+        entd_UsuarioCrea: $('#entd_UsuarioCrea').val(),
+        entd_UsuarioModifica: $('#entd_UsuarioModifica').val(),
+        entd_FechaCrea: $('#entd_FechaCrea').val(),
+        entd_FechaModifica: $('#entd_FechaModifica').val(),
+        uni_Id: $('#unidad').val(),
+        unidad: $('#uni_Id').val(),
+        
+    };
+    return actualizarEntradaDetalle;
+}

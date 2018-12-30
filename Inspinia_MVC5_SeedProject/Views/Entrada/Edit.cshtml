@@ -12,9 +12,7 @@
 </style>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
-@using (Html.BeginForm("Edit", "Entrada", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.HiddenFor(model => model.ent_Id)
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Entradas</h2>
@@ -28,8 +26,9 @@
 </div>
 
 
-
-
+@using (Html.BeginForm("Edit", "Entrada", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+   
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -101,25 +100,36 @@
                                     @Html.DropDownList("tent_Id", (IEnumerable<SelectListItem>)ViewBag.tent_Id, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.tent_Id)
                                 </div>
-                                @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
-                                @*@if (Model.estm_Id == 1)
-                                {
-                                    <p> Activo</p>
-                                }
-                                else if (Model.estm_Id == 2)
-                                {
-                                    <p>Inactivo</p>
-                                }
-                                else
-                                {
-                                    <p>Anulado</p>
-                                }*@
+                                @Html.LabelFor(model => model.estm_Id, "Cambiar Estado.?", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.DropDownList("estm_Id", (IEnumerable<SelectListItem>)ViewBag.estm_Id, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.estm_Id)
+                                    <select class="form-control" id="estado" name="estm_Id">
+                                        @if (Model.estm_Id == 2)
+                                        {
+                                            <option id="valid2" value="2">Activar</option>
+                                            <option id="valid16" value="16">Inactivar</option>
+                                            <option id="valid1" value="1">Aplicar</option>
+                                            <option id="valid15" value="15">Anular</option>
+                                        }
+                                        else if (Model.estm_Id == 16)
+                                        {
+                                            <option id="valid16" value="16">Inactivar</option>
+                                            <option id="valid2" value="2">Activar</option>
+                                        }
+                                        else if (Model.estm_Id == 1)
+                                        {
+                                            <option id="valid1" value="1">Aplicar</option>
+                                            <option id="valid2" value="2">Activar</option>
+                                            <option id="valid16" value="16">Inactivar</option>
+                                            <option id="valid15" value="15">Anular</option>
+                                        }
+                                        else if (Model.estm_Id == 15)
+                                        {
+                                            <option id="valid15" value="15">Anular</option>
+                                            <option id="valid2" value="2">Activar</option>
+                                        }
+                                    </select>
+                                    </div>
                                 </div>
-                               
-                            </div>
                         </div>
                         <div class="form-horizontal" name="compra" id="CamposCompra" style="display:none">
                             <div class="form-group">
@@ -178,19 +188,8 @@
                             <div class="col-md-offset-2 col-md-10">
 
                                 <input type="submit" value="Guardar" class="btn btn-primary" />
-                                <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modalanular" value="Anular" />
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
 
-                                @*@{if (Model.estm_Id == 1)
-            {
-                @Html.ActionLink("Inactivar", "EstadoInactivar", new { id = Model.estm_Id }, new { @class = "btn btn-danger" })
-            }
-            else if(Model.estm_Id == 2)
-            {
-                @Html.ActionLink("Activar", "EstadoActivar", new { id = Model.estm_Id }, new { @class = "btn btn-success" })
-            }
-
-        }*@
                             </div>
                         </div>
                         <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
@@ -210,7 +209,7 @@
                                     </div>
                                     <div class="ibox-content collapse" id="Crear">
                                         @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
-                                        @Html.Partial("_IndexEditar", Model.tbEntradaDetalle)
+                                        @Html.Partial("_IndexEditar", Model.tbEntradaDetalle, new ViewDataDictionary { { "ent_Id", Model.ent_Id } })
                                     </div>
                                 </div>
                             </div>
@@ -218,44 +217,45 @@
                         <div class="form-group">
                         </div>
                         <br />
-                        @*datos de auditoriaa*@
-                        <div class="ibox-content">
-                            <table class="table table-striped">
-                                <tr>
-                                    <th>Acción</th>
-                                    <th>Usuario</th>
-                                    <th>Fecha</th>
-                                </tr>
-                                <tr>
-                                    <td>Creado</td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                                    </td>
-                                    <td>@Html.DisplayFor(model => model.ent_FechaCrea)</td>
-                                </tr>
-                                <tr>
-                                    <td>Modificado</td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                                        @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                                    </td>
-                                    <td>@Html.DisplayFor(model => model.ent_FechaModifica)</td>
-                                </tr>
-                            </table>
-                        </div>
                     </div>
                 </div>
+            </div>
+            @*datos de auditoriaa*@
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.ent_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.ent_FechaModifica)</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
 }
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
 @*modal para anular*@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modalanular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -268,14 +268,35 @@
                 ¿Está seguro de anular esta Entrada?
             </div>
             <div class="modal-footer">
-                <a href="@Url.Action("si","Estadoanular")" class="btn btn-danger">Si</a>
+                <a href="@Url.Action("Si","Entrada")" class="btn btn-danger">Si</a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
 </div>
-@*modal para estado (activar/inactivar)*@
-<div class="modal fade" id="ModalEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+@*modal para estado aPLICAR*@
+<div class="modal fade" id="Modalaplicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Aplicar Entrada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro que quiere Aplicar esta Entrada?
+            </div>
+            <div class="modal-footer">
+                @Html.ActionLink("Si", "Entrada", new { id = Model.ent_Id }, new { @class = "btn btn-danger" })
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*modal para estado (inactivar)*@
+<div class="modal fade" id="ModalInactivar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -288,16 +309,48 @@
                 ¿Está seguro que quiere Inactivar esta Entrada?
             </div>
             <div class="modal-footer">
-                @Html.ActionLink("Sí", "EstadoInactivar", new { id = Model.ent_Id }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Si", "Entrada", new { id = Model.ent_Id }, new { @class = "btn btn-danger" })
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
 </div>
-
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/app/MostrarCamposEditar.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/EntradaDetalle.js"></script>
+
+@*para el estado levante el modal del drop*@
+
+@*cuando el estado esta activo*@
+<script>
+    $('#estado').change(function () {
+        var title = $(this).val();
+            if (document.getElementById('valid15').selected == "2") {
+                $('#Modalanular').modal('show');
+            }
+            if (document.getElementById('valid16').selected == "2") {
+                $('#ModalInactivar').modal('show');
+            }
+            if (document.getElementById('valid1').selected == "2") {
+                $('#Modalaplicar').modal('show');
+            }
+});
+</script>
+@*cuendo el estado esta aplicado*@
+<script>
+    $('#estado').change(function () {
+        var title = $(this).val();
+            if (document.getElementById('valid15').selected == "1") {
+                $('#Modalanular').modal('show');
+            }
+            if (document.getElementById('valid16').selected == "1") {
+                $('#ModalInactivar').modal('show');
+            }
+            if (document.getElementById('valid1').selected == "1") {
+                $('#Modalaplicar').modal('show');
+            }
+});
+</script>
 
