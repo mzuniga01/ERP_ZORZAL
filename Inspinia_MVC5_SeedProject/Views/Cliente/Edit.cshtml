@@ -97,7 +97,7 @@
                                         @Html.EditorFor(model => model.clte_FechaNacimiento, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_FechaNacimiento)</p>
                                     </div>
-                                    @Html.LabelFor(model => model.clte_Sexo, new { @class = "control-label col-md-1" })
+                                    @Html.LabelFor(model => model.clte_Sexo, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         <select class="form-control" id="clte_Sexo" name="clte_Sexo">
                                             <option value="" disabled>Seleccione Sexo</option>
@@ -114,7 +114,7 @@
                                         @Html.EditorFor(model => model.clte_Telefono, new { htmlAttributes = new { @autocomplete = "off" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Telefono)</p>
                                     </div>
-                                    @Html.LabelFor(model => model.clte_CorreoElectronico, new { @class = "control-label col-md-1" })
+                                    @Html.LabelFor(model => model.clte_CorreoElectronico, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.TextBoxFor(model => model.clte_CorreoElectronico, new { @autocomplete = "off", type = "email", @class = "form-control" })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_CorreoElectronico)</p>
@@ -328,7 +328,6 @@
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Activo.js"></script>
 <script src="~/Scripts/app/Departamento.js"></script>
-<script src="~/Scripts/app/Departamento1.js"></script>
 <script src="~/Scripts/app/Identificacion.js"></script>
 <script src="~/Scripts/app/InActivarCliente.js"></script>
 <script>
@@ -344,14 +343,11 @@
             $('#inactivar').show();
             $('#activar').hide();
             $('#RazonInactivo').hide();
-
         } else {
             $('#activar').show();
             $('#inactivar').hide();
             $('#RazonInactivo').show();
         }
-
-
     });
 
 </script>

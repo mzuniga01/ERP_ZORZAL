@@ -11,7 +11,6 @@
         $("#clte_FechaConstitucion").val('');
         $("#clte_Nombres").val('');
         $("#clte_Apellidos").val('');
-        $("#clte_FechaNacimiento").val('');
         $("#clte_Sexo").val('');
         $("#clte_Telefono").val('');
         $("#clte_CorreoElectronico").val('');
@@ -30,7 +29,6 @@
         $("#clte_ContactoNombre").val('');
         $("#clte_ContactoEmail").val('');
         $("#clte_ContactoTelefono").val('');
-        $("#clte_FechaConstitucion").val('');
         $('#juridica').show();
     }
 

@@ -86,7 +86,7 @@
                         @Html.EditorFor(model => model.clte_FechaNacimiento, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off" } })
                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_FechaNacimiento)</p>
                     </div>
-                    @Html.LabelFor(model => model.clte_Sexo, new { @class = "control-label col-md-1" })
+                    @Html.LabelFor(model => model.clte_Sexo, new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
                         <select class="form-control" id="clte_Sexo" name="clte_Sexo">
                             <option value="" disabled>Seleccione Sexo</option>
@@ -103,7 +103,7 @@
                         @Html.EditorFor(model => model.clte_Telefono,new { htmlAttributes = new { @autocomplete = "off" } })
                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Telefono)</p>
                     </div>
-                    @Html.LabelFor(model => model.clte_CorreoElectronico, new { @class = "control-label col-md-1" })
+                    @Html.LabelFor(model => model.clte_CorreoElectronico, new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
                         @Html.TextBoxFor(model => model.clte_CorreoElectronico, new { @autocomplete = "off", type = "email", @class = "form-control" })
                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_CorreoElectronico)</p>
@@ -199,7 +199,7 @@
 
                 @Html.LabelFor(model => model.clte_EsMinorista, new { @class = "control-label col-md-2" })
                 <div class="col-md-2">
-                    @Html.EditorFor(model => model.clte_EsMinorista)
+                    @Html.EditorFor(model => model.clte_EsMinorista, new { @type = "checkbox", @checked = "true" })
                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsMinorista)</p>
                 </div>
             </div>
@@ -242,6 +242,7 @@
 <script src="~/Scripts/app/Identificacion.js"></script>
 <script>
     $('#clte_EsActivo').attr('checked', true);
+    $('#clte_EsMinorista').attr('checked', true);
     $(document).ready(function () {
         GetIdentificacion();
     });

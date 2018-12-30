@@ -891,7 +891,6 @@
     <Content Include="Scripts\app\Datepicker.js" />
     <Content Include="Scripts\app\Denominacion.js" />
     <Content Include="Scripts\app\Departamento.js" />
-    <Content Include="Scripts\app\Departamento1.js" />
     <Content Include="Scripts\app\DevolucionDetalle.js" />
     <Content Include="Scripts\app\Empleados.js" />
     <Content Include="Scripts\app\Factura.js" />
