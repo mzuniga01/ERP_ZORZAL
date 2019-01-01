@@ -17,13 +17,13 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbMovimientoCaja()
         {
-            this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
             this.tbDenominacionArqueo = new HashSet<tbDenominacionArqueo>();
+            this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
         }
     
         public int mocja_Id { get; set; }
         public short cja_Id { get; set; }
-        public System.DateTime mocja_FechaApetura { get; set; }
+        public System.DateTime mocja_FechaApertura { get; set; }
         public Nullable<int> mocja_UsuarioApertura { get; set; }
         public System.DateTime mocja_FechaArqueo { get; set; }
         public Nullable<int> mocja_UsuarioArquea { get; set; }
@@ -38,8 +38,8 @@ namespace ERP_GMEDINA.Models
         public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbCaja tbCaja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbDenominacionArqueo> tbDenominacionArqueo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
     }
 }

@@ -1229,13 +1229,9 @@
     <Content Include="Views\Bodega\_DetallesProductos.cshtml" />
     <Content Include="Views\ProductoCategoria\_ListSubCategoriaDetalle.cshtml" />
     <Content Include="Views\ProductoCategoria\_ListSubCategoriaEditar.cshtml" />
-    <Content Include="Views\tbBodegaDetalles\Create.cshtml" />
-    <Content Include="Views\tbBodegaDetalles\Delete.cshtml" />
-    <Content Include="Views\tbBodegaDetalles\Details.cshtml" />
-    <Content Include="Views\tbBodegaDetalles\Edit.cshtml" />
-    <Content Include="Views\tbBodegaDetalles\Index.cshtml" />
     <Content Include="Views\Entrada\_IndexDetalleEntrada.cshtml" />
     <Content Include="Views\Entrada\_DetallesDeEntrada.cshtml" />
+    <Content Include="Views\Bodega\_BuscarProductoAutocomplete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

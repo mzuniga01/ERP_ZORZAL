@@ -313,6 +313,16 @@ namespace ERP_GMEDINA.Controllers
             return Json("Index");
         }
 
+        //public JsonResult BuscarProductos(string term)
+        //{
+        //    using (ERP_ZORZALEntities db = new ERP_ZORZALEntities())
+        //    {
+        //        var resultado = db.tbProducto.Where(x => x.prod_Descripcion.Contains(term))
+        //            .Select(x => x.prod_Descripcion).Take(5).ToList();
+        //        return Json(resultado, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+
         // POST: /Bodega/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.

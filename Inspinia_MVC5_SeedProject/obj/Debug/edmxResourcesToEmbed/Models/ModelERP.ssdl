@@ -576,8 +576,9 @@
     <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="devd_CantidadProducto" Type="decimal" Precision="5" Scale="2" Nullable="false" />
     <Property Name="devd_Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="devd_UsuarioCrea" Type="int" />
-    <Property Name="devd_FechaCrea" Type="datetime" />
+    <Property Name="devd_Monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="devd_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="devd_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="devd_UsuarioModifica" Type="int" />
     <Property Name="devd_FechaModifica" Type="datetime" />
   </EntityType>
@@ -725,7 +726,7 @@
     </Key>
     <Property Name="mocja_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="cja_Id" Type="smallint" Nullable="false" />
-    <Property Name="mocja_FechaApetura" Type="datetime" Nullable="false" />
+    <Property Name="mocja_FechaApertura" Type="datetime" Nullable="false" />
     <Property Name="mocja_UsuarioApertura" Type="int" />
     <Property Name="mocja_FechaArqueo" Type="datetime" Nullable="false" />
     <Property Name="mocja_UsuarioArquea" Type="int" />
@@ -1190,7 +1191,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioCrea">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbDevolucionDetalle" Type="Self.tbDevolucionDetalle" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbUsuario">
@@ -2761,6 +2762,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbEstadoFactura" Type="Self.tbEstadoFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoFactura">
+        <PropertyRef Name="esfac_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbEstadoFactura" Type="Self.tbEstadoFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoFactura">
+        <PropertyRef Name="esfac_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbFactura_tbDevolucion_fact_Id">
     <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="1" />
     <End Role="tbDevolucion" Type="Self.tbDevolucion" Multiplicity="*" />
@@ -4324,6 +4349,14 @@
     <AssociationSet Name="FK_Vent_tbEstadoFactura_tbFacturaHistorica_esfac_Id" Association="Self.FK_Vent_tbEstadoFactura_tbFacturaHistorica_esfac_Id">
       <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
       <End Role="tbFacturaHistorica" EntitySet="tbFacturaHistorica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea" Association="Self.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica" Association="Self.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbFactura_tbDevolucion_fact_Id" Association="Self.FK_Vent_tbFactura_tbDevolucion_fact_Id">
       <End Role="tbFactura" EntitySet="tbFactura" />

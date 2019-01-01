@@ -379,3 +379,13 @@ function Getbodegadetalle() {
     return GUARDAR_NUEVO_DETALLE;
 }
 //Fin
+
+
+
+//Busqueda Producto AutoComplete
+$(function () {
+    $("#producto").autocomplete({
+        source: "/Bodega/BuscarProductos"
+    });
+});
+//Fin

@@ -1,0 +1,25 @@
+﻿@model ERP_GMEDINA.Models.tbBodegaDetalle
+@using ERP_GMEDINA.Models
+
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+
+
+<label for="producto" class="control-label col-md-2">Produto</label>
+<div class="col-md-10">
+    <input type="text" name="producto" id="producto" placeholder="Producto" />
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+
+    @*<script>
+        $(function () {
+            $("#RegistrarNuevoDetalle").autocomplete({
+                source: "/Bodega/BuscarProductos"
+            });
+        });
+    </script>*@
+}
