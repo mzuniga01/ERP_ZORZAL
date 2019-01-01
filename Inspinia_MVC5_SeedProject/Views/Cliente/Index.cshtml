@@ -28,11 +28,11 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Identificación</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="identificacion" onclick="BCliente();" class="form-control" />
+                                    <input type="text" id="identificacion" class="form-control" />
                                 </div>
                                 <label class="control-label col-md-1">Nombres</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="Nombres" onclick="BCliente();" class="form-control" />
+                                    <input type="text" id="Nombres" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -79,8 +79,8 @@
                                     <td>
                                         @if (item.clte_EsPersonaNatural)
                                         {
-                                            <p>
-                                                @Html.DisplayFor(modelItem => item.clte_Nombres)&nbsp
+                                        <p>
+                                            @Html.DisplayFor(modelItem => item.clte_Nombres)&nbsp
                                             @Html.DisplayFor(modelItem => item.clte_Apellidos)
                                         </p>
                                         }
@@ -131,5 +131,4 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>
-<script src="~/Scripts/app/Departamento.js"></script>
 <script src="~/Scripts/app/BCliente.js"></script>

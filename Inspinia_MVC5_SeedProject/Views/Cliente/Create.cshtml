@@ -44,7 +44,7 @@
                 @Html.LabelFor(model => model.tpi_Id, "Identificación", new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
                     @Html.DropDownList("tpi_Id", null, "Seleccione Tipo Identificación", new { @class = "form-control" })
-                    <p style="color:red">@Html.ValidationMessageFor(model => model.tpi_Id)</p>
+                    <p id="Identificacion" style="color:red">@Html.ValidationMessageFor(model => model.tpi_Id)</p>
                 </div>
             </div>
             <div class="form-group" id="consumidorfinal" name="consumidorfinal">
@@ -60,7 +60,7 @@
                 @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2" })
                 <div class="col-md-5">
                     @Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off" } })
-                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Identificacion)</p>
+                    <p id="CIdentificacion" style="color:red">@Html.ValidationMessageFor(model => model.clte_Identificacion)</p>
                 </div>
             </div>
             <div class="form-horizontal" name="natural" id="natural">
@@ -68,7 +68,7 @@
                     @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
-                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Nombres)</p>
+                        <p id="Nombres" style="color:red">@Html.ValidationMessageFor(model => model.clte_Nombres)</p>
                     </div>
                 </div>
 
@@ -76,7 +76,7 @@
                     @Html.LabelFor(model => model.clte_Apellidos, new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.clte_Apellidos, new { htmlAttributes = new { @autocomplete = "off" } })
-                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Apellidos)</p>
+                        <p id="Apellidos" style="color:red">@Html.ValidationMessageFor(model => model.clte_Apellidos)</p>
                     </div>
                 </div>
 
@@ -101,12 +101,12 @@
                     @Html.LabelFor(model => model.clte_Telefono, new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
                         @Html.EditorFor(model => model.clte_Telefono,new { htmlAttributes = new { @autocomplete = "off" } })
-                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Telefono)</p>
+                        <p id="TelefonoCN" style="color:red">@Html.ValidationMessageFor(model => model.clte_Telefono)</p>
                     </div>
                     @Html.LabelFor(model => model.clte_CorreoElectronico, new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
                         @Html.TextBoxFor(model => model.clte_CorreoElectronico, new { @autocomplete = "off", type = "email", @class = "form-control" })
-                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_CorreoElectronico)</p>
+                        <p id="emailOK1" style="color:red">@Html.ValidationMessageFor(model => model.clte_CorreoElectronico)</p>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@
                     @Html.LabelFor(model => model.clte_NombreComercial, new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.clte_NombreComercial, new { htmlAttributes = new { @autocomplete = "off" } })
-                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_NombreComercial)</p>
+                        <p id="NombreC" style="color:red">@Html.ValidationMessageFor(model => model.clte_NombreComercial)</p>
                     </div>
                 </div>
 
@@ -124,7 +124,7 @@
                     @Html.LabelFor(model => model.clte_RazonSocial, new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.clte_RazonSocial, new { htmlAttributes = new { @autocomplete = "off" } })
-                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_RazonSocial)</p>
+                        <p id="RazonS" style="color:red">@Html.ValidationMessageFor(model => model.clte_RazonSocial)</p>
                     </div>
                 </div>
 
@@ -132,20 +132,20 @@
                     @Html.LabelFor(model => model.clte_ContactoNombre, new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.clte_ContactoNombre, new { htmlAttributes = new { @autocomplete = "off" } })
-                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_ContactoNombre)</p>
+                        <p id="ContactoN" style="color:red">@Html.ValidationMessageFor(model => model.clte_ContactoNombre)</p>
                     </div>
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.clte_ContactoEmail, new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
-                        @Html.TextBoxFor(model => model.clte_ContactoEmail,  new { @autocomplete = "off", type = "email", @class = "form-control" } )
-                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_ContactoEmail)</p>
+                        @Html.TextBoxFor(model => model.clte_ContactoEmail, new { @autocomplete = "off", type = "email", @class = "form-control" } )
+                        <p id="emailOK" style="color:red">@Html.ValidationMessageFor(model => model.clte_ContactoEmail)</p>
                     </div>
                     @Html.LabelFor(model => model.clte_ContactoTelefono, new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
                         @Html.EditorFor(model => model.clte_ContactoTelefono, new { htmlAttributes = new { @autocomplete = "off" } })
-                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_ContactoTelefono)</p>
+                        <p id="ContactoT" style="color:red">@Html.ValidationMessageFor(model => model.clte_ContactoTelefono)</p>
                     </div>
                 </div>
 
@@ -162,7 +162,7 @@
                 @Html.LabelFor(model => model.clte_Nacionalidad, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
                     @Html.EditorFor(model => model.clte_Nacionalidad, new { htmlAttributes = new { @autocomplete = "off" } })
-                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Nacionalidad)</p>
+                    <p id="Nacionalidad" style="color:red">@Html.ValidationMessageFor(model => model.clte_Nacionalidad)</p>
                 </div>
             </div>
 
@@ -170,12 +170,12 @@
                 @Html.LabelFor(muni => test.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
                     @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
-                    <p style="color:red">@Html.ValidationMessageFor(muni => test.dep_Codigo)</p>
+                    <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => test.dep_Codigo)</p>
                 </div>
                 @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
                     @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
-                    <p style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
+                    <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
                 </div>
             </div>
             <div class="form-group">
@@ -240,10 +240,12 @@
 <script src="~/Scripts/app/Activo.js"></script>
 <script src="~/Scripts/app/Departamento.js"></script>
 <script src="~/Scripts/app/Identificacion.js"></script>
+<script src="~/Scripts/app/MessageError.js"></script>
 <script>
     $('#clte_EsActivo').attr('checked', true);
     $('#clte_EsMinorista').attr('checked', true);
     $(document).ready(function () {
         GetIdentificacion();
     });
+
 </script>

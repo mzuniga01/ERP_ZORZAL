@@ -268,6 +268,9 @@
     <Compile Include="Models\SolicitudCreditos.cs" />
     <Compile Include="Models\SolicitudEfectivo.cs" />
     <Compile Include="Models\SolicitudEfectivoDetalle.cs" />
+    <Compile Include="Models\spGetBusquedaCliente_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\spGetDepartamento_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -902,6 +905,7 @@
     <Content Include="Scripts\app\InActivarCliente.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\ListaPrecioDetalle.js" />
+    <Content Include="Scripts\app\MessageError.js" />
     <Content Include="Scripts\app\NotaCredito.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
     <Content Include="Scripts\app\Producto.js" />

@@ -1363,6 +1363,11 @@
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
     </AssociationSet>
+    <FunctionImport Name="spGetBusquedaCliente" ReturnType="Collection(ERP_ZORZALModel.spGetBusquedaCliente_Result)">
+      <Parameter Name="Identificacion" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -5177,4 +5182,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="spGetBusquedaCliente_Result">
+    <Property Type="String" Name="clte_Identificacion" Nullable="false" MaxLength="26" />
+    <Property Type="String" Name="clte_Nombres" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="clte_Apellidos" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="clte_NombreComercial" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="clte_Telefono" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="clte_ContactoTelefono" Nullable="false" MaxLength="25" />
+  </ComplexType>
 </Schema>

@@ -265,13 +265,6 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetDepartamento(string CodMunicipio)
-        {
-            var list = db.spGetDepartamento(CodMunicipio).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
         public JsonResult InactivarCliente(int CodCliente, bool Activo, string RazonInactivo)
         {
             var list = db.UDP_Vent_tbCliente_Estado(CodCliente, Activo, RazonInactivo).ToList();
@@ -282,6 +275,13 @@ namespace ERP_GMEDINA.Controllers
         public JsonResult ActivarCliente(int CodCliente, bool Activo, string RazonInactivo)
         {
             var list = db.UDP_Vent_tbCliente_Estado(CodCliente, Activo, RazonInactivo).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult GetBusquedaClientes(string Identificacion, string Nombres, string Telefono)
+        {
+            var list = db.spGetBusquedaCliente(Identificacion, Nombres, Telefono).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
     }

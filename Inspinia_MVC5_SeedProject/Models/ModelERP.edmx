@@ -3325,6 +3325,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="tpi_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="tpi_FechaModifica" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="spGetBusquedaCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="Identificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="spGetDenominacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="IdDenominacion" Type="int" Mode="In" />
         </Function>
@@ -5979,6 +5984,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
           </AssociationSet>
+          <FunctionImport Name="spGetBusquedaCliente" ReturnType="Collection(ERP_ZORZALModel.spGetBusquedaCliente_Result)">
+            <Parameter Name="Identificacion" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -9793,6 +9803,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="spGetBusquedaCliente_Result">
+          <Property Type="String" Name="clte_Identificacion" Nullable="false" MaxLength="26" />
+          <Property Type="String" Name="clte_Nombres" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="clte_Apellidos" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="clte_NombreComercial" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="clte_Telefono" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="clte_ContactoTelefono" Nullable="false" MaxLength="25" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11194,6 +11212,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetBusquedaCliente" FunctionName="ERP_ZORZALModel.Store.spGetBusquedaCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetBusquedaCliente_Result">
+                <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
+                <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
+                <ScalarProperty Name="clte_Apellidos" ColumnName="clte_Apellidos" />
+                <ScalarProperty Name="clte_NombreComercial" ColumnName="clte_NombreComercial" />
+                <ScalarProperty Name="clte_Telefono" ColumnName="clte_Telefono" />
+                <ScalarProperty Name="clte_ContactoTelefono" ColumnName="clte_ContactoTelefono" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

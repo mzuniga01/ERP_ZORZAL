@@ -75,6 +75,7 @@ namespace ERP_GMEDINA.Models
         public string clte_ContactoNombre { get; set; }
 
         [Display(Name = "Contacto Email")]
+        [EmailAddress(ErrorMessage = "El email no tiene el formato correcto")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_ContactoEmail { get; set; }
 
@@ -96,6 +97,7 @@ namespace ERP_GMEDINA.Models
         public string clte_Direccion { get; set; }
 
         [Display(Name = "Correo Electrónico")]
+        [EmailAddress(ErrorMessage = "El email no tiene el formato correcto")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_CorreoElectronico { get; set; }
 

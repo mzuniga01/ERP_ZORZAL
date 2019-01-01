@@ -78,19 +78,37 @@ $(document).ready(function () {
     else {
         $('#identificacion').show();
     }
+    var depto = $('#dep_Codigo').val();
+    if (depto === '') {
+        document.getElementById("mun_Codigo").disabled = true;
+    }
+    else {
+        
+    }
+
+});
+
+$("#dep_Codigo").change(function () {
+    var depto = $('#dep_Codigo').val();
+    if (depto != '') {
+        document.getElementById("mun_Codigo").disabled = false;
+    }
+    else {
+
+    }
 });
 
 
 $("#tpi_Id").change(function () {
     var d = $("#tpi_Id").val();
 
-    if (d == 8) {
+    if (d == 4) {
         document.getElementById("clte_Identificacion").maxLength = "13";
     }
-    else if (d == 10) {
+    else if (d == 1) {
         document.getElementById("clte_Identificacion").maxLength = "25";
     }
-    else if (d == 15) {
+    else if (d == 3) {
         document.getElementById("clte_Identificacion").maxLength = "14";
     }
     else {
@@ -108,12 +126,42 @@ $("#tpi_Id").on("change", function () {
 });
 
 $('#clte_EsPersonaNatural').on('click', function () {
-    var x;
-    var r = confirm("¿Esta seguro de borrar los datos ya Ingresados?");
-    if (r == true) {
+    if (this.checked) {
+        var NombreC = $("#clte_NombreComercial").val();
+        var RazonS = $("#clte_RazonSocial").val();
+        var ContactoN = $("#clte_ContactoNombre").val();
+        var Email = $("#clte_ContactoEmail").val();
+        var ContactoTel = $("#clte_ContactoTelefono").val();
+        if (NombreC == '' && RazonS == '' && ContactoN == '' && Email == '' && ContactoTel == '') {
+
+        }
+        else {
+            var r = confirm("¿Esta seguro de borrar los datos ya Ingresados?");
+            if (r == true) {
+            }
+            else {
+                return false
+            }
+        }
     }
     else {
-        return false
+        var Nombres = $("#clte_Nombres").val();
+        var Apellidos = $("#clte_Apellidos").val();
+        var Sexo = $("#clte_Sexo").val();
+        console.log(Sexo)
+        var Telefono = $("#clte_Telefono").val();
+        var Correo = $("#clte_CorreoElectronico").val();
+        if (Nombres == '' && Apellidos == '' && Sexo == null && Telefono == '' && Correo == '') {
+
+        }
+        else {
+            var r = confirm("¿Esta seguro de borrar los datos ya Ingresados?");
+            if (r == true) {
+            }
+            else {
+                return false
+            }
+        }
     }
 
 });
@@ -130,5 +178,43 @@ $("#clte_Telefono").on("keypress keyup blur", function (event) {
     $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
         event.preventDefault();
+    }
+});
+
+$("#clte_ContactoEmail").blur(function () {   
+        campo = event.target;
+        valido = document.getElementById('emailOK');
+
+        var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        var regOficial = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+        if (reg.test(campo.value) && regOficial.test(campo.value)) {
+            valido.innerText = "";
+        } else if (reg.test(campo.value)) {
+            valido.innerText = "";
+
+        } else {
+            valido.innerText = "Direccion de Correo Electronico Incorrecta";
+
+        }
+});
+
+$("#clte_CorreoElectronico").blur(function () {
+    campo = event.target;
+    valido = document.getElementById('emailOK1');
+
+    var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    var regOficial = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (reg.test(campo.value) && regOficial.test(campo.value)) {
+        valido.innerText = "";
+    } else if (reg.test(campo.value)) {
+        valido.innerText = "";
+
+    } else {
+        valido.innerText = "Direccion de Correo Electronico Incorrecta";
+
     }
 });
