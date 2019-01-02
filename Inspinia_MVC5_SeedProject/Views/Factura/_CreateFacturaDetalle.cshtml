@@ -1,13 +1,13 @@
 ﻿@model ERP_GMEDINA.Models.tbFacturaDetalle
 @using ERP_GMEDINA.Models
-<div class="wrapper wrapper-content">
+<div class="wrapper">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-1" })
                             <div class="col-md-3">
                                 @Html.EditorFor(model => model.prod_Codigo)
                                 <div id="validationCodigoProductoCreate">
@@ -17,9 +17,16 @@
                             <div class="col-md-1">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
-                            @Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = "control-label col-md-3" })
+                            @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label col-md-1" })
                             <div class="col-md-2">
-                                @Html.EditorFor(model => model.factd_PorcentajeDescuento, new { htmlAttributes = new { @Value = "" } })
+                                @Html.EditorFor(model => model.factd_Cantidad, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)" } })
+                                <div id="validationCantidadProductoCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.factd_Cantidad)</p>
+                                </div>
+                            </div>
+                            @Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = "col-md-1" })
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.factd_PorcentajeDescuento, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)" }  })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)</p>
                             </div>
                             <div class="col-md-1">
@@ -28,39 +35,13 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-1" })
                             <div class="col-md-3">
                                 @Html.EditorFor(model => model.tbProducto.prod_Descripcion)
                                 <div id="validationDescripcionProductoCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)</p>
                                 </div>
                             </div>
-                            @Html.LabelFor(model => model.factd_MontoDescuento, new { @class = "control-label col-md-4" })
-                            <div class="col-md-2">
-                                @Html.EditorFor(model => model.factd_MontoDescuento, new { htmlAttributes = new { @Value = "" } })
-                                <div id="validationMontoDescuentoCreate">
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.factd_MontoDescuento)</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label col-md-2" })
-                            <div class="col-md-2">
-                                @Html.EditorFor(model => model.factd_Cantidad, new { htmlAttributes = new { @Value = ""} })
-                                <div id="validationCantidadProductoCreate">
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.factd_Cantidad)</p>
-                                </div>
-                            </div>
-                            @Html.LabelFor(model => model.factd_Impuesto, new { @class = "control-label col-md-5" })
-                            <div class="col-md-2">
-                                @Html.EditorFor(model => model.factd_Impuesto, new { htmlAttributes = new { @Value = "" } })
-                                <div id="validationImpuestoProductoCreate">
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.factd_Impuesto)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             @Html.LabelFor(model => model.factd_PrecioUnitario, new { @class = "control-label col-md-2" })
                             <div class="col-md-2">
                                 @Html.EditorFor(model => model.factd_PrecioUnitario, new { htmlAttributes = new { @Value = "" } })
@@ -68,13 +49,27 @@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.factd_PrecioUnitario)</p>
                                 </div>
                             </div>
-                            <label class="control-label col-md-5">Subtotal</label>
+                            @Html.LabelFor(model => model.factd_MontoDescuento, new { @class = "col-md-1" })
                             <div class="col-md-2">
-                                <input id="SubtotalProducto" type="text" class="form-control" />
+                                @Html.EditorFor(model => model.factd_MontoDescuento, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)" } })
+                                <div id="validationMontoDescuentoCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.factd_MontoDescuento)</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-lg-4 col-lg-offset-5">Total</label>
+                        <div class="form-group">                            
+                            @Html.LabelFor(model => model.factd_Impuesto, new { @class = "control-label col-md-1" })
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.factd_Impuesto, new { htmlAttributes = new { @Value = "" } })
+                                <div id="validationImpuestoProductoCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.factd_Impuesto)</p>
+                                </div>
+                            </div>
+                           <label class="control-label col-md-3">Subtotal</label>
+                            <div class="col-md-2">
+                                <input id="SubtotalProducto" type="text" class="form-control" readonly />
+                            </div>
+                            <label class="control-label col-md-1">Total</label>
                             <div class="col-md-2">
                                 <input id="TotalProducto" type="text" value="" class="form-control" readonly />
                             </div>
@@ -100,30 +95,30 @@
     <tbody></tbody>
     <tfoot>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>Sub-Total</th>
-            <th></th>
-            <th></th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Sub-Total</td>
+            <td><p id="Subtotal"></p></td>
+            <td></td>
         </tr>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>ISV 15%</th>
-            <th></th>
-            <th></th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>ISV</td>
+            <td><p id="isv"></p></td>
+            <td></td>
         </tr>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>Total a Pagar</th>
-            <th></th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total a Pagar</td>
+            <td><p id="total"></p></td>
             <th></th>
         </tr>
     </tfoot>

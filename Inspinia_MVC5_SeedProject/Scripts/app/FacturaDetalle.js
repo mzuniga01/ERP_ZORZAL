@@ -2,23 +2,14 @@
 
 $('#AgregarDetalleFactura').click(function () {
     var CodigoProducto = $('#prod_Codigo').val();
-    console.log(CodigoProducto);
     var PorcentajeDescuento = $('#factd_PorcentajeDescuento').val();
-    console.log(PorcentajeDescuento);
     var MontoDescuento = $('#factd_MontoDescuento').val();
-    console.log(MontoDescuento);
     var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
-    console.log(DescripcionProducto);
     var CantidadProducto = $('#factd_Cantidad').val();
-    console.log(CantidadProducto);
     var Subtotal = $('#SubtotalProducto').val();
-    console.log(Subtotal);
     var PrecioUnitario = $('#factd_PrecioUnitario').val();
-    console.log(PrecioUnitario);
     var Impuesto = $('#factd_Impuesto').val();
-    console.log(Impuesto);
     var Total = $('#TotalProducto').val();
-    console.log(Total);
     
     if (CodigoProducto == '')
     {
@@ -52,15 +43,53 @@ $('#AgregarDetalleFactura').click(function () {
     else {
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
-        copiar += "<td id = 'prod_CodigoCreate'>" + $('#prod_Codigo').val() + "</td>";
-        copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + $('#tbProducto_prod_Descripcion').val() + "</td>";
-        copiar += "<td id = 'factd_CantidadCreate'>" + $('#factd_Cantidad').val() + "</td>";
-        copiar += "<td id = 'Precio_UnitarioCreate'>" + $('#factd_PrecioUnitario').val() + "</td>";
-        copiar += "<td id = 'factd_MontoDescuentoCreate'>" + $('#factd_MontoDescuento').val() + "</td>";
-        copiar += "<td id = 'TotalProductoCreate'>" + $('#TotalProducto').val() + "</td>";
+        copiar += "<td id = 'prod_CodigoCreate'>" + CodigoProducto + "</td>";
+        copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + DescripcionProducto + "</td>";
+        copiar += "<td id = 'factd_CantidadCreate'>" + CantidadProducto + "</td>";
+        copiar += "<td id = 'Precio_UnitarioCreate'>" + PrecioUnitario + "</td>";
+        copiar += "<td id = 'factd_MontoDescuentoCreate'>" + MontoDescuento + "</td>";
+        copiar += "<td id = 'TotalProductoCreate'>" + Total + "</td>";
         copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
         copiar += "</tr>";
         $('#tblDetalleFactura').append(copiar);
+
+        //Subtotal 
+        var totalProducto = $('#TotalProducto').val();
+        var sutotal = parseFloat(document.getElementById("Subtotal").innerHTML);
+
+        if (document.getElementById("Subtotal").innerHTML == '') {
+            totalProducto = $('#TotalProducto').val();
+            document.getElementById("Subtotal").innerHTML = parseFloat(totalProducto);
+        }
+        else
+        {
+            document.getElementById("Subtotal").innerHTML = parseFloat(sutotal) + parseFloat(totalProducto);
+        }
+
+
+        //Impuesto
+        var totalProducto = document.getElementById("TotalProducto").value;
+        var impuesto = document.getElementById("factd_Impuesto").value;
+        var impuestototal = parseFloat(document.getElementById("isv").innerHTML);
+        var porcentaje = (impuesto / 100);
+        var impuestos = (totalProducto * porcentaje);        
+
+        if (document.getElementById("isv").innerHTML == '') {
+            impuesto = document.getElementById("factd_Impuesto").value;
+            document.getElementById("isv").innerHTML = parseFloat(impuestos);
+        }
+        else {
+            document.getElementById("isv").innerHTML = parseFloat(impuestototal) + parseFloat(impuestos);
+        }
+
+        //Grantotal
+        if (document.getElementById("total").innerHTML == '') {
+            document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos);
+        }
+        else {
+            document.getElementById("total").innerHTML = parseFloat(sutotal) + parseFloat(totalProducto) + parseFloat(impuestototal) + parseFloat(impuestos);
+        }
+                  
 
         var FacturaDetalle = GetFacturaDetalle();
         $.ajax({
@@ -120,3 +149,16 @@ $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDeta
         data: JSON.stringify({ FacturaDetalleC: FacturaDetalle }),
     });
 });
+
+//Validacion de numeros//
+function format(input) {
+    var num = input.value.replace(/\,/g, '');
+    if (!isNaN(num)) {
+        input.value = num;
+    }
+    else {
+        alert('Solo se permiten numeros');
+        input.value = input.value.replace(/[^\d\.]*/g, '');
+    }
+}
+
