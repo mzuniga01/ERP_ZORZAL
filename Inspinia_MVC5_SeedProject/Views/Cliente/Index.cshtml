@@ -23,29 +23,30 @@
 					</div>
                 </div>
                 <div class="ibox-content">
-                    <form onsubmit="return false;">
+                    @using (Html.BeginForm())
+                    {
                         <div class="form-horizontal">
                             <div class="form-group">
                                 <label class="control-label col-md-2">Identificación</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="identificacion" class="form-control" />
+                                    <input type="text" value=null id="identificacion" autocomplete="off" name="identificacion" class="form-control" />
                                 </div>
                                 <label class="control-label col-md-1">Nombres</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="Nombres" class="form-control" />
+                                    <input type="text" value=null id="Nombres" name="Nombres" autocomplete="off" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">Teléfono</label>
                                 <div class="col-md-3">
-                                    <input type="text" id="telefono" class="form-control" />
+                                    <input type="text" value=null id="telefono" name="Telefonos" autocomplete="off" class="form-control" />
                                 </div>
                                 <div class="">
-                                    <button id="search" class="btn btn-primary btn-sm">Buscar</button>
+                                    <button id="search" type="submit" class="btn btn-primary btn-sm">Buscar</button>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    }
 
                     <table class="table table table-striped  table-bordered" id="DataTable1">
                         <thead>

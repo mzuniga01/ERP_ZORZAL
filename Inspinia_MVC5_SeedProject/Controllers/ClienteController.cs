@@ -21,6 +21,29 @@ namespace ERP_GMEDINA.Controllers
             return View(tbcliente.ToList());
         }
 
+        [HttpPost]
+        public ActionResult Index(string identificacion, string Nombres, string Telefonos)
+        {
+            if (identificacion.Length > 0 || Nombres.Length > 0 || Telefonos.Length > 0)
+            {
+                var RegFiltrado = (from f in db.tbCliente
+                                   where f.clte_Identificacion.StartsWith(identificacion) ||
+                                   f.clte_Nombres.StartsWith(Nombres) ||
+                                   f.clte_Apellidos.StartsWith(Nombres) ||
+                                   f.clte_NombreComercial.StartsWith(Nombres) ||
+                                   f.clte_ContactoTelefono.StartsWith(Telefonos) ||
+                                   f.clte_Telefono.StartsWith(Telefonos)
+                                   select f).Take(15);
+                return View(RegFiltrado.ToList());
+            }
+            else
+            {
+                return View(db.tbCliente.OrderByDescending(f =>
+                f.clte_Identificacion).Take(20).ToList());
+            }
+
+        }
+
         // GET: /Cliente/Details/5
         public ActionResult Details(int? id)
         {

@@ -881,6 +881,7 @@
     </Content>
     <Content Include="Scripts\app\Activo.js" />
     <Content Include="Scripts\app\Apertura.js" />
+    <Content Include="Scripts\app\AperturaDetalle.js" />
     <Content Include="Scripts\app\Banco.js" />
     <Content Include="Scripts\app\BCliente.js" />
     <Content Include="Scripts\app\CalculoFactura.js" />

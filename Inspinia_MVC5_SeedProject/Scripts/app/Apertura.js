@@ -16,8 +16,6 @@
 $('#deno_Id').on("change", function () {
     GetDenominacion();
 });
-
-
 function GetDenominacion() {
     var IdDenominacion = $('#deno_Id').val();
     if (IdDenominacion != "") {

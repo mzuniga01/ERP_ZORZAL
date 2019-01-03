@@ -12,20 +12,30 @@
                     @Html.ValidationSummary(true)
 
                     <div class="form-horizontal">
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-12">
                             @Html.LabelFor(model => model.deno_Id, "Denominación", new { @class = "control-label col-md-2" })
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 @Html.DropDownList("deno_Id", null, "Seleccione Denominación", new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.deno_Id)
+                                <p id="MensajeErrorDenominacion" style="color:red">@Html.ValidationMessageFor(model => model.deno_Id)</p>
+                            </div>
+                            <label class="control-label col-md-1">Cantidad</label>
+                            <div class="col-md-3">
+                            <input type="text" id="Cantidad" name="Cantidad" class="form-control" autocomplete="off" />
+                            <p id="MensajeErrorCantidad" style="color:red"></p>
+                        </div>
+                        <button class="btn btn-primary" type="button" id="AgregarDetalleDenominacion">Añadir</button>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-2">Valor</label>
+                            <div class="col-md-4">
+                                <input type="text" id="Valor" disabled name="Valor" class="form-control" autocomplete="off" />
+                            </div>
+                            <label class="control-label col-md-1">Subtotal</label>
+                            <div class="col-md-3">
+                                <input type="text" id="Subtotal" disabled name="Subtotal" class="form-control" autocomplete="off" />
                             </div>
                         </div>
-
-                        <div class="form-group col-md-4">
-                            <label class="control-label col-md-3">Cantidad</label>
-                            <div class="col-md-9">
-                                <input type="text" id="Cantidad" name="Cantidad" class="form-control" autocomplete="off" />
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <table id="DenominacionDetalle" class="table table-striped table-bordered table-hover dataTables-example">
@@ -35,29 +45,19 @@
                             <th>Cantidad</th>
                             <th>Valor</th>
                             <th>Subtotal</th>
-
+                            <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody></tbody>
+                    <tfoot>
                         <tr>
-                            <td class="col-md-3">
-                                <label id="deno_Id" name="Cantidad"> </label>
-                            </td>
-
-                            <td class="col-md-3">
-                                <label id="Cantidad" name="Cantidad"></label>
-                            </td>
-
-                            <td class="col-md-3">
-                                <label type="text" id="Valor" name="Valor"></label>
-                            </td>
-
-                            <td class="col-md-3">
-                                <label type="text" id="Subtotal" name="Subtotal"></label>
-                            </td>
-
+                            <td></td>
+                            <td></td>
+                            <td>Total</td>
+                            <td><p id="Total"></p></td>
+                            <td></td>
                         </tr>
-                    </tbody>
+                    </tfoot>
                 </table>
                 <div id="validationSummary">
                     <p style="color:red"></p>

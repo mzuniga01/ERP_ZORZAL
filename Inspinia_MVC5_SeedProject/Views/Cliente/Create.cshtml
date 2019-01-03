@@ -246,6 +246,21 @@
     $('#clte_EsMinorista').attr('checked', true);
     $(document).ready(function () {
         GetIdentificacion();
-    });
 
+        var x = document.getElementById("mun_Codigo").disabled;
+        if (x == true) {
+            document.getElementById("mun_Codigo").title = "Seleccione primero un departamento";
+        }
+        else {
+        }
+    });
+    $("#dep_Codigo").change(function () {
+        var x = document.getElementById("mun_Codigo").disabled;
+        if (x == true) {
+           
+        }
+        else {
+            document.getElementById("mun_Codigo").title = "";
+        }
+    });  
 </script>

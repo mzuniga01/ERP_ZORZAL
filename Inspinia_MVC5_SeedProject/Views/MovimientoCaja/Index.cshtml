@@ -23,7 +23,8 @@
                 <div class="ibox-title">
                     <h5>List of tbMovimientoCaja</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("IndexApertura","MovimientoCaja")">Listado Cajas</a>
+						@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-sm"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -31,7 +32,7 @@
 <table class="table table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.mocja_FechaApetura)
+            @Html.DisplayNameFor(model => model.mocja_FechaApertura)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.mocja_UsuarioApertura)
@@ -69,7 +70,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.mocja_FechaApetura)
+            @Html.DisplayFor(modelItem => item.mocja_FechaApertura)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.mocja_UsuarioApertura)
