@@ -9,8 +9,7 @@ namespace ERP_GMEDINA.Models
     [MetadataType(typeof(PuntoEmisionMetaData))]
     public partial class tbPuntoEmision
     {
-        //Variable validacion de registro
-        //public string ValidacionMessage { get; set; }
+        
     }
     public class PuntoEmisionMetaData
     {

@@ -1,0 +1,90 @@
+﻿@model ERP_GMEDINA.Models.tbPuntoEmisionDetalle
+
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+ @using (Html.BeginForm("SaveCreateNumeracion", "PuntoEmision", FormMethod.Post, new { enctype = "multipart/form-data" }))
+ {
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="pemi_Id" value="@Model.pemi_Id" />
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.dfisc_Id, new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @*@Html.DropDownList("dfisc_Id", (IEnumerable<SelectListItem>)ViewBag.dfisc_Id, new { @class = "form-control"})*@
+                            @Html.DropDownList("dfisc_Id", null, "Seleccione", new { @class = "form-control" })
+                            <div id="validacionDocumentoFiscalCreate">
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.dfisc_Id)</p>
+                            </div>
+                        </div>
+
+                        @Html.LabelFor(model => model.pemid_RangoInicio, new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                         @Html.EditorFor(model => model.pemid_RangoInicio, new { htmlAttributes = new { @onkeypress = "return validar(event)" } })
+                            <div id="validacionRangoInicioCreate">
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoInicio)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.pemid_RangoFinal, new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.pemid_RangoFinal, new { htmlAttributes = new { @onkeypress = "return validar(event)" } })
+                            <div id="validacionRangoFinalCreate">
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoFinal)</p>
+                            </div>
+                        </div>
+                        @Html.LabelFor(model => model.pemid_FechaLimite, new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.pemid_FechaLimite, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off" } })
+                            <div id="validacionFechaLimiteCreate">
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_FechaLimite)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary btn-sm" type="button" id="AgregarPuntoEmisionDetalle">Registrar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <hr />
+                        <div class="col-md-12 text-right">
+                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white" })
+                        </div>
+                    </div>
+                </div>
+ }
+            </div>
+        </div>
+    </div>
+
+</div>
+<table id="tblPuntoEmisionDetalle" class="table table-striped table-bordered table-hover dataTables-example">
+    <thead>
+        <tr>
+            <th>Documento Fiscal</th>
+            <th>Rango Inicial</th>
+            <th>Rango Final</th>
+            <th>Fecha Límite</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+@*Permitir sólo números*@
+<script>
+    function validar(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[0-9\-]+$/.test(tecla);
+    }
+</script>
