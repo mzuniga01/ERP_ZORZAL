@@ -153,7 +153,7 @@
 
                     </dl>
 
-                    @Html.Partial("_DetailsFacturaDetalle", (List<tbFacturaDetalle>)ViewBag.DetailsFacturaDetalle)
+                    @Html.Partial("_DetailsFacturaDetalle", Model.tbFacturaDetalle)
                     @Html.ActionLink("Editar", "Edit", new { id = Model.fact_Id }, new { @class = "btn btn-primary btn-sm" })
                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
 

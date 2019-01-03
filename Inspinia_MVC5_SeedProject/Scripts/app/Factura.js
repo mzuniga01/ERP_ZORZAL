@@ -36,9 +36,3 @@ $(document).ready(function () {
         }
     });
 });
-
-//////Estado Factura/////////////
-$(document).ready(function () {
-    $("#esfac_Descripcion")[0].maxLength = 50;
-
-})

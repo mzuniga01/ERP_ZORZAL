@@ -24,20 +24,32 @@ $(function () {
 $(function () {
 
     $("#factd_PorcentajeDescuento").keyup(function (e) {
-        var Descuento = document.getElementById("factd_PorcentajeDescuento").value;
-        var Subtotal = document.getElementById("SubtotalProducto").value;
-        var impuesto = document.getElementById("factd_Impuesto").value;
-        var Porcentaje = (parseFloat(Descuento) / 100);
-        var porcentaje = (impuesto / 100);
-        var VarDescuento = (parseFloat(Subtotal) * parseFloat(Porcentaje));
-        var impuesto = (Subtotal * porcentaje);
+        var Descuento = $("#factd_PorcentajeDescuento").val();
+        console.log('Descuento',Descuento);
+        var Subtotal = $("#SubtotalProducto").val();
+        console.log('Subtotal',Subtotal);
+        var impuesto = $("#factd_Impuesto").val();        
+        console.log('impuesto', impuesto);
+        var PorcentajeDescuento = (parseFloat(Descuento) / 100);
+        console.log('PorcentajeDescuento', PorcentajeDescuento);
+        var PorcentajeImpuesto = (parseFloat(impuesto) / 100);
+        console.log('PorcentajeImpuesto',PorcentajeImpuesto);
+        var DescuentoTotal = (parseFloat(Subtotal) * parseFloat(PorcentajeDescuento));
+        console.log('DescuentoTotal', DescuentoTotal);
+        var impuestotal = (Subtotal * PorcentajeImpuesto);
+        console.log('impuestotal', impuestotal);
         result = "";
-        if (Descuento.length == 0) {
-            result += (Subtotal + impuesto);
-        } else {
-            result += (Subtotal - VarDescuento + impuesto);
+
+        if (DescuentoTotal == '') {
+            result += (parseFloat(Subtotal) + parseFloat(impuestotal));
         }
-        $("#factd_MontoDescuento").val(VarDescuento);
+        else if (DescuentoTotal == 0) {
+            result += (parseFloat(Subtotal) + parseFloat(impuestotal));
+        }
+        else {
+            result += (parseFloat(Subtotal) - parseFloat(DescuentoTotal) + parseFloat(impuestotal));
+        }
+        $("#factd_MontoDescuento").val(DescuentoTotal);
         $("#TotalProducto").val(result);
     });
 });

@@ -66,7 +66,6 @@ $('#AgregarDetalleFactura').click(function () {
             document.getElementById("Subtotal").innerHTML = parseFloat(sutotal) + parseFloat(totalProducto);
         }
 
-
         //Impuesto
         var totalProducto = document.getElementById("TotalProducto").value;
         var impuesto = document.getElementById("factd_Impuesto").value;
@@ -136,6 +135,11 @@ function GetFacturaDetalle() {
 };
 
 $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDetalle", function () {
+    var TotalProducto = parseFloat(document.getElementById("TotalProductoCreate").innerHTML);
+    console.log(TotalProducto)
+    var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
+    console.log(subtotal)
+    document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) - parseFloat(TotalProducto);
     $(this).closest('tr').remove();
     idItem = $(this).closest('tr').data('id');
     var FacturaDetalle = {

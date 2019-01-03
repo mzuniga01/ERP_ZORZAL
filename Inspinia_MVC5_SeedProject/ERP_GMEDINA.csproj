@@ -1264,6 +1264,8 @@
     <Content Include="Views\Factura\_CreateFacturaDetalle.cshtml" />
     <Content Include="Views\Factura\_IndexFacturaDetalle.cshtml" />
     <Content Include="Views\Factura\_IndexProducto.cshtml" />
+    <Content Include="Views\Factura\_EditFacturaDetalle.cshtml" />
+    <Content Include="Views\Factura\_DetailsFacturaDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

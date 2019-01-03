@@ -37,7 +37,6 @@ namespace ERP_GMEDINA.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbFactura tbFactura = db.tbFactura.Find(id);
-            ViewBag.DetailsFacturaDetalle = db.tbFacturaDetalle.ToList();
             if (tbFactura == null)
             {
                 return HttpNotFound();
@@ -75,7 +74,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_AutorizarDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica")] tbFactura tbFactura)
+        public ActionResult Create([Bind(Include= "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_AutorizarDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
         {
             var list = (List<tbFacturaDetalle>)Session["Factura"];
             long MensajeError = 0;
@@ -196,7 +195,6 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion", tbFactura.esfac_Id);
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbFactura.suc_Id);
             ViewBag.Cliente = db.tbCliente.ToList();
-            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
             return View(tbFactura);
         }
 
@@ -205,7 +203,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_AutorizarDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica")] tbFactura tbFactura)
+        public ActionResult Edit([Bind(Include= "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_AutorizarDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
         {
             if (ModelState.IsValid)
             {
@@ -248,7 +246,6 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
                     ViewBag.Producto = db.tbProducto.ToList();
                     ViewBag.Cliente = db.tbCliente.ToList();
-                    ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
                 }
 
                 return RedirectToAction("Index");
@@ -260,7 +257,6 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion", tbFactura.esfac_Id);
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbFactura.suc_Id);
             ViewBag.Cliente = db.tbCliente.ToList();
-            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
             return View(tbFactura);
         }
 
@@ -329,6 +325,42 @@ namespace ERP_GMEDINA.Controllers
                 Session["Factura"] = list;
             }
             return Json("", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateFacturaDetalle(tbFacturaDetalle EditFacturaDetalle)
+        {
+            try
+            {
+                var MensajeError = 0;
+                IEnumerable<object> list = null;
+                list = db.UDP_Vent_tbFacturaDetalle_Update(
+                            EditFacturaDetalle.factd_Id,
+                            EditFacturaDetalle.factd_Cantidad,
+                            EditFacturaDetalle.factd_MontoDescuento,
+                            EditFacturaDetalle.factd_PorcentajeDescuento,
+                            EditFacturaDetalle.factd_Impuesto,
+                            EditFacturaDetalle.factd_PrecioUnitario,
+                            EditFacturaDetalle.factd_UsuarioCrea,
+                            EditFacturaDetalle.factd_FechaCrea);
+                foreach (UDP_Vent_tbFacturaDetalle_Update_Result FacturaDetalle in list)
+                    MensajeError = FacturaDetalle.MensajeError;
+                if (MensajeError == -1)
+                {
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    return PartialView("_EditFacturaDetalle");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                return PartialView("_EditFacturaDetalle", EditFacturaDetalle);
+            }
         }
 
         public JsonResult GetEmpleados(string term)
