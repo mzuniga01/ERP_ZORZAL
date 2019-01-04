@@ -156,14 +156,23 @@ $(function () {
     $("#cdto_FechaRedencion").datepicker({ dateFormat: 'dd/mm/yy' });
 });
 </script>
+
 <script>
+        $("#cdto_FechaEmision").datepicker({
+        }).datepicker('setDate', new Date());
+</script>
+<script>
+    $("#cdto_FechaVencimiento").datepicker({
+        }).datepicker('setDate', new FormData()+365);
+</script>
+@*<script>
     $('#cdto_FechaEmision').change(function () {
         var FechaEmision = $('#cdto_FechaEmision').val();
         var FormatFechaNacimiento = new Date((FechaEmision));
         var vencimiento = (FormatFechaNacimiento.getMonth()+1)  + '/' + FormatFechaNacimiento.getDate() + '/' + (FormatFechaNacimiento.getFullYear() + 1);
         $('#cdto_FechaVencimiento').val(vencimiento);
     });
-</script>
+</script>*@
 
 <script type="text/javascript">
     $('#cdto_PorcentajeDescuento').click(function () {
@@ -198,8 +207,5 @@ $(function () {
         $('#cdto_PorcentajeDescuento').val(resultadoporc);
         });
 </script>
-    <script>
-        $("#cdto_FechaEmision").datepicker({
-        }).datepicker('setDate', new Date());
-    </script>
+
 }

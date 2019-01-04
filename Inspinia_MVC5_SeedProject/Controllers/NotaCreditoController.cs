@@ -40,6 +40,7 @@ namespace ERP_ZORZAL.Controllers
         public ActionResult Create()
         {
            ViewBag.Cliente = db.tbCliente.ToList();
+           ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
             return View();
         }
         

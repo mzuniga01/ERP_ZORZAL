@@ -69,17 +69,6 @@
             <div class="col-md-4">
                 @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@} })
                  <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
-                @*@if (Model.tbCliente.clte_EsPersonaNatural == true)
-                {
-                    @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" } })
-                    @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
-                }
-                else
-                {
-                    @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" } })
-                    @Html.ValidationMessageFor(model => model.tbCliente.clte_NombreComercial)
-                }*@
-                
             </div>
             <div class="col-md-">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
@@ -97,7 +86,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0", maxlength = "4" } })
+                @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
                 <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
             </div>
         </div>
@@ -115,6 +104,9 @@
             <div class="col-md-4" >
                 @Html.EditorFor(model => model.dev_Id)
                 <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.dev_Id)</span></p>
+            </div>
+            <div class="col-md-">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarDevolucion"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </div>
 
@@ -170,6 +162,24 @@
                 </div>
                 <div class="modal-body">
                    @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="modal fade" id="ModalAgregarDevolucion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Devolucion</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.Partial("_IndexDevolucion", (List<tbDevolucionDetalle>)ViewBag.Devolucion)
                 </div>
             </div>
         </div>

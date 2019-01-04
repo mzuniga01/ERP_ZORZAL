@@ -34,31 +34,19 @@
 
                             @foreach (var item in Model)
                             {
-                                var name = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres;
+                                var name = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
                                 <tr data-clte="@item.clte_Id"
                                     data-id="@item.clte_Identificacion"
-                                    data-nombre="@name" 
-                                    data-apellido="@item.clte_Apellidos" >
+                                    data-nombre="@name">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.clte_Id)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.clte_Identificacion)
                                     </td>
-                                    @{ if (item.clte_EsPersonaNatural == true)
-                                        {
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.clte_Nombres)
-                                                @Html.DisplayFor(modelItem => item.clte_Apellidos)
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.clte_NombreComercial)
-                                            </td>
-                                        }
-                                    }
+                                    <td>
+                                        @name
+                                    </td>
                                     <td>
                                         <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
                                     </td>
@@ -107,17 +95,17 @@
         })
     });
 </script>
+
 <script>
     $(document).on("click", "#tbClientes tbody tr td button#seleccionar", function () {
         clteItem = $(this).closest('tr').data('clte');
         idItem = $(this).closest('tr').data('id');
         nombreItem = $(this).closest('tr').data('nombre');
-        apellidoItem = $(this).closest('tr').data('apellido');
-        completoItem = nombreItem + " " + apellidoItem;
+       
 
         $("#clte_Id").val(clteItem);
         $("#tbCliente_clte_Identificacion").val(idItem);
-        $("#tbCliente_clte_Nombres").val(completoItem);
+        $("#tbCliente_clte_Nombres").val(nombreItem);
         $('#ModalAgregarCliente').modal('hide');
     });
 </script>

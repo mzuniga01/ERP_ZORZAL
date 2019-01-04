@@ -1270,6 +1270,7 @@
     <Content Include="Views\Factura\_DetailsFacturaDetalle.cshtml" />
     <Content Include="Views\PuntoEmision\_CreateNumeracionDetalle.cshtml" />
     <Content Include="Views\Factura\_CreateFacturaDetalleModal.cshtml" />
+    <Content Include="Views\NotaCredito\_IndexDevolucion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
