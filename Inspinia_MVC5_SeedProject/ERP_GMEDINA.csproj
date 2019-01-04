@@ -1268,6 +1268,7 @@
     <Content Include="Views\Factura\_EditFacturaDetalle.cshtml" />
     <Content Include="Views\Factura\_DetailsFacturaDetalle.cshtml" />
     <Content Include="Views\PuntoEmision\_CreateNumeracionDetalle.cshtml" />
+    <Content Include="Views\Factura\_CreateFacturaDetalleModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

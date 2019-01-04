@@ -11,7 +11,7 @@ $(function () {
             Precio = $("#factd_PrecioUnitario").val(),
             result = "";
 
-        if (Cantidad.length && Precio.length > 0) {
+        if (Cantidad && Precio > 0) {
             result += Cantidad * Precio;
         }
 
@@ -25,22 +25,15 @@ $(function () {
 
     $("#factd_PorcentajeDescuento").keyup(function (e) {
         var Descuento = $("#factd_PorcentajeDescuento").val();
-        console.log('Descuento',Descuento);
         var Subtotal = $("#SubtotalProducto").val();
-        console.log('Subtotal',Subtotal);
         var impuesto = $("#factd_Impuesto").val();        
-        console.log('impuesto', impuesto);
         var PorcentajeDescuento = (parseFloat(Descuento) / 100);
-        console.log('PorcentajeDescuento', PorcentajeDescuento);
         var PorcentajeImpuesto = (parseFloat(impuesto) / 100);
-        console.log('PorcentajeImpuesto',PorcentajeImpuesto);
         var DescuentoTotal = (parseFloat(Subtotal) * parseFloat(PorcentajeDescuento));
-        console.log('DescuentoTotal', DescuentoTotal);
         var impuestotal = (Subtotal * PorcentajeImpuesto);
-        console.log('impuestotal', impuestotal);
         result = "";
 
-        if (DescuentoTotal == '') {
+        if (PorcentajeDescuento == '') {
             result += (parseFloat(Subtotal) + parseFloat(impuestotal));
         }
         else if (DescuentoTotal == 0) {
@@ -49,8 +42,25 @@ $(function () {
         else {
             result += (parseFloat(Subtotal) - parseFloat(DescuentoTotal) + parseFloat(impuestotal));
         }
-        $("#factd_MontoDescuento").val(DescuentoTotal);
-        $("#TotalProducto").val(result);
+        if (Descuento == '')
+        {
+            $("#factd_MontoDescuento").val('');
+        }
+        else {
+            $("#factd_MontoDescuento").val(DescuentoTotal);
+        }
+        if (Descuento == '')
+        {
+            $("#TotalProducto").val('');
+        }
+        else {
+            $("#TotalProducto").val(result);
+        }
+
+        if ($("#factd_Cantidad").val(), $("#factd_PrecioUnitario").val() == '') {
+            $("#factd_MontoDescuento").val('');
+            $("#TotalProducto").val('');
+        }        
     });
 });
 

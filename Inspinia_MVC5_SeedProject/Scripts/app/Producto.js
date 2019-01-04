@@ -36,8 +36,10 @@ $(document).ready(function () {
     $('#tbProductoFactura tbody').on('click', 'tr', function () {
         idItem = $(this).closest('tr').data('id');
         DescItem = $(this).closest('tr').data('desc');
+        ISVItem = $(this).closest('tr').data('isv');
         $("#prod_Codigo").val(idItem);
         $("#tbProducto_prod_Descripcion").val(DescItem);
+        $("#factd_Impuesto").val(ISVItem);
         $('#ModalAgregarProducto').modal('hide');
     });
 });

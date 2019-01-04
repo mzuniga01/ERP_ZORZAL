@@ -21,7 +21,7 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-4" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.prod_Codigo)
                 @Html.ValidationMessageFor(model => model.prod_Codigo)
@@ -29,7 +29,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label col-md-4" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.factd_Cantidad)
                 @Html.ValidationMessageFor(model => model.factd_Cantidad)
@@ -37,7 +37,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.factd_MontoDescuento, new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.factd_MontoDescuento, new { @class = "control-label col-md-4" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.factd_MontoDescuento)
                 @Html.ValidationMessageFor(model => model.factd_MontoDescuento)
@@ -45,7 +45,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = " control-label col-md-4" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.factd_PorcentajeDescuento)
                 @Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)
@@ -53,7 +53,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.factd_Impuesto, new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.factd_Impuesto, new { @class = "control-label col-md-4" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.factd_Impuesto)
                 @Html.ValidationMessageFor(model => model.factd_Impuesto)
@@ -61,7 +61,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.factd_PrecioUnitario, new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.factd_PrecioUnitario, new { @class = "control-label col-md-4" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.factd_PrecioUnitario)
                 @Html.ValidationMessageFor(model => model.factd_PrecioUnitario)
@@ -71,8 +71,8 @@
         <div class="form-group">
             <hr />
             <div class="col-md-12 text-right">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white" })
+                <input type="submit" value="Guardar" class="btn btn-primary btn-sm" />
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white btn-sm" })
             </div>
         </div>
     </div>

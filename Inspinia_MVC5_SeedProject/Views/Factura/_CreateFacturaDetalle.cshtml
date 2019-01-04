@@ -60,7 +60,7 @@
                         <div class="form-group">                            
                             @Html.LabelFor(model => model.factd_Impuesto, new { @class = "control-label col-md-1" })
                             <div class="col-md-2">
-                                @Html.EditorFor(model => model.factd_Impuesto, new { htmlAttributes = new { @Value = "", @autocomplete = "off" } })
+                                @Html.EditorFor(model => model.factd_Impuesto, new { htmlAttributes = new { @Value = "", @autocomplete = "off", @class = "form-control" } })
                                 <div id="validationImpuestoProductoCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.factd_Impuesto)</p>
                                 </div>

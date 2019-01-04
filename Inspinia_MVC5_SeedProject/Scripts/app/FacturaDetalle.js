@@ -65,12 +65,11 @@ $('#AgregarDetalleFactura').click(function () {
         {
             document.getElementById("Subtotal").innerHTML = parseFloat(sutotal) + parseFloat(totalProducto);
         }
-
         //Impuesto
         var totalProducto = document.getElementById("TotalProducto").value;
-        var impuesto = document.getElementById("factd_Impuesto").value;
+        var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
         var impuestototal = parseFloat(document.getElementById("isv").innerHTML);
-        var porcentaje = (impuesto / 100);
+        var porcentaje = parseFloat(impuesto / 100);
         var impuestos = (totalProducto * porcentaje);        
 
         if (document.getElementById("isv").innerHTML == '') {

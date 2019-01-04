@@ -34,14 +34,11 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal factd_PorcentajeDescuento { get; set; }
         [Display(Name = "Impuesto")]
+        [DisplayFormat(DataFormatString = "{0:F2}", ApplyFormatInEditMode = true)]        
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal factd_Impuesto { get; set; }
         [Display(Name = "Precio Unitario")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal factd_PrecioUnitario { get; set; }
-        public int factd_UsuarioCrea { get; set; }
-        public System.DateTime factd_FechaCrea { get; set; }
-        public Nullable<int> factd_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> factd_FechaModifica { get; set; }
     }
 }
