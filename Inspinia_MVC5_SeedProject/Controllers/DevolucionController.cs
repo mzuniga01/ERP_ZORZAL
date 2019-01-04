@@ -140,7 +140,8 @@ namespace ERP_ZORZAL.Controllers
                                                 Detalle.dev_Id,
                                                 Detalle.prod_Codigo,
                                                 Detalle.devd_CantidadProducto,
-                                                Detalle.devd_Descripcion);
+                                                Detalle.devd_Descripcion,
+                                                Detalle.devd_Monto);
                                             foreach (UDP_Vent_tbDevolucionDetalle_Insert_Result SPDevolucionDetalleDet in listDevolucionDetalle)
                                             {
                                                 MensajeErrorDetalle = SPDevolucionDetalleDet.MensajeError;

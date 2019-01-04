@@ -730,7 +730,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucion_Insert_Result>("UDP_Vent_tbDevolucion_Insert", fact_IdParameter, cja_IdParameter, dev_FechaParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbDevolucionDetalle_Insert_Result> UDP_Vent_tbDevolucionDetalle_Insert(Nullable<int> devd_Id, string prod_Codigo, Nullable<decimal> devd_CantidadProducto, string devd_Descripcion)
+        public virtual ObjectResult<UDP_Vent_tbDevolucionDetalle_Insert_Result> UDP_Vent_tbDevolucionDetalle_Insert(Nullable<int> devd_Id, string prod_Codigo, Nullable<decimal> devd_CantidadProducto, string devd_Descripcion, Nullable<decimal> devd_Monto)
         {
             var devd_IdParameter = devd_Id.HasValue ?
                 new ObjectParameter("devd_Id", devd_Id) :
@@ -748,7 +748,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("devd_Descripcion", devd_Descripcion) :
                 new ObjectParameter("devd_Descripcion", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucionDetalle_Insert_Result>("UDP_Vent_tbDevolucionDetalle_Insert", devd_IdParameter, prod_CodigoParameter, devd_CantidadProductoParameter, devd_DescripcionParameter);
+            var devd_MontoParameter = devd_Monto.HasValue ?
+                new ObjectParameter("devd_Monto", devd_Monto) :
+                new ObjectParameter("devd_Monto", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucionDetalle_Insert_Result>("UDP_Vent_tbDevolucionDetalle_Insert", devd_IdParameter, prod_CodigoParameter, devd_CantidadProductoParameter, devd_DescripcionParameter, devd_MontoParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbListadoPrecioDetalle_Insert_Result> UDP_Vent_tbListadoPrecioDetalle_Insert(string prod_Codigo, Nullable<decimal> lispd_PrecioMayorista, Nullable<decimal> lispd_PrecioMinorista, Nullable<System.DateTime> lispd_FechaInicioVigencia, Nullable<System.DateTime> lispd_FechaFinalVigencia, Nullable<decimal> lispd_DescCaja, Nullable<decimal> lispd_DescGerente)
@@ -2028,6 +2032,19 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("Telefono", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetBusquedaCliente_Result>("spGetBusquedaCliente", identificacionParameter, nombreParameter, telefonoParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<long>> UDP_Vent_tbFactura_Estado(Nullable<int> fact_Id, Nullable<int> esfac_Id)
+        {
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(int));
+    
+            var esfac_IdParameter = esfac_Id.HasValue ?
+                new ObjectParameter("esfac_Id", esfac_Id) :
+                new ObjectParameter("esfac_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("UDP_Vent_tbFactura_Estado", fact_IdParameter, esfac_IdParameter);
         }
     }
 }

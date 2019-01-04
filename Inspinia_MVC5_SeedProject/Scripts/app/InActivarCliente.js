@@ -12,8 +12,8 @@
     })
     .done(function (data) {
         if (data.length > 0) {
-            console.log("Registro Actualizado");
-            setTimeout("location.reload(true);", 2000);
+            var url = $("#RedirectTo").val();
+            location.href = url;
         }
         else {
             alert("Registro No Actualizado");
@@ -34,8 +34,8 @@ function ActivarCliente() {
     })
     .done(function (data) {
         if (data.length > 0) {
-            console.log("Registro Actualizado");
-            setTimeout("location.reload(true);", 2000);
+            var url = $("#RedirectTo").val();
+            location.href = url;
         }
         else {
             alert("Registro No Actualizado");

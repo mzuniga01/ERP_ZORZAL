@@ -880,6 +880,7 @@
       <LastGenOutput>ModelERP.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\app\Activo.js" />
+    <Content Include="Scripts\app\AnularFactura.js" />
     <Content Include="Scripts\app\Apertura.js" />
     <Content Include="Scripts\app\AperturaDetalle.js" />
     <Content Include="Scripts\app\Banco.js" />

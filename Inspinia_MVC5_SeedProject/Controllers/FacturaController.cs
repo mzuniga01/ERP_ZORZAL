@@ -372,5 +372,12 @@ namespace ERP_GMEDINA.Controllers
 
             return Json(results, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult AnularFactura(int CodFactura, int Estado)
+        {
+            var list = db.UDP_Vent_tbFactura_Estado(CodFactura, Estado).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }
