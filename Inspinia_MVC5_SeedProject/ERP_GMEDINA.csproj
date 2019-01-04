@@ -879,6 +879,7 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
       <LastGenOutput>ModelERP.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\app\AceptarSolicitudCre.js" />
     <Content Include="Scripts\app\Activo.js" />
     <Content Include="Scripts\app\AnularFactura.js" />
     <Content Include="Scripts\app\Apertura.js" />

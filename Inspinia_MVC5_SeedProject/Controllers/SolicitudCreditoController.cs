@@ -250,5 +250,12 @@ if (ModelState.IsValid)
             }
             base.Dispose(disposing);
         }
+        [HttpPost]
+        public JsonResult AceptarSolicitud(int CodSolicitud, int estado)
+        {
+            var list = db.UDP_Vent_tbSolicitudCredito_Estado(CodSolicitud, estado).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

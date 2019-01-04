@@ -1408,5 +1408,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Estado" />
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Estado" />
   </EntityContainerMapping>
 </Mapping>

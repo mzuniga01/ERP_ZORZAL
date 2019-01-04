@@ -3742,6 +3742,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="pemid_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="pemid_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbSolicitudCredito_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="cred_Id" Type="int" Mode="In" />
+          <Parameter Name="escre_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbSolicitudCredito_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="clte_Id" Type="int" Mode="In" />
           <Parameter Name="escre_Id" Type="tinyint" Mode="In" />
@@ -6038,6 +6042,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <FunctionImport Name="UDP_Vent_tbFactura_Estado" ReturnType="Collection(Int64)">
             <Parameter Name="fact_Id" Mode="In" Type="Int32" />
             <Parameter Name="esfac_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Estado" ReturnType="Collection(Int32)">
+            <Parameter Name="cred_Id" Mode="In" Type="Int32" />
+            <Parameter Name="escre_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -11303,6 +11311,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Estado" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Estado" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

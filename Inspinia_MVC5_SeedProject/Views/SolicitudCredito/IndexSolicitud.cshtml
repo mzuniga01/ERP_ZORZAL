@@ -25,6 +25,9 @@
                     <table id="DataTable1" class="table table table-striped  table-bordered" style="width:100%">
                         <thead>
                             <tr>
+                                <th hidden>
+                                    cred_Id
+                                </th>
                                 <th>
                                     Nombre Cliente
                                 </th>
@@ -58,13 +61,22 @@
                                 if (item.escre_Id == 1)
                                      {
                                     <tr>
-
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres)
-                                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
-
-
-                                        </td>
+                                        <td hidden id="cred_Id">@Html.DisplayFor(modelItem => item.cred_Id)</td>
+                                        
+                                            @{ if (item.tbCliente.clte_EsPersonaNatural)
+                                             {
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres)
+                                                    @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
+                                                </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.tbCliente.clte_NombreComercial)
+                                                    </td>
+                                                }
+                                            }
 
                                         <td>
                                             @Html.DisplayFor(modelItem => item.tbCliente.clte_Identificacion)
@@ -82,16 +94,36 @@
                                         </td>
 
 
-                                        <td class="danger">
+                                        <td class="danger" id="estado">
                                             @Html.DisplayFor(modelItem => item.tbEstadoSolicitudCredito.escre_Descripcion)
                                         </td>
                                         <td>
                                             @Html.ActionLink("Detalle", "Details", new { id = item.cred_Id }, new { @class = "btn btn-primary btn-xs" })
-                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalAutorizar">
+                                            <button type="button"  id="autorizar" name="autorizar" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalAutorizar_@item.cred_Id">
                                                 Autorizar Crédito
                                             </button>
+                                          
                                         </td>
                                     </tr>
+                                    <div class="modal fade" id="ModalAutorizar_@item.cred_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Autorizar Credito</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Esta seguro de Autorizar el Crédito?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" name="Si" id="Si" data-dismiss="modal" onclick="AceptarSolicitud(@item.cred_Id, 2);">Si</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 }
 
                             }
@@ -104,26 +136,9 @@
     </div>
  </div>
 
-<div class="modal fade" id="ModalAutorizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Autorizar Credito</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Esta seguro de Autorizar el Crédito?
-            </div>
-            <div class="modal-footer">
-                <a href="@Url.Action("Index","SolicitudCredito")" class="btn btn-primary">Si</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>
+<script src="~/Scripts/app/AceptarSolicitudCre.js"></script>

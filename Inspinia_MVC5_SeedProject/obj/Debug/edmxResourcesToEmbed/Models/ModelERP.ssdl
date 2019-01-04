@@ -3737,6 +3737,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="pemid_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="pemid_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbSolicitudCredito_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="cred_Id" Type="int" Mode="In" />
+    <Parameter Name="escre_Id" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbSolicitudCredito_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="clte_Id" Type="int" Mode="In" />
     <Parameter Name="escre_Id" Type="tinyint" Mode="In" />

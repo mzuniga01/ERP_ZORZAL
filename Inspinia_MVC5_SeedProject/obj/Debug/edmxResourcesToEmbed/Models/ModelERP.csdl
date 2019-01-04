@@ -1381,6 +1381,10 @@
       <Parameter Name="fact_Id" Mode="In" Type="Int32" />
       <Parameter Name="esfac_Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Estado" ReturnType="Collection(Int32)">
+      <Parameter Name="cred_Id" Mode="In" Type="Int32" />
+      <Parameter Name="escre_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>

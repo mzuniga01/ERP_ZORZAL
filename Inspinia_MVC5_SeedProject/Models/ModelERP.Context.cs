@@ -2046,5 +2046,18 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("UDP_Vent_tbFactura_Estado", fact_IdParameter, esfac_IdParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbSolicitudCredito_Estado(Nullable<int> cred_Id, Nullable<int> escre_Id)
+        {
+            var cred_IdParameter = cred_Id.HasValue ?
+                new ObjectParameter("cred_Id", cred_Id) :
+                new ObjectParameter("cred_Id", typeof(int));
+    
+            var escre_IdParameter = escre_Id.HasValue ?
+                new ObjectParameter("escre_Id", escre_Id) :
+                new ObjectParameter("escre_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbSolicitudCredito_Estado", cred_IdParameter, escre_IdParameter);
+        }
     }
 }
