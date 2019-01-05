@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+   
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Departamento</h2>
@@ -16,45 +17,54 @@
     </div>
 </div>
 
+    @using (Html.BeginForm("Edit", "Departamento", FormMethod.Post, new { enctype = "multipart/form-data" }))
 
+    {
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Editar Departamento</h5>
-                </div>
-                <div class="ibox-content">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Editar Departamento</h5>
+            </div>
+            <div class="ibox-content">
+        
+                @Html.AntiForgeryToken()
+                 <div class="form-horizontal">
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.dep_Codigo)
+                        @Html.HiddenFor(model => model.dep_FechaCrea)
+                        @Html.HiddenFor(model => model.dep_UsuarioCrea)
+                        @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                        @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                        
 
-                        <div class="form-horizontal">
-
-                            @Html.ValidationSummary(true)
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.dep_Codigo, new { @class = "form-control", @readonly = "readonly"  } )
-                                    @Html.ValidationMessageFor(model => model.dep_Codigo )
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.dep_Nombre, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.dep_Nombre, new { @class = "textbox single-line", })
-                                    @Html.ValidationMessageFor(model => model.dep_Nombre)
-                                </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.dep_Codigo, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.dep_Codigo)
                             </div>
                         </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.dep_Nombre, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.dep_Nombre, new { @class = "textbox single-line", })
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.dep_Nombre)
 
-
-                    }
-
-                </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 text">
+                                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
+            <br/><br/>
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado Municipios</h5>
@@ -62,60 +72,46 @@
                 <div class="ibox-content">
                     <div class="form-horizontal">
                         @Html.Partial("_IndexMunicipio_Botones", Model.tbMunicipio)
-                        <div class="form-group">
-                            <div class="col-md-12 text-center">
-                                <input type="button" value="Guardar" class="btn btn-primary" />
-                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                            </div>
-                        </div>
                     </div>
-                </div>
-            </div>
+             </div>
+    </div>
+                
 
             <div class="ibox-content">
                 <table class="table table-striped">
                     <tr>
-                        <th>
-                            Acción
-                        </th>
-                        <th>
-                           Usuario
-                        </th>
-                        <th>
-                            Fecha
-                        </th>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th> Fecha</th>
                     </tr>
+                    @*@foreach (var item in Model) { }*@
                     <tr>
+                        <td>Creado por  </td>
                         <td>
-                            Creado por
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.dep_FechaCrea)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Modificado por
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.dep_FechaModifica)
-                        </td>
+                           @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos) </td>
+                        <td>@Html.DisplayFor(model => model.dep_FechaCrea)</td>
 
                     </tr>
-
+                    <tr>
+                        <td>Modificado por</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos) </td>
+                        <td>@Html.DisplayFor(model => model.dep_FechaModifica)</td>
+                    </tr>
                 </table>
             </div>
+
+
+
+
+        </div>
     </div>
 </div>
-
-
-
+}  
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/app/AgregarMunicipio.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

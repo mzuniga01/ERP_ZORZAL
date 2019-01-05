@@ -128,6 +128,8 @@ namespace ERP_GMEDINA.Models
             this.tbProductoCategoria = new HashSet<tbProductoCategoria>();
             this.tbProductoCategoria1 = new HashSet<tbProductoCategoria>();
             this.tbProductoCategoria2 = new HashSet<tbProductoCategoria>();
+            this.tbFacturaDetalle = new HashSet<tbFacturaDetalle>();
+            this.tbFacturaDetalle1 = new HashSet<tbFacturaDetalle>();
         }
     
         public int usu_Id { get; set; }
@@ -362,5 +364,9 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbProductoCategoria> tbProductoCategoria1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbProductoCategoria> tbProductoCategoria2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle1 { get; set; }
     }
 }

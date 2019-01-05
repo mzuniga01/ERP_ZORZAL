@@ -1,16 +1,15 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbMunicipio>
 
-
+@using ERP_GMEDINA.Models;
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
-        <div class="col-lg-12">
-                <div class="ibox-tools">
-                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalregistro">Registrar Municipio</button>
-                </div>
-            </div>
+        <div class="ibox-tools">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalregistro">Registrar Municipio</button>
+        </div>
 
                 <table class="table table-responsive" style="width:100%" id="DataTable">
                     <thead>
+
                         <tr>
                             <th>
                                 @Html.DisplayNameFor(model => model.mun_Codigo)
@@ -28,6 +27,7 @@
                         @foreach (var item in Model)
                         {
                             <tr>
+                              
                                 <td>
                                     @Html.DisplayFor(modelItem => item.mun_Codigo)
                                 </td>
@@ -38,19 +38,101 @@
                                     @Html.DisplayFor(modelItem => item.tbDepartamento.dep_Nombre)
                                 </td>
                                 <td>
-                                    @*<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modaldetalle">Detalle</button>*@
-                                    <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#modal">Editar</button>
+
+                                    <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editarmodal_@item.mun_Codigo">Editar</button>
+                                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modalEliminar_@item.mun_Codigo">Eliminar</button>
+
+
+                                    
+                                 
+                                    <!-- INSERT MODAL Registro-->
+                                    <div class="modal fade" id="modalregistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Registrar Municipio</label></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <div class="form-horizontal">
+                                                        @Html.Partial("_CreateModalmun", new ERP_GMEDINA.Models.tbMunicipio() { dep_Codigo = item.dep_Codigo })
+                                                    </div>
+                                                            
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-primary" type="button" id="btnGuardarModal" onclick="btnGuardarModal(@item.dep_Codigo);">Guardar</button>
+                                                    <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Editar MODAL MUNICIPIO-->
+                                    <div class="modal fade" id="Editarmodal_@item.mun_Codigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Registrar Municipio</label></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <div class="form-horizontal">
+                                                        @Html.Partial("_EditMunicipio", new ERP_GMEDINA.Models.tbMunicipio() { mun_Codigo = item.mun_Codigo, dep_Codigo = item.dep_Codigo, mun_Nombre= item.mun_Nombre})
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-primary" type="button" id="btnActualizar" onclick="btnActualizar(@item.mun_Codigo);">Guardar</button>
+                                                    <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- ELIMINAR MODAL MUNICIPIO-->
+                                    <div class="modal fade" id="modalEliminar_@item.mun_Codigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Municipio</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Esta seguro de Eliminar el Registro? 
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-primary" type="button" id="btnEliminar" onclick="btnEliminar(@item.mun_Codigo);">Si</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </td>
                             </tr>
+
+                            
                         }
+                      
                     </tbody>
                 </table>
 
             </div>
         </div>
 
+
         
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/app/letras.js"></script>
+<script src="~/Scripts/app/CrearActualizarEliminar.js"></script>
 <script>
     $(document).ready(function () {
         $('#DataTable').DataTable({
@@ -71,164 +153,17 @@
     });
 </script>
 
-<!-- INSERT MODAL -->
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   
+
+
+
+
+<!-- Delete MODAL Registro-->
+<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Editar</label></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-12">
-
-
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Código Municipio</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" id="txtCodigoMunicipio" value="0501" readonly/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Municipio</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" id="txtNombreMunicipio" value="San Pedro Sula" />
-                            </div>
-                        </div>
-                        <table class="table table-striped">
-                            <tr>
-                                <th>
-                                    Acción
-                                </th>
-                                <th>
-                                   Usuario
-                                </th>
-                                <th>
-                                    Fecha
-                                </th>
-                               
-                            </tr>
-                            <tr>
-                                <td>
-                                    Creado por
-                                </td>
-                                <td>
-                                    Brayan
-                                </td>
-                                <td>
-                                   2018/11/30
-                                </td>
-                               </tr>
-                            <tr>
-                                <td>
-                                    Modificado por
-                                </td>
-                                <td></td>
-                                <td></td>
-                                
-                            </tr>
-
-                        </table>
-
-
-
-
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <input type="button" class="btn btn-primary btn-sm" id="btnAceptar" style="width:110px;" value="Guardar" onclick="Aceptar();" />
-                <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- INSERT MODAL DETALLE-->
-<div class="modal fade" id="modaldetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Detalles</label></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Código Municipio</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" id="txtCodigoMunicipio" value="0501" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Municipio</label>
-                            <div class="col-sm-7  input-group">
-                                <input type="text" class="form-control" id="txtNombreMunicipio" value="San Pedro Sula" readonly />
-                            </div>
-                        </div>
-                        <table class="table table-striped">
-                            <tr>
-                                <th>
-                                    Acción
-                                </th>
-                                <th>
-                                   Usuario
-                                </th>
-                                <th>
-                                    Fecha
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Creado por
-                                </td>
-                                <td>
-                                  Antony Fugon
-                                </td>
-                                <td>
-                                    30/11/2018 03:02:04
-                                </td>
-                        
-                            </tr>
-                            <tr>
-                                <td>
-                                    
-                                    Modificado por
-                                </td>
-                                <td>
-                                   
-                                </td>
-                                <td>
-                                   
-                                </td>
-                             
-                 
-                            </tr>
-
-                        </table>
-
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <input type="button" class="btn btn-primary btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- INSERT MODAL Registro-->
-<div class="modal fade" id="modalregistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Registrar Municipio</label></h5>
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Eliminar Municipio</label></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -239,18 +174,20 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-content">
                                 <div class="form-horizontal">
-                                    @Html.Partial("_CreateMunicipio", new ERP_GMEDINA.Models.tbMunicipio())
+                                    @Html.Partial("_DeleteMunicipio", new ERP_GMEDINA.Models.tbMunicipio())
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <div class="modal-footer">
-                <input type="button" class="btn btn-primary btn-sm" id="btnAceptar" style="width:110px;" value="Guardar" onclick="Aceptar();" />
+                <input type="button" class="btn btn-primary btn-sm" id="btnAceptar" style="width:110px;" value="Eliminar" onclick="" />
                 <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
             </div>
         </div>
     </div>
 </div>
+
+

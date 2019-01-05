@@ -24,7 +24,7 @@
                 <div class="ibox-content">
 
 
-				    <dl class="dl-horizontal">
+                    <dl class="dl-horizontal">
                         <dt>
                             @Html.DisplayNameFor(model => model.dep_Codigo)
                         </dt>
@@ -40,10 +40,15 @@
                         <dd>
                             @Html.DisplayFor(model => model.dep_Nombre)
                         </dd>
-
-                    </dl>  
+                        <br/>
+                       <div class="col-md-12" >
+                            @Html.ActionLink("Editar", "Edit", new { id = Model.dep_Codigo }, new { @class = "btn btn-primary" })
+                        </div>
+                        
+                    </dl>
                 </div>
-            </div>
+                </div>
+              
 
 
             <div class="ibox float-e-margins">
@@ -52,11 +57,9 @@
                 </div>
                 <div class="ibox-content">
                     <div class="form-horizontal">
-                        @Html.Partial("_IndexMunicipio", Model.tbMunicipio)
+                        @Html.Partial("_DetailsMunicipio", Model.tbMunicipio)
+
                         <div class="form-group">
-                            <div class="col-md-12 text-center">
-                                @Html.ActionLink("Editar", "Edit", new { id = 5 }, new { @class = "btn btn-primary" })
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -67,42 +70,31 @@
         <div class="ibox-content">
             <table class="table table-striped">
                 <tr>
-                    <th>
-                        Acción
-                    </th>
-                    <th>
-                        Usuario
-                    </th>
-                    <th>
-                        Fecha
-                    </th>
+                    <th>Acción</th>
+                    <th>Usuario</th>
+                    <th> Fecha</th>
                 </tr>
+                @*@foreach (var item in Model) { }*@
                 <tr>
-                    <td>
-                        Creado por
-                    </td>
+                    <td>Creado por  </td>
                     <td>
                         @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
                     </td>
-                    <td>
-                        @Html.DisplayFor(model => model.dep_FechaCrea)
-                    </td>
+                    <td>@Html.DisplayFor(model => model.dep_FechaCrea)</td>
+
                 </tr>
                 <tr>
+                    <td>Modificado por</td>
                     <td>
-                        Modificado por
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
                     </td>
-                    <td>
-                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.dep_FechaModifica)
-                    </td>
-
+                    <td>@Html.DisplayFor(model => model.dep_FechaModifica)</td>
                 </tr>
-
             </table>
         </div>
+
      </div>
   </div>
 

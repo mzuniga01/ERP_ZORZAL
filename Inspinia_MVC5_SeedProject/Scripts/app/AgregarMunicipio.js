@@ -48,7 +48,7 @@ $('#AgregarMunicipios').click(function () {
         
         var tbMunicipio = GetMunicipio();
         $.ajax({
-            url: "/Departamento/SaveMunicipio",
+            url: "/Departamento/AnadirMunicipio",
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
@@ -67,6 +67,55 @@ $('#AgregarMunicipios').click(function () {
     }
 
 });
+
+
+
+
+$('#btnGuardar').click(function () {
+    var munCodigo = $('#mun_Codigo').val();
+    var munNombre = $('#mun_Nombre').val();
+
+    if (munNombre == '') {
+        $('#mun_Nombre').text('');
+        $('#errorCodigo').text('');
+        $('#errorNombre').text('');
+        $('#ValidationNombre').after('<ul id="errorNombre" class="validation-summary-errors text-danger">Campo Municipio Requerido</ul>');
+
+    }
+
+    else if (munCodigo == '') {
+        $('#mun_Nombre').text('');
+        $('#errorCodigo').text('');
+        $('#errorNombre').text('');
+        $('#ValidationCodigoUpdate').after('<ul id="errorCodigo" class="validation-summary-errors text-danger">Campo Codigo Municipio Requerido</ul>');
+
+    }
+
+    else {
+        var tbMunicipio = GetMunicipio();
+        $.ajax({
+            url: "/Departamento/GuardarMun",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ tbMunicipio: tbMunicipio }),
+
+        })
+                    .done(function (data) {
+                        if (data == '') {
+                            $('#ValidationNombreUpdate').after('<ul id="ValidationNombreUpdate" class="validation-summary-errors text-danger">No se pudo actualizar el registro, contacte con el administrador</ul>');
+                        }
+                        else {
+                            window.location.href = '/Departamento/Index';
+                        }
+                    })
+    }
+});
+
+
+
+
+
 
 
 function GetMunicipio()

@@ -1,73 +1,131 @@
-﻿@model ERP_GMEDINA.Models.tbMunicipio
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbMunicipio>
+
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Details tbMunicipio</h5>
-                </div>
-                <div class="ibox-content">
-
-
-                    <dl class="dl-horizontal">
-                        <dt>
+            <table class="table table-responsive" style="width:100%" id="DataTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.mun_Codigo)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.mun_Nombre)
-                        </dt>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mun_Codigo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mun_Nombre)
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#modal_@item.mun_Codigo">Editar</button>
+                                <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalELIMINAR_@item.mun_Codigo">Eliminar</button>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.mun_Nombre)
-                        </dd>
+                                <!-- EDIT MODAL -->
+                                <div class="modal fade" id="modal_@item.mun_Codigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Editar Detalles</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                @Html.Partial("_EditMunicipio", new ERP_GMEDINA.Models.tbMunicipio() { mun_Codigo = item.mun_Codigo, mun_Nombre = item.mun_Nombre })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.mun_UsuarioCrea)
-                        </dt>
+                                <!-- ELIMINAR MODAL -->
+                                @*<div class="modal fade" id="ModalELIMINAR_@item.mun_Codigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Eliminar Municipio</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="ibox float-e-margins">
+                                                            <div class="ibox-content">
+                                                                <div class="form-horizontal">
+                                                                    @Html.Partial("_DeleteMunicipio", new ERP_GMEDINA.Models.tbMunicipio())
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="@Url.Action("Index","Departamento")" class="btn btn-primary">Si</a>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
 
-                        <dd>
-                            @Html.DisplayFor(model => model.mun_UsuarioCrea)
-                        </dd>
+                            </td>
+                        </tr>
+                            
+                    }
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.mun_FechaCrea)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.mun_FechaCrea)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.mun_UsuarioModifica)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.mun_UsuarioModifica)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.mun_FechaModifica)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.mun_FechaModifica)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tbDepartamento.dep_Nombre)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tbDepartamento.dep_Nombre)
-                        </dd>
-
-                    </dl>
-
-
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.mun_Codigo }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white" })
-
-                </div>
-            </div>
+            </table>
         </div>
     </div>
 </div>
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#DataTable').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+        },
+
+    });
+    });
+</script>
+
+
+
+
+
+
+
+
 

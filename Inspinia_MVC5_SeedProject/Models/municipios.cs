@@ -15,7 +15,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Código Municipio")]
         public string mun_Codigo { get; set; }
 
-        [Display(Name = "Departamento")]
+        [Display(Name = "Codigo Departamento")]
         public string dep_Codigo { get; set; }
         [Display(Name = "Municipio")]
         public string mun_Nombre { get; set; }

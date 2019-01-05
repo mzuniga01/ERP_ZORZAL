@@ -3,23 +3,16 @@
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
-        <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Edit tbMunicipio</h5>
-                </div>
-                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.mun_Codigo)
+                        @Html.HiddenFor(model => model.dep_Codigo)
+                        @Html.HiddenFor(model => model.mun_FechaCrea)
+                        @Html.HiddenFor(model => model.mun_UsuarioCrea)
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-
-                        <div class="form-horizontal">
-
-                            @Html.ValidationSummary(true)
-                            @Html.HiddenFor(model => model.mun_Codigo)
-
-                            @*<div class="form-group">
+                      
+                        @*<div class="form-group">
                                 @Html.LabelFor(model => model.dep_Codigo, "dep_Codigo", new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.DropDownList("dep_Codigo", String.Empty)
@@ -27,65 +20,58 @@
                                 </div>
                             </div>*@
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.mun_Nombre, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.mun_Nombre)
-                                    @Html.ValidationMessageFor(model => model.mun_Nombre)
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.mun_UsuarioCrea, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.mun_UsuarioCrea)
-                                    @Html.ValidationMessageFor(model => model.mun_UsuarioCrea)
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.mun_FechaCrea, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.mun_FechaCrea)
-                                    @Html.ValidationMessageFor(model => model.mun_FechaCrea)
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.mun_UsuarioModifica, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.mun_UsuarioModifica)
-                                    @Html.ValidationMessageFor(model => model.mun_UsuarioModifica)
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.mun_FechaModifica, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.mun_FechaModifica)
-                                    @Html.ValidationMessageFor(model => model.mun_FechaModifica)
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Save" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white" })
-                                </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.mun_Codigo, new { @class = "control-label col-md-2" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.mun_Codigo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.mun_Codigo)
                             </div>
                         </div>
-                    }
 
 
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.mun_Nombre, new { @class = "control-label col-md-2" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.mun_Nombre, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.mun_Nombre)
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="ibox-content">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Acción</th>
+                                <th>Usuario</th>
+                                <th> Fecha</th>
+                            </tr>
+                            @*@foreach (var item in Model) { }*@
+                            <tr>
+                                <td>Creado por  </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                                </td>
+                                <td>@Html.DisplayFor(model => model.mun_FechaCrea)</td>
+
+                            </tr>
+                            <tr>
+                                <td>Modificado por</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                    @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                                </td>
+                                <td>@Html.DisplayFor(model => model.mun_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+ 
+<script src="~/Scripts/app/CrearActualizarEliminar.js"></script>
 
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-v
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
