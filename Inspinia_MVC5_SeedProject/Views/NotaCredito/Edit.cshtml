@@ -79,7 +79,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.tbCliente.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+               @if (Model.tbCliente.clte_EsPersonaNatural == true)
+               {
+                @Html.EditorFor(model => model.tbCliente.clte_Nombres, new{ htmlAttributes = new { @class = "form-control", @readonly = "readonly"}
+           })
+               }
+               else
+               {
+                @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly"}})
+               }
+
+            @*@Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly"} })*@
                 <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
                 
             </div>
@@ -91,7 +101,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nocre_FechaEmision, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.nocre_FechaEmision)
+                @Html.EditorFor(model => model.nocre_FechaEmision, new { htmlAttributes = new { @readonly = "readonly" } })
                 <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_FechaEmision)</span></p>
             </div>
         </div>
@@ -126,11 +136,22 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nocre_Estado, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <select id="nocre_Estado" name="nocre_Estado" class="form-control">
-                    <option>Seleccionar</option>
-                    <option value="true">Activo</option>
-                    <option value="false">Inactivo</option>
-                </select>
+                @if (Model.nocre_Estado == true)
+                {
+                    <select class="form-control" data-val="true" data-val-required="*El campo Anulada es requerido" id="nocre_Estado"
+                            name="nocre_Estado" value="Activo">
+                        <option selected="selected" value="true">Activo</option>
+                        <option value="false">Inactivo</option>
+                    </select>
+                }
+                else
+                {
+                    <select class="form-control" data-val="true" data-val-required="*El campo Anulada es requerido" id="nocre_Estado"
+                            name="nocre_Estado" value="Inactivo">
+                        <option selected="selected" value="false">Inactivo</option>
+                        <option value="true">Activo</option>
+                    </select>
+                }
                 <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Estado)</span></p>
             </div>
         </div>
@@ -138,11 +159,24 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nocre_Anulado, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <select id="nocre_Anulado" name="nocre_Anulado" class="form-control">
-                    <option>Seleccionar</option>
-                    <option value="true">Si</option>
-                    <option value="false">No</option>
-                </select>
+                @if (Model.nocre_Anulado == true)
+                {
+                    <select class="form-control" data-val="true" data-val-required="*El campo Anulada es requerido" id="nocre_Anulado"
+                            name="nocre_Anulado" value="Si" readonly>
+                        <option selected="selected" value="true">Si</option>
+                        <option value="false">No</option>
+                    </select>
+                }
+                else
+                {
+                    <select class="form-control" data-val="true" data-val-required="*El campo Anulada es requerido" id="nocre_Anulado"
+                            name="nocre_Anulado" value="No" readonly>
+                        <option selected="selected" value="false">No</option>
+                        <option value="true">Si</option>
+                    </select>
+                }
+               
+                
                 <p style="color:red">@Html.ValidationMessageFor(model => model.nocre_Anulado)</p>
             </div>
         </div>

@@ -47,7 +47,7 @@ namespace ERP_ZORZAL.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include= "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_Estado,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica")] tbNotaCredito tbNotaCredito)
+        public ActionResult Create([Bind(Include= "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica,nocre_Estado")] tbNotaCredito tbNotaCredito)
         {
             if (ModelState.IsValid)
             {
@@ -129,7 +129,7 @@ namespace ERP_ZORZAL.Controllers
                         MensajeError = NotaCredito.MensajeError;
                     if (MensajeError == -1)
                     {
-                        ModelState.AddModelError("", "No se pudo Insertar el registro, favor contacte al administrador.");
+                        ModelState.AddModelError("", "No se pudo Editar el registro, favor contacte al administrador.");
                         return View(tbNotaCredito);
                     }
                     else

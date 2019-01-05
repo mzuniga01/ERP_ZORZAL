@@ -39,7 +39,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Fecha Emisión")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         [DisplayFormat(ApplyFormatInEditMode = true,
-            DataFormatString = "{0:yyyy-MM-dd}",
+            DataFormatString = "{0:dd/MM/yyyy}",
             HtmlEncode = false)]
         public System.DateTime nocre_FechaEmision { get; set; }
 
@@ -52,7 +52,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<decimal> nocre_Monto { get; set; }
 
         [Display(Name = "Usuario Crea")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public int nocre_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Crea")]
@@ -60,7 +60,7 @@ namespace ERP_GMEDINA.Models
         public System.DateTime nocre_FechaCrea { get; set; }
 
         [Display(Name = "Usuario Modifica")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public Nullable<int> nocre_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modifica")]
