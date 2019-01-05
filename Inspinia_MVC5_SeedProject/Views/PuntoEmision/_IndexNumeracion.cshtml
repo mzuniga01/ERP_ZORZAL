@@ -1,15 +1,11 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbPuntoEmisionDetalle>
-@*@{
-    int Test = Convert.ToInt32(ViewData["idPuntoEmision"]);
-}*@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado de Numeración</h5>
 					<div class="ibox-tools">
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Nuevo">
                             Nuevo
-                        </button>	
-                        @*<input type="hidden" name="pemi_Id" value="@Test" />*@				
+                        </button>					
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -144,7 +140,6 @@
             </div>
             <div class="modal-body" id="AjaxCreateNumeracion">
                 @Html.Partial("_CreateNumeracionDetalle", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle())
-                @*@Html.Partial("_CreateNumeracionDetalle", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle() { pemi_Id = @Test })*@
             </div>
         </div>
     </div>

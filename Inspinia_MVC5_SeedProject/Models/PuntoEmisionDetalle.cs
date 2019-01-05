@@ -18,26 +18,26 @@ namespace ERP_GMEDINA.Models
         public int pemid_Id { get; set; }
 
         [Display(Name = "Id Punto Emisión")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo Numero CAI es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo Numero CAI es requerido")]
         public int pemi_Id { get; set; }
 
         [Display(Name ="Documento Fiscal")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string dfisc_Id { get; set; }
 
         [Display(Name = "Rango Inicial")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        //[StringLength(20, MinimumLength = 19, ErrorMessage = "El campo {0} debe tener 19 caracteres")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [StringLength(20, MinimumLength = 19, ErrorMessage = "El campo {0} debe tener 19 caracteres")]
         public string pemid_RangoInicio { get; set; }
 
         [Display(Name = "Rango Final")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        //[StringLength(20, MinimumLength = 19, ErrorMessage = "El campo {0} debe tener el mismo formato de Rango Inicial")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [StringLength(20, MinimumLength = 19, ErrorMessage = "El campo {0} debe tener el mismo formato de Rango Inicial")]
         public string pemid_RangoFinal { get; set; }
 
         [Display(Name = "Fecha Límite")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime pemid_FechaLimite { get; set; }
 
         [Display(Name = "Usuario Creación")]

@@ -1,9 +1,7 @@
 ﻿@model ERP_GMEDINA.Models.tbPuntoEmisionDetalle
 
 @using (Ajax.BeginForm("UpdatePuntoEmisionDetalle", "PuntoEmision", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "mdlEditNumeracion" }))
-{
-    @*@Html.AntiForgeryToken()*@
-    
+{   
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.pemi_Id)
@@ -62,6 +60,6 @@
    
 }
 
-@*<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/Datepicker.js"></script>*@
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+@*<script src="~/Scripts/app/Datepicker.js"></script>*@
 

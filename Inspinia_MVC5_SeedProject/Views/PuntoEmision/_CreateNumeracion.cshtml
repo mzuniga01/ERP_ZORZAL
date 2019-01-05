@@ -9,7 +9,6 @@
                             @Html.LabelFor(model => model.dfisc_Id, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.DropDownList("dfisc_Id", null, "Seleccione", new { @class = "form-control" })
-                                @*@Html.DropDownList("dfisc_Id", (IEnumerable<SelectListItem>)ViewBag.dfisc_Id)*@
                                 <div id="validacionDocumentoFiscalCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.dfisc_Id)</p>
                                 </div>
@@ -70,7 +69,7 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
-@*Permitir sólo números*@
+@*Permitir sólo números y guiones*@
 <script>
     function validar(e) {
         tecla = (document.all) ? e.keyCode : e.which;
