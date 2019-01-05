@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using System.Transactions;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -61,54 +62,134 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id")] tbPedido tbPedido)
         {
+
+            var list = (List<tbPedidoDetalle>)Session["tbPedidoDetalle"];
+            string MensajeError = "";
+            var MensajeErrorDetalle = "";
+            IEnumerable<object> listPedido = null;
+            IEnumerable<object> listPedidoDetalle = null;
             if (ModelState.IsValid)
             {
                 try
                 {
-
-                    //db.tbTipoIdentificacion.Add(tbTipoIdentificacion);
-                    //db.SaveChanges();
-                    //return RedirectToAction("Index");
-
-                    var MensajeError = "";
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbPedido_Insert(tbPedido.esped_Id,
-                                                       tbPedido.ped_FechaElaboracion,
-                                                       tbPedido.ped_FechaEntrega,
-                                                       tbPedido.clte_Id,
-                                                       tbPedido.suc_Id,
-                                                       tbPedido.fact_Id);
-                    foreach (UDP_Vent_tbPedido_Insert_Result Pedido in list)
-                        MensajeError = Pedido.MensajeError;
-                    if (MensajeError == "-1")
+                    using (TransactionScope Tran = new TransactionScope())
                     {
+                        //db.tbTipoIdentificacion.Add(tbTipoIdentificacion);
+                        //db.SaveChanges();
+                        //return RedirectToAction("Index");
 
-                    }
-                    else
-                    {
+                        listPedido = db.UDP_Vent_tbPedido_Insert(tbPedido.esped_Id,
+                                                                   tbPedido.ped_FechaElaboracion,
+                                                                   tbPedido.ped_FechaEntrega,
+                                                                   tbPedido.clte_Id,
+                                                                   tbPedido.suc_Id,
+                                                                   tbPedido.fact_Id);
+                        foreach (UDP_Vent_tbPedido_Insert_Result Pedido in listPedido)
+                            MensajeError = Pedido.MensajeError;
+                        if (MensajeError == "-1")
+                        {
+                            ModelState.AddModelError("", "No se pudo agregar el registro");
+                            return View(tbPedido);
+                        }
+                        else
+                        {
+                            if (MensajeError != "-1")
+                            {
+                                if (list != null)
+                                {
+                                    if (list.Count != 0)
+                                    {
+                                        foreach (tbPedidoDetalle PedDetalle in list)
+                                        {
+                                            var pedds_Id = Convert.ToInt32(MensajeError);
+                                            PedDetalle.ped_Id = pedds_Id;
+                                            listPedidoDetalle = db.UDP_Vent_tbPedidoDetalle_Insert(
+                                                PedDetalle.ped_Id,
+                                                PedDetalle.prod_Codigo,
+                                                PedDetalle.pedd_Descripcion,
+                                                PedDetalle.pedd_Cantidad,
+                                                PedDetalle.pedd_CantidadFacturada
+                                      
+                                                );
+                                            foreach (UDP_Vent_tbPedidoDetalle_Insert_Result SPpedidodetalle in listPedidoDetalle)
+                                            {
+                                        
+                                                MensajeErrorDetalle = SPpedidodetalle.MensajeError;
+                                                if (MensajeError == "-1")
+                                                {
+                                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                                    return View(tbPedido);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("", "No se pudo agregar el registro");
+                                return View(tbPedido);
+                            }
+
+                        }
+                        Tran.Complete();
                         return RedirectToAction("Index");
                     }
-
                 }
                 catch (Exception Ex)
-                {
-                    var errors = ModelState.Values.SelectMany(v => v.Errors);
-                    Ex.Message.ToString();
-                }
+                            {
+                                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                                Ex.Message.ToString();
+                            }
 
-                ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
-                ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
-                ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
-                ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
-                ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
-                ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
+                            ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
+                            ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
+                            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
+                            ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
+                            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
+                            ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
+                        }
+                        else
+                        {
+                            var errors = ModelState.Values.SelectMany(v => v.Errors);
+                        }
+            return View(tbPedido);
+
+
+        }
+
+        [HttpPost]
+        public JsonResult SavePedidoDetalles(tbPedidoDetalle PedidoDetalle)
+        {
+            List<tbPedidoDetalle> sessionPedidoDetalle = new List<tbPedidoDetalle>();
+            var list = (List<tbPedidoDetalle>)Session["tbPedidoDetalle"];
+            if (list == null)
+            {
+                sessionPedidoDetalle.Add(PedidoDetalle);
+                Session["tbPedidoDetalle"] = sessionPedidoDetalle;
             }
             else
             {
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                list.Add(PedidoDetalle);
+                Session["tbPedidoDetalle"] = list;
             }
-            return View(tbPedido);
+            return Json("Exito", JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult QuitarPedidoDetalle(tbPedidoDetalle PedidoDetalle)
+        {
+            var list = (List<tbPedidoDetalle>)Session["tbPedido"];
+
+            if (list != null)
+            {
+                var itemToRemove = list.Single(r => r.pedd_UsuarioCrea == PedidoDetalle.pedd_UsuarioCrea);
+                list.Remove(itemToRemove);
+                Session["tbPedidoDetalle"] = list;
+            }
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
 
 
         // GET: /Pedido/Edit/5
@@ -224,4 +305,5 @@ namespace ERP_ZORZAL.Controllers
             base.Dispose(disposing);
         }
     }
+
 }

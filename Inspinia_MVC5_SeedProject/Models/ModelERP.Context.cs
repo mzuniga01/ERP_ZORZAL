@@ -1543,31 +1543,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedido_Update_Result>("UDP_Vent_tbPedido_Update", ped_IdParameter, esped_IdParameter, ped_FechaElaboracionParameter, ped_FechaEntregaParameter, clte_IdParameter, suc_IdParameter, fact_IdParameter, ped_UsuarioCreaParameter, ped_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbPedidoDetalle_Insert_Result> UDP_Vent_tbPedidoDetalle_Insert(Nullable<int> ped_Id, string prod_Codigo, string pedd_Descripcion, Nullable<decimal> pedd_Cantidad, Nullable<decimal> pedd_CantidadFacturada)
-        {
-            var ped_IdParameter = ped_Id.HasValue ?
-                new ObjectParameter("ped_Id", ped_Id) :
-                new ObjectParameter("ped_Id", typeof(int));
-    
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            var pedd_DescripcionParameter = pedd_Descripcion != null ?
-                new ObjectParameter("pedd_Descripcion", pedd_Descripcion) :
-                new ObjectParameter("pedd_Descripcion", typeof(string));
-    
-            var pedd_CantidadParameter = pedd_Cantidad.HasValue ?
-                new ObjectParameter("pedd_Cantidad", pedd_Cantidad) :
-                new ObjectParameter("pedd_Cantidad", typeof(decimal));
-    
-            var pedd_CantidadFacturadaParameter = pedd_CantidadFacturada.HasValue ?
-                new ObjectParameter("pedd_CantidadFacturada", pedd_CantidadFacturada) :
-                new ObjectParameter("pedd_CantidadFacturada", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedidoDetalle_Insert_Result>("UDP_Vent_tbPedidoDetalle_Insert", ped_IdParameter, prod_CodigoParameter, pedd_DescripcionParameter, pedd_CantidadParameter, pedd_CantidadFacturadaParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbPedidoDetalle_Update_Result> UDP_Vent_tbPedidoDetalle_Update(Nullable<int> pedd_Id, Nullable<int> ped_Id, string prod_Codigo, string pedd_Descripcion, Nullable<decimal> pedd_Cantidad, Nullable<decimal> pedd_CantidadFacturada, Nullable<int> pedd_UsuarioCrea, Nullable<System.DateTime> pedd_FechaCrea, Nullable<int> pedd_UsuarioModifica, Nullable<System.DateTime> pedd_FechaModifica)
         {
             var pedd_IdParameter = pedd_Id.HasValue ?
@@ -2162,6 +2137,31 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("devd_FechaCrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucionDetalle_Update_Result>("UDP_Vent_tbDevolucionDetalle_Update", devd_IdParameter, dev_IdParameter, prod_CodigoParameter, devd_CantidadProductoParameter, devd_DescripcionParameter, devd_MontoParameter, devd_UsuarioCreaParameter, devd_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbPedidoDetalle_Insert_Result> UDP_Vent_tbPedidoDetalle_Insert(Nullable<int> ped_Id, string prod_Codigo, string pedd_Descripcion, Nullable<decimal> pedd_Cantidad, Nullable<decimal> pedd_CantidadFacturada)
+        {
+            var ped_IdParameter = ped_Id.HasValue ?
+                new ObjectParameter("ped_Id", ped_Id) :
+                new ObjectParameter("ped_Id", typeof(int));
+    
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var pedd_DescripcionParameter = pedd_Descripcion != null ?
+                new ObjectParameter("pedd_Descripcion", pedd_Descripcion) :
+                new ObjectParameter("pedd_Descripcion", typeof(string));
+    
+            var pedd_CantidadParameter = pedd_Cantidad.HasValue ?
+                new ObjectParameter("pedd_Cantidad", pedd_Cantidad) :
+                new ObjectParameter("pedd_Cantidad", typeof(decimal));
+    
+            var pedd_CantidadFacturadaParameter = pedd_CantidadFacturada.HasValue ?
+                new ObjectParameter("pedd_CantidadFacturada", pedd_CantidadFacturada) :
+                new ObjectParameter("pedd_CantidadFacturada", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedidoDetalle_Insert_Result>("UDP_Vent_tbPedidoDetalle_Insert", ped_IdParameter, prod_CodigoParameter, pedd_DescripcionParameter, pedd_CantidadParameter, pedd_CantidadFacturadaParameter);
         }
     }
 }

@@ -13,6 +13,6 @@ namespace ERP_GMEDINA.Models
     
     public partial class UDP_Vent_tbPedidoDetalle_Insert_Result
     {
-        public string Column1 { get; set; }
+        public string MensajeError { get; set; }
     }
 }

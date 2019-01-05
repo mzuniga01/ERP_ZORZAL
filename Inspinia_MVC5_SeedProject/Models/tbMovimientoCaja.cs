@@ -41,5 +41,8 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbDenominacionArqueo> tbDenominacionArqueo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
+        public virtual tbUsuario tbUsuario2 { get; set; }
+        public virtual tbUsuario tbUsuario11 { get; set; }
+        public virtual tbUsuario tbUsuario21 { get; set; }
     }
 }
