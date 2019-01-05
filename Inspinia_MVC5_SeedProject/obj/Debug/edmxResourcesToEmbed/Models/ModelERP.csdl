@@ -183,7 +183,7 @@
       <Parameter Name="dev_Fecha" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbDevolucionDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucionDetalle_Insert_Result)">
-      <Parameter Name="devd_Id" Mode="In" Type="Int32" />
+      <Parameter Name="dev_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
       <Parameter Name="devd_CantidadProducto" Mode="In" Type="Decimal" />
       <Parameter Name="devd_Descripcion" Mode="In" Type="String" />

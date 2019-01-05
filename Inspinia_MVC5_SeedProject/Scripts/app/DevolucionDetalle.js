@@ -32,6 +32,12 @@ $('#AgregarDetalleDevolucion').click(function () {
          $('#ErrorFecha').text('');
          $('#validationComentariosCreate').after('<ul id="ErrorProductoComentarioCreate" class="validation-summary-errors text-danger">Campo Descripìon Requerido</ul>');
      }
+     else if ($('#devd_Monto').val() == '') {
+         $('#MessageError').text('');
+         $('#ErrorDescripcion').text('');
+         $('#ErrorFecha').text('');
+         $('#validationComentariosCreate').after('<ul id="ErrorProductoComentarioCreate" class="validation-summary-errors text-danger">Campo Descripìon Requerido</ul>');
+     }
     else {
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
@@ -39,6 +45,7 @@ $('#AgregarDetalleDevolucion').click(function () {
         copiar += "<td id = 'tbProducto_prod_Descripcion'>" + $('#tbProducto_prod_Descripcion').val() + "</td>";
         copiar += "<td id = 'devd_CantidadProducto'>" + $('#devd_CantidadProducto').val() + "</td>";
         copiar += "<td id = 'devd_Descripcion'>" + $('#devd_Descripcion').val() + "</td>";
+        copiar += "<td id = 'devd_Monto'>" + $('#devd_Monto').val() + "</td>";
         copiar += "<td>" + '<button id="removeDevolucionDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
         copiar += "</tr>";
         //console.log('CodTipoCasoExito', $('#CodTipoCasoExito option:selected').text());
@@ -61,6 +68,13 @@ $('#AgregarDetalleDevolucion').click(function () {
             $('#ErrorProductoDescripcionCreate').val('');
             $('#ErrorDescripcionCreate').val('');
             $('#ErrorProductoComentarioCreate').val('');
+            //Input
+            $('#prod_Codigo').val('');
+            $('#tbProducto_prod_Descripcion').val('');
+            $('#devd_CantidadProducto').val('');
+            $('#devd_Descripcion').val('');
+            $('#PrecioUnitario').val('');
+            $('#devd_Monto').val('');
         });
     }
 });
@@ -72,6 +86,7 @@ function GetDevolucionDetalle() {
         prod_Codigo: $('#prod_Codigo').val(),
         devd_CantidadProducto: $('#devd_CantidadProducto').val(),
         devd_Descripcion: $('#devd_Descripcion').val(),
+        devd_Monto: $('#devd_Monto').val(),
         devd_Id: contador
     }
     return DevolucionDetalle

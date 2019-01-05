@@ -744,7 +744,7 @@
           <Key>
             <PropertyRef Name="nocre_Id" />
           </Key>
-          <Property Name="nocre_Id" Type="smallint" Nullable="false" />
+          <Property Name="nocre_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nocre_Codigo" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="dev_Id" Type="int" Nullable="false" />
           <Property Name="clte_Id" Type="int" Nullable="false" />
@@ -3472,7 +3472,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="dev_Fecha" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbDevolucionDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-          <Parameter Name="devd_Id" Type="int" Mode="In" />
+          <Parameter Name="dev_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="devd_CantidadProducto" Type="decimal" Mode="In" />
           <Parameter Name="devd_Descripcion" Type="nvarchar" Mode="In" />
@@ -4845,7 +4845,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="dev_Fecha" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbDevolucionDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucionDetalle_Insert_Result)">
-            <Parameter Name="devd_Id" Mode="In" Type="Int32" />
+            <Parameter Name="dev_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="devd_CantidadProducto" Mode="In" Type="Decimal" />
             <Parameter Name="devd_Descripcion" Mode="In" Type="String" />

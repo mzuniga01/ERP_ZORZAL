@@ -25,7 +25,9 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.devd_Descripcion)
                                 </th>
-
+                                <th>
+                                 
+                                </th>
 
 
                             </tr>
@@ -44,12 +46,35 @@
                                         @Html.DisplayFor(modelItem => item.devd_Descripcion)
                                     </td>
 
-                                    @*<td>
-                                @Html.ActionLink("Details", "Details", new { id=item.devd_Id }, new { @class = "btn btn-primary btn-sm"})
-                                @Html.ActionLink("Edit", "Edit", new { id=item.devd_Id }, new { @class = "btn btn-white btn-sm"})
-                                @Html.ActionLink("Delete", "Delete", new { id=item.devd_Id }, new { @class = "btn btn-white btn-sm"})
-                            </td>*@
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.devd_Id">
+                                            Editar
+                                        </button>
+                                        @*@Html.ActionLink("Editar", "Edit", new { id = item.devd_Id }, new { @class = "btn btn-primary btn-sm" })*@
+                                @*@Html.ActionLink("Details", "Details", new { id=item.devd_Id }, new { @class = "btn btn-primary btn-sm"})
+                                      @Html.ActionLink("Delete", "Delete", new { id=item.devd_Id }, new { @class = "btn btn-white btn-sm"})*@
+                            </td>
+
+                                
                                 </tr>
+                                <!-- Modal -->
+                                <div class="modal fade" id="Editar_@item.devd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Editar Devolucion Detalle</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div id="EditarDevolucionDetalle" class="modal-body">
+                                                @Html.Partial("_EditarDetalleDevolucion", new ERP_GMEDINA.Models.tbDevolucionDetalle() { devd_Id = item.devd_Id, dev_Id = item.dev_Id, prod_Codigo = item.prod_Codigo, devd_CantidadProducto = item.devd_CantidadProducto, devd_Descripcion = item.devd_Descripcion, devd_Monto = item.devd_Monto, devd_UsuarioCrea = item.devd_UsuarioCrea, devd_FechaCrea = item.devd_FechaCrea, devd_UsuarioModifica = item.devd_UsuarioModifica, devd_FechaModifica = item.devd_FechaModifica })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             }
                         </tbody>
                     </table>
@@ -61,3 +86,5 @@
  </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable1.js"></script>
+
+

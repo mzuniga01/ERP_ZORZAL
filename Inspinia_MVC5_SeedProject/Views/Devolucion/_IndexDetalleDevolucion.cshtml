@@ -50,10 +50,12 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CrearDevolucion">
                 Agregar Producto
             </button>
-			@*@Html.ActionLink("Details", "Details", new { id=item.devd_Id }, new { @class = "btn btn-primary btn-sm"})
-            @Html.ActionLink("Edit", "Edit", new { id=item.devd_Id }, new { @class = "btn btn-white btn-sm"})
+
+           
+			@*@Html.ActionLink("Details", "Details", new { id=item.devd_Id }, new { @class = "btn btn-primary btn-sm"})          
             @Html.ActionLink("Delete", "Delete", new { id=item.devd_Id }, new { s@class = "btn btn-white btn-sm"})**@
         </td>
+        <td> @Html.ActionLink("Edit", "Edit", new { id = item.devd_Id }, new { @class = "btn btn-white btn-sm" })</td>
     </tr>
 
     <!-- Modal -->

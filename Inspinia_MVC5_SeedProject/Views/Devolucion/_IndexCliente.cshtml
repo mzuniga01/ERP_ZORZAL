@@ -6,68 +6,65 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Clientes</h5>
-					<div class="ibox-tools">
-						@*@Html.ActionLink("Create Ne", "Create", null, new { @class = "btn btn-primary btn-xs"})*@
-					</div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input id="searchFactura" type="text" class="form-control" placeholder="Ingresar Cliente" />
+                            <br />
+                        </div>
+                    </div>
                 </div>
-                <div class="ibox-content">
-                    <input type="text" class="form-control col-lg-1" placeholder="Buscar...">
-<table class="table table-striped">
-    <tr>
-        <th>
-            Número Cliente
-            @*@Html.DisplayNameFor(model => model.clte_Id)*@
-        </th>
-        <th>
-            RTN/Identidad/Pasaporte
-            @*@Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)*@
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.clte_Nombres)
-        </th>
-      
-        <th></th>
-    </tr>
+                <table id="DataTable" class="table table table-striped  table-bordered">
+                    <tr>
+                        <th>
+                            Número Cliente
+                            @*@Html.DisplayNameFor(model => model.clte_Id)*@
+                        </th>
+                        <th>
+                            RTN/Identidad/Pasaporte
+                            @*@Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)*@
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.clte_Nombres)
+                        </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.clte_Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.clte_Identificacion)
-        </td>
-        @{ if (Convert.ToInt32(item.clte_EsPersonaNatural) == 1)
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => item.clte_Nombres)
-                </td>
-            }
-            else
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => item.clte_NombreComercial)
-                </td>
-            }
-        }
-        <td>
-           
-        </td>
-       
-        <td>
-            @Html.ActionLink("Seleccionar", "Create", new { id=item.clte_Id }, new { @class = "btn btn-primary btn-xs" })
-        </td>
-    </tr>
-}
+                        <th></th>
+                    </tr>
 
-</table>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.clte_Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.clte_Identificacion)
+                            </td>
+                            @{ if (Convert.ToInt32(item.clte_EsPersonaNatural) == 1)
+                                {
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.clte_Nombres)
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.clte_NombreComercial)
+                                    </td>
+                                }
+                            }
+                            <td></td>
 
-                </div>
+                            <td>
+                                <button id="AgregarFactura" class="btn btn-primary btn-xs">Agregar</button>
+                            </td>
+                        </tr>
+                                }
+
+                </table>
+
             </div>
         </div>
     </div>
- </div>
-
+</div>
 
 

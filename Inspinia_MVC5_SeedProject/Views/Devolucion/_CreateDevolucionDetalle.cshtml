@@ -61,8 +61,19 @@
             <div class="col-md-3">
                 <input type="text" value="" class="form-control " id="PrecioUnitario"/>
             </div>
-        </div>
 
+           
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.devd_Monto, "Monto", new { @class = "control-label  col-md-offset-5 col-md-2" })
+            <div class="col-md-offset col-md-3">
+                @Html.EditorFor(model => model.devd_Monto ,new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+                <div id="validationProductoDevolucionCreate">
+                    @Html.ValidationMessageFor(model => model.devd_Monto)
+                </div>
+
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.devd_Descripcion, "Observaciones", new { @class = "control-label col-md-2" })
             <div class="col-md-8">
@@ -71,33 +82,34 @@
                 <div id="validationComentariosCreate">
                     @Html.ValidationMessageFor(model => model.devd_Descripcion)
                 </div>
-             
+
             </div>
         </div>
-
-        @*<div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Agregar" class="btn btn-primary" />
-                @Html.ActionLink("Cancelar", "Create", null, new { @class = "btn btn-white" })
-            </div>
-        </div>*@
-    </div>
+                  
+                        @*<div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Agregar" class="btn btn-primary" />
+                    @Html.ActionLink("Cancelar", "Create", null, new { @class = "btn btn-white" })
+                </div>
+            </div>*@
+                    </div>
                 @*}*@
                     <table id="tbDetalleDevolucion"class="table table-striped table-bordered table-hover dataTables-example">
                         <thead>
                             <tr>
-                                <th>ID Producto</th>
+                                <th>Código Producto</th>
                                 <th>Producto</th>
                                 <th>Cantidad</th>
-                                <th>Comentario</th>
-                                @*<th>Valor Unit.</th>
-                                <th>Descuento</th>*@
+                                <th>Observaciones</th>
+                                <th>Monto</th>
+                                @*<th>Descuento</th>*@
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody></tbody>
                         <tfoot>
                             <tr>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -132,3 +144,5 @@
             </div>
         </div>
     </div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DevolucionCalculos.js"></script>
