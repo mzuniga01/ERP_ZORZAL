@@ -19,7 +19,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.dfisc_Id, "Documento Fiscal", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("dfisc_Id", null, "Seleccione", new { @class = "form-control" })
+                @*Esto lo agrego Mágdaly*@
+                @{string IdDrop = "dfisc_IdEdit";}
+                @{ string Vie = "dfisc_IdList";}
+                @Html.DropDownList("dfisc_Id", (IEnumerable<SelectListItem>)Context.Items[Vie], "Seleccione", new { @class = "form-control", id = @IdDrop })
                  @Html.ValidationMessageFor(model => model.dfisc_Id)
             </div>
         </div>

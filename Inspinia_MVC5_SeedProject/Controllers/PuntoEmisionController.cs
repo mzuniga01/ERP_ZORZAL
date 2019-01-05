@@ -164,7 +164,10 @@ namespace ERP_ZORZAL.Controllers
 
             //*****PuntoEmisionDetalle
             tbPuntoEmisionDetalle PuntoEmisionDetalle = new tbPuntoEmisionDetalle();
-            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", PuntoEmisionDetalle.dfisc_Id);
+            //Esto lo agrego Mágdaly//
+            string cas = "dfisc_IdList";
+            System.Web.HttpContext.Current.Items[cas] = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
+           // ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", PuntoEmisionDetalle.dfisc_Id);
             return View(tbPuntoEmision);
         }
 
