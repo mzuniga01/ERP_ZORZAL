@@ -186,6 +186,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\CuentaBancoController.cs" />
     <Compile Include="Controllers\CuponDescuentoController.cs" />
+    <Compile Include="Controllers\DenominacionArqueoController.cs" />
     <Compile Include="Controllers\DenominacionController.cs" />
     <Compile Include="Controllers\DevolucionController.cs" />
     <Compile Include="Controllers\DocumentoFiscalController.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="Models\CuentaBanco.cs" />
     <Compile Include="Models\cUtilities.cs" />
     <Compile Include="Models\Denominacion.cs" />
+    <Compile Include="Models\DenominacionArqueos.cs" />
     <Compile Include="Models\EstadoFactura.cs" />
     <Compile Include="Models\EstadoPedido.cs" />
     <Compile Include="Models\EstadosSolicitudCreditos.cs" />
@@ -260,6 +262,7 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Monedas.cs" />
+    <Compile Include="Models\MovimientoCajas.cs" />
     <Compile Include="Models\Pagos.cs" />
     <Compile Include="Models\Pedidos.cs" />
     <Compile Include="Models\Producto.cs" />
@@ -521,6 +524,12 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbCuponDescuento_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbDenominacionArqueo_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbDenominacionArqueo_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbDevolucionDetalle_Insert_Result.cs">
@@ -908,6 +917,7 @@
     <Content Include="Scripts\app\DataTableBusquedaGenerica.js" />
     <Content Include="Scripts\app\Datepicker.js" />
     <Content Include="Scripts\app\Denominacion.js" />
+    <Content Include="Scripts\app\DenominacionArqueo.js" />
     <Content Include="Scripts\app\Departamento.js" />
     <Content Include="Scripts\app\DevolucionCalculos.js" />
     <Content Include="Scripts\app\DevolucionDetalle.js" />
@@ -922,6 +932,7 @@
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\ListaPrecioDetalle.js" />
     <Content Include="Scripts\app\MessageError.js" />
+    <Content Include="Scripts\app\MovientoCaja.js" />
     <Content Include="Scripts\app\NotaCredito.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
     <Content Include="Scripts\app\Producto.js" />
@@ -1289,6 +1300,11 @@
     <Content Include="Views\NotaCredito\_IndexDevolucion.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_DetailsSolicitudEfectivoDetalle.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_IndexEditSolicitudEfectivoDetalle.cshtml" />
+    <Content Include="Views\DenominacionArqueo\Create.cshtml" />
+    <Content Include="Views\DenominacionArqueo\Delete.cshtml" />
+    <Content Include="Views\DenominacionArqueo\Details.cshtml" />
+    <Content Include="Views\DenominacionArqueo\Edit.cshtml" />
+    <Content Include="Views\DenominacionArqueo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

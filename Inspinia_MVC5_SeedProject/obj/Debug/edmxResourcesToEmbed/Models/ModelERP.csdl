@@ -1426,6 +1426,21 @@
       <Parameter Name="pedd_Cantidad" Mode="In" Type="Decimal" />
       <Parameter Name="pedd_CantidadFacturada" Mode="In" Type="Decimal" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbDenominacionArqueo_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Insert_Result)">
+      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+      <Parameter Name="deno_Id" Mode="In" Type="Int16" />
+      <Parameter Name="arqde_CantidadDenominacion" Mode="In" Type="Int16" />
+      <Parameter Name="arqde_MontoDenominacion" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbDenominacionArqueo_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Update_Result)">
+      <Parameter Name="arqde_Id" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+      <Parameter Name="deno_Id" Mode="In" Type="Int16" />
+      <Parameter Name="arqde_CantidadDenominacion" Mode="In" Type="Int16" />
+      <Parameter Name="arqde_MontoDenominacion" Mode="In" Type="Decimal" />
+      <Parameter Name="arqde_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="arqde_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -5328,6 +5343,12 @@
     </ReferentialConstraint>
   </Association>
   <ComplexType Name="UDP_Vent_tbPedidoDetalle_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDenominacionArqueo_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDenominacionArqueo_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

@@ -3497,6 +3497,21 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="cdto_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="cdto_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbDenominacionArqueo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="mocja_Id" Type="int" Mode="In" />
+          <Parameter Name="deno_Id" Type="smallint" Mode="In" />
+          <Parameter Name="arqde_CantidadDenominacion" Type="smallint" Mode="In" />
+          <Parameter Name="arqde_MontoDenominacion" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbDenominacionArqueo_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="arqde_Id" Type="int" Mode="In" />
+          <Parameter Name="mocja_Id" Type="int" Mode="In" />
+          <Parameter Name="deno_Id" Type="smallint" Mode="In" />
+          <Parameter Name="arqde_CantidadDenominacion" Type="smallint" Mode="In" />
+          <Parameter Name="arqde_MontoDenominacion" Type="decimal" Mode="In" />
+          <Parameter Name="arqde_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="arqde_FechaCrea" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbDevolucion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="fact_Id" Type="bigint" Mode="In" />
           <Parameter Name="cja_Id" Type="smallint" Mode="In" />
@@ -6159,6 +6174,21 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="pedd_Descripcion" Mode="In" Type="String" />
             <Parameter Name="pedd_Cantidad" Mode="In" Type="Decimal" />
             <Parameter Name="pedd_CantidadFacturada" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbDenominacionArqueo_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Insert_Result)">
+            <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+            <Parameter Name="deno_Id" Mode="In" Type="Int16" />
+            <Parameter Name="arqde_CantidadDenominacion" Mode="In" Type="Int16" />
+            <Parameter Name="arqde_MontoDenominacion" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbDenominacionArqueo_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Update_Result)">
+            <Parameter Name="arqde_Id" Mode="In" Type="Int32" />
+            <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+            <Parameter Name="deno_Id" Mode="In" Type="Int16" />
+            <Parameter Name="arqde_CantidadDenominacion" Mode="In" Type="Int16" />
+            <Parameter Name="arqde_MontoDenominacion" Mode="In" Type="Decimal" />
+            <Parameter Name="arqde_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="arqde_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -10064,6 +10094,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
         <ComplexType Name="UDP_Vent_tbPedidoDetalle_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbDenominacionArqueo_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbDenominacionArqueo_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11491,6 +11527,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedidoDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedidoDetalle_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPedidoDetalle_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDenominacionArqueo_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDenominacionArqueo_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDenominacionArqueo_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDenominacionArqueo_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

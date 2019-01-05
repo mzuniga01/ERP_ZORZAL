@@ -3492,6 +3492,21 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="cdto_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="cdto_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbDenominacionArqueo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="mocja_Id" Type="int" Mode="In" />
+    <Parameter Name="deno_Id" Type="smallint" Mode="In" />
+    <Parameter Name="arqde_CantidadDenominacion" Type="smallint" Mode="In" />
+    <Parameter Name="arqde_MontoDenominacion" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbDenominacionArqueo_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="arqde_Id" Type="int" Mode="In" />
+    <Parameter Name="mocja_Id" Type="int" Mode="In" />
+    <Parameter Name="deno_Id" Type="smallint" Mode="In" />
+    <Parameter Name="arqde_CantidadDenominacion" Type="smallint" Mode="In" />
+    <Parameter Name="arqde_MontoDenominacion" Type="decimal" Mode="In" />
+    <Parameter Name="arqde_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="arqde_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbDevolucion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
     <Parameter Name="cja_Id" Type="smallint" Mode="In" />

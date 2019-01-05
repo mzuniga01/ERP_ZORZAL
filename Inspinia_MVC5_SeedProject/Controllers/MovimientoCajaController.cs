@@ -56,10 +56,17 @@ namespace ERP_GMEDINA.Controllers
         {
             //ViewBag.mocja_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             //ViewBag.mocja_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            //ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
 
+            ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");           
             ViewBag.DenominacionArqueo = db.tbDenominacionArqueo.ToList();
-            return View();
+
+            
+
+
+            tbMovimientoCaja MC = new tbMovimientoCaja();
+            MC.cja_Id = 2;
+            return View(MC);
+
         }
 
         // POST: /MovimientoCaja/Create
@@ -67,34 +74,13 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="mocja_Id,cja_Id,mocja_FechaApertura,mocja_UsuarioApertura,mocja_FechaArqueo,mocja_UsuarioArquea,mocja_FechaAceptacion,mocja_UsuarioAceptacion,mocja_UsuarioCrea,mocja_FechaCrea,mocja_UsuarioModifica,mocja_FechaModifica")] tbMovimientoCaja tbMovimientoCaja)
+        public ActionResult Create([Bind(Include="mocja_Id,cja_Id,mocja_FechaApetura,mocja_UsuarioApertura,mocja_FechaArqueo,mocja_UsuarioArquea,mocja_FechaAceptacion,mocja_UsuarioAceptacion,mocja_UsuarioCrea,mocja_FechaCrea,mocja_UsuarioModifica,mocja_FechaModifica")] tbMovimientoCaja tbMovimientoCaja)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    //////////Aqui va la lista//////////////
-                    var MensajeError = 0;
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbMovimientoCaja_Insert(tbMovimientoCaja.cja_Id,tbMovimientoCaja.mocja_FechaApertura,tbMovimientoCaja.mocja_UsuarioAceptacion,tbMovimientoCaja.mocja_FechaArqueo,tbMovimientoCaja.mocja_UsuarioArquea,tbMovimientoCaja.mocja_FechaAceptacion,tbMovimientoCaja.mocja_UsuarioModifica);
-                    foreach (UDP_Gral_tbBanco_Insert_Result banco in list)
-                        MensajeError = banco.MensajeError;
-                    if (MensajeError == -1)
-                    {
-                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                        return View(tbMovimientoCaja);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index");
-                    }
-                }
-                catch (Exception Ex)
-                {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                    return View(tbMovimientoCaja);
-                }
+                db.tbMovimientoCaja.Add(tbMovimientoCaja);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
             ViewBag.mocja_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMovimientoCaja.mocja_UsuarioCrea);
@@ -175,13 +161,5 @@ namespace ERP_GMEDINA.Controllers
             }
             base.Dispose(disposing);
         }
-
-        [HttpPost]
-        public JsonResult GetDenominacion(int IdDenominacion)
-        {
-            var list = db.spGetDenominacion(IdDenominacion).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-
     }
 }

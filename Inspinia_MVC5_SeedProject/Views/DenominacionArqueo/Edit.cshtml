@@ -1,0 +1,140 @@
+﻿@model ERP_GMEDINA.Models.tbDenominacionArqueo
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+</style>
+
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Denominacion Arqueo</h2>
+
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Denominacion Arqueo</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.arqde_Id)
+        @Html.HiddenFor(model => model.arqde_UsuarioCrea)
+        @Html.HiddenFor(model => model.arqde_FechaCrea)
+        @Html.HiddenFor(model => model.arqde_UsuarioModifica)
+        @Html.HiddenFor(model => model.arqde_FechaModifica)
+        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+        @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+        @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mocja_Id, "Movimiento Caja", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.mocja_Id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_Id, "Denominacion", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.deno_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.deno_Id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.arqde_CantidadDenominacion, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.arqde_CantidadDenominacion)
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.arqde_CantidadDenominacion)</span>
+        </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.arqde_MontoDenominacion, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.arqde_MontoDenominacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.arqde_MontoDenominacion)</span>
+        </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbDenominacion.deno_Descripcion, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.tbDenominacion.deno_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.tbDenominacion.deno_Descripcion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-5 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+}
+
+
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                    <td>@Html.DisplayFor(model => model.arqde_FechaCrea)</td>
+                </tr>
+                <tr>
+                    <td>Modificado</td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                    </td>
+                <td>@Html.DisplayFor(model => model.arqde_FechaModifica)</td>
+            </tr>
+        </table>
+        </div>
+        </div>
+    </div>
+ </div>
+
+
+

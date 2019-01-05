@@ -33,9 +33,12 @@
                     </li>
 
                     <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "ArqueoCaja")"><i class="fa fa-money"></i> <span class="nav-label">Arqueo Caja</span> </a>
+                        <a href="@Url.Action("Index", "MovimientoCaja")"><i class="fa fa-money"></i> <span class="nav-label">Movimiento Caja</span> </a>
                     </li>
 
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "DenominacionArqueo")"><i class="fa fa-money"></i> <span class="nav-label">Denominacion Arqueo</span> </a>
+                    </li>
                    
                     <li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "Exoneracion")"><i class="fa fa-user-plus"></i> <span class="nav-label">Exoneración</span> </a>

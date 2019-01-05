@@ -45,19 +45,20 @@
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.mocja_Id)
 
+
         <div class="form-group">
             @Html.LabelFor(model => model.cja_Id, "cja_Id", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("cja_Id", String.Empty)
+                @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.cja_Id)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mocja_FechaApertura, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.mocja_FechaApetura, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.mocja_FechaApertura)
-                @Html.ValidationMessageFor(model => model.mocja_FechaApertura)
+                @Html.EditorFor(model => model.mocja_FechaApetura)
+                @Html.ValidationMessageFor(model => model.mocja_FechaApetura)
             </div>
         </div>
 
@@ -101,42 +102,11 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.mocja_UsuarioCrea, "mocja_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("mocja_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.mocja_UsuarioCrea)
-            </div>
-        </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mocja_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.mocja_FechaCrea)
-                @Html.ValidationMessageFor(model => model.mocja_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.mocja_UsuarioModifica, "mocja_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("mocja_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.mocja_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.mocja_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.mocja_FechaModifica)
-                @Html.ValidationMessageFor(model => model.mocja_FechaModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+            <div class="col-md-offset-5 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
     </div>

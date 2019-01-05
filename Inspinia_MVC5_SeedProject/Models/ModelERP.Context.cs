@@ -2163,5 +2163,59 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedidoDetalle_Insert_Result>("UDP_Vent_tbPedidoDetalle_Insert", ped_IdParameter, prod_CodigoParameter, pedd_DescripcionParameter, pedd_CantidadParameter, pedd_CantidadFacturadaParameter);
         }
+    
+        public virtual ObjectResult<UDP_Vent_tbDenominacionArqueo_Insert_Result> UDP_Vent_tbDenominacionArqueo_Insert(Nullable<int> mocja_Id, Nullable<short> deno_Id, Nullable<short> arqde_CantidadDenominacion, Nullable<decimal> arqde_MontoDenominacion)
+        {
+            var mocja_IdParameter = mocja_Id.HasValue ?
+                new ObjectParameter("mocja_Id", mocja_Id) :
+                new ObjectParameter("mocja_Id", typeof(int));
+    
+            var deno_IdParameter = deno_Id.HasValue ?
+                new ObjectParameter("deno_Id", deno_Id) :
+                new ObjectParameter("deno_Id", typeof(short));
+    
+            var arqde_CantidadDenominacionParameter = arqde_CantidadDenominacion.HasValue ?
+                new ObjectParameter("arqde_CantidadDenominacion", arqde_CantidadDenominacion) :
+                new ObjectParameter("arqde_CantidadDenominacion", typeof(short));
+    
+            var arqde_MontoDenominacionParameter = arqde_MontoDenominacion.HasValue ?
+                new ObjectParameter("arqde_MontoDenominacion", arqde_MontoDenominacion) :
+                new ObjectParameter("arqde_MontoDenominacion", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDenominacionArqueo_Insert_Result>("UDP_Vent_tbDenominacionArqueo_Insert", mocja_IdParameter, deno_IdParameter, arqde_CantidadDenominacionParameter, arqde_MontoDenominacionParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbDenominacionArqueo_Update_Result> UDP_Vent_tbDenominacionArqueo_Update(Nullable<int> arqde_Id, Nullable<int> mocja_Id, Nullable<short> deno_Id, Nullable<short> arqde_CantidadDenominacion, Nullable<decimal> arqde_MontoDenominacion, Nullable<int> arqde_UsuarioCrea, Nullable<System.DateTime> arqde_FechaCrea)
+        {
+            var arqde_IdParameter = arqde_Id.HasValue ?
+                new ObjectParameter("arqde_Id", arqde_Id) :
+                new ObjectParameter("arqde_Id", typeof(int));
+    
+            var mocja_IdParameter = mocja_Id.HasValue ?
+                new ObjectParameter("mocja_Id", mocja_Id) :
+                new ObjectParameter("mocja_Id", typeof(int));
+    
+            var deno_IdParameter = deno_Id.HasValue ?
+                new ObjectParameter("deno_Id", deno_Id) :
+                new ObjectParameter("deno_Id", typeof(short));
+    
+            var arqde_CantidadDenominacionParameter = arqde_CantidadDenominacion.HasValue ?
+                new ObjectParameter("arqde_CantidadDenominacion", arqde_CantidadDenominacion) :
+                new ObjectParameter("arqde_CantidadDenominacion", typeof(short));
+    
+            var arqde_MontoDenominacionParameter = arqde_MontoDenominacion.HasValue ?
+                new ObjectParameter("arqde_MontoDenominacion", arqde_MontoDenominacion) :
+                new ObjectParameter("arqde_MontoDenominacion", typeof(decimal));
+    
+            var arqde_UsuarioCreaParameter = arqde_UsuarioCrea.HasValue ?
+                new ObjectParameter("arqde_UsuarioCrea", arqde_UsuarioCrea) :
+                new ObjectParameter("arqde_UsuarioCrea", typeof(int));
+    
+            var arqde_FechaCreaParameter = arqde_FechaCrea.HasValue ?
+                new ObjectParameter("arqde_FechaCrea", arqde_FechaCrea) :
+                new ObjectParameter("arqde_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDenominacionArqueo_Update_Result>("UDP_Vent_tbDenominacionArqueo_Update", arqde_IdParameter, mocja_IdParameter, deno_IdParameter, arqde_CantidadDenominacionParameter, arqde_MontoDenominacionParameter, arqde_UsuarioCreaParameter, arqde_FechaCreaParameter);
+        }
     }
 }
