@@ -20,17 +20,18 @@
 
 
                                 <tr>
+                                   
                                     <th>
-                                        @Html.DisplayNameFor(model => model.deno_Descripcion)
+                                        1
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.deno_Tipo)
+                                        1
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.deno_valor)
+                                      1
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.tbMoneda.mnda_Nombre)
+                                       1
                                     </th>
                                     <th></th>
                                 </tr>
@@ -41,7 +42,9 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr data-id="@item.deno_Id" data-desc="@item.deno_Descripcion"  data-desc1="@item.deno_Tipo" >
-                                        <td>
+                                       
+                                        
+                                         <td>
                                             @Html.DisplayFor(modelItem => item.deno_Descripcion)
                                         </td>
                                       

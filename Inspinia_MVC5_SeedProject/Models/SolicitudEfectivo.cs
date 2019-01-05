@@ -16,25 +16,25 @@ namespace ERP_GMEDINA.Models
     {
 
         [Display(Name = "Número")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        
         public int solef_Id { get; set; }
         [Display(Name = "Movimiento Caja")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        
         public int mocja_Id { get; set; }
         [Display(Name = "¿Es Apertura?")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+       
         public bool solef_EsApertura { get; set; }
         [Display(Name = "Fecha de Entrega ")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        
         public Nullable<System.DateTime> solef_FechaEntrega { get; set; }
         [Display(Name = "Usuario Entrega")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        
         public Nullable<int> solef_UsuarioEntrega { get; set; }
         [Display(Name = "Moneda")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+      
         public short mnda_Id { get; set; }
         [Display(Name = "¿Es Anulada?")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        
         public bool solef_EsAnulada { get; set; }
         [Display(Name = "Usuario Creación")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]

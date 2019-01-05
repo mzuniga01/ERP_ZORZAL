@@ -6,172 +6,99 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-               
                 <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.deno_Id, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.DropDownListFor(model => model.deno_Id, new SelectList(" "), "Seleccione la Denominacion", new { @class = "form-control" })
+                                <div id="validationDenoIdCreate">
+                                    @Html.ValidationMessageFor(model => model.deno_Id, "", new { style = "Color:red" })
+                                </div>
+                            </div>
 
-	
+                            @Html.LabelFor(model => model.tbDenominacion.deno_valor, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.tbDenominacion.deno_valor, new { htmlAttributes = new { @id = "ValorDeno", @type = "number", @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.tbDenominacion.deno_valor)
+                            </div>
+                        </div>
 
-   
-    <div class="form-horizontal">
-      
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.deno_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.deno_Id)
-                @Html.ValidationMessageFor(model => model.deno_Id)
-            </div>
-        </div>*@
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.soled_CantidadSolicitada, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.soled_CantidadSolicitada)
+                                <div id="validationCantidadSolicitadaCreate">
+                                    @Html.ValidationMessageFor(model => model.soled_CantidadSolicitada)
+                                </div>                             
+                            </div>
+                            <label class="control-label col-md-2">Monto Solicitado</label>
+                            <div class="col-md-4">
+                                <input id="MontoSolicitado" type="text" class="form-control" readonly />
+                                @*@Html.EditorFor(model => model.MontoSolicitado, new { htmlAttributes = new {  @Value = "0.00", @type = "number", @class = "form-control", @readonly = "readonly" } })
+                                <div id="validationMontosSolicitadoCreate">
+                                    @Html.ValidationMessageFor(model => model.MontoSolicitado)
+                                </div>*@
+                                <br />
+                                @*<input id="CantidadEntregada" value="0.00" type="text" class="form-control " readonly />
+                                <input id="MontoEntregado" value="0.00" type="text" class="form-control " readonly />*@
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.soled_CantidadEntregada, new { style = "display: none;", htmlAttributes = new {  @Value = "0.00", @type = "number", @class = "form-control", @readonly = "readonly"}  })
+                                    <div id="validationCantidadEntregadaCreate">
+                                        @Html.ValidationMessageFor(model => model.soled_CantidadEntregada)
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.soled_MontoEntregado, new { style = "display: none;" , htmlAttributes = new {  @Value = "0.00", @type = "number", @class = "form-control", @readonly = "readonly" }  })
+                                    <div class="validationMontoEntregadoCreate">
+                                        @Html.ValidationMessageFor(model => model.soled_MontoEntregado)
+                                    </div>
+                                </div>
 
 
-        @*@Html.LabelFor(model => model.solef_Id, new { @class = "control-label col-md-2" })
-        <div class="col-md-3">
-            @Html.EditorFor(model => model.soled_Id)
-            <div class="validationSolefIdCreate">
-                @Html.ValidationMessageFor(model => model.solef_Id)
-            </div>
-        </div>*@
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            
-            @Html.LabelFor(model => model.tbDenominacion.deno_Descripcion, "Denominación", new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.tbDenominacion.deno_Descripcion)
-                <div class="validationDenoDescripcionCreate">
-                    @Html.ValidationMessageFor(model => model.tbDenominacion.deno_Descripcion)
+                        <div class="form-group">
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-1">
+                                <button class="btn btn-primary" type="button" id="AgregarDetalle">Añadir</button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-1">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarSolicitudEfectivoDetalleDenominacion"><span class="glyphicon glyphicon-search"></span></button>
-            </div>
+                <div class="table-responsive">
+                    <table id="tblSolicitudEfectivoDetalle" class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                            <tr>
+                                <th scope="col">Denominación</th>
+                                <th scope="col"> Cantidad Solicitada</th>
+                                <th scope="col"> Monto Solicitado</th>
+                                <th scope="col">Cantdad Entregada</th>
+                                <th scope="col">Monto Entregado</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
 
-            @Html.LabelFor(model => model.tbDenominacion.deno_Tipo, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.tbDenominacion.deno_Tipo)
-                <div class="validationDenoTipoDenominacionCreate">
-                    @Html.ValidationMessageFor(model => model.tbDenominacion.deno_Tipo)
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">           
-            @Html.LabelFor(model => model.soled_CantidadSolicitada, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.soled_CantidadSolicitada)
-                <div class="validationCantidadSolicitadaCreate">
-                    @Html.ValidationMessageFor(model => model.soled_CantidadSolicitada)
-                </div>
-                </div>
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-1">
-                <button class="btn btn-primary" type="button" id="AgregarDetalleSolicitudEfectico">Añadir</button>
-            </div>
-        </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.soled_CantidadEntregada, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.soled_CantidadEntregada)
-                @Html.ValidationMessageFor(model => model.soled_CantidadEntregada)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.soled_MontoEntregado, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.soled_MontoEntregado)
-                @Html.ValidationMessageFor(model => model.soled_MontoEntregado)
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.soled_UsuarioCrea, "soled_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("soled_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.soled_UsuarioCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.soled_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.soled_FechaCrea)
-                @Html.ValidationMessageFor(model => model.soled_FechaCrea)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.soled_UsuarioModifica, "soled_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("soled_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.soled_UsuarioModifica)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.soled_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.soled_FechaModifica)
-                @Html.ValidationMessageFor(model => model.soled_FechaModifica)
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>*@
-    </div>
-
-
-                </div>
-            </div>
-            <div class="table-responsive">
-                <table id="tblSolicitudEfectivoDetalle" class="table table-striped table-bordered table-hover dataTables-example">
-                    <thead>
-                        <tr>
-                            <th scope="col">Denominación</th>
-                            <th scope="col"> Cantidad Solicitada</th>
-                            <th scope="col"> Monto Solicitado</th>
-                            <th scope="col">Cantdad Entregada</th>
-                            <th scope="col">Monto Entregado</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                    <tfoot>
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                    </tfoot>
-                </table>
-            </div>
-        </div>
-    </div>
- </div>
-
- 
-
-<div>
-    <div class="modal fade" id="ModalAgregarSolicitudEfectivoDetalleDenominacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel"> Solicitud Efectivo Detalle</h4>
-                </div>
-                <div class="modal-body" id="frmSolicituEfectivoDetalle">
-                    @Html.Partial("_IndexDenominacion", (List<tbDenominacion>)ViewBag.Denominacion)
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<script src="~/Scripts/jquery-3.3.1.js"></script>

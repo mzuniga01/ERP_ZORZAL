@@ -14,37 +14,35 @@ namespace ERP_GMEDINA.Models
     public class SolicitudEfectivoDetalleMetaData
     {
         [Display(Name = "Número")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        
         public int soled_Id { get; set; }
         [Display(Name = "Número Solictud")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+       
         public int solef_Id { get; set; }
         [Display(Name = "Denominacion")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+      
         public short deno_Id { get; set; }
         [Display(Name = "Cantidad Solicitada")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+     
         public short soled_CantidadSolicitada { get; set; }
         [Display(Name = "Cantidad Entregada")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        
         public short soled_CantidadEntregada { get; set; }
-        [Display(Name = "Monto Entregado")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Monto Entregado")]        
         public decimal soled_MontoEntregado { get; set; }
-        [Display(Name = "Usuario Creación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Usuario Creación")]        
         public int soled_UsuarioCrea { get; set; }
-        [Display(Name = "Fecha Creación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Fecha Creación")]        
         public System.DateTime soled_FechaCrea { get; set; }
-        [Display(Name = "Usuario Modificación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Usuario Modificación")]       
         public Nullable<int> soled_UsuarioModifica { get; set; }
-        [Display(Name = "Fecha Modificación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Fecha Modificación")]       
         public Nullable<System.DateTime> soled_FechaModifica { get; set; }
 
-       
-    
-}
+
+      
+
+      
+
+    }
 }

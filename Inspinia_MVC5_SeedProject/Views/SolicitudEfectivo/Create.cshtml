@@ -27,69 +27,50 @@
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("Create", "SolicitudEfectivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true)
 
+                          
+
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { @class = "control-label col-md-2" })
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @Value = "San Pedro Sula", @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
                                 </div>
 
                                 @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2" })
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, new { htmlAttributes = new { @Value = "Caja 2", @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.mocja_Id, new { @class = "control-label col-md-2" })
-                                <div class="col-md-3">
-                                    @Html.DropDownList("mocja_Id", @*String.Empty*@null, "Seleccione Movimiento Caja", new { @class = "form-control" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @Value = "1", @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.mocja_Id, "", new { style = "Color:red" })
                                 </div>
                                 @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
-                                <div class="col-md-3">
-                                    @Html.DropDownList("mnda_Id", @*String.Empty*@null, "Seleccione la Moneda", new { @class = "form-control" })
+                                <div class="col-md-4">
+                                    @if (ViewBag.MonedaList != null)
+                                    {
+                                        @Html.DropDownListFor(model => model.mnda_Id, ViewBag.MonedaList as SelectList, "Selccione la Moneda", new { @class = "form-control" })
+                                    }
+                                    else
+                                    {
+                                        @Html.DropDownListFor(model => model.mnda_Id, ViewBag.MonedaList as SelectList, "Selccione la Moneda", new { @class = "form-control" })
+
+                                    }
                                     @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.solef_EsApertura, new { @class = "control-label col-md-2" })
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.solef_EsApertura)
-                                    @Html.ValidationMessageFor(model => model.solef_EsApertura)
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Monto Solictado</label>
-                                <div class="col-md-3">
-                                    <input id="MontoSolictado" type="text" class="form-control " readonly />
-                                </div>    
-                                <label class="control-label col-md-2">Monto Entregado</label>
-                                <div class="col-md-3">
-                                    <input id="MontoEntregado" type="text" class="form-control " readonly />
-                                </div>                           
-                            </div>
-
-                           
-
-
-                            @*<div class="form-group">
-                                <div class="col-md-offset-10 col-md-2">
-                                    <button id="detalle" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarSolicitudEfectivoDetalleDenominacion">Agregar Denominacion</button>
-                                </div>
-                            </div>*@
-
-                            
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
@@ -100,28 +81,94 @@
                             <div class="form-group">
                                 <div class="col-md-12">
                                     @Html.Partial("_CreateSolicitudEfectivoDetalle", new tbSolicitudEfectivoDetalle())
+
                                 </div>
                             </div>
-
                         </div>
                     }
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/SolicitudEfectivoDetalles.js" ?v=7></script>
 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/app/Denominacion.js"></script>
-    <script src="~/Scripts/app/SolicitudEfectivo.js"></script>
-<script src="~/Scripts/app/SolicitudEfectivoDetalle.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#mnda_Id").change(function () {
+                var valor = 0;
+                $.get("/SolicitudEfectivo/GetDenominacionList", { mnda_Id: $("#mnda_Id").val() }, function (data) {
+                    $("#deno_Id").empty("");
+                    $('#deno_Id').append("<option value='0'>Seleccione la Denominación</option>");
+                    $('#idinput').val(valor);
+                    $.each(data, function (index, row) {
+                        $("#deno_Id").append("<option value='" + row.deno_Id + "'>" + row.deno_Descripcion + "</option>")
+                        //$('#deno_Id').val('Please Select');
+                    });
+                });
+
+            })
+        });
+    </script>
+
+
+    <script>
+        $('#deno_Id').change(function () {
+            var url = "/SolicitudEfectivo/BuscarDenoId?denoid=" + $('#deno_Id option:selected').val();
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                async: true,
+                success: function (result) {
+                    var lider;
+                    if (result != null && result.length > 0) {
+                        Dvalor = JSON.parse(result);
+                    }
+                    if (Dvalor != null) {
+                        $('#ValorDeno').val(Dvalor);//cargo valor dela denominación
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("No se Apodido cargar el valor 'Porfavor Contacte al Administrador' ");
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#deno_Id').change(function () {
+                $('#ValorDeno').val($('#deno_Id option:selected').val());
+            })
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#soled_CantidadSolicitada")[0].maxLength = 7;
+            $("#ValorDeno")[0].maxLength = 12;
+        })
+
+        $(function () {
+            $("#soled_CantidadSolicitada,#idinput").keyup(function (e) {
+                var Cantidad = $("#soled_CantidadSolicitada").val(),
+                    valores = $("#ValorDeno").val(),
+                    result = "";
+                if (Cantidad.length && valores.length > 0) {
+                    result += Cantidad * valores;
+                }
+                $("#MontoSolicitado").val(result);
+            });
+        });
+    </script>
+
 }
 
 

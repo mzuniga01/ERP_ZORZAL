@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbSolicitudEfectivoDetalle>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">                
+                <div class="ibox-content">
+
+<table class="table table-striped">
+    <tr>
+        <th class="hidden">
+            @Html.DisplayNameFor(model => model.tbSolicitudEfectivo.solef_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbDenominacion.deno_Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soled_CantidadSolicitada)
+        </th>
+        <th>
+           Monto Solicitaddo
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soled_CantidadEntregada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soled_MontoEntregado)
+        </th>      
+        
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="hidden">
+            @Html.DisplayFor(modelItem => item.tbSolicitudEfectivo.solef_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbDenominacion.deno_Descripcion)
+        </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.soled_CantidadSolicitada)
+        </td>
+        <td>
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soled_CantidadEntregada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soled_MontoEntregado)
+        </td>        
+               
+        <td>
+			@*@Html.ActionLink("Details", "Details", new { id=item.soled_Id }, new { @class = "btn btn-primary btn-sm"})*@
+            @Html.ActionLink("Editar", "Edit", new { id=item.soled_Id }, new { @class = "btn btn-primary btn-sm" })
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.soled_Id }, new { @class = "btn btn-white btn-sm"})*@
+        </td>
+    </tr>
+}
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>

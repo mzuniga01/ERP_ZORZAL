@@ -3764,6 +3764,17 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="cred_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="cred_FechaModifica" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbSolicitudEfectivo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="mocja_Id" Type="int" Mode="In" />
+    <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="solef_Id" Type="int" Mode="In" />
+    <Parameter Name="deno_Id" Type="smallint" Mode="In" />
+    <Parameter Name="soled_CantidadSolicitada" Type="smallint" Mode="In" />
+    <Parameter Name="soled_CantidadEntregada" Type="smallint" Mode="In" />
+    <Parameter Name="soled_MontoEntregado" Type="decimal" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbSucursal_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="suc_Id" Type="smallint" Mode="In" />
     <Parameter Name="mun_Codigo" Type="char" Mode="In" />

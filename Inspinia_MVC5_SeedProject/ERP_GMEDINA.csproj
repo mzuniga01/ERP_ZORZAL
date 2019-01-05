@@ -625,6 +625,12 @@
     <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbSolicitudEfectivo_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbSucursal_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -897,6 +903,7 @@
     <Content Include="Scripts\app\Datepicker.js" />
     <Content Include="Scripts\app\Denominacion.js" />
     <Content Include="Scripts\app\Departamento.js" />
+    <Content Include="Scripts\app\DevolucionCalculos.js" />
     <Content Include="Scripts\app\DevolucionDetalle.js" />
     <Content Include="Scripts\app\Empleados.js" />
     <Content Include="Scripts\app\Factura.js" />
@@ -916,6 +923,7 @@
     <Content Include="Scripts\app\PuntoEmisionDetalle.js" />
     <Content Include="Scripts\app\SolicitudEfectivo.js" />
     <Content Include="Scripts\app\SolicitudEfectivoDetalle.js" />
+    <Content Include="Scripts\app\SolicitudEfectivoDetalles.js" />
     <Content Include="Scripts\app\Sucursal.js" />
     <Content Include="Scripts\app\TipoPago.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1272,6 +1280,8 @@
     <Content Include="Views\PuntoEmision\_CreateNumeracionDetalle.cshtml" />
     <Content Include="Views\Factura\_CreateFacturaDetalleModal.cshtml" />
     <Content Include="Views\NotaCredito\_IndexDevolucion.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\_DetailsSolicitudEfectivoDetalle.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\_IndexEditSolicitudEfectivoDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbSolicitudEfectivo
+@using ERP_GMEDINA.Models
 
 @{
     ViewBag.Title = "Details";
@@ -108,45 +109,16 @@
         </dt>
         <dd>
         </dd>
-                        
-                        
-                       
-        
-                        
-
-       
-
-        
 
     </dl>
 
-                    <div class="table-responsive">
-                        <table id="tblSolicitudEfectivoDetalle" class="table table-striped table-bordered table-hover dataTables-example">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Denominación</th>
-                                    <th scope="col"> Cantidad Solicitada</th>
-                                    <th scope="col"> Monto Solicitado</th>
-                                    <th scope="col">Cantdad Entregada</th>
-                                    <th scope="col">Monto Entregado</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                            <tfoot>
-                                <tr>
-                                    <th></th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-
-                            </tfoot>
-                        </table>
-                    </div>
+                   
 
 	    @Html.ActionLink("Editar", "Edit", new { id = Model.solef_Id }, new { @class = "btn btn-primary"})
    
+                    <div class="ibox-content">
+                        @Html.Partial("_DetailsSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
+                    </div>
 
                 </div>
             </div>
