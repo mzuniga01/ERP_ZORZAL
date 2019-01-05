@@ -56,7 +56,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr data-anulado="@item.cdto_Anulado">
                 <td>
                     @Html.DisplayFor(modelItem => item.tbSucursal.suc_Descripcion)
                 </td>
@@ -87,7 +87,9 @@
                     @Html.ActionLink("Detalles", "Details", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn-xs" })
                     @Html.ActionLink("Editar", "Edit", new { id = item.cdto_ID }, new { @class = "btn btn-white btn-xs" })
                     @Html.ActionLink("Imprimir", "",null, new {id="btnImprimir", @class = "btn btn-info btn-xs" })
-                    @Html.ActionLink("Anular", "", null, new { @class = "btn btn-danger btn-xs" })
+                    <button id="bottonAnularCD" name="bottonAnular" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#btnAnular">
+                        Anular
+                    </button>
                 </td>
             </tr>
         }
@@ -99,12 +101,51 @@
         </div>
     </div>
  </div>
-
+<div class="modal fade" id="btnAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular Cupón Descuento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de Anular este Cupón Descuento?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="AnularNotaCredito();" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
 <script>
     $('#btnImprimir').click(function () {
         confirm('¿Deseas Imprimir Cupón Descuento?');
     });
+</script>
+<script>
+    $(document).ready(function () {
+        var Estado = $(this).closest('tr').data('anulado') //$(' tr td #No').val(); 
+        if (Estado == true) {
+            $('#bottonAnularCD').hide();
+            document.getElementById("cdto_Anulado").disabled = true;
+        }
+    });
+
+    function AnularFactura() {
+        var CodAnulada = $('#nocre_Id').val();
+        var Estado = true
+        $.ajax({
+            url: "/NotaCredito/AnularNotaCredito",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ CodAnulada: CodAnulada, Estado: Estado }),
+       });
+    }
 </script>
 

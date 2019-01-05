@@ -39,14 +39,15 @@ namespace ERP_ZORZAL.Controllers
         // GET: /NotaCredito/Create
         public ActionResult Create()
         {
-           ViewBag.Cliente = db.tbCliente.ToList();
+            tbNotaCredito NotaCredito = new tbNotaCredito();
+            ViewBag.Cliente = db.tbCliente.ToList();
            ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
             return View();
         }
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica,nocre_Estado")] tbNotaCredito tbNotaCredito)
+        public ActionResult Create([Bind(Include= "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_Estado,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica")] tbNotaCredito tbNotaCredito)
         {
             if (ModelState.IsValid)
             {
@@ -54,7 +55,8 @@ namespace ERP_ZORZAL.Controllers
                 {
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbNotaCredito_Insert(tbNotaCredito.nocre_Codigo, 
+                    list = db.UDP_Vent_tbNotaCredito_Insert(
+                        tbNotaCredito.nocre_Codigo, 
                         tbNotaCredito.dev_Id, 
                         tbNotaCredito.clte_Id,
                         tbNotaCredito.suc_Id,
@@ -97,6 +99,8 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Cliente = db.tbCliente.ToList();
+            ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
             return View(tbNotaCredito);
         }
         [HttpPost]

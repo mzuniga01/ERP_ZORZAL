@@ -109,7 +109,9 @@
                     @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
                     @Html.ActionLink("Editar", "Edit", new { id = item.nocre_Id }, new { @class = "btn btn-white btn-xs" })
                     @Html.ActionLink("Imprimir", "", null, new { id = "btnImprimir", @class = "btn btn-info btn-xs" })
-                    @Html.ActionLink("Anular", "", null, new { @class = "btn btn-danger btn-xs" })
+                    <button id="bottonAnularNC" name="bottonAnular" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#btnAnular">
+                        Anular
+                    </button>
                     
                    </td>
             </tr>
@@ -122,12 +124,51 @@
         </div>
     </div>
  </div>
-
+<div class="modal fade" id="btnAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular Nota Crédito</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de Anular esta Nota Crédito?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="AnularNotaCredito();" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
 <script>
     $('#btnImprimir').click(function () {
         confirm('¿Deseas Imprimir Cupón Descuento?');
     });
+</script>
+<script>
+    $(document).ready(function () {
+        var Estado = $('#nocre_Anulado').val();
+        if (Estado == false) {
+            $('#bottonAnularNC').hide();
+            document.getElementById("nocre_Anulado").disabled = true;
+        }
+    });
+
+    function AnularFactura() {
+        var CodAnulada = $('#nocre_Id').val();
+        var Estado = false
+        $.ajax({
+            url: "/NotaCredito/AnularNotaCredito",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ CodAnulada: CodAnulada, Estado: Estado }),
+       });
+    }
 </script>
 
