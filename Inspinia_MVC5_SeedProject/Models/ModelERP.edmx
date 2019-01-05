@@ -3471,12 +3471,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="cja_Id" Type="smallint" Mode="In" />
           <Parameter Name="dev_Fecha" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbDevolucion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="dev_Id" Type="int" Mode="In" />
+          <Parameter Name="fact_Id" Type="bigint" Mode="In" />
+          <Parameter Name="cja_Id" Type="smallint" Mode="In" />
+          <Parameter Name="dev_Fecha" Type="datetime" Mode="In" />
+          <Parameter Name="dev_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="dev_FechaCrea" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbDevolucionDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="dev_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="devd_CantidadProducto" Type="decimal" Mode="In" />
           <Parameter Name="devd_Descripcion" Type="nvarchar" Mode="In" />
           <Parameter Name="devd_Monto" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbDevolucionDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="devd_Id" Type="int" Mode="In" />
+          <Parameter Name="dev_Id" Type="int" Mode="In" />
+          <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+          <Parameter Name="devd_CantidadProducto" Type="decimal" Mode="In" />
+          <Parameter Name="devd_Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="devd_Monto" Type="decimal" Mode="In" />
+          <Parameter Name="devd_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="devd_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbDocumentoFiscal_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="dfisc_Id" Type="char" Mode="In" />
@@ -6068,6 +6086,24 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
             <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
             <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbDevolucion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Update_Result)">
+            <Parameter Name="dev_Id" Mode="In" Type="Int32" />
+            <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+            <Parameter Name="cja_Id" Mode="In" Type="Int16" />
+            <Parameter Name="dev_Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="dev_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="dev_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbDevolucionDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucionDetalle_Update_Result)">
+            <Parameter Name="devd_Id" Mode="In" Type="Int32" />
+            <Parameter Name="dev_Id" Mode="In" Type="Int32" />
+            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+            <Parameter Name="devd_CantidadProducto" Mode="In" Type="Decimal" />
+            <Parameter Name="devd_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="devd_Monto" Mode="In" Type="Decimal" />
+            <Parameter Name="devd_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="devd_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -9925,6 +9961,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
         <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result">
           <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbDevolucionDetalle_Update_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbDevolucion_Update_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11350,6 +11392,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucionDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucionDetalle_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucionDetalle_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

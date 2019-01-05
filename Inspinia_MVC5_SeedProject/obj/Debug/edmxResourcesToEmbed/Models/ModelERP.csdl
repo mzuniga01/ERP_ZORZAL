@@ -1396,6 +1396,24 @@
       <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
       <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbDevolucion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Update_Result)">
+      <Parameter Name="dev_Id" Mode="In" Type="Int32" />
+      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+      <Parameter Name="cja_Id" Mode="In" Type="Int16" />
+      <Parameter Name="dev_Fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="dev_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="dev_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbDevolucionDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucionDetalle_Update_Result)">
+      <Parameter Name="devd_Id" Mode="In" Type="Int32" />
+      <Parameter Name="dev_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="devd_CantidadProducto" Mode="In" Type="Decimal" />
+      <Parameter Name="devd_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="devd_Monto" Mode="In" Type="Decimal" />
+      <Parameter Name="devd_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="devd_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -5250,6 +5268,12 @@
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDevolucionDetalle_Update_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDevolucion_Update_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
 </Schema>

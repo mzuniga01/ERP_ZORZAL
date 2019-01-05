@@ -2097,5 +2097,71 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result>("UDP_Vent_tbSolicitudEfectivoDetalle_Insert", solef_IdParameter, deno_IdParameter, soled_CantidadSolicitadaParameter, soled_CantidadEntregadaParameter, soled_MontoEntregadoParameter);
         }
+    
+        public virtual ObjectResult<UDP_Vent_tbDevolucion_Update_Result> UDP_Vent_tbDevolucion_Update(Nullable<int> dev_Id, Nullable<long> fact_Id, Nullable<short> cja_Id, Nullable<System.DateTime> dev_Fecha, Nullable<int> dev_UsuarioCrea, Nullable<System.DateTime> dev_FechaCrea)
+        {
+            var dev_IdParameter = dev_Id.HasValue ?
+                new ObjectParameter("dev_Id", dev_Id) :
+                new ObjectParameter("dev_Id", typeof(int));
+    
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(long));
+    
+            var cja_IdParameter = cja_Id.HasValue ?
+                new ObjectParameter("cja_Id", cja_Id) :
+                new ObjectParameter("cja_Id", typeof(short));
+    
+            var dev_FechaParameter = dev_Fecha.HasValue ?
+                new ObjectParameter("dev_Fecha", dev_Fecha) :
+                new ObjectParameter("dev_Fecha", typeof(System.DateTime));
+    
+            var dev_UsuarioCreaParameter = dev_UsuarioCrea.HasValue ?
+                new ObjectParameter("dev_UsuarioCrea", dev_UsuarioCrea) :
+                new ObjectParameter("dev_UsuarioCrea", typeof(int));
+    
+            var dev_FechaCreaParameter = dev_FechaCrea.HasValue ?
+                new ObjectParameter("dev_FechaCrea", dev_FechaCrea) :
+                new ObjectParameter("dev_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucion_Update_Result>("UDP_Vent_tbDevolucion_Update", dev_IdParameter, fact_IdParameter, cja_IdParameter, dev_FechaParameter, dev_UsuarioCreaParameter, dev_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbDevolucionDetalle_Update_Result> UDP_Vent_tbDevolucionDetalle_Update(Nullable<int> devd_Id, Nullable<int> dev_Id, string prod_Codigo, Nullable<decimal> devd_CantidadProducto, string devd_Descripcion, Nullable<decimal> devd_Monto, Nullable<int> devd_UsuarioCrea, Nullable<System.DateTime> devd_FechaCrea)
+        {
+            var devd_IdParameter = devd_Id.HasValue ?
+                new ObjectParameter("devd_Id", devd_Id) :
+                new ObjectParameter("devd_Id", typeof(int));
+    
+            var dev_IdParameter = dev_Id.HasValue ?
+                new ObjectParameter("dev_Id", dev_Id) :
+                new ObjectParameter("dev_Id", typeof(int));
+    
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var devd_CantidadProductoParameter = devd_CantidadProducto.HasValue ?
+                new ObjectParameter("devd_CantidadProducto", devd_CantidadProducto) :
+                new ObjectParameter("devd_CantidadProducto", typeof(decimal));
+    
+            var devd_DescripcionParameter = devd_Descripcion != null ?
+                new ObjectParameter("devd_Descripcion", devd_Descripcion) :
+                new ObjectParameter("devd_Descripcion", typeof(string));
+    
+            var devd_MontoParameter = devd_Monto.HasValue ?
+                new ObjectParameter("devd_Monto", devd_Monto) :
+                new ObjectParameter("devd_Monto", typeof(decimal));
+    
+            var devd_UsuarioCreaParameter = devd_UsuarioCrea.HasValue ?
+                new ObjectParameter("devd_UsuarioCrea", devd_UsuarioCrea) :
+                new ObjectParameter("devd_UsuarioCrea", typeof(int));
+    
+            var devd_FechaCreaParameter = devd_FechaCrea.HasValue ?
+                new ObjectParameter("devd_FechaCrea", devd_FechaCrea) :
+                new ObjectParameter("devd_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucionDetalle_Update_Result>("UDP_Vent_tbDevolucionDetalle_Update", devd_IdParameter, dev_IdParameter, prod_CodigoParameter, devd_CantidadProductoParameter, devd_DescripcionParameter, devd_MontoParameter, devd_UsuarioCreaParameter, devd_FechaCreaParameter);
+        }
     }
 }

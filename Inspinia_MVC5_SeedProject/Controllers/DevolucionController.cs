@@ -238,39 +238,40 @@ namespace ERP_ZORZAL.Controllers
             return View(tbDevolucion);
         }
 
-       //[HttpPost]
-       // public ActionResult UpdateDevolucionDetalle(tbDevolucionDetalle EditDevolucionDetalle)
-       // {
-       //     try {
-       //         var MensajeError = 0;
-       //         IEnumerable<object> list = null;
-       //         list = db.UDP_Vent_tbDevolucionDetalle_Update(EditDevolucionDetalle.devd_Id,
-       //             EditDevolucionDetalle.dev_Id,
-       //             EditDevolucionDetalle.prod_Codigo,
-       //             EditDevolucionDetalle.devd_CantidadProducto,
-       //             EditDevolucionDetalle.devd_Descripcion,
-       //             EditDevolucionDetalle.devd_Monto,
-       //             EditDevolucionDetalle.devd_UsuarioCrea,
-       //             EditDevolucionDetalle.devd_FechaCrea);
-       //         foreach (UDP_Vent_tbDevolucionDetalle_Update_Result DevolucionDetalle in list)
-       //             MensajeError = DevolucionDetalle.MensajeError;
-       //         if (MensajeError == -1)
-       //         {
-       //             ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-       //             return PartialView("_EditNumeracion");
-       //         }
-       //         else
-       //         {
-       //             return RedirectToAction("Index");
-       //         }
-       //     }
-       //     catch (Exception Ex)
-       //     {
-       //         Ex.Message.ToString();
-       //         ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-       //         return PartialView("_EditNumeracion", EditDevolucionDetalle);
-       //     }
-       // }
+        [HttpPost]
+        public ActionResult UpdateDevolucionDetalle(tbDevolucionDetalle EditDevolucionDetalle)
+        {
+            try
+            {
+                var MensajeError = 0;
+                IEnumerable<object> list = null;
+                list = db.UDP_Vent_tbDevolucionDetalle_Update(EditDevolucionDetalle.devd_Id,
+                    EditDevolucionDetalle.dev_Id,
+                    EditDevolucionDetalle.prod_Codigo,
+                    EditDevolucionDetalle.devd_CantidadProducto,
+                    EditDevolucionDetalle.devd_Descripcion,
+                    EditDevolucionDetalle.devd_Monto,
+                    EditDevolucionDetalle.devd_UsuarioCrea,
+                    EditDevolucionDetalle.devd_FechaCrea);
+                foreach (UDP_Vent_tbDevolucionDetalle_Update_Result DevolucionDetalle in list)
+                    MensajeError = DevolucionDetalle.MensajeError;
+                if (MensajeError == -1)
+                {
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    return PartialView("_EditarDetalleDevolucion");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                return PartialView("_EditarDetalleDevolucion", EditDevolucionDetalle);
+            }
+        }
 
 
 
