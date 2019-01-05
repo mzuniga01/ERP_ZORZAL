@@ -60,8 +60,8 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbPago> tbPago { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedido> tbPedido { get; set; }
+        public virtual tbSucursal tbSucursal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
-        public virtual tbSucursal tbSucursal { get; set; }
     }
 }

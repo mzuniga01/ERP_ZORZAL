@@ -127,11 +127,11 @@ namespace ERP_GMEDINA.Models
             this.tbPuntoEmision1 = new HashSet<tbPuntoEmision>();
             this.tbPuntoEmisionDetalle = new HashSet<tbPuntoEmisionDetalle>();
             this.tbPuntoEmisionDetalle1 = new HashSet<tbPuntoEmisionDetalle>();
-            this.tbFacturaDetalle = new HashSet<tbFacturaDetalle>();
-            this.tbFacturaDetalle1 = new HashSet<tbFacturaDetalle>();
             this.tbMovimientoCaja2 = new HashSet<tbMovimientoCaja>();
             this.tbMovimientoCaja11 = new HashSet<tbMovimientoCaja>();
             this.tbMovimientoCaja21 = new HashSet<tbMovimientoCaja>();
+            this.tbFacturaDetalle = new HashSet<tbFacturaDetalle>();
+            this.tbFacturaDetalle1 = new HashSet<tbFacturaDetalle>();
         }
     
         public int usu_Id { get; set; }
@@ -365,14 +365,14 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPuntoEmisionDetalle> tbPuntoEmisionDetalle1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbMovimientoCaja> tbMovimientoCaja2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbMovimientoCaja> tbMovimientoCaja11 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbMovimientoCaja> tbMovimientoCaja21 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle1 { get; set; }
     }
 }

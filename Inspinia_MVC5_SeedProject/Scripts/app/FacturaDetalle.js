@@ -47,6 +47,7 @@ $('#AgregarDetalleFactura').click(function () {
         copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + DescripcionProducto + "</td>";
         copiar += "<td id = 'factd_CantidadCreate'>" + CantidadProducto + "</td>";
         copiar += "<td id = 'Precio_UnitarioCreate'>" + PrecioUnitario + "</td>";
+        copiar += "<td id = 'ImpuestoCreate'>" + Impuesto + "</td>";
         copiar += "<td id = 'factd_MontoDescuentoCreate'>" + MontoDescuento + "</td>";
         copiar += "<td id = 'TotalProductoCreate'>" + Total + "</td>";
         copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
@@ -55,29 +56,28 @@ $('#AgregarDetalleFactura').click(function () {
 
         //Subtotal 
         var totalProducto = $('#TotalProducto').val();
-        var sutotal = parseFloat(document.getElementById("Subtotal").innerHTML);
+        var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
 
         if (document.getElementById("Subtotal").innerHTML == '') {
             totalProducto = $('#TotalProducto').val();
             document.getElementById("Subtotal").innerHTML = parseFloat(totalProducto);
         }
-        else
-        {
-            document.getElementById("Subtotal").innerHTML = parseFloat(sutotal) + parseFloat(totalProducto);
+        else {
+            document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
         }
         //Impuesto
         var totalProducto = document.getElementById("TotalProducto").value;
         var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
-        var impuestototal = parseFloat(document.getElementById("isv").innerHTML);
+        var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
         var porcentaje = parseFloat(impuesto / 100);
-        var impuestos = (totalProducto * porcentaje);        
+        var impuestos = (totalProducto * porcentaje);
 
         if (document.getElementById("isv").innerHTML == '') {
             impuesto = document.getElementById("factd_Impuesto").value;
             document.getElementById("isv").innerHTML = parseFloat(impuestos);
         }
         else {
-            document.getElementById("isv").innerHTML = parseFloat(impuestototal) + parseFloat(impuestos);
+            document.getElementById("isv").innerHTML = parseFloat(impuestotal) + parseFloat(impuestos);
         }
 
         //Grantotal
@@ -85,7 +85,7 @@ $('#AgregarDetalleFactura').click(function () {
             document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos);
         }
         else {
-            document.getElementById("total").innerHTML = parseFloat(sutotal) + parseFloat(totalProducto) + parseFloat(impuestototal) + parseFloat(impuestos);
+            document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos);
         }
                   
 
@@ -134,16 +134,28 @@ function GetFacturaDetalle() {
 };
 
 $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDetalle", function () {
-    var TotalProducto = parseFloat(document.getElementById("TotalProductoCreate").innerHTML);
-    console.log(TotalProducto)
+    //Subtotal
+    var SubtotalProducto = $(this).parents("tr").find("td")[6].innerHTML;
     var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
-    console.log(subtotal)
-    document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) - parseFloat(TotalProducto);
+    document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) - parseFloat(SubtotalProducto);
+
+    //Impuesto
+    var impuesto = $(this).parents("tr").find("td")[4].innerHTML;
+    var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
+    var porcentaje = parseFloat(impuesto.replace(',', '.') / 100);
+    var impuestos = (SubtotalProducto * porcentaje);
+    document.getElementById("isv").innerHTML = parseFloat(impuestotal) - parseFloat(impuestos);
+
+    //GranTotal
+    document.getElementById("total").innerHTML = (parseFloat(subtotal) - parseFloat(SubtotalProducto)) + (parseFloat(impuestotal) - parseFloat(impuestos));
+
+
     $(this).closest('tr').remove();
     idItem = $(this).closest('tr').data('id');
     var FacturaDetalle = {
         factd_Id: idItem,
     };
+
     $.ajax({
         url: "/Factura/RemoveFacturaDetalle",
         method: "POST",

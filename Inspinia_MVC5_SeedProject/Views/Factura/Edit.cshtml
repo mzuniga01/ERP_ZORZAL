@@ -41,7 +41,7 @@
 
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.fact_Id)
-                            @Html.Hidden("RedirectTo", Url.Action("Index", "Factura")); 
+                            @Html.Hidden("RedirectTo", Url.Action("Index", "Factura"))
                             @**Auditoria*@
                             @Html.HiddenFor(model => model.fact_UsuarioCrea)
                             @Html.HiddenFor(model => model.fact_FechaCrea)
@@ -56,24 +56,24 @@
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.suc_Id)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.suc_Id)</span>
                                 </div>
                                 @Html.LabelFor(model => model.cja_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.cja_Id)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.pemi_NumeroCAI)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.pemi_NumeroCAI)</span>
                                 </div>
                                 @Html.LabelFor(model => model.fact_Codigo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.fact_Codigo)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Codigo)</span>
                                 </div>
                             </div>
 
@@ -81,15 +81,15 @@
                                 @Html.LabelFor(model => model.fact_Fecha, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.fact_Fecha, new { htmlAttributes = new { @class = "form-control", @id = "fechafacturaEdit" } })
-                                    @Html.ValidationMessageFor(model => model.fact_Fecha)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Fecha)</span>
                                 </div>
                                 @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.clte_Identificacion)
-                                    @Html.ValidationMessageFor(model => model.clte_Identificacion)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Identificacion)</span>
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
                             </div>
 
@@ -97,12 +97,12 @@
                                 @Html.LabelFor(model => model.fact_AlCredito, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.fact_AlCredito)
-                                    @Html.ValidationMessageFor(model => model.fact_AlCredito)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_AlCredito)</span>
                                 </div>
                                 @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.clte_Nombres)
-                                    @Html.ValidationMessageFor(model => model.clte_Nombres)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Nombres)</span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -110,7 +110,7 @@
                                     @Html.LabelFor(model => model.fact_DiasCredito, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.fact_DiasCredito)
-                                        @Html.ValidationMessageFor(model => model.fact_DiasCredito)
+                                        <span class="validation-error"> @Html.ValidationMessageFor(model => model.fact_DiasCredito)</span>
                                     </div>
                                 </div>
                             </div>
@@ -118,12 +118,12 @@
                                 @Html.LabelFor(model => model.fact_AutorizarDescuento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.fact_AutorizarDescuento)
-                                    @Html.ValidationMessageFor(model => model.fact_AutorizarDescuento)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_AutorizarDescuento)</span>
                                 </div>
                                 @Html.LabelFor(model => model.fact_Vendedor, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.fact_Vendedor)
-                                    @Html.ValidationMessageFor(model => model.fact_Vendedor)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Vendedor)</span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -131,13 +131,13 @@
                                     @Html.LabelFor(model => model.fact_PorcentajeDescuento, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.fact_PorcentajeDescuento)
-                                        @Html.ValidationMessageFor(model => model.fact_PorcentajeDescuento)
+                                        <span class="validation-error"> @Html.ValidationMessageFor(model => model.fact_PorcentajeDescuento)</span>
                                     </div>
                                 </div>
                                 @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.DropDownList("esfac_Id", null, "Seleccione Tipo Estado", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.esfac_Id)
+                                    @Html.DropDownList("esfac_Id", null, new { @class = "form-control", @readonly = "readonly" })
+                                    <span class="validation-error"> @Html.ValidationMessageFor(model => model.esfac_Id)</span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -283,6 +283,10 @@
 <script src="~/Scripts/app/Credito.js"></script>
 <script src="~/Scripts/app/Cliente.js"></script>
 <script src="~/Scripts/app/AnularFactura.js"></script>
+<script>
+    $("#esfac_Id").find("option[value=4]").remove();
+    
+</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

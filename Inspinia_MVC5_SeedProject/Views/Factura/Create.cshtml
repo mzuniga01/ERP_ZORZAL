@@ -75,7 +75,7 @@
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Identificacion)</span>
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
                             </div>
 
@@ -175,6 +175,9 @@
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Credito.js"></script>
 <script src="~/Scripts/app/Cliente.js"></script>
+<script>
+    $("#esfac_Id").find("option[value=4]").remove();
+</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

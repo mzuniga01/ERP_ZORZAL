@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
     var Estado = $('#esfac_Id').val();
+    document.getElementById("esfac_Id").disabled = true;
+
     if (Estado == 4) {
         $('#bottonAnular').hide();
         document.getElementById("esfac_Id").disabled = true;

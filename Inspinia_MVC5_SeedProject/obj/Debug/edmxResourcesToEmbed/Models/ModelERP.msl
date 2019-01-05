@@ -1115,24 +1115,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbFacturaDetalle">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbFacturaDetalle">
-        <MappingFragment StoreEntitySet="tbFacturaDetalle">
-          <ScalarProperty Name="factd_FechaModifica" ColumnName="factd_FechaModifica" />
-          <ScalarProperty Name="factd_UsuarioModifica" ColumnName="factd_UsuarioModifica" />
-          <ScalarProperty Name="factd_FechaCrea" ColumnName="factd_FechaCrea" />
-          <ScalarProperty Name="factd_UsuarioCrea" ColumnName="factd_UsuarioCrea" />
-          <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
-          <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
-          <ScalarProperty Name="factd_PorcentajeDescuento" ColumnName="factd_PorcentajeDescuento" />
-          <ScalarProperty Name="factd_MontoDescuento" ColumnName="factd_MontoDescuento" />
-          <ScalarProperty Name="factd_Cantidad" ColumnName="factd_Cantidad" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="factd_Id" ColumnName="factd_Id" />
-          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbFacturaHistorica">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbFacturaHistorica">
         <MappingFragment StoreEntitySet="tbFacturaHistorica">
@@ -1439,5 +1421,23 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="tbFacturaDetalle">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbFacturaDetalle">
+        <MappingFragment StoreEntitySet="tbFacturaDetalle">
+          <ScalarProperty Name="factd_FechaModifica" ColumnName="factd_FechaModifica" />
+          <ScalarProperty Name="factd_UsuarioModifica" ColumnName="factd_UsuarioModifica" />
+          <ScalarProperty Name="factd_FechaCrea" ColumnName="factd_FechaCrea" />
+          <ScalarProperty Name="factd_UsuarioCrea" ColumnName="factd_UsuarioCrea" />
+          <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
+          <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
+          <ScalarProperty Name="factd_PorcentajeDescuento" ColumnName="factd_PorcentajeDescuento" />
+          <ScalarProperty Name="factd_MontoDescuento" ColumnName="factd_MontoDescuento" />
+          <ScalarProperty Name="factd_Cantidad" ColumnName="factd_Cantidad" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="factd_Id" ColumnName="factd_Id" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

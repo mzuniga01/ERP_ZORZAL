@@ -5317,7 +5317,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <EntitySet Name="tbEstadoSolicitudCredito" EntityType="ERP_ZORZALModel.tbEstadoSolicitudCredito" />
           <EntitySet Name="tbExoneracion" EntityType="ERP_ZORZALModel.tbExoneracion" />
           <EntitySet Name="tbFactura" EntityType="ERP_ZORZALModel.tbFactura" />
-          <EntitySet Name="tbFacturaDetalle" EntityType="ERP_ZORZALModel.tbFacturaDetalle" />
           <EntitySet Name="tbFacturaHistorica" EntityType="ERP_ZORZALModel.tbFacturaHistorica" />
           <EntitySet Name="tbListadoPrecioDetalle" EntityType="ERP_ZORZALModel.tbListadoPrecioDetalle" />
           <EntitySet Name="tbListaPrecio" EntityType="ERP_ZORZALModel.tbListaPrecio" />
@@ -5946,10 +5945,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <End Role="tbProducto" EntitySet="tbProducto" />
             <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" Association="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo">
-            <End Role="tbProducto" EntitySet="tbProducto" />
-            <End Role="tbFacturaDetalle" EntitySet="tbFacturaDetalle" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbListado_tbProducto_prod_Codigo" Association="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo">
             <End Role="tbProducto" EntitySet="tbProducto" />
             <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
@@ -6062,10 +6057,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <End Role="tbFactura" EntitySet="tbFactura" />
             <End Role="tbPedido" EntitySet="tbPedido" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" Association="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id">
-            <End Role="tbFactura" EntitySet="tbFactura" />
-            <End Role="tbFacturaDetalle" EntitySet="tbFacturaDetalle" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbSucursal_tbfactura_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id">
             <End Role="tbSucursal" EntitySet="tbSucursal" />
             <End Role="tbFactura" EntitySet="tbFactura" />
@@ -6111,14 +6102,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Telefono" Mode="In" Type="String" />
           </FunctionImport>
-          <AssociationSet Name="FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Crea" Association="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Crea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbFacturaDetalle" EntitySet="tbFacturaDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Modifica" Association="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Modifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbFacturaDetalle" EntitySet="tbFacturaDetalle" />
-          </AssociationSet>
           <FunctionImport Name="UDP_Vent_tbFactura_Estado" ReturnType="Collection(Int64)">
             <Parameter Name="fact_Id" Mode="In" Type="Int32" />
             <Parameter Name="esfac_Id" Mode="In" Type="Int32" />
@@ -6190,6 +6173,23 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="arqde_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="arqde_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="tbFacturaDetalle" EntityType="ERP_ZORZALModel.tbFacturaDetalle" />
+          <AssociationSet Name="FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Crea" Association="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Crea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbFacturaDetalle" EntitySet="tbFacturaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Modifica" Association="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Modifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbFacturaDetalle" EntitySet="tbFacturaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" Association="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo">
+            <End Role="tbProducto" EntitySet="tbProducto" />
+            <End Role="tbFacturaDetalle" EntitySet="tbFacturaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" Association="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id">
+            <End Role="tbFactura" EntitySet="tbFactura" />
+            <End Role="tbFacturaDetalle" EntitySet="tbFacturaDetalle" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -6584,11 +6584,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <NavigationProperty Name="tbPuntoEmision1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmision" />
           <NavigationProperty Name="tbPuntoEmisionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
           <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
-          <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbFacturaDetalle" />
-          <NavigationProperty Name="tbFacturaDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbFacturaDetalle" />
           <NavigationProperty Name="tbMovimientoCaja2" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioAceptacion" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
           <NavigationProperty Name="tbMovimientoCaja11" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioApertura" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
           <NavigationProperty Name="tbMovimientoCaja21" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioArquea" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
+          <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbFacturaDetalle" />
+          <NavigationProperty Name="tbFacturaDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbFacturaDetalle" />
         </EntityType>
         <EntityType Name="tbActividadEconomica">
           <Key>
@@ -6987,9 +6987,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" FromRole="tbProducto" ToRole="tbProductoSubcategoria" />
           <NavigationProperty Name="tbListaPrecio" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id" FromRole="tbProducto" ToRole="tbListaPrecio" />
           <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbSalidaDetalle" />
-          <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbFacturaDetalle" />
           <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbListadoPrecioDetalle" />
           <NavigationProperty Name="tbPedidoDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbPedidoDetalle" />
+          <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbFacturaDetalle" />
         </EntityType>
         <EntityType Name="tbProductoCategoria">
           <Key>
@@ -7357,29 +7357,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <NavigationProperty Name="tbFacturaHistorica" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbFacturaHistorica_fact_Id" FromRole="tbFactura" ToRole="tbFacturaHistorica" />
           <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" FromRole="tbFactura" ToRole="tbPago" />
           <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPedido_fact_Id" FromRole="tbFactura" ToRole="tbPedido" />
-          <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbFacturaDetalle" />
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" FromRole="tbFactura" ToRole="tbSucursal" />
-        </EntityType>
-        <EntityType Name="tbFacturaDetalle">
-          <Key>
-            <PropertyRef Name="factd_Id" />
-          </Key>
-          <Property Name="fact_Id" Type="Int64" Nullable="false" />
-          <Property Name="factd_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="factd_Cantidad" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
-          <Property Name="factd_MontoDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="factd_PorcentajeDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="factd_Impuesto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="factd_PrecioUnitario" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="factd_UsuarioCrea" Type="Int32" Nullable="false" />
-          <Property Name="factd_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="factd_UsuarioModifica" Type="Int32" />
-          <Property Name="factd_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" FromRole="tbFacturaDetalle" ToRole="tbProducto" />
-          <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" FromRole="tbFacturaDetalle" ToRole="tbFactura" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Crea" FromRole="tbFacturaDetalle" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbFacturaDetalle" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbFacturaDetalle" />
         </EntityType>
         <EntityType Name="tbFacturaHistorica">
           <Key>
@@ -9531,18 +9510,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo">
-          <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbFacturaDetalle" Role="tbFacturaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbProducto">
-              <PropertyRef Name="prod_Codigo" />
-            </Principal>
-            <Dependent Role="tbFacturaDetalle">
-              <PropertyRef Name="prod_Codigo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vent_tbListado_tbProducto_prod_Codigo">
           <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbListadoPrecioDetalle" Role="tbListadoPrecioDetalle" Multiplicity="*" />
@@ -9879,18 +9846,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vent_tbFacturaDetalle_tbFactura_fact_Id">
-          <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbFacturaDetalle" Role="tbFacturaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbFactura">
-              <PropertyRef Name="fact_Id" />
-            </Principal>
-            <Dependent Role="tbFacturaDetalle">
-              <PropertyRef Name="fact_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vent_tbSucursal_tbfactura_suc_Id">
           <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="*" />
@@ -10019,30 +9974,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Type="String" Name="clte_Telefono" Nullable="false" MaxLength="25" />
           <Property Type="String" Name="clte_ContactoTelefono" Nullable="false" MaxLength="25" />
         </ComplexType>
-        <Association Name="FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Crea">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbFacturaDetalle" Role="tbFacturaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbFacturaDetalle">
-              <PropertyRef Name="factd_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Modifica">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbFacturaDetalle" Role="tbFacturaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbFacturaDetalle">
-              <PropertyRef Name="factd_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Insert_Result">
           <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
@@ -10100,6 +10031,75 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
         <ComplexType Name="UDP_Vent_tbDenominacionArqueo_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <EntityType Name="tbFacturaDetalle">
+          <Key>
+            <PropertyRef Name="factd_Id" />
+          </Key>
+          <Property Name="fact_Id" Type="Int64" Nullable="false" />
+          <Property Name="factd_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="factd_Cantidad" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="factd_MontoDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="factd_PorcentajeDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="factd_Impuesto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="factd_PrecioUnitario" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="factd_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="factd_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="factd_UsuarioModifica" Type="Int32" />
+          <Property Name="factd_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Crea" FromRole="tbFacturaDetalle" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbFacturaDetalle" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" FromRole="tbFacturaDetalle" ToRole="tbProducto" />
+          <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" FromRole="tbFacturaDetalle" ToRole="tbFactura" />
+        </EntityType>
+        <Association Name="FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Crea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbFacturaDetalle" Role="tbFacturaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbFacturaDetalle">
+              <PropertyRef Name="factd_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Modifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbFacturaDetalle" Role="tbFacturaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbFacturaDetalle">
+              <PropertyRef Name="factd_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo">
+          <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbFacturaDetalle" Role="tbFacturaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProducto">
+              <PropertyRef Name="prod_Codigo" />
+            </Principal>
+            <Dependent Role="tbFacturaDetalle">
+              <PropertyRef Name="prod_Codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbFacturaDetalle_tbFactura_fact_Id">
+          <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbFacturaDetalle" Role="tbFacturaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbFactura">
+              <PropertyRef Name="fact_Id" />
+            </Principal>
+            <Dependent Role="tbFacturaDetalle">
+              <PropertyRef Name="fact_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11221,24 +11221,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbFacturaDetalle">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbFacturaDetalle">
-              <MappingFragment StoreEntitySet="tbFacturaDetalle">
-                <ScalarProperty Name="factd_FechaModifica" ColumnName="factd_FechaModifica" />
-                <ScalarProperty Name="factd_UsuarioModifica" ColumnName="factd_UsuarioModifica" />
-                <ScalarProperty Name="factd_FechaCrea" ColumnName="factd_FechaCrea" />
-                <ScalarProperty Name="factd_UsuarioCrea" ColumnName="factd_UsuarioCrea" />
-                <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
-                <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
-                <ScalarProperty Name="factd_PorcentajeDescuento" ColumnName="factd_PorcentajeDescuento" />
-                <ScalarProperty Name="factd_MontoDescuento" ColumnName="factd_MontoDescuento" />
-                <ScalarProperty Name="factd_Cantidad" ColumnName="factd_Cantidad" />
-                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-                <ScalarProperty Name="factd_Id" ColumnName="factd_Id" />
-                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbFacturaHistorica">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbFacturaHistorica">
               <MappingFragment StoreEntitySet="tbFacturaHistorica">
@@ -11545,6 +11527,24 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="tbFacturaDetalle">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbFacturaDetalle">
+              <MappingFragment StoreEntitySet="tbFacturaDetalle">
+                <ScalarProperty Name="factd_FechaModifica" ColumnName="factd_FechaModifica" />
+                <ScalarProperty Name="factd_UsuarioModifica" ColumnName="factd_UsuarioModifica" />
+                <ScalarProperty Name="factd_FechaCrea" ColumnName="factd_FechaCrea" />
+                <ScalarProperty Name="factd_UsuarioCrea" ColumnName="factd_UsuarioCrea" />
+                <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
+                <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
+                <ScalarProperty Name="factd_PorcentajeDescuento" ColumnName="factd_PorcentajeDescuento" />
+                <ScalarProperty Name="factd_MontoDescuento" ColumnName="factd_MontoDescuento" />
+                <ScalarProperty Name="factd_Cantidad" ColumnName="factd_Cantidad" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="factd_Id" ColumnName="factd_Id" />
+                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
