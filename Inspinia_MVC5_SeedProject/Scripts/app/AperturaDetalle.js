@@ -23,7 +23,7 @@ $('#AgregarDetalleDenominacion').click(function () {
         copiar += "<td id = 'SuntotalCreate'>" + Subtotal + "</td>";
         copiar += "<td>" + '<button id="removeDenominacion" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
         copiar += "</tr>";
-        $('#DenominacionDetalle').append(copiar);
+        $('#DenominacionDetalle').append(copiar);       
     }
 
     //Total 
@@ -33,15 +33,23 @@ $('#AgregarDetalleDenominacion').click(function () {
     if (document.getElementById("Total").innerHTML == '') {
         totalDenominacion = $('#Subtotal').val();
         document.getElementById("Total").innerHTML = parseFloat(totalDenominacion);
+        $('#deno_Id').val('');
+        $('#Cantidad').val('');
+        $('#Valor').val('');
+        $('#Subtotal').val('');
     }
     else {
         document.getElementById("Total").innerHTML = parseFloat(sutotal) + parseFloat(totalDenominacion);
+        $('#deno_Id').val('');
+        $('#Cantidad').val('');
+        $('#Valor').val('');
+        $('#Subtotal').val('');
     }
 });
 
 $(document).on("click", "#DenominacionDetalle tbody tr td button#removeDenominacion", function () {
-    var totalDenominacion = parseFloat(document.getElementById("Subtotal").innerHTML);
-    console.log(TotalProducto)
+    var totalDenominacion = $(this).parents("tr").find("td")[3].innerHTML;
+    console.log(totalDenominacion)
     var subtotal = parseFloat(document.getElementById("Total").innerHTML);
     console.log(subtotal)
     document.getElementById("Total").innerHTML = parseFloat(subtotal) - parseFloat(totalDenominacion);

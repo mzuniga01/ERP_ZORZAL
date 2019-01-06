@@ -5,7 +5,20 @@
     if (Estado == 4) {
         $('#bottonAnular').hide();
         document.getElementById("esfac_Id").disabled = true;
-    }
+        document.getElementById("fechafacturaEdit").disabled = true;
+        document.getElementById("clte_Identificacion").disabled = true;
+        document.getElementById("fact_AlCredito").disabled = true;
+        document.getElementById("clte_Nombres").disabled = true;
+        document.getElementById("fact_AutorizarDescuento").disabled = true;
+        document.getElementById("fact_Vendedor").disabled = true;
+        document.getElementById("AddCliente").disabled = true;
+        document.getElementById("btnSave").disabled = true;
+        document.getElementById("AddProducto").disabled = true;
+        document.getElementById("EditProducto").disabled = true;
+        $('#tbodyID').find('th, td').prop('disabled', true);
+   
+      
+   }
 });
 
 function AnularFactura() {

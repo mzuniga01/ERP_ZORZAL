@@ -243,6 +243,7 @@
     <Compile Include="Models\Factura.cs" />
     <Compile Include="Models\FacturaDetalle.cs" />
     <Compile Include="Models\FacturaHistorica.cs" />
+    <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListaPrecioDetalle.cs" />
     <Compile Include="Models\ListasPrecios.cs" />

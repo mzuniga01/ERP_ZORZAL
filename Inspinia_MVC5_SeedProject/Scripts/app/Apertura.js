@@ -31,6 +31,7 @@ function GetDenominacion() {
                 $.each(data, function (key, val) {
                     var Cantidad = $('#Cantidad').val();
                     $("#Valor").val(data);
+                    console.log(Cantidad);
                     var Subtotal = Cantidad * data;
                     $("#Subtotal").val(Subtotal);
 
