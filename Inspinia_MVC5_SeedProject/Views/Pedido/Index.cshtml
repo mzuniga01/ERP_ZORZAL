@@ -38,26 +38,24 @@
                 @Html.DisplayNameFor(model => model.tbEstadoPedido.esped_Descripcion)
             </th>
             <th>
-                Sucursal
+                @Html.DisplayNameFor(model => model.suc_Id)
             </th>
             <th>
-                Fecha Elaboración
+                @Html.DisplayNameFor(model => model.ped_FechaElaboracion)
             </th>
             <th>
-                Cliente
+                @Html.DisplayNameFor(model => model.tbCliente.clte_Identificacion)
             </th>
             <th>
-                Nombre Cliente
+                @Html.DisplayNameFor(model => model.tbCliente.clte_Nombres)
             </th>
             <th>
-                Fecha Entrega
+                @Html.DisplayNameFor(model => model.ped_FechaEntrega)
             </th>
             <th>
-                Factura
+                @Html.DisplayNameFor(model => model.fact_Id)
             </th>
-            @*<th>
-                Fecha Facturación
-            </th>*@
+       
             <th>Acciones</th>
         </tr>
     </thead>
@@ -84,7 +82,8 @@
                 @{ if (Convert.ToInt32(item.tbCliente.clte_EsPersonaNatural) == 1)
                     {
                         <td>
-                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres) &nbsp; @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
+                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres) &nbsp;
+                             @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
                         </td>
                     }
                     else
@@ -101,9 +100,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
                 </td>
-                @*<td>
-                   04/12/2018
-                </td>*@
+        
 
                 <td>
                     @Html.ActionLink("Detalles", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs" })

@@ -265,6 +265,7 @@
     <Compile Include="Models\Monedas.cs" />
     <Compile Include="Models\MovimientoCajas.cs" />
     <Compile Include="Models\Pagos.cs" />
+    <Compile Include="Models\PedidoDetalle.cs" />
     <Compile Include="Models\Pedidos.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\PuntoEmision.cs" />
@@ -939,6 +940,7 @@
     <Content Include="Scripts\app\Producto.js" />
     <Content Include="Scripts\app\PuntoEmision.js" />
     <Content Include="Scripts\app\PuntoEmisionDetalle.js" />
+    <Content Include="Scripts\app\SaveDetallePedido.js" />
     <Content Include="Scripts\app\SavePedidoDetalle.js" />
     <Content Include="Scripts\app\SolicitudEfectivo.js" />
     <Content Include="Scripts\app\SolicitudEfectivoDetalle.js" />
@@ -1306,6 +1308,7 @@
     <Content Include="Views\DenominacionArqueo\Details.cshtml" />
     <Content Include="Views\DenominacionArqueo\Edit.cshtml" />
     <Content Include="Views\DenominacionArqueo\Index.cshtml" />
+    <Content Include="Views\Pedido\_DetailsPedidoDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -21,7 +21,7 @@ namespace ERP_ZORZAL.Controllers
             var tbpedido = db.tbPedido.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbEstadoPedido).Include(t => t.tbSucursal);
             return View(tbpedido.ToList());
         }
-       
+
 
         // GET: /Pedido/Details/5
         public ActionResult Details(int? id)
@@ -38,8 +38,21 @@ namespace ERP_ZORZAL.Controllers
             return View(tbPedido);
         }
 
-        // GET: /Pedido/Create
-        public ActionResult Create()
+
+      public ActionResult _IndexCliente()
+        {
+            return PartialView();
+        }
+
+        public ActionResult _IndexProducto()
+        {
+            return PartialView();
+        }
+
+    
+
+    // GET: /Pedido/Create
+    public ActionResult Create()
         {
             //ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             //ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");

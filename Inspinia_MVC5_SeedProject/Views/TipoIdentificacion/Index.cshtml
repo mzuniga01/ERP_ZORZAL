@@ -35,19 +35,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.tpi_Descripcion)
             </th>
-           
-            @*<th>
-                @Html.DisplayNameFor(model => model.tpi_UsuarioCrea)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tpi_FechaCrea)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tpi_UsuarioModifica)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tpi_FechaModifica)
-            </th>*@
+
             <th>Acciones</th>
         </tr>
     </thead>
@@ -62,22 +50,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.tpi_Descripcion)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.tpi_UsuarioCrea)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tpi_FechaCrea)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tpi_UsuarioModifica)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tpi_FechaModifica)
-                    </td>*@
+          
                 <td>
                     @Html.ActionLink("Detalles", "Details", new { id = item.tpi_Id }, new { @class = "btn btn-primary btn-xs" })
                     @Html.ActionLink("Editar", "Edit", new { id = item.tpi_Id }, new { @class = "btn btn-white btn-xs" })
-                    @*@Html.ActionLink("Delete", "Delete", new { id=item.tpi_Id }, new { @class = "btn btn-white btn-sm"})*@
+                   
                 </td>
             </tr>
         }

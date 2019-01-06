@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbPedidoDetalle>
+@using ERP_GMEDINA.Models
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>_DetailsPedidoDetalle tbPedidoDetalle</h5>
+                </div>
+                <div class="ibox-content">
+                    <dl class="dl-horizontal">
+
+                        <table id="" class="table table table-striped  table-bordered">
+                            <thead>
+
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ped_Id)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.pedd_Descripcion)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.pedd_Cantidad)
+                                    </th>
+
+                                    <ht>
+                                        @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
+                                    </ht>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.pedd_CantidadFacturada)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model)
+                            {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ped_Id)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.pedd_Descripcion)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.pedd_Cantidad)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.pedd_CantidadFacturada)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                        </td>
+                                    </tr>
+                                }
+                               </tbody>
+                        </table>
+                    </dl>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
