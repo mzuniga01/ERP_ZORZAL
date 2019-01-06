@@ -105,7 +105,7 @@ namespace ERP_ZORZAL.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include= "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica,nocre_Estado,tbUsuario, tbUsuario1")] tbNotaCredito tbNotaCredito)
+        public ActionResult Edit([Bind(Include= "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica,nocre_Estado,tbUsuario,tbUsuario1")] tbNotaCredito tbNotaCredito)
         {
             if (ModelState.IsValid)
             {

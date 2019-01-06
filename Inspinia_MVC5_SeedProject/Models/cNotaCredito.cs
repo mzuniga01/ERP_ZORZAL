@@ -56,11 +56,11 @@ namespace ERP_GMEDINA.Models
         public int nocre_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Crea")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy }", ApplyFormatInEditMode = true)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime nocre_FechaCrea { get; set; }
 
         [Display(Name = "Usuario Modifica")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public Nullable<int> nocre_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modifica")]

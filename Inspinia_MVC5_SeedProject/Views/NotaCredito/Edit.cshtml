@@ -48,7 +48,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <select id="suc_Id" name="suc_Id" class="form-control" readonly disabled>
+                <select id="suc_Id" name="suc_Id" class="form-control" readonly>
                     <option value="1">San Pedro Sula</option>
                 </select>
             </div>
@@ -57,7 +57,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nocre_Codigo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.nocre_Codigo)
+                @Html.EditorFor(model => model.nocre_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.nocre_Codigo)</span></p>
             </div>
         </div>
@@ -81,12 +81,11 @@
             <div class="col-md-4">
                @if (Model.tbCliente.clte_EsPersonaNatural == true)
                {
-                @Html.EditorFor(model => model.tbCliente.clte_Nombres, new{ htmlAttributes = new { @class = "form-control", @readonly = "readonly"}
-           })
+                @Html.EditorFor(model => model.tbCliente.clte_Nombres)
                }
                else
                {
-                @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly"}})
+                @Html.EditorFor(model => model.tbCliente.clte_NombreComercial)
                }
 
             @*@Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly"} })*@
@@ -101,7 +100,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nocre_FechaEmision, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.nocre_FechaEmision, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.EditorFor(model => model.nocre_FechaEmision, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_FechaEmision)</span></p>
             </div>
         </div>
@@ -164,7 +163,7 @@
                     <select class="form-control" data-val="true" data-val-required="*El campo Anulada es requerido" id="nocre_Anulado"
                             name="nocre_Anulado" value="Si" readonly>
                         <option selected="selected" value="true">Si</option>
-                        <option value="false">No</option>
+                        @*<option value="false">No</option>*@
                     </select>
                 }
                 else
@@ -172,7 +171,7 @@
                     <select class="form-control" data-val="true" data-val-required="*El campo Anulada es requerido" id="nocre_Anulado"
                             name="nocre_Anulado" value="No" readonly>
                         <option selected="selected" value="false">No</option>
-                        <option value="true">Si</option>
+                        @*<option value="true">Si</option>*@
                     </select>
                 }
                
@@ -279,7 +278,7 @@
  $.datepicker.setDefaults($.datepicker.regional['es']);
 $(function () {
     $("#nocre_FechaEmision").datepicker({
-        dateFormat: 'dd/mm/yy'}).datepicker('setDate', new Date());
+        dateFormat: 'dd/mm/yy'});
 });
 </script>
 }
