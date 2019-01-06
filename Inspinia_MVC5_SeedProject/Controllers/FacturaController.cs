@@ -53,6 +53,11 @@ namespace ERP_GMEDINA.Controllers
             return PartialView();
         }
 
+        public ActionResult _IndexListaPrecio()
+        {
+            return PartialView();
+        }
+
         // GET: /Factura/Create
         public ActionResult Create()
         {
@@ -65,6 +70,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
             ViewBag.Producto = db.tbProducto.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
+            ViewBag.ListaPrecio = db.tbListaPrecio.ToList(); 
             Session["Factura"] = null;
             return View();
         }
@@ -162,6 +168,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
                     ViewBag.Producto = db.tbProducto.ToList();
                     ViewBag.Cliente = db.tbCliente.ToList();
+                    ViewBag.ListaPrecio = db.tbListaPrecio.ToList();
                 }
 
            }
@@ -173,6 +180,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbFactura.suc_Id);
             ViewBag.Cliente = db.tbCliente.ToList();
             ViewBag.Producto = db.tbProducto.ToList();
+            ViewBag.ListaPrecio = db.tbListaPrecio.ToList();
             return View(tbFactura);
         }
 
@@ -376,7 +384,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult AnularFactura(int CodFactura, int Estado)
         {
-            var list = db.UDP_Vent_tbFactura_Estado(CodFactura, Helpers.Anulado).ToList();
+            var list = db.UDP_Vent_tbFactura_Estado(CodFactura, Estado).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
     }

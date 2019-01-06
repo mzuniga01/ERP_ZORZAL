@@ -17,7 +17,7 @@ namespace ERP_GMEDINA.Models
     {
         public long fact_Id { get; set; }
         public short factd_Id { get; set; }
-        [Display(Name = "Descripcion Producto")]
+        [Display(Name = "Producto")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string prod_Codigo { get; set; }
         [Display(Name = "Cantidad")]

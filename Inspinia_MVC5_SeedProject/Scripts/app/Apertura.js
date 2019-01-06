@@ -65,3 +65,19 @@ $("#Cantidad").on("keypress keyup blur", function (event) {
         event.preventDefault();
     }
 });
+
+$("#deno_Id").change(function () {
+    var deno_Id = $("#deno_Id").val();
+    if (deno_Id != '') {
+        valido = document.getElementById('MensajeErrorDenominacion');
+        valido.innerText = "";
+    }
+});
+
+$("#Cantidad").change(function () {
+    var Cantidad = $("#Cantidad").val();
+    if (Cantidad != '') {
+        valido = document.getElementById('MensajeErrorCantidad');
+        valido.innerText = "";
+    }
+});

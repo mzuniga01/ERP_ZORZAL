@@ -27,7 +27,7 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.clte_Nombres)
                                 </th>
-                                <th></th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody id="ClienteTbody">
@@ -35,7 +35,7 @@
                            @foreach (var item in Model)
                            {
                                var nombrecliente = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
-                            <tr data-id="@item.clte_Id" data-rtn="@item.clte_Identificacion" data-nombrecliente="@nombrecliente">
+                            <tr data-id="@item.clte_Id" data-rtn="@item.clte_Identificacion" data-nombrecliente="@nombrecliente" data-EsMinorita="@item.">
 
                                 <td>
                                     @Html.DisplayFor(modelItem => item.clte_Id)

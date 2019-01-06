@@ -22,7 +22,7 @@ $(document).ready(function () {
 $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function () {
     idItem = $(this).closest('tr').data('id');
     rtnItem = $(this).closest('tr').data('rtn');
-    nombreItem = $(this).closest('tr').data('nombrecliente');
+    nombreItem = $(this).closest('tr').data('nombrecliente');sss
     $("#clte_Id").val(idItem);
     $("#clte_Identificacion").val(rtnItem);
     $("#clte_Nombres").val(nombreItem);
