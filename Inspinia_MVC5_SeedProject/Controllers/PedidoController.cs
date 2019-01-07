@@ -22,6 +22,11 @@ namespace ERP_ZORZAL.Controllers
             return View(tbpedido.ToList());
         }
 
+        public ActionResult IndexFacturar()
+        {
+
+            return View(db.tbPedido.ToList());
+        }
 
         // GET: /Pedido/Details/5
         public ActionResult Details(int? id)
@@ -206,6 +211,26 @@ namespace ERP_ZORZAL.Controllers
 
 
         // GET: /Pedido/Edit/5
+        public ActionResult EditFacturar(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbPedido tbPedido = db.tbPedido.Find(id);
+            if (tbPedido == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
+            ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
+            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
+            ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
+            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
+            ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion", tbPedido.esped_Id);
+            ViewBag.Producto = db.tbProducto.ToList();
+            return View(tbPedido);
+        }
         public ActionResult Edit(int? id)
         {
             if (id == null)

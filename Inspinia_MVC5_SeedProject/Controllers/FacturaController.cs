@@ -22,12 +22,7 @@ namespace ERP_GMEDINA.Controllers
             return View(tbfactura.ToList());
         }
 
-        public ActionResult IndexFacturar()
-        {
-
-            return View(db.tbPedido.ToList());
-        }
-
+      
 
         // GET: /Factura/Details/5
         public ActionResult Details(long? id)

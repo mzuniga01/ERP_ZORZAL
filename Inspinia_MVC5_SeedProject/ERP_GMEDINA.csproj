@@ -1298,7 +1298,6 @@
     <Content Include="Views\Factura\Edit.cshtml" />
     <Content Include="Views\Factura\Index.cshtml" />
     <Content Include="Views\Factura\_IndexCliente.cshtml" />
-    <Content Include="Views\Factura\IndexFacturar.cshtml" />
     <Content Include="Views\Factura\_CreateFacturaDetalle.cshtml" />
     <Content Include="Views\Factura\_IndexFacturaDetalle.cshtml" />
     <Content Include="Views\Factura\_IndexProducto.cshtml" />
@@ -1320,6 +1319,8 @@
     <Content Include="Views\PuntoEmision\_EditNumeracionDetails.cshtml" />
     <Content Include="Views\PuntoEmision\_CreateNumeracionDetails.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexNumeracionEdit.cshtml" />
+    <Content Include="Views\Pedido\EditFacturar.cshtml" />
+    <Content Include="Views\Pedido\IndexFacturar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
