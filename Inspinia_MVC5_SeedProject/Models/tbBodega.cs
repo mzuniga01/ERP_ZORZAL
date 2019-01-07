@@ -21,8 +21,8 @@ namespace ERP_GMEDINA.Models
             this.tbEntrada = new HashSet<tbEntrada>();
             this.tbEntrada1 = new HashSet<tbEntrada>();
             this.tbInventarioFisico = new HashSet<tbInventarioFisico>();
-            this.tbSucursal = new HashSet<tbSucursal>();
             this.tbSalida = new HashSet<tbSalida>();
+            this.tbSucursal = new HashSet<tbSucursal>();
         }
     
         public int bod_Id { get; set; }
@@ -50,8 +50,8 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbInventarioFisico> tbInventarioFisico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSucursal> tbSucursal { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalida> tbSalida { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSucursal> tbSucursal { get; set; }
     }
 }

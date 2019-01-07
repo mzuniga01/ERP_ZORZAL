@@ -7,7 +7,7 @@ using System.Web;
 namespace ERP_GMEDINA.Models
 {
     [MetadataType(typeof(PedidoDetalleMetaData))]
-    public class PedidoDetalle
+    public partial class tbPedidoDetalle
     {
     }
 
@@ -26,6 +26,7 @@ namespace ERP_GMEDINA.Models
         public decimal pedd_Cantidad { get; set; }
         [Display(Name = "Cantidad Facturada ")]
         public decimal pedd_CantidadFacturada { get; set; }
+   
 
 
         public int pedd_UsuarioCrea { get; set; }

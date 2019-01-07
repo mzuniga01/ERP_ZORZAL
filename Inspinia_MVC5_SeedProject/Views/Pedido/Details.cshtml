@@ -86,10 +86,8 @@
             @Html.DisplayFor(model => model.ped_FechaEntrega)
         </dd>
     </dl>
-
-                    @*@Html.Partial("_DetailsPedidoDetalle", new tbPedidoDetalle())*@
-   
-            @Html.ActionLink("Editar", "Edit", new { id = Model.ped_Id }, new { @class = "btn btn-primary" })
+                    @Html.Partial("_DetailsPedidoDetalle", Model.tbPedidoDetalle, new ViewDataDictionary(new { clave = Model.ped_Id }))
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.ped_Id }, new { @class = "btn btn-primary" })
 
                     <div class="ibox-content">
                         <table class="table table-striped">

@@ -1318,6 +1318,7 @@
     <Content Include="Views\Pedido\_DetailsPedidoDetalle.cshtml" />
     <Content Include="Views\Factura\_IndexListaPrecio.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_EditarSolicitudEfectivoDetalle.cshtml" />
+    <Content Include="Views\Pedido\_EditPedidoDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
