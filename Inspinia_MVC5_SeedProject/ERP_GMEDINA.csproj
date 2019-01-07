@@ -645,7 +645,16 @@
     <Compile Include="Models\UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbSolicitudEfectivo_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbSolicitudEfectivo_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbSucursal_Insert_Result.cs">
@@ -1269,9 +1278,6 @@
     <Content Include="Views\Devolucion\_BuscarFacturaDevolucion.cshtml" />
     <Content Include="Views\MovimientoCaja\_CreateDenominacion.cshtml" />
     <Content Include="Views\Pago\_BuscarFacturaDevolucion.cshtml" />
-    <Content Include="Views\SolicitudEfectivo\_CreateSolicitudEfectivoDetallecccc.cshtml" />
-    <Content Include="Views\SolicitudEfectivo\_IndexDenominacion.cshtml" />
-    <Content Include="Views\SolicitudEfectivo\_maloCreateSolicitudEfectivoDetalle.cshtml" />
     <Content Include="Views\Pedido\_IndexProducto.cshtml" />
     <Content Include="Views\Pago\IndexPagoFactura.cshtml" />
     <Content Include="Views\Sucursal\Create.cshtml" />
@@ -1311,6 +1317,7 @@
     <Content Include="Views\DenominacionArqueo\Index.cshtml" />
     <Content Include="Views\Pedido\_DetailsPedidoDetalle.cshtml" />
     <Content Include="Views\Factura\_IndexListaPrecio.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\_EditarSolicitudEfectivoDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

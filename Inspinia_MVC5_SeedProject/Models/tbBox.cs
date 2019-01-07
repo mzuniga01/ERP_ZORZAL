@@ -17,7 +17,7 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbBox()
         {
-            this.tbSalida = new HashSet<tbSalida>();
+            this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
         }
     
         public string box_Codigo { get; set; }
@@ -30,6 +30,6 @@ namespace ERP_GMEDINA.Models
     
         public virtual tbUsuario tbUsuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSalida> tbSalida { get; set; }
+        public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle { get; set; }
     }
 }

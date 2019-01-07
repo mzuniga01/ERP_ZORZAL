@@ -57,7 +57,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbProductoCategoria> tbProductoCategoria { get; set; }
         public virtual DbSet<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }
         public virtual DbSet<tbProveedor> tbProveedor { get; set; }
-        public virtual DbSet<tbSalida> tbSalida { get; set; }
         public virtual DbSet<tbSalidaDetalle> tbSalidaDetalle { get; set; }
         public virtual DbSet<tbTipoEntrada> tbTipoEntrada { get; set; }
         public virtual DbSet<tbTipoSalida> tbTipoSalida { get; set; }
@@ -90,6 +89,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
         public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
         public virtual DbSet<tbFacturaDetalle> tbFacturaDetalle { get; set; }
+        public virtual DbSet<tbSalida> tbSalida { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {
@@ -2216,6 +2216,85 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("arqde_FechaCrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDenominacionArqueo_Update_Result>("UDP_Vent_tbDenominacionArqueo_Update", arqde_IdParameter, mocja_IdParameter, deno_IdParameter, arqde_CantidadDenominacionParameter, arqde_MontoDenominacionParameter, arqde_UsuarioCreaParameter, arqde_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result> UDP_Vent_tbSolicitudEfectivo_EsAnulada(Nullable<int> solef_Id, Nullable<bool> solef_EsAnulada)
+        {
+            var solef_IdParameter = solef_Id.HasValue ?
+                new ObjectParameter("solef_Id", solef_Id) :
+                new ObjectParameter("solef_Id", typeof(int));
+    
+            var solef_EsAnuladaParameter = solef_EsAnulada.HasValue ?
+                new ObjectParameter("solef_EsAnulada", solef_EsAnulada) :
+                new ObjectParameter("solef_EsAnulada", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result>("UDP_Vent_tbSolicitudEfectivo_EsAnulada", solef_IdParameter, solef_EsAnuladaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivo_Update_Result> UDP_Vent_tbSolicitudEfectivo_Update(Nullable<int> solef_Id, Nullable<int> mocja_Id, Nullable<bool> solef_EsApertura, Nullable<short> mnda_Id, Nullable<bool> solef_EsAnulada, Nullable<int> solef_UsuarioCrea, Nullable<System.DateTime> solef_FechaCrea)
+        {
+            var solef_IdParameter = solef_Id.HasValue ?
+                new ObjectParameter("solef_Id", solef_Id) :
+                new ObjectParameter("solef_Id", typeof(int));
+    
+            var mocja_IdParameter = mocja_Id.HasValue ?
+                new ObjectParameter("mocja_Id", mocja_Id) :
+                new ObjectParameter("mocja_Id", typeof(int));
+    
+            var solef_EsAperturaParameter = solef_EsApertura.HasValue ?
+                new ObjectParameter("solef_EsApertura", solef_EsApertura) :
+                new ObjectParameter("solef_EsApertura", typeof(bool));
+    
+            var mnda_IdParameter = mnda_Id.HasValue ?
+                new ObjectParameter("mnda_Id", mnda_Id) :
+                new ObjectParameter("mnda_Id", typeof(short));
+    
+            var solef_EsAnuladaParameter = solef_EsAnulada.HasValue ?
+                new ObjectParameter("solef_EsAnulada", solef_EsAnulada) :
+                new ObjectParameter("solef_EsAnulada", typeof(bool));
+    
+            var solef_UsuarioCreaParameter = solef_UsuarioCrea.HasValue ?
+                new ObjectParameter("solef_UsuarioCrea", solef_UsuarioCrea) :
+                new ObjectParameter("solef_UsuarioCrea", typeof(int));
+    
+            var solef_FechaCreaParameter = solef_FechaCrea.HasValue ?
+                new ObjectParameter("solef_FechaCrea", solef_FechaCrea) :
+                new ObjectParameter("solef_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivo_Update_Result>("UDP_Vent_tbSolicitudEfectivo_Update", solef_IdParameter, mocja_IdParameter, solef_EsAperturaParameter, mnda_IdParameter, solef_EsAnuladaParameter, solef_UsuarioCreaParameter, solef_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result> UDP_Vent_tbSolicitudEfectivoDetalle_Update(Nullable<int> soled_Id, Nullable<short> deno_Id, Nullable<short> soled_CantidadSolicitada, Nullable<short> soled_CantidadEntregada, Nullable<decimal> soled_MontoEntregado, Nullable<int> soled_UsuarioCrea, Nullable<System.DateTime> soled_FechaCrea)
+        {
+            var soled_IdParameter = soled_Id.HasValue ?
+                new ObjectParameter("soled_Id", soled_Id) :
+                new ObjectParameter("soled_Id", typeof(int));
+    
+            var deno_IdParameter = deno_Id.HasValue ?
+                new ObjectParameter("deno_Id", deno_Id) :
+                new ObjectParameter("deno_Id", typeof(short));
+    
+            var soled_CantidadSolicitadaParameter = soled_CantidadSolicitada.HasValue ?
+                new ObjectParameter("soled_CantidadSolicitada", soled_CantidadSolicitada) :
+                new ObjectParameter("soled_CantidadSolicitada", typeof(short));
+    
+            var soled_CantidadEntregadaParameter = soled_CantidadEntregada.HasValue ?
+                new ObjectParameter("soled_CantidadEntregada", soled_CantidadEntregada) :
+                new ObjectParameter("soled_CantidadEntregada", typeof(short));
+    
+            var soled_MontoEntregadoParameter = soled_MontoEntregado.HasValue ?
+                new ObjectParameter("soled_MontoEntregado", soled_MontoEntregado) :
+                new ObjectParameter("soled_MontoEntregado", typeof(decimal));
+    
+            var soled_UsuarioCreaParameter = soled_UsuarioCrea.HasValue ?
+                new ObjectParameter("soled_UsuarioCrea", soled_UsuarioCrea) :
+                new ObjectParameter("soled_UsuarioCrea", typeof(int));
+    
+            var soled_FechaCreaParameter = soled_FechaCrea.HasValue ?
+                new ObjectParameter("soled_FechaCrea", soled_FechaCrea) :
+                new ObjectParameter("soled_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result>("UDP_Vent_tbSolicitudEfectivoDetalle_Update", soled_IdParameter, deno_IdParameter, soled_CantidadSolicitadaParameter, soled_CantidadEntregadaParameter, soled_MontoEntregadoParameter, soled_UsuarioCreaParameter, soled_FechaCreaParameter);
         }
     }
 }

@@ -54,11 +54,28 @@
         </td>        
                
         <td>
-			@*@Html.ActionLink("Details", "Details", new { id=item.soled_Id }, new { @class = "btn btn-primary btn-sm"})*@
-            @Html.ActionLink("Editar", "Edit", new { id=item.soled_Id }, new { @class = "btn btn-primary btn-sm" })
-            @*@Html.ActionLink("Delete", "Delete", new { id=item.soled_Id }, new { @class = "btn btn-white btn-sm"})*@
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.soled_Id">
+                Editar
+            </button>
         </td>
     </tr>
+
+    <div class="modal fade" id="Editar_@item.soled_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Solicitud Efectivo Detalle</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="EditarSolicitudEfectivoDetalle" class="modal-body">
+                    @Html.Partial("_EditarSolicitudEfectivoDetalle", new ERP_GMEDINA.Models.tbSolicitudEfectivoDetalle() { solef_Id = item.solef_Id, soled_Id = item.soled_Id, deno_Id = item.deno_Id, soled_CantidadSolicitada = item.soled_CantidadSolicitada, soled_CantidadEntregada = item.soled_CantidadEntregada, soled_MontoEntregado = item.soled_MontoEntregado, soled_UsuarioCrea = item.soled_UsuarioCrea, soled_FechaCrea = item.soled_FechaCrea })
+                </div>
+            </div>
+        </div>
+    </div>
+
 }
 
 </table>

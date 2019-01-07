@@ -36,6 +36,23 @@
 
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.solef_Id)
+        @Html.Hidden("RedirectTo", Url.Action("Index", "SolicitudEfectivo")); 
+
+       
+      
+        @**Auditoria*@
+        @Html.HiddenFor(model => model.solef_UsuarioCrea)
+        @Html.HiddenFor(model => model.solef_FechaCrea)
+        @Html.HiddenFor(model => model.solef_UsuarioModifica)
+        @Html.HiddenFor(model => model.solef_FechaModifica)
+        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+        @Html.HiddenFor(model => model.tbUsuario2.usu_Nombres)
+        @Html.HiddenFor(model => model.tbUsuario2.usu_Apellidos)
+
+
+
+
 
 
         <div class="form-group">
@@ -71,8 +88,6 @@
             <div class="col-md-3">
                 @*@Html.DropDownList("mocja_Id",*@ @*String.Empty*@@*null, "Seleccione la Moneda", new { @class = "form-control" })*@
                 @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-
-
                   @Html.ValidationMessageFor(model => model.mocja_Id, "", new { style = "Color:red" })
             </div>
         </div>
@@ -85,6 +100,14 @@
                 @*@Html.EditorFor(model => model.solef_EsApertura)*@
                 @Html.DisplayFor(model => model.solef_EsApertura)
                 @Html.ValidationMessageFor(model => model.solef_EsApertura)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.solef_EsAnulada, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @*@Html.EditorFor(model => model.solef_EsApertura)*@
+                @Html.DisplayFor(model => model.solef_EsAnulada)
+                @Html.ValidationMessageFor(model => model.solef_EsAnulada)
             </div>
         </div>
 
@@ -120,6 +143,10 @@
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+
+                <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Anular">
+                    Anular
+                </button>
             </div>           
         </div>
     </div>
@@ -133,14 +160,62 @@
 
                 </div>
             </div>
-
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.solef_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario2.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario2.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.solef_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
 
         </div>
     </div>
  </div>
 
 
+<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular Solicitud Efectivo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de anular esta Solcitud de Efectivo?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="AnularSolictud();" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/SolicitudEfectivoEsAnulada.js"></script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+
+    
 }

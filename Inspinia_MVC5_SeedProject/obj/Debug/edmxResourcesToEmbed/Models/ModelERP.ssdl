@@ -391,6 +391,7 @@
     <Property Name="pcat_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="pcat_UsuarioModifica" Type="int" />
     <Property Name="pcat_FechaModifica" Type="datetime" />
+    <Property Name="pcat_EsActivo" Type="tinyint" Nullable="false" />
   </EntityType>
   <EntityType Name="tbProductoSubcategoria">
     <Key>
@@ -430,7 +431,6 @@
     <Property Name="fact_Id" Type="bigint" Nullable="false" />
     <Property Name="sal_FechaElaboracion" Type="datetime" Nullable="false" />
     <Property Name="estm_Id" Type="tinyint" Nullable="false" />
-    <Property Name="box_Codigo" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="tsal_Id" Type="tinyint" Nullable="false" />
     <Property Name="sal_RazonDevolucion" Type="varchar" MaxLength="50" />
     <Property Name="sal_UsuarioCrea" Type="int" Nullable="false" />
@@ -442,10 +442,11 @@
     <Key>
       <PropertyRef Name="sald_Id" />
     </Key>
-    <Property Name="sald_Id" Type="int" Nullable="false" />
+    <Property Name="sald_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="sal_Id" Type="int" Nullable="false" />
     <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="sal_Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="box_Codigo" Type="varchar" MaxLength="20" />
     <Property Name="sald_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="sald_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="sald_UsuarioModifica" Type="int" />
@@ -2482,18 +2483,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inv_tbSalida_box_Codigo">
-    <End Role="tbBox" Type="Self.tbBox" Multiplicity="1" />
-    <End Role="tbSalida" Type="Self.tbSalida" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbBox">
-        <PropertyRef Name="box_Codigo" />
-      </Principal>
-      <Dependent Role="tbSalida">
-        <PropertyRef Name="box_Codigo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Inv_tbSalida_Inv_tbBodega_bod_Id">
     <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
     <End Role="tbSalida" Type="Self.tbSalida" Multiplicity="*" />
@@ -2563,6 +2552,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Principal>
       <Dependent Role="tbSalida">
         <PropertyRef Name="sal_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbSalidaDetalle_box_Codigo">
+    <End Role="tbBox" Type="Self.tbBox" Multiplicity="0..1" />
+    <End Role="tbSalidaDetalle" Type="Self.tbSalidaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbBox">
+        <PropertyRef Name="box_Codigo" />
+      </Principal>
+      <Dependent Role="tbSalidaDetalle">
+        <PropertyRef Name="box_Codigo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3828,9 +3829,22 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="cred_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="cred_FechaModifica" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbSolicitudEfectivo_EsAnulada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="solef_Id" Type="int" Mode="In" />
+    <Parameter Name="solef_EsAnulada" Type="bit" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbSolicitudEfectivo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="mocja_Id" Type="int" Mode="In" />
     <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbSolicitudEfectivo_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="solef_Id" Type="int" Mode="In" />
+    <Parameter Name="mocja_Id" Type="int" Mode="In" />
+    <Parameter Name="solef_EsApertura" Type="bit" Mode="In" />
+    <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
+    <Parameter Name="solef_EsAnulada" Type="bit" Mode="In" />
+    <Parameter Name="solef_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="solef_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="solef_Id" Type="int" Mode="In" />
@@ -3838,6 +3852,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="soled_CantidadSolicitada" Type="smallint" Mode="In" />
     <Parameter Name="soled_CantidadEntregada" Type="smallint" Mode="In" />
     <Parameter Name="soled_MontoEntregado" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="soled_Id" Type="int" Mode="In" />
+    <Parameter Name="deno_Id" Type="smallint" Mode="In" />
+    <Parameter Name="soled_CantidadSolicitada" Type="smallint" Mode="In" />
+    <Parameter Name="soled_CantidadEntregada" Type="smallint" Mode="In" />
+    <Parameter Name="soled_MontoEntregado" Type="decimal" Mode="In" />
+    <Parameter Name="soled_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="soled_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbSucursal_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="suc_Id" Type="smallint" Mode="In" />
@@ -4467,10 +4490,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbProveedor" EntitySet="tbProveedor" />
     </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbSalida_box_Codigo" Association="Self.FK_Inv_tbSalida_box_Codigo">
-      <End Role="tbBox" EntitySet="tbBox" />
-      <End Role="tbSalida" EntitySet="tbSalida" />
-    </AssociationSet>
     <AssociationSet Name="FK_Inv_tbSalida_Inv_tbBodega_bod_Id" Association="Self.FK_Inv_tbSalida_Inv_tbBodega_bod_Id">
       <End Role="tbBodega" EntitySet="tbBodega" />
       <End Role="tbSalida" EntitySet="tbSalida" />
@@ -4494,6 +4513,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <AssociationSet Name="FK_Inv_tbSalida_tbUsuario_sal_UsuarioCrea" Association="Self.FK_Inv_tbSalida_tbUsuario_sal_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbSalida" EntitySet="tbSalida" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbSalidaDetalle_box_Codigo" Association="Self.FK_Inv_tbSalidaDetalle_box_Codigo">
+      <End Role="tbBox" EntitySet="tbBox" />
+      <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" Association="Self.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo">
       <End Role="tbProducto" EntitySet="tbProducto" />
