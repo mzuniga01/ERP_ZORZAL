@@ -694,7 +694,7 @@
     <Key>
       <PropertyRef Name="listp_Id" />
     </Key>
-    <Property Name="listp_Id" Type="int" Nullable="false" />
+    <Property Name="listp_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="lispd_PrecioMayorista" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="lispd_PrecioMinorista" Type="decimal" Precision="10" Scale="2" Nullable="false" />
@@ -3657,8 +3657,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="lispd_PrecioMayorista" Type="decimal" Mode="In" />
     <Parameter Name="lispd_PrecioMinorista" Type="decimal" Mode="In" />
-    <Parameter Name="lispd_FechaInicioVigencia" Type="date" Mode="In" />
-    <Parameter Name="lispd_FechaFinalVigencia" Type="date" Mode="In" />
     <Parameter Name="lispd_DescCaja" Type="decimal" Mode="In" />
     <Parameter Name="lispd_DescGerente" Type="decimal" Mode="In" />
   </Function>
@@ -3820,7 +3818,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="escre_Id" Type="tinyint" Mode="In" />
     <Parameter Name="cred_FechaSolicitud" Type="datetime" Mode="In" />
     <Parameter Name="cred_MontoSolicitado" Type="decimal" Mode="In" />
-    <Parameter Name="cred_MontoAprobado" Type="decimal" Mode="In" />
     <Parameter Name="cred_DiasSolicitado" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbSolicitudCredito_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">

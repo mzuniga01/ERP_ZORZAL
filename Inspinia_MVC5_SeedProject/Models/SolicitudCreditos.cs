@@ -26,17 +26,21 @@ namespace ERP_GMEDINA.Models
         public byte escre_Id { get; set; }
         [Display(Name = "Fecha Solicitud")]
  //       [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true,
+            DataFormatString = "{0:dd/MM/yyyy}",
+            HtmlEncode = false)]
         public System.DateTime cred_FechaSolicitud { get; set; }
         [Display(Name = "Fecha Aprobación")]
- //      [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true,DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
+        //      [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true,
+            DataFormatString = "{0:dd/MM/yyyy}",
+            HtmlEncode = false)]
         public System.DateTime cred_FechaAprobacion { get; set; }
         [Display(Name = "Monto Solicitado")]
         [Required]
         public decimal cred_MontoSolicitado { get; set; }
         [Display(Name = "Monto Aprobado")]
-        [Required]
+
         public decimal cred_MontoAprobado { get; set; }
         [Display(Name = "Días Solicitados")]
         [Required]
@@ -47,15 +51,16 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Usuario Creación")]
 
         public int cred_UsuarioCrea { get; set; }
+
         [Display(Name = "Fecha Creación")]
- 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime cred_FechaCrea { get; set; }
+
         [Display(Name = "Usuario Modificación")]
-
         public Nullable<int> cred_UsuarioModifica { get; set; }
-        [Display(Name = "Fecha Modificación")]
 
+        [Display(Name = "Fecha Modificación")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> cred_FechaModifica { get; set; }
     }
 }

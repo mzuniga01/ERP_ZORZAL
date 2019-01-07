@@ -37,12 +37,13 @@
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.cred_DiasAprobado)
         @Html.HiddenFor(model => model.cred_FechaAprobacion)
+        @Html.HiddenFor(model => model.cred_MontoAprobado)
 
         @*  "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafactura" } } *@
         <div class="form-group">
             @Html.LabelFor(model => model.cred_FechaSolicitud, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cred_FechaSolicitud,"{0:dd-MM-yyyy}",new { htmlAttributes = new { @class = "form-control", @id = "fechafactura"@*, disabled = "disabled"*@, @readonly = "readonly" } })
+                @Html.EditorFor(model => model.cred_FechaSolicitud,"{0:dd/MM/yyyy}",new { htmlAttributes = new { @class = "form-control", @id = "fechafactura"@*, disabled = "disabled"*@, @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.cred_FechaSolicitud)
             </div>
         </div>
@@ -64,38 +65,23 @@
                 @Html.EditorFor(model => model.clte_Id)
                 <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)
             </div>
-            @* Boton de agregar rtn de Cliente *@
+
             <div class="col-md-1">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
             </div>
-            @*<div class="col-md-">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
-            </div>*@
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.tbCliente.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
+        <div class="form-group">
+
+            <label class="control-label col-md-2">Cliente</label>
+            @*@Html.LabelFor(model => model.cred_MontoAprobado, new { @class = "control-label col-md-2" })*@
             <div class="col-md-4">
-                @Html.EditorFor(model => model.tbCliente.clte_Nombres, new
-                                   {
-                                       htmlAttributes = new
-                                       {
-                                           @class = "form-control" }
-                                   })
+                @Html.EditorFor(model => model.tbCliente.clte_Nombres)
                 @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
             </div>
-        </div>*@
 
+        </div>
 
-        @*<div class="form-group">
-
-            <label class="control-label col-md-2">RTN/Identidad Cliente</label>
-
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.tbCliente.clte_Identificacion)
-                <p style="color:red">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)
-            </div>
-        </div>*@
 
         @* Fin datos de cliente *@
 
@@ -111,6 +97,10 @@
             </div>
         </div>
 
+
+
+      
+
         <div class="form-group">
             @Html.LabelFor(model => model.cred_MontoSolicitado, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
@@ -119,13 +109,13 @@
 </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.cred_MontoAprobado, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cred_MontoAprobado)
+                @Html.EditorFor(model => model.cred_MontoAprobado )
                 <p style="color:red">@Html.ValidationMessageFor(model => model.cred_MontoAprobado)
 </div>
-        </div>
+        </div>*@
 
 
 
@@ -207,10 +197,11 @@
  $.datepicker.setDefaults($.datepicker.regional['es']);
 $(function () {
     $("#cred_FechaAprobacion").datepicker({ dateFormat: 'yy-mm-dd' });
-    $("#cred_FechaSolicitud").datepicker({ dateFormat: 'yy-mm-dd' });
+    $("#cred_FechaSolicitud").datepicker({ dateFormat: 'yy/mm/dd' });
 });
 </script>
 <script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
+<script src="~/Scripts/app/Credito.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 }
 

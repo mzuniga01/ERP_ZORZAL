@@ -60,7 +60,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "cred_Id,clte_Id,escre_Id,cred_FechaSolicitud,cred_MontoSolicitado,cred_MontoAprobado,cred_DiasSolicitado")] tbSolicitudCredito tbSolicitudCredito)
+        public ActionResult Create([Bind(Include = "cred_Id,clte_Id,escre_Id,cred_FechaSolicitud,cred_MontoSolicitado,cred_DiasSolicitado")] tbSolicitudCredito tbSolicitudCredito)
         {
             ViewBag.escre_Id = new SelectList(db.tbEstadoSolicitudCredito, "escre_Id", "escre_Descripcion", tbSolicitudCredito.escre_Id);
             ViewBag.Cliente = db.tbCliente.ToList();
@@ -81,7 +81,7 @@ if (ModelState.IsValid)
                         tbSolicitudCredito.cred_FechaSolicitud,
                      //   tbSolicitudCredito.cred_FechaAprobacion,
                                tbSolicitudCredito.cred_MontoSolicitado,
-                        tbSolicitudCredito.cred_MontoAprobado,
+                      //  tbSolicitudCredito.cred_MontoAprobado,
                         tbSolicitudCredito.cred_DiasSolicitado);
                     foreach (UDP_Vent_tbSolicitudCredito_Insert_Result SolicitudCredito in list)
                         MensajeError = SolicitudCredito.MensajeError;

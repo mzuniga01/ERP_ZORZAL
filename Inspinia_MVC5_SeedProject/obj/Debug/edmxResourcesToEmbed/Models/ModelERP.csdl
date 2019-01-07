@@ -193,8 +193,6 @@
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
       <Parameter Name="lispd_PrecioMayorista" Mode="In" Type="Decimal" />
       <Parameter Name="lispd_PrecioMinorista" Mode="In" Type="Decimal" />
-      <Parameter Name="lispd_FechaInicioVigencia" Mode="In" Type="DateTime" />
-      <Parameter Name="lispd_FechaFinalVigencia" Mode="In" Type="DateTime" />
       <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
       <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
     </FunctionImport>
@@ -427,14 +425,6 @@
       <Parameter Name="cred_FechaCrea" Mode="In" Type="DateTime" />
       <Parameter Name="cred_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="cred_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Insert_Result)">
-      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-      <Parameter Name="escre_Id" Mode="In" Type="Byte" />
-      <Parameter Name="cred_FechaSolicitud" Mode="In" Type="DateTime" />
-      <Parameter Name="cred_MontoSolicitado" Mode="In" Type="Decimal" />
-      <Parameter Name="cred_MontoAprobado" Mode="In" Type="Decimal" />
-      <Parameter Name="cred_DiasSolicitado" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="spGetDenominacion" ReturnType="Collection(Decimal)">
       <Parameter Name="IdDenominacion" Mode="In" Type="Int32" />
@@ -1464,6 +1454,13 @@
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
     </AssociationSet>
     <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
+    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Insert_Result)">
+      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+      <Parameter Name="escre_Id" Mode="In" Type="Byte" />
+      <Parameter Name="cred_FechaSolicitud" Mode="In" Type="DateTime" />
+      <Parameter Name="cred_MontoSolicitado" Mode="In" Type="Decimal" />
+      <Parameter Name="cred_DiasSolicitado" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1636,9 +1633,6 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbPedido_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudCredito_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbFactura_Insert_Result">
     <Property Type="Int64" Name="MensajeError" Nullable="false" />
@@ -5398,4 +5392,7 @@
     <Property Name="emp_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Empleados" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
   </EntityType>
+  <ComplexType Name="UDP_Vent_tbSolicitudCredito_Insert_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
 </Schema>

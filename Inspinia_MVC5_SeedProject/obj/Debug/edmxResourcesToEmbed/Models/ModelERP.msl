@@ -358,13 +358,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="spGetDenominacion" FunctionName="ERP_ZORZALModel.Store.spGetDenominacion" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbCliente_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCliente_Estado" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Insert">
@@ -1461,5 +1454,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

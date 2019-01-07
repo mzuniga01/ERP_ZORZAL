@@ -699,7 +699,7 @@
           <Key>
             <PropertyRef Name="listp_Id" />
           </Key>
-          <Property Name="listp_Id" Type="int" Nullable="false" />
+          <Property Name="listp_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="lispd_PrecioMayorista" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="lispd_PrecioMinorista" Type="decimal" Precision="10" Scale="2" Nullable="false" />
@@ -3662,8 +3662,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="lispd_PrecioMayorista" Type="decimal" Mode="In" />
           <Parameter Name="lispd_PrecioMinorista" Type="decimal" Mode="In" />
-          <Parameter Name="lispd_FechaInicioVigencia" Type="date" Mode="In" />
-          <Parameter Name="lispd_FechaFinalVigencia" Type="date" Mode="In" />
           <Parameter Name="lispd_DescCaja" Type="decimal" Mode="In" />
           <Parameter Name="lispd_DescGerente" Type="decimal" Mode="In" />
         </Function>
@@ -3825,7 +3823,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Parameter Name="escre_Id" Type="tinyint" Mode="In" />
           <Parameter Name="cred_FechaSolicitud" Type="datetime" Mode="In" />
           <Parameter Name="cred_MontoSolicitado" Type="decimal" Mode="In" />
-          <Parameter Name="cred_MontoAprobado" Type="decimal" Mode="In" />
           <Parameter Name="cred_DiasSolicitado" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbSolicitudCredito_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
@@ -4978,8 +4975,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="lispd_PrecioMayorista" Mode="In" Type="Decimal" />
             <Parameter Name="lispd_PrecioMinorista" Mode="In" Type="Decimal" />
-            <Parameter Name="lispd_FechaInicioVigencia" Mode="In" Type="DateTime" />
-            <Parameter Name="lispd_FechaFinalVigencia" Mode="In" Type="DateTime" />
             <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
             <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
           </FunctionImport>
@@ -5212,14 +5207,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <Parameter Name="cred_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="cred_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="cred_FechaModifica" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Insert_Result)">
-            <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-            <Parameter Name="escre_Id" Mode="In" Type="Byte" />
-            <Parameter Name="cred_FechaSolicitud" Mode="In" Type="DateTime" />
-            <Parameter Name="cred_MontoSolicitado" Mode="In" Type="Decimal" />
-            <Parameter Name="cred_MontoAprobado" Mode="In" Type="Decimal" />
-            <Parameter Name="cred_DiasSolicitado" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spGetDenominacion" ReturnType="Collection(Decimal)">
           <Parameter Name="IdDenominacion" Mode="In" Type="Int32" />
@@ -6249,6 +6236,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
           </AssociationSet>
           <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
+          <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Insert_Result)">
+            <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+            <Parameter Name="escre_Id" Mode="In" Type="Byte" />
+            <Parameter Name="cred_FechaSolicitud" Mode="In" Type="DateTime" />
+            <Parameter Name="cred_MontoSolicitado" Mode="In" Type="Decimal" />
+            <Parameter Name="cred_DiasSolicitado" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -6421,9 +6415,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbPedido_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbSolicitudCredito_Insert_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbFactura_Insert_Result">
           <Property Type="Int64" Name="MensajeError" Nullable="false" />
@@ -10183,6 +10174,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Name="emp_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Empleados" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="UDP_Vent_tbSolicitudCredito_Insert_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10543,13 +10537,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Insert_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -11650,6 +11637,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Insert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
