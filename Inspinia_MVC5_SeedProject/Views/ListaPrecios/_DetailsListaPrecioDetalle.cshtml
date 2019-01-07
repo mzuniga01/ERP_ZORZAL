@@ -13,6 +13,24 @@
 
 
 				    <dl class="dl-horizontal">
+
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbListaPrecio.listp_Nombre)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbListaPrecio.listp_Nombre)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbProducto.prod_Descripcion)
+                        </dd>
+
         <dt>
             Precio Mayorista
             @*@Html.DisplayNameFor(model => model.lispd_PrecioMayorista)*@
@@ -30,7 +48,23 @@
         <dd>
             @Html.DisplayFor(model => model.lispd_PrecioMinorista)
         </dd>
+                        <dt>
+                            Descuento Caja
+                            @*@Html.DisplayNameFor(model => model.lispd_DescCaja)*@
+                        </dt>
 
+                        <dd>
+                            @Html.DisplayFor(model => model.lispd_DescCaja)
+                        </dd>
+
+                        <dt>
+                            Descuento Gerente
+                            @*@Html.DisplayNameFor(model => model.lispd_DescGerente)*@
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.lispd_DescGerente)
+                        </dd>
         <dt>
             Fecha Inicio Vigencia
             @*@Html.DisplayNameFor(model => model.lispd_FechaInicioVigencia)*@
@@ -50,23 +84,7 @@
             @Html.DisplayFor(model => model.lispd_FechaFinalVigencia)
         </dd>
 
-        <dt>
-            Descuento Caja 
-            @*@Html.DisplayNameFor(model => model.lispd_DescCaja)*@
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lispd_DescCaja)
-        </dd>
-
-        <dt>
-            Descuento Gerente
-            @*@Html.DisplayNameFor(model => model.lispd_DescGerente)*@
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lispd_DescGerente)
-        </dd>
+       
 
         @*<dt>
             @Html.DisplayNameFor(model => model.lispd_FechaCrea)
@@ -100,21 +118,8 @@
             @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
         </dd>*@
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbProducto.prod_Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbListaPrecio.listp_Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbListaPrecio.listp_Nombre)
-        </dd>
+    
+     
 
     </dl>
 

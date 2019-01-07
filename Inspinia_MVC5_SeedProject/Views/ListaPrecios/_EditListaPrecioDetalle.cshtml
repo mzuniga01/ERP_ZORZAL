@@ -12,121 +12,120 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.listp_Id)
+                        <div class="form-horizontal">
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.prod_Codigo, "prod_Codigo", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("prod_Codigo", String.Empty)
-                @Html.ValidationMessageFor(model => model.prod_Codigo)
-            </div>
-        </div>*@
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.listp_Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.lispd_PrecioMayorista,"Precio Mayorista", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lispd_PrecioMayorista)
-                @Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)
-            </div>
-        </div>
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.prod_Codigo, "prod_Codigo", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("prod_Codigo", String.Empty)
+                                        @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                    </div>
+                                </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.lispd_PrecioMinorista,"Precio Minorista", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lispd_PrecioMinorista)
-                @Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.lispd_PrecioMayorista, "Precio Mayorista", new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.lispd_PrecioMayorista)
+                                    @Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.lispd_FechaInicioVigencia,"Fecha Inicio Vigencia", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lispd_FechaInicioVigencia)
-                @Html.ValidationMessageFor(model => model.lispd_FechaInicioVigencia)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.lispd_PrecioMinorista, "Precio Minorista", new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.lispd_PrecioMinorista)
+                                    @Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.lispd_FechaFinalVigencia, "Fecha Final Vigencia", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lispd_FechaFinalVigencia)
-                @Html.ValidationMessageFor(model => model.lispd_FechaFinalVigencia)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.lispd_FechaInicioVigencia, "Fecha Inicio Vigencia", new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.lispd_FechaInicioVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "lispd_FechaInicioVigencia", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.lispd_FechaInicioVigencia)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.lispd_DescCaja,"Descuento Caja", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lispd_DescCaja)
-                @Html.ValidationMessageFor(model => model.lispd_DescCaja)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.lispd_FechaFinalVigencia, "Fecha Final Vigencia", new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.lispd_FechaFinalVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "lispd_FechaFinalVigencia" } })
+                                    @Html.ValidationMessageFor(model => model.lispd_FechaFinalVigencia)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lispd_DescGerente)
-                @Html.ValidationMessageFor(model => model.lispd_DescGerente)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja", new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.lispd_DescCaja)
+                                    @Html.ValidationMessageFor(model => model.lispd_DescCaja)
+                                </div>
+                            </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.lispd_UsuarioCrea, "lispd_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("lispd_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.lispd_UsuarioCrea)
-            </div>
-        </div>*@
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente", new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.lispd_DescGerente)
+                                    @Html.ValidationMessageFor(model => model.lispd_DescGerente)
+                                </div>
+                            </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.lispd_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lispd_FechaCrea)
-                @Html.ValidationMessageFor(model => model.lispd_FechaCrea)
-            </div>
-        </div>
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.lispd_UsuarioCrea, "lispd_UsuarioCrea", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("lispd_UsuarioCrea", String.Empty)
+                                        @Html.ValidationMessageFor(model => model.lispd_UsuarioCrea)
+                                    </div>
+                                </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.lispd_UsuarioModifica, "lispd_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("lispd_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.lispd_UsuarioModifica)
-            </div>
-        </div>
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.lispd_FechaCrea, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.lispd_FechaCrea)
+                                        @Html.ValidationMessageFor(model => model.lispd_FechaCrea)
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.lispd_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lispd_FechaModifica)
-                @Html.ValidationMessageFor(model => model.lispd_FechaModifica)
-            </div>
-        </div>*@
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.lispd_UsuarioModifica, "lispd_UsuarioModifica", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("lispd_UsuarioModifica", String.Empty)
+                                        @Html.ValidationMessageFor(model => model.lispd_UsuarioModifica)
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.lispd_FechaModifica, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.lispd_FechaModifica)
+                                        @Html.ValidationMessageFor(model => model.lispd_FechaModifica)
+                                    </div>
+                                </div>*@
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    }
 
 
                 </div>
             </div>
         </div>
     </div>
- </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
 
 
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
