@@ -35,6 +35,7 @@ namespace ERP_GMEDINA.Models
         public System.DateTime cdto_FechaVencimiento { get; set; }
 
         [Display(Name = "% Descuento")]
+        [Range(0,100)]
         public Nullable<decimal> cdto_PorcentajeDescuento { get; set; }
 
         [Display(Name = "Monto Descuento")]
