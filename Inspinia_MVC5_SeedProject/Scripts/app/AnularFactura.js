@@ -14,10 +14,6 @@
         document.getElementById("AddCliente").disabled = true;
         document.getElementById("btnSave").disabled = true;
         document.getElementById("AddProducto").disabled = true;
-        document.getElementById("EditProducto").disabled = true;
-        $('#tbodyID').find('th, td').prop('disabled', true);
-   
-      
    }
 });
 
