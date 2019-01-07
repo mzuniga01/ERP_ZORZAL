@@ -37,15 +37,15 @@
                                 </th>
 
                                 <th>
-                                    @Html.DisplayNameFor(model => model.cred_FechaAprobacion)
+                                    @Html.DisplayNameFor(model => model.cred_FechaSolicitud)
                                 </th>
 
                                 <th>
-                                    @Html.DisplayNameFor(model => model.cred_MontoAprobado)
+                                    @Html.DisplayNameFor(model => model.cred_MontoSolicitado)
                                 </th>
 
                                 <th>
-                                    @Html.DisplayNameFor(model => model.cred_DiasAprobado)
+                                    @Html.DisplayNameFor(model => model.cred_DiasSolicitado)
                                 </th>
 
                                 
@@ -118,8 +118,8 @@
                                                     ¿Esta seguro de Autorizar el Crédito?
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary" name="Si" id="Si" data-dismiss="modal" onclick="AceptarSolicitud(@item.cred_Id, 2);">Si</button>
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                    <button type="button" class="btn btn-primary" name="Si" id="Si" data-dismiss="modal" onclick="AceptarSolicitud(@item.cred_Id, 2);">Guardar</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                                 </div>
                                             </div>
                                         </div>
