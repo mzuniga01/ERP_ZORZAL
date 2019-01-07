@@ -89,6 +89,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
+        public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {

@@ -1463,6 +1463,7 @@
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
     </AssociationSet>
+    <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -5389,4 +5390,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="UDV_Inv_Nombre_Empleado">
+    <Key>
+      <PropertyRef Name="emp_Id" />
+      <PropertyRef Name="Empleados" />
+    </Key>
+    <Property Name="emp_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Empleados" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

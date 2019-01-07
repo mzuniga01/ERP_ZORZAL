@@ -374,12 +374,12 @@ namespace ERP_GMEDINA.Controllers
             }
         }
 
-        //public jsonresult getempleados(string term)
-        //{
-        //    var results = db.udv_inv_nombre_empleado.where(s => term == null || s.empleados.tolower().contains(term.tolower())).select(x => new { id = x.emp_id, value = x.empleados }).take(5).tolist();
+        public JsonResult GetEmpleados(string term)
+        {
+            var results = db.UDV_Inv_Nombre_Empleado.Where(s => term == null || s.Empleados.ToLower().Contains(term.ToLower())).Select(x => new { id = x.emp_Id, value = x.Empleados }).Take(5).ToList();
 
-        //    return json(results, jsonrequestbehavior.allowget);
-        //}
+            return Json(results, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public JsonResult AnularFactura(int CodFactura, int Estado)

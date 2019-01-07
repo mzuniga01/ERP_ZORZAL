@@ -918,6 +918,16 @@
           <Property Name="tpa_UsuarioModifica" Type="int" />
           <Property Name="tpa_FechaModifica" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UDV_Inv_Nombre_Empleado">
+          <Key>
+            <PropertyRef Name="emp_Id" />
+            <PropertyRef Name="Empleados" />
+          </Key>
+          <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
           <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="1" />
           <End Role="tbAccesoRol" Type="Self.tbAccesoRol" Multiplicity="*" />
@@ -3968,6 +3978,12 @@
           <EntitySet Name="tbSolicitudEfectivoDetalle" EntityType="Self.tbSolicitudEfectivoDetalle" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbSucursal" EntityType="Self.tbSucursal" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbTipoPago" EntityType="Self.tbTipoPago" Schema="Vent" store:Type="Tables" />
+          <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="Self.UDV_Inv_Nombre_Empleado" store:Type="Views" store:Schema="Gral">
+            <DefiningQuery>SELECT 
+    [UDV_Inv_Nombre_Empleado].[emp_Id] AS [emp_Id], 
+    [UDV_Inv_Nombre_Empleado].[Empleados] AS [Empleados]
+    FROM [Gral].[UDV_Inv_Nombre_Empleado] AS [UDV_Inv_Nombre_Empleado]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" Association="Self.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
             <End Role="tbObjeto" EntitySet="tbObjeto" />
             <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
@@ -6232,6 +6248,7 @@
             <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
           </AssociationSet>
+          <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -10158,6 +10175,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UDV_Inv_Nombre_Empleado">
+          <Key>
+            <PropertyRef Name="emp_Id" />
+            <PropertyRef Name="Empleados" />
+          </Key>
+          <Property Name="emp_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Empleados" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11614,6 +11639,14 @@
                 <ScalarProperty Name="tpa_Emisor" ColumnName="tpa_Emisor" />
                 <ScalarProperty Name="tpa_Descripcion" ColumnName="tpa_Descripcion" />
                 <ScalarProperty Name="tpa_Id" ColumnName="tpa_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UDV_Inv_Nombre_Empleado">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado">
+              <MappingFragment StoreEntitySet="UDV_Inv_Nombre_Empleado">
+                <ScalarProperty Name="Empleados" ColumnName="Empleados" />
+                <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

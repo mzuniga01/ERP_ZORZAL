@@ -1453,5 +1453,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Inv_Nombre_Empleado">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado">
+        <MappingFragment StoreEntitySet="UDV_Inv_Nombre_Empleado">
+          <ScalarProperty Name="Empleados" ColumnName="Empleados" />
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
