@@ -1226,7 +1226,6 @@
     <Content Include="Views\SolicitudEfectivo\Edit.cshtml" />
     <Content Include="Views\SolicitudEfectivo\Index.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_CreateSolicitudEfectivoDetalle.cshtml" />
-    <Content Include="Views\PuntoEmision\_IndexNumeracionWithouBottomNew.cshtml" />
     <Content Include="Views\ListaPrecios\Delete.cshtml" />
     <Content Include="Views\ListaPrecios\Details.cshtml" />
     <Content Include="Views\ListaPrecios\Edit.cshtml" />
@@ -1305,7 +1304,6 @@
     <Content Include="Views\Factura\_IndexProducto.cshtml" />
     <Content Include="Views\Factura\_EditFacturaDetalle.cshtml" />
     <Content Include="Views\Factura\_DetailsFacturaDetalle.cshtml" />
-    <Content Include="Views\PuntoEmision\_CreateNumeracionDetalle.cshtml" />
     <Content Include="Views\Factura\_CreateFacturaDetalleModal.cshtml" />
     <Content Include="Views\NotaCredito\_IndexDevolucion.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_DetailsSolicitudEfectivoDetalle.cshtml" />
@@ -1321,6 +1319,7 @@
     <Content Include="Views\Pedido\_EditPedidoDetalle.cshtml" />
     <Content Include="Views\PuntoEmision\_EditNumeracionDetails.cshtml" />
     <Content Include="Views\PuntoEmision\_CreateNumeracionDetails.cshtml" />
+    <Content Include="Views\PuntoEmision\_IndexNumeracionEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
