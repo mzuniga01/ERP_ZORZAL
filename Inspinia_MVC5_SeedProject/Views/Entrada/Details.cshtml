@@ -8,14 +8,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Entradas</h2>
-        @*<ol class="breadcrumb">
-                <li>
-                    @Html.ActionLink("List", "Index")
-                </li>
-                <li class="active">
-                    <strong>Details</strong>
-                </li>
-            </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -68,55 +60,10 @@
                                 <dd>
                                     @Html.DisplayFor(model => model.tbProveedor.prov_Nombre)
                                 </dd>
+                                
                                 <dt>
-                                    Tipo Entrada
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.tbTipoEntrada.tent_Descripcion)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.ent_FacturaCompra)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.ent_FacturaCompra)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.ent_FechaCompra)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.ent_FechaCompra)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.fact_Id)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.fact_Id)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.ent_RazonDevolucion)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.ent_RazonDevolucion)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.ent_BodegaDestino)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.ent_BodegaDestino)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)
+                                    @*@Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)*@
+                                    Estado Actual
                                 </dt>
 
                                 <dd>
@@ -138,15 +85,80 @@
                                         <p>Anulado</p>
                                     }
                                 </dd>
+                                <dt>
+                                    Tipo Entrada
+                                </dt>
+                                <dd>
+                                
+                                @if (Model.tent_Id == 1)
+                                {
+                                    @Html.DisplayFor(model => model.tbTipoEntrada.tent_Descripcion)
+                                    
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.ent_FacturaCompra)
+                                    </dt>
 
-                                </dl>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.ent_FacturaCompra)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.ent_FechaCompra)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.ent_FechaCompra)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.fact_Id)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.fact_Id)
+                                    </dd>
+                                     
+                                }
+                                else if (Model.tent_Id == 2)
+                                {
+                                    @Html.DisplayFor(model => model.tbTipoEntrada.tent_Descripcion)
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.ent_RazonDevolucion)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.ent_RazonDevolucion)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.fact_Id)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.fact_Id)
+                                    </dd>
+                                        
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(model => model.tbTipoEntrada.tent_Descripcion)
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.ent_BodegaDestino)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.ent_BodegaDestino)
+                                    </dd>
+                                       
+                               }
+                            </dd>
+                                
+                        </dl>
+
 
 
                     <div class="form-group">
-                        @*<div class="col-md-offset-2 col-md-10">*@
-                        @Html.Partial("_IndexDetalleEntrada", Model.tbEntradaDetalle)
                         @Html.ActionLink("Editar", "Edit", new { id = Model.ent_Id }, new { @class = "btn btn-primary" })
-                        @*</div>*@
+                        @Html.Partial("_IndexDetalleEntrada", Model.tbEntradaDetalle)
                     </div>
                 </div>
             </div>
@@ -178,16 +190,3 @@
         </tr>
     </table>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -25,7 +25,9 @@
                     <h5>Producto Categoría</h5>
                 </div>
                 <div class="ibox-content">
-				<h4 class="text-danger">¿Estás seguro que quieres eliminar esto?</h4>
+				<h4 class="text-danger">¿Estás seguro que quieres eliminar esta Categoría?
+                    *Sí Elimina Esta Categoría Eliminara SubCategorías Asignadas
+                    </h4>
 				 <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.pcat_Nombre)
@@ -34,47 +36,13 @@
         <dd>
             @Html.DisplayFor(model => model.pcat_Nombre)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pcat_UsuarioCrea)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pcat_UsuarioCrea)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pcat_FechaCrea)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pcat_FechaCrea)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pcat_UsuarioModifica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pcat_UsuarioModifica)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pcat_FechaModifica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pcat_FechaModifica)
-        </dd>
-
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-primary" />
-            @Html.ActionLink("Regresar al Listado", "Index")
+            <input type="submit" value="Eliminar" class="btn btn-danger btn-xs" />
         </div>
     }
 

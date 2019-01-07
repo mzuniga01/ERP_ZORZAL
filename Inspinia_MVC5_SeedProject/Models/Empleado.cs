@@ -47,6 +47,8 @@ namespace ERP_GMEDINA.Models
         public string emp_Telefono { get; set; }
         [Display(Name = "Correo Electrónico")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress(ErrorMessage ="Es Un Correo Electronico")]       
         [StringLength(50)]
         public string emp_Correoelectronico { get; set; }
         [Display(Name = "Tipo Sangre")]

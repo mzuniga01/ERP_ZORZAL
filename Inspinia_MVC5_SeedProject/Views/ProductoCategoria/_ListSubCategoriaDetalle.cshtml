@@ -18,6 +18,9 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.tbProductoCategoria.pcat_Nombre)
                                 </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pscat_ISV)
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,6 +35,9 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbProductoCategoria.pcat_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pscat_ISV)
                                     </td>
                                 </tr>
                             }

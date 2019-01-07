@@ -1,10 +1,7 @@
 ﻿@model ERP_GMEDINA.Models.tbProductoSubcategoria
-<style>
-    .validation-error {
-        color: red;
-        font-size: small;
-    }
-</style>
+
+@using ERP_GMEDINA.Models
+
 @* CrearSubCategoria *@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="row">
@@ -14,47 +11,49 @@
                     <h5>Crear SubCategoría</h5>
                 </div>
                 <div class="ibox-content">
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-
                         <div class="form-horizontal">
-                            @Html.ValidationSummary(true)
-                            
                             <div class="form-group">
                                 @Html.LabelFor(model => model.pscat_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                   
-                                    @Html.EditorFor(model => model.pscat_Descripcion)
-                                        <div id="DescripcionValidation">
+                                    <input type="text" id="pscat_Descripcion" placeholder="" class="form-control" />
+                                        <div id="ErroDescripcion_Create">
                                             <p style="color:red">
                                                 @Html.ValidationMessageFor(model => model.pscat_Descripcion)
                                             </p>
                                          </div>
                                 </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.pscat_ISV, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    <input type="number" id="pscat_ISV" placeholder="" class="form-control" />
+                                    <div id="ErrorISV_Create">
+                                        @Html.ValidationMessageFor(model => model.pscat_ISV)
+                                    </div>
+                                </div>
                                 <div class="form-group col-md-1">
                                     <button class="btn btn-primary" type="button" id="AgregarSubCategoria">Añadir</button>
                                 </div>
                             </div>
-
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    @*<button class="btn btn-primary" type="button" id="AgregarSubCategoria">Añadir</button>*@
+                                    <button class="btn btn-primary" type="button" id="AgregarSubCategoria">Añadir</button>
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
-                            </div>
+                            </div>*@
 
                             <table id="SubCategoria" class="table table table-striped">
                                 <thead>
                                     <tr>
                                         <th>Descripción</th>
+                                        <th>Impuesto sobre la Renta</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
                             </table>
                         </div>
-                    }
                 </div>
             </div>
         </div>
@@ -64,16 +63,4 @@
 
 
 
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/app/Categoria.js"></script>
-
-
-
-
-
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
 

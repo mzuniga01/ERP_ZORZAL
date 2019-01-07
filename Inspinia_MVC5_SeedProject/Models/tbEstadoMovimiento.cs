@@ -34,8 +34,8 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbEntrada> tbEntrada { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalida> tbSalida { get; set; }
-        public virtual tbUsuario tbUsuario1 { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace ERP_GMEDINA.Models
         public int bod_Id { get; set; }
 
         [Display(Name = "Nombre ")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public string bod_Nombre { get; set; }
 
         //[Display(Name = "Municipio")]
@@ -26,21 +26,21 @@ namespace ERP_GMEDINA.Models
         public virtual tbMunicipio tbMunicipio { get; set; }
 
         [Display(Name = "Responsable ")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public string bod_ResponsableBodega { get; set; }
 
         [Display(Name = "Dirección ")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public string bod_Direccion { get; set; }
 
         [Display(Name = "Email")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Se requiere un correo electrónico")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "*Se requiere un correo electrónico")]
         [DataType(DataType.EmailAddress)]
-        [EmailAddress(ErrorMessage = "Es un Correo Electronico")]
+        [EmailAddress(ErrorMessage = "No es un Correo Electronico")]
         public string bod_Correo { get; set; }
 
         [Display(Name = "Telèfono ")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public string bod_Telefono { get; set; }
 
         //[Display(Name = "Usuario")]
@@ -48,7 +48,7 @@ namespace ERP_GMEDINA.Models
         //public Nullable<int> usu_Id { get; set; }
 
         [Display(Name = "Municipio")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public string mun_Codigo { get; set; }
 
         [Display(Name = "Estado")]

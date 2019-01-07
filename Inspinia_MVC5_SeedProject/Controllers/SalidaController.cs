@@ -18,7 +18,7 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Salida/
         public ActionResult Index()
         {
-            var tbsalida = db.tbSalida.Include(t => t.tbBodega).Include(t => t.tbBox).Include(t => t.tbEstadoMovimiento).Include(t => t.tbFactura).Include(t => t.tbTipoSalida);
+            var tbsalida = db.tbSalida.Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbFactura).Include(t => t.tbTipoSalida);
             return View(tbsalida.ToList());
         }
        
@@ -77,49 +77,49 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "bod_Id,fact_Id,sal_FechaElaboracion,estm_Id,box_Codigo,tsal_Id,sal_RazonDevolucion")] tbSalida tbSalida)
-        {
-            ViewBag.bod_Nombre = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
-            ViewBag.box_Codigo = new SelectList(db.tbBox, "box_Codigo", "box_Descripcion");
-            ViewBag.estm_Descripcion = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
-            ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
-            ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
-            if (ModelState.IsValid)
-            {
+        //public ActionResult Create([Bind(Include = "bod_Id,fact_Id,sal_FechaElaboracion,estm_Id,box_Codigo,tsal_Id,sal_RazonDevolucion")] tbSalida tbSalida)
+        //{
+        //    ViewBag.bod_Nombre = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+        //    ViewBag.box_Codigo = new SelectList(db.tbBox, "box_Codigo", "box_Descripcion");
+        //    ViewBag.estm_Descripcion = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
+        //    ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
+        //    ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
+        //    if (ModelState.IsValid)
+        //    {
 
-                try
-                {
-                    IEnumerable<object> List = null;
-                    var MsjError = "";
-                    List = db.UDP_Inv_tbSalida_Insert(tbSalida.bod_Id, tbSalida.fact_Id, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.box_Codigo, tbSalida.tsal_Id, tbSalida.sal_RazonDevolucion);
-                    foreach (UDP_Inv_tbSalida_Insert_Result Salida in List)
-                        MsjError = Salida.MensajeError;
+        //        try
+        //        {
+        //            IEnumerable<object> List = null;
+        //            var MsjError = "";
+        //            List = db.UDP_Inv_tbSalida_Insert(tbSalida.bod_Id, tbSalida.fact_Id, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.box_Codigo, tbSalida.tsal_Id, tbSalida.sal_RazonDevolucion);
+        //            foreach (UDP_Inv_tbSalida_Insert_Result Salida in List)
+        //                MsjError = Salida.MensajeError;
 
-                    if (MsjError == "-1")
-                    {
-                        ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index");
-                    }
+        //            if (MsjError == "-1")
+        //            {
+        //                ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
+        //                return RedirectToAction("Index");
+        //            }
+        //            else
+        //            {
+        //                return RedirectToAction("Index");
+        //            }
 
 
-                }
-                catch (Exception Ex)
-                {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
-                }
-            }
-            else
-            {
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
-            }
+        //        }
+        //        catch (Exception Ex)
+        //        {
+        //            Ex.Message.ToString();
+        //            ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        var errors = ModelState.Values.SelectMany(v => v.Errors);
+        //    }
 
-            return View(tbSalida);
-        }
+        //    return View(tbSalida);
+        //}
 
         public ActionResult Edit(int? id)
         {
@@ -144,7 +144,7 @@ namespace ERP_ZORZAL.Controllers
             }
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSalida.bod_Id);
             ViewBag.bod_Nombre = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
-            ViewBag.box_Codigo = new SelectList(db.tbBox, "box_Codigo", "box_Descripcion", tbSalida.box_Codigo);
+            //ViewBag.box_Codigo = new SelectList(db.tbBox, "box_Codigo", "box_Descripcion", tbSalida.box_Codigo);
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbSalida.estm_Id);
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbSalida.fact_Id);
             ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion", tbSalida.tsal_Id);
@@ -208,7 +208,7 @@ namespace ERP_ZORZAL.Controllers
 
                     IEnumerable<object> List = null;
                     string MsjError = "";
-                    List = db.UDP_Inv_tbSalida_Update(tbSalida.sal_Id, tbSalida.bod_Id, tbSalida.fact_Id, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.box_Codigo, tbSalida.tsal_Id, tbSalida.sal_RazonDevolucion, vtbSalida.sal_UsuarioCrea, vtbSalida.sal_FechaCrea);
+                    //List = db.UDP_Inv_tbSalida_Update(tbSalida.sal_Id, tbSalida.bod_Id, tbSalida.fact_Id, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.tsal_Id, tbSalida.sal_RazonDevolucion, vtbSalida.sal_UsuarioCrea, vtbSalida.sal_FechaCrea);
                     foreach (UDP_Inv_tbSalida_Update_Result Salida in List)
                         MsjError = Salida.MensajeError;
 

@@ -25,6 +25,9 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.pscat_EsActiva)
                                 </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pscat_ISV)
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,6 +52,9 @@
                                         {
                                             <p>Inactivo</p>
                                         }
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pscat_ISV)
                                     </td>
                                 </tr>
                             }

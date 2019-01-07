@@ -15,60 +15,63 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-striped">
-                        <tr>
-                            <th>
-                                @*@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)*@
-                                Código Producto
-                            </th>
-                            <th>
-                                @*@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)*@
-                                Producto
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.bodd_PuntoReorden)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.bodd_CantidadMinima)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.bodd_CantidadMaxima)
-                            </th>
-
-                            <th>
-                                @Html.DisplayNameFor(model => model.bodd_Costo)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.bodd_CostoPromedio)
-                            </th>
-                        </tr>
-
-                        @foreach (var item in Model)
-                        {
+                    <table class="table table-striped" id="tbBodega">
+                        <thead>
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.bodd_PuntoReorden)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.bodd_CantidadMinima)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.bodd_CantidadMaxima)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.bodd_Costo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.bodd_CostoPromedio)
-                                </td>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)*@
+                                    Código Producto
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)*@
+                                    Producto
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bodd_PuntoReorden)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bodd_CantidadMinima)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bodd_CantidadMaxima)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bodd_Costo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bodd_CostoPromedio)
+                                </th>
                             </tr>
-                        }
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bodd_PuntoReorden)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bodd_CantidadMinima)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bodd_CantidadMaxima)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bodd_Costo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bodd_CostoPromedio)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>

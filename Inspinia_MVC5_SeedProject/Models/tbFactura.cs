@@ -36,7 +36,6 @@ namespace ERP_GMEDINA.Models
         public bool fact_AlCredito { get; set; }
         public int fact_DiasCredito { get; set; }
         public decimal fact_PorcentajeDescuento { get; set; }
-        public bool fact_AutorizarDescuento { get; set; }
         public string fact_Vendedor { get; set; }
         public string clte_Identificacion { get; set; }
         public string clte_Nombres { get; set; }

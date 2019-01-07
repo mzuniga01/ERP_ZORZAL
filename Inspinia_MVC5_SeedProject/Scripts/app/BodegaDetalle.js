@@ -1,5 +1,27 @@
 ﻿var contador = 0;
 
+//js Todas las tablas
+$(document).ready(function () {
+    $('#tbBodega').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+        },
+
+    });
+
+});
+
+//Fin
+
 ///Busqueda products
 $(document).ready(function () {
         $('#Table_BuscarProducto').DataTable(
@@ -384,8 +406,37 @@ function Getbodegadetalle() {
 
 //Busqueda Producto AutoComplete
 $(function () {
-    $("#producto").autocomplete({
+    $("#prod_Codigo").autocomplete({
         source: "/Bodega/BuscarProductos"
     });
 });
 //Fin
+
+//2da Opcion
+//$(function () {
+//    $("#prod_Codigo").autocomplete({
+//        source: "/Bodega/BuscarProductos"
+//    });
+//});
+//$('#RegistrarNuevoDetalle').modal('show');
+//$("#prod_Codigo").autocomplete({
+//    source: "/Bodega/BuscarProductos"
+//});
+//Fin
+
+//3ra Opcion
+//$("#prod_Codigo").autocomplete({
+//    source: function (request, response) {
+//        var results = $.ui.autocomplete.filter(prod_CodigoArray, request.term);
+//        response(results.slice(0, 10));
+//    },
+//    minLength: 3
+//});
+
+//Fin
+
+
+
+//$('#prod_Codigo').mdb_autocomplete({
+//    data: states
+//});

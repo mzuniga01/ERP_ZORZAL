@@ -41,12 +41,13 @@
                             <dd>
                                 @Html.DisplayFor(model => model.pcat_Nombre)
                             </dd>
+
                             <dt>
-                                @Html.DisplayNameFor(model => model.pcat_Estado)
+                                @Html.DisplayNameFor(model => model.pcat_EsActivo)
                             </dt>
 
                             <dd>
-                                @if (Model.pcat_Estado == true)
+                                @if (Model.pcat_EsActivo == 1)
                                 {
                                     <p> Activo</p>
                                 }
@@ -55,6 +56,7 @@
                                     <p>Inactivo</p>
                                 }
                             </dd>
+                            
                         </dl>
                         @Html.ActionLink("Editar", "Edit", new { id = Model.pcat_Id }, new { @class = "btn btn-primary" })
                     </div>

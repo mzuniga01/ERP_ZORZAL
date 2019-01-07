@@ -1,0 +1,65 @@
+﻿@model ERP_GMEDINA.Models.tbProductoSubcategoria
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>ProductoSubcategoria</h5>
+                </div>
+                <div class="ibox-content">
+				<h4 class="text-danger">¿Seguro que desea eliminar esta SubCategoría?</h4>
+				 <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pscat_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pscat_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pscat_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pscat_Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pcat_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pcat_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pscat_ISV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pscat_ISV)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary" />
+            @Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "btn btn-white"})
+        </div>
+    }
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+

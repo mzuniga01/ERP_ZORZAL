@@ -31,6 +31,10 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte pscat_EsActiva { get; set; }
 
+        [Display(Name = "Impuesto Sobre la Venta")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public decimal pscat_ISV { get; set; }
+
 
     }
 }

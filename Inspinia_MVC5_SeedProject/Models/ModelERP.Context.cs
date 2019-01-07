@@ -56,7 +56,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbProducto> tbProducto { get; set; }
         public virtual DbSet<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }
         public virtual DbSet<tbProveedor> tbProveedor { get; set; }
-        public virtual DbSet<tbSalida> tbSalida { get; set; }
         public virtual DbSet<tbSalidaDetalle> tbSalidaDetalle { get; set; }
         public virtual DbSet<tbTipoEntrada> tbTipoEntrada { get; set; }
         public virtual DbSet<tbTipoSalida> tbTipoSalida { get; set; }
@@ -69,7 +68,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbEstadoPedido> tbEstadoPedido { get; set; }
         public virtual DbSet<tbEstadoSolicitudCredito> tbEstadoSolicitudCredito { get; set; }
         public virtual DbSet<tbExoneracion> tbExoneracion { get; set; }
-        public virtual DbSet<tbFactura> tbFactura { get; set; }
         public virtual DbSet<tbFacturaDetalle> tbFacturaDetalle { get; set; }
         public virtual DbSet<tbFacturaHistorica> tbFacturaHistorica { get; set; }
         public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
@@ -89,6 +87,9 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
         public virtual DbSet<tbMovimientoCaja> tbMovimientoCaja { get; set; }
         public virtual DbSet<tbProductoCategoria> tbProductoCategoria { get; set; }
+        public virtual DbSet<tbSalida> tbSalida { get; set; }
+        public virtual DbSet<tbEstadoDevolucion> tbEstadoDevolucion { get; set; }
+        public virtual DbSet<tbFactura> tbFactura { get; set; }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
         {
@@ -795,7 +796,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalida_Update_Result>("UDP_Inv_tbSalida_Update", sal_IdParameter, bod_IdParameter, fact_IdParameter, sal_FechaElaboracionParameter, estm_IdParameter, box_CodigoParameter, tsal_IdParameter, sal_RazonDevolucionParameter, sal_UsuarioCreaParameter, sal_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbSalidaDetalle_Insert_Result> UDP_Inv_tbSalidaDetalle_Insert(Nullable<int> sal_Id, string prod_Codigo, Nullable<decimal> sal_Cantidad)
+        public virtual ObjectResult<UDP_Inv_tbSalidaDetalle_Insert_Result> UDP_Inv_tbSalidaDetalle_Insert(Nullable<int> sal_Id, string prod_Codigo, Nullable<decimal> sal_Cantidad, string box_Codigo)
         {
             var sal_IdParameter = sal_Id.HasValue ?
                 new ObjectParameter("sal_Id", sal_Id) :
@@ -809,7 +810,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("sal_Cantidad", sal_Cantidad) :
                 new ObjectParameter("sal_Cantidad", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalidaDetalle_Insert_Result>("UDP_Inv_tbSalidaDetalle_Insert", sal_IdParameter, prod_CodigoParameter, sal_CantidadParameter);
+            var box_CodigoParameter = box_Codigo != null ?
+                new ObjectParameter("box_Codigo", box_Codigo) :
+                new ObjectParameter("box_Codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalidaDetalle_Insert_Result>("UDP_Inv_tbSalidaDetalle_Insert", sal_IdParameter, prod_CodigoParameter, sal_CantidadParameter, box_CodigoParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_tbSalidaDetalle_Update_Result> UDP_Inv_tbSalidaDetalle_Update(Nullable<int> sald_Id, Nullable<int> sal_Id, string prod_Codigo, Nullable<decimal> sal_Cantidad, Nullable<int> sald_UsuarioCrea, Nullable<System.DateTime> sald_FechaCrea)
@@ -871,7 +876,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbTipoSalida_Update_Result>("UDP_Inv_tbTipoSalida_Update", tsal_IdParameter, tsal_DescripcionParameter, tsal_UsuarioCreaParameter, tsal_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbSalida_Insert_Result> UDP_Inv_tbSalida_Insert(Nullable<int> bod_Id, Nullable<long> fact_Id, Nullable<System.DateTime> sal_FechaElaboracion, Nullable<byte> estm_Id, string box_Codigo, Nullable<byte> tsal_Id, string sal_RazonDevolucion)
+        public virtual ObjectResult<UDP_Inv_tbSalida_Insert_Result> UDP_Inv_tbSalida_Insert(Nullable<int> bod_Id, Nullable<long> fact_Id, Nullable<System.DateTime> sal_FechaElaboracion, Nullable<byte> estm_Id, Nullable<byte> tsal_Id, string sal_RazonDevolucion)
         {
             var bod_IdParameter = bod_Id.HasValue ?
                 new ObjectParameter("bod_Id", bod_Id) :
@@ -889,10 +894,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("estm_Id", estm_Id) :
                 new ObjectParameter("estm_Id", typeof(byte));
     
-            var box_CodigoParameter = box_Codigo != null ?
-                new ObjectParameter("box_Codigo", box_Codigo) :
-                new ObjectParameter("box_Codigo", typeof(string));
-    
             var tsal_IdParameter = tsal_Id.HasValue ?
                 new ObjectParameter("tsal_Id", tsal_Id) :
                 new ObjectParameter("tsal_Id", typeof(byte));
@@ -901,37 +902,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("sal_RazonDevolucion", sal_RazonDevolucion) :
                 new ObjectParameter("sal_RazonDevolucion", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalida_Insert_Result>("UDP_Inv_tbSalida_Insert", bod_IdParameter, fact_IdParameter, sal_FechaElaboracionParameter, estm_IdParameter, box_CodigoParameter, tsal_IdParameter, sal_RazonDevolucionParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Insert_Result> UDP_Inv_tbProductoCategoria_Insert(string pcat_Nombre)
-        {
-            var pcat_NombreParameter = pcat_Nombre != null ?
-                new ObjectParameter("pcat_Nombre", pcat_Nombre) :
-                new ObjectParameter("pcat_Nombre", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Insert_Result>("UDP_Inv_tbProductoCategoria_Insert", pcat_NombreParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Update_Result> UDP_Inv_tbProductoCategoria_Update(Nullable<int> pcat_Id, string pcat_Nombre, Nullable<int> pcat_UsuarioCrea, Nullable<System.DateTime> pcat_FechaCrea)
-        {
-            var pcat_IdParameter = pcat_Id.HasValue ?
-                new ObjectParameter("pcat_Id", pcat_Id) :
-                new ObjectParameter("pcat_Id", typeof(int));
-    
-            var pcat_NombreParameter = pcat_Nombre != null ?
-                new ObjectParameter("pcat_Nombre", pcat_Nombre) :
-                new ObjectParameter("pcat_Nombre", typeof(string));
-    
-            var pcat_UsuarioCreaParameter = pcat_UsuarioCrea.HasValue ?
-                new ObjectParameter("pcat_UsuarioCrea", pcat_UsuarioCrea) :
-                new ObjectParameter("pcat_UsuarioCrea", typeof(int));
-    
-            var pcat_FechaCreaParameter = pcat_FechaCrea.HasValue ?
-                new ObjectParameter("pcat_FechaCrea", pcat_FechaCrea) :
-                new ObjectParameter("pcat_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Update_Result>("UDP_Inv_tbProductoCategoria_Update", pcat_IdParameter, pcat_NombreParameter, pcat_UsuarioCreaParameter, pcat_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalida_Insert_Result>("UDP_Inv_tbSalida_Insert", bod_IdParameter, fact_IdParameter, sal_FechaElaboracionParameter, estm_IdParameter, tsal_IdParameter, sal_RazonDevolucionParameter);
         }
     
         public virtual ObjectResult<UDP_Acce_tbObjeto_Insert_Result> UDP_Acce_tbObjeto_Insert(string obj_Pantalla)
@@ -1485,15 +1456,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntrada_Update_Estado_Result>("UDP_Inv_tbEntrada_Update_Estado", ent_IdParameter, estm_IdParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Delete_Result> UDP_Inv_tbProductoCategoria_Delete(Nullable<int> pcat_Id)
-        {
-            var pcat_IdParameter = pcat_Id.HasValue ?
-                new ObjectParameter("pcat_Id", pcat_Id) :
-                new ObjectParameter("pcat_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Delete_Result>("UDP_Inv_tbProductoCategoria_Delete", pcat_IdParameter);
-        }
-    
         public virtual ObjectResult<UDP_Inv_tbBodega_Update_Result> UDP_Inv_tbBodega_Update(Nullable<int> bod_Id, string bod_Nombre, string bod_ResponsableBodega, string bod_Direccion, string bod_Correo, string bod_Telefono, string mun_Codigo, Nullable<int> bod_UsuarioCrea, Nullable<System.DateTime> bod_Fechacrea)
         {
             var bod_IdParameter = bod_Id.HasValue ?
@@ -1586,7 +1548,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoSubcategoria_Insert_Result>("UDP_Inv_tbProductoSubcategoria_Insert", pscat_DescripcionParameter, pcat_IdParameter, pscat_ISVParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbProductoSubcategoria_Update_Result> UDP_Inv_tbProductoSubcategoria_Update(Nullable<int> pscat_Id, string pscat_Descripcion, Nullable<int> pcat_Id, Nullable<byte> pscat_EsActiva, Nullable<int> pscat_UsuarioCrea, Nullable<System.DateTime> pscat_FechaCrea, Nullable<decimal> pscat_ISV)
+        public virtual ObjectResult<UDP_Inv_tbProductoSubcategoria_Update_Result> UDP_Inv_tbProductoSubcategoria_Update(Nullable<int> pscat_Id, string pscat_Descripcion, Nullable<int> pcat_Id, Nullable<int> pscat_UsuarioCrea, Nullable<System.DateTime> pscat_FechaCrea, Nullable<decimal> pscat_ISV)
         {
             var pscat_IdParameter = pscat_Id.HasValue ?
                 new ObjectParameter("pscat_Id", pscat_Id) :
@@ -1600,10 +1562,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pcat_Id", pcat_Id) :
                 new ObjectParameter("pcat_Id", typeof(int));
     
-            var pscat_EsActivaParameter = pscat_EsActiva.HasValue ?
-                new ObjectParameter("pscat_EsActiva", pscat_EsActiva) :
-                new ObjectParameter("pscat_EsActiva", typeof(byte));
-    
             var pscat_UsuarioCreaParameter = pscat_UsuarioCrea.HasValue ?
                 new ObjectParameter("pscat_UsuarioCrea", pscat_UsuarioCrea) :
                 new ObjectParameter("pscat_UsuarioCrea", typeof(int));
@@ -1616,7 +1574,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pscat_ISV", pscat_ISV) :
                 new ObjectParameter("pscat_ISV", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoSubcategoria_Update_Result>("UDP_Inv_tbProductoSubcategoria_Update", pscat_IdParameter, pscat_DescripcionParameter, pcat_IdParameter, pscat_EsActivaParameter, pscat_UsuarioCreaParameter, pscat_FechaCreaParameter, pscat_ISVParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoSubcategoria_Update_Result>("UDP_Inv_tbProductoSubcategoria_Update", pscat_IdParameter, pscat_DescripcionParameter, pcat_IdParameter, pscat_UsuarioCreaParameter, pscat_FechaCreaParameter, pscat_ISVParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_tbProductoSubCategoria_Update_Estado_Result> UDP_Inv_tbProductoSubCategoria_Update_Estado(Nullable<int> pscat_Id, Nullable<byte> pscat_EsActiva)
@@ -1710,6 +1668,58 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("mun_Codigo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Gral_tbMunicipio_Delete", mun_CodigoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Delete_Result> UDP_Inv_tbProductoCategoria_Delete(Nullable<int> pcat_Id)
+        {
+            var pcat_IdParameter = pcat_Id.HasValue ?
+                new ObjectParameter("pcat_Id", pcat_Id) :
+                new ObjectParameter("pcat_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Delete_Result>("UDP_Inv_tbProductoCategoria_Delete", pcat_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Insert_Result> UDP_Inv_tbProductoCategoria_Insert(string pcat_Nombre)
+        {
+            var pcat_NombreParameter = pcat_Nombre != null ?
+                new ObjectParameter("pcat_Nombre", pcat_Nombre) :
+                new ObjectParameter("pcat_Nombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Insert_Result>("UDP_Inv_tbProductoCategoria_Insert", pcat_NombreParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Update_Result> UDP_Inv_tbProductoCategoria_Update(Nullable<int> pcat_Id, string pcat_Nombre, Nullable<int> pcat_UsuarioCrea, Nullable<System.DateTime> pcat_FechaCrea)
+        {
+            var pcat_IdParameter = pcat_Id.HasValue ?
+                new ObjectParameter("pcat_Id", pcat_Id) :
+                new ObjectParameter("pcat_Id", typeof(int));
+    
+            var pcat_NombreParameter = pcat_Nombre != null ?
+                new ObjectParameter("pcat_Nombre", pcat_Nombre) :
+                new ObjectParameter("pcat_Nombre", typeof(string));
+    
+            var pcat_UsuarioCreaParameter = pcat_UsuarioCrea.HasValue ?
+                new ObjectParameter("pcat_UsuarioCrea", pcat_UsuarioCrea) :
+                new ObjectParameter("pcat_UsuarioCrea", typeof(int));
+    
+            var pcat_FechaCreaParameter = pcat_FechaCrea.HasValue ?
+                new ObjectParameter("pcat_FechaCrea", pcat_FechaCrea) :
+                new ObjectParameter("pcat_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Update_Result>("UDP_Inv_tbProductoCategoria_Update", pcat_IdParameter, pcat_NombreParameter, pcat_UsuarioCreaParameter, pcat_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Update_Estado_Result> UDP_Inv_tbProductoCategoria_Update_Estado(Nullable<int> pcat_Id, Nullable<byte> pcat_EsActivo)
+        {
+            var pcat_IdParameter = pcat_Id.HasValue ?
+                new ObjectParameter("pcat_Id", pcat_Id) :
+                new ObjectParameter("pcat_Id", typeof(int));
+    
+            var pcat_EsActivoParameter = pcat_EsActivo.HasValue ?
+                new ObjectParameter("pcat_EsActivo", pcat_EsActivo) :
+                new ObjectParameter("pcat_EsActivo", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Update_Estado_Result>("UDP_Inv_tbProductoCategoria_Update_Estado", pcat_IdParameter, pcat_EsActivoParameter);
         }
     }
 }

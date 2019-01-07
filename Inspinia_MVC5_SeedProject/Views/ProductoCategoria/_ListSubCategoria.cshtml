@@ -52,6 +52,9 @@
                                     @Html.DisplayNameFor(model => model.pscat_EsActiva)
                                 </th>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.pscat_ISV)
+                                </th>
+                                <th>
                                     Acciones
                                 </th>
                             </tr>
@@ -80,11 +83,18 @@
                                         }
                                     </td>
                                     <td>
+                                        @Html.DisplayFor(modelItem => item.pscat_ISV)
+                                    </td>
+                                    <td>
+
                                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalles_@item.pscat_Id">
                                             Detalle
                                         </button>
                                         <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalEditar_@item.pscat_Id">
                                             Editar
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEstado_@item.pscat_Id">
+                                            Eliminar
                                         </button>
                                     </td>
                                 </tr>
@@ -110,26 +120,61 @@
                                     </div>
                                 </div>
 
-                                <div class="modal fade" id="ModalEditar_@item.pscat_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-lg-14">
-                                                        <div class="form-group">
-                                                            <div class="col-md-18">
-                                                                @Html.Partial("_EditSubCategoriaModal", new ERP_GMEDINA.Models.tbProductoSubcategoria() { pscat_Id = item.pscat_Id, pscat_Descripcion = item.pscat_Descripcion })
-                                                            </div>
+                                <div>
+                                    <div class="modal fade" id="ModalEditar_@item.pscat_Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">Editar SubCategoria</h4>
+                                                </div>
+                                                <div class="modal-body" id="frmEditarCursoPolicia">
+                                                    @Html.Partial("_EditSubCategoriaModal", new ERP_GMEDINA.Models.tbProductoSubcategoria()
+                                               {
+                                                   pscat_Id = item.pscat_Id,
+                                                   pscat_Descripcion = item.pscat_Descripcion,
+                                                   pcat_Id = item.pcat_Id,
+                                                   pscat_EsActiva = item.pscat_EsActiva,
+                                                   pscat_UsuarioCrea = item.pscat_UsuarioCrea,
+                                                   pscat_FechaCrea = item.pscat_FechaCrea,
+                                                   pscat_UsuarioModifica = item.pscat_UsuarioModifica,
+                                                   pscat_FechaModifica = item.pscat_FechaModifica,
+                                                   pscat_ISV = item.pscat_ISV
+                                               })
+                                                    <div class="form-group">
+                                                        <div class="col-md-12 text-center">
+                                                            <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="btnActualizarSubCategoria" onclick="btnActualizarSubCategoria(@item.pscat_Id);">Guardar</button>
+                                                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="ModalEstado_@item.pscat_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Eliminar SubCategorìa</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ¿Está seguro que quiere Eliminar esta SubCategoría?
+                                            </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                @Html.ActionLink("Sí", "EliminarSub", new { id = item.pscat_Id }, new { @class = "btn btn-danger" })
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
 
                             }
                         </tbody>

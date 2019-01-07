@@ -21,6 +21,7 @@
         font-size: small;
     }
 </style>
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -72,7 +73,12 @@
                             @Html.HiddenFor(model => model.tbUsuario1.usu_Correo)
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsActivo)
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador)
-
+                            @*<div class="form-group">
+                                <label for="producto" class="control-label col-md-2">Produto</label>
+                                <div class="col-md-10">
+                                    <input type="text" id="prod_Codigo" placeholder="" class="form-control" />
+                                </div>
+                            </div>*@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
@@ -160,8 +166,8 @@
                         </div>
 
                         @*<div class="ibox-content collapse" id="RegistrarNuevoDetalle">
-                            @Html.Partial("_CreateNuevoBodegaDetalle_Modal", new tbBodegaDetalle())
-                        </div>*@
+                                @Html.Partial("_CreateNuevoBodegaDetalle_Modal", new tbBodegaDetalle())
+                            </div>*@
 
                         <div class="row">
                             <div class="col-lg-12">
@@ -172,7 +178,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -186,20 +192,20 @@
                             <td>Creado</td>
                             <td>
                                 @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                        </td>
-                        <td>@Html.DisplayFor(model => model.bod_FechaCrea)</td>
-                    </tr>
-                    <tr>
-                        <td>Modificado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                    </td>
-                    <td>@Html.DisplayFor(model => model.bod_FechaModifica)</td>
-                </tr>
-            </table>
-            </div>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.bod_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.bod_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -223,32 +229,31 @@
         </div>
     </div>
 
-}
-   
 
-    <div>
-        <div class="modal fade" id="RegistrarNuevoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">Registrar Nuevo Detalle</h4>
-                    </div>
-                    <div class="modal-body" id="frmAgregarCasoExito">
-                        @Html.Partial("_CreateNuevoBodegaDetalle_Modal", new tbBodegaDetalle())
-                        <div class="form-group">
-                            <div class="col-md-12 text-center">
-                                <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="btnGuardarNuevoDetalle" onclick="btnGuardarNuevoDetalle">Guardar</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            </div>
+
+<div>
+    <div class="modal fade" id="RegistrarNuevoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Registrar Nuevo Detalle</h4>
+                </div>
+                <div class="modal-body" id="frmAgregarCasoExito">
+                    @Html.Partial("_CreateNuevoBodegaDetalle_Modal", new tbBodegaDetalle())
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="btnGuardarNuevoDetalle" onclick="btnGuardarNuevoDetalle">Guardar</button>
+                            @Html.ActionLink("Cancelar", "Edit", null, new { @class = "btn btn-white" })
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -257,3 +262,5 @@
 <script src="~/Scripts/app/BusquedaGenerica.js"></script>
 <script src="~/Scripts/app/BodegaDetalle.js"></script>
 <script src="~/Scripts/app/Departamento.js"></script>
+
+}

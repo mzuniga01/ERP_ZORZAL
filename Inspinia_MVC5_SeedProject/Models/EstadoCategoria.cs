@@ -7,8 +7,8 @@ namespace ERP_GMEDINA.Models
 {
     public class EstadoCategoria
     {
-        public const bool Activo = true;//1
-        public const bool Inactivo = false;//0
+        public const int Activo = 1;//1
+        public const int Inactivo = 2;//0
     }
 
 }

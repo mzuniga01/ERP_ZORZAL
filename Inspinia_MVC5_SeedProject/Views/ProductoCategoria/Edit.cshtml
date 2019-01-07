@@ -33,7 +33,6 @@
 
                         @Html.ValidationSummary(true)
                         @Html.HiddenFor(model => model.pcat_Id)
-                        @Html.HiddenFor(model => model.pcat_Estado)
                         @*Auditoria*@
                         @Html.HiddenFor(model => model.pcat_UsuarioCrea)
                         @Html.HiddenFor(model => model.pcat_FechaCrea)
@@ -77,23 +76,46 @@
                                 
                             </div>
                         </div>
-                        
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-                @{if (Model.pcat_Estado == true)
-                    {
-                        @Html.ActionLink("Inactivar", "InactivarCate", new { id = Model.pcat_Id }, new { @class = "btn btn-danger" })
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Activar", "ActivarCate", new { id = Model.pcat_Id }, new { @class = "btn btn-primary" })
-                    }
-                }
-                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-            </div>
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.pcat_EsActivo, "Estado", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @if (Model.pcat_EsActivo == 1)
+                                {
+                                    <p> Activa</p>
+                                }
+                                else
+                                {
+                                    <p>Inactiva</p>
+                                }
+                            </div>
+                            <div class="col-md-4">
+
+                                <p style="color:red">  @Html.ValidationMessageFor(model => model.pcat_EsActivo)</p>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                @{if (Model.pcat_EsActivo == 1)
+                                    {
+                                        <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
+                                        @*@Html.ActionLink("Inactivar", "InactivarCate", new { id = Model.pcat_Id }, new { @class = "btn btn-danger" })*@
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Activar", "ActivarCate", new { id = Model.pcat_Id }, new { @class = "btn btn-primary" })
+                                    }
+                                }
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>
+
+                    
     </div>
 
                 }
@@ -101,46 +123,28 @@
             </div> 
         </div>
     </div>
-    <div class="ibox-content">
-        <table class="table table table-striped  table-bordered">
-            <tr>
-                <th>
-                    Acción
-                </th>
-                <th>
-                    Usuario
-                </th>
-                <th>
-                    Fecha
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    Creado
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.pcat_FechaCrea)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Modificado
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                    @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.pcat_FechaModifica)
-                </td>
-            </tr>
-        </table>
-    </div>
  </div>
+
+<div class="modal fade" id="ModalEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Inactivar Categoría</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro que quiere Inactivar esta Categoría?
+            </div>
+            <div class="modal-footer">
+                @Html.ActionLink("Sí", "InactivarCate", new { id = Model.pcat_Id }, new { @class = "btn btn-danger" })
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="ibox float-e-margins">
     <div class="ibox-content">
         <div class="form-horizontal">
@@ -148,6 +152,48 @@
         </div>
     </div>
 </div>
+
+<div class="ibox-content">
+    <table class="table table table-striped  table-bordered">
+        <tr>
+            <th>
+                Acción
+            </th>
+            <th>
+                Usuario
+            </th>
+            <th>
+                Fecha
+            </th>
+        </tr>
+        <tr>
+            <td>
+                Creado
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.pcat_FechaCrea)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Modificado
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.pcat_FechaModifica)
+            </td>
+        </tr>
+    </table>
+</div>
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

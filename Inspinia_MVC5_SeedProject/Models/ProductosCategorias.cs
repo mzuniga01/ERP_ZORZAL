@@ -20,10 +20,5 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Nombre")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string pcat_Nombre { get; set; }
-
-        //[Display(Name = "Estado")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        //public bool pcat_Estado { get; set; }
-
     }
 }

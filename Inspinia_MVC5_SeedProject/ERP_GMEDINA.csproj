@@ -323,6 +323,9 @@
     <Compile Include="Models\tbEntradaDetalle.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbEstadoDevolucion.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbEstadoFactura.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -877,6 +880,7 @@
     <Content Include="Scripts\app\BodegaDetalle.js" />
     <Content Include="Scripts\app\BusquedaGenerica.js" />
     <Content Include="Scripts\app\Categoria.js" />
+    <Content Include="Scripts\app\CrearActualizarEliminar.js" />
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\Datepicker.js" />
     <Content Include="Scripts\app\DatepickerEmpleado.js" />
@@ -1232,6 +1236,8 @@
     <Content Include="Views\Entrada\_IndexDetalleEntrada.cshtml" />
     <Content Include="Views\Entrada\_DetallesDeEntrada.cshtml" />
     <Content Include="Views\Bodega\_BuscarProductoAutocomplete.cshtml" />
+    <Content Include="Views\ProductoCategoria\_EliminarSubCategoriaModal.cshtml" />
+    <Content Include="Views\ProductoCategoria\EliminarSub.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

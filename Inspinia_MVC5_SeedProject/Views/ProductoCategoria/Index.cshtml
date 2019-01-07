@@ -33,9 +33,9 @@
                                     @Html.DisplayNameFor(model => model.pcat_Nombre)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.pcat_Estado)
+                                    @Html.DisplayNameFor(model => model.pcat_EsActivo)
                                 </th>
-
+      
                                 <th>
                                     Acciones
                                 </th>
@@ -52,21 +52,43 @@
                                         @Html.DisplayFor(modelItem => item.pcat_Nombre)
                                     </td>
                                     <td>
-                                        @if (item.pcat_Estado == true)
-                                        {
-                                            <p> Activo</p>
-                                        }
-                                        else
-                                        {
-                                            <p>Inactivo</p>
+
+                                        @{if (item.pcat_EsActivo == 1)
+                                            {
+                                                <p>Activa</p>
+                                            }
+                                            else
+                                            {
+                                                <p>Inactiva</p>;
+                                            }
                                         }
                                     </td>
                                     <td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.pcat_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.pcat_Id }, new { @class = "btn btn-white btn-xs" })
-                                        @*@Html.ActionLink("Eliminar", "Delete", new { id=item.pcat_Id }, new { @class = "btn btn-white btn-xs"})*@
+                                        @*<input type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEstado" value="Eliminar" />*@
+                                        @Html.ActionLink("Eliminar", "Delete", new { id=item.pcat_Id }, new { @class = "btn btn-danger btn-xs"})
                                     </td>
                                 </tr>
+                                <div class="modal fade" id="ModalEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Eliminar Categorìa</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ¿Está seguro que quiere Eliminar esta Categoría?
+                                            </div>
+                                            <div class="modal-footer">
+                                                @Html.ActionLink("Sí", "EliminarProductoCategoria", new { id = item.pcat_Id }, new { @class = "btn btn-danger" })
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             }
                         </tbody>
                     </table>
@@ -75,25 +97,7 @@
         </div>
     </div>
  </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Anular Categorìa</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro de anular esta Categorìa?
-            </div>
-            <div class="modal-footer">
-                <a href="@Url.Action("Index","ProductoCategoria")" class="btn btn-primary">Si</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
 
