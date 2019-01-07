@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbPuntoEmisionDetalle>
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Numeración</h5>
-					<div class="ibox-tools">
-                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Nuevo">
-                            Nuevo
-                        </button>					
-					</div>
+                    <h3><b>Listado de Numeración</b></h3>
+					<div class="ibox-tools" >
+                        <button type="button" class = "btn btn-primary btn-sm"  data-toggle="modal" data-target="#Nuevo">
+                            Registrar Numeración
+                        </button>
+                    </div>
                 </div>
                 <div class="ibox-content">
 
@@ -14,10 +14,10 @@
                         <thead>
                             <tr>
                                 <th hidden>
-                                    pemi_Id
+                                    pemid_Id
                                 </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
+                                <th hidden>
+                                    pemi_Id
                                 </th>
                                 <th>
                                    Documento Fiscal
@@ -39,10 +39,8 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
+                                    <td hidden id="pemid_Id">@Html.DisplayFor(modelItem => item.pemid_Id)</td>
                                     <td hidden id="pemi_Id">@Html.DisplayFor(modelItem => item.pemi_Id)</td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbPuntoEmision.pemi_NumeroCAI)
-                                    </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbDocumentoFiscal.dfisc_Descripcion)
                                     </td>
@@ -75,7 +73,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body" id="mdlEditNumeracion">
-                                                 @Html.Partial("_EditNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle(){ pemid_Id = item.pemid_Id, pemi_Id = item.pemi_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal=item.pemid_RangoFinal, pemid_FechaLimite=item.pemid_FechaLimite,pemid_UsuarioCrea = item.pemid_UsuarioCrea, pemid_FechaCrea = item.pemid_FechaCrea, pemid_UsuarioModifica = item.pemid_UsuarioModifica, pemid_FechaModifica = item.pemid_FechaModifica })
+                                                 @Html.Partial("_EditNumeracionDetails", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle(){ pemid_Id = item.pemid_Id, pemi_Id = item.pemi_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal=item.pemid_RangoFinal, pemid_FechaLimite=item.pemid_FechaLimite,pemid_UsuarioCrea = item.pemid_UsuarioCrea, pemid_FechaCrea = item.pemid_FechaCrea, pemid_UsuarioModifica = item.pemid_UsuarioModifica, pemid_FechaModifica = item.pemid_FechaModifica })
                                             </div>
                                         </div>
                                     </div>
@@ -94,7 +92,7 @@
                                             @Html.Partial("_DetailsNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle() { pemid_Id = item.pemid_Id, pemi_Id = item.pemi_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea = item.pemid_UsuarioCrea, pemid_FechaCrea = item.pemid_FechaCrea, pemid_UsuarioModifica = item.pemid_UsuarioModifica, pemid_FechaModifica = item.pemid_FechaModifica })
                                         </div>
                                         <div class="modal-footer">
-                                            <a href = "@Url.Action("Index","PuntoEmision")" class = "btn btn-white">Cerrar</a>
+                                            @Html.ActionLink("Cerrar", "Details", new { id = item.pemi_Id }, new { @class = "btn btn-white" })
                                         </div>
                                     </div>
                                 </div>
@@ -139,7 +137,7 @@
                 </button>
             </div>
             <div class="modal-body" id="AjaxCreateNumeracion">
-                @Html.Partial("_CreateNumeracionDetalle", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle())
+                @Html.Partial("_CreateNumeracionDetails", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle())
             </div>
         </div>
     </div>

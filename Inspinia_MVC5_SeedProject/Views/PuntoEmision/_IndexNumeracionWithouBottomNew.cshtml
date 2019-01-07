@@ -3,13 +3,19 @@
 
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Numeración</h5>
+                    <h3><b>Listado de Numeración</b></h3>
                 </div>
                 <div class="ibox-content">
 
                     <table class="table table table-striped  table-bordered" id="PuntoEmision">
                         <thead>
                             <tr>
+                                <th hidden>
+                                    pemid_Id
+                                </th>
+                                <th hidden>
+                                    pemi_Id
+                                </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
                                 </th>
@@ -33,6 +39,12 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
+                                    <th hidden>
+                                        pemid_Id
+                                    </th>
+                                    <th hidden>
+                                        pemi_Id
+                                    </th>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbPuntoEmision.pemi_NumeroCAI)
                                     </td>
@@ -69,9 +81,8 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body" id="mdlEditNumeracion">
-                                                @Html.Partial("_EditNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle() { pemid_Id = item.pemid_Id, pemi_Id = item.pemi_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea = item.pemid_UsuarioCrea, pemid_FechaCrea = item.pemid_FechaCrea, pemid_UsuarioModifica = item.pemid_UsuarioModifica, pemid_FechaModifica = item.pemid_FechaModifica })
+                                                @Html.Partial("_EditNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle() { pemid_Id = item.pemid_Id, pemi_Id = item.pemi_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea = item.pemid_UsuarioCrea, pemid_FechaCrea = item.pemid_FechaCrea, pemid_UsuarioModifica = item.pemid_UsuarioModifica, pemid_FechaModifica = item.pemid_FechaModifica })                                               
                                             </div>
-                                            
                                         </div>
                                     </div>
                                 </div>
@@ -87,11 +98,9 @@
                                             </div>
                                             <div class="modal-body">
                                                 @Html.Partial("_DetailsNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle() { pemid_Id = item.pemid_Id, pemi_Id = item.pemi_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea = item.pemid_UsuarioCrea, pemid_FechaCrea = item.pemid_FechaCrea, pemid_UsuarioModifica = item.pemid_UsuarioModifica, pemid_FechaModifica = item.pemid_FechaModifica })
-
                                             </div>
                                             <div class="modal-footer">
-
-                                                <a href="@Url.Action("Index","PuntoEmision")" class="btn btn-white">Cerrar</a>
+                                                @Html.ActionLink("Cerrar", "Edit", new { id = item.pemi_Id }, new { @class = "btn btn-white" })
                                             </div>
                                         </div>
                                     </div>
