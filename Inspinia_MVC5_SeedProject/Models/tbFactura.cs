@@ -39,9 +39,9 @@ namespace ERP_GMEDINA.Models
         public string fact_Vendedor { get; set; }
         public string clte_Identificacion { get; set; }
         public string clte_Nombres { get; set; }
-        public string fact_IdentidadTerceraEdad { get; set; }
-        public string fact_Nombres { get; set; }
-        public Nullable<System.DateTime> fact_FechaNacimiento { get; set; }
+        public string fact_IdentidadTE { get; set; }
+        public string fact_NombresTE { get; set; }
+        public Nullable<System.DateTime> fact_FechaNacimientoTE { get; set; }
         public Nullable<int> fact_UsuarioAutoriza { get; set; }
         public Nullable<System.DateTime> fact_FechaAutoriza { get; set; }
         public int fact_UsuarioCrea { get; set; }

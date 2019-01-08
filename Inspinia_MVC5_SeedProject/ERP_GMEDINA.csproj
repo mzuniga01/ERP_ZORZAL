@@ -693,10 +693,10 @@
     <Compile Include="Models\UDV_Inv_Nombre_Empleado.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UnidadesMedida.cs" />
-    <Compile Include="Models\V_Objetos.cs">
+    <Compile Include="Models\UDV_Vent_Busqueda_Clientes.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UnidadesMedida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

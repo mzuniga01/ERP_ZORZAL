@@ -31,8 +31,8 @@
                 </div>
                 <div class="ibox-content">
 
-                   @using (Html.BeginForm("Create", "Factura", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                   {
+                    @using (Html.BeginForm("Create", "Factura", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
@@ -69,6 +69,13 @@
                                     @Html.EditorFor(model => model.fact_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafactura" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Fecha)</span>
                                 </div>
+                                <label class="control-label col-md-2">Consumidor Final</label>
+                                <div class="col-md-4">
+                                    <input id="consumidorFinal" type="checkbox" class="check-box" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.clte_Identificacion)
@@ -76,6 +83,11 @@
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                                @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.clte_Nombres)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Nombres)</span>
                                 </div>
                             </div>
 
@@ -85,10 +97,9 @@
                                     @Html.EditorFor(model => model.fact_AlCredito)
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_AlCredito)</span>
                                 </div>
-                                @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2">Descuento Tercera Edad</label>
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.clte_Nombres)
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Nombres)</span>
+                                    <input id="MostrarTerceraEdad" type="checkbox" class="check-box" data-toggle="modal" data-target="#DescTerceraEdad" />
                                 </div>
                             </div>
 
@@ -104,9 +115,9 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Autorizar Descuento</label>
                                 <div class="col-md-4">
-                                    <input id="fact_AutorizarDescuento" type="checkbox" class="check-box"/>
+                                    <input id="fact_AutorizarDescuento" type="checkbox" class="check-box" />
                                 </div>
-                               @Html.LabelFor(model => model.fact_Vendedor, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.fact_Vendedor, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.fact_Vendedor)
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Vendedor)</span>
@@ -168,12 +179,69 @@
     </div>
 </div>
 
+<div>
+    <div class="modal fade" id="DescTerceraEdad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Registrar Tercera Edad</h4>
+                </div>
+                <div class="modal-body" id="frmListaProducto">
+                    <div class="ibox-content">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fact_IdentidadTE, new { @class = "control-label col-md-4" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.fact_IdentidadTE)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_IdentidadTE)</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fact_NombresTE, new { @class = "control-label col-md-4" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.fact_NombresTE)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_NombresTE)</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.fact_FechaNacimientoTE, new { @class = "control-label col-md-4" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.fact_FechaNacimientoTE)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_FechaNacimientoTE)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" >Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="uncheck()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/FacturaDetalle.js"></script>
 <script src="~/Scripts/app/ProductoFactura.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Credito.js"></script>
 <script src="~/Scripts/app/ClienteFactura.js"></script>
+<script>
+   function myFunction() {
+        var checkBox = document.getElementById("MostrarTerceraEdad");
+        if (checkBox.checked == true) {
+            $('#DescTerceraEdad').modal('show');
+        }        
+   }
+   function uncheck() {
+       document.getElementById("MostrarTerceraEdad").checked = false;
+   }
+</script>
 <script>
     $("#esfac_Id").find("option[value=4]").remove();
 </script>

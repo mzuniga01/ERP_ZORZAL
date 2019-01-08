@@ -58,5 +58,11 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Cliente")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string clte_Nombres { get; set; }
+        [Display(Name = "Identidad")]
+        public string fact_IdentidadTE { get; set; }
+        [Display(Name = "Nombres")]
+        public string fact_NombresTE { get; set; }
+        [Display(Name = "Fecha Nacimiento")]
+        public Nullable<System.DateTime> fact_FechaNacimientoTE { get; set; }
     }
 }

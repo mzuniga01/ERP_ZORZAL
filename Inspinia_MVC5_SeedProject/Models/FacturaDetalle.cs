@@ -39,6 +39,6 @@ namespace ERP_GMEDINA.Models
         public decimal factd_Impuesto { get; set; }
         [Display(Name = "Precio Unitario")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
-        public decimal factd_PrecioUnitario { get; set; }
+        public decimal factd_PrecioUnitario { get; set; }        
     }
 }
