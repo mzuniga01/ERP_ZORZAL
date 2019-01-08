@@ -74,6 +74,10 @@ namespace ERP_ZORZAL.Controllers
             IEnumerable<object> listPuntoEmisionDetalle = null;
             tbPuntoEmisionDetalle cPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
 
+            if (db.tbPuntoEmision.Any(a => a.pemi_NumeroCAI == tbPuntoEmision.pemi_NumeroCAI))
+            {
+                ModelState.AddModelError("", "Ya existe este Número CAI.");
+            }
             if (ModelState.IsValid)
             {
 
@@ -101,7 +105,6 @@ namespace ERP_ZORZAL.Controllers
                                     {
                                         foreach (tbPuntoEmisionDetalle Detalle in list)
                                         {
-
                                             Detalle.pemi_Id = MensajeError;
                                             listPuntoEmisionDetalle = db.UDP_Vent_tbPuntoEmisionDetalle_Insert(
                                                 Detalle.pemi_Id,
@@ -110,7 +113,6 @@ namespace ERP_ZORZAL.Controllers
                                                 Detalle.pemid_RangoFinal,
                                                 Detalle.pemid_FechaLimite
                                                 );
-
                                             foreach (UDP_Vent_tbPuntoEmisionDetalle_Insert_Result SPpuntoemisiondet in listPuntoEmisionDetalle)
                                             {
                                                 MensajeErrorDetalle = SPpuntoemisiondet.MensajeError;
@@ -136,12 +138,10 @@ namespace ERP_ZORZAL.Controllers
                 }
                 catch (Exception Ex)
                 {
-                   
                     ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", cPuntoEmisionDetalle.dfisc_Id);
                     ModelState.AddModelError("", "No se pudo agregar el registro" + Ex.Message.ToString());
                     return View(tbPuntoEmision);
                 }
-                
             }
             ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", cPuntoEmisionDetalle.dfisc_Id);
             return View(tbPuntoEmision);
@@ -178,16 +178,11 @@ namespace ERP_ZORZAL.Controllers
             {
                 try
                 {
-                    //var ValidacionRegistro = db.tbPuntoEmisionDetalle.Where(x => x.pemi_Id == PuntoEmision.pemi_Id);
-                    //if (ValidacionRegistro.Count() > 0)
-                    //{
-                    //    ModelState.AddModelError("", "No se puede actualizar el número CAI porque ya existe un documento fiscal con este número.");
-                    //    return View("Edit", PuntoEmision);
-                    //}
-                    if (db.tbPuntoEmisionDetalle.Any(a => a.pemi_Id == PuntoEmision.pemi_Id))
+                    var ValidacionRegistro = db.tbPuntoEmisionDetalle.Where(x => x.pemi_Id == PuntoEmision.pemi_Id).ToList();
+                    if (ValidacionRegistro.Count() > 0)
                     {
                         ModelState.AddModelError("", "No se puede actualizar el número CAI porque ya existe un documento fiscal con este número.");
-                        return View(PuntoEmision);
+                        return View("Edit", PuntoEmision);
                     }
                     else
                     {
@@ -328,13 +323,14 @@ namespace ERP_ZORZAL.Controllers
         public ActionResult _CreateNumeracion(tbPuntoEmisionDetalle PuntoEmisionDetalleP)
         {
             ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", PuntoEmisionDetalleP.dfisc_Id); ;
-            return PartialView("_CreateNumeracionDetalle", PuntoEmisionDetalleP);
+            return PartialView("_CreateNumeracion", PuntoEmisionDetalleP);
         }
 
-        public ActionResult _CreateNumeracionDetalle(tbPuntoEmisionDetalle CreatePuntoEmisionDetalle)
+        public ActionResult _CreateNumeracionDetails(tbPuntoEmisionDetalle CreatePuntoEmisionDetalle)
         {
-            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", CreatePuntoEmisionDetalle.dfisc_Id); ;
-            return PartialView("_CreateNumeracionDetalle", CreatePuntoEmisionDetalle);
+            string cas = "dfisc_IdList";
+            System.Web.HttpContext.Current.Items[cas] = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
+            return PartialView("_CreateNumeracionDetails", CreatePuntoEmisionDetalle);
         }
         
         [HttpPost]
@@ -357,7 +353,7 @@ namespace ERP_ZORZAL.Controllers
                     if (MensajeError == -1)
                     {
                         ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                        return PartialView("_CreateNumeracionDetalle");
+                        return PartialView("_CreateNumeracionDetails");
                     }
                     else
                     {
@@ -369,7 +365,7 @@ namespace ERP_ZORZAL.Controllers
                     Ex.Message.ToString();
                     ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", CreatePuntoEmisionDetalle.dfisc_Id);
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                    return PartialView("_CreateNumeracionDetalle", CreatePuntoEmisionDetalle);
+                    return PartialView("_CreateNumeracionDetails", CreatePuntoEmisionDetalle);
                 }
             }
             ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", CreatePuntoEmisionDetalle.dfisc_Id);
