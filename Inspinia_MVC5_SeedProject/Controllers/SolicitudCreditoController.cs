@@ -142,6 +142,9 @@ if (ModelState.IsValid)
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbSolicitudCredito.clte_Id);
             ViewBag.escre_Descripcion = new SelectList(db.tbEstadoSolicitudCredito, "escre_Id", "escre_Descripcion");
             ViewBag.escre_Id = new SelectList(db.tbEstadoSolicitudCredito, "escre_Id", "escre_Descripcion", tbSolicitudCredito.escre_Id);
+
+            ViewBag.SolicitudCreditoAprobar = db.tbSolicitudCredito.ToList();
+
             return View(tbSolicitudCredito);
         }
 
@@ -190,6 +193,8 @@ if (ModelState.IsValid)
             {
                 Ex.Message.ToString();
             }
+
+
 
             return View(tbSolicitudCredito);
             //if (ModelState.IsValid)

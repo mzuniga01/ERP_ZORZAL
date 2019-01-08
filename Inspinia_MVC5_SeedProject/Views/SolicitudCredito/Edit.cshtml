@@ -267,10 +267,11 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Aprobar Solicitud</h4>
+                    <h4 class="modal-title" id="myModalLabel">Aprobar Solicitud de Crédito</h4>
                 </div>
                 <div class="modal-body" id="frmEditarMunicipios">
-                    @Html.Partial("_ListAprobacion", (List<tbSolicitudCredito>)ViewBag.Aprobacion)
+                    @*@Html.Partial("_ListAprobacion", (List<tbSolicitudCredito>)ViewBag.Aprobacion)*@
+                    @Html.Partial("_AprobarSolicitudCredito", new ERP_GMEDINA.Models.tbSolicitudCredito() { cred_Id = Model.cred_Id })
                </div>
             </div>
         </div>
