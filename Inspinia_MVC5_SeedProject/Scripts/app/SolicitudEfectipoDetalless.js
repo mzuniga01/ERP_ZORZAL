@@ -1,8 +1,15 @@
 ﻿var contador = 0;
 
-$('#AgregarDetalle').click(function () {  
+$('#AgregarDetalle').click(function () {
 
-    var IdDeno = $('#deno_Id').val();
+    //var select = $("#deno_Id option:selected").text();
+    //var valor = $("#deno_Id").val();
+    //$("#selector").val(select)
+    //$("#valor").val(valor)
+
+    //$("#deno_Id option:selected").text();
+
+    var IdDeno = $("#deno_Id option:selected").text();
     var SDCantidadSolicitada = $('#soled_CantidadSolicitada').val();
     var SDMontoSolicitado = $('#MontoSolicitado').val();
     var SDCantidadEntregada = $('#soled_CantidadEntregada').val();
@@ -11,12 +18,12 @@ $('#AgregarDetalle').click(function () {
 
     if (IdDeno == '') {
         $('#ErrorIdDenoCreate').text('');
-        $('#ErrorSDCantidadSolicitadaCreate').text('');        
+        $('#ErrorSDCantidadSolicitadaCreate').text('');
         $('#ErrorSDCantidadEntregadaCreate').text('');
         $('#ErrorSDMontoEntregadoCreate').text('');
         $('#validationDenoIdCreate').after('<ul id="ErrorIdDenoCreate" class="validation-summary-errors text-danger">Campo Denominación es requerido</ul>');
     }
-    if (IdDeno == '0') {
+    else if (IdDeno == '0') {
         $('#ErrorIdDenoCreate').text('');
         $('#ErrorSDCantidadSolicitadaCreate').text('');
         $('#ErrorSDCantidadEntregadaCreate').text('');
@@ -40,13 +47,13 @@ $('#AgregarDetalle').click(function () {
         $('#validationCantidadSolicitadaCreate').after('<ul id="ErrorSDCantidadSolicitadaCreate" class="validation-summary-errors text-danger">Campo Cantidad Solicitada no puede ser Cero.</ul>');
     }
 
-    //else if (SDMontoSolicitado == '') {
-    //    $('#ErrorIdDenoCreate').text('');
-    //    $('#ErrorSDCantidadSolicitadaCreate').text('');
-    //    $('#ErrorSDCantidadEntregadaCreate').text('');
-    //    $('#ErrorSDMontoEntregadoCreate').text('');
-    //    $('#validationMontosSolicitadoCreate').after('<ul id="ErrorSDMontoSolicitadoCreate" class="validation-summary-errors text-danger">Campo Monto Solicitado es requerido</ul>');
-    //}
+        //else if (SDMontoSolicitado == '') {
+        //    $('#ErrorIdDenoCreate').text('');
+        //    $('#ErrorSDCantidadSolicitadaCreate').text('');
+        //    $('#ErrorSDCantidadEntregadaCreate').text('');
+        //    $('#ErrorSDMontoEntregadoCreate').text('');
+        //    $('#validationMontosSolicitadoCreate').after('<ul id="ErrorSDMontoSolicitadoCreate" class="validation-summary-errors text-danger">Campo Monto Solicitado es requerido</ul>');
+        //}
 
     else if (SDCantidadEntregada == '') {
         $('#ErrorIdDenoCreate').text('');
@@ -69,14 +76,14 @@ $('#AgregarDetalle').click(function () {
         copiar += "<td id = 'IdDenoCreate'>" + IdDeno + "</td>";
         copiar += "<td id = 'SDCantidadSolicitadaCreate'>" + SDCantidadSolicitada + "</td>";
         copiar += "<td id = 'SDMontoSolicitadoCreate'>" + SDMontoSolicitado + "</td>";
-        copiar += "<td id = 'SDCantidadEntregadaCreate'>"+ SDCantidadEntregada + "</td>";
+        copiar += "<td id = 'SDCantidadEntregadaCreate'>" + SDCantidadEntregada + "</td>";
         copiar += "<td id = 'SDMontoEntregadoCreate'>" + SDMontoEntregado + "</td>";
         copiar += "<td>" + '<button id="removeSolicitudEfectivoDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
         copiar += "</tr>";
         $('#tblSolicitudEfectivoDetalle').append(copiar);
 
         var SolicitudDetalle = GetSolicitudDetalle();
-       
+
         $.ajax({
             url: "/SolicitudEfectivo/SaveSolicitudEfectivoDetalle",
             method: "POST",
@@ -90,7 +97,7 @@ $('#AgregarDetalle').click(function () {
             $('#ErrorSDMontoSolicitadoCreate').text('');
             $('#ErrorSDCantidadEntregadaCreate').text('');
             $('#ErrorSDMontoEntregadoCreate').text('');
-           
+
             //Input
             $('#deno_Id').val('');
             $('#soled_CantidadSolicitada').val('');
@@ -98,7 +105,7 @@ $('#AgregarDetalle').click(function () {
             $('#ValorDeno').val('');
             $('#soled_CantidadSolicitada').val('');
             $('#deno_Id').append("<option value='0'>Seleccione la Denominación</option>");
-            
+
         });
     }
 });
