@@ -17,9 +17,9 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbCaja()
         {
-            this.tbDevolucion = new HashSet<tbDevolucion>();
             this.tbFactura = new HashSet<tbFactura>();
             this.tbMovimientoCaja = new HashSet<tbMovimientoCaja>();
+            this.tbDevolucion = new HashSet<tbDevolucion>();
         }
     
         public short cja_Id { get; set; }
@@ -33,11 +33,11 @@ namespace ERP_GMEDINA.Models
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbDevolucion> tbDevolucion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFactura> tbFactura { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbMovimientoCaja> tbMovimientoCaja { get; set; }
         public virtual tbSucursal tbSucursal { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbDevolucion> tbDevolucion { get; set; }
     }
 }
