@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbPuntoEmisionDetalle>
+
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h3><b>Listado de Numeración</b></h3>
@@ -53,7 +54,9 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.pemid_FechaLimite)
                                     </td>
-                                    <td></td>
+                                    <td>
+
+                                    </td>
                                     <td>
                                         <button type="button"  class="btn btn-primary btn-xs"  data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
                                             Detalles
@@ -79,7 +82,14 @@
                                         </div>
                                     </div>
                                 </div>
-                           
+
+                                //Concatenación
+                                string DocumentoFiscal = item.dfisc_Id + "-" + item.tbDocumentoFiscal.dfisc_Descripcion;
+
+
+                                int result;
+                                int.TryParse(item.tbPuntoEmision.pemi_NumeroCAI, out result);
+
                                 <div class="modal fade" id="Detalle_@item.pemid_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -90,7 +100,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body" >
-                                            @Html.Partial("_DetailsNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle() { pemid_Id = item.pemid_Id, pemi_Id = item.pemi_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea = item.pemid_UsuarioCrea, pemid_FechaCrea = item.pemid_FechaCrea, pemid_UsuarioModifica = item.pemid_UsuarioModifica, pemid_FechaModifica = item.pemid_FechaModifica })
+                                            @Html.Partial("_DetailsNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle() { pemid_Id = item.pemid_Id, pemi_Id = item.pemi_Id, dfisc_Id = DocumentoFiscal, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea = item.pemid_UsuarioCrea, pemid_FechaCrea = item.pemid_FechaCrea, pemid_UsuarioModifica = item.pemid_UsuarioModifica, pemid_FechaModifica = item.pemid_FechaModifica })
                                         </div>
                                         <div class="modal-footer">
                                             @Html.ActionLink("Cerrar", "Details", new { id = item.pemi_Id }, new { @class = "btn btn-white" })

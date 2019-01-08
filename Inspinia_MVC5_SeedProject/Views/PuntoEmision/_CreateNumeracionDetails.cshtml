@@ -9,7 +9,6 @@
     @Html.AntiForgeryToken()
 
                 <input name="pemi_Id" type="hidden" value="@ViewBag.IdPuntoEmision">
-                <input name="pemid_Id" type="hidden" value="@Model.pemid_Id">
                 <div class="form-horizontal">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
