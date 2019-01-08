@@ -655,10 +655,14 @@
     <Property Name="fact_AlCredito" Type="bit" Nullable="false" />
     <Property Name="fact_DiasCredito" Type="int" Nullable="false" />
     <Property Name="fact_PorcentajeDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="fact_AutorizarDescuento" Type="bit" Nullable="false" />
     <Property Name="fact_Vendedor" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
     <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fact_IdentidadTerceraEdad" Type="nvarchar" MaxLength="26" />
+    <Property Name="fact_Nombres" Type="nvarchar" MaxLength="50" />
+    <Property Name="fact_FechaNacimiento" Type="date" />
+    <Property Name="fact_UsuarioAutoriza" Type="int" />
+    <Property Name="fact_FechaAutoriza" Type="datetime" />
     <Property Name="fact_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="fact_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="fact_UsuarioModifica" Type="int" />
@@ -676,6 +680,8 @@
     <Property Name="factd_PorcentajeDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="factd_Impuesto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="factd_PrecioUnitario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="factd_UsuarioAutoriza" Type="int" />
+    <Property Name="factd_FechaAutoriza" Type="datetime" />
     <Property Name="factd_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="factd_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="factd_UsuarioModifica" Type="int" />
@@ -698,8 +704,6 @@
     <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="lispd_PrecioMayorista" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="lispd_PrecioMinorista" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="lispd_FechaInicioVigencia" Type="date" />
-    <Property Name="lispd_FechaFinalVigencia" Type="date" />
     <Property Name="lispd_DescCaja" Type="decimal" Precision="10" Scale="2" />
     <Property Name="lispd_DescGerente" Type="decimal" Precision="10" Scale="2" />
     <Property Name="lispd_UsuarioCrea" Type="int" Nullable="false" />
@@ -718,6 +722,8 @@
     <Property Name="listp_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="listp_UsuarioModifica" Type="int" />
     <Property Name="listp_FechaModifica" Type="datetime" />
+    <Property Name="listp_FechaInicioVigencia" Type="date" />
+    <Property Name="listp_FechaFinalVigencia" Type="date" />
   </EntityType>
   <EntityType Name="tbMovimientoCaja">
     <Key>
@@ -2903,6 +2909,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbFactura">
+        <PropertyRef Name="fact_UsuarioAutoriza" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbFactura_tbUsuario_usu_Id_Crea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
@@ -2948,6 +2966,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Principal>
       <Dependent Role="tbFacturaDetalle">
         <PropertyRef Name="prod_Codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Autoriza">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbFacturaDetalle" Type="Self.tbFacturaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbFacturaDetalle">
+        <PropertyRef Name="factd_UsuarioAutoriza" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3612,10 +3642,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="fact_AlCredito" Type="bit" Mode="In" />
     <Parameter Name="fact_DiasCredito" Type="int" Mode="In" />
     <Parameter Name="fact_PorcentajeDescuento" Type="decimal" Mode="In" />
-    <Parameter Name="fact_AutorizarDescuento" Type="bit" Mode="In" />
     <Parameter Name="fact_Vendedor" Type="varchar" Mode="In" />
     <Parameter Name="clte_Identificacion" Type="nvarchar" Mode="In" />
     <Parameter Name="clte_Nombres" Type="nvarchar" Mode="In" />
+    <Parameter Name="fact_IdentidadTerceraEdad" Type="nvarchar" Mode="In" />
+    <Parameter Name="fact_Nombres" Type="nvarchar" Mode="In" />
+    <Parameter Name="fact_FechaNacimiento" Type="date" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbFactura_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
@@ -3627,10 +3659,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="fact_AlCredito" Type="bit" Mode="In" />
     <Parameter Name="fact_DiasCredito" Type="int" Mode="In" />
     <Parameter Name="fact_PorcentajeDescuento" Type="decimal" Mode="In" />
-    <Parameter Name="fact_AutorizarDescuento" Type="bit" Mode="In" />
     <Parameter Name="fact_Vendedor" Type="varchar" Mode="In" />
     <Parameter Name="clte_Identificacion" Type="nvarchar" Mode="In" />
     <Parameter Name="clte_Nombres" Type="nvarchar" Mode="In" />
+    <Parameter Name="fact_IdentidadTerceraEdad" Type="nvarchar" Mode="In" />
+    <Parameter Name="fact_Nombres" Type="nvarchar" Mode="In" />
+    <Parameter Name="fact_FechaNacimiento" Type="date" Mode="In" />
+    <Parameter Name="fact_UsuarioAutoriza" Type="int" Mode="In" />
+    <Parameter Name="fact_FechaAutoriza" Type="datetime" Mode="In" />
     <Parameter Name="fact_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="fact_FechaCrea" Type="datetime" Mode="In" />
   </Function>
@@ -3650,6 +3686,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="factd_PorcentajeDescuento" Type="decimal" Mode="In" />
     <Parameter Name="factd_Impuesto" Type="decimal" Mode="In" />
     <Parameter Name="factd_PrecioUnitario" Type="decimal" Mode="In" />
+    <Parameter Name="factd_UsuarioAutoriza" Type="int" Mode="In" />
+    <Parameter Name="factd_FechaAutoriza" Type="datetime" Mode="In" />
     <Parameter Name="factd_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="factd_FechaCrea" Type="datetime" Mode="In" />
   </Function>
@@ -4636,6 +4674,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       <End Role="tbFactura" EntitySet="tbFactura" />
       <End Role="tbPedido" EntitySet="tbPedido" />
     </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza" Association="Self.FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbFactura" EntitySet="tbFactura" />
+    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbFactura_tbUsuario_usu_Id_Crea" Association="Self.FK_Vent_tbFactura_tbUsuario_usu_Id_Crea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbFactura" EntitySet="tbFactura" />
@@ -4650,6 +4692,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" Association="Self.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo">
       <End Role="tbProducto" EntitySet="tbProducto" />
+      <End Role="tbFacturaDetalle" EntitySet="tbFacturaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Autoriza" Association="Self.FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Autoriza">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbFacturaDetalle" EntitySet="tbFacturaDetalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Crea" Association="Self.FK_Vent_tbFacturaDetalle_tbUsuario_usu_Id_Crea">

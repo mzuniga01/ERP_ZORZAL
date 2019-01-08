@@ -942,7 +942,6 @@
     <Content Include="Scripts\app\InActivarCliente.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\ListaPrecioDetalle.js" />
-    <Content Include="Scripts\app\ListaPrecioFactura.js" />
     <Content Include="Scripts\app\MessageError.js" />
     <Content Include="Scripts\app\MovientoCaja.js" />
     <Content Include="Scripts\app\NotaCredito.js" />
@@ -953,8 +952,8 @@
     <Content Include="Scripts\app\SaveDetallePedido.js" />
     <Content Include="Scripts\app\SavePedidoDetalle.js" />
     <Content Include="Scripts\app\SolicitudEfectivo.js" />
-    <Content Include="Scripts\app\SolicitudEfectivoDetalle.js" />
     <Content Include="Scripts\app\SolicitudEfectivoDetalles.js" />
+    <Content Include="Scripts\app\SolicitudEfectivoEsAnulada.js" />
     <Content Include="Scripts\app\Sucursal.js" />
     <Content Include="Scripts\app\TipoPago.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1313,7 +1312,6 @@
     <Content Include="Views\DenominacionArqueo\Edit.cshtml" />
     <Content Include="Views\DenominacionArqueo\Index.cshtml" />
     <Content Include="Views\Pedido\_DetailsPedidoDetalle.cshtml" />
-    <Content Include="Views\Factura\_IndexListaPrecio.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_EditarSolicitudEfectivoDetalle.cshtml" />
     <Content Include="Views\Pedido\_EditPedidoDetalle.cshtml" />
     <Content Include="Views\PuntoEmision\_EditNumeracionDetails.cshtml" />

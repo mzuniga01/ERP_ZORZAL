@@ -72,10 +72,8 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbEstadoPedido> tbEstadoPedido { get; set; }
         public virtual DbSet<tbEstadoSolicitudCredito> tbEstadoSolicitudCredito { get; set; }
         public virtual DbSet<tbExoneracion> tbExoneracion { get; set; }
-        public virtual DbSet<tbFactura> tbFactura { get; set; }
         public virtual DbSet<tbFacturaDetalle> tbFacturaDetalle { get; set; }
         public virtual DbSet<tbFacturaHistorica> tbFacturaHistorica { get; set; }
-        public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
         public virtual DbSet<tbListaPrecio> tbListaPrecio { get; set; }
         public virtual DbSet<tbMovimientoCaja> tbMovimientoCaja { get; set; }
         public virtual DbSet<tbNotaCredito> tbNotaCredito { get; set; }
@@ -90,6 +88,8 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
         public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
+        public virtual DbSet<tbFactura> tbFactura { get; set; }
+        public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {
@@ -925,7 +925,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetTipoIdentificacion_Result>("spGetTipoIdentificacion", personaNaturalParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbFactura_Insert_Result> UDP_Vent_tbFactura_Insert(string fact_Codigo, Nullable<System.DateTime> fact_Fecha, Nullable<byte> esfac_Id, Nullable<short> cja_Id, Nullable<short> suc_Id, Nullable<int> clte_Id, string pemi_NumeroCAI, Nullable<bool> fact_AlCredito, Nullable<int> fact_DiasCredito, Nullable<decimal> fact_PorcentajeDescuento, Nullable<bool> fact_AutorizarDescuento, string fact_Vendedor, string clte_Identificacion, string clte_Nombres)
+        public virtual ObjectResult<UDP_Vent_tbFactura_Insert_Result> UDP_Vent_tbFactura_Insert(string fact_Codigo, Nullable<System.DateTime> fact_Fecha, Nullable<byte> esfac_Id, Nullable<short> cja_Id, Nullable<short> suc_Id, Nullable<int> clte_Id, string pemi_NumeroCAI, Nullable<bool> fact_AlCredito, Nullable<int> fact_DiasCredito, Nullable<decimal> fact_PorcentajeDescuento, string fact_Vendedor, string clte_Identificacion, string clte_Nombres, string fact_IdentidadTerceraEdad, string fact_Nombres, Nullable<System.DateTime> fact_FechaNacimiento)
         {
             var fact_CodigoParameter = fact_Codigo != null ?
                 new ObjectParameter("fact_Codigo", fact_Codigo) :
@@ -967,10 +967,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("fact_PorcentajeDescuento", fact_PorcentajeDescuento) :
                 new ObjectParameter("fact_PorcentajeDescuento", typeof(decimal));
     
-            var fact_AutorizarDescuentoParameter = fact_AutorizarDescuento.HasValue ?
-                new ObjectParameter("fact_AutorizarDescuento", fact_AutorizarDescuento) :
-                new ObjectParameter("fact_AutorizarDescuento", typeof(bool));
-    
             var fact_VendedorParameter = fact_Vendedor != null ?
                 new ObjectParameter("fact_Vendedor", fact_Vendedor) :
                 new ObjectParameter("fact_Vendedor", typeof(string));
@@ -983,7 +979,19 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("clte_Nombres", clte_Nombres) :
                 new ObjectParameter("clte_Nombres", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Insert_Result>("UDP_Vent_tbFactura_Insert", fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, cja_IdParameter, suc_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_AutorizarDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter);
+            var fact_IdentidadTerceraEdadParameter = fact_IdentidadTerceraEdad != null ?
+                new ObjectParameter("fact_IdentidadTerceraEdad", fact_IdentidadTerceraEdad) :
+                new ObjectParameter("fact_IdentidadTerceraEdad", typeof(string));
+    
+            var fact_NombresParameter = fact_Nombres != null ?
+                new ObjectParameter("fact_Nombres", fact_Nombres) :
+                new ObjectParameter("fact_Nombres", typeof(string));
+    
+            var fact_FechaNacimientoParameter = fact_FechaNacimiento.HasValue ?
+                new ObjectParameter("fact_FechaNacimiento", fact_FechaNacimiento) :
+                new ObjectParameter("fact_FechaNacimiento", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Insert_Result>("UDP_Vent_tbFactura_Insert", fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, cja_IdParameter, suc_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_IdentidadTerceraEdadParameter, fact_NombresParameter, fact_FechaNacimientoParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbDocumentoFiscal_Insert_Result> UDP_Vent_tbDocumentoFiscal_Insert(string dfisc_Id, string dfisc_Descripcion)
@@ -1790,7 +1798,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFacturaDetalle_Insert_Result>("UDP_Vent_tbFacturaDetalle_Insert", fact_IdParameter, prod_CodigoParameter, factd_CantidadParameter, factd_MontoDescuentoParameter, factd_PorcentajeDescuentoParameter, factd_ImpuestoParameter, factd_PrecioUnitarioParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbFacturaDetalle_Update_Result> UDP_Vent_tbFacturaDetalle_Update(Nullable<short> factd_Id, Nullable<decimal> factd_Cantidad, Nullable<decimal> factd_MontoDescuento, Nullable<decimal> factd_PorcentajeDescuento, Nullable<decimal> factd_Impuesto, Nullable<decimal> factd_PrecioUnitario, Nullable<int> factd_UsuarioCrea, Nullable<System.DateTime> factd_FechaCrea)
+        public virtual ObjectResult<UDP_Vent_tbFacturaDetalle_Update_Result> UDP_Vent_tbFacturaDetalle_Update(Nullable<short> factd_Id, Nullable<decimal> factd_Cantidad, Nullable<decimal> factd_MontoDescuento, Nullable<decimal> factd_PorcentajeDescuento, Nullable<decimal> factd_Impuesto, Nullable<decimal> factd_PrecioUnitario, Nullable<int> factd_UsuarioAutoriza, Nullable<System.DateTime> factd_FechaAutoriza, Nullable<int> factd_UsuarioCrea, Nullable<System.DateTime> factd_FechaCrea)
         {
             var factd_IdParameter = factd_Id.HasValue ?
                 new ObjectParameter("factd_Id", factd_Id) :
@@ -1816,6 +1824,14 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("factd_PrecioUnitario", factd_PrecioUnitario) :
                 new ObjectParameter("factd_PrecioUnitario", typeof(decimal));
     
+            var factd_UsuarioAutorizaParameter = factd_UsuarioAutoriza.HasValue ?
+                new ObjectParameter("factd_UsuarioAutoriza", factd_UsuarioAutoriza) :
+                new ObjectParameter("factd_UsuarioAutoriza", typeof(int));
+    
+            var factd_FechaAutorizaParameter = factd_FechaAutoriza.HasValue ?
+                new ObjectParameter("factd_FechaAutoriza", factd_FechaAutoriza) :
+                new ObjectParameter("factd_FechaAutoriza", typeof(System.DateTime));
+    
             var factd_UsuarioCreaParameter = factd_UsuarioCrea.HasValue ?
                 new ObjectParameter("factd_UsuarioCrea", factd_UsuarioCrea) :
                 new ObjectParameter("factd_UsuarioCrea", typeof(int));
@@ -1824,10 +1840,10 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("factd_FechaCrea", factd_FechaCrea) :
                 new ObjectParameter("factd_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFacturaDetalle_Update_Result>("UDP_Vent_tbFacturaDetalle_Update", factd_IdParameter, factd_CantidadParameter, factd_MontoDescuentoParameter, factd_PorcentajeDescuentoParameter, factd_ImpuestoParameter, factd_PrecioUnitarioParameter, factd_UsuarioCreaParameter, factd_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFacturaDetalle_Update_Result>("UDP_Vent_tbFacturaDetalle_Update", factd_IdParameter, factd_CantidadParameter, factd_MontoDescuentoParameter, factd_PorcentajeDescuentoParameter, factd_ImpuestoParameter, factd_PrecioUnitarioParameter, factd_UsuarioAutorizaParameter, factd_FechaAutorizaParameter, factd_UsuarioCreaParameter, factd_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbFactura_Update_Result> UDP_Vent_tbFactura_Update(Nullable<long> fact_Id, string fact_Codigo, Nullable<System.DateTime> fact_Fecha, Nullable<byte> esfac_Id, Nullable<int> clte_Id, string pemi_NumeroCAI, Nullable<bool> fact_AlCredito, Nullable<int> fact_DiasCredito, Nullable<decimal> fact_PorcentajeDescuento, Nullable<bool> fact_AutorizarDescuento, string fact_Vendedor, string clte_Identificacion, string clte_Nombres, Nullable<int> fact_UsuarioCrea, Nullable<System.DateTime> fact_FechaCrea)
+        public virtual ObjectResult<UDP_Vent_tbFactura_Update_Result> UDP_Vent_tbFactura_Update(Nullable<long> fact_Id, string fact_Codigo, Nullable<System.DateTime> fact_Fecha, Nullable<byte> esfac_Id, Nullable<int> clte_Id, string pemi_NumeroCAI, Nullable<bool> fact_AlCredito, Nullable<int> fact_DiasCredito, Nullable<decimal> fact_PorcentajeDescuento, string fact_Vendedor, string clte_Identificacion, string clte_Nombres, string fact_IdentidadTerceraEdad, string fact_Nombres, Nullable<System.DateTime> fact_FechaNacimiento, Nullable<int> fact_UsuarioAutoriza, Nullable<System.DateTime> fact_FechaAutoriza, Nullable<int> fact_UsuarioCrea, Nullable<System.DateTime> fact_FechaCrea)
         {
             var fact_IdParameter = fact_Id.HasValue ?
                 new ObjectParameter("fact_Id", fact_Id) :
@@ -1865,10 +1881,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("fact_PorcentajeDescuento", fact_PorcentajeDescuento) :
                 new ObjectParameter("fact_PorcentajeDescuento", typeof(decimal));
     
-            var fact_AutorizarDescuentoParameter = fact_AutorizarDescuento.HasValue ?
-                new ObjectParameter("fact_AutorizarDescuento", fact_AutorizarDescuento) :
-                new ObjectParameter("fact_AutorizarDescuento", typeof(bool));
-    
             var fact_VendedorParameter = fact_Vendedor != null ?
                 new ObjectParameter("fact_Vendedor", fact_Vendedor) :
                 new ObjectParameter("fact_Vendedor", typeof(string));
@@ -1881,6 +1893,26 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("clte_Nombres", clte_Nombres) :
                 new ObjectParameter("clte_Nombres", typeof(string));
     
+            var fact_IdentidadTerceraEdadParameter = fact_IdentidadTerceraEdad != null ?
+                new ObjectParameter("fact_IdentidadTerceraEdad", fact_IdentidadTerceraEdad) :
+                new ObjectParameter("fact_IdentidadTerceraEdad", typeof(string));
+    
+            var fact_NombresParameter = fact_Nombres != null ?
+                new ObjectParameter("fact_Nombres", fact_Nombres) :
+                new ObjectParameter("fact_Nombres", typeof(string));
+    
+            var fact_FechaNacimientoParameter = fact_FechaNacimiento.HasValue ?
+                new ObjectParameter("fact_FechaNacimiento", fact_FechaNacimiento) :
+                new ObjectParameter("fact_FechaNacimiento", typeof(System.DateTime));
+    
+            var fact_UsuarioAutorizaParameter = fact_UsuarioAutoriza.HasValue ?
+                new ObjectParameter("fact_UsuarioAutoriza", fact_UsuarioAutoriza) :
+                new ObjectParameter("fact_UsuarioAutoriza", typeof(int));
+    
+            var fact_FechaAutorizaParameter = fact_FechaAutoriza.HasValue ?
+                new ObjectParameter("fact_FechaAutoriza", fact_FechaAutoriza) :
+                new ObjectParameter("fact_FechaAutoriza", typeof(System.DateTime));
+    
             var fact_UsuarioCreaParameter = fact_UsuarioCrea.HasValue ?
                 new ObjectParameter("fact_UsuarioCrea", fact_UsuarioCrea) :
                 new ObjectParameter("fact_UsuarioCrea", typeof(int));
@@ -1889,7 +1921,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("fact_FechaCrea", fact_FechaCrea) :
                 new ObjectParameter("fact_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Update_Result>("UDP_Vent_tbFactura_Update", fact_IdParameter, fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_AutorizarDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_UsuarioCreaParameter, fact_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Update_Result>("UDP_Vent_tbFactura_Update", fact_IdParameter, fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_IdentidadTerceraEdadParameter, fact_NombresParameter, fact_FechaNacimientoParameter, fact_UsuarioAutorizaParameter, fact_FechaAutorizaParameter, fact_UsuarioCreaParameter, fact_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbEstadoFactura_Insert_Result> UDP_Vent_tbEstadoFactura_Insert(string esfac_Descripcion)

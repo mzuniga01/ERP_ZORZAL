@@ -23,8 +23,8 @@ namespace ERP_GMEDINA.Models
             this.tbDevolucionDetalle = new HashSet<tbDevolucionDetalle>();
             this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
             this.tbFacturaDetalle = new HashSet<tbFacturaDetalle>();
-            this.tbListadoPrecioDetalle = new HashSet<tbListadoPrecioDetalle>();
             this.tbPedidoDetalle = new HashSet<tbPedidoDetalle>();
+            this.tbListadoPrecioDetalle = new HashSet<tbListadoPrecioDetalle>();
         }
     
         public string prod_Codigo { get; set; }
@@ -61,8 +61,8 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedidoDetalle> tbPedidoDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
     }
 }

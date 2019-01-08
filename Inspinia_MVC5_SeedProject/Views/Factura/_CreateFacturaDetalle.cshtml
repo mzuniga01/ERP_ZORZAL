@@ -49,9 +49,6 @@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.factd_PrecioUnitario)</p>
                                 </div>
                             </div>
-                            <div class="col-md-1">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarListaPrecio"><span class="glyphicon glyphicon-search"></span></button>
-                            </div>
                             @Html.LabelFor(model => model.factd_MontoDescuento, new { @class = "col-md-1" })
                             <div class="col-md-2">
                                 @Html.EditorFor(model => model.factd_MontoDescuento, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
@@ -72,7 +69,7 @@
                             <div class="col-md-2">
                                 <input id="SubtotalProducto" type="text" class="form-control" readonly />
                             </div>
-                            <label class="control-label col-lg-offset-1 col-md-1">Total</label>
+                            <label class="control-label col-md-1">Total</label>
                             <div class="col-md-2">
                                 <input id="TotalProducto" type="text" value="" class="form-control" readonly />
                             </div>
@@ -145,23 +142,6 @@
                 </div>
                 <div class="modal-body" id="frmListaProducto">
                     @Html.Partial("_IndexProducto", (List<tbProducto>)ViewBag.Producto)
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div>
-    <div class="modal fade" id="ModalAgregarListaPrecio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Agregar Lista Precio</h4>
-                </div>
-                <div class="modal-body" id="frmListaPrecio">
-                    @Html.Partial("_IndexListaPrecio", (List<tbListaPrecio>)ViewBag.ListaPrecio)
                 </div>
             </div>
         </div>

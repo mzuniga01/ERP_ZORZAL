@@ -26,10 +26,13 @@ namespace ERP_GMEDINA.Models
         public System.DateTime factd_FechaCrea { get; set; }
         public Nullable<int> factd_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> factd_FechaModifica { get; set; }
+        public Nullable<int> factd_UsuarioAutoriza { get; set; }
+        public Nullable<System.DateTime> factd_FechaAutoriza { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbProducto tbProducto { get; set; }
+        public virtual tbUsuario tbUsuario2 { get; set; }
         public virtual tbFactura tbFactura { get; set; }
     }
 }

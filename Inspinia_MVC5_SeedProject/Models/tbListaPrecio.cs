@@ -27,6 +27,8 @@ namespace ERP_GMEDINA.Models
         public System.DateTime listp_FechaCrea { get; set; }
         public Nullable<int> listp_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> listp_FechaModifica { get; set; }
+        public Nullable<System.DateTime> listp_FechaInicioVigencia { get; set; }
+        public Nullable<System.DateTime> listp_FechaFinalVigencia { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

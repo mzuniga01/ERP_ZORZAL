@@ -49,9 +49,6 @@ namespace ERP_GMEDINA.Models
         [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal fact_PorcentajeDescuento { get; set; }
-        [Display(Name = "Autorizar Descuento")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
-        public bool fact_AutorizarDescuento { get; set; }
         [Display(Name = "Vendedor")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string fact_Vendedor { get; set; }

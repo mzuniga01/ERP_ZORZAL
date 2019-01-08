@@ -65,7 +65,6 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
             ViewBag.Producto = db.tbProducto.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
-            ViewBag.ListaPrecio = db.tbListaPrecio.ToList(); 
             Session["Factura"] = null;
             return View();
         }
@@ -75,7 +74,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include= "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_AutorizarDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
+        public ActionResult Create([Bind(Include= "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
         {
             var list = (List<tbFacturaDetalle>)Session["Factura"];
             long MensajeError = 0;
@@ -99,10 +98,12 @@ namespace ERP_GMEDINA.Controllers
                                                 tbFactura.fact_AlCredito,
                                                 tbFactura.fact_DiasCredito,
                                                 tbFactura.fact_PorcentajeDescuento,
-                                                tbFactura.fact_AutorizarDescuento,
                                                 tbFactura.fact_Vendedor,
                                                 tbFactura.clte_Identificacion,
-                                                tbFactura.clte_Nombres);
+                                                tbFactura.clte_Nombres,
+                                                tbFactura.fact_IdentidadTerceraEdad,
+                                                tbFactura.fact_Nombres,
+                                                tbFactura.fact_FechaNacimiento);
                         foreach (UDP_Vent_tbFactura_Insert_Result Factura in listFactura)
                             MensajeError = Factura.MensajeError;
                         if (MensajeError == -1)
@@ -163,7 +164,6 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
                     ViewBag.Producto = db.tbProducto.ToList();
                     ViewBag.Cliente = db.tbCliente.ToList();
-                    ViewBag.ListaPrecio = db.tbListaPrecio.ToList();
                 }
 
            }
@@ -175,7 +175,6 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbFactura.suc_Id);
             ViewBag.Cliente = db.tbCliente.ToList();
             ViewBag.Producto = db.tbProducto.ToList();
-            ViewBag.ListaPrecio = db.tbListaPrecio.ToList();
             return View(tbFactura);
         }
 
@@ -207,7 +206,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include= "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_AutorizarDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
+        public ActionResult Edit([Bind(Include= "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
         {
             if (ModelState.IsValid)
             {
@@ -225,10 +224,14 @@ namespace ERP_GMEDINA.Controllers
                         tbFactura.fact_AlCredito,
                         tbFactura.fact_DiasCredito,
                         tbFactura.fact_PorcentajeDescuento,
-                        tbFactura.fact_AutorizarDescuento,
                         tbFactura.fact_Vendedor,
                         tbFactura.clte_Identificacion,
                         tbFactura.clte_Nombres,
+                        tbFactura.fact_IdentidadTerceraEdad,
+                        tbFactura.fact_Nombres,
+                        tbFactura.fact_FechaNacimiento,
+                        tbFactura.fact_UsuarioAutoriza,
+                        tbFactura.fact_FechaAutoriza,
                         tbFactura.fact_UsuarioCrea,
                         tbFactura.fact_FechaCrea);
                     foreach (UDP_Vent_tbFactura_Update_Result Factura in list)
@@ -347,6 +350,8 @@ namespace ERP_GMEDINA.Controllers
                             EditFacturaDetalle.factd_PorcentajeDescuento,
                             EditFacturaDetalle.factd_Impuesto,
                             EditFacturaDetalle.factd_PrecioUnitario,
+                            EditFacturaDetalle.factd_UsuarioAutoriza,
+                            EditFacturaDetalle.factd_FechaAutoriza,
                             EditFacturaDetalle.factd_UsuarioCrea,
                             EditFacturaDetalle.factd_FechaCrea);
                 foreach (UDP_Vent_tbFacturaDetalle_Update_Result FacturaDetalle in list)
