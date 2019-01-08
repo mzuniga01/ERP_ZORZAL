@@ -562,8 +562,8 @@
     <Property Name="dev_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="fact_Id" Type="bigint" Nullable="false" />
     <Property Name="cja_Id" Type="smallint" Nullable="false" />
+    <Property Name="nocre_Id" Type="smallint" />
     <Property Name="dev_Fecha" Type="datetime" Nullable="false" />
-    <Property Name="nocre_Codigo" Type="smallint" />
     <Property Name="dev_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="dev_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="dev_UsuarioModifica" Type="int" />
@@ -3148,6 +3148,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_NotaCredito">
+    <End Role="tbNotaCredito" Type="Self.tbNotaCredito" Multiplicity="0..1" />
+    <End Role="tbDevolucion" Type="Self.tbDevolucion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbNotaCredito">
+        <PropertyRef Name="nocre_Id" />
+      </Principal>
+      <Dependent Role="tbDevolucion">
+        <PropertyRef Name="nocre_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbPedido_tbEstadoPedido_esped_Id">
     <End Role="tbEstadoPedido" Type="Self.tbEstadoPedido" Multiplicity="1" />
     <End Role="tbPedido" Type="Self.tbPedido" Multiplicity="*" />
@@ -5345,6 +5357,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does 
     <AssociationSet Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" Association="Self.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
       <End Role="tbDevolucion" EntitySet="tbDevolucion" />
       <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_NotaCredito" Association="Self.FK_Vent_tbNotaCredito_tbDevolucion_dev_NotaCredito">
+      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbPedido_tbEstadoPedido_esped_Id" Association="Self.FK_Vent_tbPedido_tbEstadoPedido_esped_Id">
       <End Role="tbEstadoPedido" EntitySet="tbEstadoPedido" />

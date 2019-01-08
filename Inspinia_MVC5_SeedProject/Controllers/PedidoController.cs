@@ -14,8 +14,6 @@ namespace ERP_ZORZAL.Controllers
     public class PedidoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
-        // GET: /Pedido/
         public ActionResult Index()
         {
             var tbpedido = db.tbPedido.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbEstadoPedido).Include(t => t.tbSucursal);
@@ -249,6 +247,8 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
             ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion", tbPedido.esped_Id);
             ViewBag.Producto = db.tbProducto.ToList();
+            ViewBag.Cliente = db.tbCliente.ToList();
+
             return View(tbPedido);
         }
 
@@ -322,6 +322,51 @@ namespace ERP_ZORZAL.Controllers
             }
             return View(tbPedido);
         }
+
+        [HttpPost]
+        public ActionResult UpdatePedidoDetalle(tbPedidoDetalle EditPedidoDetalle)
+        {
+            try
+            {
+                var MensajeError = 0;
+                IEnumerable<object> list = null;
+                list = db.UDP_Vent_tbPedidoDetalle_Update(
+                            EditPedidoDetalle.pedd_Id,
+                            EditPedidoDetalle.ped_Id,
+                            EditPedidoDetalle.prod_Codigo,
+                            EditPedidoDetalle.pedd_Descripcion,
+                            EditPedidoDetalle.pedd_Cantidad,
+                            EditPedidoDetalle.pedd_CantidadFacturada,
+                            EditPedidoDetalle.pedd_UsuarioCrea,
+                            EditPedidoDetalle.pedd_FechaCrea,
+                             EditPedidoDetalle.pedd_UsuarioModifica,
+                             EditPedidoDetalle.pedd_FechaModifica
+                    );
+
+                foreach (UDP_Vent_tbPuntoEmisionDetalle_Update_Result PedidoDetalle in list)
+                    MensajeError = PedidoDetalle.MensajeError;
+                if (MensajeError == -1)
+                {
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    return PartialView("_PedidoDetalleEditar");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al programador.");
+                return PartialView("_PedidoDetalleEditar", EditPedidoDetalle);
+            }
+        }
+
+
+
+
+
 
         // POST: /Pedido/Delete/5
         [HttpPost, ActionName("Delete")]

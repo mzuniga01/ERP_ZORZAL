@@ -1224,8 +1224,8 @@
           <ScalarProperty Name="dev_UsuarioModifica" ColumnName="dev_UsuarioModifica" />
           <ScalarProperty Name="dev_FechaCrea" ColumnName="dev_FechaCrea" />
           <ScalarProperty Name="dev_UsuarioCrea" ColumnName="dev_UsuarioCrea" />
-          <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
           <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
+          <ScalarProperty Name="nocre_Id" ColumnName="nocre_Id" />
           <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
           <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
           <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
@@ -1621,14 +1621,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UDV_Inv_Nombre_Empleado">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado">
-        <MappingFragment StoreEntitySet="UDV_Inv_Nombre_Empleado">
-          <ScalarProperty Name="Empleados" ColumnName="Empleados" />
-          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="UDV_Vent_Busqueda_Clientes">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_Busqueda_Clientes">
         <MappingFragment StoreEntitySet="UDV_Vent_Busqueda_Clientes">
@@ -1662,6 +1654,14 @@
           <ScalarProperty Name="tpi_Descripcion" ColumnName="tpi_Descripcion" />
           <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
           <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Inv_Nombre_Empleado">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado">
+        <MappingFragment StoreEntitySet="UDV_Inv_Nombre_Empleado">
+          <ScalarProperty Name="Empleados" ColumnName="Empleados" />
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

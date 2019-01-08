@@ -43,66 +43,89 @@
 
 
             <div class="form-group">
-                <label class="control-label col-md-2">Número Pedido</label>
+       
+
+
+                <label class="control-label col-md-2">Sucursal</label>
 
                 <div class="col-md-3">
-                    @Html.EditorFor(model => model.ped_Id, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.ped_Id)
+                    @Html.EditorFor(model => model.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.suc_Id)
                 </div>
           
                 @Html.LabelFor(model => model.suc_Id, "Estado", new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
-                    @Html.DropDownList("esped_Id", null, "Seleccione Estado Pedido", new { @class = "form-control" })
+                    @Html.DropDownList("esped_Id", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
                     @Html.ValidationMessageFor(model => model.ped_Id)
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-md-2">Sucursal</label>
+
+                <label class="control-label col-md-2">Departamento</label>
 
                 <div class="col-md-3">
-                    @Html.EditorFor(model => model.tbSucursal.suc_Descripcion)
+                    @Html.EditorFor(model => model.tbSucursal.tbMunicipio.tbDepartamento.dep_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.suc_Id)
                 </div>
-        
-                @Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-2" })
+
+
+                <label class="control-label col-md-2">Indentificación del Cliente</label>
+
                 <div class="col-md-3">
-                    @Html.EditorFor(model => model.ped_FechaElaboracion, "{0:yyyy-MM-dd}")
-                    @Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
+                    @Html.EditorFor(model => model.tbCliente.clte_Identificacion)
+                    @Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
                 </div>
             </div>
 
 
             <div class="form-group">
-                <label class="control-label col-md-2">Número Cliente</label>
+            
 
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.clte_Id)
-                    @Html.ValidationMessageFor(model => model.clte_Id)
-                </div>
-
-                <label class="control-label col-md-2">Cliente</label>
-                <div class="col-md-3">
+                <label class="control-label col-md-2">Nombres Cliente</label>
+                <div class="col-md-8">
                     @Html.EditorFor(model => model.tbCliente.clte_Nombres)
                     @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
                 </div>
             </div>
 
             <div class="form-group">
+                @Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.ped_FechaElaboracion)
+                    @Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
+                </div>
+
+
+
                 @Html.LabelFor(model => model.ped_FechaEntrega, new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
                     @Html.EditorFor(model => model.ped_FechaEntrega)
                     @Html.ValidationMessageFor(model => model.ped_FechaEntrega)
                 </div>
-
-                <label class="control-label col-md-2">Número Factura</label>
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.tbFactura.fact_Id)
-                    @Html.ValidationMessageFor(model => model.fact_Id)
-                </div>
+          
             </div>
 
-            @Html.Partial("_EditPedidoDetalle", Model.tbPedidoDetalle)
+            <div class="form-group">
+            <label class="control-label col-md-2">Número Factura</label>
+                <div class="col-md-3">
+                    @*@Html.EditorFor(model => model.tbFactura.fact_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.fact_Id)*@
+                </div>
+            </div>
+     
+            <div class="ibox-title">
+                <h5>Pedido Detalle</h5>
+            </div>
+
+
+            <div class="ibox-content">
+                @Html.Partial("_IndexPedidoDetalle", Model.tbPedidoDetalle)
+            </div>
+
             
             <div class="form-group">
                 <div class="col-md-offset-4 col-md-10">
@@ -139,10 +162,30 @@
             </div>
         </div>
     </div>
+
+    <div>
+        <div class="modal fade" id="ModalAgregarClientes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
+                    </div>
+                    <div class="modal-body" id="frmEditarMunicipios">
+                        @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
  </div>
 
-
+<script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+
 }

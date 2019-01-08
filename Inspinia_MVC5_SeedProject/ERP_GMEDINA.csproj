@@ -1345,6 +1345,8 @@
     <Content Include="Views\ListaPrecios\_EditListaPrecioDetalle.cshtml" />
     <Content Include="Views\ListaPrecios\_IndexProducto.cshtml" />
     <Content Include="Views\SolicitudCredito\_AprobarSolicitudCredito.cshtml" />
+    <Content Include="Views\Pedido\_PedidoDetalleEditar.cshtml" />
+    <Content Include="Views\Pedido\_IndexPedidoDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
