@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 
-namespace ERP_ZORZAL.Controllers
+namespace ERP_GMEDINA.Controllers
 {
     public class ListaPreciosController : Controller
     {
@@ -42,7 +42,6 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.listp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.listp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.listp_Id = new SelectList(db.tbListadoPrecioDetalle, "listp_Id", "prod_Codigo");
-            ViewBag.Producto = db.tbProducto.ToList();
             return View();
         }
 
@@ -51,7 +50,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="listp_Id,listp_Nombre,listp_EsActivo,listp_UsuarioCrea,listp_FechaCrea,listp_UsuarioModifica,listp_FechaModifica")] tbListaPrecio tbListaPrecio)
+        public ActionResult Create([Bind(Include="listp_Id,listp_Nombre,listp_EsActivo,listp_UsuarioCrea,listp_FechaCrea,listp_UsuarioModifica,listp_FechaModifica,listp_FechaInicioVigencia,listp_FechaFinalVigencia")] tbListaPrecio tbListaPrecio)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +80,6 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.listp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioCrea);
             ViewBag.listp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioModifica);
             ViewBag.listp_Id = new SelectList(db.tbListadoPrecioDetalle, "listp_Id", "prod_Codigo", tbListaPrecio.listp_Id);
-            ViewBag.Producto = db.tbProducto.ToList();
             return View(tbListaPrecio);
         }
 
@@ -90,7 +88,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="listp_Id,listp_Nombre,listp_EsActivo,listp_UsuarioCrea,listp_FechaCrea,listp_UsuarioModifica,listp_FechaModifica")] tbListaPrecio tbListaPrecio)
+        public ActionResult Edit([Bind(Include="listp_Id,listp_Nombre,listp_EsActivo,listp_UsuarioCrea,listp_FechaCrea,listp_UsuarioModifica,listp_FechaModifica,listp_FechaInicioVigencia,listp_FechaFinalVigencia")] tbListaPrecio tbListaPrecio)
         {
             if (ModelState.IsValid)
             {
@@ -137,24 +135,6 @@ namespace ERP_ZORZAL.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        [HttpPost]
-        public JsonResult SaveListaPrecioDetalle(tbListadoPrecioDetalle cPrecioDetalle)
-        {
-            List<tbListadoPrecioDetalle> sessionCasoExito = new List<tbListadoPrecioDetalle>();
-            var list = (List<tbListadoPrecioDetalle>)Session["ListadoPrecioDetalle"];
-            if (list == null)
-            {
-                sessionCasoExito.Add(cPrecioDetalle);
-                Session["ListadoPrecioDetalle"] = sessionCasoExito;
-            }
-            else
-            {
-                list.Add(cPrecioDetalle);
-                Session["ListadoPrecioDetalle"] = list;
-            }
-            return Json("Exito", JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -29,14 +29,6 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public decimal lispd_PrecioMinorista { get; set; }
 
-        [Display(Name = "Fecha Inicio")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public Nullable<System.DateTime> lispd_FechaInicioVigencia { get; set; }
-
-        [Display(Name = "Fecha Final")] 
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public Nullable<System.DateTime> lispd_FechaFinalVigencia { get; set; }
-
         [Display(Name = "Descuento Caja")]
         public Nullable<decimal> lispd_DescCaja { get; set; }
 

@@ -1225,16 +1225,9 @@
     <Content Include="Views\SolicitudEfectivo\Edit.cshtml" />
     <Content Include="Views\SolicitudEfectivo\Index.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_CreateSolicitudEfectivoDetalle.cshtml" />
-    <Content Include="Views\ListaPrecios\Delete.cshtml" />
-    <Content Include="Views\ListaPrecios\Details.cshtml" />
-    <Content Include="Views\ListaPrecios\Edit.cshtml" />
-    <Content Include="Views\ListaPrecios\Index.cshtml" />
-    <Content Include="Views\ListaPrecios\Create.cshtml" />
-    <Content Include="Views\ListaPrecios\_CreateListaPrecioDetalle.cshtml" />
     <Content Include="Views\PuntoEmision\_DetailsNumeracion.cshtml" />
     <Content Include="Views\Devolucion\_ProductoDevolucion.cshtml" />
     <Content Include="Views\NotaCredito\_IndexCliente.cshtml" />
-    <Content Include="Views\ListaPrecios\_PrecioDetalle.cshtml" />
     <Content Include="Views\SolicitudCredito\_IndexCliente.cshtml" />
     <Content Include="Views\SolicitudCredito\_ListAprobacion.cshtml" />
     <Content Include="Views\SolicitudCredito\IndexSolicitud.cshtml" />
@@ -1261,7 +1254,6 @@
     <Content Include="Views\Devolucion\_IndexDetalleDevolucion.cshtml" />
     <Content Include="Views\Devolucion\_IndexProductoDDevolucion.cshtml" />
     <Content Include="Views\Devolucion\_ProductoDevolucionFactura.cshtml" />
-    <Content Include="Views\ListaPrecios\_IndexProducto.cshtml" />
     <Content Include="Views\Pago\Create.cshtml" />
     <Content Include="Views\Pago\Delete.cshtml" />
     <Content Include="Views\Pago\Details.cshtml" />
@@ -1289,8 +1281,6 @@
     <Content Include="Views\Exoneracion\Edit.cshtml" />
     <Content Include="Views\Exoneracion\Index.cshtml" />
     <Content Include="Views\Exoneracion\_IndexCliente.cshtml" />
-    <Content Include="Views\ListaPrecios\_EditListaPrecioDetalle.cshtml" />
-    <Content Include="Views\ListaPrecios\_DetailsListaPrecioDetalle.cshtml" />
     <Content Include="Views\Factura\Create.cshtml" />
     <Content Include="Views\Factura\Delete.cshtml" />
     <Content Include="Views\Factura\Details.cshtml" />
@@ -1319,6 +1309,11 @@
     <Content Include="Views\PuntoEmision\_IndexNumeracionEdit.cshtml" />
     <Content Include="Views\Pedido\EditFacturar.cshtml" />
     <Content Include="Views\Pedido\IndexFacturar.cshtml" />
+    <Content Include="Views\ListaPrecios\Create.cshtml" />
+    <Content Include="Views\ListaPrecios\Delete.cshtml" />
+    <Content Include="Views\ListaPrecios\Details.cshtml" />
+    <Content Include="Views\ListaPrecios\Edit.cshtml" />
+    <Content Include="Views\ListaPrecios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
