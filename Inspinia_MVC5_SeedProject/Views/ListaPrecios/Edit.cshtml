@@ -1,5 +1,6 @@
 ﻿@model ERP_GMEDINA.Models.tbListaPrecio
 
+@using ERP_GMEDINA.Models
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,19 +8,20 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Edit</h2>
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Edit</strong>
-            </li>
-        </ol>
+        <h2>Editar Lista Precio</h2>
+        @*<ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("List", "Index")
+               </li>
+                <li class="active">
+                    <strong>Editar</strong>
+                </li>
+            </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+            <a href="@Url.Action("Index","ListaPrecios")">Regresar</a>
+
         </div>
     </div>
 </div>
@@ -36,95 +38,130 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.listp_Id)
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.listp_Id)
+                            @*Auditoria*@
+                            @Html.HiddenFor(model => model.listp_UsuarioCrea)
+                            @Html.HiddenFor(model => model.listp_FechaCrea)
+                            @Html.HiddenFor(model => model.listp_UsuarioModifica)
+                            @Html.HiddenFor(model => model.listp_FechaModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.listp_Nombre, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.listp_Nombre)
-                @Html.ValidationMessageFor(model => model.listp_Nombre)
-            </div>
-        </div>
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.listp_Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.listp_EsActivo, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.listp_EsActivo)
-                @Html.ValidationMessageFor(model => model.listp_EsActivo)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.listp_Nombre, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.listp_Nombre)
+                                    @Html.ValidationMessageFor(model => model.listp_Nombre)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.listp_EsActivo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.listp_UsuarioCrea, "listp_UsuarioCrea", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("listp_UsuarioCrea", String.Empty)
-                @Html.ValidationMessageFor(model => model.listp_UsuarioCrea)
-            </div>
-        </div>
+                                    @Html.CheckBox("listp_EsActivo", true)
+                                    @*@Html.EditorFor(model => model.listp_EsActivo)
+                                        @Html.ValidationMessageFor(model => model.listp_EsActivo)*@
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.listp_FechaCrea, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.listp_FechaCrea)
-                @Html.ValidationMessageFor(model => model.listp_FechaCrea)
-            </div>
-        </div>
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.listp_UsuarioCrea, "Usuario Crea", new { @class = "control-label col-md-2", @disabled = "disabled"  })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("listp_UsuarioCrea", String.Empty)
+                                        @Html.ValidationMessageFor(model => model.listp_UsuarioCrea)
+                                    </div>
+                                </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.listp_UsuarioModifica, "listp_UsuarioModifica", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("listp_UsuarioModifica", String.Empty)
-                @Html.ValidationMessageFor(model => model.listp_UsuarioModifica)
-            </div>
-        </div>
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.listp_FechaCrea, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.listp_FechaCrea)
+                                        @Html.ValidationMessageFor(model => model.listp_FechaCrea)
+                                    </div>
+                                </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.listp_FechaModifica, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.listp_FechaModifica)
-                @Html.ValidationMessageFor(model => model.listp_FechaModifica)
-            </div>
-        </div>
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.listp_FechaModifica, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.listp_FechaModifica)
+                                        @Html.ValidationMessageFor(model => model.listp_FechaModifica)
+                                    </div>
+                                </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.listp_FechaInicioVigencia, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.listp_FechaInicioVigencia)
-                @Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.listp_FechaFinalVigencia, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.listp_FechaFinalVigencia)
-                @Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
-				@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.listp_FechaInicioVigencia, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.listp_FechaInicioVigencia)
+                                    @Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.listp_FechaFinalVigencia, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.listp_FechaFinalVigencia)
+                                    @Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+
+
+                        @Html.Partial("_EditListaPrecioDetalle", new tbListadoPrecioDetalle())
+
+                    }
 
 
                 </div>
             </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th></th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.listp_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.listp_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
- </div>
-
+</div>
 
 
 @section Scripts {

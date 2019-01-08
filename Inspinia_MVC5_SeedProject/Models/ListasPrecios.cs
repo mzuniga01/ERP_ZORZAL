@@ -51,11 +51,11 @@ namespace ERP_GMEDINA.Models
         //[Display(Name = "Código")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Fecha Inicio Vigencia")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy }", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> listp_FechaInicioVigencia { get; set; }
 
         [Display(Name = "Fecha Final Vigencia")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> listp_FechaFinalVigencia { get; set; }
 
         public virtual tbUsuario tbUsuario { get; set; }

@@ -42,6 +42,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.listp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.listp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.listp_Id = new SelectList(db.tbListadoPrecioDetalle, "listp_Id", "prod_Codigo");
+            ViewBag.Producto = db.tbProducto.ToList();
             return View();
         }
 
@@ -80,6 +81,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.listp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioCrea);
             ViewBag.listp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioModifica);
             ViewBag.listp_Id = new SelectList(db.tbListadoPrecioDetalle, "listp_Id", "prod_Codigo", tbListaPrecio.listp_Id);
+            ViewBag.Producto = db.tbProducto.ToList();
             return View(tbListaPrecio);
         }
 
@@ -135,6 +137,23 @@ namespace ERP_GMEDINA.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        [HttpPost]
+        public JsonResult SaveListaPrecioDetalle(tbListadoPrecioDetalle cPrecioDetalle)
+        {
+            List<tbListadoPrecioDetalle> sessionCasoExito = new List<tbListadoPrecioDetalle>();
+            var list = (List<tbListadoPrecioDetalle>)Session["ListadoPrecioDetalle"];
+            if (list == null)
+            {
+                sessionCasoExito.Add(cPrecioDetalle);
+                Session["ListadoPrecioDetalle"] = sessionCasoExito;
+            }
+            else
+            {
+                list.Add(cPrecioDetalle);
+                Session["ListadoPrecioDetalle"] = list;
+            }
+            return Json("Exito", JsonRequestBehavior.AllowGet);
         }
     }
 }
