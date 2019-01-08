@@ -70,17 +70,22 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </div>
-
         <div class="form-group">
-
-            <label class="control-label col-md-2">Cliente</label>
-            @*@Html.LabelFor(model => model.cred_MontoAprobado, new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">Identificacion</label>
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.tbCliente.clte_Identificacion)
+                @Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Cliente</label>        
             <div class="col-md-4">
                 @Html.EditorFor(model => model.tbCliente.clte_Nombres)
                 @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
             </div>
-
         </div>
+
+
 
 
         @* Fin datos de cliente *@
