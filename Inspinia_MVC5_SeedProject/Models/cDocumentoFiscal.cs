@@ -30,11 +30,10 @@ namespace ERP_GMEDINA.Models
         public System.DateTime dfisc_FechaCrea { get; set; }
 
         [Display(Name = "Usuario Modificación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<int> dfisc_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modificación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+       
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> dfisc_FechaModifica { get; set; }
     }

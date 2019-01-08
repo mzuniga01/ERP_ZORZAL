@@ -123,7 +123,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id,[Bind(Include= "arqde_Id,mocja_Id,deno_Id,arqde_CantidadDenominacion,arqde_MontoDenominacion,arqde_UsuarioCrea,arqde_FechaCrea,arqde_UsuarioModifica,arqde_FechaModifica,tbDenominacion,tbUsuario,tbUsuario1")] tbDenominacionArqueo tbDenominacionArqueo)
+        public ActionResult Edit([Bind(Include= "arqde_Id,mocja_Id,deno_Id,arqde_CantidadDenominacion,arqde_MontoDenominacion,arqde_UsuarioCrea,arqde_FechaCrea,arqde_UsuarioModifica,arqde_FechaModifica,tbUsuario,tbUsuario1")] tbDenominacionArqueo tbDenominacionArqueo)
         {
             
             ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbDenominacionArqueo.mocja_Id);
@@ -132,11 +132,11 @@ namespace ERP_GMEDINA.Controllers
             {
                 try
                 {
-                    tbDenominacionArqueo vDenominacionArqueo = db.tbDenominacionArqueo.Find(id);
+                    //tbDenominacionArqueo vDenominacionArqueo = db.tbDenominacionArqueo.Find(id);
                     //////////Aqui va la lista//////////////
                     var MensajeError = string.Empty;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbDenominacionArqueo_Update(tbDenominacionArqueo.arqde_Id, tbDenominacionArqueo.mocja_Id, tbDenominacionArqueo.deno_Id, tbDenominacionArqueo.arqde_CantidadDenominacion, tbDenominacionArqueo.arqde_MontoDenominacion, vDenominacionArqueo.arqde_UsuarioCrea, vDenominacionArqueo.arqde_FechaCrea);
+                    list = db.UDP_Vent_tbDenominacionArqueo_Update(tbDenominacionArqueo.arqde_Id, tbDenominacionArqueo.mocja_Id, tbDenominacionArqueo.deno_Id, tbDenominacionArqueo.arqde_CantidadDenominacion, tbDenominacionArqueo.arqde_MontoDenominacion, tbDenominacionArqueo.arqde_UsuarioCrea, tbDenominacionArqueo.arqde_FechaCrea);
                     foreach (UDP_Vent_tbDenominacionArqueo_Update_Result denoarq in list)
                         MensajeError = denoarq.MensajeError;
                     if (MensajeError == "-1")
