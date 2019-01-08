@@ -947,6 +947,7 @@
     <Content Include="Scripts\app\BCliente.js" />
     <Content Include="Scripts\app\CalculoFactura.js" />
     <Content Include="Scripts\app\ClienteFactura.js" />
+    <Content Include="Scripts\app\ClientePago.js" />
     <Content Include="Scripts\app\Clientes-Pedido-Credito.js" />
     <Content Include="Scripts\app\Credito.js" />
     <Content Include="Scripts\app\CreditoCambio.js" />

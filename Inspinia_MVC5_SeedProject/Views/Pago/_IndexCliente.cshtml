@@ -27,38 +27,30 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.clte_Nombres)
                                 </th>
-                                <th></th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="ClienteTbody">
 
-                            @foreach (var item in Model)
-                            {
-                                <tr data-id="@item.clte_Identificacion">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.clte_Id)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.clte_Identificacion)
-                                    </td>
-                                    @{ if (Convert.ToInt32(item.clte_EsPersonaNatural) == 1)
-                                        {
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.clte_Nombres)
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.clte_NombreComercial)
-                                            </td>
-                                        }
-                                    }
-                                    <td>
-                                        <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
-                                    </td>
-                                </tr>
-                                        }
+                           @foreach (var item in Model)
+                           {
+                               var nombrecliente = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
+                            <tr data-id="@item.clte_Id" data-rtn="@item.clte_Identificacion" data-nombrecliente="@nombrecliente" >
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.clte_Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.clte_Identificacion)
+                                </td>
+                                <td>
+                                    @nombrecliente
+                                </td>
+                                <td>
+                                    <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
+                                </td>
+                            </tr>
+                           }
                         </tbody>
                     </table>
 
@@ -89,6 +81,5 @@
         });
     });
 </script>
-
 
 

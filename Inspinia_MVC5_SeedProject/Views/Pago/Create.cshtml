@@ -28,7 +28,7 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm()) 
+				@using (Html.BeginForm("Create", "Pago", FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
     
@@ -50,11 +50,19 @@
             </div>
         </div>
 
+
+         <div class="form-group">
+            <div class="col-md-4">
+                @Html.HiddenFor(model => model.tbFactura.clte_Id)
+                @Html.ValidationMessageFor(model => model.tbFactura.clte_Id)
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.tbFactura.clte_Identificacion, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.tbFactura.clte_Identificacion, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.tbFactura.clte_Identificacion)
+               @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
             </div>
             <div class="col-md-1">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
@@ -69,15 +77,29 @@
             </div>
         </div>
 
+
         <div class="form-group">
-            @Html.LabelFor(model => model.tbFactura.fact_Codigo, "Factura", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("fact_Id", null, "Seleccionar Factura", new { @class = "form-control", @id = "fact_Id" })
+                @*@Html.DropDownListFor(model=>model.fact_Id, new SelectList(" "), "Seleccionar Factura", new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(model => model.fact_Id, "", new { style = "Color:red" })
+            </div>
+        </div>
+
+
+        
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.tbFactura.fact_Codigo,  new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                    <input type="text" id="fact_Codigo" value="" class="form-control " />
+                @Html.EditorFor(model => model.tbFactura.fact_Codigo, new { htmlAttributes = new { @type = "number", @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.tbFactura.fact_Codigo)
                 </div>
                 <div class="col-md-1">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarFactura"><span class="glyphicon glyphicon-search"></span></button>
                 </div>
-            </div>
+            </div>*@
      
 
         
@@ -178,6 +200,8 @@
             </div>
         </div>
 
+       
+
         @*<div class="form-group">
             @Html.LabelFor(model => model.bcta_Id, "bcta_Id", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -200,21 +224,6 @@
         </div>
     </div>
 
-    <div class="modal fade" id="ModalAgregarFactura" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
-                </div>
-                <div class="modal-body" id="frmEditarMunicipios">
-                    @Html.Partial("_BuscarFacturaDevolucion", (List<tbFactura>)ViewBag.Factura)
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -233,10 +242,85 @@
     </div>
  </div>
 
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/TipoPago.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/ClientePago.js"></script>
+<script src="~/Scripts/app/FacturaDevolucion.js"></script>
+
  @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/app/TipoPago.js"></script>
-    <script src="~/Scripts/app/Datepicker.js"></script>
-    <script src="~/Scripts/app/Cliente.js"></script>
-<script src="~/Scripts/app/FacturaDevolucion.js"></script>
+
+
+<script>
+        $(document).ready(function () {
+            $("#tbFactura_clte_Id").change(function () {
+                var valor = 0;
+                $.get("/Pago/GetFacturaList", { tbFactura_clte_Id: $("#tbFactura_clte_Id").val() }, function (data) {
+                    $("#fact_Id").empty("");
+                    $('#fact_Id').append("<option value='0'>Seleccionar factura</option>");
+                    $('#idinput').val(valor);
+                    $.each(data, function (index, row) {
+                        $("#fact_Id").append("<option value='" + row.fact_Id + "'>" + row.fact_Codigo + "</option>")
+                        //$('#deno_Id').val('Please Select');
+                    });
+                });
+
+            })
+        });
+</script>
+
+     @* Monto *@
+
+<script>
+    $('#fact_Id').change(function () {
+        var url = "/Pago/BuscarFacturaId?fId=" + $('#fact_Id option:selected').val();
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                async: true,
+                success: function (result) {
+                    var lider;
+                    if (result != null && result.length > 0) {
+                        monto = JSON.parse(result);
+                    }
+                    if (monto != null) {
+                        $('#pago_TotalPago').val(pago_TotalPago);//Monto
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("No se Apodido cargar el valor 'Porfavor Contacte al Administrador' ");
+                }
+            });
+        });
+</script>
+
+<script>
+        $(document).ready(function () {
+            $('#fact_Id').change(function () {
+                $('#pago_TotalPago').val($('#fact_Id option:selected').val());
+            })
+        });
+</script>
+
+<script>
+        $(document).ready(function () {
+            $("#PagoTotalCambio")[0].maxLength = 7;
+            $("#pago_TotalPago")[0].maxLength = 12;
+        })
+
+        $(function () {
+            $("#PagoTotalCambio,#idinput").keyup(function (e) {
+                var Cantidad = $("#soled_CantidadSolicitada").val(),
+                    valores = $("#ValorDeno").val(),
+                    result = "";
+                if (Cantidad.length && valores.length > 0) {
+                    result += Cantidad * valores;
+                }
+                $("#MontoSolicitado").val(result);
+            });
+        });
+</script>
 }

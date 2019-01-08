@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 
@@ -19,6 +18,23 @@ namespace ERP_GMEDINA.Controllers
         {
             var tbpago = db.tbPago.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCuentasBanco).Include(t => t.tbFactura).Include(t => t.tbTipoPago);
             return View(tbpago.ToList());
+        }
+
+        [HttpGet]
+        public JsonResult BuscarFacturaId(int fId)
+        {
+            try
+            {
+                var lider = (from f in db.tbFactura
+                             where f.fact_Id== fId
+                             select f.fact_Codigo).ToList();
+
+                return Json(lider, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+            }
+            return Json("", JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult IndexPagoFactura()
@@ -42,6 +58,25 @@ namespace ERP_GMEDINA.Controllers
             return View(tbPago);
         }
 
+        // obtener Facturas
+        public JsonResult GetFacturaList(long tbFactura_clte_Id)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            List<tbFactura> FacturaList = db.tbFactura.Where(x => x.clte_Id == tbFactura_clte_Id).ToList();
+            return Json(FacturaList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetFacturaMonto(int fact_Id)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            List<tbFactura> FacturaMonto = db.tbFactura.Where(x => x.fact_Id == fact_Id).ToList();
+            return Json(FacturaMonto, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
         // GET: /Pago/Create
         public ActionResult Create()
         {
@@ -51,8 +86,10 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
             ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion");
 
-            ViewBag.Factura = db.tbFactura.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
+            ViewBag.Factura = db.tbFactura.ToList();
+            
+       
             return View();
         }
 
@@ -74,7 +111,8 @@ namespace ERP_GMEDINA.Controllers
                         MensajeError = pago.MensajeError;
                     if (MensajeError == -1)
                     {
-
+                        ModelState.AddModelError("", "No se pudo agregar el registro");
+                        return View(tbPago);
                     }
                     else
                     {
@@ -86,6 +124,12 @@ namespace ERP_GMEDINA.Controllers
                 {
                     ModelState.AddModelError("", "Error al agregar el registro " + Ex.Message.ToString());
                     return View(tbPago);
+                    //ViewBag.bcta_Id = new SelectList(db.tbCuentasBanco, "bcta_Id", "bcta_Numero");
+                    ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
+                    ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion");
+
+                    ViewBag.Factura = db.tbFactura.ToList();
+                    ViewBag.Cliente = db.tbCliente.ToList();
                 }
               
             }
@@ -95,6 +139,8 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.bcta_Id = new SelectList(db.tbCuentasBanco, "bcta_Id", "bcta_Numero", tbPago.bcta_Id);
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPago.fact_Id);
             ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion", tbPago.tpa_Id);
+            ViewBag.Factura = db.tbFactura.ToList();
+            ViewBag.Cliente = db.tbCliente.ToList();
             return View(tbPago);
         }
 
