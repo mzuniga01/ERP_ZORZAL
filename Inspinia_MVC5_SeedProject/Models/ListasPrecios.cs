@@ -27,6 +27,10 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<bool> listp_EsActivo { get; set; }
 
+        [Display(Name = "Prioridad")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public int listp_Prioridad { get; set; }
+
 
         [Display(Name = "Usuario Crea")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]

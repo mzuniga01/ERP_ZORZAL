@@ -38,6 +38,9 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.listp_EsActivo)
                                 </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.listp_Prioridad)
+                                </th>
                                 @*<th>
                             @Html.DisplayNameFor(model => model.listp_FechaCrea)
                         </th>
@@ -73,6 +76,10 @@
                                     <td>
                                         &nbsp; &nbsp; &nbsp; &nbsp; @Html.CheckBox("listp_EsActivo", true, new { @disabled = "disabled" })
                                         @*@Html.DisplayFor(modelItem => item.listp_EsActivo)*@
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.listp_Prioridad)
                                     </td>
                                     @*<td>
                                 @Html.DisplayFor(modelItem => item.listp_FechaCrea)

@@ -230,6 +230,9 @@
     <Compile Include="Models\cMinorista.cs" />
     <Compile Include="Models\cNacionalidad.cs" />
     <Compile Include="Models\cNotaCredito.cs" />
+    <Compile Include="Models\crud_tbProductoSelect_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\cTest.cs" />
     <Compile Include="Models\cTipoCuenta.cs" />
     <Compile Include="Models\cTP.cs" />
@@ -243,6 +246,9 @@
     <Compile Include="Models\Factura.cs" />
     <Compile Include="Models\FacturaDetalle.cs" />
     <Compile Include="Models\FacturaHistorica.cs" />
+    <Compile Include="Models\GetPrecioUnitario_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListaPrecioDetalle.cs" />
@@ -270,6 +276,15 @@
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\PuntoEmision.cs" />
     <Compile Include="Models\PuntoEmisionDetalle.cs" />
+    <Compile Include="Models\SDP_Acce_GetObjetosAsignados_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SDP_Acce_GetObjetosDisponibles_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SDP_Acce_GetObjetos_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SolicitudCreditos.cs" />
     <Compile Include="Models\SolicitudEfectivo.cs" />
     <Compile Include="Models\SolicitudEfectivoDetalle.cs" />
@@ -310,6 +325,9 @@
     <Compile Include="Models\tbCliente.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbclientes.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbCuentasBanco.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -341,6 +359,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbEntradaDetalle.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbEstadoDevolucion.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbEstadoFactura.cs">
@@ -493,6 +514,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Gral_tbDenominacion_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Gral_tbDenominacion_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Gral_tbDenominacion_Update_Result.cs">
@@ -673,6 +697,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UnidadesMedida.cs" />
+    <Compile Include="Models\V_Objetos.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1314,6 +1341,10 @@
     <Content Include="Views\ListaPrecios\Details.cshtml" />
     <Content Include="Views\ListaPrecios\Edit.cshtml" />
     <Content Include="Views\ListaPrecios\Index.cshtml" />
+    <Content Include="Views\ListaPrecios\_CreateListaPrecioDetalle.cshtml" />
+    <Content Include="Views\ListaPrecios\_DetailsListaPrecioDetalle.cshtml" />
+    <Content Include="Views\ListaPrecios\_EditListaPrecioDetalle.cshtml" />
+    <Content Include="Views\ListaPrecios\_IndexProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

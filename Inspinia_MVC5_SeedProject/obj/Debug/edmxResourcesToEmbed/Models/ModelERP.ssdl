@@ -261,6 +261,7 @@
     <Property Name="bodd_FechaModifica" Type="datetime" />
     <Property Name="bodd_Costo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="bodd_CostoPromedio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="bodd_CantidadExistente" Type="decimal" Precision="10" Scale="2" />
   </EntityType>
   <EntityType Name="tbBox">
     <Key>
@@ -380,6 +381,7 @@
     <Property Name="prod_EsActivo" Type="bit" Nullable="false" />
     <Property Name="prod_Razon_Inactivacion" Type="varchar" MaxLength="150" />
     <Property Name="listp_Id" Type="int" />
+    <Property Name="prod_CodigoBarras" Type="varchar" MaxLength="15" Nullable="false" />
   </EntityType>
   <EntityType Name="tbProductoCategoria">
     <Key>
@@ -592,6 +594,17 @@
     <Property Name="dfisc_UsuarioModifica" Type="int" />
     <Property Name="dfisc_FechaModifica" Type="datetime" />
   </EntityType>
+  <EntityType Name="tbEstadoDevolucion">
+    <Key>
+      <PropertyRef Name="esdev_Id" />
+    </Key>
+    <Property Name="esdev_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="esdev_Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="esdev_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="esdev_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="esdev_UsuarioModifica" Type="int" />
+    <Property Name="esdev_FechaModifica" Type="datetime" />
+  </EntityType>
   <EntityType Name="tbEstadoFactura">
     <Key>
       <PropertyRef Name="esfac_Id" />
@@ -724,6 +737,7 @@
     <Property Name="listp_FechaModifica" Type="datetime" />
     <Property Name="listp_FechaInicioVigencia" Type="date" />
     <Property Name="listp_FechaFinalVigencia" Type="date" />
+    <Property Name="listp_Prioridad" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="tbMovimientoCaja">
     <Key>
@@ -920,6 +934,21 @@
     <Property Name="tpa_FechaModifica" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Acce.V_Objetos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_Objetos">
+    <Key>
+      <PropertyRef Name="obj_Id" />
+      <PropertyRef Name="usu_NombreUsuario" />
+      <PropertyRef Name="obj_FechaCrea" />
+    </Key>
+    <Property Name="obj_Id" Type="int" Nullable="false" />
+    <Property Name="obj_Pantalla" Type="nvarchar" MaxLength="50" />
+    <Property Name="usu_NombreUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="obj_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="obj_UsuarioModifica" Type="int" />
+    <Property Name="obj_FechaModifica" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Inv_Nombre_Empleado">
     <Key>
@@ -928,6 +957,62 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     </Key>
     <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbclientes">
+    <Key>
+      <PropertyRef Name="clte_Id" />
+      <PropertyRef Name="tpi_Id" />
+      <PropertyRef Name="tpi_Descripcion" />
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="clte_EsPersonaNatural" />
+      <PropertyRef Name="clte_Nombres" />
+      <PropertyRef Name="clte_Apellidos" />
+      <PropertyRef Name="clte_Nacionalidad" />
+      <PropertyRef Name="clte_Telefono" />
+      <PropertyRef Name="clte_NombreComercial" />
+      <PropertyRef Name="clte_RazonSocial" />
+      <PropertyRef Name="clte_ContactoNombre" />
+      <PropertyRef Name="clte_ContactoTelefono" />
+      <PropertyRef Name="mun_Codigo" />
+      <PropertyRef Name="clte_EsActivo" />
+      <PropertyRef Name="clte_ConCredito" />
+      <PropertyRef Name="clte_EsMinorista" />
+      <PropertyRef Name="clte_UsuarioCrea" />
+      <PropertyRef Name="clte_FechaCrea" />
+      <PropertyRef Name="clte_ConsumidorFinal" />
+    </Key>
+    <Property Name="clte_Id" Type="int" Nullable="false" />
+    <Property Name="tpi_Id" Type="tinyint" Nullable="false" />
+    <Property Name="tpi_Descripcion" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
+    <Property Name="clte_EsPersonaNatural" Type="bit" Nullable="false" />
+    <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="clte_Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="clte_FechaNacimiento" Type="date" />
+    <Property Name="clte_Nacionalidad" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="clte_Sexo" Type="char" MaxLength="1" />
+    <Property Name="clte_Telefono" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="clte_NombreComercial" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="clte_RazonSocial" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="clte_ContactoNombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="clte_ContactoEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="clte_ContactoTelefono" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="clte_FechaConstitucion" Type="date" />
+    <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="clte_Direccion" Type="nvarchar" MaxLength="100" />
+    <Property Name="clte_CorreoElectronico" Type="nvarchar" MaxLength="50" />
+    <Property Name="clte_EsActivo" Type="bit" Nullable="false" />
+    <Property Name="clte_RazonInactivo" Type="nvarchar" MaxLength="50" />
+    <Property Name="clte_ConCredito" Type="bit" Nullable="false" />
+    <Property Name="clte_EsMinorista" Type="bit" Nullable="false" />
+    <Property Name="clte_Observaciones" Type="nvarchar" MaxLength="250" />
+    <Property Name="clte_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="clte_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="clte_UsuarioModifica" Type="int" />
+    <Property Name="clte_FechaModifica" Type="datetime" />
+    <Property Name="clte_ConsumidorFinal" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
     <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="1" />
@@ -1997,54 +2082,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inv_tbBodegaDetalle_bodd_tbUsuario_UsuarioModifica">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-    <End Role="tbBodegaDetalle" Type="Self.tbBodegaDetalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbBodegaDetalle">
-        <PropertyRef Name="bodd_UsuarioModifica" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inv_tbBodegaDetalle_tbbodega_bod_Id">
-    <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
-    <End Role="tbBodegaDetalle" Type="Self.tbBodegaDetalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbBodega">
-        <PropertyRef Name="bod_Id" />
-      </Principal>
-      <Dependent Role="tbBodegaDetalle">
-        <PropertyRef Name="bod_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo">
-    <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="1" />
-    <End Role="tbBodegaDetalle" Type="Self.tbBodegaDetalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbProducto">
-        <PropertyRef Name="prod_Codigo" />
-      </Principal>
-      <Dependent Role="tbBodegaDetalle">
-        <PropertyRef Name="prod_Codigo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inv_tbBodegaDetalle_tbUsuario_bodd_UsuarioCrea">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-    <End Role="tbBodegaDetalle" Type="Self.tbBodegaDetalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbBodegaDetalle">
-        <PropertyRef Name="bodd_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbBox" Type="Self.tbBox" Multiplicity="*" />
@@ -2813,6 +2850,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Crea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbEstadoDevolucion" Type="Self.tbEstadoDevolucion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoDevolucion">
+        <PropertyRef Name="esdev_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Modifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbEstadoDevolucion" Type="Self.tbEstadoDevolucion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoDevolucion">
+        <PropertyRef Name="esdev_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo">
     <End Role="tbEstadoFactura" Type="Self.tbEstadoFactura" Multiplicity="1" />
     <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
@@ -3341,6 +3402,92 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" ReturnType="int" />
+  <Function Name="SDP_Acce_GetObjetos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" />
+  <Function Name="SDP_Acce_GetObjetosAsignados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="rol_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SDP_Acce_GetObjetosDisponibles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="rol_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDF_Acce_GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" ReturnType="int" />
+  <Function Name="UDP_Acce_tbAccesoRol_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="rol_Id" Type="int" Mode="In" />
+    <Parameter Name="obj_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Acce_tbAccesoRol_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="rol_Id" Type="int" Mode="In" />
+    <Parameter Name="obj_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Acce_tbAccesoRol_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="acrol_Id" Type="int" Mode="In" />
+    <Parameter Name="rol_Id" Type="int" Mode="In" />
+    <Parameter Name="obj_Id" Type="int" Mode="In" />
+    <Parameter Name="acrol_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="acrol_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Acce_tbObjeto_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Acce_tbObjeto_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="obj_Id" Type="int" Mode="In" />
+    <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
+    <Parameter Name="obj_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="obj_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Acce_tbObjeto_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="obj_Id" Type="int" Mode="In" />
+    <Parameter Name="obj_Estado" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="UDP_Acce_tbRol_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="rol_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="rol_Estado" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="UDP_Acce_tbRol_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="rol_Id" Type="int" Mode="In" />
+    <Parameter Name="rol_Descripcion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Acce_tbRolEstado_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="rol_Id" Type="int" Mode="In" />
+    <Parameter Name="rol_Estado" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="UDP_Acce_tbRolesUsuario_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="rol_Id" Type="int" Mode="In" />
+    <Parameter Name="usu_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Acce_tbRolesUsuario_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="rolu_Id" Type="int" Mode="In" />
+    <Parameter Name="rol_Id" Type="int" Mode="In" />
+    <Parameter Name="usu_Id" Type="int" Mode="In" />
+    <Parameter Name="rolu_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="rolu_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Acce_tbUsuario_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="usu_NombreUsuario" Type="varchar" Mode="In" />
+    <Parameter Name="usu_Password" Type="binary" Mode="In" />
+    <Parameter Name="usu_Nombres" Type="varchar" Mode="In" />
+    <Parameter Name="usu_Apellidos" Type="varchar" Mode="In" />
+    <Parameter Name="usu_Correo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Acce_tbUsuario_PasswordUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="usu_Id" Type="int" Mode="In" />
+    <Parameter Name="usu_Password" Type="binary" Mode="In" />
+  </Function>
+  <Function Name="UDP_Acce_tbUsuario_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" />
+  <Function Name="UDP_Acce_tbUsuario_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="usu_Id" Type="int" Mode="In" />
+    <Parameter Name="usu_NombreUsuario" Type="varchar" Mode="In" />
+    <Parameter Name="usu_Nombres" Type="varchar" Mode="In" />
+    <Parameter Name="usu_Apellidos" Type="varchar" Mode="In" />
+    <Parameter Name="usu_Correo" Type="varchar" Mode="In" />
+    <Parameter Name="usu_EsActivo" Type="bit" Mode="In" />
+    <Parameter Name="usu_RazonInactivo" Type="varchar" Mode="In" />
+    <Parameter Name="usu_EsAdministrador" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_Padres_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="NombresPadre" Type="nvarchar" Mode="In" />
+    <Parameter Name="ApellidosPadre" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="UDP_Gral_tbActividadEconomica_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="acte_Descripcion" Type="nvarchar" Mode="In" />
   </Function>
@@ -3390,6 +3537,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="deno_valor" Type="decimal" Mode="In" />
     <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
   </Function>
+  <Function Name="UDP_Gral_tbDenominacion_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral" />
   <Function Name="UDP_Gral_tbDenominacion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="deno_Id" Type="smallint" Mode="In" />
     <Parameter Name="deno_Descripcion" Type="varchar" Mode="In" />
@@ -3398,6 +3546,53 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
     <Parameter Name="deno_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="deno_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbDepartamento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="dep_Codigo" Type="char" Mode="In" />
+    <Parameter Name="dep_Nombre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbDepartamento_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="dep_Codigo" Type="char" Mode="In" />
+    <Parameter Name="dep_Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="dep_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="dep_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbEmpleado_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="emp_Id" Type="int" Mode="In" />
+    <Parameter Name="emp_Estado" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbEmpleados_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="emp_Nombres" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_Apellidos" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_Sexo" Type="char" Mode="In" />
+    <Parameter Name="emp_FechaNacimiento" Type="datetime" Mode="In" />
+    <Parameter Name="tpi_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="emp_Identificacion" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_Telefono" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_Correoelectronico" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_TipoSangre" Type="char" Mode="In" />
+    <Parameter Name="emp_Puesto" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_FechaIngreso" Type="date" Mode="In" />
+    <Parameter Name="emp_Direccion" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_Observaciones" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbEmpleados_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="emp_Id" Type="smallint" Mode="In" />
+    <Parameter Name="emp_Nombres" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_Apellidos" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_Sexo" Type="char" Mode="In" />
+    <Parameter Name="emp_FechaNacimiento" Type="datetime" Mode="In" />
+    <Parameter Name="tpi_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="emp_Identificacion" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_Telefono" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_Correoelectronico" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_TipoSangre" Type="char" Mode="In" />
+    <Parameter Name="emp_Puesto" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_FechaIngreso" Type="date" Mode="In" />
+    <Parameter Name="emp_Direccion" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_Observaciones" Type="nvarchar" Mode="In" />
+    <Parameter Name="emp_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="emp_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbMoneda_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="mnda_Abreviatura" Type="varchar" Mode="In" />
@@ -3412,6 +3607,52 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="mnda_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="mnda_FechaModifica" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Gral_tbMunicipio_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="mun_Codigo" Type="char" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbMunicipio_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="mun_Codigo" Type="char" Mode="In" />
+    <Parameter Name="dep_Codigo" Type="char" Mode="In" />
+    <Parameter Name="mun_Nombre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbMunicipio_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="mun_Codigo" Type="char" Mode="In" />
+    <Parameter Name="dep_Codigo" Type="char" Mode="In" />
+    <Parameter Name="mun_Nombre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbParametro_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="par_NombreEmpresa" Type="nvarchar" Mode="In" />
+    <Parameter Name="par_TelefonoEmpresa" Type="nvarchar" Mode="In" />
+    <Parameter Name="par_CorreoEmpresa" Type="nvarchar" Mode="In" />
+    <Parameter Name="par_PathLogo" Type="nvarchar" Mode="In" />
+    <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
+    <Parameter Name="par_RolGerenteTienda" Type="int" Mode="In" />
+    <Parameter Name="par_RolCreditoCobranza" Type="int" Mode="In" />
+    <Parameter Name="par_RolSupervisorCaja" Type="int" Mode="In" />
+    <Parameter Name="par_RolCajero" Type="int" Mode="In" />
+    <Parameter Name="par_RolAuditor" Type="int" Mode="In" />
+    <Parameter Name="par_SucursalPrincipal" Type="smallint" Mode="In" />
+    <Parameter Name="par_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="par_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="par_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="par_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbParametro_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="par_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="par_NombreEmpresa" Type="nvarchar" Mode="In" />
+    <Parameter Name="par_TelefonoEmpresa" Type="nvarchar" Mode="In" />
+    <Parameter Name="par_CorreoEmpresa" Type="nvarchar" Mode="In" />
+    <Parameter Name="par_PathLogo" Type="nvarchar" Mode="In" />
+    <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
+    <Parameter Name="par_RolGerenteTienda" Type="int" Mode="In" />
+    <Parameter Name="par_RolCreditoCobranza" Type="int" Mode="In" />
+    <Parameter Name="par_RolSupervisorCaja" Type="int" Mode="In" />
+    <Parameter Name="par_RolCajero" Type="int" Mode="In" />
+    <Parameter Name="par_RolAuditor" Type="int" Mode="In" />
+    <Parameter Name="par_SucursalPrincipal" Type="smallint" Mode="In" />
+    <Parameter Name="par_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="par_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="UDP_Gral_tbTipoIdentificacion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="tpi_Descripcion" Type="nvarchar" Mode="In" />
   </Function>
@@ -3422,6 +3663,337 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="tpi_FechaCrea" Type="datetime" Mode="In" />
     <Parameter Name="tpi_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="tpi_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbUnidadMedida_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="uni_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="uni_Abreviatura" Type="char" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbUnidadMedida_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="uni_Id" Type="int" Mode="In" />
+    <Parameter Name="uni_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="uni_Abreviatura" Type="char" Mode="In" />
+    <Parameter Name="uni_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="uni_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="crud_tbProductoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="spGetSubCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="pcat_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_GetConsultarExistenciaProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="sucursal" Type="varchar" Mode="In" />
+    <Parameter Name="bodega" Type="varchar" Mode="In" />
+    <Parameter Name="Producto" Type="varchar" Mode="In" />
+    <Parameter Name="Marca" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbBodega_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="bod_Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="bod_ResponsableBodega" Type="varchar" Mode="In" />
+    <Parameter Name="bod_Direccion" Type="varchar" Mode="In" />
+    <Parameter Name="bod_Correo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="bod_Telefono" Type="varchar" Mode="In" />
+    <Parameter Name="mun_Codigo" Type="char" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbBodega_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="bod_Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="bod_ResponsableBodega" Type="varchar" Mode="In" />
+    <Parameter Name="bod_Direccion" Type="varchar" Mode="In" />
+    <Parameter Name="bod_Correo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="bod_Telefono" Type="varchar" Mode="In" />
+    <Parameter Name="mun_Codigo" Type="char" Mode="In" />
+    <Parameter Name="bod_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="bod_Fechacrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbBodega_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="bod_EsActiva" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbBodegaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="bodd_CantidadMinima" Type="decimal" Mode="In" />
+    <Parameter Name="bodd_CantidadMaxima" Type="decimal" Mode="In" />
+    <Parameter Name="bodd_PuntoReorden" Type="decimal" Mode="In" />
+    <Parameter Name="bodd_Costo" Type="decimal" Mode="In" />
+    <Parameter Name="bodd_CostoPromedio" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbBodegaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="bodd_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="bodd_CantidadMinima" Type="decimal" Mode="In" />
+    <Parameter Name="bodd_CantidadMaxima" Type="decimal" Mode="In" />
+    <Parameter Name="bodd_PuntoReorden" Type="decimal" Mode="In" />
+    <Parameter Name="bodd_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="bodd_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="bodd_Costo" Type="decimal" Mode="In" />
+    <Parameter Name="bodd_CostoPromedio" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbBox_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
+    <Parameter Name="box_Descripcion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbBox_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
+    <Parameter Name="box_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="box_Estado" Type="bit" Mode="In" />
+    <Parameter Name="box_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="box_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbEntrada_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="ent_NumeroFormato" Type="varchar" Mode="In" />
+    <Parameter Name="ent_FechaElaboracion" Type="datetime" Mode="In" />
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="prov_Id" Type="int" Mode="In" />
+    <Parameter Name="ent_FacturaCompra" Type="varchar" Mode="In" />
+    <Parameter Name="ent_FechaCompra" Type="datetime" Mode="In" />
+    <Parameter Name="fact_Id" Type="int" Mode="In" />
+    <Parameter Name="ent_RazonDevolucion" Type="varchar" Mode="In" />
+    <Parameter Name="ent_BodegaDestino" Type="int" Mode="In" />
+    <Parameter Name="tent_Id" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbEntrada_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="ent_Id" Type="int" Mode="In" />
+    <Parameter Name="ent_NumeroFormato" Type="varchar" Mode="In" />
+    <Parameter Name="ent_FechaElaboracion" Type="datetime" Mode="In" />
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="prov_Id" Type="int" Mode="In" />
+    <Parameter Name="ent_FacturaCompra" Type="varchar" Mode="In" />
+    <Parameter Name="ent_FechaCompra" Type="datetime" Mode="In" />
+    <Parameter Name="fact_Id" Type="int" Mode="In" />
+    <Parameter Name="ent_RazonDevolucion" Type="varchar" Mode="In" />
+    <Parameter Name="ent_BodegaDestino" Type="int" Mode="In" />
+    <Parameter Name="tent_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="ent_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="ent_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbEntrada_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="ent_Id" Type="int" Mode="In" />
+    <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbEntradaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="ent_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="uni_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbEntradaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="entd_Id" Type="int" Mode="In" />
+    <Parameter Name="ent_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="entd_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="entd_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="uni_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbEstadoMovimiento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="estm_Descripcion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbEstadoMovimiento_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="estm_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="estm_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="estm_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbInventarioFisico_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="invf_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="invf_ResponsableBodega" Type="varchar" Mode="In" />
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="estif_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="invf_FechaInventario" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbInventarioFisico_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="invf_Id" Type="int" Mode="In" />
+    <Parameter Name="invf_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="invf_ResponsableBodega" Type="varchar" Mode="In" />
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="estif_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="invf_FechaInventario" Type="datetime" Mode="In" />
+    <Parameter Name="invf_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="invf_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbInventarioFisicoDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="invf_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="invfd_Cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="invfd_CantidadSistema" Type="decimal" Mode="In" />
+    <Parameter Name="uni_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbInventarioFisicoDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="invfd_Id" Type="int" Mode="In" />
+    <Parameter Name="invf_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="invfd_Cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="invfd_CantidadSistema" Type="decimal" Mode="In" />
+    <Parameter Name="uni_Id" Type="int" Mode="In" />
+    <Parameter Name="invfd_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="invfd_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbProducto_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="prod_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="prod_Marca" Type="varchar" Mode="In" />
+    <Parameter Name="prod_Modelo" Type="nvarchar" Mode="In" />
+    <Parameter Name="prod_Talla" Type="varchar" Mode="In" />
+    <Parameter Name="prod_Color" Type="varchar" Mode="In" />
+    <Parameter Name="pscat_Id" Type="int" Mode="In" />
+    <Parameter Name="uni_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbProducto_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="prod_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="prod_Marca" Type="varchar" Mode="In" />
+    <Parameter Name="prod_Modelo" Type="nvarchar" Mode="In" />
+    <Parameter Name="prod_Talla" Type="varchar" Mode="In" />
+    <Parameter Name="prod_Color" Type="varchar" Mode="In" />
+    <Parameter Name="pscat_Id" Type="int" Mode="In" />
+    <Parameter Name="uni_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="prod_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="prod_EsActivo" Type="bit" Mode="In" />
+    <Parameter Name="prod_Razon_Inactivacion" Type="varchar" Mode="In" />
+    <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbProductoCategoria_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="pcat_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbProductoCategoria_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="pcat_Nombre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbProductoCategoria_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="pcat_Id" Type="int" Mode="In" />
+    <Parameter Name="pcat_Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="pcat_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="pcat_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbProductoCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="pcat_Id" Type="int" Mode="In" />
+    <Parameter Name="pcat_EsActivo" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbProductoCategoriaSubCate_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="pcat_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbProductoSubCategoria_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="pscat_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbProductoSubcategoria_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="pscat_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="pcat_Id" Type="int" Mode="In" />
+    <Parameter Name="pscat_ISV" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbProductoSubcategoria_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="pscat_Id" Type="int" Mode="In" />
+    <Parameter Name="pscat_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="pcat_Id" Type="int" Mode="In" />
+    <Parameter Name="pscat_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="pscat_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="pscat_ISV" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbProductoSubCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="pscat_Id" Type="int" Mode="In" />
+    <Parameter Name="pscat_EsActiva" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbProveedor_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="prov_Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="prov_NombreContacto" Type="varchar" Mode="In" />
+    <Parameter Name="prov_Direccion" Type="varchar" Mode="In" />
+    <Parameter Name="prov_Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="prov_Telefono" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbProveedor_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="prov_Id" Type="int" Mode="In" />
+    <Parameter Name="prov_Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="prov_NombreContacto" Type="varchar" Mode="In" />
+    <Parameter Name="prov_Direccion" Type="varchar" Mode="In" />
+    <Parameter Name="prov_Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="prov_Telefono" Type="nvarchar" Mode="In" />
+    <Parameter Name="prov_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="prov_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbSalida_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="fact_Id" Type="bigint" Mode="In" />
+    <Parameter Name="sal_FechaElaboracion" Type="datetime" Mode="In" />
+    <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="tsal_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="sal_RazonDevolucion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbSalida_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="sal_Id" Type="int" Mode="In" />
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="fact_Id" Type="bigint" Mode="In" />
+    <Parameter Name="sal_FechaElaboracion" Type="datetime" Mode="In" />
+    <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
+    <Parameter Name="tsal_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="sal_RazonDevolucion" Type="varchar" Mode="In" />
+    <Parameter Name="sal_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="sal_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbSalidaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="sal_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="sal_Cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbSalidaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="sald_Id" Type="int" Mode="In" />
+    <Parameter Name="sal_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="sal_Cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="sald_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="sald_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbTipoEntrada_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="tent_Descripcion" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbTipoEntrada_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="tent_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="tent_Descripcion" Type="nvarchar" Mode="In" />
+    <Parameter Name="tent_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="tent_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbTipoSalida_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="tsal_Descripcion" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbTipoSalida_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="tsal_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="tsal_Descripcion" Type="nvarchar" Mode="In" />
+    <Parameter Name="tsal_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="tsal_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="crud_tbExoneracionInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="exo_Documento" Type="nvarchar" Mode="In" />
+    <Parameter Name="exo_ExoneracionActiva" Type="bit" Mode="In" />
+    <Parameter Name="exo_FechaInicialVigencia" Type="date" Mode="In" />
+    <Parameter Name="exo_FechaIFinalVigencia" Type="date" Mode="In" />
+    <Parameter Name="clte_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="crud_tbSucursalInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="mun_Codigo" Type="char" Mode="In" />
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="pemi_Id" Type="int" Mode="In" />
+    <Parameter Name="suc_Descripcion" Type="nvarchar" Mode="In" />
+    <Parameter Name="suc_Correo" Type="nvarchar" Mode="In" />
+    <Parameter Name="suc_Direccion" Type="nvarchar" Mode="In" />
+    <Parameter Name="suc_Telefono" Type="nvarchar" Mode="In" />
+    <Parameter Name="suc_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="suc_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="GetBusquedaClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="identificacion" Type="varchar" Mode="In" />
+    <Parameter Name="nombre" Type="varchar" Mode="In" />
+    <Parameter Name="telefono" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetPrecioUnitario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="clte_Identificacion" Type="nvarchar" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="clte_EsMinorista" Type="bit" Mode="In" />
   </Function>
   <Function Name="spGetDenominacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="IdDenominacion" Type="int" Mode="In" />
@@ -3434,6 +4006,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
   </Function>
   <Function Name="spGetMunicipios1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="CodDepartamento" Type="char" Mode="In" />
+  </Function>
+  <Function Name="spGetProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="spGetTipoIdentificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="PersonaNatural" Type="bit" Mode="In" />
@@ -3691,6 +4266,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="factd_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="factd_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbFacturaHistorica_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="fact_Id" Type="bigint" Mode="In" />
+    <Parameter Name="esfac_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="facth_Fecha" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbFacturaHistorica_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="facth_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="facth_Fecha" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbListadoPrecioDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="lispd_PrecioMayorista" Type="decimal" Mode="In" />
@@ -3730,6 +4314,17 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Parameter Name="mocja_FechaApertura" Type="datetime" Mode="In" />
     <Parameter Name="mocja_FechaArqueo" Type="datetime" Mode="In" />
     <Parameter Name="mocja_FechaAceptacion" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbMovimientoCaja_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="mocja_Id" Type="int" Mode="In" />
+    <Parameter Name="cja_Id" Type="smallint" Mode="In" />
+    <Parameter Name="mocja_FechaApertura" Type="datetime" Mode="In" />
+    <Parameter Name="mocja_FechaArqueo" Type="datetime" Mode="In" />
+    <Parameter Name="mocja_FechaAceptacion" Type="datetime" Mode="In" />
+    <Parameter Name="mocja_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="mocja_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="mocja_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="mocja_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbNotaCredito_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="nocre_Codigo" Type="varchar" Mode="In" />
@@ -3987,6 +4582,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <EntitySet Name="tbDevolucion" EntityType="Self.tbDevolucion" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbDevolucionDetalle" EntityType="Self.tbDevolucionDetalle" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbDocumentoFiscal" EntityType="Self.tbDocumentoFiscal" Schema="Vent" store:Type="Tables" />
+    <EntitySet Name="tbEstadoDevolucion" EntityType="Self.tbEstadoDevolucion" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbEstadoFactura" EntityType="Self.tbEstadoFactura" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbEstadoPedido" EntityType="Self.tbEstadoPedido" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbEstadoSolicitudCredito" EntityType="Self.tbEstadoSolicitudCredito" Schema="Vent" store:Type="Tables" />
@@ -4008,11 +4604,55 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <EntitySet Name="tbSolicitudEfectivoDetalle" EntityType="Self.tbSolicitudEfectivoDetalle" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbSucursal" EntityType="Self.tbSucursal" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbTipoPago" EntityType="Self.tbTipoPago" Schema="Vent" store:Type="Tables" />
+    <EntitySet Name="V_Objetos" EntityType="Self.V_Objetos" store:Type="Views" store:Schema="Acce">
+      <DefiningQuery>SELECT 
+    [V_Objetos].[obj_Id] AS [obj_Id], 
+    [V_Objetos].[obj_Pantalla] AS [obj_Pantalla], 
+    [V_Objetos].[usu_NombreUsuario] AS [usu_NombreUsuario], 
+    [V_Objetos].[obj_FechaCrea] AS [obj_FechaCrea], 
+    [V_Objetos].[obj_UsuarioModifica] AS [obj_UsuarioModifica], 
+    [V_Objetos].[obj_FechaModifica] AS [obj_FechaModifica]
+    FROM [Acce].[V_Objetos] AS [V_Objetos]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="Self.UDV_Inv_Nombre_Empleado" store:Type="Views" store:Schema="Gral">
       <DefiningQuery>SELECT 
     [UDV_Inv_Nombre_Empleado].[emp_Id] AS [emp_Id], 
     [UDV_Inv_Nombre_Empleado].[Empleados] AS [Empleados]
     FROM [Gral].[UDV_Inv_Nombre_Empleado] AS [UDV_Inv_Nombre_Empleado]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbclientes" EntityType="Self.tbclientes" store:Type="Views" store:Schema="Vent">
+      <DefiningQuery>SELECT 
+    [tbclientes].[clte_Id] AS [clte_Id], 
+    [tbclientes].[tpi_Id] AS [tpi_Id], 
+    [tbclientes].[tpi_Descripcion] AS [tpi_Descripcion], 
+    [tbclientes].[clte_Identificacion] AS [clte_Identificacion], 
+    [tbclientes].[clte_EsPersonaNatural] AS [clte_EsPersonaNatural], 
+    [tbclientes].[clte_Nombres] AS [clte_Nombres], 
+    [tbclientes].[clte_Apellidos] AS [clte_Apellidos], 
+    [tbclientes].[clte_FechaNacimiento] AS [clte_FechaNacimiento], 
+    [tbclientes].[clte_Nacionalidad] AS [clte_Nacionalidad], 
+    [tbclientes].[clte_Sexo] AS [clte_Sexo], 
+    [tbclientes].[clte_Telefono] AS [clte_Telefono], 
+    [tbclientes].[clte_NombreComercial] AS [clte_NombreComercial], 
+    [tbclientes].[clte_RazonSocial] AS [clte_RazonSocial], 
+    [tbclientes].[clte_ContactoNombre] AS [clte_ContactoNombre], 
+    [tbclientes].[clte_ContactoEmail] AS [clte_ContactoEmail], 
+    [tbclientes].[clte_ContactoTelefono] AS [clte_ContactoTelefono], 
+    [tbclientes].[clte_FechaConstitucion] AS [clte_FechaConstitucion], 
+    [tbclientes].[mun_Codigo] AS [mun_Codigo], 
+    [tbclientes].[clte_Direccion] AS [clte_Direccion], 
+    [tbclientes].[clte_CorreoElectronico] AS [clte_CorreoElectronico], 
+    [tbclientes].[clte_EsActivo] AS [clte_EsActivo], 
+    [tbclientes].[clte_RazonInactivo] AS [clte_RazonInactivo], 
+    [tbclientes].[clte_ConCredito] AS [clte_ConCredito], 
+    [tbclientes].[clte_EsMinorista] AS [clte_EsMinorista], 
+    [tbclientes].[clte_Observaciones] AS [clte_Observaciones], 
+    [tbclientes].[clte_UsuarioCrea] AS [clte_UsuarioCrea], 
+    [tbclientes].[clte_FechaCrea] AS [clte_FechaCrea], 
+    [tbclientes].[clte_UsuarioModifica] AS [clte_UsuarioModifica], 
+    [tbclientes].[clte_FechaModifica] AS [clte_FechaModifica], 
+    [tbclientes].[clte_ConsumidorFinal] AS [clte_ConsumidorFinal]
+    FROM [Vent].[tbclientes] AS [tbclientes]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" Association="Self.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
       <End Role="tbObjeto" EntitySet="tbObjeto" />
@@ -4370,22 +5010,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbBodega" EntitySet="tbBodega" />
     </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbBodegaDetalle_bodd_tbUsuario_UsuarioModifica" Association="Self.FK_Inv_tbBodegaDetalle_bodd_tbUsuario_UsuarioModifica">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbBodegaDetalle_tbbodega_bod_Id" Association="Self.FK_Inv_tbBodegaDetalle_tbbodega_bod_Id">
-      <End Role="tbBodega" EntitySet="tbBodega" />
-      <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo" Association="Self.FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo">
-      <End Role="tbProducto" EntitySet="tbProducto" />
-      <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbBodegaDetalle_tbUsuario_bodd_UsuarioCrea" Association="Self.FK_Inv_tbBodegaDetalle_tbUsuario_bodd_UsuarioCrea">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
-    </AssociationSet>
     <AssociationSet Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" Association="Self.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbBox" EntitySet="tbBox" />
@@ -4641,6 +5265,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <AssociationSet Name="FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" Association="Self.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id">
       <End Role="tbDevolucion" EntitySet="tbDevolucion" />
       <End Role="tbDevolucionDetalle" EntitySet="tbDevolucionDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Crea" Association="Self.FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Crea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoDevolucion" EntitySet="tbEstadoDevolucion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Modifica" Association="Self.FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Modifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoDevolucion" EntitySet="tbEstadoDevolucion" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo" Association="Self.FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo">
       <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
