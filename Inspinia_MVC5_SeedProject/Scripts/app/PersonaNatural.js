@@ -40,6 +40,10 @@
 });
 
 $(document).ready(function () {
+    var Identificacion = $("#tpi_Id option:selected").text()
+    valido = document.getElementById('label_identificacion');
+    $('#identificacion').show();
+    document.getElementById('label_identificacion').innerHTML = Identificacion;
     // add indicator to required fields
     jQuery('input,select').each(function () {
 
@@ -114,6 +118,7 @@ $("#dep_Codigo").change(function () {
 
 $("#tpi_Id").change(function () {
     var d = $("#tpi_Id").val();
+    $("#clte_Identificacion").val('')
 
     if (d == 4) {
         document.getElementById("clte_Identificacion").maxLength = "13";
@@ -127,13 +132,21 @@ $("#tpi_Id").change(function () {
     else {
 
     }
+
+    if (d === '') {
+        $('#identificacion').hide();
+    }
+    else {
+        $('#identificacion').show();
+    }
+
 });
 
 $("#tpi_Id").on("change", function () {
     var Identificacion = $("#tpi_Id option:selected").text()
     valido = document.getElementById('label_identificacion');
     $('#identificacion').show();
-    document.getElementById('label_identificacion').innerHTML = Identificacion;
+    document.getElementById('label_identificacion').innerHTML = Identificacion + '<span style="color:red"> *</span>';
     var campo = $('#tpi_Id').val();
     if (campo === '') {
         $("#clte_Identificacion").val('')
