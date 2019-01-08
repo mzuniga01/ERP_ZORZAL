@@ -14,10 +14,14 @@
                 @Html.DisplayNameFor(model => model.tbSolicitudEfectivo.solef_Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.tbDenominacion.deno_Descripcion)
-            </th>
+                @*@Html.DisplayNameFor(model => model.tbDenominacion.deno_Descripcion)*@
+                Denominación           
+             </th>
             <th>
                 @Html.DisplayNameFor(model => model.soled_CantidadSolicitada)
+            </th>
+            <th>
+               Monto Solictada
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.soled_CantidadEntregada)
@@ -42,6 +46,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.soled_CantidadSolicitada)
+                </td>
+                <td>
+                   
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.soled_CantidadEntregada)

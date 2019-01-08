@@ -2,37 +2,50 @@
 
 $('#AgregarDetalle').click(function () {
 
+    //alert('csacsacsac');
     //var select = $("#deno_Id option:selected").text();
     //var valor = $("#deno_Id").val();
     //$("#selector").val(select)
     //$("#valor").val(valor)
 
     //$("#deno_Id option:selected").text();
-
-    var IdDeno = $("#deno_Id option:selected").text();
+    var moneda = $("#mnda_Id").val();
+   
+    var IdDenos = $("#deno_Id option:selected").text();    
+    var IdDeno = $("#deno_Id").val();
     var SDCantidadSolicitada = $('#soled_CantidadSolicitada').val();
     var SDMontoSolicitado = $('#MontoSolicitado').val();
     var SDCantidadEntregada = $('#soled_CantidadEntregada').val();
     var SDMontoEntregado = $('#soled_MontoEntregado').val();
 
+    if (moneda == 0) {
+        $('#ErrornMonedaCreate').text('');
+        $('#ErrorIdDenoCreate').text('');
+        $('#ErrorSDCantidadSolicitadaCreate').text('');
+        $('#ErrorSDCantidadEntregadaCreate').text('');
+        $('#ErrorSDMontoEntregadoCreate').text('');
+        $('#validationMonedaCreate').after('<ul id="ErrorIdDenoCreate" class="validation-summary-errors text-danger">Campo Moneda es requerido</ul>');
+    }
 
-    if (IdDeno == '') {
+    else if (IdDeno == 0) {
+        $('#ErrornMonedaCreate').text('');
         $('#ErrorIdDenoCreate').text('');
         $('#ErrorSDCantidadSolicitadaCreate').text('');
         $('#ErrorSDCantidadEntregadaCreate').text('');
         $('#ErrorSDMontoEntregadoCreate').text('');
         $('#validationDenoIdCreate').after('<ul id="ErrorIdDenoCreate" class="validation-summary-errors text-danger">Campo Denominación es requerido</ul>');
     }
-    else if (IdDeno == '0') {
-        $('#ErrorIdDenoCreate').text('');
-        $('#ErrorSDCantidadSolicitadaCreate').text('');
-        $('#ErrorSDCantidadEntregadaCreate').text('');
-        $('#ErrorSDMontoEntregadoCreate').text('');
-        $('#validationDenoIdCreate').after('<ul id="ErrorIdDenoCreate" class="validation-summary-errors text-danger">Campo Denominación es requerido</ul>');
-    }
+    //else if (IdDeno == '0') {
+    //    $('#ErrorIdDenoCreate').text('');
+    //    $('#ErrorSDCantidadSolicitadaCreate').text('');
+    //    $('#ErrorSDCantidadEntregadaCreate').text('');
+    //    $('#ErrorSDMontoEntregadoCreate').text('');
+    //    $('#validationDenoIdCreate').after('<ul id="ErrorIdDenoCreate" class="validation-summary-errors text-danger">Campo Denominación es requerido</ul>');
+    //}
 
 
     else if (SDCantidadSolicitada == '') {
+        $('#ErrornMonedaCreate').text('');
         $('#ErrorIdDenoCreate').text('');
         $('#ErrorSDCantidadSolicitadaCreate').text('');
         $('#ErrorSDCantidadEntregadaCreate').text('');
@@ -40,6 +53,7 @@ $('#AgregarDetalle').click(function () {
         $('#validationCantidadSolicitadaCreate').after('<ul id="ErrorSDCantidadSolicitadaCreate" class="validation-summary-errors text-danger">Campo Cantidad Solicitada es requerido</ul>');
     }
     else if (SDCantidadSolicitada == '0') {
+        $('#ErrornMonedaCreate').text('');
         $('#ErrorIdDenoCreate').text('');
         $('#ErrorSDCantidadSolicitadaCreate').text('');
         $('#ErrorSDCantidadEntregadaCreate').text('');
@@ -56,6 +70,7 @@ $('#AgregarDetalle').click(function () {
         //}
 
     else if (SDCantidadEntregada == '') {
+        $('#ErrornMonedaCreate').text('');
         $('#ErrorIdDenoCreate').text('');
         $('#ErrorSDCantidadSolicitadaCreate').text('');
         $('#ErrorSDCantidadEntregadaCreate').text('');
@@ -63,6 +78,7 @@ $('#AgregarDetalle').click(function () {
         $('#validationCantidadEntregadaCreate').after('<ul id="ErrorSDCantidadEntregadaCreate" class="validation-summary-errors text-danger">Campo Cantidad Entregada es requerido</ul>');
     }
     else if (SDMontoEntregado == '') {
+        $('#ErrornMonedaCreate').text('');
         $('#ErrorIdDenoCreate').text('');
         $('#ErrorSDCantidadSolicitadaCreate').text('');
         $('#ErrorSDCantidadEntregadaCreate').text('');
@@ -73,7 +89,7 @@ $('#AgregarDetalle').click(function () {
     else {
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
-        copiar += "<td id = 'IdDenoCreate'>" + IdDeno + "</td>";
+        copiar += "<td id = 'IdDenoCreate'>" + IdDenos + "</td>";
         copiar += "<td id = 'SDCantidadSolicitadaCreate'>" + SDCantidadSolicitada + "</td>";
         copiar += "<td id = 'SDMontoSolicitadoCreate'>" + SDMontoSolicitado + "</td>";
         copiar += "<td id = 'SDCantidadEntregadaCreate'>" + SDCantidadEntregada + "</td>";
@@ -99,12 +115,14 @@ $('#AgregarDetalle').click(function () {
             $('#ErrorSDMontoEntregadoCreate').text('');
 
             //Input
-            $('#deno_Id').val('');
+            $('#deno_Id').val('0');
+          
             $('#soled_CantidadSolicitada').val('');
             $('#MontoSolicitado').val('');
             $('#ValorDeno').val('');
             $('#soled_CantidadSolicitada').val('');
-            $('#deno_Id').append("<option value='0'>Seleccione la Denominación</option>");
+           
+           
 
         });
     }
@@ -139,3 +157,6 @@ $(document).on("click", "#tblSolicitudEfectivoDetalle tbody tr td button#removeS
         data: JSON.stringify({ SolicitudEfeDetalleC: SolicitudDetalle }),
     });
 });
+
+
+

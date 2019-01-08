@@ -27,7 +27,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.soled_CantidadSolicitada, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.soled_CantidadSolicitada)
+                                @Html.EditorFor(model => model.soled_CantidadSolicitada , new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" }})
                                 <div id="validationCantidadSolicitadaCreate">
                                     @Html.ValidationMessageFor(model => model.soled_CantidadSolicitada)
                                 </div>                             

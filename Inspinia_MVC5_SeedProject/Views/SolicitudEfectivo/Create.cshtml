@@ -67,7 +67,9 @@
                                         @Html.DropDownListFor(model => model.mnda_Id, ViewBag.MonedaList as SelectList, "Selccione la Moneda", new { @class = "form-control" })
 
                                     }
-                                    @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
+                                    <div id="validationMonedaCreate">
+                                        @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
+                                    </div>
                                 </div>
                             </div>
 
@@ -97,6 +99,9 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    
+
 
     <script>
         $(document).ready(function () {
