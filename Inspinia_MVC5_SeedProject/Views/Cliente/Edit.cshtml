@@ -179,7 +179,8 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(muni => test.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2">Departamento<span style="color:red"> *</span></label>
+                                @*@Html.LabelFor(muni => test.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-4">
                                     @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
                                     <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => test.dep_Codigo)</p>

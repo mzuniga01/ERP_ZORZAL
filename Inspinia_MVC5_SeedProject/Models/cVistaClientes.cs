@@ -1,29 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace ERP_GMEDINA.Models
 {
-    [MetadataType(typeof(ClientesMetaData))]
-    public partial class tbCliente
+    [MetadataType(typeof(cVistaClientesMetaData))]
+    public partial class UDV_Vent_Busqueda_Clientes
     {
-
-        [NotMapped]
-        public List<cGenero> GeneroList { get; set; }
-        public List<cNacionalidad> NacionalidadList { get; set; }
-
-
+        
     }
-    public class ClientesMetaData
+    public class cVistaClientesMetaData
     {
+        [Display(Name = "Tipo Identificacion")]
+        public string tpi_Descripcion { get; set; }
+
         [Display(Name = "Id Cliente")]
         public int clte_Id { get; set; }
 
         [Display(Name = "Id Tipo Identificación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte tpi_Id { get; set; }
 
         [Display(Name = "RTN/Identificación")]
@@ -103,7 +99,7 @@ namespace ERP_GMEDINA.Models
         public string clte_CorreoElectronico { get; set; }
 
         [Display(Name = "¿Es Activo?")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public bool clte_EsActivo { get; set; }
 
         [Display(Name = "Razón Inactivación")]
@@ -111,11 +107,11 @@ namespace ERP_GMEDINA.Models
         public string clte_RazonInactivo { get; set; }
 
         [Display(Name = "¿Con Crédito?")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public bool clte_ConCredito { get; set; }
 
         [Display(Name = "¿Es Minorista?")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public bool clte_EsMinorista { get; set; }
 
         [Display(Name = "Observaciones")]
@@ -137,9 +133,6 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Fecha Modificación")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
-        
 
     }
-
-    
 }

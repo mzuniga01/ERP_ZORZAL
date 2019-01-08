@@ -40,6 +40,19 @@
 });
 
 $(document).ready(function () {
+    // add indicator to required fields
+    jQuery('input,select').each(function () {
+
+        var req = jQuery(this).attr('data-val-required');
+        var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+        var text = label.text();
+        if (text.length > 0) {
+            label.append('<span style="color:red"> *</span>');
+
+        }
+    });
+
+    //Maxlenght
     $("#clte_Identificacion")[0].maxLength = 26;
     $("#clte_Nombres")[0].maxLength = 50;
     $("#clte_Apellidos")[0].maxLength = 50;
@@ -117,7 +130,10 @@ $("#tpi_Id").change(function () {
 });
 
 $("#tpi_Id").on("change", function () {
+    var Identificacion = $("#tpi_Id option:selected").text()
+    valido = document.getElementById('label_identificacion');
     $('#identificacion').show();
+    document.getElementById('label_identificacion').innerHTML = Identificacion;
     var campo = $('#tpi_Id').val();
     if (campo === '') {
         $("#clte_Identificacion").val('')
@@ -215,6 +231,43 @@ $("#clte_CorreoElectronico").blur(function () {
 
     } else {
         valido.innerText = "Direccion de Correo Electronico Incorrecta";
+
+    }
+});
+
+$('#clte_Identificacion').on('input', function (e) {
+    if (!/^[ a-z0-9]*$/i.test(this.value)) {
+        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+    }
+});
+
+
+//Validacion de numeros//
+function format(input) {
+    $(input).change(function () {
+        var str = $(input).val();
+        var res = str.toUpperCase();
+        $(input).val(res);
+    });
+    $(input).on("keypress", function () {
+        $input = $(this);
+        setTimeout(function () {
+            $input.val($input.val().toUpperCase());
+        }, 50);
+    })
+}
+
+
+$("#clte_ContactoTelefono").blur(function () {
+    campo = event.target;
+    valido = document.getElementById('ContactoT');
+
+    //var reg = \([0-9]{3}\)[0-9]{3}[ -][0-9]{4};
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (reg.test(campo.value)) {
+        valido.innerText = "";
+    } else {
+        valido.innerText = "Formato Telefono Incorrecto";
 
     }
 });

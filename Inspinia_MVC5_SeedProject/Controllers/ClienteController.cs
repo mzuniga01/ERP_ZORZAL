@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using System.Data.SqlClient;
+using System.Data.Common;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -17,29 +19,138 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Cliente/
         public ActionResult Index()
         {
-            var tbcliente = db.tbCliente.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbMunicipio).Include(t => t.tbTipoIdentificacion);
+            var tbcliente = db.UDV_Vent_Busqueda_Clientes;
             return View(tbcliente.ToList());
         }
 
         [HttpPost]
-        public ActionResult Index(string identificacion, string Nombres, string Telefonos)
+        public ActionResult Index(string identificacion, string nombre, string telefono)
         {
-            if (identificacion.Length > 0 || Nombres.Length > 0 || Telefonos.Length > 0)
+            try
             {
-                var RegFiltrado = (from f in db.tbCliente
-                                   where f.clte_Identificacion.StartsWith(identificacion) ||
-                                   f.clte_Nombres.StartsWith(Nombres) ||
-                                   f.clte_Apellidos.StartsWith(Nombres) ||
-                                   f.clte_NombreComercial.StartsWith(Nombres) ||
-                                   f.clte_ContactoTelefono.StartsWith(Telefonos) ||
-                                   f.clte_Telefono.StartsWith(Telefonos)
-                                   select f).Take(15);
-                return View(RegFiltrado.ToList());
+                //var resultado = 0;
+                List<UDV_Vent_Busqueda_Clientes> list = new List<UDV_Vent_Busqueda_Clientes>();
+                using (var db = new ERP_ZORZALEntities())
+                {
+                    using (var oCmd = db.Database.Connection.CreateCommand())
+                    {
+                        db.Database.Connection.Open();
+                        oCmd.CommandText = "Vent.GetBusquedaClient";
+                        oCmd.CommandType = CommandType.StoredProcedure;
+                        oCmd.Parameters.Add(new SqlParameter("@identificacion", identificacion));
+                        oCmd.Parameters.Add(new SqlParameter("@nombre", nombre));
+                        oCmd.Parameters.Add(new SqlParameter("@telefono", telefono));
+                       
+                        DbDataReader reader = oCmd.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            UDV_Vent_Busqueda_Clientes tbclientes = new UDV_Vent_Busqueda_Clientes();
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_Id")))
+                                tbclientes.clte_Id = Convert.ToInt16(reader["clte_Id"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("tpi_Id")))
+                                tbclientes.tpi_Id = Convert.ToByte(reader["tpi_Id"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_Identificacion")))
+                                tbclientes.clte_Identificacion = Convert.ToString(reader["clte_Identificacion"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_EsPersonaNatural")))
+                                tbclientes.clte_EsPersonaNatural = Convert.ToBoolean(reader["clte_EsPersonaNatural"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_Nombres")))
+                                tbclientes.clte_Nombres = Convert.ToString(reader["clte_Nombres"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_Apellidos")))
+                                tbclientes.clte_Apellidos = Convert.ToString(reader["clte_Apellidos"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_FechaNacimiento")))
+                                tbclientes.clte_FechaNacimiento = Convert.ToDateTime(reader["clte_FechaNacimiento"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_Nacionalidad")))
+                                tbclientes.clte_Nacionalidad = Convert.ToString(reader["clte_Nacionalidad"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_Sexo")))
+                                tbclientes.clte_Sexo = Convert.ToString(reader["clte_Sexo"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_Telefono")))
+                                tbclientes.clte_Telefono = Convert.ToString(reader["clte_Telefono"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_NombreComercial")))
+                                tbclientes.clte_NombreComercial = Convert.ToString(reader["clte_NombreComercial"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_RazonSocial")))
+                                tbclientes.clte_RazonSocial = Convert.ToString(reader["clte_RazonSocial"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_ContactoNombre")))
+                                tbclientes.clte_ContactoNombre = Convert.ToString(reader["clte_ContactoNombre"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_ContactoTelefono")))
+                                tbclientes.clte_ContactoTelefono = Convert.ToString(reader["clte_ContactoTelefono"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_ContactoEmail")))
+                                tbclientes.clte_ContactoEmail = Convert.ToString(reader["clte_ContactoEmail"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_FechaConstitucion")))
+                                tbclientes.clte_FechaConstitucion = Convert.ToDateTime(reader["clte_FechaConstitucion"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("mun_Codigo")))
+                                tbclientes.mun_Codigo = Convert.ToString(reader["mun_Codigo"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_Direccion")))
+                                tbclientes.clte_Direccion = Convert.ToString(reader["clte_Direccion"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_CorreoElectronico")))
+                                tbclientes.clte_CorreoElectronico = Convert.ToString(reader["clte_CorreoElectronico"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_CorreoElectronico")))
+                                tbclientes.clte_CorreoElectronico = Convert.ToString(reader["clte_CorreoElectronico"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_EsActivo")))
+                                tbclientes.clte_EsActivo = Convert.ToBoolean(reader["clte_EsActivo"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_RazonInactivo")))
+                                tbclientes.clte_RazonInactivo = Convert.ToString(reader["clte_RazonInactivo"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_ConCredito")))
+                                tbclientes.clte_ConCredito = Convert.ToBoolean(reader["clte_ConCredito"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_EsMinorista")))
+                                tbclientes.clte_EsMinorista = Convert.ToBoolean(reader["clte_EsMinorista"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_Observaciones")))
+                                tbclientes.clte_Observaciones = Convert.ToString(reader["clte_Observaciones"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_UsuarioCrea")))
+                                tbclientes.clte_UsuarioCrea = Convert.ToInt16(reader["clte_UsuarioCrea"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_FechaCrea")))
+                                tbclientes.clte_FechaCrea = Convert.ToDateTime(reader["clte_FechaCrea"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_UsuarioModifica")))
+                                tbclientes.clte_UsuarioModifica = Convert.ToInt16(reader["clte_UsuarioModifica"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_FechaModifica")))
+                                tbclientes.clte_FechaModifica = Convert.ToDateTime(reader["clte_FechaModifica"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_ConsumidorFinal")))
+                                tbclientes.clte_ConsumidorFinal = Convert.ToBoolean(reader["clte_ConsumidorFinal"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("tpi_Descripcion")))
+                                tbclientes.tpi_Descripcion = Convert.ToString(reader["tpi_Descripcion"]);
+
+                            list.Add(tbclientes);
+                        }
+                    }
+                }
+
+                return View(list);
             }
-            else
+            catch (Exception ex)
             {
-                return View(db.tbCliente.OrderByDescending(f =>
-                f.clte_Identificacion).Take(20).ToList());
+                var tbcliente = db.tbCliente.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbMunicipio).Include(t => t.tbTipoIdentificacion);
+                Console.Write(ex.Message);
+                return View(tbcliente.ToList());
             }
 
         }
@@ -301,11 +412,11 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public JsonResult GetBusquedaClientes(string Identificacion, string Nombres, string Telefono)
-        {
-            var list = db.spGetBusquedaCliente(Identificacion, Nombres, Telefono).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
+        //[HttpPost]
+        //public JsonResult GetBusquedaClientes(string Identificacion, string Nombres, string Telefono)
+        //{
+        //    var list = db.spGetBusquedaCliente(Identificacion, Nombres, Telefono).ToList();
+        //    return Json(list, JsonRequestBehavior.AllowGet);
+        //}
     }
 }

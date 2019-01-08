@@ -238,6 +238,7 @@
     <Compile Include="Models\cTP.cs" />
     <Compile Include="Models\CuentaBanco.cs" />
     <Compile Include="Models\cUtilities.cs" />
+    <Compile Include="Models\cVistaClientes.cs" />
     <Compile Include="Models\Denominacion.cs" />
     <Compile Include="Models\DenominacionArqueos.cs" />
     <Compile Include="Models\EstadoFactura.cs" />
