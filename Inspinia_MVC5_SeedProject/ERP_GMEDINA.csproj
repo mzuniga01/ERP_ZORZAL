@@ -325,9 +325,6 @@
     <Compile Include="Models\tbCliente.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbclientes.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tbCuentasBanco.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

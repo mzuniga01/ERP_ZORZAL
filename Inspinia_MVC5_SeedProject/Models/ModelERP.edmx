@@ -742,7 +742,7 @@
           <Property Name="listp_FechaModifica" Type="datetime" />
           <Property Name="listp_FechaInicioVigencia" Type="date" />
           <Property Name="listp_FechaFinalVigencia" Type="date" />
-          <Property Name="listp_Prioridad" Type="int" Nullable="false" />
+          <Property Name="listp_Prioridad" Type="smallint" />
         </EntityType>
         <EntityType Name="tbMovimientoCaja">
           <Key>
@@ -962,62 +962,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           </Key>
           <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="tbclientes">
-          <Key>
-            <PropertyRef Name="clte_Id" />
-            <PropertyRef Name="tpi_Id" />
-            <PropertyRef Name="tpi_Descripcion" />
-            <PropertyRef Name="clte_Identificacion" />
-            <PropertyRef Name="clte_EsPersonaNatural" />
-            <PropertyRef Name="clte_Nombres" />
-            <PropertyRef Name="clte_Apellidos" />
-            <PropertyRef Name="clte_Nacionalidad" />
-            <PropertyRef Name="clte_Telefono" />
-            <PropertyRef Name="clte_NombreComercial" />
-            <PropertyRef Name="clte_RazonSocial" />
-            <PropertyRef Name="clte_ContactoNombre" />
-            <PropertyRef Name="clte_ContactoTelefono" />
-            <PropertyRef Name="mun_Codigo" />
-            <PropertyRef Name="clte_EsActivo" />
-            <PropertyRef Name="clte_ConCredito" />
-            <PropertyRef Name="clte_EsMinorista" />
-            <PropertyRef Name="clte_UsuarioCrea" />
-            <PropertyRef Name="clte_FechaCrea" />
-            <PropertyRef Name="clte_ConsumidorFinal" />
-          </Key>
-          <Property Name="clte_Id" Type="int" Nullable="false" />
-          <Property Name="tpi_Id" Type="tinyint" Nullable="false" />
-          <Property Name="tpi_Descripcion" Type="nvarchar" MaxLength="25" Nullable="false" />
-          <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
-          <Property Name="clte_EsPersonaNatural" Type="bit" Nullable="false" />
-          <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="clte_Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="clte_FechaNacimiento" Type="date" />
-          <Property Name="clte_Nacionalidad" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="clte_Sexo" Type="char" MaxLength="1" />
-          <Property Name="clte_Telefono" Type="nvarchar" MaxLength="25" Nullable="false" />
-          <Property Name="clte_NombreComercial" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="clte_RazonSocial" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="clte_ContactoNombre" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="clte_ContactoEmail" Type="nvarchar" MaxLength="50" />
-          <Property Name="clte_ContactoTelefono" Type="nvarchar" MaxLength="25" Nullable="false" />
-          <Property Name="clte_FechaConstitucion" Type="date" />
-          <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
-          <Property Name="clte_Direccion" Type="nvarchar" MaxLength="100" />
-          <Property Name="clte_CorreoElectronico" Type="nvarchar" MaxLength="50" />
-          <Property Name="clte_EsActivo" Type="bit" Nullable="false" />
-          <Property Name="clte_RazonInactivo" Type="nvarchar" MaxLength="50" />
-          <Property Name="clte_ConCredito" Type="bit" Nullable="false" />
-          <Property Name="clte_EsMinorista" Type="bit" Nullable="false" />
-          <Property Name="clte_Observaciones" Type="nvarchar" MaxLength="250" />
-          <Property Name="clte_UsuarioCrea" Type="int" Nullable="false" />
-          <Property Name="clte_FechaCrea" Type="datetime" Nullable="false" />
-          <Property Name="clte_UsuarioModifica" Type="int" />
-          <Property Name="clte_FechaModifica" Type="datetime" />
-          <Property Name="clte_ConsumidorFinal" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
           <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="1" />
@@ -4292,18 +4236,17 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="lispd_PrecioMayorista" Type="decimal" Mode="In" />
           <Parameter Name="lispd_PrecioMinorista" Type="decimal" Mode="In" />
-          <Parameter Name="lispd_FechaInicioVigencia" Type="date" Mode="In" />
-          <Parameter Name="lispd_FechaFinalVigencia" Type="date" Mode="In" />
           <Parameter Name="lispd_DescCaja" Type="decimal" Mode="In" />
           <Parameter Name="lispd_DescGerente" Type="decimal" Mode="In" />
           <Parameter Name="lispd_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="lispd_FechaCrea" Type="datetime" Mode="In" />
-          <Parameter Name="lispd_UsuarioModifica" Type="int" Mode="In" />
-          <Parameter Name="lispd_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbListaPrecio_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="listp_Nombre" Type="nvarchar" Mode="In" />
           <Parameter Name="listp_EsActivo" Type="bit" Mode="In" />
+          <Parameter Name="listp_FechaInicioVigencia" Type="date" Mode="In" />
+          <Parameter Name="listp_FechaFinalVigencia" Type="date" Mode="In" />
+          <Parameter Name="listp_Prioridad" Type="smallint" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbListaPrecio_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="listp_Id" Type="int" Mode="In" />
@@ -4311,8 +4254,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
           <Parameter Name="listp_EsActivo" Type="bit" Mode="In" />
           <Parameter Name="listp_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="listp_FechaCrea" Type="datetime" Mode="In" />
-          <Parameter Name="listp_UsuarioModifica" Type="int" Mode="In" />
-          <Parameter Name="listp_FechaModifica" Type="datetime" Mode="In" />
+          <Parameter Name="listp_FechaInicioVigencia" Type="date" Mode="In" />
+          <Parameter Name="listp_FechaFinalVigencia" Type="date" Mode="In" />
+          <Parameter Name="listp_Prioridad" Type="smallint" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbMovimientoCaja_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="cja_Id" Type="smallint" Mode="In" />
@@ -4624,40 +4568,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
     [UDV_Inv_Nombre_Empleado].[emp_Id] AS [emp_Id], 
     [UDV_Inv_Nombre_Empleado].[Empleados] AS [Empleados]
     FROM [Gral].[UDV_Inv_Nombre_Empleado] AS [UDV_Inv_Nombre_Empleado]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="tbclientes" EntityType="Self.tbclientes" store:Type="Views" store:Schema="Vent">
-            <DefiningQuery>SELECT 
-    [tbclientes].[clte_Id] AS [clte_Id], 
-    [tbclientes].[tpi_Id] AS [tpi_Id], 
-    [tbclientes].[tpi_Descripcion] AS [tpi_Descripcion], 
-    [tbclientes].[clte_Identificacion] AS [clte_Identificacion], 
-    [tbclientes].[clte_EsPersonaNatural] AS [clte_EsPersonaNatural], 
-    [tbclientes].[clte_Nombres] AS [clte_Nombres], 
-    [tbclientes].[clte_Apellidos] AS [clte_Apellidos], 
-    [tbclientes].[clte_FechaNacimiento] AS [clte_FechaNacimiento], 
-    [tbclientes].[clte_Nacionalidad] AS [clte_Nacionalidad], 
-    [tbclientes].[clte_Sexo] AS [clte_Sexo], 
-    [tbclientes].[clte_Telefono] AS [clte_Telefono], 
-    [tbclientes].[clte_NombreComercial] AS [clte_NombreComercial], 
-    [tbclientes].[clte_RazonSocial] AS [clte_RazonSocial], 
-    [tbclientes].[clte_ContactoNombre] AS [clte_ContactoNombre], 
-    [tbclientes].[clte_ContactoEmail] AS [clte_ContactoEmail], 
-    [tbclientes].[clte_ContactoTelefono] AS [clte_ContactoTelefono], 
-    [tbclientes].[clte_FechaConstitucion] AS [clte_FechaConstitucion], 
-    [tbclientes].[mun_Codigo] AS [mun_Codigo], 
-    [tbclientes].[clte_Direccion] AS [clte_Direccion], 
-    [tbclientes].[clte_CorreoElectronico] AS [clte_CorreoElectronico], 
-    [tbclientes].[clte_EsActivo] AS [clte_EsActivo], 
-    [tbclientes].[clte_RazonInactivo] AS [clte_RazonInactivo], 
-    [tbclientes].[clte_ConCredito] AS [clte_ConCredito], 
-    [tbclientes].[clte_EsMinorista] AS [clte_EsMinorista], 
-    [tbclientes].[clte_Observaciones] AS [clte_Observaciones], 
-    [tbclientes].[clte_UsuarioCrea] AS [clte_UsuarioCrea], 
-    [tbclientes].[clte_FechaCrea] AS [clte_FechaCrea], 
-    [tbclientes].[clte_UsuarioModifica] AS [clte_UsuarioModifica], 
-    [tbclientes].[clte_FechaModifica] AS [clte_FechaModifica], 
-    [tbclientes].[clte_ConsumidorFinal] AS [clte_ConsumidorFinal]
-    FROM [Vent].[tbclientes] AS [tbclientes]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" Association="Self.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
             <End Role="tbObjeto" EntitySet="tbObjeto" />
@@ -5649,40 +5559,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             <Parameter Name="devd_Descripcion" Mode="In" Type="String" />
             <Parameter Name="devd_Monto" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Insert_Result)">
-            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-            <Parameter Name="lispd_PrecioMayorista" Mode="In" Type="Decimal" />
-            <Parameter Name="lispd_PrecioMinorista" Mode="In" Type="Decimal" />
-            <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
-            <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result)">
-            <Parameter Name="listp_Id" Mode="In" Type="Int32" />
-            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-            <Parameter Name="lispd_PrecioMayorista" Mode="In" Type="Decimal" />
-            <Parameter Name="lispd_PrecioMinorista" Mode="In" Type="Decimal" />
-            <Parameter Name="lispd_FechaInicioVigencia" Mode="In" Type="DateTime" />
-            <Parameter Name="lispd_FechaFinalVigencia" Mode="In" Type="DateTime" />
-            <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
-            <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
-            <Parameter Name="lispd_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="lispd_FechaCrea" Mode="In" Type="DateTime" />
-            <Parameter Name="lispd_UsuarioModifica" Mode="In" Type="Int32" />
-            <Parameter Name="lispd_FechaModifica" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbListaPrecio_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result)">
-            <Parameter Name="listp_Nombre" Mode="In" Type="String" />
-            <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbListaPrecio_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Update_Result)">
-            <Parameter Name="listp_Id" Mode="In" Type="Int32" />
-            <Parameter Name="listp_Nombre" Mode="In" Type="String" />
-            <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
-            <Parameter Name="listp_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="listp_FechaCrea" Mode="In" Type="DateTime" />
-            <Parameter Name="listp_UsuarioModifica" Mode="In" Type="Int32" />
-            <Parameter Name="listp_FechaModifica" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbTipoPago_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbTipoPago_Update_Result)">
             <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
             <Parameter Name="tpa_Descripcion" Mode="In" Type="String" />
@@ -6120,7 +5996,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
           <EntitySet Name="tbFacturaDetalle" EntityType="ERP_ZORZALModel.tbFacturaDetalle" />
           <EntitySet Name="tbFacturaHistorica" EntityType="ERP_ZORZALModel.tbFacturaHistorica" />
           <EntitySet Name="tbListadoPrecioDetalle" EntityType="ERP_ZORZALModel.tbListadoPrecioDetalle" />
-          <EntitySet Name="tbListaPrecio" EntityType="ERP_ZORZALModel.tbListaPrecio" />
           <EntitySet Name="tbMovimientoCaja" EntityType="ERP_ZORZALModel.tbMovimientoCaja" />
           <EntitySet Name="tbNotaCredito" EntityType="ERP_ZORZALModel.tbNotaCredito" />
           <EntitySet Name="tbPago" EntityType="ERP_ZORZALModel.tbPago" />
@@ -6135,7 +6010,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
           <EntitySet Name="tbTipoPago" EntityType="ERP_ZORZALModel.tbTipoPago" />
           <EntitySet Name="V_Objetos" EntityType="ERP_ZORZALModel.V_Objetos" />
           <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
-          <EntitySet Name="tbclientes" EntityType="ERP_ZORZALModel.tbclientes" />
           <AssociationSet Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
             <End Role="tbObjeto" EntitySet="tbObjeto" />
             <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
@@ -6267,14 +6141,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
           <AssociationSet Name="FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioCrea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioModifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
           </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbMoneda_mnda_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMoneda_mnda_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -6760,10 +6626,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />
             <End Role="tbProducto" EntitySet="tbProducto" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id" Association="ERP_ZORZALModel.FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id">
-            <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
-            <End Role="tbProducto" EntitySet="tbProducto" />
-          </AssociationSet>
           <AssociationSet Name="FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo">
             <End Role="tbProducto" EntitySet="tbProducto" />
             <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
@@ -6892,10 +6754,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             <End Role="tbSucursal" EntitySet="tbSucursal" />
             <End Role="tbFactura" EntitySet="tbFactura" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id" Association="ERP_ZORZALModel.FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id">
-            <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
-            <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" Association="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
             <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
             <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
@@ -6934,10 +6792,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
           </AssociationSet>
           <FunctionImport Name="SDP_Acce_GetObjetos" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetos_Result)" />
           <FunctionImport Name="SDP_Acce_GetObjetosAsignados" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetosAsignados_Result)">
-            <Parameter Name="rol_Id" Mode="In" Type="Int32" />
+          <Parameter Name="rol_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SDP_Acce_GetObjetosDisponibles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetosDisponibles_Result)">
-            <Parameter Name="rol_Id" Mode="In" Type="Int32" />
+          <Parameter Name="rol_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbAccesoRol_Delete">
             <Parameter Name="rol_Id" Mode="In" Type="Int32" />
@@ -6955,7 +6813,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             <Parameter Name="acrol_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbObjeto_Insert" ReturnType="Collection(String)">
-            <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
+          <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbObjeto_Update" ReturnType="Collection(String)">
             <Parameter Name="obj_Id" Mode="In" Type="Int32" />
@@ -7065,7 +6923,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             <Parameter Name="emp_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbMunicipio_Delete">
-            <Parameter Name="mun_Codigo" Mode="In" Type="String" />
+          <Parameter Name="mun_Codigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbMunicipio_Insert" ReturnType="Collection(String)">
             <Parameter Name="mun_Codigo" Mode="In" Type="String" />
@@ -7122,10 +6980,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             <Parameter Name="uni_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="crud_tbProductoSelect" ReturnType="Collection(ERP_ZORZALModel.crud_tbProductoSelect_Result)">
-            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+          <Parameter Name="prod_Codigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spGetSubCategoria" ReturnType="Collection(String)">
-            <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
+          <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_GetConsultarExistenciaProductos">
             <Parameter Name="sucursal" Mode="In" Type="String" />
@@ -7237,7 +7095,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             <Parameter Name="uni_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Insert" ReturnType="Collection(String)">
-            <Parameter Name="estm_Descripcion" Mode="In" Type="String" />
+          <Parameter Name="estm_Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Update" ReturnType="Collection(String)">
             <Parameter Name="estm_Id" Mode="In" Type="Byte" />
@@ -7306,10 +7164,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProductoCategoria_Delete" ReturnType="Collection(String)">
-            <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
+          <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProductoCategoria_Insert" ReturnType="Collection(String)">
-            <Parameter Name="pcat_Nombre" Mode="In" Type="String" />
+          <Parameter Name="pcat_Nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProductoCategoria_Update" ReturnType="Collection(String)">
             <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
@@ -7322,10 +7180,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             <Parameter Name="pcat_EsActivo" Mode="In" Type="Byte" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProductoCategoriaSubCate_Delete" ReturnType="Collection(String)">
-            <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
+          <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProductoSubCategoria_Delete" ReturnType="Collection(String)">
-            <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
+          <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProductoSubcategoria_Insert" ReturnType="Collection(String)">
             <Parameter Name="pscat_Descripcion" Mode="In" Type="String" />
@@ -7396,7 +7254,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             <Parameter Name="sald_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbTipoEntrada_Insert" ReturnType="Collection(String)">
-            <Parameter Name="tent_Descripcion" Mode="In" Type="String" />
+          <Parameter Name="tent_Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbTipoEntrada_Update" ReturnType="Collection(String)">
             <Parameter Name="tent_Id" Mode="In" Type="Byte" />
@@ -7405,7 +7263,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             <Parameter Name="tent_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbTipoSalida_Insert" ReturnType="Collection(String)">
-            <Parameter Name="tsal_Descripcion" Mode="In" Type="String" />
+          <Parameter Name="tsal_Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbTipoSalida_Update" ReturnType="Collection(String)">
             <Parameter Name="tsal_Id" Mode="In" Type="Byte" />
@@ -7442,7 +7300,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             <Parameter Name="clte_EsMinorista" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="spGetProducto" ReturnType="Collection(String)">
-            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+          <Parameter Name="prod_Codigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbFacturaHistorica_Insert" ReturnType="Collection(Byte)">
             <Parameter Name="fact_Id" Mode="In" Type="Int64" />
@@ -7463,6 +7321,57 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             <Parameter Name="mocja_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="mocja_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="mocja_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="tbListaPrecio" EntityType="ERP_ZORZALModel.tbListaPrecio" />
+          <AssociationSet Name="FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id" Association="ERP_ZORZALModel.FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id">
+            <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
+            <End Role="tbProducto" EntitySet="tbProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id" Association="ERP_ZORZALModel.FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id">
+            <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
+            <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
+          </AssociationSet>
+          <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Insert_Result)">
+            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+            <Parameter Name="lispd_PrecioMayorista" Mode="In" Type="Decimal" />
+            <Parameter Name="lispd_PrecioMinorista" Mode="In" Type="Decimal" />
+            <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
+            <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result)">
+            <Parameter Name="listp_Id" Mode="In" Type="Int32" />
+            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+            <Parameter Name="lispd_PrecioMayorista" Mode="In" Type="Decimal" />
+            <Parameter Name="lispd_PrecioMinorista" Mode="In" Type="Decimal" />
+            <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
+            <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
+            <Parameter Name="lispd_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="lispd_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbListaPrecio_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result)">
+            <Parameter Name="listp_Nombre" Mode="In" Type="String" />
+            <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
+            <Parameter Name="listp_FechaInicioVigencia" Mode="In" Type="DateTime" />
+            <Parameter Name="listp_FechaFinalVigencia" Mode="In" Type="DateTime" />
+            <Parameter Name="listp_Prioridad" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbListaPrecio_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Update_Result)">
+            <Parameter Name="listp_Id" Mode="In" Type="Int32" />
+            <Parameter Name="listp_Nombre" Mode="In" Type="String" />
+            <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
+            <Parameter Name="listp_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="listp_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="listp_FechaInicioVigencia" Mode="In" Type="DateTime" />
+            <Parameter Name="listp_FechaFinalVigencia" Mode="In" Type="DateTime" />
+            <Parameter Name="listp_Prioridad" Mode="In" Type="Int16" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -7575,18 +7484,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
           <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbCuponDescuento_Update_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbListaPrecio_Insert_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbListaPrecio_Update_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Insert_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Update_Result">
           <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
@@ -7816,8 +7713,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
           <NavigationProperty Name="tbExoneracion1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbExoneracion_exo_UsuarioModifa" FromRole="tbUsuario" ToRole="tbExoneracion" />
           <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbListadoPrecioDetalle" />
           <NavigationProperty Name="tbListadoPrecioDetalle1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioModifica" FromRole="tbUsuario" ToRole="tbListadoPrecioDetalle" />
-          <NavigationProperty Name="tbListaPrecio" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioCrea" FromRole="tbUsuario" ToRole="tbListaPrecio" />
-          <NavigationProperty Name="tbListaPrecio1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioModifica" FromRole="tbUsuario" ToRole="tbListaPrecio" />
           <NavigationProperty Name="tbMoneda" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMoneda_mnda_UsuarioCrea" FromRole="tbUsuario" ToRole="tbMoneda" />
           <NavigationProperty Name="tbMoneda1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMoneda_mnda_UsuarioModifica" FromRole="tbUsuario" ToRole="tbMoneda" />
           <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioAceptacion" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
@@ -7903,6 +7798,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
           <NavigationProperty Name="tbPuntoEmision1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmision" />
           <NavigationProperty Name="tbPuntoEmisionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
           <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
+          <NavigationProperty Name="tbListaPrecio" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioCrea" FromRole="tbUsuario" ToRole="tbListaPrecio" />
+          <NavigationProperty Name="tbListaPrecio1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioModifica" FromRole="tbUsuario" ToRole="tbListaPrecio" />
         </EntityType>
         <EntityType Name="tbActividadEconomica">
           <Key>
@@ -8295,11 +8192,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
           <NavigationProperty Name="tbInventarioFisicoDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbInventarioFisicoDetalle" />
           <NavigationProperty Name="tbDevolucionDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbDevolucionDetalle_prod_Codigo" FromRole="tbProducto" ToRole="tbDevolucionDetalle" />
           <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" FromRole="tbProducto" ToRole="tbProductoSubcategoria" />
-          <NavigationProperty Name="tbListaPrecio" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id" FromRole="tbProducto" ToRole="tbListaPrecio" />
           <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbSalidaDetalle" />
           <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbFacturaDetalle" />
           <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbListadoPrecioDetalle" />
           <NavigationProperty Name="tbPedidoDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbPedidoDetalle" />
+          <NavigationProperty Name="tbListaPrecio" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id" FromRole="tbProducto" ToRole="tbListaPrecio" />
         </EntityType>
         <EntityType Name="tbProductoCategoria">
           <Key>
@@ -8743,25 +8640,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
           <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" FromRole="tbListadoPrecioDetalle" ToRole="tbProducto" />
           <NavigationProperty Name="tbListaPrecio" Relationship="ERP_ZORZALModel.FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id" FromRole="tbListadoPrecioDetalle" ToRole="tbListaPrecio" />
         </EntityType>
-        <EntityType Name="tbListaPrecio">
-          <Key>
-            <PropertyRef Name="listp_Id" />
-          </Key>
-          <Property Name="listp_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="listp_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="listp_EsActivo" Type="Boolean" />
-          <Property Name="listp_UsuarioCrea" Type="Int32" Nullable="false" />
-          <Property Name="listp_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="listp_UsuarioModifica" Type="Int32" />
-          <Property Name="listp_FechaModifica" Type="DateTime" Precision="3" />
-          <Property Name="listp_FechaInicioVigencia" Type="DateTime" Precision="0" />
-          <Property Name="listp_FechaFinalVigencia" Type="DateTime" Precision="0" />
-          <Property Name="listp_Prioridad" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioCrea" FromRole="tbListaPrecio" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioModifica" FromRole="tbListaPrecio" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id" FromRole="tbListaPrecio" ToRole="tbProducto" />
-          <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id" FromRole="tbListaPrecio" ToRole="tbListadoPrecioDetalle" />
-        </EntityType>
         <EntityType Name="tbMovimientoCaja">
           <Key>
             <PropertyRef Name="mocja_Id" />
@@ -9042,60 +8920,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
           </Key>
           <Property Name="emp_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Empleados" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="tbclientes">
-          <Key>
-            <PropertyRef Name="clte_Id" />
-            <PropertyRef Name="tpi_Id" />
-            <PropertyRef Name="tpi_Descripcion" />
-            <PropertyRef Name="clte_Identificacion" />
-            <PropertyRef Name="clte_EsPersonaNatural" />
-            <PropertyRef Name="clte_Nombres" />
-            <PropertyRef Name="clte_Apellidos" />
-            <PropertyRef Name="clte_Nacionalidad" />
-            <PropertyRef Name="clte_Telefono" />
-            <PropertyRef Name="clte_NombreComercial" />
-            <PropertyRef Name="clte_RazonSocial" />
-            <PropertyRef Name="clte_ContactoNombre" />
-            <PropertyRef Name="clte_ContactoTelefono" />
-            <PropertyRef Name="mun_Codigo" />
-            <PropertyRef Name="clte_EsActivo" />
-            <PropertyRef Name="clte_ConCredito" />
-            <PropertyRef Name="clte_EsMinorista" />
-            <PropertyRef Name="clte_UsuarioCrea" />
-            <PropertyRef Name="clte_FechaCrea" />
-            <PropertyRef Name="clte_ConsumidorFinal" />
-          </Key>
-          <Property Name="clte_Id" Type="Int32" Nullable="false" />
-          <Property Name="tpi_Id" Type="Byte" Nullable="false" />
-          <Property Name="tpi_Descripcion" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
-          <Property Name="clte_EsPersonaNatural" Type="Boolean" Nullable="false" />
-          <Property Name="clte_Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="clte_Apellidos" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="clte_FechaNacimiento" Type="DateTime" Precision="0" />
-          <Property Name="clte_Nacionalidad" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="clte_Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="clte_Telefono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="clte_NombreComercial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="clte_RazonSocial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="clte_ContactoNombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="clte_ContactoEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="clte_ContactoTelefono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="clte_FechaConstitucion" Type="DateTime" Precision="0" />
-          <Property Name="mun_Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Name="clte_Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="clte_CorreoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="clte_EsActivo" Type="Boolean" Nullable="false" />
-          <Property Name="clte_RazonInactivo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="clte_ConCredito" Type="Boolean" Nullable="false" />
-          <Property Name="clte_EsMinorista" Type="Boolean" Nullable="false" />
-          <Property Name="clte_Observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="clte_UsuarioCrea" Type="Int32" Nullable="false" />
-          <Property Name="clte_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="clte_UsuarioModifica" Type="Int32" />
-          <Property Name="clte_FechaModifica" Type="DateTime" Precision="3" />
-          <Property Name="clte_ConsumidorFinal" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
           <End Type="ERP_ZORZALModel.tbObjeto" Role="tbObjeto" Multiplicity="1" />
@@ -9490,30 +9314,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             </Principal>
             <Dependent Role="tbListadoPrecioDetalle">
               <PropertyRef Name="lispd_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioCrea">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbListaPrecio" Role="tbListaPrecio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbListaPrecio">
-              <PropertyRef Name="listp_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioModifica">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbListaPrecio" Role="tbListaPrecio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbListaPrecio">
-              <PropertyRef Name="listp_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -10969,18 +10769,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id">
-          <End Type="ERP_ZORZALModel.tbListaPrecio" Role="tbListaPrecio" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbListaPrecio">
-              <PropertyRef Name="listp_Id" />
-            </Principal>
-            <Dependent Role="tbProducto">
-              <PropertyRef Name="listp_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo">
           <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbSalidaDetalle" Role="tbSalidaDetalle" Multiplicity="*" />
@@ -11365,18 +11153,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id">
-          <End Type="ERP_ZORZALModel.tbListaPrecio" Role="tbListaPrecio" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbListadoPrecioDetalle" Role="tbListadoPrecioDetalle" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="tbListaPrecio">
-              <PropertyRef Name="listp_Id" />
-            </Principal>
-            <Dependent Role="tbListadoPrecioDetalle">
-              <PropertyRef Name="listp_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
           <End Type="ERP_ZORZALModel.tbMovimientoCaja" Role="tbMovimientoCaja" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbSolicitudEfectivo" Role="tbSolicitudEfectivo" Multiplicity="*" />
@@ -11530,6 +11306,85 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
           <Property Type="Decimal" Name="lispd_PrecioMayorista" Nullable="false" Precision="10" Scale="2" />
           <Property Type="Decimal" Name="lispd_PrecioMinorista" Nullable="false" Precision="10" Scale="2" />
           <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+        </ComplexType>
+        <EntityType Name="tbListaPrecio">
+          <Key>
+            <PropertyRef Name="listp_Id" />
+          </Key>
+          <Property Name="listp_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="listp_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="listp_EsActivo" Type="Boolean" />
+          <Property Name="listp_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="listp_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="listp_UsuarioModifica" Type="Int32" />
+          <Property Name="listp_FechaModifica" Type="DateTime" Precision="3" />
+          <Property Name="listp_FechaInicioVigencia" Type="DateTime" Precision="0" />
+          <Property Name="listp_FechaFinalVigencia" Type="DateTime" Precision="0" />
+          <Property Name="listp_Prioridad" Type="Int16" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioCrea" FromRole="tbListaPrecio" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioModifica" FromRole="tbListaPrecio" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id" FromRole="tbListaPrecio" ToRole="tbProducto" />
+          <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id" FromRole="tbListaPrecio" ToRole="tbListadoPrecioDetalle" />
+        </EntityType>
+        <Association Name="FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbListaPrecio" Role="tbListaPrecio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbListaPrecio">
+              <PropertyRef Name="listp_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbListaPrecio" Role="tbListaPrecio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbListaPrecio">
+              <PropertyRef Name="listp_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id">
+          <End Type="ERP_ZORZALModel.tbListaPrecio" Role="tbListaPrecio" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbListaPrecio">
+              <PropertyRef Name="listp_Id" />
+            </Principal>
+            <Dependent Role="tbProducto">
+              <PropertyRef Name="listp_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id">
+          <End Type="ERP_ZORZALModel.tbListaPrecio" Role="tbListaPrecio" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbListadoPrecioDetalle" Role="tbListadoPrecioDetalle" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbListaPrecio">
+              <PropertyRef Name="listp_Id" />
+            </Principal>
+            <Dependent Role="tbListadoPrecioDetalle">
+              <PropertyRef Name="listp_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="UDP_Vent_tbListaPrecio_Update_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbListaPrecio_Insert_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Update_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Insert_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -11734,34 +11589,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucionDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucionDetalle_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucionDetalle_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -12789,22 +12616,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbListaPrecio">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbListaPrecio">
-              <MappingFragment StoreEntitySet="tbListaPrecio">
-                <ScalarProperty Name="listp_Prioridad" ColumnName="listp_Prioridad" />
-                <ScalarProperty Name="listp_FechaFinalVigencia" ColumnName="listp_FechaFinalVigencia" />
-                <ScalarProperty Name="listp_FechaInicioVigencia" ColumnName="listp_FechaInicioVigencia" />
-                <ScalarProperty Name="listp_FechaModifica" ColumnName="listp_FechaModifica" />
-                <ScalarProperty Name="listp_UsuarioModifica" ColumnName="listp_UsuarioModifica" />
-                <ScalarProperty Name="listp_FechaCrea" ColumnName="listp_FechaCrea" />
-                <ScalarProperty Name="listp_UsuarioCrea" ColumnName="listp_UsuarioCrea" />
-                <ScalarProperty Name="listp_EsActivo" ColumnName="listp_EsActivo" />
-                <ScalarProperty Name="listp_Nombre" ColumnName="listp_Nombre" />
-                <ScalarProperty Name="listp_Id" ColumnName="listp_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbMovimientoCaja">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbMovimientoCaja">
               <MappingFragment StoreEntitySet="tbMovimientoCaja">
@@ -13031,42 +12842,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbclientes">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbclientes">
-              <MappingFragment StoreEntitySet="tbclientes">
-                <ScalarProperty Name="clte_ConsumidorFinal" ColumnName="clte_ConsumidorFinal" />
-                <ScalarProperty Name="clte_FechaModifica" ColumnName="clte_FechaModifica" />
-                <ScalarProperty Name="clte_UsuarioModifica" ColumnName="clte_UsuarioModifica" />
-                <ScalarProperty Name="clte_FechaCrea" ColumnName="clte_FechaCrea" />
-                <ScalarProperty Name="clte_UsuarioCrea" ColumnName="clte_UsuarioCrea" />
-                <ScalarProperty Name="clte_Observaciones" ColumnName="clte_Observaciones" />
-                <ScalarProperty Name="clte_EsMinorista" ColumnName="clte_EsMinorista" />
-                <ScalarProperty Name="clte_ConCredito" ColumnName="clte_ConCredito" />
-                <ScalarProperty Name="clte_RazonInactivo" ColumnName="clte_RazonInactivo" />
-                <ScalarProperty Name="clte_EsActivo" ColumnName="clte_EsActivo" />
-                <ScalarProperty Name="clte_CorreoElectronico" ColumnName="clte_CorreoElectronico" />
-                <ScalarProperty Name="clte_Direccion" ColumnName="clte_Direccion" />
-                <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
-                <ScalarProperty Name="clte_FechaConstitucion" ColumnName="clte_FechaConstitucion" />
-                <ScalarProperty Name="clte_ContactoTelefono" ColumnName="clte_ContactoTelefono" />
-                <ScalarProperty Name="clte_ContactoEmail" ColumnName="clte_ContactoEmail" />
-                <ScalarProperty Name="clte_ContactoNombre" ColumnName="clte_ContactoNombre" />
-                <ScalarProperty Name="clte_RazonSocial" ColumnName="clte_RazonSocial" />
-                <ScalarProperty Name="clte_NombreComercial" ColumnName="clte_NombreComercial" />
-                <ScalarProperty Name="clte_Telefono" ColumnName="clte_Telefono" />
-                <ScalarProperty Name="clte_Sexo" ColumnName="clte_Sexo" />
-                <ScalarProperty Name="clte_Nacionalidad" ColumnName="clte_Nacionalidad" />
-                <ScalarProperty Name="clte_FechaNacimiento" ColumnName="clte_FechaNacimiento" />
-                <ScalarProperty Name="clte_Apellidos" ColumnName="clte_Apellidos" />
-                <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
-                <ScalarProperty Name="clte_EsPersonaNatural" ColumnName="clte_EsPersonaNatural" />
-                <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
-                <ScalarProperty Name="tpi_Descripcion" ColumnName="tpi_Descripcion" />
-                <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
-                <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SDP_Acce_GetObjetos" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetObjetos">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetObjetos_Result">
@@ -13213,6 +12988,50 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Insert" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Update" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Update" />
+          <EntitySetMapping Name="tbListaPrecio">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbListaPrecio">
+              <MappingFragment StoreEntitySet="tbListaPrecio">
+                <ScalarProperty Name="listp_Prioridad" ColumnName="listp_Prioridad" />
+                <ScalarProperty Name="listp_FechaFinalVigencia" ColumnName="listp_FechaFinalVigencia" />
+                <ScalarProperty Name="listp_FechaInicioVigencia" ColumnName="listp_FechaInicioVigencia" />
+                <ScalarProperty Name="listp_FechaModifica" ColumnName="listp_FechaModifica" />
+                <ScalarProperty Name="listp_UsuarioModifica" ColumnName="listp_UsuarioModifica" />
+                <ScalarProperty Name="listp_FechaCrea" ColumnName="listp_FechaCrea" />
+                <ScalarProperty Name="listp_UsuarioCrea" ColumnName="listp_UsuarioCrea" />
+                <ScalarProperty Name="listp_EsActivo" ColumnName="listp_EsActivo" />
+                <ScalarProperty Name="listp_Nombre" ColumnName="listp_Nombre" />
+                <ScalarProperty Name="listp_Id" ColumnName="listp_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

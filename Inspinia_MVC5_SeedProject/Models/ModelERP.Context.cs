@@ -77,7 +77,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbFacturaDetalle> tbFacturaDetalle { get; set; }
         public virtual DbSet<tbFacturaHistorica> tbFacturaHistorica { get; set; }
         public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
-        public virtual DbSet<tbListaPrecio> tbListaPrecio { get; set; }
         public virtual DbSet<tbMovimientoCaja> tbMovimientoCaja { get; set; }
         public virtual DbSet<tbNotaCredito> tbNotaCredito { get; set; }
         public virtual DbSet<tbPago> tbPago { get; set; }
@@ -92,7 +91,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
         public virtual DbSet<V_Objetos> V_Objetos { get; set; }
         public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
-        public virtual DbSet<tbclientes> tbclientes { get; set; }
+        public virtual DbSet<tbListaPrecio> tbListaPrecio { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {
@@ -756,130 +755,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("devd_Monto", typeof(decimal));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucionDetalle_Insert_Result>("UDP_Vent_tbDevolucionDetalle_Insert", dev_IdParameter, prod_CodigoParameter, devd_CantidadProductoParameter, devd_DescripcionParameter, devd_MontoParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbListadoPrecioDetalle_Insert_Result> UDP_Vent_tbListadoPrecioDetalle_Insert(string prod_Codigo, Nullable<decimal> lispd_PrecioMayorista, Nullable<decimal> lispd_PrecioMinorista, Nullable<decimal> lispd_DescCaja, Nullable<decimal> lispd_DescGerente)
-        {
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            var lispd_PrecioMayoristaParameter = lispd_PrecioMayorista.HasValue ?
-                new ObjectParameter("lispd_PrecioMayorista", lispd_PrecioMayorista) :
-                new ObjectParameter("lispd_PrecioMayorista", typeof(decimal));
-    
-            var lispd_PrecioMinoristaParameter = lispd_PrecioMinorista.HasValue ?
-                new ObjectParameter("lispd_PrecioMinorista", lispd_PrecioMinorista) :
-                new ObjectParameter("lispd_PrecioMinorista", typeof(decimal));
-    
-            var lispd_DescCajaParameter = lispd_DescCaja.HasValue ?
-                new ObjectParameter("lispd_DescCaja", lispd_DescCaja) :
-                new ObjectParameter("lispd_DescCaja", typeof(decimal));
-    
-            var lispd_DescGerenteParameter = lispd_DescGerente.HasValue ?
-                new ObjectParameter("lispd_DescGerente", lispd_DescGerente) :
-                new ObjectParameter("lispd_DescGerente", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListadoPrecioDetalle_Insert_Result>("UDP_Vent_tbListadoPrecioDetalle_Insert", prod_CodigoParameter, lispd_PrecioMayoristaParameter, lispd_PrecioMinoristaParameter, lispd_DescCajaParameter, lispd_DescGerenteParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbListadoPrecioDetalle_Update_Result> UDP_Vent_tbListadoPrecioDetalle_Update(Nullable<int> listp_Id, string prod_Codigo, Nullable<decimal> lispd_PrecioMayorista, Nullable<decimal> lispd_PrecioMinorista, Nullable<System.DateTime> lispd_FechaInicioVigencia, Nullable<System.DateTime> lispd_FechaFinalVigencia, Nullable<decimal> lispd_DescCaja, Nullable<decimal> lispd_DescGerente, Nullable<int> lispd_UsuarioCrea, Nullable<System.DateTime> lispd_FechaCrea, Nullable<int> lispd_UsuarioModifica, Nullable<System.DateTime> lispd_FechaModifica)
-        {
-            var listp_IdParameter = listp_Id.HasValue ?
-                new ObjectParameter("listp_Id", listp_Id) :
-                new ObjectParameter("listp_Id", typeof(int));
-    
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            var lispd_PrecioMayoristaParameter = lispd_PrecioMayorista.HasValue ?
-                new ObjectParameter("lispd_PrecioMayorista", lispd_PrecioMayorista) :
-                new ObjectParameter("lispd_PrecioMayorista", typeof(decimal));
-    
-            var lispd_PrecioMinoristaParameter = lispd_PrecioMinorista.HasValue ?
-                new ObjectParameter("lispd_PrecioMinorista", lispd_PrecioMinorista) :
-                new ObjectParameter("lispd_PrecioMinorista", typeof(decimal));
-    
-            var lispd_FechaInicioVigenciaParameter = lispd_FechaInicioVigencia.HasValue ?
-                new ObjectParameter("lispd_FechaInicioVigencia", lispd_FechaInicioVigencia) :
-                new ObjectParameter("lispd_FechaInicioVigencia", typeof(System.DateTime));
-    
-            var lispd_FechaFinalVigenciaParameter = lispd_FechaFinalVigencia.HasValue ?
-                new ObjectParameter("lispd_FechaFinalVigencia", lispd_FechaFinalVigencia) :
-                new ObjectParameter("lispd_FechaFinalVigencia", typeof(System.DateTime));
-    
-            var lispd_DescCajaParameter = lispd_DescCaja.HasValue ?
-                new ObjectParameter("lispd_DescCaja", lispd_DescCaja) :
-                new ObjectParameter("lispd_DescCaja", typeof(decimal));
-    
-            var lispd_DescGerenteParameter = lispd_DescGerente.HasValue ?
-                new ObjectParameter("lispd_DescGerente", lispd_DescGerente) :
-                new ObjectParameter("lispd_DescGerente", typeof(decimal));
-    
-            var lispd_UsuarioCreaParameter = lispd_UsuarioCrea.HasValue ?
-                new ObjectParameter("lispd_UsuarioCrea", lispd_UsuarioCrea) :
-                new ObjectParameter("lispd_UsuarioCrea", typeof(int));
-    
-            var lispd_FechaCreaParameter = lispd_FechaCrea.HasValue ?
-                new ObjectParameter("lispd_FechaCrea", lispd_FechaCrea) :
-                new ObjectParameter("lispd_FechaCrea", typeof(System.DateTime));
-    
-            var lispd_UsuarioModificaParameter = lispd_UsuarioModifica.HasValue ?
-                new ObjectParameter("lispd_UsuarioModifica", lispd_UsuarioModifica) :
-                new ObjectParameter("lispd_UsuarioModifica", typeof(int));
-    
-            var lispd_FechaModificaParameter = lispd_FechaModifica.HasValue ?
-                new ObjectParameter("lispd_FechaModifica", lispd_FechaModifica) :
-                new ObjectParameter("lispd_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListadoPrecioDetalle_Update_Result>("UDP_Vent_tbListadoPrecioDetalle_Update", listp_IdParameter, prod_CodigoParameter, lispd_PrecioMayoristaParameter, lispd_PrecioMinoristaParameter, lispd_FechaInicioVigenciaParameter, lispd_FechaFinalVigenciaParameter, lispd_DescCajaParameter, lispd_DescGerenteParameter, lispd_UsuarioCreaParameter, lispd_FechaCreaParameter, lispd_UsuarioModificaParameter, lispd_FechaModificaParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbListaPrecio_Insert_Result> UDP_Vent_tbListaPrecio_Insert(string listp_Nombre, Nullable<bool> listp_EsActivo)
-        {
-            var listp_NombreParameter = listp_Nombre != null ?
-                new ObjectParameter("listp_Nombre", listp_Nombre) :
-                new ObjectParameter("listp_Nombre", typeof(string));
-    
-            var listp_EsActivoParameter = listp_EsActivo.HasValue ?
-                new ObjectParameter("listp_EsActivo", listp_EsActivo) :
-                new ObjectParameter("listp_EsActivo", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListaPrecio_Insert_Result>("UDP_Vent_tbListaPrecio_Insert", listp_NombreParameter, listp_EsActivoParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbListaPrecio_Update_Result> UDP_Vent_tbListaPrecio_Update(Nullable<int> listp_Id, string listp_Nombre, Nullable<bool> listp_EsActivo, Nullable<int> listp_UsuarioCrea, Nullable<System.DateTime> listp_FechaCrea, Nullable<int> listp_UsuarioModifica, Nullable<System.DateTime> listp_FechaModifica)
-        {
-            var listp_IdParameter = listp_Id.HasValue ?
-                new ObjectParameter("listp_Id", listp_Id) :
-                new ObjectParameter("listp_Id", typeof(int));
-    
-            var listp_NombreParameter = listp_Nombre != null ?
-                new ObjectParameter("listp_Nombre", listp_Nombre) :
-                new ObjectParameter("listp_Nombre", typeof(string));
-    
-            var listp_EsActivoParameter = listp_EsActivo.HasValue ?
-                new ObjectParameter("listp_EsActivo", listp_EsActivo) :
-                new ObjectParameter("listp_EsActivo", typeof(bool));
-    
-            var listp_UsuarioCreaParameter = listp_UsuarioCrea.HasValue ?
-                new ObjectParameter("listp_UsuarioCrea", listp_UsuarioCrea) :
-                new ObjectParameter("listp_UsuarioCrea", typeof(int));
-    
-            var listp_FechaCreaParameter = listp_FechaCrea.HasValue ?
-                new ObjectParameter("listp_FechaCrea", listp_FechaCrea) :
-                new ObjectParameter("listp_FechaCrea", typeof(System.DateTime));
-    
-            var listp_UsuarioModificaParameter = listp_UsuarioModifica.HasValue ?
-                new ObjectParameter("listp_UsuarioModifica", listp_UsuarioModifica) :
-                new ObjectParameter("listp_UsuarioModifica", typeof(int));
-    
-            var listp_FechaModificaParameter = listp_FechaModifica.HasValue ?
-                new ObjectParameter("listp_FechaModifica", listp_FechaModifica) :
-                new ObjectParameter("listp_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListaPrecio_Update_Result>("UDP_Vent_tbListaPrecio_Update", listp_IdParameter, listp_NombreParameter, listp_EsActivoParameter, listp_UsuarioCreaParameter, listp_FechaCreaParameter, listp_UsuarioModificaParameter, listp_FechaModificaParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbTipoPago_Update_Result> UDP_Vent_tbTipoPago_Update(Nullable<short> tpa_Id, string tpa_Descripcion, Nullable<bool> tpa_Emisor, Nullable<bool> tpa_Cuenta, Nullable<bool> tpa_FechaVencimiento, Nullable<bool> tpa_Titular, Nullable<int> tpa_UsuarioCrea, Nullable<System.DateTime> tpa_FechaCrea)
@@ -4200,6 +4075,130 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("mocja_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbMovimientoCaja_Update", mocja_IdParameter, cja_IdParameter, mocja_FechaAperturaParameter, mocja_FechaArqueoParameter, mocja_FechaAceptacionParameter, mocja_UsuarioCreaParameter, mocja_FechaCreaParameter, mocja_UsuarioModificaParameter, mocja_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbListadoPrecioDetalle_Insert_Result> UDP_Vent_tbListadoPrecioDetalle_Insert(string prod_Codigo, Nullable<decimal> lispd_PrecioMayorista, Nullable<decimal> lispd_PrecioMinorista, Nullable<decimal> lispd_DescCaja, Nullable<decimal> lispd_DescGerente)
+        {
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var lispd_PrecioMayoristaParameter = lispd_PrecioMayorista.HasValue ?
+                new ObjectParameter("lispd_PrecioMayorista", lispd_PrecioMayorista) :
+                new ObjectParameter("lispd_PrecioMayorista", typeof(decimal));
+    
+            var lispd_PrecioMinoristaParameter = lispd_PrecioMinorista.HasValue ?
+                new ObjectParameter("lispd_PrecioMinorista", lispd_PrecioMinorista) :
+                new ObjectParameter("lispd_PrecioMinorista", typeof(decimal));
+    
+            var lispd_DescCajaParameter = lispd_DescCaja.HasValue ?
+                new ObjectParameter("lispd_DescCaja", lispd_DescCaja) :
+                new ObjectParameter("lispd_DescCaja", typeof(decimal));
+    
+            var lispd_DescGerenteParameter = lispd_DescGerente.HasValue ?
+                new ObjectParameter("lispd_DescGerente", lispd_DescGerente) :
+                new ObjectParameter("lispd_DescGerente", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListadoPrecioDetalle_Insert_Result>("UDP_Vent_tbListadoPrecioDetalle_Insert", prod_CodigoParameter, lispd_PrecioMayoristaParameter, lispd_PrecioMinoristaParameter, lispd_DescCajaParameter, lispd_DescGerenteParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbListadoPrecioDetalle_Update_Result> UDP_Vent_tbListadoPrecioDetalle_Update(Nullable<int> listp_Id, string prod_Codigo, Nullable<decimal> lispd_PrecioMayorista, Nullable<decimal> lispd_PrecioMinorista, Nullable<decimal> lispd_DescCaja, Nullable<decimal> lispd_DescGerente, Nullable<int> lispd_UsuarioCrea, Nullable<System.DateTime> lispd_FechaCrea)
+        {
+            var listp_IdParameter = listp_Id.HasValue ?
+                new ObjectParameter("listp_Id", listp_Id) :
+                new ObjectParameter("listp_Id", typeof(int));
+    
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var lispd_PrecioMayoristaParameter = lispd_PrecioMayorista.HasValue ?
+                new ObjectParameter("lispd_PrecioMayorista", lispd_PrecioMayorista) :
+                new ObjectParameter("lispd_PrecioMayorista", typeof(decimal));
+    
+            var lispd_PrecioMinoristaParameter = lispd_PrecioMinorista.HasValue ?
+                new ObjectParameter("lispd_PrecioMinorista", lispd_PrecioMinorista) :
+                new ObjectParameter("lispd_PrecioMinorista", typeof(decimal));
+    
+            var lispd_DescCajaParameter = lispd_DescCaja.HasValue ?
+                new ObjectParameter("lispd_DescCaja", lispd_DescCaja) :
+                new ObjectParameter("lispd_DescCaja", typeof(decimal));
+    
+            var lispd_DescGerenteParameter = lispd_DescGerente.HasValue ?
+                new ObjectParameter("lispd_DescGerente", lispd_DescGerente) :
+                new ObjectParameter("lispd_DescGerente", typeof(decimal));
+    
+            var lispd_UsuarioCreaParameter = lispd_UsuarioCrea.HasValue ?
+                new ObjectParameter("lispd_UsuarioCrea", lispd_UsuarioCrea) :
+                new ObjectParameter("lispd_UsuarioCrea", typeof(int));
+    
+            var lispd_FechaCreaParameter = lispd_FechaCrea.HasValue ?
+                new ObjectParameter("lispd_FechaCrea", lispd_FechaCrea) :
+                new ObjectParameter("lispd_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListadoPrecioDetalle_Update_Result>("UDP_Vent_tbListadoPrecioDetalle_Update", listp_IdParameter, prod_CodigoParameter, lispd_PrecioMayoristaParameter, lispd_PrecioMinoristaParameter, lispd_DescCajaParameter, lispd_DescGerenteParameter, lispd_UsuarioCreaParameter, lispd_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbListaPrecio_Insert_Result> UDP_Vent_tbListaPrecio_Insert(string listp_Nombre, Nullable<bool> listp_EsActivo, Nullable<System.DateTime> listp_FechaInicioVigencia, Nullable<System.DateTime> listp_FechaFinalVigencia, Nullable<short> listp_Prioridad)
+        {
+            var listp_NombreParameter = listp_Nombre != null ?
+                new ObjectParameter("listp_Nombre", listp_Nombre) :
+                new ObjectParameter("listp_Nombre", typeof(string));
+    
+            var listp_EsActivoParameter = listp_EsActivo.HasValue ?
+                new ObjectParameter("listp_EsActivo", listp_EsActivo) :
+                new ObjectParameter("listp_EsActivo", typeof(bool));
+    
+            var listp_FechaInicioVigenciaParameter = listp_FechaInicioVigencia.HasValue ?
+                new ObjectParameter("listp_FechaInicioVigencia", listp_FechaInicioVigencia) :
+                new ObjectParameter("listp_FechaInicioVigencia", typeof(System.DateTime));
+    
+            var listp_FechaFinalVigenciaParameter = listp_FechaFinalVigencia.HasValue ?
+                new ObjectParameter("listp_FechaFinalVigencia", listp_FechaFinalVigencia) :
+                new ObjectParameter("listp_FechaFinalVigencia", typeof(System.DateTime));
+    
+            var listp_PrioridadParameter = listp_Prioridad.HasValue ?
+                new ObjectParameter("listp_Prioridad", listp_Prioridad) :
+                new ObjectParameter("listp_Prioridad", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListaPrecio_Insert_Result>("UDP_Vent_tbListaPrecio_Insert", listp_NombreParameter, listp_EsActivoParameter, listp_FechaInicioVigenciaParameter, listp_FechaFinalVigenciaParameter, listp_PrioridadParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbListaPrecio_Update_Result> UDP_Vent_tbListaPrecio_Update(Nullable<int> listp_Id, string listp_Nombre, Nullable<bool> listp_EsActivo, Nullable<int> listp_UsuarioCrea, Nullable<System.DateTime> listp_FechaCrea, Nullable<System.DateTime> listp_FechaInicioVigencia, Nullable<System.DateTime> listp_FechaFinalVigencia, Nullable<short> listp_Prioridad)
+        {
+            var listp_IdParameter = listp_Id.HasValue ?
+                new ObjectParameter("listp_Id", listp_Id) :
+                new ObjectParameter("listp_Id", typeof(int));
+    
+            var listp_NombreParameter = listp_Nombre != null ?
+                new ObjectParameter("listp_Nombre", listp_Nombre) :
+                new ObjectParameter("listp_Nombre", typeof(string));
+    
+            var listp_EsActivoParameter = listp_EsActivo.HasValue ?
+                new ObjectParameter("listp_EsActivo", listp_EsActivo) :
+                new ObjectParameter("listp_EsActivo", typeof(bool));
+    
+            var listp_UsuarioCreaParameter = listp_UsuarioCrea.HasValue ?
+                new ObjectParameter("listp_UsuarioCrea", listp_UsuarioCrea) :
+                new ObjectParameter("listp_UsuarioCrea", typeof(int));
+    
+            var listp_FechaCreaParameter = listp_FechaCrea.HasValue ?
+                new ObjectParameter("listp_FechaCrea", listp_FechaCrea) :
+                new ObjectParameter("listp_FechaCrea", typeof(System.DateTime));
+    
+            var listp_FechaInicioVigenciaParameter = listp_FechaInicioVigencia.HasValue ?
+                new ObjectParameter("listp_FechaInicioVigencia", listp_FechaInicioVigencia) :
+                new ObjectParameter("listp_FechaInicioVigencia", typeof(System.DateTime));
+    
+            var listp_FechaFinalVigenciaParameter = listp_FechaFinalVigencia.HasValue ?
+                new ObjectParameter("listp_FechaFinalVigencia", listp_FechaFinalVigencia) :
+                new ObjectParameter("listp_FechaFinalVigencia", typeof(System.DateTime));
+    
+            var listp_PrioridadParameter = listp_Prioridad.HasValue ?
+                new ObjectParameter("listp_Prioridad", listp_Prioridad) :
+                new ObjectParameter("listp_Prioridad", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListaPrecio_Update_Result>("UDP_Vent_tbListaPrecio_Update", listp_IdParameter, listp_NombreParameter, listp_EsActivoParameter, listp_UsuarioCreaParameter, listp_FechaCreaParameter, listp_FechaInicioVigenciaParameter, listp_FechaFinalVigenciaParameter, listp_PrioridadParameter);
         }
     }
 }

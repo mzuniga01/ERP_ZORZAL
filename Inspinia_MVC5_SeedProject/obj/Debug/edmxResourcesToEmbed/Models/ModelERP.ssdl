@@ -737,7 +737,7 @@
     <Property Name="listp_FechaModifica" Type="datetime" />
     <Property Name="listp_FechaInicioVigencia" Type="date" />
     <Property Name="listp_FechaFinalVigencia" Type="date" />
-    <Property Name="listp_Prioridad" Type="int" Nullable="false" />
+    <Property Name="listp_Prioridad" Type="smallint" />
   </EntityType>
   <EntityType Name="tbMovimientoCaja">
     <Key>
@@ -957,62 +957,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     </Key>
     <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="tbclientes">
-    <Key>
-      <PropertyRef Name="clte_Id" />
-      <PropertyRef Name="tpi_Id" />
-      <PropertyRef Name="tpi_Descripcion" />
-      <PropertyRef Name="clte_Identificacion" />
-      <PropertyRef Name="clte_EsPersonaNatural" />
-      <PropertyRef Name="clte_Nombres" />
-      <PropertyRef Name="clte_Apellidos" />
-      <PropertyRef Name="clte_Nacionalidad" />
-      <PropertyRef Name="clte_Telefono" />
-      <PropertyRef Name="clte_NombreComercial" />
-      <PropertyRef Name="clte_RazonSocial" />
-      <PropertyRef Name="clte_ContactoNombre" />
-      <PropertyRef Name="clte_ContactoTelefono" />
-      <PropertyRef Name="mun_Codigo" />
-      <PropertyRef Name="clte_EsActivo" />
-      <PropertyRef Name="clte_ConCredito" />
-      <PropertyRef Name="clte_EsMinorista" />
-      <PropertyRef Name="clte_UsuarioCrea" />
-      <PropertyRef Name="clte_FechaCrea" />
-      <PropertyRef Name="clte_ConsumidorFinal" />
-    </Key>
-    <Property Name="clte_Id" Type="int" Nullable="false" />
-    <Property Name="tpi_Id" Type="tinyint" Nullable="false" />
-    <Property Name="tpi_Descripcion" Type="nvarchar" MaxLength="25" Nullable="false" />
-    <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
-    <Property Name="clte_EsPersonaNatural" Type="bit" Nullable="false" />
-    <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="clte_Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="clte_FechaNacimiento" Type="date" />
-    <Property Name="clte_Nacionalidad" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="clte_Sexo" Type="char" MaxLength="1" />
-    <Property Name="clte_Telefono" Type="nvarchar" MaxLength="25" Nullable="false" />
-    <Property Name="clte_NombreComercial" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="clte_RazonSocial" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="clte_ContactoNombre" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="clte_ContactoEmail" Type="nvarchar" MaxLength="50" />
-    <Property Name="clte_ContactoTelefono" Type="nvarchar" MaxLength="25" Nullable="false" />
-    <Property Name="clte_FechaConstitucion" Type="date" />
-    <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
-    <Property Name="clte_Direccion" Type="nvarchar" MaxLength="100" />
-    <Property Name="clte_CorreoElectronico" Type="nvarchar" MaxLength="50" />
-    <Property Name="clte_EsActivo" Type="bit" Nullable="false" />
-    <Property Name="clte_RazonInactivo" Type="nvarchar" MaxLength="50" />
-    <Property Name="clte_ConCredito" Type="bit" Nullable="false" />
-    <Property Name="clte_EsMinorista" Type="bit" Nullable="false" />
-    <Property Name="clte_Observaciones" Type="nvarchar" MaxLength="250" />
-    <Property Name="clte_UsuarioCrea" Type="int" Nullable="false" />
-    <Property Name="clte_FechaCrea" Type="datetime" Nullable="false" />
-    <Property Name="clte_UsuarioModifica" Type="int" />
-    <Property Name="clte_FechaModifica" Type="datetime" />
-    <Property Name="clte_ConsumidorFinal" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
     <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="1" />
@@ -4287,18 +4231,17 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="lispd_PrecioMayorista" Type="decimal" Mode="In" />
     <Parameter Name="lispd_PrecioMinorista" Type="decimal" Mode="In" />
-    <Parameter Name="lispd_FechaInicioVigencia" Type="date" Mode="In" />
-    <Parameter Name="lispd_FechaFinalVigencia" Type="date" Mode="In" />
     <Parameter Name="lispd_DescCaja" Type="decimal" Mode="In" />
     <Parameter Name="lispd_DescGerente" Type="decimal" Mode="In" />
     <Parameter Name="lispd_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="lispd_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="lispd_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="lispd_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbListaPrecio_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="listp_Nombre" Type="nvarchar" Mode="In" />
     <Parameter Name="listp_EsActivo" Type="bit" Mode="In" />
+    <Parameter Name="listp_FechaInicioVigencia" Type="date" Mode="In" />
+    <Parameter Name="listp_FechaFinalVigencia" Type="date" Mode="In" />
+    <Parameter Name="listp_Prioridad" Type="smallint" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbListaPrecio_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="listp_Id" Type="int" Mode="In" />
@@ -4306,8 +4249,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
     <Parameter Name="listp_EsActivo" Type="bit" Mode="In" />
     <Parameter Name="listp_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="listp_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="listp_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="listp_FechaModifica" Type="datetime" Mode="In" />
+    <Parameter Name="listp_FechaInicioVigencia" Type="date" Mode="In" />
+    <Parameter Name="listp_FechaFinalVigencia" Type="date" Mode="In" />
+    <Parameter Name="listp_Prioridad" Type="smallint" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbMovimientoCaja_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="cja_Id" Type="smallint" Mode="In" />
@@ -4619,40 +4563,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.tbclientes' does not have a prima
     [UDV_Inv_Nombre_Empleado].[emp_Id] AS [emp_Id], 
     [UDV_Inv_Nombre_Empleado].[Empleados] AS [Empleados]
     FROM [Gral].[UDV_Inv_Nombre_Empleado] AS [UDV_Inv_Nombre_Empleado]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="tbclientes" EntityType="Self.tbclientes" store:Type="Views" store:Schema="Vent">
-      <DefiningQuery>SELECT 
-    [tbclientes].[clte_Id] AS [clte_Id], 
-    [tbclientes].[tpi_Id] AS [tpi_Id], 
-    [tbclientes].[tpi_Descripcion] AS [tpi_Descripcion], 
-    [tbclientes].[clte_Identificacion] AS [clte_Identificacion], 
-    [tbclientes].[clte_EsPersonaNatural] AS [clte_EsPersonaNatural], 
-    [tbclientes].[clte_Nombres] AS [clte_Nombres], 
-    [tbclientes].[clte_Apellidos] AS [clte_Apellidos], 
-    [tbclientes].[clte_FechaNacimiento] AS [clte_FechaNacimiento], 
-    [tbclientes].[clte_Nacionalidad] AS [clte_Nacionalidad], 
-    [tbclientes].[clte_Sexo] AS [clte_Sexo], 
-    [tbclientes].[clte_Telefono] AS [clte_Telefono], 
-    [tbclientes].[clte_NombreComercial] AS [clte_NombreComercial], 
-    [tbclientes].[clte_RazonSocial] AS [clte_RazonSocial], 
-    [tbclientes].[clte_ContactoNombre] AS [clte_ContactoNombre], 
-    [tbclientes].[clte_ContactoEmail] AS [clte_ContactoEmail], 
-    [tbclientes].[clte_ContactoTelefono] AS [clte_ContactoTelefono], 
-    [tbclientes].[clte_FechaConstitucion] AS [clte_FechaConstitucion], 
-    [tbclientes].[mun_Codigo] AS [mun_Codigo], 
-    [tbclientes].[clte_Direccion] AS [clte_Direccion], 
-    [tbclientes].[clte_CorreoElectronico] AS [clte_CorreoElectronico], 
-    [tbclientes].[clte_EsActivo] AS [clte_EsActivo], 
-    [tbclientes].[clte_RazonInactivo] AS [clte_RazonInactivo], 
-    [tbclientes].[clte_ConCredito] AS [clte_ConCredito], 
-    [tbclientes].[clte_EsMinorista] AS [clte_EsMinorista], 
-    [tbclientes].[clte_Observaciones] AS [clte_Observaciones], 
-    [tbclientes].[clte_UsuarioCrea] AS [clte_UsuarioCrea], 
-    [tbclientes].[clte_FechaCrea] AS [clte_FechaCrea], 
-    [tbclientes].[clte_UsuarioModifica] AS [clte_UsuarioModifica], 
-    [tbclientes].[clte_FechaModifica] AS [clte_FechaModifica], 
-    [tbclientes].[clte_ConsumidorFinal] AS [clte_ConsumidorFinal]
-    FROM [Vent].[tbclientes] AS [tbclientes]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" Association="Self.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
       <End Role="tbObjeto" EntitySet="tbObjeto" />

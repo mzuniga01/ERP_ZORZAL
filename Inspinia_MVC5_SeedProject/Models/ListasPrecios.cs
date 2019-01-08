@@ -29,7 +29,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Prioridad")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public int listp_Prioridad { get; set; }
+        public Nullable<short> listp_Prioridad { get; set; }
 
 
         [Display(Name = "Usuario Crea")]
@@ -39,7 +39,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Crea")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy }", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt }", ApplyFormatInEditMode = true)]
         public System.DateTime listp_FechaCrea { get; set; }
 
 
