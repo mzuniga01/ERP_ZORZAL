@@ -76,10 +76,10 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2" })
+                            <div id="DatosCliente" name="DatosCliente" class="form-group">
+                                @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2",id= "label_identificacion" })
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.clte_Identificacion)
+                                    @Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", @readonly = "readonly" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Identificacion)</span>
                                 </div>
                                 <div class="col-md-1" style="width: 12.499999995%; padding:0">
@@ -90,8 +90,17 @@
                                 </div>                                
                                 @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2", style = "width: 12.499999995%" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.clte_Nombres)
+                                    @Html.EditorFor(model => model.clte_Nombres, new { htmlAttributes = new { @autocomplete = "off", @readonly = "readonly" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Nombres)</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-md-4">
+                                    <input id="tpi_Id" type="text" class="form-control" hid />
+                                </div>
+                                <div class="col-lg-offset-2 col-md-4">
+                                    <input id="clte_Fecha" type="text" class="form-control" hidden />
                                 </div>
                             </div>
 
@@ -101,12 +110,13 @@
                                     @Html.EditorFor(model => model.fact_AlCredito)
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_AlCredito)</span>
                                 </div>
+                                <div id="TerceraEdad" name="TerceraEdad">
                                 <label class="control-label col-md-2">Descuento Tercera Edad</label>
-                                <div class="col-md-4">
-                                    <input id="MostrarTerceraEdad" type="checkbox" class="check-box" data-toggle="modal" data-target="#DescTerceraEdad" />
-                                </div>
+                                    <div class="col-md-4">
+                                        <input id="MostrarTerceraEdad" type="checkbox" class="check-box" data-toggle="modal" data-target="#DescTerceraEdad" />
+                                    </div>  
+                                </div>                     
                             </div>
-
                             <div class="form-group">
                                 <div class="form-horizontal" name="Cred1" id="Cred1">
                                     @Html.LabelFor(model => model.fact_DiasCredito, new { @class = "control-label col-md-2" })
@@ -147,6 +157,7 @@
                                     @Html.ValidationMessageFor(model => model.clte_Id)
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 <div class="col-md-12">
                                     @Html.Partial("_CreateFacturaDetalle", new tbFacturaDetalle())
@@ -235,6 +246,7 @@
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Credito.js"></script>
 <script src="~/Scripts/app/ClienteFactura.js"></script>
+<script src="~/Scripts/app/Factura.js"></script>
 <script>
     // Open Modal
     function myFunction() {

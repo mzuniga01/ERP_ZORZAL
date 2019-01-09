@@ -27,6 +27,15 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.clte_Nombres)
                                 </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.tpi_Id)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.clte_FechaNacimiento)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.clte_EsPersonaNatural)
+                                </th>
                                 <th>Acción</th>
                             </tr>
                         </thead>
@@ -34,8 +43,8 @@
 
                            @foreach (var item in Model)
                            {
-                               var nombrecliente = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
-                            <tr data-id="@item.clte_Id" data-rtn="@item.clte_Identificacion" data-nombrecliente="@nombrecliente" >
+                           var nombrecliente = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
+                          <tr data-id="@item.clte_Id" data-rtn="@item.clte_Identificacion" data-nombrecliente="@nombrecliente" data-tpi="@item.tbTipoIdentificacion.tpi_Descripcion" data-fecha="@item.clte_FechaNacimiento" data-EsPersonaNatural="@item.clte_EsPersonaNatural" >
 
                                 <td>
                                     @Html.DisplayFor(modelItem => item.clte_Id)
@@ -45,6 +54,15 @@
                                 </td>
                                 <td>
                                     @nombrecliente
+                                </td>
+                                <td hidden>
+                                    @Html.DisplayFor(modelItem => item.tbTipoIdentificacion.tpi_Descripcion)
+                                </td>
+                                <td hidden>
+                                    @Html.DisplayFor(modelItem => item.clte_FechaNacimiento)
+                                </td>
+                                <td >
+                                    @Html.DisplayFor(modelItem => item.clte_EsPersonaNatural)
                                 </td>
                                 <td>
                                     <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
