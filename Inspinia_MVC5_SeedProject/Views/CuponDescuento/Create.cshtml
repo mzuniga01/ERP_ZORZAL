@@ -43,55 +43,42 @@
             </div>
         </div>
 
-
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.cdto_PorcentajeDescuento, "*% Descuento", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @type = "number" } })
+                @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
-         </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new {  @min = "0", @step = "0.01", @value = "0", @max="1000" } })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MontoDescuento)</p>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, "*Máximo Monto Descuento", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @type = "number", @class = "form-control", @readonly = "readonly"} })
+                @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_Anulado, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.cdto_MontoDescuento,"*Monto Descuento", new { @class = "control -label col-md-2" })
             <div class="col-md-4">
-                <select id="cdto_Anulado" name="cdto_Anulado" class="form-control">
-                    <option>Seleccionar</option>
-                    <option value="true">Si</option>
-                    <option value="false">No</option>
-                </select>
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_Anulado)</p>
+                @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MontoDescuento)</p>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_Redimido, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.cdto_CantidadCompraMinima, "*Cantidad Mínima", new { @class = "control -label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_Redimido)
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_Redimido)</p>
+                @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_FechaEmision)
+                @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @readonly = "readonly"} })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.cdto_FechaEmision)</p>
             </div>
         </div>
@@ -99,7 +86,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@ } })
+                @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new {  @readonly = "readonly" } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_FechaVencimiento)</p>
             </div>
         </div>
@@ -107,10 +94,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_FechaRedencion, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_FechaRedencion)
+                @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @readonly="readonly" } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_FechaRedencion)</p>
             </div>
         </div>
+
+        <input type="hidden" id="clte_Id" name="clte_Id" value="false" />
+        <input type="hidden" id="cdto_Redimido" name="cdto_Redimido" value="false" />
 
         <div class="form-group">
             <div class="col-md-12 text-center">
@@ -153,7 +143,7 @@
 $(function () {
     $("#cdto_FechaEmision").datepicker({ dateFormat: 'dd/mm/yy' });
     $("#cdto_FechaVencimiento").datepicker({ dateFormat: 'dd/mm/yy' });
-    $("#cdto_FechaRedencion").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#cdto_FechaRedencion").datepicker({ dateFormat: 'dd/mm/yy', minDate: 0 });
 });
 </script>
 
@@ -165,47 +155,23 @@ $(function () {
     $("#cdto_FechaVencimiento").datepicker({
         }).datepicker('setDate', new FormData()+365);
 </script>
-@*<script>
-    $('#cdto_FechaEmision').change(function () {
-        var FechaEmision = $('#cdto_FechaEmision').val();
-        var FormatFechaNacimiento = new Date((FechaEmision));
-        var vencimiento = (FormatFechaNacimiento.getMonth()+1)  + '/' + FormatFechaNacimiento.getDate() + '/' + (FormatFechaNacimiento.getFullYear() + 1);
-        $('#cdto_FechaVencimiento').val(vencimiento);
-    });
-</script>*@
 
-<script type="text/javascript">
+<script>
     $('#cdto_PorcentajeDescuento').click(function () {
-        $('#cdto_MontoDescuento').val('0')
-        $('#cdto_MaximoMontoDescuento').val('1000.00')
+        $('#cdto_MontoDescuento').val('0.00');
+        $('#cdto_CantidadCompraMinima').val('0.00');
+        $('#cdto_PorcentajeDescuento').val('');
+        $('#cdto_MaximoMontoDescuento').val('');
     });
 </script>
 
-<script type="text/javascript">
+<script>
     $('#cdto_MontoDescuento').click(function () {
-        $('#cdto_PorcentajeDescuento').val('0')
-        $('#cdto_MaximoMontoDescuento').val('1000.00')
+        $('#cdto_PorcentajeDescuento').val('0.00');
+        $('#cdto_MaximoMontoDescuento').val('0.00');
+        $('#cdto_MontoDescuento').val('');
+        $('#cdto_CantidadCompraMinima').val('');
     });
-</script>
-<script>
-        $('#cdto_PorcentajeDescuento').change(function () {
-            var descuento = $('#cdto_PorcentajeDescuento').val();
-            var valormax = $('#cdto_MaximoMontoDescuento').val();
-            var resultado = (((parseInt(descuento)) / 100) * parseInt(valormax));
-
-            $('#cdto_MontoDescuento').val(resultado);
-        });
-</script>
-<script>
-    $('#cdto_MontoDescuento').change(function () {
-        var montoDesc = $('#cdto_MontoDescuento').val();
-        var descuento = $('#cdto_PorcentajeDescuento').val();
-        var valormax = $('#cdto_MaximoMontoDescuento').val();
-            
-        var resultadoporc = (parseInt(montoDesc)*100) / parseInt(valormax);
-
-        $('#cdto_PorcentajeDescuento').val(resultadoporc);
-        });
 </script>
 
 }

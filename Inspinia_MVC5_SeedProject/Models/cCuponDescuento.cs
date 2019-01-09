@@ -22,9 +22,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Emisión")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
-        [DisplayFormat(ApplyFormatInEditMode = true,
-            DataFormatString = "{0:dd/MM/yyyy}",
-            HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}", HtmlEncode = false)]
         public System.DateTime cdto_FechaEmision { get; set; }
 
         [Display(Name = "Fecha Vencimiento")]
@@ -45,8 +43,11 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public decimal cdto_MaximoMontoDescuento { get; set; }
 
-        [Display(Name = "Redimido")]
+        [Display(Name = "Cantidad Mínima")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
+        public decimal cdto_CantidadCompraMinima { get; set; }
+
+        [Display(Name = "Redimido")]
         public bool cdto_Redimido { get; set; }
 
         [Display(Name = "Anulado")]
@@ -69,7 +70,6 @@ namespace ERP_GMEDINA.Models
         public Nullable<System.DateTime> cdto_FechaModifica { get; set; }
 
         [Display(Name = "Fecha Redención")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         [DisplayFormat(ApplyFormatInEditMode = true,
             DataFormatString = "{0:dd/MM/yyyy}",
             HtmlEncode = false)]

@@ -11,7 +11,6 @@
     </div>
 </div>
 
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -39,10 +38,10 @@
                 @Html.DisplayNameFor(model => model.cdto_PorcentajeDescuento)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.cdto_MontoDescuento)
+                @Html.DisplayNameFor(model => model.cdto_MaximoMontoDescuento)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.cdto_MaximoMontoDescuento)
+                @Html.DisplayNameFor(model => model.cdto_MontoDescuento)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.cdto_Anulado)
@@ -67,10 +66,10 @@
                     @Html.DisplayFor(modelItem => item.cdto_PorcentajeDescuento)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.cdto_MontoDescuento)
+                    @Html.DisplayFor(modelItem => item.cdto_MaximoMontoDescuento)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.cdto_MaximoMontoDescuento)
+                    @Html.DisplayFor(modelItem => item.cdto_MontoDescuento)
                 </td>
                 @if(item.cdto_Anulado == true)
                 {

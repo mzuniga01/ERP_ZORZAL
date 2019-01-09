@@ -537,7 +537,7 @@
     <Property Name="cdto_MaximoMontoDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="cdto_CantidadCompraMinima" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="cdto_Redimido" Type="bit" Nullable="false" />
-    <Property Name="cdto_FechaRedencion" Type="date" Nullable="false" />
+    <Property Name="cdto_FechaRedencion" Type="date" />
     <Property Name="cdto_Anulado" Type="bit" />
     <Property Name="cdto_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="cdto_FechaCrea" Type="datetime" Nullable="false" />

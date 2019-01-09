@@ -542,7 +542,7 @@
           <Property Name="cdto_MaximoMontoDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="cdto_CantidadCompraMinima" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="cdto_Redimido" Type="bit" Nullable="false" />
-          <Property Name="cdto_FechaRedencion" Type="date" Nullable="false" />
+          <Property Name="cdto_FechaRedencion" Type="date" />
           <Property Name="cdto_Anulado" Type="bit" />
           <Property Name="cdto_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="cdto_FechaCrea" Type="datetime" Nullable="false" />
@@ -8643,7 +8643,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Property Name="cdto_MontoDescuento" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="cdto_MaximoMontoDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="cdto_Redimido" Type="Boolean" Nullable="false" />
-          <Property Name="cdto_FechaRedencion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="cdto_FechaRedencion" Type="DateTime" Precision="0" />
           <Property Name="cdto_Anulado" Type="Boolean" />
           <Property Name="cdto_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="cdto_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />

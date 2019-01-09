@@ -16,9 +16,6 @@
     </div>
 </div>
 
-
-
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -50,7 +47,7 @@
             @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 <select id="suc_Id" name="suc_Id" class="form-control" readonly>
-                    <option value="1">San Pedro Sula</option>
+                    <option value="1" class="form-control">San Pedro Sula</option>
                 </select>
             </div>
         </div>
@@ -58,52 +55,47 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_ID, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.cdto_ID, new { htmlAttributes = new { @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.cdto_ID)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes =new { @type="number"} })
-                @Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new { @type = "number" } })
-                @Html.ValidationMessageFor(model => model.cdto_MontoDescuento)
+                @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes =new { @type="number", @min = "0" } })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type="number"} })
-                @Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)
+                @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_Anulado, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @if(Model.cdto_Anulado == true)
-                {
-                    <input type="text" class="form-control" value="Si" readonly/>
-                }
-                else
-                {
-                    <input type="text" class="form-control" value="No" readonly />
-                }
-                @Html.ValidationMessageFor(model => model.cdto_Anulado)
+                @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MontoDescuento)</p>
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cdto_CantidadCompraMinima, new { @class = "control -label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_Redimido, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_Redimido, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.EditorFor(model => model.cdto_Redimido, new { htmlAttributes = new { @readonly = "readonly", disabled = "disabled"} })
                 @Html.ValidationMessageFor(model => model.cdto_Redimido)
             </div>
         </div>
@@ -111,7 +103,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly"} })
+                @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @readonly = "readonly"} })
                 @Html.ValidationMessageFor(model => model.cdto_FechaEmision)
             </div>
         </div>
@@ -119,7 +111,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.cdto_FechaVencimiento)
             </div>
         </div>
@@ -127,7 +119,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cdto_FechaRedencion, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly"} })
+                @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.cdto_FechaRedencion)
             </div>
         </div>
@@ -177,37 +169,21 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script type="text/javascript">
+<script>
     $('#cdto_PorcentajeDescuento').click(function () {
-        $('#cdto_MontoDescuento').val('0')
-        $('#cdto_MaximoMontoDescuento').val('1000.00')
+        $('#cdto_MontoDescuento').val('0.00');
+        $('#cdto_CantidadCompraMinima').val('0.00');
+        $('#cdto_PorcentajeDescuento').val('');
+        $('#cdto_MaximoMontoDescuento').val('');
     });
 </script>
 
-<script type="text/javascript">
+<script>
     $('#cdto_MontoDescuento').click(function () {
-        $('#cdto_PorcentajeDescuento').val('0')
-        $('#cdto_MaximoMontoDescuento').val('1000.00')
+        $('#cdto_PorcentajeDescuento').val('0.00');
+        $('#cdto_MaximoMontoDescuento').val('0.00');
+        $('#cdto_MontoDescuento').val('');
+        $('#cdto_CantidadCompraMinima').val('');
     });
-</script>
-<script>
-        $('#cdto_PorcentajeDescuento').change(function () {
-            var descuento = $('#cdto_PorcentajeDescuento').val();
-            var valormax = $('#cdto_MaximoMontoDescuento').val();
-            var resultado = (((parseInt(descuento)) / 100) * parseInt(valormax));
-
-            $('#cdto_MontoDescuento').val(resultado);
-        });
-</script>
-<script>
-    $('#cdto_MontoDescuento').change(function () {
-        var montoDesc = $('#cdto_MontoDescuento').val();
-        var descuento = $('#cdto_PorcentajeDescuento').val();
-        var valormax = $('#cdto_MaximoMontoDescuento').val();
-
-        var resultadoporc = (parseInt(montoDesc)*100) / parseInt(valormax);
-
-        $('#cdto_PorcentajeDescuento').val(resultadoporc);
-        });
 </script>
 }

@@ -3099,7 +3099,7 @@
     <Property Name="cdto_MontoDescuento" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="cdto_MaximoMontoDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
     <Property Name="cdto_Redimido" Type="Boolean" Nullable="false" />
-    <Property Name="cdto_FechaRedencion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="cdto_FechaRedencion" Type="DateTime" Precision="0" />
     <Property Name="cdto_Anulado" Type="Boolean" />
     <Property Name="cdto_UsuarioCrea" Type="Int32" Nullable="false" />
     <Property Name="cdto_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
