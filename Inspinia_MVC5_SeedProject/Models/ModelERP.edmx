@@ -66,6 +66,7 @@
           <Property Name="usu_EsActivo" Type="bit" Nullable="false" />
           <Property Name="usu_RazonInactivo" Type="varchar" MaxLength="150" />
           <Property Name="usu_EsAdministrador" Type="bit" Nullable="false" />
+          <Property Name="usu_SesionesValidas" Type="tinyint" />
         </EntityType>
         <EntityType Name="tbActividadEconomica">
           <Key>
@@ -3945,6 +3946,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="pcat_Nombre" Type="varchar" Mode="In" />
           <Parameter Name="pcat_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="pcat_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="pcat_EsActivo" Type="tinyint" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbProductoCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="pcat_Id" Type="int" Mode="In" />
@@ -6544,6 +6546,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="pcat_Nombre" Mode="In" Type="String" />
             <Parameter Name="pcat_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="pcat_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="pcat_EsActivo" Mode="In" Type="Byte" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProductoCategoria_Update_Estado" ReturnType="Collection(String)">
             <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
@@ -6700,7 +6703,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
             <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result)">
+          <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Update">
             <Parameter Name="listp_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="lispd_PrecioMayorista" Mode="In" Type="Decimal" />
@@ -8091,6 +8094,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <NavigationProperty Name="tbPuntoEmision1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmision" />
           <NavigationProperty Name="tbPuntoEmisionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
           <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
+          <Property Name="usu_SesionesValidas" Type="Byte" />
         </EntityType>
         <EntityType Name="tbActividadEconomica">
           <Key>
@@ -11754,9 +11758,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
         <ComplexType Name="UDP_Vent_tbListaPrecio_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Update_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12384,11 +12385,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Insert" >
             <ResultMapping>
@@ -12454,6 +12450,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <EntitySetMapping Name="tbUsuario">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbUsuario">
               <MappingFragment StoreEntitySet="tbUsuario">
+                <ScalarProperty Name="usu_SesionesValidas" ColumnName="usu_SesionesValidas" />
                 <ScalarProperty Name="usu_EsAdministrador" ColumnName="usu_EsAdministrador" />
                 <ScalarProperty Name="usu_RazonInactivo" ColumnName="usu_RazonInactivo" />
                 <ScalarProperty Name="usu_EsActivo" ColumnName="usu_EsActivo" />

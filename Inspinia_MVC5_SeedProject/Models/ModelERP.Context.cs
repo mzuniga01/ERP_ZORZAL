@@ -3561,7 +3561,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbProductoCategoria_Insert", pcat_NombreParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Inv_tbProductoCategoria_Update(Nullable<int> pcat_Id, string pcat_Nombre, Nullable<int> pcat_UsuarioCrea, Nullable<System.DateTime> pcat_FechaCrea)
+        public virtual ObjectResult<string> UDP_Inv_tbProductoCategoria_Update(Nullable<int> pcat_Id, string pcat_Nombre, Nullable<int> pcat_UsuarioCrea, Nullable<System.DateTime> pcat_FechaCrea, Nullable<byte> pcat_EsActivo)
         {
             var pcat_IdParameter = pcat_Id.HasValue ?
                 new ObjectParameter("pcat_Id", pcat_Id) :
@@ -3579,7 +3579,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pcat_FechaCrea", pcat_FechaCrea) :
                 new ObjectParameter("pcat_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbProductoCategoria_Update", pcat_IdParameter, pcat_NombreParameter, pcat_UsuarioCreaParameter, pcat_FechaCreaParameter);
+            var pcat_EsActivoParameter = pcat_EsActivo.HasValue ?
+                new ObjectParameter("pcat_EsActivo", pcat_EsActivo) :
+                new ObjectParameter("pcat_EsActivo", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbProductoCategoria_Update", pcat_IdParameter, pcat_NombreParameter, pcat_UsuarioCreaParameter, pcat_FechaCreaParameter, pcat_EsActivoParameter);
         }
     
         public virtual ObjectResult<string> UDP_Inv_tbProductoCategoria_Update_Estado(Nullable<int> pcat_Id, Nullable<byte> pcat_EsActivo)
@@ -4127,7 +4131,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListadoPrecioDetalle_Insert_Result>("UDP_Vent_tbListadoPrecioDetalle_Insert", listp_IdParameter, prod_CodigoParameter, lispd_PrecioMayoristaParameter, lispd_PrecioMinoristaParameter, lispd_DescCajaParameter, lispd_DescGerenteParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbListadoPrecioDetalle_Update_Result> UDP_Vent_tbListadoPrecioDetalle_Update(Nullable<int> listp_Id, string prod_Codigo, Nullable<decimal> lispd_PrecioMayorista, Nullable<decimal> lispd_PrecioMinorista, Nullable<decimal> lispd_DescCaja, Nullable<decimal> lispd_DescGerente, Nullable<int> lispd_UsuarioCrea, Nullable<System.DateTime> lispd_FechaCrea)
+        public virtual int UDP_Vent_tbListadoPrecioDetalle_Update(Nullable<int> listp_Id, string prod_Codigo, Nullable<decimal> lispd_PrecioMayorista, Nullable<decimal> lispd_PrecioMinorista, Nullable<decimal> lispd_DescCaja, Nullable<decimal> lispd_DescGerente, Nullable<int> lispd_UsuarioCrea, Nullable<System.DateTime> lispd_FechaCrea)
         {
             var listp_IdParameter = listp_Id.HasValue ?
                 new ObjectParameter("listp_Id", listp_Id) :
@@ -4161,7 +4165,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("lispd_FechaCrea", lispd_FechaCrea) :
                 new ObjectParameter("lispd_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListadoPrecioDetalle_Update_Result>("UDP_Vent_tbListadoPrecioDetalle_Update", listp_IdParameter, prod_CodigoParameter, lispd_PrecioMayoristaParameter, lispd_PrecioMinoristaParameter, lispd_DescCajaParameter, lispd_DescGerenteParameter, lispd_UsuarioCreaParameter, lispd_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Vent_tbListadoPrecioDetalle_Update", listp_IdParameter, prod_CodigoParameter, lispd_PrecioMayoristaParameter, lispd_PrecioMinoristaParameter, lispd_DescCajaParameter, lispd_DescGerenteParameter, lispd_UsuarioCreaParameter, lispd_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbListaPrecio_Insert_Result> UDP_Vent_tbListaPrecio_Insert(Nullable<int> listp_Id, string listp_Nombre, Nullable<bool> listp_EsActivo, Nullable<System.DateTime> listp_FechaInicioVigencia, Nullable<System.DateTime> listp_FechaFinalVigencia, Nullable<short> listp_Prioridad)

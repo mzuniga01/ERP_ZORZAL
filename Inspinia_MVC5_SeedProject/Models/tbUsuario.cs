@@ -145,6 +145,7 @@ namespace ERP_GMEDINA.Models
         public bool usu_EsActivo { get; set; }
         public string usu_RazonInactivo { get; set; }
         public bool usu_EsAdministrador { get; set; }
+        public Nullable<byte> usu_SesionesValidas { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbAccesoRol> tbAccesoRol { get; set; }

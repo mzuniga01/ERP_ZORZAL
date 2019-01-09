@@ -61,6 +61,7 @@
     <Property Name="usu_EsActivo" Type="bit" Nullable="false" />
     <Property Name="usu_RazonInactivo" Type="varchar" MaxLength="150" />
     <Property Name="usu_EsAdministrador" Type="bit" Nullable="false" />
+    <Property Name="usu_SesionesValidas" Type="tinyint" />
   </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
@@ -293,6 +294,7 @@
     <Property Name="ent_RazonDevolucion" Type="varchar" MaxLength="150" />
     <Property Name="ent_BodegaDestino" Type="int" />
     <Property Name="tent_Id" Type="tinyint" Nullable="false" />
+    <Property Name="ent_SalidaOrigen" Type="int" Nullable="false" />
     <Property Name="ent_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="ent_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="ent_UsuarioModifica" Type="int" />
@@ -864,7 +866,7 @@
     <Property Name="clte_Id" Type="int" Nullable="false" />
     <Property Name="escre_Id" Type="tinyint" Nullable="false" />
     <Property Name="cred_FechaSolicitud" Type="datetime" Nullable="false" />
-    <Property Name="cred_FechaAprobacion" Type="datetime" Nullable="false" />
+    <Property Name="cred_FechaAprobacion" Type="datetime" />
     <Property Name="cred_MontoSolicitado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="cred_MontoAprobado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="cred_DiasSolicitado" Type="int" Nullable="false" />
@@ -2201,6 +2203,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
       </Principal>
       <Dependent Role="tbEntrada">
         <PropertyRef Name="prov_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbEntrada_tbSalida_fact_Id">
+    <End Role="tbSalida" Type="Self.tbSalida" Multiplicity="1" />
+    <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSalida">
+        <PropertyRef Name="sal_Id" />
+      </Principal>
+      <Dependent Role="tbEntrada">
+        <PropertyRef Name="ent_SalidaOrigen" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3927,6 +3941,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="pcat_Nombre" Type="varchar" Mode="In" />
     <Parameter Name="pcat_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="pcat_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="pcat_EsActivo" Type="tinyint" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProductoCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
@@ -4340,6 +4355,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="facth_Fecha" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbListadoPrecioDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="listp_Id" Type="int" Mode="In" />
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="lispd_PrecioMayorista" Type="decimal" Mode="In" />
     <Parameter Name="lispd_PrecioMinorista" Type="decimal" Mode="In" />
@@ -4357,6 +4373,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="lispd_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbListaPrecio_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="listp_Id" Type="int" Mode="In" />
     <Parameter Name="listp_Nombre" Type="nvarchar" Mode="In" />
     <Parameter Name="listp_EsActivo" Type="bit" Mode="In" />
     <Parameter Name="listp_FechaInicioVigencia" Type="date" Mode="In" />
@@ -5131,6 +5148,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEntrada_tbProveedor_prov_Id" Association="Self.FK_Inv_tbEntrada_tbProveedor_prov_Id">
       <End Role="tbProveedor" EntitySet="tbProveedor" />
+      <End Role="tbEntrada" EntitySet="tbEntrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbEntrada_tbSalida_fact_Id" Association="Self.FK_Inv_tbEntrada_tbSalida_fact_Id">
+      <End Role="tbSalida" EntitySet="tbSalida" />
       <End Role="tbEntrada" EntitySet="tbEntrada" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEntrada_tbTiposEntrada_tent_Id" Association="Self.FK_Inv_tbEntrada_tbTiposEntrada_tent_Id">

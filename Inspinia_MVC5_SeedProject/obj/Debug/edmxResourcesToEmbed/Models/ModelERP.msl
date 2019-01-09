@@ -620,13 +620,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Update" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Insert">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result">
@@ -634,13 +628,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Update" />
     <EntitySetMapping Name="tbAccesoRol">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbAccesoRol">
         <MappingFragment StoreEntitySet="tbAccesoRol">
@@ -696,6 +684,7 @@
     <EntitySetMapping Name="tbUsuario">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbUsuario">
         <MappingFragment StoreEntitySet="tbUsuario">
+          <ScalarProperty Name="usu_SesionesValidas" ColumnName="usu_SesionesValidas" />
           <ScalarProperty Name="usu_EsAdministrador" ColumnName="usu_EsAdministrador" />
           <ScalarProperty Name="usu_RazonInactivo" ColumnName="usu_RazonInactivo" />
           <ScalarProperty Name="usu_EsActivo" ColumnName="usu_EsActivo" />
@@ -940,6 +929,7 @@
     <EntitySetMapping Name="tbEntrada">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEntrada">
         <MappingFragment StoreEntitySet="tbEntrada">
+          <ScalarProperty Name="ent_SalidaOrigen" ColumnName="ent_SalidaOrigen" />
           <ScalarProperty Name="ent_FechaModifica" ColumnName="ent_FechaModifica" />
           <ScalarProperty Name="ent_UsuarioModifica" ColumnName="ent_UsuarioModifica" />
           <ScalarProperty Name="ent_FechaCrea" ColumnName="ent_FechaCrea" />
