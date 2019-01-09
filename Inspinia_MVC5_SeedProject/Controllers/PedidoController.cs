@@ -227,6 +227,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
             ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion", tbPedido.esped_Id);
             ViewBag.Producto = db.tbProducto.ToList();
+            ViewBag.Cliente = db.tbCliente.ToList();
             return View(tbPedido);
         }
         public ActionResult Edit(int? id)
