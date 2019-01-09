@@ -39,6 +39,11 @@ namespace ERP_GMEDINA.Models
         public string fact_Vendedor { get; set; }
         public string clte_Identificacion { get; set; }
         public string clte_Nombres { get; set; }
+        public string fact_IdentidadTE { get; set; }
+        public string fact_NombresTE { get; set; }
+        public Nullable<System.DateTime> fact_FechaNacimientoTE { get; set; }
+        public Nullable<int> fact_UsuarioAutoriza { get; set; }
+        public Nullable<System.DateTime> fact_FechaAutoriza { get; set; }
         public int fact_UsuarioCrea { get; set; }
         public System.DateTime fact_FechaCrea { get; set; }
         public Nullable<int> fact_UsuarioModifica { get; set; }
@@ -46,6 +51,7 @@ namespace ERP_GMEDINA.Models
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbUsuario tbUsuario2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalida> tbSalida { get; set; }
         public virtual tbCaja tbCaja { get; set; }

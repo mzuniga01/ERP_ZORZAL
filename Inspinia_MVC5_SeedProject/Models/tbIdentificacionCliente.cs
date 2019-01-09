@@ -12,12 +12,11 @@ namespace ERP_GMEDINA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class tbIdentificacionCliente
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public byte tpi_Id { get; set; }
+        public bool clte_ConsumidorFinal { get; set; }
+    
+        public virtual tbTipoIdentificacion tbTipoIdentificacion { get; set; }
     }
 }
