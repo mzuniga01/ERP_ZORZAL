@@ -18,7 +18,7 @@
                                     pemid_Id
                                 </th>
                                 <th hidden>
-                                    pemi_Id
+                                    Número CAI
                                 </th>
                                 <th>
                                    Documento Fiscal
@@ -39,9 +39,9 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td hidden id="pemid_Id">@Html.DisplayFor(modelItem => item.pemid_Id)</td>
-                                    <td hidden id="pemi_Id">@Html.DisplayFor(modelItem => item.pemi_Id)</td>
+                                <tr data-numerocai="@item.tbPuntoEmision.pemi_NumeroCAI">
+                                    <td hidden>@Html.DisplayFor(modelItem => item.pemid_Id)</td>
+                                    <td hidden>@Html.DisplayFor(modelItem => item.tbPuntoEmision.pemi_NumeroCAI)</td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbDocumentoFiscal.dfisc_Descripcion)
                                     </td>
@@ -58,10 +58,10 @@
 
                                     </td>
                                     <td>
-                                        <button type="button"  class="btn btn-primary btn-xs"  data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
+                                        <button type="button" id="BtnModalDetalles" class="btn btn-primary btn-xs"  data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
                                             Detalles
                                         </button>
-                                        <button type="button"  class = "btn btn-white btn-xs"   data-toggle="modal" data-target="#Editar_@item.pemid_Id">
+                                        <button type="button" id="BtnModalEditar" class = "btn btn-white btn-xs"   data-toggle="modal" data-target="#Editar_@item.pemid_Id">
                                             Editar
                                         </button>
                                     </td>
@@ -85,10 +85,6 @@
 
                                 //Concatenación
                                 string DocumentoFiscal = item.dfisc_Id + "-" + item.tbDocumentoFiscal.dfisc_Descripcion;
-
-
-                                int result;
-                                int.TryParse(item.tbPuntoEmision.pemi_NumeroCAI, out result);
 
                                 <div class="modal fade" id="Detalle_@item.pemid_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -135,6 +131,15 @@
                 "sInfo": "Mostrando _START_ a _END_ Entradas",
             }
         });
+    });
+
+    //Devolucion Agregar Producto
+    $(document).on("click", "#PuntoEmisionDetalle tbody tr td button#BtnModalDetalles", function () {
+        NumeroCAIItem = $(this).closest('tr').data('numerocai');
+        console.log(NumeroCAIItem);
+        $("#tbPuntoEmision_pemi_NumeroCAI").val(NumeroCAIItem);
+        console.log(tbPuntoEmision_pemi_NumeroCAI);
+
     });
 </script>
 <!-- Modal -->
