@@ -4,7 +4,7 @@
                 <div class="ibox-title">
                     <h3><b>Listado de Numeración</b></h3>
 					<div class="ibox-tools" >
-                        <button type="button" class = "btn btn-primary btn-sm"  data-toggle="modal" data-target="#Nuevo">
+                        <button type="button" id="btnModalGuardarNumeracion" class = "btn btn-primary btn-sm"  data-toggle="modal" data-target="#Nuevo">
                             Registrar Numeración
                         </button>
                     </div>
@@ -131,15 +131,6 @@
                 "sInfo": "Mostrando _START_ a _END_ Entradas",
             }
         });
-    });
-
-    //Devolucion Agregar Producto
-    $(document).on("click", "#PuntoEmisionDetalle tbody tr td button#BtnModalDetalles", function () {
-        NumeroCAIItem = $(this).closest('tr').data('numerocai');
-        console.log(NumeroCAIItem);
-        $("#tbPuntoEmision_pemi_NumeroCAI").val(NumeroCAIItem);
-        console.log(tbPuntoEmision_pemi_NumeroCAI);
-
     });
 </script>
 <!-- Modal -->

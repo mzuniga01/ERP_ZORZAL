@@ -6,7 +6,23 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .myInput {
+        border-style: none;
+    }
 
+        .myInput:hover {
+            border-style: none;
+        }
+
+        .myInput:focus {
+            border-style: none;
+        }
+
+    .single-line {
+        padding: 0;
+    }
+</style>
 
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 
@@ -57,7 +73,8 @@
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.pemi_NumeroCAI)
+                                @*@Html.DisplayFor(model => model.pemi_NumeroCAI)*@
+                                @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @readonly = "readonly" , @class = "myInput" } })
                             </dd>
                         </dl>
                 </div>
@@ -127,3 +144,21 @@
 <script src="~/Scripts/app/DataTable.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $('#btnModalGuardarNumeracion').click(function () {
+        var GetNumeroCAI = $('#pemi_NumeroCAI').val();
+        $("#tbPuntoEmision_pemi_NumeroCAI").val(GetNumeroCAI);
+        console.log(GetNumeroCAI);
+    });
+
+    //$(document).on("click", "#PuntoEmisionDetalle tbody tr td ", function () {
+    //    NumeroCAIItem = $(this).closest('tr').data('numerocai');
+    //    console.log(NumeroCAIItem);
+    //    $("#tbPuntoEmision_pemi_NumeroCAI").val(NumeroCAIItem);
+    //    console.log(tbPuntoEmision_pemi_NumeroCAI);
+    //});
+
+    $(document).ready(function () {
+        $("#pemi_NumeroCAI").css("border", "none");
+    });
+</script>
