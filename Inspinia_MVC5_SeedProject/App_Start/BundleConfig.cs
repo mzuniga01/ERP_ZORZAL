@@ -33,22 +33,22 @@ namespace Inspinia_MVC5_SeedProject
                       "~/Scripts/plugins/slimScroll/jquery.slimscroll.min.js"));
 
             // jQuery plugins
-            bundles.Add(new ScriptBundle("~/plugins/metsiMenu").Include(
+            bundles.Add(new ScriptBundle("~/plugins/Menu").Include(
                       "~/Scripts/plugins/metisMenu/metisMenu.min.js"));
 
             bundles.Add(new ScriptBundle("~/plugins/pace").Include(
                       "~/Scripts/plugins/pace/pace.min.js"));
 
             // CSS style (bootstrap/inspinia)
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content/Style").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/animate.css",
                       "~/Content/style.css"));
 
-            bundles.Add(new StyleBundle("~/Content/DataTables")
+            bundles.Add(new StyleBundle("~/Content/DataTabla")
                 .Include("~/Content/DataTables/css/dataTables.bootstrap.css"));
 
-            bundles.Add(new ScriptBundle("~/Scripts/DataTables")
+            bundles.Add(new ScriptBundle("~/Scripts/DataTabla")
                       .Include(
                             "~/Scripts/DataTables/jquery.dataTables.min.js",
                             "~/Scripts/DataTables/dataTables.responsive.min.js",
@@ -56,15 +56,15 @@ namespace Inspinia_MVC5_SeedProject
                 ));
 
             // Font Awesome icons
-            bundles.Add(new StyleBundle("~/font-awesome/css").Include(
+            bundles.Add(new StyleBundle("~/Content/font-Style").Include(
                       "~/fonts/font-awesome/css/font-awesome.min.css", new CssRewriteUrlTransform()));
 
             //Date picker
-            bundles.Add(new StyleBundle("~/Content/datepicker").Include(
+            bundles.Add(new StyleBundle("~/Content/picker").Include(
                         "~/Content/themes/base/jquery-ui.min.css"
             ));
 
-            bundles.Add(new ScriptBundle("~/Scripts/datepicker").Include(
+            bundles.Add(new ScriptBundle("~/Scripts/picker").Include(
                 "~/Scripts/jquery-ui-1.12.1.min.js"
                 ));
 
