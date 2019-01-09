@@ -18,6 +18,7 @@ namespace ERP_GMEDINA.Models
         public tbSalida()
         {
             this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
+            this.tbEntrada = new HashSet<tbEntrada>();
         }
     
         public int sal_Id { get; set; }
@@ -40,5 +41,7 @@ namespace ERP_GMEDINA.Models
         public virtual tbTipoSalida tbTipoSalida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbEntrada> tbEntrada { get; set; }
     }
 }
