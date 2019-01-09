@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Models
     }
     public class ListaPrecioDetalleMetaData
     {
-        [Display(Name = "Id Listado Precio")]
+        [Display(Name = "ID Listado Precio")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int listp_Id { get; set; }
 

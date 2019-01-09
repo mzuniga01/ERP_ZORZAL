@@ -28,6 +28,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<bool> listp_EsActivo { get; set; }
 
         [Display(Name = "Prioridad")]
+        [StringLength(04, MinimumLength = 03, ErrorMessage = "El campo {0} debe tener el mismo formato de Rango Inicial")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<short> listp_Prioridad { get; set; }
 
