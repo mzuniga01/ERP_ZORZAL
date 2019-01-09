@@ -371,7 +371,6 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbPedidoDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedidoDetalle_Update_Result)">
       <Parameter Name="pedd_Id" Mode="In" Type="Int32" />
-      <Parameter Name="ped_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
       <Parameter Name="pedd_Descripcion" Mode="In" Type="String" />
       <Parameter Name="pedd_Cantidad" Mode="In" Type="Decimal" />
@@ -2019,6 +2018,22 @@
       <Parameter Name="Caja" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="UDV_Vent_Busqueda_Factura" EntityType="ERP_ZORZALModel.UDV_Vent_Busqueda_Factura" />
+    <FunctionImport Name="spGetDenominacionesMoneda" ReturnType="Collection(ERP_ZORZALModel.spGetDenominacionesMoneda_Result)">
+      <Parameter Name="CodMoneda" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Aprobar" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Aprobar_Result)">
+      <Parameter Name="cred_Id" Mode="In" Type="Int32" />
+      <Parameter Name="escre_Id" Mode="In" Type="Byte" />
+      <Parameter Name="cred_FechaAprobacion" Mode="In" Type="DateTime" />
+      <Parameter Name="cred_MontoSolicitado" Mode="In" Type="Decimal" />
+      <Parameter Name="cred_MontoAprobado" Mode="In" Type="Decimal" />
+      <Parameter Name="cred_DiasSolicitado" Mode="In" Type="Int32" />
+      <Parameter Name="cred_DiasAprobado" Mode="In" Type="Int32" />
+      <Parameter Name="cred_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="cred_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="cred_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="cred_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -6138,4 +6153,12 @@
     <Property Name="fact_FechaModifica" Type="DateTime" Precision="3" />
     <Property Name="esfac_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
+  <ComplexType Name="spGetDenominacionesMoneda_Result">
+    <Property Type="Int16" Name="deno_Id" Nullable="false" />
+    <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudCredito_Aprobar_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
 </Schema>

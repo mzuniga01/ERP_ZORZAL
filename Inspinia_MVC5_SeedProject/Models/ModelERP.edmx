@@ -4510,6 +4510,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="pemid_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="pemid_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbSolicitudCredito_Aprobar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="cred_Id" Type="int" Mode="In" />
+          <Parameter Name="escre_Id" Type="tinyint" Mode="In" />
+          <Parameter Name="cred_FechaAprobacion" Type="datetime" Mode="In" />
+          <Parameter Name="cred_MontoSolicitado" Type="decimal" Mode="In" />
+          <Parameter Name="cred_MontoAprobado" Type="decimal" Mode="In" />
+          <Parameter Name="cred_DiasSolicitado" Type="int" Mode="In" />
+          <Parameter Name="cred_DiasAprobado" Type="int" Mode="In" />
+          <Parameter Name="cred_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="cred_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="cred_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="cred_FechaModifica" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbSolicitudCredito_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="cred_Id" Type="int" Mode="In" />
           <Parameter Name="escre_Id" Type="int" Mode="In" />
@@ -7565,7 +7578,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           </FunctionImport>
           <EntitySet Name="UDV_Vent_Busqueda_Factura" EntityType="ERP_ZORZALModel.UDV_Vent_Busqueda_Factura" />
           <FunctionImport Name="spGetDenominacionesMoneda" ReturnType="Collection(ERP_ZORZALModel.spGetDenominacionesMoneda_Result)">
-            <Parameter Name="CodMoneda" Mode="In" Type="Int32" />
+          <Parameter Name="CodMoneda" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Aprobar" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Aprobar_Result)">
+            <Parameter Name="cred_Id" Mode="In" Type="Int32" />
+            <Parameter Name="escre_Id" Mode="In" Type="Byte" />
+            <Parameter Name="cred_FechaAprobacion" Mode="In" Type="DateTime" />
+            <Parameter Name="cred_MontoSolicitado" Mode="In" Type="Decimal" />
+            <Parameter Name="cred_MontoAprobado" Mode="In" Type="Decimal" />
+            <Parameter Name="cred_DiasSolicitado" Mode="In" Type="Int32" />
+            <Parameter Name="cred_DiasAprobado" Mode="In" Type="Int32" />
+            <Parameter Name="cred_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="cred_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="cred_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="cred_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -11691,6 +11717,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
           <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbSolicitudCredito_Aprobar_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -13403,6 +13432,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
                 <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
                 <ScalarProperty Name="deno_Descripcion" ColumnName="deno_Descripcion" />
                 <ScalarProperty Name="deno_valor" ColumnName="deno_valor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Aprobar" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Aprobar" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Aprobar_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

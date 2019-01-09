@@ -127,9 +127,19 @@
                     @Html.DisplayFor(modelItem => item.tbEstadoSolicitudCredito.escre_Descripcion)
                 </td>
                 <td>
-                    @Html.ActionLink("Detalles", "Details", new { id = item.cred_Id }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.cred_Id }, new { @class = "btn btn-white btn-xs" })
-                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#AprobarSolicitud_@item.cred_Id">Aprobar</button>
+                    @if(item.escre_Id != 2){
+                        @Html.ActionLink("Detalles", "Details", new { id = item.cred_Id }, new { @class = "btn btn-primary btn-xs" })
+                        @Html.ActionLink("Editar", "Edit", new { id = item.cred_Id }, new { @class = "btn btn-white btn-xs" })
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#AprobarSolicitud_@item.cred_Id">Aprobar</button>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Detalles", "Details", new { id = item.cred_Id }, new { @class = "btn btn-primary btn-xs" })
+                    }
+                    
+                    
+
+                   
                 </td>
             </tr>
             <div>
@@ -151,6 +161,8 @@
                                cred_DiasSolicitado = item.cred_DiasSolicitado,
                                cred_MontoAprobado= item.cred_MontoAprobado,
                                cred_MontoSolicitado= item.cred_MontoSolicitado,
+                               cred_UsuarioCrea = item.cred_UsuarioCrea,
+                               cred_FechaCrea = item.cred_FechaCrea,
                                cred_FechaAprobacion= item.cred_FechaAprobacion,
                                cred_FechaModifica= item.cred_FechaModifica,
                                cred_UsuarioModifica= item.cred_UsuarioModifica

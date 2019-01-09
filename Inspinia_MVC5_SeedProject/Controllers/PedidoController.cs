@@ -332,7 +332,6 @@ namespace ERP_ZORZAL.Controllers
                 IEnumerable<object> list = null;
                 list = db.UDP_Vent_tbPedidoDetalle_Update(
                             EditPedidoDetalle.pedd_Id,
-                            EditPedidoDetalle.ped_Id,
                             EditPedidoDetalle.prod_Codigo,
                             EditPedidoDetalle.pedd_Descripcion,
                             EditPedidoDetalle.pedd_Cantidad,

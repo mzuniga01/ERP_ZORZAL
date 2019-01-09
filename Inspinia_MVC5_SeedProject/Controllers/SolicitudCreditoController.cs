@@ -263,5 +263,44 @@ if (ModelState.IsValid)
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public ActionResult UpdateSolicitudCredito(tbSolicitudCredito EditSolicitudCredito)
+        {
+            try
+            {
+                var MensajeError = 0;
+                IEnumerable<object> list = null;
+                list = db.UDP_Vent_tbSolicitudCredito_Aprobar(
+                            EditSolicitudCredito.cred_Id,
+                            EditSolicitudCredito.escre_Id,
+                            EditSolicitudCredito.cred_FechaAprobacion,
+                            EditSolicitudCredito.cred_MontoSolicitado,
+                            EditSolicitudCredito.cred_MontoAprobado,
+                            EditSolicitudCredito.cred_DiasSolicitado,
+                            EditSolicitudCredito.cred_DiasAprobado,
+                            EditSolicitudCredito.cred_UsuarioCrea,
+                            EditSolicitudCredito.cred_FechaCrea,
+                            EditSolicitudCredito.cred_UsuarioModifica,
+                            EditSolicitudCredito.cred_FechaModifica);
+                foreach (UDP_Vent_tbSolicitudCredito_Aprobar_Result SolicitudAprobada in list)
+                    MensajeError = SolicitudAprobada.MensajeError;
+                if (MensajeError == -1)
+                {
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    return PartialView("_AprobarSolicitudCredito");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                return PartialView("_AprobarSolicitudCredito", EditSolicitudCredito);
+            }
+        }
+
     }
 }
