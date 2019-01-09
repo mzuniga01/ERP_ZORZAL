@@ -30,6 +30,8 @@ namespace ERP_GMEDINA.Models
         public System.DateTime par_FechaCrea { get; set; }
         public Nullable<int> par_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> par_FechaModifica { get; set; }
+        public Nullable<decimal> par_PorcentajeDescuentoTE { get; set; }
+        public Nullable<int> par_IdConsumidorFinal { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

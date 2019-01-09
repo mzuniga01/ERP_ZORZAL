@@ -6,12 +6,12 @@ using System.Web;
 
 namespace ERP_GMEDINA.Models
 {
-    [MetadataType(typeof(cVistaClientesMetaData))]
+    [MetadataType(typeof(cVistaFacturaMetaData))]
     public partial class UDV_Vent_Busqueda_Clientes
     {
         
     }
-    public class cVistaClientesMetaData
+    public class cVistaFacturaMetaData
     {
         [Display(Name = "Tipo Identificacion")]
         public string tpi_Descripcion { get; set; }

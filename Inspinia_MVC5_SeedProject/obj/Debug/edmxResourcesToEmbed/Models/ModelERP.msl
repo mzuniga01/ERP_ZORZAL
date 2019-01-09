@@ -841,6 +841,8 @@
     <EntitySetMapping Name="tbParametro">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbParametro">
         <MappingFragment StoreEntitySet="tbParametro">
+          <ScalarProperty Name="par_IdConsumidorFinal" ColumnName="par_IdConsumidorFinal" />
+          <ScalarProperty Name="par_PorcentajeDescuentoTE" ColumnName="par_PorcentajeDescuentoTE" />
           <ScalarProperty Name="par_FechaModifica" ColumnName="par_FechaModifica" />
           <ScalarProperty Name="par_UsuarioModifica" ColumnName="par_UsuarioModifica" />
           <ScalarProperty Name="par_FechaCrea" ColumnName="par_FechaCrea" />
@@ -1185,6 +1187,7 @@
     <EntitySetMapping Name="tbCuponDescuento">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCuponDescuento">
         <MappingFragment StoreEntitySet="tbCuponDescuento">
+          <ScalarProperty Name="cdto_CantidadCompraMinima" ColumnName="cdto_CantidadCompraMinima" />
           <ScalarProperty Name="cdto_FechaModifica" ColumnName="cdto_FechaModifica" />
           <ScalarProperty Name="cdto_UsuarioModifica" ColumnName="cdto_UsuarioModifica" />
           <ScalarProperty Name="cdto_FechaCrea" ColumnName="cdto_FechaCrea" />
@@ -1662,6 +1665,38 @@
         <MappingFragment StoreEntitySet="UDV_Inv_Nombre_Empleado">
           <ScalarProperty Name="Empleados" ColumnName="Empleados" />
           <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetBusquedaFactura" FunctionName="ERP_ZORZALModel.Store.GetBusquedaFactura" />
+    <EntitySetMapping Name="UDV_Vent_Busqueda_Factura">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_Busqueda_Factura">
+        <MappingFragment StoreEntitySet="UDV_Vent_Busqueda_Factura">
+          <ScalarProperty Name="esfac_Descripcion" ColumnName="esfac_Descripcion" />
+          <ScalarProperty Name="fact_FechaModifica" ColumnName="fact_FechaModifica" />
+          <ScalarProperty Name="fact_UsuarioModifica" ColumnName="fact_UsuarioModifica" />
+          <ScalarProperty Name="fact_FechaCrea" ColumnName="fact_FechaCrea" />
+          <ScalarProperty Name="fact_UsuarioCrea" ColumnName="fact_UsuarioCrea" />
+          <ScalarProperty Name="fact_FechaAutoriza" ColumnName="fact_FechaAutoriza" />
+          <ScalarProperty Name="fact_UsuarioAutoriza" ColumnName="fact_UsuarioAutoriza" />
+          <ScalarProperty Name="fact_FechaNacimientoTE" ColumnName="fact_FechaNacimientoTE" />
+          <ScalarProperty Name="fact_NombresTE" ColumnName="fact_NombresTE" />
+          <ScalarProperty Name="fact_IdentidadTE" ColumnName="fact_IdentidadTE" />
+          <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
+          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
+          <ScalarProperty Name="fact_Vendedor" ColumnName="fact_Vendedor" />
+          <ScalarProperty Name="fact_PorcentajeDescuento" ColumnName="fact_PorcentajeDescuento" />
+          <ScalarProperty Name="fact_DiasCredito" ColumnName="fact_DiasCredito" />
+          <ScalarProperty Name="fact_AlCredito" ColumnName="fact_AlCredito" />
+          <ScalarProperty Name="pemi_NumeroCAI" ColumnName="pemi_NumeroCAI" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+          <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+          <ScalarProperty Name="esfac_Id" ColumnName="esfac_Id" />
+          <ScalarProperty Name="fact_Fecha" ColumnName="fact_Fecha" />
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

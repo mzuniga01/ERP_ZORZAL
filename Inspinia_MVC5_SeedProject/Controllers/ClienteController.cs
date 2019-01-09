@@ -148,7 +148,8 @@ namespace ERP_GMEDINA.Controllers
             }
             catch (Exception ex)
             {
-                var tbcliente = db.tbCliente.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbMunicipio).Include(t => t.tbTipoIdentificacion);
+                               
+                var tbcliente = db.UDV_Vent_Busqueda_Clientes;
                 Console.Write(ex.Message);
                 return View(tbcliente.ToList());
             }

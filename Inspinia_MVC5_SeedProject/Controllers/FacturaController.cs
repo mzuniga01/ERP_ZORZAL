@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
+using System.Data.SqlClient;
+using System.Data.Common;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -18,11 +20,121 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Factura/
         public ActionResult Index()
         {
-            var tbfactura = db.tbFactura.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCaja).Include(t => t.tbCliente).Include(t => t.tbEstadoFactura).Include(t => t.tbSucursal);
-            return View(tbfactura.ToList());
+            var tbFactura = db.UDV_Vent_Busqueda_Factura;
+            return View(tbFactura.ToList());
         }
 
-      
+        [HttpPost]
+        public ActionResult Index(string cliente, string fecha, string caja)
+        {
+            try
+            {
+                //var resultado = 0;
+                List<UDV_Vent_Busqueda_Factura> list = new List<UDV_Vent_Busqueda_Factura>();
+                using (var db = new ERP_ZORZALEntities())
+                {
+                    using (var oCmd = db.Database.Connection.CreateCommand())
+                    {
+                        db.Database.Connection.Open();
+                        oCmd.CommandText = "Vent.GetBusquedaFactura";
+                        oCmd.CommandType = CommandType.StoredProcedure;
+                        oCmd.Parameters.Add(new SqlParameter("@cliente", cliente));
+                        oCmd.Parameters.Add(new SqlParameter("@fecha", fecha));
+                        oCmd.Parameters.Add(new SqlParameter("@caja", caja));
+
+                        DbDataReader reader = oCmd.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            UDV_Vent_Busqueda_Factura tbFactura = new UDV_Vent_Busqueda_Factura();
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_Codigo")))
+                                tbFactura.fact_Codigo = Convert.ToString(reader["fact_Codigo"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_Fecha")))
+                                tbFactura.fact_Fecha = Convert.ToDateTime(reader["fact_Fecha"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("esfac_Id")))
+                                tbFactura.esfac_Id = Convert.ToByte(reader["esfac_Id"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("esfac_Descripcion")))
+                                tbFactura.esfac_Descripcion = Convert.ToString(reader["esfac_Descripcion"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("cja_Id")))
+                                tbFactura.cja_Id = Convert.ToByte(reader["cja_Id"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("cja_Descripcion")))
+                                tbFactura.cja_Descripcion = Convert.ToString(reader["cja_Descripcion"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("suc_Id")))
+                                tbFactura.suc_Id = Convert.ToByte(reader["suc_Id"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_Id")))
+                                tbFactura.clte_Id = Convert.ToByte(reader["clte_Id"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("pemi_NumeroCAI")))
+                                tbFactura.pemi_NumeroCAI = Convert.ToString(reader["pemi_NumeroCAI"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_AlCredito")))
+                                tbFactura.fact_AlCredito = Convert.ToBoolean(reader["fact_AlCredito"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_DiasCredito")))
+                                tbFactura.fact_DiasCredito = Convert.ToByte(reader["fact_DiasCredito"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_PorcentajeDescuento")))
+                                tbFactura.fact_PorcentajeDescuento = Convert.ToByte(reader["fact_PorcentajeDescuento"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_Vendedor")))
+                                tbFactura.fact_Vendedor = Convert.ToString(reader["fact_Vendedor"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_Identificacion")))
+                                tbFactura.clte_Identificacion = Convert.ToString(reader["clte_Identificacion"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("clte_Nombres")))
+                                tbFactura.clte_Nombres = Convert.ToString(reader["clte_Nombres"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_IdentidadTE")))
+                                tbFactura.fact_IdentidadTE = Convert.ToString(reader["fact_IdentidadTE"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_NombresTE")))
+                                tbFactura.fact_NombresTE = Convert.ToString(reader["fact_NombresTE"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_FechaNacimientoTE")))
+                                tbFactura.fact_FechaNacimientoTE = Convert.ToDateTime(reader["fact_FechaNacimientoTE"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_UsuarioAutoriza")))
+                                tbFactura.fact_UsuarioAutoriza = Convert.ToInt32(reader["fact_UsuarioAutoriza"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_FechaAutoriza")))
+                                tbFactura.fact_FechaAutoriza = Convert.ToDateTime(reader["fact_FechaAutoriza"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_UsuarioCrea")))
+                                tbFactura.fact_UsuarioCrea = Convert.ToInt32(reader["fact_UsuarioCrea"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_FechaCrea")))
+                                tbFactura.fact_FechaCrea = Convert.ToDateTime(reader["fact_FechaCrea"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_UsuarioModifica")))
+                                tbFactura.fact_UsuarioModifica = Convert.ToInt32(reader["fact_UsuarioModifica"]);
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_FechaModifica")))
+                                tbFactura.fact_FechaModifica = Convert.ToDateTime(reader["fact_FechaModifica"]);
+                                       
+                            list.Add(tbFactura);
+                        }
+                    }
+                }
+
+                return View(list);
+            }
+            catch (Exception ex)
+            {
+                             
+                var tbFactura = db.UDV_Vent_Busqueda_Factura;
+                Console.Write(ex.Message);
+                return View(tbFactura.ToList());
+            }
+
+        }
 
         // GET: /Factura/Details/5
         public ActionResult Details(long? id)

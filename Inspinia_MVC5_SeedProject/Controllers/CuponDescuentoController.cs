@@ -55,7 +55,7 @@ namespace ERP_GMEDINA.Controllers
                     list = db.UDP_Vent_tbCuponDescuento_Insert(tbCuponDescuento.suc_Id, tbCuponDescuento.cdto_FechaEmision, 
                                                      tbCuponDescuento.cdto_FechaVencimiento, tbCuponDescuento.cdto_PorcentajeDescuento,
                                                      tbCuponDescuento.cdto_MontoDescuento, tbCuponDescuento.cdto_MaximoMontoDescuento,
-                                                     tbCuponDescuento.cdto_Redimido, tbCuponDescuento.cdto_FechaRedencion, tbCuponDescuento.cdto_Anulado );
+                                                     tbCuponDescuento.cdto_CantidadCompraMinima,tbCuponDescuento.cdto_Redimido, tbCuponDescuento.cdto_FechaRedencion, tbCuponDescuento.cdto_Anulado);
                     foreach (UDP_Vent_tbCuponDescuento_Insert_Result CuponDescuento in list)
                         MensajeError = CuponDescuento.MensajeError;
                     if (MensajeError == -1)
@@ -106,7 +106,8 @@ namespace ERP_GMEDINA.Controllers
                         tbCuponDescuento.cdto_FechaEmision, 
                         tbCuponDescuento.cdto_FechaVencimiento, 
                         tbCuponDescuento.cdto_PorcentajeDescuento,
-                        tbCuponDescuento.cdto_MontoDescuento, 
+                        tbCuponDescuento.cdto_MontoDescuento,
+                        tbCuponDescuento.cdto_CantidadCompraMinima, 
                         tbCuponDescuento.cdto_MaximoMontoDescuento, 
                         tbCuponDescuento.cdto_Redimido,
                         tbCuponDescuento.cdto_FechaRedencion,

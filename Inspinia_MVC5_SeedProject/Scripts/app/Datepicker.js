@@ -48,6 +48,19 @@
         nextText: 'Sig'
     }).datepicker();
 
+    $("#fecha").datepicker({
+        dateFormat: 'yy-mm-dd',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        prevText: 'Ant',
+        nextText: 'Sig',
+        changeMonth: true,
+        changeYear: true,
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+        //showOn: 'both',
+        //buttonText: '<i class="fas fa-calendar-day"></i>'
+    }).datepicker();
+
     //Lista Precio
     $("#lispd_FechaInicioVigencia").datepicker({
         dateFormat: 'dd-mm-yy',

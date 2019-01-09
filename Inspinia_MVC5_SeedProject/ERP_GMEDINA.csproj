@@ -239,6 +239,7 @@
     <Compile Include="Models\CuentaBanco.cs" />
     <Compile Include="Models\cUtilities.cs" />
     <Compile Include="Models\cVistaClientes.cs" />
+    <Compile Include="Models\cVistaFactura.cs" />
     <Compile Include="Models\Denominacion.cs" />
     <Compile Include="Models\DenominacionArqueos.cs" />
     <Compile Include="Models\EstadoFactura.cs" />
@@ -695,6 +696,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDV_Vent_Busqueda_Clientes.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDV_Vent_Busqueda_Factura.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UnidadesMedida.cs" />

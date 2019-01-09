@@ -237,6 +237,7 @@
       <Parameter Name="cdto_PorcentajeDescuento" Mode="In" Type="Decimal" />
       <Parameter Name="cdto_MontoDescuento" Mode="In" Type="Decimal" />
       <Parameter Name="cdto_MaximoMontoDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cdto_CantidadCompraMinima" Mode="In" Type="Decimal" />
       <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
       <Parameter Name="cdto_FechaRedencion" Mode="In" Type="DateTime" />
       <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
@@ -249,6 +250,7 @@
       <Parameter Name="cdto_PorcentajeDescuento" Mode="In" Type="Decimal" />
       <Parameter Name="cdto_MontoDescuento" Mode="In" Type="Decimal" />
       <Parameter Name="cdto_MaximoMontoDescuento" Mode="In" Type="Decimal" />
+      <Parameter Name="cdto_CantidadCompraMinima" Mode="In" Type="Decimal" />
       <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
       <Parameter Name="cdto_FechaRedencion" Mode="In" Type="DateTime" />
       <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
@@ -738,6 +740,8 @@
       <Parameter Name="par_FechaCrea" Mode="In" Type="DateTime" />
       <Parameter Name="par_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="par_FechaModifica" Mode="In" Type="DateTime" />
+      <Parameter Name="par_PorcentajeDescuentoTE" Mode="In" Type="Decimal" />
+      <Parameter Name="par_IdConsumidorFinal" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbParametro_Update" ReturnType="Collection(String)">
       <Parameter Name="par_Id" Mode="In" Type="Byte" />
@@ -754,6 +758,8 @@
       <Parameter Name="par_SucursalPrincipal" Mode="In" Type="Int16" />
       <Parameter Name="par_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="par_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="par_PorcentajeDescuentoTE" Mode="In" Type="Decimal" />
+      <Parameter Name="par_IdConsumidorFinal" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbUnidadMedida_Insert" ReturnType="Collection(String)">
       <Parameter Name="uni_Descripcion" Mode="In" Type="String" />
@@ -2007,6 +2013,12 @@
     </AssociationSet>
     <EntitySet Name="UDV_Vent_Busqueda_Clientes" EntityType="ERP_ZORZALModel.UDV_Vent_Busqueda_Clientes" />
     <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
+    <FunctionImport Name="GetBusquedaFactura">
+      <Parameter Name="cliente" Mode="In" Type="String" />
+      <Parameter Name="fecha" Mode="In" Type="String" />
+      <Parameter Name="Caja" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="UDV_Vent_Busqueda_Factura" EntityType="ERP_ZORZALModel.UDV_Vent_Busqueda_Factura" />
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -2672,6 +2684,8 @@
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Gral_tbParametro_par_UsuarioModifica" FromRole="tbParametro" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Gral_tbParametro_tbUsuario_par_UsuarioCrea" FromRole="tbParametro" ToRole="tbUsuario" />
     <NavigationProperty Name="tbMoneda" Relationship="ERP_ZORZALModel.FK_Gral_tbParametro_tbMoneda_mnda_Id" FromRole="tbParametro" ToRole="tbMoneda" />
+    <Property Name="par_PorcentajeDescuentoTE" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="par_IdConsumidorFinal" Type="Int32" />
   </EntityType>
   <EntityType Name="tbTipoIdentificacion">
     <Key>
@@ -3094,6 +3108,7 @@
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCuponDescuanto_cdto_UsuarioModifica" FromRole="tbCuponDescuento" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCuponDescuento_cdto_UsuarioCrea" FromRole="tbCuponDescuento" ToRole="tbUsuario" />
     <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_suc_Codigo" FromRole="tbCuponDescuento" ToRole="tbSucursal" />
+    <Property Name="cdto_CantidadCompraMinima" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
   </EntityType>
   <EntityType Name="tbDenominacionArqueo">
     <Key>
@@ -6075,5 +6090,52 @@
     </Key>
     <Property Name="emp_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Empleados" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_Busqueda_Factura">
+    <Key>
+      <PropertyRef Name="fact_Id" />
+      <PropertyRef Name="fact_Codigo" />
+      <PropertyRef Name="fact_Fecha" />
+      <PropertyRef Name="esfac_Id" />
+      <PropertyRef Name="cja_Id" />
+      <PropertyRef Name="cja_Descripcion" />
+      <PropertyRef Name="suc_Id" />
+      <PropertyRef Name="clte_Id" />
+      <PropertyRef Name="pemi_NumeroCAI" />
+      <PropertyRef Name="fact_AlCredito" />
+      <PropertyRef Name="fact_DiasCredito" />
+      <PropertyRef Name="fact_PorcentajeDescuento" />
+      <PropertyRef Name="fact_Vendedor" />
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="clte_Nombres" />
+      <PropertyRef Name="fact_UsuarioCrea" />
+      <PropertyRef Name="fact_FechaCrea" />
+      <PropertyRef Name="esfac_Descripcion" />
+    </Key>
+    <Property Name="fact_Id" Type="Int64" Nullable="false" />
+    <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="fact_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="esfac_Id" Type="Byte" Nullable="false" />
+    <Property Name="cja_Id" Type="Int16" Nullable="false" />
+    <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="suc_Id" Type="Int16" Nullable="false" />
+    <Property Name="clte_Id" Type="Int32" Nullable="false" />
+    <Property Name="pemi_NumeroCAI" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="fact_AlCredito" Type="Boolean" Nullable="false" />
+    <Property Name="fact_DiasCredito" Type="Int32" Nullable="false" />
+    <Property Name="fact_PorcentajeDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="fact_Vendedor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="clte_Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fact_IdentidadTE" Type="String" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="fact_NombresTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fact_FechaNacimientoTE" Type="DateTime" Precision="0" />
+    <Property Name="fact_UsuarioAutoriza" Type="Int32" />
+    <Property Name="fact_FechaAutoriza" Type="DateTime" Precision="3" />
+    <Property Name="fact_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="fact_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fact_UsuarioModifica" Type="Int32" />
+    <Property Name="fact_FechaModifica" Type="DateTime" Precision="3" />
+    <Property Name="esfac_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

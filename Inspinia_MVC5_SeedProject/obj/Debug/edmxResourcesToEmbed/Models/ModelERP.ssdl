@@ -204,6 +204,8 @@
     <Property Name="par_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="par_UsuarioModifica" Type="int" />
     <Property Name="par_FechaModifica" Type="datetime" />
+    <Property Name="par_PorcentajeDescuentoTE" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="par_IdConsumidorFinal" Type="int" />
   </EntityType>
   <EntityType Name="tbTipoIdentificacion">
     <Key>
@@ -533,6 +535,7 @@
     <Property Name="cdto_PorcentajeDescuento" Type="decimal" Precision="5" Scale="2" />
     <Property Name="cdto_MontoDescuento" Type="decimal" Precision="10" Scale="2" />
     <Property Name="cdto_MaximoMontoDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="cdto_CantidadCompraMinima" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="cdto_Redimido" Type="bit" Nullable="false" />
     <Property Name="cdto_FechaRedencion" Type="date" Nullable="false" />
     <Property Name="cdto_Anulado" Type="bit" />
@@ -999,6 +1002,55 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does 
     <Property Name="clte_UsuarioModifica" Type="int" />
     <Property Name="clte_FechaModifica" Type="datetime" />
     <Property Name="clte_ConsumidorFinal" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDV_Vent_Busqueda_Factura">
+    <Key>
+      <PropertyRef Name="fact_Id" />
+      <PropertyRef Name="fact_Codigo" />
+      <PropertyRef Name="fact_Fecha" />
+      <PropertyRef Name="esfac_Id" />
+      <PropertyRef Name="esfac_Descripcion" />
+      <PropertyRef Name="cja_Id" />
+      <PropertyRef Name="cja_Descripcion" />
+      <PropertyRef Name="suc_Id" />
+      <PropertyRef Name="clte_Id" />
+      <PropertyRef Name="pemi_NumeroCAI" />
+      <PropertyRef Name="fact_AlCredito" />
+      <PropertyRef Name="fact_DiasCredito" />
+      <PropertyRef Name="fact_PorcentajeDescuento" />
+      <PropertyRef Name="fact_Vendedor" />
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="clte_Nombres" />
+      <PropertyRef Name="fact_UsuarioCrea" />
+      <PropertyRef Name="fact_FechaCrea" />
+    </Key>
+    <Property Name="fact_Id" Type="bigint" Nullable="false" />
+    <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
+    <Property Name="fact_Fecha" Type="datetime" Nullable="false" />
+    <Property Name="esfac_Id" Type="tinyint" Nullable="false" />
+    <Property Name="esfac_Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="cja_Id" Type="smallint" Nullable="false" />
+    <Property Name="cja_Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="suc_Id" Type="smallint" Nullable="false" />
+    <Property Name="clte_Id" Type="int" Nullable="false" />
+    <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="fact_AlCredito" Type="bit" Nullable="false" />
+    <Property Name="fact_DiasCredito" Type="int" Nullable="false" />
+    <Property Name="fact_PorcentajeDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="fact_Vendedor" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
+    <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fact_IdentidadTE" Type="nvarchar" MaxLength="26" />
+    <Property Name="fact_NombresTE" Type="nvarchar" MaxLength="50" />
+    <Property Name="fact_FechaNacimientoTE" Type="date" />
+    <Property Name="fact_UsuarioAutoriza" Type="int" />
+    <Property Name="fact_FechaAutoriza" Type="datetime" />
+    <Property Name="fact_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="fact_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="fact_UsuarioModifica" Type="int" />
+    <Property Name="fact_FechaModifica" Type="datetime" />
   </EntityType>
   <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
     <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="1" />
@@ -3634,6 +3686,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does 
     <Parameter Name="par_FechaCrea" Type="datetime" Mode="In" />
     <Parameter Name="par_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="par_FechaModifica" Type="datetime" Mode="In" />
+    <Parameter Name="par_PorcentajeDescuentoTE" Type="decimal" Mode="In" />
+    <Parameter Name="par_IdConsumidorFinal" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbParametro_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="par_Id" Type="tinyint" Mode="In" />
@@ -3650,6 +3704,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does 
     <Parameter Name="par_SucursalPrincipal" Type="smallint" Mode="In" />
     <Parameter Name="par_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="par_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="par_PorcentajeDescuentoTE" Type="decimal" Mode="In" />
+    <Parameter Name="par_IdConsumidorFinal" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbTipoIdentificacion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="tpi_Descripcion" Type="nvarchar" Mode="In" />
@@ -3988,6 +4044,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does 
     <Parameter Name="nombre" Type="varchar" Mode="In" />
     <Parameter Name="telefono" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="GetBusquedaFactura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="cliente" Type="varchar" Mode="In" />
+    <Parameter Name="fecha" Type="varchar" Mode="In" />
+    <Parameter Name="Caja" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="GetPrecioUnitario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="clte_Identificacion" Type="nvarchar" Mode="In" />
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
@@ -4090,6 +4151,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does 
     <Parameter Name="cdto_PorcentajeDescuento" Type="decimal" Mode="In" />
     <Parameter Name="cdto_MontoDescuento" Type="decimal" Mode="In" />
     <Parameter Name="cdto_MaximoMontoDescuento" Type="decimal" Mode="In" />
+    <Parameter Name="cdto_CantidadCompraMinima" Type="decimal" Mode="In" />
     <Parameter Name="cdto_Redimido" Type="bit" Mode="In" />
     <Parameter Name="cdto_FechaRedencion" Type="date" Mode="In" />
     <Parameter Name="cdto_Anulado" Type="bit" Mode="In" />
@@ -4102,6 +4164,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does 
     <Parameter Name="cdto_PorcentajeDescuento" Type="decimal" Mode="In" />
     <Parameter Name="cdto_MontoDescuento" Type="decimal" Mode="In" />
     <Parameter Name="cdto_MaximoMontoDescuento" Type="decimal" Mode="In" />
+    <Parameter Name="cdto_CantidadCompraMinima" Type="decimal" Mode="In" />
     <Parameter Name="cdto_Redimido" Type="bit" Mode="In" />
     <Parameter Name="cdto_FechaRedencion" Type="date" Mode="In" />
     <Parameter Name="cdto_Anulado" Type="bit" Mode="In" />
@@ -4641,6 +4704,35 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does 
     [UDV_Vent_Busqueda_Clientes].[clte_FechaModifica] AS [clte_FechaModifica], 
     [UDV_Vent_Busqueda_Clientes].[clte_ConsumidorFinal] AS [clte_ConsumidorFinal]
     FROM [Vent].[UDV_Vent_Busqueda_Clientes] AS [UDV_Vent_Busqueda_Clientes]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UDV_Vent_Busqueda_Factura" EntityType="Self.UDV_Vent_Busqueda_Factura" store:Type="Views" store:Schema="Vent">
+      <DefiningQuery>SELECT 
+    [UDV_Vent_Busqueda_Factura].[fact_Id] AS [fact_Id], 
+    [UDV_Vent_Busqueda_Factura].[fact_Codigo] AS [fact_Codigo], 
+    [UDV_Vent_Busqueda_Factura].[fact_Fecha] AS [fact_Fecha], 
+    [UDV_Vent_Busqueda_Factura].[esfac_Id] AS [esfac_Id], 
+    [UDV_Vent_Busqueda_Factura].[esfac_Descripcion] AS [esfac_Descripcion], 
+    [UDV_Vent_Busqueda_Factura].[cja_Id] AS [cja_Id], 
+    [UDV_Vent_Busqueda_Factura].[cja_Descripcion] AS [cja_Descripcion], 
+    [UDV_Vent_Busqueda_Factura].[suc_Id] AS [suc_Id], 
+    [UDV_Vent_Busqueda_Factura].[clte_Id] AS [clte_Id], 
+    [UDV_Vent_Busqueda_Factura].[pemi_NumeroCAI] AS [pemi_NumeroCAI], 
+    [UDV_Vent_Busqueda_Factura].[fact_AlCredito] AS [fact_AlCredito], 
+    [UDV_Vent_Busqueda_Factura].[fact_DiasCredito] AS [fact_DiasCredito], 
+    [UDV_Vent_Busqueda_Factura].[fact_PorcentajeDescuento] AS [fact_PorcentajeDescuento], 
+    [UDV_Vent_Busqueda_Factura].[fact_Vendedor] AS [fact_Vendedor], 
+    [UDV_Vent_Busqueda_Factura].[clte_Identificacion] AS [clte_Identificacion], 
+    [UDV_Vent_Busqueda_Factura].[clte_Nombres] AS [clte_Nombres], 
+    [UDV_Vent_Busqueda_Factura].[fact_IdentidadTE] AS [fact_IdentidadTE], 
+    [UDV_Vent_Busqueda_Factura].[fact_NombresTE] AS [fact_NombresTE], 
+    [UDV_Vent_Busqueda_Factura].[fact_FechaNacimientoTE] AS [fact_FechaNacimientoTE], 
+    [UDV_Vent_Busqueda_Factura].[fact_UsuarioAutoriza] AS [fact_UsuarioAutoriza], 
+    [UDV_Vent_Busqueda_Factura].[fact_FechaAutoriza] AS [fact_FechaAutoriza], 
+    [UDV_Vent_Busqueda_Factura].[fact_UsuarioCrea] AS [fact_UsuarioCrea], 
+    [UDV_Vent_Busqueda_Factura].[fact_FechaCrea] AS [fact_FechaCrea], 
+    [UDV_Vent_Busqueda_Factura].[fact_UsuarioModifica] AS [fact_UsuarioModifica], 
+    [UDV_Vent_Busqueda_Factura].[fact_FechaModifica] AS [fact_FechaModifica]
+    FROM [Vent].[UDV_Vent_Busqueda_Factura] AS [UDV_Vent_Busqueda_Factura]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" Association="Self.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
       <End Role="tbObjeto" EntitySet="tbObjeto" />
