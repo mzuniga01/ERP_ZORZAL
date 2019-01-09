@@ -52,6 +52,10 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion");
             //ViewBag.bod_Nombre = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             ViewBag.escre_Descripcion = new SelectList(db.tbEstadoSolicitudCredito, "escre_Id", "escre_Descripcion");
+
+            tbSolicitudCredito SolicitudCredito = new tbSolicitudCredito();
+            SolicitudCredito.escre_Id = Helpers.SolicitudPendiente;
+
             ViewBag.Cliente = db.tbCliente.ToList();
             return View();
         }

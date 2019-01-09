@@ -42,7 +42,10 @@
         @Html.HiddenFor(model => model.cred_Id)
         @Html.HiddenFor(model => model.cred_FechaCrea)
         @Html.HiddenFor(model => model.cred_UsuarioCrea)
-        @Html.HiddenFor(model => model.tbCliente.clte_EsPersonaNatural)
+
+        @Html.HiddenFor(model => model.cred_FechaAprobacion)
+     
+        @*@Html.HiddenFor(model => model.tbCliente.clte_EsPersonaNatural)*@
 
     
         <div class="form-group">
@@ -140,26 +143,6 @@
        </div>
        @* fin conbdicion *@
 
-
-        
-
- 
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cred_FechaAprobacion, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.cred_FechaAprobacion,"{0:dd-MM-yyyy}",new { htmlAttributes = new { @class = "form-control", @id = "fechafactura"@*, disabled = "disabled"*@, @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.cred_FechaAprobacion)
-            </div>
-        </div>
-
-
-
-
-
-    
-
         <div class="form-group">
             @Html.LabelFor(model => model.cred_MontoSolicitado, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
@@ -213,7 +196,8 @@
         </div>
         <div class="form-group">
             <div class="col-xs-pull-11">
-                @Html.EditorFor(model => model.tbCliente.clte_EsPersonaNatural, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.tbCliente.clte_EsPersonaNatural, 
+               new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
             </div>
         </div>
 

@@ -3941,7 +3941,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="pcat_Nombre" Type="varchar" Mode="In" />
     <Parameter Name="pcat_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="pcat_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="pcat_EsActivo" Type="tinyint" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProductoCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
