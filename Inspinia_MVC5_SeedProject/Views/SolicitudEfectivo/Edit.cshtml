@@ -1,4 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbSolicitudEfectivo
+@using ERP_GMEDINA.Models
 
 @{
     ViewBag.Title = "Edit";
@@ -7,7 +8,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Solicitud de Efectivo</h2>        
+        <h2>Solicitud de Efectivo</h2>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -28,134 +29,143 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.solef_Id)
-        @Html.Hidden("RedirectTo", Url.Action("Index", "SolicitudEfectivo")); 
+                        <div class="form-horizontal">
 
-       
-      
-        @**Auditoria*@
-        @Html.HiddenFor(model => model.solef_UsuarioCrea)
-        @Html.HiddenFor(model => model.solef_FechaCrea)
-        @Html.HiddenFor(model => model.solef_UsuarioModifica)
-        @Html.HiddenFor(model => model.solef_FechaModifica)
-        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
-        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
-        @Html.HiddenFor(model => model.tbUsuario2.usu_Nombres)
-        @Html.HiddenFor(model => model.tbUsuario2.usu_Apellidos)
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.solef_Id)
+                            @Html.Hidden("RedirectTo", Url.Action("Index", "SolicitudEfectivo"));
 
 
+
+                            @**Auditoria*@
+                            @Html.HiddenFor(model => model.solef_UsuarioCrea)
+                            @Html.HiddenFor(model => model.solef_FechaCrea)
+                            @Html.HiddenFor(model => model.solef_UsuarioModifica)
+                            @Html.HiddenFor(model => model.solef_FechaModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbUsuario2.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario2.usu_Apellidos)
 
 
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.solef_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.solef_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.solef_Id)
-            </div>
-        </div>
-        
-        <div class="form-group">
-            @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
-            </div>
-
-            @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
-            </div>
-        </div>  
-       
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.DropDownList("mnda_Id", @*String.Empty*@null, "Seleccione la Moneda", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
-            </div>
-            @Html.LabelFor(model => model.mocja_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @*@Html.DropDownList("mocja_Id",*@ @*String.Empty*@@*null, "Seleccione la Moneda", new { @class = "form-control" })*@
-                @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                  @Html.ValidationMessageFor(model => model.mocja_Id, "", new { style = "Color:red" })
-            </div>
-        </div>
-
-        
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.solef_EsApertura, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @*@Html.EditorFor(model => model.solef_EsApertura)*@
-                @Html.DisplayFor(model => model.solef_EsApertura)
-                @Html.ValidationMessageFor(model => model.solef_EsApertura)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.solef_EsAnulada, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @*@Html.EditorFor(model => model.solef_EsApertura)*@
-                @Html.DisplayFor(model => model.solef_EsAnulada)
-                @Html.ValidationMessageFor(model => model.solef_EsAnulada)
-            </div>
-        </div>
-
-        @**Importante campos Preguntar*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.solef_FechaEntrega, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.solef_FechaEntrega)
-                @Html.ValidationMessageFor(model => model.solef_FechaEntrega)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.solef_UsuarioEntrega, "solef_UsuarioEntrega", new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.DropDownList("solef_UsuarioEntrega", @*String.Empty*@        @*null, "Seleccione la Moneda", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.solef_UsuarioEntrega)
-            </div>
-        </div>
-         <div class="form-group">
-            @Html.LabelFor(model => model.solef_EsAnulada, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.solef_EsAnulada)
-                @Html.ValidationMessageFor(model => model.solef_EsAnulada)
-            </div>
-        </div> *@
-
-       
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.solef_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.solef_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.solef_Id)
+                                </div>
+                                @Html.LabelFor(model => model.mocja_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @*@Html.DropDownList("mocja_Id",*@ @*String.Empty*@@*null, "Seleccione la Moneda", new { @class = "form-control" })*@
+                                    @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.mocja_Id, "", new { style = "Color:red" })
+                                </div>
+                            </div>
 
-                <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Anular">
-                    Anular
-                </button>
-            </div>           
-        </div>
-    </div>
-   
-                    <div class="ibox-content">
-                        @Html.Partial("_IndexEditSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
-                    </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
+                                </div>
 
-                }
+                                @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.DropDownList("mnda_Id", @*String.Empty*@null, "Seleccione la Moneda", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.solef_EsApertura, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @*@Html.EditorFor(model => model.solef_EsApertura)*@
+                                    @Html.DisplayFor(model => model.solef_EsApertura)
+                                    @Html.ValidationMessageFor(model => model.solef_EsApertura)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.solef_EsAnulada, "Anulada", new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @*@Html.EditorFor(model => model.solef_EsApertura)*@
+                                    @Html.CheckBoxFor(model => model.solef_EsAnulada, new { onclick = "return false" })
+                                    @Html.ValidationMessageFor(model => model.solef_EsAnulada)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Total Solicitud</label>
+                                <div class="col-md-3">
+                                    <input id="total" type="text" class="form-control" readonly />
+                                </div>
+                            </div>
+
+                            @**Importante campos Preguntar*@
+
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.solef_FechaEntrega, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.solef_FechaEntrega)
+                                        @Html.ValidationMessageFor(model => model.solef_FechaEntrega)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.solef_UsuarioEntrega, "solef_UsuarioEntrega", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        @Html.DropDownList("solef_UsuarioEntrega", @*String.Empty*@        @*null, "Seleccione la Moneda", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.solef_UsuarioEntrega)
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    @Html.LabelFor(model => model.solef_EsAnulada, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.solef_EsAnulada)
+                                        @Html.ValidationMessageFor(model => model.solef_EsAnulada)
+                                    </div>
+                                </div> *@
+
+
+
+
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+
+                                                <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Anular">
+                                                    Anular
+                                                </button>
+                                                <div class="col-md-offset-10">
+                                                    <button id="AñadirDenominacion" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Agregar Denominación</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @Html.Partial("_IndexEditSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
+                                    </div>
+
+
+
+                    }
 
 
                 </div>
@@ -188,9 +198,30 @@
 
         </div>
     </div>
- </div>
+</div>
 
 
+@*------------------------Modal Agreagar Detalle-------------------- *@
+<div>
+    <div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_CreateSolicitudEfectivoDetalle", new tbSolicitudEfectivoDetalle())
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* -------------------Modal Anular---------------- *@
 <div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -215,7 +246,53 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        if (jQuery("#solef_EsAnulada").is(":checked")) {
+            $('#bottonAnular').hide();
+        }
+        else {
+            $('#bottonAnular').show();
+        }
+        //--------------------------------
+
+        if ($('#pruebacount >tbody >tr').length == 1) {
+            // $('#mnda_Id').hide().disabled = false;
+            //$('#mnda_Id').attr("readOnly", "true");
+            // document.getElementById("mnda_Id").disabled = true;
+            // $('#mnda_Id').attr("readOnly", "readOnly");
+            // alert("Puede!!");
+        }
+        else {
+            $('#mnda_Id').attr("disabled", "disabled");
+            //  alert('no puede');
+        }
 
 
-    
+
+
+        // solef_Id
+    </script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $("#mnda_Id").change(function () {
+                var valor = 0;
+                $.get("/SolicitudEfectivo/GetDenominacionList", { mnda_Id: $("#mnda_Id").val() }, function (data) {
+                    $("#deno_Id").empty("");
+                    $('#deno_Id').append("<option value='0'>Seleccione la Denominación</option>");
+                    $('#idinput').val(valor);
+                    $.each(data, function (index, row) {
+                        $("#deno_Id").append("<option value='" + row.deno_Id + "'>" + row.deno_Descripcion + "</option>")
+                        //$('#deno_Id').val('Please Select');
+                    });
+                });
+
+            })
+        });
+    </script>
+
+
 }

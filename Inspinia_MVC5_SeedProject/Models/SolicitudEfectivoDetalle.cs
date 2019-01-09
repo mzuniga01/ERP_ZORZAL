@@ -28,7 +28,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Cantidad Entregada")]
         
         public short soled_CantidadEntregada { get; set; }
-        [Display(Name = "Monto Entregado")]        
+        [Display(Name = "Monto de Entregado")]        
         public decimal soled_MontoEntregado { get; set; }
         [Display(Name = "Usuario Creación")]        
         public int soled_UsuarioCrea { get; set; }

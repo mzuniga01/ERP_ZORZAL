@@ -52,22 +52,23 @@
         <dd>
             @Html.DisplayFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
         </dd>
+                                                
 
-                        <dt>
-                            @*@Html.DisplayNameFor(model => model.tbMoneda.mnda_Nombre)*@
-                            Moneda
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.tbMoneda.mnda_Nombre)
-                        </dd>
-
+                            <dt>
+                                @*@Html.DisplayNameFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)*@
+                                Caja
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
+                            </dd>
         <dt>
-            @*@Html.DisplayNameFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)*@
-            Caja
+            @*@Html.DisplayNameFor(model => model.tbMoneda.mnda_Nombre)*@
+            Moneda
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
+            @Html.DisplayFor(model => model.tbMoneda.mnda_Nombre)
         </dd>
+
                         <dt>
                             @*@Html.DisplayNameFor(model => model.solef_FechaCrea)*@
                             Fecha de Solicitud
@@ -115,13 +116,38 @@
                    
 
 	    @Html.ActionLink("Editar", "Edit", new { id = Model.solef_Id }, new { @class = "btn btn-primary"})
-   
-                    <div class="ibox-content">
-                        @Html.Partial("_DetailsSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
-                    </div>
+     @Html.Partial("_DetailsSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
+
+                    
 
                 </div>
             </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.solef_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario2.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario2.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.solef_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+
         </div>
     </div>
  </div>

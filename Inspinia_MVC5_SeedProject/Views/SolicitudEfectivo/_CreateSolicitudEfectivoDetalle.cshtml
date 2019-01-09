@@ -26,11 +26,14 @@
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.soled_CantidadSolicitada, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.soled_CantidadSolicitada , new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" }})
+                            
+                            <div class="col-md-4">                                
+                                <input type="text"  id="soled_CantidadSolicitada"  class="form-control"  onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" />
+                                @*<input type="text" id="soled_CantidadSolicitada" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onpast="return false" />*@
+                                @*@Html.EditorFor(model => model.soled_CantidadSolicitada , new { htmlAttributes = new { @type = "number", onkeypress = "return disableEnterKey(event)" } })*@
                                 <div id="validationCantidadSolicitadaCreate">
-                                    @Html.ValidationMessageFor(model => model.soled_CantidadSolicitada)
-                                </div>                             
+                                    @*@Html.ValidationMessageFor(model => model.soled_CantidadSolicitada)*@
+                                </div>   
                             </div>
                             <label class="control-label col-md-2">Monto Solicitado</label>
                             <div class="col-md-4">

@@ -1,13 +1,4 @@
-﻿$(document).ready(function () {
-    var Anular = $('#solef_EsAnulada').val();
-    document.getElementById("solef_EsAnulada").disabled = false;
-
-    if (Anular == 1) {
-        $('#bottonAnular').hide();
-       
-    }
-});
-
+﻿
     function AnularSolictud() {
     var solefId = $('#solef_Id').val();
     var Anulada = 1

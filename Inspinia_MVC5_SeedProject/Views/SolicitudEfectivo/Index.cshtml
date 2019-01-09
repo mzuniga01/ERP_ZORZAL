@@ -28,6 +28,9 @@
                             <thead>
                                 <tr>
                                     <th>
+                                        Id Solicitud
+                                    </th>
+                                    <th>
                                         Fecha Solicitud
                                     </th>
                                     <th>
@@ -36,10 +39,7 @@
                                     <th>
                                         @*@Html.DisplayNameFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)*@
                                         Caja
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.solef_EsApertura)
-                                    </th>                                                                               
+                                    </th>                                                                                                                  
                                     <th>
                                         @*@Html.DisplayNameFor(model => model.tbMoneda.mnda_Nombre)*@
                                         Moneda
@@ -58,6 +58,9 @@
                                 {
                                     <tr>
                                         <td>
+                                            @Html.DisplayFor(modelItem => item.solef_Id)                                           
+                                        </td>
+                                        <td>
                                             @Html.DisplayFor(modelItem => item.solef_FechaCrea)
                                         </td>
                                         <td>
@@ -65,10 +68,7 @@
                                         </td>                                       
                                         <td>
                                             @Html.DisplayFor(modelItem => item.tbMovimientoCaja.tbCaja.cja_Descripcion)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.solef_EsApertura)
-                                        </td>                                       
+                                        </td>                                                                             
                                         <td>
                                             @Html.DisplayFor(modelItem => item.tbMoneda.mnda_Nombre)
                                         </td>  
@@ -113,7 +113,7 @@
                 ¿Desea Imprimir Esta Solicitud de Efectivo?
             </div>
             <div class="modal-footer">
-                <a href="@Url.Action("Index","Factura")" class="btn btn-primary">Si</a>
+                <a href="@Url.Action("Index","SolicitudEfectivo")" class="btn btn-primary">Si</a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>

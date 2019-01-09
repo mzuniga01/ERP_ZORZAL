@@ -15,7 +15,7 @@ namespace ERP_GMEDINA.Models
     public class SolicitudEfectivoMetaData
     {
 
-        [Display(Name = "Número")]
+        [Display(Name = "Número Solicitud")]
         
         public int solef_Id { get; set; }
         [Display(Name = "Movimiento Caja")]
