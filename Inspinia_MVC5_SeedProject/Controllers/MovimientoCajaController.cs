@@ -31,7 +31,7 @@ namespace ERP_GMEDINA.Controllers
             var tbmovimientocaja = db.tbMovimientoCaja.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCaja);
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
             ViewBag.deno_Id = new SelectList(db.tbDenominacion, "deno_Id", "deno_Descripcion");
-
+            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
             ViewBag.DenominacionArqueo = db.tbDenominacionArqueo.ToList();
             return View();
         }
@@ -163,9 +163,9 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetDenominacion(int IdDenominacion)
+        public JsonResult GetDenominacion(int CodMoneda)
         {
-            var list = db.spGetDenominacion(IdDenominacion).ToList();
+            var list = db.spGetDenominacionesMoneda(CodMoneda).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

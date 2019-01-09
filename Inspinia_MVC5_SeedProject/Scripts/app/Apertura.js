@@ -13,28 +13,37 @@
 //    //}
 //    console.log("Hola María Alejandra, Feliz Navidad");
 //});
-$('#deno_Id').on("change", function () {
+$('#mnda_Id').on("change", function () {
     GetDenominacion();
 });
 function GetDenominacion() {
-    var IdDenominacion = $('#deno_Id').val();
-    if (IdDenominacion != "") {
+    var CodMoneda = $('#mnda_Id').val();
+    console.log(CodMoneda)
+    if (CodMoneda != "") {
         $.ajax({
             url: "/MovimientoCaja/GetDenominacion",
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ IdDenominacion: IdDenominacion }),
+            data: JSON.stringify({ CodMoneda: CodMoneda }),
         })
         .done(function (data) {
             if (data.length > 0) {
+                var contador = 0;
                 $.each(data, function (key, val) {
-                    var Cantidad = $('#Cantidad').val();
-                    $("#Valor").val(data);
-                    console.log(Cantidad);
-                    var Subtotal = Cantidad * data;
-                    $("#Subtotal").val(Subtotal);
-
+                    //$('#DenominacionDetalle').append("<option value=" + val.mun_Codigo + ">" + val.mun_Nombre + "</option>");
+                    //$('#DenominacionDetalle').append("<tr><td>" + val.deno_Descripcion + "</td>");
+                    contador = contador + 1;
+                    copiar = "<tr data-id=" + contador + ">";
+                    copiar += "<td id = 'DenominacionCreate'>" + val.deno_Descripcion + "</td>";
+                    copiar += "<td id = 'CantidadCreate'>" + "<input type='text' id='name' name='name'>" + "</td>";
+                    copiar += "<td id = 'ValorCreate'>" + val.deno_valor + "</td>";
+                    copiar += "<td id = 'SuntotalCreate'>" + "<label for='name'></label>" + "</td>";
+                    copiar += "<td>" + '<button id="removeDenominacion" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+                    copiar += "</tr>";
+                    $('#DenominacionDetalle').append(copiar);
+                    console.log(copiar)
+                    
                 });
             }
             else {
@@ -44,18 +53,20 @@ function GetDenominacion() {
     }
     else
     {
-        $("#Valor").val('');
-        $("#Cantidad").val('');
-        $("#Subtotal").val('');
+        //$("#Valor").val('');
+        //$("#Cantidad").val('');
+        //$("#Subtotal").val('');
     }
 }
 
-
-$('#Cantidad').on("keypress keyup blur", function (event) {
-    var Cantidad = $('#Cantidad').val();
-    var Valor = $('#Valor').val();
+////var totalDenominacion = $(this).parents("tr").find("td")[3].innerHTML;
+$('#name').on("keypress keyup blur", function (event) {
+    var Cantidad = $('#name').val();
+    console.log(Cantidad)
+    var Valor = $(this).parents("tr").find("td")[2].innerHTML;
+    console.log(valor)
     var Subtotal = Cantidad * Valor;
-    $("#Subtotal").val(Subtotal);
+    $("#SuntotalCreate").val(Subtotal);
 });
 
 $("#Cantidad").on("keypress keyup blur", function (event) {

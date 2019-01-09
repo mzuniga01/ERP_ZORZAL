@@ -1,6 +1,8 @@
 ﻿@model ERP_GMEDINA.Models.tbDenominacionArqueo
 
-
+@{
+    var test = new ERP_GMEDINA.Models.tbMoneda();
+}
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -13,12 +15,17 @@
 
                     <div class="form-horizontal">
                         <div class="form-group col-md-12">
-                            @Html.LabelFor(model => model.deno_Id, "Denominación", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(mone => test.mnda_Id, "Moneda", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.DropDownList("mnda_Id", null, "Seleccione Moneda", new { @class = "form-control" })
+                                <p id="MensajeErrorDenominacion" style="color:red">@Html.ValidationMessageFor(mone => test.mnda_Id)</p>
+                            </div>
+                            @*@Html.LabelFor(model => model.deno_Id, "Denominación", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.DropDownList("deno_Id", null, "Seleccione Denominación", new { @class = "form-control" })
                                 <p id="MensajeErrorDenominacion" style="color:red">@Html.ValidationMessageFor(model => model.deno_Id)</p>
-                            </div>
-                            <label class="control-label col-md-1">Cantidad</label>
+                            </div>*@
+                            @*<label class="control-label col-md-1">Cantidad</label>
                             <div class="col-md-4">
                             <input type="text" id="Cantidad" name="Cantidad" class="form-control" autocomplete="off" />
                             <p id="MensajeErrorCantidad" style="color:red"></p>
@@ -33,7 +40,7 @@
                             <label class="control-label col-md-1">Subtotal</label>
                             <div class="col-md-4">
                                 <input type="text" id="Subtotal" disabled name="Subtotal" class="form-control" autocomplete="off" />
-                            </div>
+                            </div>*@
                         </div>
                         
                     </div>
