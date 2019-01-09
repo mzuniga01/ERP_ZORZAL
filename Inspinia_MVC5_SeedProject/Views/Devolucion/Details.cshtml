@@ -94,7 +94,7 @@
                             @Html.DisplayFor(model => model.dev_Fecha)
                         </dd>
                        
-                                @Html.Partial("_IndexProductoDDevolucion" , Model.tbDevolucionDetalle)
+                                @Html.Partial("_IndexDetalleDevolucion", Model.tbDevolucionDetalle)
                   
                         <script type="text/javascript" class="alert-info">
                             function NotaCredito()
@@ -115,7 +115,6 @@
                         <div class="form-group">
                             <div class="col-md-offset col-md-11">
                                 @Html.ActionLink("Editar", "Edit", new { id = Model.dev_Id }, new { @class = "btn btn-primary  btn-ms" })
-                             
                                 <button onclick="NotaCredito()" class="btn btn-primary btn-ms">Emitir Nota de Credito</button>
                             </div>
                         </div>
@@ -135,12 +134,18 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
                         <td>@Html.DisplayFor(model => model.dev_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
                         <td>@Html.DisplayFor(model => model.dev_FechaModifica)</td>
                     </tr>
                 </table>

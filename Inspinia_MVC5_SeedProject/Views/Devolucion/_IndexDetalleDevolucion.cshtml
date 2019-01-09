@@ -1,93 +1,59 @@
-﻿@model IEnumerable<ERP_ZORZAL.Models.tbDevolucionDetalle>
-
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbDevolucionDetalle>
+@using ERP_GMEDINA.Models
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    @*<h5>List of tbDevolucionDetalle</h5>*@
-					@*<div class="ibox-tools">
-						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
-					</div>*@
-                </div>
+
                 <div class="ibox-content">
-
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.prod_Codigo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.devd_CantidadProducto)
-        </th>
-        <th>
-           
-            @Html.DisplayNameFor(model => model.devd_Descripcion)
-        </th>
-      
-        <th>
-            @Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.prod_Codigo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.devd_CantidadProducto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.devd_Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tbDevolucion.dev_Id)
-        </td>
-        <td>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CrearDevolucion">
-                Agregar Producto
-            </button>
-
-           
-			@*@Html.ActionLink("Details", "Details", new { id=item.devd_Id }, new { @class = "btn btn-primary btn-sm"})          
-            @Html.ActionLink("Delete", "Delete", new { id=item.devd_Id }, new { s@class = "btn btn-white btn-sm"})**@
-        </td>
-        <td> @Html.ActionLink("Edit", "Edit", new { id = item.devd_Id }, new { @class = "btn btn-white btn-sm" })</td>
-    </tr>
-
-    <!-- Modal -->
-    <div class="modal fade" id="CrearDevolucion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Productos Devolución</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @Html.Partial("_CreateDevolucionDetalle")
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-}
-
-</table>
+                    <table class="table table table-striped  table-bordered" id="DataTable1">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Producto
+                                    @*@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)*@
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.devd_CantidadProducto)
+                                </th>
+                                <th>
+                                    Monto
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.devd_Descripcion)
+                                </th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.devd_CantidadProducto)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.devd_Monto)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.devd_Descripcion)
+                                    </td>
+                                  
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
 
                 </div>
             </div>
         </div>
     </div>
- </div>
-
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable1.js"></script>
 
 

@@ -1,16 +1,21 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbDevolucionDetalle>
 @using ERP_GMEDINA.Models
 
+@{
+    var test = new ERP_GMEDINA.Models.tbFacturaDetalle();
+}
+
+
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 @*<div class="ibox-title">
-                    <h5>List of tbDevolucionDetalle</h5>
-					<div class="ibox-tools">
-						@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})
-					</div>
-                </div>*@
+                        <h5>List of tbDevolucionDetalle</h5>
+                        <div class="ibox-tools">
+                            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})
+                        </div>
+                    </div>*@
                 <div class="ibox-content">
                     <table class="table table table-striped  table-bordered" id="DataTable1">
                         <thead>
@@ -26,7 +31,7 @@
                                     @Html.DisplayNameFor(model => model.devd_Descripcion)
                                 </th>
                                 <th>
-                                 
+
                                 </th>
 
 
@@ -35,9 +40,10 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
+                                <tr data-ProductoDescripcion="@item.tbProducto.prod_Descripcion" data-CodigoFactura="@item.tbDevolucion.tbFactura.fact_Codigo" data-PorcentajeDescuento="@item.tbDevolucion.tbFactura.fact_PorcentajeDescuento" data-PrecioUnitario="@test.factd_PrecioUnitario">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.devd_CantidadProducto)
@@ -45,21 +51,21 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.devd_Descripcion)
                                     </td>
-
+                                    <td hidden>@Html.DisplayFor(modelItem => item.tbDevolucion.tbFactura.fact_PorcentajeDescuento)</td>
+                                    <td hidden>@Html.DisplayFor(modelItem => item.tbDevolucion.tbFactura.fact_Codigo)</td>
+                                    <td hidden>@Html.DisplayFor(modelItem => test.factd_PrecioUnitario)</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.devd_Id">
+                                        <button id="Producto" type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.devd_Id">
                                             Editar
                                         </button>
                                         @*@Html.ActionLink("Editar", "Edit", new { id = item.devd_Id }, new { @class = "btn btn-primary btn-sm" })*@
-                                @*@Html.ActionLink("Details", "Details", new { id=item.devd_Id }, new { @class = "btn btn-primary btn-sm"})
-                                      @Html.ActionLink("Delete", "Delete", new { id=item.devd_Id }, new { @class = "btn btn-white btn-sm"})*@
-                            </td>
-
-                                
+                                        @*@Html.ActionLink("Details", "Details", new { id=item.devd_Id }, new { @class = "btn btn-primary btn-sm"})
+                                            @Html.ActionLink("Delete", "Delete", new { id=item.devd_Id }, new { @class = "btn btn-white btn-sm"})*@
+                                    </td>
                                 </tr>
                                 <!-- Modal -->
                                 <div class="modal fade" id="Editar_@item.devd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
+                                    <div class="modal-dialog modal-lg " role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Editar Devolucion Detalle</h5>
@@ -83,8 +89,9 @@
             </div>
         </div>
     </div>
- </div>
+</div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable1.js"></script>
+<script src="~/Scripts/app/ProductoDevolucion.js"></script>
 
 

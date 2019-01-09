@@ -5,6 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@{
+        var test = new ERP_GMEDINA.Models.tbFactura();
+}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Devolución de Producto</h2>
@@ -105,7 +108,7 @@
                                   
                                 </div>
                             </div>
-
+                  
                           
                             <div class="form-group">
                                 @Html.LabelFor(model => model.dev_Fecha, new { @class = "control-label col-md-2" })
@@ -126,26 +129,10 @@
                     }
                     
                     <div class="ibox-content">
-
-                        <script type="text/javascript">
-                            function NotaCredito()
-                            {
-                                var bResponse = confirm('¿Esta seguro que desea crear una nota de Credito?. Recuerde que no podra volver hacerlo, esta acción es irreversible');
-
-                                if (bResponse === true) {
-                                    console.log("lnkLogout_Confirm clciked.");
-                                    Detalle.disabled = true;
-                                    var url = '@Url.Action("Create", "NotaCredito")';
-                                    window.location.href = url;
-                                }
-                                return bResponse;
-                            }
-
-                        </script>
                         <div class="form-group">
                            
                             <div class="col-md-offset col-md-11">
-                                <button onclick=" NotaCredito()" class="btn btn-primary btn-ms">Emitir Nota de Credito</button>
+                                <button onclick="NotaCredito()" class="btn btn-primary btn-ms">Emitir Nota de Credito</button>
                                 <button id="Detalle" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Agregar Producto</span></button>
                             </div>
                         </div>
