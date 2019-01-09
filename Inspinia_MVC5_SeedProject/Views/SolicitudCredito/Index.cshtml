@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbSolicitudCredito>
-
+@using ERP_GMEDINA.Models
 @{
     ViewBag.Title = "SC";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -89,6 +89,21 @@
                         </td>
                     }
                 }
+
+                @*@{ if (Convert.ToString(item.cred_FechaAprobacion) == "")
+                    {
+                        <td>
+                           nulo
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cred_FechaAprobacion)
+                        </td>
+                    }
+                }*@
+
                
                 <td>
                     @Html.DisplayFor(modelItem => item.cred_FechaAprobacion)
@@ -114,9 +129,39 @@
                 <td>
                     @Html.ActionLink("Detalles", "Details", new { id = item.cred_Id }, new { @class = "btn btn-primary btn-xs" })
                     @Html.ActionLink("Editar", "Edit", new { id = item.cred_Id }, new { @class = "btn btn-white btn-xs" })
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#AprobarSolicitud_@item.cred_Id">Aprobar</button>
                 </td>
             </tr>
-        }
+            <div>
+                <div class="modal fade" id="AprobarSolicitud_@item.cred_Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">Aprobar Solicitud de Crédito</h4>
+                            </div>
+                            <div class="modal-body" id="frmEditarMunicipios">
+                                @*@Html.Partial("_ListAprobacion", (List<tbSolicitudCredito>)ViewBag.Aprobacion)*@
+                                @Html.Partial("_AprobarSolicitudCredito", new ERP_GMEDINA.Models.tbSolicitudCredito()
+                           { cred_Id = item.cred_Id,
+                           escre_Id= item.escre_Id,
+                               cred_DiasAprobado = item.cred_DiasAprobado,
+                               cred_DiasSolicitado = item.cred_DiasSolicitado,
+                               cred_MontoAprobado= item.cred_MontoAprobado,
+                               cred_MontoSolicitado= item.cred_MontoSolicitado,
+                               cred_FechaAprobacion= item.cred_FechaAprobacion,
+                               cred_FechaModifica= item.cred_FechaModifica,
+                               cred_UsuarioModifica= item.cred_UsuarioModifica
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                    }
     </tbody>
 </table>
 
@@ -125,6 +170,8 @@
         </div>
     </div>
  </div>
+
+
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>

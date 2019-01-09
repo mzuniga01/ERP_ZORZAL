@@ -18,6 +18,7 @@ namespace ERP_ZORZAL.Controllers
         public ActionResult Index()
         {
             var tbsolicitudcredito = db.tbSolicitudCredito.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbEstadoSolicitudCredito);
+            ViewBag.SolicitudCreditoAprobar = db.tbSolicitudCredito.ToList();
             return View(tbsolicitudcredito.ToList());
         }
         public ActionResult IndexSolicitud()
@@ -130,7 +131,7 @@ if (ModelState.IsValid)
             }
             tbSolicitudCredito tbSolicitudCredito = db.tbSolicitudCredito.Find(id);
 
-            //Para que sirva la redireccion**************
+            //Para que sirva la redireccion*
 
             ViewBag.Aprobacion = db.tbSolicitudCredito.ToList();
             if (tbSolicitudCredito == null)

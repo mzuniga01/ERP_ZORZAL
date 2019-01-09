@@ -271,7 +271,17 @@
                 </div>
                 <div class="modal-body" id="frmEditarMunicipios">
                     @*@Html.Partial("_ListAprobacion", (List<tbSolicitudCredito>)ViewBag.Aprobacion)*@
-                    @Html.Partial("_AprobarSolicitudCredito", new ERP_GMEDINA.Models.tbSolicitudCredito() { cred_Id = Model.cred_Id })
+                    @Html.Partial("_AprobarSolicitudCredito", new ERP_GMEDINA.Models.tbSolicitudCredito()
+               { cred_Id = Model.cred_Id,
+                   escre_Id = Model.escre_Id,
+                   cred_DiasAprobado = Model.cred_DiasAprobado,
+                   cred_DiasSolicitado = Model.cred_DiasSolicitado,
+                   cred_MontoAprobado = Model.cred_MontoAprobado,
+                   cred_MontoSolicitado = Model.cred_MontoSolicitado,
+                   cred_FechaAprobacion = Model.cred_FechaAprobacion,
+                   cred_FechaModifica = Model.cred_FechaModifica,
+                   cred_UsuarioModifica = Model.cred_UsuarioModifica
+               })
                </div>
             </div>
         </div>
