@@ -62,7 +62,7 @@
     }).datepicker();
 
     //Lista Precio
-    $("#lispd_FechaInicioVigencia").datepicker({
+    $("#listp_FechaInicioVigencia").datepicker({
         dateFormat: 'dd-mm-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
@@ -70,7 +70,7 @@
         nextText: 'Sig'
     }).datepicker('setDate', new Date());
 
-    $("#lispd_FechaFinalVigencia").datepicker({
+    $("#listp_FechaFinalVigencia").datepicker({
         dateFormat: 'dd-mm-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],

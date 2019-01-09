@@ -31,7 +31,7 @@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.lispd_PrecioMayorista, "Precio Mayorista", new { @class = "control-label col-md-2" })
-                                <div class="col-md-8">
+                                <div class="col-md-10">
                                     @Html.EditorFor(model => model.lispd_PrecioMayorista)
                                     @Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)
                                 </div>
@@ -39,7 +39,7 @@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.lispd_PrecioMinorista, "Precio Minorista", new { @class = "control-label col-md-2" })
-                                <div class="col-md-8">
+                                <div class="col-md-10">
                                     @Html.EditorFor(model => model.lispd_PrecioMinorista)
                                     @Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)
                                 </div>
@@ -49,7 +49,7 @@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja", new { @class = "control-label col-md-2" })
-                                <div class="col-md-8">
+                                <div class="col-md-10">
                                     @Html.EditorFor(model => model.lispd_DescCaja)
                                     @Html.ValidationMessageFor(model => model.lispd_DescCaja)
                                 </div>
@@ -57,7 +57,7 @@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente", new { @class = "control-label col-md-2" })
-                                <div class="col-md-8">
+                                <div class="col-md-10">
                                     @Html.EditorFor(model => model.lispd_DescGerente)
                                     @Html.ValidationMessageFor(model => model.lispd_DescGerente)
                                 </div>
@@ -99,7 +99,6 @@
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                    @Html.ActionLink("Anular", "", null, new { @class = "btn btn-danger" })
                                 </div>
                             </div>
                         </div>
@@ -114,5 +113,7 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
+
+
 
 

@@ -56,17 +56,17 @@
                                         <span class="validation-error">  @Html.ValidationMessageFor(model => model.listp_EsActivo)</span>
                                 </div>
                             </div>
-                        </div>
-                        <br /><br />
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.listp_FechaInicioVigencia, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.listp_FechaInicioVigencia)
-                                @Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)
+                            <br /><br />
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.listp_FechaInicioVigencia, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.listp_FechaInicioVigencia)
+                                    @Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)
+                                </div>
                             </div>
-                        </div>
-                        <br /><br />
+                            <br /><br />
                             <div class="form-group">
                                 @Html.LabelFor(model => model.listp_FechaFinalVigencia, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
@@ -84,6 +84,7 @@
                                 </div>
                             </div>
                             <br /><br />
+                        </div>
                             @Html.Partial("_CreateListaPrecioDetalle", new tbListadoPrecioDetalle())
 
                             <div class="row">
@@ -110,7 +111,7 @@
         </div>
     </div>
 </div>
-
+<script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script src="~/Scripts/app/ProductoFactura.js"></script>
 <script src="~/Scripts/app/ListaPrecioDetalle.js"></script>
