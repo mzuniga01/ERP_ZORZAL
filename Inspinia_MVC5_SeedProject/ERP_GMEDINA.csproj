@@ -353,6 +353,9 @@
     <Compile Include="Models\tbFacturaHistorica.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbIdentificacionCliente.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbInventarioFisico.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

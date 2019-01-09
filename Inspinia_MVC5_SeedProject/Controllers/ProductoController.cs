@@ -95,7 +95,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<object> List = null;
                     var MsjError = "";
-                    List = db.UDP_Inv_tbProducto_Insert(tbProducto.prod_Codigo, tbProducto.prod_Descripcion, tbProducto.prod_Marca, tbProducto.prod_Modelo, tbProducto.prod_Talla, tbProducto.prod_Color, tbProducto.pscat_Id, tbProducto.uni_Id);
+                    List = db.UDP_Inv_tbProducto_Insert(tbProducto.prod_Codigo, tbProducto.prod_Descripcion, tbProducto.prod_Marca, tbProducto.prod_Modelo, tbProducto.prod_Talla, tbProducto.prod_Color, tbProducto.pscat_Id, tbProducto.uni_Id, tbProducto.prod_CodigoBarras);
                     foreach (UDP_Inv_tbProducto_Insert_Result Producto in List )
                         MsjError = Producto.MensajeError;
 
@@ -185,7 +185,7 @@ namespace ERP_GMEDINA.Controllers
                     
                     IEnumerable<object> List = null;
                     var MsjError = "";                   
-                    List = db.UDP_Inv_tbProducto_Update(tbProducto.prod_Codigo, tbProducto.prod_Descripcion, tbProducto.prod_Marca, tbProducto.prod_Modelo, tbProducto.prod_Talla, tbProducto.prod_Color, tbProducto.pscat_Id, tbProducto.uni_Id, vtbProducto.prod_UsuarioCrea, vtbProducto.prod_FechaCrea, tbProducto.prod_EsActivo,tbProducto.prod_Razon_Inactivacion);
+                    List = db.UDP_Inv_tbProducto_Update(tbProducto.prod_Codigo, tbProducto.prod_Descripcion, tbProducto.prod_Marca, tbProducto.prod_Modelo, tbProducto.prod_Talla, tbProducto.prod_Color, tbProducto.pscat_Id, tbProducto.uni_Id, vtbProducto.prod_UsuarioCrea, vtbProducto.prod_FechaCrea, tbProducto.prod_EsActivo,tbProducto.prod_Razon_Inactivacion, tbProducto.prod_CodigoBarras);
                     foreach (UDP_Inv_tbProducto_Update_Result producto in List)
                         MsjError = producto.MensajeError;
 
