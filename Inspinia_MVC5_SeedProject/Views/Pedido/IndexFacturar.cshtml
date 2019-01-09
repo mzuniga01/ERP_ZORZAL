@@ -57,9 +57,20 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.ped_Id)
                                         </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
-                                        </td>
+                                        @{ if (Convert.ToInt32(item.tbCliente.clte_EsPersonaNatural) == 1)
+                    {
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres) &nbsp;
+                                                    @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.tbCliente.clte_NombreComercial)
+                                                </td>
+                                            }
+                                        }
                                         <td>
                                             @Html.DisplayFor(modelItem => item.tbCliente.clte_Identificacion)
                                         </td>
