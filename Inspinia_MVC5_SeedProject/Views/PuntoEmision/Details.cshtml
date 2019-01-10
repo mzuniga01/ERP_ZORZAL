@@ -6,23 +6,7 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-    .myInput {
-        border-style: none;
-    }
 
-        .myInput:hover {
-            border-style: none;
-        }
-
-        .myInput:focus {
-            border-style: none;
-        }
-
-    .single-line {
-        padding: 0;
-    }
-</style>
 
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 
@@ -73,8 +57,7 @@
                             </dt>
 
                             <dd>
-                                @*@Html.DisplayFor(model => model.pemi_NumeroCAI)*@
-                                @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @readonly = "readonly" , @class = "myInput" } })
+                                @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @readonly = "readonly"  } })
                             </dd>
                         </dl>
                 </div>
