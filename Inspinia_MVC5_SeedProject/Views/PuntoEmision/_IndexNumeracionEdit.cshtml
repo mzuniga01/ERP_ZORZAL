@@ -18,12 +18,6 @@
                                 <th hidden>
                                     pemid_Id
                                 </th>
-                                <th hidden>
-                                    pemi_Id
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
-                                </th>
                                 <th>
                                     Documento Fiscal
                                 </th>
@@ -37,22 +31,16 @@
                                     @Html.DisplayNameFor(model => model.pemid_FechaLimite)
                                 </th>
                                 <th>Número Actual</th>
+                                <th hidden>@Html.DisplayNameFor(model => model.tbUsuario.usu_Nombres)</th>
+                                <th hidden>@Html.DisplayNameFor(model => model.tbUsuario1.usu_Nombres)</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <th hidden>
-                                        pemid_Id
-                                    </th>
-                                    <th hidden>
-                                        pemi_Id
-                                    </th>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbPuntoEmision.pemi_NumeroCAI)
-                                    </td>
+                                <tr data-usuariocrea="@item.tbUsuario.usu_Nombres" data-usuariomodifica="@item.tbUsuario1.usu_Nombres">
+                                    <td hidden>@Html.DisplayFor(modelItem => item.pemid_Id)</td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbDocumentoFiscal.dfisc_Descripcion)
                                     </td>
@@ -66,9 +54,11 @@
                                         @Html.DisplayFor(modelItem => item.pemid_FechaLimite)
                                     </td>
                                     <td></td>
+                                    <td hidden>@Html.DisplayFor(modelItem => item.tbUsuario.usu_Nombres)</td>
+                                    <td hidden>@Html.DisplayFor(modelItem => item.tbUsuario1.usu_Nombres)</td>
 
                                     <td>
-                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
+                                        <button type="button" id="btnModalDetallesEdit" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
                                             Detalles
                                         </button>
                                         <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar_@item.pemid_Id">
@@ -135,3 +125,12 @@
 </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/PuntoEmision.js"></script>
+<script>
+    $(document).on("click", "#PuntoEmision tbody tr td button#btnModalDetallesEdit", function () {
+        UsuarioCreaItem = $(this).closest('tr').data('usuariocrea');
+        UsuarioModificaItem = $(this).closest('tr').data('usuariomodifica');
+
+        $(UsuarioCrea).val(UsuarioCreaItem);
+        $(UsuarioModifica).val(UsuarioModificaItem);
+    });
+</script>
