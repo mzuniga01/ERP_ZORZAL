@@ -45,6 +45,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI");
+            ViewBag.concatenacion = from p in db.tbSucursal select p.mun_Codigo + " - " + p.tbBodega.bod_Nombre ;
 
             return View();
         }
@@ -99,6 +100,8 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSucursal.bod_Id);
             ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
+
+            ViewBag.concatenacion = from p in db.tbSucursal select p.mun_Codigo + " - " + p.tbBodega.bod_Nombre;
             return View(tbSucursal);
         }
 
@@ -120,6 +123,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbSucursal.mun_Codigo);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
             ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
+            ViewBag.concatenacion = from p in db.tbSucursal select p.mun_Codigo + " - " + p.tbBodega.bod_Nombre;
 
             return View(tbSucursal);
         }
@@ -175,6 +179,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbSucursal.mun_Codigo);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
             ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
+            ViewBag.concatenacion = from p in db.tbSucursal select p.mun_Codigo + " - " + p.tbBodega.bod_Nombre;
             return View(tbSucursal);
         }
 

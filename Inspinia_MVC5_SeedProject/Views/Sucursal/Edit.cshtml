@@ -78,7 +78,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbBodega.bod_Nombre, "Bodega", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.DropDownList("bod_Id", null, new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.tbBodega,new SelectList(@ViewBag.concatenacion), new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.tbBodega.bod_Nombre)
                                 </div>
                                 @Html.LabelFor(model => model.pemi_Id, "Punto Emision", new { @class = "control-label col-md-2" })
