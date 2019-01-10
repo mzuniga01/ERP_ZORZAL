@@ -43,6 +43,7 @@ namespace ERP_GMEDINA.Models
         public string suc_Direccion { get; set; }
 
         [Display(Name = "Teléfono")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string suc_Telefono { get; set; }
 
         [Display(Name = "Usuario Creación")]
