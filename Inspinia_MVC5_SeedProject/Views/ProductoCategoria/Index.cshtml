@@ -26,17 +26,17 @@
                     <table class="table table-striped table-bordered" style="width:100%" id="Datatable">
                         <thead>
                             <tr>
-                                <th>
+                                <th style="width:5%">
                                     @Html.DisplayNameFor(model => model.pcat_Id)
                                 </th>
-                                <th>
+                                <th style="width:15%">
                                     @Html.DisplayNameFor(model => model.pcat_Nombre)
                                 </th>
-                                <th>
+                                <th style="width:15%">
                                     @Html.DisplayNameFor(model => model.pcat_EsActivo)
                                 </th>
       
-                                <th>
+                                <th style="width:10%">
                                     Acciones
                                 </th>
                             </tr>
@@ -45,13 +45,13 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>
+                                    <td style="width:5%">
                                         @Html.DisplayFor(modelItem => item.pcat_Id)
                                     </td>
-                                    <td>
+                                    <td style="width:15%">
                                         @Html.DisplayFor(modelItem => item.pcat_Nombre)
                                     </td>
-                                    <td>
+                                    <td style="width:15%">
 
                                         @{if (item.pcat_EsActivo == 1)
                                             {
@@ -63,14 +63,16 @@
                                             }
                                         }
                                     </td>
-                                    <td>
+                                    <td style="width:10%">
                                         @Html.ActionLink("Detalles", "Details", new { id = item.pcat_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.pcat_Id }, new { @class = "btn btn-white btn-xs" })
-                                        @*<input type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEstado" value="Eliminar" />*@
-                                        @Html.ActionLink("Eliminar", "Delete", new { id=item.pcat_Id }, new { @class = "btn btn-danger btn-xs"})
+                                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEstado_@item.pcat_Id">
+                                            Eliminar
+                                        </button>
+                                        @*@Html.ActionLink("Eliminar", "Delete", new { id=item.pcat_Id }, new { @class = "btn btn-danger btn-xs"})*@
                                     </td>
                                 </tr>
-                                <div class="modal fade" id="ModalEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="ModalEstado_@item.pcat_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -91,6 +93,7 @@
                                 </div>
                             }
                         </tbody>
+                        
                     </table>
                 </div>
             </div>

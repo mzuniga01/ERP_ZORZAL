@@ -1809,5 +1809,23 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetCategoria_Result>("spGetCategoria", pcat_idParameter);
         }
+    
+        public virtual ObjectResult<UDP_Inv_tbProductoCategoriaSubCate_Delete_Result> UDP_Inv_tbProductoCategoriaSubCate_Delete(Nullable<int> pcat_Id)
+        {
+            var pcat_IdParameter = pcat_Id.HasValue ?
+                new ObjectParameter("pcat_Id", pcat_Id) :
+                new ObjectParameter("pcat_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoriaSubCate_Delete_Result>("UDP_Inv_tbProductoCategoriaSubCate_Delete", pcat_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProductoSubCategoria_Delete_Result> UDP_Inv_tbProductoSubCategoria_Delete(Nullable<int> pscat_Id)
+        {
+            var pscat_IdParameter = pscat_Id.HasValue ?
+                new ObjectParameter("pscat_Id", pscat_Id) :
+                new ObjectParameter("pscat_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoSubCategoria_Delete_Result>("UDP_Inv_tbProductoSubCategoria_Delete", pscat_IdParameter);
+        }
     }
 }

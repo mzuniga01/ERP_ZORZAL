@@ -3774,6 +3774,12 @@
           <Parameter Name="pcat_Id" Type="int" Mode="In" />
           <Parameter Name="pcat_EsActivo" Type="tinyint" Mode="In" />
         </Function>
+        <Function Name="UDP_Inv_tbProductoCategoriaSubCate_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="pcat_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_Inv_tbProductoSubCategoria_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="pscat_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Inv_tbProductoSubcategoria_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="pscat_Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="pcat_Id" Type="int" Mode="In" />
@@ -6104,7 +6110,13 @@
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbUsuario_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Select_Result)" />
           <FunctionImport Name="spGetCategoria" ReturnType="Collection(ERP_ZORZALModel.spGetCategoria_Result)">
-            <Parameter Name="pcat_id" Mode="In" Type="Int32" />
+          <Parameter Name="pcat_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbProductoCategoriaSubCate_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoCategoriaSubCate_Delete_Result)">
+            <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbProductoSubCategoria_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Delete_Result)">
+            <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -10142,6 +10154,12 @@
         <ComplexType Name="UDP_Acce_tbUsuario_Select_Result">
           <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
         </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProductoSubCategoria_Delete_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProductoCategoriaSubCate_Delete_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11691,6 +11709,20 @@
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetCategoria_Result">
                 <ScalarProperty Name="pscat_Id" ColumnName="pscat_Id" />
                 <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoriaSubCate_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoriaSubCate_Delete" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoCategoriaSubCate_Delete_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubCategoria_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubCategoria_Delete" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Delete_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
