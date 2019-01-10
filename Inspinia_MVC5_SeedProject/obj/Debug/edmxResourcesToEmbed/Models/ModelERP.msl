@@ -555,7 +555,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="spGetSubCategoria" FunctionName="ERP_ZORZALModel.Store.spGetSubCategoria" />
-    <FunctionImportMapping FunctionImportName="UDP_GetConsultarExistenciaProductos" FunctionName="ERP_ZORZALModel.Store.UDP_GetConsultarExistenciaProductos" />
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Insert" />
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Update" />
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Update_Estado" />
@@ -1376,22 +1375,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbListadoPrecioDetalle">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbListadoPrecioDetalle">
-        <MappingFragment StoreEntitySet="tbListadoPrecioDetalle">
-          <ScalarProperty Name="lispd_FechaModifica" ColumnName="lispd_FechaModifica" />
-          <ScalarProperty Name="lispd_UsuarioModifica" ColumnName="lispd_UsuarioModifica" />
-          <ScalarProperty Name="lispd_FechaCrea" ColumnName="lispd_FechaCrea" />
-          <ScalarProperty Name="lispd_UsuarioCrea" ColumnName="lispd_UsuarioCrea" />
-          <ScalarProperty Name="lispd_DescGerente" ColumnName="lispd_DescGerente" />
-          <ScalarProperty Name="lispd_DescCaja" ColumnName="lispd_DescCaja" />
-          <ScalarProperty Name="lispd_PrecioMinorista" ColumnName="lispd_PrecioMinorista" />
-          <ScalarProperty Name="lispd_PrecioMayorista" ColumnName="lispd_PrecioMayorista" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="listp_Id" ColumnName="listp_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbListaPrecio">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbListaPrecio">
         <MappingFragment StoreEntitySet="tbListaPrecio">
@@ -1706,5 +1689,22 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="tbListadoPrecioDetalle">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbListadoPrecioDetalle">
+        <MappingFragment StoreEntitySet="tbListadoPrecioDetalle">
+          <ScalarProperty Name="lispd_FechaModifica" ColumnName="lispd_FechaModifica" />
+          <ScalarProperty Name="lispd_UsuarioModifica" ColumnName="lispd_UsuarioModifica" />
+          <ScalarProperty Name="lispd_FechaCrea" ColumnName="lispd_FechaCrea" />
+          <ScalarProperty Name="lispd_UsuarioCrea" ColumnName="lispd_UsuarioCrea" />
+          <ScalarProperty Name="lispd_DescGerente" ColumnName="lispd_DescGerente" />
+          <ScalarProperty Name="lispd_DescCaja" ColumnName="lispd_DescCaja" />
+          <ScalarProperty Name="lispd_PrecioMinorista" ColumnName="lispd_PrecioMinorista" />
+          <ScalarProperty Name="lispd_PrecioMayorista" ColumnName="lispd_PrecioMayorista" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="listp_Id" ColumnName="listp_Id" />
+          <ScalarProperty Name="lispd_Id" ColumnName="lispd_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

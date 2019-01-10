@@ -76,7 +76,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbFactura> tbFactura { get; set; }
         public virtual DbSet<tbFacturaDetalle> tbFacturaDetalle { get; set; }
         public virtual DbSet<tbFacturaHistorica> tbFacturaHistorica { get; set; }
-        public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
         public virtual DbSet<tbListaPrecio> tbListaPrecio { get; set; }
         public virtual DbSet<tbMovimientoCaja> tbMovimientoCaja { get; set; }
         public virtual DbSet<tbNotaCredito> tbNotaCredito { get; set; }
@@ -93,6 +92,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_Busqueda_Clientes> UDV_Vent_Busqueda_Clientes { get; set; }
         public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
         public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
+        public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {
@@ -2425,7 +2425,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbUsuario_Select");
         }
     
-        public virtual ObjectResult<string> UDP_Acce_tbUsuario_Update(Nullable<int> usu_Id, string usu_NombreUsuario, string usu_Nombres, string usu_Apellidos, string usu_Correo, Nullable<bool> usu_EsActivo, string usu_RazonInactivo, Nullable<bool> usu_EsAdministrador)
+        public virtual ObjectResult<string> UDP_Acce_tbUsuario_Update(Nullable<int> usu_Id, string usu_NombreUsuario, string usu_Nombres, string usu_Apellidos, string usu_Correo, Nullable<bool> usu_EsActivo, string usu_RazonInactivo, Nullable<bool> usu_EsAdministrador, Nullable<byte> usu_SesionesValidas)
         {
             var usu_IdParameter = usu_Id.HasValue ?
                 new ObjectParameter("usu_Id", usu_Id) :
@@ -2459,7 +2459,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("usu_EsAdministrador", usu_EsAdministrador) :
                 new ObjectParameter("usu_EsAdministrador", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbUsuario_Update", usu_IdParameter, usu_NombreUsuarioParameter, usu_NombresParameter, usu_ApellidosParameter, usu_CorreoParameter, usu_EsActivoParameter, usu_RazonInactivoParameter, usu_EsAdministradorParameter);
+            var usu_SesionesValidasParameter = usu_SesionesValidas.HasValue ?
+                new ObjectParameter("usu_SesionesValidas", usu_SesionesValidas) :
+                new ObjectParameter("usu_SesionesValidas", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbUsuario_Update", usu_IdParameter, usu_NombreUsuarioParameter, usu_NombresParameter, usu_ApellidosParameter, usu_CorreoParameter, usu_EsActivoParameter, usu_RazonInactivoParameter, usu_EsAdministradorParameter, usu_SesionesValidasParameter);
         }
     
         public virtual int UDP_Gral_Padres_Insert(string nombresPadre, string apellidosPadre)
@@ -4164,12 +4168,8 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Vent_tbListadoPrecioDetalle_Update", listp_IdParameter, prod_CodigoParameter, lispd_PrecioMayoristaParameter, lispd_PrecioMinoristaParameter, lispd_DescCajaParameter, lispd_DescGerenteParameter, lispd_UsuarioCreaParameter, lispd_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbListaPrecio_Insert_Result> UDP_Vent_tbListaPrecio_Insert(Nullable<int> listp_Id, string listp_Nombre, Nullable<bool> listp_EsActivo, Nullable<System.DateTime> listp_FechaInicioVigencia, Nullable<System.DateTime> listp_FechaFinalVigencia, Nullable<short> listp_Prioridad)
+        public virtual ObjectResult<UDP_Vent_tbListaPrecio_Insert_Result> UDP_Vent_tbListaPrecio_Insert(string listp_Nombre, Nullable<bool> listp_EsActivo, Nullable<System.DateTime> listp_FechaInicioVigencia, Nullable<System.DateTime> listp_FechaFinalVigencia, Nullable<short> listp_Prioridad)
         {
-            var listp_IdParameter = listp_Id.HasValue ?
-                new ObjectParameter("listp_Id", listp_Id) :
-                new ObjectParameter("listp_Id", typeof(int));
-    
             var listp_NombreParameter = listp_Nombre != null ?
                 new ObjectParameter("listp_Nombre", listp_Nombre) :
                 new ObjectParameter("listp_Nombre", typeof(string));
@@ -4190,7 +4190,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("listp_Prioridad", listp_Prioridad) :
                 new ObjectParameter("listp_Prioridad", typeof(short));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListaPrecio_Insert_Result>("UDP_Vent_tbListaPrecio_Insert", listp_IdParameter, listp_NombreParameter, listp_EsActivoParameter, listp_FechaInicioVigenciaParameter, listp_FechaFinalVigenciaParameter, listp_PrioridadParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListaPrecio_Insert_Result>("UDP_Vent_tbListaPrecio_Insert", listp_NombreParameter, listp_EsActivoParameter, listp_FechaInicioVigenciaParameter, listp_FechaFinalVigenciaParameter, listp_PrioridadParameter);
         }
     
         public virtual ObjectResult<string> UDP_Vent_tbListaPrecio_Update(Nullable<int> listp_Id, string listp_Nombre, Nullable<bool> listp_EsActivo, Nullable<int> listp_UsuarioCrea, Nullable<System.DateTime> listp_FechaCrea, Nullable<System.DateTime> listp_FechaInicioVigencia, Nullable<System.DateTime> listp_FechaFinalVigencia, Nullable<short> listp_Prioridad)

@@ -61,7 +61,7 @@
     <Property Name="usu_EsActivo" Type="bit" Nullable="false" />
     <Property Name="usu_RazonInactivo" Type="varchar" MaxLength="150" />
     <Property Name="usu_EsAdministrador" Type="bit" Nullable="false" />
-    <Property Name="usu_SesionesValidas" Type="tinyint" />
+    <Property Name="usu_SesionesValidas" Type="tinyint" Nullable="false" />
   </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
@@ -717,9 +717,10 @@
   </EntityType>
   <EntityType Name="tbListadoPrecioDetalle">
     <Key>
-      <PropertyRef Name="listp_Id" />
+      <PropertyRef Name="lispd_Id" />
     </Key>
-    <Property Name="listp_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="lispd_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="listp_Id" Type="int" Nullable="false" />
     <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="lispd_PrecioMayorista" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="lispd_PrecioMinorista" Type="decimal" Precision="10" Scale="2" Nullable="false" />
@@ -1183,6 +1184,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
       </Principal>
       <Dependent Role="tbRolesUsuario">
         <PropertyRef Name="rolu_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_bodd_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbBodegaDetalle" Type="Self.tbBodegaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbBodegaDetalle">
+        <PropertyRef Name="bodd_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_bodd_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbBodegaDetalle" Type="Self.tbBodegaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbBodegaDetalle">
+        <PropertyRef Name="bodd_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2119,6 +2144,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
       </Principal>
       <Dependent Role="tbBodega">
         <PropertyRef Name="bod_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbBodegaDetalle_tbBodega_bod_Id">
+    <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
+    <End Role="tbBodegaDetalle" Type="Self.tbBodegaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbBodega">
+        <PropertyRef Name="bod_Id" />
+      </Principal>
+      <Dependent Role="tbBodegaDetalle">
+        <PropertyRef Name="bod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo">
+    <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="1" />
+    <End Role="tbBodegaDetalle" Type="Self.tbBodegaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbProducto">
+        <PropertyRef Name="prod_Codigo" />
+      </Principal>
+      <Dependent Role="tbBodegaDetalle">
+        <PropertyRef Name="prod_Codigo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3132,7 +3181,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
   </Association>
   <Association Name="FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id">
     <End Role="tbListaPrecio" Type="Self.tbListaPrecio" Multiplicity="1" />
-    <End Role="tbListadoPrecioDetalle" Type="Self.tbListadoPrecioDetalle" Multiplicity="0..1" />
+    <End Role="tbListadoPrecioDetalle" Type="Self.tbListadoPrecioDetalle" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbListaPrecio">
         <PropertyRef Name="listp_Id" />
@@ -3547,6 +3596,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="usu_EsActivo" Type="bit" Mode="In" />
     <Parameter Name="usu_RazonInactivo" Type="varchar" Mode="In" />
     <Parameter Name="usu_EsAdministrador" Type="bit" Mode="In" />
+    <Parameter Name="usu_SesionesValidas" Type="tinyint" Mode="In" />
   </Function>
   <Function Name="spGetDenominacionesMoneda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="CodMoneda" Type="int" Mode="In" />
@@ -3751,12 +3801,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
   </Function>
   <Function Name="spGetSubCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="UDP_GetConsultarExistenciaProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
-    <Parameter Name="sucursal" Type="varchar" Mode="In" />
-    <Parameter Name="bodega" Type="varchar" Mode="In" />
-    <Parameter Name="Producto" Type="varchar" Mode="In" />
-    <Parameter Name="Marca" Type="varchar" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbBodega_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bod_Nombre" Type="varchar" Mode="In" />
@@ -4372,7 +4416,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="lispd_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbListaPrecio_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-    <Parameter Name="listp_Id" Type="int" Mode="In" />
     <Parameter Name="listp_Nombre" Type="nvarchar" Mode="In" />
     <Parameter Name="listp_EsActivo" Type="bit" Mode="In" />
     <Parameter Name="listp_FechaInicioVigencia" Type="date" Mode="In" />
@@ -4809,6 +4852,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbRolesUsuario" EntitySet="tbRolesUsuario" />
     </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_bodd_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_bodd_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_bodd_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_bodd_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
+    </AssociationSet>
     <AssociationSet Name="FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbActividadEconomica" EntitySet="tbActividadEconomica" />
@@ -5120,6 +5171,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <AssociationSet Name="FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea" Association="Self.FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbBodega" EntitySet="tbBodega" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbBodegaDetalle_tbBodega_bod_Id" Association="Self.FK_Inv_tbBodegaDetalle_tbBodega_bod_Id">
+      <End Role="tbBodega" EntitySet="tbBodega" />
+      <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo" Association="Self.FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo">
+      <End Role="tbProducto" EntitySet="tbProducto" />
+      <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" Association="Self.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />

@@ -45,8 +45,6 @@ namespace ERP_GMEDINA.Models
             this.tbEstadoSolicitudCredito1 = new HashSet<tbEstadoSolicitudCredito>();
             this.tbExoneracion = new HashSet<tbExoneracion>();
             this.tbExoneracion1 = new HashSet<tbExoneracion>();
-            this.tbListadoPrecioDetalle = new HashSet<tbListadoPrecioDetalle>();
-            this.tbListadoPrecioDetalle1 = new HashSet<tbListadoPrecioDetalle>();
             this.tbListaPrecio = new HashSet<tbListaPrecio>();
             this.tbListaPrecio1 = new HashSet<tbListaPrecio>();
             this.tbMoneda = new HashSet<tbMoneda>();
@@ -134,6 +132,10 @@ namespace ERP_GMEDINA.Models
             this.tbPuntoEmision1 = new HashSet<tbPuntoEmision>();
             this.tbPuntoEmisionDetalle = new HashSet<tbPuntoEmisionDetalle>();
             this.tbPuntoEmisionDetalle1 = new HashSet<tbPuntoEmisionDetalle>();
+            this.tbBodegaDetalle = new HashSet<tbBodegaDetalle>();
+            this.tbBodegaDetalle1 = new HashSet<tbBodegaDetalle>();
+            this.tbListadoPrecioDetalle = new HashSet<tbListadoPrecioDetalle>();
+            this.tbListadoPrecioDetalle1 = new HashSet<tbListadoPrecioDetalle>();
         }
     
         public int usu_Id { get; set; }
@@ -145,7 +147,7 @@ namespace ERP_GMEDINA.Models
         public bool usu_EsActivo { get; set; }
         public string usu_RazonInactivo { get; set; }
         public bool usu_EsAdministrador { get; set; }
-        public Nullable<byte> usu_SesionesValidas { get; set; }
+        public byte usu_SesionesValidas { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbAccesoRol> tbAccesoRol { get; set; }
@@ -203,10 +205,6 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbExoneracion> tbExoneracion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbExoneracion> tbExoneracion1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbListaPrecio> tbListaPrecio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -381,5 +379,13 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbPuntoEmisionDetalle> tbPuntoEmisionDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPuntoEmisionDetalle> tbPuntoEmisionDetalle1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbBodegaDetalle> tbBodegaDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbBodegaDetalle> tbBodegaDetalle1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle1 { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace ERP_GMEDINA.Models
     
     public partial class tbListadoPrecioDetalle
     {
+        public int lispd_Id { get; set; }
         public int listp_Id { get; set; }
         public string prod_Codigo { get; set; }
         public decimal lispd_PrecioMayorista { get; set; }

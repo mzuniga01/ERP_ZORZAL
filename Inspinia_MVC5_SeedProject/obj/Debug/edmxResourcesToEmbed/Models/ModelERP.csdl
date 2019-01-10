@@ -657,6 +657,7 @@
       <Parameter Name="usu_EsActivo" Mode="In" Type="Boolean" />
       <Parameter Name="usu_RazonInactivo" Mode="In" Type="String" />
       <Parameter Name="usu_EsAdministrador" Mode="In" Type="Boolean" />
+      <Parameter Name="usu_SesionesValidas" Mode="In" Type="Byte" />
     </FunctionImport>
     <FunctionImport Name="UDP_Gral_Padres_Insert">
       <Parameter Name="NombresPadre" Mode="In" Type="String" />
@@ -1133,7 +1134,6 @@
       <Parameter Name="lispd_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbListaPrecio_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result)">
-      <Parameter Name="listp_Id" Mode="In" Type="Int32" />
       <Parameter Name="listp_Nombre" Mode="In" Type="String" />
       <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
       <Parameter Name="listp_FechaInicioVigencia" Mode="In" Type="DateTime" />
@@ -1198,7 +1198,6 @@
     <EntitySet Name="tbFactura" EntityType="ERP_ZORZALModel.tbFactura" />
     <EntitySet Name="tbFacturaDetalle" EntityType="ERP_ZORZALModel.tbFacturaDetalle" />
     <EntitySet Name="tbFacturaHistorica" EntityType="ERP_ZORZALModel.tbFacturaHistorica" />
-    <EntitySet Name="tbListadoPrecioDetalle" EntityType="ERP_ZORZALModel.tbListadoPrecioDetalle" />
     <EntitySet Name="tbListaPrecio" EntityType="ERP_ZORZALModel.tbListaPrecio" />
     <EntitySet Name="tbMovimientoCaja" EntityType="ERP_ZORZALModel.tbMovimientoCaja" />
     <EntitySet Name="tbNotaCredito" EntityType="ERP_ZORZALModel.tbNotaCredito" />
@@ -1335,14 +1334,6 @@
     <AssociationSet Name="FK_Acce_tbUsuario_tbExoneracion_exo_UsuarioModifa" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbExoneracion_exo_UsuarioModifa">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbExoneracion" EntitySet="tbExoneracion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioCrea">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioModifica">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -1848,10 +1839,6 @@
       <End Role="tbProducto" EntitySet="tbProducto" />
       <End Role="tbFacturaDetalle" EntitySet="tbFacturaDetalle" />
     </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbListado_tbProducto_prod_Codigo" Association="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo">
-      <End Role="tbProducto" EntitySet="tbProducto" />
-      <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
-    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" Association="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo">
       <End Role="tbProducto" EntitySet="tbProducto" />
       <End Role="tbPedidoDetalle" EntitySet="tbPedidoDetalle" />
@@ -1972,10 +1959,6 @@
       <End Role="tbSucursal" EntitySet="tbSucursal" />
       <End Role="tbFactura" EntitySet="tbFactura" />
     </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id" Association="ERP_ZORZALModel.FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id">
-      <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
-      <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
-    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" Association="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
       <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
@@ -2039,6 +2022,39 @@
     <AssociationSet Name="FK_Inv_tbEntrada_tbSalida_fact_Id" Association="ERP_ZORZALModel.FK_Inv_tbEntrada_tbSalida_fact_Id">
       <End Role="tbSalida" EntitySet="tbSalida" />
       <End Role="tbEntrada" EntitySet="tbEntrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_bodd_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_bodd_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_bodd_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_bodd_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbBodegaDetalle_tbBodega_bod_Id" Association="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbBodega_bod_Id">
+      <End Role="tbBodega" EntitySet="tbBodega" />
+      <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo" Association="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo">
+      <End Role="tbProducto" EntitySet="tbProducto" />
+      <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
+    </AssociationSet>
+    <EntitySet Name="tbListadoPrecioDetalle" EntityType="ERP_ZORZALModel.tbListadoPrecioDetalle" />
+    <AssociationSet Name="FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbListado_tbProducto_prod_Codigo" Association="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo">
+      <End Role="tbProducto" EntitySet="tbProducto" />
+      <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id" Association="ERP_ZORZALModel.FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id">
+      <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
+      <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -2424,8 +2440,6 @@
     <NavigationProperty Name="tbEstadoSolicitudCredito1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbEstadoSolicitudCredito_escre_UsuarioModifico" FromRole="tbUsuario" ToRole="tbEstadoSolicitudCredito" />
     <NavigationProperty Name="tbExoneracion" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbExoneracion_exo_UsuarioCrea" FromRole="tbUsuario" ToRole="tbExoneracion" />
     <NavigationProperty Name="tbExoneracion1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbExoneracion_exo_UsuarioModifa" FromRole="tbUsuario" ToRole="tbExoneracion" />
-    <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbListadoPrecioDetalle" />
-    <NavigationProperty Name="tbListadoPrecioDetalle1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioModifica" FromRole="tbUsuario" ToRole="tbListadoPrecioDetalle" />
     <NavigationProperty Name="tbListaPrecio" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioCrea" FromRole="tbUsuario" ToRole="tbListaPrecio" />
     <NavigationProperty Name="tbListaPrecio1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListaPrecio_listp_UsuarioModifica" FromRole="tbUsuario" ToRole="tbListaPrecio" />
     <NavigationProperty Name="tbMoneda" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMoneda_mnda_UsuarioCrea" FromRole="tbUsuario" ToRole="tbMoneda" />
@@ -2513,7 +2527,11 @@
     <NavigationProperty Name="tbPuntoEmision1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmision" />
     <NavigationProperty Name="tbPuntoEmisionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
     <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
-    <Property Name="usu_SesionesValidas" Type="Byte" />
+    <Property Name="usu_SesionesValidas" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="tbBodegaDetalle" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_bodd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBodegaDetalle" />
+    <NavigationProperty Name="tbBodegaDetalle1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_bodd_UsuarioModifica" FromRole="tbUsuario" ToRole="tbBodegaDetalle" />
+    <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbListadoPrecioDetalle" />
+    <NavigationProperty Name="tbListadoPrecioDetalle1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioModifica" FromRole="tbUsuario" ToRole="tbListadoPrecioDetalle" />
   </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
@@ -2754,6 +2772,7 @@
     <NavigationProperty Name="tbInventarioFisico" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisico_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbInventarioFisico" />
     <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_Inv_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbSalida" />
     <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbBodega_tbSucursal_bod_Id" FromRole="tbBodega" ToRole="tbSucursal" />
+    <NavigationProperty Name="tbBodegaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbBodegaDetalle" />
   </EntityType>
   <EntityType Name="tbBodegaDetalle">
     <Key>
@@ -2772,6 +2791,10 @@
     <Property Name="bodd_Costo" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
     <Property Name="bodd_CostoPromedio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
     <Property Name="bodd_CantidadExistente" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_bodd_UsuarioCrea" FromRole="tbBodegaDetalle" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_bodd_UsuarioModifica" FromRole="tbBodegaDetalle" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbBodega_bod_Id" FromRole="tbBodegaDetalle" ToRole="tbBodega" />
+    <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo" FromRole="tbBodegaDetalle" ToRole="tbProducto" />
   </EntityType>
   <EntityType Name="tbBox">
     <Key>
@@ -2913,8 +2936,9 @@
     <NavigationProperty Name="tbListaPrecio" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id" FromRole="tbProducto" ToRole="tbListaPrecio" />
     <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbSalidaDetalle" />
     <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbFacturaDetalle" />
-    <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbListadoPrecioDetalle" />
     <NavigationProperty Name="tbPedidoDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbPedidoDetalle" />
+    <NavigationProperty Name="tbBodegaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbBodegaDetalle" />
+    <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbListadoPrecioDetalle" />
   </EntityType>
   <EntityType Name="tbProductoCategoria">
     <Key>
@@ -3342,25 +3366,6 @@
     <Property Name="facth_Fecha" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tbEstadoFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbFacturaHistorica_esfac_Id" FromRole="tbFacturaHistorica" ToRole="tbEstadoFactura" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbFacturaHistorica_fact_Id" FromRole="tbFacturaHistorica" ToRole="tbFactura" />
-  </EntityType>
-  <EntityType Name="tbListadoPrecioDetalle">
-    <Key>
-      <PropertyRef Name="listp_Id" />
-    </Key>
-    <Property Name="listp_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="lispd_PrecioMayorista" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-    <Property Name="lispd_PrecioMinorista" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-    <Property Name="lispd_DescCaja" Type="Decimal" Precision="10" Scale="2" />
-    <Property Name="lispd_DescGerente" Type="Decimal" Precision="10" Scale="2" />
-    <Property Name="lispd_UsuarioCrea" Type="Int32" Nullable="false" />
-    <Property Name="lispd_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="lispd_UsuarioModifica" Type="Int32" />
-    <Property Name="lispd_FechaModifica" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioCrea" FromRole="tbListadoPrecioDetalle" ToRole="tbUsuario" />
-    <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioModifica" FromRole="tbListadoPrecioDetalle" ToRole="tbUsuario" />
-    <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" FromRole="tbListadoPrecioDetalle" ToRole="tbProducto" />
-    <NavigationProperty Name="tbListaPrecio" Relationship="ERP_ZORZALModel.FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id" FromRole="tbListadoPrecioDetalle" ToRole="tbListaPrecio" />
   </EntityType>
   <EntityType Name="tbListaPrecio">
     <Key>
@@ -4011,30 +4016,6 @@
       </Principal>
       <Dependent Role="tbExoneracion">
         <PropertyRef Name="exo_UsuarioModifa" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioCrea">
-    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbListadoPrecioDetalle" Role="tbListadoPrecioDetalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbListadoPrecioDetalle">
-        <PropertyRef Name="lispd_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioModifica">
-    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-    <End Type="ERP_ZORZALModel.tbListadoPrecioDetalle" Role="tbListadoPrecioDetalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbListadoPrecioDetalle">
-        <PropertyRef Name="lispd_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -5550,18 +5531,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbListado_tbProducto_prod_Codigo">
-    <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbListadoPrecioDetalle" Role="tbListadoPrecioDetalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbProducto">
-        <PropertyRef Name="prod_Codigo" />
-      </Principal>
-      <Dependent Role="tbListadoPrecioDetalle">
-        <PropertyRef Name="prod_Codigo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo">
     <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbPedidoDetalle" Role="tbPedidoDetalle" Multiplicity="*" />
@@ -5922,18 +5891,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id">
-    <End Type="ERP_ZORZALModel.tbListaPrecio" Role="tbListaPrecio" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbListadoPrecioDetalle" Role="tbListadoPrecioDetalle" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="tbListaPrecio">
-        <PropertyRef Name="listp_Id" />
-      </Principal>
-      <Dependent Role="tbListadoPrecioDetalle">
-        <PropertyRef Name="listp_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
     <End Type="ERP_ZORZALModel.tbMovimientoCaja" Role="tbMovimientoCaja" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbSolicitudEfectivo" Role="tbSolicitudEfectivo" Multiplicity="*" />
@@ -6177,4 +6134,120 @@
   <ComplexType Name="UDP_Vent_tbListaPrecio_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
+  <Association Name="FK_Acce_tbUsuario_bodd_UsuarioCrea">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbBodegaDetalle" Role="tbBodegaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbBodegaDetalle">
+        <PropertyRef Name="bodd_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_bodd_UsuarioModifica">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbBodegaDetalle" Role="tbBodegaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbBodegaDetalle">
+        <PropertyRef Name="bodd_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbBodegaDetalle_tbBodega_bod_Id">
+    <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbBodegaDetalle" Role="tbBodegaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbBodega">
+        <PropertyRef Name="bod_Id" />
+      </Principal>
+      <Dependent Role="tbBodegaDetalle">
+        <PropertyRef Name="bod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo">
+    <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbBodegaDetalle" Role="tbBodegaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbProducto">
+        <PropertyRef Name="prod_Codigo" />
+      </Principal>
+      <Dependent Role="tbBodegaDetalle">
+        <PropertyRef Name="prod_Codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tbListadoPrecioDetalle">
+    <Key>
+      <PropertyRef Name="lispd_Id" />
+    </Key>
+    <Property Name="lispd_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="listp_Id" Type="Int32" Nullable="false" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="lispd_PrecioMayorista" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="lispd_PrecioMinorista" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="lispd_DescCaja" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="lispd_DescGerente" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="lispd_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="lispd_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="lispd_UsuarioModifica" Type="Int32" />
+    <Property Name="lispd_FechaModifica" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioCrea" FromRole="tbListadoPrecioDetalle" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioModifica" FromRole="tbListadoPrecioDetalle" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" FromRole="tbListadoPrecioDetalle" ToRole="tbProducto" />
+    <NavigationProperty Name="tbListaPrecio" Relationship="ERP_ZORZALModel.FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id" FromRole="tbListadoPrecioDetalle" ToRole="tbListaPrecio" />
+  </EntityType>
+  <Association Name="FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioCrea">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbListadoPrecioDetalle" Role="tbListadoPrecioDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbListadoPrecioDetalle">
+        <PropertyRef Name="lispd_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioModifica">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbListadoPrecioDetalle" Role="tbListadoPrecioDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbListadoPrecioDetalle">
+        <PropertyRef Name="lispd_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbListado_tbProducto_prod_Codigo">
+    <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbListadoPrecioDetalle" Role="tbListadoPrecioDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbProducto">
+        <PropertyRef Name="prod_Codigo" />
+      </Principal>
+      <Dependent Role="tbListadoPrecioDetalle">
+        <PropertyRef Name="prod_Codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id">
+    <End Type="ERP_ZORZALModel.tbListaPrecio" Role="tbListaPrecio" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbListadoPrecioDetalle" Role="tbListadoPrecioDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbListaPrecio">
+        <PropertyRef Name="listp_Id" />
+      </Principal>
+      <Dependent Role="tbListadoPrecioDetalle">
+        <PropertyRef Name="listp_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
