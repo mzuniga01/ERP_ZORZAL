@@ -665,6 +665,9 @@
     <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Aprobar_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Denegar_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -988,6 +991,7 @@
     <Content Include="Scripts\app\PuntoEmisionDetalle.js" />
     <Content Include="Scripts\app\SaveDetallePedido.js" />
     <Content Include="Scripts\app\SavePedidoDetalle.js" />
+    <Content Include="Scripts\app\SolicituCreditoDenegar.js" />
     <Content Include="Scripts\app\SolicitudEfectivo.js" />
     <Content Include="Scripts\app\SolicitudEfectivoDetalles.js" />
     <Content Include="Scripts\app\SolicitudEfectivoEsAnulada.js" />

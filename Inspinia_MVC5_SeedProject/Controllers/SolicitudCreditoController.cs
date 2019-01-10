@@ -305,6 +305,12 @@ if (ModelState.IsValid)
                 return PartialView("_AprobarSolicitudCredito", EditSolicitudCredito);
             }
         }
+        [HttpPost]
+        public JsonResult DenegarSolCredito(int credID, byte Denegada)
+        {
+            var list = db.UDP_Vent_tbSolicitudCredito_Denegar(credID, Denegada).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

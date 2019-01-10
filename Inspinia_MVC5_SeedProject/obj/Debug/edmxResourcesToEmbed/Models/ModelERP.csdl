@@ -856,7 +856,6 @@
       <Parameter Name="ent_NumeroFormato" Mode="In" Type="String" />
       <Parameter Name="ent_FechaElaboracion" Mode="In" Type="DateTime" />
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-      <Parameter Name="estm_Id" Mode="In" Type="Byte" />
       <Parameter Name="prov_Id" Mode="In" Type="Int32" />
       <Parameter Name="ent_FacturaCompra" Mode="In" Type="String" />
       <Parameter Name="ent_FechaCompra" Mode="In" Type="DateTime" />
@@ -2049,6 +2048,10 @@
       <Parameter Name="listp_FechaInicioVigencia" Mode="In" Type="DateTime" />
       <Parameter Name="listp_FechaFinalVigencia" Mode="In" Type="DateTime" />
       <Parameter Name="listp_Prioridad" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Denegar" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Denegar_Result)">
+      <Parameter Name="cred_Id" Mode="In" Type="Int32" />
+      <Parameter Name="escre_Id" Mode="In" Type="Byte" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -6214,5 +6217,8 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudCredito_Denegar_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
 </Schema>
