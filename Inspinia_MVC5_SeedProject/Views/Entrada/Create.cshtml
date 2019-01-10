@@ -28,6 +28,7 @@
 
 @using (Html.BeginForm("Create", "Entrada", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -53,8 +54,7 @@
                                     </div>
                                     @Html.LabelFor(model => model.ent_NumeroFormato, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        <input type="hidden" id="hdf_Formato_Placa" value="0" />
-                                        @Html.EditorFor(model => model.ent_NumeroFormato, new { htmlAttributes = new { @onKeyUp = "verificaFormatoPlaca(this.value)" } })
+                                        @Html.EditorFor(model => model.ent_NumeroFormato)
                                         <div class="col-md-10">
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.ent_NumeroFormato)</p>
                                         </div>
@@ -87,19 +87,6 @@
                                         
                                         <div class="col-md-10">
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.tent_Id)</p>
-                                        </div>
-                                    </div>
-                                    @Html.LabelFor(model => model.estm_Id, "Cambiar Estado.?", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @*@Html.DropDownList("estm_Id", (IEnumerable<SelectListItem>)ViewBag.estm_Id, new { @class = "form-control", @readonly = "readonly"})*@
-                                        <select class="form-control" id="estado" name="estm_Id">
-                                            <option id="" value="2">Si es Necesario...</option>
-                                            <option id="valid15" value="15">Anular</option>
-                                            <option id="valid1" value="1">Aplicar</option>
-                                        </select>
-
-                                        <div class="col-md-10">
-                                            <p style="color:red">@Html.ValidationMessageFor(model => model.estm_Id)</p>
                                         </div>
                                     </div>
                                 </div>
@@ -238,49 +225,6 @@
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
 
-@*modal para imprimir*@
-<div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Imprimir Entrada</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Desea Imprimir Entrada?
-            </div>
-            <div class="modal-footer">
-                <a href="@Url.Action("si", "Create")" class="btn btn-primary">Si</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-@*modal para estado aPLICAR*@
-<div class="modal fade" id="Modalaplicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Aplicar Entrada</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro que quiere Aplicar esta Entrada?
-            </div>
-            <div class="modal-footer">
-                <a href="@Url.Action("Si","Create")" class="btn btn-primary">Si</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 @*modal para anular*@
 <div class="modal fade" id="Modalanular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -295,7 +239,27 @@
                 ¿Está seguro de anular esta Entrada?
             </div>
             <div class="modal-footer">
-                <a href="@Url.Action("Si","Create")" class="btn btn-primary">Si</a>
+                <a href="" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*modal para estado aPLICAR*@
+<div class="modal fade" id="Modalaplicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Aplicar Entrada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro que quiere Aplicar esta Entrada?
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-primary">Si</a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
@@ -311,27 +275,10 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 
-
 <script>
-    $('#estado').change(function () {
-        var title = $(this).val();
-            if (document.getElementById('valid15').selected == '') {
-                $('#Modalanular').modal('show');
-            }
-            if (document.getElementById('valid1').selected == '') {
-                $('#Modalaplicar').modal('show');
-            }
-            //if (document.getElementById('').selected == '') {
-            //    $('#estado')=2;
-            //}
-    });
 
 
-
-
-
-
-    //para boton
+    //para el texbos codigo formato
     function validBoard(board, formato) {
         var sizeBoard = 8;
 

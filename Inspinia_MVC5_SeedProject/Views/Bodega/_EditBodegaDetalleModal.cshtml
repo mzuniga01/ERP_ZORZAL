@@ -18,19 +18,11 @@
                         @Html.HiddenFor(model => model.bodd_UsuarioModifica)
                         @Html.HiddenFor(model => model.bodd_FechaModifica)
                         @Html.HiddenFor(model => model.prod_Codigo)
-                    
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.bodd_PuntoReorden, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
-                            </div>
-                        </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.prod_Codigo, new { @class = "form-control" })
+                                @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <div id="validationMINIMAEdit_@Model.bodd_Id">
                                     @Html.ValidationMessageFor(model => model.prod_Codigo)
                                 </div>
@@ -40,25 +32,31 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.bodd_CantidadMinima, new { @class = "form-control"})
+                                @Html.EditorFor(model => model.bodd_CantidadMinima, new { @class = "form-control" })
                                 <div id="validationMINIMAEdit_@Model.bodd_Id">
                                     @Html.ValidationMessageFor(model => model.bodd_CantidadMinima)
                                 </div>
 
                             </div>
                         </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.bodd_PuntoReorden, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.bodd_CantidadMaxima, new { @class = "form-control"})
+                                @Html.EditorFor(model => model.bodd_CantidadMaxima, new { @class = "form-control" })
                                 <div id="validationMAXIMAEdit_@Model.bodd_Id">
                                     @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
                                 </div>
 
                             </div>
                         </div>
-
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
@@ -67,7 +65,6 @@
                                 <div id="validationCOSTOEdit_@Model.bodd_Id">
                                     @Html.ValidationMessageFor(model => model.bodd_Costo)
                                 </div>
-
                             </div>
                         </div>
 
@@ -78,7 +75,6 @@
                                 <div id="validationCOSTOPROMEDIOEdit_@Model.bodd_Id">
                                     @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
                                 </div>
-
                             </div>
                         </div>
                     </div>

@@ -68,7 +68,7 @@
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador)
                             <div class="form-group">
 
-                                @Html.LabelFor(model => model.ent_Id,"Codigó Entrada", new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.ent_Id, "Codigó Entrada", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.ent_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.ent_Id)
@@ -100,36 +100,18 @@
                                     @Html.DropDownList("tent_Id", (IEnumerable<SelectListItem>)ViewBag.tent_Id, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.tent_Id)
                                 </div>
-                                @Html.LabelFor(model => model.estm_Id, "Cambiar Estado.?", new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    <select class="form-control" id="estado" name="estm_Id">
                                         @if (Model.estm_Id == 2)
                                         {
-                                            <option id="valid2" value="2">Activar</option>
-                                            <option id="valid16" value="16">Inactivar</option>
-                                            <option id="valid1" value="1">Aplicar</option>
-                                            <option id="valid15" value="15">Anular</option>
+                                            <p> Activa</p>
                                         }
                                         else if (Model.estm_Id == 16)
                                         {
-                                            <option id="valid16" value="16">Inactivar</option>
-                                            <option id="valid2" value="2">Activar</option>
+                                            <p>Inactiva</p>
                                         }
-                                        else if (Model.estm_Id == 1)
-                                        {
-                                            <option id="valid1" value="1">Aplicar</option>
-                                            <option id="valid2" value="2">Activar</option>
-                                            <option id="valid16" value="16">Inactivar</option>
-                                            <option id="valid15" value="15">Anular</option>
-                                        }
-                                        else if (Model.estm_Id == 15)
-                                        {
-                                            <option id="valid15" value="15">Anular</option>
-                                            <option id="valid2" value="2">Activar</option>
-                                        }
-                                    </select>
-                                    </div>
                                 </div>
+                            </div>
                         </div>
                         <div class="form-horizontal" name="compra" id="CamposCompra" style="display:none">
                             <div class="form-group">
@@ -178,7 +160,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Id, "Bodega Destino", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id,  new { @class = "form-control" })
+                                    @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.bod_Id)
                                 </div>
                             </div>
@@ -188,6 +170,19 @@
                             <div class="col-md-offset-2 col-md-10">
 
                                 <input type="submit" value="Guardar" class="btn btn-primary" />
+                                @{if (Model.estm_Id == 2)
+                                    {
+                                        <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
+                                            @*@Html.ActionLink("Inactivar", "EstadoInactivar", new { id = Model.bod_Id }, new { @class = "btn btn-danger" })*@
+                                    }
+                                    else if (Model.estm_Id == 16)
+                                    {
+                                        @Html.ActionLink("Activar", "Estadoactivar", new { id = Model.ent_Id }, new { @class = "btn btn-primary" })
+                                        
+                                    }
+                                }
+                                <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular" value="Anular" />
+                                <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
 
                             </div>
@@ -195,28 +190,19 @@
                         <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
                             @Html.Partial("_CrearDetalleEntrada", new tbEntradaDetalle())
                         </div>
+
                         @*llama la vista pasrcial de entrada detalle*@
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="ibox float-e-margins">
-                                    <div class="ibox-title">
-                                        <div class="title-action">
-                                            <div class="box-border">
-                                                <h5> Listado Entrada Detalle</h5>
-                                                <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#Crear"></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ibox-content collapse" id="Crear">
+                                <div class="form-group">
+                                    <div class="col-md-12">
                                         @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
                                         @Html.Partial("_IndexEditar", Model.tbEntradaDetalle, new ViewDataDictionary { { "ent_Id", Model.ent_Id } })
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                        </div>
-                        <br />
+                        
                     </div>
                 </div>
             </div>
@@ -250,107 +236,113 @@
     </div>
 </div>
 
+
+@**********************************************************************************MODALES*****************************************************************************@
+@**********************************************************************************MODALES*****************************************************************************@
+@**********************************************************************************MODALES*****************************************************************************@
+
+
+@*modal para inactivar*@
+    <div class="modal fade" id="ModalEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Inactivar Entrada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que quiere Inactivar esta Entrada?
+                </div>
+                <div class="modal-footer">
+                    @Html.ActionLink("Sí", "EstadoInactivar", new { id = Model.ent_Id }, new { @class = "btn btn-danger" })
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*modal para anular*@
+    <div class="modal fade" id="ModalAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Anular Entrada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p style="color:maroon">Recuerde que si Anula esta Entrada no la podrá editar despues.</p>
+                    ¿Está seguro que quiere Anular esta Entrada?
+                </div>
+                <div class="modal-footer">
+                    @Html.ActionLink("Sí", "EstadoAnular", new { id = Model.ent_Id }, new { @class = "btn btn-danger" })
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*modal para Aplicar*@
+    <div class="modal fade" id="ModalAplicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Aplicar Entrada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p style="color:maroon">Recuerde que si Aplicar esta Entrada no la podrá editar despues.</p>
+                    ¿Está seguro que quiere Aplicar esta Entrada?
+                </div>
+                <div class="modal-footer">
+                    @Html.ActionLink("Sí", "EstadoAplicar", new { id = Model.ent_Id }, new { @class = "btn btn-danger" })
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 }
-@**********************************************************************************MODALES*****************************************************************************@
-@**********************************************************************************MODALES*****************************************************************************@
-@**********************************************************************************MODALES*****************************************************************************@
-@*modal para anular*@
-<div class="modal fade" id="Modalanular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Anular Entrada</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro de anular esta Entrada?
-            </div>
-            <div class="modal-footer">
-                <a href="@Url.Action("Si","Entrada")" class="btn btn-danger">Si</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+
+@*modal para agregar un nuevo detalle en editar*@
+<div>
+    <div class="modal fade" id="RegistrarNuevoDetalleEntrada" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Registrar Nuevo Detalle</h4>
+                </div>
+                <div class="modal-body" id="frmAgregarCasoExito">
+                    @Html.Partial("_CrearDetalleEntrada", new tbEntradaDetalle())
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="btnGuardarNuevoDetalle" onclick="btnGuardarNuevoDetalle">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-@*modal para estado aPLICAR*@
-<div class="modal fade" id="Modalaplicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Aplicar Entrada</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro que quiere Aplicar esta Entrada?
-            </div>
-            <div class="modal-footer">
-                @Html.ActionLink("Si", "Entrada", new { id = Model.ent_Id }, new { @class = "btn btn-danger" })
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
-@*modal para estado (inactivar)*@
-<div class="modal fade" id="ModalInactivar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Inactivar Entrada</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro que quiere Inactivar esta Entrada?
-            </div>
-            <div class="modal-footer">
-                @Html.ActionLink("Si", "Entrada", new { id = Model.ent_Id }, new { @class = "btn btn-danger" })
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+
+
+
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/app/MostrarCamposEditar.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/EntradaDetalle.js"></script>
 
-@*para el estado levante el modal del drop*@
-
-@*cuando el estado esta activo*@
-<script>
-    $('#estado').change(function () {
-        var title = $(this).val();
-            if (document.getElementById('valid15').selected == "2") {
-                $('#Modalanular').modal('show');
-            }
-            if (document.getElementById('valid16').selected == "2") {
-                $('#ModalInactivar').modal('show');
-            }
-            if (document.getElementById('valid1').selected == "2") {
-                $('#Modalaplicar').modal('show');
-            }
-});
-</script>
-@*cuendo el estado esta aplicado*@
-<script>
-    $('#estado').change(function () {
-        var title = $(this).val();
-            if (document.getElementById('valid15').selected == "1") {
-                $('#Modalanular').modal('show');
-            }
-            if (document.getElementById('valid16').selected == "1") {
-                $('#ModalInactivar').modal('show');
-            }
-            if (document.getElementById('valid1').selected == "1") {
-                $('#Modalaplicar').modal('show');
-            }
-});
-</script>
 

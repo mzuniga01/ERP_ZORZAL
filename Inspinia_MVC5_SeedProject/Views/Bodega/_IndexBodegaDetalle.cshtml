@@ -5,14 +5,15 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                @*<div class="ibox-title">
                     <h5>Listado de Detalles</h5>
                     <div class="title-action">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#RegistrarNuevoDetalle">
                             Registrar Nuevo Detalle
                         </button>
                     </div>
-                </div>
+                </div>*@
+                
                 <div class="ibox-content">
 
                     <table class="table table-striped" id="tbBodega">
@@ -33,6 +34,9 @@
                                     @Html.DisplayNameFor(model => model.bodd_CostoPromedio)
                                 </th>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.bodd_CantidadExistente)
+                                </th>
+                                <th>
                                     Acciones
                                 </th>
                             </tr>
@@ -40,28 +44,31 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.bodd_Costo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.bodd_CostoPromedio)
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalles_@item.bodd_Id">
-                                            Detalles
-                                        </button>
-                                        <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalEditar_@item.bodd_Id">
-                                            Editar
-                                        </button>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bodd_Costo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bodd_CostoPromedio)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bodd_CantidadExistente)
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalles_@item.bodd_Id">
+                                        Detalles
+                                    </button>
+                                    <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalEditar_@item.bodd_Id">
+                                        Editar
+                                    </button>
+                                </td>
+                            </tr>
 
                                 <div class="modal fade" id="ModalDetalles_@item.bodd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">

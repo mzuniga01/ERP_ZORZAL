@@ -58,6 +58,7 @@
                             @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
                             @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
                             @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbMunicipio.tbDepartamento.dep_Codigo)
 
                             @*Esto lo agregó Mágdaly Zúniga*@
                             @*Extras usuario crea*@
@@ -74,13 +75,13 @@
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsActivo)
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador)
                             @*<div class="form-group">
-                                <label for="producto" class="control-label col-md-2">Produto</label>
-                                <div class="col-md-10">
-                                    <input type="text" id="prod_Codigo" placeholder="" class="form-control" />
-                                </div>
-                            </div>*@
+                                    <label for="producto" class="control-label col-md-2">Produto</label>
+                                    <div class="col-md-10">
+                                        <input type="text" id="prod_Codigo" placeholder="" class="form-control" />
+                                    </div>
+                                </div>*@
                             <div class="form-group">
-                                @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2">Número<span style="color:red">*</span></label>
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.bod_Id)
@@ -93,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.bod_Nombre, new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2">Nombre<span style="color:red">*</span></label>
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Nombre)
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Nombre) </p>
@@ -105,17 +106,29 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.tbMunicipio.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2">Departamento<span style="color:red">*</span></label>
                                 <div class="col-md-4">
-                                    @Html.DropDownList("dep_Codigo", (IEnumerable<SelectListItem>)ViewBag.dep_Codigo, new { @class = "form-control" })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbMunicipio.dep_Codigo)</p>
+                                    @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
+                                    <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => ListadoMunicipio.dep_Codigo)</p>
                                 </div>
-                                @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2">Municipio<span style="color:red">*</span></label>
                                 <div class="col-md-4">
                                     @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
+                                    <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
                                 </div>
                             </div>
+                            @*<div class="form-group">
+                                    <label class="control-label col-md-2">Departamento<span style="color:red"> </span></label>
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("dep_Codigo",(IEnumerable<SelectListItem>)ViewBag.dep_Codigo ,new { @class = "form-control" })
+                                        <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => ListadoMunicipio.dep_Codigo)</p>
+                                    </div>
+                                    @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
+                                        <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
+                                    </div>
+                                </div>*@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Telefono, new { @class = "control-label col-md-2" })
@@ -165,10 +178,15 @@
                             </div>
                         </div>
 
-                        @*<div class="ibox-content collapse" id="RegistrarNuevoDetalle">
-                                @Html.Partial("_CreateNuevoBodegaDetalle_Modal", new tbBodegaDetalle())
-                            </div>*@
-
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        @Html.Partial("_CreateNuevoBodegaDetalle_Modal", new tbBodegaDetalle())
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
@@ -231,36 +249,106 @@
 
 
 
-<div>
-    <div class="modal fade" id="RegistrarNuevoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Registrar Nuevo Detalle</h4>
-                </div>
-                <div class="modal-body" id="frmAgregarCasoExito">
-                    @Html.Partial("_CreateNuevoBodegaDetalle_Modal", new tbBodegaDetalle())
-                    <div class="form-group">
-                        <div class="col-md-12 text-center">
-                            <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="btnGuardarNuevoDetalle" onclick="btnGuardarNuevoDetalle">Guardar</button>
-                            @Html.ActionLink("Cancelar", "Edit", null, new { @class = "btn btn-white" })
+    <div>
+        <div class="modal fade" id="RegistrarNuevoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Registrar Nuevo Detalle</h4>
+                    </div>
+                    <div class="modal-body" id="frmAgregarCasoExito">
+                        @*@Html.Partial("_CreateNuevoBodegaDetalle_Modal", new tbBodegaDetalle())*@
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="btnGuardarNuevoDetalle" onclick="btnGuardarNuevoDetalle">Guardar</button>
+                                @Html.ActionLink("Cancelar", "Edit", null, new { @class = "btn btn-white" })
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/app/BusquedaGenerica.js"></script>
+    <script src="~/Scripts/app/BodegaDetalle.js"></script>
+    @*<script src="~/Scripts/app/Departamento.js"></script>*@
+    <script>
+        console.log('Hla')
+       
+        
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-<script src="~/Scripts/jquery-3.1.1.min.js"></script>
-<script src="~/Scripts/app/BusquedaGenerica.js"></script>
-<script src="~/Scripts/app/BodegaDetalle.js"></script>
-<script src="~/Scripts/app/Departamento.js"></script>
+      
 
+        $(document).ready(function () {
+            var Mun = $('#mun_Codigo').val();
+
+            console.log(Mun);
+            if (Mun != '') {
+                GetDepartamento();
+                //GetMunicipios();
+            }
+           
+        });
+
+        function GetDepartamento() {
+            var CodMunicipio = $('#mun_Codigo').val();
+            $.ajax({
+                url: "/Bodega/GetDepartamento",
+                method: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ CodMunicipio : CodMunicipio }),
+            })
+                .done(function (data) {
+                    if (data.length > 0) {
+                        $('#dep_Codigo').empty();
+                        //$('#dep_Codigo').append("<option value=''>Seleccione Municipio</option>");
+                        $.each(data, function (key, val) {
+                            $('#dep_Codigo').append("<option value=" + val.dep_Codigo + ">" + val.dep_Nombre + "</option>");
+                        });
+                        $('#dep_Codigo').trigger("chosen:updated");
+                    }
+                    else {
+                        $('#dep_Codigo').empty();
+                        $('#dep_Codigo').append("<option value=" + val.dep_Codigo + ">" + val.dep_Nombre +"</option>");
+                    }
+                });
+
+        }
+
+
+        //function GetMunicipios() {
+        //    var CodDepartamento = $('#dep_Codigo').val();
+        //    $.ajax({
+        //        url: "/Bodega/GetMunicipios",
+        //        method: "POST",
+        //        dataType: 'json',
+        //        contentType: "application/json; charset=utf-8",
+        //        data: JSON.stringify({ CodDepartamento: CodDepartamento }),
+        //    })
+        //        .done(function (data) {
+        //            if (data.length > 0) {
+        //                $('#mun_Codigo').empty();
+        //                $('#mun_Codigo').append("<option value=''>Seleccione</option>");
+        //                $.each(data, function (key, val) {
+        //                    $('#mun_Codigo').append("<option value=" + val.mun_Codigo + ">" + val.mun_Nombre + "</option>");
+        //                });
+        //                $('#mun_Codigo').trigger("chosen:updated");
+        //            }
+        //            else {
+        //                $('#mun_Codigo').empty();
+        //                $('#mun_Codigo').append("<option value=" + val.mun_Codigo + ">" + " Seleccione </option>");
+        //            }
+        //        });
+        //}
+
+    </script>
 }

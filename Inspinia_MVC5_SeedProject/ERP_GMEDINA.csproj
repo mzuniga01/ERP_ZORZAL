@@ -219,6 +219,7 @@
     <Compile Include="Models\Entrada.cs" />
     <Compile Include="Models\EstadoBodega.cs" />
     <Compile Include="Models\EstadoCategoria.cs" />
+    <Compile Include="Models\EstadoEntrada.cs" />
     <Compile Include="Models\EstadoInventariosFisico.cs" />
     <Compile Include="Models\estadomovimientos.cs" />
     <Compile Include="Models\Estados.cs" />
@@ -251,6 +252,7 @@
     <Compile Include="Models\rol.cs" />
     <Compile Include="Models\RolesUsuario.cs" />
     <Compile Include="Models\Salida.cs" />
+    <Compile Include="Models\SalidaDetalle.cs" />
     <Compile Include="Models\SDP_Acce_GetObjetosAsignados_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -258,6 +260,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SDP_Acce_GetObjetos_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetDepartamento_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\spGetMunicipios_Result.cs">
@@ -524,6 +529,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Gral_tbUnidadMedida_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Inv_tbBodegaDetalle_CantidadExistente_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbBodegaDetalle_Insert_Result.cs">

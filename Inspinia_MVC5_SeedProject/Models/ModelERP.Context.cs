@@ -77,8 +77,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbFactura> tbFactura { get; set; }
         public virtual DbSet<tbFacturaDetalle> tbFacturaDetalle { get; set; }
         public virtual DbSet<tbFacturaHistorica> tbFacturaHistorica { get; set; }
-        public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
-        public virtual DbSet<tbListaPrecio> tbListaPrecio { get; set; }
         public virtual DbSet<tbMovimientoCaja> tbMovimientoCaja { get; set; }
         public virtual DbSet<tbNotaCredito> tbNotaCredito { get; set; }
         public virtual DbSet<tbPago> tbPago { get; set; }
@@ -91,6 +89,8 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
+        public virtual DbSet<tbListaPrecio> tbListaPrecio { get; set; }
+        public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
         {
@@ -101,7 +101,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbTipoEntrada_Insert_Result>("UDP_Inv_tbTipoEntrada_Insert", tent_DescripcionParameter);
         }
     
-        public virtual ObjectResult<UDP_Gral_tbParametro_Insert_Result> UDP_Gral_tbParametro_Insert(string par_NombreEmpresa, string par_TelefonoEmpresa, string par_CorreoEmpresa, string par_PathLogo, Nullable<short> mnda_Id, Nullable<int> par_RolGerenteTienda, Nullable<int> par_RolCreditoCobranza, Nullable<int> par_RolSupervisorCaja, Nullable<int> par_RolCajero, Nullable<int> par_RolAuditor, Nullable<short> par_SucursalPrincipal, Nullable<int> par_UsuarioCrea, Nullable<System.DateTime> par_FechaCrea, Nullable<int> par_UsuarioModifica, Nullable<System.DateTime> par_FechaModifica, Nullable<decimal> par_PorcentajeDescuentoTE, Nullable<int> par_IdConsumidorFinal)
+        public virtual ObjectResult<UDP_Gral_tbParametro_Insert_Result> UDP_Gral_tbParametro_Insert(string par_NombreEmpresa, string par_TelefonoEmpresa, string par_CorreoEmpresa, string par_PathLogo, Nullable<short> mnda_Id, Nullable<int> par_RolGerenteTienda, Nullable<int> par_RolCreditoCobranza, Nullable<int> par_RolSupervisorCaja, Nullable<int> par_RolCajero, Nullable<int> par_RolAuditor, Nullable<short> par_SucursalPrincipal, Nullable<decimal> par_PorcentajeDescuentoTE, Nullable<int> par_IdConsumidorFinal)
         {
             var par_NombreEmpresaParameter = par_NombreEmpresa != null ?
                 new ObjectParameter("par_NombreEmpresa", par_NombreEmpresa) :
@@ -147,22 +147,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("par_SucursalPrincipal", par_SucursalPrincipal) :
                 new ObjectParameter("par_SucursalPrincipal", typeof(short));
     
-            var par_UsuarioCreaParameter = par_UsuarioCrea.HasValue ?
-                new ObjectParameter("par_UsuarioCrea", par_UsuarioCrea) :
-                new ObjectParameter("par_UsuarioCrea", typeof(int));
-    
-            var par_FechaCreaParameter = par_FechaCrea.HasValue ?
-                new ObjectParameter("par_FechaCrea", par_FechaCrea) :
-                new ObjectParameter("par_FechaCrea", typeof(System.DateTime));
-    
-            var par_UsuarioModificaParameter = par_UsuarioModifica.HasValue ?
-                new ObjectParameter("par_UsuarioModifica", par_UsuarioModifica) :
-                new ObjectParameter("par_UsuarioModifica", typeof(int));
-    
-            var par_FechaModificaParameter = par_FechaModifica.HasValue ?
-                new ObjectParameter("par_FechaModifica", par_FechaModifica) :
-                new ObjectParameter("par_FechaModifica", typeof(System.DateTime));
-    
             var par_PorcentajeDescuentoTEParameter = par_PorcentajeDescuentoTE.HasValue ?
                 new ObjectParameter("par_PorcentajeDescuentoTE", par_PorcentajeDescuentoTE) :
                 new ObjectParameter("par_PorcentajeDescuentoTE", typeof(decimal));
@@ -171,7 +155,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("par_IdConsumidorFinal", par_IdConsumidorFinal) :
                 new ObjectParameter("par_IdConsumidorFinal", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbParametro_Insert_Result>("UDP_Gral_tbParametro_Insert", par_NombreEmpresaParameter, par_TelefonoEmpresaParameter, par_CorreoEmpresaParameter, par_PathLogoParameter, mnda_IdParameter, par_RolGerenteTiendaParameter, par_RolCreditoCobranzaParameter, par_RolSupervisorCajaParameter, par_RolCajeroParameter, par_RolAuditorParameter, par_SucursalPrincipalParameter, par_UsuarioCreaParameter, par_FechaCreaParameter, par_UsuarioModificaParameter, par_FechaModificaParameter, par_PorcentajeDescuentoTEParameter, par_IdConsumidorFinalParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbParametro_Insert_Result>("UDP_Gral_tbParametro_Insert", par_NombreEmpresaParameter, par_TelefonoEmpresaParameter, par_CorreoEmpresaParameter, par_PathLogoParameter, mnda_IdParameter, par_RolGerenteTiendaParameter, par_RolCreditoCobranzaParameter, par_RolSupervisorCajaParameter, par_RolCajeroParameter, par_RolAuditorParameter, par_SucursalPrincipalParameter, par_PorcentajeDescuentoTEParameter, par_IdConsumidorFinalParameter);
         }
     
         public virtual ObjectResult<UDP_Gral_tbParametro_Update_Result> UDP_Gral_tbParametro_Update(Nullable<byte> par_Id, string par_NombreEmpresa, string par_TelefonoEmpresa, string par_CorreoEmpresa, string par_PathLogo, Nullable<short> mnda_Id, Nullable<int> par_RolGerenteTienda, Nullable<int> par_RolCreditoCobranza, Nullable<int> par_RolSupervisorCaja, Nullable<int> par_RolCajero, Nullable<int> par_RolAuditor, Nullable<short> par_SucursalPrincipal, Nullable<int> par_UsuarioCrea, Nullable<System.DateTime> par_FechaCrea, Nullable<decimal> par_PorcentajeDescuentoTE, Nullable<int> par_IdConsumidorFinal)
@@ -1749,6 +1733,28 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("usu_SesionesValidas", typeof(byte));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbUsuario_Update_Result>("UDP_Acce_tbUsuario_Update", usu_IdParameter, usu_NombreUsuarioParameter, usu_NombresParameter, usu_ApellidosParameter, usu_CorreoParameter, usu_EsActivoParameter, usu_RazonInactivoParameter, usu_EsAdministradorParameter, usu_SesionesValidasParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbBodegaDetalle_CantidadExistente_Result> UDP_Inv_tbBodegaDetalle_CantidadExistente(Nullable<int> bod_Id, string prod_Codigo)
+        {
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodegaDetalle_CantidadExistente_Result>("UDP_Inv_tbBodegaDetalle_CantidadExistente", bod_IdParameter, prod_CodigoParameter);
+        }
+    
+        public virtual ObjectResult<spGetDepartamento_Result> spGetDepartamento(string codMunicipio)
+        {
+            var codMunicipioParameter = codMunicipio != null ?
+                new ObjectParameter("CodMunicipio", codMunicipio) :
+                new ObjectParameter("CodMunicipio", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetDepartamento_Result>("spGetDepartamento", codMunicipioParameter);
         }
     }
 }

@@ -23,6 +23,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Elaboracion")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime ent_FechaElaboracion { get; set; }
 
         [Display(Name = "Nombre Bodega")]

@@ -16,9 +16,9 @@ function GetMunicipios() {
                 $('#mun_Codigo').empty();
                 $('#mun_Codigo').append("<option value=''>Seleccione Municipio</option>");
                 $.each(data, function (key, val) {
-                    $('#mun_Codigo').append("<option value=" + val.mun_Codigo + ">" + data[key] + "</option>");
+                    $('#mun_Codigo').append("<option value=" + val.mun_Codigo + ">" + val.mun_Nombre + "</option>");
                 });
-
+                console.log(Mun_Codigo)
                 $('#mun_Codigo').trigger("chosen:updated");
             }
             else {

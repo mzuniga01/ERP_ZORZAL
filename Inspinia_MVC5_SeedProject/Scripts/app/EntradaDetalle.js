@@ -1,6 +1,5 @@
 ﻿var contador = 0;
 
-
 //para busqueda de productos
 $(document).ready(function () {
     $('#Table_BuscarProducto').DataTable(
@@ -107,10 +106,7 @@ $('#AgregarDetalleEntrada').click(function () {
 
         copiar += "<td id = 'codigoproducto'>" + $('#prod_Codigo').val() + "</td>";
 
-        copiar += "<td>" + $('#uni_Id option:selected').text() + "</td>";
-        copiar += "<td hidden id='uni_Id'>" + $('#unimedida option:selected').val() + "</td>";
-
-        //copiar += "<td id = 'unimedida'>" + $('#uni_Id').val() + "</td>";
+        copiar += "<td id = 'unimedida'>" + $('#uni_Id').val() + "</td>";
 
         copiar += "<td id = 'cantidad'>" + $('#entd_Cantidad').val() + "</td>";
 
@@ -127,13 +123,12 @@ $('#AgregarDetalleEntrada').click(function () {
             data: JSON.stringify({ entradadetalle: EntradaDetalle }),
         })
         .done(function (data) {
-            $('#prod_Codigo').val('');
-            $("#uni_Id").val('Seleccione');
-            $('#entd_Cantidad').val('');
-            //
+            $('#prod_Codigo').text('');
+            $("#uni_Id").text('');
+            $('#entd_Cantidad').text('');
+             //
             $('#prod_Descripcion').val('');
             $('#pscat_Id').val('');
-            
 
             $('#Mensajecodigo').text('');
             $('#Mensajecantidad').text('');
@@ -221,3 +216,22 @@ function Getentradadetalle_actualizar() {
     };
     return actualizarEntradaDetalle;
 }
+
+//para inprimir
+$('#btnImprimir').click(function () {
+    // Function available at https://gist.github.com/sixlive/55b9630cc105676f842c  
+    $.fn.printDiv = function () {
+        var printContents = $(this).html();
+        var originalContents = $('body').html();
+        $('body').html(printContents);
+        $('body').addClass('js-print');
+        window.print();
+        $('body').html(originalContents);
+        $('body').removeClass('js-print');
+    };
+
+    // Print
+    $('[data-print]').click(function () {
+        $('[data-print-content]').printDiv();
+    });
+});

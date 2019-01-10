@@ -103,14 +103,7 @@
 
                                                 <div class="form-group">
                                                     <div class="modal-body" id="frmAgregarCasoExito">
-                                                        @Html.Partial("_DetallesDeEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() { entd_UsuarioCrea = item.entd_UsuarioCrea,
-                                                       entd_FechaCrea =item.entd_FechaCrea,
-                                                       entd_UsuarioModifica =item.entd_UsuarioModifica,
-                                                       entd_FechaModifica =item.entd_FechaModifica,
-                                                       ent_Id =item.ent_Id,
-                                                       prod_Codigo = item.prod_Codigo,
-                                                       entd_Cantidad = item.entd_Cantidad,
-                                                       uni_Id = item.uni_Id, })
+                                                        @Html.Partial("_DetallesDeEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() { entd_UsuarioCrea = item.entd_UsuarioCrea,entd_FechaCrea=item.entd_FechaCrea,entd_UsuarioModifica=item.entd_UsuarioModifica,entd_FechaModifica=item.entd_FechaModifica,ent_Id=item.ent_Id, prod_Codigo = item.prod_Codigo, entd_Cantidad = item.entd_Cantidad, uni_Id = item.uni_Id, }))
                                                         <div class="col-md-12 text-center">
                                                             
                                                         </div>
@@ -152,32 +145,6 @@
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
-@*Modal Nuevo*@
-@*<div>
-    <div class="modal fade" id="ModalAgregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Nuevo Detalle Entrada</h4>
-                </div>
-                <div style="position:center;" class="modal-body" id="frmAgregarCasoExito">
-                    @Html.Partial("_CrearDetalleEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() {})
-                    <div class="form-group">
-                        <div class="col-md-12 text-center">
-                            <a href="@Url.Action("Edit","Entrada")" class="btn btn-primary">Guardar</a>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>*@
 
 
 @*modal para anular*@

@@ -34,6 +34,10 @@ namespace ERP_GMEDINA.Models
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public decimal bodd_CantidadMaxima { get; set; }
 
+        [Display(Name = " Cantidad Existente ")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public decimal bodd_CantidadExistente { get; set; }
+
         [Display(Name = "Punto Reorden ")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public decimal bodd_PuntoReorden { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,10 @@ namespace ERP_GMEDINA.Models
     [MetadataType(typeof(BodegaMetadata))]
     public partial class tbBodega
     {
+        [NotMapped]
+        [Display(Name = "Departamento")]
+        public string dep_Codigo { get; set; }
+
     }
 
     public class BodegaMetadata
@@ -39,7 +44,7 @@ namespace ERP_GMEDINA.Models
         [EmailAddress(ErrorMessage = "No es un Correo Electronico")]
         public string bod_Correo { get; set; }
 
-        [Display(Name = "Telèfono ")]
+        [Display(Name = "Teléfono ")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public string bod_Telefono { get; set; }
 
@@ -55,6 +60,8 @@ namespace ERP_GMEDINA.Models
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte bod_EsActiva { get; set; }
 
+
+        
         //[Display(Name = "Creado Por")]
         ////[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         //public int bod_UsuarioCrea { get; set; }
@@ -73,8 +80,8 @@ namespace ERP_GMEDINA.Models
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         //public Nullable<System.DateTime> bod_FechaModifica { get; set; }
 
-       
-        
+
+
 
     }
 }

@@ -27,5 +27,10 @@ namespace ERP_GMEDINA.Models
         public decimal bodd_Costo { get; set; }
         public decimal bodd_CostoPromedio { get; set; }
         public Nullable<decimal> bodd_CantidadExistente { get; set; }
+    
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbBodega tbBodega { get; set; }
+        public virtual tbProducto tbProducto { get; set; }
     }
 }

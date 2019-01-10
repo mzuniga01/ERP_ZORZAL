@@ -9,7 +9,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <input type="text" id="search" placeholder="Buscar Productos" class="form-control" />
-                    <table id="Table_BuscarProducto" class="table table table-striped  table-bordered">
+                    <table id="Table_BuscarProductoBodega" class="table table table-striped  table-bordered">
                         <thead>
                             <tr>
                                 <th>
@@ -30,7 +30,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.prod_Descripcion" , tr data-container="@item.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbUnidadMedida.uni_Descripcion" , tr data-interval="@item.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre">
+                                <tr tr data-id="@item.prod_Codigo" data-content="@item.prod_Descripcion" data-container="@item.tbProductoSubcategoria.pscat_Descripcion"  data-keyboard="@item.tbUnidadMedida.uni_Descripcion" data-interval="@item.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.prod_Descripcion)
                                     </td>

@@ -16,15 +16,16 @@
     </div>
 </div>
 
+
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado de Entradas</h5>
-					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Entrada", "Create", null, new { @class = "btn btn-primary"})
-					</div>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Registrar Entrada", "Create", null, new { @class = "btn btn-primary" })
+                    </div>
                 </div>
                 <div class="ibox-content">
                     <table class="table table-responsive" style="width:100%" id="tbEntrada">
@@ -79,19 +80,29 @@
                                         }
                                         else if (item.estm_Id == 1)
                                         {
-                                            <p>Aplicado</p>
+                                            <p style="color:maroon">Aplicado</p>
                                         }
                                         else if (item.estm_Id == 15)
                                         {
-                                            <p>Anulado</p>
+                                            <p style="color:maroon">Anulado</p>
                                         }
                                     </td>
 
                                     <td>
-                                        @Html.ActionLink("Detalles", "Details", new { id = item.ent_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.ent_Id }, new { @class = "btn btn-white btn-xs" })
-                                        <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
-                                         
+                                        @if (item.estm_Id == 15)
+                                        {
+                                            <p style="color:maroon">No Habilitado</p>
+                                        }
+                                        else if (item.estm_Id == 1)
+                                        {
+                                            <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("Detalles", "Details", new { id = item.ent_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.ent_Id }, new { @class = "btn btn-white btn-xs" })
+                                            <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
+                                        }
                                     </td>
                                 </tr>
                             }
@@ -102,7 +113,7 @@
             </div>
         </div>
     </div>
- </div>
+</div>
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
@@ -147,8 +158,8 @@
     });
 </script>
 @*<script type="text/javascript">
-    function Activar(Id) {
-        console.log("#boton_" + Id, "#boton_" + Id);
-        $("#boton_"+Id).attr("value", "Activar");
-    }
-</script>*@
+        function Activar(Id) {
+            console.log("#boton_" + Id, "#boton_" + Id);
+            $("#boton_"+Id).attr("value", "Activar");
+        }
+    </script>*@

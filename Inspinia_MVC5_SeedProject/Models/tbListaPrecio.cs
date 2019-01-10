@@ -18,6 +18,7 @@ namespace ERP_GMEDINA.Models
         public tbListaPrecio()
         {
             this.tbProducto = new HashSet<tbProducto>();
+            this.tbListadoPrecioDetalle = new HashSet<tbListadoPrecioDetalle>();
         }
     
         public int listp_Id { get; set; }
@@ -35,6 +36,7 @@ namespace ERP_GMEDINA.Models
         public virtual tbUsuario tbUsuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbProducto> tbProducto { get; set; }
-        public virtual tbListadoPrecioDetalle tbListadoPrecioDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
     }
 }

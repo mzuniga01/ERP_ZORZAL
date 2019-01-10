@@ -82,6 +82,7 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
+
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbEntrada.estm_Id);
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
@@ -303,9 +304,9 @@ namespace ERP_ZORZAL.Controllers
             //        tbEntrada.fact_Id = 9999;
             //    }
             //}
-
             IEnumerable<object> ENTRADA = null;
             IEnumerable<object> DETALLE = null;
+            tbEntrada.estm_Id = 2;
             var idMaster = 0;
             var MensajeError = "";
             var MsjError = "";
@@ -317,6 +318,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
             ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbEntrada.ent_BodegaDestino);
             ViewBag.Producto = db.tbProducto.ToList();
+
 
             if (ModelState.IsValid)
             {
@@ -503,6 +505,147 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.Producto = db.tbProducto.ToList();
             return View(tbEntrada);
         }
+
+
+
+
+
+
+        //para que cambie estado a activar
+        public ActionResult EstadoInactivar(int? id)
+        {
+
+            try
+            {
+                tbEntrada obj = db.tbEntrada.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Inv_tbEntrada_Update_Estado(id, EstadoEntrada.Inactivo);
+                foreach (UDP_Inv_tbEntrada_Update_Estado_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError == "-1")
+                {
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+                    return RedirectToAction("Edit/" + id);
+                }
+                else
+                {
+                    return RedirectToAction("Edit/" + id);
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+                return RedirectToAction("Edit/" + id);
+            }
+
+
+            //return RedirectToAction("Index");
+        }
+        //para que cambie estado a inactivar
+        public ActionResult Estadoactivar(int? id)
+        {
+
+            try
+            {
+                tbEntrada obj = db.tbEntrada.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Inv_tbEntrada_Update_Estado(id, EstadoEntrada.Activo);
+                foreach (UDP_Inv_tbEntrada_Update_Estado_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError == "-1")
+                {
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+                    return RedirectToAction("Edit/" + id);
+                }
+                else
+                {
+                    return RedirectToAction("Edit/" + id);
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+                return RedirectToAction("Edit/" + id);
+            }
+
+
+            //return RedirectToAction("Index");
+        }
+
+
+
+
+
+        //para que Anular una entrada
+        public ActionResult EstadoAnular(int? id)
+        {
+
+            try
+            {
+                tbEntrada obj = db.tbEntrada.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Inv_tbEntrada_Update_Estado(id, EstadoEntrada.Anulado);
+                foreach (UDP_Inv_tbEntrada_Update_Estado_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError == "-1")
+                {
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+                    return RedirectToAction("Edit/" + id);
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+                return RedirectToAction("Edit/" + id);
+            }
+            //return RedirectToAction("Index");
+        }
+        //para Aplicar una entrada
+        public ActionResult EstadoAplicar(int? id)
+        {
+
+            try
+            {
+                tbEntrada obj = db.tbEntrada.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Inv_tbEntrada_Update_Estado(id, EstadoEntrada.Aplicado);
+                foreach (UDP_Inv_tbEntrada_Update_Estado_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError == "-1")
+                {
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+                    return RedirectToAction("Edit/" + id);
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+                return RedirectToAction("Edit/" + id);
+            }
+
+        }
+
+
 
     }
 }

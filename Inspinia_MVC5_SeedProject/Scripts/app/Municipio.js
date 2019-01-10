@@ -25,7 +25,7 @@ function GetMunicipios() {
         else
         {
             $('#mun_Codigo').empty();
-            $('#mun_Codigo').append("<option value=''>Seleccione</option>");
+            $('#mun_Codigo').append("<option value=" + val.mun_Codigo + ">" + " Seleccione </option>");
         }
     });
 }

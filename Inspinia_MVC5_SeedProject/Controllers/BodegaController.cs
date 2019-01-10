@@ -66,8 +66,16 @@ namespace ERP_GMEDINA.Controllers
                 dep_Nombre = string.Concat(s.dep_Codigo + " - " + s.dep_Nombre)
             }).ToList();
 
+            var _Municipios = db.tbMunicipio.Select(s => new
+            {
+                mun_Codigo = s.mun_Codigo,
+                mun_Nombre = string.Concat(s.mun_Codigo + " - " + s.mun_Nombre)
+            }).ToList();
+
             ViewBag.DepartamentoList = new SelectList(_departamentos, "dep_Codigo", "dep_Nombre", "Seleccione");
-            ViewBag.MunicipioList = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
+            ViewBag.MunicipioList = new SelectList(_Municipios, "mun_Codigo", "mun_Nombre" , "Seleccione");
+            ////
+            ///
         }
 
         [HttpPost]
@@ -77,12 +85,13 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpPost]
-        //public JsonResult GetDepartamento(string mun_Codigo)
-        //{
-        //    var list = db.spGetMunicipios(mun_Codigo).ToList();
-        //    return Json(list, JsonRequestBehavior.AllowGet);
-        //}
+        [HttpPost]
+        public JsonResult GetDepartamento(string CodMunicipio)
+        {
+            var list = db.spGetDepartamento(CodMunicipio).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public JsonResult removeBodegaDetalle(tbBodegaDetalle bodedaDetalle)
         {
@@ -102,6 +111,7 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult Create()
         {
             this.AllLists();
+            Session["tbBodegaDetalle"] = null;
             return View();
         }
 
@@ -110,7 +120,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="bod_Id,bod_Nombre,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva,bod_UsuarioCrea,bod_FechaCrea,bod_UsuarioModifica,bod_FechaModifica")] tbBodega tbBodega)
+        public ActionResult Create([Bind(Include="bod_Id,bod_Nombre,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva")] tbBodega tbBodega)
         {
             IEnumerable<object> BODEGA = null;
             IEnumerable<object> DETALLE = null;
@@ -205,8 +215,9 @@ namespace ERP_GMEDINA.Controllers
                 return HttpNotFound();
             }
             this.AllLists();
+            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.tbMunicipio.tbDepartamento.dep_Codigo);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
-            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo",  "dep_Nombre");
+            Session["tbBodegaDetalle"] = null;
             return View(tbBodega);
         }
        
@@ -393,10 +404,10 @@ namespace ERP_GMEDINA.Controllers
                                 }
                             }
 
-                            //else
+                            else
                             {
                                 _Tran.Complete();
-                                //return RedirectToAction("Index");
+                                return RedirectToAction("Index");
                             }
 
                         }
@@ -413,8 +424,9 @@ namespace ERP_GMEDINA.Controllers
                 return RedirectToAction("Index");
             }
             this.AllLists();
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
+            
             return View(tbBodega);
         }
 
@@ -452,6 +464,9 @@ namespace ERP_GMEDINA.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //para Mostrar la cantidad en Existencia de la bodega
+      
 
         //para que cambie estado a activar
         public ActionResult EstadoInactivar(int? id)

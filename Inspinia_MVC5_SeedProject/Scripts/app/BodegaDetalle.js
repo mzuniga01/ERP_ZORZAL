@@ -19,12 +19,11 @@ $(document).ready(function () {
     });
 
 });
-
 //Fin
 
 ///Busqueda products
 $(document).ready(function () {
-        $('#Table_BuscarProducto').DataTable(
+    $('#Table_BuscarProductoBodega').DataTable(
             {
                 "searching": false,
                 "lengthChange": false,
@@ -42,7 +41,7 @@ $(document).ready(function () {
                 }
             });
 
-        var $rows = $('#Table_BuscarProducto tr');
+    var $rows = $('#Table_BuscarProductoBodega tr');
         $("#search").keyup(function () {
             var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 
@@ -57,7 +56,7 @@ $(document).ready(function () {
 
         });
     });
-$(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", function () {
+$(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccionar", function () {
     idItem = $(this).closest('tr').data('id');
     contentItem = $(this).closest('tr').data('content');
     uni_IdtItem = $(this).closest('tr').data('keyboard');
@@ -172,11 +171,15 @@ $('#AgregarBodegaDetalle').click(function () {
         })
             .done(function (data) {
                 $('#prod_Codigo').val('');
+                $('#prod_Descripcion').val('');
+                $('#pcat_Id').val('');
+                $('#pscat_Id').val('');
+                $('#uni_Id').val('');
                 $('#bodd_PuntoReorden').val('');
                 $('#bodd_CantidadMinima').val('');
                 $('#bodd_CantidadMaxima').val('');
                 $('#bodd_Costo').val('');
-                $('#bodd_CostoPromedio').val('');
+                $('#bodd_CostoPromedio').val(''); 
 
                 $('#MessageError').text('');
                 $('#Error_Producto').text('');
@@ -357,6 +360,18 @@ $('#btnGuardarNuevoDetalle').click(function () {
 
     else {
         //Aqui importa el orden
+        contador = contador + 1;
+        copiar = "<tr data-id=" + contador + ">";
+        copiar += "<td id = 'Producto'>" + $('#prod_Codigo').val() + "</td>";
+        copiar += "<td id = 'Preorden'>" + $('#bodd_PuntoReorden').val() + "</td>";// aqui va el campo y luego se llena con el id del mismo, que ya ha capturado el valor
+        copiar += "<td id = 'Cminima'>" + $('#bodd_CantidadMinima').val() + "</td>";
+        copiar += "<td id = 'Cmaxima'>" + $('#bodd_CantidadMaxima').val() + "</td>";
+        copiar += "<td id = 'Costo'>" + $('#bodd_Costo').val() + "</td>";
+        copiar += "<td id = 'Cpromedio'>" + $('#bodd_CostoPromedio').val() + "</td>";
+        copiar += "<td>" + '<button id="removeBodegaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+        copiar += "</tr>";
+        $('#tblBodegadetalle_Create').append(copiar);
+
         var tbBodegaDetalle = Getbodegadetalle();
         $.ajax({
             url: "/Bodega/SaveNuevoDetalle",
@@ -404,12 +419,27 @@ function Getbodegadetalle() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Busqueda Producto AutoComplete
-$(function () {
-    $("#prod_Codigo").autocomplete({
-        source: "/Bodega/BuscarProductos"
-    });
-});
+//$(function () {
+//    $("#prod_Codigo").autocomplete({
+//        source: "/Bodega/BuscarProductos"
+//    });
+//});
 //Fin
 
 //2da Opcion
