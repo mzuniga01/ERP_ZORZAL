@@ -52,23 +52,26 @@ namespace ERP_ZORZAL.Controllers
             return PartialView();
         }
 
-    
 
-    // GET: /Pedido/Create
-    public ActionResult Create()
+
+        // GET: /Pedido/Create
+        public ActionResult Create()
         {
             //ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             //ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte");
             //ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
             //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
-            
+
             ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
+            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
             ViewBag.Cliente = db.tbCliente.ToList();
+            Session["tbPedidoDetalle"] = null;
             ViewBag.Producto = db.tbProducto.ToList();
             tbPedido Pedido = new tbPedido();
             Pedido.suc_Id = 1;
             return View(Pedido);
+            
         }
 
         // POST: /Pedido/Create
@@ -78,7 +81,9 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id")] tbPedido tbPedido)
         {
-
+            ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
+            ViewBag.Producto = db.tbProducto.ToList();
+            ViewBag.Cliente = db.tbCliente.ToList();
             var list = (List<tbPedidoDetalle>)Session["tbPedidoDetalle"];
             string MensajeError = "";
             var MensajeErrorDetalle = "";
@@ -90,16 +95,13 @@ namespace ERP_ZORZAL.Controllers
                 {
                     using (TransactionScope Tran = new TransactionScope())
                     {
-                        //db.tbTipoIdentificacion.Add(tbTipoIdentificacion);
-                        //db.SaveChanges();
-                        //return RedirectToAction("Index");
-
-                        listPedido = db.UDP_Vent_tbPedido_Insert(tbPedido.esped_Id,
-                                                                   tbPedido.ped_FechaElaboracion,
-                                                                   tbPedido.ped_FechaEntrega,
-                                                                   tbPedido.clte_Id,
-                                                                   tbPedido.suc_Id,
-                                                                   tbPedido.fact_Id);
+                        listPedido = db.UDP_Vent_tbPedido_Insert(
+                                                tbPedido.esped_Id,
+                                                tbPedido.ped_FechaElaboracion,
+                                                tbPedido.ped_FechaEntrega,
+                                                 tbPedido.clte_Id,
+                                                tbPedido.suc_Id,
+                                                tbPedido.fact_Id);
                         foreach (UDP_Vent_tbPedido_Insert_Result Pedido in listPedido)
                             MensajeError = Pedido.MensajeError;
                         if (MensajeError == "-1")
@@ -119,17 +121,16 @@ namespace ERP_ZORZAL.Controllers
                                         {
                                             var pedds_Id = Convert.ToInt32(MensajeError);
                                             PedDetalle.ped_Id = pedds_Id;
+
+                                            PedDetalle.ped_Id = pedds_Id;
                                             listPedidoDetalle = db.UDP_Vent_tbPedidoDetalle_Insert(
                                                 PedDetalle.ped_Id,
                                                 PedDetalle.prod_Codigo,
                                                 PedDetalle.pedd_Descripcion,
                                                 PedDetalle.pedd_Cantidad,
-                                                PedDetalle.pedd_CantidadFacturada
-                                      
-                                                );
+                                                PedDetalle.pedd_CantidadFacturada);
                                             foreach (UDP_Vent_tbPedidoDetalle_Insert_Result SPpedidodetalle in listPedidoDetalle)
                                             {
-                                        
                                                 MensajeErrorDetalle = SPpedidodetalle.MensajeError;
                                                 if (MensajeError == "-1")
                                                 {
@@ -153,27 +154,31 @@ namespace ERP_ZORZAL.Controllers
                     }
                 }
                 catch (Exception Ex)
-                            {
-                                var errors = ModelState.Values.SelectMany(v => v.Errors);
-                                Ex.Message.ToString();
-                            }
+                {
+                    ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
+                    ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
+                    ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
+                    ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
+                    ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
+                    ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
+                    ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
+                    ViewBag.Producto = db.tbProducto.ToList();
+                    ViewBag.Cliente = db.tbCliente.ToList();
+                    ViewBag.ListaPrecio = db.tbListaPrecio.ToList();
+                }
 
-                            ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
-                            ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
-                            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
-                            ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
-                            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
-                            ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
-                        }
-                        else
-                        {
-                            var errors = ModelState.Values.SelectMany(v => v.Errors);
-                        }
+            }
+            ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
+            ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
+            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
+            ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
+            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
+            ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
+            ViewBag.Cliente = db.tbCliente.ToList();
+            ViewBag.Producto = db.tbProducto.ToList();
+            ViewBag.ListaPrecio = db.tbListaPrecio.ToList();
             return View(tbPedido);
-
-
         }
-
         [HttpPost]
         public JsonResult SavePedidoDetalles(tbPedidoDetalle PedidoDetalle)
         {
@@ -362,6 +367,7 @@ namespace ERP_ZORZAL.Controllers
                 return PartialView("_PedidoDetalleEditar", EditPedidoDetalle);
             }
         }
+
 
 
 
