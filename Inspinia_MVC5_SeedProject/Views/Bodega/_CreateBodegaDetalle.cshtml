@@ -53,14 +53,14 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                <input type="number" id="bodd_CantidadMinima" placeholder="" class="form-control" />
+                                @Html.EditorFor(model => model.bodd_CantidadMinima, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
                                 <div id="ErrorCantidadMinima_Create">
                                     @Html.ValidationMessageFor(model => model.bodd_CantidadMinima)
                                 </div>
                             </div>
                             @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.bodd_PuntoReorden)
+                                @Html.EditorFor(model => model.bodd_PuntoReorden, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
                                 <div id="ErrorPuntoReorden_Create">
                                     @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
                                 </div>
@@ -69,13 +69,16 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                <input type="number" id="bodd_CantidadMaxima" placeholder="" class="form-control" />
-                                
+                                @Html.EditorFor(model => model.bodd_CantidadMaxima, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
+                                <div id="ErrorCantidadMaxima_Create">
+                                    @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
+                                </div>
                             </div>
 
                             @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                <input type="number" id="bodd_Costo" placeholder="" class="form-control" />
+                                @Html.EditorFor(model => model.bodd_Costo, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
                                 @Html.ValidationMessageFor(model => model.bodd_Costo)
                                 <div id="ErrorCosto_Create">
                                     @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
@@ -86,9 +89,9 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.bodd_CostoPromedio, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                <input type="number" id="bodd_CostoPromedio" placeholder="" class="form-control" />
+                                @Html.EditorFor(model => model.bodd_CostoPromedio, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
                                 <div id="ErrorCostoPromedio_Create">
-                                    @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bodd_CostoPromedio)</p>
                                 </div>
                             </div>
 

@@ -1,5 +1,18 @@
 ﻿var contador = 0;
 
+//Validar Los campos numericos
+function format(input) {
+    var num = input.value.replace(/\,/g, '');
+    if (!isNaN(num)) {
+        input.value = num;
+    }
+    else {
+        alert('Solo se permiten numeros');
+        input.value = input.value.replace(/[^\d\.]*/g, '');
+    }
+}
+//fin
+
 //js Todas las tablas
 $(document).ready(function () {
     $('#tbBodega').DataTable({
@@ -230,81 +243,7 @@ $(document).on("click", "#tblBodegadetalle_Create tbody tr td button#removeBodeg
 
 //Actualizar Detalle Bodega
 function btnActualizarBodegaDetalle(bodd_Id) {
-
-    var Producto = $('#prod_Codigo').val();
-    var Preorden = $('#bodd_PuntoReorden').val();
-    var Cminima = $('#bodd_CantidadMinima').val();
-    var Cmaxima = $('#bodd_CantidadMaxima').val();
-    var Costo = $('#bodd_Costo').val();
-    var Cpromedio = $('#bodd_CostoPromedio').val();
-
-
-    if (Producto == '') {
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorProducto_Create').after('<ul id="Error_Producto" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
-    }
-    else if (Preorden == '') {
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorPuntoReorden_Create').after('<ul id="Error_PuntoReorden" class="validation-summary-errors text-danger">Campo Punto Reorden Requerido</ul>');
-    }
-    else if (Cminima == '') {
-
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorCantidadMinima_Create').after('<ul id="Error_CantidadMinima" class="validation-summary-errors text-danger">Campo Canidad Mínima Requerido</ul>');
-    }
-    else if (Cmaxima == '') {
-
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorCantidadMaxima_Create').after('<ul id="Error_CantidadMaxima" class="validation-summary-errors text-danger">Campo Cantidad Máxima Requerido</ul>');
-    }
-    else if (Costo == '') {
-
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorCosto_Create').after('<ul id="Error_Costo" class="validation-summary-errors text-danger">Campo Costo Requerido</ul>');
-    }
-    else if (Cpromedio == '') {
-
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorCostoPromedio_Create').after('<ul id="Error_CostoPromedioo" class="validation-summary-errors text-danger">Campo Costo Promedio Requerido</ul>');
-    }
-
-    else {
+    console.log(bodd_Id);
 
         var tbBodegaDetalle = Getbodegadetalle_UPDATE();
 
@@ -327,7 +266,7 @@ function btnActualizarBodegaDetalle(bodd_Id) {
                 $('#ValidationMessageFor' + bodd_Id).after('<ul id="MensajeError' + bodd_Id + '" class="validation-summary-errors text-danger">Campo Requerido</ul>');
             }
         });
-    }
+    
 }
 function Getbodegadetalle_UPDATE() {
     var ACTUALIZAR_tbBodegaDetalle = {
@@ -406,6 +345,7 @@ function Getbodegadetalle() {
     return GUARDAR_NUEVO_DETALLE;
 }
 //Fin
+
 
 
 
