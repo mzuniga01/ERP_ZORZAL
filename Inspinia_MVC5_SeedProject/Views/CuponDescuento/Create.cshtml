@@ -4,14 +4,13 @@
     ViewBag.Title = "Ragistrar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Cupón Descuento</h2>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index")
+            @Html.ActionLink("Regresar", "Index")
         </div>
     </div>
 </div>
@@ -27,151 +26,162 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true)
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-               <select id="suc_Id" name="suc_Id" class="form-control" readonly>
-                   <option value="1">San Pedro Sula</option>
-               </select>
-            </div>
-        </div>
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_PorcentajeDescuento, "*% Descuento", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    <select id="suc_Id" name="suc_Id" class="form-control" readonly>
+                                        <option value="1">San Pedro Sula</option>
+                                    </select>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, "*Máximo Monto Descuento", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_MontoDescuento,"*Monto Descuento", new { @class = "control -label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MontoDescuento)</p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_CantidadCompraMinima, "*Cantidad Mínima", new { @class = "control -label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new { @type = "number", @min = "0" } })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MontoDescuento)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @readonly = "readonly"} })
-                <p style="color:red"> @Html.ValidationMessageFor(model => model.cdto_FechaEmision)</p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_CantidadCompraMinima, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new {  @readonly = "readonly" } })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_FechaVencimiento)</p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_FechaEmision)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaRedencion, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @readonly="readonly" } })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_FechaRedencion)</p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @class = "form-control" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_FechaVencimiento)</p>
+                                </div>
+                            </div>
 
-        <input type="hidden" id="clte_Id" name="clte_Id" value="false" />
-        <input type="hidden" id="cdto_Redimido" name="cdto_Redimido" value="false" />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_FechaRedencion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_FechaRedencion)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            <div class="col-md-12 text-center">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <input type="hidden" id="clte_Id" name="clte_Id" value="false" />
+                                    <input type="hidden" id="cdto_Redimido" name="cdto_Redimido" value="false" />
+                                    <input type="hidden" id="cdto_Anulado" name="cdto_Anulado" value="false" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    }
 
                 </div>
             </div>
         </div>
     </div>
- </div>
+</div>
 
- 
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script>
- $.datepicker.regional['es'] = {
- closeText: 'Cerrar',
- prevText: '< Ant',
- nextText: 'Sig >',
- currentText: 'Hoy',
- monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
- monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
- dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
- dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
- dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
- weekHeader: 'Sm',
- dateFormat: 'dd/mm/yy',
- firstDay: 1,
- isRTL: false,
- showMonthAfterYear: false,
- yearSuffix: ''
- };
- $.datepicker.setDefaults($.datepicker.regional['es']);
-$(function () {
-    $("#cdto_FechaEmision").datepicker({ dateFormat: 'dd/mm/yy' });
-    $("#cdto_FechaVencimiento").datepicker({ dateFormat: 'dd/mm/yy' });
-    $("#cdto_FechaRedencion").datepicker({ dateFormat: 'dd/mm/yy', minDate: 0 });
-});
-</script>
+    <script>
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '< Ant',
+            nextText: 'Sig >',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
+        $(function () {
+            $("#cdto_FechaEmision").datepicker({ dateFormat: 'dd/mm/yy', maxDate: '+0d', minDate: 0 }).datepicker('setDate', new Date());
 
-<script>
-        $("#cdto_FechaEmision").datepicker({
-        }).datepicker('setDate', new Date());
-</script>
-<script>
-    $("#cdto_FechaVencimiento").datepicker({
-        }).datepicker('setDate', new FormData()+365);
-</script>
+        });
+    </script>
+    <script>
+        $("#cdto_FechaVencimiento").datepicker('setDate', new FormData() + 365);
+        $("#cdto_FechaVencimiento").datepicker({ dateFormat: 'dd/mm/yy', startDate: new Date() }).datepicker('setDate', new FormData() + 365)
+    </script>
+    <script>
+        $('#cdto_PorcentajeDescuento').click(function () {
+            $('#cdto_MontoDescuento').val('0.00');
+            $('#cdto_CantidadCompraMinima').val('0.00');
+            $('#cdto_PorcentajeDescuento').val('');
+            $('#cdto_MaximoMontoDescuento').val('');
+        });
+    </script>
 
-<script>
-    $('#cdto_PorcentajeDescuento').click(function () {
-        $('#cdto_MontoDescuento').val('0.00');
-        $('#cdto_CantidadCompraMinima').val('0.00');
-        $('#cdto_PorcentajeDescuento').val('');
-        $('#cdto_MaximoMontoDescuento').val('');
-    });
-</script>
+    <script>
+        $('#cdto_MontoDescuento').click(function () {
+            $('#cdto_PorcentajeDescuento').val('0.00');
+            $('#cdto_MaximoMontoDescuento').val('0.00');
+            $('#cdto_MontoDescuento').val('');
+            $('#cdto_CantidadCompraMinima').val('');
+        });
+    </script>
 
-<script>
-    $('#cdto_MontoDescuento').click(function () {
-        $('#cdto_PorcentajeDescuento').val('0.00');
-        $('#cdto_MaximoMontoDescuento').val('0.00');
-        $('#cdto_MontoDescuento').val('');
-        $('#cdto_CantidadCompraMinima').val('');
-    });
-</script>
-
+    <script type="text/javascript">
+        jQuery('input,select').each(function () {
+            var req = jQuery(this).attr('data-val-required');
+            if (undefined != req) {
+                var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+                var text = label.text();
+                if (text.length > 0) {
+                    label.append('<span style="color:red">*</span>');
+                }
+            }
+        });
+    </script>
 }

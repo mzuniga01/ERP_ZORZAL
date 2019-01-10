@@ -3749,10 +3749,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="par_RolCajero" Type="int" Mode="In" />
     <Parameter Name="par_RolAuditor" Type="int" Mode="In" />
     <Parameter Name="par_SucursalPrincipal" Type="smallint" Mode="In" />
-    <Parameter Name="par_UsuarioCrea" Type="int" Mode="In" />
-    <Parameter Name="par_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="par_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="par_FechaModifica" Type="datetime" Mode="In" />
     <Parameter Name="par_PorcentajeDescuentoTE" Type="decimal" Mode="In" />
     <Parameter Name="par_IdConsumidorFinal" Type="int" Mode="In" />
   </Function>
@@ -4204,6 +4200,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="clte_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="clte_FechaCrea" Type="datetime" Mode="In" />
     <Parameter Name="clte_ConsumidorFinal" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbCuponDescuento_Anulado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="cdto_ID" Type="int" Mode="In" />
+    <Parameter Name="cdto_Anulado" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbCuponDescuento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="suc_Id" Type="smallint" Mode="In" />

@@ -33,10 +33,12 @@ namespace ERP_GMEDINA.Models
         public System.DateTime cdto_FechaVencimiento { get; set; }
 
         [Display(Name = "% Descuento")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         [Range(0,100)]
         public Nullable<decimal> cdto_PorcentajeDescuento { get; set; }
 
         [Display(Name = "Monto Descuento")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public Nullable<decimal> cdto_MontoDescuento { get; set; }
 
         [Display(Name = "Máximo Monto Descuento")]
@@ -51,7 +53,8 @@ namespace ERP_GMEDINA.Models
         public bool cdto_Redimido { get; set; }
 
         [Display(Name = "Anulado")]
-        public Nullable<bool> cdto_Anulado { get; set; }
+        public bool cdto_Anulado { get; set; }
+        //public Nullable<bool> cdto_Anulado { get; set; }
 
         [Display(Name = "Usuario Crea")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]

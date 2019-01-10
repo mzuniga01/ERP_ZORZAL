@@ -85,7 +85,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdto_CantidadCompraMinima, new { @class = "control -label col-md-2" })
+            @Html.LabelFor(model => model.cdto_CantidadCompraMinima, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new { @type = "number", @min = "0" } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>

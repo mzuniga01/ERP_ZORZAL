@@ -28,98 +28,104 @@
                 <div class="ibox-content">
 
 
-				    <dl class="dl-horizontal">
+                    <dl class="dl-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tbSucursal.suc_Descripcion)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbSucursal.suc_Descripcion)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.cdto_ID)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_ID)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cdto_ID)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.cdto_PorcentajeDescuento)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_ID)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_PorcentajeDescuento)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cdto_PorcentajeDescuento)
-        </dd>
-        <dt>
-            Máximo Descuento
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_PorcentajeDescuento)
+                        </dd>
+                        <dt>
+                            Máximo Descuento
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cdto_MaximoMontoDescuento)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.cdto_MontoDescuento)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_MaximoMontoDescuento)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_MontoDescuento)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cdto_MontoDescuento)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_MontoDescuento)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.cdto_CantidadCompraMinima)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_CantidadCompraMinima)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cdto_CantidadCompraMinima)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_CantidadCompraMinima)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.cdto_Anulado)
-        </dt>
-         @if (Model.cdto_Anulado == true)
-         {
-             <dd>Si</dd>
-         }
-         else
-         {
-             <dd>No</dd>
-         }
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_Anulado)
+                        </dt>
+                        @if (Model.cdto_Anulado == true)
+                        {
+                            <dd>Si</dd>
+                        }
+                        else
+                        {
+                            <dd>No</dd>
+                        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.cdto_Redimido)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_Redimido)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cdto_Redimido)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.cdto_FechaEmision)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_Redimido)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_FechaEmision)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cdto_FechaEmision)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_FechaEmision)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.cdto_FechaVencimiento)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_FechaVencimiento)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cdto_FechaVencimiento)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.cdto_FechaRedencion)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_FechaVencimiento)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_FechaRedencion)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cdto_FechaRedencion)
-        </dd>
-    </dl>
-
-
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.cdto_ID }, new { @class = "btn btn-primary" })
-
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_FechaRedencion)
+                        </dd>
+                    </dl>
+                    @if (Model.cdto_Anulado == false)
+                    {
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.cdto_ID }, new { @class = "btn btn-primary" })
+                    }
+                    else
+                    {
+                        <button id="bottonAnularCD" name="bottonAnulado" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btnAnulado">
+                            Editar
+                        </button>
+                    }
                 </div>
             </div>
             <div class="ibox-content">
@@ -133,23 +139,42 @@
                         <td>Creado</td>
                         <td>
                             @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                        @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                    </td>
-                    <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
-                </tr>
-                <tr>
-                    <td>Modificado</td>
-                    <td>
-                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                </td>
-                <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
-            </tr>
-        </table>
-        </div>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
- </div>
+</div>
+
+<div class="modal fade" id="btnAnulado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cupón Descuento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                El Cupón Descuento no puede ser Editada porque fue Anulada.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="AnularNotaCredito();" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

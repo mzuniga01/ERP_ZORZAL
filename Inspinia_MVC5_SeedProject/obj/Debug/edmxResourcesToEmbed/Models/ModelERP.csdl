@@ -736,10 +736,6 @@
       <Parameter Name="par_RolCajero" Mode="In" Type="Int32" />
       <Parameter Name="par_RolAuditor" Mode="In" Type="Int32" />
       <Parameter Name="par_SucursalPrincipal" Mode="In" Type="Int16" />
-      <Parameter Name="par_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="par_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="par_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="par_FechaModifica" Mode="In" Type="DateTime" />
       <Parameter Name="par_PorcentajeDescuentoTE" Mode="In" Type="Decimal" />
       <Parameter Name="par_IdConsumidorFinal" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -2056,6 +2052,10 @@
       <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
       <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
     </AssociationSet>
+    <FunctionImport Name="UDP_Vent_tbCuponDescuento_Anulado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Anulado_Result)">
+      <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
+      <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -6250,4 +6250,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="UDP_Vent_tbCuponDescuento_Anulado_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
 </Schema>

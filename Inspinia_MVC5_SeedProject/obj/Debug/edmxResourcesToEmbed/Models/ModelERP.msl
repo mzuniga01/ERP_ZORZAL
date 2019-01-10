@@ -1706,5 +1706,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuento_Anulado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuento_Anulado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Anulado_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

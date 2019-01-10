@@ -17,90 +17,142 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Lista Cupón Descuento</h5>
-					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Cupón Descuento", "Create", null, new { @class = "btn btn-primary" })
-					</div>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Registrar Cupón Descuento", "Create", null, new { @class = "btn btn-primary" })
+                    </div>
                 </div>
                 <div class="ibox-content">
 
-<table class="table table-striped table-bordered table-hover" id="DataTable">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.tbSucursal.suc_Descripcion)
-            </th>
+                    <table class="table table-striped table-bordered table-hover" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbSucursal.suc_Descripcion)
+                                </th>
 
-            <th>
-                Código
-            </th>
+                                <th>
+                                    Código
+                                </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.cdto_PorcentajeDescuento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cdto_MaximoMontoDescuento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cdto_MontoDescuento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cdto_Anulado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cdto_Redimido)
-            </th>
-            <th>Opción</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr data-anulado="@item.cdto_Anulado">
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbSucursal.suc_Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cdto_ID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cdto_PorcentajeDescuento)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cdto_MaximoMontoDescuento)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cdto_MontoDescuento)
-                </td>
-                @if(item.cdto_Anulado == true)
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cdto_PorcentajeDescuento)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cdto_MaximoMontoDescuento)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cdto_MontoDescuento)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cdto_Redimido)
+                                </th>
+                                <th>Opción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr data-anulado="@item.cdto_Anulado">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbSucursal.suc_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cdto_ID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cdto_PorcentajeDescuento)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cdto_MaximoMontoDescuento)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cdto_MontoDescuento)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.cdto_Redimido)
+                                    </td>
+                                    @if (item.cdto_Anulado == false)
                 {
-                    <td>Si</td>
-                }
-                else
-                {
-                    <td>No</td>
-                }
-                <td>
-                    @Html.DisplayFor(modelItem => item.cdto_Redimido)
-                </td>
-                <td>
-                    @Html.ActionLink("Detalles", "Details", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.cdto_ID }, new { @class = "btn btn-white btn-xs" })
-                    @Html.ActionLink("Imprimir", "",null, new {id="btnImprimir", @class = "btn btn-info btn-xs" })
-                    <button id="bottonAnularCD" name="bottonAnular" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#btnAnular">
-                        Anular
-                    </button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                                        <td>
+                                            @Html.ActionLink("Detalles", "Details", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.cdto_ID }, new { @class = "btn btn-white btn-xs" })
+                                            @Html.ActionLink("Imprimir", "", null, new { id = "btnImprimir", @class = "btn btn-info btn-xs" })
+                                            <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#Anular">@*boton Anular Cupon Descuento*@
+                                                Anular
+                                            </button>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Detalles", "Details", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn-xs" })
+                                            <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Anulado"> @*btn no update ya esta anulado*@
+                                                Editar
+                                            </button>
+
+                                            @Html.ActionLink("Imprimir", "", null, new { id = "btnImprimir", @class = "btn btn-info btn-xs" })
+                                            <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#AnulaAnular"> @*btn no anular ya esta anulado*@
+                                                Anular
+                                            </button>
+                                        </td>
+                                    }
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
 
                 </div>
             </div>
         </div>
     </div>
- </div>
-<div class="modal fade" id="btnAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+</div>
+@* -------------------Modal Anulado Anulado---------------- *@
+<div class="modal fade" id="AnulaAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cupón Descuento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                El Cupón Descuento ya está Anulado, no puedes Anular nuevamente
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="AnularNotaCredito();" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* -------------------FIN Modal Anulado Anulado---------------- *@
+
+
+@* -------------------Modal Anulado no editable---------------- *@
+<div class="modal fade" id="Anulado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cupón Descuento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                El Cupón Descuento no puede ser Editada porque fue Anulada.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="AnularNotaCredito();" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* -------------------FIN Modal Anulado no editable---------------- *@
+
+
+@* -------------------Modal Anular---------------- *@
+<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -113,38 +165,21 @@
                 ¿Está seguro de Anular este Cupón Descuento?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="AnularNotaCredito();" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-primary" onclick="AnularCuponDescuento();" data-dismiss="modal">Si</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
 </div>
+
+<script src="~/Scripts/app/CuponDescuentoAnulado.js"></script>
+@* -------------------Fin Modal Anular---------------- *@
+
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
 <script>
     $('#btnImprimir').click(function () {
         confirm('¿Deseas Imprimir Cupón Descuento?');
     });
-</script>
-<script>
-    $(document).ready(function () {
-        var Estado = $(this).closest('tr').data('anulado') //$(' tr td #No').val(); 
-        if (Estado == true) {
-            $('#bottonAnularCD').hide();
-            document.getElementById("cdto_Anulado").disabled = true;
-        }
-    });
-
-    function AnularFactura() {
-        var CodAnulada = $('#nocre_Id').val();
-        var Estado = true
-        $.ajax({
-            url: "/NotaCredito/AnularNotaCredito",
-            method: "POST",
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ CodAnulada: CodAnulada, Estado: Estado }),
-       });
-    }
 </script>
 

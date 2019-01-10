@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using System.Transactions;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -134,6 +135,13 @@ namespace ERP_GMEDINA.Controllers
             }
             
             return View(tbCuponDescuento);
+        }
+
+        [HttpPost]
+        public JsonResult AnularCuponDescuento(int cdtoId, bool Anulada)
+        {
+            var list = db.UDP_Vent_tbCuponDescuento_Anulado(cdtoId, Anulada).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         // GET: /CuponDescuento/Delete/5

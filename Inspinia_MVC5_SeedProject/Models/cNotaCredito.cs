@@ -16,7 +16,7 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public short nocre_Id { get; set; }
 
-        [Display(Name = "Número Nota Crédito")]
+        [Display(Name = "Nota Crédito")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public string nocre_Codigo { get; set; }
 

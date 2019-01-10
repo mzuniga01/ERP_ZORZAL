@@ -45,6 +45,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id");
             //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
             //return View();
+            ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
             return View();
         }
@@ -114,7 +115,8 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.nocre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioModifica);
             //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbNotaCredito.clte_Id);
             //ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id", tbNotaCredito.dev_Id);
-            //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbNotaCredito.suc_Id);
+            ViewBag.Cliente = db.tbCliente.ToList();
+            ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
             return View(tbNotaCredito);
         }
 
