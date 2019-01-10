@@ -24,6 +24,9 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Cantidad")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public decimal sal_Cantidad { get; set; }
+        [Display(Name = "Caja")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public string box_Codigo { get; set; }
         [Display(Name = "Creado Por")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int sald_UsuarioCrea { get; set; }
