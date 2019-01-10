@@ -45,7 +45,7 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public decimal cdto_MaximoMontoDescuento { get; set; }
 
-        [Display(Name = "Cantidad Mínima")]
+        [Display(Name = "Compra Mínima")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public decimal cdto_CantidadCompraMinima { get; set; }
 
@@ -53,6 +53,7 @@ namespace ERP_GMEDINA.Models
         public bool cdto_Redimido { get; set; }
 
         [Display(Name = "Anulado")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public bool cdto_Anulado { get; set; }
         //public Nullable<bool> cdto_Anulado { get; set; }
 

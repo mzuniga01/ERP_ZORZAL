@@ -11,7 +11,7 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index")
+            @Html.ActionLink("Regresar", "Index")
         </div>
     </div>
 </div>
@@ -25,115 +25,126 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.cdto_ID)
-        @*Auditoria*@
-        @Html.HiddenFor(model => model.cdto_UsuarioCrea)
-        @Html.HiddenFor(model => model.cdto_FechaCrea)
-        @Html.HiddenFor(model => model.cdto_UsuarioModifica)
-        @Html.HiddenFor(model => model.cdto_FechaModifica)
-        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
-        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
-        @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
-        @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+                        <div class="form-horizontal">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                <select id="suc_Id" name="suc_Id" class="form-control" readonly>
-                    <option value="1" class="form-control">San Pedro Sula</option>
-                </select>
-            </div>
-        </div>
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.cdto_ID)
+                            @Html.Hidden("RedirectTo", Url.Action("Index", "CuponDescuento"))
+                            @*Auditoria*@
+                            @Html.HiddenFor(model => model.cdto_UsuarioCrea)
+                            @Html.HiddenFor(model => model.cdto_FechaCrea)
+                            @Html.HiddenFor(model => model.cdto_UsuarioModifica)
+                            @Html.HiddenFor(model => model.cdto_FechaModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_ID, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_ID, new { htmlAttributes = new { @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.cdto_ID)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    <select id="suc_Id" name="suc_Id" class="form-control" readonly>
+                                        <option value="1" class="form-control">San Pedro Sula</option>
+                                    </select>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes =new { @type="number", @min = "0" } })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_ID, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_ID, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.cdto_ID)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MontoDescuento)</p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_CantidadCompraMinima, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new { @type = "number", @min = "0" } })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MontoDescuento)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_Redimido, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_Redimido, new { htmlAttributes = new { @readonly = "readonly", disabled = "disabled"} })
-                @Html.ValidationMessageFor(model => model.cdto_Redimido)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_CantidadCompraMinima, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @readonly = "readonly"} })
-                @Html.ValidationMessageFor(model => model.cdto_FechaEmision)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_Redimido, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_Redimido, new { htmlAttributes = new { @readonly = "readonly", disabled = "disabled" } })
+                                    @Html.ValidationMessageFor(model => model.cdto_Redimido)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.cdto_FechaVencimiento)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.cdto_FechaEmision)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cdto_FechaRedencion, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.cdto_FechaRedencion)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.cdto_FechaVencimiento)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            <div class="col-md-12 text-center">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-            </div>
-        </div>
-    </div>
-}
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cdto_FechaRedencion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.cdto_FechaRedencion)
+                                </div>
+                            </div>
 
+                            @*-----Anular oculto-----*@
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <input type="hidden" id="cdto_Anulado" name="cdto_Anulado" value="false" />
+                                </div>
+                            </div>
+                            @*-----FIN Anular oculto-----*@
 
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular">
+                                        @*boton Anular Cupon Descuento*@
+                                    Anular
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    }
                 </div>
             </div>
             <div class="ibox-content">
@@ -147,43 +158,79 @@
                         <td>Creado</td>
                         <td>
                             @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                        @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                    </td>
-                    <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
-                </tr>
-                <tr>
-                    <td>Modificado</td>
-                    <td>
-                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                </td>
-                <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
-            </tr>
-        </table>
-        </div>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
- </div>
+</div>
+@* -------------------Modal Anular---------------- *@
+<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular Cupón Descuento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de Anular este Cupón Descuento?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="AnularCuponDescuento();" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/app/CuponDescuentoAnulado.js"></script>
+@* -------------------Fin Modal Anular---------------- *@
 
 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script>
-    $('#cdto_PorcentajeDescuento').click(function () {
-        $('#cdto_MontoDescuento').val('0.00');
-        $('#cdto_CantidadCompraMinima').val('0.00');
-        $('#cdto_PorcentajeDescuento').val('');
-        $('#cdto_MaximoMontoDescuento').val('');
-    });
-</script>
+    <script>
+        //$("#cdto_PorcentajeDescuento").keypress(function () {
+        //    $('#cdto_MontoDescuento').val('0.00');
+        //});
+        //$("#cdto_MontoDescuento").keypress(function () {
+        //    $('#cdto_PorcentajeDescuento').val('0.00');
+        //    $('#cdto_MaximoMontoDescuento').val('0.00');
+        //});
 
-<script>
-    $('#cdto_MontoDescuento').click(function () {
-        $('#cdto_PorcentajeDescuento').val('0.00');
-        $('#cdto_MaximoMontoDescuento').val('0.00');
-        $('#cdto_MontoDescuento').val('');
-        $('#cdto_CantidadCompraMinima').val('');
-    });
-</script>
+        //$(document).ready(function () {
+        //    $('#cdto_MontoDescuento').val('0.00');
+        //    $('#cdto_CantidadCompraMinima').val('0.00');
+        //    $('#cdto_PorcentajeDescuento').val('0.00');
+        //    $('#cdto_MaximoMontoDescuento').val('0.00');
+        //});
+
+        $('#cdto_PorcentajeDescuento').click(function () {
+            $('#cdto_MontoDescuento').val('0.00');
+            $('#cdto_CantidadCompraMinima').val('0.00');
+            $('#cdto_PorcentajeDescuento').val('');
+            $('#cdto_MaximoMontoDescuento').val('');
+        });
+
+        $('#cdto_MontoDescuento').click(function () {
+            $('#cdto_PorcentajeDescuento').val('0.00');
+            $('#cdto_MaximoMontoDescuento').val('0.00');
+            $('#cdto_MontoDescuento').val('');
+            $('#cdto_CantidadCompraMinima').val('');
+        });
+    </script>
 }

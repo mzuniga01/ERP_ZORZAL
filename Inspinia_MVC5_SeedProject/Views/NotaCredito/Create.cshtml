@@ -11,7 +11,7 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index")
+            @Html.ActionLink("Regresar", "Index")
         </div>
     </div>
 </div>
@@ -26,130 +26,141 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true)
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                <select id="suc_Id" name="suc_Id" class="form-control" readonly @*disabled*@>
-                    <option value="1">San Pedro Sula</option>
-                </select>
-            </div>
-        </div>
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.nocre_Codigo, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.nocre_Codigo)
-                <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.nocre_Codigo)</span></p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    <select id="suc_Id" name="suc_Id" class="form-control" readonly @*disabled*@>
+                                        <option value="1">San Pedro Sula</option>
+                                    </select>
+                                </div>
+                            </div>
 
-        @*clte_Id*@
-        <div class="form-group">
-                <input type="hidden" class="form-control" id="clte_Id" name="clte_Id" />
-        </div>
-        @*clte_Id fin*@
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nocre_Codigo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.nocre_Codigo)
+                                    <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.nocre_Codigo)</span></p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tbCliente.clte_Identificacion, "Identificación Cliente", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.tbCliente.clte_Identificacion)
-                <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
-            </div>
-        </div>
+                            @*Check box*@
+                            <div class="form-group">
+                                <label class = "control-label col-md-2">Devolución</label>
+                                <div class="col-md-1">
+                                    <input type="radio" id="radioBtnDev" name="devolucion" click="check()" checked/>
+                                </div>
+                                <label class="control-label col-md-2">Otros</label>
+                                <div class="col-md-1">
+                                    <input type="radio" id="radioBtn" name="otros" click="check()"/>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tbCliente.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@}
-           })
-                 <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
-            </div>
-            <div class="col-md-">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
-            </div>
-        </div>
+                            @*FIN Check box*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.nocre_FechaEmision, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.nocre_FechaEmision, new { htmlAttributes = new { @readonly = "readonly" } })
-                <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_FechaEmision)</span></p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbCliente.clte_Identificacion, "Identificación Cliente", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbCliente.clte_Identificacion)
+                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
+                                </div>
+                                <div class="col-md-">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
-                <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbCliente.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@}})
+                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.nocre_MotivoEmision)
-                <span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_MotivoEmision)</span>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nocre_FechaEmision, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.nocre_FechaEmision, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_FechaEmision)</span></p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.dev_Id, "Devolución", new { @class = "control-label col-md-2" })
-            <div class="col-md-4" >
-                @Html.EditorFor(model => model.dev_Id)
-                <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.dev_Id)</span></p>
-            </div>
-            <div class="col-md-">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarDevolucion"><span class="glyphicon glyphicon-search"></span></button>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.nocre_Estado, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                <select id="nocre_Estado" name="nocre_Estado" class="form-control">
-                    <option>Seleccionar</option>
-                    <option value="true">Activo</option>
-                    <option value="false">Inactivo</option>
-                </select>
-                <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Estado)</span></p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control" })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_MotivoEmision)</span>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.nocre_Anulado, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                <select id="nocre_Anulado" name="nocre_Anulado" class="form-control">
-                    <option>Seleccionar</option>
-                    <option value="true">Si</option>
-                    <option value="false">No</option>
-                </select>
-                <p style="color:red">@Html.ValidationMessageFor(model => model.nocre_Anulado)</p>
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.dev_Id, "Devolución", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.dev_Id)
+                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.dev_Id)</span></p>
+                                </div>
+                                <div class="col-md-">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarDevolucion"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nocre_Estado, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    <select id="nocre_Estado" name="nocre_Estado" class="form-control">
+                                        <option>Seleccionar</option>
+                                        <option value="true">Activo</option>
+                                        <option value="false">Inactivo</option>
+                                    </select>
+                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Estado)</span></p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            <div class="col-md-12 text-center">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nocre_Anulado, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    <select id="nocre_Anulado" name="nocre_Anulado" class="form-control">
+                                        <option>Seleccionar</option>
+                                        <option value="true">Si</option>
+                                        <option value="false">No</option>
+                                    </select>
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.nocre_Anulado)</p>
+                                </div>
+                            </div>
+
+                            @*clte_Id NotaCredito*@
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" id="clte_Id" name="clte_Id" />
+                            </div>
+                            @*clte_Id NotaCredito fin*@
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    }
 
                 </div>
             </div>
         </div>
     </div>
- </div>
+</div>
 
 <div>
     <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -162,7 +173,7 @@
                     <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
                 </div>
                 <div class="modal-body">
-                   @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
+                    @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
                 </div>
             </div>
         </div>
@@ -192,32 +203,44 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
- $.datepicker.regional['es'] = {
- closeText: 'Cerrar',
- prevText: '< Ant',
- nextText: 'Sig >',
- currentText: 'Hoy',
- monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
- monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
- dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
- dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
- dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
- weekHeader: 'Sm',
- dateFormat: 'dd/mm/yy',
- firstDay: 1,
- isRTL: false,
- showMonthAfterYear: false,
- yearSuffix: ''
- };
- $.datepicker.setDefaults($.datepicker.regional['es']);
-$(function () {
-    $("#nocre_FechaEmision").datepicker({
-        dateFormat: 'dd/mm/yy'}).datepicker('setDate', new Date());
-});
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '< Ant',
+            nextText: 'Sig >',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
+        $(function () {
+            $("#nocre_FechaEmision").datepicker({
+                dateFormat: 'dd/mm/yy'
+            }).datepicker('setDate', new Date());
+        });
     </script>
     <script>
         $("#cdto_FechaEmision").datepicker({
         }).datepicker('setDate', new Date());
+    </script>
+    <script src="~/Scripts/app/NotaCredito.js"></script>
+
+@*------------------------radiobutton--------------------------*@
+   <script>
+function check() {
+    document.getElementById("radioBtnDev").checked = true;
+}
+function uncheck() {
+    document.getElementById("radioBtnDev").checked = false;
+}
 </script>
-<script src="~/Scripts/app/NotaCredito.js"></script>
+
 }

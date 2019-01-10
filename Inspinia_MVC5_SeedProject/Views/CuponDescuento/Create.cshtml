@@ -85,7 +85,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_FechaVencimiento)</p>
                                 </div>
                             </div>
@@ -100,7 +100,6 @@
 
                             <div class="form-group">
                                 <div class="col-md-4">
-                                    <input type="hidden" id="clte_Id" name="clte_Id" value="false" />
                                     <input type="hidden" id="cdto_Redimido" name="cdto_Redimido" value="false" />
                                     <input type="hidden" id="cdto_Anulado" name="cdto_Anulado" value="false" />
                                 </div>
@@ -145,30 +144,33 @@
             yearSuffix: ''
         };
         $.datepicker.setDefaults($.datepicker.regional['es']);
+
+        //-------------Fecha Actual-----------------------
         $(function () {
             $("#cdto_FechaEmision").datepicker({ dateFormat: 'dd/mm/yy', maxDate: '+0d', minDate: 0 }).datepicker('setDate', new Date());
 
         });
-    </script>
-    <script>
-        $("#cdto_FechaVencimiento").datepicker('setDate', new FormData() + 365);
-        $("#cdto_FechaVencimiento").datepicker({ dateFormat: 'dd/mm/yy', startDate: new Date() }).datepicker('setDate', new FormData() + 365)
-    </script>
-    <script>
-        $('#cdto_PorcentajeDescuento').click(function () {
-            $('#cdto_MontoDescuento').val('0.00');
-            $('#cdto_CantidadCompraMinima').val('0.00');
-            $('#cdto_PorcentajeDescuento').val('');
-            $('#cdto_MaximoMontoDescuento').val('');
-        });
-    </script>
 
-    <script>
-        $('#cdto_MontoDescuento').click(function () {
+        //-----------Fecha Vencimiento (1 año)--------------------
+        var d = new Date();
+        var strDate = d.getDate() + "/" + (d.getMonth() + 1) + "/" + (d.getFullYear() + 1);
+        $("#cdto_FechaVencimiento").val(strDate);
+
+
+        //---------------setear en cero-----------------
+        $("#cdto_PorcentajeDescuento").keypress(function () {
+            $('#cdto_MontoDescuento').val('0.00');
+        });
+        $("#cdto_MontoDescuento").keypress(function () {
             $('#cdto_PorcentajeDescuento').val('0.00');
             $('#cdto_MaximoMontoDescuento').val('0.00');
-            $('#cdto_MontoDescuento').val('');
-            $('#cdto_CantidadCompraMinima').val('');
+        });
+
+        $(document).ready(function () {
+            $('#cdto_MontoDescuento').val('0.00');
+            $('#cdto_CantidadCompraMinima').val('0.00');
+            $('#cdto_PorcentajeDescuento').val('0.00');
+            $('#cdto_MaximoMontoDescuento').val('0.00');
         });
     </script>
 

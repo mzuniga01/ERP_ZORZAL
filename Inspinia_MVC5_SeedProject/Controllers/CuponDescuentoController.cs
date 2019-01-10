@@ -136,14 +136,6 @@ namespace ERP_GMEDINA.Controllers
             
             return View(tbCuponDescuento);
         }
-
-        [HttpPost]
-        public JsonResult AnularCuponDescuento(int cdtoId, bool Anulada)
-        {
-            var list = db.UDP_Vent_tbCuponDescuento_Anulado(cdtoId, Anulada).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-
         // GET: /CuponDescuento/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -177,6 +169,12 @@ namespace ERP_GMEDINA.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        [HttpPost]
+        public JsonResult AnularCuponDescuento(int cdtoId, bool Anulada)
+        {
+            var list = db.UDP_Vent_tbCuponDescuento_Anulado(cdtoId, Anulada).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
 }
