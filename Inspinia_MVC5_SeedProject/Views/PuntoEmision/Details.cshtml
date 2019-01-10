@@ -55,9 +55,8 @@
                             <dt>
                                 @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
                             </dt>
-
                             <dd>
-                                @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @readonly = "readonly"  } })
+                                @Html.DisplayFor(model => model.pemi_NumeroCAI)
                             </dd>
                         </dl>
                 </div>
@@ -125,5 +124,3 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
