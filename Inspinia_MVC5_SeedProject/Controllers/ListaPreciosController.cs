@@ -58,8 +58,8 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult Create([Bind(Include = "listp_Id,listp_Nombre,listp_EsActivo,listp_UsuarioCrea,listp_FechaCrea,listp_UsuarioModifica,listp_FechaModifica,listp_FechaInicioVigencia,listp_FechaFinalVigencia,listp_Prioridad")] tbListaPrecio tbListaPrecio)
         {
             var list = (List<tbListadoPrecioDetalle>)Session["ListadoPrecio"];
-            string MensajeError ="";
-            var MensajeErrorDetalle = "";
+            var MensajeError = 0;
+            var MensajeErrorDetalle = 0;
             IEnumerable<object> listPrecio = null;
             IEnumerable<object> listPrecioDetalle = null;
             if (ModelState.IsValid)
@@ -76,14 +76,14 @@ namespace ERP_GMEDINA.Controllers
                                                                    tbListaPrecio.listp_Prioridad);
                         foreach (UDP_Vent_tbListaPrecio_Insert_Result Precio in listPrecio)
                             MensajeError = Precio.MensajeError;
-                        if (MensajeError == "-1")
+                        if (MensajeError == -1)
                         {
                             ModelState.AddModelError("", "No se pudo agregar el registro");
                             return View(tbListaPrecio);
                         }
                         else
                         {
-                            if (MensajeError != "-1")
+                            if (MensajeError != -1)
                             {
                                 if (list != null)
                                 {
@@ -91,14 +91,14 @@ namespace ERP_GMEDINA.Controllers
                                     {
                                         foreach (tbListadoPrecioDetalle PrecioDetalle in list)
                                         {
-                                            var pedds_Id = Convert.ToInt32(MensajeError);
-                                            var descca = Convert.ToString(MensajeError);
-                                            PrecioDetalle.listp_Id = pedds_Id;
-                                            listPrecioDetalle = db.UDP_Vent_tbListadoPrecioDetalle_Insert(
+                                           
+                                          
+                                                PrecioDetalle.listp_Id = MensajeError;
+                                                listPrecioDetalle = db.UDP_Vent_tbListadoPrecioDetalle_Insert(
                                                 PrecioDetalle.listp_Id,
                                                 PrecioDetalle.prod_Codigo,
-                                                 PrecioDetalle.lispd_PrecioMayorista,
-                                                 PrecioDetalle.lispd_PrecioMinorista,
+                                                PrecioDetalle.lispd_PrecioMayorista,
+                                                PrecioDetalle.lispd_PrecioMinorista,
                                                 PrecioDetalle.lispd_DescCaja,
                                                 PrecioDetalle.lispd_DescGerente
                                                
@@ -107,7 +107,7 @@ namespace ERP_GMEDINA.Controllers
                                             {
 
                                                 MensajeErrorDetalle = SPpreciodetalle.MensajeError;
-                                                if (MensajeError == "-1")
+                                                if (MensajeError == -1)
                                                 {
                                                     ModelState.AddModelError("", "No se pudo agregar el registro detalle");
                                                     return View(tbListaPrecio);
@@ -130,7 +130,7 @@ namespace ERP_GMEDINA.Controllers
                 }
                 catch (Exception Ex)
                 {
-                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                  
                     Ex.Message.ToString();
                     ViewBag.Producto = db.tbProducto.ToList();
                     ViewBag.listp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioCrea);
@@ -154,18 +154,18 @@ namespace ERP_GMEDINA.Controllers
 
 
         [HttpPost]
-        public JsonResult SavePrecioDetalles(tbListadoPrecioDetalle PrecioDetalle)
+        public JsonResult SaveListaPrecioDetalle(tbListadoPrecioDetalle cPrecioDetalle)
         {
             List<tbListadoPrecioDetalle> sessionPrecioDetalle = new List<tbListadoPrecioDetalle>();
             var list = (List<tbListadoPrecioDetalle>)Session["ListadoPrecio"];
             if (list == null)
             {
-                sessionPrecioDetalle.Add(PrecioDetalle);
+                sessionPrecioDetalle.Add(cPrecioDetalle);
                 Session["ListadoPrecio"] = sessionPrecioDetalle;
             }
             else
             {
-                list.Add(PrecioDetalle);
+                list.Add(cPrecioDetalle);
                 Session["ListadoPrecio"] = list;
             }
             return Json("Exito", JsonRequestBehavior.AllowGet);
@@ -173,7 +173,7 @@ namespace ERP_GMEDINA.Controllers
 
 
         [HttpPost]
-        public JsonResult QuitarPedidoDetalle(tbListadoPrecioDetalle ListadoPrecioDetalle)
+        public JsonResult QuitarPrecioDetalle(tbListadoPrecioDetalle ListadoPrecioDetalle)
         {
             var list = (List<tbListadoPrecioDetalle>)Session["ListadoPrecio"];
 

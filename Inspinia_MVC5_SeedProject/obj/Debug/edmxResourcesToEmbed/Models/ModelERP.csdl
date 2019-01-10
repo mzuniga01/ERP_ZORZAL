@@ -725,6 +725,7 @@
       <Parameter Name="mun_Nombre" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbParametro_Insert" ReturnType="Collection(String)">
+      <Parameter Name="par_Id" Mode="In" Type="Byte" />
       <Parameter Name="par_NombreEmpresa" Mode="In" Type="String" />
       <Parameter Name="par_TelefonoEmpresa" Mode="In" Type="String" />
       <Parameter Name="par_CorreoEmpresa" Mode="In" Type="String" />
@@ -1111,14 +1112,6 @@
       <Parameter Name="mocja_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="mocja_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Insert_Result)">
-      <Parameter Name="listp_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="lispd_PrecioMayorista" Mode="In" Type="Decimal" />
-      <Parameter Name="lispd_PrecioMinorista" Mode="In" Type="Decimal" />
-      <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
-      <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Update">
       <Parameter Name="listp_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
@@ -1128,13 +1121,6 @@
       <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
       <Parameter Name="lispd_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="lispd_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbListaPrecio_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result)">
-      <Parameter Name="listp_Nombre" Mode="In" Type="String" />
-      <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
-      <Parameter Name="listp_FechaInicioVigencia" Mode="In" Type="DateTime" />
-      <Parameter Name="listp_FechaFinalVigencia" Mode="In" Type="DateTime" />
-      <Parameter Name="listp_Prioridad" Mode="In" Type="Int16" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbListaPrecio_Update" ReturnType="Collection(String)">
       <Parameter Name="listp_Id" Mode="In" Type="Int32" />
@@ -2055,6 +2041,21 @@
     <FunctionImport Name="UDP_Vent_tbCuponDescuento_Anulado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Anulado_Result)">
       <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
       <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Insert_Result)">
+      <Parameter Name="listp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="lispd_PrecioMayorista" Mode="In" Type="Decimal" />
+      <Parameter Name="lispd_PrecioMinorista" Mode="In" Type="Decimal" />
+      <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
+      <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbListaPrecio_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result)">
+      <Parameter Name="listp_Nombre" Mode="In" Type="String" />
+      <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
+      <Parameter Name="listp_FechaInicioVigencia" Mode="In" Type="DateTime" />
+      <Parameter Name="listp_FechaFinalVigencia" Mode="In" Type="DateTime" />
+      <Parameter Name="listp_Prioridad" Mode="In" Type="Int16" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -6128,12 +6129,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbListaPrecio_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
   <Association Name="FK_Acce_tbUsuario_bodd_UsuarioCrea">
     <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbBodegaDetalle" Role="tbBodegaDetalle" Multiplicity="*" />
@@ -6251,6 +6246,12 @@
     </ReferentialConstraint>
   </Association>
   <ComplexType Name="UDP_Vent_tbCuponDescuento_Anulado_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbListaPrecio_Insert_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Insert_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
 </Schema>

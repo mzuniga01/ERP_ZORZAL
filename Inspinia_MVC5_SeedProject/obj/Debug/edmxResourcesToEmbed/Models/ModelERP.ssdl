@@ -3738,6 +3738,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="mun_Nombre" Type="varchar" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbParametro_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="par_Id" Type="tinyint" Mode="In" />
     <Parameter Name="par_NombreEmpresa" Type="nvarchar" Mode="In" />
     <Parameter Name="par_TelefonoEmpresa" Type="nvarchar" Mode="In" />
     <Parameter Name="par_CorreoEmpresa" Type="nvarchar" Mode="In" />

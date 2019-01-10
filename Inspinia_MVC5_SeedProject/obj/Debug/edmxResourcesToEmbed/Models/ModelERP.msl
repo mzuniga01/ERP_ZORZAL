@@ -612,21 +612,7 @@
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Insert" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Update" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Update" />
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Update" />
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Update" />
     <EntitySetMapping Name="tbAccesoRol">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbAccesoRol">
@@ -1709,6 +1695,20 @@
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuento_Anulado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuento_Anulado">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Anulado_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>

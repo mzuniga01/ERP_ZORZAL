@@ -98,7 +98,14 @@ $('#AgregarListaPrecioDetalle').click(function () {
             $('#ErrorDescuentoCajaCreate').text('');
             $('#ErrorDescuentoGerenteCreate').text('');
             $('#ErrorProductoCreate').val('');
-    
+
+            //Input
+            $('#prod_Codigo').val('');
+            $('#lispd_PrecioMayorista').val('');
+            $('#lispd_PrecioMinorista').val('');
+            $('#lispd_DescCaja').val('');
+            $('#lispd_DescGerente').val('');
+          
 
         });
 
@@ -114,8 +121,30 @@ function GetListaPrecioDetalle() {
         lispd_PrecioMinorista: $('#lispd_PrecioMinorista').val(),
         lispd_DescCaja: $('#lispd_DescCaja').val(),
         DescuentoGerente: $('#DescuentoGerente').val(),
-        listp_Id: contador
+        listpd_Id: contador
         //Fecha: $('#fechaCreate').val(),
     };
     return ListaDetalle;
 }
+
+$(document).on("click", "#tbListaPrecioDetalle tbody tr td button#removeListaPrecioDetalle", function () {
+    $(this).closest('tr').remove();
+    idItem = $(this).closest('tr').data('id');
+    var PrecioDetalle = {
+        listpd_Id: idItem,
+    };
+    $.ajax({
+        url: "/ListaPrecios/QuitarPrecioDetalle",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ ListadoPrecioDetalle: PrecioDetalle }),
+
+
+
+
+    });
+
+
+});
+
