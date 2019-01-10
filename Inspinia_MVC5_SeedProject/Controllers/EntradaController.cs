@@ -96,6 +96,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.bod_Idd = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             
             ViewBag.Producto = db.tbProducto.ToList();
+            Session["CrearDetalleEntrada"] =null;
             return View(tbEntrada);
         }
         
@@ -401,14 +402,15 @@ namespace ERP_ZORZAL.Controllers
         //Para q edite la master y el detalle
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, [Bind(Include = "ent_Id,ent_NumeroFormato,ent_FechaElaboracion,bod_Id,estm_Id,prov_Id,ent_FacturaCompra,ent_FechaCompra,fact_Id,ent_RazonDevolucion,ent_BodegaDestino,tent_Id,ent_usuarioCrea,ent_FechaCrea,ent_UsuarioModifica,ent_FechaModifica")] tbEntrada tbEntrada)
+        public ActionResult Edit(int? id, [Bind(Include = "ent_Id,ent_NumeroFormato,ent_FechaElaboracion,bod_Id,prov_Id,ent_FacturaCompra,ent_FechaCompra,fact_Id,ent_RazonDevolucion,ent_BodegaDestino,tent_Id,ent_usuarioCrea,ent_FechaCrea,ent_UsuarioModifica,ent_FechaModifica")] tbEntrada tbEntrada)
         {
+            
             IEnumerable<object> ENTRADA = null;
             IEnumerable<object> DETALLE = null;
             var idMaster = 0;
             var MensajeError = "";
             var MsjError = "";
-            var listaDetalle = (List<tbEntradaDetalle>)Session["tbEntradaDetalle"];
+            var listaDetalle = (List<tbEntradaDetalle>)Session["CrearDetalleEntrada"];
 
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
             //ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbEntrada.estm_Id);
@@ -430,7 +432,6 @@ namespace ERP_ZORZAL.Controllers
                                                                         tbEntrada.ent_NumeroFormato,
                                                                         tbEntrada.ent_FechaElaboracion,
                                                                         tbEntrada.bod_Id,
-                                                                        tbEntrada.estm_Id,
                                                                         tbEntrada.prov_Id,
                                                                         tbEntrada.ent_FacturaCompra,
                                                                         tbEntrada.ent_FechaCompra,
@@ -456,19 +457,19 @@ namespace ERP_ZORZAL.Controllers
                                 {
                                     foreach (tbEntradaDetalle entd in listaDetalle)
                                     {
-                                        DETALLE = db.UDP_Inv_tbEntradaDetalle_Update(entd.ent_Id
-                                                                                    , idMaster
+                                        entd.entd_UsuarioCrea = 1;
+                                        entd.entd_FechaCrea = DateTime.Now;
+
+                                        DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert(idMaster
                                                                                     ,entd.prod_Codigo
                                                                                     ,entd.entd_Cantidad
-                                                                                    ,entd.entd_UsuarioCrea
-                                                                                    , Convert.ToDateTime(entd.entd_FechaCrea)
                                                                                     ,entd.uni_Id);
-                                        foreach (UDP_Inv_tbEntradaDetalle_Update_Result B_detalle in DETALLE)
+                                        foreach (UDP_Inv_tbEntradaDetalle_Insert_Result B_detalle in DETALLE)
 
                                         //if (MensajeError == "-1")
                                         {
                                             ModelState.AddModelError("", "No se Guardo el Registro");
-                                            return View(tbEntrada);
+                                            //return View(tbEntrada);
                                             //}
                                             //else
                                             //{

@@ -274,7 +274,7 @@
     <Property Name="bodd_FechaModifica" Type="datetime" />
     <Property Name="bodd_Costo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="bodd_CostoPromedio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="bodd_CantidadExistente" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="bodd_CantidadExistente" Type="decimal" Precision="10" Scale="2" Nullable="false" />
   </EntityType>
   <EntityType Name="tbBox">
     <Key>
@@ -535,6 +535,8 @@
     <Property Name="clte_UsuarioModifica" Type="int" />
     <Property Name="clte_FechaModifica" Type="datetime" />
     <Property Name="clte_ConsumidorFinal" Type="bit" Nullable="false" />
+    <Property Name="clte_MontoCredito" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="clte_DiasCredito" Type="int" />
   </EntityType>
   <EntityType Name="tbCuponDescuento">
     <Key>
@@ -3654,7 +3656,6 @@
     <Parameter Name="ent_NumeroFormato" Type="varchar" Mode="In" />
     <Parameter Name="ent_FechaElaboracion" Type="datetime" Mode="In" />
     <Parameter Name="bod_Id" Type="int" Mode="In" />
-    <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
     <Parameter Name="prov_Id" Type="int" Mode="In" />
     <Parameter Name="ent_FacturaCompra" Type="varchar" Mode="In" />
     <Parameter Name="ent_FechaCompra" Type="datetime" Mode="In" />
@@ -3768,6 +3769,9 @@
   <Function Name="UDP_Inv_tbProductoCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
     <Parameter Name="pcat_EsActivo" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbProductoSubCategoria_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="pscat_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProductoSubcategoria_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pscat_Descripcion" Type="varchar" Mode="In" />

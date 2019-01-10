@@ -109,10 +109,11 @@
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
-                                                    <h4 class="modal-title" id="myModalLabel">Editar Bodega Detalle</h4>
+                                                    <h4 class="modal-title" id="myModalLabel">Editar Detalle Bodega</h4>
                                                 </div>
-                                                <div class="modal-body" id="frmEditarCursoPolicia">
+                                                <div class="modal-body" id="mdlEditBodegaDetalle">
                                                     @Html.Partial("_EditBodegaDetalleModal", new ERP_GMEDINA.Models.tbBodegaDetalle() {   bodd_Id = item.bodd_Id
+                                                                                          , bod_Id = item.bod_Id
                                                                                           , bodd_CantidadMinima = item.bodd_CantidadMinima
                                                                                           , bodd_CantidadMaxima = item.bodd_CantidadMaxima
                                                                                           , bodd_PuntoReorden = item.bodd_PuntoReorden
@@ -123,12 +124,12 @@
                                                                                           , bodd_FechaModifica = item.bodd_FechaModifica
                                                                                           , bodd_UsuarioModifica = item.bodd_UsuarioModifica
                                                                                           , prod_Codigo = item.prod_Codigo })
-                                                    <div class="form-group">
+                                                    @*<div class="form-group">
                                                         <div class="col-md-12 text-center">
                                                             <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="btnActualizarBodegaDetalle" onclick="btnActualizarBodegaDetalle(@item.bodd_Id);">Guardar</button>
                                                             <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
                                                         </div>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                             </div>
                                         </div>

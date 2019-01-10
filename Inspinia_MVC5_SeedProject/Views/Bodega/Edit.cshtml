@@ -105,7 +105,7 @@
                                     <p style="color:red"> @Html.ValidationMessageFor(model => model.bod_Correo)</p>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 <label class="control-label col-md-2">Departamento<span style="color:red">*</span></label>
                                 <div class="col-md-4">
                                     @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
@@ -116,19 +116,19 @@
                                     @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
                                     <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
                                 </div>
+                            </div>*@
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Departamento<span style="color:red">*</span></label>
+                                <div class="col-md-4">
+                                    @Html.DropDownList("dep_Codigo", (IEnumerable<SelectListItem>)ViewBag.deparatamento_Edit, new { @class = "form-control" })
+                                    <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => ListadoDepartamento.dep_Codigo)</p>
+                                </div>
+                                <label class="control-label col-md-2">Municipio<span style="color:red">*</span></label>
+                                <div class="col-md-4">
+                                    @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
+                                    <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
+                                </div>
                             </div>
-                            @*<div class="form-group">
-                                    <label class="control-label col-md-2">Departamento<span style="color:red"> </span></label>
-                                    <div class="col-md-4">
-                                        @Html.DropDownList("dep_Codigo",(IEnumerable<SelectListItem>)ViewBag.dep_Codigo ,new { @class = "form-control" })
-                                        <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => ListadoMunicipio.dep_Codigo)</p>
-                                    </div>
-                                    @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
-                                        <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
-                                    </div>
-                                </div>*@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Telefono, new { @class = "control-label col-md-2" })
@@ -272,20 +272,20 @@
             </div>
         </div>
     </div>
-    
+
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
     }
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/app/BusquedaGenerica.js"></script>
     <script src="~/Scripts/app/BodegaDetalle.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     @*<script src="~/Scripts/app/Departamento.js"></script>*@
     <script>
         console.log('Hla')
-       
         
-
-      
 
         $(document).ready(function () {
             var Mun = $('#mun_Codigo').val();
@@ -295,7 +295,7 @@
                 GetDepartamento();
                 //GetMunicipios();
             }
-           
+
         });
 
         function GetDepartamento() {
@@ -305,7 +305,7 @@
                 method: "POST",
                 dataType: 'json',
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ CodMunicipio : CodMunicipio }),
+                data: JSON.stringify({ CodMunicipio: CodMunicipio }),
             })
                 .done(function (data) {
                     if (data.length > 0) {
@@ -318,37 +318,37 @@
                     }
                     else {
                         $('#dep_Codigo').empty();
-                        $('#dep_Codigo').append("<option value=" + val.dep_Codigo + ">" + val.dep_Nombre +"</option>");
+                        $('#dep_Codigo').append("<option value=" + val.dep_Codigo + ">" + val.dep_Nombre + "</option>");
                     }
                 });
 
         }
 
 
-        //function GetMunicipios() {
-        //    var CodDepartamento = $('#dep_Codigo').val();
-        //    $.ajax({
-        //        url: "/Bodega/GetMunicipios",
-        //        method: "POST",
-        //        dataType: 'json',
-        //        contentType: "application/json; charset=utf-8",
-        //        data: JSON.stringify({ CodDepartamento: CodDepartamento }),
-        //    })
-        //        .done(function (data) {
-        //            if (data.length > 0) {
-        //                $('#mun_Codigo').empty();
-        //                $('#mun_Codigo').append("<option value=''>Seleccione</option>");
-        //                $.each(data, function (key, val) {
-        //                    $('#mun_Codigo').append("<option value=" + val.mun_Codigo + ">" + val.mun_Nombre + "</option>");
-        //                });
-        //                $('#mun_Codigo').trigger("chosen:updated");
-        //            }
-        //            else {
-        //                $('#mun_Codigo').empty();
-        //                $('#mun_Codigo').append("<option value=" + val.mun_Codigo + ">" + " Seleccione </option>");
-        //            }
-        //        });
-        //}
+                //function GetMunicipios() {
+                //    var CodDepartamento = $('#dep_Codigo').val();
+                //    $.ajax({
+                //        url: "/Bodega/GetMunicipios",
+                //        method: "POST",
+                //        dataType: 'json',
+                //        contentType: "application/json; charset=utf-8",
+                //        data: JSON.stringify({ CodDepartamento: CodDepartamento }),
+                //    })
+                //        .done(function (data) {
+                //            if (data.length > 0) {
+                //                $('#mun_Codigo').empty();
+                //                $('#mun_Codigo').append("<option value=''>Seleccione</option>");
+                //                $.each(data, function (key, val) {
+                //                    $('#mun_Codigo').append("<option value=" + val.mun_Codigo + ">" + val.mun_Nombre + "</option>");
+                //                });
+                //                $('#mun_Codigo').trigger("chosen:updated");
+                //            }
+                //            else {
+                //                $('#mun_Codigo').empty();
+                //                $('#mun_Codigo').append("<option value=" + val.mun_Codigo + ">" + " Seleccione </option>");
+                //            }
+                //        });
+                //}
 
     </script>
 }

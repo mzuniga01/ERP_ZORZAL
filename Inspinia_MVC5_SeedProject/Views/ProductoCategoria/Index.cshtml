@@ -5,6 +5,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (ViewBag.smserror != "" && ViewBag.smserror != null)
+{
+    <div class="col-md-12" id="mensaje">
+        <div class="alert alert-warning alert-danger">
+            
+            <button type="button" class="close"  data-dissmiss="alert" aria-hidden="true">@Html.ActionLink("X", "index", new { @class = "btn btn-primary " })</button>
+            <h4><i class="icon fa fa-warning"></i>Alerta</h4>
+            <h2>@ViewBag.smserror</h2>
+
+
+        </div>
+    </div>
+}
+
+
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -103,4 +118,6 @@
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
+
+
 

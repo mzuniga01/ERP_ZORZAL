@@ -185,13 +185,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SDP_Acce_GetObjetos" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetObjetos">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetObjetos_Result">
@@ -1000,6 +993,8 @@
     <EntitySetMapping Name="tbCliente">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCliente">
         <MappingFragment StoreEntitySet="tbCliente">
+          <ScalarProperty Name="clte_DiasCredito" ColumnName="clte_DiasCredito" />
+          <ScalarProperty Name="clte_MontoCredito" ColumnName="clte_MontoCredito" />
           <ScalarProperty Name="clte_ConsumidorFinal" ColumnName="clte_ConsumidorFinal" />
           <ScalarProperty Name="clte_FechaModifica" ColumnName="clte_FechaModifica" />
           <ScalarProperty Name="clte_UsuarioModifica" ColumnName="clte_UsuarioModifica" />
@@ -1544,6 +1539,20 @@
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetCategoria_Result">
           <ScalarProperty Name="pscat_Id" ColumnName="pscat_Id" />
           <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubCategoria_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubCategoria_Delete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Delete_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

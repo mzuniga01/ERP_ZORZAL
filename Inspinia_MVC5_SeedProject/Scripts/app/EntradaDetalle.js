@@ -128,7 +128,7 @@ $('#AgregarDetalleEntrada').click(function () {
         })
         .done(function (data) {
             $('#prod_Codigo').val('');
-            $("#uni_Id").val('Seleccione');
+            $("#uni_Id").val('');
             $('#entd_Cantidad').val('');
              //
             $('#prod_Descripcion').val('');
@@ -200,7 +200,7 @@ function Getentradadetalle_actualizar() {
 
     var actualizarEntradaDetalle = {
         ent_Id: $('#ent_Id').val(),
-        entd_Id: $('#entd_Id').val(),
+        entd_Id: entd_Id,
         prod_Codigo: $('#producto').val(),
         //entd_Cantidad: $('#cantidad').val(),
         entd_Cantidad: $("#cantidad").val(),

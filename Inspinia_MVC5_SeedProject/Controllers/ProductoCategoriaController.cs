@@ -16,7 +16,11 @@ namespace ERP_ZORZAL.Controllers
         // GET: /ProductoCategoria/
         public ActionResult Index()
         {
+            try { ViewBag.smserror = TempData["smserror"].ToString(); } catch { }
+            try { ViewBag.smsexito = TempData["smsexito"].ToString(); } catch { }
+
             var tbproductocategoria = db.tbProductoCategoria.Include(t => t.tbProductoSubcategoria);
+            //ViewBag.smserror = "";
             return View(db.tbProductoCategoria.ToList());
         }
 
@@ -39,6 +43,7 @@ namespace ERP_ZORZAL.Controllers
         // GET: /ProductoCategoria/Create
         public ActionResult Create()
         {
+            //ViewBag.smserror = "";
             Session["tbProductoSubcategoria"] = null;
             return View();
         }
@@ -217,9 +222,9 @@ namespace ERP_ZORZAL.Controllers
                     {
 
                         cate = db.UDP_Inv_tbProductoCategoria_Update(tbProductoCategoria.pcat_Id,
-                                                                    tbProductoCategoria.pcat_Nombre,
-                                                                    tbProductoCategoria.pcat_UsuarioCrea,
-                                                                    tbProductoCategoria.pcat_FechaCrea);
+                                              tbProductoCategoria.pcat_Nombre,
+                                              tbProductoCategoria.pcat_UsuarioCrea,
+                                              tbProductoCategoria.pcat_FechaCrea);
                         foreach (UDP_Inv_tbProductoCategoria_Update_Result ProductoCategoria in cate)
 
 
@@ -236,36 +241,40 @@ namespace ERP_ZORZAL.Controllers
                             {
                                 if (List.Count > 0)
                                 {
+
                                     foreach (tbProductoSubcategoria subcategoria in List)
                                     {
+                                        subcategoria.pscat_UsuarioCrea = 1;
+                                        subcategoria.pscat_FechaCrea = DateTime.Now;
+
                                         subcate = db.UDP_Inv_tbProductoSubcategoria_Update(subcategoria.pscat_Id,
-                                                                                            subcategoria.pscat_Descripcion,
-                                                                                            idMaster,
-                                                                                            subcategoria.pscat_UsuarioCrea,
-                                                                                            subcategoria.pscat_FechaCrea,
-                                                                                            subcategoria.pscat_ISV
-                                            );
+                                                                  subcategoria.pscat_Descripcion,
+                                                                  idMaster,
+                                                                  subcategoria.pscat_UsuarioCrea,
+                                                                  subcategoria.pscat_FechaCrea,
+                                                                  subcategoria.pscat_ISV
+                                          );
                                         foreach (UDP_Inv_tbProductoSubcategoria_Update_Result ProdSubCate in subcate)
 
-                                        //if (MensajeError == "-1")
-                                        {
+                                        //if (MensajeError == "-1")
+                                        {
                                             ModelState.AddModelError("", "No se Actualizó el Registro");
                                             return View(tbProductoCategoria);
-                                            //}
-                                            //else
-                                            //{
-                                            //    _Tran.Complete();
-                                            //    return RedirectToAction("Index");
-                                        }
+                                            //}
+                                            //else
+                                            //{
+                                            //    _Tran.Complete();
+                                            //    return RedirectToAction("Index");
+                                        }
                                     }
                                 }
                             }
 
-                            //else
-                            {
+                            //else
+                            {
                                 _Tran.Complete();
-                                //return RedirectToAction("Index");
-                            }
+                                //return RedirectToAction("Index");
+                            }
 
                         }
 
@@ -275,13 +284,14 @@ namespace ERP_ZORZAL.Controllers
                         Ex.Message.ToString();
                         ModelState.AddModelError("", "No se Actualizó el Registro");
                         return View(tbProductoCategoria);
-                        //MsjError = "-1";
-                    }
+                        //MsjError = "-1";
+                    }
                 }
                 return RedirectToAction("Edit/" + id);
             }
-           
+
             return View(tbProductoCategoria);
+
         }
 
         [HttpPost]
@@ -301,7 +311,7 @@ namespace ERP_ZORZAL.Controllers
         
 
         public ActionResult EliminarProductoCategoria(int? id)
-        {
+         {
             
             try
             {
@@ -312,13 +322,18 @@ namespace ERP_ZORZAL.Controllers
                 foreach (UDP_Inv_tbProductoCategoria_Delete_Result obje in list)
                     MsjError = obje.MensajeError;
 
-                if (MsjError == "-1")
+                if (MsjError.StartsWith("-1 The DELETE statement conflicted with the REFERENCE constraint"))
                 {
+                    TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia.";
+                    ViewBag.smserror = TempData["smserror"];
+
                     ModelState.AddModelError("", "No se puede borrar el registro");
                     return RedirectToAction("Index");
                 }
+                
                 else
                 {
+                    ViewBag.smserror = "";
                     return RedirectToAction("Index");
                 }
             }
@@ -383,6 +398,7 @@ namespace ERP_ZORZAL.Controllers
 
                 if (MsjError == "-1")
                 {
+                    
                     ModelState.AddModelError("", "No se puede borrar el registro");
                     return RedirectToAction("Index");
                 }
@@ -395,7 +411,11 @@ namespace ERP_ZORZAL.Controllers
             {
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se puede borrar el registro");
+                  
+                TempData["smserror"] = " no se puede eliminar el dato porque tiene dependencia";
+                ViewBag.smserror = TempData["smserror"];
                 return RedirectToAction("Index");
+          
             }
 
 

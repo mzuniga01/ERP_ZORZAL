@@ -53,12 +53,12 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Nombre<span style="color:red">*</span></label>
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_Nombre)
+                                    @Html.TextBoxFor(model => model.bod_Nombre, new { @class = "single-line", MaxLength = 100 })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Nombre) </p>
                                 </div>
                                 <label class="control-label col-md-2">Responsable<span style="color:red">*</span></label>
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_ResponsableBodega)
+                                    @Html.TextBoxFor(model => model.bod_ResponsableBodega, new { @class = "single-line", MaxLength = 100 })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_ResponsableBodega) </p>
                                 </div>
                             </div>
@@ -77,19 +77,19 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Correo<span style="color:red">*</span></label>
                                 <div class="col-lg-4">
-                                    @Html.EditorFor(model => model.bod_Correo)
+                                    @Html.TextBoxFor(model => model.bod_Correo, new { @class = "single-line", MaxLength = 5000 })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Correo)</p>
                                 </div>
                                 <label class="control-label col-md-2">Teléfono<span style="color:red">*</span></label>
                                 <div class="col-lg-4">
-                                    @Html.EditorFor(model => model.bod_Telefono)
+                                    @Html.TextBoxFor(model => model.bod_Telefono, new { @class = "single-line", MaxLength = 13 })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">Dirección<span style="color:red">*</span></label>
                                 <div class="col-lg-10">
-                                    @Html.TextAreaFor(model => model.bod_Direccion, new { @class = "form-control" })
+                                    @Html.TextBoxFor(model => model.bod_Direccion, new { @class = "single-line", MaxLength = 200 })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Direccion)</p>
                                 </div>
                             </div>

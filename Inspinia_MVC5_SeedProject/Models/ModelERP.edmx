@@ -279,7 +279,7 @@
           <Property Name="bodd_FechaModifica" Type="datetime" />
           <Property Name="bodd_Costo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="bodd_CostoPromedio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="bodd_CantidadExistente" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="bodd_CantidadExistente" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="tbBox">
           <Key>
@@ -540,6 +540,8 @@
           <Property Name="clte_UsuarioModifica" Type="int" />
           <Property Name="clte_FechaModifica" Type="datetime" />
           <Property Name="clte_ConsumidorFinal" Type="bit" Nullable="false" />
+          <Property Name="clte_MontoCredito" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="clte_DiasCredito" Type="int" />
         </EntityType>
         <EntityType Name="tbCuponDescuento">
           <Key>
@@ -3659,7 +3661,6 @@
           <Parameter Name="ent_NumeroFormato" Type="varchar" Mode="In" />
           <Parameter Name="ent_FechaElaboracion" Type="datetime" Mode="In" />
           <Parameter Name="bod_Id" Type="int" Mode="In" />
-          <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
           <Parameter Name="prov_Id" Type="int" Mode="In" />
           <Parameter Name="ent_FacturaCompra" Type="varchar" Mode="In" />
           <Parameter Name="ent_FechaCompra" Type="datetime" Mode="In" />
@@ -3773,9 +3774,6 @@
         <Function Name="UDP_Inv_tbProductoCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="pcat_Id" Type="int" Mode="In" />
           <Parameter Name="pcat_EsActivo" Type="tinyint" Mode="In" />
-        </Function>
-        <Function Name="UDP_Inv_tbProductoCategoriaSubCate_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
-          <Parameter Name="pcat_Id" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbProductoSubCategoria_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="pscat_Id" Type="int" Mode="In" />
@@ -4963,22 +4961,6 @@
             <Parameter Name="ent_BodegaDestino" Mode="In" Type="Int32" />
             <Parameter Name="tent_Id" Mode="In" Type="Byte" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbEntrada_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Result)">
-            <Parameter Name="ent_Id" Mode="In" Type="Int32" />
-            <Parameter Name="ent_NumeroFormato" Mode="In" Type="String" />
-            <Parameter Name="ent_FechaElaboracion" Mode="In" Type="DateTime" />
-            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-            <Parameter Name="estm_Id" Mode="In" Type="Byte" />
-            <Parameter Name="prov_Id" Mode="In" Type="Int32" />
-            <Parameter Name="ent_FacturaCompra" Mode="In" Type="String" />
-            <Parameter Name="ent_FechaCompra" Mode="In" Type="DateTime" />
-            <Parameter Name="fact_Id" Mode="In" Type="Int32" />
-            <Parameter Name="ent_RazonDevolucion" Mode="In" Type="String" />
-            <Parameter Name="ent_BodegaDestino" Mode="In" Type="Int32" />
-            <Parameter Name="tent_Id" Mode="In" Type="Byte" />
-            <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="SDP_Acce_GetObjetos" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetos_Result)" />
           <FunctionImport Name="SDP_Acce_GetObjetosDisponibles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetosDisponibles_Result)">
           <Parameter Name="rol_Id" Mode="In" Type="Int32" />
@@ -6116,7 +6098,22 @@
             <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProductoSubCategoria_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Delete_Result)">
-            <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
+          <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbEntrada_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Result)">
+            <Parameter Name="ent_Id" Mode="In" Type="Int32" />
+            <Parameter Name="ent_NumeroFormato" Mode="In" Type="String" />
+            <Parameter Name="ent_FechaElaboracion" Mode="In" Type="DateTime" />
+            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+            <Parameter Name="prov_Id" Mode="In" Type="Int32" />
+            <Parameter Name="ent_FacturaCompra" Mode="In" Type="String" />
+            <Parameter Name="ent_FechaCompra" Mode="In" Type="DateTime" />
+            <Parameter Name="fact_Id" Mode="In" Type="Int32" />
+            <Parameter Name="ent_RazonDevolucion" Mode="In" Type="String" />
+            <Parameter Name="ent_BodegaDestino" Mode="In" Type="Int32" />
+            <Parameter Name="tent_Id" Mode="In" Type="Byte" />
+            <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -6209,9 +6206,6 @@
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="UDP_Inv_tbEntrada_Insert_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="UDP_Inv_tbEntrada_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="SDP_Acce_GetObjetos_Result">
@@ -6804,7 +6798,7 @@
           <Property Name="bodd_FechaModifica" Type="DateTime" Precision="3" />
           <Property Name="bodd_Costo" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="bodd_CostoPromedio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="bodd_CantidadExistente" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="bodd_CantidadExistente" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_bodd_UsuarioCrea" FromRole="tbBodegaDetalle" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_bodd_UsuarioModifica" FromRole="tbBodegaDetalle" ToRole="tbUsuario" />
           <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbBodega_bod_Id" FromRole="tbBodegaDetalle" ToRole="tbBodega" />
@@ -7137,6 +7131,8 @@
           <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbPedido_clte_id" FromRole="tbCliente" ToRole="tbPedido" />
           <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbCliente" ToRole="tbNotaCredito" />
           <NavigationProperty Name="tbSolicitudCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbSolicitudCredito_tbCliente_clte_Id" FromRole="tbCliente" ToRole="tbSolicitudCredito" />
+          <Property Name="clte_MontoCredito" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="clte_DiasCredito" Type="Int32" />
         </EntityType>
         <EntityType Name="tbCuponDescuento">
           <Key>
@@ -10160,6 +10156,9 @@
         <ComplexType Name="UDP_Inv_tbProductoCategoriaSubCate_Delete_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Inv_tbEntrada_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10346,13 +10345,6 @@
           <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -11165,6 +11157,8 @@
           <EntitySetMapping Name="tbCliente">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCliente">
               <MappingFragment StoreEntitySet="tbCliente">
+                <ScalarProperty Name="clte_DiasCredito" ColumnName="clte_DiasCredito" />
+                <ScalarProperty Name="clte_MontoCredito" ColumnName="clte_MontoCredito" />
                 <ScalarProperty Name="clte_ConsumidorFinal" ColumnName="clte_ConsumidorFinal" />
                 <ScalarProperty Name="clte_FechaModifica" ColumnName="clte_FechaModifica" />
                 <ScalarProperty Name="clte_UsuarioModifica" ColumnName="clte_UsuarioModifica" />
@@ -11712,16 +11706,16 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoriaSubCate_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoriaSubCate_Delete" >
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubCategoria_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubCategoria_Delete" >
             <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoCategoriaSubCate_Delete_Result">
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Delete_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubCategoria_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubCategoria_Delete" >
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update" >
             <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Delete_Result">
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
