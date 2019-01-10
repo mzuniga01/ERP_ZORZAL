@@ -15,3 +15,12 @@
     });
 
 });
+
+$(document).ready(function () {
+    var Cliente = $('#tbFactura_clte_Identificacion').val();
+if (Cliente === '') {
+    document.getElementById("Factura").disabled = true;
+    document.getElementById("tbFactura_fact_Codigo").disabled = true;
+}
+});
+

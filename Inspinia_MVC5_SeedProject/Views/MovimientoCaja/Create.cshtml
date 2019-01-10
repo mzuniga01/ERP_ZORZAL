@@ -5,10 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
-    .mt-0 {
-     margin-top: 0 !important;
+    .validation-error {
+    color: red; 
+    font-size: small;
 }
 </style>
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Arqueo Caja</h2>
@@ -40,49 +42,53 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
+            @*@Html.LabelFor(model => model.mocja_Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_Id)</span>
+            </div>*@
             @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.cja_Id)
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.mocja_UsuarioApertura, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.mocja_UsuarioApertura)
-                @Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)</span>
             </div>
             @Html.LabelFor(model => model.mocja_FechaApertura, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.mocja_FechaApertura, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaapertura" } })
-                @Html.ValidationMessageFor(model => model.mocja_FechaApertura)
+                <span style="color:red" class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaApertura)</span>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.mocja_UsuarioArquea, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.mocja_UsuarioArquea)
-                @Html.ValidationMessageFor(model => model.mocja_UsuarioArquea)
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_UsuarioArquea)</span>
             </div>
             @Html.LabelFor(model => model.mocja_FechaArqueo, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.mocja_FechaArqueo, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaarqueo" } })
-                @Html.ValidationMessageFor(model => model.mocja_FechaArqueo)
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaArqueo)</span>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.mocja_UsuarioAceptacion, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.mocja_UsuarioAceptacion)
-                @Html.ValidationMessageFor(model => model.mocja_UsuarioAceptacion)
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_UsuarioAceptacion)</span>
             </div>
             @Html.LabelFor(model => model.mocja_FechaAceptacion, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.mocja_FechaAceptacion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaaceptacion" } })
-                @Html.ValidationMessageFor(model => model.mocja_FechaAceptacion)
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaAceptacion)</span>
             </div>            
         </div>
 
@@ -95,35 +101,35 @@
 
                 <label class="control-label col-md-4">Efectivo Inicial</label>
                 <div class="control-label col-md-4">
-                    <input type="text" value="" class="form-control" readonly />
+                    <input type="text" value="5000" class="form-control" readonly />
                 </div>
             </div>
 
             <div class="form-group m-t-n-xs">
                 <label class="control-label col-md-4">Efectivo Recibido</label>
                 <div class="control-label col-md-4">
-                    <input type="text" value="" class="form-control" readonly />
+                    <input type="text" value="4000" class="form-control" readonly />
                 </div>
             </div>
 
             <div class="form-group m-t-n-xs">
                 <label class="control-label col-md-4">Efectivo Pagos</label>
                 <div class="control-label col-md-4">
-                    <input type="text" value="" class="form-control" readonly />
+                    <input type="text" value="6000" class="form-control" readonly />
                 </div>
             </div>
 
             <div class="form-group m-t-n-xs">
                 <label class="control-label col-md-4">Efectivo Entregado</label>
                 <div class="control-label col-md-4">
-                    <input type="text" value="" class="form-control" readonly />
+                    <input type="text" value="2000" class="form-control" readonly />
                 </div>
             </div>
 
             <div class="form-group m-t-n-xs">
                 <label class="control-label col-md-4">Total Efectivo</label>
                 <div class="control-label col-md-4">
-                    <input type="text" value="" class="form-control" readonly />
+                    <input type="text" value="13,000" class="form-control" readonly />
                 </div>
             </div>
         </div>
@@ -138,42 +144,42 @@
 
                 <label class="control-label col-md-4">Pagos Efectivo</label>
                 <div class="control-label col-md-4">
-                    <input type="text" value="" class="form-control" readonly />
+                    <input type="text" value="6000" class="form-control" readonly />
                 </div>
             </div>
 
             <div class="form-group m-t-n-xs">
                 <label class="control-label col-md-4">Pagos TC o TD</label>
                 <div class="control-label col-md-4">
-                    <input type="text" value="" class="form-control" readonly />
+                    <input type="text" value="5500" class="form-control" readonly />
                 </div>
             </div>
 
             <div class="form-group m-t-n-xs">
                 <label class="control-label col-md-4">Pagos Cheque</label>
                 <div class="control-label col-md-4">
-                    <input type="text" value="" class="form-control" readonly />
+                    <input type="text" value="2000" class="form-control" readonly />
                 </div>
             </div>
 
             <div class="form-group m-t-n-xs">
                 <label class="control-label col-md-4">Pagos Nota de Credito</label>
                 <div class="control-label col-md-4">
-                    <input type="text" value="" class="form-control" readonly />
+                    <input type="text" value="3800" class="form-control" readonly />
                 </div>
             </div>
 
             <div class="form-group m-t-n-xs">
                 <label class="control-label col-md-4">Pagos Cupón</label>
                 <div class="control-label col-md-4">
-                    <input type="text" value="" class="form-control" readonly />
+                    <input type="text" value="1910" class="form-control" readonly />
                 </div>
             </div>
 
             <div class="form-group m-t-n-xs">
                 <label class="control-label col-md-4">Total Pagos</label>
                 <div class="control-label col-md-4">
-                    <input type="text" value="" class="form-control" readonly />
+                    <input type="text" value="19,210.00" class="form-control" readonly />
                 </div>
             </div>
         </div>
@@ -197,8 +203,80 @@
                         <td>Billete</td>
                         <td>500 Lempiras</td>
                         <td>500</td>
+                        <td>5</td>
+                        <td>2500</td>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>100 Lempiras</td>
+                        <td>100</td>
                         <td>10</td>
-                        <td>5,000</td>
+                        <td>1,000</td>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>50 Lempiras</td>
+                        <td>50</td>
+                        <td>10</td>
+                        <td>500</td>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>20 Lempiras</td>
+                        <td>20</td>
+                        <td>50</td>
+                        <td>1000</td>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>10 Lempiras</td>
+                        <td>10</td>
+                        <td>50</td>
+                        <td>500</td>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>5 Lempiras</td>
+                        <td>5</td>
+                        <td>60</td>
+                        <td>300</td>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>2 Lempiras</td>
+                        <td>2</td>
+                        <td>50</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>1 Lempiras</td>
+                        <td>1</td>
+                        <td>100</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>50 Lempiras</td>
+                        <td>50</td>
+                        <td>10</td>
+                        <td>500</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <th class="success">Total Efectivo</th>
+                        <td>6,000</td>
                     </tr>
                 </table>
             </div>
@@ -219,6 +297,30 @@
         </div>
     </div>
  </div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    <script>
+        jQuery('input,select').each(function () {
+            var req = jQuery(this).attr('data-val-required');
+            if (undefined != req) {
+                var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+                var text = label.text();
+                if (text.length > 0) {
+                    label.append('<span style="color:red"> *</span>');
+                }
+            }
+        });
+
+</script>
+    
+    
+    }
+
+
 
  
 

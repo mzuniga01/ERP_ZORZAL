@@ -7,26 +7,15 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
 
-			@*@using (Html.BeginForm())
-{
-   @Html.AntiForgeryToken()*@
-
 
     <div class="form-horizontal">
-        @*<div class="form-group" style="align-items:flex-end">
-            <input type="button" value="Buscar" class="btn btn-primary btn-xl" />
-            <div class="col-md-8">
-                <input type="text" class="form-control " placeholder="Buscar Producto..."/>
-            </div>
-        </div>*@
-        @*@Html.ValidationSummary(true)*@
+
       
         <div class="form-group">
             @Html.LabelFor(model => model.prod_Codigo,"Codigo Producto", new { @class = "control-label col-md-2" })
             <div class="col-md-2">
                 <input type="hidden" name="fact_Id" value="" class="form-control " />
                 <input type="text" id="prod_Codigo" name="prod_Codigo" value="" class="form-control " />
-                @*@Html.EditorFor(model => model.prod_Codigo)*@
                 <div id="validationCodigoProductoCreate">
                     @Html.ValidationMessageFor(model => model.prod_Codigo)
                 </div>
@@ -38,8 +27,7 @@
             @Html.LabelFor(model => model.devd_CantidadProducto, "Cantidad", new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 <input type="text" id="devd_CantidadProducto" name="devd_CantidadProducto" value="" class="form-control " />
-                @*@Html.EditorFor(model => model.devd_CantidadProducto, "1")*@
-                <div id="validationCantidadCreate">
+                   <div id="validationCantidadCreate">
                     @Html.ValidationMessageFor(model => model.devd_CantidadProducto)
                 </div>
              
@@ -79,7 +67,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.devd_Descripcion, "Observaciones", new { @class = "control-label col-md-2" })
             <div class="col-md-8">
-                @*<input type="text" id="devd_Descripcion" name="devd_Descripcion" value="" class="form-control " />*@
                 @Html.TextAreaFor(model => model.devd_Descripcion, new { @class = "form-control" })
                 <div id="validationComentariosCreate">
                     @Html.ValidationMessageFor(model => model.devd_Descripcion)
@@ -87,13 +74,6 @@
 
             </div>
         </div>
-                  
-                        @*<div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Agregar" class="btn btn-primary" />
-                    @Html.ActionLink("Cancelar", "Create", null, new { @class = "btn btn-white" })
-                </div>
-            </div>*@
                     </div>
                 @*}*@
                     <table id="tbDetalleDevolucion"class="table table-striped table-bordered table-hover dataTables-example">
@@ -138,11 +118,6 @@
             <div class="modal-body">
                      @Html.Partial("_ProductoDevolucionFactura", (List<tbFacturaDetalle>)ViewBag.FacturaDetalle)
             </div>
-
-            @*<div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Guardar</button>
-                    </div>*@
             </div>
         </div>
     </div>

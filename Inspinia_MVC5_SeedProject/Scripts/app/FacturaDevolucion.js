@@ -24,4 +24,5 @@ $(document).on("click", "#DataTable tbody tr td button#AgregarFactura", function
     $("#tbFactura_clte_Nombres").val(ClienteItem);
     $('#ModalAgregarFactura').modal('hide');
     //CargarAsignaciones();
+   
 });

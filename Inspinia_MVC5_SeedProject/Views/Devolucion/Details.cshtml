@@ -95,31 +95,24 @@
                         </dd>
                        
                                 @Html.Partial("_IndexDetalleDevolucion", Model.tbDevolucionDetalle)
-                  
-                        <script type="text/javascript" class="alert-info">
-                            function NotaCredito()
-                            {
-                                var bResponse = confirm('¿Esta seguro que desea crear una nota de Credito?. Recuerde que no podra volver hacerlo, esta acción es irreversible');
 
-                                if (bResponse === true) {
-                                    console.log("lnkLogout_Confirm clciked.");
-                                    var url = '@Url.Action("Create", "NotaCredito")';
-                                    window.location.href = url;
-                                }
-                                return bResponse;
-                            }
+                        @Html.Hidden("RedirectTo", Url.Action("Create", "NotaCredito"))
 
-                        </script>
                         @*<div class="ibox-tools">
-                            </div>*@
+                        </div>*@
                         <div class="form-group">
                             <div class="col-md-offset col-md-11">
                                 @Html.ActionLink("Editar", "Edit", new { id = Model.dev_Id }, new { @class = "btn btn-primary  btn-ms" })
-                                <button onclick="NotaCredito()" class="btn btn-primary btn-ms">Emitir Nota de Credito</button>
+
+                                @*<button onclick="NotaCredito()" class="btn btn-primary btn-ms">Emitir Nota de Credito</button>*@
+                                <button id="bottonNotaCredito" name="bottonNotaCredito" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#ModalNotaCredito">
+                                    Emitir Nota de Credito
+                                </button>
+                                <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#exampleModal">
+                                    Anular
+                                </button>
                             </div>
                         </div>
-
-
                     </dl>
 
                    
@@ -155,12 +148,32 @@
     </div>
  </div>
 
-
-<script src="~/Scripts/alertify.js"></script>
-<script src="~/Scripts/alertify.min.js"></script>
+<div class="modal fade" id="ModalNotaCredito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Emitir Nota Credito</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>
+                    <strong>
+                        ¿Esta seguro que desea crear una Nota de Credito? <br /><br />
+                        Recuerde que no podra volver hacerlo, esta acción es irreversible.
+                    </strong>
+                </h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="Yes" onclick="NotaCredito();" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/NotaCredito.js"></script>
-
+<script src="~/Scripts/app/EmitirNotaCredito.js"></script>
 
 
 

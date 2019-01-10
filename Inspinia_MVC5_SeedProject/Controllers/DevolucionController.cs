@@ -80,10 +80,12 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.dev_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             //ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
             //ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "Codigo Factura");
+            var cliente = "E24RG14";
            tbFacturaDetalle FacturaDetalle = new tbFacturaDetalle();
 
-            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
-            ViewBag.Factura = db.tbFactura.ToList();
+         
+            ViewBag.Factura = db.tbFactura.Where(a => a.clte_Identificacion == cliente).ToList();
+            ViewBag.FacturaDetalle = db.tbFacturaDetalle.Where(a => a.factd_Id == 2).ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
      
 
@@ -100,84 +102,85 @@ namespace ERP_ZORZAL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "fact_Id, cja_Id, dev_Fecha")] tbDevolucion tbDevolucion)
-        //{
-        //    var list = (List<tbDevolucionDetalle>)Session["Devolucion"];
-        //    var MensajeError = 0;
-        //    var MensajeErrorDetalle = 0;
-        //    IEnumerable<object> listDevolucion = null;
-        //    IEnumerable<object> listDevolucionDetalle = null;
-        //    tbDevolucionDetalle cDevolucionDetalle = new tbDevolucionDetalle();
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            using (TransactionScope Tran = new TransactionScope())
-        //            {
-        //                listDevolucion = db.UDP_Vent_tbDevolucion_Insert(
-        //                    tbDevolucion.fact_Id,
-        //                    tbDevolucion.cja_Id,
-        //                    tbDevolucion.dev_Fecha);
-        //                foreach (UDP_Vent_tbDevolucion_Insert_Result DevolucionL in listDevolucion)
-        //                    MensajeError = DevolucionL.MensajeError;
-        //                if (MensajeError == -1)
-        //                {
-        //                    ModelState.AddModelError("", "No se pudo agregar el registro");
-        //                    return View(tbDevolucion);
-        //                }
-        //                else
-        //                {
-        //                    if (MensajeError > 0)
-        //                    {
-        //                        if (list != null)
-        //                        {
-        //                            if (list.Count != 0)
-        //                            {
-        //                                foreach (tbDevolucionDetalle Detalle in list)
-        //                                {
-        //                                    Detalle.dev_Id = MensajeError;
-        //                                    listDevolucionDetalle = db.UDP_Vent_tbDevolucionDetalle_Insert(
-        //                                        Detalle.dev_Id,
-        //                                        Detalle.prod_Codigo,
-        //                                        Detalle.devd_CantidadProducto,
-        //                                        Detalle.devd_Descripcion,
-        //                                        Detalle.devd_Monto);
-        //                                    foreach (UDP_Vent_tbDevolucionDetalle_Insert_Result SPDevolucionDetalleDet in listDevolucionDetalle)
-        //                                    {
-        //                                        MensajeErrorDetalle = SPDevolucionDetalleDet.MensajeError;
-        //                                        if (MensajeError == -1)
-        //                                        {
-        //                                            ModelState.AddModelError("", "No se pudo agregar el registro detalle");
-        //                                            return View(tbDevolucion);
-        //                                        }
-        //                                    }
-        //                                }
-        //                            }
-        //                        }
-        //                    }
-        //                    else { ModelState.AddModelError("", "No se pudo agregar el registro");
-        //                            return View(tbDevolucion);
-        //                    }
-        //                 }
-        //                Tran.Complete();
-        //                return RedirectToAction("Index");
-        //            }
-        //        }
+        public ActionResult Create([Bind(Include = "fact_Id, cja_Id, dev_Fecha, dev_Estado")] tbDevolucion tbDevolucion)
+        {
+            var list = (List<tbDevolucionDetalle>)Session["Devolucion"];
+            var MensajeError = 0;
+            var MensajeErrorDetalle = 0;
+            IEnumerable<object> listDevolucion = null;
+            IEnumerable<object> listDevolucionDetalle = null;
+            tbDevolucionDetalle cDevolucionDetalle = new tbDevolucionDetalle();
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    using (TransactionScope Tran = new TransactionScope())
+                    {
+                        listDevolucion = db.UDP_Vent_tbDevolucion_Insert(
+                            tbDevolucion.fact_Id,
+                            tbDevolucion.cja_Id,
+                            tbDevolucion.dev_Fecha,
+                            tbDevolucion.dev_Estado);
+                        foreach (UDP_Vent_tbDevolucion_Insert_Result DevolucionL in listDevolucion)
+                            MensajeError = DevolucionL.MensajeError;
+                        if (MensajeError == -1)
+                        {
+                            ModelState.AddModelError("", "No se pudo agregar el registro");
+                            return View(tbDevolucion);
+                        }
+                        else
+                        {
+                            if (MensajeError > 0)
+                            {
+                                if (list != null)
+                                {
+                                    if (list.Count != 0)
+                                    {
+                                        foreach (tbDevolucionDetalle Detalle in list)
+                                        {
+                                            Detalle.dev_Id = MensajeError;
+                                            listDevolucionDetalle = db.UDP_Vent_tbDevolucionDetalle_Insert(
+                                                Detalle.dev_Id,
+                                                Detalle.prod_Codigo,
+                                                Detalle.devd_CantidadProducto,
+                                                Detalle.devd_Descripcion,
+                                                Detalle.devd_Monto);
+                                            foreach (UDP_Vent_tbDevolucionDetalle_Insert_Result SPDevolucionDetalleDet in listDevolucionDetalle)
+                                            {
+                                                MensajeErrorDetalle = SPDevolucionDetalleDet.MensajeError;
+                                                if (MensajeError == -1)
+                                                {
+                                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                                    return View(tbDevolucion);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else { ModelState.AddModelError("", "No se pudo agregar el registro");
+                                    return View(tbDevolucion);
+                            }
+                         }
+                        Tran.Complete();
+                        return RedirectToAction("Index");
+                    }
+                }
 
-        //        catch (Exception Ex)
-        //        {
-        //            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
-        //            ViewBag.Factura = db.tbFactura.ToList();
-        //            ViewBag.Cliente = db.tbCliente.ToList();
-        //            ModelState.AddModelError("", "No se pudo agregar el registro" + Ex.Message.ToString());
-        //            return View(tbDevolucion);
-        //        }
-        //    }
-        //    ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
-        //    ViewBag.Factura = db.tbFactura.ToList();
-        //    ViewBag.Cliente = db.tbCliente.ToList();
-        //    return View(tbDevolucion);
-        //}
+                catch (Exception Ex)
+                {
+                    ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
+                    ViewBag.Factura = db.tbFactura.ToList();
+                    ViewBag.Cliente = db.tbCliente.ToList();
+                    ModelState.AddModelError("", "No se pudo agregar el registro" + Ex.Message.ToString());
+                    return View(tbDevolucion);
+                }
+            }
+            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
+            ViewBag.Factura = db.tbFactura.ToList();
+            ViewBag.Cliente = db.tbCliente.ToList();
+            return View(tbDevolucion);
+        }
         // POST: /Devolucion/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -218,26 +221,7 @@ namespace ERP_ZORZAL.Controllers
             return View(tbDevolucion);
         }
 
-        // POST: /Devolucion/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="dev_Id,fact_Id,cja_Id,dev_Fecha,dev_UsuarioCrea,dev_FechaCrea,dev_UsuarioModifica,dev_FechaModifica")] tbDevolucion tbDevolucion)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(tbDevolucion).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.dev_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDevolucion.dev_UsuarioCrea);
-            ViewBag.dev_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDevolucion.dev_UsuarioModifica);
-            ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbDevolucion.cja_Id);
-            ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbDevolucion.fact_Id);
-            return View(tbDevolucion);
-        }
-
+        
         [HttpPost]
         public ActionResult UpdateDevolucionDetalle(tbDevolucionDetalle EditDevolucionDetalle)
         {
