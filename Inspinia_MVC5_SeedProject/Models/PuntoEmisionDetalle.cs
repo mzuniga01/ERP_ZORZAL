@@ -14,10 +14,10 @@ namespace ERP_GMEDINA.Models
     }
     public class PuntoEmisionDetalleMetaData
     {
-        [Display(Name = "Id Punto Emisión Detalle")]        
+        [Display(Name = "Código Punto Emisión Detalle")]        
         public int pemid_Id { get; set; }
 
-        [Display(Name = "Id Punto Emisión")]
+        [Display(Name = "Código Punto Emisión")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo Numero CAI es requerido")]
         public int pemi_Id { get; set; }
 
@@ -35,7 +35,7 @@ namespace ERP_GMEDINA.Models
         [StringLength(20, MinimumLength = 19, ErrorMessage = "El campo {0} debe tener el mismo formato de Rango Inicial")]
         public string pemid_RangoFinal { get; set; }
 
-        [Display(Name = "Fecha Límite")]
+        [Display(Name = "Fecha Límite Emisión")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime pemid_FechaLimite { get; set; }

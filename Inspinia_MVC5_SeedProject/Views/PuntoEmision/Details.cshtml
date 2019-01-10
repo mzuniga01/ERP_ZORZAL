@@ -127,21 +127,3 @@
 <script src="~/Scripts/app/DataTable.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-<script>
-    $('#btnModalGuardarNumeracion').click(function () {
-        var GetNumeroCAI = $('#pemi_NumeroCAI').val();
-        $("#tbPuntoEmision_pemi_NumeroCAI").val(GetNumeroCAI);
-        console.log(GetNumeroCAI);
-    });
-
-    //$(document).on("click", "#PuntoEmisionDetalle tbody tr td ", function () {
-    //    NumeroCAIItem = $(this).closest('tr').data('numerocai');
-    //    console.log(NumeroCAIItem);
-    //    $("#tbPuntoEmision_pemi_NumeroCAI").val(NumeroCAIItem);
-    //    console.log(tbPuntoEmision_pemi_NumeroCAI);
-    //});
-
-    $(document).ready(function () {
-        $("#pemi_NumeroCAI").css("border", "none");
-    });
-</script>

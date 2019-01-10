@@ -4,6 +4,11 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h3><b>Listado de Numeración</b></h3>
+                    <div class="ibox-tools">
+                        <button type="button" id="btnModalGuardarNumeracion" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Nuevo">
+                            Registrar Numeración
+                        </button>
+                    </div>
                 </div>
                 <div class="ibox-content">
 
@@ -112,5 +117,21 @@
                 </div>
             </div>
  
+<!-- Modal -->
+<div class="modal fade" id="Nuevo" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registar Numeración</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="AjaxCreateNumeracion">
+                @Html.Partial("_CreateNumeracionDetails", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle())
+            </div>
+        </div>
+    </div>
+</div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/PuntoEmision.js"></script>

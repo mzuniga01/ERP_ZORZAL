@@ -17,7 +17,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar", "Create", null, new { @class = "btn btn-primary btn-sm" })
+						@Html.ActionLink("Registrar Punto Emisión", "Create", null, new { @class = "btn btn-primary" })
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -46,7 +46,8 @@
                                     </td>
                                    
                                     <td>
-                                        @Html.ActionLink("Detalles", "Details", new { id = item.pemi_Id }, new { @class = "btn btn-primary btn-xs" })   
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.pemi_Id }, new { @class = "btn btn-primary btn-xs" })  
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.pemi_Id }, new { @class = "btn btn-white btn-xs" })   
                                     </td>
                                 </tr>
                             }

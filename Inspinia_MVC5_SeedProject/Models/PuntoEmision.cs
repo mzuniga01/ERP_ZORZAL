@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Models
     }
     public class PuntoEmisionMetaData
     {
-        [Display(Name ="Id")]
+        [Display(Name ="Código")]
         public int pemi_Id { get; set; }
 
         [Display(Name ="Número CAI")]

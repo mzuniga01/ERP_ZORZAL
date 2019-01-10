@@ -11,9 +11,6 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
-                                </th>
-                                <th>
                                     @Html.DisplayNameFor(model => model.suc_Descripcion)
                                 </th>
 
@@ -29,9 +26,6 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbPuntoEmision.pemi_NumeroCAI)
-                                    </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.suc_Descripcion)
                                     </td>
