@@ -46,29 +46,17 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.suc_Id, "Codigo Sucursal",new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.suc_Id)
-                @Html.ValidationMessageFor(model => model.suc_Id)
+                <p style="color:red">@Html.ValidationMessageFor(model => model.suc_Id)</p>
+            </div>
+            @Html.LabelFor(model => model.suc_Descripcion, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.suc_Descripcion)
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.suc_Descripcion)</p>
             </div>
         </div>
       
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.mun_Codigo, "Municipio", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.DropDownListFor(model => Model.mun_Codigo, new SelectList("mun_Codigo", "mun_Nombre"), new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.mun_Codigo, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.tbMunicipio.mun_Codigo, " Municipio", new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.DropDownList("mun_Codigo", (IEnumerable<SelectListItem>)ViewBag.mun_Codigo, new { @class = "form-control" })               
-                @Html.ValidationMessageFor(model => model.tbMunicipio.mun_Codigo)
-            </div>
-        </div>*@
-
 
        <div class="form-group">
                 <label class = "control-label col-md-2">Departamento<span style="color:red"> *</span></label>           
@@ -81,57 +69,40 @@
                     @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
                     <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
                 </div>
-      </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.tbBodega.bod_Nombre, "Codigo Bodega", new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.DropDownList("bod_Id", null, "Seleccione Bodega", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.tbBodega.bod_Nombre)
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.pemi_Id, "Punto Emision", new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.DropDownList("pemi_Id", null, "Seleccione Punto Emision", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.pemi_Id)
-            </div>
-        </div>
-        
-        <div class="form-group">
-            @Html.LabelFor(model => model.suc_Descripcion, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.suc_Descripcion)
-                @Html.ValidationMessageFor(model => model.suc_Descripcion)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.suc_Correo, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.suc_Correo)
-                @Html.ValidationMessageFor(model => model.suc_Correo)
-            </div>
-        </div>
-       
-
-        <div class="form-group">
+                <div class="form-group">
             @Html.LabelFor(model => model.suc_Direccion, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.suc_Direccion)
-                @Html.ValidationMessageFor(model => model.suc_Direccion)
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.suc_Direccion, new { @autocomplete = "off", @class = "form-control" })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.suc_Direccion)</p>
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbBodega.bod_Nombre, "Bodega", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("bod_Id", null, "Seleccione Bodega", new { @class = "form-control" })
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.tbBodega.bod_Nombre)</p>
+           </div>
+            @Html.LabelFor(model => model.pemi_Id, "Punto Emision", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("pemi_Id", null, "Seleccione Punto Emision", new { @class = "form-control" })
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.pemi_Id)</p>
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.suc_Telefono, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.suc_Telefono)
-                @Html.ValidationMessageFor(model => model.suc_Telefono)
+                <p style="color:red">@Html.ValidationMessageFor(model => model.suc_Telefono)</p>
+            </div>
+            @Html.LabelFor(model => model.suc_Correo, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.suc_Correo)
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.suc_Correo)</p>
             </div>
         </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
