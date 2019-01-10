@@ -29,10 +29,10 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.suc_Id)
+                                   Sucursal
                                 </th>
                                 <th>
-                                   Sucursal
+                                    Numero CAI
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.suc_Direccion)
@@ -43,13 +43,6 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.suc_Telefono)
                                 </th>
-                                @*<th>
-                                    @Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)
-                                </th>*@
-                                <th>
-                                    Numero CAI
-                                    @*@Html.DisplayNameFor(model => model.tbPuntoEmision.pemi_NumeroCAI)*@
-                                </th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -58,12 +51,11 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.suc_Id)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.suc_Descripcion)
                                     </td>
-                                  
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbPuntoEmision.pemi_NumeroCAI)
+                                    </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.suc_Direccion)
                                     </td>
@@ -72,17 +64,11 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.suc_Telefono)
-                                    </td>
-                                    @*<td>
-                                        @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
-                                    </td>*@
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbPuntoEmision.pemi_NumeroCAI)
-                                    </td>
+                                    </td>                                  
                                     <td>
                                         @Html.ActionLink("Detalle", "Details", new { id = item.suc_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.suc_Id }, new { @class = "btn btn-white btn-xs" })
-                                        @*@Html.ActionLink("Delete", "Delete", new { id = item.suc_Id }, new { @class = "btn btn-white btn-sm" })*@
+                                       
                                     </td>
                                 </tr>
                             }
