@@ -62,7 +62,7 @@
                             </div>
                             @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.bodd_PuntoReorden)
+                                <input type="number" id="bodd_PuntoReorden" placeholder="" class="form-control" />
                                 <div id="ErrorPuntoReorden_Create">
                                     @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
                                 </div>
@@ -99,8 +99,8 @@
                             <input type="button" value="Agregar" id="AgregarBodegaDetalle" class="btn btn-primary" />
                         </div>
                         @*<div class="form-group col-md-1">
-                                <button class="btn btn-primary" type="button" id="AgregarBodegaDetalle">Añadir</button>
-                            </div>*@
+            <button class="btn btn-primary" type="button" id="AgregarBodegaDetalle">Añadir</button>
+        </div>*@
                         <table id="tblBodegadetalle_Create" class="table table table-striped">
                             <thead>
                                 <tr>
@@ -115,7 +115,7 @@
                             </thead>
                             <tbody></tbody>
                         </table>
-
+                        
                     </div>
 
                     @*<div class="row">

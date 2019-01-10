@@ -328,9 +328,6 @@
     <Compile Include="Models\tbEntradaDetalle.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbEstadoDevolucion.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tbEstadoFactura.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

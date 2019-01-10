@@ -361,84 +361,7 @@ $('#btnGuardarNuevoDetalle').click(function () {
     var Cpromedio = $('#bodd_CostoPromedio').val();
 
 
-    if (Producto == '') {
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorProducto_Create').after('<ul id="Error_Producto" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
-    }
-    else if (Preorden == '') {
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorPuntoReorden_Create').after('<ul id="Error_PuntoReorden" class="validation-summary-errors text-danger">Campo Punto Reorden Requerido</ul>');
-    }
-    else if (Cminima == '') {
-
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorCantidadMinima_Create').after('<ul id="Error_CantidadMinima" class="validation-summary-errors text-danger">Campo Canidad Mínima Requerido</ul>');
-    }
-    else if (Cmaxima == '') {
-
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorCantidadMaxima_Create').after('<ul id="Error_CantidadMaxima" class="validation-summary-errors text-danger">Campo Cantidad Máxima Requerido</ul>');
-    }
-    else if (Costo == '') {
-
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorCosto_Create').after('<ul id="Error_Costo" class="validation-summary-errors text-danger">Campo Costo Requerido</ul>');
-    }
-    else if (Cpromedio == '') {
-
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorCostoPromedio_Create').after('<ul id="Error_CostoPromedioo" class="validation-summary-errors text-danger">Campo Costo Promedio Requerido</ul>');
-    }
-
-    else {
-        //Aqui importa el orden
-        contador = contador + 1;
-        copiar = "<tr data-id=" + contador + ">";
-        copiar += "<td id = 'Producto'>" + $('#prod_Codigo').val() + "</td>";
-        copiar += "<td id = 'Preorden'>" + $('#bodd_PuntoReorden').val() + "</td>";// aqui va el campo y luego se llena con el id del mismo, que ya ha capturado el valor
-        copiar += "<td id = 'Cminima'>" + $('#bodd_CantidadMinima').val() + "</td>";
-        copiar += "<td id = 'Cmaxima'>" + $('#bodd_CantidadMaxima').val() + "</td>";
-        copiar += "<td id = 'Costo'>" + $('#bodd_Costo').val() + "</td>";
-        copiar += "<td id = 'Cpromedio'>" + $('#bodd_CostoPromedio').val() + "</td>";
-        copiar += "<td>" + '<button id="removeBodegaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
-        copiar += "</tr>";
-        $('#tblBodegadetalle_Create').append(copiar);
+ 
 
         var tbBodegaDetalle = Getbodegadetalle();
         $.ajax({
@@ -464,7 +387,6 @@ $('#btnGuardarNuevoDetalle').click(function () {
                 $('#Error_Costo').text('');
                 $('#Error_CostoPromedioo').text('');
             });
-         }
 });
 function Getbodegadetalle() {
     var GUARDAR_NUEVO_DETALLE = {

@@ -248,38 +248,6 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult SaveNuevoDetalle(tbBodegaDetalle GUARDAR_NUEVO_DETALLE)
         {
-            string Msj = "";
-            try
-            {
-                IEnumerable<object> list = null;
-                list = db.UDP_Inv_tbBodegaDetalle_Insert(GUARDAR_NUEVO_DETALLE.prod_Codigo
-                                                         , GUARDAR_NUEVO_DETALLE.bod_Id
-                                                         , GUARDAR_NUEVO_DETALLE.bodd_CantidadMinima
-                                                         , GUARDAR_NUEVO_DETALLE.bodd_CantidadMinima
-                                                         , GUARDAR_NUEVO_DETALLE.bodd_PuntoReorden
-                                                         , GUARDAR_NUEVO_DETALLE.bodd_Costo
-                                                         , GUARDAR_NUEVO_DETALLE.bodd_CostoPromedio
-                                                                            );
-                foreach (UDP_Inv_tbBodegaDetalle_Insert_Result bodega in list)
-                    Msj = bodega.MensajeError;
-
-                if (Msj.Substring(0, 2) == "-1")
-                {
-                    ModelState.AddModelError("", "No se Actualizo el registro");
-
-
-                }
-                else
-                {
-                    //return View("Edit/" + bod_Id);
-                    return Json("Index");
-                }
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro");
-            }
             return Json("Index");
         }
 
@@ -424,7 +392,7 @@ namespace ERP_GMEDINA.Controllers
                 return RedirectToAction("Index");
             }
             this.AllLists();
-            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
+            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.tbMunicipio.tbDepartamento.dep_Codigo);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
             
             return View(tbBodega);

@@ -192,13 +192,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="spGetMunicipios" FunctionName="ERP_ZORZALModel.Store.spGetMunicipios">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetMunicipios_Result">
-          <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SDP_Acce_GetObjetos" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetObjetos">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetObjetos_Result">
@@ -1078,6 +1071,7 @@
     <EntitySetMapping Name="tbDevolucion">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucion">
         <MappingFragment StoreEntitySet="tbDevolucion">
+          <ScalarProperty Name="dev_Estado" ColumnName="dev_Estado" />
           <ScalarProperty Name="dev_FechaModifica" ColumnName="dev_FechaModifica" />
           <ScalarProperty Name="dev_UsuarioModifica" ColumnName="dev_UsuarioModifica" />
           <ScalarProperty Name="dev_FechaCrea" ColumnName="dev_FechaCrea" />
@@ -1115,18 +1109,6 @@
           <ScalarProperty Name="dfisc_UsuarioCrea" ColumnName="dfisc_UsuarioCrea" />
           <ScalarProperty Name="dfisc_Descripcion" ColumnName="dfisc_Descripcion" />
           <ScalarProperty Name="dfisc_Id" ColumnName="dfisc_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbEstadoDevolucion">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEstadoDevolucion">
-        <MappingFragment StoreEntitySet="tbEstadoDevolucion">
-          <ScalarProperty Name="esdev_FechaModifica" ColumnName="esdev_FechaModifica" />
-          <ScalarProperty Name="esdev_UsuarioModifica" ColumnName="esdev_UsuarioModifica" />
-          <ScalarProperty Name="esdev_FechaCrea" ColumnName="esdev_FechaCrea" />
-          <ScalarProperty Name="esdev_UsuarioCrea" ColumnName="esdev_UsuarioCrea" />
-          <ScalarProperty Name="esdev_Descripcion" ColumnName="esdev_Descripcion" />
-          <ScalarProperty Name="esdev_Id" ColumnName="esdev_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1493,6 +1475,14 @@
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetDepartamento_Result">
           <ScalarProperty Name="dep_Codigo" ColumnName="dep_Codigo" />
           <ScalarProperty Name="dep_Nombre" ColumnName="dep_Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetMunicipios" FunctionName="ERP_ZORZALModel.Store.spGetMunicipios">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetMunicipios_Result">
+          <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
+          <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
