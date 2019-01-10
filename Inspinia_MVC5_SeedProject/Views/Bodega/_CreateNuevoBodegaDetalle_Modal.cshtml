@@ -53,13 +53,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.bodd_PuntoReorden)
-                                <div id="ErrorPuntoReorden_Create">
-                                    @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
-                                </div>
-                            </div>
                             @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 <input type="number" id="bodd_CantidadMinima" placeholder="" class="form-control" />
@@ -67,14 +60,19 @@
                                     @Html.ValidationMessageFor(model => model.bodd_CantidadMinima)
                                 </div>
                             </div>
+                            @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.bodd_PuntoReorden)
+                                <div id="ErrorPuntoReorden_Create">
+                                    @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 <input type="number" id="bodd_CantidadMaxima" placeholder="" class="form-control" />
-                                <div id="ErrorCantidadMaxima_Create">
-                                    @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
-                                </div>
+
                             </div>
 
                             @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
@@ -101,8 +99,8 @@
                             <input type="button" value="Agregar" id="AgregarBodegaDetalle" class="btn btn-primary" />
                         </div>
                         @*<div class="form-group col-md-1">
-            <button class="btn btn-primary" type="button" id="AgregarBodegaDetalle">Añadir</button>
-        </div>*@
+                                <button class="btn btn-primary" type="button" id="AgregarBodegaDetalle">Añadir</button>
+                            </div>*@
                         <table id="tblBodegadetalle_Create" class="table table table-striped">
                             <thead>
                                 <tr>
@@ -117,10 +115,6 @@
                             </thead>
                             <tbody></tbody>
                         </table>
-                        @*<div class="col-md-12 text-center">
-                            <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="btnGuardarNuevoDetalle" onclick="btnGuardarNuevoDetalle">Guardar</button>
-                            @Html.ActionLink("Cancelar", "Edit", null, new { @class = "btn btn-white" })
-                        </div>*@
 
                     </div>
 

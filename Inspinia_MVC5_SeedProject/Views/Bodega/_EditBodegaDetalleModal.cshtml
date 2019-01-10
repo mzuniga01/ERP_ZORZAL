@@ -23,7 +23,7 @@
                             @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                <div id="validationMINIMAEdit_@Model.bodd_Id">
+                                <div id="ErrorProducto_Create">
                                     @Html.ValidationMessageFor(model => model.prod_Codigo)
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                             @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.bodd_CantidadMinima, new { @class = "form-control" })
-                                <div id="validationMINIMAEdit_@Model.bodd_Id">
+                                <div id="ErrorCantidadMinima_Create">
                                     @Html.ValidationMessageFor(model => model.bodd_CantidadMinima)
                                 </div>
 
@@ -43,7 +43,9 @@
                             @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.bodd_PuntoReorden, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
+                                <div id="ErrorPuntoReorden_Create">
+                                    @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
+                                </div>
                             </div>
                         </div>
 
@@ -51,7 +53,7 @@
                             @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.bodd_CantidadMaxima, new { @class = "form-control" })
-                                <div id="validationMAXIMAEdit_@Model.bodd_Id">
+                                <div id="ErrorCantidadMaxima_Create">
                                     @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
                                 </div>
 
@@ -62,8 +64,8 @@
                             @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.bodd_Costo, new { @class = "form-control" })
-                                <div id="validationCOSTOEdit_@Model.bodd_Id">
-                                    @Html.ValidationMessageFor(model => model.bodd_Costo)
+                                <div id="ErrorCosto_Create">
+                                    @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
                                 </div>
                             </div>
                         </div>
@@ -72,7 +74,7 @@
                             @Html.LabelFor(model => model.bodd_CostoPromedio, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.bodd_CostoPromedio, new { @class = "form-control" })
-                                <div id="validationCOSTOPROMEDIOEdit_@Model.bodd_Id">
+                                <div id="ErrorCostoPromedio_Create">
                                     @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
                                 </div>
                             </div>

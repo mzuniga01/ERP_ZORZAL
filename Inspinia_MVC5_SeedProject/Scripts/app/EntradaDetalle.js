@@ -106,7 +106,11 @@ $('#AgregarDetalleEntrada').click(function () {
 
         copiar += "<td id = 'codigoproducto'>" + $('#prod_Codigo').val() + "</td>";
 
-        copiar += "<td id = 'unimedida'>" + $('#uni_Id').val() + "</td>";
+        copiar += "<td>" + $('#uni_Id option:selected').text() + "</td>";
+        copiar += "<td hidden id='uni_Id'>" + $('#unimedida option:selected').val() + "</td>";
+
+        //copiar += "<td id = 'unimedida'>" + $('#uni_Id').val() + "</td>";
+
 
         copiar += "<td id = 'cantidad'>" + $('#entd_Cantidad').val() + "</td>";
 
@@ -123,9 +127,9 @@ $('#AgregarDetalleEntrada').click(function () {
             data: JSON.stringify({ entradadetalle: EntradaDetalle }),
         })
         .done(function (data) {
-            $('#prod_Codigo').text('');
-            $("#uni_Id").text('');
-            $('#entd_Cantidad').text('');
+            $('#prod_Codigo').val('');
+            $("#uni_Id").val('Seleccione');
+            $('#entd_Cantidad').val('');
              //
             $('#prod_Descripcion').val('');
             $('#pscat_Id').val('');
@@ -167,14 +171,8 @@ $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", 
 
 //actualizar Detalle Entrada
 function btnActualizarentrada(entd_Id) {
-    console.log('Hola');
+    console.log(entd_Id);
     
-    //var IdMaster = $("#ent_IdEdit_" + ent_Id).val();
-    //var IdDetalle = $("#entd_IdEdit_" + ent_Id).val();
-    //var C_Producto = $("#prod_CodigoEdit_" + ent_Id).val();
-    //var U_Medida = $('#uni_IdEdit_' + ent_Id).val();
-    //var P_producto = $('#entd_CantidadEdit_' + ent_Id).val();
-  
 
     var tbEntradaDetalle = Getentradadetalle_actualizar();
 
@@ -212,7 +210,6 @@ function Getentradadetalle_actualizar() {
         entd_FechaModifica: $('#entd_FechaModifica').val(),
         uni_Id: $('#unidad').val(),
         unidad: $('#uni_Id').val(),
-        
     };
     return actualizarEntradaDetalle;
 }

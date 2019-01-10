@@ -15,11 +15,11 @@
 
                         @*<p style="color:red">@Html.ValidationSummary(false)</p>*@
                         @Html.ValidationSummary(true)
-                        
+
                         @Html.HiddenFor(model => model.entd_Id)
                         @Html.HiddenFor(model => model.ent_Id)
                         @Html.HiddenFor(model => model.prod_Codigo)
-                        
+
                         @Html.HiddenFor(model => model.entd_Cantidad)
                         @Html.HiddenFor(model => model.entd_UsuarioCrea)
                         @Html.HiddenFor(model => model.entd_FechaCrea)
@@ -27,7 +27,7 @@
                         @Html.HiddenFor(model => model.entd_FechaModifica)
                         @Html.HiddenFor(model => model.uni_Id)
                         @*</div>*@
-                       
+
                         <div class="form-group">
                             @Html.LabelFor(model => model.ent_Id, "Numero Entrada", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
@@ -42,10 +42,10 @@
                         </div>
                         <div class="form-group">
                             @*@Html.LabelFor(model => model.prod_Codigo, "Nombre Producto", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, new { @class = "form-control",@id = "producto" }) 
-                                @Html.ValidationMessageFor(model => model.prod_Codigo)
-                            </div>*@
+                                <div class="col-md-4">
+                                    @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, new { @class = "form-control",@id = "producto" })
+                                    @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                </div>*@
                         </div>
 
                         <div class="form-group">
@@ -60,10 +60,10 @@
                                 @Html.ValidationMessageFor(model => model.uni_Id)
                             </div>
                             @*@Html.LabelFor(model => model.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, new { @class = "form-control", @id = "unidad" })
-                                @Html.ValidationMessageFor(model => model.uni_Id)
-                            </div>*@
+                                <div class="col-md-4">
+                                    @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, new { @class = "form-control", @id = "unidad" })
+                                    @Html.ValidationMessageFor(model => model.uni_Id)
+                                </div>*@
                         </div>
                     </div>
                 </div>
