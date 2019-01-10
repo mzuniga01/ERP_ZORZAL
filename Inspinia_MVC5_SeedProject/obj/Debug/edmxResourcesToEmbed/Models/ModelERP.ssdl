@@ -568,6 +568,7 @@
     <Property Name="fact_Id" Type="bigint" Nullable="false" />
     <Property Name="cja_Id" Type="smallint" Nullable="false" />
     <Property Name="nocre_Id" Type="smallint" />
+    <Property Name="dev_Estado" Type="bit" />
     <Property Name="dev_Fecha" Type="datetime" Nullable="false" />
     <Property Name="dev_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="dev_FechaCrea" Type="datetime" Nullable="false" />
@@ -599,17 +600,6 @@
     <Property Name="dfisc_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="dfisc_UsuarioModifica" Type="int" />
     <Property Name="dfisc_FechaModifica" Type="datetime" />
-  </EntityType>
-  <EntityType Name="tbEstadoDevolucion">
-    <Key>
-      <PropertyRef Name="esdev_Id" />
-    </Key>
-    <Property Name="esdev_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="esdev_Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="esdev_UsuarioCrea" Type="int" Nullable="false" />
-    <Property Name="esdev_FechaCrea" Type="datetime" Nullable="false" />
-    <Property Name="esdev_UsuarioModifica" Type="int" />
-    <Property Name="esdev_FechaModifica" Type="datetime" />
   </EntityType>
   <EntityType Name="tbEstadoFactura">
     <Key>
@@ -2951,30 +2941,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Crea">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-    <End Role="tbEstadoDevolucion" Type="Self.tbEstadoDevolucion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbEstadoDevolucion">
-        <PropertyRef Name="esdev_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Modifica">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-    <End Role="tbEstadoDevolucion" Type="Self.tbEstadoDevolucion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbEstadoDevolucion">
-        <PropertyRef Name="esdev_UsuarioModifica" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo">
     <End Role="tbEstadoFactura" Type="Self.tbEstadoFactura" Multiplicity="1" />
     <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
@@ -4252,12 +4218,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
     <Parameter Name="cja_Id" Type="smallint" Mode="In" />
     <Parameter Name="dev_Fecha" Type="datetime" Mode="In" />
+    <Parameter Name="dev_Estado" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbDevolucion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="dev_Id" Type="int" Mode="In" />
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
     <Parameter Name="cja_Id" Type="smallint" Mode="In" />
     <Parameter Name="dev_Fecha" Type="datetime" Mode="In" />
+    <Parameter Name="dev_Estado" Type="bit" Mode="In" />
     <Parameter Name="dev_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="dev_FechaCrea" Type="datetime" Mode="In" />
   </Function>
@@ -4718,7 +4686,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <EntitySet Name="tbDevolucion" EntityType="Self.tbDevolucion" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbDevolucionDetalle" EntityType="Self.tbDevolucionDetalle" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbDocumentoFiscal" EntityType="Self.tbDocumentoFiscal" Schema="Vent" store:Type="Tables" />
-    <EntitySet Name="tbEstadoDevolucion" EntityType="Self.tbEstadoDevolucion" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbEstadoFactura" EntityType="Self.tbEstadoFactura" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbEstadoPedido" EntityType="Self.tbEstadoPedido" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbEstadoSolicitudCredito" EntityType="Self.tbEstadoSolicitudCredito" Schema="Vent" store:Type="Tables" />
@@ -5440,14 +5407,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <AssociationSet Name="FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" Association="Self.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id">
       <End Role="tbDevolucion" EntitySet="tbDevolucion" />
       <End Role="tbDevolucionDetalle" EntitySet="tbDevolucionDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Crea" Association="Self.FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Crea">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbEstadoDevolucion" EntitySet="tbEstadoDevolucion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Modifica" Association="Self.FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Modifica">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbEstadoDevolucion" EntitySet="tbEstadoDevolucion" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo" Association="Self.FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo">
       <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />

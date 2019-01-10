@@ -126,8 +126,10 @@
                         </dd>*@
 
                     </dl>
-                    @Html.Partial("_DetailsListaPrecioDetalle", new tbListadoPrecioDetalle())
-
+          
+                    <div class="ibox-content">
+                        @Html.Partial("_DetailsListaPrecioDetalle", Model.tbListadoPrecioDetalle)
+                    </div>
 
 
                     @Html.ActionLink("Editar", "Edit", new { id = Model.listp_Id }, new { @class = "btn btn-primary" })

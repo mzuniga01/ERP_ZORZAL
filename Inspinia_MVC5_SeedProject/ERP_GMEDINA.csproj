@@ -363,9 +363,6 @@
     <Compile Include="Models\tbEntradaDetalle.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbEstadoDevolucion.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tbEstadoFactura.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -614,7 +611,13 @@
     <Compile Include="Models\UDP_Vent_tbListadoPrecioDetalle_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbListadoPrecioDetalle_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbListaPrecio_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbListaPrecio_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbMovimientoCaja_Insert_Result.cs">

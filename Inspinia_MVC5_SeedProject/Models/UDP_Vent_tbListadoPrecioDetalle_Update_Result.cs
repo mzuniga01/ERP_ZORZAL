@@ -11,7 +11,7 @@ namespace ERP_GMEDINA.Models
 {
     using System;
     
-    public partial class UDP_Vent_tbListadoPrecioDetalle_Insert_Result
+    public partial class UDP_Vent_tbListadoPrecioDetalle_Update_Result
     {
         public string MensajeError { get; set; }
     }

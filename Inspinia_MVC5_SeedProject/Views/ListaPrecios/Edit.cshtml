@@ -60,14 +60,14 @@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.listp_Nombre, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
+                                <div class="col-md-3">
                                     @Html.EditorFor(model => model.listp_Nombre)
                                     @Html.ValidationMessageFor(model => model.listp_Nombre)
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.listp_EsActivo, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
+                                <div class="col-md-3">
 
                                     @Html.CheckBox("listp_EsActivo", true)
                                     @*@Html.EditorFor(model => model.listp_EsActivo)
@@ -75,54 +75,29 @@
                                 </div>
                             </div>
 
-                            @*<div class="form-group">
-                                    @Html.LabelFor(model => model.listp_UsuarioCrea, "Usuario Crea", new { @class = "control-label col-md-2", @disabled = "disabled"  })
-                                    <div class="col-md-10">
-                                        @Html.DropDownList("listp_UsuarioCrea", String.Empty)
-                                        @Html.ValidationMessageFor(model => model.listp_UsuarioCrea)
-                                    </div>
-                                </div>*@
-
-                            @*<div class="form-group">
-                                    @Html.LabelFor(model => model.listp_FechaCrea, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.listp_FechaCrea)
-                                        @Html.ValidationMessageFor(model => model.listp_FechaCrea)
-                                    </div>
-                                </div>*@
-
-                            @*<div class="form-group">
-                                    @Html.LabelFor(model => model.listp_FechaModifica, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.listp_FechaModifica)
-                                        @Html.ValidationMessageFor(model => model.listp_FechaModifica)
-                                    </div>
-                                </div>*@
-
-
-
+                     
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.listp_FechaInicioVigencia, "Fecha Inicio Vigencia", new { @class = "control-label col-md-2" })
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.listp_FechaInicioVigencia)
-                                    @Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)
-                                </div>
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "listp_FechaInicioVigencia" }})
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)</span>
+</div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.listp_FechaFinalVigencia, "Fecha Final Vigencia", new { @class = "control-label col-md-2" })
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.listp_FechaFinalVigencia)
-                                    @Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)
-                                </div>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.listp_FechaFinalVigencia , "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "listp_FechaInicioVigencia" }})
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)</span>
+</div>
                             </div>
 
 
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.listp_Prioridad, new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
+                                <div class="col-md-3">
                                     @Html.EditorFor(model => model.listp_Prioridad)
                                     @Html.ValidationMessageFor(model => model.listp_Prioridad)
                                 </div>
@@ -138,6 +113,7 @@
 
 
                         @Html.Partial("_EditListaPrecioDetalle", new tbListadoPrecioDetalle())
+
 
                     }
 
@@ -172,6 +148,7 @@
         </div>
     </div>
 </div>
+
 <script src="~/Scripts/app/Datepicker.js"></script>
 
 @section Scripts {

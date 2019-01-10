@@ -573,6 +573,7 @@
           <Property Name="fact_Id" Type="bigint" Nullable="false" />
           <Property Name="cja_Id" Type="smallint" Nullable="false" />
           <Property Name="nocre_Id" Type="smallint" />
+          <Property Name="dev_Estado" Type="bit" />
           <Property Name="dev_Fecha" Type="datetime" Nullable="false" />
           <Property Name="dev_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="dev_FechaCrea" Type="datetime" Nullable="false" />
@@ -604,17 +605,6 @@
           <Property Name="dfisc_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="dfisc_UsuarioModifica" Type="int" />
           <Property Name="dfisc_FechaModifica" Type="datetime" />
-        </EntityType>
-        <EntityType Name="tbEstadoDevolucion">
-          <Key>
-            <PropertyRef Name="esdev_Id" />
-          </Key>
-          <Property Name="esdev_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="esdev_Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="esdev_UsuarioCrea" Type="int" Nullable="false" />
-          <Property Name="esdev_FechaCrea" Type="datetime" Nullable="false" />
-          <Property Name="esdev_UsuarioModifica" Type="int" />
-          <Property Name="esdev_FechaModifica" Type="datetime" />
         </EntityType>
         <EntityType Name="tbEstadoFactura">
           <Key>
@@ -2956,30 +2946,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Crea">
-          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-          <End Role="tbEstadoDevolucion" Type="Self.tbEstadoDevolucion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbEstadoDevolucion">
-              <PropertyRef Name="esdev_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Modifica">
-          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-          <End Role="tbEstadoDevolucion" Type="Self.tbEstadoDevolucion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbEstadoDevolucion">
-              <PropertyRef Name="esdev_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo">
           <End Role="tbEstadoFactura" Type="Self.tbEstadoFactura" Multiplicity="1" />
           <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
@@ -4257,12 +4223,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="fact_Id" Type="bigint" Mode="In" />
           <Parameter Name="cja_Id" Type="smallint" Mode="In" />
           <Parameter Name="dev_Fecha" Type="datetime" Mode="In" />
+          <Parameter Name="dev_Estado" Type="bit" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbDevolucion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="dev_Id" Type="int" Mode="In" />
           <Parameter Name="fact_Id" Type="bigint" Mode="In" />
           <Parameter Name="cja_Id" Type="smallint" Mode="In" />
           <Parameter Name="dev_Fecha" Type="datetime" Mode="In" />
+          <Parameter Name="dev_Estado" Type="bit" Mode="In" />
           <Parameter Name="dev_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="dev_FechaCrea" Type="datetime" Mode="In" />
         </Function>
@@ -4723,7 +4691,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <EntitySet Name="tbDevolucion" EntityType="Self.tbDevolucion" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbDevolucionDetalle" EntityType="Self.tbDevolucionDetalle" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbDocumentoFiscal" EntityType="Self.tbDocumentoFiscal" Schema="Vent" store:Type="Tables" />
-          <EntitySet Name="tbEstadoDevolucion" EntityType="Self.tbEstadoDevolucion" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbEstadoFactura" EntityType="Self.tbEstadoFactura" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbEstadoPedido" EntityType="Self.tbEstadoPedido" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbEstadoSolicitudCredito" EntityType="Self.tbEstadoSolicitudCredito" Schema="Vent" store:Type="Tables" />
@@ -5446,14 +5413,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <End Role="tbDevolucion" EntitySet="tbDevolucion" />
             <End Role="tbDevolucionDetalle" EntitySet="tbDevolucionDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Crea" Association="Self.FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Crea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbEstadoDevolucion" EntitySet="tbEstadoDevolucion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Modifica" Association="Self.FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Modifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbEstadoDevolucion" EntitySet="tbEstadoDevolucion" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo" Association="Self.FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo">
             <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
             <End Role="tbFactura" EntitySet="tbFactura" />
@@ -5820,6 +5779,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="fact_Id" Mode="In" Type="Int64" />
             <Parameter Name="cja_Id" Mode="In" Type="Int16" />
             <Parameter Name="dev_Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="dev_Estado" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbDevolucionDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucionDetalle_Insert_Result)">
             <Parameter Name="dev_Id" Mode="In" Type="Int32" />
@@ -6153,6 +6113,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="fact_Id" Mode="In" Type="Int64" />
             <Parameter Name="cja_Id" Mode="In" Type="Int16" />
             <Parameter Name="dev_Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="dev_Estado" Mode="In" Type="Boolean" />
             <Parameter Name="dev_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="dev_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
@@ -6751,26 +6712,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="mocja_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="mocja_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Update">
-            <Parameter Name="listp_Id" Mode="In" Type="Int32" />
-            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-            <Parameter Name="lispd_PrecioMayorista" Mode="In" Type="Decimal" />
-            <Parameter Name="lispd_PrecioMinorista" Mode="In" Type="Decimal" />
-            <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
-            <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
-            <Parameter Name="lispd_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="lispd_FechaCrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbListaPrecio_Update" ReturnType="Collection(String)">
-            <Parameter Name="listp_Id" Mode="In" Type="Int32" />
-            <Parameter Name="listp_Nombre" Mode="In" Type="String" />
-            <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
-            <Parameter Name="listp_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="listp_FechaCrea" Mode="In" Type="DateTime" />
-            <Parameter Name="listp_FechaInicioVigencia" Mode="In" Type="DateTime" />
-            <Parameter Name="listp_FechaFinalVigencia" Mode="In" Type="DateTime" />
-            <Parameter Name="listp_Prioridad" Mode="In" Type="Int16" />
-          </FunctionImport>
           <EntitySet Name="tbAccesoRol" EntityType="ERP_ZORZALModel.tbAccesoRol" />
           <EntitySet Name="tbObjeto" EntityType="ERP_ZORZALModel.tbObjeto" />
           <EntitySet Name="tbRol" EntityType="ERP_ZORZALModel.tbRol" />
@@ -6811,7 +6752,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <EntitySet Name="tbDevolucion" EntityType="ERP_ZORZALModel.tbDevolucion" />
           <EntitySet Name="tbDevolucionDetalle" EntityType="ERP_ZORZALModel.tbDevolucionDetalle" />
           <EntitySet Name="tbDocumentoFiscal" EntityType="ERP_ZORZALModel.tbDocumentoFiscal" />
-          <EntitySet Name="tbEstadoDevolucion" EntityType="ERP_ZORZALModel.tbEstadoDevolucion" />
           <EntitySet Name="tbEstadoFactura" EntityType="ERP_ZORZALModel.tbEstadoFactura" />
           <EntitySet Name="tbEstadoPedido" EntityType="ERP_ZORZALModel.tbEstadoPedido" />
           <EntitySet Name="tbEstadoSolicitudCredito" EntityType="ERP_ZORZALModel.tbEstadoSolicitudCredito" />
@@ -7248,14 +7188,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbCliente" EntitySet="tbCliente" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Crea" Association="ERP_ZORZALModel.FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Crea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbEstadoDevolucion" EntitySet="tbEstadoDevolucion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Modifica" Association="ERP_ZORZALModel.FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Modifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbEstadoDevolucion" EntitySet="tbEstadoDevolucion" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea" Association="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
@@ -7689,9 +7621,29 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
             <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result)">
+            <Parameter Name="listp_Id" Mode="In" Type="Int32" />
+            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+            <Parameter Name="lispd_PrecioMayorista" Mode="In" Type="Decimal" />
+            <Parameter Name="lispd_PrecioMinorista" Mode="In" Type="Decimal" />
+            <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
+            <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
+            <Parameter Name="lispd_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="lispd_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbListaPrecio_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result)">
             <Parameter Name="listp_Nombre" Mode="In" Type="String" />
             <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
+            <Parameter Name="listp_FechaInicioVigencia" Mode="In" Type="DateTime" />
+            <Parameter Name="listp_FechaFinalVigencia" Mode="In" Type="DateTime" />
+            <Parameter Name="listp_Prioridad" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbListaPrecio_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Update_Result)">
+            <Parameter Name="listp_Id" Mode="In" Type="Int32" />
+            <Parameter Name="listp_Nombre" Mode="In" Type="String" />
+            <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
+            <Parameter Name="listp_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="listp_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="listp_FechaInicioVigencia" Mode="In" Type="DateTime" />
             <Parameter Name="listp_FechaFinalVigencia" Mode="In" Type="DateTime" />
             <Parameter Name="listp_Prioridad" Mode="In" Type="Int16" />
@@ -8153,8 +8105,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <NavigationProperty Name="tbTipoSalida1" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoSalida_tsal_UsuarioModifica" FromRole="tbUsuario" ToRole="tbTipoSalida" />
           <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbCliente" />
           <NavigationProperty Name="tbCliente1" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbCliente" />
-          <NavigationProperty Name="tbEstadoDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbEstadoDevolucion" />
-          <NavigationProperty Name="tbEstadoDevolucion1" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbEstadoDevolucion" />
           <NavigationProperty Name="tbEstadoFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbEstadoFactura" />
           <NavigationProperty Name="tbEstadoFactura1" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbEstadoFactura" />
           <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza" FromRole="tbUsuario" ToRole="tbFactura" />
@@ -8825,6 +8775,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" FromRole="tbDevolucion" ToRole="tbFactura" />
           <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbDevolucion" ToRole="tbNotaCredito" />
           <NavigationProperty Name="tbNotaCredito1" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_NotaCredito" FromRole="tbDevolucion" ToRole="tbNotaCredito" />
+          <Property Name="dev_Estado" Type="Boolean" />
         </EntityType>
         <EntityType Name="tbDevolucionDetalle">
           <Key>
@@ -8858,19 +8809,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDocumentoFiscal_dfisc_UsuarioCrea" FromRole="tbDocumentoFiscal" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDocumentoFiscal_dfisc_UsuarioModifica" FromRole="tbDocumentoFiscal" ToRole="tbUsuario" />
           <NavigationProperty Name="tbPuntoEmisionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id" FromRole="tbDocumentoFiscal" ToRole="tbPuntoEmisionDetalle" />
-        </EntityType>
-        <EntityType Name="tbEstadoDevolucion">
-          <Key>
-            <PropertyRef Name="esdev_Id" />
-          </Key>
-          <Property Name="esdev_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="esdev_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="esdev_UsuarioCrea" Type="Int32" Nullable="false" />
-          <Property Name="esdev_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="esdev_UsuarioModifica" Type="Int32" />
-          <Property Name="esdev_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Crea" FromRole="tbEstadoDevolucion" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Modifica" FromRole="tbEstadoDevolucion" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbEstadoFactura">
           <Key>
@@ -10535,30 +10473,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Crea">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbEstadoDevolucion" Role="tbEstadoDevolucion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbEstadoDevolucion">
-              <PropertyRef Name="esdev_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Vent_tbEstadoDevolucion_tbUsuario_usu_Id_Modifica">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbEstadoDevolucion" Role="tbEstadoDevolucion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbEstadoDevolucion">
-              <PropertyRef Name="esdev_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Crea">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbEstadoFactura" Role="tbEstadoFactura" Multiplicity="*" />
@@ -11888,10 +11802,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbListaPrecio_Insert_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Insert_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbListaPrecio_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -12511,10 +12431,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Insert" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Update" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Update" >
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Update" >
-          </FunctionImportMapping>
           <EntitySetMapping Name="tbAccesoRol">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbAccesoRol">
               <MappingFragment StoreEntitySet="tbAccesoRol">
@@ -13099,6 +13015,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <EntitySetMapping Name="tbDevolucion">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucion">
               <MappingFragment StoreEntitySet="tbDevolucion">
+                <ScalarProperty Name="dev_Estado" ColumnName="dev_Estado" />
                 <ScalarProperty Name="dev_FechaModifica" ColumnName="dev_FechaModifica" />
                 <ScalarProperty Name="dev_UsuarioModifica" ColumnName="dev_UsuarioModifica" />
                 <ScalarProperty Name="dev_FechaCrea" ColumnName="dev_FechaCrea" />
@@ -13136,18 +13053,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
                 <ScalarProperty Name="dfisc_UsuarioCrea" ColumnName="dfisc_UsuarioCrea" />
                 <ScalarProperty Name="dfisc_Descripcion" ColumnName="dfisc_Descripcion" />
                 <ScalarProperty Name="dfisc_Id" ColumnName="dfisc_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbEstadoDevolucion">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEstadoDevolucion">
-              <MappingFragment StoreEntitySet="tbEstadoDevolucion">
-                <ScalarProperty Name="esdev_FechaModifica" ColumnName="esdev_FechaModifica" />
-                <ScalarProperty Name="esdev_UsuarioModifica" ColumnName="esdev_UsuarioModifica" />
-                <ScalarProperty Name="esdev_FechaCrea" ColumnName="esdev_FechaCrea" />
-                <ScalarProperty Name="esdev_UsuarioCrea" ColumnName="esdev_UsuarioCrea" />
-                <ScalarProperty Name="esdev_Descripcion" ColumnName="esdev_Descripcion" />
-                <ScalarProperty Name="esdev_Id" ColumnName="esdev_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -13607,9 +13512,23 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

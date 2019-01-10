@@ -612,8 +612,6 @@
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Insert" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Update" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Update" />
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Update" />
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Update" />
     <EntitySetMapping Name="tbAccesoRol">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbAccesoRol">
         <MappingFragment StoreEntitySet="tbAccesoRol">
@@ -1198,6 +1196,7 @@
     <EntitySetMapping Name="tbDevolucion">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucion">
         <MappingFragment StoreEntitySet="tbDevolucion">
+          <ScalarProperty Name="dev_Estado" ColumnName="dev_Estado" />
           <ScalarProperty Name="dev_FechaModifica" ColumnName="dev_FechaModifica" />
           <ScalarProperty Name="dev_UsuarioModifica" ColumnName="dev_UsuarioModifica" />
           <ScalarProperty Name="dev_FechaCrea" ColumnName="dev_FechaCrea" />
@@ -1235,18 +1234,6 @@
           <ScalarProperty Name="dfisc_UsuarioCrea" ColumnName="dfisc_UsuarioCrea" />
           <ScalarProperty Name="dfisc_Descripcion" ColumnName="dfisc_Descripcion" />
           <ScalarProperty Name="dfisc_Id" ColumnName="dfisc_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbEstadoDevolucion">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEstadoDevolucion">
-        <MappingFragment StoreEntitySet="tbEstadoDevolucion">
-          <ScalarProperty Name="esdev_FechaModifica" ColumnName="esdev_FechaModifica" />
-          <ScalarProperty Name="esdev_UsuarioModifica" ColumnName="esdev_UsuarioModifica" />
-          <ScalarProperty Name="esdev_FechaCrea" ColumnName="esdev_FechaCrea" />
-          <ScalarProperty Name="esdev_UsuarioCrea" ColumnName="esdev_UsuarioCrea" />
-          <ScalarProperty Name="esdev_Descripcion" ColumnName="esdev_Descripcion" />
-          <ScalarProperty Name="esdev_Id" ColumnName="esdev_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1706,9 +1693,23 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Insert">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Update_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>
