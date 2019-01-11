@@ -123,27 +123,33 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(byte? id,[Bind(Include="prov_Id,prov_Nombre,prov_NombreContacto,prov_Direccion,prov_Email,prov_Telefono")] tbProveedor tbProveedor)
+        public ActionResult Edit(byte? id,[Bind(Include="prov_Id,prov_Nombre,prov_NombreContacto,prov_Direccion,prov_Email,prov_Telefono,prov_UsuarioCrea,prov_FechaCrea,prov_UsuarioModifica,prov_FechaModifica")] tbProveedor tbProveedor)
         {
            
             if (ModelState.IsValid)
             {
-                //db.Entry(tbProveedor).State = EntityState.Modified;
-                //db.SaveChanges();
+              
                 try
                 {
                     tbProveedor vtbProveedor = db.tbProveedor.Find(id);
                     /*:ssTZD*/
                     IEnumerable<object> List = null;
                     var MsjError ="";
-                    List = db.UDP_Inv_tbProveedor_Update(tbProveedor.prov_Id,tbProveedor.prov_Nombre,tbProveedor.prov_NombreContacto,tbProveedor.prov_Direccion,
-                        tbProveedor.prov_Email,tbProveedor.prov_Telefono, vtbProveedor.prov_UsuarioCrea, vtbProveedor.prov_FechaCrea);
+                    List = db.UDP_Inv_tbProveedor_Update(tbProveedor.prov_Id,
+                                                         tbProveedor.prov_Nombre,
+                                                         tbProveedor.prov_NombreContacto,
+                                                         tbProveedor.prov_Direccion,
+                                                         tbProveedor.prov_Email,
+                                                         tbProveedor.prov_Telefono, 
+                                                         tbProveedor.prov_UsuarioCrea, 
+                                                         tbProveedor.prov_FechaCrea);
                     foreach (UDP_Inv_tbProveedor_Update_Result Proveedor in List)
                         MsjError = Proveedor.MensajeError;
 
-                    if (MsjError == "-1")
+                    if (MsjError== "-1")
                     {
-
+                        ModelState.AddModelError("", "No se Actualizo el registro");
+                        return RedirectToAction("Index");
                     }
                     else
                     {

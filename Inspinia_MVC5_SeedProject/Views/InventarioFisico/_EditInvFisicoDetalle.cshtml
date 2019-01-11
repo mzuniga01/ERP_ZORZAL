@@ -1,5 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbInventarioFisicoDetalle
-
+@using ERP_GMEDINA.Models
 
 
 
@@ -12,103 +12,54 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
+			
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.invfd_Id)
+        @Html.HiddenFor(model => model.invf_Id)
+        @Html.HiddenFor(model => model.invfd_UsuarioCrea)
+        @Html.HiddenFor(model => model.invfd_FechaCrea)
+        @Html.HiddenFor(model => model.invfd_UsuarioModifica)
+        @Html.HiddenFor(model => model.invfd_FechaModifica)
+        @Html.HiddenFor(model => model.prod_Codigo)
 
         <div class="form-group">
             @Html.LabelFor(model => model.prod_Codigo, "Codigo Producto", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.prod_Codigo)
+                @Html.EditorFor(model => model.prod_Codigo, new { @class = "form-control" })
+                <div id="validationMINIMAEdit_@Model.invfd_Id">
+                    @Html.ValidationMessageFor(model => model.prod_Codigo)
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.prod_Codigo, "Productos", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-               @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Descripcion, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.prod_Codigo)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.uni_Id, "Unidad de Medida", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.uni_Id)
+            <div class="col-md-1">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalproductos"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.invfd_CantidadSistema, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.invfd_CantidadSistema)*@
-                <input value="50.00" class="form-control" />
-                @Html.ValidationMessageFor(model => model.invfd_CantidadSistema)
-            </div>
+                @Html.EditorFor(model => model.invfd_CantidadSistema)
+                <div id="validationMAXIMAEdit_@Model.invfd_Id">
+                    @Html.ValidationMessageFor(model => model.invfd_CantidadSistema)
+                    </div>
+                </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.invfd_Cantidad,"Cantidad Fisica", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.invfd_Cantidad)*@
-                <input value="10.00" class="form-control" />
-                @Html.ValidationMessageFor(model => model.invfd_Cantidad)
-            </div>
+                @Html.EditorFor(model => model.invfd_Cantidad)
+                <div id="validationMAXIMAEdit_@Model.invfd_Id">
+                    @Html.ValidationMessageFor(model => model.invfd_Cantidad)
+                    </div>
+                </div>
         </div>
 
     </div>
-}
-                    @* Tabla de los datos de auditoria *@
-                    <div class="ibox-content">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>
-                                    Acción
-                                </th>
-                                <th>
-                                    Usuario
-                                </th>
-                                <th>
-                                    Fecha
-                                </th>
-                               
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Creado
-                                </td>
-                                <td>
-                                    Antonio Ochoa
-                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                </td>
-                                <td>
-                                    2018/12/05
-                                </td>
-                             
-                            </tr>
-                            <tr>
-                                <td>
-                                    Modificado
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.invfd_FechaModifica)
-                                </td>
-                               
-                            </tr>
-
-                        </table>
-                        </div>
 
                     </div>
             </div>
@@ -118,6 +69,6 @@
 
 
 
-@*@section Scripts {
+@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}*@
+}

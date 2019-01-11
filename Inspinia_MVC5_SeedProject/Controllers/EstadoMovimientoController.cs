@@ -17,6 +17,9 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /EstadoMovimiento/
         public ActionResult Index()
         {
+           
+try { ViewBag.smserror = TempData["smserror"].ToString();
+    } catch { }
             return View(db.tbEstadoMovimiento.ToList());
         }
         
@@ -174,5 +177,51 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult Eliminar(byte id)
+        {
+            try
+            {
+                tbEstadoMovimiento obj = db.tbEstadoMovimiento.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Inv_tbEstadoMovimiento_Delete(id);
+                foreach (UDP_Inv_tbEstadoMovimiento_Delete_Result Estm in list)
+                    MsjError = Estm.MensajeError;
+
+                //if(MsjError.StartsWith("-1The DELETE statement conflicted with the REFERENCE constraint"))
+                //{
+                //    ViewBag.Error = "Registro Tiene Dependencia";
+                //   return RedirectToAction("Index");
+                //}
+
+
+                if (MsjError.StartsWith("-1The DELETE statement conflicted with the REFERENCE constraint"))
+                {
+                    TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia.";
+                    ViewBag.smserror = TempData["smserror"];
+
+                    ModelState.AddModelError("", "No se puede borrar el registro");
+                    return RedirectToAction("Index");
+                }
+
+                else
+                {
+                    //ViewBag.smserror = "";
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+             
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+                return RedirectToAction("Index");
+            }
+
+
+            //return RedirectToAction("Index");
+
+        }
+
     }
 }

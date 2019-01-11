@@ -1,4 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbInventarioFisico
+@using ERP_GMEDINA.Models
 
 @{
     ViewBag.Title = "Detalle";
@@ -60,7 +61,7 @@
                             </dd>
 
                             <dt>
-                                @Html.DisplayNameFor(model => model.tbEstadoInventarioFisico.estif_Descripcion)
+                                @Html.DisplayNameFor(model => model.estif_Id)
                             </dt>
 
                             <dd>
@@ -75,7 +76,7 @@
                         @* Index del Inventario Fisico Detalle *@
                         <div class="form-group">
                             @*<div class="col-md-offset-2 col-md-10">*@
-                            @Html.Partial("_IndexInvFisicoDetalle", Model.tbInventarioFisicoDetalle)
+                            @Html.Partial("_ListadoInventarioFisicoDetalle", Model.tbInventarioFisicoDetalle)
                             @*</div>*@
                         </div>
 
@@ -100,7 +101,7 @@
                                     Creado
                                 </td>
                                 <td>
-                                  @ViewBag.UsuarioCrea 
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
                                 </td>
                                 <td>
 
@@ -113,7 +114,7 @@
                                     Modificado
                                 </td>
                                 <td>
-                                    @ViewBag.UsuarioModifica
+                                    @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(model => model.invf_FechaModifica)

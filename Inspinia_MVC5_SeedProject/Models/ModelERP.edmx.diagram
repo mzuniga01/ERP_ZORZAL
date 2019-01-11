@@ -265,6 +265,7 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbListadoPrecioDetalle_lispd_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_Consultar_Existencias_Productos" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

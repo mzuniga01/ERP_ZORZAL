@@ -26,12 +26,15 @@ public partial class tbInventarioFisicoDetalle
     [Display(Name = "Código de Producto")]
     public string prod_Codigo { get; set; }
 
-    [Display(Name = "Cantidad")]
+
+        [Display(Name = "Cantidad")]
     public decimal invfd_Cantidad { get; set; }
 
     [Display(Name = "Cantidad Sistema")]
     public decimal invfd_CantidadSistema { get; set; }
-    public int uni_Id { get; set; }
+
+        [Display(Name = "Unidad de Medida")]
+        public int uni_Id { get; set; }
 
     [Display(Name = "Creado por")]
     public int invfd_UsuarioCrea { get; set; }

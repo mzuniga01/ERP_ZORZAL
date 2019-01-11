@@ -1,0 +1,142 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.UDV_Inv_Consultar_Existencias_Productos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Existencia Productos</h2>
+      
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5></h5>
+				
+                </div>
+                <div class="ibox-content">
+
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.suc_Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bod_Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prod_Descripcion)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.prod_Marca)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.bodd_CantidadExistente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bodd_CantidadMinima)
+            </th>
+            <th>
+
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.suc_Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bod_Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prod_Descripcion)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.prod_Marca)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.bodd_CantidadExistente)
+             
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bodd_CantidadMinima)
+                
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" @*data-target="" *@ value="Eliminar">Pedir</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/app/DataFilter.js"></script>
+<script type="text/javascript">
+    var contador = 0;
+    $(document).ready(function () {
+        $('#example thead tr').clone(true).appendTo('#example thead');
+        var nColumnas = $("#example tr:last td").length;
+        console.log(nColumnas)
+
+            $('#example thead tr:eq(1) th').each(function (i) {
+                contador++;
+                if (contador != nColumnas)
+                {
+                    var title = $(this).text();
+                    $(this).html('<input type="text"  size="16" placeholder="' + '" />');
+                }
+                
+
+                $('input', this).on('keyup change', function () {
+                    if (table.column(i).search() !== this.value) {
+                        table
+                            .column(i)
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+      
+
+      var table =  $('#example').DataTable(
+        {
+            "searching": true,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                //"sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_ registros por página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+               
+            },
+            orderCellsTop: true,
+           
+        fixedHeader: true
+        });
+
+    });
+</script>
+

@@ -1,5 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbInventarioFisicoDetalle
-
+@using ERP_GMEDINA.Models
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -11,34 +11,30 @@
                 </div>
                 <div class="ibox-content">
 
-
 				    <dl class="dl-horizontal">
                         <dt>
-                            @Html.DisplayNameFor(model => model.tbProducto.prod_Codigo)
+                            @Html.DisplayNameFor(model => model.prod_Codigo)
                         </dt>
 
                         <dd>
-                            PANPJ-102634700
-                            @Html.DisplayFor(model => model.tbProducto.prod_Codigo)
+                            @Html.DisplayFor(model => model.prod_Codigo)
                         </dd>
 
-                        <dt>
+                        @*<dt>
                             @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
                         </dt>
 
                         <dd>
-                            Pantalon
                             @Html.DisplayFor(model => model.tbProducto.prod_Descripcion)
-                        </dd>
+                        </dd>*@
 
-                        <dt>
+                        @*<dt>
                             @Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)
                         </dt>
 
                         <dd>
-                            Unidad
                             @Html.DisplayFor(model => model.tbUnidadMedida.uni_Descripcion)
-                        </dd>
+                        </dd>*@
 
 
                         <dt>
@@ -46,8 +42,7 @@
                         </dt>
 
                         <dd>
-                            50.00
-                            @*@Html.DisplayFor(model => model.invfd_CantidadSistema)*@
+                            @Html.DisplayFor(model => model.invfd_CantidadSistema)
                         </dd>
 
         <dt>
@@ -55,8 +50,7 @@
         </dt>
 
         <dd>
-            10.00
-            @*@Html.DisplayFor(model => model.invfd_Cantidad)*@
+            @Html.DisplayFor(model => model.invfd_Cantidad)
         </dd>
 
         @*<dt>
@@ -100,54 +94,6 @@
         </dd>*@
 
     </dl>
-
-                    @* Tabla de los datos de auditoria *@
-                    <div class="ibox-content">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>
-                                    Acción
-                                </th>
-                                <th>
-                                    Usuario
-                                </th>
-                                <th>
-                                    Fecha
-                                </th>
-                             
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    @*@Html.DisplayFor(modelItem => item.tsal_Descripcion)*@
-                                    Creado
-                                </td>
-                                <td>
-                                    Antonio Ochoa
-                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                </td>
-                                <td>
-                                    2018/12/05
-                                    @*@Html.DisplayFor(model => model.invfd_FechaCrea)*@
-                                </td>
-                                
-                            </tr>
-                            <tr>
-                                <td>
-                                    Modificado
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.invfd_FechaModifica)
-                                </td>
-          
-                            </tr>
-
-                        </table>
-                        </div>
-
                     </div>
             </div>
         </div>

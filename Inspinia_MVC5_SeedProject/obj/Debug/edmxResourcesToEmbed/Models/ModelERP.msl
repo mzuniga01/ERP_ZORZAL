@@ -858,6 +858,7 @@
     <EntitySetMapping Name="tbProducto">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProducto">
         <MappingFragment StoreEntitySet="tbProducto">
+          <ScalarProperty Name="prod_Correlativo" ColumnName="prod_Correlativo" />
           <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
           <ScalarProperty Name="listp_Id" ColumnName="listp_Id" />
           <ScalarProperty Name="prod_Razon_Inactivacion" ColumnName="prod_Razon_Inactivacion" />
@@ -1552,6 +1553,34 @@
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="UDV_Inv_Consultar_Existencias_Productos">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_Consultar_Existencias_Productos">
+        <MappingFragment StoreEntitySet="UDV_Inv_Consultar_Existencias_Productos">
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="bodd_CantidadMinima" ColumnName="bodd_CantidadMinima" />
+          <ScalarProperty Name="bodd_CantidadExistente" ColumnName="bodd_CantidadExistente" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ConteoParametro" FunctionName="ERP_ZORZALModel.Store.ConteoParametro">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.ConteoParametro_Result">
+          <ScalarProperty Name="Conteo" ColumnName="Conteo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoMovimiento_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoMovimiento_Delete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEstadoMovimiento_Delete_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>

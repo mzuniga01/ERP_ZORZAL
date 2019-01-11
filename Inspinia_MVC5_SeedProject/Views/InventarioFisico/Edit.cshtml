@@ -1,9 +1,11 @@
 ﻿@model ERP_GMEDINA.Models.tbInventarioFisico
+@using ERP_GMEDINA.Models
 
 @{
     ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -17,7 +19,6 @@
 </div>
 
 
-
 <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-lg-12">
@@ -27,8 +28,8 @@
                     </div>
                     <div class="ibox-content">
 
-                        @using (Html.BeginForm())
-                        {
+                       @using (Html.BeginForm("Edit", "InventarioFisico", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                       {
                             @Html.AntiForgeryToken()
 
                             <div class="form-horizontal">
@@ -39,44 +40,36 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.invf_FechaInventario, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.invf_FechaInventario, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "boxFechaCrea" } })
-                                        @Html.ValidationMessageFor(model => model.invf_FechaInventario)
-                                    </div>
+                                        @Html.EditorFor(model => model.invf_FechaInventario, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        <p style="color:red"> @Html.ValidationMessageFor(model => model.invf_FechaInventario)</p>
+</div>
 
                                     @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, "Seleccione", new { @class = "form-control" })
-                                        @*@Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })*@
-                                        @Html.ValidationMessageFor(model => model.bod_Id)
-                                    </div>
+                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bodegas,  new { @class = "form-control" })
+                                        <p style="color:red"> @Html.ValidationMessageFor(model => model.bod_Id)</p>
+</div>
                                 </div>
 
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.invf_Descripcion, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.invf_Descripcion)
-                                        @Html.ValidationMessageFor(model => model.invf_Descripcion)
-                                    </div>
+                                        <p style="color:red">  @Html.ValidationMessageFor(model => model.invf_Descripcion) </p>
+</div>
 
                                     @Html.LabelFor(model => model.invf_ResponsableBodega, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.invf_ResponsableBodega)
-                                        @Html.ValidationMessageFor(model => model.invf_ResponsableBodega)
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.estif_Id, "Estado Inventario Fisico", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                       @Html.DropDownList("estif_Id", (IEnumerable<SelectListItem>)ViewBag.estif_Id, new { @class = "form-control" })
-                                       @Html.ValidationMessageFor(model => model.estif_Id)
-                                    </div>
+                                        <p style="color:red">    @Html.ValidationMessageFor(model => model.invf_ResponsableBodega) </p>
+</div>
                                 </div>
                               
 
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                                        <input type="submit" value="Guardar" class="btn btn-primary" id="aceptar"/>
+                                        <input type="button" value="Conciliar" class="btn btn-danger" id="conciliar" onclick="active()" />
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                     </div>
                                 </div>
@@ -84,7 +77,15 @@
                         }
 
               @* Clase parcial de el index del Inventario Fisico Detalle *@
-                            @Html.Partial("_IndexInvFisicoDetalle", Model.tbInventarioFisicoDetalle)
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        @Html.Partial("_IndexInvFisicoDetalle", Model.tbInventarioFisicoDetalle, new ViewDataDictionary { { "invf_Id", Model.invf_Id } })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
      
 
                         @* Tabla de los datos de auditoria *@
@@ -108,10 +109,9 @@
                                         Creado
                                     </td>
                                     <td>
-                                        @ViewBag.UsuarioCrea 
+                                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
                                     </td>
                                     <td>
-
                                         @Html.DisplayFor(model => model.invf_FechaCrea)
                                     </td>
                        
@@ -121,7 +121,7 @@
                                         Modificado
                                     </td>
                                     <td>
-                                        @ViewBag.UsuarioModifica
+                                        @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(model => model.invf_FechaModifica)
@@ -138,10 +138,37 @@
     </div>
 
 
-@*@section Scripts {
+@* Modal Nuevo Detalle *@
+<div>
+    <div class="modal fade" id="RegistrarNuevoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Registrar Nuevo Detalle</h4>
+                </div>
+                <div class="modal-body" id="frmAgregarCasoExito">
+                    @Html.Partial("_CreateNuevoInvFisicoDetalle_Modal", new tbInventarioFisicoDetalle())
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="GuardarNuevoDetalle" onclick="GuardarNuevoDetalle">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}*@
+}
 
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/InvFisicoDetalle.js"></script>

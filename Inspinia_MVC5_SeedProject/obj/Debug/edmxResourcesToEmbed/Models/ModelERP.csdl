@@ -1364,6 +1364,13 @@
       <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <EntitySet Name="UDV_Inv_Consultar_Existencias_Productos" EntityType="ERP_ZORZALModel.UDV_Inv_Consultar_Existencias_Productos" />
+    <FunctionImport Name="ConteoParametro" ReturnType="Collection(ERP_ZORZALModel.ConteoParametro_Result)">
+      <Parameter Name="conteo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoMovimiento_Delete_Result)">
+      <Parameter Name="estm_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1402,12 +1409,6 @@
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbEntradaDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbInventarioFisicoDetalle_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbInventarioFisicoDetalle_Update_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbEntradaDetalle_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -2196,6 +2197,7 @@
     <NavigationProperty Name="tbBodegaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbBodegaDetalle" />
     <NavigationProperty Name="tbListaPrecio" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id" FromRole="tbProducto" ToRole="tbListaPrecio" />
     <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbListadoPrecioDetalle" />
+    <Property Name="prod_Correlativo" Type="Int32" />
   </EntityType>
   <EntityType Name="tbProductoCategoria">
     <Key>
@@ -5406,6 +5408,36 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbEntrada_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
+    <Key>
+      <PropertyRef Name="suc_Descripcion" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="bodd_CantidadMinima" />
+      <PropertyRef Name="bod_Id" />
+      <PropertyRef Name="prod_Codigo" />
+    </Key>
+    <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bodd_CantidadExistente" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="bodd_CantidadMinima" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="bod_Id" Type="Int32" Nullable="false" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="ConteoParametro_Result">
+    <Property Type="Int32" Name="Conteo" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbEstadoMovimiento_Delete_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbInventarioFisicoDetalle_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbInventarioFisicoDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

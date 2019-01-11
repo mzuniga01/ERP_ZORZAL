@@ -34,45 +34,45 @@
 
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true)
-                          
+
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Nombre, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prov_Nombre)
-                                   <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Nombre)</p> 
+                                    @Html.TextBoxFor(model => model.prov_Nombre , new { @class = "form-control", maxlength = 100})
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Nombre)</p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_NombreContacto, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prov_NombreContacto)
-                                   <p style="color:red">@Html.ValidationMessageFor(model => model.prov_NombreContacto)</p>
+                                    @Html.TextBoxFor(model => model.prov_NombreContacto, new { @class = "form-control", maxlength = 75 })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prov_NombreContacto)</p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Direccion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                   
-                                    @Html.TextAreaFor(model => model.prov_Direccion, new { @class = "form-control"})
-                                   <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Direccion)</p>
+
+                                    @Html.TextAreaFor(model => model.prov_Direccion, new { @class = "form-control", maxlength = 50 })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Direccion)</p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Email, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prov_Email)
-                                   <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Email)</p>
+                                    @Html.TextBoxFor(model => model.prov_Email, new { @class = "form-control", maxlength = 50 })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Email)</p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Telefono, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prov_Telefono)
+                                    @Html.TextBoxFor(model => model.prov_Telefono, new { @class = "form-control", maxlength = 10 })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Telefono)</p>
                                 </div>
                             </div>
@@ -94,6 +94,20 @@
 </div>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/app/ValidationNumber.js"></script>
+<script src="~/Scripts/app/ValidationEmail.js"></script>
+<style>
+    #validEmail {
+        margin-top: 4px;
+        margin-left: 9px;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+    }
+
+    .text {
+        font-family: Arial, Tahoma, Helvetica;
+    }
+</style>
 
 @*@section Scripts {
         @Scripts.Render("~/bundles/jqueryval")

@@ -19,9 +19,12 @@
                 newTr += '</tr>'
                 $('#NoAsignados tbody').append(newTr)
             })
-                $('#NoAsignados').DataTable({
-
-                    "searching": false,
+            $('#NoAsignados').DataTable({
+                "searching": false,
+                "scrollY": "300px",
+                "scrollCollapse": true,
+                "paging": false,
+                "info": false,
                     "oLanguage": {
                         "oPaginate": {
                             "sNext": "Siguiente",
@@ -33,11 +36,14 @@
 
                     },
 
-                });
+            });
 
                 $('#Asignados').DataTable({
-
                     "searching": false,
+                    "scrollY": "300px",
+                    "scrollCollapse": true,
+                    "paging": false,
+                    "info": false,
                     "oLanguage": {
                         "oPaginate": {
                             "sNext": "Siguiente",
@@ -59,6 +65,7 @@
         }
     })
 });
+
 
 $('#Add').click(function () {
     $('#NoAsignados> tbody > tr').each(function () {
@@ -94,6 +101,7 @@ $('#Remove').click(function () {
             active = $(this)
             $('#check' + idItem).prop('checked', false);
             $(this).remove();
+            $('#NoAsignados tbody').append(active)
         }
     })
 })
@@ -163,11 +171,19 @@ $('#btnGuardarRol').click(function () {
                     console.log(data);
                 })
     }
-    })
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////EDITAR///////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
+})
+$("#rol_Descripcion").change(function () {
+    var txtDescripcion = $("#rol_Descripcion").val();
+    if (txtDescripcion == "") {
+        //alert("Handler for .change() called.");
+        $('#Add').attr("disabled", true);
+        $('#Remove').attr("disabled", true);
+    }
+    else {
+        $('#Add').attr("disabled", false);
+        $('#Remove').attr("disabled", false);
+    }
+});
 
 
 

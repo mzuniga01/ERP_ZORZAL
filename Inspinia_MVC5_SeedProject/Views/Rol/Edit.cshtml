@@ -4,8 +4,6 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Rol</h2>
@@ -138,8 +136,8 @@
                                 Creado por
                             </td>
                             <td>
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
                             </td>
                             <td>
                                 @Html.DisplayFor(model => model.rol_FechaCrea)
@@ -158,8 +156,8 @@
                             {
                             @ViewBag.UsuarioModifica
                             }*@
-                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
                             </td>
                             <td>
                                 @Html.DisplayFor(model => model.rol_FechaModifica)
@@ -171,3 +169,4 @@
             </div>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/app/RolObjetosEdit.js"></script>
+<script src="~/Scripts/app/ellipses.js"></script>

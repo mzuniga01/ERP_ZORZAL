@@ -1,0 +1,179 @@
+﻿@model ERP_GMEDINA.Models.tbParametro
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Create</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Crear</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+        </div>
+    </div>
+</div>
+
+@Html.HiddenFor(model => model.par_UsuarioCrea)
+@Html.HiddenFor(model => model.par_FechaCrea)
+@Html.HiddenFor(model => model.par_UsuarioModifica)
+@Html.HiddenFor(model => model.par_FechaModifica)
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Crear Parametro</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal" >
+        <p style="color:red">
+            @Html.ValidationSummary(true)</p>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.par_Id, new { @Value = "1", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.par_Id)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.par_NombreEmpresa, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.par_NombreEmpresa)
+<p style="color:red"> @Html.ValidationMessageFor(model => model.par_NombreEmpresa)</p>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.par_TelefonoEmpresa, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.par_TelefonoEmpresa)
+                <p style="color:red">   @Html.ValidationMessageFor(model => model.par_TelefonoEmpresa)</p>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.par_CorreoEmpresa, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.par_CorreoEmpresa, new { @autocomplete = "off", type = "email", @class = "form-control" })
+                <p id="emailOK1" style="color:red"> @Html.ValidationMessageFor(model => model.par_CorreoEmpresa) </p>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.par_PathLogo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.par_PathLogo)
+                <p style="color:red">  @Html.ValidationMessageFor(model => model.par_PathLogo) </p>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mnda_Id, "mnda_Id", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("mnda_Id", (IEnumerable<SelectListItem>)ViewBag.mnda_Id,"Seleccione", new { @class = "form-control" })
+                <p style="color:red">  @Html.ValidationMessageFor(model => model.mnda_Id) </p>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.par_RolGerenteTienda, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.par_RolGerenteTienda)
+                <p style="color:red">  @Html.ValidationMessageFor(model => model.par_RolGerenteTienda)</p>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.par_RolCreditoCobranza, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.par_RolCreditoCobranza)
+                <p style="color:red">  @Html.ValidationMessageFor(model => model.par_RolCreditoCobranza) </p>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.par_RolSupervisorCaja, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.par_RolSupervisorCaja)
+                <p style="color:red">  @Html.ValidationMessageFor(model => model.par_RolSupervisorCaja) </p>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.par_RolCajero, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.par_RolCajero)
+                <p style="color:red">   @Html.ValidationMessageFor(model => model.par_RolCajero)</p>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.par_RolAuditor, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.par_RolAuditor)
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.par_RolAuditor)</p>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.par_SucursalPrincipal, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.par_SucursalPrincipal)
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.par_SucursalPrincipal)</p>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.par_PorcentajeDescuentoTE, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.par_PorcentajeDescuentoTE)
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.par_PorcentajeDescuentoTE) </p>
+</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.par_IdConsumidorFinal, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.par_IdConsumidorFinal)
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.par_IdConsumidorFinal) </p>
+</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/emailvalidation.js"></script>
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

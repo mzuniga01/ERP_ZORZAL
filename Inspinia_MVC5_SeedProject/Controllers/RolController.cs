@@ -21,6 +21,11 @@ namespace ERP_ZORZAL.Controllers
             return View(db.tbRol.ToList());
         }
 
+        public ActionResult _IndexAccesoRol()
+        {
+            return View();
+        }
+
         // GET: /Rol/Details/5
         public ActionResult Details(int? id)
         {
@@ -231,26 +236,45 @@ namespace ERP_ZORZAL.Controllers
                 }
             };
         }
-        
-        [HttpPost]
-        public JsonResult GetObjetosDisponibles(int rolId)
-        {
-            var list1 = db.SDP_Acce_GetObjetosDisponibles(rolId).ToList();
-            return Json(list1, JsonRequestBehavior.AllowGet);
-        }
 
         [HttpPost]
-        public JsonResult GetObjetosAsignados(int rolId)
+        public JsonResult AgregarObjeto(int idRol, ICollection<tbAccesoRol> RolAcceso)
         {
-            var list2 = db.SDP_Acce_GetObjetosAsignados(rolId).ToList();
-            return Json(list2, JsonRequestBehavior.AllowGet);
-        }
+            var Msj = "";
+            IEnumerable<Object> Acceso = null;
+            using (TransactionScope Tran = new TransactionScope())
+            {
 
-        [HttpPost]
-        public JsonResult GetObjetos()
-        {
-            var list = db.SDP_Acce_GetObjetos().ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
+                try
+                {
+                    //Rol = db.UDP_Acce_tbAccesoRol_Insert(idRol, AccesoRol);
+                    //foreach (UDP_Acce_tbAccesoRol_Update_Result vRol in Rol)
+                    //    Msj1 = vRol.MensajeError;
+                    //if (Msj1.Substring(0, 1) != "-")
+                    //{
+                    if (RolAcceso != null)
+                    {
+                        if (RolAcceso.Count > 0)
+                        {
+                            foreach (tbAccesoRol vAccesoRol in RolAcceso)
+                            {
+                                Acceso = db.UDP_Acce_tbAccesoRol_Insert(idRol, vAccesoRol.obj_Id);
+                                foreach (UDP_Acce_tbAccesoRol_Insert_Result item in Acceso)
+                                {
+                                    Msj = Convert.ToString(item.MensajeError);
+                                }
+                            }
+                        }
+                    }
+                    Tran.Complete();
+                }
+                catch (Exception)
+                {
+                    Msj = "-1";
+                }
+                return Json(Msj, JsonRequestBehavior.AllowGet);
+
+            }
         }
 
         [HttpPost]
@@ -303,6 +327,30 @@ namespace ERP_ZORZAL.Controllers
         }
 
         [HttpPost]
+        public JsonResult GetObjetosDisponibles(int rolId)
+        {
+            var list = db.SDP_Acce_GetObjetosDisponibles(rolId).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult GetObjetosDisponibles2(int rolId1)
+        {
+            var list = db.SDP_Acce_GetObjetosDisponibles(rolId1).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult GetObjetosAsignados(int rolId)
+        {
+            var list = db.SDP_Acce_GetObjetosAsignados(rolId).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult GetObjetos()
+        {
+            var list = db.SDP_Acce_GetObjetos().ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
         public JsonResult UpdateRol(int rolId, string Descripcion)
         {
             var Msj = "";
@@ -321,45 +369,7 @@ namespace ERP_ZORZAL.Controllers
             return Json(Msj, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public JsonResult AgregarObjeto(int idRol, ICollection<tbAccesoRol> RolAcceso)
-        {
-            var Msj = "";
-            IEnumerable<Object> Acceso = null;
-            using (TransactionScope Tran = new TransactionScope())
-            {
-
-                try
-                {
-                    //Rol = db.UDP_Acce_tbAccesoRol_Insert(idRol, AccesoRol);
-                    //foreach (UDP_Acce_tbAccesoRol_Update_Result vRol in Rol)
-                    //    Msj1 = vRol.MensajeError;
-                    //if (Msj1.Substring(0, 1) != "-")
-                    //{
-                    if (RolAcceso != null)
-                    {
-                        if (RolAcceso.Count > 0)
-                        {
-                            foreach (tbAccesoRol vAccesoRol in RolAcceso)
-                            {
-                                Acceso = db.UDP_Acce_tbAccesoRol_Insert(idRol, vAccesoRol.obj_Id);
-                                foreach (UDP_Acce_tbAccesoRol_Insert_Result item in Acceso)
-                                {
-                                    Msj = Convert.ToString(item.MensajeError);
-                                }
-                            }
-                        }
-                    }
-                    Tran.Complete();
-                }
-                catch (Exception)
-                {
-                    Msj = "-1";
-                }
-                return Json(Msj, JsonRequestBehavior.AllowGet);
-
-            }
-        }
+        
         [HttpPost]
         public JsonResult QuitarObjeto(int idRol, ICollection<tbAccesoRol> RolAcceso)
         {

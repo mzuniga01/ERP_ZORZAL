@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbInventarioFisicoDetalle>
-
+@using ERP_GMEDINA.Models
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -7,116 +7,130 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Inventario Fisico Detalle</h5>
+                    <div class="title-action">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#RegistrarNuevoDetalle">
+                            Registrar Nuevo Detalle
+                        </button>
+                    </div>
                 </div>
                 <div class="ibox-content">
 
-<table class="table table-responsive" style="width:100%" id="DataTable">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.prod_Codigo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.invfd_CantidadSistema)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.invfd_Cantidad)
-            </th>
-      
-            <th>
-            Acciones
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.prod_Codigo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.invfd_CantidadSistema)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.invfd_Cantidad)
-                </td>
-          
-                <td>
-                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetails">Detalles</button>
-                    <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Modaledit">Editar</button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                    <table class="table table-striped" >
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.prod_Codigo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.invfd_CantidadSistema)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.invfd_Cantidad)
+                                </th>
 
-                </div>
-            </div>
-        </div>
-    </div>
- </div>
+                                <th>
+                                    Acciones
+                                </th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prod_Codigo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.invfd_CantidadSistema)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.invfd_Cantidad)
+                                    </td>
 
-<!-- Modal Details -->
-<div>
-    <div class="modal fade" id="ModalDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Ingresar Caso de Éxito</h4>
-                </div>
-                <div class="modal-body" id="frmAgregarCasoExito">
-                    @Html.Partial("_DetailsInvFisicoDetalle", new ERP_GMEDINA.Models.tbInventarioFisicoDetalle() {  })
-                    <div class="form-group">
-                        <div class="col-md-12 text-center">
-                            <button class="btn btn-primary" type="button" id="GuardarCasos">Guardar</button>
-                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
-                        </div>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetails_@item.invfd_Id">Detalles</button>
+                                        <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Modaledit_@item.invfd_Id">Editar</button>
+                                    </td>
+                                </tr>
+
+
+                            <!-- Modal Details -->
+                                <div>
+                                    <div class="modal fade" id="ModalDetails_@item.invfd_Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">Ingresar Caso de Éxito</h4>
+                                                </div>
+                                                <div class="modal-body" id="frmAgregarCasoExito">
+                                                    @Html.Partial("_DetailsInvFisicoDetalle", new ERP_GMEDINA.Models.tbInventarioFisicoDetalle()
+                                               {
+                                                   prod_Codigo = item.prod_Codigo,
+                                                   invfd_Cantidad = item.invfd_Cantidad,
+                                                   invfd_CantidadSistema = item.invfd_CantidadSistema,
+                                                   uni_Id = item.uni_Id,
+                                               })
+                                                    <div class="form-group">
+                                                        <div class="col-md-12 text-center">
+                                                            <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Aceptar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal EDIT -->
+                                <div>
+                                    <div class="modal fade" id="Modaledit_@item.invfd_Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">Ingresar Caso de Éxito</h4>
+                                                </div>
+                                                <div class="modal-body" id="frmAgregarCasoExito">
+                                                    @Html.Partial("_EditInvFisicoDetalle", new ERP_GMEDINA.Models.tbInventarioFisicoDetalle() { invfd_Id = item.invfd_Id,
+                                                   invfd_Cantidad = item.invfd_Cantidad,
+                                                   invfd_CantidadSistema = item.invfd_CantidadSistema,
+                                                   uni_Id = item.uni_Id,
+                                                   prod_Codigo = item.prod_Codigo,
+                                                   invfd_UsuarioCrea = item.invfd_UsuarioCrea,
+                                                   invfd_FechaCrea = item.invfd_FechaCrea,
+                                                   invfd_UsuarioModifica = item.invfd_UsuarioModifica,
+                                                    invfd_FechaModifica = item.invfd_FechaModifica})
+                                                    <div class="form-group">
+                                                        <div class="col-md-12 text-center">
+                                                            <button class="btn btn-primary" type="button" id="btnActualizarDetalle" onclick="btnActualizarDetalle(@item.invfd_Id)">Guardar</button>
+                                                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        </table>
+                            
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<!-- Modal EDIT -->
-<div>
-    <div class="modal fade" id="Modaledit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Ingresar Caso de Éxito</h4>
-                </div>
-                <div class="modal-body" id="frmAgregarCasoExito">
-                    @Html.Partial("_EditInvFisicoDetalle", new ERP_GMEDINA.Models.tbInventarioFisicoDetalle() { })
-                    <div class="form-group">
-                        <div class="col-md-12 text-center">
-                            <button class="btn btn-primary" type="button" id="GuardarCasos">Guardar</button>
-                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
