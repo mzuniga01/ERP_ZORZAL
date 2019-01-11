@@ -215,7 +215,7 @@ namespace ERP_GMEDINA.Controllers
                                                         tbCliente.mun_Codigo,
                                                         tbCliente.clte_Direccion,
                                                         tbCliente.clte_CorreoElectronico,
-                                                        tbCliente.clte_EsActivo,
+                                                        Helpers.ClienteActivo,
                                                         tbCliente.clte_RazonInactivo,
                                                         tbCliente.clte_ConCredito,
                                                         tbCliente.clte_EsMinorista,
@@ -271,7 +271,13 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
             ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
-            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+            if (tbCliente.clte_EsPersonaNatural)
+                ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+            else
+                ViewBag.tpi_Id = db.tbTipoIdentificacion.Select(s => new {
+                    tpi_Id = s.tpi_Id,
+                    tpi_Descripcion = s.tpi_Descripcion
+                }).Where(x => x.tpi_Id == Helpers.RTN).ToList();
             var Lista = cUtilities.GeneroList();
             ViewBag.GeneroList = new SelectList(Lista, "ID_GENERO", "DESCRIPCION", tbCliente.clte_Sexo);
             return View(tbCliente);
@@ -405,14 +411,14 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult InactivarCliente(int CodCliente, bool Activo, string RazonInactivo)
         {
-            var list = db.UDP_Vent_tbCliente_Estado(CodCliente, Activo, RazonInactivo).ToList();
+            var list = db.UDP_Vent_tbCliente_Estado(CodCliente, Helpers.ClienteInactivo, RazonInactivo).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult ActivarCliente(int CodCliente, bool Activo, string RazonInactivo)
         {
-            var list = db.UDP_Vent_tbCliente_Estado(CodCliente, Activo, RazonInactivo).ToList();
+            var list = db.UDP_Vent_tbCliente_Estado(CodCliente, Helpers.ClienteActivo, RazonInactivo).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
