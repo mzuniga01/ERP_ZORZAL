@@ -10,7 +10,9 @@ namespace ERP_GMEDINA.Models
     [MetadataType(typeof(UsuarioMetaData))]
     public partial class tbUsuario
     {
-
+        [NotMapped]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public string ConfirmarPassword { get; set; }
     }
     public class UsuarioMetaData
     {
@@ -55,9 +57,7 @@ namespace ERP_GMEDINA.Models
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public bool usu_EsAdministrador { get; set; }
 
-        [NotMapped]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public string ConfirmarPassword { get; set; }
+        
 
         //[NotMapped]
         //public byte[] PasswordActual { get; set; }
