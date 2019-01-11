@@ -134,15 +134,12 @@
                                     <div class="ibox float-e-margins">
                                         <div class="ibox-title">
                                             <div class="title-action">
-                                                <div class="box-border">
-                                                    <h5> Listado Salida Detalle</h5>
-                                                    <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#Crear"></button>
-                                                </div>
+                                                <h5>Producto</h5>
+                                                <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#CreateProducto"></button>
                                             </div>
                                         </div>
-                                        <div class="ibox-content collapse" id="Crear">
-                                            @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
-                                            @Html.Partial("_IndexSalidaDetalle", Model.tbSalidaDetalle)
+                                        <div class="ibox-content collapse" id="CreateProducto">
+                                            @Html.Partial("_IndexBoxDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.box_Codigo }))
                                         </div>
                                     </div>
                                 </div>

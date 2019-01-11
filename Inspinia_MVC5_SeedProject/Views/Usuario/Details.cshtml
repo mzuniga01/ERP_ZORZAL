@@ -88,22 +88,33 @@
         <dd>
             @Html.DisplayFor(model => model.usu_EsActivo)
         </dd>
+        @if (Model.usu_EsActivo ==true)
+        {
+                        <dt>
+                            
+                        </dt>
+
+                        <dd>
+                           
+                        </dd> }
+        else
+        {
+                        <dt>
+                            @Html.DisplayNameFor(model => model.usu_RazonInactivo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.usu_RazonInactivo)
+                        </dd> }
+
 
         @*<dt>
-            @Html.DisplayNameFor(model => model.usu_RazonInactivo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.usu_RazonInactivo)
-        </dd>*@
-
-        <dt>
             @Html.DisplayNameFor(model => model.usu_EsAdministrador)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.usu_EsAdministrador)
-        </dd>
+        </dd>*@
 
     </dl>
 
@@ -142,9 +153,6 @@
         </div>
     </div>
  </div>
-
-
-
 
 
 

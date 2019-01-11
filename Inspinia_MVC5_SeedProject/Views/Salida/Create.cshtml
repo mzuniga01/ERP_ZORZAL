@@ -62,13 +62,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.box_Codigo, "Caja", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.DropDownList("box_Codigo", (IEnumerable<SelectListItem>)ViewBag.box_Codigo, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.estm_Id)
-                                    </div>
-                                </div>
 
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tsal_Id, "Tipo de Salida", new { @class = "control-label col-md-2" })
@@ -135,9 +128,19 @@
                         @* Llama la vista  *@
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="ibox float-e-margins">                                         
-                                       
-                                        @Html.Partial("_CreateSalidadDetalle", new  tbSalidaDetalle())
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <div class="title-action">
+                                            <div class="box-border">
+                                                <h5></h5>
+                                                <button type="button" class="btn btn-white @*glyphicon glyphicon-download*@" data-toggle="collapse" data-target="#Crear">Llenar Caja</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content collapse" id="Crear">
+                                        @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
+                                        @Html.Partial("_CreateSalidaDetalle", Model)
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -181,10 +184,18 @@
     </div>
 </div>
 
-                    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/BusquedaGenerica.js"></script>
+<script src="~/Scripts/app/DetalleSalida.js"></script>
+
+                    @*<script src="~/Scripts/jquery-3.1.1.min.js"></script>
                     <script src="~/Scripts/app/SalidaDetalle.js"></script>
                     <script src="~/Scripts/app/DataTable.js"></script>
                     <script src="~/Scripts/app/Datepicker.js"></script>
                     <script src="~/Scripts/jquery-3.3.1.js"></script>
                     <script src="~/Scripts/app/Datepicker.js"></script>
+                    <script src="~/Scripts/app/BusquedaGenerica.js"></script>
+                    <script src="~/Scripts/app/DetalleSalida.js"></script>*@
 

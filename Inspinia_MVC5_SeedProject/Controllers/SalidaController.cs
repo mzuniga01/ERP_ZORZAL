@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using System.Transactions;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -77,13 +78,100 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "bod_Id,fact_Id,sal_FechaElaboracion,estm_Id,box_Codigo,tsal_Id,sal_RazonDevolucion")] tbSalida tbSalida)
+        public ActionResult Create([Bind(Include = "bod_Id,fact_Id,sal_FechaElaboracion,estm_Id,tsal_Id,sal_RazonDevolucion")] tbSalida tbSalida)
+        {
+            ViewBag.bod_Nombre = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+            ViewBag.box_Codigo = new SelectList(db.tbBox, "box_Codigo", "box_Descripcion");
+            ViewBag.estm_Descripcion = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
+            ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
+            ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
+
+            var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
+            var MensajeError = "0";
+            var MensajeErrorDetalle = "0";
+            IEnumerable<object> listSalida = null;
+            IEnumerable<object> listSalidaDetalle = null;
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    using (TransactionScope Tran = new TransactionScope())
+                    {
+                        listSalida = db.UDP_Inv_tbSalida_Insert(tbSalida.bod_Id, tbSalida.fact_Id, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.tsal_Id, tbSalida.sal_RazonDevolucion);
+                        foreach (UDP_Inv_tbSalida_Insert_Result Salida in listSalida)
+                            MensajeError = Salida.MensajeError;
+                        if (MensajeError == "-1")
+                        {
+                            ModelState.AddModelError("", "No se pudo agregar el registro");
+                            return View(tbSalida);
+                        }
+                        else
+                        {
+                            var MsjError = Convert.ToInt32(MensajeError);
+                            if (MsjError == tbSalida.sal_Id)
+                            {
+                                if (list != null)
+                                {
+                                    if (list.Count != 0)
+                                    {
+                                        foreach (tbSalidaDetalle Detalle in list)
+                                        {
+                                            var box_Codigo = "";
+                                            Detalle.box_Codigo = MensajeError;
+                                            listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
+                                                Detalle.sal_Id,
+                                                Detalle.prod_Codigo,
+                                                Detalle.sal_Cantidad,
+                                                box_Codigo
+                                                );
+                                            foreach (UDP_Inv_tbSalida_Insert_Result spDetalle in listSalidaDetalle)
+                                            {
+                                                MensajeErrorDetalle = spDetalle.MensajeError;
+                                                if (MensajeError == "-1")
+                                                {
+                                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                                    return View(tbSalida);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("", "No se pudo agregar el registro");
+                                return View(tbSalida);
+                            }
+
+                        }
+                        Tran.Complete();
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
+                    ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                    ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                    ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+
+                    ViewBag.Denominacion = db.tbDenominacion.ToList();
+                    List<tbMoneda> MonedaList = db.tbMoneda.ToList();
+                    ViewBag.MonedaList = new SelectList(MonedaList, "mnda_Id", "mnda_Nombre");
+
+                    ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
+                }
+
+            }
+
+            return View(tbSalida);
+        }
+
+
+
+
         //{
-        //    ViewBag.bod_Nombre = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
-        //    ViewBag.box_Codigo = new SelectList(db.tbBox, "box_Codigo", "box_Descripcion");
-        //    ViewBag.estm_Descripcion = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
-        //    ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
-        //    ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
+            
         //    if (ModelState.IsValid)
         //    {
 
@@ -91,7 +179,7 @@ namespace ERP_ZORZAL.Controllers
         //        {
         //            IEnumerable<object> List = null;
         //            var MsjError = "";
-        //            List = db.UDP_Inv_tbSalida_Insert(tbSalida.bod_Id, tbSalida.fact_Id, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.box_Codigo, tbSalida.tsal_Id, tbSalida.sal_RazonDevolucion);
+        //List = db.UDP_Inv_tbSalida_Insert(tbSalida.bod_Id, tbSalida.fact_Id, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.tsal_Id, tbSalida.sal_RazonDevolucion);
         //            foreach (UDP_Inv_tbSalida_Insert_Result Salida in List)
         //                MsjError = Salida.MensajeError;
 
@@ -144,7 +232,6 @@ namespace ERP_ZORZAL.Controllers
             }
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSalida.bod_Id);
             ViewBag.bod_Nombre = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
-            //ViewBag.box_Codigo = new SelectList(db.tbBox, "box_Codigo", "box_Descripcion", tbSalida.box_Codigo);
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbSalida.estm_Id);
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbSalida.fact_Id);
             ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion", tbSalida.tsal_Id);
@@ -156,35 +243,34 @@ namespace ERP_ZORZAL.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 
-        //para añadir datos temporales a la tabla
         [HttpPost]
-        public JsonResult SaveSalidaDetalle(tbSalida salidadetalle)
+        public JsonResult SaveSalidaDetalle(tbSalidaDetalle SalidaDetalle)
         {
-            List<tbSalida> sessionCasoExito = new List<tbSalida>();
-            var list = (List<tbSalida>)Session["SalidaDetalle"];
+            List<tbSalidaDetalle> sessionSalidaDetalle = new List<tbSalidaDetalle>();
+            var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
             if (list == null)
             {
-                sessionCasoExito.Add(salidadetalle);
-                Session["SalidaDetalle"] = sessionCasoExito;
+                sessionSalidaDetalle.Add(SalidaDetalle);
+                Session["SalidaDetalle"] = sessionSalidaDetalle;
             }
             else
             {
-                list.Add(salidadetalle);
+                list.Add(SalidaDetalle);
                 Session["SalidaDetalle"] = list;
             }
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
-        //para borrar registros en la tabla temporal
+
         [HttpPost]
-        public JsonResult Eliminardetallesalida(tbSalida eliminardetalle)
+        public JsonResult RemoveSalidaDetalle(tbSalidaDetalle SalidaDetalle)
         {
-            var list = (List<tbSalida>)Session["SalidaDetalle"];
+            var list = (List<tbSalidaDetalle>)Session["tbSalidaDetalle"];
 
             if (list != null)
             {
-                var itemToRemove = list.Single(r => r.sal_Id == eliminardetalle.sal_Id);
+                var itemToRemove = list.Single(r => r.sald_UsuarioCrea == SalidaDetalle.sald_UsuarioCrea);
                 list.Remove(itemToRemove);
-                Session["SalidaDetalle"] = list;
+                Session["tbSalidaDetalle"] = list;
             }
             return Json("", JsonRequestBehavior.AllowGet);
         }
@@ -208,7 +294,7 @@ namespace ERP_ZORZAL.Controllers
 
                     IEnumerable<object> List = null;
                     string MsjError = "";
-                    //List = db.UDP_Inv_tbSalida_Update(tbSalida.sal_Id, tbSalida.bod_Id, tbSalida.fact_Id, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.tsal_Id, tbSalida.sal_RazonDevolucion, vtbSalida.sal_UsuarioCrea, vtbSalida.sal_FechaCrea);
+                    //List = db.UDP_Inv_tbSalida_Update(tbSalida.sal_Id, tbSalida.bod_Id, tbSalida.fact_Id, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.box_Codigo, tbSalida.tsal_Id, tbSalida.sal_RazonDevolucion, vtbSalida.sal_UsuarioCrea, vtbSalida.sal_FechaCrea);
                     foreach (UDP_Inv_tbSalida_Update_Result Salida in List)
                         MsjError = Salida.MensajeError;
 
@@ -265,6 +351,10 @@ namespace ERP_ZORZAL.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        
+
         public ActionResult _EditarDetalle()
         {
             return View();
@@ -283,6 +373,9 @@ namespace ERP_ZORZAL.Controllers
         {
             return View();
         }
+
+
+
 
     }
     }

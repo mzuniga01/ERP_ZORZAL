@@ -8,18 +8,10 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Editar Usuario</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Edit</strong>
-            </li>
-        </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index", null, new { @class = ""})
+            @Html.ActionLink("Regresar", "Index", null, new { @class = "" })
         </div>
     </div>
 </div>
@@ -31,70 +23,86 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                @*<div class="ibox-title">
-                    <h5>Edit tbUsuario</h5>
-                </div>*@
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal">
+                        <div class="form-horizontal">
 
-                        @Html.ValidationSummary(true)
-                        @Html.HiddenFor(model => model.usu_Id)
-                        <div><br /><br /></div>
-                        <div class="form-group" style="padding-right:220px">
-                            @Html.LabelFor(model => model.usu_NombreUsuario, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.usu_NombreUsuario)
-                                @Html.ValidationMessageFor(model => model.usu_NombreUsuario)
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.usu_Id)
+                            <div><br /><br /></div>
+                            <div class="form-group" style="padding-right:220px">
+                                @Html.LabelFor(model => model.usu_NombreUsuario, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.usu_NombreUsuario, new { @class = "form-control", maxlength = "100" })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.usu_NombreUsuario)
+                                </div>
+
+
+                                @Html.LabelFor(model => model.usu_Correo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.usu_Correo, new { @class = "form-control", maxlength = "150" })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.usu_Correo)</p>
+                                </div>
                             </div>
 
-                            @*<div class="form-group">
-                                    @Html.LabelFor(model => model.usu_Password, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                       <input class="text-box single-line" data-val="true" data-val-required="El campo Usuario es requerido" id="usu_Password" name="usu_Password" type="text" value="">
+                                <div class="form-group" style="padding-right:220px">
+                                    @Html.LabelFor(model => model.usu_Nombres, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.usu_Nombres, new { @class = "form-control", maxlength = "150" })
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.usu_Nombres)</p>
+
                                     </div>
-                                </div>*@
-                            @Html.LabelFor(model => model.usu_Nombres, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.usu_Nombres, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.usu_Nombres)
-                            </div>
-                        </div>
+                                    @Html.LabelFor(model => model.usu_Apellidos, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(model => model.usu_Apellidos, new { @class = "form-control", maxlength = "150" })
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.usu_Apellidos)</p>
+                                    </div>
 
-                        <div class="form-group" style="padding-right:220px">
-                            @Html.LabelFor(model => model.usu_Apellidos, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.usu_Apellidos)
-                                @Html.ValidationMessageFor(model => model.usu_Apellidos)
-                            </div>
-                            @Html.LabelFor(model => model.usu_Correo, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.usu_Correo)
-                                @Html.ValidationMessageFor(model => model.usu_Correo)
-                            </div>
-                        </div>
+                                </div>
 
-                        <div class="form-group" style="padding-right:220px">
-                            @Html.LabelFor(model => model.usu_EsActivo, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.usu_EsActivo)
-                                @Html.ValidationMessageFor(model => model.usu_EsActivo)
+                            <div class="form-group" style="padding-right:220px">
+                                @Html.LabelFor(model => model.usu_EsActivo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.usu_EsActivo, new {  @id = "usu_EsActivo" })
+                                    @Html.ValidationMessageFor(model => model.usu_EsActivo)
+                                </div>
+                               
+                                @Html.LabelFor(model => model.usu_EsAdministrador, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.usu_EsAdministrador, new { htmlAttributes = new { @class = "checkbox-inline" } })
+                                    @Html.ValidationMessageFor(model => model.usu_EsAdministrador)
+                                </div>
                             </div>
-                            @Html.LabelFor(model => model.usu_EsAdministrador, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.usu_EsAdministrador, new { htmlAttributes = new { @class = "checkbox-inline" } })
-                                @Html.ValidationMessageFor(model => model.usu_EsAdministrador)
-                            </div>
-                        </div>
-                        <div><br /><br /><br /></div>
 
-                        <div style="padding-left :220px">
-                            <input type="submit" value="Restaurar Contraseña" class="btn btn-primary" />
-                            @Html.ActionLink("Modificar Contraseña", "ModificarPass", new { id = Model.usu_Id }, new { @class = "btn btn-primary" })
+                            <div class="form-group" style="padding-right:220px" id="usu_RazonInactivo">
+                                @Html.LabelFor(model => model.usu_RazonInactivo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.usu_RazonInactivo)
+                                    @Html.ValidationMessageFor(model => model.usu_RazonInactivo)
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="padding-right:220px">
+
+                                @Html.LabelFor(model => model.usu_Password, new { @class = "control-label col-md-2 invisible" })
+                                <div class="col-md-10">
+                                    @Html.HiddenFor(model => model.usu_Password, new { @value = "password" })
+                                    @*<input class="text-box single-line invisible" data-val="true" data-val-required="El campo Usuario es requerido" id="usu_Password" name="usu_Password" type="text" value="">*@
+                                </div>
+
+                            </div>
+
+
+                            <div><br /></div>
+
+                            <div style="padding-left :100px">
+                                <input type="submit" value="Restaurar Contraseña" class="btn btn-primary" />
+                                @Html.ActionLink("Modificar Contraseña", "ModificarPass", new { id = Model.usu_Id }, new { @class = "btn btn-primary" })
+                            </div>
                             <div><br /><br /><br /></div>
 
                             <div class="col-md-5">
@@ -148,24 +156,38 @@
 
                             <div class="form-group">
                                 <div class="col-md-3">
-                                    @*<input type="submit" value="Guardar" class="btn btn-primary" />*@
-                                    @Html.ActionLink("Guardar", "Index", null, new { @class = "btn btn-primary" })
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @*@Html.ActionLink("Guardar", "Index", null, new { @class = "btn btn-primary" })*@
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
+
                         </div>
-                    </div>
-                }
+                    }
 
 
-                    </div>
+                </div>
             </div>
         </div>
     </div>
- </div>
+</div>
 
 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+<script src="~/Scripts/app/MostrarOcultar.js"></script>
+    @*<script>
+$(document).ready(function () {
+    $("#usu_RazonInactivo").hide(),
+    $('#usu_EsActivo').on('change', function () {
+
+        if (this.checked) {
+            $("#usu_RazonInactivo").show();
+        } else {
+            $("#usu_RazonInactivo").hide();
+        }
+    })
+});</script>*@
 }

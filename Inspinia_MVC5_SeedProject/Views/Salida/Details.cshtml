@@ -71,10 +71,20 @@
                         </dd>
                     </dl>
 
-                    <div class="form-group">
-                        @*<div class="col-md-offset-2 col-md-10">*@
-                        @Html.Partial("_IndexSalidaDetalle", Model.tbSalidaDetalle)
-                        @*</div>*@
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <div class="title-action">
+                                        <h5>Producto</h5>
+                                        <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#CreateProducto"></button>
+                                    </div>
+                                </div>
+                                <div class="ibox-content collapse" id="CreateProducto">
+                                    @Html.Partial("_IndexBoxDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.box_Codigo }))
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     @Html.ActionLink("Editar", "Edit", new { id = Model.sal_Id }, new { @class = "btn btn-primary" })
                     @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
