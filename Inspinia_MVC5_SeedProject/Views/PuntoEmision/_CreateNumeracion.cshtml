@@ -15,7 +15,7 @@
                           
                             @Html.LabelFor(model => model.pemid_FechaLimite, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                 @Html.EditorFor(model => model.pemid_FechaLimite, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off" } })
+                                 @Html.EditorFor(model => model.pemid_FechaLimite, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off" ,@readonly="readonly",@class= "form-control" } })
                                 <div id="validacionFechaLimiteCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_FechaLimite)</p>
                                 </div>
@@ -66,15 +66,3 @@
 <div id="validationSummary">
     <p style="color:red"></p>
 </div>
-
-
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/Datepicker.js"></script>
-@*Permitir sólo números y guiones*@
-<script>
-    function validar(e) {
-        tecla = (document.all) ? e.keyCode : e.which;
-        tecla = String.fromCharCode(tecla)
-        return /^[0-9\-]+$/.test(tecla);
-    }
-</script>

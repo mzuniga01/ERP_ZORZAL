@@ -123,12 +123,28 @@
     </div>
 </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-@*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+<script src="~/Scripts/app/DataTable.js"></script>
+@*<script src="~/Scripts/app/Datepicker.js"></script>*@
+<script src="~/Scripts/app/PuntoEmision.js"></script>
 <script>
+    //Número CAI
     $('#btnModalGuardarNumeracion').click(function () {
         var GetNumeroCAI = $('#pemi_NumeroCAI').val();
         $("#tbPuntoEmision_pemi_NumeroCAI").val(GetNumeroCAI);
     });
+
+    //Usuario Crea
+    $(document).on("click", "#PuntoEmision tbody tr td button#btnModalDetallesEdit", function () {
+        UsuarioCreaItem = $(this).closest('tr').data('usuariocrea');
+    });
+
+    //Sólo número y guiones
+    function validar(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[0-9\-]+$/.test(tecla);
+    }
 </script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@

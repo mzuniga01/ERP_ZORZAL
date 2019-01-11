@@ -122,4 +122,38 @@
 </div>
 
 
-@*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#PuntoEmisionDetalle').DataTable(
+        {
+            "searching": true,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_ registros por página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+            }
+        });
+    });
+
+    $(document).on("click", "#PuntoEmisionDetalle tbody tr td button#BtnModalDetalles", function () {
+        UsuarioCreaItem = $(this).closest('tr').data('usuariocrea');
+        UsuarioApellidoCreaItem = $(this).closest('tr').data('usuariocreaapellido');
+
+        //$(tbUsuario_usu_Nombres).val(UsuarioCreaItem);
+        //$(tbUsuario_usu_Apellidos).val(UsuarioApellidoCreaItem);
+    });
+
+    //$(document).ready(function () {
+    //    $(tbUsuario_usu_Nombres).css("border", "none");
+    //    $(tbUsuario_usu_Apellidos).css("border", "none");
+    //});
+</script>
