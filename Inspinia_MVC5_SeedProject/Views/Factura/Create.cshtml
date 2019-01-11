@@ -10,7 +10,6 @@
         color: red;
         font-size: small;
     }
-    
 </style>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -77,7 +76,7 @@
                             </div>
 
                             <div id="DatosCliente" name="DatosCliente" class="form-group">
-                                @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2",id= "label_identificacion" })
+                                @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2", id = "label_identificacion" })
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", @readonly = "readonly" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Identificacion)</span>
@@ -87,20 +86,11 @@
                                     <a class="btn btn-primary btn-sm" href="@Url.Action("Create","Cliente")">
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </a>
-                                </div>                                
+                                </div>
                                 @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2", style = "width: 12.499999995%" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.clte_Nombres, new { htmlAttributes = new { @autocomplete = "off", @readonly = "readonly" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Nombres)</span>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-lg-offset-2 col-md-4">
-                                    <input id="tpi_Id" type="text" class="form-control" hid />
-                                </div>
-                                <div class="col-lg-offset-2 col-md-4">
-                                    <input id="clte_Fecha" type="text" class="form-control" hidden />
                                 </div>
                             </div>
 
@@ -111,11 +101,11 @@
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_AlCredito)</span>
                                 </div>
                                 <div id="TerceraEdad" name="TerceraEdad">
-                                <label class="control-label col-md-2">Descuento Tercera Edad</label>
+                                    <label class="control-label col-md-2">Descuento Tercera Edad</label>
                                     <div class="col-md-4">
                                         <input id="MostrarTerceraEdad" type="checkbox" class="check-box" data-toggle="modal" data-target="#DescTerceraEdad" />
-                                    </div>  
-                                </div>                     
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-horizontal" name="Cred1" id="Cred1">
@@ -129,7 +119,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Autorizar Descuento</label>
                                 <div class="col-md-4">
-                                    <input id="fact_AutorizarDescuento" type="checkbox" class="check-box" />
+                                    <input id="fact_AutorizarDescuento" type="checkbox" class="check-box" data-toggle="modal" data-target="#AutorizarDescuentoModal" />
                                 </div>
                                 @Html.LabelFor(model => model.fact_Vendedor, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
@@ -142,7 +132,6 @@
                                     @Html.LabelFor(model => model.fact_PorcentajeDescuento, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.fact_PorcentajeDescuento)
-                                        <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_PorcentajeDescuento)</span>
                                     </div>
                                 </div>
                                 @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
@@ -157,7 +146,7 @@
                                     @Html.ValidationMessageFor(model => model.clte_Id)
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <div class="col-md-12">
                                     @Html.Partial("_CreateFacturaDetalle", new tbFacturaDetalle())
@@ -186,8 +175,43 @@
                     </button>
                     <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
                 </div>
-                <div class="modal-body" id="frmEditarMunicipios">
+                <div class="modal-body" id="frmAgregarCliente">
                     @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="modal fade" id="AutorizarDescuentoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Porcentaje de Descuento</h4>
+                </div>
+                <div class="modal-body" id="frmAutorizarDescuento">
+                    <div class="ibox-content">
+                        
+                        <div class="form-horizontal">
+                            <form>
+                                <div class="form-group">
+                                    <label class="control-label col-md-5">Contraseña</label>
+                                    <div class="col-md-6">
+                                        <input id="Password"  class="form-control" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-5">Porcentaje de Descuento</label>
+                                    <div class="col-md-6">
+                                        <input id="Porcentaje de Descuento" type="text" class="form-control" />
+                                    </div>
+                                </div>  
+                            </form>                                        
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -199,7 +223,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="uncheck()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title" id="myModalLabel">Registrar Tercera Edad</h4>
@@ -207,33 +231,42 @@
                 <div class="modal-body" id="frmListaProducto">
                     <div class="ibox-content">
                         <div class="form-horizontal">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.fact_IdentidadTE, new { @class = "control-label col-md-4" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.fact_IdentidadTE)
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_IdentidadTE)</span>
+                            <form>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.fact_IdentidadTE, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-7">
+                                        @Html.EditorFor(model => model.fact_IdentidadTE, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)" } })
+                                        <div id="validationfact_IdentidadTECreate">
+                                            <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_IdentidadTE)</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.fact_NombresTE, new { @class = "control-label col-md-4" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.fact_NombresTE)
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_NombresTE)</span>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.fact_NombresTE, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-7">
+                                        @Html.EditorFor(model => model.fact_NombresTE)
+                                        <div id="validationNombreTECreate">
+                                            <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_NombresTE)</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.fact_FechaNacimientoTE, new { @class = "control-label col-md-4" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.fact_FechaNacimientoTE)
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_FechaNacimientoTE)</span>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.fact_FechaNacimientoTE, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-7">
+                                        @Html.EditorFor(model => model.fact_FechaNacimientoTE, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "", @id = "fact_FechaNacimientoTE" } })
+                                        <div id="validationFechaNacimientoTECreate">
+                                            <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_FechaNacimientoTE)</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary btn-sm" type="button" id="AgregarTerceraEdad">Guardar</button>
+                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="uncheck()">Cancelar</button>
+                                </div>
+                            </form>
                         </div>
+
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" >Guardar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="uncheck()">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -248,31 +281,44 @@
 <script src="~/Scripts/app/ClienteFactura.js"></script>
 <script src="~/Scripts/app/Factura.js"></script>
 <script>
-    // Open Modal
+    // Open Modal Edad
     function myFunction() {
         var checkBox = document.getElementById("MostrarTerceraEdad");
         if (checkBox.checked == true) {
             $('#DescTerceraEdad').modal('show');
-        }        
-   }
-   function uncheck() {
-       document.getElementById("MostrarTerceraEdad").checked = false;
-   }
+        }
+    }
+    function uncheck() {
+        document.getElementById("MostrarTerceraEdad").checked = false;
 
-   // add indicator to required fields
-   jQuery('input,select').each(function () {
-       var req = jQuery(this).attr('data-val-required');
-       if (undefined != req) {
-           var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
-           var text = label.text();
-           if (text.length > 0) {
-               label.append('<span style="color:red"> *</span>');
-           }
-       }
-   });
+    }
 
-   //Remove State
-   $("#esfac_Id").find("option[value=4]").remove();
+    // Open Modal Autorizar Descuento
+    function myFunction() {
+        var checkBox = document.getElementById("fact_AutorizarDescuento");
+        if (checkBox.checked == true) {
+            $('#AutorizarDescuentoModal').modal('show');
+        }
+    }
+    function uncheck() {
+        document.getElementById("fact_AutorizarDescuento").checked = false;
+
+    }
+
+    // add indicator to required fields
+    jQuery('input,select').each(function () {
+        var req = jQuery(this).attr('data-val-required');
+        if (undefined != req) {
+            var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+            var text = label.text();
+            if (text.length > 0) {
+                label.append('<span style="color:red"> *</span>');
+            }
+        }
+    });
+
+    //Remove State
+    $("#esfac_Id").find("option[value=4]").remove();
 
 </script>
 
@@ -280,5 +326,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/app/Empleados.js"></script>
 }
+
+
 
 

@@ -37,7 +37,9 @@
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         prevText: 'Ant',
-        nextText: 'Sig'
+        nextText: 'Sig',
+        changeMonth: true,
+        changeYear: true,
     }).datepicker('setDate', new Date());
 
     $("#fechafacturaEdit").datepicker({
@@ -45,8 +47,21 @@
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         prevText: 'Ant',
-        nextText: 'Sig'
+        nextText: 'Sig',
+        changeMonth: true,
+        changeYear: true,
     }).datepicker();
+
+    $("#fact_FechaNacimientoTE").datepicker({
+        dateFormat: 'dd-mm-yy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        prevText: 'Ant',
+        nextText: 'Sig',
+        changeMonth: true,
+        changeYear: true,
+        }).datepicker();
+
 
     $("#fecha").datepicker({
         dateFormat: 'yy-mm-dd',

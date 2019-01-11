@@ -33,7 +33,7 @@
                                 <th hidden>
                                     @Html.DisplayNameFor(model => model.clte_FechaNacimiento)
                                 </th>
-                                <th>
+                                <th hidden>
                                     @Html.DisplayNameFor(model => model.clte_EsPersonaNatural)
                                 </th>
                                 <th>Acción</th>
@@ -43,8 +43,9 @@
 
                            @foreach (var item in Model)
                            {
-                           var nombrecliente = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
-                          <tr data-id="@item.clte_Id" data-rtn="@item.clte_Identificacion" data-nombrecliente="@nombrecliente" data-tpi="@item.tbTipoIdentificacion.tpi_Descripcion" data-fecha="@item.clte_FechaNacimiento" data-EsPersonaNatural="@item.clte_EsPersonaNatural" >
+                            var nombrecliente = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
+                            var Espersona = (item.clte_EsPersonaNatural) ? "Si" : "No";
+                            <tr data-id="@item.clte_Id" data-rtn="@item.clte_Identificacion" data-nombrecliente="@nombrecliente" data-tpi="@item.tbTipoIdentificacion.tpi_Descripcion" data-fecha="@item.clte_FechaNacimiento" data-Espersona="@Espersona">
 
                                 <td>
                                     @Html.DisplayFor(modelItem => item.clte_Id)
@@ -61,11 +62,11 @@
                                 <td hidden>
                                     @Html.DisplayFor(modelItem => item.clte_FechaNacimiento)
                                 </td>
-                                <td >
-                                    @Html.DisplayFor(modelItem => item.clte_EsPersonaNatural)
+                                <td hidden>
+                                    @Espersona
                                 </td>
                                 <td>
-                                    <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
+                                    <button id="seleccionar" type="button" class="btn btn-primary btn-xs">Agregar</button>
                                 </td>
                             </tr>
                            }

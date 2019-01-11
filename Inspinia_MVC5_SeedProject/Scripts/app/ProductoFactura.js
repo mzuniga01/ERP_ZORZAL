@@ -26,7 +26,6 @@ $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", fun
     $("#tbProducto_prod_Descripcion").val(DescItem);
     $("#factd_Impuesto").val(ISVItem);
     $('#ModalAgregarProducto').modal('hide');
-    //CargarAsignaciones();
 });
 
 //Facturar RowSeleccionar Producto

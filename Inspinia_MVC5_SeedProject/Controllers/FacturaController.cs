@@ -118,7 +118,7 @@ namespace ERP_GMEDINA.Controllers
 
                             if (!reader.IsDBNull(reader.GetOrdinal("fact_FechaModifica")))
                                 tbFactura.fact_FechaModifica = Convert.ToDateTime(reader["fact_FechaModifica"]);
-                                       
+
                             list.Add(tbFactura);
                         }
                     }
@@ -128,7 +128,7 @@ namespace ERP_GMEDINA.Controllers
             }
             catch (Exception ex)
             {
-                             
+
                 var tbFactura = db.UDV_Vent_Busqueda_Factura;
                 Console.Write(ex.Message);
                 return View(tbFactura.ToList());
@@ -155,7 +155,7 @@ namespace ERP_GMEDINA.Controllers
             return PartialView();
         }
 
-       public ActionResult _IndexProducto()
+        public ActionResult _IndexProducto()
         {
             return PartialView();
         }
@@ -178,6 +178,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.Producto = db.tbProducto.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
             Session["Factura"] = null;
+            Session["TerceraEdad"] = null;
             return View();
         }
 
@@ -186,9 +187,10 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include= "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
+        public ActionResult Create([Bind(Include = "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
         {
             var list = (List<tbFacturaDetalle>)Session["Factura"];
+            var listTercera = (List<tbFactura>)Session["TerceraEdad"];
             long MensajeError = 0;
             var MensajeErrorDetalle = 0;
             IEnumerable<object> listFactura = null;
@@ -197,8 +199,23 @@ namespace ERP_GMEDINA.Controllers
             {
                 try
                 {
+                         if (listTercera != null)
+                            {
+                                if (listTercera.Count != 0)
+                                {
+                                    foreach (tbFactura Tercera in listTercera)
+                                    {
+                                        tbFactura.fact_IdentidadTE = Tercera.fact_IdentidadTE;
+                                        tbFactura.fact_NombresTE = Tercera.fact_NombresTE;
+                                        tbFactura.fact_FechaNacimientoTE = Tercera.fact_FechaNacimientoTE;
+                                    }
+                                }
+                            }
+
+
                     using (TransactionScope Tran = new TransactionScope())
                     {
+                        
                         listFactura = db.UDP_Vent_tbFactura_Insert(
                                                 tbFactura.fact_Codigo,
                                                 tbFactura.fact_Fecha,
@@ -266,8 +283,8 @@ namespace ERP_GMEDINA.Controllers
                         }
                         Tran.Complete();
                         return RedirectToAction("Index");
-                    }               
-                 }
+                    }
+                }
                 catch (Exception Ex)
                 {
                     ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
@@ -278,7 +295,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.Cliente = db.tbCliente.ToList();
                 }
 
-           }
+            }
             ViewBag.fact_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbFactura.fact_UsuarioCrea);
             ViewBag.fact_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbFactura.fact_UsuarioModifica);
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbFactura.cja_Id);
@@ -318,7 +335,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include= "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
+        public ActionResult Edit([Bind(Include = "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
         {
             if (ModelState.IsValid)
             {
@@ -430,6 +447,25 @@ namespace ERP_GMEDINA.Controllers
             {
                 list.Add(FacturaDetalleC);
                 Session["Factura"] = list;
+            }
+            return Json("Exito", JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        public JsonResult SaveTerceraEdad(tbFactura TerceraEdadC)
+        {
+            List<tbFactura> sessionTercera = new List<tbFactura>();
+            var listTercera = (List<tbFactura>)Session["TerceraEdad"];
+            if (listTercera == null)
+            {
+                sessionTercera.Add(TerceraEdadC);
+                Session["TerceraEdad"] = sessionTercera;
+            }
+            else
+            {
+                listTercera.Add(TerceraEdadC);
+                Session["TerceraEdad"] = listTercera;
             }
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }

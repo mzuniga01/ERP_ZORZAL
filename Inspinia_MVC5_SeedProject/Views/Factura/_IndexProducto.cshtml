@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbProducto>
 
+
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -26,7 +27,7 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.prod_Modelo)
                                 </th>
-                               <th>Acción</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
 
@@ -43,8 +44,8 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.prod_Modelo)
                                     </td>
-                                   <td>
-                                        <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
+                                    <td>
+                                        <button id="Seleccionar" class="btn btn-primary btn-xs">Agregar</button>
                                     </td>
                                 </tr>
                             }
@@ -78,5 +79,7 @@
         });
     });
 </script>
+
+
 
 
