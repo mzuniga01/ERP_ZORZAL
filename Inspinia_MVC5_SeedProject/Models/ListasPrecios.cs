@@ -28,7 +28,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<bool> listp_EsActivo { get; set; }
 
         [Display(Name = "Prioridad")]
-        [StringLength(04, MinimumLength = 03, ErrorMessage = "El campo {0} debe tener el mismo formato de Rango Inicial")]
+        //[StringLength(04, MinimumLength = 03, ErrorMessage = "El campo {0} debe tener el mismo formato de Rango Inicial")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<short> listp_Prioridad { get; set; }
 
@@ -45,12 +45,12 @@ namespace ERP_GMEDINA.Models
 
 
         [Display(Name = "Usuario Modifico")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+    
         public Nullable<int> listp_UsuarioModifica { get; set; }
 
 
         [Display(Name = "Fecha Modifico")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> listp_FechaModifica { get; set; }
         //[Display(Name = "Código")]

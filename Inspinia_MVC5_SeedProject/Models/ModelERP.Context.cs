@@ -4181,6 +4181,19 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Anulado_Result>("UDP_Vent_tbCuponDescuento_Anulado", cdto_IDParameter, cdto_AnuladoParameter);
         }
     
+        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbDevolucion_Estado(Nullable<int> dev_Id, Nullable<bool> dev_Estado)
+        {
+            var dev_IdParameter = dev_Id.HasValue ?
+                new ObjectParameter("dev_Id", dev_Id) :
+                new ObjectParameter("dev_Id", typeof(int));
+    
+            var dev_EstadoParameter = dev_Estado.HasValue ?
+                new ObjectParameter("dev_Estado", dev_Estado) :
+                new ObjectParameter("dev_Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbDevolucion_Estado", dev_IdParameter, dev_EstadoParameter);
+        }
+    
         public virtual ObjectResult<UDP_Vent_tbListadoPrecioDetalle_Insert_Result> UDP_Vent_tbListadoPrecioDetalle_Insert(Nullable<int> listp_Id, string prod_Codigo, Nullable<decimal> lispd_PrecioMayorista, Nullable<decimal> lispd_PrecioMinorista, Nullable<decimal> lispd_DescCaja, Nullable<decimal> lispd_DescGerente)
         {
             var listp_IdParameter = listp_Id.HasValue ?
@@ -4307,19 +4320,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("listp_Prioridad", typeof(short));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListaPrecio_Update_Result>("UDP_Vent_tbListaPrecio_Update", listp_IdParameter, listp_NombreParameter, listp_EsActivoParameter, listp_UsuarioCreaParameter, listp_FechaCreaParameter, listp_FechaInicioVigenciaParameter, listp_FechaFinalVigenciaParameter, listp_PrioridadParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbDevolucion_Estado(Nullable<int> dev_Id, Nullable<bool> dev_Estado)
-        {
-            var dev_IdParameter = dev_Id.HasValue ?
-                new ObjectParameter("dev_Id", dev_Id) :
-                new ObjectParameter("dev_Id", typeof(int));
-    
-            var dev_EstadoParameter = dev_Estado.HasValue ?
-                new ObjectParameter("dev_Estado", dev_Estado) :
-                new ObjectParameter("dev_Estado", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbDevolucion_Estado", dev_IdParameter, dev_EstadoParameter);
         }
     }
 }

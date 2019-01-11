@@ -90,7 +90,7 @@ $('#AgregarListaPrecioDetalle').click(function () {
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ cPrecioDetalle: PrecioDetalle }),
+            data: JSON.stringify({ ListaDetalle: PrecioDetalle }),
         })
         .done(function (data) {
             $('#ErrorPrecioMayoristaCreate').text('');
@@ -113,19 +113,22 @@ $('#AgregarListaPrecioDetalle').click(function () {
 
 });
 
-
-
 function GetListaPrecioDetalle() {
     var ListaDetalle = {
+        prod_Codigo: $('#prod_Codigo').val(),
         lispd_PrecioMayorista: $('#lispd_PrecioMayorista').val(),
         lispd_PrecioMinorista: $('#lispd_PrecioMinorista').val(),
         lispd_DescCaja: $('#lispd_DescCaja').val(),
-        DescuentoGerente: $('#DescuentoGerente').val(),
+        lispd_DescGerente: $('#lispd_DescGerente').val(),
         listpd_Id: contador
         //Fecha: $('#fechaCreate').val(),
     };
+    console.log(ListaDetalle)
     return ListaDetalle;
 }
+
+
+
 
 $(document).on("click", "#tbListaPrecioDetalle tbody tr td button#removeListaPrecioDetalle", function () {
     $(this).closest('tr').remove();
@@ -138,7 +141,7 @@ $(document).on("click", "#tbListaPrecioDetalle tbody tr td button#removeListaPre
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ ListadoPrecioDetalle: PrecioDetalle }),
+        data: JSON.stringify({ ListaDetalle: PrecioDetalle }),
 
 
 
@@ -147,4 +150,5 @@ $(document).on("click", "#tbListaPrecioDetalle tbody tr td button#removeListaPre
 
 
 });
+
 
