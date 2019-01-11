@@ -7635,6 +7635,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
             <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbListaPrecio_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result)">
+            <Parameter Name="listp_Nombre" Mode="In" Type="String" />
+            <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
+            <Parameter Name="listp_FechaInicioVigencia" Mode="In" Type="DateTime" />
+            <Parameter Name="listp_FechaFinalVigencia" Mode="In" Type="DateTime" />
+            <Parameter Name="listp_Prioridad" Mode="In" Type="Int16" />
+          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result)">
             <Parameter Name="listp_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
@@ -7644,13 +7651,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
             <Parameter Name="lispd_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="lispd_FechaCrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbListaPrecio_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result)">
-            <Parameter Name="listp_Nombre" Mode="In" Type="String" />
-            <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
-            <Parameter Name="listp_FechaInicioVigencia" Mode="In" Type="DateTime" />
-            <Parameter Name="listp_FechaFinalVigencia" Mode="In" Type="DateTime" />
-            <Parameter Name="listp_Prioridad" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbListaPrecio_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Update_Result)">
             <Parameter Name="listp_Id" Mode="In" Type="Int32" />
@@ -11818,16 +11818,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="UDP_Vent_tbListaPrecio_Update_Result">
+        <ComplexType Name="UDP_Vent_tbListaPrecio_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbListaPrecio_Insert_Result">
+        <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Insert_Result">
+        <ComplexType Name="UDP_Vent_tbListaPrecio_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         </Schema>
@@ -13532,16 +13532,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Update" >
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Insert" >
             <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result">
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Insert" >
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Update" >
             <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result">
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

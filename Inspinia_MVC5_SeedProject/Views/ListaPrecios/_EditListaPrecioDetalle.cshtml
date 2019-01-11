@@ -19,17 +19,11 @@
         @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
         @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.prod_Codigo, "prod_Codigo", new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        tml.EditorFor(model => model.prod_Codigo)
-                        @Html.ValidationMessageFor(model => model.prod_Codigo)
-                    </div>
-                </div>*@
+        
 
             <div class="form-group">
                 @Html.LabelFor(model => model.lispd_PrecioMayorista, "Precio Mayorista", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-3">
                     @Html.EditorFor(model => model.lispd_PrecioMayorista)
                     @Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)
                 </div>
@@ -37,17 +31,15 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.lispd_PrecioMinorista, "Precio Minorista", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-3">
                     @Html.EditorFor(model => model.lispd_PrecioMinorista)
                     @Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)
                 </div>
             </div>
 
-
-
             <div class="form-group">
                 @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-3">
                     @Html.EditorFor(model => model.lispd_DescCaja)
                     @Html.ValidationMessageFor(model => model.lispd_DescCaja)
                 </div>
@@ -55,43 +47,12 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-3">
                     @Html.EditorFor(model => model.lispd_DescGerente)
                     @Html.ValidationMessageFor(model => model.lispd_DescGerente)
                 </div>
             </div>
 
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.lispd_UsuarioCrea, "lispd_UsuarioCrea", new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("lispd_UsuarioCrea", String.Empty)
-                        @Html.ValidationMessageFor(model => model.lispd_UsuarioCrea)
-                    </div>
-                </div>*@
-
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.lispd_FechaCrea, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.lispd_FechaCrea)
-                        @Html.ValidationMessageFor(model => model.lispd_FechaCrea)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.lispd_UsuarioModifica, "lispd_UsuarioModifica", new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("lispd_UsuarioModifica", String.Empty)
-                        @Html.ValidationMessageFor(model => model.lispd_UsuarioModifica)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.lispd_FechaModifica, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.lispd_FechaModifica)
-                        @Html.ValidationMessageFor(model => model.lispd_FechaModifica)
-                    </div>
-                </div>*@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -101,7 +62,7 @@
             </div>
         </div>
         }
-
+<script src="~/Scripts/app/Datepicker.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

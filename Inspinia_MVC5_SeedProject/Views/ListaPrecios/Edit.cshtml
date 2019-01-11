@@ -9,14 +9,7 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Editar Lista Precio</h2>
-        @*<ol class="breadcrumb">
-                <li>
-                    @Html.ActionLink("List", "Index")
-               </li>
-                <li class="active">
-                    <strong>Editar</strong>
-                </li>
-            </ol>*@
+   
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -79,16 +72,16 @@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.listp_FechaInicioVigencia, "Fecha Inicio Vigencia", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "listp_FechaInicioVigencia" }})
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaListaPrecioEdit" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)</span>
 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.listp_FechaFinalVigencia, "Fecha Final Vigencia", new { @class = "control-label col-md-2" })
-                                <div class="col-md-8">
-                                    @Html.EditorFor(model => model.listp_FechaFinalVigencia , "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "listp_FechaInicioVigencia" }})
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.listp_FechaFinalVigencia , "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaListaPrecioEdit" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)</span>
 </div>
                             </div>
