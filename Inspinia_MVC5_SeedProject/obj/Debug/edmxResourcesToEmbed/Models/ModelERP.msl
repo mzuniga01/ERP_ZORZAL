@@ -1585,5 +1585,21 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Login" FunctionName="ERP_ZORZALModel.Store.UDP_Login">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Login_Result">
+          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
+          <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
+          <ScalarProperty Name="usu_Password" ColumnName="usu_Password" />
+          <ScalarProperty Name="usu_Nombres" ColumnName="usu_Nombres" />
+          <ScalarProperty Name="usu_Apellidos" ColumnName="usu_Apellidos" />
+          <ScalarProperty Name="usu_Correo" ColumnName="usu_Correo" />
+          <ScalarProperty Name="usu_EsActivo" ColumnName="usu_EsActivo" />
+          <ScalarProperty Name="usu_RazonInactivo" ColumnName="usu_RazonInactivo" />
+          <ScalarProperty Name="usu_EsAdministrador" ColumnName="usu_EsAdministrador" />
+          <ScalarProperty Name="usu_SesionesValidas" ColumnName="usu_SesionesValidas" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

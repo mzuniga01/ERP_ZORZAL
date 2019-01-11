@@ -132,7 +132,7 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Acce_tbUsuario_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Insert_Result)">
       <Parameter Name="usu_NombreUsuario" Mode="In" Type="String" />
-      <Parameter Name="usu_Password" Mode="In" Type="Binary" />
+      <Parameter Name="usu_Password" Mode="In" Type="String" />
       <Parameter Name="usu_Nombres" Mode="In" Type="String" />
       <Parameter Name="usu_Apellidos" Mode="In" Type="String" />
       <Parameter Name="usu_Correo" Mode="In" Type="String" />
@@ -1156,10 +1156,6 @@
       <End Role="tbCliente" EntitySet="tbCliente" />
       <End Role="tbExoneracion" EntitySet="tbExoneracion" />
     </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbCliente_tbFactura_clte_Id" Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id">
-      <End Role="tbCliente" EntitySet="tbCliente" />
-      <End Role="tbFactura" EntitySet="tbFactura" />
-    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbCliente_tbPedido_clte_id" Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbPedido_clte_id">
       <End Role="tbCliente" EntitySet="tbCliente" />
       <End Role="tbPedido" EntitySet="tbPedido" />
@@ -1371,6 +1367,14 @@
     <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoMovimiento_Delete_Result)">
       <Parameter Name="estm_Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Login" ReturnType="Collection(ERP_ZORZALModel.UDP_Login_Result)">
+      <Parameter Name="UsuarioId" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <AssociationSet Name="FK_Vent_tbCliente_tbFactura_clte_Id" Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id">
+      <End Role="tbCliente" EntitySet="tbCliente" />
+      <End Role="tbFactura" EntitySet="tbFactura" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -2378,12 +2382,12 @@
     <NavigationProperty Name="tbMunicipio" Relationship="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbCliente_mun_Codigo" FromRole="tbCliente" ToRole="tbMunicipio" />
     <NavigationProperty Name="tbTipoIdentificacion" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id" FromRole="tbCliente" ToRole="tbTipoIdentificacion" />
     <NavigationProperty Name="tbExoneracion" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbExoneracion_clte_Id" FromRole="tbCliente" ToRole="tbExoneracion" />
-    <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id" FromRole="tbCliente" ToRole="tbFactura" />
     <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbPedido_clte_id" FromRole="tbCliente" ToRole="tbPedido" />
     <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbCliente" ToRole="tbNotaCredito" />
     <NavigationProperty Name="tbSolicitudCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbSolicitudCredito_tbCliente_clte_Id" FromRole="tbCliente" ToRole="tbSolicitudCredito" />
     <Property Name="clte_MontoCredito" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="clte_DiasCredito" Type="Int32" />
+    <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id" FromRole="tbCliente" ToRole="tbFactura" />
   </EntityType>
   <EntityType Name="tbCuponDescuento">
     <Key>
@@ -2550,7 +2554,7 @@
     <Property Name="esfac_Id" Type="Byte" Nullable="false" />
     <Property Name="cja_Id" Type="Int16" Nullable="false" />
     <Property Name="suc_Id" Type="Int16" Nullable="false" />
-    <Property Name="clte_Id" Type="Int32" Nullable="false" />
+    <Property Name="clte_Id" Type="Int32" />
     <Property Name="pemi_NumeroCAI" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="fact_AlCredito" Type="Boolean" Nullable="false" />
     <Property Name="fact_DiasCredito" Type="Int32" Nullable="false" />
@@ -2572,7 +2576,6 @@
     <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Modifica" FromRole="tbFactura" ToRole="tbUsuario" />
     <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbSalida" />
     <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" FromRole="tbFactura" ToRole="tbCaja" />
-    <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id" FromRole="tbFactura" ToRole="tbCliente" />
     <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" FromRole="tbFactura" ToRole="tbDevolucion" />
     <NavigationProperty Name="tbEstadoFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo" FromRole="tbFactura" ToRole="tbEstadoFactura" />
     <NavigationProperty Name="tbFacturaHistorica" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbFacturaHistorica_fact_Id" FromRole="tbFactura" ToRole="tbFacturaHistorica" />
@@ -2580,6 +2583,7 @@
     <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPedido_fact_Id" FromRole="tbFactura" ToRole="tbPedido" />
     <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbFacturaDetalle" />
     <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" FromRole="tbFactura" ToRole="tbSucursal" />
+    <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id" FromRole="tbFactura" ToRole="tbCliente" />
   </EntityType>
   <EntityType Name="tbFacturaDetalle">
     <Key>
@@ -4833,18 +4837,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbCliente_tbFactura_clte_Id">
-    <End Type="ERP_ZORZALModel.tbCliente" Role="tbCliente" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbCliente">
-        <PropertyRef Name="clte_Id" />
-      </Principal>
-      <Dependent Role="tbFactura">
-        <PropertyRef Name="clte_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbCliente_tbPedido_clte_id">
     <End Type="ERP_ZORZALModel.tbCliente" Role="tbCliente" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbPedido" Role="tbPedido" Multiplicity="*" />
@@ -5440,4 +5432,28 @@
   <ComplexType Name="UDP_Inv_tbInventarioFisicoDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
+  <ComplexType Name="UDP_Login_Result">
+    <Property Type="Int32" Name="usu_Id" Nullable="false" />
+    <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
+    <Property Type="Binary" Name="usu_Password" Nullable="false" MaxLength="64" />
+    <Property Type="String" Name="usu_Nombres" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="usu_Apellidos" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="usu_Correo" Nullable="false" MaxLength="150" />
+    <Property Type="Boolean" Name="usu_EsActivo" Nullable="false" />
+    <Property Type="String" Name="usu_RazonInactivo" Nullable="true" MaxLength="150" />
+    <Property Type="Boolean" Name="usu_EsAdministrador" Nullable="false" />
+    <Property Type="Byte" Name="usu_SesionesValidas" Nullable="false" />
+  </ComplexType>
+  <Association Name="FK_Vent_tbCliente_tbFactura_clte_Id">
+    <End Type="ERP_ZORZALModel.tbCliente" Role="tbCliente" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCliente">
+        <PropertyRef Name="clte_Id" />
+      </Principal>
+      <Dependent Role="tbFactura">
+        <PropertyRef Name="clte_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

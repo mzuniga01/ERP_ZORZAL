@@ -1,4 +1,4 @@
-﻿@model ERP_GMEDINA.Models.tbFactura
+﻿@model ERP_GMEDINA.Models.tbUsuario
 
 @{
     ViewBag.Title = "Index";
@@ -13,12 +13,14 @@
     {
         <!-- USERNAME INPUT -->
         <label for="username">Nombre Usuario</label>
-        @Html.EditorFor(model => model.fact_Codigo)
+        @Html.EditorFor(model => model.usu_NombreUsuario)
         <!-- PASSWORD INPUT -->
         <label for="password">Contraseña</label>
-        @Html.EditorFor(model => model.fact_Codigo, new { htmlAttributes = new { @class = "form-control", type = "password" , placeholder = "Password" } })
+        @*@Html.EditorFor(model => model.usu_Password, new { htmlAttributes = new { @class = "form-control", type = "password" , placeholder = "Password" } })*@
+        <input type="password" name="txtPassword" class="form-control" placeholder="Password"/>
+        <p style="color:red;">@Html.ValidationMessageFor(model => model.usu_NombreUsuario)</p>
         <input type="submit" value="INGRESAR">
-        <a href="#">Olvidaste Tu Contraseña?</a><br>
+        <a href="#">¿Olvidaste tu Contraseña?</a><br>
         <a href="#"></a>
     }
 </div>

@@ -116,7 +116,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<object> List = null;
                     var MsjError = "0";
-                    List = db.UDP_Acce_tbUsuario_Insert(tbUsuario.usu_NombreUsuario, tbUsuario.usu_Password, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo);
+                    List = db.UDP_Acce_tbUsuario_Insert(tbUsuario.usu_NombreUsuario,  Convert.ToString(tbUsuario.usu_Password), tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo);
                     foreach (UDP_Acce_tbUsuario_Insert_Result Usuario in List)
                         MsjError = Usuario.MensajeError;
 

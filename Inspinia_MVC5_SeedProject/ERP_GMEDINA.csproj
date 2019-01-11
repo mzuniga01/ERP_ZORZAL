@@ -688,6 +688,9 @@
     <Compile Include="Models\UDP_Inv_tbTipoSalida_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Login_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDV_Inv_Consultar_Existencias_Productos.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
