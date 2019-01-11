@@ -17,9 +17,6 @@
     </div>
 </div>
 
-
-
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -62,6 +59,8 @@
                         <br />
                         <dt>
                             @Html.DisplayNameFor(model => model.tbFactura.clte_Identificacion)
+                            @Html.HiddenFor(model => model.dev_Id)
+
                         </dt>
 
                         <dd>
@@ -96,7 +95,9 @@
                        
                                 @Html.Partial("_IndexDetalleDevolucion", Model.tbDevolucionDetalle)
 
-                        @Html.Hidden("RedirectTo", Url.Action("Create", "NotaCredito"))
+                        @Html.Hidden("RedirectTo", Url.Action("Index", "Devolucion"))
+
+                        @*@Html.Hidden("RedirectTo", Url.Action("Create", "NotaCredito"))*@
 
                         @*<div class="ibox-tools">
                         </div>*@
@@ -104,13 +105,11 @@
                             <div class="col-md-offset col-md-11">
                                 @Html.ActionLink("Editar", "Edit", new { id = Model.dev_Id }, new { @class = "btn btn-primary  btn-ms" })
 
-                                @*<button onclick="NotaCredito()" class="btn btn-primary btn-ms">Emitir Nota de Credito</button>*@
                                 <button id="bottonNotaCredito" name="bottonNotaCredito" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#ModalNotaCredito">
                                     Emitir Nota de Credito
                                 </button>
-                                <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#exampleModal">
-                                    Anular
-                                </button>
+                                <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular">Anular</button>
+
                             </div>
                         </div>
                     </dl>
@@ -148,6 +147,27 @@
     </div>
  </div>
 
+@* -------------------Modal Anular----------------*@
+<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular Devolución</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de Anular esta Devolución?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="AnularDevolucion();" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="ModalNotaCredito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -174,7 +194,7 @@
 </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/EmitirNotaCredito.js"></script>
-
+<script src="~/Scripts/app/AnularDevolucion.js"></script>
 
 
 

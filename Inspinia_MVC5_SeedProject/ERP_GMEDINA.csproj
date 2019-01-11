@@ -1190,7 +1190,6 @@
     <Content Include="Views\Devolucion\Edit.cshtml" />
     <Content Include="Views\Devolucion\Index.cshtml" />
     <Content Include="Views\Devolucion\_CreateDevolucionDetalle.cshtml" />
-    <Content Include="Views\Devolucion\_DetalleDevolucion.cshtml" />
     <Content Include="Views\Devolucion\_EditarDetalleDevolucion.cshtml" />
     <Content Include="Views\DocumentoFiscal\Create.cshtml" />
     <Content Include="Views\DocumentoFiscal\Delete.cshtml" />
@@ -1263,7 +1262,6 @@
     <Content Include="Views\SolicitudEfectivo\Index.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_CreateSolicitudEfectivoDetalle.cshtml" />
     <Content Include="Views\PuntoEmision\_DetailsNumeracion.cshtml" />
-    <Content Include="Views\Devolucion\_ProductoDevolucion.cshtml" />
     <Content Include="Views\NotaCredito\_IndexCliente.cshtml" />
     <Content Include="Views\SolicitudCredito\_IndexCliente.cshtml" />
     <Content Include="Views\SolicitudCredito\_ListAprobacion.cshtml" />
@@ -1285,8 +1283,6 @@
     <Content Include="Views\MovimientoCaja\IndexApertura.cshtml" />
     <Content Include="Views\MovimientoCaja\_CreateAperturaDetalle.cshtml" />
     <Content Include="Views\Devolucion\_CreateDevolucionDetalle1.cshtml" />
-    <Content Include="Views\Devolucion\_DetalleProductoDevolucion.cshtml" />
-    <Content Include="Views\Devolucion\_EditDevolucionDetalle.cshtml" />
     <Content Include="Views\Devolucion\_IndexCliente.cshtml" />
     <Content Include="Views\Devolucion\_IndexDetalleDevolucion.cshtml" />
     <Content Include="Views\Devolucion\_IndexProductoDDevolucion.cshtml" />

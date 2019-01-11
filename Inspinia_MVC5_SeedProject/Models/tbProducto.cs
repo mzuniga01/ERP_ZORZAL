@@ -43,6 +43,7 @@ namespace ERP_GMEDINA.Models
         public string prod_Razon_Inactivacion { get; set; }
         public Nullable<int> listp_Id { get; set; }
         public string prod_CodigoBarras { get; set; }
+        public Nullable<int> prod_Correlativo { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

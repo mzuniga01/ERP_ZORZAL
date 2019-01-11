@@ -293,5 +293,12 @@ namespace ERP_ZORZAL.Controllers
             }
             base.Dispose(disposing);
         }
+        
+        [HttpPost]
+        public JsonResult AnularDevolucion(int CodDevolucion, bool Estado)
+        {
+            var list = db.UDP_Vent_tbDevolucion_Estado(CodDevolucion, Estado).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -6,24 +6,16 @@
 }
 
 @{
-        var test = new ERP_GMEDINA.Models.tbFactura();
+    var test = new ERP_GMEDINA.Models.tbFactura();
 }
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Devolución de Producto</h2>
-        @*
-    <ol class="breadcrumb">
-        <li>
-            @Html.ActionLink("Lista", "Index")
-        </li>
-        <li class="active">
-            <strong>Editar</strong>
-        </li>
-    </ol>*@
+
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index")
+            @Html.ActionLink("Regresar", "Index")
         </div>
     </div>
 </div>
@@ -59,7 +51,7 @@
                             @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.tbCaja.tbSucursal.suc_Descripcion, "Sucursal",  new { @class = "control-label col-md-2"})
+                                @Html.LabelFor(model => model.tbCaja.tbSucursal.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
@@ -77,7 +69,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbFactura.fact_Codigo, "Codigo Factura", new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                   @Html.EditorFor(model => model.tbFactura.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.tbFactura.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.tbFactura.fact_Codigo)
                                 </div>
                             </div>
@@ -103,25 +95,26 @@
                                             @Html.ValidationMessageFor(model => model.tbFactura.tbCliente.clte_NombreComercial)
                                         }
                                     }
-                                  
+
                                 </div>
                             </div>
-                  
-                          
+
+
                             <div class="form-group">
                                 @Html.LabelFor(model => model.dev_Fecha, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.dev_Fecha,"{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafacturaEdit" } })
+                                    @Html.EditorFor(model => model.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafacturaEdit" } })
                                     @Html.ValidationMessageFor(model => model.dev_Fecha)
                                 </div>
                             </div>
                         </div>
 
-                    }
-                    
+                                        }
+
                     <div class="ibox-content">
                         <div class="form-group">
-                           
+                            @Html.Hidden("RedirectTo", Url.Action("Index", "Devolucion"))
+
                             @Html.Hidden("RedirectTo", Url.Action("Create", "NotaCredito"))
 
                             <div class="form-group">
@@ -132,77 +125,80 @@
                                     </button>
                                     <button id="Detalle" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Agregar Producto</span></button>
 
-                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#exampleModal">
-                                        Anular
-                                    </button>
+                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular">Anular</button>
                                 </div>
                             </div>
 
-                        @Html.Partial("_IndexProductoDDevolucion", Model.tbDevolucionDetalle)
+                            @Html.Partial("_IndexProductoDDevolucion", Model.tbDevolucionDetalle)
 
-                       
+
                             <div class="form-group">
                                 <div class="col-md-offset col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary btn-ms" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-ms" })
                                 </div>
                             </div>
-                        </div>  
-                  
+                        </div>
+
                     </div>
-            </div>
-            <div class="ibox-content">
-                <table class="table table-striped">
-                    <tr>
-                        <th></th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
-                    </tr>
-                    <tr>
-                        <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
-                        <td>@Html.DisplayFor(model => model.dev_FechaCrea)</td>
-                    </tr>
-                    <tr>
-                        <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
-                        <td>@Html.DisplayFor(model => model.dev_FechaModifica)</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg " role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
-            </div>
-            <div class="modal-body" id="frmEditarMunicipios">
-                @Html.Partial("_CreateDevolucionDetalle1", new tbDevolucionDetalle())
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th></th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.dev_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.dev_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_CreateDevolucionDetalle1", new tbDevolucionDetalle())
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    @* -------------------Modal Anular----------------*@ 
+    <div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Anular factura</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Anular Devolución</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ¿Está seguro de anular esta factura?
+                    ¿Está seguro de Anular esta Devolución?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" onclick="AnularDevolucion();" data-dismiss="modal">Si</button>

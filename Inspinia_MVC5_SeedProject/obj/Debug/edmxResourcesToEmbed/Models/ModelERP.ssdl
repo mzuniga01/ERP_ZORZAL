@@ -264,7 +264,7 @@
     <Property Name="bodd_FechaModifica" Type="datetime" />
     <Property Name="bodd_Costo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="bodd_CostoPromedio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="bodd_CantidadExistente" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="bodd_CantidadExistente" Type="decimal" Precision="10" Scale="2" Nullable="false" />
   </EntityType>
   <EntityType Name="tbBox">
     <Key>
@@ -386,6 +386,7 @@
     <Property Name="prod_Razon_Inactivacion" Type="varchar" MaxLength="150" />
     <Property Name="listp_Id" Type="int" />
     <Property Name="prod_CodigoBarras" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="prod_Correlativo" Type="int" />
   </EntityType>
   <EntityType Name="tbProductoCategoria">
     <Key>
@@ -525,6 +526,8 @@
     <Property Name="clte_UsuarioModifica" Type="int" />
     <Property Name="clte_FechaModifica" Type="datetime" />
     <Property Name="clte_ConsumidorFinal" Type="bit" Nullable="false" />
+    <Property Name="clte_MontoCredito" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="clte_DiasCredito" Type="int" />
   </EntityType>
   <EntityType Name="tbCuponDescuento">
     <Key>
@@ -3838,7 +3841,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="ent_NumeroFormato" Type="varchar" Mode="In" />
     <Parameter Name="ent_FechaElaboracion" Type="datetime" Mode="In" />
     <Parameter Name="bod_Id" Type="int" Mode="In" />
-    <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
     <Parameter Name="prov_Id" Type="int" Mode="In" />
     <Parameter Name="ent_FacturaCompra" Type="varchar" Mode="In" />
     <Parameter Name="ent_FechaCompra" Type="datetime" Mode="In" />
@@ -3952,9 +3954,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
   <Function Name="UDP_Inv_tbProductoCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
     <Parameter Name="pcat_EsActivo" Type="tinyint" Mode="In" />
-  </Function>
-  <Function Name="UDP_Inv_tbProductoCategoriaSubCate_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
-    <Parameter Name="pcat_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProductoSubCategoria_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pscat_Id" Type="int" Mode="In" />
@@ -4213,6 +4212,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="arqde_MontoDenominacion" Type="decimal" Mode="In" />
     <Parameter Name="arqde_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="arqde_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbDevolucion_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="dev_Id" Type="int" Mode="In" />
+    <Parameter Name="dev_Estado" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbDevolucion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
