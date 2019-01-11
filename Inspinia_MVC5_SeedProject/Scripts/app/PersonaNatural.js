@@ -242,7 +242,7 @@ $("#telefono").on("keypress keyup blur", function (event) {
     var Telefono = $(this).val();
     console.log(Telefono)
     if (Telefono == '') {
-        $(this).val('+');
+        //$(this).val('+');
     }
     this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
 });
