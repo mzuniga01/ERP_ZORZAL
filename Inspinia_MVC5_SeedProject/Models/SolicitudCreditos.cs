@@ -36,17 +36,30 @@ namespace ERP_GMEDINA.Models
             DataFormatString = "{0:dd/MM/yyyy}",
             HtmlEncode = false)]
         public System.DateTime cred_FechaAprobacion { get; set; }
+
+        //create
         [Display(Name = "Monto Solicitado")]
         [Required]
+        [Range(0, double.MaxValue, ErrorMessage = "El campo {0} permite números mayores que cero")]
+        [RegularExpression("^\\d+$", ErrorMessage = "El campo {0} permite números mayores que cero")]
         public decimal cred_MontoSolicitado { get; set; }
-        [Display(Name = "Monto Aprobado")]
 
+
+        [Display(Name = "Monto Aprobado")]
+        [RegularExpression("^\\d+$", ErrorMessage = "El campo {0} permite números iguales o mayores que cero")]
         public decimal cred_MontoAprobado { get; set; }
+
+        //create
         [Display(Name = "Días Solicitados")]
         [Required]
+       // [Range(0, int.MaxValue, ErrorMessage = "El campo {0} permite números mayores que cero")]
+        [RegularExpression("^\\d+$", ErrorMessage = "El campo {0} permite números iguales o mayores que cero")]
         public int cred_DiasSolicitado { get; set; }
+
+
         [Display(Name = "Días Aprobados")]
         //[Required]
+        [RegularExpression("^\\d+$", ErrorMessage = "El campo {0} permite números iguales o mayores que cero")]
         public int cred_DiasAprobado { get; set; }
         [Display(Name = "Usuario Creación")]
 

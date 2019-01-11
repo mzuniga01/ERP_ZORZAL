@@ -3608,7 +3608,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
   </Function>
   <Function Name="UDP_Acce_tbUsuario_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="usu_NombreUsuario" Type="varchar" Mode="In" />
-    <Parameter Name="usu_Password" Type="binary" Mode="In" />
+    <Parameter Name="usu_Password" Type="varchar" Mode="In" />
     <Parameter Name="usu_Nombres" Type="varchar" Mode="In" />
     <Parameter Name="usu_Apellidos" Type="varchar" Mode="In" />
     <Parameter Name="usu_Correo" Type="varchar" Mode="In" />
@@ -4629,6 +4629,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="cred_FechaCrea" Type="datetime" Mode="In" />
     <Parameter Name="cred_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="cred_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbSolicitudCredito_Denegar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="cred_Id" Type="int" Mode="In" />
+    <Parameter Name="escre_Id" Type="tinyint" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbSolicitudCredito_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="cred_Id" Type="int" Mode="In" />

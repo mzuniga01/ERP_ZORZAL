@@ -131,6 +131,9 @@
                         @Html.ActionLink("Detalles", "Details", new { id = item.cred_Id }, new { @class = "btn btn-primary btn-xs" })
                         @Html.ActionLink("Editar", "Edit", new { id = item.cred_Id }, new { @class = "btn btn-white btn-xs" })
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#AprobarSolicitud_@item.cred_Id">Aprobar</button>
+                        @*<button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Anular_@item.cred_Id">
+                            Anular
+                        </button>*@
                     }
                     else
                     {
@@ -172,6 +175,27 @@
                     </div>
                 </div>
             </div>
+                    //---------------------------modal anular Anular_@item.cred_Id
+                    <div class="modal fade" id="Anular_@item.cred_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Denegar Solicitud Crédito</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Está seguro de Denegar esta Solicitud De Crédito?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" onclick="AnularSolictud();" data-dismiss="modal">Si</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    //-------------fin modal anular
 
                     }
     </tbody>
@@ -187,3 +211,4 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
+<script src="~/Scripts/app/SolicituCreditoDenegar.js"></script>

@@ -51,7 +51,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cred_MontoSolicitado, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.cred_MontoSolicitado)
+                @Html.EditorFor(model => model.cred_MontoSolicitado,"0"/*,new { htmlAttributes = new { @type = "number", @min = "0"} }*/ )
                 @Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
             </div>
         </div>
@@ -59,7 +59,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cred_MontoAprobado, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.cred_MontoAprobado)
+                @Html.EditorFor(model => model.cred_MontoAprobado,"0"/*, new { htmlAttributes = new { @type = "number", @min = "0"} }*/)
                 @Html.ValidationMessageFor(model => model.cred_MontoAprobado)
             </div>
         </div>
@@ -67,7 +67,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cred_DiasSolicitado, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.cred_DiasSolicitado)
+                @Html.EditorFor(model => model.cred_DiasSolicitado, new { htmlAttributes = new { @type = "number", @min = "0" } })
                 @Html.ValidationMessageFor(model => model.cred_DiasSolicitado)
             </div>
         </div>
@@ -75,14 +75,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cred_DiasAprobado, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.cred_DiasAprobado)
+                @Html.EditorFor(model => model.cred_DiasAprobado,"0", new { htmlAttributes = new { @type = "number", @min = "0" } })
                 @Html.ValidationMessageFor(model => model.cred_DiasAprobado)
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Aceptar" class="btn btn-primary" />
+                <input type="submit" value="Aceptar" class="btn btn-primary" id="AceptarAprobacion" />
                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
             </div>
         </div>

@@ -644,7 +644,7 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Acce_tbUsuario_Insert" ReturnType="Collection(String)">
       <Parameter Name="usu_NombreUsuario" Mode="In" Type="String" />
-      <Parameter Name="usu_Password" Mode="In" Type="Binary" />
+      <Parameter Name="usu_Password" Mode="In" Type="String" />
       <Parameter Name="usu_Nombres" Mode="In" Type="String" />
       <Parameter Name="usu_Apellidos" Mode="In" Type="String" />
       <Parameter Name="usu_Correo" Mode="In" Type="String" />
@@ -2088,6 +2088,10 @@
       <Parameter Name="arqpg_PagosConteo" Mode="In" Type="Decimal" />
       <Parameter Name="arqpg_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="arqpg_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Denegar" ReturnType="Collection(Int32)">
+      <Parameter Name="cred_Id" Mode="In" Type="Int32" />
+      <Parameter Name="escre_Id" Mode="In" Type="Byte" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">

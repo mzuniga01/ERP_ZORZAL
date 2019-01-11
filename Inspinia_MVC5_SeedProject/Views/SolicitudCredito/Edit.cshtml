@@ -207,6 +207,7 @@
 
                 @*<input type="submit" value="Aprobar" class="btn btn-primary" data-toggle="modal" data-target="#AprobarSolicitud" />*@
                 <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#AprobarSolicitud">Aprobar</button>
+                <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary" data-toggle="modal" data-target="#Anular">Denegar</button>
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
         </div>
@@ -274,11 +275,31 @@
     </div>
 </div>
 
+            @*//---------------------------modal anular Anular_@item.cred_Id*@
+            <div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Denegar Solicitud Crédito</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Está seguro de Denegar esta Solicitud De Crédito?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="AnularSolictud();" data-dismiss="modal">Si</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  
 
 
 
-
-
+<script src="~/Scripts/app/SolicituCreditoDenegar.js"></script>
 
 
 @section Scripts {
@@ -312,6 +333,23 @@ $(function () {
     $("#cred_FechaAprobacion").datepicker({ dateFormat: 'yy-mm-dd' });
     $("#cred_FechaSolicitud").datepicker({ dateFormat: 'yy-mm-dd' });
 });
-    </script>
+        //VALIDACIONES
+
+
+$('#AceptarAprobacion').click(function () {
+
+            if ($('#cred_MontoAprobado').val() == 0) {
+              alert('El valor no puede ser cero');
+            }
+
+            else if ($('#cred_MontoAprobado').val() == '') {
+                alert('El Campo Monto Aprobado debe de ir lleno');
+            }
+
+
+        });
+
+</script>
+
 }
 
