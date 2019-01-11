@@ -122,6 +122,12 @@ namespace ERP_GMEDINA.Models
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_Observaciones { get; set; }
 
+        [Display(Name = "Monto Crédito")]
+        public Nullable<decimal> clte_MontoCredito { get; set; }
+
+        [Display(Name = "Días de Crédito")]
+        public Nullable<int> clte_DiasCredito { get; set; }
+
         [Display(Name = "Usuario Creación")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int clte_UsuarioCrea { get; set; }

@@ -188,12 +188,23 @@
                                     @if (Model.clte_ConCredito)
                                     {
                                         <dd>Sí</dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_MontoCredito)
+                                        </dt>
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_MontoCredito)
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_DiasCredito)
+                                        </dt>
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_DiasCredito)
+                                        </dd>
                                     }
                                     else
                                     {
                                         <dd>No</dd>
                                     }
-
                                     <dt>
                                         @Html.DisplayNameFor(model => model.clte_EsMinorista)
                                     </dt>

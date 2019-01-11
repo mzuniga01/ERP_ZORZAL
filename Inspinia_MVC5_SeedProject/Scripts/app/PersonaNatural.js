@@ -1,4 +1,14 @@
-﻿$("#clte_EsPersonaNatural").change(function () {
+﻿$(document).keydown(function (e) {
+    if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        //alert("Ctrl-g pressed");
+        $("form").submit();
+        return false;
+    }
+    return true;
+});
+
+$("#clte_EsPersonaNatural").change(function () {
     $('#tpi_Id').val('');
     if (this.checked) {
         //Do stuff
@@ -103,6 +113,22 @@ $(document).ready(function () {
         
     }
 
+
+    if (clte_ConCredito.checked) {
+        $('#Credito').show();
+    }
+    else {
+        $('#Credito').hide();
+    }
+});
+
+$("#clte_ConCredito").change(function () {
+    if (this.checked) {
+        $('#Credito').show();
+    }
+    else {
+        $('#Credito').hide();
+    }
 });
 
 $("#dep_Codigo").change(function () {
@@ -196,18 +222,29 @@ $('#clte_EsPersonaNatural').on('click', function () {
 });
 
 $("#clte_ContactoTelefono").on("keypress keyup blur", function (event) {
-    //this.value = this.value.replace(/[^0-9\.]/g,'');
-    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
-    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-        event.preventDefault();
-    }
+    var Telefono = $(this).val();
+        console.log(Telefono)
+        if (Telefono == '') {
+            $(this).val('+');
+        }
+        this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
 });
 $("#clte_Telefono").on("keypress keyup blur", function (event) {
-    //this.value = this.value.replace(/[^0-9\.]/g,'');
-    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
-    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-        event.preventDefault();
+    var Telefono = $(this).val();
+    console.log(Telefono)
+    if (Telefono == '') {
+        $(this).val('+');
     }
+    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+});
+
+$("#telefono").on("keypress keyup blur", function (event) {
+    var Telefono = $(this).val();
+    console.log(Telefono)
+    if (Telefono == '') {
+        $(this).val('+');
+    }
+    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
 });
 
 $("#clte_ContactoEmail").blur(function () {   
@@ -253,9 +290,12 @@ $('#clte_Identificacion').on('input', function (e) {
         this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
     }
 });
+$('#identificacion').on('input', function (e) {
+    if (!/^[ a-z0-9]*$/i.test(this.value)) {
+        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+    }
+});
 
-
-//Validacion de numeros//
 function format(input) {
     $(input).change(function () {
         var str = $(input).val();
@@ -269,17 +309,27 @@ function format(input) {
         }, 50);
     })
 }
-
-
 $("#clte_ContactoTelefono").blur(function () {
     campo = event.target;
     valido = document.getElementById('ContactoT');
-
-    //var reg = \([0-9]{3}\)[0-9]{3}[ -][0-9]{4};
-    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
-    if (reg.test(campo.value)) {
+    var reg2 = /^[+]{1}[0-9\s]*$/;
+    if (reg2.test(campo.value)) {
         valido.innerText = "";
-    } else {
+    }
+    else {
+        valido.innerText = "Formato Telefono Incorrecto";
+
+    }
+});
+
+$("#clte_Telefono").blur(function () {
+    campo = event.target;
+    valido = document.getElementById('ContactoT');
+    var reg2 = /^[+]{1}[0-9\s]*$/;
+    if (reg2.test(campo.value)) {
+        valido.innerText = "";
+    }
+    else {
         valido.innerText = "Formato Telefono Incorrecto";
 
     }

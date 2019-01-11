@@ -143,7 +143,10 @@ namespace ERP_GMEDINA.Controllers
                         }
                     }
                 }
-
+                ViewBag.Ident = identificacion;
+                ViewBag.Nombres = nombre;
+                ViewBag.Tel = telefono;
+                //webBrowser.Document.GetElementById("identificacion").SetAttribute("value", identificacion);
                 return View(list);
             }
             catch (Exception ex)

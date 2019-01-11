@@ -112,7 +112,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_Telefono, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.clte_Telefono, new { htmlAttributes = new { @autocomplete = "off" } })
+                                        @Html.EditorFor(model => model.clte_Telefono, new { htmlAttributes = new { @autocomplete = "off", @Placeholder = "(Codigo Areá) Telefono" } })
                                         <p id="TelefonoCN" style="color:red">@Html.ValidationMessageFor(model => model.clte_Telefono)</p>
                                     </div>
                                     @Html.LabelFor(model => model.clte_CorreoElectronico, new { @class = "control-label col-md-2" })
@@ -156,7 +156,7 @@
                                     </div>
                                     @Html.LabelFor(model => model.clte_ContactoTelefono, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.clte_ContactoTelefono, new { htmlAttributes = new { @autocomplete = "off" } })
+                                        @Html.EditorFor(model => model.clte_ContactoTelefono, new { htmlAttributes = new { @autocomplete = "off", @Placeholder = "(Codigo Areá) Telefono" } })
                                         <p id="ContactoT" style="color:red">@Html.ValidationMessageFor(model => model.clte_ContactoTelefono)</p>
                                     </div>
                                 </div>
@@ -177,20 +177,30 @@
                                     <p id="Nacionalidad" style="color:red">@Html.ValidationMessageFor(model => model.clte_Nacionalidad)</p>
                                 </div>
                             </div>
-
                             <div class="form-group">
-                                <label class="control-label col-md-2">Departamento<span style="color:red"> *</span></label>
-                                @*@Html.LabelFor(muni => test.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })*@
-                                <div class="col-md-4">
-                                    @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
-                                    <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => test.dep_Codigo)</p>
-                                </div>
-                                @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
-                                    <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
-                                </div>
+                                <table class="table table-striped" style="border-radius: 10px;">
+                                    <tr style="background-color:#EDE8E7"><td colspan="2"><label class="control-label col-md-2">Datos de Residencia</label></td></tr>
+                                    <tr>
+                                        <td>
+                                            <label class="control-label col-md-4">Departamento<span style="color:red"> *</span></label>
+                                            @*@Html.LabelFor(muni => test.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })*@
+                                            <div class="col-md-7">
+                                                @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
+                                                <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => test.dep_Codigo)</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-3" })
+                                            <div class="col-md-8">
+                                                @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
+                                                <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr style="background-color:red"></tr>
+                                </table>
                             </div>
+
                             <div class="form-group">
                                 @Html.LabelFor(model => model.clte_Direccion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -198,6 +208,7 @@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Direccion)</p>
                                 </div>
                             </div>
+                            <hr />
                             <div class="form-group" id="Activo">
                                 @Html.LabelFor(model => model.clte_EsActivo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-2">
@@ -216,7 +227,18 @@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsMinorista)</p>
                                 </div>
                             </div>
-
+                            <div class="form-group" id="Credito" name="Credito">
+                                @Html.LabelFor(model => model.clte_MontoCredito, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.clte_MontoCredito)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_MontoCredito)</p>
+                                </div>
+                                @Html.LabelFor(model => model.clte_DiasCredito, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.clte_DiasCredito)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_DiasCredito)</p>
+                                </div>
+                            </div>
                             <div class="form-group" id="RazonInactivo">
                                 @Html.LabelFor(model => model.clte_RazonInactivo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -292,13 +314,13 @@
             </div>
             <div class="modal-body">
                 <p>¿Está seguro de inactivar este cliente?</p>
-                <br />
                 <textarea rows="4" cols="50" placeholder="Ingrese la razon de Inactivación" id="razonInac" name="razonInac"></textarea>
-                <p id="message" name="message"></p>
+               <p id="Mensaje" style="color:red"></p>
             </div>
             
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" name="Si" id="Si" data-dismiss="modal" onclick="InactivarCliente();">Si</button>
+                <button class="btn btn-primary btn-sm" type="button" id="Inactivar">Guardar</button>
+                @*<button type="button" class="btn btn-primary" name="Si" id="Si" data-dismiss="modal" onclick="InactivarCliente();">Si</button>*@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
@@ -319,7 +341,7 @@
                 ¿Está seguro de activar este cliente?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" name="Si" id="Si" data-dismiss="modal" onclick="ActivarCliente();">Si</button>
+                <button class="btn btn-primary btn-sm" type="button" id="Activar">Guardar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
