@@ -48,6 +48,9 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.nocre_FechaEmision)
                                 </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.nocre_Anulado)
+                                </th>
                                 <th>Opción</th>
                             </tr>
                         </thead>
@@ -92,6 +95,15 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.nocre_FechaEmision)
                                     </td>
+                                    @if(item.nocre_Anulado==false)
+                                    {
+                                        <td>No</td>
+                                    }else
+                                    {
+                                        <td>Si</td>
+                                    }
+
+
                                     @if (item.nocre_Anulado == false)
                                     {
                                         <td>

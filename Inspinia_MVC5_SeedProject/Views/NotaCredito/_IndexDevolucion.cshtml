@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbDevolucionDetalle>
-
+@using ERP_GMEDINA.Models
+@{
+    var vtbDevolucion = new ERP_GMEDINA.Models.tbDevolucion();
+    var vtbCliente = new ERP_GMEDINA.Models.tbCliente();
+}
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -18,10 +22,14 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.dev_Id)
+                Código
+                @*@Html.DisplayNameFor(model => model.dev_Id)*@
             </th>
             <th>
                 Monto
+            </th>
+            <th>
+                Fecha
             </th>
             <th></th>
         </tr>
@@ -29,13 +37,19 @@
     <tbody>
         @foreach (var item in Model)
         {
+            var name = (!vtbCliente.clte_EsPersonaNatural) ? vtbCliente.clte_NombreComercial : vtbCliente.clte_Nombres + ' ' + @vtbCliente.clte_Apellidos;
             <tr data-devid="@item.dev_Id"
-                data-monto="@item.devd_Monto">
+                data-monto="@item.devd_Monto"
+                data-fecha="@vtbDevolucion.dev_Fecha"
+                data-nombre="@name">
                 <td>
                     @Html.DisplayFor(modelItem => item.dev_Id)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.devd_Monto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => vtbDevolucion.dev_Fecha)
                 </td>
                 <td>
                     <button id="seleccionarDev" class="btn btn-primary btn-xs">Agregar</button>
@@ -90,9 +104,13 @@
     $(document).on("click", "#tbDevolucion tbody tr td button#seleccionarDev", function () {
         DevIdItem = $(this).closest('tr').data('devid');
         MontoItem = $(this).closest('tr').data('monto');
+        fechaItem = $(this).closest('tr').data('fecha');
+        nombreItem = $(this).closest('tr').data('nombre');
 
         $("#dev_Id").val(DevIdItem);
         $("#nocre_Monto").val(MontoItem);
+        $("#FechaDevolucion").val(fechaItem);
+        $("#tbCliente_clte_Nombres").val(nombreItem);
         $('#ModalAgregarDevolucion').modal('hide');
     });
 </script>
