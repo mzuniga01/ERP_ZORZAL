@@ -1,14 +1,4 @@
-﻿$(document).keydown(function (e) {
-    if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
-        e.preventDefault();
-        //alert("Ctrl-g pressed");
-        $("form").submit();
-        return false;
-    }
-    return true;
-});
-
-$("#clte_EsPersonaNatural").change(function () {
+﻿$("#clte_EsPersonaNatural").change(function () {
     $('#tpi_Id').val('');
     if (this.checked) {
         //Do stuff
@@ -50,6 +40,7 @@ $("#clte_EsPersonaNatural").change(function () {
 });
 
 $(document).ready(function () {
+
     var Identificacion = $("#tpi_Id option:selected").text()
     valido = document.getElementById('label_identificacion');
     $('#identificacion').show();
@@ -168,6 +159,13 @@ $("#tpi_Id").change(function () {
 
 });
 
+$("#clte_ConCredito").change(function () {
+    $("#clte_MontoCredito").val('')
+    $("#clte_DiasCredito").val('')
+
+});
+
+
 $("#tpi_Id").on("change", function () {
     var Identificacion = $("#tpi_Id option:selected").text()
     valido = document.getElementById('label_identificacion');
@@ -238,14 +236,7 @@ $("#clte_Telefono").on("keypress keyup blur", function (event) {
     this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
 });
 
-$("#telefono").on("keypress keyup blur", function (event) {
-    var Telefono = $(this).val();
-    console.log(Telefono)
-    if (Telefono == '') {
-        //$(this).val('+');
-    }
-    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
-});
+
 
 $("#clte_ContactoEmail").blur(function () {   
         campo = event.target;
@@ -309,18 +300,69 @@ function format(input) {
         }, 50);
     })
 }
-$("#clte_ContactoTelefono").blur(function () {
-    campo = event.target;
-    valido = document.getElementById('ContactoT');
-    var reg2 = /^[+]{1}[0-9\s]*$/;
-    if (reg2.test(campo.value)) {
-        valido.innerText = "";
+
+function formateo(input) {
+    $(input).change(function () {
+        var str = $(input).val();
+        var res = str.toLowerCase();
+        $(input).val(res);
+    });
+    $(input).on("keypress", function () {
+        $input = $(this);
+        setTimeout(function () {
+            $input.val($input.val().toLowerCase());
+        }, 50);
+    })
+}
+
+$("#clte_MontoCredito").on("keypress keyup blur", function (event) {
+    var Telefono = $(this).val();
+    console.log(Telefono)
+    if (Telefono == '') {
+        //$(this).val('+');
+    }
+    this.value = this.value.replace(/[a-záéíóúüñ#/=\s-+*]+/ig, "");
+});
+$("#clte_DiasCredito").on("keypress keyup blur", function (event) {
+    var Telefono = $(this).val();
+    console.log(Telefono)
+    if (Telefono == '') {
+        //$(this).val('+');
+    }
+    this.value = this.value.replace(/[a-záéíóúüñ#/=\s-+*]+/ig, "");
+});
+
+$("#clte_DiasCredito").on("change", function (event) {
+    var Telefono = $(this).val();
+    console.log(Telefono)
+    if (Telefono == '') {
+        //$(this).val('+');
+    }
+    this.value = this.value.replace(/[a-záéíóúüñ#/=\s-+*]+/ig, "");
+});
+
+$("#clte_Nacionalidad").autocomplete({
+    source: "/Cliente/GetNacionalidades",
+    minLength: 3
+});
+
+$("#clte_Identificacion").on("blur", function (event) {
+    var tpi_Id = $("#tpi_Id option:selected").text()
+    var Identificacion = $(this).val();
+    if (tpi_Id == 'RTN' && Identificacion.length != 14) {
+        valido = document.getElementById('CIdentificacion');
+        valido.innerText = "RTN debe tener 14 dígitos";
+    }
+    else if (tpi_Id == 'Identidad' && Identificacion.length != 13)
+    {
+        valido = document.getElementById('CIdentificacion');
+        valido.innerText = "Identidad debe tener 13 dígitos";
     }
     else {
-        valido.innerText = "Formato Telefono Incorrecto";
 
     }
 });
+
 
 $("#clte_Telefono").blur(function () {
     campo = event.target;
@@ -335,7 +377,3 @@ $("#clte_Telefono").blur(function () {
     }
 });
 
-$("#clte_Nacionalidad").autocomplete({
-    source: "/Cliente/GetNacionalidades",
-    minLength: 3
-});

@@ -12,6 +12,16 @@ $("#clte_Identificacion").change(function () {
         valido = document.getElementById('CIdentificacion');
         valido.innerText = "";
     }
+
+
+    if (tpi_Id == 'RTN' && Identificacion.length == 14) {
+        valido = document.getElementById('CIdentificacion');
+        valido.innerText = "RTN debe tener 14 dígitos";
+    }
+    else if (tpi_Id == 'Identidad' && Identificacion.length == 13) {
+        valido = document.getElementById('CIdentificacion');
+        valido.innerText = "Identidad debe tener 13 dígitos";
+    }
 });
 //Cliente Juridico
 $("#clte_NombreComercial").change(function () {

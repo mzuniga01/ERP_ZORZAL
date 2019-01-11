@@ -4142,6 +4142,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="clte_EsMinorista" Type="bit" Mode="In" />
           <Parameter Name="clte_Observaciones" Type="nvarchar" Mode="In" />
           <Parameter Name="clte_ConsumidorFinal" Type="bit" Mode="In" />
+          <Parameter Name="clte_MontoCredito" Type="decimal" Mode="In" />
+          <Parameter Name="clte_DiasCredito" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbCliente_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="clte_Id" Type="int" Mode="In" />
@@ -4171,6 +4173,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="clte_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="clte_FechaCrea" Type="datetime" Mode="In" />
           <Parameter Name="clte_ConsumidorFinal" Type="bit" Mode="In" />
+          <Parameter Name="clte_MontoCredito" Type="decimal" Mode="In" />
+          <Parameter Name="clte_DiasCredito" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbCuponDescuento_Anulado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="cdto_ID" Type="int" Mode="In" />
@@ -5922,6 +5926,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="clte_EsMinorista" Mode="In" Type="Boolean" />
             <Parameter Name="clte_Observaciones" Mode="In" Type="String" />
             <Parameter Name="clte_ConsumidorFinal" Mode="In" Type="Boolean" />
+            <Parameter Name="clte_MontoCredito" Mode="In" Type="Decimal" />
+            <Parameter Name="clte_DiasCredito" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbCliente_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCliente_Update_Result)">
             <Parameter Name="clte_Id" Mode="In" Type="Int32" />
@@ -5951,6 +5957,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="clte_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="clte_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="clte_ConsumidorFinal" Mode="In" Type="Boolean" />
+            <Parameter Name="clte_MontoCredito" Mode="In" Type="Decimal" />
+            <Parameter Name="clte_DiasCredito" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbPedido_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedido_Insert_Result)">
             <Parameter Name="esped_Id" Mode="In" Type="Byte" />

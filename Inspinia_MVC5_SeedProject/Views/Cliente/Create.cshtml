@@ -61,7 +61,7 @@
             </div>
             <div class="form-group" id="identificacion" name="identificacion">
                 @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2", id = "label_identificacion" })
-                <div class="col-md-5">
+                <div class="col-md-4">
                     @Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)" } })
                     <p id="CIdentificacion" style="color:red">@Html.ValidationMessageFor(model => model.clte_Identificacion)</p>
                 </div>
@@ -108,7 +108,7 @@
                     </div>
                     @Html.LabelFor(model => model.clte_CorreoElectronico, new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
-                        @Html.TextBoxFor(model => model.clte_CorreoElectronico, new { @autocomplete = "off", type = "email", @class = "form-control" })
+                        @Html.TextBoxFor(model => model.clte_CorreoElectronico, new { @autocomplete = "off", type = "email", @class = "form-control", @onkeyup = "formateo(this)" })
                         <p id="emailOK1" style="color:red">@Html.ValidationMessageFor(model => model.clte_CorreoElectronico)</p>
                     </div>
                 </div>
@@ -142,7 +142,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.clte_ContactoEmail, new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
-                        @Html.TextBoxFor(model => model.clte_ContactoEmail, new { @autocomplete = "off", type = "email", @class = "form-control" } )
+                        @Html.TextBoxFor(model => model.clte_ContactoEmail, new { @autocomplete = "off", type = "email", @class = "form-control", @onkeyup = "formateo(this)" } )
                         <p id="emailOK" style="color:red">@Html.ValidationMessageFor(model => model.clte_ContactoEmail)</p>
                     </div>
                     @Html.LabelFor(model => model.clte_ContactoTelefono, new { @class = "control-label col-md-2" })
@@ -189,17 +189,18 @@
                             </div>
                         </td>
                     </tr>
+                    <tr><td colspan="2">
+                            @Html.LabelFor(model => model.clte_Direccion, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.clte_Direccion, new { @autocomplete = "off", @class = "form-control" })
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Direccion)</p>
+                            </div>
+                        </td>
+                    </tr>
                 </table>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.clte_Direccion, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.clte_Direccion, new { @autocomplete = "off", @class = "form-control" })
-                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Direccion)</p>
-                </div>
-            </div>
-            <hr />
+
             <div class="form-group" id="Activo">
                 @Html.LabelFor(model => model.clte_EsActivo, new { @class = "control-label col-md-2" })
                 <div class="col-md-2">
@@ -220,7 +221,7 @@
             <div class="form-group" id="Credito" name="Credito">
                 @Html.LabelFor(model => model.clte_MontoCredito, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.clte_MontoCredito)
+                    @Html.EditorFor(model => model.clte_MontoCredito, new { htmlAttributes = new { @autocomplete = "off" } })
                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_MontoCredito)</p>
                 </div>
                 @Html.LabelFor(model => model.clte_DiasCredito, new { @class = "control-label col-md-2" })
@@ -265,7 +266,9 @@
 <script src="~/Scripts/app/Departamento.js"></script>
 <script src="~/Scripts/app/Identificacion.js"></script>
 <script src="~/Scripts/app/MessageError.js"></script>
+<script src="~/Scripts/app/ComandoGuardar.js"></script>
 <script>
+
     $('#clte_EsActivo').attr('checked', true);
     $('#clte_EsMinorista').attr('checked', true);
     $(document).ready(function () {
