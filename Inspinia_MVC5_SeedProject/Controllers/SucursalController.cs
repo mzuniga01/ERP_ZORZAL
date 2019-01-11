@@ -123,7 +123,13 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbSucursal.mun_Codigo);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
             ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
-            ViewBag.concatenacion = from p in db.tbSucursal select p.mun_Codigo + " - " + p.tbBodega.bod_Nombre;
+            var Bodegas = db.tbBodega.Select(s => new
+            {
+                bod_Id = s.bod_Id,
+                bod_Nombre = string.Concat(s.mun_Codigo + " - " + s.bod_Nombre)
+            }).ToList();
+
+            ViewBag.bod_Id = new SelectList(Bodegas, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
 
             return View(tbSucursal);
         }
@@ -179,7 +185,13 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbSucursal.mun_Codigo);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
             ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
-            ViewBag.concatenacion = from p in db.tbSucursal select p.mun_Codigo + " - " + p.tbBodega.bod_Nombre;
+            var Bodegas = db.tbBodega.Select(s => new
+            {
+                bod_Id = s.bod_Id,
+                bod_Nombre = string.Concat(s.mun_Codigo + " - " + s.bod_Nombre)
+            }).ToList();
+
+            ViewBag.bod_Id = new SelectList(Bodegas, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
             return View(tbSucursal);
         }
 
