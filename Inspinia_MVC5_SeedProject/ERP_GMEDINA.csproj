@@ -201,6 +201,7 @@
     <Compile Include="Controllers\MovimientoCajaController.cs" />
     <Compile Include="Controllers\NotaCreditoController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
+    <Compile Include="Controllers\PagosArqueoController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\PuntoEmisionController.cs" />
     <Compile Include="Controllers\SolicitudCreditoController.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="Models\Monedas.cs" />
     <Compile Include="Models\MovimientoCajas.cs" />
     <Compile Include="Models\Pagos.cs" />
+    <Compile Include="Models\PagosArqueos.cs" />
     <Compile Include="Models\PedidoDetalle.cs" />
     <Compile Include="Models\Pedidos.cs" />
     <Compile Include="Models\Producto.cs" />
@@ -421,6 +423,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbPago.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbPagosArqueo.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbParametro.cs">
@@ -627,6 +632,12 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbNotaCredito_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbPagosArqueo_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbPagosArqueo_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbPago_Insert_Result.cs">
@@ -948,12 +959,14 @@
     </Content>
     <Content Include="Scripts\app\AceptarSolicitudCre.js" />
     <Content Include="Scripts\app\Activo.js" />
+    <Content Include="Scripts\app\AnularDevolucion.js" />
     <Content Include="Scripts\app\AnularFactura.js" />
     <Content Include="Scripts\app\Apertura.js" />
     <Content Include="Scripts\app\AperturaDetalle.js" />
     <Content Include="Scripts\app\Banco.js" />
     <Content Include="Scripts\app\BCliente.js" />
     <Content Include="Scripts\app\CalculoFactura.js" />
+    <Content Include="Scripts\app\ClienteDevolucion.js" />
     <Content Include="Scripts\app\ClienteFactura.js" />
     <Content Include="Scripts\app\ClientePago.js" />
     <Content Include="Scripts\app\Clientes-Pedido-Credito.js" />
@@ -970,6 +983,7 @@
     <Content Include="Scripts\app\Departamento.js" />
     <Content Include="Scripts\app\DevolucionCalculos.js" />
     <Content Include="Scripts\app\DevolucionDetalle.js" />
+    <Content Include="Scripts\app\EmitirNotaCredito.js" />
     <Content Include="Scripts\app\Empleados.js" />
     <Content Include="Scripts\app\Factura.js" />
     <Content Include="Scripts\app\FacturaDetalle.js" />
@@ -983,7 +997,9 @@
     <Content Include="Scripts\app\MessageError.js" />
     <Content Include="Scripts\app\MovientoCaja.js" />
     <Content Include="Scripts\app\NotaCredito.js" />
+    <Content Include="Scripts\app\PagosArqueo.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
+    <Content Include="Scripts\app\ProductoDevolucion.js" />
     <Content Include="Scripts\app\ProductoFactura.js" />
     <Content Include="Scripts\app\PuntoEmision.js" />
     <Content Include="Scripts\app\PuntoEmisionDetalle.js" />
@@ -1355,6 +1371,11 @@
     <Content Include="Views\SolicitudCredito\_AprobarSolicitudCredito.cshtml" />
     <Content Include="Views\Pedido\_PedidoDetalleEditar.cshtml" />
     <Content Include="Views\Pedido\_IndexPedidoDetalle.cshtml" />
+    <Content Include="Views\PagosArqueo\Create.cshtml" />
+    <Content Include="Views\PagosArqueo\Delete.cshtml" />
+    <Content Include="Views\PagosArqueo\Details.cshtml" />
+    <Content Include="Views\PagosArqueo\Edit.cshtml" />
+    <Content Include="Views\PagosArqueo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

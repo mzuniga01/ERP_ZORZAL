@@ -21,7 +21,6 @@ function AnularDevolucion() {
    
     var CodDevolucion = $('#dev_Id').val();
     var Estado = 1
-    console.log(CodDevolucion)
     $.ajax({
         url: "/Devolucion/AnularDevolucion",
         method: "POST",
@@ -35,8 +34,43 @@ function AnularDevolucion() {
             alert("Registro No Actualizado");
         }
         else {
-            var url = $("#RedirectTo").val();
+            var url = $("#Redireccionar").val();
             location.href = url;
         }
     });
 }
+$(document).ready(function () {
+    var dev_Estado = ("item_dev_Estado")
+    if (dev_Estado === true) {
+        document.getElementById("btnEditar").disabled = true;
+    }
+});
+
+$(document).ready(function () {
+    EstadoItem = $(this).closest('tr').data('estado');
+    //$("#tbFactura_clte_Identifcacion").val(EstadoItem);
+    var dev_Estado = (EstadoItem);
+    console.log(dev_Estado)
+   if (dev_Estado === true) {
+        document.getElementById("btnEditar").disabled = true;
+    }
+
+    var EstadoDetalle = $('#Anulado').val();
+    if (EstadoDetalle === 'Anulado') {
+        document.getElementById("btnDetalleEditar").disabled = true;
+        document.getElementById("bottonNotaCredito").disabled = true;
+        document.getElementById("bottonAnular").disabled = true;
+    }
+
+    var DevEstado = $('#dev_Estado').val();
+    console.log(DevEstado)
+    if (DevEstado === 'Anulado') {
+        document.getElementById("bottonAnular").disabled = true;
+        document.getElementById("Detalle").disabled = true;
+        document.getElementById("bottonNotaCredito").disabled = true;
+        document.getElementById("Producto").disabled = true;
+        document.getElementById("Guardar").disabled = true;
+    }
+
+   
+});

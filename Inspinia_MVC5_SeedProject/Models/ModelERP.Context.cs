@@ -92,6 +92,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
         public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
         public virtual DbSet<tbFactura> tbFactura { get; set; }
+        public virtual DbSet<tbPagosArqueo> tbPagosArqueo { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {
@@ -4336,6 +4337,60 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("listp_Prioridad", typeof(short));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListaPrecio_Update_Result>("UDP_Vent_tbListaPrecio_Update", listp_IdParameter, listp_NombreParameter, listp_EsActivoParameter, listp_UsuarioCreaParameter, listp_FechaCreaParameter, listp_FechaInicioVigenciaParameter, listp_FechaFinalVigenciaParameter, listp_PrioridadParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbPagosArqueo_Insert_Result> UDP_Vent_tbPagosArqueo_Insert(Nullable<int> mocja_Id, Nullable<short> tpa_Id, Nullable<decimal> arqpg_PagosSistema, Nullable<decimal> arqpg_PagosConteo)
+        {
+            var mocja_IdParameter = mocja_Id.HasValue ?
+                new ObjectParameter("mocja_Id", mocja_Id) :
+                new ObjectParameter("mocja_Id", typeof(int));
+    
+            var tpa_IdParameter = tpa_Id.HasValue ?
+                new ObjectParameter("tpa_Id", tpa_Id) :
+                new ObjectParameter("tpa_Id", typeof(short));
+    
+            var arqpg_PagosSistemaParameter = arqpg_PagosSistema.HasValue ?
+                new ObjectParameter("arqpg_PagosSistema", arqpg_PagosSistema) :
+                new ObjectParameter("arqpg_PagosSistema", typeof(decimal));
+    
+            var arqpg_PagosConteoParameter = arqpg_PagosConteo.HasValue ?
+                new ObjectParameter("arqpg_PagosConteo", arqpg_PagosConteo) :
+                new ObjectParameter("arqpg_PagosConteo", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPagosArqueo_Insert_Result>("UDP_Vent_tbPagosArqueo_Insert", mocja_IdParameter, tpa_IdParameter, arqpg_PagosSistemaParameter, arqpg_PagosConteoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbPagosArqueo_Update_Result> UDP_Vent_tbPagosArqueo_Update(Nullable<int> arqpg_Id, Nullable<int> mocja_Id, Nullable<short> tpa_Id, Nullable<decimal> arqpg_PagosSistema, Nullable<decimal> arqpg_PagosConteo, Nullable<int> arqpg_UsuarioCrea, Nullable<System.DateTime> arqpg_FechaCrea)
+        {
+            var arqpg_IdParameter = arqpg_Id.HasValue ?
+                new ObjectParameter("arqpg_Id", arqpg_Id) :
+                new ObjectParameter("arqpg_Id", typeof(int));
+    
+            var mocja_IdParameter = mocja_Id.HasValue ?
+                new ObjectParameter("mocja_Id", mocja_Id) :
+                new ObjectParameter("mocja_Id", typeof(int));
+    
+            var tpa_IdParameter = tpa_Id.HasValue ?
+                new ObjectParameter("tpa_Id", tpa_Id) :
+                new ObjectParameter("tpa_Id", typeof(short));
+    
+            var arqpg_PagosSistemaParameter = arqpg_PagosSistema.HasValue ?
+                new ObjectParameter("arqpg_PagosSistema", arqpg_PagosSistema) :
+                new ObjectParameter("arqpg_PagosSistema", typeof(decimal));
+    
+            var arqpg_PagosConteoParameter = arqpg_PagosConteo.HasValue ?
+                new ObjectParameter("arqpg_PagosConteo", arqpg_PagosConteo) :
+                new ObjectParameter("arqpg_PagosConteo", typeof(decimal));
+    
+            var arqpg_UsuarioCreaParameter = arqpg_UsuarioCrea.HasValue ?
+                new ObjectParameter("arqpg_UsuarioCrea", arqpg_UsuarioCrea) :
+                new ObjectParameter("arqpg_UsuarioCrea", typeof(int));
+    
+            var arqpg_FechaCreaParameter = arqpg_FechaCrea.HasValue ?
+                new ObjectParameter("arqpg_FechaCrea", arqpg_FechaCrea) :
+                new ObjectParameter("arqpg_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPagosArqueo_Update_Result>("UDP_Vent_tbPagosArqueo_Update", arqpg_IdParameter, mocja_IdParameter, tpa_IdParameter, arqpg_PagosSistemaParameter, arqpg_PagosConteoParameter, arqpg_UsuarioCreaParameter, arqpg_FechaCreaParameter);
         }
     }
 }

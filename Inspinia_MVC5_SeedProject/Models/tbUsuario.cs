@@ -134,6 +134,8 @@ namespace ERP_GMEDINA.Models
             this.tbFactura = new HashSet<tbFactura>();
             this.tbFactura1 = new HashSet<tbFactura>();
             this.tbFactura2 = new HashSet<tbFactura>();
+            this.tbPagosArqueo = new HashSet<tbPagosArqueo>();
+            this.tbPagosArqueo1 = new HashSet<tbPagosArqueo>();
         }
     
         public int usu_Id { get; set; }
@@ -381,5 +383,9 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbFactura> tbFactura1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFactura> tbFactura2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPagosArqueo> tbPagosArqueo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPagosArqueo> tbPagosArqueo1 { get; set; }
     }
 }

@@ -80,14 +80,14 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.dev_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             //ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
             //ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "Codigo Factura");
-            var cliente = "E24RG14";
+           
            tbFacturaDetalle FacturaDetalle = new tbFacturaDetalle();
 
-         
-            ViewBag.Factura = db.tbFactura.Where(a => a.clte_Identificacion == cliente).ToList();
-            ViewBag.FacturaDetalle = db.tbFacturaDetalle.Where(a => a.factd_Id == 2).ToList();
+
+            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
+            ViewBag.Factura = db.tbFactura.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
-     
+
 
             Session["Devolucion"] = null;
             return View();
@@ -163,7 +163,7 @@ namespace ERP_ZORZAL.Controllers
                             }
                          }
                         Tran.Complete();
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Create");
                     }
                 }
 
@@ -298,6 +298,13 @@ namespace ERP_ZORZAL.Controllers
         public JsonResult AnularDevolucion(int CodDevolucion, bool Estado)
         {
             var list = db.UDP_Vent_tbDevolucion_Estado(CodDevolucion, Estado).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult FiltrarModal(string CodFactura)
+        {
+            var list = ViewBag.Factura = db.tbFactura.Where(a => a.clte_Identificacion == CodFactura).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
     }

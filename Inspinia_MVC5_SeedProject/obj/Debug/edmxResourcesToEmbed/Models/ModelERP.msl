@@ -1717,5 +1717,34 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="tbPagosArqueo">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPagosArqueo">
+        <MappingFragment StoreEntitySet="tbPagosArqueo">
+          <ScalarProperty Name="arqpg_FechaModifica" ColumnName="arqpg_FechaModifica" />
+          <ScalarProperty Name="arqpg_UsuarioModifica" ColumnName="arqpg_UsuarioModifica" />
+          <ScalarProperty Name="arqpg_FechaCrea" ColumnName="arqpg_FechaCrea" />
+          <ScalarProperty Name="arqpg_UsuarioCrea" ColumnName="arqpg_UsuarioCrea" />
+          <ScalarProperty Name="arqpg_PagosConteo" ColumnName="arqpg_PagosConteo" />
+          <ScalarProperty Name="arqpg_PagosSistema" ColumnName="arqpg_PagosSistema" />
+          <ScalarProperty Name="tpa_Id" ColumnName="tpa_Id" />
+          <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+          <ScalarProperty Name="arqpg_Id" ColumnName="arqpg_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPagosArqueo_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPagosArqueo_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPagosArqueo_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPagosArqueo_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPagosArqueo_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPagosArqueo_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

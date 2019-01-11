@@ -54,7 +54,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr data-Estado="@item.dev_Estado">
                 <td>
                     @Html.DisplayFor(modelItem => item.tbCaja.tbSucursal.suc_Descripcion)
                 </td>
@@ -65,7 +65,7 @@
                     @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
                 </td>
            
-                @{ if (Convert.ToInt32(item.tbFactura.tbCliente.clte_EsPersonaNatural) == 1 )
+                @{ if (item.tbFactura.tbCliente.clte_EsPersonaNatural == true)
                     {
                         <td>
                             @Html.DisplayFor(modelItem => item.tbFactura.clte_Nombres)
@@ -80,10 +80,17 @@
                 }
                 <td>
                     @Html.DisplayFor(modelItem => item.dev_Fecha)
+                    @{
+                        string EstadoIndex = "txtEstado";}
+                    @Html.HiddenFor(modelItem => item.dev_Estado, new { id = EstadoIndex })
                 </td>
+                
+                   
                 <td>
+                    @{
+                        string Editar = "btnEditar";}
                     @Html.ActionLink("Detalle", "Details", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-xs", id = Editar })
                     @*@Html.ActionLink("Eliminar", "Delete", new { id=item.dev_Id }, new { @class = "btn btn-white btn-sm"})*@
                 </td>
             </tr>
@@ -98,5 +105,5 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
-
+<script src="~/Scripts/app/AnularDevolucion.js"></script>
 

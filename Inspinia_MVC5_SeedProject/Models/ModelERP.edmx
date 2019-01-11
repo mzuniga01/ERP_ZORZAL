@@ -800,6 +800,20 @@
           <Property Name="pago_UsuarioModifica" Type="int" />
           <Property Name="pago_FechaModifica" Type="datetime" />
         </EntityType>
+        <EntityType Name="tbPagosArqueo">
+          <Key>
+            <PropertyRef Name="arqpg_Id" />
+          </Key>
+          <Property Name="arqpg_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mocja_Id" Type="int" Nullable="false" />
+          <Property Name="tpa_Id" Type="smallint" Nullable="false" />
+          <Property Name="arqpg_PagosSistema" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="arqpg_PagosConteo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="arqpg_UsuarioCrea" Type="int" Nullable="false" />
+          <Property Name="arqpg_FechaCrea" Type="datetime" Nullable="false" />
+          <Property Name="arqpg_UsuarioModifica" Type="int" />
+          <Property Name="arqpg_FechaModifica" Type="datetime" />
+        </EntityType>
         <EntityType Name="tbPedido">
           <Key>
             <PropertyRef Name="ped_Id" />
@@ -1650,6 +1664,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             </Principal>
             <Dependent Role="tbTipoPago">
               <PropertyRef Name="tpa_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioCrea">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+          <End Role="tbPagosArqueo" Type="Self.tbPagosArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPagosArqueo">
+              <PropertyRef Name="arqpg_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbPagosArqueo" Type="Self.tbPagosArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPagosArqueo">
+              <PropertyRef Name="arqpg_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3177,6 +3215,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id">
+          <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="1" />
+          <End Role="tbPagosArqueo" Type="Self.tbPagosArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMovimientoCaja">
+              <PropertyRef Name="mocja_Id" />
+            </Principal>
+            <Dependent Role="tbPagosArqueo">
+              <PropertyRef Name="mocja_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
           <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="1" />
           <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
@@ -3485,6 +3535,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
               <PropertyRef Name="tpa_Id" />
             </Principal>
             <Dependent Role="tbPago">
+              <PropertyRef Name="tpa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id">
+          <End Role="tbTipoPago" Type="Self.tbTipoPago" Multiplicity="1" />
+          <End Role="tbPagosArqueo" Type="Self.tbPagosArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbTipoPago">
+              <PropertyRef Name="tpa_Id" />
+            </Principal>
+            <Dependent Role="tbPagosArqueo">
               <PropertyRef Name="tpa_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -4480,6 +4542,21 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="pago_FechaVencimiento" Type="datetime" Mode="In" />
           <Parameter Name="pago_Titular" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbPagosArqueo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="mocja_Id" Type="int" Mode="In" />
+          <Parameter Name="tpa_Id" Type="smallint" Mode="In" />
+          <Parameter Name="arqpg_PagosSistema" Type="decimal" Mode="In" />
+          <Parameter Name="arqpg_PagosConteo" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbPagosArqueo_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="arqpg_Id" Type="int" Mode="In" />
+          <Parameter Name="mocja_Id" Type="int" Mode="In" />
+          <Parameter Name="tpa_Id" Type="smallint" Mode="In" />
+          <Parameter Name="arqpg_PagosSistema" Type="decimal" Mode="In" />
+          <Parameter Name="arqpg_PagosConteo" Type="decimal" Mode="In" />
+          <Parameter Name="arqpg_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="arqpg_FechaCrea" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbPedido_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="esped_Id" Type="tinyint" Mode="In" />
           <Parameter Name="ped_FechaElaboracion" Type="datetime" Mode="In" />
@@ -4710,6 +4787,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <EntitySet Name="tbMovimientoCaja" EntityType="Self.tbMovimientoCaja" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbNotaCredito" EntityType="Self.tbNotaCredito" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbPago" EntityType="Self.tbPago" Schema="Vent" store:Type="Tables" />
+          <EntitySet Name="tbPagosArqueo" EntityType="Self.tbPagosArqueo" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbPedido" EntityType="Self.tbPedido" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbPedidoDetalle" EntityType="Self.tbPedidoDetalle" Schema="Vent" store:Type="Tables" />
           <EntitySet Name="tbPuntoEmision" EntityType="Self.tbPuntoEmision" Schema="Vent" store:Type="Tables" />
@@ -4987,6 +5065,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <AssociationSet Name="FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbTipoPago" EntitySet="tbTipoPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
           </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbPedido_ped_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbPedido_ped_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -5496,6 +5582,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
             <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
           </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id" Association="Self.FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id">
+            <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+            <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
+          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" Association="Self.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
             <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
             <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
@@ -5599,6 +5689,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <AssociationSet Name="FK_Vent_tbTipoPago_tbPago_tpa_Id" Association="Self.FK_Vent_tbTipoPago_tbPago_tpa_Id">
             <End Role="tbTipoPago" EntitySet="tbTipoPago" />
             <End Role="tbPago" EntitySet="tbPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id" Association="Self.FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id">
+            <End Role="tbTipoPago" EntitySet="tbTipoPago" />
+            <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -7662,6 +7756,38 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="listp_FechaFinalVigencia" Mode="In" Type="DateTime" />
             <Parameter Name="listp_Prioridad" Mode="In" Type="Int16" />
           </FunctionImport>
+          <EntitySet Name="tbPagosArqueo" EntityType="ERP_ZORZALModel.tbPagosArqueo" />
+          <AssociationSet Name="FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id" Association="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id">
+            <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+            <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id" Association="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id">
+            <End Role="tbTipoPago" EntitySet="tbTipoPago" />
+            <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
+          </AssociationSet>
+          <FunctionImport Name="UDP_Vent_tbPagosArqueo_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPagosArqueo_Insert_Result)">
+            <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+            <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
+            <Parameter Name="arqpg_PagosSistema" Mode="In" Type="Decimal" />
+            <Parameter Name="arqpg_PagosConteo" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbPagosArqueo_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPagosArqueo_Update_Result)">
+            <Parameter Name="arqpg_Id" Mode="In" Type="Int32" />
+            <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+            <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
+            <Parameter Name="arqpg_PagosSistema" Mode="In" Type="Decimal" />
+            <Parameter Name="arqpg_PagosConteo" Mode="In" Type="Decimal" />
+            <Parameter Name="arqpg_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="arqpg_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -8136,6 +8262,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza" FromRole="tbUsuario" ToRole="tbFactura" />
           <NavigationProperty Name="tbFactura1" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbFactura" />
           <NavigationProperty Name="tbFactura2" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbFactura" />
+          <NavigationProperty Name="tbPagosArqueo" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioCrea" FromRole="tbUsuario" ToRole="tbPagosArqueo" />
+          <NavigationProperty Name="tbPagosArqueo1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioModifica" FromRole="tbUsuario" ToRole="tbPagosArqueo" />
         </EntityType>
         <EntityType Name="tbActividadEconomica">
           <Key>
@@ -8964,6 +9092,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbMovimientoCaja_cja_Id" FromRole="tbMovimientoCaja" ToRole="tbCaja" />
           <NavigationProperty Name="tbDenominacionArqueo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbDenominacionArqueo" />
           <NavigationProperty Name="tbSolicitudEfectivo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbSolicitudEfectivo" />
+          <NavigationProperty Name="tbPagosArqueo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbPagosArqueo" />
         </EntityType>
         <EntityType Name="tbNotaCredito">
           <Key>
@@ -9200,6 +9329,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioCrea" FromRole="tbTipoPago" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioModifica" FromRole="tbTipoPago" ToRole="tbUsuario" />
           <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id" FromRole="tbTipoPago" ToRole="tbPago" />
+          <NavigationProperty Name="tbPagosArqueo" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id" FromRole="tbTipoPago" ToRole="tbPagosArqueo" />
         </EntityType>
         <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
           <End Type="ERP_ZORZALModel.tbObjeto" Role="tbObjeto" Multiplicity="1" />
@@ -11830,6 +11960,78 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
         <ComplexType Name="UDP_Vent_tbListaPrecio_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <EntityType Name="tbPagosArqueo">
+          <Key>
+            <PropertyRef Name="arqpg_Id" />
+          </Key>
+          <Property Name="arqpg_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mocja_Id" Type="Int32" Nullable="false" />
+          <Property Name="tpa_Id" Type="Int16" Nullable="false" />
+          <Property Name="arqpg_PagosSistema" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="arqpg_PagosConteo" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="arqpg_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="arqpg_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="arqpg_UsuarioModifica" Type="Int32" />
+          <Property Name="arqpg_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioCrea" FromRole="tbPagosArqueo" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioModifica" FromRole="tbPagosArqueo" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id" FromRole="tbPagosArqueo" ToRole="tbMovimientoCaja" />
+          <NavigationProperty Name="tbTipoPago" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id" FromRole="tbPagosArqueo" ToRole="tbTipoPago" />
+        </EntityType>
+        <Association Name="FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbPagosArqueo" Role="tbPagosArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPagosArqueo">
+              <PropertyRef Name="arqpg_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbPagosArqueo" Role="tbPagosArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPagosArqueo">
+              <PropertyRef Name="arqpg_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id">
+          <End Type="ERP_ZORZALModel.tbMovimientoCaja" Role="tbMovimientoCaja" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbPagosArqueo" Role="tbPagosArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMovimientoCaja">
+              <PropertyRef Name="mocja_Id" />
+            </Principal>
+            <Dependent Role="tbPagosArqueo">
+              <PropertyRef Name="mocja_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id">
+          <End Type="ERP_ZORZALModel.tbTipoPago" Role="tbTipoPago" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbPagosArqueo" Role="tbPagosArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbTipoPago">
+              <PropertyRef Name="tpa_Id" />
+            </Principal>
+            <Dependent Role="tbPagosArqueo">
+              <PropertyRef Name="tpa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="UDP_Vent_tbPagosArqueo_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbPagosArqueo_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -13549,6 +13751,35 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tbPagosArqueo">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPagosArqueo">
+              <MappingFragment StoreEntitySet="tbPagosArqueo">
+                <ScalarProperty Name="arqpg_FechaModifica" ColumnName="arqpg_FechaModifica" />
+                <ScalarProperty Name="arqpg_UsuarioModifica" ColumnName="arqpg_UsuarioModifica" />
+                <ScalarProperty Name="arqpg_FechaCrea" ColumnName="arqpg_FechaCrea" />
+                <ScalarProperty Name="arqpg_UsuarioCrea" ColumnName="arqpg_UsuarioCrea" />
+                <ScalarProperty Name="arqpg_PagosConteo" ColumnName="arqpg_PagosConteo" />
+                <ScalarProperty Name="arqpg_PagosSistema" ColumnName="arqpg_PagosSistema" />
+                <ScalarProperty Name="tpa_Id" ColumnName="tpa_Id" />
+                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+                <ScalarProperty Name="arqpg_Id" ColumnName="arqpg_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbPagosArqueo_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPagosArqueo_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPagosArqueo_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbPagosArqueo_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPagosArqueo_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPagosArqueo_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
