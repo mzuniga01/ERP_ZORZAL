@@ -31,7 +31,7 @@ namespace ERP_GMEDINA.Models
         public byte esfac_Id { get; set; }
         public short cja_Id { get; set; }
         public short suc_Id { get; set; }
-        public int clte_Id { get; set; }
+        public Nullable<int> clte_Id { get; set; }
         public string pemi_NumeroCAI { get; set; }
         public bool fact_AlCredito { get; set; }
         public int fact_DiasCredito { get; set; }

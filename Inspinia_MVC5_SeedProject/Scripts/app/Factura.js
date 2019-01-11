@@ -24,9 +24,7 @@ $("#consumidorFinal").change(function () {
        $('#DatosCliente').hide();
        $("#clte_Identificacion").val('---------------');
        $("#clte_Nombres").val('---------------');
-       $("#clte_Id").val(1);
-        
-    }
+}
     else {
        $('#DatosCliente').show();
        $("#clte_Nombres").val('');
@@ -40,13 +38,11 @@ $("#consumidorFinal").ready(function () {
         $('#DatosCliente').hide();
         $("#clte_Identificacion").val('---------------');
         $("#clte_Nombres").val('---------------');
-        $("#clte_Id").val(1);
-  }
+}
     else {
         $('#DatosCliente').show();
         $("#clte_Nombres").val('');
         $("#clte_Identificacion").val('');
-        $("#clte_Id").val(1);
     }
 });
 

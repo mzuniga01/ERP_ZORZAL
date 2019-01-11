@@ -33,9 +33,6 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Sucursal")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public short suc_Id { get; set; }
-        [Display(Name = "Cliente")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
-        public int clte_Id { get; set; }
         [Display(Name = "CAI")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string pemi_NumeroCAI { get; set; }

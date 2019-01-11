@@ -662,7 +662,7 @@
     <Property Name="esfac_Id" Type="tinyint" Nullable="false" />
     <Property Name="cja_Id" Type="smallint" Nullable="false" />
     <Property Name="suc_Id" Type="smallint" Nullable="false" />
-    <Property Name="clte_Id" Type="int" Nullable="false" />
+    <Property Name="clte_Id" Type="int" />
     <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="fact_AlCredito" Type="bit" Nullable="false" />
     <Property Name="fact_DiasCredito" Type="int" Nullable="false" />
@@ -2861,7 +2861,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Vent_tbCliente_tbFactura_clte_Id">
-    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="1" />
+    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="0..1" />
     <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbCliente">

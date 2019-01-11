@@ -33,7 +33,7 @@ namespace ERP_GMEDINA.Models
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbCuentasBanco tbCuentasBanco { get; set; }
-        public virtual tbFactura tbFactura { get; set; }
         public virtual tbTipoPago tbTipoPago { get; set; }
+        public virtual tbFactura tbFactura { get; set; }
     }
 }
