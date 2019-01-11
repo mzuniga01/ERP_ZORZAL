@@ -83,7 +83,9 @@
                                 <label class="control-label col-md-2">Teléfono<span style="color:red">*</span></label>
                                 <div class="col-lg-4">
                                     @Html.TextBoxFor(model => model.bod_Telefono, new { @class = "single-line", MaxLength = 13 })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
+                                    <div id="MessageForTelephone">
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -119,6 +121,25 @@
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/app/BodegaDetalle.js"></script>
     <script src="~/Scripts/app/Municipio.js"></script>
+    <script>
+        //Esto lo agregó Mágdaly
+        $(document).ready(function () {
+            $('#mun_Codigo').empty();
+            $('#mun_Codigo').append("<option value=''>Seleccione</option>");
+            $("#bod_Telefono").blur(function () {
+                campo = event.target;
+                var reg2 = /^[+]{1}[0-9\s]*$/;
+                if (reg2.test(campo.value)) {
+                    $('#ErrorTelephone').text('');
+                }
+                else {
+                    $('#ErrorTelephone').text('');
+                    $('#MessageForTelephone').after('<ul id="ErrorTelephone" class="validation-summary-errors text-danger">Formato de Télefono: +### ######## </ul>');
+                    $("#bod_Telefono").focus();
+                }
+            });
+        });
+    </script>
     @*@section Scripts {
             @Scripts.Render("~/bundles/jqueryval")
         }*@
