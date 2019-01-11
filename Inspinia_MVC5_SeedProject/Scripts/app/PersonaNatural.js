@@ -334,3 +334,8 @@ $("#clte_Telefono").blur(function () {
 
     }
 });
+
+$("#clte_Nacionalidad").autocomplete({
+    source: "/Cliente/GetNacionalidades",
+    minLength: 3
+});

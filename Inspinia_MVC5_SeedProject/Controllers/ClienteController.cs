@@ -274,10 +274,14 @@ namespace ERP_GMEDINA.Controllers
             if (tbCliente.clte_EsPersonaNatural)
                 ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
             else
-                ViewBag.tpi_Id = db.tbTipoIdentificacion.Select(s => new {
+            {
+                var TipoIdentificacion= db.tbTipoIdentificacion.Select(s => new {
                     tpi_Id = s.tpi_Id,
                     tpi_Descripcion = s.tpi_Descripcion
                 }).Where(x => x.tpi_Id == Helpers.RTN).ToList();
+                ViewBag.tpi_Id = new SelectList(TipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+            }
+               
             var Lista = cUtilities.GeneroList();
             ViewBag.GeneroList = new SelectList(Lista, "ID_GENERO", "DESCRIPCION", tbCliente.clte_Sexo);
             return View(tbCliente);
@@ -422,11 +426,10 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpPost]
-        //public JsonResult GetBusquedaClientes(string Identificacion, string Nombres, string Telefono)
-        //{
-        //    var list = db.spGetBusquedaCliente(Identificacion, Nombres, Telefono).ToList();
-        //    return Json(list, JsonRequestBehavior.AllowGet);
-        //}
+        public JsonResult GetNacionalidades(string term)
+     {
+            var Nacionalidades = db.tbCliente.Where(s => s.clte_Nacionalidad.Contains(term)).Select(x => new { value = x.clte_Nacionalidad }).Distinct().ToList();
+            return Json(Nacionalidades, JsonRequestBehavior.AllowGet);
+        }
     }
 }

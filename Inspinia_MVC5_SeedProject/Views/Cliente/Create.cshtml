@@ -260,7 +260,6 @@
     </div>
  </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/PersonaNatural.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Activo.js"></script>
 <script src="~/Scripts/app/Departamento.js"></script>
@@ -289,3 +288,9 @@
         }
     });  
 </script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/app/PersonaNatural.js"></script>
+}
+
+
