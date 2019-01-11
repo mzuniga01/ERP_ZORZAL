@@ -1,27 +1,28 @@
 ﻿////Funcion denominacion
 $('#mnda_Id').on("change", function () {
     GetDenominacion();
-     if(this.value != "")
-    {
-        var data = this.value.split(" ");
-        var deno = $("#fbody").find("tr");
-          if (this.value == "" || this.value=="#DenominacionDetalle") {
-              deno.show();
-            return;
-        }
-          deno.hide();
-          deno.filter(function (i, v) {
-            var $t = $(this);
-            for (var d = 0; d < data.length; ++d) {
-                if ($t.is(":contains('" + data[d] + "')")) {
-                    return true;
-                }
-            }
-            return false;
-        })
-        .show();
-     }          
+     $(function () {
+         var $tabla = $('#DenominacionDetalle');
+
+         $('#mnda_Id').change(function () {
+             var value = $(this).val();
+             if (this.value != "") {
+                 $('tbody tr.' + value, $tabla).show();
+                 $('tbody tr:not(.' + value + ')', $tabla).hide();
+                 $('#SuntotalCreate').val('');
+                 $('#MontoInicial').val('');
+                 //$('#Total').val('');
+                 document.getElementById('Total').innerHTML = '';
+             }
+             else {
+                 // Se ha seleccionado All
+                 $('#DenominacionDetalle > tbody').empty();
+                 $('tbody tr', $tabla).show();
+             }
+         });
+     });
 });
+
 
 
 
@@ -58,7 +59,7 @@ function GetDenominacion() {
         });
     }
     else {
-        $("#DenominacionDetalle").val('');
+
 
     }
 }
@@ -71,6 +72,8 @@ $(document).on("change", "#DenominacionDetalle tbody tr td input#name", function
     var Subtotal = Cantidad * ValorDenominacion;
     console.log(Cantidad)
     console.log(ValorDenominacion)
+
+
     $(this).parents("tr").find("td")[3].innerHTML = Subtotal;
     $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
@@ -82,9 +85,11 @@ $(document).on("change", "#DenominacionDetalle tbody tr td input#name", function
         document.getElementById("Total").innerHTML = parseFloat(0);
     }
     else {
-        document.getElementById("Total").innerHTML = parseFloat(total) + parseFloat(Subtotal);
+        var MontoInicial = document.getElementById("Total").innerHTML = parseFloat(total) + parseFloat(Subtotal);
+        document.getElementById('MontoInicial').value = MontoInicial.toFixed(2);
     }
 
+   
 });
 
 $(document).on("keypress", "#DenominacionDetalle tbody tr td input#name", function () {
@@ -95,6 +100,7 @@ $(document).on("keypress", "#DenominacionDetalle tbody tr td input#name", functi
 
     console.log(Cantidad)
     console.log(ValorDenominacion)
+
     $(this).parents("tr").find("td")[3].innerHTML = Subtotal;
     $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
@@ -104,12 +110,14 @@ $(document).on("keypress", "#DenominacionDetalle tbody tr td input#name", functi
 
     //Grantotal
     if (document.getElementById("Total").innerHTML == '') {
-        document.getElementById("Total").innerHTML = parseFloat(0);
+      document.getElementById("Total").innerHTML = parseFloat(0);
     }
     else {
-        document.getElementById("Total").innerHTML = parseFloat(total) + parseFloat(Subtotal);
+        var MontoInicial = document.getElementById("Total").innerHTML = parseFloat(total) + parseFloat(Subtotal);
+        document.getElementById('MontoInicial').value = MontoInicial.toFixed(2);
     }
 
+   
 });
 
 
