@@ -45,7 +45,13 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI");
-            ViewBag.concatenacion = from p in db.tbSucursal select p.mun_Codigo + " - " + p.tbBodega.bod_Nombre ;
+            var Bodegas = db.tbBodega.Select(s => new
+            {
+                bod_Id = s.bod_Id,
+                bod_Nombre = string.Concat(s.mun_Codigo + " - " + s.bod_Nombre)
+            }).ToList();
+
+            ViewBag.bod_Id = new SelectList(Bodegas, "bod_Id", "bod_Nombre");
 
             return View();
         }
@@ -91,6 +97,7 @@ namespace ERP_ZORZAL.Controllers
             catch (Exception Ex)
             {
                 ModelState.AddModelError("", "Error al Agregar Registro " + Ex.Message.ToString());
+                ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
                 return View(tbSucursal);
             }
 
@@ -100,8 +107,13 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSucursal.bod_Id);
             ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
+            var Bodegas = db.tbBodega.Select(s => new
+            {
+                bod_Id = s.bod_Id,
+                bod_Nombre = string.Concat(s.mun_Codigo + " - " + s.bod_Nombre)
+            }).ToList();
 
-            ViewBag.concatenacion = from p in db.tbSucursal select p.mun_Codigo + " - " + p.tbBodega.bod_Nombre;
+            ViewBag.bod_Id = new SelectList(Bodegas, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
             return View(tbSucursal);
         }
 
