@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                <button class="btn btn-primary btn-sm" type="button" id="AgregarDescuento">Descuento</button>
+                                <button type="button" class="btn btn-primary btn-sm" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoDetalle">Descuento</button>
                             </div>
                         </div>
                         <div class="form-group">                            
@@ -145,6 +145,41 @@
                 </div>
                 <div class="modal-body" id="frmListaProducto">
                     @Html.Partial("_IndexProducto", (List<tbProducto>)ViewBag.Producto)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="modal fade" id="AutorizarDescuentoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizarDetalle">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Código Autorizado</h4>
+                </div>
+                <div class="modal-body" id="frmAutorizarDescuento">
+                    <div class="ibox-content">
+                        <div class="form-horizontal">
+                            <form>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Contraseña</label>
+                                    <div class="col-md-6">
+                                        <input id="pass" name="pass" value="" class="form-control" autocomplete="on">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Porcentaje de Descuento</label>
+                                    <div class="col-md-6">
+                                        <input id="Porcentaje de Descuento" type="text" class="form-control" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

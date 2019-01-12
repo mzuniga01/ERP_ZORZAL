@@ -10,16 +10,6 @@
     }).datepicker('setDate', new Date());
 
     //Cliente
-    //$("#clte_FechaNacimiento").datepicker({
-    //    dateFormat: 'dd-mm-yy',
-    //    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-    //    dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-    //    minDate: '-100Y',
-    //    maxDate: '-18Y',
-    //    prevText: 'Ant',
-    //    nextText: 'Sig'
-    //}).datepicker('setDate', new Date());
-
     $("#clte_FechaNacimiento").datepicker({
         dateFormat: 'dd-mm-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
@@ -27,12 +17,7 @@
         minDate: '-100Y',
         maxDate: '-18Y',
         prevText: 'Ant',
-        nextText: 'Sig',
-        changeMonth: true,
-        changeYear: true,
-        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
-        //showOn: 'both',
-        //buttonText: '<i class="fas fa-calendar-day"></i>'
+        nextText: 'Sig'
     }).datepicker('setDate', new Date());
 
     var FechaInicio1 = new Date();
@@ -43,23 +28,8 @@
         minDate: '-100Y',
         maxDate: FechaInicio1,
         prevText: 'Ant',
-        nextText: 'Sig',
-        changeMonth: true,
-        changeYear: true,
-        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
-        //showOn: 'both',
-        //buttonText: '<i class="fas fa-calendar-day"></i>'
+        nextText: 'Sig'
     }).datepicker('setDate', new Date());
-
-    //$("#clte_FechaConstitucion").datepicker({
-    //    dateFormat: 'dd-mm-yy',
-    //    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-    //    dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-    //    minDate: '-100Y',
-    //    maxDate: FechaInicio1,
-    //    prevText: 'Ant',
-    //    nextText: 'Sig'
-    //}).datepicker('setDate', new Date());
 
     //Factura
     $("#fechafactura").datepicker({
@@ -88,8 +58,10 @@
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         prevText: 'Ant',
         nextText: 'Sig',
+        yearRange: "c-100:c+0",
         changeMonth: true,
         changeYear: true,
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
         }).datepicker();
 
 

@@ -45,7 +45,6 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Porcentaje Descuento")]
         public decimal fact_PorcentajeDescuento { get; set; }
         [Display(Name = "Vendedor")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string fact_Vendedor { get; set; }
         [Display(Name = "RTN")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
