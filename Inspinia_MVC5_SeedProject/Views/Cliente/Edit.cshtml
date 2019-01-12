@@ -59,15 +59,7 @@
                                     <p id="Identificacion" style="color:red">@Html.ValidationMessageFor(model => model.tpi_Id)</p>
                                 </div>
                             </div>
-                            <div class="form-group" id="consumidorfinal" name="consumidorfinal">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.clte_ConsumidorFinal, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.clte_ConsumidorFinal)
-                                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_ConsumidorFinal)</p>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="form-group" id="identificacion" name="identificacion">
                                 @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2", id = "label_identificacion" })
                                 <div class="col-md-4">

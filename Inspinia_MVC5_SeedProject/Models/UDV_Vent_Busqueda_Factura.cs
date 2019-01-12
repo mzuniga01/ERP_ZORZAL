@@ -18,6 +18,7 @@ namespace ERP_GMEDINA.Models
         public string fact_Codigo { get; set; }
         public System.DateTime fact_Fecha { get; set; }
         public byte esfac_Id { get; set; }
+        public string esfac_Descripcion { get; set; }
         public short cja_Id { get; set; }
         public string cja_Descripcion { get; set; }
         public short suc_Id { get; set; }
@@ -38,6 +39,5 @@ namespace ERP_GMEDINA.Models
         public System.DateTime fact_FechaCrea { get; set; }
         public Nullable<int> fact_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> fact_FechaModifica { get; set; }
-        public string esfac_Descripcion { get; set; }
     }
 }

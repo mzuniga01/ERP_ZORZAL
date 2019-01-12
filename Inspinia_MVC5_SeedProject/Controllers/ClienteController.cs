@@ -133,9 +133,6 @@ namespace ERP_GMEDINA.Controllers
                             if (!reader.IsDBNull(reader.GetOrdinal("clte_FechaModifica")))
                                 tbclientes.clte_FechaModifica = Convert.ToDateTime(reader["clte_FechaModifica"]);
 
-                            if (!reader.IsDBNull(reader.GetOrdinal("clte_ConsumidorFinal")))
-                                tbclientes.clte_ConsumidorFinal = Convert.ToBoolean(reader["clte_ConsumidorFinal"]);
-
                             if (!reader.IsDBNull(reader.GetOrdinal("tpi_Descripcion")))
                                 tbclientes.tpi_Descripcion = Convert.ToString(reader["tpi_Descripcion"]);
 
@@ -221,7 +218,6 @@ namespace ERP_GMEDINA.Controllers
                                                         tbCliente.clte_ConCredito,
                                                         tbCliente.clte_EsMinorista,
                                                         tbCliente.clte_Observaciones,
-                                                        tbCliente.clte_ConsumidorFinal,
                                                         tbCliente.clte_MontoCredito,
                                                         tbCliente.clte_DiasCredito);
                     foreach (UDP_Vent_tbCliente_Insert_Result cliente in list)
@@ -332,7 +328,6 @@ namespace ERP_GMEDINA.Controllers
                                                         tbCliente.clte_Observaciones,
                                                         tbCliente.clte_UsuarioCrea,
                                                         tbCliente.clte_FechaCrea,
-                                                        tbCliente.clte_ConsumidorFinal,
                                                         tbCliente.clte_MontoCredito,
                                                         tbCliente.clte_DiasCredito);
                     foreach (UDP_Vent_tbCliente_Update_Result cliente in list)

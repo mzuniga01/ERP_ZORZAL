@@ -26,10 +26,6 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_Identificacion { get; set; }
 
-        [Display(Name = "¿Es Consumidor Final?")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public bool clte_ConsumidorFinal { get; set; }
-
         [Display(Name = "¿Es Persona Natural?")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public bool clte_EsPersonaNatural { get; set; }

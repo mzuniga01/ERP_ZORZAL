@@ -21,6 +21,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<decimal> cdto_PorcentajeDescuento { get; set; }
         public Nullable<decimal> cdto_MontoDescuento { get; set; }
         public decimal cdto_MaximoMontoDescuento { get; set; }
+        public decimal cdto_CantidadCompraMinima { get; set; }
         public bool cdto_Redimido { get; set; }
         public Nullable<System.DateTime> cdto_FechaRedencion { get; set; }
         public Nullable<bool> cdto_Anulado { get; set; }
@@ -28,7 +29,6 @@ namespace ERP_GMEDINA.Models
         public System.DateTime cdto_FechaCrea { get; set; }
         public Nullable<int> cdto_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> cdto_FechaModifica { get; set; }
-        public decimal cdto_CantidadCompraMinima { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

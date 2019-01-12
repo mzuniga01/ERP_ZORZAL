@@ -18,8 +18,8 @@ namespace ERP_GMEDINA.Models
         public tbMovimientoCaja()
         {
             this.tbDenominacionArqueo = new HashSet<tbDenominacionArqueo>();
-            this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
             this.tbPagosArqueo = new HashSet<tbPagosArqueo>();
+            this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
         }
     
         public int mocja_Id { get; set; }
@@ -44,8 +44,8 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbDenominacionArqueo> tbDenominacionArqueo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPagosArqueo> tbPagosArqueo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
     }
 }

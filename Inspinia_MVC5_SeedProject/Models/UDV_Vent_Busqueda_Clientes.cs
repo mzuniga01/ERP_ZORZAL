@@ -43,6 +43,5 @@ namespace ERP_GMEDINA.Models
         public System.DateTime clte_FechaCrea { get; set; }
         public Nullable<int> clte_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
-        public bool clte_ConsumidorFinal { get; set; }
     }
 }

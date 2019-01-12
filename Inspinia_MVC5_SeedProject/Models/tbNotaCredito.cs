@@ -22,7 +22,7 @@ namespace ERP_GMEDINA.Models
     
         public short nocre_Id { get; set; }
         public string nocre_Codigo { get; set; }
-        public int dev_Id { get; set; }
+        public Nullable<int> dev_Id { get; set; }
         public int clte_Id { get; set; }
         public short suc_Id { get; set; }
         public Nullable<bool> nocre_Anulado { get; set; }

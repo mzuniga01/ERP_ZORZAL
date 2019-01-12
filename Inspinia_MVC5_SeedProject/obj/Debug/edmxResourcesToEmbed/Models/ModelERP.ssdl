@@ -525,7 +525,6 @@
     <Property Name="clte_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="clte_UsuarioModifica" Type="int" />
     <Property Name="clte_FechaModifica" Type="datetime" />
-    <Property Name="clte_ConsumidorFinal" Type="bit" Nullable="false" />
     <Property Name="clte_MontoCredito" Type="decimal" Precision="10" Scale="2" />
     <Property Name="clte_DiasCredito" Type="int" />
   </EntityType>
@@ -762,7 +761,7 @@
     </Key>
     <Property Name="nocre_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nocre_Codigo" Type="varchar" MaxLength="15" Nullable="false" />
-    <Property Name="dev_Id" Type="int" Nullable="false" />
+    <Property Name="dev_Id" Type="int" />
     <Property Name="clte_Id" Type="int" Nullable="false" />
     <Property Name="suc_Id" Type="smallint" Nullable="false" />
     <Property Name="nocre_Anulado" Type="bit" />
@@ -948,6 +947,21 @@
     <Property Name="tpa_FechaModifica" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Acce.V_Objetos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_Objetos">
+    <Key>
+      <PropertyRef Name="obj_Id" />
+      <PropertyRef Name="usu_NombreUsuario" />
+      <PropertyRef Name="obj_FechaCrea" />
+    </Key>
+    <Property Name="obj_Id" Type="int" Nullable="false" />
+    <Property Name="obj_Pantalla" Type="nvarchar" MaxLength="50" />
+    <Property Name="usu_NombreUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="obj_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="obj_UsuarioModifica" Type="int" />
+    <Property Name="obj_FechaModifica" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Inv_Nombre_Empleado">
     <Key>
@@ -956,6 +970,59 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     </Key>
     <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
+    <Key>
+      <PropertyRef Name="suc_Descripcion" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="bodd_CantidadMinima" />
+      <PropertyRef Name="bod_Id" />
+      <PropertyRef Name="prod_Codigo" />
+    </Key>
+    <Property Name="suc_Descripcion" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="bod_Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="prod_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="prod_Marca" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="bodd_CantidadExistente" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="bodd_CantidadMinima" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="bod_Id" Type="int" Nullable="false" />
+    <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="create_date" Type="datetime" Nullable="false" />
+    <Property Name="modify_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
+    <Key>
+      <PropertyRef Name="IdSolicitud" />
+      <PropertyRef Name="FechaSolicitud" />
+    </Key>
+    <Property Name="IdSolicitud" Type="int" Nullable="false" />
+    <Property Name="FechaSolicitud" Type="datetime" Nullable="false" />
+    <Property Name="Sucursal" Type="nvarchar" MaxLength="40" />
+    <Property Name="Caja" Type="nvarchar" MaxLength="10" />
+    <Property Name="Moneda" Type="nvarchar" MaxLength="100" />
+    <Property Name="MontoSolicitado" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="MontoEntregado" Type="decimal" Precision="38" Scale="2" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -980,7 +1047,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does 
       <PropertyRef Name="clte_EsMinorista" />
       <PropertyRef Name="clte_UsuarioCrea" />
       <PropertyRef Name="clte_FechaCrea" />
-      <PropertyRef Name="clte_ConsumidorFinal" />
     </Key>
     <Property Name="clte_Id" Type="int" Nullable="false" />
     <Property Name="tpi_Id" Type="tinyint" Nullable="false" />
@@ -1011,7 +1077,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does 
     <Property Name="clte_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="clte_UsuarioModifica" Type="int" />
     <Property Name="clte_FechaModifica" Type="datetime" />
-    <Property Name="clte_ConsumidorFinal" Type="bit" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1061,6 +1126,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Property Name="fact_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="fact_UsuarioModifica" Type="int" />
     <Property Name="fact_FechaModifica" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_Vent_FacturaPago">
+    <Key>
+      <PropertyRef Name="fact_Id" />
+      <PropertyRef Name="fact_Codigo" />
+    </Key>
+    <Property Name="fact_Id" Type="bigint" Nullable="false" />
+    <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
+    <Property Name="MontoFactura" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="TotalPago" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="SaldoFactura" Type="decimal" Precision="10" Scale="0" />
   </EntityType>
   <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
     <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="1" />
@@ -2838,6 +2916,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tbTipoIdentificacion_tbCliente_tpi_Id">
+    <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="1" />
+    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbTipoIdentificacion">
+        <PropertyRef Name="tpi_Id" />
+      </Principal>
+      <Dependent Role="tbCliente">
+        <PropertyRef Name="tpi_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbBodega_tbSucursal_bod_Id">
     <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
     <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="*" />
@@ -3271,7 +3361,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
-    <End Role="tbDevolucion" Type="Self.tbDevolucion" Multiplicity="1" />
+    <End Role="tbDevolucion" Type="Self.tbDevolucion" Multiplicity="0..1" />
     <End Role="tbNotaCredito" Type="Self.tbNotaCredito" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbDevolucion">
@@ -3510,18 +3600,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id">
-    <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="1" />
-    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbTipoIdentificacion">
-        <PropertyRef Name="tpi_Id" />
-      </Principal>
-      <Dependent Role="tbCliente">
-        <PropertyRef Name="tpi_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbTipoPago_tbPago_tpa_Id">
     <End Role="tbTipoPago" Type="Self.tbTipoPago" Multiplicity="1" />
     <End Role="tbPago" Type="Self.tbPago" Multiplicity="*" />
@@ -3553,6 +3631,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
   </Function>
   <Function Name="SDP_Acce_GetObjetosDisponibles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rol_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SDP_Acce_GetRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" />
+  <Function Name="SDP_Acce_GetRolesAsignados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="usu_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SDP_Acce_GetRolesDisponibles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="usu_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UDF_Acce_GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" ReturnType="int" />
   <Function Name="UDP_Acce_tbAccesoRol_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
@@ -3608,7 +3693,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
   </Function>
   <Function Name="UDP_Acce_tbUsuario_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="usu_NombreUsuario" Type="varchar" Mode="In" />
-    <Parameter Name="usu_Password" Type="varchar" Mode="In" />
+    <Parameter Name="usu_Password" Type="binary" Mode="In" />
     <Parameter Name="usu_Nombres" Type="varchar" Mode="In" />
     <Parameter Name="usu_Apellidos" Type="varchar" Mode="In" />
     <Parameter Name="usu_Correo" Type="varchar" Mode="In" />
@@ -3628,6 +3713,65 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="usu_RazonInactivo" Type="varchar" Mode="In" />
     <Parameter Name="usu_EsAdministrador" Type="bit" Mode="In" />
     <Parameter Name="usu_SesionesValidas" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="UDP_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="UsuarioId" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ConteoParametro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="conteo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SPGetResponsableBodega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bod_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDF_Acee_GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="UDF_Vent_EsClienteMinorista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+    <Parameter Name="IDCLIENTE" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbSolicitudCredito_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cred_Id" Type="int" Mode="In" />
+    <Parameter Name="clte_Id" Type="int" Mode="In" />
+    <Parameter Name="escre_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="cred_FechaSolicitud" Type="datetime" Mode="In" />
+    <Parameter Name="cred_FechaAprobacion" Type="datetime" Mode="In" />
+    <Parameter Name="cred_MontoSolicitado" Type="decimal" Mode="In" />
+    <Parameter Name="cred_MontoAprobado" Type="decimal" Mode="In" />
+    <Parameter Name="cred_DiasSolicitado" Type="int" Mode="In" />
+    <Parameter Name="cred_DiasAprobado" Type="int" Mode="In" />
+    <Parameter Name="cred_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="cred_FechaModifica" Type="datetime" Mode="In" />
+    <Parameter Name="VariableError" Type="int" Mode="InOut" />
   </Function>
   <Function Name="spGetDenominacionesMoneda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="CodMoneda" Type="int" Mode="In" />
@@ -3827,8 +3971,26 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
   <Function Name="crud_tbProductoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="SP_Valores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="pcat_Id" Type="int" Mode="In" />
+    <Parameter Name="pscat_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="spGetCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="pcat_id" Type="int" Mode="In" />
+  </Function>
   <Function Name="spGetSubCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="pcat_Id" Type="int" Mode="In" />
+    <Parameter Name="pscat_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_ConsultarExistenciaProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="sucursal" Type="varchar" Mode="In" />
+    <Parameter Name="bodega" Type="varchar" Mode="In" />
+    <Parameter Name="Producto" Type="varchar" Mode="In" />
+    <Parameter Name="Marca" Type="varchar" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbBodega_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bod_Nombre" Type="varchar" Mode="In" />
@@ -3852,6 +4014,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
   <Function Name="UDP_Inv_tbBodega_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bod_Id" Type="int" Mode="In" />
     <Parameter Name="bod_EsActiva" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbBodegaDetalle_CantidadExistente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbBodegaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
@@ -3931,6 +4097,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="entd_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="entd_FechaCrea" Type="datetime" Mode="In" />
     <Parameter Name="uni_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbEstadoMovimiento_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="estm_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbEstadoMovimiento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="estm_Descripcion" Type="varchar" Mode="In" />
@@ -4106,6 +4275,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="tsal_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="tsal_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Inv_ValidacionCantidadExistente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="CantidadSolicitadad" Type="decimal" Mode="In" />
+    <Parameter Name="IDBodega" Type="int" Mode="In" />
+    <Parameter Name="IDProducto" Type="varchar" Mode="In" />
+    <Parameter Name="FechaElaboracion" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="crud_tbExoneracionInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="exo_Documento" Type="nvarchar" Mode="In" />
     <Parameter Name="exo_ExoneracionActiva" Type="bit" Mode="In" />
@@ -4123,6 +4298,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="suc_Telefono" Type="nvarchar" Mode="In" />
     <Parameter Name="suc_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="suc_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="fn_GetFacturaPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="fact_Id" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="fact_Id" Type="bigint" Nullable="false" />
+          <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
+          <Property Name="MontoFactura" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="pago_TotalPago" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="pago_SaldoAnterior" Type="decimal" Precision="10" Scale="0" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
   </Function>
   <Function Name="GetBusquedaClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="identificacion" Type="varchar" Mode="In" />
@@ -4156,6 +4345,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
   </Function>
   <Function Name="spGetTipoIdentificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="PersonaNatural" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_FacturasPagoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="fact_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbCaja_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="cja_Id" Type="smallint" Mode="In" />
@@ -4198,7 +4390,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="clte_ConCredito" Type="bit" Mode="In" />
     <Parameter Name="clte_EsMinorista" Type="bit" Mode="In" />
     <Parameter Name="clte_Observaciones" Type="nvarchar" Mode="In" />
-    <Parameter Name="clte_ConsumidorFinal" Type="bit" Mode="In" />
     <Parameter Name="clte_MontoCredito" Type="decimal" Mode="In" />
     <Parameter Name="clte_DiasCredito" Type="int" Mode="In" />
   </Function>
@@ -4229,7 +4420,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="clte_Observaciones" Type="nvarchar" Mode="In" />
     <Parameter Name="clte_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="clte_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="clte_ConsumidorFinal" Type="bit" Mode="In" />
     <Parameter Name="clte_MontoCredito" Type="decimal" Mode="In" />
     <Parameter Name="clte_DiasCredito" Type="int" Mode="In" />
   </Function>
@@ -4345,6 +4535,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="escre_FechaAgrego" Type="datetime" Mode="In" />
     <Parameter Name="escre_FechaModifica" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbExoneracion_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="exo_Id" Type="int" Mode="In" />
+    <Parameter Name="exo_ExoneracionActiva" Type="bit" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbExoneracion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="exo_Documento" Type="nvarchar" Mode="In" />
     <Parameter Name="exo_ExoneracionActiva" Type="bit" Mode="In" />
@@ -4361,6 +4555,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="clte_Id" Type="int" Mode="In" />
     <Parameter Name="exo_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="exo_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbFactura_BuscarListaPrecio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="IDCLIENTE" Type="int" Mode="In" />
+    <Parameter Name="IDPRODUCTO" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbFactura_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="int" Mode="In" />
@@ -4486,6 +4684,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="mocja_FechaCrea" Type="datetime" Mode="In" />
     <Parameter Name="mocja_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="mocja_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbNotaCredito_Anulado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="nocre_Id" Type="smallint" Mode="In" />
+    <Parameter Name="nocre_Anulado" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbNotaCredito_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="nocre_Codigo" Type="varchar" Mode="In" />
@@ -4645,7 +4847,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="cred_MontoSolicitado" Type="decimal" Mode="In" />
     <Parameter Name="cred_DiasSolicitado" Type="int" Mode="In" />
   </Function>
-  <Function Name="UDP_Vent_tbSolicitudCredito_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+  <Function Name="UDP_Vent_tbSolicitudCredito_Update1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" StoreFunctionName="UDP_Vent_tbSolicitudCredito_Update">
     <Parameter Name="cred_Id" Type="int" Mode="In" />
     <Parameter Name="clte_Id" Type="int" Mode="In" />
     <Parameter Name="escre_Id" Type="tinyint" Mode="In" />
@@ -4684,6 +4886,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="soled_CantidadEntregada" Type="smallint" Mode="In" />
     <Parameter Name="soled_MontoEntregado" Type="decimal" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" />
   <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="soled_Id" Type="int" Mode="In" />
     <Parameter Name="deno_Id" Type="smallint" Mode="In" />
@@ -4796,11 +4999,54 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <EntitySet Name="tbSolicitudEfectivoDetalle" EntityType="Self.tbSolicitudEfectivoDetalle" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbSucursal" EntityType="Self.tbSucursal" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbTipoPago" EntityType="Self.tbTipoPago" Schema="Vent" store:Type="Tables" />
+    <EntitySet Name="V_Objetos" EntityType="Self.V_Objetos" store:Type="Views" store:Schema="Acce">
+      <DefiningQuery>SELECT 
+    [V_Objetos].[obj_Id] AS [obj_Id], 
+    [V_Objetos].[obj_Pantalla] AS [obj_Pantalla], 
+    [V_Objetos].[usu_NombreUsuario] AS [usu_NombreUsuario], 
+    [V_Objetos].[obj_FechaCrea] AS [obj_FechaCrea], 
+    [V_Objetos].[obj_UsuarioModifica] AS [obj_UsuarioModifica], 
+    [V_Objetos].[obj_FechaModifica] AS [obj_FechaModifica]
+    FROM [Acce].[V_Objetos] AS [V_Objetos]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="Self.UDV_Inv_Nombre_Empleado" store:Type="Views" store:Schema="Gral">
       <DefiningQuery>SELECT 
     [UDV_Inv_Nombre_Empleado].[emp_Id] AS [emp_Id], 
     [UDV_Inv_Nombre_Empleado].[Empleados] AS [Empleados]
     FROM [Gral].[UDV_Inv_Nombre_Empleado] AS [UDV_Inv_Nombre_Empleado]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UDV_Inv_Consultar_Existencias_Productos" EntityType="Self.UDV_Inv_Consultar_Existencias_Productos" store:Type="Views" store:Schema="Inv">
+      <DefiningQuery>SELECT 
+    [UDV_Inv_Consultar_Existencias_Productos].[suc_Descripcion] AS [suc_Descripcion], 
+    [UDV_Inv_Consultar_Existencias_Productos].[bod_Nombre] AS [bod_Nombre], 
+    [UDV_Inv_Consultar_Existencias_Productos].[prod_Descripcion] AS [prod_Descripcion], 
+    [UDV_Inv_Consultar_Existencias_Productos].[prod_Marca] AS [prod_Marca], 
+    [UDV_Inv_Consultar_Existencias_Productos].[bodd_CantidadExistente] AS [bodd_CantidadExistente], 
+    [UDV_Inv_Consultar_Existencias_Productos].[bodd_CantidadMinima] AS [bodd_CantidadMinima], 
+    [UDV_Inv_Consultar_Existencias_Productos].[bod_Id] AS [bod_Id], 
+    [UDV_Inv_Consultar_Existencias_Productos].[prod_Codigo] AS [prod_Codigo]
+    FROM [Inv].[UDV_Inv_Consultar_Existencias_Productos] AS [UDV_Inv_Consultar_Existencias_Productos]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="Self.UDP_Vent_SolicituEfectivo_Select" store:Type="Views" store:Schema="Vent">
+      <DefiningQuery>SELECT 
+    [UDP_Vent_SolicituEfectivo_Select].[IdSolicitud] AS [IdSolicitud], 
+    [UDP_Vent_SolicituEfectivo_Select].[FechaSolicitud] AS [FechaSolicitud], 
+    [UDP_Vent_SolicituEfectivo_Select].[Sucursal] AS [Sucursal], 
+    [UDP_Vent_SolicituEfectivo_Select].[Caja] AS [Caja], 
+    [UDP_Vent_SolicituEfectivo_Select].[Moneda] AS [Moneda], 
+    [UDP_Vent_SolicituEfectivo_Select].[MontoSolicitado] AS [MontoSolicitado], 
+    [UDP_Vent_SolicituEfectivo_Select].[MontoEntregado] AS [MontoEntregado]
+    FROM [Vent].[UDP_Vent_SolicituEfectivo_Select] AS [UDP_Vent_SolicituEfectivo_Select]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDV_Vent_Busqueda_Clientes" EntityType="Self.UDV_Vent_Busqueda_Clientes" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 
@@ -4832,8 +5078,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     [UDV_Vent_Busqueda_Clientes].[clte_UsuarioCrea] AS [clte_UsuarioCrea], 
     [UDV_Vent_Busqueda_Clientes].[clte_FechaCrea] AS [clte_FechaCrea], 
     [UDV_Vent_Busqueda_Clientes].[clte_UsuarioModifica] AS [clte_UsuarioModifica], 
-    [UDV_Vent_Busqueda_Clientes].[clte_FechaModifica] AS [clte_FechaModifica], 
-    [UDV_Vent_Busqueda_Clientes].[clte_ConsumidorFinal] AS [clte_ConsumidorFinal]
+    [UDV_Vent_Busqueda_Clientes].[clte_FechaModifica] AS [clte_FechaModifica]
     FROM [Vent].[UDV_Vent_Busqueda_Clientes] AS [UDV_Vent_Busqueda_Clientes]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDV_Vent_Busqueda_Factura" EntityType="Self.UDV_Vent_Busqueda_Factura" store:Type="Views" store:Schema="Vent">
@@ -4864,6 +5109,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     [UDV_Vent_Busqueda_Factura].[fact_UsuarioModifica] AS [fact_UsuarioModifica], 
     [UDV_Vent_Busqueda_Factura].[fact_FechaModifica] AS [fact_FechaModifica]
     FROM [Vent].[UDV_Vent_Busqueda_Factura] AS [UDV_Vent_Busqueda_Factura]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_Vent_FacturaPago" EntityType="Self.V_Vent_FacturaPago" store:Type="Views" store:Schema="Vent">
+      <DefiningQuery>SELECT 
+    [V_Vent_FacturaPago].[fact_Id] AS [fact_Id], 
+    [V_Vent_FacturaPago].[fact_Codigo] AS [fact_Codigo], 
+    [V_Vent_FacturaPago].[MontoFactura] AS [MontoFactura], 
+    [V_Vent_FacturaPago].[TotalPago] AS [TotalPago], 
+    [V_Vent_FacturaPago].[SaldoFactura] AS [SaldoFactura]
+    FROM [Vent].[V_Vent_FacturaPago] AS [V_Vent_FacturaPago]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" Association="Self.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
       <End Role="tbObjeto" EntitySet="tbObjeto" />
@@ -5457,6 +5711,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbTipoSalida" EntitySet="tbTipoSalida" />
     </AssociationSet>
+    <AssociationSet Name="FK_tbTipoIdentificacion_tbCliente_tpi_Id" Association="Self.FK_tbTipoIdentificacion_tbCliente_tpi_Id">
+      <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
+      <End Role="tbCliente" EntitySet="tbCliente" />
+    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbBodega_tbSucursal_bod_Id" Association="Self.FK_Vent_tbBodega_tbSucursal_bod_Id">
       <End Role="tbBodega" EntitySet="tbBodega" />
       <End Role="tbSucursal" EntitySet="tbSucursal" />
@@ -5680,10 +5938,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <AssociationSet Name="FK_Vent_tbSucursal_tbPedido_suc_Id" Association="Self.FK_Vent_tbSucursal_tbPedido_suc_Id">
       <End Role="tbSucursal" EntitySet="tbSucursal" />
       <End Role="tbPedido" EntitySet="tbPedido" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id" Association="Self.FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id">
-      <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
-      <End Role="tbCliente" EntitySet="tbCliente" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbTipoPago_tbPago_tpa_Id" Association="Self.FK_Vent_tbTipoPago_tbPago_tpa_Id">
       <End Role="tbTipoPago" EntitySet="tbTipoPago" />
