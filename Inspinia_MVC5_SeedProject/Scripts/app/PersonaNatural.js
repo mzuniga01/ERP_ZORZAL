@@ -38,7 +38,6 @@
         $('#identificacion').hide();
     }
 });
-
 $(document).ready(function () {
 
     var Identificacion = $("#tpi_Id option:selected").text()
@@ -88,6 +87,16 @@ $(document).ready(function () {
         $("#clte_Telefono").val('**');
         $('#natural').hide();
     }
+    if (clte_ConCredito.checked) {
+        //Do stuff
+        $("#clte_MontoCredito").val(0);
+        $("#clte_DiasCredito").val(0);
+    }
+    else {
+        $("#clte_MontoCredito").val('');
+        $("#clte_DiasCredito").val('');
+    }
+
     var campo = $('#tpi_Id').val();
     if (campo === '') {
         $("#clte_Identificacion").val('')
@@ -113,14 +122,24 @@ $(document).ready(function () {
     }
 });
 
-$("#clte_ConCredito").change(function () {
-    if (this.checked) {
-        $('#Credito').show();
-    }
-    else {
-        $('#Credito').hide();
-    }
-});
+//$("#clte_ConCredito").change(function () {
+//    if (this.checked) {
+//        $('#Credito').show();
+//        //Ed = $("#clte_MontoCredito").data('')
+//        Valor = 10;
+//        Ed = $("#clte_MontoCredito").val();
+//        console.log(Ed)
+
+//        console.log(Valor)
+//        $("#clte_MontoCredito").val(Valor);
+//        //$("#clte_DiasCredito").val(0);
+//    }
+//    else {
+//        $('#Credito').hide();
+//        //$("#clte_MontoCredito").val('ddd');
+//        //$("#clte_DiasCredito").val('ddd');
+//    }
+//});
 
 $("#dep_Codigo").change(function () {
     var depto = $('#dep_Codigo').val();

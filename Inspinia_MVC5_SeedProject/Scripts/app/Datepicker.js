@@ -17,7 +17,12 @@
         minDate: '-100Y',
         maxDate: '-18Y',
         prevText: 'Ant',
-        nextText: 'Sig'
+        nextText: 'Sig',
+        changeMonth: true,
+        changeYear: true,
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+        //showOn: 'both',
+        //buttonText: '<i class="fas fa-calendar-day"></i>'
     }).datepicker('setDate', new Date());
 
     var FechaInicio1 = new Date();
@@ -28,9 +33,13 @@
         minDate: '-100Y',
         maxDate: FechaInicio1,
         prevText: 'Ant',
-        nextText: 'Sig'
+        nextText: 'Sig',
+        changeMonth: true,
+        changeYear: true,
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+        //showOn: 'both',
+        //buttonText: '<i class="fas fa-calendar-day"></i>'
     }).datepicker('setDate', new Date());
-
     //Factura
     $("#fechafactura").datepicker({
         dateFormat: 'dd-mm-yy',

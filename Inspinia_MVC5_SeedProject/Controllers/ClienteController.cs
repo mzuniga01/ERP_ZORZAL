@@ -269,9 +269,17 @@ namespace ERP_GMEDINA.Controllers
             ViewData["Razon"] = tbCliente.clte_RazonInactivo;
            //.Razon = tbCliente.clte_RazonInactivo;
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre",tbCliente.tbMunicipio.tbDepartamento.dep_Codigo);
+            var Departamento = tbCliente.tbMunicipio.tbDepartamento.dep_Codigo; ;
             ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
             ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
+            //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
+            var Municipio = db.tbMunicipio.Select(s => new
+            {
+                mun_Codigo = s.mun_Codigo,
+                mun_Nombre = s.mun_Nombre,
+                dep_Codigo=s.dep_Codigo
+            }).Where(x => x.dep_Codigo == Departamento).ToList();
+            ViewBag.mun_Codigo = new SelectList(Municipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
             if (tbCliente.clte_EsPersonaNatural)
                 ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
             else
