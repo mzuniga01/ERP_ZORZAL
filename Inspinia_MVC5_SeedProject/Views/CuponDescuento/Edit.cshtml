@@ -137,44 +137,43 @@
                                 <div class="col-md-12 text-center">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular">
-                                        @*boton Anular Cupon Descuento*@
-                                    Anular
-                                </button>
+                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular">@*boton Anular Cupon Descuento*@
+                                        Anular
+                                    </button>
+                                </div>
                             </div>
                         </div>
+                        }
                     </div>
-                    }
                 </div>
-            </div>
-            <div class="ibox-content">
-                <table class="table table-striped">
-                    <tr>
-                        <th>Acción</th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
-                    </tr>
-                    <tr>
-                        <td>Creado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                        </td>
-                        <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
-                    </tr>
-                    <tr>
-                        <td>Modificado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                        </td>
-                        <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
-                    </tr>
-                </table>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 @* -------------------Modal Anular---------------- *@
 <div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -201,36 +200,7 @@
 
 
 
-@section Scripts {
+@*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script>
-        //$("#cdto_PorcentajeDescuento").keypress(function () {
-        //    $('#cdto_MontoDescuento').val('0.00');
-        //});
-        //$("#cdto_MontoDescuento").keypress(function () {
-        //    $('#cdto_PorcentajeDescuento').val('0.00');
-        //    $('#cdto_MaximoMontoDescuento').val('0.00');
-        //});
-
-        //$(document).ready(function () {
-        //    $('#cdto_MontoDescuento').val('0.00');
-        //    $('#cdto_CantidadCompraMinima').val('0.00');
-        //    $('#cdto_PorcentajeDescuento').val('0.00');
-        //    $('#cdto_MaximoMontoDescuento').val('0.00');
-        //});
-
-        $('#cdto_PorcentajeDescuento').click(function () {
-            $('#cdto_MontoDescuento').val('0.00');
-            $('#cdto_CantidadCompraMinima').val('0.00');
-            $('#cdto_PorcentajeDescuento').val('');
-            $('#cdto_MaximoMontoDescuento').val('');
-        });
-
-        $('#cdto_MontoDescuento').click(function () {
-            $('#cdto_PorcentajeDescuento').val('0.00');
-            $('#cdto_MaximoMontoDescuento').val('0.00');
-            $('#cdto_MontoDescuento').val('');
-            $('#cdto_CantidadCompraMinima').val('');
-        });
-    </script>
-}
+    
+}*@

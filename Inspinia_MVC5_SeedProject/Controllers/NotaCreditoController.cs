@@ -21,6 +21,21 @@ namespace ERP_ZORZAL.Controllers
             return View(tbnotacredito.ToList());
         }
 
+        public ActionResult _IndexDevolucion(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
+            if (tbDevolucion == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tbDevolucion);
+        }
+
+
         // GET: /NotaCredito/Details/5
         public ActionResult Details(short? id)
         {

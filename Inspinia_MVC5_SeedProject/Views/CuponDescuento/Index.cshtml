@@ -93,11 +93,11 @@
                                     {
                                         <td>
                                             @Html.ActionLink("Detalles", "Details", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn-xs" })
+
+                                            @*btn no update ya esta anulado*@
                                             <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Anulado">
-                                                @*btn no update ya esta anulado*@
                                                 Editar
                                             </button>
-
                                             @Html.ActionLink("Imprimir", "", null, new { id = "btnImprimir", @class = "btn btn-info btn-xs" })
                                         </td>
                                     }
@@ -111,27 +111,6 @@
         </div>
     </div>
 </div>
-@* -------------------Modal Anulado Anulado---------------- *@
-<div class="modal fade" id="AnulaAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cupón Descuento</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                El Cupón Descuento ya está Anulado, no puedes Anular nuevamente
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="AnularNotaCredito();" data-dismiss="modal">Ok</button>
-            </div>
-        </div>
-    </div>
-</div>
-@* -------------------FIN Modal Anulado Anulado---------------- *@
-
 
 @* -------------------Modal Anulado no editable---------------- *@
 <div class="modal fade" id="Anulado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -147,7 +126,7 @@
                 El Cupón Descuento no puede ser Editada porque fue Anulada.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="AnularNotaCredito();" data-dismiss="modal">Ok</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
             </div>
         </div>
     </div>

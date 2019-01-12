@@ -119,10 +119,12 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label id="lbFechaDevolucion" class="control-label col-md-2">Fecha Devolución</label>
+
+                            <div class="form-group" id="divFechaDev">
+                                @Html.LabelFor(model => model.tbDevolucion.dev_Fecha, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    <input name="FechaDevolucion" class="form-control" id="FechaDevolucion" readonly/>
+                                    @Html.EditorFor(model => model.tbDevolucion.dev_Fecha, "{0:yyyy-MM-dd}")
+                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbDevolucion.dev_Fecha)</span></p>
                                 </div>
                             </div>
 
@@ -209,7 +211,10 @@
         $.datepicker.setDefaults($.datepicker.regional['es']);
         $(function () {
             $("#nocre_FechaEmision").datepicker({
-                dateFormat: 'dd/mm/yy', minDate: 0, maxDate: "+0d" }).datepicker('setDate', new Date());
+                dateFormat: 'dd/mm/yy', minDate: 0, maxDate: "+0d"
+            }).datepicker('setDate', new Date());
+
+            $("#tbDevolucion_dev_Fecha").datepicker({ dateFormat: 'dd/mm/yy' })
         });
     </script>
     <script>
@@ -231,8 +236,8 @@
            $('#divDevolucion').show();
            $('#cltesearch').prop("disabled", true);
            $('#dev_Id').val('');
-           $("#FechaDevolucion").show();
-           $("#lbFechaDevolucion").show();
+           $("#divFechaDev").show();
+           //$("#lbFechaDevolucion").show();
            
        });
 
@@ -243,9 +248,17 @@
            $('#divDevolucion').hide();
            $('#nocre_Monto').prop('readonly', false);
            $('#nocre_Monto').val('');
-           $("#FechaDevolucion").hide();
-           $("#lbFechaDevolucion").hide();
-           
+           $("#divFechaDev").hide();
+       });
+       //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
+       $(document).keydown(function (e) {
+           if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+               e.preventDefault();
+               //alert("Ctrl-g pressed");
+               $("form").submit();
+               return false;
+           }
+           return true;
        });
 </script>
 

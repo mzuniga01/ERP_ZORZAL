@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbDevolucionDetalle>
 @using ERP_GMEDINA.Models
+
 @{
+    var vtbFactura = new ERP_GMEDINA.Models.tbFactura();
     var vtbDevolucion = new ERP_GMEDINA.Models.tbDevolucion();
     var vtbCliente = new ERP_GMEDINA.Models.tbCliente();
 }
@@ -23,7 +25,6 @@
         <tr>
             <th>
                 Código
-                @*@Html.DisplayNameFor(model => model.dev_Id)*@
             </th>
             <th>
                 Monto
@@ -31,17 +32,29 @@
             <th>
                 Fecha
             </th>
+            @*<th>
+                cliente nombre
+            </th>
+            <th>
+                cliente Id
+            </th>
+            <th>
+                cliente Identificacion
+            </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            var name = (!vtbCliente.clte_EsPersonaNatural) ? vtbCliente.clte_NombreComercial : vtbCliente.clte_Nombres + ' ' + @vtbCliente.clte_Apellidos;
+            var nameclte = (!item.tbDevolucion.tbFactura.tbCliente.clte_EsPersonaNatural) ? item.tbDevolucion.tbFactura.tbCliente.clte_NombreComercial : item.tbDevolucion.tbFactura.tbCliente.clte_Nombres + ' ' + item.tbDevolucion.tbFactura.tbCliente.clte_Apellidos;
+            var fechadev = item.tbDevolucion.dev_Fecha;
             <tr data-devid="@item.dev_Id"
                 data-monto="@item.devd_Monto"
                 data-fecha="@vtbDevolucion.dev_Fecha"
-                data-nombre="@name">
+                data-nombreclte="@nameclte"
+                data-identificacionclte="@item.tbDevolucion.tbFactura.tbCliente.clte_Identificacion"
+                data-clteid="@item.tbDevolucion.tbFactura.tbCliente.clte_Id">
                 <td>
                     @Html.DisplayFor(modelItem => item.dev_Id)
                 </td>
@@ -49,13 +62,24 @@
                     @Html.DisplayFor(modelItem => item.devd_Monto)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => vtbDevolucion.dev_Fecha)
+                    @*@Html.DisplayFor(modelItem => item.tbDevolucion.dev_Fecha, "{0:dd/MM/yyyy}", new { @class = "form-control" })*@
+                    @Html.DisplayFor(modelItem => item.tbDevolucion.dev_Fecha, "{0:dd/MM/yyyy}")
+                </td>
+                @*<td>
+                    @nameclte
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.tbDevolucion.tbFactura.tbCliente.clte_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbDevolucion.tbFactura.tbCliente.clte_Identificacion)
+                </td>*@
+                <td>
                     <button id="seleccionarDev" class="btn btn-primary btn-xs">Agregar</button>
+                    @Html.ActionLink("Detalles", "Details", "Devolucion", new { id = item.dev_Id }, new { onclick = "Devolucion();", @class="btn btn-primary btn-xs" })
                 </td>
             </tr>
-        }
+                        }
     </tbody>
 </table>
 
@@ -86,6 +110,18 @@
         });
     });
 </script>
+
+<script type="text/javascript">
+    function Devolucion() {
+        console.log("lnkLogout_Confirm clciked.");
+        var url = '@Url.Action("Details", "Devolucion")';
+        window.location.href = url;
+
+        return bResponse;
+    }
+
+</script>
+
 <script>
     $(document).ready(function () {
         var $rows = $('#tbDevolucion tr');
@@ -105,12 +141,16 @@
         DevIdItem = $(this).closest('tr').data('devid');
         MontoItem = $(this).closest('tr').data('monto');
         fechaItem = $(this).closest('tr').data('fecha');
-        nombreItem = $(this).closest('tr').data('nombre');
-
+        nombreclteItem = $(this).closest('tr').data('nombreclte');
+        identificacionclteItem = $(this).closest('tr').data('identificacionclte');
+        clteidItem = $(this).closest('tr').data('clteid');
+        
         $("#dev_Id").val(DevIdItem);
         $("#nocre_Monto").val(MontoItem);
-        $("#FechaDevolucion").val(fechaItem);
-        $("#tbCliente_clte_Nombres").val(nombreItem);
+        $("#tbDevolucion_dev_Fecha").val(fechaItem);
+        $("#tbCliente_clte_Nombres").val(nombreclteItem);
+        $("#tbCliente_clte_Identificacion").val(identificacionclteItem);
+        $("#clte_Id").val(clteidItem);
         $('#ModalAgregarDevolucion').modal('hide');
     });
 </script>

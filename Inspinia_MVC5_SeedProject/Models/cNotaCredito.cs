@@ -21,7 +21,7 @@ namespace ERP_GMEDINA.Models
         public string nocre_Codigo { get; set; }
 
         [Display(Name = "Devolución")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public int dev_Id { get; set; }
 
         [Display(Name = "Cliente")]
