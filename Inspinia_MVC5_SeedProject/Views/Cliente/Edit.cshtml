@@ -213,22 +213,15 @@
                                 <div class="col-md-2">
                                     @if(Model.clte_EsActivo)
                                     {
-                                        <p id="Activo">Si</p>
+                                        <p>Si</p>
                                         
                                     }
                                     else
                                     {
-                                        <p id="Activo">No</p>
-                                        <div class="form-group" id="RazonInactivo">
-                                            @Html.LabelFor(model => model.clte_RazonInactivo, new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.TextAreaFor(model => model.clte_RazonInactivo, new { @class = "form-control" })
-                                                <p style="color:red">@Html.ValidationMessageFor(model => model.clte_RazonInactivo)</p>
-                                            </div>
-                                        </div>
+                                        <p>No</p>
+                                        
                                     }
-                                    @*@Html.EditorFor(model => model.clte_EsActivo, new { htmlAttributes = new { @type = "checkbox", @checked = "true" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsActivo)</p>*@
+                                    
                                 </div>
                                 @Html.LabelFor(model => model.clte_ConCredito, new { @class = "control-label col-md-2" })
                                 <div class="col-md-2">
@@ -254,8 +247,22 @@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_DiasCredito)</p>
                                 </div>
                             </div>
-                            
+                            @if (Model.clte_EsActivo)
+                            {
                                 
+
+                            }
+                            else
+                            {
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Razon Inactivo</label>
+                                    <div class="col-md-10">
+                                        <textarea class="form-control" id="clte_RazonInactivo" name="clte_RazonInactivo">@ViewData["Razon"]</textarea>
+                                     </div>
+                                </div>
+
+                            }
+                            
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.clte_Observaciones, new { @class = "control-label col-md-2" })
@@ -367,7 +374,6 @@
     </div>
 </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/PersonaNatural.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Activo.js"></script>
 <script src="~/Scripts/app/Departamento.js"></script>
@@ -378,14 +384,6 @@
 <script>
 
     $(document).ready(function () {
-        //var value = $('#Activo').val()
-        //console.log(value)
-        //if (value=="Si") {
-        //    $('#RazonInactivo').hide();
-        //} else {
-        //    $('#RazonInactivo').show();
-        //}
-
         if (clte_ConCredito.checked) {
             $('#Credito').show();
         } else {
@@ -393,3 +391,13 @@
         }
     });
 </script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/app/PersonaNatural.js"></script>
+    <script>
+        $("#clte_Nacionalidad").autocomplete({
+            source: "/Cliente/GetNacionalidades",
+            minLength: 3
+        });
+    </script>
+}

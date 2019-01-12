@@ -270,6 +270,8 @@ namespace ERP_GMEDINA.Controllers
             {
                 return HttpNotFound();
             }
+            ViewData["Razon"] = tbCliente.clte_RazonInactivo;
+           //.Razon = tbCliente.clte_RazonInactivo;
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre",tbCliente.tbMunicipio.tbDepartamento.dep_Codigo);
             ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
             ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);

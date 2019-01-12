@@ -341,11 +341,6 @@ $("#clte_DiasCredito").on("change", function (event) {
     this.value = this.value.replace(/[a-záéíóúüñ#/=\s-+*]+/ig, "");
 });
 
-$("#clte_Nacionalidad").autocomplete({
-    source: "/Cliente/GetNacionalidades",
-    minLength: 3
-});
-
 $("#clte_Identificacion").on("blur", function (event) {
     var tpi_Id = $("#tpi_Id option:selected").text()
     var Identificacion = $(this).val();
