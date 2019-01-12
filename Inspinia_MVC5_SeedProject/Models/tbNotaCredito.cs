@@ -14,12 +14,6 @@ namespace ERP_GMEDINA.Models
     
     public partial class tbNotaCredito
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbNotaCredito()
-        {
-            this.tbDevolucion1 = new HashSet<tbDevolucion>();
-        }
-    
         public short nocre_Id { get; set; }
         public string nocre_Codigo { get; set; }
         public Nullable<int> dev_Id { get; set; }
@@ -39,8 +33,6 @@ namespace ERP_GMEDINA.Models
         public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbCliente tbCliente { get; set; }
         public virtual tbDevolucion tbDevolucion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbDevolucion> tbDevolucion1 { get; set; }
         public virtual tbSucursal tbSucursal { get; set; }
     }
 }

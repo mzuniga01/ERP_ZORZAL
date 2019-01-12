@@ -238,7 +238,8 @@ namespace ERP_GMEDINA.Controllers
                                                 tbFactura.clte_Nombres,
                                                 tbFactura.fact_IdentidadTE,
                                                 tbFactura.fact_NombresTE,
-                                                tbFactura.fact_FechaNacimientoTE);
+                                                tbFactura.fact_FechaNacimientoTE,
+                                                tbFactura.fact_EsAnulada);
                         foreach (UDP_Vent_tbFactura_Insert_Result Factura in listFactura)
                             MensajeError = Factura.MensajeError;
                         if (MensajeError == -1)
@@ -381,6 +382,7 @@ namespace ERP_GMEDINA.Controllers
                         tbFactura.fact_FechaNacimientoTE,
                         tbFactura.fact_UsuarioAutoriza,
                         tbFactura.fact_FechaAutoriza,
+                        tbFactura.fact_EsAnulada,
                         tbFactura.fact_UsuarioCrea,
                         tbFactura.fact_FechaCrea);
                     foreach (UDP_Vent_tbFactura_Update_Result Factura in list)
