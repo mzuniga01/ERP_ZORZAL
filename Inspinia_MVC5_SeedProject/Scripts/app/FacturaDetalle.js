@@ -177,3 +177,9 @@ function format(input) {
     }
 }
 
+function ponerdecimales(numero) {
+    if (numero.indexOf(".") == -1) { numero += ".00" } else {
+        if (numero.indexOf(".") == numero.length - 2) { numero += "0" }
+    }
+    return numero;
+}

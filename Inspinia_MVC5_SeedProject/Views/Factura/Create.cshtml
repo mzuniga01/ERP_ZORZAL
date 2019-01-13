@@ -117,22 +117,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.fact_Vendedor, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.fact_Vendedor)
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Vendedor)</span>
-                                </div>
                                 <label class="control-label col-md-2">Autorizar Descuento</label>
                                 <div class="col-md-4">
                                     <input id="fact_AutorizarDescuento" type="checkbox" class="check-box" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoModal" />
-                                </div>
-                                
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("esfac_Id", null, "Seleccione Tipo Estado", new { @class = "form-control" })
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.esfac_Id)</span>
                                 </div>
                                 <div class="form-horizontal" name="Cred2" id="Cred2">
                                     @Html.LabelFor(model => model.fact_PorcentajeDescuento, new { @class = "control-label col-md-2" })
@@ -140,7 +127,20 @@
                                         @Html.EditorFor(model => model.fact_PorcentajeDescuento)
                                     </div>
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_PorcentajeDescuento)</span>
+                                </div>                                
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("esfac_Id", null, new { @class = "form-control", @readonly = "readonly" })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.esfac_Id)</span>
                                 </div>
+                                @Html.LabelFor(model => model.fact_Vendedor, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_Vendedor)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Vendedor)</span>
+                                </div>
+
                             </div>
                             <div class="form-group">
                                 <div class="col-md-4">
@@ -207,7 +207,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Porcentaje de Descuento</label>
                                     <div class="col-md-6">
-                                        <input id="Porcentaje de Descuento" type="text" class="form-control" />
+                                        <input id="PorcentajeDescuento" type="text" class="form-control" />
                                     </div>
                                 </div>  
                             </form>                                        
@@ -280,7 +280,9 @@
 <script src="~/Scripts/app/Credito.js"></script>
 <script src="~/Scripts/app/ClienteFactura.js"></script>
 <script src="~/Scripts/app/Factura.js"></script>
+
 <script>
+    document.getElementById("esfac_Id").disabled = true;
     // Open Modal Edad
     function myFunction() {
         var checkBox = document.getElementById("MostrarTerceraEdad");
@@ -316,9 +318,6 @@
             }
         }
     });
-    //Remove State
-    $("#esfac_Id").find("option[value=4]").remove();
-
 </script>
 
 @section Scripts {

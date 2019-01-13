@@ -22,7 +22,6 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Fecha")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
-        //[DataType(DataType.Date)]
         public System.DateTime fact_Fecha { get; set; }
         [Display(Name = "Estado")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
@@ -37,7 +36,6 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string pemi_NumeroCAI { get; set; }
         [Display(Name = "Al Crédito")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public bool fact_AlCredito { get; set; }
         [Display(Name = "Días Crédito")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]

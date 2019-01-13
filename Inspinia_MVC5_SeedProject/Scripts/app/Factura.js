@@ -17,35 +17,6 @@
     });
 });
 
-
-$("#consumidorFinal").change(function () {
-   if (this.checked) {
-        //Do stuff
-       $('#DatosCliente').hide();
-       $("#clte_Identificacion").val('---------------');
-       $("#clte_Nombres").val('---------------');
-}
-    else {
-       $('#DatosCliente').show();
-       $("#clte_Nombres").val('');
-       $("#clte_Identificacion").val('');
-    }
-})
-
-$("#consumidorFinal").ready(function () {
-    if (this.checked) {
-        //Do stuff
-        $('#DatosCliente').hide();
-        $("#clte_Identificacion").val('---------------');
-        $("#clte_Nombres").val('---------------');
-}
-    else {
-        $('#DatosCliente').show();
-        $("#clte_Nombres").val('');
-        $("#clte_Identificacion").val('');
-    }
-});
-
 $("#fact_NombresTE").change(function () {
     var str = $("#fact_NombresTE").val();
     var res = str.toUpperCase();

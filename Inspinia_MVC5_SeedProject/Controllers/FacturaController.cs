@@ -225,7 +225,7 @@ namespace ERP_GMEDINA.Controllers
                         listFactura = db.UDP_Vent_tbFactura_Insert(
                                                 tbFactura.fact_Codigo,
                                                 tbFactura.fact_Fecha,
-                                                tbFactura.esfac_Id,
+                                                tbFactura.esfac_Id= 1,
                                                 tbFactura.cja_Id,
                                                 tbFactura.suc_Id,
                                                 tbFactura.clte_Id,
@@ -368,7 +368,7 @@ namespace ERP_GMEDINA.Controllers
                         tbFactura.fact_Id,
                         tbFactura.fact_Codigo,
                         tbFactura.fact_Fecha,
-                        tbFactura.esfac_Id,
+                        tbFactura.esfac_Id= 1,
                         tbFactura.clte_Id,
                         tbFactura.pemi_NumeroCAI,
                         tbFactura.fact_AlCredito,

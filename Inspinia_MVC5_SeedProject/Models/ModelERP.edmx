@@ -59,7 +59,7 @@
           </Key>
           <Property Name="usu_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="usu_NombreUsuario" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="usu_Password" Type="binary" MaxLength="64" Nullable="false" />
+          <Property Name="usu_Password" Type="varbinary" MaxLength="64" Nullable="false" />
           <Property Name="usu_Nombres" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="usu_Apellidos" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="usu_Correo" Type="varchar" MaxLength="150" Nullable="false" />
@@ -2861,18 +2861,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tbTipoIdentificacion_tbCliente_tpi_Id">
-          <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="1" />
-          <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbTipoIdentificacion">
-              <PropertyRef Name="tpi_Id" />
-            </Principal>
-            <Dependent Role="tbCliente">
-              <PropertyRef Name="tpi_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vent_tbBodega_tbSucursal_bod_Id">
           <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
           <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="*" />
@@ -2954,30 +2942,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             </Principal>
             <Dependent Role="tbPedido">
               <PropertyRef Name="clte_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Vent_tbCliente_tbUsuario_usu_Id_Crea">
-          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-          <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbCliente">
-              <PropertyRef Name="clte_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Vent_tbCliente_tbUsuario_usu_Id_Modifica">
-          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-          <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbCliente">
-              <PropertyRef Name="clte_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3254,18 +3218,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             </Principal>
             <Dependent Role="tbSolicitudEfectivo">
               <PropertyRef Name="mocja_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
-          <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="1" />
-          <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbMunicipio">
-              <PropertyRef Name="mun_Codigo" />
-            </Principal>
-            <Dependent Role="tbCliente">
-              <PropertyRef Name="mun_Codigo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3634,10 +3586,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="usu_RazonInactivo" Type="varchar" Mode="In" />
           <Parameter Name="usu_EsAdministrador" Type="bit" Mode="In" />
           <Parameter Name="usu_SesionesValidas" Type="tinyint" Mode="In" />
-        </Function>
-        <Function Name="UDP_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
-          <Parameter Name="UsuarioId" Type="varchar" Mode="In" />
-          <Parameter Name="password" Type="varchar" Mode="In" />
         </Function>
         <Function Name="ConteoParametro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="conteo" Type="int" Mode="In" />
@@ -4243,11 +4191,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="cliente" Type="varchar" Mode="In" />
           <Parameter Name="fecha" Type="varchar" Mode="In" />
           <Parameter Name="Caja" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="GetPrecioUnitario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-          <Parameter Name="clte_Identificacion" Type="nvarchar" Mode="In" />
-          <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
-          <Parameter Name="clte_EsMinorista" Type="bit" Mode="In" />
         </Function>
         <Function Name="spGetDenominacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="IdDenominacion" Type="int" Mode="In" />
@@ -5594,10 +5537,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbTipoSalida" EntitySet="tbTipoSalida" />
           </AssociationSet>
-          <AssociationSet Name="FK_tbTipoIdentificacion_tbCliente_tpi_Id" Association="Self.FK_tbTipoIdentificacion_tbCliente_tpi_Id">
-            <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
-            <End Role="tbCliente" EntitySet="tbCliente" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbBodega_tbSucursal_bod_Id" Association="Self.FK_Vent_tbBodega_tbSucursal_bod_Id">
             <End Role="tbBodega" EntitySet="tbBodega" />
             <End Role="tbSucursal" EntitySet="tbSucursal" />
@@ -5625,14 +5564,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <AssociationSet Name="FK_Vent_tbCliente_tbPedido_clte_id" Association="Self.FK_Vent_tbCliente_tbPedido_clte_id">
             <End Role="tbCliente" EntitySet="tbCliente" />
             <End Role="tbPedido" EntitySet="tbPedido" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbCliente_tbUsuario_usu_Id_Crea" Association="Self.FK_Vent_tbCliente_tbUsuario_usu_Id_Crea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbCliente" EntitySet="tbCliente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbCliente_tbUsuario_usu_Id_Modifica" Association="Self.FK_Vent_tbCliente_tbUsuario_usu_Id_Modifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbCliente" EntitySet="tbCliente" />
           </AssociationSet>
           <AssociationSet Name="FK_Vent_tbCuentasBanco_tbPago_bcta_Id" Association="Self.FK_Vent_tbCuentasBanco_tbPago_bcta_Id">
             <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
@@ -5725,10 +5656,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" Association="Self.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
             <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
             <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
-            <End Role="tbMunicipio" EntitySet="tbMunicipio" />
-            <End Role="tbCliente" EntitySet="tbCliente" />
           </AssociationSet>
           <AssociationSet Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
             <End Role="tbMunicipio" EntitySet="tbMunicipio" />
@@ -8485,7 +8412,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           </Key>
           <Property Name="usu_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="usu_NombreUsuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="usu_Password" Type="Binary" Nullable="false" MaxLength="64" FixedLength="true" />
+          <Property Name="usu_Password" Type="Binary" Nullable="false" MaxLength="64" FixedLength="false" />
           <Property Name="usu_Nombres" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="usu_Apellidos" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="usu_Correo" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -12933,17 +12860,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <FunctionImportMapping FunctionImportName="crud_tbExoneracionInsert" FunctionName="ERP_ZORZALModel.Store.crud_tbExoneracionInsert" />
           <FunctionImportMapping FunctionImportName="crud_tbSucursalInsert" FunctionName="ERP_ZORZALModel.Store.crud_tbSucursalInsert" />
           <FunctionImportMapping FunctionImportName="GetBusquedaClient" FunctionName="ERP_ZORZALModel.Store.GetBusquedaClient" />
-          <FunctionImportMapping FunctionImportName="GetPrecioUnitario" FunctionName="ERP_ZORZALModel.Store.GetPrecioUnitario">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.GetPrecioUnitario_Result">
-                <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
-                <ScalarProperty Name="listp_Nombre" ColumnName="listp_Nombre" />
-                <ScalarProperty Name="lispd_PrecioMayorista" ColumnName="lispd_PrecioMayorista" />
-                <ScalarProperty Name="lispd_PrecioMinorista" ColumnName="lispd_PrecioMinorista" />
-                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spGetProducto" FunctionName="ERP_ZORZALModel.Store.spGetProducto" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Insert" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Update" />
@@ -13052,22 +12968,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
                 <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
                 <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
                 <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Login" FunctionName="ERP_ZORZALModel.Store.UDP_Login">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Login_Result">
-                <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
-                <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
-                <ScalarProperty Name="usu_Password" ColumnName="usu_Password" />
-                <ScalarProperty Name="usu_Nombres" ColumnName="usu_Nombres" />
-                <ScalarProperty Name="usu_Apellidos" ColumnName="usu_Apellidos" />
-                <ScalarProperty Name="usu_Correo" ColumnName="usu_Correo" />
-                <ScalarProperty Name="usu_EsActivo" ColumnName="usu_EsActivo" />
-                <ScalarProperty Name="usu_RazonInactivo" ColumnName="usu_RazonInactivo" />
-                <ScalarProperty Name="usu_EsAdministrador" ColumnName="usu_EsAdministrador" />
-                <ScalarProperty Name="usu_SesionesValidas" ColumnName="usu_SesionesValidas" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
