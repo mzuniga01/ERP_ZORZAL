@@ -325,6 +325,10 @@ namespace ERP_GMEDINA.Controllers
 
             ViewBag.Cliente = db.tbCliente.ToList();
             ViewBag.Producto = db.tbProducto.ToList();
+
+            Session["Factura"] = null;
+            Session["TerceraEdad"] = null;
+
             return View(tbFactura);
         }
 
