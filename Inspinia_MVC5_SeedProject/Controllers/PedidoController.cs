@@ -20,7 +20,7 @@ namespace ERP_ZORZAL.Controllers
             return View(tbpedido.ToList());
         }
 
-        public ActionResult IndexFacturar()
+        public ActionResult IndexPedido()
         {
 
             return View(db.tbPedido.ToList());
@@ -214,7 +214,7 @@ namespace ERP_ZORZAL.Controllers
 
 
         // GET: /Pedido/Edit/5
-        public ActionResult EditFacturar(int? id)
+        public ActionResult EditPedido(int? id)
         {
             if (id == null)
             {

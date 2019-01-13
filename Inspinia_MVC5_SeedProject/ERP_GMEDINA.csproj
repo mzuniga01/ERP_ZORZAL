@@ -1399,8 +1399,8 @@
     <Content Include="Views\PuntoEmision\_EditNumeracionDetails.cshtml" />
     <Content Include="Views\PuntoEmision\_CreateNumeracionDetails.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexNumeracionEdit.cshtml" />
-    <Content Include="Views\Pedido\EditFacturar.cshtml" />
-    <Content Include="Views\Pedido\IndexFacturar.cshtml" />
+    <Content Include="Views\Pedido\EditPedido.cshtml" />
+    <Content Include="Views\Pedido\IndexPedido.cshtml" />
     <Content Include="Views\ListaPrecios\Create.cshtml" />
     <Content Include="Views\ListaPrecios\Delete.cshtml" />
     <Content Include="Views\ListaPrecios\Details.cshtml" />
