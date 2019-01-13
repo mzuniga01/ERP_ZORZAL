@@ -24,8 +24,6 @@ $('#mnda_Id').on("change", function () {
 });
 
 
-
-
 function GetDenominacion() {
     var CodMoneda = $('#mnda_Id').val();
     if (CodMoneda != "") {
@@ -69,7 +67,7 @@ $(document).on("change", "#DenominacionDetalle tbody tr td input#name", function
     var Cantidad = $(this).val();
     var total = parseFloat(document.getElementById("Total").innerHTML);
     var ValorDenominacion = $(this).parents("tr").find("td")[2].innerHTML;
-    var Subtotal = Cantidad * ValorDenominacion;
+    var Subtotal = Cantidad * ValorDenominacion;    
     console.log(Cantidad)
     console.log(ValorDenominacion)
 
@@ -82,11 +80,13 @@ $(document).on("change", "#DenominacionDetalle tbody tr td input#name", function
 
     //Grantotal
     if (document.getElementById("Total").innerHTML == '') {
-        document.getElementById("Total").innerHTML = parseFloat(0);
+        document.getElementById("Total").innerHTML = parseFloat(0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
     }
     else {
         var MontoInicial = document.getElementById("Total").innerHTML = parseFloat(total) + parseFloat(Subtotal);
-        document.getElementById('MontoInicial').value = MontoInicial.toFixed(2);
+        document.getElementById('MontoInicial').value = MontoInicial.toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+        
+
     }
 
    
@@ -97,6 +97,8 @@ $(document).on("keypress", "#DenominacionDetalle tbody tr td input#name", functi
     var total = parseFloat(document.getElementById("Total").innerHTML);
     var ValorDenominacion = $(this).parents("tr").find("td")[2].innerHTML;
     var Subtotal = Cantidad * ValorDenominacion;
+  
+
 
     console.log(Cantidad)
     console.log(ValorDenominacion)
@@ -110,14 +112,15 @@ $(document).on("keypress", "#DenominacionDetalle tbody tr td input#name", functi
 
     //Grantotal
     if (document.getElementById("Total").innerHTML == '') {
-      document.getElementById("Total").innerHTML = parseFloat(0);
+        document.getElementById("Total").innerHTML = parseFloat(0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+
     }
     else {
         var MontoInicial = document.getElementById("Total").innerHTML = parseFloat(total) + parseFloat(Subtotal);
-        document.getElementById('MontoInicial').value = MontoInicial.toFixed(2);
+        document.getElementById('MontoInicial').value = MontoInicial.toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+        
     }
 
    
 });
-
 
