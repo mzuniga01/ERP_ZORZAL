@@ -17,6 +17,30 @@
     });
 });
 
+$("#consumidorFinal").change(function () {
+    if (this.checked) {
+        //Do stuff     
+        $("#clte_Identificacion").val('99999999999999');
+        $("#clte_Nombres").val('Consumidor Final');
+    }
+    else {
+        $("#clte_Nombres").val('');
+        $("#clte_Identificacion").val('');
+    }
+})
+
+//$("#consumidorFinal").ready(function () {
+//    if (this.checked) {
+//        //Do stuff     
+//        $("#clte_Identificacion").val('99999999999999');
+//        $("#clte_Nombres").val('Consumidor Final');
+//    }
+//    else {
+//        $("#clte_Nombres").val('');
+//        $("#clte_Identificacion").val('');
+//    }
+//});
+
 $("#fact_NombresTE").change(function () {
     var str = $("#fact_NombresTE").val();
     var res = str.toUpperCase();

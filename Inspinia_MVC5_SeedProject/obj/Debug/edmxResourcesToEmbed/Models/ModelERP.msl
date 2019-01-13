@@ -582,17 +582,6 @@
     <FunctionImportMapping FunctionImportName="crud_tbExoneracionInsert" FunctionName="ERP_ZORZALModel.Store.crud_tbExoneracionInsert" />
     <FunctionImportMapping FunctionImportName="crud_tbSucursalInsert" FunctionName="ERP_ZORZALModel.Store.crud_tbSucursalInsert" />
     <FunctionImportMapping FunctionImportName="GetBusquedaClient" FunctionName="ERP_ZORZALModel.Store.GetBusquedaClient" />
-    <FunctionImportMapping FunctionImportName="GetPrecioUnitario" FunctionName="ERP_ZORZALModel.Store.GetPrecioUnitario">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.GetPrecioUnitario_Result">
-          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
-          <ScalarProperty Name="listp_Nombre" ColumnName="listp_Nombre" />
-          <ScalarProperty Name="lispd_PrecioMayorista" ColumnName="lispd_PrecioMayorista" />
-          <ScalarProperty Name="lispd_PrecioMinorista" ColumnName="lispd_PrecioMinorista" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="spGetProducto" FunctionName="ERP_ZORZALModel.Store.spGetProducto" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Insert" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Update" />
@@ -701,22 +690,6 @@
           <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
           <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
           <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Login" FunctionName="ERP_ZORZALModel.Store.UDP_Login">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Login_Result">
-          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
-          <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
-          <ScalarProperty Name="usu_Password" ColumnName="usu_Password" />
-          <ScalarProperty Name="usu_Nombres" ColumnName="usu_Nombres" />
-          <ScalarProperty Name="usu_Apellidos" ColumnName="usu_Apellidos" />
-          <ScalarProperty Name="usu_Correo" ColumnName="usu_Correo" />
-          <ScalarProperty Name="usu_EsActivo" ColumnName="usu_EsActivo" />
-          <ScalarProperty Name="usu_RazonInactivo" ColumnName="usu_RazonInactivo" />
-          <ScalarProperty Name="usu_EsAdministrador" ColumnName="usu_EsAdministrador" />
-          <ScalarProperty Name="usu_SesionesValidas" ColumnName="usu_SesionesValidas" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

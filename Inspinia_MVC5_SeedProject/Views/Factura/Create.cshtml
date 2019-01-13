@@ -80,7 +80,7 @@
                             <div id="DatosCliente" name="DatosCliente" class="form-group">
                                 @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2", id = "label_identificacion" })
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Identificacion)</span>
                                 </div>
                                 <div class="col-md-1" style="width: 12.499999995%; padding:0">

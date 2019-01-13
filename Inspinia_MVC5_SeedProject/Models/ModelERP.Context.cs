@@ -2249,7 +2249,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbRolesUsuario_Update", rolu_IdParameter, rol_IdParameter, usu_IdParameter, rolu_UsuarioCreaParameter, rolu_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Acce_tbUsuario_Insert(string usu_NombreUsuario, byte[] usu_Password, string usu_Nombres, string usu_Apellidos, string usu_Correo)
+        public virtual ObjectResult<string> UDP_Acce_tbUsuario_Insert(string usu_NombreUsuario, string usu_Password, string usu_Nombres, string usu_Apellidos, string usu_Correo)
         {
             var usu_NombreUsuarioParameter = usu_NombreUsuario != null ?
                 new ObjectParameter("usu_NombreUsuario", usu_NombreUsuario) :
@@ -2257,7 +2257,7 @@ namespace ERP_GMEDINA.Models
     
             var usu_PasswordParameter = usu_Password != null ?
                 new ObjectParameter("usu_Password", usu_Password) :
-                new ObjectParameter("usu_Password", typeof(byte[]));
+                new ObjectParameter("usu_Password", typeof(string));
     
             var usu_NombresParameter = usu_Nombres != null ?
                 new ObjectParameter("usu_Nombres", usu_Nombres) :

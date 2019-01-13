@@ -40,6 +40,33 @@ $(document).ready(function () {
         $("#tbProducto_prod_Descripcion").val(DescItem);
         $("#factd_Impuesto").val(ISVItem);
         $('#ModalAgregarProducto').modal('hide');
+
+
+        var Cliente = $('#clte_Id').val();
+        if (Cliente == '') {
+            Cliente = 0;
+            console.log(Cliente)
+            GetPrecio(Cliente,idItem);
+        }
+        else {
+            console.log(Cliente)
+            GetPrecio(Cliente, idItem);
+        }
+       
+        function GetPrecio(Cliente, idItem) {
+            $.ajax({
+                url: "/Factura/GetPrecio",
+                method: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ Cliente: Cliente,idItem:idItem }),
+            })
+            .done(function (data) {
+                var g = data;
+                console.log(g)
+                $("#factd_PrecioUnitario").val(g);
+            });
+        }
     });
 });
 
