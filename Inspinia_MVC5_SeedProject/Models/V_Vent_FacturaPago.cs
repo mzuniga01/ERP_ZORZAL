@@ -12,12 +12,12 @@ namespace ERP_GMEDINA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class V_Vent_FacturaPago
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public long fact_Id { get; set; }
+        public string fact_Codigo { get; set; }
+        public Nullable<decimal> MontoFactura { get; set; }
+        public Nullable<decimal> TotalPago { get; set; }
+        public Nullable<decimal> SaldoFactura { get; set; }
     }
 }

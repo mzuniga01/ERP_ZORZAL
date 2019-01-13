@@ -13,7 +13,6 @@ namespace ERP_GMEDINA.Controllers
         // GET: ConsultarExistenciaProductos
         public ActionResult Index()
         {
-
             return View(db.UDV_Inv_Consultar_Existencias_Productos);
         }
     }

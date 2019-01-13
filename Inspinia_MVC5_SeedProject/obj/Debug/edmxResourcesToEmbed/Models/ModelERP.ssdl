@@ -63,16 +63,6 @@
     <Property Name="usu_EsAdministrador" Type="bit" Nullable="false" />
     <Property Name="usu_SesionesValidas" Type="tinyint" Nullable="false" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
       <PropertyRef Name="acte_Id" />
@@ -535,7 +525,6 @@
     <Property Name="clte_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="clte_UsuarioModifica" Type="int" />
     <Property Name="clte_FechaModifica" Type="datetime" />
-    <Property Name="clte_ConsumidorFinal" Type="bit" Nullable="false" />
     <Property Name="clte_MontoCredito" Type="decimal" Precision="10" Scale="2" />
     <Property Name="clte_DiasCredito" Type="int" />
   </EntityType>
@@ -672,7 +661,7 @@
     <Property Name="esfac_Id" Type="tinyint" Nullable="false" />
     <Property Name="cja_Id" Type="smallint" Nullable="false" />
     <Property Name="suc_Id" Type="smallint" Nullable="false" />
-    <Property Name="clte_Id" Type="int" />
+    <Property Name="clte_Id" Type="int" Nullable="false" />
     <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="fact_AlCredito" Type="bit" Nullable="false" />
     <Property Name="fact_DiasCredito" Type="int" Nullable="false" />
@@ -685,6 +674,7 @@
     <Property Name="fact_FechaNacimientoTE" Type="date" />
     <Property Name="fact_UsuarioAutoriza" Type="int" />
     <Property Name="fact_FechaAutoriza" Type="datetime" />
+    <Property Name="fact_EsAnulada" Type="bit" Nullable="false" />
     <Property Name="fact_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="fact_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="fact_UsuarioModifica" Type="int" />
@@ -772,7 +762,7 @@
     </Key>
     <Property Name="nocre_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nocre_Codigo" Type="varchar" MaxLength="15" Nullable="false" />
-    <Property Name="dev_Id" Type="int" Nullable="false" />
+    <Property Name="dev_Id" Type="int" />
     <Property Name="clte_Id" Type="int" Nullable="false" />
     <Property Name="suc_Id" Type="smallint" Nullable="false" />
     <Property Name="nocre_Anulado" Type="bit" />
@@ -804,6 +794,20 @@
     <Property Name="pago_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="pago_UsuarioModifica" Type="int" />
     <Property Name="pago_FechaModifica" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbPagosArqueo">
+    <Key>
+      <PropertyRef Name="arqpg_Id" />
+    </Key>
+    <Property Name="arqpg_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mocja_Id" Type="int" Nullable="false" />
+    <Property Name="tpa_Id" Type="smallint" Nullable="false" />
+    <Property Name="arqpg_PagosSistema" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="arqpg_PagosConteo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="arqpg_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="arqpg_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="arqpg_UsuarioModifica" Type="int" />
+    <Property Name="arqpg_FechaModifica" Type="datetime" />
   </EntityType>
   <EntityType Name="tbPedido">
     <Key>
@@ -944,6 +948,31 @@
     <Property Name="tpa_FechaModifica" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Acce.V_Objetos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_Objetos">
+    <Key>
+      <PropertyRef Name="obj_Id" />
+      <PropertyRef Name="usu_NombreUsuario" />
+      <PropertyRef Name="obj_FechaCrea" />
+    </Key>
+    <Property Name="obj_Id" Type="int" Nullable="false" />
+    <Property Name="obj_Pantalla" Type="nvarchar" MaxLength="50" />
+    <Property Name="usu_NombreUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="obj_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="obj_UsuarioModifica" Type="int" />
+    <Property Name="obj_FechaModifica" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDV_Inv_Nombre_Empleado">
+    <Key>
+      <PropertyRef Name="emp_Id" />
+      <PropertyRef Name="Empleados" />
+    </Key>
+    <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
     <Key>
@@ -962,6 +991,137 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Property Name="bodd_CantidadMinima" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="bod_Id" Type="int" Nullable="false" />
     <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
+    <Key>
+      <PropertyRef Name="IdSolicitud" />
+      <PropertyRef Name="FechaSolicitud" />
+    </Key>
+    <Property Name="IdSolicitud" Type="int" Nullable="false" />
+    <Property Name="FechaSolicitud" Type="datetime" Nullable="false" />
+    <Property Name="Sucursal" Type="nvarchar" MaxLength="40" />
+    <Property Name="Caja" Type="nvarchar" MaxLength="10" />
+    <Property Name="Moneda" Type="nvarchar" MaxLength="100" />
+    <Property Name="MontoSolicitado" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="MontoEntregado" Type="decimal" Precision="38" Scale="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDV_Vent_Busqueda_Clientes">
+    <Key>
+      <PropertyRef Name="clte_Id" />
+      <PropertyRef Name="tpi_Id" />
+      <PropertyRef Name="tpi_Descripcion" />
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="clte_EsPersonaNatural" />
+      <PropertyRef Name="clte_Nombres" />
+      <PropertyRef Name="clte_Apellidos" />
+      <PropertyRef Name="clte_Nacionalidad" />
+      <PropertyRef Name="clte_Telefono" />
+      <PropertyRef Name="clte_NombreComercial" />
+      <PropertyRef Name="clte_RazonSocial" />
+      <PropertyRef Name="clte_ContactoNombre" />
+      <PropertyRef Name="clte_ContactoTelefono" />
+      <PropertyRef Name="mun_Codigo" />
+      <PropertyRef Name="clte_EsActivo" />
+      <PropertyRef Name="clte_ConCredito" />
+      <PropertyRef Name="clte_EsMinorista" />
+      <PropertyRef Name="clte_UsuarioCrea" />
+      <PropertyRef Name="clte_FechaCrea" />
+    </Key>
+    <Property Name="clte_Id" Type="int" Nullable="false" />
+    <Property Name="tpi_Id" Type="tinyint" Nullable="false" />
+    <Property Name="tpi_Descripcion" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
+    <Property Name="clte_EsPersonaNatural" Type="bit" Nullable="false" />
+    <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="clte_Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="clte_FechaNacimiento" Type="date" />
+    <Property Name="clte_Nacionalidad" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="clte_Sexo" Type="char" MaxLength="1" />
+    <Property Name="clte_Telefono" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="clte_NombreComercial" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="clte_RazonSocial" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="clte_ContactoNombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="clte_ContactoEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="clte_ContactoTelefono" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="clte_FechaConstitucion" Type="date" />
+    <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="clte_Direccion" Type="nvarchar" MaxLength="100" />
+    <Property Name="clte_CorreoElectronico" Type="nvarchar" MaxLength="50" />
+    <Property Name="clte_EsActivo" Type="bit" Nullable="false" />
+    <Property Name="clte_RazonInactivo" Type="nvarchar" MaxLength="50" />
+    <Property Name="clte_ConCredito" Type="bit" Nullable="false" />
+    <Property Name="clte_EsMinorista" Type="bit" Nullable="false" />
+    <Property Name="clte_Observaciones" Type="nvarchar" MaxLength="250" />
+    <Property Name="clte_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="clte_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="clte_UsuarioModifica" Type="int" />
+    <Property Name="clte_FechaModifica" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDV_Vent_Busqueda_Factura">
+    <Key>
+      <PropertyRef Name="fact_Id" />
+      <PropertyRef Name="fact_Codigo" />
+      <PropertyRef Name="fact_Fecha" />
+      <PropertyRef Name="esfac_Id" />
+      <PropertyRef Name="esfac_Descripcion" />
+      <PropertyRef Name="cja_Id" />
+      <PropertyRef Name="cja_Descripcion" />
+      <PropertyRef Name="suc_Id" />
+      <PropertyRef Name="clte_Id" />
+      <PropertyRef Name="pemi_NumeroCAI" />
+      <PropertyRef Name="fact_AlCredito" />
+      <PropertyRef Name="fact_DiasCredito" />
+      <PropertyRef Name="fact_PorcentajeDescuento" />
+      <PropertyRef Name="fact_Vendedor" />
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="clte_Nombres" />
+      <PropertyRef Name="fact_UsuarioCrea" />
+      <PropertyRef Name="fact_FechaCrea" />
+    </Key>
+    <Property Name="fact_Id" Type="bigint" Nullable="false" />
+    <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
+    <Property Name="fact_Fecha" Type="datetime" Nullable="false" />
+    <Property Name="esfac_Id" Type="tinyint" Nullable="false" />
+    <Property Name="esfac_Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="cja_Id" Type="smallint" Nullable="false" />
+    <Property Name="cja_Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="suc_Id" Type="smallint" Nullable="false" />
+    <Property Name="clte_Id" Type="int" Nullable="false" />
+    <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="fact_AlCredito" Type="bit" Nullable="false" />
+    <Property Name="fact_DiasCredito" Type="int" Nullable="false" />
+    <Property Name="fact_PorcentajeDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="fact_Vendedor" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
+    <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fact_IdentidadTE" Type="nvarchar" MaxLength="26" />
+    <Property Name="fact_NombresTE" Type="nvarchar" MaxLength="50" />
+    <Property Name="fact_FechaNacimientoTE" Type="date" />
+    <Property Name="fact_UsuarioAutoriza" Type="int" />
+    <Property Name="fact_FechaAutoriza" Type="datetime" />
+    <Property Name="fact_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="fact_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="fact_UsuarioModifica" Type="int" />
+    <Property Name="fact_FechaModifica" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_Vent_FacturaPago">
+    <Key>
+      <PropertyRef Name="fact_Id" />
+      <PropertyRef Name="fact_Codigo" />
+    </Key>
+    <Property Name="fact_Id" Type="bigint" Nullable="false" />
+    <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
+    <Property Name="MontoFactura" Type="decimal" Precision="38" Scale="4" />
+    <Property Name="TotalPago" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="SaldoFactura" Type="decimal" Precision="10" Scale="0" />
   </EntityType>
   <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
     <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="1" />
@@ -1560,6 +1720,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       </Principal>
       <Dependent Role="tbTipoPago">
         <PropertyRef Name="tpa_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbPagosArqueo" Type="Self.tbPagosArqueo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbPagosArqueo">
+        <PropertyRef Name="arqpg_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbPagosArqueo" Type="Self.tbPagosArqueo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbPagosArqueo">
+        <PropertyRef Name="arqpg_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2776,7 +2960,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Vent_tbCliente_tbFactura_clte_Id">
-    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="0..1" />
+    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="1" />
     <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbCliente">
@@ -2796,30 +2980,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       </Principal>
       <Dependent Role="tbPedido">
         <PropertyRef Name="clte_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbCliente_tbUsuario_usu_Id_Crea">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbCliente">
-        <PropertyRef Name="clte_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbCliente_tbUsuario_usu_Id_Modifica">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbCliente">
-        <PropertyRef Name="clte_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2955,18 +3115,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-    <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbFactura">
-        <PropertyRef Name="fact_UsuarioAutoriza" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbFactura_tbUsuario_usu_Id_Crea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
@@ -3087,6 +3235,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id">
+    <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="1" />
+    <End Role="tbPagosArqueo" Type="Self.tbPagosArqueo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbMovimientoCaja">
+        <PropertyRef Name="mocja_Id" />
+      </Principal>
+      <Dependent Role="tbPagosArqueo">
+        <PropertyRef Name="mocja_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
     <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="1" />
     <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
@@ -3096,18 +3256,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       </Principal>
       <Dependent Role="tbSolicitudEfectivo">
         <PropertyRef Name="mocja_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
-    <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="1" />
-    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbMunicipio">
-        <PropertyRef Name="mun_Codigo" />
-      </Principal>
-      <Dependent Role="tbCliente">
-        <PropertyRef Name="mun_Codigo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3136,7 +3284,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
-    <End Role="tbDevolucion" Type="Self.tbDevolucion" Multiplicity="1" />
+    <End Role="tbDevolucion" Type="Self.tbDevolucion" Multiplicity="0..1" />
     <End Role="tbNotaCredito" Type="Self.tbNotaCredito" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbDevolucion">
@@ -3144,18 +3292,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       </Principal>
       <Dependent Role="tbNotaCredito">
         <PropertyRef Name="dev_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_NotaCredito">
-    <End Role="tbNotaCredito" Type="Self.tbNotaCredito" Multiplicity="0..1" />
-    <End Role="tbDevolucion" Type="Self.tbDevolucion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbNotaCredito">
-        <PropertyRef Name="nocre_Id" />
-      </Principal>
-      <Dependent Role="tbDevolucion">
-        <PropertyRef Name="nocre_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3375,18 +3511,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id">
-    <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="1" />
-    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbTipoIdentificacion">
-        <PropertyRef Name="tpi_Id" />
-      </Principal>
-      <Dependent Role="tbCliente">
-        <PropertyRef Name="tpi_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbTipoPago_tbPago_tpa_Id">
     <End Role="tbTipoPago" Type="Self.tbTipoPago" Multiplicity="1" />
     <End Role="tbPago" Type="Self.tbPago" Multiplicity="*" />
@@ -3395,6 +3519,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
         <PropertyRef Name="tpa_Id" />
       </Principal>
       <Dependent Role="tbPago">
+        <PropertyRef Name="tpa_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id">
+    <End Role="tbTipoPago" Type="Self.tbTipoPago" Multiplicity="1" />
+    <End Role="tbPagosArqueo" Type="Self.tbPagosArqueo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbTipoPago">
+        <PropertyRef Name="tpa_Id" />
+      </Principal>
+      <Dependent Role="tbPagosArqueo">
         <PropertyRef Name="tpa_Id" />
       </Dependent>
     </ReferentialConstraint>
@@ -3414,7 +3550,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="SDP_Acce_GetRolesDisponibles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="usu_Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="SDP_Acce_GetUserRols" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="usu_Id" Type="int" Mode="In" />
+    <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="UDF_Acce_GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" ReturnType="int" />
+  <Function Name="UDP_Acce_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="UsuarioId" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="UDP_Acce_tbAccesoRol_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rol_Id" Type="int" Mode="In" />
     <Parameter Name="obj_Id" Type="int" Mode="In" />
@@ -3468,7 +3612,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   </Function>
   <Function Name="UDP_Acce_tbUsuario_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="usu_NombreUsuario" Type="varchar" Mode="In" />
-    <Parameter Name="usu_Password" Type="varchar" Mode="In" />
+    <Parameter Name="usu_Password" Type="binary" Mode="In" />
     <Parameter Name="usu_Nombres" Type="varchar" Mode="In" />
     <Parameter Name="usu_Apellidos" Type="varchar" Mode="In" />
     <Parameter Name="usu_Correo" Type="varchar" Mode="In" />
@@ -3488,10 +3632,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="usu_RazonInactivo" Type="varchar" Mode="In" />
     <Parameter Name="usu_EsAdministrador" Type="bit" Mode="In" />
     <Parameter Name="usu_SesionesValidas" Type="tinyint" Mode="In" />
-  </Function>
-  <Function Name="UDP_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
-    <Parameter Name="UsuarioId" Type="varchar" Mode="In" />
-    <Parameter Name="password" Type="varchar" Mode="In" />
   </Function>
   <Function Name="ConteoParametro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="conteo" Type="int" Mode="In" />
@@ -3902,7 +4042,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <EntitySet Name="tbRol" EntityType="Self.tbRol" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbRolesUsuario" EntityType="Self.tbRolesUsuario" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbUsuario" EntityType="Self.tbUsuario" Schema="Acce" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbActividadEconomica" EntityType="Self.tbActividadEconomica" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbBanco" EntityType="Self.tbBanco" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbCuentasBanco" EntityType="Self.tbCuentasBanco" Schema="Gral" store:Type="Tables" />
@@ -3951,6 +4090,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <EntitySet Name="tbMovimientoCaja" EntityType="Self.tbMovimientoCaja" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbNotaCredito" EntityType="Self.tbNotaCredito" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbPago" EntityType="Self.tbPago" Schema="Vent" store:Type="Tables" />
+    <EntitySet Name="tbPagosArqueo" EntityType="Self.tbPagosArqueo" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbPedido" EntityType="Self.tbPedido" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbPedidoDetalle" EntityType="Self.tbPedidoDetalle" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbPuntoEmision" EntityType="Self.tbPuntoEmision" Schema="Vent" store:Type="Tables" />
@@ -3960,6 +4100,22 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <EntitySet Name="tbSolicitudEfectivoDetalle" EntityType="Self.tbSolicitudEfectivoDetalle" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbSucursal" EntityType="Self.tbSucursal" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbTipoPago" EntityType="Self.tbTipoPago" Schema="Vent" store:Type="Tables" />
+    <EntitySet Name="V_Objetos" EntityType="Self.V_Objetos" store:Type="Views" store:Schema="Acce">
+      <DefiningQuery>SELECT 
+    [V_Objetos].[obj_Id] AS [obj_Id], 
+    [V_Objetos].[obj_Pantalla] AS [obj_Pantalla], 
+    [V_Objetos].[usu_NombreUsuario] AS [usu_NombreUsuario], 
+    [V_Objetos].[obj_FechaCrea] AS [obj_FechaCrea], 
+    [V_Objetos].[obj_UsuarioModifica] AS [obj_UsuarioModifica], 
+    [V_Objetos].[obj_FechaModifica] AS [obj_FechaModifica]
+    FROM [Acce].[V_Objetos] AS [V_Objetos]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="Self.UDV_Inv_Nombre_Empleado" store:Type="Views" store:Schema="Gral">
+      <DefiningQuery>SELECT 
+    [UDV_Inv_Nombre_Empleado].[emp_Id] AS [emp_Id], 
+    [UDV_Inv_Nombre_Empleado].[Empleados] AS [Empleados]
+    FROM [Gral].[UDV_Inv_Nombre_Empleado] AS [UDV_Inv_Nombre_Empleado]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="UDV_Inv_Consultar_Existencias_Productos" EntityType="Self.UDV_Inv_Consultar_Existencias_Productos" store:Type="Views" store:Schema="Inv">
       <DefiningQuery>SELECT 
     [UDV_Inv_Consultar_Existencias_Productos].[suc_Descripcion] AS [suc_Descripcion], 
@@ -3971,6 +4127,88 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     [UDV_Inv_Consultar_Existencias_Productos].[bod_Id] AS [bod_Id], 
     [UDV_Inv_Consultar_Existencias_Productos].[prod_Codigo] AS [prod_Codigo]
     FROM [Inv].[UDV_Inv_Consultar_Existencias_Productos] AS [UDV_Inv_Consultar_Existencias_Productos]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="Self.UDP_Vent_SolicituEfectivo_Select" store:Type="Views" store:Schema="Vent">
+      <DefiningQuery>SELECT 
+    [UDP_Vent_SolicituEfectivo_Select].[IdSolicitud] AS [IdSolicitud], 
+    [UDP_Vent_SolicituEfectivo_Select].[FechaSolicitud] AS [FechaSolicitud], 
+    [UDP_Vent_SolicituEfectivo_Select].[Sucursal] AS [Sucursal], 
+    [UDP_Vent_SolicituEfectivo_Select].[Caja] AS [Caja], 
+    [UDP_Vent_SolicituEfectivo_Select].[Moneda] AS [Moneda], 
+    [UDP_Vent_SolicituEfectivo_Select].[MontoSolicitado] AS [MontoSolicitado], 
+    [UDP_Vent_SolicituEfectivo_Select].[MontoEntregado] AS [MontoEntregado]
+    FROM [Vent].[UDP_Vent_SolicituEfectivo_Select] AS [UDP_Vent_SolicituEfectivo_Select]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UDV_Vent_Busqueda_Clientes" EntityType="Self.UDV_Vent_Busqueda_Clientes" store:Type="Views" store:Schema="Vent">
+      <DefiningQuery>SELECT 
+    [UDV_Vent_Busqueda_Clientes].[clte_Id] AS [clte_Id], 
+    [UDV_Vent_Busqueda_Clientes].[tpi_Id] AS [tpi_Id], 
+    [UDV_Vent_Busqueda_Clientes].[tpi_Descripcion] AS [tpi_Descripcion], 
+    [UDV_Vent_Busqueda_Clientes].[clte_Identificacion] AS [clte_Identificacion], 
+    [UDV_Vent_Busqueda_Clientes].[clte_EsPersonaNatural] AS [clte_EsPersonaNatural], 
+    [UDV_Vent_Busqueda_Clientes].[clte_Nombres] AS [clte_Nombres], 
+    [UDV_Vent_Busqueda_Clientes].[clte_Apellidos] AS [clte_Apellidos], 
+    [UDV_Vent_Busqueda_Clientes].[clte_FechaNacimiento] AS [clte_FechaNacimiento], 
+    [UDV_Vent_Busqueda_Clientes].[clte_Nacionalidad] AS [clte_Nacionalidad], 
+    [UDV_Vent_Busqueda_Clientes].[clte_Sexo] AS [clte_Sexo], 
+    [UDV_Vent_Busqueda_Clientes].[clte_Telefono] AS [clte_Telefono], 
+    [UDV_Vent_Busqueda_Clientes].[clte_NombreComercial] AS [clte_NombreComercial], 
+    [UDV_Vent_Busqueda_Clientes].[clte_RazonSocial] AS [clte_RazonSocial], 
+    [UDV_Vent_Busqueda_Clientes].[clte_ContactoNombre] AS [clte_ContactoNombre], 
+    [UDV_Vent_Busqueda_Clientes].[clte_ContactoEmail] AS [clte_ContactoEmail], 
+    [UDV_Vent_Busqueda_Clientes].[clte_ContactoTelefono] AS [clte_ContactoTelefono], 
+    [UDV_Vent_Busqueda_Clientes].[clte_FechaConstitucion] AS [clte_FechaConstitucion], 
+    [UDV_Vent_Busqueda_Clientes].[mun_Codigo] AS [mun_Codigo], 
+    [UDV_Vent_Busqueda_Clientes].[clte_Direccion] AS [clte_Direccion], 
+    [UDV_Vent_Busqueda_Clientes].[clte_CorreoElectronico] AS [clte_CorreoElectronico], 
+    [UDV_Vent_Busqueda_Clientes].[clte_EsActivo] AS [clte_EsActivo], 
+    [UDV_Vent_Busqueda_Clientes].[clte_RazonInactivo] AS [clte_RazonInactivo], 
+    [UDV_Vent_Busqueda_Clientes].[clte_ConCredito] AS [clte_ConCredito], 
+    [UDV_Vent_Busqueda_Clientes].[clte_EsMinorista] AS [clte_EsMinorista], 
+    [UDV_Vent_Busqueda_Clientes].[clte_Observaciones] AS [clte_Observaciones], 
+    [UDV_Vent_Busqueda_Clientes].[clte_UsuarioCrea] AS [clte_UsuarioCrea], 
+    [UDV_Vent_Busqueda_Clientes].[clte_FechaCrea] AS [clte_FechaCrea], 
+    [UDV_Vent_Busqueda_Clientes].[clte_UsuarioModifica] AS [clte_UsuarioModifica], 
+    [UDV_Vent_Busqueda_Clientes].[clte_FechaModifica] AS [clte_FechaModifica]
+    FROM [Vent].[UDV_Vent_Busqueda_Clientes] AS [UDV_Vent_Busqueda_Clientes]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UDV_Vent_Busqueda_Factura" EntityType="Self.UDV_Vent_Busqueda_Factura" store:Type="Views" store:Schema="Vent">
+      <DefiningQuery>SELECT 
+    [UDV_Vent_Busqueda_Factura].[fact_Id] AS [fact_Id], 
+    [UDV_Vent_Busqueda_Factura].[fact_Codigo] AS [fact_Codigo], 
+    [UDV_Vent_Busqueda_Factura].[fact_Fecha] AS [fact_Fecha], 
+    [UDV_Vent_Busqueda_Factura].[esfac_Id] AS [esfac_Id], 
+    [UDV_Vent_Busqueda_Factura].[esfac_Descripcion] AS [esfac_Descripcion], 
+    [UDV_Vent_Busqueda_Factura].[cja_Id] AS [cja_Id], 
+    [UDV_Vent_Busqueda_Factura].[cja_Descripcion] AS [cja_Descripcion], 
+    [UDV_Vent_Busqueda_Factura].[suc_Id] AS [suc_Id], 
+    [UDV_Vent_Busqueda_Factura].[clte_Id] AS [clte_Id], 
+    [UDV_Vent_Busqueda_Factura].[pemi_NumeroCAI] AS [pemi_NumeroCAI], 
+    [UDV_Vent_Busqueda_Factura].[fact_AlCredito] AS [fact_AlCredito], 
+    [UDV_Vent_Busqueda_Factura].[fact_DiasCredito] AS [fact_DiasCredito], 
+    [UDV_Vent_Busqueda_Factura].[fact_PorcentajeDescuento] AS [fact_PorcentajeDescuento], 
+    [UDV_Vent_Busqueda_Factura].[fact_Vendedor] AS [fact_Vendedor], 
+    [UDV_Vent_Busqueda_Factura].[clte_Identificacion] AS [clte_Identificacion], 
+    [UDV_Vent_Busqueda_Factura].[clte_Nombres] AS [clte_Nombres], 
+    [UDV_Vent_Busqueda_Factura].[fact_IdentidadTE] AS [fact_IdentidadTE], 
+    [UDV_Vent_Busqueda_Factura].[fact_NombresTE] AS [fact_NombresTE], 
+    [UDV_Vent_Busqueda_Factura].[fact_FechaNacimientoTE] AS [fact_FechaNacimientoTE], 
+    [UDV_Vent_Busqueda_Factura].[fact_UsuarioAutoriza] AS [fact_UsuarioAutoriza], 
+    [UDV_Vent_Busqueda_Factura].[fact_FechaAutoriza] AS [fact_FechaAutoriza], 
+    [UDV_Vent_Busqueda_Factura].[fact_UsuarioCrea] AS [fact_UsuarioCrea], 
+    [UDV_Vent_Busqueda_Factura].[fact_FechaCrea] AS [fact_FechaCrea], 
+    [UDV_Vent_Busqueda_Factura].[fact_UsuarioModifica] AS [fact_UsuarioModifica], 
+    [UDV_Vent_Busqueda_Factura].[fact_FechaModifica] AS [fact_FechaModifica]
+    FROM [Vent].[UDV_Vent_Busqueda_Factura] AS [UDV_Vent_Busqueda_Factura]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_Vent_FacturaPago" EntityType="Self.V_Vent_FacturaPago" store:Type="Views" store:Schema="Vent">
+      <DefiningQuery>SELECT 
+    [V_Vent_FacturaPago].[fact_Id] AS [fact_Id], 
+    [V_Vent_FacturaPago].[fact_Codigo] AS [fact_Codigo], 
+    [V_Vent_FacturaPago].[MontoFactura] AS [MontoFactura], 
+    [V_Vent_FacturaPago].[TotalPago] AS [TotalPago], 
+    [V_Vent_FacturaPago].[SaldoFactura] AS [SaldoFactura]
+    FROM [Vent].[V_Vent_FacturaPago] AS [V_Vent_FacturaPago]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" Association="Self.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
       <End Role="tbObjeto" EntitySet="tbObjeto" />
@@ -4171,6 +4409,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <AssociationSet Name="FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbTipoPago" EntitySet="tbTipoPago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
     </AssociationSet>
     <AssociationSet Name="FK_Acce_tbUsuario_tbPedido_ped_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbPedido_ped_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -4584,14 +4830,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       <End Role="tbCliente" EntitySet="tbCliente" />
       <End Role="tbPedido" EntitySet="tbPedido" />
     </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbCliente_tbUsuario_usu_Id_Crea" Association="Self.FK_Vent_tbCliente_tbUsuario_usu_Id_Crea">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbCliente" EntitySet="tbCliente" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbCliente_tbUsuario_usu_Id_Modifica" Association="Self.FK_Vent_tbCliente_tbUsuario_usu_Id_Modifica">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbCliente" EntitySet="tbCliente" />
-    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbCuentasBanco_tbPago_bcta_Id" Association="Self.FK_Vent_tbCuentasBanco_tbPago_bcta_Id">
       <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
       <End Role="tbPago" EntitySet="tbPago" />
@@ -4636,10 +4874,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       <End Role="tbFactura" EntitySet="tbFactura" />
       <End Role="tbPedido" EntitySet="tbPedido" />
     </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza" Association="Self.FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbFactura" EntitySet="tbFactura" />
-    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbFactura_tbUsuario_usu_Id_Crea" Association="Self.FK_Vent_tbFactura_tbUsuario_usu_Id_Crea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbFactura" EntitySet="tbFactura" />
@@ -4680,13 +4914,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
       <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
     </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id" Association="Self.FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id">
+      <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+      <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
+    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" Association="Self.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
       <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
-      <End Role="tbMunicipio" EntitySet="tbMunicipio" />
-      <End Role="tbCliente" EntitySet="tbCliente" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
       <End Role="tbMunicipio" EntitySet="tbMunicipio" />
@@ -4699,10 +4933,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <AssociationSet Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" Association="Self.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
       <End Role="tbDevolucion" EntitySet="tbDevolucion" />
       <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_NotaCredito" Association="Self.FK_Vent_tbNotaCredito_tbDevolucion_dev_NotaCredito">
-      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
-      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbPedido_tbEstadoPedido_esped_Id" Association="Self.FK_Vent_tbPedido_tbEstadoPedido_esped_Id">
       <End Role="tbEstadoPedido" EntitySet="tbEstadoPedido" />
@@ -4776,13 +5006,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       <End Role="tbSucursal" EntitySet="tbSucursal" />
       <End Role="tbPedido" EntitySet="tbPedido" />
     </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id" Association="Self.FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id">
-      <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
-      <End Role="tbCliente" EntitySet="tbCliente" />
-    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbTipoPago_tbPago_tpa_Id" Association="Self.FK_Vent_tbTipoPago_tbPago_tpa_Id">
       <End Role="tbTipoPago" EntitySet="tbTipoPago" />
       <End Role="tbPago" EntitySet="tbPago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id" Association="Self.FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id">
+      <End Role="tbTipoPago" EntitySet="tbTipoPago" />
+      <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

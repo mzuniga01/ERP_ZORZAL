@@ -11,7 +11,7 @@ namespace ERP_GMEDINA.Models
 {
     using System;
     
-    public partial class UDP_Login_Result
+    public partial class UDP_Acce_Login_Result
     {
         public int usu_Id { get; set; }
         public string usu_NombreUsuario { get; set; }

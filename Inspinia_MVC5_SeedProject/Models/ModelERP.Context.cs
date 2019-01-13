@@ -33,7 +33,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbRol> tbRol { get; set; }
         public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
         public virtual DbSet<tbUsuario> tbUsuario { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tbActividadEconomica> tbActividadEconomica { get; set; }
         public virtual DbSet<tbBanco> tbBanco { get; set; }
         public virtual DbSet<tbCuentasBanco> tbCuentasBanco { get; set; }
@@ -76,9 +75,12 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbFactura> tbFactura { get; set; }
         public virtual DbSet<tbFacturaDetalle> tbFacturaDetalle { get; set; }
         public virtual DbSet<tbFacturaHistorica> tbFacturaHistorica { get; set; }
+        public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
+        public virtual DbSet<tbListaPrecio> tbListaPrecio { get; set; }
         public virtual DbSet<tbMovimientoCaja> tbMovimientoCaja { get; set; }
         public virtual DbSet<tbNotaCredito> tbNotaCredito { get; set; }
         public virtual DbSet<tbPago> tbPago { get; set; }
+        public virtual DbSet<tbPagosArqueo> tbPagosArqueo { get; set; }
         public virtual DbSet<tbPedido> tbPedido { get; set; }
         public virtual DbSet<tbPedidoDetalle> tbPedidoDetalle { get; set; }
         public virtual DbSet<tbPuntoEmision> tbPuntoEmision { get; set; }
@@ -88,9 +90,13 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
-        public virtual DbSet<tbListaPrecio> tbListaPrecio { get; set; }
-        public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
         public virtual DbSet<UDV_Inv_Consultar_Existencias_Productos> UDV_Inv_Consultar_Existencias_Productos { get; set; }
+        public virtual DbSet<V_Objetos> V_Objetos { get; set; }
+        public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
+        public virtual DbSet<UDP_Vent_SolicituEfectivo_Select> UDP_Vent_SolicituEfectivo_Select { get; set; }
+        public virtual DbSet<UDV_Vent_Busqueda_Clientes> UDV_Vent_Busqueda_Clientes { get; set; }
+        public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
+        public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
         {
@@ -565,7 +571,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRolesUsuario_Update_Result>("UDP_Acce_tbRolesUsuario_Update", rolu_IdParameter, rol_IdParameter, usu_IdParameter, rolu_UsuarioCreaParameter, rolu_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Acce_tbUsuario_Insert_Result> UDP_Acce_tbUsuario_Insert(string usu_NombreUsuario, string usu_Password, string usu_Nombres, string usu_Apellidos, string usu_Correo)
+        public virtual ObjectResult<UDP_Acce_tbUsuario_Insert_Result> UDP_Acce_tbUsuario_Insert(string usu_NombreUsuario, byte[] usu_Password, string usu_Nombres, string usu_Apellidos, string usu_Correo)
         {
             var usu_NombreUsuarioParameter = usu_NombreUsuario != null ?
                 new ObjectParameter("usu_NombreUsuario", usu_NombreUsuario) :
@@ -573,7 +579,7 @@ namespace ERP_GMEDINA.Models
     
             var usu_PasswordParameter = usu_Password != null ?
                 new ObjectParameter("usu_Password", usu_Password) :
-                new ObjectParameter("usu_Password", typeof(string));
+                new ObjectParameter("usu_Password", typeof(byte[]));
     
             var usu_NombresParameter = usu_Nombres != null ?
                 new ObjectParameter("usu_Nombres", usu_Nombres) :
@@ -1843,7 +1849,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEstadoMovimiento_Delete_Result>("UDP_Inv_tbEstadoMovimiento_Delete", estm_IdParameter);
         }
     
-        public virtual ObjectResult<UDP_Login_Result> UDP_Login(string usuarioId, string password)
+        public virtual ObjectResult<UDP_Acce_Login_Result> UDP_Acce_Login(string usuarioId, string password)
         {
             var usuarioIdParameter = usuarioId != null ?
                 new ObjectParameter("UsuarioId", usuarioId) :
@@ -1853,7 +1859,20 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("password", password) :
                 new ObjectParameter("password", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Login_Result>("UDP_Login", usuarioIdParameter, passwordParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_Login_Result>("UDP_Acce_Login", usuarioIdParameter, passwordParameter);
+        }
+    
+        public virtual ObjectResult<SDP_Acce_GetUserRols_Result> SDP_Acce_GetUserRols(Nullable<int> usu_Id, string obj_Pantalla)
+        {
+            var usu_IdParameter = usu_Id.HasValue ?
+                new ObjectParameter("usu_Id", usu_Id) :
+                new ObjectParameter("usu_Id", typeof(int));
+    
+            var obj_PantallaParameter = obj_Pantalla != null ?
+                new ObjectParameter("obj_Pantalla", obj_Pantalla) :
+                new ObjectParameter("obj_Pantalla", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Acce_GetUserRols_Result>("SDP_Acce_GetUserRols", usu_IdParameter, obj_PantallaParameter);
         }
     }
 }

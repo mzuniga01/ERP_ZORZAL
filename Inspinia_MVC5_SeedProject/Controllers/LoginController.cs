@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using Microsoft.Owin.Security;
+
 
 namespace Inspinia_MVC5_SeedProject.Controllers
 {
@@ -13,6 +15,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: Login
         public ActionResult Index()
         {
+                Session["UserLogin"] = null;    
                 return View();
         }
 
@@ -20,11 +23,11 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         public ActionResult Index(tbUsuario Login, string txtPassword)
         {
             try
-            {
-                var Usuario = db.UDP_Login(Login.usu_NombreUsuario, txtPassword).ToList();
+            { 
+                var Usuario = db.UDP_Acce_Login(Login.usu_NombreUsuario, txtPassword).ToList();
                 if(Usuario.Count>0)
                 {
-                    foreach (UDP_Login_Result UserLogin in Usuario)
+                    foreach (UDP_Acce_Login_Result UserLogin in Usuario)
                         Session["UserLogin"] = UserLogin.usu_Id;
                     return RedirectToAction("Index", "Home");
                 }
@@ -37,31 +40,29 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             catch(Exception Ex)
             {
                 Ex.Message.ToString();
-                //Login.usu_Password = Convert.ToByte(usu_Password);
                 return View(Login);
             }
         }
 
-        public List<tbUsuario> getUserID()
+        public ActionResult CerrarSesion()
         {
-            int user = 0;
-            List<tbUsuario> UsuarioList = new List<tbUsuario>();
-            try
-            {
-                user = Convert.ToInt32(Session["UserLogin"]);
-                if(user!=0)
-                {
-                    UsuarioList = db.tbUsuario.Where(s=> s.usu_Id==user).ToList();
-                }
-                return UsuarioList;
-            }
-            catch(Exception Ex)
-            {
-                Ex.Message.ToString();
-                return UsuarioList;
-            }
+            Session.Clear();
+            Session.Abandon();
+            Response.Buffer = true;
+            Response.ExpiresAbsolute = DateTime.Now.AddDays(-1D);
+            Response.Expires = -1500;
+            Response.CacheControl = "no-cache";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            AuthenticationManager.SignOut();
+            return RedirectToAction("Index", "Login");
         }
 
-
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
     }
 }

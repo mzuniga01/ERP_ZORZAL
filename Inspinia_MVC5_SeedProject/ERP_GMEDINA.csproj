@@ -190,7 +190,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccesoRolController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BancoController.cs" />
     <Compile Include="Controllers\BodegaController.cs" />
@@ -242,6 +241,7 @@
     <Compile Include="Models\estadomovimientos.cs" />
     <Compile Include="Models\Estados.cs" />
     <Compile Include="Models\EstadoSubCategoria.cs" />
+    <Compile Include="Models\GeneralFunctions.cs" />
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InventariosFisicos.cs" />
@@ -290,6 +290,9 @@
     <Compile Include="Models\SDP_Acce_GetRoles_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SDP_Acce_GetUserRols_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\spGetCategoria_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -297,9 +300,6 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\spGetMunicipios_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbAccesoRol.cs">
@@ -419,6 +419,9 @@
     <Compile Include="Models\tbPago.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbPagosArqueo.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbParametro.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -490,6 +493,9 @@
     </Compile>
     <Compile Include="Models\TipoEntrada.cs" />
     <Compile Include="Models\TipoSalida.cs" />
+    <Compile Include="Models\UDP_Acce_Login_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Acce_tbAccesoRol_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -688,14 +694,29 @@
     <Compile Include="Models\UDP_Inv_tbTipoSalida_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Login_Result.cs">
+    <Compile Include="Models\UDP_Vent_SolicituEfectivo_Select.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDV_Inv_Consultar_Existencias_Productos.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDV_Inv_Nombre_Empleado.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDV_Vent_Busqueda_Clientes.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDV_Vent_Busqueda_Factura.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UnidadMedida.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\V_Objetos.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_Vent_FacturaPago.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1132,14 +1153,6 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\AccesoRol\CrearPrueba.cshtml" />
-    <Content Include="Views\AccesoRol\Create.cshtml" />
-    <Content Include="Views\AccesoRol\Delete.cshtml" />
-    <Content Include="Views\AccesoRol\Details.cshtml" />
-    <Content Include="Views\AccesoRol\DetallePrueba.cshtml" />
-    <Content Include="Views\AccesoRol\Edit.cshtml" />
-    <Content Include="Views\AccesoRol\EditarPrueba.cshtml" />
-    <Content Include="Views\AccesoRol\Index.cshtml" />
     <Content Include="Views\Departamento\Create.cshtml" />
     <Content Include="Views\Departamento\Delete.cshtml" />
     <Content Include="Views\Departamento\Details.cshtml" />

@@ -25,12 +25,12 @@ namespace ERP_GMEDINA.Models
         public long fact_Id { get; set; }
         public short cja_Id { get; set; }
         public Nullable<short> nocre_Id { get; set; }
+        public Nullable<bool> dev_Estado { get; set; }
         public System.DateTime dev_Fecha { get; set; }
         public int dev_UsuarioCrea { get; set; }
         public System.DateTime dev_FechaCrea { get; set; }
         public Nullable<int> dev_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> dev_FechaModifica { get; set; }
-        public Nullable<bool> dev_Estado { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
@@ -40,6 +40,5 @@ namespace ERP_GMEDINA.Models
         public virtual tbFactura tbFactura { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbNotaCredito> tbNotaCredito { get; set; }
-        public virtual tbNotaCredito tbNotaCredito1 { get; set; }
     }
 }

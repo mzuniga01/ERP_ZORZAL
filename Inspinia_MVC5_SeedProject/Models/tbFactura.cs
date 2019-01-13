@@ -31,7 +31,7 @@ namespace ERP_GMEDINA.Models
         public byte esfac_Id { get; set; }
         public short cja_Id { get; set; }
         public short suc_Id { get; set; }
-        public Nullable<int> clte_Id { get; set; }
+        public int clte_Id { get; set; }
         public string pemi_NumeroCAI { get; set; }
         public bool fact_AlCredito { get; set; }
         public int fact_DiasCredito { get; set; }
@@ -44,6 +44,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<System.DateTime> fact_FechaNacimientoTE { get; set; }
         public Nullable<int> fact_UsuarioAutoriza { get; set; }
         public Nullable<System.DateTime> fact_FechaAutoriza { get; set; }
+        public bool fact_EsAnulada { get; set; }
         public int fact_UsuarioCrea { get; set; }
         public System.DateTime fact_FechaCrea { get; set; }
         public Nullable<int> fact_UsuarioModifica { get; set; }
@@ -51,10 +52,10 @@ namespace ERP_GMEDINA.Models
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
-        public virtual tbUsuario tbUsuario2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalida> tbSalida { get; set; }
         public virtual tbCaja tbCaja { get; set; }
+        public virtual tbCliente tbCliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbDevolucion> tbDevolucion { get; set; }
         public virtual tbEstadoFactura tbEstadoFactura { get; set; }
@@ -67,6 +68,5 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
         public virtual tbSucursal tbSucursal { get; set; }
-        public virtual tbCliente tbCliente { get; set; }
     }
 }
