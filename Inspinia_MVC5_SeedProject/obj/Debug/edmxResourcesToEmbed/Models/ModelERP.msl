@@ -598,19 +598,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbRolesUsuario">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbRolesUsuario">
-        <MappingFragment StoreEntitySet="tbRolesUsuario">
-          <ScalarProperty Name="rolu_FechaModifica" ColumnName="rolu_FechaModifica" />
-          <ScalarProperty Name="rolu_UsuarioModifica" ColumnName="rolu_UsuarioModifica" />
-          <ScalarProperty Name="rolu_FechaCrea" ColumnName="rolu_FechaCrea" />
-          <ScalarProperty Name="rolu_UsuarioCrea" ColumnName="rolu_UsuarioCrea" />
-          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
-          <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
-          <ScalarProperty Name="rolu_Id" ColumnName="rolu_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbUsuario">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbUsuario">
         <MappingFragment StoreEntitySet="tbUsuario">
@@ -1740,5 +1727,18 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="tbRolesUsuario">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbRolesUsuario">
+        <MappingFragment StoreEntitySet="tbRolesUsuario">
+          <ScalarProperty Name="rolu_FechaModifica" ColumnName="rolu_FechaModifica" />
+          <ScalarProperty Name="rolu_UsuarioModifica" ColumnName="rolu_UsuarioModifica" />
+          <ScalarProperty Name="rolu_FechaCrea" ColumnName="rolu_FechaCrea" />
+          <ScalarProperty Name="rolu_UsuarioCrea" ColumnName="rolu_UsuarioCrea" />
+          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
+          <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
+          <ScalarProperty Name="rolu_Id" ColumnName="rolu_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

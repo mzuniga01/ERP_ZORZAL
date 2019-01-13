@@ -23,8 +23,6 @@ namespace ERP_GMEDINA.Models
             this.tbObjeto1 = new HashSet<tbObjeto>();
             this.tbRol = new HashSet<tbRol>();
             this.tbRol1 = new HashSet<tbRol>();
-            this.tbRolesUsuario = new HashSet<tbRolesUsuario>();
-            this.tbRolesUsuario1 = new HashSet<tbRolesUsuario>();
             this.tbBodegaDetalle = new HashSet<tbBodegaDetalle>();
             this.tbBodegaDetalle1 = new HashSet<tbBodegaDetalle>();
             this.tbActividadEconomica = new HashSet<tbActividadEconomica>();
@@ -133,6 +131,9 @@ namespace ERP_GMEDINA.Models
             this.tbPuntoEmision1 = new HashSet<tbPuntoEmision>();
             this.tbPuntoEmisionDetalle = new HashSet<tbPuntoEmisionDetalle>();
             this.tbPuntoEmisionDetalle1 = new HashSet<tbPuntoEmisionDetalle>();
+            this.tbRolesUsuario = new HashSet<tbRolesUsuario>();
+            this.tbRolesUsuario1 = new HashSet<tbRolesUsuario>();
+            this.tbRolesUsuario2 = new HashSet<tbRolesUsuario>();
         }
     
         public int usu_Id { get; set; }
@@ -158,10 +159,6 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbRol> tbRol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbRol> tbRol1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbRolesUsuario> tbRolesUsuario { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbRolesUsuario> tbRolesUsuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodegaDetalle> tbBodegaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -378,5 +375,11 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbPuntoEmisionDetalle> tbPuntoEmisionDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPuntoEmisionDetalle> tbPuntoEmisionDetalle1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbRolesUsuario> tbRolesUsuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbRolesUsuario> tbRolesUsuario1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbRolesUsuario> tbRolesUsuario2 { get; set; }
     }
 }

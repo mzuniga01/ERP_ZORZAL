@@ -106,7 +106,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="form-horizontal">
-                        @*@Html.Partial("_IndexAccesoRol", Model.tbro)*@
+                        @Html.Partial("_IndexRolesUsuario", Model.tbRolesUsuario2, new ViewDataDictionary { { "usu_Id", Model.usu_Id } })
                         <div class="form-group">
                         </div>
                     </div>
@@ -115,7 +115,8 @@
         </div>
     </div>
  </div>
-
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
 
 
 

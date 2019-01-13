@@ -114,6 +114,7 @@ namespace ERP_GMEDINA.Controllers
             var listRoles = (List<tbRolesUsuario>)Session["tbRolesUsuario"];
             var MsjError = "0";
             var MsjErrorRoles = "0";
+            
             if (ModelState.IsValid)
             {
                 using (TransactionScope _Tran = new TransactionScope())
@@ -149,6 +150,7 @@ namespace ERP_GMEDINA.Controllers
                             }
                         }
                         _Tran.Complete();
+
                         return RedirectToAction("Index");
                     }
                     catch (Exception Ex)
@@ -289,8 +291,7 @@ namespace ERP_GMEDINA.Controllers
             System.Text.ASCIIEncoding codificador = new System.Text.ASCIIEncoding();
             return codificador.GetString(text);
         }
-
-
+        
         public void Email(string emailsalida, string passwordsalida, string emaildestino, string passwordnueva)
         {
             string asunto = "Recuperación de contraseña";
@@ -320,9 +321,7 @@ namespace ERP_GMEDINA.Controllers
             }
 
         }
-
-
-
+        
         // GET: /Usuario/Delete/5
         public ActionResult Delete(int? id)
         {

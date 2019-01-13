@@ -31,7 +31,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbAccesoRol> tbAccesoRol { get; set; }
         public virtual DbSet<tbObjeto> tbObjeto { get; set; }
         public virtual DbSet<tbRol> tbRol { get; set; }
-        public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
         public virtual DbSet<tbUsuario> tbUsuario { get; set; }
         public virtual DbSet<tbActividadEconomica> tbActividadEconomica { get; set; }
         public virtual DbSet<tbBanco> tbBanco { get; set; }
@@ -97,6 +96,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_Busqueda_Clientes> UDV_Vent_Busqueda_Clientes { get; set; }
         public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
         public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
+        public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
         {

@@ -11,15 +11,27 @@
                             <tr style="font-weight: bold">
                                 <td style="width:100px">
                                     @*@Html.DisplayNameFor(model => model.obj_Id)*@
-                                    Codigó
+                                    Código
                                 </td>
                                 <td>
                                     @*@Html.DisplayNameFor(model => model.tbObjeto.obj_Pantalla)*@
-                                    Pantalla
+                                    Rol
                                 </td>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.rol_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbRol.rol_Descripcion)
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 @*</div>*@
@@ -27,6 +39,4 @@
         </div>
     </div>
  </div>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-@*<script src="~/Scripts/app/PartialViewGetObjectos.js"></script>*@
 
