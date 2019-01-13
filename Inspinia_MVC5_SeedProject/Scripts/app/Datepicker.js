@@ -49,7 +49,7 @@
         nextText: 'Sig',
         changeMonth: true,
         changeYear: true,
-    }).datepicker('setDate', new Date());
+    }).datepicker('setDate', new Date()).datepicker("destroy");
 
     $("#fechafacturaEdit").datepicker({
         dateFormat: 'dd-mm-yy',
@@ -59,7 +59,7 @@
         nextText: 'Sig',
         changeMonth: true,
         changeYear: true,
-    }).datepicker();
+    }).datepicker("destroy");
 
     $("#fact_FechaNacimientoTE").datepicker({
         dateFormat: 'dd-mm-yy',

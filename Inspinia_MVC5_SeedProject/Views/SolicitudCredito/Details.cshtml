@@ -33,45 +33,45 @@
                 <div class="ibox-content">
 
 
-				    <dl class="dl-horizontal">
-        
+                    <dl class="dl-horizontal">
+
                         <dt>
                             @Html.DisplayNameFor(model => model.cred_Id)
                         </dt>
 
                         <dd>
                             @Html.DisplayFor(model => model.cred_Id)
-                        </dd>          
-                            
-         <dt>
-            @Html.DisplayNameFor(model => model.cred_FechaSolicitud)
-        </dt>
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.cred_FechaSolicitud)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cred_FechaSolicitud)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.cred_FechaAprobacion)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.cred_FechaSolicitud)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.cred_FechaAprobacion)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cred_FechaAprobacion)
+                        </dt>
 
-        <dt>
-            Identificación Cliente
-            @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.cred_FechaAprobacion)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbCliente.clte_Identificacion)
-        </dd>
+                        <dt>
+                            Identificación Cliente
+                            @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbCliente.clte_Identificacion)
+                        </dd>
 
 
 
                         <dt>
-                           Nombre Cliente
+                            Nombre Cliente
                             @*@Html.DisplayNameFor(model => model.tbCliente.clte_RTN_Identidad_Pasaporte)*@
                         </dt>
                         @{ if (Convert.ToInt32(Model.tbCliente.clte_EsPersonaNatural) == 1)
@@ -86,7 +86,7 @@
                                 </dt>
 
                                 <dd>
-                                    Natural
+                                    Persona Natural
 
                                 </dd>
                             }
@@ -102,63 +102,57 @@
                                 </dt>
 
                                 <dd>
-                                    Júridico
+                                    Persona Júridica
                                 </dd>
                             }
                         }
 
 
-        <dt>
-            Monto Solicitado
-            @*@Html.DisplayNameFor(model => model.cred_MontoSolicitado)*@
-        </dt>
+                        <dt>
+                            Monto Solicitado
+                            @*@Html.DisplayNameFor(model => model.cred_MontoSolicitado)*@
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cred_MontoSolicitado)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.cred_MontoSolicitado)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.cred_MontoAprobado)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cred_MontoAprobado)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cred_MontoAprobado)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.cred_MontoAprobado)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.cred_DiasSolicitado)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cred_DiasSolicitado)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cred_DiasSolicitado)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.cred_DiasSolicitado)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.cred_DiasAprobado)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cred_DiasAprobado)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cred_DiasAprobado)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.cred_DiasAprobado)
+                        </dd>
+                        <dt>
+                            Estado
+                            @*@Html.DisplayNameFor(model => model.tbEstadoSolicitudCredito.escre_Descripcion)*@
+                        </dt>
 
-    
+                        <dd>
+                            @Html.DisplayFor(model => model.tbEstadoSolicitudCredito.escre_Descripcion)
+                        </dd>
+                    </dl>
 
 
-
-        <dt>
-            Estado
-            @*@Html.DisplayNameFor(model => model.tbEstadoSolicitudCredito.escre_Descripcion)*@
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbEstadoSolicitudCredito.escre_Descripcion)
-        </dd>
-
-    </dl>
-                  
-
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.cred_Id }, new { @class = "btn btn-primary"})
-    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.cred_Id }, new { @class = "btn btn-primary" })
+                    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
 
                 </div>
             </div>
@@ -172,21 +166,25 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
                         <td>@Html.DisplayFor(model => model.cred_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
                         <td>@Html.DisplayFor(model => model.cred_FechaModifica)</td>
                     </tr>
                 </table>
             </div>
         </div>
     </div>
- </div>
+</div>
 
 
 

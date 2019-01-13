@@ -43,7 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cred_FechaSolicitud, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.cred_FechaSolicitud,"{0:dd/MM/yyyy}", new { htmlAttributes = new { @autocomplete = "off", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.cred_FechaSolicitud,"{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.cred_FechaSolicitud)
             </div>
         </div>
@@ -78,7 +78,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Identificación</label>
             <div class="col-md-4">
-                @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new {  @readonly = "readonly" } })
+                @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)
             </div>
             <div class="col-md-1">
@@ -88,7 +88,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Cliente</label>        
             <div class="col-md-4">
-                @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
             </div>
         </div>
@@ -200,7 +200,7 @@
  $.datepicker.setDefaults($.datepicker.regional['es']);
     $(function () {
     $("#cred_FechaAprobacion").datepicker({ dateFormat: 'yy-mm-dd' });
-    $("#cred_FechaSolicitud").datepicker({ dateFormat: 'dd/mm/yy', maxDate: '+0d', minDate: 0 }).datepicker('setDate', new Date());
+    $("#cred_FechaSolicitud").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
     //$("#cred_FechaSolicitud").datepicker({ dateFormat: 'yy/mm/dd' });
 });
 

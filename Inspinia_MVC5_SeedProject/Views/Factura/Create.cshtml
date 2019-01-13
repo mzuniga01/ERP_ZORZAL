@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.fact_Fecha, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.fact_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafactura" } })
+                                    @Html.EditorFor(model => model.fact_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "fechafactura" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Fecha)</span>
                                 </div>
                                 <label class="control-label col-md-2">Consumidor Final</label>

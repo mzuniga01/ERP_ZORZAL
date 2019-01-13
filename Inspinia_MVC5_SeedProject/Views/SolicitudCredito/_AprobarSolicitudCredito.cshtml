@@ -51,7 +51,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cred_MontoSolicitado, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.cred_MontoSolicitado,"0"/*,new { htmlAttributes = new { @type = "number", @min = "0"} }*/ )
+                @Html.EditorFor(model => model.cred_MontoSolicitado, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
             </div>
         </div>
@@ -67,7 +67,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cred_DiasSolicitado, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.cred_DiasSolicitado, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                @Html.EditorFor(model => model.cred_DiasSolicitado, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.cred_DiasSolicitado)
             </div>
         </div>

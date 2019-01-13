@@ -22,6 +22,8 @@ $("#consumidorFinal").change(function () {
         //Do stuff     
         $("#clte_Identificacion").val('99999999999999');
         $("#clte_Nombres").val('Consumidor Final');
+        $("#clte_Id").val('');
+
     }
     else {
         $("#clte_Nombres").val('');
@@ -29,17 +31,20 @@ $("#consumidorFinal").change(function () {
     }
 })
 
-//$("#consumidorFinal").ready(function () {
-//    if (this.checked) {
-//        //Do stuff     
-//        $("#clte_Identificacion").val('99999999999999');
-//        $("#clte_Nombres").val('Consumidor Final');
-//    }
-//    else {
-//        $("#clte_Nombres").val('');
-//        $("#clte_Identificacion").val('');
-//    }
-//});
+$("#consumidorFinal").ready(function () {
+    if (this.checked) {
+        //Do stuff     
+        $("#clte_Identificacion").val('99999999999999');
+        $("#clte_Nombres").val('Consumidor Final');
+        $("#clte_Id").val('');
+
+    }
+    else {
+        $("#clte_Nombres").val('');
+        $("#clte_Identificacion").val('');
+        $("#clte_Id").val('');
+    }
+});
 
 $("#fact_NombresTE").change(function () {
     var str = $("#fact_NombresTE").val();

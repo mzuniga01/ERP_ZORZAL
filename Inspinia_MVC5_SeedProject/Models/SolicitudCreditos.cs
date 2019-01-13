@@ -19,10 +19,8 @@ namespace ERP_GMEDINA.Models
         [Required]
         public int cred_Id { get; set; }
         [Display(Name = "Número Cliente")]
-        [Required]
         public int clte_Id { get; set; }
         [Display(Name = "Número Estado")]
-        [Required]
         public byte escre_Id { get; set; }
         [Display(Name = "Fecha Solicitud")]
  //       [DataType(DataType.Date)]

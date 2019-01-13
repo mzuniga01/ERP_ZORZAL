@@ -15,7 +15,7 @@
     <div class="col-sm-8">
         <div class="title-action">
             <a href="/SolicitudCredito/Index">Regresar</a>
-			@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
+            @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
         </div>
     </div>
 </div>
@@ -32,187 +32,116 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+                        <div class="form-horizontal">
 
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.cred_Id)
-        @Html.HiddenFor(model => model.cred_FechaCrea)
-        @Html.HiddenFor(model => model.cred_UsuarioCrea)
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.cred_Id)
+                            @Html.Hidden("RedirectTo", Url.Action("Index", "SolicitudCredito"))
+                            @Html.HiddenFor(model => model.cred_FechaCrea)
+                            @Html.HiddenFor(model => model.cred_UsuarioCrea)
 
-        @Html.HiddenFor(model => model.cred_FechaAprobacion)
-     
-        @*@Html.HiddenFor(model => model.tbCliente.clte_EsPersonaNatural)*@
+                            @Html.HiddenFor(model => model.cred_FechaAprobacion)
 
-    
-        <div class="form-group">
-            @Html.LabelFor(model => model.cred_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.cred_Id, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.cred_Id)
-            </div>
-        </div>
+                            @*@Html.HiddenFor(model => model.tbCliente.clte_EsPersonaNatural)*@
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.cred_FechaSolicitud, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.cred_FechaSolicitud, new { htmlAttributes = new {@readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.cred_FechaSolicitud)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cred_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.cred_Id, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.cred_Id)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cred_FechaSolicitud, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.cred_FechaSolicitud, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.cred_FechaSolicitud)
+                                </div>
+                            </div>
+                            @*ERROR INICIO  *@
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-5">
+                                    @*@Html.DropDownList("clte_RTN_Identidad_Pasaporte", String.Empty)*@
+                                    @Html.HiddenFor(model => model.clte_Id)
+                                    @Html.ValidationMessageFor(model => model.clte_Id)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Identificación</label>
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Cliente</label>
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cred_MontoSolicitado, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.cred_MontoSolicitado)
+                                    @Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cred_MontoAprobado, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.cred_MontoAprobado, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.cred_MontoAprobado)
+                                </div>
+                            </div>
 
-        @*<div class="form-group">
-            <label class="control-label col-md-2">Número Cliente</label>
-            --@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.DropDownList("clte_Id", null, "Seleccione Número Cliente", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.clte_Id)
-            </div>
-        </div>*@
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cred_DiasSolicitado, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.cred_DiasSolicitado)
+                                    @Html.ValidationMessageFor(model => model.cred_DiasSolicitado)
+                                </div>
+                            </div>
 
-        @*ERROR INICIO  *@
-        <div class="form-group">
-            <label class="control-label col-md-2">Cliente Número</label>
-            @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
-            <div class="col-md-5">
-                @*@Html.DropDownList("clte_RTN_Identidad_Pasaporte", String.Empty)*@
-                @Html.EditorFor(model => model.clte_Id, new { htmlAttributes = new { @*disabled = "disabled",*@ @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.clte_Id)
-            </div>
-        </div>  
-        <div class="form-group">
-            <label class="control-label col-md-2">Identificación Cliente</label>
-            @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
-            <div class="col-md-5">
-                @*@Html.DropDownList("clte_RTN_Identidad_Pasaporte", String.Empty)*@
-                @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)
-            </div>
-        </div>        
-        @*    if (Model.tbCliente.clte_EsPersonaNatural)*@
-       <div id="natural"  >
-           <div class="form-group">
-               <label class="control-label col-md-2">Nombres Cliente</label>
-               <div class="col-md-5">
-                   @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cred_DiasAprobado, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.cred_DiasAprobado, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.cred_DiasAprobado)
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label class="control-label col-md-2">Estado </label>
+                                @*@Html.LabelFor(model => model.escre_Id, "escre_Id", new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-5">
+                                    @Html.DropDownList("escre_Id", (IEnumerable<SelectListItem>)ViewBag.escre_Descripcion, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                                    @* @Html.DropDownList("escre_Id", (IEnumerable<SelectListItem>)ViewBag.escre_Id, new { @class = "form-control" })*@
+                                    @*@Html.EditorFor(model => model.tbEstadoSolicitudCredito.escre_Descripcion)*@
+                                    @*@Html.ValidationMessageFor(model => model.escre_Id)*@
+                                </div>
+                            </div>
+                           <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
 
-                   @*@Html.ValidationMessageFor(model => model.clte_Id)*@
-               </div>
-           </div>
-           <div class="form-group">
-               <label class="control-label col-md-2">Apellidos Cliente</label>
-               <div class="col-md-5">
-                   @Html.EditorFor(model => model.tbCliente.clte_Apellidos, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
-                   @*@Html.ValidationMessageFor(model => model.clte_Id)*@
-               </div>
-           </div>
-
-           <div class="form-group">
-               <label class="control-label col-md-2">Tipo de Cliente</label>
-               <div class="col-md-5">
-                   <input class="col-md-5 form-control" id="TipoNatural" type="text" value="Natural" readonly />
-               </div>
-           </div>
-       </div>
-       @* si es natural si no *@
-       <div id="juridica" >
-           <div class="form-group">
-               <label class="control-label col-md-2">Nombre Comercial</label>
-               <div class="col-md-5">
-
-                   @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
-                   @Html.ValidationMessageFor(model => model.tbCliente.clte_NombreComercial)
-               </div>
-           </div>
-
-
-           <div class="form-group">
-               <label class="control-label col-md-2">Tipo de Cliente</label>
-               <div class="col-md-5">
-                   <input class="col-md-5 form-control" id="TipoJuridico" type="text" value="Júridico" readonly />
-                   @Html.ValidationMessageFor(model => model.clte_Id)
-               </div>
-           </div>
-           
-
-       </div>
-       @* fin conbdicion *@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cred_MontoSolicitado, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.cred_MontoSolicitado)
-                @Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cred_MontoAprobado, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.cred_MontoAprobado)
-                @Html.ValidationMessageFor(model => model.cred_MontoAprobado)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cred_DiasSolicitado, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.cred_DiasSolicitado)
-                @Html.ValidationMessageFor(model => model.cred_DiasSolicitado)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cred_DiasAprobado, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.cred_DiasAprobado)
-                @Html.ValidationMessageFor(model => model.cred_DiasAprobado)
-            </div>
-        </div>
-
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.escre_Id, "escre_Id", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("escre_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.escre_Id)
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Estado </label>
-            @*@Html.LabelFor(model => model.escre_Id, "escre_Id", new { @class = "control-label col-md-2" })*@
-            <div class="col-md-5">
-                @Html.DropDownList("escre_Id", (IEnumerable<SelectListItem>)ViewBag.escre_Descripcion, new { @class = "form-control" })
-               @* @Html.DropDownList("escre_Id", (IEnumerable<SelectListItem>)ViewBag.escre_Id, new { @class = "form-control" })*@
-                @*@Html.EditorFor(model => model.tbEstadoSolicitudCredito.escre_Descripcion)*@
-                @*@Html.ValidationMessageFor(model => model.escre_Id)*@
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-xs-pull-11">
-                @Html.EditorFor(model => model.tbCliente.clte_EsPersonaNatural, 
-               new { htmlAttributes = new { disabled = "disabled", @readonly = "readonly" } })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-12 text-center">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-
-                @*<input type="submit" value="Aprobar" class="btn btn-primary" data-toggle="modal" data-target="#AprobarSolicitud" />*@
-                <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#AprobarSolicitud">Aprobar</button>
-                <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary" data-toggle="modal" data-target="#Anular">Denegar</button>
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}
+                                    @*<input type="submit" value="Aprobar" class="btn btn-primary" data-toggle="modal" data-target="#AprobarSolicitud" />*@
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AprobarSolicitud">Aprobar</button>
+                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary" data-toggle="modal" data-target="#Anular">Denegar</button>
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    }
 
 
                 </div>
@@ -227,14 +156,18 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
                         <td>@Html.DisplayFor(model => model.cred_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
                         <td>@Html.DisplayFor(model => model.cred_FechaModifica)</td>
                     </tr>
                 </table>
@@ -242,7 +175,7 @@
 
         </div>
     </div>
- </div>
+</div>
 
 <div>
     <div class="modal fade" id="AprobarSolicitud" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -257,7 +190,8 @@
                 <div class="modal-body" id="frmEditarMunicipios">
                     @*@Html.Partial("_ListAprobacion", (List<tbSolicitudCredito>)ViewBag.Aprobacion)*@
                     @Html.Partial("_AprobarSolicitudCredito", new ERP_GMEDINA.Models.tbSolicitudCredito()
-               { cred_Id = Model.cred_Id,
+               {
+                   cred_Id = Model.cred_Id,
                    escre_Id = Model.escre_Id,
                    cred_DiasAprobado = Model.cred_DiasAprobado,
                    cred_DiasSolicitado = Model.cred_DiasSolicitado,
@@ -269,87 +203,78 @@
                    cred_FechaModifica = Model.cred_FechaModifica,
                    cred_UsuarioModifica = Model.cred_UsuarioModifica
                })
-               </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-            @*//---------------------------modal anular Anular_@item.cred_Id*@
-            <div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Denegar Solicitud Crédito</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            ¿Está seguro de Denegar esta Solicitud De Crédito?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="AnularSolictud();" data-dismiss="modal">Si</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                        </div>
-                    </div>
+@*//---------------------------modal anular Anular_@item.cred_Id*@
+<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Denegar Solicitud Crédito</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de Denegar esta Solicitud De Crédito?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="AnularSolictud();" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="modal fade" id="ModalAgregarClientes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
+                </div>
+
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexCliente", (IEnumerable<tbCliente>)ViewBag.Cliente)
                 </div>
             </div>
-  
+        </div>
+    </div>
+</div>
 
 
-
-<script src="~/Scripts/app/SolicituCreditoDenegar.js"></script>
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-
-<script src="~/Scripts/app/CreditoCambio.js"></script>
-<script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script>
- $.datepicker.regional['es'] = {
- closeText: 'Cerrar',
- prevText: '< Ant',
- nextText: 'Sig >',
- currentText: 'Hoy',
- monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
- monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
- dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
- dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
- dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
- weekHeader: 'Sm',
- dateFormat: 'dd/mm/yy',
- firstDay: 1,
- isRTL: false,
- showMonthAfterYear: false,
- yearSuffix: ''
- };
- $.datepicker.setDefaults($.datepicker.regional['es']);
+<script src="~/Scripts/app/SolicituCreditoDenegar.js"></script>
+<script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
 
- //<!--rn vez del id se pone :#cred_FechaAprobacion -->
-$(function () {
-    $("#cred_FechaAprobacion").datepicker({ dateFormat: 'yy-mm-dd' });
-    $("#cred_FechaSolicitud").datepicker({ dateFormat: 'yy-mm-dd' });
-});
-        //VALIDACIONES
+<script>
+    //<!--rn vez del id se pone :#cred_FechaAprobacion -->
+    $(function () {
+        $("#cred_FechaAprobacion").datepicker({ dateFormat: 'yy-mm-dd' });
+        $("#cred_FechaSolicitud").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker("destroy");
+    });
+    //VALIDACIONES
+    $('#AceptarAprobacion').click(function () {
+
+        if ($('#cred_MontoAprobado').val() == 0) {
+            alert('El valor no puede ser cero');
+        }
+
+        else if ($('#cred_MontoAprobado').val() == '') {
+            alert('El Campo Monto Aprobado debe de ir lleno');
+        }
 
 
-$('#AceptarAprobacion').click(function () {
-
-            if ($('#cred_MontoAprobado').val() == 0) {
-              alert('El valor no puede ser cero');
-            }
-
-            else if ($('#cred_MontoAprobado').val() == '') {
-                alert('El Campo Monto Aprobado debe de ir lleno');
-            }
-
-
-        });
+    });
 
 </script>
 
-}
 
