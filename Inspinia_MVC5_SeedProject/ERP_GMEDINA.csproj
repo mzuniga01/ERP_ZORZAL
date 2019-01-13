@@ -1418,6 +1418,7 @@
     <Content Include="Views\PagosArqueo\Details.cshtml" />
     <Content Include="Views\PagosArqueo\Edit.cshtml" />
     <Content Include="Views\PagosArqueo\Index.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\EditEntregaEfectivo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
