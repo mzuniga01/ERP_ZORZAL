@@ -11,7 +11,7 @@ $(document).on('keyup', '#usu_Password, #confirmar-pass', function () {
     {
         if (usu_Password.length < 8)
         {
-            $('#msg').removeClass('text-success').addClass('text-danger').text('Longitud mínima es de 8 caracteres.');
+            $('#msg').removeClass('text-success').addClass('text-danger').text('Longitud debe ser de 8 caracteres.');
             $('#AgregarRol').prop('disabled', false);
             $('#QuitarRol').prop('disabled', false);
             $('#btnGuardarUsuario').prop('disabled', false);
@@ -40,7 +40,7 @@ $(document).on('keyup', '#usu_Password, #confirmar-pass', function () {
     }
 });
 
-$(document).on('change', '#usu_NombreUsuario', function () {
+$(document).on('blur', '#usu_NombreUsuario', function () {
     $.ajax({
         url: "/Usuario/GetUserExist",
         method: "POST",
@@ -49,21 +49,25 @@ $(document).on('change', '#usu_NombreUsuario', function () {
         data: JSON.stringify({ user: $('#usu_NombreUsuario').val() }),
     })
     .done(function (data) {
-        console.log(data.length);
-        console.log(data);
-        console.log('Hola');
-        if (data.length < 1) {
-            $('#errorUser').text('');
-            $('#validationDescripcionRol').after('<ul id="errorUser" class="validation-summary-errors text-danger">Nombre de Usuario ya existe.</ul>');
-            $('#usu_Nombres').focus();
+        if (data.length >= 1) {
+            $('#msgUsuario').text('');
+            $('#msgUsuario').removeClass('text-success').addClass('text-danger').text('Usuario ya existe');
+            $('#usu_NombreUsuario').focus();
         }
         else {
-            $('#errorUser').text('');
+            $('#msgUsuario').text('');
         }
     })
-    .fail(function (xhr, err) {
-        var responseTitle = $(xhr.responseText).filter('title').get(0);
-        console.log($(responseTitle).text() + "\n" + formatErrorMessage(xhr, err));
-    })
 });
+
+$(document).on('blur', '#usu_Password', function () {
+    var usu_Password = $('#usu_Password').val().trim();
+    if (usu_Password.length < 8) {
+        $('#msg').removeClass('text-success').addClass('text-danger').text('Longitud debe ser de 8 caracteres.');
+        $('#usu_Password').focus();
+    }
+});
+
+
+
 

@@ -35,9 +35,8 @@
             @Html.LabelFor(model => model.usu_NombreUsuario, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.TextBoxFor(model => model.usu_NombreUsuario, new { @class = "form-control", maxlength = "100", placeholder="nombre.apellido" })
-                <div id="ValidationUsuario">
                     @Html.ValidationMessageFor(model => model.usu_NombreUsuario, "", new { @class = "text-danger" })
-                </div>
+                    <label id="msgUsuario"></label><br>
             </div>
             @Html.LabelFor(model => model.usu_Correo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
