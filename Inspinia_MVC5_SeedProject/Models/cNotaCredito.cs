@@ -70,7 +70,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Estado")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public byte nocre_Estado { get; set; }
-        
+
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbCliente tbCliente { get; set; }

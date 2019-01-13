@@ -57,7 +57,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
+                                 <tr>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbSucursal.suc_Descripcion)
                                     </td>
@@ -65,9 +65,10 @@
                                         @Html.DisplayFor(modelItem => item.nocre_Codigo)
                                     </td>
                                     @if (item.tbCliente.clte_EsPersonaNatural == true)
-                                    {
+                                                {
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres)  @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
+                                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres)
+                                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
                                         </td>
                                     }
                                     else
@@ -84,7 +85,7 @@
                                         @Html.DisplayFor(modelItem => item.tbDevolucion.dev_Id)
                                     </td>
                                     @if (item.nocre_Estado == true)
-                {
+                            {
                                         <td>Activo</td>
                                     }
                                     else
@@ -96,7 +97,7 @@
                                         @Html.DisplayFor(modelItem => item.nocre_FechaEmision)
                                     </td>
                                     @if(item.nocre_Anulado==false)
-                                    {
+                                                {
                                         <td>No</td>
                                     }else
                                     {
@@ -104,8 +105,8 @@
                                     }
 
 
-                                    @if (item.nocre_Anulado == false)
-                                    {
+                                            @if (item.nocre_Anulado == false)
+                                                {
                                         <td>
 
                                             @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })

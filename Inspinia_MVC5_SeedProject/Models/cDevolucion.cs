@@ -26,7 +26,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Devolución")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime dev_Fecha { get; set; }
 
         public Nullable<int> dev_UsuarioCrea { get; set; }

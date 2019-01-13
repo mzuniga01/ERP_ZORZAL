@@ -147,7 +147,7 @@
 
         //-------------Fecha Actual-----------------------
         $(function () {
-            $("#cdto_FechaEmision").datepicker({ dateFormat: 'dd/mm/yy', maxDate: '+0d', minDate: 0 }).datepicker('setDate', new Date());
+            $("#cdto_FechaEmision").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
 
         });
 
