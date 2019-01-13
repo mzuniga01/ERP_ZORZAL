@@ -54,7 +54,7 @@
     </Key>
     <Property Name="usu_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="usu_NombreUsuario" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="usu_Password" Type="binary" MaxLength="64" Nullable="false" />
+    <Property Name="usu_Password" Type="varbinary" MaxLength="64" Nullable="false" />
     <Property Name="usu_Nombres" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="usu_Apellidos" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="usu_Correo" Type="varchar" MaxLength="150" Nullable="false" />
@@ -3612,7 +3612,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   </Function>
   <Function Name="UDP_Acce_tbUsuario_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="usu_NombreUsuario" Type="varchar" Mode="In" />
-    <Parameter Name="usu_Password" Type="binary" Mode="In" />
+    <Parameter Name="usu_Password" Type="varchar" Mode="In" />
     <Parameter Name="usu_Nombres" Type="varchar" Mode="In" />
     <Parameter Name="usu_Apellidos" Type="varchar" Mode="In" />
     <Parameter Name="usu_Correo" Type="varchar" Mode="In" />

@@ -61,9 +61,6 @@
             $('#Asignados> tbody > tr').each(function () {
                 $(this).remove();
             })
-
-
-
         }
     })
 });

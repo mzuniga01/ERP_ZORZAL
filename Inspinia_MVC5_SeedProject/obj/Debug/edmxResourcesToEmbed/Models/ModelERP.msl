@@ -108,13 +108,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Gral_tbUnidadMedida_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbUnidadMedida_Insert">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbUnidadMedida_Insert_Result">
@@ -1737,6 +1730,13 @@
           <ScalarProperty Name="obj_UsuarioModifica" ColumnName="obj_UsuarioModifica" />
           <ScalarProperty Name="obj_FechaModifica" ColumnName="obj_FechaModifica" />
           <ScalarProperty Name="obj_Estado" ColumnName="obj_Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

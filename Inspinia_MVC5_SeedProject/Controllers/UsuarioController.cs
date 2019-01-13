@@ -105,8 +105,9 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "usu_NombreUsuario,usu_Password,usu_Nombres,usu_Apellidos,usu_Correo,usu_ConfirmarPassword")] tbUsuario tbUsuario)
+        public ActionResult Create([Bind(Include = "usu_NombreUsuario,usu_Password,usu_Nombres,usu_Apellidos,usu_Correo,ConfirmarPassword")] tbUsuario tbUsuario, string usu_Password)
         {
+            string pass = Convert.ToString(tbUsuario.usu_Password);
             if (ModelState.IsValid)
             {
                 //db.tbUsuario.Add(tbUsuario);
@@ -116,7 +117,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<object> List = null;
                     var MsjError = "0";
-                    List = db.UDP_Acce_tbUsuario_Insert(tbUsuario.usu_NombreUsuario,  tbUsuario.usu_Password, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo);
+                    List = db.UDP_Acce_tbUsuario_Insert(tbUsuario.usu_NombreUsuario, usu_Password, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo);
                     foreach (UDP_Acce_tbUsuario_Insert_Result Usuario in List)
                         MsjError = Usuario.MensajeError;
 
@@ -137,6 +138,12 @@ namespace ERP_GMEDINA.Controllers
                     ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
                 }
             }
+            else
+            {
+                ModelState.AddModelError("ConfirmarPassword", "El campo Password es requerido");
+                ModelState.AddModelError("usu_Password", "El campo Password es requerido");
+            }
+                
 
             return View(tbUsuario);
         }
@@ -343,6 +350,13 @@ namespace ERP_GMEDINA.Controllers
         public JsonResult GetRoles()
         {
             var list = db.SDP_Acce_GetRoles().ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult GetUserExist(string user)
+        {
+            var list = db.tbUsuario.Where(s=> s.usu_NombreUsuario == user).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
     }

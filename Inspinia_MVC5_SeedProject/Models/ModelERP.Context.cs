@@ -571,31 +571,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRolesUsuario_Update_Result>("UDP_Acce_tbRolesUsuario_Update", rolu_IdParameter, rol_IdParameter, usu_IdParameter, rolu_UsuarioCreaParameter, rolu_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Acce_tbUsuario_Insert_Result> UDP_Acce_tbUsuario_Insert(string usu_NombreUsuario, byte[] usu_Password, string usu_Nombres, string usu_Apellidos, string usu_Correo)
-        {
-            var usu_NombreUsuarioParameter = usu_NombreUsuario != null ?
-                new ObjectParameter("usu_NombreUsuario", usu_NombreUsuario) :
-                new ObjectParameter("usu_NombreUsuario", typeof(string));
-    
-            var usu_PasswordParameter = usu_Password != null ?
-                new ObjectParameter("usu_Password", usu_Password) :
-                new ObjectParameter("usu_Password", typeof(byte[]));
-    
-            var usu_NombresParameter = usu_Nombres != null ?
-                new ObjectParameter("usu_Nombres", usu_Nombres) :
-                new ObjectParameter("usu_Nombres", typeof(string));
-    
-            var usu_ApellidosParameter = usu_Apellidos != null ?
-                new ObjectParameter("usu_Apellidos", usu_Apellidos) :
-                new ObjectParameter("usu_Apellidos", typeof(string));
-    
-            var usu_CorreoParameter = usu_Correo != null ?
-                new ObjectParameter("usu_Correo", usu_Correo) :
-                new ObjectParameter("usu_Correo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbUsuario_Insert_Result>("UDP_Acce_tbUsuario_Insert", usu_NombreUsuarioParameter, usu_PasswordParameter, usu_NombresParameter, usu_ApellidosParameter, usu_CorreoParameter);
-        }
-    
         public virtual ObjectResult<UDP_Gral_tbUnidadMedida_Insert_Result> UDP_Gral_tbUnidadMedida_Insert(string uni_Descripcion, string uni_Abreviatura)
         {
             var uni_DescripcionParameter = uni_Descripcion != null ?
@@ -1873,6 +1848,31 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("obj_Pantalla", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Acce_GetUserRols_Result>("SDP_Acce_GetUserRols", usu_IdParameter, obj_PantallaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Acce_tbUsuario_Insert_Result> UDP_Acce_tbUsuario_Insert(string usu_NombreUsuario, string usu_Password, string usu_Nombres, string usu_Apellidos, string usu_Correo)
+        {
+            var usu_NombreUsuarioParameter = usu_NombreUsuario != null ?
+                new ObjectParameter("usu_NombreUsuario", usu_NombreUsuario) :
+                new ObjectParameter("usu_NombreUsuario", typeof(string));
+    
+            var usu_PasswordParameter = usu_Password != null ?
+                new ObjectParameter("usu_Password", usu_Password) :
+                new ObjectParameter("usu_Password", typeof(string));
+    
+            var usu_NombresParameter = usu_Nombres != null ?
+                new ObjectParameter("usu_Nombres", usu_Nombres) :
+                new ObjectParameter("usu_Nombres", typeof(string));
+    
+            var usu_ApellidosParameter = usu_Apellidos != null ?
+                new ObjectParameter("usu_Apellidos", usu_Apellidos) :
+                new ObjectParameter("usu_Apellidos", typeof(string));
+    
+            var usu_CorreoParameter = usu_Correo != null ?
+                new ObjectParameter("usu_Correo", usu_Correo) :
+                new ObjectParameter("usu_Correo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbUsuario_Insert_Result>("UDP_Acce_tbUsuario_Insert", usu_NombreUsuarioParameter, usu_PasswordParameter, usu_NombresParameter, usu_ApellidosParameter, usu_CorreoParameter);
         }
     }
 }

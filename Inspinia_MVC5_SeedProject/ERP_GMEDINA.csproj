@@ -961,6 +961,7 @@
     <Content Include="Scripts\app\BodegaDetalle.js" />
     <Content Include="Scripts\app\BusquedaGenerica.js" />
     <Content Include="Scripts\app\Categoria.js" />
+    <Content Include="Scripts\app\Comparar.js" />
     <Content Include="Scripts\app\CrearActualizarEliminar.js" />
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\Datepicker.js" />

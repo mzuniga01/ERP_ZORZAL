@@ -11,7 +11,8 @@ namespace ERP_GMEDINA.Models
     public partial class tbUsuario
     {
         [NotMapped]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Confirmar Password")]
         public string ConfirmarPassword { get; set; }
     }
     public class UsuarioMetaData
@@ -26,16 +27,16 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Password")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public byte[] usu_Password { get; set; }
+        public string usu_Password { get; set; }
 
         [Display(Name = "Nombres")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        [RegularExpression("([A-Za-z ])*", ErrorMessage = "Solo se admiten letras.")]
+        [RegularExpression("([A-Za-z a-zA-ZñÑáéíóúÁÉÍÓÚ])*", ErrorMessage = "Solo se admiten letras.")]
         public string usu_Nombres { get; set; }
 
         [Display(Name = "Apellidos ")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        [RegularExpression("([A-Za-z ])*", ErrorMessage = "Solo se admiten letras.")]
+        //[RegularExpression("([a-zA-ZñÑáéíóúÁÉÍÓÚ])*", ErrorMessage = "Solo se admiten letras.")]
         public string usu_Apellidos { get; set; }
 
 

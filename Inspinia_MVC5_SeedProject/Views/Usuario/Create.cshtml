@@ -34,12 +34,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.usu_NombreUsuario, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.usu_NombreUsuario, new { @class = "form-control", maxlength = "100" })
-                @Html.ValidationMessageFor(model => model.usu_NombreUsuario,"", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.usu_NombreUsuario, new { @class = "form-control", maxlength = "100", placeholder="nombre.apellido" })
+                <div id="ValidationUsuario">
+                    @Html.ValidationMessageFor(model => model.usu_NombreUsuario, "", new { @class = "text-danger" })
+                </div>
             </div>
             @Html.LabelFor(model => model.usu_Correo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.usu_Correo, new { @class = "form-control", maxlength = "150" })
+                @Html.TextBoxFor(model => model.usu_Correo, new { @class = "form-control", maxlength = "150", placeholder = "nombre.apellido@ejemplo.com" })
                 @Html.ValidationMessageFor(model => model.usu_Correo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -59,42 +61,19 @@
         </div>
 
         <div class="form-group">
-            <label id="msg"></label><br>
             @Html.LabelFor(model => model.usu_Password, new { @class = "control-label col-md-2" })
             <div class="col-md-2">
-                <input class="text-box single-line" data-val="true" data-val-required="El campo Usuario es requerido" id="usu_Password" maxlength="8" name="usu_Password" type="password" value="">
+                <input class="text-box single-line" data-val="true" data-val-required="El campo Password es requerido" id="usu_Password" maxlength="8" name="usu_Password" type="password" value="">
                 @Html.ValidationMessageFor(model => model.usu_Password, "", new { @class = "text-danger" })
+                <label id="msg"></label><br>
             </div>
 
             @Html.LabelFor(model => model.ConfirmarPassword, new { @class = "control-label col-md-4" })
             <div class="col-md-2">
-                @*@Html.EditorFor(model => model.ConfirmarPassword)*@
-                <input class="text-box single-line" data-val="true" data-val-required="El campo Usuario es requerido" id="confirmar-pass" maxlength="8" name="confirmar-pass" type="password" value="">
+                <input class="text-box single-line" data-val="true" data-val-required="El campo Confirmar Password es requerido" id="confirmar-pass" maxlength="8" name="ConfirmarPassword" type="password" value="">
                 @Html.ValidationMessageFor(model => model.ConfirmarPassword, "", new { @class = "text-danger" })
             </div>
-        
-            @*@Html.LabelFor(model => model.usu_EsActivo, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.usu_EsActivo)
-                @Html.ValidationMessageFor(model => model.usu_EsActivo)
-            </div>*@
         </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.usu_RazonInactivo, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.usu_RazonInactivo)
-                @Html.ValidationMessageFor(model => model.usu_RazonInactivo)
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.usu_EsAdministrador, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.usu_EsAdministrador)
-                @Html.ValidationMessageFor(model => model.usu_EsAdministrador)
-            </div>
-        </div>*@
         <div><br /><br /><br /></div>
 
         <div class="col-md-5">
@@ -132,12 +111,10 @@
                 <tbody></tbody>
             </table>
         </div>
-
         <div class="col-md-9"></div>
-
-        <div class="form-group">
-            <div class="col-md-3">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+        <div class="form-group text-center">
+            <div class="col-md-12">
+                <input type="submit" value="Guardar" class="btn btn-primary" id="btnGuardarUsuario"/>
                 @*@Html.ActionLink("Guardar", "Index", null, new { @class = "btn btn-primary" })*@
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
@@ -153,9 +130,6 @@
 
  
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/app/Comparar.js"></script>
-<script src="~/Scripts/app/RolesUsuario.js"></script>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-}
+<script src="~/Scripts/app/Comparar.js"></script>
+<script src="~/Scripts/app/RolesUsuario.js"></script>
