@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Net.Mail;
 using SimpleCrypto;
+using System.Transactions;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -97,6 +98,7 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Usuario/Create
         public ActionResult Create()
         {
+            Session["tbRolesUsuario"]=null;
             return View();
         }
 
@@ -107,35 +109,53 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "usu_NombreUsuario,usu_Password,usu_Nombres,usu_Apellidos,usu_Correo,ConfirmarPassword")] tbUsuario tbUsuario, string usu_Password)
         {
-            string pass = Convert.ToString(tbUsuario.usu_Password);
+            IEnumerable<object> List = null;
+            IEnumerable<object> Roles = null;
+            var listRoles = (List<tbRolesUsuario>)Session["tbRolesUsuario"];
+            var MsjError = "0";
+            var MsjErrorRoles = "0";
             if (ModelState.IsValid)
             {
-                //db.tbUsuario.Add(tbUsuario);
-                //db.SaveChanges();
-                //return RedirectToAction("Index");
-                try
+                using (TransactionScope _Tran = new TransactionScope())
                 {
-                    IEnumerable<object> List = null;
-                    var MsjError = "0";
-                    List = db.UDP_Acce_tbUsuario_Insert(tbUsuario.usu_NombreUsuario, usu_Password, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo);
-                    foreach (UDP_Acce_tbUsuario_Insert_Result Usuario in List)
-                        MsjError = Usuario.MensajeError;
-
-                    if (MsjError == "-1")
+                    try
                     {
-
-                    }
-                    else
-                    {
+                        List = db.UDP_Acce_tbUsuario_Insert(tbUsuario.usu_NombreUsuario, usu_Password, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo);
+                        foreach (UDP_Acce_tbUsuario_Insert_Result Usuario in List)
+                            MsjError = Usuario.MensajeError;
+                        if (MsjError.StartsWith("-1"))
+                        {
+                            ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                            return View(tbUsuario);
+                        }
+                        else
+                        {
+                            if (listRoles != null)
+                            {
+                                if (listRoles.Count > 0)
+                                {
+                                    foreach(tbRolesUsuario URoles in listRoles)
+                                    {
+                                        Roles = db.UDP_Acce_tbRolesUsuario_Insert(URoles.rol_Id, Convert.ToInt32(MsjError));
+                                        foreach (UDP_Acce_tbRolesUsuario_Insert_Result Resultado in Roles)
+                                            MsjErrorRoles = Resultado.MensajeError;
+                                        if (MsjError.StartsWith("-1"))
+                                        {
+                                            ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                                            return View(tbUsuario);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        _Tran.Complete();
                         return RedirectToAction("Index");
                     }
-
-
-                }
-                catch (Exception Ex)
-                {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    catch (Exception Ex)
+                    {
+                        Ex.Message.ToString();
+                        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    }
                 }
             }
             else
@@ -143,8 +163,6 @@ namespace ERP_GMEDINA.Controllers
                 ModelState.AddModelError("ConfirmarPassword", "El campo Password es requerido");
                 ModelState.AddModelError("usu_Password", "El campo Password es requerido");
             }
-                
-
             return View(tbUsuario);
         }
 
@@ -358,6 +376,38 @@ namespace ERP_GMEDINA.Controllers
         {
             var list = db.tbUsuario.Where(s=> s.usu_NombreUsuario == user).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult saveRol(tbRolesUsuario Roles)
+        {
+            List<tbRolesUsuario> sessionRolesUsuario = new List<tbRolesUsuario>();
+            var list = (List<tbRolesUsuario>)Session["tbRolesUsuario"];
+            if (list == null)
+            {
+                sessionRolesUsuario.Add(Roles);
+                Session["tbRolesUsuario"] = sessionRolesUsuario;
+            }
+            else
+            {
+                list.Add(Roles);
+                Session["tbRolesUsuario"] = list;
+            }
+            return Json("Exito", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult removeRol(tbRolesUsuario Roles)
+        {
+            var list = (List<tbRolesUsuario>)Session["tbRolesUsuario"];
+
+            if (list != null)
+            {
+                var itemToRemove = list.Single(r => r.rol_Id == Roles.rol_Id);
+                list.Remove(itemToRemove);
+                Session["tbRolesUsuario"] = list;
+            }
+            return Json("Exito", JsonRequestBehavior.AllowGet);
         }
     }
 }

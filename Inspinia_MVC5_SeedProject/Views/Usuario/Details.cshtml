@@ -7,15 +7,12 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Detalles Usuario</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Details</strong>
-            </li>
-        </ol>*@
+        <h2>Usuario</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
     </div>
 </div>
 
@@ -26,128 +23,93 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                @*<div class="ibox-title">
-                    <h5>Details tbUsuario</h5>
-                </div>*@
+                <div class="ibox-title">
+                    <h5>Detalles Usuario</h5>
+                </div>
                 <div class="ibox-content">
-
-
 				    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.DisplayNameFor(model => model.usu_Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.usu_Id)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.usu_NombreUsuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.usu_NombreUsuario)
-        </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.usu_Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.usu_Password)
-        </dd>*@
-
-        <dt>
-            @Html.DisplayNameFor(model => model.usu_Nombres)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.usu_Nombres)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.usu_Apellidos)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.usu_Apellidos)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.usu_Correo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.usu_Correo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.usu_EsActivo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.usu_EsActivo)
-        </dd>
-        @if (Model.usu_EsActivo ==true)
-        {
                         <dt>
+                            @Html.DisplayNameFor(model => model.usu_Id)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.usu_Id)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.usu_NombreUsuario)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.usu_NombreUsuario)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.usu_Nombres)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.usu_Nombres)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.usu_Apellidos)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.usu_Apellidos)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.usu_Correo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.usu_Correo)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.usu_EsActivo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.usu_EsActivo)
+                        </dd>
+                        @if (Model.usu_EsActivo ==true)
+                        {
+                            <dt>
                             
-                        </dt>
+                            </dt>
 
-                        <dd>
+                            <dd>
                            
-                        </dd> }
-        else
-        {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.usu_RazonInactivo)
-                        </dt>
+                            </dd> 
+                        }
+                        else
+                        {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.usu_RazonInactivo)
+                            </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.usu_RazonInactivo)
-                        </dd> }
+                            <dd>
+                                @Html.DisplayFor(model => model.usu_RazonInactivo)
+                            </dd> 
+                        }
 
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.usu_EsAdministrador)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.usu_EsAdministrador)
-        </dd>*@
-
-    </dl>
-
-                    <div><br /><br /><br /></div>
-
-
-
-                        <label class="col-md-pull-4" style="text-align:center">Roles Asignados</label>
-                        <table class="table table-bordered" style="width:50%">
-                            <tr>
-                                <td style="color:white" bgcolor="#1ab394">Rol</td>
-                                <td bgcolor="#1ab394"></td>
-                            </tr>
-                            <tr>
-                                <td>Encargado de Bodega</td>
-                                <td><input name="id02" type="checkbox" id="id02" checked="checked" disabled="disabled"/></td>
-                            </tr>
-                            <tr>
-                                <td>Jefe de Bodega</td>
-                                <td><input name="id03" type="checkbox" id="id03" checked="checked" disabled="disabled"/></td>
-                            </tr>
-                            <tr>
-                                <td>Cajero</td>
-                                <td><input name="id03" type="checkbox" id="id03" checked="checked" disabled="disabled"/></td>
-                            </tr>
-                        </table>
-
-
-
+                    </dl>
                         @Html.ActionLink("Editar", "Edit", new { id = Model.usu_Id }, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white" })
-                  
+                </div>
+            </div>
 
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Roles Asignados</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        @*@Html.Partial("_IndexAccesoRol", Model.tbro)*@
+                        <div class="form-group">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

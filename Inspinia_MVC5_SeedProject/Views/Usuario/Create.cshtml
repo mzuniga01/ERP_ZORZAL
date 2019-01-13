@@ -35,13 +35,13 @@
             @Html.LabelFor(model => model.usu_NombreUsuario, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.TextBoxFor(model => model.usu_NombreUsuario, new { @class = "form-control", maxlength = "100", placeholder="nombre.apellido" })
-                    @Html.ValidationMessageFor(model => model.usu_NombreUsuario, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.usu_NombreUsuario, "", new { @class = "text-danger", id = "NombreUsuario" })
                     <label id="msgUsuario"></label><br>
             </div>
             @Html.LabelFor(model => model.usu_Correo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.TextBoxFor(model => model.usu_Correo, new { @class = "form-control", maxlength = "150", placeholder = "nombre.apellido@ejemplo.com" })
-                @Html.ValidationMessageFor(model => model.usu_Correo, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.usu_Correo, "", new { @class = "text-danger", id= "emailOK" })
             </div>
         </div>
 
@@ -63,7 +63,7 @@
             @Html.LabelFor(model => model.usu_Password, new { @class = "control-label col-md-2" })
             <div class="col-md-2">
                 <input class="text-box single-line" data-val="true" data-val-required="El campo Password es requerido" id="usu_Password" maxlength="8" name="usu_Password" type="password" value="">
-                @Html.ValidationMessageFor(model => model.usu_Password, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.usu_Password, "", new { @class = "text-danger", id="Password" })
                 <label id="msg"></label><br>
             </div>
 
@@ -80,10 +80,9 @@
             <table class="table table-responsive" style="width:100%" id="NoAsignados">
                 <thead>
                     <tr>
-                        <td id="RegistrosNoAsignados" style="color:white" bgcolor="#1ab394">Rol</td>
-                        <td bgcolor="#1ab394"></td>
+                        <td id="RegistrosNoAsignados" style="background-color:#1ab394;color:white">Rol</td>
+                        <td style="background-color:#1ab394"></td>
                     </tr>
-                    <tr>
                 </thead>
                 <tbody></tbody>
             </table>
@@ -103,8 +102,8 @@
             <table class="table table-responsive" style="width:100%" id="Asignados">
                 <thead>
                     <tr>
-                        <td id="RegistrosAsignados" style="color:white" bgcolor="#1ab394">Rol</td>
-                        <td bgcolor="#1ab394"></td>
+                        <td id="RegistrosAsignados" style="background-color:#1ab394;color:white">Rol</td>
+                        <td style="background-color:#1ab394"></td>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -130,5 +129,4 @@
  
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/app/Comparar.js"></script>
 <script src="~/Scripts/app/RolesUsuario.js"></script>
