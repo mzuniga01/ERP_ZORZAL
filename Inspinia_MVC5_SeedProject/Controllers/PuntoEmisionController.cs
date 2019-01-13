@@ -160,10 +160,15 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
-
             //*****PuntoEmisionDetalle
             string cas = "dfisc_IdList";
             System.Web.HttpContext.Current.Items[cas] = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
+
+            var ValidacionRegistro = db.tbPuntoEmisionDetalle.Where(x => x.pemi_Id == tbPuntoEmision.pemi_Id).ToList();
+            if (ValidacionRegistro.Count() > 0)
+            {
+                ViewBag.Validacion = "1";
+            }
             return View(tbPuntoEmision);
         }
 
@@ -178,14 +183,6 @@ namespace ERP_ZORZAL.Controllers
             {
                 try
                 {
-                    var ValidacionRegistro = db.tbPuntoEmisionDetalle.Where(x => x.pemi_Id == PuntoEmision.pemi_Id).ToList();
-                    if (ValidacionRegistro.Count() > 0)
-                    {
-                        ModelState.AddModelError("", "No se puede actualizar el número CAI porque ya existe un documento fiscal con este número.");
-                        return View("Edit", PuntoEmision);
-                    }
-                    else
-                    {
                         var MensajeError = 0;
                         IEnumerable<object> list = null;
                         list = db.UDP_Vent_tbPuntoEmision_Update(
@@ -204,7 +201,6 @@ namespace ERP_ZORZAL.Controllers
                         {
                             return RedirectToAction("Index");
                         }
-                    }
                 }
                 catch (Exception Ex)
                 {
