@@ -7,11 +7,12 @@ function format(input) {
         input.value = num;
     }
     else {
-        alert('Solo se permiten numeros');
+        //alert('Solo se permiten numeros');
         input.value = input.value.replace(/[^\d\.]*/g, '');
     }
 }
 //fin
+
 
 //js Todas las tablas
 $(document).ready(function () {
@@ -94,7 +95,6 @@ $('#AgregarBodegaDetalle').click(function () {
     var Costo = $('#bodd_Costo').val();
     var Cpromedio = $('#bodd_CostoPromedio').val();
 
-
     if (Producto == '') {
         $('#MessageError').text('');
         $('#Error_Producto').text('');
@@ -103,7 +103,7 @@ $('#AgregarBodegaDetalle').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
-        $('#ErrorProducto_Create').after('<ul id="Error_Producto" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
+       
     }
     else if (Preorden == '') {
         $('#MessageError').text('');
@@ -113,8 +113,9 @@ $('#AgregarBodegaDetalle').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
-        $('#ErrorPuntoReorden_Create').after('<ul id="Error_PuntoReorden" class="validation-summary-errors text-danger">Campo Punto Reorden Requerido</ul>');
+       
     }
+  
     else if (Cminima == '') {
 
         $('#MessageError').text('');
@@ -124,10 +125,10 @@ $('#AgregarBodegaDetalle').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
-        $('#ErrorCantidadMinima_Create').after('<ul id="Error_CantidadMinima" class="validation-summary-errors text-danger">Campo Canidad Mínima Requerido</ul>');
+        
     }
+   
     else if (Cmaxima == '') {
-
         $('#MessageError').text('');
         $('#Error_Producto').text('');
         $('#Error_PuntoReorden').text('');
@@ -135,10 +136,10 @@ $('#AgregarBodegaDetalle').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
-        $('#ErrorCantidadMaxima_Create').after('<ul id="Error_CantidadMaxima" class="validation-summary-errors text-danger">Campo Cantidad Máxima Requerido</ul>');
+        
     }
+   
     else if (Costo == '') {
-
         $('#MessageError').text('');
         $('#Error_Producto').text('');
         $('#Error_PuntoReorden').text('');
@@ -146,7 +147,7 @@ $('#AgregarBodegaDetalle').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
-        $('#ErrorCosto_Create').after('<ul id="Error_Costo" class="validation-summary-errors text-danger">Campo Costo Requerido</ul>');
+        
     }
     else if (Cpromedio == '') {
 
@@ -157,7 +158,7 @@ $('#AgregarBodegaDetalle').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
-        $('#ErrorCostoPromedio_Create').after('<ul id="Error_CostoPromedioo" class="validation-summary-errors text-danger">Campo Costo Promedio Requerido</ul>');
+        
     }
 
     else {
@@ -165,14 +166,16 @@ $('#AgregarBodegaDetalle').click(function () {
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
         copiar += "<td id = 'Producto'>" + $('#prod_Codigo').val() + "</td>";
-        copiar += "<td id = 'Preorden'>" + $('#bodd_PuntoReorden').val() + "</td>";// aqui va el campo y luego se llena con el id del mismo, que ya ha capturado el valor
-        copiar += "<td id = 'Cminima'>" + $('#bodd_CantidadMinima').val() + "</td>";
-        copiar += "<td id = 'Cmaxima'>" + $('#bodd_CantidadMaxima').val() + "</td>";
+        copiar += "<td id = 'Descripcion_P'>" + $('#prod_Descripcion').val() + "</td>";
         copiar += "<td id = 'Costo'>" + $('#bodd_Costo').val() + "</td>";
         copiar += "<td id = 'Cpromedio'>" + $('#bodd_CostoPromedio').val() + "</td>";
-        copiar += "<td>" + '<button id="removeBodegaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+        copiar += "<td id = ''></td>";
+        copiar += "<td id = 'Preorden' hidden >" + $('#bodd_PuntoReorden').val() + "</td>";// aqui va el campo y luego se llena con el id del mismo, que ya ha capturado el valor
+        copiar += "<td id = 'Cminima' hidden>" + $('#bodd_CantidadMinima').val() + "</td>";
+        copiar += "<td id = 'Cmaxima' hidden >" + $('#bodd_CantidadMaxima').val() + "</td>";
+        copiar += "<td>" + '<button id="removeBodegaDetalle" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
         copiar += "</tr>";
-        $('#tblBodegadetalle_Create').append(copiar);
+        $('#tbBodega').append(copiar);
 
         var tbBodegaDetalle = Getbodegadetalle();
         $.ajax({
@@ -192,7 +195,7 @@ $('#AgregarBodegaDetalle').click(function () {
                 $('#bodd_CantidadMinima').val('');
                 $('#bodd_CantidadMaxima').val('');
                 $('#bodd_Costo').val('');
-                $('#bodd_CostoPromedio').val(''); 
+                $('#bodd_CostoPromedio').val('');
 
                 $('#MessageError').text('');
                 $('#Error_Producto').text('');
@@ -212,11 +215,11 @@ function Getbodegadetalle() {
         prod_Codigo: $('#prod_Codigo').val(),
         bodd_puntoReorden: $('#bodd_PuntoReorden').val(),
         bodd_cantidadMinima: $('#bodd_CantidadMinima').val(),
-        bodd_cantidadMaxima: $('#bodd_CantidadMaxima').val(), 
+        bodd_cantidadMaxima: $('#bodd_CantidadMaxima').val(),
         bodd_costo: $('#bodd_Costo').val(),
         bodd_costoPromedio: $('#bodd_CostoPromedio').val(),
         bodd_UsuarioCrea: contador,
-        bodd_Id : contador,
+        bodd_Id: contador,
         //Fecha: $('#fechaCreate').val(),
     };
     return BODEGADETALLE;
@@ -224,7 +227,7 @@ function Getbodegadetalle() {
 //Fin
 
 //Remover Detalle
-$(document).on("click", "#tblBodegadetalle_Create tbody tr td button#removeBodegaDetalle", function () {
+$(document).on("click", "#tbBodega tbody tr td button#removeBodegaDetalle", function () {
     $(this).closest('tr').remove();
     idItem = $(this).closest('tr').data('id');
     var BorrarItems = {
@@ -346,15 +349,81 @@ function Getbodegadetalle() {
 }
 //Fin
 
+//Validar Cantidades Bodega Detalle
+$(document).on('blur', '#bodd_PuntoReorden', function () {
+    var Mn =  $('#bodd_CantidadMinima').val();
+    var Pr = $('#bodd_PuntoReorden').val();
+    console.log(Mn)
+    console.log(Pr)
+    if (Mn)
 
 
+        if (Pr != '' && Mn != '') {
+
+            if (parseFloat(Mn) > parseFloat(Pr)) {
+
+                $('#Error_PuntoReorden').text('');
+                $('#ErrorPuntoReorden_Create').after('<ul id="Error_PuntoReorden" class="validation-summary-errors text-danger">Punto Reorden debe ser Mayor de Cantidad Minima</ul>');
+                console.log('1')
+            }
+            else {
+                $('#Error_PuntoReorden').text('');
+                console.log('2')
+            }
+        }
+        
+
+})
+
+$(document).on('blur', '#bodd_CantidadMinima', function () {
+    var Mn = $('#bodd_CantidadMinima').val();
+    var Pr = $('#bodd_PuntoReorden').val();
+    console.log(Mn)
+    console.log(Pr)
+    if (Mn)
 
 
+        if (Pr != '' && Mn != '') {
+
+            if (parseFloat(Mn) > parseFloat(Pr)) {
+
+                $('#Error_CantidadMinima').text('');
+                $('#ErrorCantidadMinima_Create').after('<ul id="Error_CantidadMinima" class="validation-summary-errors text-danger">Cantidad Minima debe ser Menor que Punto Reorden</ul>');
+                console.log('1')
+            }
+            else {
+                $('#Error_CantidadMinima').text('');
+                console.log('2')
+            }
+        }
 
 
+})
+
+$(document).on('blur', '#bodd_CantidadMaxima', function () {
+    var Mx = $('#bodd_CantidadMaxima').val();
+    var Pr = $('#bodd_PuntoReorden').val();
+    console.log(Mx)
+    console.log(Pr)
+    if (Mx)
 
 
+        if (Pr != '' && Mx != '') {
 
+            if (parseFloat(Mx) < parseFloat(Pr)) {
+
+                $('#Error_CantidadMaxima').text('');
+                $('#ErrorCantidadMaxima_Create').after('<ul id="Error_CantidadMaxima" class="validation-summary-errors text-danger">Cantidad Maxima debe ser Mayor que Punto Reorden</ul>');
+                console.log('1')
+            }
+            else {
+                $('#Error_CantidadMaxima').text('');
+                console.log('2')
+            }
+        }
+
+
+})
 
 
 

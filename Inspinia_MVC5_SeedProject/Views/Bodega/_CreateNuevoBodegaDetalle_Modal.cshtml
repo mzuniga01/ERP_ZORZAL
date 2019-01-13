@@ -55,85 +55,55 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                <input type="number" id="bodd_CantidadMinima" placeholder="" class="form-control" />
+                                @Html.EditorFor(model => model.bodd_CantidadMinima, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
+                                @*@Html.TextBoxFor(model => model.bodd_CantidadMinima, new { @class = "single-line", MaxLength = 13, @Value = "", @onkeyup = "format(this)" })*@
                                 <div id="ErrorCantidadMinima_Create">
-                                    @Html.ValidationMessageFor(model => model.bodd_CantidadMinima)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bodd_CantidadMinima)</p>
                                 </div>
                             </div>
-                            @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                <input type="number" id="bodd_PuntoReorden" placeholder="" class="form-control" />
-                                <div id="ErrorPuntoReorden_Create">
-                                    @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
+                                @Html.EditorFor(model => model.bodd_Costo, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
+                                <div id="ErrorCosto_Create">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bodd_Costo)</p>
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.bodd_PuntoReorden, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
+                                <div id="ErrorPuntoReorden_Create">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bodd_PuntoReorden)</p>
+                                </div>
+                            </div>
+                            @Html.LabelFor(model => model.bodd_CostoPromedio, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.bodd_CostoPromedio, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
+                                <div id="ErrorCostoPromedio_Create">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bodd_CostoPromedio)</p>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                <input type="number" id="bodd_CantidadMaxima" placeholder="" class="form-control" />
-
-                            </div>
-
-                            @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                <input type="number" id="bodd_Costo" placeholder="" class="form-control" />
-                                @Html.ValidationMessageFor(model => model.bodd_Costo)
-                                <div id="ErrorCosto_Create">
-                                    @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
+                                @Html.EditorFor(model => model.bodd_CantidadMaxima, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
+                                <div id="ErrorCantidadMaxima_Create">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)</p>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.bodd_CostoPromedio, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                <input type="number" id="bodd_CostoPromedio" placeholder="" class="form-control" />
-                                <div id="ErrorCostoPromedio_Create">
-                                    @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
-                                </div>
+                            <div class="col-md-offset-4">
+                                <input type="button" value="Agregar" id="AgregarBodegaDetalle" class="btn btn-sm btn-primary" />
                             </div>
-
                         </div>
-                        <div class="ibox-tools">
-                            <input type="button" value="Agregar" id="AgregarBodegaDetalle" class="btn btn-primary" />
-                        </div>
-                        @*<div class="form-group col-md-1">
-            <button class="btn btn-primary" type="button" id="AgregarBodegaDetalle">Añadir</button>
-        </div>*@
-                        <table id="tblBodegadetalle_Create" class="table table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Producto</th>
-                                    <th>Punto Reorden</th>
-                                    <th>Cnt. Minima</th>
-                                    <th>Cnt. Maxima</th>
-                                    <th>Costo</th>
-                                    <th>Costo Promedio</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                        
                     </div>
-
-                    @*<div class="row">
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        @Html.Partial("_DetallesProductos", Model.tbProducto, new ViewDataDictionary { { "prod_Codigo", Model.prod_Codigo } })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>*@
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

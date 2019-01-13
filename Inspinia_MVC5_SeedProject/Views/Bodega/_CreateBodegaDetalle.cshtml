@@ -54,16 +54,14 @@
                             @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.bodd_CantidadMinima, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
-                                <div id="ErrorCantidadMinima_Create">
-                                    @Html.ValidationMessageFor(model => model.bodd_CantidadMinima)
-                                </div>
+                                <div id="ErrorCantidadMinima_Create">@Html.ValidationMessageFor(model => model.bodd_CantidadMinima)</div>
+                                
                             </div>
                             @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.bodd_PuntoReorden, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
-                                <div id="ErrorPuntoReorden_Create">
-                                    @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
-                                </div>
+                                <div id="ErrorPuntoReorden_Create">@Html.ValidationMessageFor(model => model.bodd_PuntoReorden)</div>
+                               
                             </div>
                         </div>
                         <div class="form-group">
@@ -71,18 +69,15 @@
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.bodd_CantidadMaxima, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
                                 @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
-                                <div id="ErrorCantidadMaxima_Create">
-                                    @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
-                                </div>
+                                <div id="ErrorCantidadMaxima_Create">@Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)</div>
                             </div>
 
                             @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.bodd_Costo, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
                                 @Html.ValidationMessageFor(model => model.bodd_Costo)
-                                <div id="ErrorCosto_Create">
-                                    @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
-                                </div>
+                                <div id="ErrorCosto_Create">@Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)</div>
+                               
                             </div>
                         </div>
 
@@ -90,9 +85,8 @@
                             @Html.LabelFor(model => model.bodd_CostoPromedio, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.bodd_CostoPromedio, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
-                                <div id="ErrorCostoPromedio_Create">
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bodd_CostoPromedio)</p>
-                                </div>
+                                <div id="ErrorCostoPromedio_Create"><p style="color:red">@Html.ValidationMessageFor(model => model.bodd_CostoPromedio)</p> </div>
+                                <div id="ErrorNumerico"></div>
                             </div>
 
                         </div>

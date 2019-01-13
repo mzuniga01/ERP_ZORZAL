@@ -273,7 +273,7 @@ namespace ERP_GMEDINA.Controllers
                 foreach (UDP_Inv_tbBodegaDetalle_Update_Result bodega in list)
                     Msj = bodega.MensajeError;
 
-                if (Msj.Substring(0, 2) == "-1")
+                if (Msj == "-1")
                 {
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                     return PartialView("_EditBodegaDetalleModal");

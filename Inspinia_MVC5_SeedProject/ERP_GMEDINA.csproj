@@ -975,9 +975,11 @@
     <Content Include="Scripts\app\MostrarCamposEditar.js" />
     <Content Include="Scripts\app\MostrarCamposEntradajs.js" />
     <Content Include="Scripts\app\MostrarCamposSalida.js" />
+    <Content Include="Scripts\app\MostrarOcultar.js" />
     <Content Include="Scripts\app\Municipio.js" />
     <Content Include="Scripts\app\PartialViewGetObjectos.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
+    <Content Include="Scripts\app\RolesUsuario.js" />
     <Content Include="Scripts\app\RolObjetosEdit.js" />
     <Content Include="Scripts\app\RolObjetos.js" />
     <Content Include="Scripts\app\SalidaDetalle.js" />
@@ -1117,6 +1119,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

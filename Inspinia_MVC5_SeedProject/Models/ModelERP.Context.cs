@@ -1663,24 +1663,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodegaDetalle_CantidadExistente_Result>("UDP_Inv_tbBodegaDetalle_CantidadExistente", bod_IdParameter, prod_CodigoParameter);
         }
     
-        public virtual ObjectResult<spGetDepartamento_Result> spGetDepartamento(string codMunicipio)
-        {
-            var codMunicipioParameter = codMunicipio != null ?
-                new ObjectParameter("CodMunicipio", codMunicipio) :
-                new ObjectParameter("CodMunicipio", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetDepartamento_Result>("spGetDepartamento", codMunicipioParameter);
-        }
-    
-        public virtual ObjectResult<spGetMunicipios_Result> spGetMunicipios(string codDepartamento)
-        {
-            var codDepartamentoParameter = codDepartamento != null ?
-                new ObjectParameter("CodDepartamento", codDepartamento) :
-                new ObjectParameter("CodDepartamento", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetMunicipios_Result>("spGetMunicipios", codDepartamentoParameter);
-        }
-    
         public virtual ObjectResult<SDP_Acce_GetRoles_Result> SDP_Acce_GetRoles()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Acce_GetRoles_Result>("SDP_Acce_GetRoles");
@@ -1873,6 +1855,24 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("usu_Correo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbUsuario_Insert_Result>("UDP_Acce_tbUsuario_Insert", usu_NombreUsuarioParameter, usu_PasswordParameter, usu_NombresParameter, usu_ApellidosParameter, usu_CorreoParameter);
+        }
+    
+        public virtual ObjectResult<spGetDepartamento_Result> spGetDepartamento(string codMunicipio)
+        {
+            var codMunicipioParameter = codMunicipio != null ?
+                new ObjectParameter("CodMunicipio", codMunicipio) :
+                new ObjectParameter("CodMunicipio", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetDepartamento_Result>("spGetDepartamento", codMunicipioParameter);
+        }
+    
+        public virtual ObjectResult<spGetMunicipios_Result> spGetMunicipios(string codDepartamento)
+        {
+            var codDepartamentoParameter = codDepartamento != null ?
+                new ObjectParameter("CodDepartamento", codDepartamento) :
+                new ObjectParameter("CodDepartamento", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetMunicipios_Result>("spGetMunicipios", codDepartamentoParameter);
         }
     }
 }

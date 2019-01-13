@@ -5465,12 +5465,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="spGetDepartamento" ReturnType="Collection(ERP_ZORZALModel.spGetDepartamento_Result)">
-          <Parameter Name="CodMunicipio" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="spGetMunicipios" ReturnType="Collection(ERP_ZORZALModel.spGetMunicipios_Result)">
-          <Parameter Name="CodDepartamento" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="SDP_Acce_GetRoles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetRoles_Result)" />
           <FunctionImport Name="SDP_Acce_GetRolesAsignados" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetRolesAsignados_Result)">
           <Parameter Name="usu_Id" Mode="In" Type="Int32" />
@@ -6401,6 +6395,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="usu_Apellidos" Mode="In" Type="String" />
             <Parameter Name="usu_Correo" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="spGetDepartamento" ReturnType="Collection(ERP_ZORZALModel.spGetDepartamento_Result)">
+            <Parameter Name="CodMunicipio" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGetMunicipios" ReturnType="Collection(ERP_ZORZALModel.spGetMunicipios_Result)">
+            <Parameter Name="CodDepartamento" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -6617,14 +6617,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Inv_tbBodegaDetalle_CantidadExistente_Result">
           <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
           <Property Type="Decimal" Name="Cantidad_Existente" Nullable="true" Precision="38" Scale="2" />
-        </ComplexType>
-        <ComplexType Name="spGetDepartamento_Result">
-          <Property Type="String" Name="dep_Codigo" Nullable="false" MaxLength="2" />
-          <Property Type="String" Name="dep_Nombre" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="spGetMunicipios_Result">
-          <Property Type="String" Name="mun_Codigo" Nullable="false" MaxLength="4" />
-          <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="150" />
         </ComplexType>
         <ComplexType Name="SDP_Acce_GetRoles_Result">
           <Property Type="Int32" Name="rol_Id" Nullable="false" />
@@ -10623,6 +10615,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Acce_tbUsuario_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="spGetDepartamento_Result">
+          <Property Type="String" Name="dep_Codigo" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="dep_Nombre" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spGetMunicipios_Result">
+          <Property Type="String" Name="mun_Codigo" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="150" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11095,22 +11095,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_CantidadExistente_Result">
                 <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
                 <ScalarProperty Name="Cantidad_Existente" ColumnName="Cantidad_Existente" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spGetDepartamento" FunctionName="ERP_ZORZALModel.Store.spGetDepartamento">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetDepartamento_Result">
-                <ScalarProperty Name="dep_Codigo" ColumnName="dep_Codigo" />
-                <ScalarProperty Name="dep_Nombre" ColumnName="dep_Nombre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spGetMunicipios" FunctionName="ERP_ZORZALModel.Store.spGetMunicipios">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetMunicipios_Result">
-                <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
-                <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -12365,6 +12349,22 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_Insert_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetDepartamento" FunctionName="ERP_ZORZALModel.Store.spGetDepartamento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetDepartamento_Result">
+                <ScalarProperty Name="dep_Codigo" ColumnName="dep_Codigo" />
+                <ScalarProperty Name="dep_Nombre" ColumnName="dep_Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetMunicipios" FunctionName="ERP_ZORZALModel.Store.spGetMunicipios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetMunicipios_Result">
+                <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
+                <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
