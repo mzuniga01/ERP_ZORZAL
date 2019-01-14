@@ -73,11 +73,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2">Identificación</label>
+                                <label class="control-label col-md-2">Identificación Cliente</label>
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)
-                                </div>
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)
+</div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
@@ -93,8 +93,8 @@
                                 @Html.LabelFor(model => model.cred_MontoSolicitado, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.cred_MontoSolicitado)
-                                    @Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
-                                </div>
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
+</div>
                             </div>
 
                             <div class="form-group">
@@ -109,8 +109,8 @@
                                 @Html.LabelFor(model => model.cred_DiasSolicitado, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.cred_DiasSolicitado)
-                                    @Html.ValidationMessageFor(model => model.cred_DiasSolicitado)
-                                </div>
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cred_DiasSolicitado)
+</div>
                             </div>
 
                             <div class="form-group">
