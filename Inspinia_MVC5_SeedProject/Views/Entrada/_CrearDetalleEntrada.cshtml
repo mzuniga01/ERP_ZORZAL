@@ -56,6 +56,13 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            @Html.LabelFor(model => model.tbProducto.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                <input type="text" id="uni_Id" placeholder="" class="form-control" readonly />
+                                @Html.ValidationMessageFor(model => model.tbProducto.uni_Id)
+                            </div>
+                        </div>
+                        <div class="form-group">
                             @Html.LabelFor(model => model.entd_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.entd_Cantidad)
@@ -63,13 +70,12 @@
                                     @Html.ValidationMessageFor(model => model.entd_Cantidad)
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
+                           
+                            @*@Html.LabelFor(model => model.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, "Seleccione", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.uni_Id)
-                            </div>
+                            </div>*@
                             <div class="form-group col-md-1">
                                 <button class="btn btn-primary" type="button" id="AgregarDetalleEntrada">Registrar</button>
                             </div>

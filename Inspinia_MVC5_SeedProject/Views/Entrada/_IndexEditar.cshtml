@@ -23,9 +23,7 @@
                                 <th>
                                     Nombre Producto
                                 </th>
-                                <th>
-                                    Unidad Medida
-                                </th>
+                                
                                 <th>
                                     Cantidad
                                 </th>
@@ -44,9 +42,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
-                                    </td>
+                                    
                                     <td>
                                         @Html.DisplayFor(modelItem => item.entd_Cantidad)
                                     </td>
@@ -77,7 +73,6 @@
                                                    entd_FechaCrea = item.entd_FechaCrea,
                                                    entd_UsuarioModifica = item.entd_UsuarioModifica,
                                                    entd_FechaModifica = item.entd_FechaModifica,
-                                                   uni_Id = item.uni_Id,
                                                })
                                                    
                                                     @*<div class="form-group">
@@ -115,7 +110,7 @@
 
                                                 <div class="form-group">
                                                     <div class="modal-body" id="frmAgregarCasoExito">
-                                                        @Html.Partial("_DetallesDeEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() { entd_UsuarioCrea = item.entd_UsuarioCrea,entd_FechaCrea=item.entd_FechaCrea,entd_UsuarioModifica=item.entd_UsuarioModifica,entd_FechaModifica=item.entd_FechaModifica,ent_Id=item.ent_Id, prod_Codigo = item.prod_Codigo, entd_Cantidad = item.entd_Cantidad, uni_Id = item.uni_Id, })
+                                                        @Html.Partial("_DetallesDeEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() { entd_UsuarioCrea = item.entd_UsuarioCrea,entd_FechaCrea=item.entd_FechaCrea,entd_UsuarioModifica=item.entd_UsuarioModifica,entd_FechaModifica=item.entd_FechaModifica,ent_Id=item.ent_Id, prod_Codigo = item.prod_Codigo, entd_Cantidad = item.entd_Cantidad, })
                                                         <div class="col-md-12 text-center">
                                                             
                                                         </div>

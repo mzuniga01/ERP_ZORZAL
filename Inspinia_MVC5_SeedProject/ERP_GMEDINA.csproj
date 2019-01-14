@@ -609,6 +609,9 @@
     <Compile Include="Models\UDP_Inv_tbEntrada_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Inv_tbEntrada_Update_Anular_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Inv_tbEntrada_Update_Estado_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

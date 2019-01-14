@@ -39,19 +39,24 @@
                 @Html.EditorFor(model => model.entd_Cantidad, new { htmlAttributes = new { @class = "form-control", @id = "cantidadEdit" } })
                 @Html.ValidationMessageFor(model => model.entd_Cantidad)
             </div>
+            @Html.LabelFor(model => model.tbProducto.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                <input type="text" id="uni_Id" placeholder="" class="form-control" readonly />
+                @Html.ValidationMessageFor(model => model.tbProducto.uni_Id)
+            </div>s
             @*@Html.LabelFor(model => model.uni_Id, "Unidad", new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
                     @Html.EditorFor(model => model.uni_Id, new { htmlAttributes = new { @class = "form-control", @id = "unidadEdit" } })
                     @Html.ValidationMessageFor(model => model.uni_Id)
                 </div>*@
-            @Html.LabelFor(model => model.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @{string IdDrop = "uni_IdListEdit";}
                 @{ string Vie = "uni_IdList";}
                 @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)Context.Items[Vie], "Seleccione", new { @class = "form-control", id = @IdDrop })
-                @*@Html.DropDownListFor(model => model.uni_Id, (SelectList)ViewBag.unidad, new { @class = "form-control" })*@
+                @Html.DropDownListFor(model => model.uni_Id, (SelectList)ViewBag.unidad, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.uni_Id)
-            </div>
+            </div>*@
         </div>
         <div class="form-group">
             <hr />

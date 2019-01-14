@@ -18,13 +18,13 @@ namespace ERP_GMEDINA.Models
         public tbProducto()
         {
             this.tbBodegaDetalle = new HashSet<tbBodegaDetalle>();
-            this.tbEntradaDetalle = new HashSet<tbEntradaDetalle>();
             this.tbInventarioFisicoDetalle = new HashSet<tbInventarioFisicoDetalle>();
             this.tbDevolucionDetalle = new HashSet<tbDevolucionDetalle>();
             this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
             this.tbFacturaDetalle = new HashSet<tbFacturaDetalle>();
             this.tbListadoPrecioDetalle = new HashSet<tbListadoPrecioDetalle>();
             this.tbPedidoDetalle = new HashSet<tbPedidoDetalle>();
+            this.tbEntradaDetalle = new HashSet<tbEntradaDetalle>();
         }
     
         public string prod_Codigo { get; set; }
@@ -51,8 +51,6 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodegaDetalle> tbBodegaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbEntradaDetalle> tbEntradaDetalle { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
@@ -66,5 +64,7 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedidoDetalle> tbPedidoDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbEntradaDetalle> tbEntradaDetalle { get; set; }
     }
 }

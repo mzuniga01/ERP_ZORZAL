@@ -48,8 +48,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbBodega> tbBodega { get; set; }
         public virtual DbSet<tbBodegaDetalle> tbBodegaDetalle { get; set; }
         public virtual DbSet<tbBox> tbBox { get; set; }
-        public virtual DbSet<tbEntrada> tbEntrada { get; set; }
-        public virtual DbSet<tbEntradaDetalle> tbEntradaDetalle { get; set; }
         public virtual DbSet<tbEstadoInventarioFisico> tbEstadoInventarioFisico { get; set; }
         public virtual DbSet<tbEstadoMovimiento> tbEstadoMovimiento { get; set; }
         public virtual DbSet<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
@@ -90,6 +88,8 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
+        public virtual DbSet<tbEntradaDetalle> tbEntradaDetalle { get; set; }
+        public virtual DbSet<tbEntrada> tbEntrada { get; set; }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
         {
@@ -261,39 +261,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("bodd_CostoPromedio", typeof(decimal));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodegaDetalle_Insert_Result>("UDP_Inv_tbBodegaDetalle_Insert", prod_CodigoParameter, bod_IdParameter, bodd_CantidadMinimaParameter, bodd_CantidadMaximaParameter, bodd_PuntoReordenParameter, bodd_CostoParameter, bodd_CostoPromedioParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Inv_tbEntradaDetalle_Update_Result> UDP_Inv_tbEntradaDetalle_Update(Nullable<int> entd_Id, Nullable<int> ent_Id, string prod_Codigo, Nullable<decimal> entd_Cantidad, Nullable<int> entd_UsuarioCrea, Nullable<System.DateTime> entd_FechaCrea, Nullable<int> uni_Id)
-        {
-            var entd_IdParameter = entd_Id.HasValue ?
-                new ObjectParameter("entd_Id", entd_Id) :
-                new ObjectParameter("entd_Id", typeof(int));
-    
-            var ent_IdParameter = ent_Id.HasValue ?
-                new ObjectParameter("ent_Id", ent_Id) :
-                new ObjectParameter("ent_Id", typeof(int));
-    
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            var entd_CantidadParameter = entd_Cantidad.HasValue ?
-                new ObjectParameter("entd_Cantidad", entd_Cantidad) :
-                new ObjectParameter("entd_Cantidad", typeof(decimal));
-    
-            var entd_UsuarioCreaParameter = entd_UsuarioCrea.HasValue ?
-                new ObjectParameter("entd_UsuarioCrea", entd_UsuarioCrea) :
-                new ObjectParameter("entd_UsuarioCrea", typeof(int));
-    
-            var entd_FechaCreaParameter = entd_FechaCrea.HasValue ?
-                new ObjectParameter("entd_FechaCrea", entd_FechaCrea) :
-                new ObjectParameter("entd_FechaCrea", typeof(System.DateTime));
-    
-            var uni_IdParameter = uni_Id.HasValue ?
-                new ObjectParameter("uni_Id", uni_Id) :
-                new ObjectParameter("uni_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntradaDetalle_Update_Result>("UDP_Inv_tbEntradaDetalle_Update", entd_IdParameter, ent_IdParameter, prod_CodigoParameter, entd_CantidadParameter, entd_UsuarioCreaParameter, entd_FechaCreaParameter, uni_IdParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_tbInventarioFisicoDetalle_Insert_Result> UDP_Inv_tbInventarioFisicoDetalle_Insert(Nullable<int> invf_Id, string prod_Codigo, Nullable<decimal> invfd_Cantidad, Nullable<decimal> invfd_CantidadSistema, Nullable<int> uni_Id)
@@ -482,27 +449,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("emp_FechaCrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbEmpleados_Update_Result>("UDP_Gral_tbEmpleados_Update", emp_IdParameter, emp_NombresParameter, emp_ApellidosParameter, emp_SexoParameter, emp_FechaNacimientoParameter, tpi_IdParameter, emp_IdentificacionParameter, emp_TelefonoParameter, emp_CorreoelectronicoParameter, emp_TipoSangreParameter, emp_PuestoParameter, emp_FechaIngresoParameter, emp_DireccionParameter, emp_ObservacionesParameter, emp_UsuarioCreaParameter, emp_FechaCreaParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Inv_tbEntradaDetalle_Insert_Result> UDP_Inv_tbEntradaDetalle_Insert(Nullable<int> ent_Id, string prod_Codigo, Nullable<decimal> entd_Cantidad, Nullable<int> uni_Id)
-        {
-            var ent_IdParameter = ent_Id.HasValue ?
-                new ObjectParameter("ent_Id", ent_Id) :
-                new ObjectParameter("ent_Id", typeof(int));
-    
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            var entd_CantidadParameter = entd_Cantidad.HasValue ?
-                new ObjectParameter("entd_Cantidad", entd_Cantidad) :
-                new ObjectParameter("entd_Cantidad", typeof(decimal));
-    
-            var uni_IdParameter = uni_Id.HasValue ?
-                new ObjectParameter("uni_Id", uni_Id) :
-                new ObjectParameter("uni_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntradaDetalle_Insert_Result>("UDP_Inv_tbEntradaDetalle_Insert", ent_IdParameter, prod_CodigoParameter, entd_CantidadParameter, uni_IdParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Update_Result> UDP_Inv_tbTipoEntrada_Update(Nullable<byte> tent_Id, string tent_Descripcion, Nullable<int> tent_UsuarioCrea, Nullable<System.DateTime> tent_FechaCrea)
@@ -768,62 +714,17 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbTipoSalida_Update_Result>("UDP_Inv_tbTipoSalida_Update", tsal_IdParameter, tsal_DescripcionParameter, tsal_UsuarioCreaParameter, tsal_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Acce_tbObjeto_Insert_Result> UDP_Acce_tbObjeto_Insert(string obj_Pantalla)
+        public virtual ObjectResult<UDP_Acce_tbObjeto_Insert_Result> UDP_Acce_tbObjeto_Insert(string obj_Pantalla, string obj_Referencia)
         {
             var obj_PantallaParameter = obj_Pantalla != null ?
                 new ObjectParameter("obj_Pantalla", obj_Pantalla) :
                 new ObjectParameter("obj_Pantalla", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbObjeto_Insert_Result>("UDP_Acce_tbObjeto_Insert", obj_PantallaParameter);
-        }
+            var obj_ReferenciaParameter = obj_Referencia != null ?
+                new ObjectParameter("obj_Referencia", obj_Referencia) :
+                new ObjectParameter("obj_Referencia", typeof(string));
     
-        public virtual ObjectResult<UDP_Inv_tbEntrada_Insert_Result> UDP_Inv_tbEntrada_Insert(string ent_NumeroFormato, Nullable<System.DateTime> ent_FechaElaboracion, Nullable<int> bod_Id, Nullable<byte> estm_Id, Nullable<int> prov_Id, string ent_FacturaCompra, Nullable<System.DateTime> ent_FechaCompra, Nullable<int> fact_Id, string ent_RazonDevolucion, Nullable<int> ent_BodegaDestino, Nullable<byte> tent_Id)
-        {
-            var ent_NumeroFormatoParameter = ent_NumeroFormato != null ?
-                new ObjectParameter("ent_NumeroFormato", ent_NumeroFormato) :
-                new ObjectParameter("ent_NumeroFormato", typeof(string));
-    
-            var ent_FechaElaboracionParameter = ent_FechaElaboracion.HasValue ?
-                new ObjectParameter("ent_FechaElaboracion", ent_FechaElaboracion) :
-                new ObjectParameter("ent_FechaElaboracion", typeof(System.DateTime));
-    
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var estm_IdParameter = estm_Id.HasValue ?
-                new ObjectParameter("estm_Id", estm_Id) :
-                new ObjectParameter("estm_Id", typeof(byte));
-    
-            var prov_IdParameter = prov_Id.HasValue ?
-                new ObjectParameter("prov_Id", prov_Id) :
-                new ObjectParameter("prov_Id", typeof(int));
-    
-            var ent_FacturaCompraParameter = ent_FacturaCompra != null ?
-                new ObjectParameter("ent_FacturaCompra", ent_FacturaCompra) :
-                new ObjectParameter("ent_FacturaCompra", typeof(string));
-    
-            var ent_FechaCompraParameter = ent_FechaCompra.HasValue ?
-                new ObjectParameter("ent_FechaCompra", ent_FechaCompra) :
-                new ObjectParameter("ent_FechaCompra", typeof(System.DateTime));
-    
-            var fact_IdParameter = fact_Id.HasValue ?
-                new ObjectParameter("fact_Id", fact_Id) :
-                new ObjectParameter("fact_Id", typeof(int));
-    
-            var ent_RazonDevolucionParameter = ent_RazonDevolucion != null ?
-                new ObjectParameter("ent_RazonDevolucion", ent_RazonDevolucion) :
-                new ObjectParameter("ent_RazonDevolucion", typeof(string));
-    
-            var ent_BodegaDestinoParameter = ent_BodegaDestino.HasValue ?
-                new ObjectParameter("ent_BodegaDestino", ent_BodegaDestino) :
-                new ObjectParameter("ent_BodegaDestino", typeof(int));
-    
-            var tent_IdParameter = tent_Id.HasValue ?
-                new ObjectParameter("tent_Id", tent_Id) :
-                new ObjectParameter("tent_Id", typeof(byte));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntrada_Insert_Result>("UDP_Inv_tbEntrada_Insert", ent_NumeroFormatoParameter, ent_FechaElaboracionParameter, bod_IdParameter, estm_IdParameter, prov_IdParameter, ent_FacturaCompraParameter, ent_FechaCompraParameter, fact_IdParameter, ent_RazonDevolucionParameter, ent_BodegaDestinoParameter, tent_IdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbObjeto_Insert_Result>("UDP_Acce_tbObjeto_Insert", obj_PantallaParameter, obj_ReferenciaParameter);
         }
     
         public virtual ObjectResult<SDP_Acce_GetObjetos_Result> SDP_Acce_GetObjetos()
@@ -1182,19 +1083,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("spGetSubCategoria", pcat_IdParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbEntrada_Update_Estado_Result> UDP_Inv_tbEntrada_Update_Estado(Nullable<int> ent_Id, Nullable<byte> estm_Id)
-        {
-            var ent_IdParameter = ent_Id.HasValue ?
-                new ObjectParameter("ent_Id", ent_Id) :
-                new ObjectParameter("ent_Id", typeof(int));
-    
-            var estm_IdParameter = estm_Id.HasValue ?
-                new ObjectParameter("estm_Id", estm_Id) :
-                new ObjectParameter("estm_Id", typeof(byte));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntrada_Update_Estado_Result>("UDP_Inv_tbEntrada_Update_Estado", ent_IdParameter, estm_IdParameter);
-        }
-    
         public virtual ObjectResult<UDP_Inv_tbBodega_Update_Result> UDP_Inv_tbBodega_Update(Nullable<int> bod_Id, string bod_Nombre, string bod_ResponsableBodega, string bod_Direccion, string bod_Correo, string bod_Telefono, string mun_Codigo, Nullable<int> bod_UsuarioCrea, Nullable<System.DateTime> bod_Fechacrea)
         {
             var bod_IdParameter = bod_Id.HasValue ?
@@ -1236,7 +1124,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodega_Update_Result>("UDP_Inv_tbBodega_Update", bod_IdParameter, bod_NombreParameter, bod_ResponsableBodegaParameter, bod_DireccionParameter, bod_CorreoParameter, bod_TelefonoParameter, mun_CodigoParameter, bod_UsuarioCreaParameter, bod_FechacreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Acce_tbObjeto_Update_Result> UDP_Acce_tbObjeto_Update(Nullable<int> obj_Id, string obj_Pantalla, Nullable<int> obj_UsuarioCrea, Nullable<System.DateTime> obj_FechaCrea)
+        public virtual ObjectResult<UDP_Acce_tbObjeto_Update_Result> UDP_Acce_tbObjeto_Update(Nullable<int> obj_Id, string obj_Pantalla, string obj_Referencia, Nullable<int> obj_UsuarioCrea, Nullable<System.DateTime> obj_FechaCrea)
         {
             var obj_IdParameter = obj_Id.HasValue ?
                 new ObjectParameter("obj_Id", obj_Id) :
@@ -1246,6 +1134,10 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("obj_Pantalla", obj_Pantalla) :
                 new ObjectParameter("obj_Pantalla", typeof(string));
     
+            var obj_ReferenciaParameter = obj_Referencia != null ?
+                new ObjectParameter("obj_Referencia", obj_Referencia) :
+                new ObjectParameter("obj_Referencia", typeof(string));
+    
             var obj_UsuarioCreaParameter = obj_UsuarioCrea.HasValue ?
                 new ObjectParameter("obj_UsuarioCrea", obj_UsuarioCrea) :
                 new ObjectParameter("obj_UsuarioCrea", typeof(int));
@@ -1254,7 +1146,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("obj_FechaCrea", obj_FechaCrea) :
                 new ObjectParameter("obj_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbObjeto_Update_Result>("UDP_Acce_tbObjeto_Update", obj_IdParameter, obj_PantallaParameter, obj_UsuarioCreaParameter, obj_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbObjeto_Update_Result>("UDP_Acce_tbObjeto_Update", obj_IdParameter, obj_PantallaParameter, obj_ReferenciaParameter, obj_UsuarioCreaParameter, obj_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Acce_tbObjeto_Update_Estado_Result> UDP_Acce_tbObjeto_Update_Estado(Nullable<int> obj_Id, Nullable<bool> obj_Estado)
@@ -1574,63 +1466,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoSubCategoria_Delete_Result>("UDP_Inv_tbProductoSubCategoria_Delete", pscat_IdParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbEntrada_Update_Result> UDP_Inv_tbEntrada_Update(Nullable<int> ent_Id, string ent_NumeroFormato, Nullable<System.DateTime> ent_FechaElaboracion, Nullable<int> bod_Id, Nullable<int> prov_Id, string ent_FacturaCompra, Nullable<System.DateTime> ent_FechaCompra, Nullable<int> fact_Id, string ent_RazonDevolucion, Nullable<int> ent_BodegaDestino, Nullable<byte> tent_Id, Nullable<int> ent_UsuarioCrea, Nullable<System.DateTime> ent_FechaCrea)
-        {
-            var ent_IdParameter = ent_Id.HasValue ?
-                new ObjectParameter("ent_Id", ent_Id) :
-                new ObjectParameter("ent_Id", typeof(int));
-    
-            var ent_NumeroFormatoParameter = ent_NumeroFormato != null ?
-                new ObjectParameter("ent_NumeroFormato", ent_NumeroFormato) :
-                new ObjectParameter("ent_NumeroFormato", typeof(string));
-    
-            var ent_FechaElaboracionParameter = ent_FechaElaboracion.HasValue ?
-                new ObjectParameter("ent_FechaElaboracion", ent_FechaElaboracion) :
-                new ObjectParameter("ent_FechaElaboracion", typeof(System.DateTime));
-    
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var prov_IdParameter = prov_Id.HasValue ?
-                new ObjectParameter("prov_Id", prov_Id) :
-                new ObjectParameter("prov_Id", typeof(int));
-    
-            var ent_FacturaCompraParameter = ent_FacturaCompra != null ?
-                new ObjectParameter("ent_FacturaCompra", ent_FacturaCompra) :
-                new ObjectParameter("ent_FacturaCompra", typeof(string));
-    
-            var ent_FechaCompraParameter = ent_FechaCompra.HasValue ?
-                new ObjectParameter("ent_FechaCompra", ent_FechaCompra) :
-                new ObjectParameter("ent_FechaCompra", typeof(System.DateTime));
-    
-            var fact_IdParameter = fact_Id.HasValue ?
-                new ObjectParameter("fact_Id", fact_Id) :
-                new ObjectParameter("fact_Id", typeof(int));
-    
-            var ent_RazonDevolucionParameter = ent_RazonDevolucion != null ?
-                new ObjectParameter("ent_RazonDevolucion", ent_RazonDevolucion) :
-                new ObjectParameter("ent_RazonDevolucion", typeof(string));
-    
-            var ent_BodegaDestinoParameter = ent_BodegaDestino.HasValue ?
-                new ObjectParameter("ent_BodegaDestino", ent_BodegaDestino) :
-                new ObjectParameter("ent_BodegaDestino", typeof(int));
-    
-            var tent_IdParameter = tent_Id.HasValue ?
-                new ObjectParameter("tent_Id", tent_Id) :
-                new ObjectParameter("tent_Id", typeof(byte));
-    
-            var ent_UsuarioCreaParameter = ent_UsuarioCrea.HasValue ?
-                new ObjectParameter("ent_UsuarioCrea", ent_UsuarioCrea) :
-                new ObjectParameter("ent_UsuarioCrea", typeof(int));
-    
-            var ent_FechaCreaParameter = ent_FechaCrea.HasValue ?
-                new ObjectParameter("ent_FechaCrea", ent_FechaCrea) :
-                new ObjectParameter("ent_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntrada_Update_Result>("UDP_Inv_tbEntrada_Update", ent_IdParameter, ent_NumeroFormatoParameter, ent_FechaElaboracionParameter, bod_IdParameter, prov_IdParameter, ent_FacturaCompraParameter, ent_FechaCompraParameter, fact_IdParameter, ent_RazonDevolucionParameter, ent_BodegaDestinoParameter, tent_IdParameter, ent_UsuarioCreaParameter, ent_FechaCreaParameter);
-        }
-    
         public virtual ObjectResult<ConteoParametro_Result> ConteoParametro(Nullable<int> conteo)
         {
             var conteoParameter = conteo.HasValue ?
@@ -1935,6 +1770,180 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("mun_FechaCrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbMunicipio_Update_Result>("UDP_Gral_tbMunicipio_Update", mun_CodigoParameter, dep_CodigoParameter, mun_NombreParameter, mun_UsuarioCreaParameter, mun_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbEntrada_Insert_Result> UDP_Inv_tbEntrada_Insert(Nullable<System.DateTime> ent_FechaElaboracion, Nullable<int> bod_Id, Nullable<byte> estm_Id, Nullable<int> prov_Id, string ent_FacturaCompra, Nullable<System.DateTime> ent_FechaCompra, Nullable<int> fact_Id, string ent_RazonDevolucion, Nullable<int> ent_BodegaDestino, Nullable<byte> tent_Id)
+        {
+            var ent_FechaElaboracionParameter = ent_FechaElaboracion.HasValue ?
+                new ObjectParameter("ent_FechaElaboracion", ent_FechaElaboracion) :
+                new ObjectParameter("ent_FechaElaboracion", typeof(System.DateTime));
+    
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var estm_IdParameter = estm_Id.HasValue ?
+                new ObjectParameter("estm_Id", estm_Id) :
+                new ObjectParameter("estm_Id", typeof(byte));
+    
+            var prov_IdParameter = prov_Id.HasValue ?
+                new ObjectParameter("prov_Id", prov_Id) :
+                new ObjectParameter("prov_Id", typeof(int));
+    
+            var ent_FacturaCompraParameter = ent_FacturaCompra != null ?
+                new ObjectParameter("ent_FacturaCompra", ent_FacturaCompra) :
+                new ObjectParameter("ent_FacturaCompra", typeof(string));
+    
+            var ent_FechaCompraParameter = ent_FechaCompra.HasValue ?
+                new ObjectParameter("ent_FechaCompra", ent_FechaCompra) :
+                new ObjectParameter("ent_FechaCompra", typeof(System.DateTime));
+    
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(int));
+    
+            var ent_RazonDevolucionParameter = ent_RazonDevolucion != null ?
+                new ObjectParameter("ent_RazonDevolucion", ent_RazonDevolucion) :
+                new ObjectParameter("ent_RazonDevolucion", typeof(string));
+    
+            var ent_BodegaDestinoParameter = ent_BodegaDestino.HasValue ?
+                new ObjectParameter("ent_BodegaDestino", ent_BodegaDestino) :
+                new ObjectParameter("ent_BodegaDestino", typeof(int));
+    
+            var tent_IdParameter = tent_Id.HasValue ?
+                new ObjectParameter("tent_Id", tent_Id) :
+                new ObjectParameter("tent_Id", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntrada_Insert_Result>("UDP_Inv_tbEntrada_Insert", ent_FechaElaboracionParameter, bod_IdParameter, estm_IdParameter, prov_IdParameter, ent_FacturaCompraParameter, ent_FechaCompraParameter, fact_IdParameter, ent_RazonDevolucionParameter, ent_BodegaDestinoParameter, tent_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbEntrada_Update_Result> UDP_Inv_tbEntrada_Update(Nullable<int> ent_Id, Nullable<System.DateTime> ent_FechaElaboracion, Nullable<int> bod_Id, Nullable<int> prov_Id, string ent_FacturaCompra, Nullable<System.DateTime> ent_FechaCompra, Nullable<int> fact_Id, string ent_RazonDevolucion, Nullable<int> ent_BodegaDestino, Nullable<byte> tent_Id, Nullable<int> ent_UsuarioCrea, Nullable<System.DateTime> ent_FechaCrea)
+        {
+            var ent_IdParameter = ent_Id.HasValue ?
+                new ObjectParameter("ent_Id", ent_Id) :
+                new ObjectParameter("ent_Id", typeof(int));
+    
+            var ent_FechaElaboracionParameter = ent_FechaElaboracion.HasValue ?
+                new ObjectParameter("ent_FechaElaboracion", ent_FechaElaboracion) :
+                new ObjectParameter("ent_FechaElaboracion", typeof(System.DateTime));
+    
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var prov_IdParameter = prov_Id.HasValue ?
+                new ObjectParameter("prov_Id", prov_Id) :
+                new ObjectParameter("prov_Id", typeof(int));
+    
+            var ent_FacturaCompraParameter = ent_FacturaCompra != null ?
+                new ObjectParameter("ent_FacturaCompra", ent_FacturaCompra) :
+                new ObjectParameter("ent_FacturaCompra", typeof(string));
+    
+            var ent_FechaCompraParameter = ent_FechaCompra.HasValue ?
+                new ObjectParameter("ent_FechaCompra", ent_FechaCompra) :
+                new ObjectParameter("ent_FechaCompra", typeof(System.DateTime));
+    
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(int));
+    
+            var ent_RazonDevolucionParameter = ent_RazonDevolucion != null ?
+                new ObjectParameter("ent_RazonDevolucion", ent_RazonDevolucion) :
+                new ObjectParameter("ent_RazonDevolucion", typeof(string));
+    
+            var ent_BodegaDestinoParameter = ent_BodegaDestino.HasValue ?
+                new ObjectParameter("ent_BodegaDestino", ent_BodegaDestino) :
+                new ObjectParameter("ent_BodegaDestino", typeof(int));
+    
+            var tent_IdParameter = tent_Id.HasValue ?
+                new ObjectParameter("tent_Id", tent_Id) :
+                new ObjectParameter("tent_Id", typeof(byte));
+    
+            var ent_UsuarioCreaParameter = ent_UsuarioCrea.HasValue ?
+                new ObjectParameter("ent_UsuarioCrea", ent_UsuarioCrea) :
+                new ObjectParameter("ent_UsuarioCrea", typeof(int));
+    
+            var ent_FechaCreaParameter = ent_FechaCrea.HasValue ?
+                new ObjectParameter("ent_FechaCrea", ent_FechaCrea) :
+                new ObjectParameter("ent_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntrada_Update_Result>("UDP_Inv_tbEntrada_Update", ent_IdParameter, ent_FechaElaboracionParameter, bod_IdParameter, prov_IdParameter, ent_FacturaCompraParameter, ent_FechaCompraParameter, fact_IdParameter, ent_RazonDevolucionParameter, ent_BodegaDestinoParameter, tent_IdParameter, ent_UsuarioCreaParameter, ent_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbEntrada_Update_Anular_Result> UDP_Inv_tbEntrada_Update_Anular(Nullable<int> ent_Id, Nullable<byte> entd_EsAnulada, string entd_RazonAnulada)
+        {
+            var ent_IdParameter = ent_Id.HasValue ?
+                new ObjectParameter("ent_Id", ent_Id) :
+                new ObjectParameter("ent_Id", typeof(int));
+    
+            var entd_EsAnuladaParameter = entd_EsAnulada.HasValue ?
+                new ObjectParameter("entd_EsAnulada", entd_EsAnulada) :
+                new ObjectParameter("entd_EsAnulada", typeof(byte));
+    
+            var entd_RazonAnuladaParameter = entd_RazonAnulada != null ?
+                new ObjectParameter("entd_RazonAnulada", entd_RazonAnulada) :
+                new ObjectParameter("entd_RazonAnulada", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntrada_Update_Anular_Result>("UDP_Inv_tbEntrada_Update_Anular", ent_IdParameter, entd_EsAnuladaParameter, entd_RazonAnuladaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbEntrada_Update_Estado_Result> UDP_Inv_tbEntrada_Update_Estado(Nullable<int> ent_Id, Nullable<byte> estm_Id)
+        {
+            var ent_IdParameter = ent_Id.HasValue ?
+                new ObjectParameter("ent_Id", ent_Id) :
+                new ObjectParameter("ent_Id", typeof(int));
+    
+            var estm_IdParameter = estm_Id.HasValue ?
+                new ObjectParameter("estm_Id", estm_Id) :
+                new ObjectParameter("estm_Id", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntrada_Update_Estado_Result>("UDP_Inv_tbEntrada_Update_Estado", ent_IdParameter, estm_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbEntradaDetalle_Insert_Result> UDP_Inv_tbEntradaDetalle_Insert(Nullable<int> ent_Id, string prod_Codigo, Nullable<decimal> entd_Cantidad)
+        {
+            var ent_IdParameter = ent_Id.HasValue ?
+                new ObjectParameter("ent_Id", ent_Id) :
+                new ObjectParameter("ent_Id", typeof(int));
+    
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var entd_CantidadParameter = entd_Cantidad.HasValue ?
+                new ObjectParameter("entd_Cantidad", entd_Cantidad) :
+                new ObjectParameter("entd_Cantidad", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntradaDetalle_Insert_Result>("UDP_Inv_tbEntradaDetalle_Insert", ent_IdParameter, prod_CodigoParameter, entd_CantidadParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbEntradaDetalle_Update_Result> UDP_Inv_tbEntradaDetalle_Update(Nullable<int> entd_Id, Nullable<int> ent_Id, string prod_Codigo, Nullable<decimal> entd_Cantidad, Nullable<int> entd_UsuarioCrea, Nullable<System.DateTime> entd_FechaCrea)
+        {
+            var entd_IdParameter = entd_Id.HasValue ?
+                new ObjectParameter("entd_Id", entd_Id) :
+                new ObjectParameter("entd_Id", typeof(int));
+    
+            var ent_IdParameter = ent_Id.HasValue ?
+                new ObjectParameter("ent_Id", ent_Id) :
+                new ObjectParameter("ent_Id", typeof(int));
+    
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var entd_CantidadParameter = entd_Cantidad.HasValue ?
+                new ObjectParameter("entd_Cantidad", entd_Cantidad) :
+                new ObjectParameter("entd_Cantidad", typeof(decimal));
+    
+            var entd_UsuarioCreaParameter = entd_UsuarioCrea.HasValue ?
+                new ObjectParameter("entd_UsuarioCrea", entd_UsuarioCrea) :
+                new ObjectParameter("entd_UsuarioCrea", typeof(int));
+    
+            var entd_FechaCreaParameter = entd_FechaCrea.HasValue ?
+                new ObjectParameter("entd_FechaCrea", entd_FechaCrea) :
+                new ObjectParameter("entd_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntradaDetalle_Update_Result>("UDP_Inv_tbEntradaDetalle_Update", entd_IdParameter, ent_IdParameter, prod_CodigoParameter, entd_CantidadParameter, entd_UsuarioCreaParameter, entd_FechaCreaParameter);
         }
     }
 }

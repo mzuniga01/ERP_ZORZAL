@@ -249,7 +249,7 @@ namespace ERP_ZORZAL.Controllers
 
         //para q actualize la tabla
         [HttpPost]
-        public ActionResult entradadetalle_actualizar(tbEntradaDetalle EditarDetalleEntrada)
+        public JsonResult entradadetalle_actualizar(tbEntradaDetalle EditarDetalleEntrada)
         {
             string Msj = "";
             try
@@ -262,7 +262,7 @@ namespace ERP_ZORZAL.Controllers
                                            , EditarDetalleEntrada.entd_Cantidad
                                            , EditarDetalleEntrada.entd_UsuarioCrea
                                            , EditarDetalleEntrada.entd_FechaCrea
-                                           , EditarDetalleEntrada.uni_Id
+                                           
                                                                );
                 foreach (UDP_Inv_tbEntradaDetalle_Update_Result EntradaDetalle in list)
                     Msj = EntradaDetalle.MensajeError;
@@ -270,21 +270,21 @@ namespace ERP_ZORZAL.Controllers
                 if (Msj == "-1")
                 {
                     ModelState.AddModelError("", "No se Actualizo el registro");
-                    return PartialView("_EditarDetalleEntrada");
+                    //return PartialView("_EditarDetalleEntrada");
 
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    //return RedirectToAction("Index");
                 }
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se Actualizo el registro");
-                return PartialView("_EditarDetalleEntrada", EditarDetalleEntrada);
+                //return PartialView("_EditarDetalleEntrada", EditarDetalleEntrada);
             }
-            //return Json("", JsonRequestBehavior.AllowGet);
+            return Json("", JsonRequestBehavior.AllowGet);
         }
 
         //para borrar registros en la tabla temporal
@@ -307,7 +307,7 @@ namespace ERP_ZORZAL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ent_NumeroFormato,ent_FechaElaboracion,bod_Id,estm_Id,prov_Id,ent_FacturaCompra,ent_FechaCompra,fact_Id,ent_RazonDevolucion,ent_BodegaDestino,tent_Id")] tbEntrada tbEntrada)
+        public ActionResult Create([Bind(Include = "ent_FechaElaboracion,bod_Id,estm_Id,prov_Id,ent_FacturaCompra,ent_FechaCompra,fact_Id,ent_RazonDevolucion,ent_BodegaDestino,tent_Id")] tbEntrada tbEntrada)
         {
             //var tipoEntrada = tbEntrada.tent_Id;
             //if (tipoEntrada == 1)
@@ -397,7 +397,7 @@ namespace ERP_ZORZAL.Controllers
                     try
                     {
                     
-                    ENTRADA = db.UDP_Inv_tbEntrada_Insert(tbEntrada.ent_NumeroFormato,
+                    ENTRADA = db.UDP_Inv_tbEntrada_Insert(
                                                         tbEntrada.ent_FechaElaboracion,
                                                         tbEntrada.bod_Id,
                                                         tbEntrada.estm_Id,
@@ -426,8 +426,7 @@ namespace ERP_ZORZAL.Controllers
                                     {
                                         DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert( idMaster
                                                                                     , entd.prod_Codigo
-                                                                                    , entd.entd_Cantidad
-                                                                                    , entd.uni_Id);
+                                                                                    , entd.entd_Cantidad);
                                         foreach (UDP_Inv_tbEntradaDetalle_Insert_Result B_detalle in DETALLE)
 
                                         //if (MensajeError == "-1")
@@ -470,7 +469,7 @@ namespace ERP_ZORZAL.Controllers
         //Para q edite la master y el detalle
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, [Bind(Include = "ent_Id,ent_NumeroFormato,ent_FechaElaboracion,bod_Id,prov_Id,ent_FacturaCompra,ent_FechaCompra,fact_Id,ent_RazonDevolucion,ent_BodegaDestino,tent_Id,ent_usuarioCrea,ent_FechaCrea,ent_UsuarioModifica,ent_FechaModifica")] tbEntrada tbEntrada)
+        public ActionResult Edit(int? id, [Bind(Include = "ent_Id,ent_FechaElaboracion,bod_Id,prov_Id,ent_FacturaCompra,ent_FechaCompra,fact_Id,ent_RazonDevolucion,ent_BodegaDestino,tent_Id,ent_usuarioCrea,ent_FechaCrea,ent_UsuarioModifica,ent_FechaModifica")] tbEntrada tbEntrada)
         {
             
             IEnumerable<object> ENTRADA = null;
@@ -497,7 +496,6 @@ namespace ERP_ZORZAL.Controllers
                     {
 
                         ENTRADA = db.UDP_Inv_tbEntrada_Update(tbEntrada.ent_Id,
-                                                                        tbEntrada.ent_NumeroFormato,
                                                                         tbEntrada.ent_FechaElaboracion,
                                                                         tbEntrada.bod_Id,
                                                                         tbEntrada.prov_Id,
@@ -530,8 +528,7 @@ namespace ERP_ZORZAL.Controllers
 
                                         DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert(idMaster
                                                                                     ,entd.prod_Codigo
-                                                                                    ,entd.entd_Cantidad
-                                                                                    ,entd.uni_Id);
+                                                                                    ,entd.entd_Cantidad);
                                         foreach (UDP_Inv_tbEntradaDetalle_Insert_Result B_detalle in DETALLE)
 
                                         //if (MensajeError == "-1")

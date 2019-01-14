@@ -18,6 +18,7 @@
     </Key>
     <Property Name="obj_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="obj_Pantalla" Type="nvarchar" MaxLength="50" />
+    <Property Name="obj_Referencia" Type="varchar" MaxLength="100" />
     <Property Name="obj_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="obj_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="obj_UsuarioModifica" Type="int" />
@@ -243,6 +244,7 @@
     <Property Name="bod_Telefono" Type="varchar" MaxLength="13" />
     <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
     <Property Name="bod_EsActiva" Type="tinyint" Nullable="false" />
+    <Property Name="emp_Id" Type="smallint" />
     <Property Name="bod_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="bod_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="bod_UsuarioModifica" Type="int" />
@@ -282,8 +284,8 @@
     <Key>
       <PropertyRef Name="ent_Id" />
     </Key>
-    <Property Name="ent_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ent_NumeroFormato" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ent_Id" Type="int" Nullable="false" />
+    <Property Name="ent_NumeroFormato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ent_FechaElaboracion" Type="datetime" Nullable="false" />
     <Property Name="bod_Id" Type="int" Nullable="false" />
     <Property Name="estm_Id" Type="tinyint" Nullable="false" />
@@ -294,6 +296,8 @@
     <Property Name="ent_RazonDevolucion" Type="varchar" MaxLength="150" />
     <Property Name="ent_BodegaDestino" Type="int" />
     <Property Name="tent_Id" Type="tinyint" Nullable="false" />
+    <Property Name="entd_EsAnulada" Type="bit" />
+    <Property Name="entd_RazonAnulada" Type="varchar" MaxLength="100" />
     <Property Name="ent_SalidaOrigen" Type="int" Nullable="false" />
     <Property Name="ent_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="ent_FechaCrea" Type="datetime" Nullable="false" />
@@ -312,7 +316,6 @@
     <Property Name="entd_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="entd_UsuarioModifica" Type="int" />
     <Property Name="entd_FechaModifica" Type="datetime" />
-    <Property Name="uni_Id" Type="int" />
   </EntityType>
   <EntityType Name="tbEstadoInventarioFisico">
     <Key>
@@ -2243,18 +2246,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inv_tbEntradaDetalle_tbUnidadMedida_uni_Id">
-    <End Role="tbUnidadMedida" Type="Self.tbUnidadMedida" Multiplicity="0..1" />
-    <End Role="tbEntradaDetalle" Type="Self.tbEntradaDetalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUnidadMedida">
-        <PropertyRef Name="uni_Id" />
-      </Principal>
-      <Dependent Role="tbEntradaDetalle">
-        <PropertyRef Name="uni_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
     <End Role="tbEstadoMovimiento" Type="Self.tbEstadoMovimiento" Multiplicity="*" />
@@ -3424,10 +3415,12 @@
   </Function>
   <Function Name="UDP_Acce_tbObjeto_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
+    <Parameter Name="obj_Referencia" Type="varchar" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbObjeto_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="obj_Id" Type="int" Mode="In" />
     <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
+    <Parameter Name="obj_Referencia" Type="varchar" Mode="In" />
     <Parameter Name="obj_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="obj_FechaCrea" Type="datetime" Mode="In" />
   </Function>
@@ -3672,7 +3665,6 @@
     <Parameter Name="box_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbEntrada_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
-    <Parameter Name="ent_NumeroFormato" Type="varchar" Mode="In" />
     <Parameter Name="ent_FechaElaboracion" Type="datetime" Mode="In" />
     <Parameter Name="bod_Id" Type="int" Mode="In" />
     <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
@@ -3686,7 +3678,6 @@
   </Function>
   <Function Name="UDP_Inv_tbEntrada_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="ent_Id" Type="int" Mode="In" />
-    <Parameter Name="ent_NumeroFormato" Type="varchar" Mode="In" />
     <Parameter Name="ent_FechaElaboracion" Type="datetime" Mode="In" />
     <Parameter Name="bod_Id" Type="int" Mode="In" />
     <Parameter Name="prov_Id" Type="int" Mode="In" />
@@ -3699,6 +3690,11 @@
     <Parameter Name="ent_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="ent_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Inv_tbEntrada_Update_Anular" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="ent_Id" Type="int" Mode="In" />
+    <Parameter Name="entd_EsAnulada" Type="tinyint" Mode="In" />
+    <Parameter Name="entd_RazonAnulada" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="UDP_Inv_tbEntrada_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="ent_Id" Type="int" Mode="In" />
     <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
@@ -3707,7 +3703,6 @@
     <Parameter Name="ent_Id" Type="int" Mode="In" />
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
-    <Parameter Name="uni_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbEntradaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="entd_Id" Type="int" Mode="In" />
@@ -3716,7 +3711,6 @@
     <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
     <Parameter Name="entd_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="entd_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="uni_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbEstadoMovimiento_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="estm_Id" Type="int" Mode="In" />
@@ -4400,10 +4394,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEntradaDetalle_tbProducto_prod_Codigo" Association="Self.FK_Inv_tbEntradaDetalle_tbProducto_prod_Codigo">
       <End Role="tbProducto" EntitySet="tbProducto" />
-      <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbEntradaDetalle_tbUnidadMedida_uni_Id" Association="Self.FK_Inv_tbEntradaDetalle_tbUnidadMedida_uni_Id">
-      <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
       <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica" Association="Self.FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">
