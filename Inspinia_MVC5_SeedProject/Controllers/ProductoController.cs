@@ -4,9 +4,27 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using System.Data.Entity.Core.Objects;
+using System.Data.SqlClient;
+
+//using (SqlConnection conexion = new SqlConnection(conexionString))
+//{
+//   SqlCommand cmd = new SqlCommand("SP_Valores", conexion);
+//cmd.CommandType = CommandType.StoredProcedure;
+//   cmd.Parameters.Add(new SqlParameter("@IDMATERIA", 1));
+//   SqlParameter NroInscritosParametro = new SqlParameter("@NROINSCRITOS", 0);
+//NroInscritosParametro.Direction = ParameterDirection.Output;
+//   cmd.Parameters.Add(NroInscritosParametro);
+//   conexion.Open();
+//   cmd.ExecuteNonQuery();                                       
+//   int nroInscritos = Int32.Parse(cmd.Parameters["@NROINSCRITOS"].Value.ToString());
+//conexion.Close();
+//   return nroInscritos;
+//}
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -19,9 +37,6 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult Index()
         {
             var tbproducto = db.tbProducto.Include(t => t.tbUsuario).Include(t => t.tbUnidadMedida).Include(t => t.tbProductoSubcategoria);
-
-            //var pcat = db.tbProductoSubcategoria.Find(tbProducto.pscat_Id).pcat_Id;
-            //ViewBag.PCAT = db.tbProductoCategoria.Find(pcat).pcat_Nombre;
             return View(tbproducto.ToList());
         }
 
@@ -33,8 +48,6 @@ namespace ERP_GMEDINA.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbProducto tbProducto = db.tbProducto.Find(id);
-            //var categoria = tbProducto.pscat_Id;
-            //ViewBag.Categoriaa = db.tbProductoCategoria.Find(categoria).pcat_Nombre; 
                       
             var pcat = db.tbProductoSubcategoria.Find(tbProducto.pscat_Id).pcat_Id;
             ViewBag.PCAT = db.tbProductoCategoria.Find(pcat).pcat_Nombre;
@@ -58,7 +71,7 @@ namespace ERP_GMEDINA.Controllers
 
   
         }
-
+        
         // GET: /Producto/Create
         public ActionResult Create()
         {
@@ -68,10 +81,22 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
             List<tbProductoCategoria> tbProductoCategoriaList = db.tbProductoCategoria.ToList();
             //ViewBag.tbProductoCategoriaList = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre");
-            ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
+            ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");           
             return View();
         }
 
+        public JsonResult GetValue(int pcat_Id,int pscat_Id,string prod_Codigo)
+        {
+            ObjectParameter Output = new ObjectParameter("prod_Codigo", typeof(string));          
+            var list = db.SP_Valores(pcat_Id, pscat_Id, Output);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetSubCategoriaProducto(int CodCategoria)
+        {
+            var list = db.spGetSubCategoriaProducto(CodCategoria).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         public JsonResult GetScatList(int pcat_Id)
         {
@@ -79,12 +104,16 @@ namespace ERP_GMEDINA.Controllers
             List<tbProductoSubcategoria> tbProductoSubcategoriaList = db.tbProductoSubcategoria.Where(x => x.pcat_Id == pcat_Id).ToList();
             return Json(tbProductoSubcategoriaList, JsonRequestBehavior.AllowGet);
         }
-        // POST: /Producto/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+
+        
+
+
+// POST: /Producto/Create
+// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+[HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id")] tbProducto tbProducto)
+        public ActionResult Create([Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_CodigoBarras")] tbProducto tbProducto)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +124,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<object> List = null;
                     var MsjError = "";
-                    List = db.UDP_Inv_tbProducto_Insert(tbProducto.prod_Codigo, tbProducto.prod_Descripcion, tbProducto.prod_Marca, tbProducto.prod_Modelo, tbProducto.prod_Talla, tbProducto.prod_Color, tbProducto.pscat_Id, tbProducto.uni_Id, tbProducto.prod_CodigoBarras);
+                    List = db.UDP_Inv_tbProducto_Insert(tbProducto.prod_Codigo, tbProducto.prod_Descripcion, tbProducto.prod_Marca, tbProducto.prod_Modelo, tbProducto.prod_Talla, tbProducto.prod_Color, tbProducto.pscat_Id, tbProducto.uni_Id,tbProducto.prod_CodigoBarras);
                     foreach (UDP_Inv_tbProducto_Insert_Result Producto in List )
                         MsjError = Producto.MensajeError;
 
@@ -139,17 +168,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbProducto tbProducto = db.tbProducto.Find(id);
-            //ViewBag.UsuarioCrea = db.tbUsuario.Find(tbProducto.prod_UsuarioCrea).usu_NombreUsuario;
-            //var UsuarioModfica = tbProducto.prod_UsuarioModifica;
-            //if (UsuarioModfica == null)
-            //{
-            //    ViewBag.UsuarioModifica = "";
-            //}
-            //else
-            //{
-            //    ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
-            //};
+            tbProducto tbProducto = db.tbProducto.Find(id);           
 
             if (tbProducto == null)
             {
@@ -164,14 +183,20 @@ namespace ERP_GMEDINA.Controllers
             return View(tbProducto);
         }
 
-        
+        public JsonResult GetCategoriaProducto(int codsubcategoria)
+        {
+            var list = db.spGetCategoriaProducto(codsubcategoria).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
 
         // POST: /Producto/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(string id,[Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_UsuarioCrea,prod_FechaCrea,prod_EsActivo,prod_Razon_Inactivacion")] tbProducto tbProducto)
+        public ActionResult Edit(string id,[Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_UsuarioCrea,prod_FechaCrea,prod_EsActivo,prod_Razon_Inactivacion,prod_CodigoBarras")] tbProducto tbProducto)
         {
             if (ModelState.IsValid)
             {
@@ -185,7 +210,7 @@ namespace ERP_GMEDINA.Controllers
                     
                     IEnumerable<object> List = null;
                     var MsjError = "";                   
-                    List = db.UDP_Inv_tbProducto_Update(tbProducto.prod_Codigo, tbProducto.prod_Descripcion, tbProducto.prod_Marca, tbProducto.prod_Modelo, tbProducto.prod_Talla, tbProducto.prod_Color, tbProducto.pscat_Id, tbProducto.uni_Id, vtbProducto.prod_UsuarioCrea, vtbProducto.prod_FechaCrea, tbProducto.prod_EsActivo,tbProducto.prod_Razon_Inactivacion, tbProducto.prod_CodigoBarras);
+                    List = db.UDP_Inv_tbProducto_Update(tbProducto.prod_Codigo, tbProducto.prod_Descripcion, tbProducto.prod_Marca, tbProducto.prod_Modelo, tbProducto.prod_Talla, tbProducto.prod_Color, tbProducto.pscat_Id, tbProducto.uni_Id, vtbProducto.prod_UsuarioCrea, vtbProducto.prod_FechaCrea, tbProducto.prod_EsActivo,tbProducto.prod_Razon_Inactivacion,tbProducto.prod_CodigoBarras);
                     foreach (UDP_Inv_tbProducto_Update_Result producto in List)
                         MsjError = producto.MensajeError;
 
@@ -241,9 +266,6 @@ namespace ERP_GMEDINA.Controllers
             tbProducto tbProducto = db.tbProducto.Find(id);
             db.tbProducto.Remove(tbProducto);
             db.SaveChanges();
-
-
-
             return RedirectToAction("Index");
         }
 

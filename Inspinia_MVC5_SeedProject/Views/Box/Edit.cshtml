@@ -1,4 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbBox
+@using ERP_GMEDINA.Models
 
 @{
     ViewBag.Title = "Editar Caja";
@@ -26,7 +27,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("Edit", "Caja", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -81,7 +82,7 @@
                                             </div>
                                         </div>
                                         <div class="ibox-content collapse" id="CreateProducto">
-                                            @Html.Partial("_Producto", new List<ERP_GMEDINA.Models.tbProducto> { new ERP_GMEDINA.Models.tbProducto() })
+                                            @Html.Partial("_IndexSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.box_Codigo }))
                                         </div>
                                     </div>
                                 </div>
@@ -96,52 +97,53 @@
             </div>
             <div class="ibox-content collapse" id="DatosdeAuditoria">
                 <div class="ibox-content">
-                    <div class="form-group">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                Acción
+                            </th>
+                            <th>
+                                Usuario
+                            </th>
+                            <th>
+                                Fecha
+                            </th>
 
-                        <table class="table table-striped">
-                            <tr>
-                                <th>
-                                    Acción
-                                </th>
-                                <th>
-                                    Usuario
-                                </th>
-                                <th>
-                                    Fecha
-                            </tr>
+                        </tr>
 
-                         
-                            <tr>
-                                <td>
-                                    Creado por
-                                </td>
-                                <td>
+                        <tr>
+                            <td>
+                                Creado
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.box_FechaCrea)
+                            </td>
 
-                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.box_FechaCrea)
-                                </td>
-                               
-                            </tr>
-                            <tr>
-                                <td>
-                                    Modificado por
-                                </td>
-                                <td>
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.box_FechaModifica)
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                        </tr>
+                        <tr>
+                            <td>
+                                Modificado
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.box_FechaModifica)
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
                 </div>
             </div>
         </div>
     </div>
 </div>                        
-                        </div>
+                      
                     }
                 </div>
                 

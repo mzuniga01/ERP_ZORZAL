@@ -1,104 +1,83 @@
 ﻿//Actualizar Municipios
+
 function btnActualizar(mun_Codigo) {
+   
+    var Municipio = mun_Codigo;
+    var Depatamento = $('#dep_Codigo').val();
+    var NombreMunicipio = $("#MunNombre_" + mun_Codigo).val();
     
-
-    var Municipio = $('#mun_Codigo' + mun_Codigo).val();
-    var Depatamento = $('#dep_Codigo' + mun_Codigo).val();
-    var NombreMunicipio = $('#mun_Nombre' + mun_Codigo).val();
-
-    var tbMunicipio = GetMunicipioActualizar_UPDATE();
-   
-   
+     
+    console.log(Municipio);
+    console.log(NombreMunicipio);
+    console.log(Depatamento);
 
     $.ajax({
-        url: "/Departamento/ActualizarMun",
+        url: "/Departamento/ActualizarMunicipio",
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ ActualizarMun: tbMunicipio }),
+        data: JSON.stringify({ mun_Codigo: Municipio, dep_Codigo: Depatamento, mun_Nombre: NombreMunicipio }),
     }).done(function (data) {
-        if (data == 'Exito') {
+        if (data == '') {
             location.reload();
         }
+        else if (data == '-1') {
+            $('#MensajeError' + mun_Codigo).text('');
+            $('#ValidationMessageFor' + mun_Codigo).after('<ul id="MensajeError' + mun_Codigo + '" class="validation-summary-errors text-danger">No se ha podido Actualizar el registro.</ul>');
+        }
         else {
-            $('#MessageErrorEdit_' + mun_Codigo).text('');
-            $('#validationSummaryEdit_' + mun_Codigo).after('<ul id="MessageErrorEdit_' + mun_Codigo + '" class="validation-summary-errors text-danger">Campo Requerido</ul>');
+            $('#MensajeError' + mun_Codigo).text('');
+            $('#ValidationMessageFor' + mun_Codigo).after('<ul id="MensajeError' + mun_Codigo + '" class="validation-summary-errors text-danger">Campo Requerido</ul>');
         }
     });
-}
-function GetMunicipioActualizar_UPDATE() {
-    var ActualizarMun = {
-        mun_Codigo: $('#mun_Codigo').val(),
-        dep_Codigo: $('#dep_Codigo').val(),
-        mun_Nombre: $('#mun_Nombre').val(),
-    };
-    return ActualizarMun;
 }
 
 
 //Guardar Municipio Modales
-function btnGuardarModal(mun_Codigo) {
+$('#btnNuevo').click(function () {
 
-    var munCodigo = $("#mun_CodigoCreate_" + mun_Codigo).val();
-    var depCodigo = $("#dep_CodigoCreate_" + mun_Codigo).val();
-    var munNombre = $("#mun_NombreCreate_" + mun_Codigo).val();
+    var CodigoMun = $('#mun_Codigo').val();
+    var Depatamento = $('#dep_Codigo').val();
+    var NombreMun = $('#mun_Nombre').val();
 
-    var tbMunicipio = GetMunicipioGuardar();
+    console.log(CodigoMun)
+    console.log(NombreMun)
+        //var munCodigo = $('#mun_Codigo').val();
+        //var munNombre = $('#mun_Nombre').val();
 
-    $.ajax({
-        url: "/Departamento/GuardarMun",
-        method: "POST",
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ GuardarMun: tbMunicipio }),
-    }).done(function (data) {
-        if (data == 'Exito') {
-            location.reload();
+
+    if (CodigoMun == '') {
+            $('#mun_Codigo').text('');
+            $('#errorCodigo').text('');
+            $('#errorNombre').text('');
+            $('#ValidationNombre').after('<ul id="errorNombre" class="validation-summary-errors text-danger">Campo Municipio Requerido</ul>');
+            console.log('HOLAAAA')
         }
-        else {
-            $('#MessageErrorEdit_' + mun_Codigo).text('');
-            $('#validationSummaryEdit_' + mun_Codigo).after('<ul id="MessageErrorEdit_' + mun_Codigo + '" class="validation-summary-errors text-danger">Campo Requerido</ul>');
-        }
-    });
-}
-function GetMunicipioGuardar() {
-    var GuardarMun = {
-        mun_Codigo: $('#mun_Codigo').val(),
-        dep_Codigo: $('#dep_Codigo').val(),
-        mun_Nombre: $('#mun_Nombre').val(),
-        mun_FechaCrea: $('#mun_FechaCrea').val(),
-        mun_UsuarioModifica: $('#mun_UsuarioModifica').val(),
-        mun_FechaModifica: $('#mun_FechaModifica').val(),
-        mun_UsuarioModifica: $('#mun_UsuarioModifica').val(),
 
-    };
-    return GuardarMun;
-}
-
-//EliminarMunicipios
-
-function btnEliminar(EliminarMunicipio) {
-
-    var munCodigo = $("#munCodigoDelete_" + EliminarMunicipio).val();
-
-    var MunicipioE = {
-        mun_Codigo: munCodigo
-
-    };
-    $.ajax({
-        url: "/Departamento/EliminarMunicipio",
-        method: "POST",
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ mun_Codigo: MunicipioE }),
-    }).done(function (data) {
-        if (data == 'Exito') {
-            location.reload();
+    else if (NombreMun == '') {
+            $('#mun_Nombre').text('');
+            $('#errorCodigo').text('');
+            $('#errorNombre').text('');
+            $('#ValidationCodigoUpdate').after('<ul id="errorCodigo" class="validation-summary-errors text-danger">Campo Codigo Municipio Requerido</ul>');
+            console.log('ADIOS')
         }
 
         else {
-            $('#MessageErrorM' + EliminarMunicipio).text('');
-            $('#validationmunNombreEdit_' + EliminarMunicipio).after('<ul id="MessageErrorM' + EliminarMunicipio + '" class="validation-summary-errors text-danger">Se produjo un error, no se pudo actualizar el registro.</ul>');
+            $.ajax({
+                url: "/Departamento/GuardarMunicipioModal",
+                method: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ mun_Codigo: CodigoMun, dep_Codigo: Depatamento, mun_Nombre: NombreMun }),
+
+            })
+            .done(function (data) {
+                if (data == '') {
+                    $('#ValidationNombreUpdate').after('<ul id="ValidationNombreUpdate" class="validation-summary-errors text-danger">No se pudo actualizar el registro, contacte con el administrador</ul>');
+                }
+                else {
+                    window.location.href = '/Departamento/Index';
+                }
+            })
         }
     });
-}

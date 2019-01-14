@@ -31,9 +31,6 @@
 
                                 </div>
                             </div>*@
-                        <div class="form-group col-md-1">
-                            <button class="btn btn-primary" type="button" id="AgregarDetalleSalida">Registrar</button>
-                        </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
@@ -66,21 +63,27 @@
                                     @Html.ValidationMessageFor(model => model.sal_Cantidad)
                                 </div>
                             </div>
-                        </div>
-                        @*<div class="form-group">
-                            @Html.LabelFor(model => model.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.tbProducto.tbProductoSubcategoria.tbProductoCategoria, "Categoria", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, "Seleccione", new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.uni_Id)
+                                <input type="text" id="pcat_Id" placeholder="" class="form-control" readonly />
+                                @Html.ValidationMessageFor(model => model.tbProducto.pscat_Id)
                             </div>
-                        </div>*@
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.tbProducto.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @*@Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, "Seleccione", new { @class = "form-control" })*@
+                                <input type="text" id="uni_Id" placeholder="" class="form-control" readonly />
+                                @Html.ValidationMessageFor(model => model.tbProducto.uni_Id)
+                            </div>
+                            <div class="form-group col-md-1">
+                                <button class="btn btn-primary" type="button" id="AgregarSalidaDetalle">Registrar</button>
+                            </div>
+                        </div>
 
-                        
-
-                        <table id="tbSalidaDetalle" class="table table-hover">
+                        <table id="tblSalidaDetalle" class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Codigo</th>
                                     <th>Producto</th>
                                     <th>Unidad Medida</th>
                                     <th>Cantidad</th>
@@ -95,6 +98,8 @@
         </div>
     </div>
 </div>
+
+@*PARA AGREGAR NUEVO PRODUCTO*@
 <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -105,11 +110,13 @@
                 <h4 class="modal-title" id="myModalLabel">Buscar Productos</h4>
             </div>
             <div class="modal-body" id="frmEditarMunicipios">
-                @Html.Partial("_Producto", (List<tbProducto>)ViewBag.Producto)
+                @Html.Partial("_BuscarProducto", (List<tbBodegaDetalle>)ViewBag.Producto)
             </div>
         </div>
     </div>
 </div>
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

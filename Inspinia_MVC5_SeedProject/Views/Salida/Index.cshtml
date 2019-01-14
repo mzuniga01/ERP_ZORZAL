@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbSalida>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,73 +7,79 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Salida</h2>
+        <h2>Index</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>Salida</strong>
+            </li>
+        </ol>
     </div>
 </div>
-@*<a href="~/Views/Salida/Index.cshtml">~/Views/Salida/Index.cshtml</a>*@
+
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Lista de Salida</h5>
+                    <h5>Listado de Salida</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary btn-xs"})
+						@Html.ActionLink("Registrar Salida", "Create", null, new { @class = "btn btn-primary"})
 					</div>
                 </div>
                 <div class="ibox-content">
 
-<table class="table table-responsive" style="width:100%"  id="tbSalida">
-    <thead>
-        <tr>
-            <th>
-                Fecha Elaboracion
-            </th>
-                <th>
-                    Nombre de Bodega
-                </th>
-            <th>
-                Tipo de Salida
-            </th>
-            <th>
-                Estado
-            </th>
-            <th>
-                Responsable de Bodega
-            </th>
-            <th>
-                Acciones
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.sal_FechaElaboracion)
-                </td> 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
-                    </td> 
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbTipoSalida.tsal_Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbBodega.bod_ResponsableBodega)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.sal_Id }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Detalles", "Details", new { id = item.sal_Id }, new { @class = "btn btn-white btn-xs" })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                    <table class="table table-responsive" style="width:100%" id="Datatable">
+                        <thead>
+                            <tr>
+                                <th>
+                                   @Html.DisplayNameFor(model => model.sal_FechaElaboracion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbBodega.bod_Nombre)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbTipoSalida.tsal_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)
+                                </th>
+                                <th>
+                                   @Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)
+                                </th>
+                                <th>
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.sal_FechaElaboracion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbTipoSalida.tsal_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbBodega.bod_ResponsableBodega)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.sal_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.sal_Id }, new { @class = "btn btn-white btn-xs" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
 
                 </div>
             </div>
@@ -81,32 +88,5 @@
  </div>
 
 
-
-
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#tbSalida').DataTable(
-        {
-            "searching": true,
-
-            "oLanguage": {
-                "oPaginate": {
-                    "sNext": "Siguiente",
-                    "sPrevious": "Anterior",
-                },
-                "sSearch": "Buscar",
-                "sLengthMenu": "Mostrar _MENU_ registros por página",
-                "sInfo": "Mostrando _START_ a _END_ Entradas",
-            }
-        });
-    });
-</script>
-<script type="text/javascript">
-    function Activar(Id) {
-        console.log("#boton_" + Id, "#boton_" + Id);
-        $("#boton_"+Id).attr("value", "Activar");
-    }
-</script>
-

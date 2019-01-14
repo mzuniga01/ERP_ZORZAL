@@ -6,6 +6,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@{
+    var ListadoSubCategoria = new ERP_GMEDINA.Models.tbProductoSubcategoria();
+    var ListadoCategoria = new ERP_GMEDINA.Models.tbProductoCategoria();
+}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Producto</h2>
@@ -35,67 +39,75 @@
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true)
 
-
-                        
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2 " })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Codigo,new { @class = "form-control" })                                   
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
-                                </div>
-                          
-                                @Html.LabelFor(model => model.prod_Descripcion, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Descripcion, new { @class = "form-control" })                                   
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Descripcion)</p>
-                                </div>
-                            </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.pscat_Id, "Categoria", new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Categoria<span style="color:red">*</span></label>
                             <div class="col-md-4">
 
                                 @Html.DropDownList("pcat_Id", (IEnumerable<SelectListItem>)ViewBag.pcat_Id, "Seleccione una Categoria", new { @class = "form-control" })
                             </div>
-                            @Html.LabelFor(model => model.pscat_Id, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">SubCategoria<span style="color:red">*</span></label>
                             <div class="col-md-4">
+
                                 @Html.DropDownList("pscat_Id", (IEnumerable<SelectListItem>)ViewBag.pscat_Id, "Seleccione una Subcategoria", new { @class = "form-control" })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.pscat_Id)</p>
                             </div>
 
                         </div>
+                        
+                            <div class="form-group">
+                                <label class="control-label col-md-2"> Código<span style="color:red">*</span></label>
+                                   
+                                    <div class="col-md-4">                                     
+                                        @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @id = "CodigoPro", @class = "form-control"} })
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
+                                    </div>
+
+                                    @Html.LabelFor(model => model.prod_CodigoBarras, new { @class = "control-label col-md-2 " })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.prod_CodigoBarras, new { @class = "form-control" })
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.prod_CodigoBarras)</p>
+                                    </div>
+
+                        </div>
+                        
 
                             <div class="form-group">
+                                @Html.LabelFor(model => model.prod_Descripcion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.prod_Descripcion, new { @class = "form-control" })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Descripcion)</p>
+                                </div>
+
                                 @Html.LabelFor(model => model.prod_Marca, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.prod_Marca, new { @class = "form-control col-md" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Marca)</p>
                                 </div>
-                               @Html.LabelFor(model => model.prod_Modelo, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.prod_Modelo, new { @class = "form-control" })
-                                <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Modelo)</p>
-                            </div>
-                              
+                             
                                 
                             </div>
                            
                             <div class="form-group">
-                                
+                                @Html.LabelFor(model => model.prod_Modelo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.prod_Modelo, new { @class = "form-control" })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Modelo)</p>
+                                </div>
+                              
                                 @Html.LabelFor(model => model.prod_Color, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Color, new { @class = "form-control" })
+                                    @Html.EditorFor(model => model.prod_Color)
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Color)</p>
-                                </div>
-                            
-                                @Html.LabelFor(model => model.prod_Talla, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Talla, new { @class = "form-control" })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Talla)</p>
-                                </div>
+                                </div>                              
                             </div>
+
                             <div class="form-group">
-                               
-                                @Html.LabelFor(model => model.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
+                               @Html.LabelFor(model => model.prod_Talla, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.prod_Talla, new { @class = "form-control" })
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Talla)</p>
+                            </div>
+                                <label class="control-label col-md-2"> Unidad Medida<span style="color:red">*</span></label>
                                 <div class="col-md-4">
                                     @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, "Seleccione una Unidad", new { @class = "form-control" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.uni_Id)</p>
@@ -122,7 +134,97 @@
     </div>
 </div>
 
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    @*<script src="~/Scripts/app/search.js"></script>*@
+<script src="~/Scripts/app/SubCategoriaProducto.js"></script>
 
-@section scripts{
-    <script src="~/Scripts/app/search.js"></script>
-}
+
+<script>
+        //Esto lo agregó Mágdaly
+        $(document).ready(function () {
+            $('#pscat_Id').empty();
+            $('#pscat_Id').append("<option value=''>Seleccione SubCategoria</option>");
+                                        
+           
+        });
+</script>
+
+@section Scripts{
+
+    <script>
+        jQuery('input,select').each(function () {
+            var req = jQuery(this).attr('data-val-required');
+            if (undefined != req) {
+                var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+                var text = label.text();
+                if (text.length > 0) {
+                    label.append('<span style="color:red"> *</span>');
+                }
+            }
+        });
+
+</script>
+@*<script>
+    $(document).ready(function () {
+    $('#pcat_Id').change(function () {
+        
+        $.get('/Producto/GetScatList', { pcat_Id: $('#pcat_Id').val() }, function (data) {
+            if ($("#pscat_Id").val('')) {             
+                $("#pscat_Id").empty();
+                $('#pscat_Id').append("<option value='0'>Seleccione la SubCategoria</option>");
+                $.each(data, function (index, row) {
+                    $("#pscat_Id").append("<option value='" + row.pscat_Id + "'>" + row.pscat_Descripcion + "</option>")
+                   
+                });
+                
+            }
+
+            else {
+                $.each(data, function (index, row) {
+                    $("#pscat_Id").append("<option value='0'>No Hay SubCategorias</option>")
+                });
+            };
+        });
+    })
+    });
+</script>*@
+
+@*<script>
+    $(document).ready(function () {
+    $('#prod_Codigo').change(function () {
+
+        $.get('/Producto/GetValue', { pcat_Id: $('#pcat_Id').val(), pscat_Id: $('#pscat_Id').val() }, function (data) {
+            if ($("#pscat_Id").val('')) {
+                $("#pscat_Id").empty();
+                $.each(data, function (index, row) {
+                    $("#prod_Codigo").append("<option value='" + row.pscat_Id + "'>" + row.pscat_Descripcion + "</option>")
+
+                });
+
+            };
+        });
+    })
+    });
+</script>*@
+
+@*<script>
+        $(document).ready(function () {
+            $('#pcat_Id').change(function () {
+                $('#CodigoPro').val($('#pcat_Id option:selected').val());
+            })
+        });
+
+        $(document).ready(function () {
+            $('#pscat_Id').change(function () {
+                $('#CodigoPro').val($('#pscat_Id option:selected').val());
+            })
+        });
+
+        $(document).ready(function () {
+            $('#CodigoPro').change(function () {
+                $('#CodigoPro').val($('#pscat_Id option:selected').val());
+            })
+        });
+
+</script>*@
+        }

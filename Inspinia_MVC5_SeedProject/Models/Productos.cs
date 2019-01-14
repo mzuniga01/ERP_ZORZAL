@@ -1,26 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace ERP_GMEDINA.Models
 {
+    
+
     [MetadataType(typeof(ProductosMetadata))]
 
 
     public partial class tbProducto
     {
-        
+        [NotMapped]
+        [Display(Name = "Categoria")]
+        public string pcat_Id { get; set; }
 
-        
+
     }
 
     public class ProductosMetadata
     {
         [Display(Name = "Código")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        [RegularExpression("^[A-Z]{4}-[0-9]{4}-[A-Z0-9]{4}$|[A-Z0-9]{14}", ErrorMessage = "No es un Codigo válido. Ejemplo AAAA-9999-AA999")]
+        //[RegularExpression("^[A-Z]{4}-[0-9]{4}-[A-Z0-9]{4}$|[A-Z0-9]{14}", ErrorMessage = "No es un Codigo válido. Ejemplo AAAA-9999-AA999")]
         public string prod_Codigo { get; set; }
 
         [Display(Name = "Descripcion")]
@@ -75,6 +80,14 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Precio")]    
         public Nullable<int> listp_Id { get; set; }
+
+        [Display(Name = "Codigo de Barras")]
+        [RegularExpression("^[A-Z0-9]{14}|^[A-Z0-9]{13}^[A-Z0-9]{12}$", ErrorMessage = "Debe ser Un Codigo de Barras")]
+        public string prod_CodigoBarras { get; set; }
+
+        [Display(Name = "Carrelativo")]
+        public Nullable<int> prod_Correlativo { get; set; }
+
 
         public virtual tbUsuario tbUsuario { get; set; }
         //public virtual tbProductoCategoria tbProductoCategoria { get; set; }

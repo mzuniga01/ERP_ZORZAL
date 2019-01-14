@@ -5,11 +5,9 @@
     <div class="row">
             <div class="ibox float-e-margins">
                     <div class="form-horizontal">
+
                         @Html.ValidationSummary(true)
                         @Html.HiddenFor(model => model.mun_Codigo)
-                        @Html.HiddenFor(model => model.dep_Codigo)
-                        @Html.HiddenFor(model => model.mun_FechaCrea)
-                        @Html.HiddenFor(model => model.mun_UsuarioCrea)
 
                       
                         @*<div class="form-group">
@@ -23,55 +21,28 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.mun_Codigo, new { @class = "control-label col-md-2" })
                             <div class="col-md-5">
-                                @Html.EditorFor(model => model.mun_Codigo, new { @class = "form-control" })
+                                @Html.TextBoxFor(model => model.mun_Codigo, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.mun_Codigo)
                             </div>
                         </div>
 
-
                         <div class="form-group">
                             @Html.LabelFor(model => model.mun_Nombre, new { @class = "control-label col-md-2" })
                             <div class="col-md-5">
-                                @Html.EditorFor(model => model.mun_Nombre, new { @class = "form-control" })
+                                @{string mun_Nombre = "MunNombre_" + @Model.mun_Codigo;}
+                                @{string ID = @Model.mun_Codigo;}
+                                @Html.TextBoxFor(model => model.mun_Nombre, new { @class = "form-control", id = @mun_Nombre, onkeydown = "MunicipioUpper("+ @mun_Nombre + ");" })
+                                <div id="MunNombre_@Model.mun_Codigo">
                                     @Html.ValidationMessageFor(model => model.mun_Nombre)
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="ibox-content">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>Acción</th>
-                                <th>Usuario</th>
-                                <th> Fecha</th>
-                            </tr>
-                            @*@foreach (var item in Model) { }*@
-                            <tr>
-                                <td>Creado por  </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                                </td>
-                                <td>@Html.DisplayFor(model => model.mun_FechaCrea)</td>
-
-                            </tr>
-                            <tr>
-                                <td>Modificado por</td>
-                                <td>
-                                    @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                                    @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                                </td>
-                                <td>@Html.DisplayFor(model => model.mun_FechaModifica)</td>
-                            </tr>
-                        </table>
-                    </div>
                 </div>
             </div>
-        </div>
- 
-<script src="~/Scripts/app/CrearActualizarEliminar.js"></script>
 
+   
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
+ 
     }

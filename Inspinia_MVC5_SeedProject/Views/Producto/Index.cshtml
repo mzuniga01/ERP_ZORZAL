@@ -20,6 +20,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Productos</h5>
                     <div class="ibox-tools">
+                        @*@Html.ActionLink("Consultar Existencia", "Index", "ConsultarExistenciaProductos",null, new { @class = "btn btn-primary" })*@                        
                         @Html.ActionLink("Registrar Producto", "Create", null, new { @class = "btn btn-primary" })
                     </div>
                 </div>
@@ -52,8 +53,7 @@
                                         @Html.DisplayNameFor(model => model.prod_Color)
                                     </th>
                                     <th>
-                                        Unidad Medida
-                                        @*@Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)*@
+                                        Unidad Medida                                     
                                     </th>
                                     
 
@@ -95,7 +95,6 @@
                                         <td>
                                             @Html.ActionLink("Detalles", "Details", new { id = item.prod_Codigo }, new { @class = "btn btn-primary btn-xs" })
                                             @Html.ActionLink("Editar", "Edit", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-xs" })
-                                            @*@Html.ActionLink("Delete", "Delete", new { id=item.prod_Codigo }, new { @class = "btn btn-white btn-sm"})*@
                                         </td>
                                     </tr>
                                 }
@@ -130,7 +129,5 @@
         });
     });
 </script>
-
-
 
 }

@@ -13,6 +13,8 @@ namespace ERP_ZORZAL.Controllers
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
 
+        public object ACTUALIZAR_tbSalidaDetalle { get; private set; }
+
         // GET: /Box/
         public ActionResult Index()
         {
@@ -164,37 +166,81 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(string id,[Bind(Include = "box_Codigo,box_Descripcion,box_UsuarioCrea,box_FechaCrea")] tbBox tbBox)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    try
-            //    {
-            //        tbBox vBox = db.tbBox.Find(id);
-            //        IEnumerable<object> List = null;
-            //        var MsjError = "";
-            //        List = db.UDP_Inv_tbBox_Update(tbBox.box_Codigo, tbBox.box_Descripcion,tbBox.box_Estado, vBox.box_UsuarioCrea, vBox.box_FechaCrea);
-            //        foreach (UDP_Inv_tbBox_Update_Result Box in List)
-            //            MsjError = Box.MensajeError;
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    tbBox vBox = db.tbBox.Find(id);
+                    IEnumerable<object> List = null;
+                    var MsjError = "";
+                    List = db.UDP_Inv_tbBox_Update(tbBox.box_Codigo, tbBox.box_Descripcion, tbBox.box_Estado, vBox.box_UsuarioCrea, vBox.box_FechaCrea);
 
-            //        if (MsjError == "-1")
-            //        {
-            //            ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
-            //        }
-            //        else
-            //        {
-            //            return RedirectToAction("Index");
-            //        }
+                    foreach (UDP_Inv_tbBox_Update_Result Box in List)
+                        MsjError = Box.MensajeError;
 
+                    if (MsjError == "-1")
+                    {
+                        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
 
-            //    }
-            //    catch (Exception Ex)
-            //    {
-            //        Ex.Message.ToString();
-            //        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
-            //    }
-            //}
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+             
+       var errors = ModelState.Values.SelectMany(v => v.Errors);
+    }
+            ViewBag.box_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBox.box_UsuarioModifica);
+            ViewBag.box_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBox.box_UsuarioCrea);
             return View(tbBox);
         }
 
+        public JsonResult UpdateSalidaDetalle(tbSalidaDetalle ACTUALIZAR_tbSalidaDetalle)
+        {
+            string Msj = "";
+            try
+            {
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Inv_tbSalidaDetalle_Update(ACTUALIZAR_tbSalidaDetalle.sald_Id,
+                                                         ACTUALIZAR_tbSalidaDetalle.prod_Codigo,
+                                                         ACTUALIZAR_tbSalidaDetalle.tbProducto.prod_Descripcion,
+                                                         ACTUALIZAR_tbSalidaDetalle.tbProducto.pscat_Id,
+                                                         ACTUALIZAR_tbSalidaDetalle.sal_Cantidad
+                                                         );
+                foreach (UDP_Inv_tbSalidaDetalle_Update_Result Isd in list)
+                    Msj = Isd.MensajeError;
+
+                if (Msj.Substring(0, 2) == "-1")
+                {
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+
+
+                }
+                else
+                {
+                    //return View("Edit/" + bod_Id);
+                    return Json("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+            }
+            return Json("Index");
+        }
+        
         // GET: /Box/Delete/5
         public ActionResult Delete(string id)
         {

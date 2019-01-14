@@ -9,24 +9,27 @@
 //    })
 //});
 
-$(document).ready(function () {
-    $('#pcat_Id').change(function () {
-        $.get('/Producto/GetScatList', { pcat_Id: $('#pcat_Id').val() }, function (data) {
-            if ($("#pscat_Id").val('')) {
-                $("#pscat_Id").empty();
-                $.each(data, function (index, row) {
-                    $("#pscat_Id").append("<option value ='" + row.pscat_Id + "'>" + row.pscat_Descripcion + "</option>")
-                });
-            }
-            else {
-                $.each(data, function (index, row) {
-                    $("#pscat_Id").append("<option value ='0'>No hay Categorias</option>")
-                });
-            };
+//$(document).ready(function () {
+//    $('#pcat_Id').change(function () {
+//        var valor = 0;
+//        $.get('/Producto/GetScatList', { pcat_Id: $('#pcat_Id').val() }, function (data) {
+//            if ($("#pscat_Id").val('')) {
+//                $("#pscat_Id").empty();
+//                $('#idinput').val(valor);
+//                $.each(data, function (index, row) {
+//                    $("#pscat_Id").append("<option value ='" + row.pscat_Id + "'>" + row.pscat_Descripcion +row.pscat_Id+ "</option>")
+//                });
+//            }
+//            else {
+//                $.each(data, function (index, row) {
+//                    $("#pscat_Id").append("<option value =''>No hay SubCategorias</option>")
+//                });
+//            };
             
-        });
-    })
-});
+//        });
+//    })
+//});
+
 
 //$(document).ready(function () {
 //    $('#pcat_Id').change(function () {

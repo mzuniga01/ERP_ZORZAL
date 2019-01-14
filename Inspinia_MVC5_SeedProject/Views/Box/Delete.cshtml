@@ -11,7 +11,7 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-			@Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-primary"})
+            @Html.ActionLink("Regresar", "Index")
         </div>
     </div>
 </div>
@@ -38,7 +38,7 @@
 
         <div class="form-actions no-color">
             <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminar" value="Eliminar" />
-            @Html.ActionLink("Cancelar", "Delete", null, new { @class = "btn btn-white" })
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
         </div>
     }
                 </div>

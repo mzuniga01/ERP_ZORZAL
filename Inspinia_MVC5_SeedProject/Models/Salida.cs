@@ -34,9 +34,6 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte estm_Id { get; set; }
 
-        [Display(Name = "Caja")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public string box_Codigo { get; set; }
 
         [Display(Name = "Tipo de Salida")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]

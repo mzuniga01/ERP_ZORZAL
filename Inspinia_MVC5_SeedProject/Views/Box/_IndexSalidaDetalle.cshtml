@@ -1,0 +1,127 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbSalidaDetalle>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Lista de Salida Detalle</h5>
+					
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-responsive" style="width:100%" id="DataTable">
+    <tr>
+        <th>
+           Descripcion
+        </th>
+        <th>
+           Marca
+        </th>
+        <th>
+           Modelo
+        </th>
+        <th>
+           Talla
+        </th>
+        <th>
+            Color
+        </th>
+        <th>
+            Descripcion
+        </th>
+        <th>
+           Cantidad
+        </th>
+       
+        <th></th>
+    </tr>
+
+
+    <tr>
+        <td>
+            Cadena
+        </td>
+        <td>
+           Joma
+        </td>
+        <td>
+            Mj 45
+        </td>
+        <td>
+           5 pulgadas
+        </td>
+        <td>
+           Blanco
+        </td>
+        <td>
+           Unidad
+        </td>
+        <td>
+           2
+        </td>
+        
+        <td>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modaldetalle">Detalle</button>
+            <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#modaleditar">Editar</button>
+        </td>
+    </tr>
+}
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+@*Modal Editar*@
+<div>
+    <div class="modal fade" id="modaleditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-body" id="frmAgregarCasoExito">
+                    @Html.Partial("_EditarModal", new ERP_GMEDINA.Models.tbSalidaDetalle() { })
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary" type="button" id="¨GuardarCasos"">Guardar</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Modal Detalle*@
+<div>
+    <div class="modal fade" id="modaldetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Salida Detalle</h4>
+                </div>
+                <div class="modal-body" id="frmAgregarCasoExito">
+                    @Html.Partial("_DetailsSalidaDetalle", new ERP_GMEDINA.Models.tbSalidaDetalle() { })
+                                              
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-primary" type="button" id="GuardarCasos">Guardar</button>
+                        <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

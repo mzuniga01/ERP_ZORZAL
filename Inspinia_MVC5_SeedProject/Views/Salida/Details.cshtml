@@ -12,7 +12,7 @@
     <div class="col-sm-8">
         <div class="title-action">
             <a href="@Url.Action("Index","Salida")">Regresar</a>
-           
+
         </div>
     </div>
 </div>
@@ -69,27 +69,29 @@
                         <dd>
                             @Html.DisplayFor(model => model.tbTipoSalida.tsal_Descripcion)
                         </dd>
+
                     </dl>
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-title">
-                                    <div class="title-action">
-                                        <h5>Producto</h5>
-                                        <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#CreateProducto"></button>
-                                    </div>
-                                </div>
-                                <div class="ibox-content collapse" id="CreateProducto">
-                                    @Html.Partial("_IndexBoxDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.box_Codigo }))
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     @Html.ActionLink("Editar", "Edit", new { id = Model.sal_Id }, new { @class = "btn btn-primary" })
                     @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
                 </div>
+            </div>
 
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox-content">
+                                <fieldset class="box-border">
+                                    <legend class="box-border">SalidaDetalle</legend>
+                                    @Html.Partial("_DetailsSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.sal_Id }))
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                 @*Campos de Auditoria*@
                 <div class="ibox-content">
                     <fieldset class="box-border">
@@ -113,8 +115,18 @@
                         </table>
                     </fieldset>
                 </div>
-
             </div>
-        </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+

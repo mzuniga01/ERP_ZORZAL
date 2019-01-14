@@ -68,7 +68,7 @@ $('#AgregarMunicipios').click(function () {
 
 });
 
-
+//GUARDAR MUNICIPIOS
 
 
 $('#btnGuardar').click(function () {
@@ -101,14 +101,14 @@ $('#btnGuardar').click(function () {
             data: JSON.stringify({ tbMunicipio: tbMunicipio }),
 
         })
-                    .done(function (data) {
-                        if (data == '') {
-                            $('#ValidationNombreUpdate').after('<ul id="ValidationNombreUpdate" class="validation-summary-errors text-danger">No se pudo actualizar el registro, contacte con el administrador</ul>');
-                        }
-                        else {
-                            window.location.href = '/Departamento/Index';
-                        }
-                    })
+        .done(function (data) {
+            if (data == '') {
+                $('#ValidationNombreUpdate').after('<ul id="ValidationNombreUpdate" class="validation-summary-errors text-danger">No se pudo actualizar el registro, contacte con el administrador</ul>');
+            }
+            else {
+                window.location.href = '/Departamento/Index';
+            }
+        })
     }
 });
 
