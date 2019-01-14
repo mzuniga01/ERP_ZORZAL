@@ -1,6 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbMovimientoCaja
 @using ERP_GMEDINA.Models
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Movimiento Caja</h2>
@@ -28,7 +27,7 @@
                                 <div class="form-group col-md-7">
                                     <label class="control-label col-md-2">Sucursal<span style="color:red"> *</span></label>
                                     <div class="col-md-7">
-                                        <input type="text" class="form-control " Value="San pedro sula" readonly>
+                                        <input type="text" class="form-control "  Value="San Pedro Sula" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -36,15 +35,16 @@
                                 @*@Html.LabelFor(model => model.cja_Id, "Número Caja", new { @class = "control-label col-md-2" })*@
                                 <label class="control-label col-md-2">Número Caja<span style="color:red"> *</span></label>
                                 <div class="col-md-10">
-                                    @*@Html.DropDownList("cja_Id", null, "Seleccione caja", new { @class = "form-control", @readonly = "readonly" })*@
-                                    @Html.EditorFor(model => model.tbCaja.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.tbCaja.cja_Id, new { htmlAttributes = new { @class = "form-control" @*, @readonly = "readonly"*@} })
+                                    @*<input type="text" class="form-control " id="cja_Id" Value="2" readonly>*@
                                     <p id="MensajeErrorDenominacion" style="color:red">@Html.ValidationMessageFor(model => model.cja_Id)</p>
                                     </div>
                             </div>
                             <div class="form-group col-md-7">
                                 @Html.LabelFor(model => model.tbCaja.cja_Descripcion, "Descripción Caja", new { @class = "control-label col-md-2" })
                                 <div class="col-md-7">
-                                    @Html.EditorFor(model => model.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control" @*, @readonly = "readonly"*@ } })
+                                    @*<input type="text" class="form-control " id="cja_Descripcion" Value="Caja 2" readonly>*@
                                     @Html.ValidationMessageFor(model => model.tbCaja.cja_Descripcion)
                                 </div>
                             </div> 
@@ -61,7 +61,8 @@
                             <div class="form-group col-md-7">
                                 @Html.LabelFor(model => model.mocja_UsuarioApertura, "Usuario Apertura", new { @class = "control-label col-md-2" })
                                 <div class="col-md-7">
-                                    @Html.EditorFor(model => model.mocja_UsuarioApertura, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.mocja_UsuarioApertura, new { htmlAttributes = new { @class = "form-control" @*, @readonly = "readonly"*@ } })
+                                    @*<input type="text" class="form-control " id="mocja_UsuarioApertura" Value="brayan.interiano" readonly>*@
                                     @Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)
                                 </div>
                             </div>
@@ -131,7 +132,15 @@ jQuery('input,select').each(function() {
 });
 </script>
 
- 
+
+<script type="text/javascript">
+    //Current Date
+    var d = new Date();
+    var n = d.toLocaleString([], { hour12: true });
+    var strDate = (d.getDate() + "/" + d.getMonth() + 1) + "/" +d.getFullYear() + ' ' +d.getHours() + ':'+ d.getMinutes()+ ':' + d.getSeconds();
+    $('#fechaapertura').val(n);
+</script>
+
 
 }
 

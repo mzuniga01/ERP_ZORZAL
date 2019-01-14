@@ -730,7 +730,7 @@
     </Key>
     <Property Name="listp_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="listp_Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="listp_EsActivo" Type="bit" />
+    <Property Name="listp_EsActivo" Type="bit" Nullable="false" />
     <Property Name="listp_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="listp_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="listp_UsuarioModifica" Type="int" />
@@ -3799,6 +3799,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="mun_Codigo" Type="char" Mode="In" />
     <Parameter Name="dep_Codigo" Type="char" Mode="In" />
     <Parameter Name="mun_Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="mun_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="mun_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbParametro_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="par_Id" Type="tinyint" Mode="In" />
@@ -4125,7 +4127,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
     <Parameter Name="sal_FechaElaboracion" Type="datetime" Mode="In" />
     <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
-    <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
     <Parameter Name="tsal_Id" Type="tinyint" Mode="In" />
     <Parameter Name="sal_RazonDevolucion" Type="varchar" Mode="In" />
     <Parameter Name="sal_UsuarioCrea" Type="int" Mode="In" />
@@ -4444,7 +4445,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="IDPRODUCTO" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbFactura_ConsultaBodega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-    <Parameter Name="IDSUCURSAL" Type="smallint" Mode="In" />
+    <Parameter Name="IDSUCURSAL" Type="int" Mode="In" />
     <Parameter Name="CODIGOPRODUCTO" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbFactura_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
@@ -4556,6 +4557,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="listp_FechaInicioVigencia" Type="date" Mode="In" />
     <Parameter Name="listp_FechaFinalVigencia" Type="date" Mode="In" />
     <Parameter Name="listp_Prioridad" Type="smallint" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="cja_Id" Type="smallint" Mode="In" />
+    <Parameter Name="mocja_FechaApertura" Type="datetime" Mode="In" />
+    <Parameter Name="mocja_UsuarioApertura" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbMovimientoCaja_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="cja_Id" Type="smallint" Mode="In" />

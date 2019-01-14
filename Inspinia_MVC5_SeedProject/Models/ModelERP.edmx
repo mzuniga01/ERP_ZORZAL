@@ -735,7 +735,7 @@
           </Key>
           <Property Name="listp_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="listp_Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="listp_EsActivo" Type="bit" />
+          <Property Name="listp_EsActivo" Type="bit" Nullable="false" />
           <Property Name="listp_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="listp_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="listp_UsuarioModifica" Type="int" />
@@ -3804,6 +3804,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="mun_Codigo" Type="char" Mode="In" />
           <Parameter Name="dep_Codigo" Type="char" Mode="In" />
           <Parameter Name="mun_Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="mun_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="mun_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Gral_tbParametro_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="par_Id" Type="tinyint" Mode="In" />
@@ -4130,7 +4132,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="fact_Id" Type="bigint" Mode="In" />
           <Parameter Name="sal_FechaElaboracion" Type="datetime" Mode="In" />
           <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
-          <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
           <Parameter Name="tsal_Id" Type="tinyint" Mode="In" />
           <Parameter Name="sal_RazonDevolucion" Type="varchar" Mode="In" />
           <Parameter Name="sal_UsuarioCrea" Type="int" Mode="In" />
@@ -4449,7 +4450,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="IDPRODUCTO" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbFactura_ConsultaBodega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-          <Parameter Name="IDSUCURSAL" Type="smallint" Mode="In" />
+          <Parameter Name="IDSUCURSAL" Type="int" Mode="In" />
           <Parameter Name="CODIGOPRODUCTO" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbFactura_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
@@ -4561,6 +4562,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="listp_FechaInicioVigencia" Type="date" Mode="In" />
           <Parameter Name="listp_FechaFinalVigencia" Type="date" Mode="In" />
           <Parameter Name="listp_Prioridad" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="cja_Id" Type="smallint" Mode="In" />
+          <Parameter Name="mocja_FechaApertura" Type="datetime" Mode="In" />
+          <Parameter Name="mocja_UsuarioApertura" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbMovimientoCaja_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="cja_Id" Type="smallint" Mode="In" />
@@ -6478,6 +6484,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="mun_Codigo" Mode="In" Type="String" />
             <Parameter Name="dep_Codigo" Mode="In" Type="String" />
             <Parameter Name="mun_Nombre" Mode="In" Type="String" />
+            <Parameter Name="mun_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="mun_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbParametro_Insert" ReturnType="Collection(String)">
             <Parameter Name="par_Id" Mode="In" Type="Byte" />
@@ -6777,7 +6785,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="fact_Id" Mode="In" Type="Int64" />
             <Parameter Name="sal_FechaElaboracion" Mode="In" Type="DateTime" />
             <Parameter Name="estm_Id" Mode="In" Type="Byte" />
-            <Parameter Name="box_Codigo" Mode="In" Type="String" />
             <Parameter Name="tsal_Id" Mode="In" Type="Byte" />
             <Parameter Name="sal_RazonDevolucion" Mode="In" Type="String" />
             <Parameter Name="sal_UsuarioCrea" Mode="In" Type="Int32" />
@@ -7996,8 +8003,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <End Role="tbFactura" EntitySet="tbFactura" />
           </AssociationSet>
           <FunctionImport Name="UDP_Vent_tbFactura_ConsultaBodega" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_ConsultaBodega_Result)">
-            <Parameter Name="IDSUCURSAL" Mode="In" Type="Int16" />
+            <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
             <Parameter Name="CODIGOPRODUCTO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result)">
+            <Parameter Name="cja_Id" Mode="In" Type="Int16" />
+            <Parameter Name="mocja_FechaApertura" Mode="In" Type="DateTime" />
+            <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -9398,7 +9410,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           </Key>
           <Property Name="listp_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="listp_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="listp_EsActivo" Type="Boolean" />
+          <Property Name="listp_EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="listp_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="listp_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="listp_UsuarioModifica" Type="Int32" />
@@ -12352,6 +12364,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Property Type="Boolean" Name="MENSAJE" Nullable="true" />
           <Property Type="Decimal" Name="CANTIDAD" Nullable="false" Precision="10" Scale="2" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14251,6 +14266,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_ConsultaBodega_Result">
                 <ScalarProperty Name="MENSAJE" ColumnName="MENSAJE" />
                 <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Apertura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Apertura_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

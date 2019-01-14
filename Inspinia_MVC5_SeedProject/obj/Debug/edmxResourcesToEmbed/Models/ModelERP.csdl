@@ -688,6 +688,8 @@
       <Parameter Name="mun_Codigo" Mode="In" Type="String" />
       <Parameter Name="dep_Codigo" Mode="In" Type="String" />
       <Parameter Name="mun_Nombre" Mode="In" Type="String" />
+      <Parameter Name="mun_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="mun_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbParametro_Insert" ReturnType="Collection(String)">
       <Parameter Name="par_Id" Mode="In" Type="Byte" />
@@ -987,7 +989,6 @@
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
       <Parameter Name="sal_FechaElaboracion" Mode="In" Type="DateTime" />
       <Parameter Name="estm_Id" Mode="In" Type="Byte" />
-      <Parameter Name="box_Codigo" Mode="In" Type="String" />
       <Parameter Name="tsal_Id" Mode="In" Type="Byte" />
       <Parameter Name="sal_RazonDevolucion" Mode="In" Type="String" />
       <Parameter Name="sal_UsuarioCrea" Mode="In" Type="Int32" />
@@ -2206,8 +2207,13 @@
       <End Role="tbFactura" EntitySet="tbFactura" />
     </AssociationSet>
     <FunctionImport Name="UDP_Vent_tbFactura_ConsultaBodega" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_ConsultaBodega_Result)">
-      <Parameter Name="IDSUCURSAL" Mode="In" Type="Int16" />
+      <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
       <Parameter Name="CODIGOPRODUCTO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result)">
+      <Parameter Name="cja_Id" Mode="In" Type="Int16" />
+      <Parameter Name="mocja_FechaApertura" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -3608,7 +3614,7 @@
     </Key>
     <Property Name="listp_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="listp_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="listp_EsActivo" Type="Boolean" />
+    <Property Name="listp_EsActivo" Type="Boolean" Nullable="false" />
     <Property Name="listp_UsuarioCrea" Type="Int32" Nullable="false" />
     <Property Name="listp_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="listp_UsuarioModifica" Type="Int32" />
@@ -6561,5 +6567,8 @@
   <ComplexType Name="UDP_Vent_tbFactura_ConsultaBodega_Result">
     <Property Type="Boolean" Name="MENSAJE" Nullable="true" />
     <Property Type="Decimal" Name="CANTIDAD" Nullable="false" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
 </Schema>

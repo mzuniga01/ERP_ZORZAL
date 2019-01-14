@@ -26,7 +26,9 @@ namespace ERP_GMEDINA.Controllers
             var tbmovimientocaja = db.tbMovimientoCaja.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCaja);
             return View(tbmovimientocaja.ToList());
         }
-        public ActionResult CreateApertura()
+
+        ///Create Apertura
+       public ActionResult CreateApertura()
         {
             var tbmovimientocaja = db.tbMovimientoCaja.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCaja);
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
@@ -35,6 +37,45 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.DenominacionArqueo = db.tbDenominacionArqueo.ToList();
             return View();
         }
+
+        // POST: /MovimientoCaja/CreateApertura
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateApertura([Bind(Include = "mocja_Id,cja_Id,mocja_FechaApeturamocja_UsuarioCrea,mocja_FechaCrea,mocja_UsuarioModifica,mocja_FechaModifica")] tbMovimientoCaja tbMovimientoCaja)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //////////Aqui va la lista//////////////
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbMovimientoCaja_Apertura_Insert(tbMovimientoCaja.cja_Id,tbMovimientoCaja.mocja_FechaApertura,tbMovimientoCaja.mocja_UsuarioApertura);
+                    foreach (UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result banco in list)
+                        MensajeError = banco.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        return View(tbMovimientoCaja);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                    return View(tbMovimientoCaja);
+                }
+            }
+            return View(tbMovimientoCaja);
+        }
+
+
 
         // GET: /MovimientoCaja/Details/5
         public ActionResult Details(int? id)
