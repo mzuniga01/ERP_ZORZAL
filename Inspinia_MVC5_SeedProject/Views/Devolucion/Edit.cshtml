@@ -101,8 +101,6 @@
                                         }
                                     }
 
-
-                                  
                                 </div>
                             </div>
 
@@ -140,7 +138,8 @@
                     }
                     
                     <div class="ibox-content">
-                        @Html.Hidden("RedirectTo", Url.Action("Create", "NotaCredito"))
+                        @*@Html.ActionLink("EmitirNotaCredito", "CreateNotaCredito", null, new { @class = "btn btn-primary btn-ms" })*@
+                        @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion" ,new { id = model.dev_Id }))
 
                         <div class="form-group">
                            

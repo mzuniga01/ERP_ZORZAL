@@ -3,9 +3,13 @@ $(document).on("click", "#DataTable1 tbody tr td button#Agregar", function () {
     idItem = $(this).closest('tr').data('id');
     DescItem = $(this).closest('tr').data('desc');
     DescValor = $(this).closest('tr').data('valor');
+    DescuentoItem = $(this).closest('tr').data('descuento');
+    PorcentajeItem = $(this).closest('tr').data('porcentaje');
     $("#prod_Codigo").val(idItem);
     $("#tbProducto_prod_Descripcion").val(DescItem);
     $("#PrecioUnitario").val(DescValor);
+    $("#test_factd_MontoDescuento").val(DescuentoItem);
+    $("#tbDevolucion_tbFactura_fact_PorcentajeDescuento").val(PorcentajeItem);
     $('#ModalBuscarProducto').modal('hide');
 });
 

@@ -75,6 +75,9 @@ $('#AgregarDetalleDevolucion').click(function () {
             $('#devd_Descripcion').val('');
             $('#PrecioUnitario').val('');
             $('#devd_Monto').val('');
+            $('#tbDevolucion_tbFactura_fact_PorcentajeDescuento').val('');
+            $('#test_factd_MontoDescuento').val('');
+            $('#Subtotal').val('');
         });
     }
 });

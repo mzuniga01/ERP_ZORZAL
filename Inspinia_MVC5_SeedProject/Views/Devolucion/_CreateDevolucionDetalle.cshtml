@@ -57,7 +57,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.devd_Monto, "Monto", new { @class = "control-label  col-md-offset-5 col-md-2" })
             <div class="col-md-offset col-md-3">
-                @Html.EditorFor(model => model.devd_Monto ,new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+                @Html.EditorFor(model => model.devd_Monto ,new { htmlAttributes = new { @*@readonly = "readonly",*@ @class = "form-control" } })
                 <div id="validationProductoDevolucionCreate">
                     @Html.ValidationMessageFor(model => model.devd_Monto)
                 </div>

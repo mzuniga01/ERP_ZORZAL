@@ -33,28 +33,17 @@
                     @foreach (var item in Model)
                     {
                         var name = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
-                        <tr data-id="@item.clte_Identificacion" data-desc="@item.clte_Nombres" >
+                        <tr data-id="@item.clte_Identificacion" data-desc="@name" >
                             <td>
                                 @Html.DisplayFor(modelItem => item.clte_Id)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.clte_Identificacion)
                             </td>
-                            @{ if (Convert.ToInt32(item.clte_EsPersonaNatural) == 1)
-                                {
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.clte_Nombres)
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.clte_NombreComercial)
-                                    </td>
-                                }
-                            }
-                         
-
+                               
+                            <td>
+                                @name
+                            </td>
                             <td>
                                 <button id="AgregarCliente" class="btn btn-primary btn-xs">Agregar</button>
                             </td>

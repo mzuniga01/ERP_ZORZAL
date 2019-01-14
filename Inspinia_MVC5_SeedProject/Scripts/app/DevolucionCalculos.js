@@ -4,14 +4,18 @@
 
         var Cantidad = $("#devd_CantidadProducto").val(),
             Precio = $("#PrecioUnitario").val(),
-            result = "";
+            MontoDescuento = $("#test_factd_MontoDescuento").val(),
+            Subtotal = $("#Subtotal").val(),
+            valorSubtotal = "";
+        MontoTotal = "";
 
         if (Cantidad.length && Precio.length > 0) {
-            result += Cantidad * Precio;
+            valorSubtotal += Cantidad * Precio;
+            MontoTotal += parseFloat(valorSubtotal) - parseFloat(MontoDescuento)  ;
+
         }
-
-        $("#devd_Monto").val(result);
-
+        $("#Subtotal").val(valorSubtotal);
+        $("#devd_Monto").val(MontoTotal);
     });
 
 });

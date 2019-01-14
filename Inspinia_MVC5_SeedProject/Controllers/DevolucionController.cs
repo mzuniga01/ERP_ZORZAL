@@ -304,8 +304,63 @@ namespace ERP_ZORZAL.Controllers
         [HttpPost]
         public JsonResult FiltrarModal(string CodFactura)
         {
+           
             var list = ViewBag.Factura = db.tbFactura.Where(a => a.clte_Identificacion == CodFactura).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
+            return Json(list);
+        }
+
+        public ActionResult CreateNotaCredito()
+        {
+            ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id");
+            ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
+            ViewBag.Cliente = db.tbCliente.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateNotaCredito([Bind(Include = "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica,nocre_Estado")] tbNotaCredito tbNotaCredito)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbNotaCredito_Insert(tbNotaCredito.nocre_Codigo,
+                                                            tbNotaCredito.dev_Id,
+                                                            tbNotaCredito.clte_Id,
+                                                            tbNotaCredito.suc_Id,
+                                                            tbNotaCredito.nocre_Anulado,
+                                                            tbNotaCredito.nocre_FechaEmision,
+                                                            tbNotaCredito.nocre_MotivoEmision,
+                        tbNotaCredito.nocre_Monto, tbNotaCredito.nocre_Estado);
+                    foreach (UDP_Vent_tbNotaCredito_Insert_Result NotaCredito in list)
+                        MensajeError = NotaCredito.MensajeError;
+                    if (MensajeError == -1)
+                    {
+                        ModelState.AddModelError("", "No se pudo Insertar el registro, favor contacte al administrador.");
+                        return View(tbNotaCredito);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                    return View(tbNotaCredito);
+                }
+            }
+
+            //ViewBag.nocre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioCrea);
+            //ViewBag.nocre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioModifica);
+            //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbNotaCredito.clte_Id);
+            //ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id", tbNotaCredito.dev_Id);
+            //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbNotaCredito.suc_Id);
+            return View(tbNotaCredito);
         }
     }
 }
