@@ -4541,6 +4541,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="lispd_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="lispd_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbListaPrecio_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="listp_Id" Type="int" Mode="In" />
+    <Parameter Name="listp_EsActivo" Type="bit" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbListaPrecio_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="listp_Nombre" Type="nvarchar" Mode="In" />
     <Parameter Name="listp_EsActivo" Type="bit" Mode="In" />
