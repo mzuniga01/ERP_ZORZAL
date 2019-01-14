@@ -31,6 +31,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbAccesoRol> tbAccesoRol { get; set; }
         public virtual DbSet<tbObjeto> tbObjeto { get; set; }
         public virtual DbSet<tbRol> tbRol { get; set; }
+        public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
         public virtual DbSet<tbUsuario> tbUsuario { get; set; }
         public virtual DbSet<tbActividadEconomica> tbActividadEconomica { get; set; }
         public virtual DbSet<tbBanco> tbBanco { get; set; }
@@ -89,14 +90,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
-        public virtual DbSet<UDV_Inv_Consultar_Existencias_Productos> UDV_Inv_Consultar_Existencias_Productos { get; set; }
-        public virtual DbSet<V_Objetos> V_Objetos { get; set; }
-        public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
-        public virtual DbSet<UDP_Vent_SolicituEfectivo_Select> UDP_Vent_SolicituEfectivo_Select { get; set; }
-        public virtual DbSet<UDV_Vent_Busqueda_Clientes> UDV_Vent_Busqueda_Clientes { get; set; }
-        public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
-        public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
-        public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
         {
@@ -1180,23 +1173,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbMunicipio_Insert_Result>("UDP_Gral_tbMunicipio_Insert", mun_CodigoParameter, dep_CodigoParameter, mun_NombreParameter);
         }
     
-        public virtual ObjectResult<UDP_Gral_tbMunicipio_Update_Result> UDP_Gral_tbMunicipio_Update(string mun_Codigo, string dep_Codigo, string mun_Nombre)
-        {
-            var mun_CodigoParameter = mun_Codigo != null ?
-                new ObjectParameter("mun_Codigo", mun_Codigo) :
-                new ObjectParameter("mun_Codigo", typeof(string));
-    
-            var dep_CodigoParameter = dep_Codigo != null ?
-                new ObjectParameter("dep_Codigo", dep_Codigo) :
-                new ObjectParameter("dep_Codigo", typeof(string));
-    
-            var mun_NombreParameter = mun_Nombre != null ?
-                new ObjectParameter("mun_Nombre", mun_Nombre) :
-                new ObjectParameter("mun_Nombre", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbMunicipio_Update_Result>("UDP_Gral_tbMunicipio_Update", mun_CodigoParameter, dep_CodigoParameter, mun_NombreParameter);
-        }
-    
         public virtual ObjectResult<string> spGetSubCategoria(Nullable<int> pcat_Id)
         {
             var pcat_IdParameter = pcat_Id.HasValue ?
@@ -1424,15 +1400,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbEmpleado_Update_Estado_Result>("UDP_Gral_tbEmpleado_Update_Estado", emp_IdParameter, emp_EstadoParameter);
         }
     
-        public virtual int UDP_Gral_tbMunicipio_Delete(string mun_Codigo)
-        {
-            var mun_CodigoParameter = mun_Codigo != null ?
-                new ObjectParameter("mun_Codigo", mun_Codigo) :
-                new ObjectParameter("mun_Codigo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Gral_tbMunicipio_Delete", mun_CodigoParameter);
-        }
-    
         public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Delete_Result> UDP_Inv_tbProductoCategoria_Delete(Nullable<int> pcat_Id)
         {
             var pcat_IdParameter = pcat_Id.HasValue ?
@@ -1483,130 +1450,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pcat_EsActivo", typeof(byte));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Update_Estado_Result>("UDP_Inv_tbProductoCategoria_Update_Estado", pcat_IdParameter, pcat_EsActivoParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Inv_tbSalida_Insert_Result> UDP_Inv_tbSalida_Insert(Nullable<int> bod_Id, Nullable<long> fact_Id, Nullable<System.DateTime> sal_FechaElaboracion, Nullable<byte> estm_Id, Nullable<byte> tsal_Id, string sal_RazonDevolucion)
-        {
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var fact_IdParameter = fact_Id.HasValue ?
-                new ObjectParameter("fact_Id", fact_Id) :
-                new ObjectParameter("fact_Id", typeof(long));
-    
-            var sal_FechaElaboracionParameter = sal_FechaElaboracion.HasValue ?
-                new ObjectParameter("sal_FechaElaboracion", sal_FechaElaboracion) :
-                new ObjectParameter("sal_FechaElaboracion", typeof(System.DateTime));
-    
-            var estm_IdParameter = estm_Id.HasValue ?
-                new ObjectParameter("estm_Id", estm_Id) :
-                new ObjectParameter("estm_Id", typeof(byte));
-    
-            var tsal_IdParameter = tsal_Id.HasValue ?
-                new ObjectParameter("tsal_Id", tsal_Id) :
-                new ObjectParameter("tsal_Id", typeof(byte));
-    
-            var sal_RazonDevolucionParameter = sal_RazonDevolucion != null ?
-                new ObjectParameter("sal_RazonDevolucion", sal_RazonDevolucion) :
-                new ObjectParameter("sal_RazonDevolucion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalida_Insert_Result>("UDP_Inv_tbSalida_Insert", bod_IdParameter, fact_IdParameter, sal_FechaElaboracionParameter, estm_IdParameter, tsal_IdParameter, sal_RazonDevolucionParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Inv_tbSalida_Update_Result> UDP_Inv_tbSalida_Update(Nullable<int> sal_Id, Nullable<int> bod_Id, Nullable<long> fact_Id, Nullable<System.DateTime> sal_FechaElaboracion, Nullable<byte> estm_Id, string box_Codigo, Nullable<byte> tsal_Id, string sal_RazonDevolucion, Nullable<int> sal_UsuarioCrea, Nullable<System.DateTime> sal_FechaCrea)
-        {
-            var sal_IdParameter = sal_Id.HasValue ?
-                new ObjectParameter("sal_Id", sal_Id) :
-                new ObjectParameter("sal_Id", typeof(int));
-    
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var fact_IdParameter = fact_Id.HasValue ?
-                new ObjectParameter("fact_Id", fact_Id) :
-                new ObjectParameter("fact_Id", typeof(long));
-    
-            var sal_FechaElaboracionParameter = sal_FechaElaboracion.HasValue ?
-                new ObjectParameter("sal_FechaElaboracion", sal_FechaElaboracion) :
-                new ObjectParameter("sal_FechaElaboracion", typeof(System.DateTime));
-    
-            var estm_IdParameter = estm_Id.HasValue ?
-                new ObjectParameter("estm_Id", estm_Id) :
-                new ObjectParameter("estm_Id", typeof(byte));
-    
-            var box_CodigoParameter = box_Codigo != null ?
-                new ObjectParameter("box_Codigo", box_Codigo) :
-                new ObjectParameter("box_Codigo", typeof(string));
-    
-            var tsal_IdParameter = tsal_Id.HasValue ?
-                new ObjectParameter("tsal_Id", tsal_Id) :
-                new ObjectParameter("tsal_Id", typeof(byte));
-    
-            var sal_RazonDevolucionParameter = sal_RazonDevolucion != null ?
-                new ObjectParameter("sal_RazonDevolucion", sal_RazonDevolucion) :
-                new ObjectParameter("sal_RazonDevolucion", typeof(string));
-    
-            var sal_UsuarioCreaParameter = sal_UsuarioCrea.HasValue ?
-                new ObjectParameter("sal_UsuarioCrea", sal_UsuarioCrea) :
-                new ObjectParameter("sal_UsuarioCrea", typeof(int));
-    
-            var sal_FechaCreaParameter = sal_FechaCrea.HasValue ?
-                new ObjectParameter("sal_FechaCrea", sal_FechaCrea) :
-                new ObjectParameter("sal_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalida_Update_Result>("UDP_Inv_tbSalida_Update", sal_IdParameter, bod_IdParameter, fact_IdParameter, sal_FechaElaboracionParameter, estm_IdParameter, box_CodigoParameter, tsal_IdParameter, sal_RazonDevolucionParameter, sal_UsuarioCreaParameter, sal_FechaCreaParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Inv_tbSalidaDetalle_Insert_Result> UDP_Inv_tbSalidaDetalle_Insert(Nullable<int> sal_Id, string prod_Codigo, Nullable<decimal> sal_Cantidad, string box_Codigo)
-        {
-            var sal_IdParameter = sal_Id.HasValue ?
-                new ObjectParameter("sal_Id", sal_Id) :
-                new ObjectParameter("sal_Id", typeof(int));
-    
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            var sal_CantidadParameter = sal_Cantidad.HasValue ?
-                new ObjectParameter("sal_Cantidad", sal_Cantidad) :
-                new ObjectParameter("sal_Cantidad", typeof(decimal));
-    
-            var box_CodigoParameter = box_Codigo != null ?
-                new ObjectParameter("box_Codigo", box_Codigo) :
-                new ObjectParameter("box_Codigo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalidaDetalle_Insert_Result>("UDP_Inv_tbSalidaDetalle_Insert", sal_IdParameter, prod_CodigoParameter, sal_CantidadParameter, box_CodigoParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Inv_tbSalidaDetalle_Update_Result> UDP_Inv_tbSalidaDetalle_Update(Nullable<int> sald_Id, Nullable<int> sal_Id, string prod_Codigo, Nullable<decimal> sal_Cantidad, Nullable<int> sald_UsuarioCrea, Nullable<System.DateTime> sald_FechaCrea)
-        {
-            var sald_IdParameter = sald_Id.HasValue ?
-                new ObjectParameter("sald_Id", sald_Id) :
-                new ObjectParameter("sald_Id", typeof(int));
-    
-            var sal_IdParameter = sal_Id.HasValue ?
-                new ObjectParameter("sal_Id", sal_Id) :
-                new ObjectParameter("sal_Id", typeof(int));
-    
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            var sal_CantidadParameter = sal_Cantidad.HasValue ?
-                new ObjectParameter("sal_Cantidad", sal_Cantidad) :
-                new ObjectParameter("sal_Cantidad", typeof(decimal));
-    
-            var sald_UsuarioCreaParameter = sald_UsuarioCrea.HasValue ?
-                new ObjectParameter("sald_UsuarioCrea", sald_UsuarioCrea) :
-                new ObjectParameter("sald_UsuarioCrea", typeof(int));
-    
-            var sald_FechaCreaParameter = sald_FechaCrea.HasValue ?
-                new ObjectParameter("sald_FechaCrea", sald_FechaCrea) :
-                new ObjectParameter("sald_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalidaDetalle_Update_Result>("UDP_Inv_tbSalidaDetalle_Update", sald_IdParameter, sal_IdParameter, prod_CodigoParameter, sal_CantidadParameter, sald_UsuarioCreaParameter, sald_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Acce_tbUsuario_Update_Result> UDP_Acce_tbUsuario_Update(Nullable<int> usu_Id, string usu_NombreUsuario, string usu_Nombres, string usu_Apellidos, string usu_Correo, Nullable<bool> usu_EsActivo, string usu_RazonInactivo, Nullable<bool> usu_EsAdministrador, Nullable<byte> usu_SesionesValidas)
@@ -1894,6 +1737,204 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("FechaElaboracion", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_ValidacionCantidadExistente_Result>("UDP_Inv_ValidacionCantidadExistente", cantidadSolicitadadParameter, iDBodegaParameter, iDProductoParameter, fechaElaboracionParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbMunicipio_Delete_Result> UDP_Gral_tbMunicipio_Delete(string mun_Codigo)
+        {
+            var mun_CodigoParameter = mun_Codigo != null ?
+                new ObjectParameter("mun_Codigo", mun_Codigo) :
+                new ObjectParameter("mun_Codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbMunicipio_Delete_Result>("UDP_Gral_tbMunicipio_Delete", mun_CodigoParameter);
+        }
+    
+        public virtual int SP_Valores(Nullable<int> pcat_Id, Nullable<int> pscat_Id, ObjectParameter prod_Codigo)
+        {
+            var pcat_IdParameter = pcat_Id.HasValue ?
+                new ObjectParameter("pcat_Id", pcat_Id) :
+                new ObjectParameter("pcat_Id", typeof(int));
+    
+            var pscat_IdParameter = pscat_Id.HasValue ?
+                new ObjectParameter("pscat_Id", pscat_Id) :
+                new ObjectParameter("pscat_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Valores", pcat_IdParameter, pscat_IdParameter, prod_Codigo);
+        }
+    
+        public virtual ObjectResult<spGetCategoriaProducto_Result> spGetCategoriaProducto(Nullable<int> codsubcategoria)
+        {
+            var codsubcategoriaParameter = codsubcategoria.HasValue ?
+                new ObjectParameter("codsubcategoria", codsubcategoria) :
+                new ObjectParameter("codsubcategoria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetCategoriaProducto_Result>("spGetCategoriaProducto", codsubcategoriaParameter);
+        }
+    
+        public virtual ObjectResult<spGetSubCategoriaProducto_Result> spGetSubCategoriaProducto(Nullable<int> codCategoria)
+        {
+            var codCategoriaParameter = codCategoria.HasValue ?
+                new ObjectParameter("CodCategoria", codCategoria) :
+                new ObjectParameter("CodCategoria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetSubCategoriaProducto_Result>("spGetSubCategoriaProducto", codCategoriaParameter);
+        }
+    
+        public virtual ObjectResult<spGetValue_Result> spGetValue(Nullable<int> pcat_Id, Nullable<int> pscat_Id)
+        {
+            var pcat_IdParameter = pcat_Id.HasValue ?
+                new ObjectParameter("pcat_Id", pcat_Id) :
+                new ObjectParameter("pcat_Id", typeof(int));
+    
+            var pscat_IdParameter = pscat_Id.HasValue ?
+                new ObjectParameter("pscat_Id", pscat_Id) :
+                new ObjectParameter("pscat_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetValue_Result>("spGetValue", pcat_IdParameter, pscat_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbSalida_Insert_Result> UDP_Inv_tbSalida_Insert(Nullable<int> bod_Id, Nullable<long> fact_Id, Nullable<System.DateTime> sal_FechaElaboracion, Nullable<byte> estm_Id, Nullable<byte> tsal_Id, string sal_RazonDevolucion)
+        {
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(long));
+    
+            var sal_FechaElaboracionParameter = sal_FechaElaboracion.HasValue ?
+                new ObjectParameter("sal_FechaElaboracion", sal_FechaElaboracion) :
+                new ObjectParameter("sal_FechaElaboracion", typeof(System.DateTime));
+    
+            var estm_IdParameter = estm_Id.HasValue ?
+                new ObjectParameter("estm_Id", estm_Id) :
+                new ObjectParameter("estm_Id", typeof(byte));
+    
+            var tsal_IdParameter = tsal_Id.HasValue ?
+                new ObjectParameter("tsal_Id", tsal_Id) :
+                new ObjectParameter("tsal_Id", typeof(byte));
+    
+            var sal_RazonDevolucionParameter = sal_RazonDevolucion != null ?
+                new ObjectParameter("sal_RazonDevolucion", sal_RazonDevolucion) :
+                new ObjectParameter("sal_RazonDevolucion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalida_Insert_Result>("UDP_Inv_tbSalida_Insert", bod_IdParameter, fact_IdParameter, sal_FechaElaboracionParameter, estm_IdParameter, tsal_IdParameter, sal_RazonDevolucionParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbSalida_Update_Result> UDP_Inv_tbSalida_Update(Nullable<int> sal_Id, Nullable<int> bod_Id, Nullable<long> fact_Id, Nullable<System.DateTime> sal_FechaElaboracion, Nullable<byte> estm_Id, Nullable<byte> tsal_Id, string sal_RazonDevolucion, Nullable<int> sal_UsuarioCrea, Nullable<System.DateTime> sal_FechaCrea)
+        {
+            var sal_IdParameter = sal_Id.HasValue ?
+                new ObjectParameter("sal_Id", sal_Id) :
+                new ObjectParameter("sal_Id", typeof(int));
+    
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(long));
+    
+            var sal_FechaElaboracionParameter = sal_FechaElaboracion.HasValue ?
+                new ObjectParameter("sal_FechaElaboracion", sal_FechaElaboracion) :
+                new ObjectParameter("sal_FechaElaboracion", typeof(System.DateTime));
+    
+            var estm_IdParameter = estm_Id.HasValue ?
+                new ObjectParameter("estm_Id", estm_Id) :
+                new ObjectParameter("estm_Id", typeof(byte));
+    
+            var tsal_IdParameter = tsal_Id.HasValue ?
+                new ObjectParameter("tsal_Id", tsal_Id) :
+                new ObjectParameter("tsal_Id", typeof(byte));
+    
+            var sal_RazonDevolucionParameter = sal_RazonDevolucion != null ?
+                new ObjectParameter("sal_RazonDevolucion", sal_RazonDevolucion) :
+                new ObjectParameter("sal_RazonDevolucion", typeof(string));
+    
+            var sal_UsuarioCreaParameter = sal_UsuarioCrea.HasValue ?
+                new ObjectParameter("sal_UsuarioCrea", sal_UsuarioCrea) :
+                new ObjectParameter("sal_UsuarioCrea", typeof(int));
+    
+            var sal_FechaCreaParameter = sal_FechaCrea.HasValue ?
+                new ObjectParameter("sal_FechaCrea", sal_FechaCrea) :
+                new ObjectParameter("sal_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalida_Update_Result>("UDP_Inv_tbSalida_Update", sal_IdParameter, bod_IdParameter, fact_IdParameter, sal_FechaElaboracionParameter, estm_IdParameter, tsal_IdParameter, sal_RazonDevolucionParameter, sal_UsuarioCreaParameter, sal_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbSalidaDetalle_Insert_Result> UDP_Inv_tbSalidaDetalle_Insert(Nullable<int> sal_Id, string prod_Codigo, Nullable<decimal> sal_Cantidad, string box_Codigo)
+        {
+            var sal_IdParameter = sal_Id.HasValue ?
+                new ObjectParameter("sal_Id", sal_Id) :
+                new ObjectParameter("sal_Id", typeof(int));
+    
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var sal_CantidadParameter = sal_Cantidad.HasValue ?
+                new ObjectParameter("sal_Cantidad", sal_Cantidad) :
+                new ObjectParameter("sal_Cantidad", typeof(decimal));
+    
+            var box_CodigoParameter = box_Codigo != null ?
+                new ObjectParameter("box_Codigo", box_Codigo) :
+                new ObjectParameter("box_Codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalidaDetalle_Insert_Result>("UDP_Inv_tbSalidaDetalle_Insert", sal_IdParameter, prod_CodigoParameter, sal_CantidadParameter, box_CodigoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbSalidaDetalle_Update_Result> UDP_Inv_tbSalidaDetalle_Update(Nullable<int> sald_Id, Nullable<int> sal_Id, string prod_Codigo, Nullable<decimal> sal_Cantidad, Nullable<int> sald_UsuarioCrea, Nullable<System.DateTime> sald_FechaCrea)
+        {
+            var sald_IdParameter = sald_Id.HasValue ?
+                new ObjectParameter("sald_Id", sald_Id) :
+                new ObjectParameter("sald_Id", typeof(int));
+    
+            var sal_IdParameter = sal_Id.HasValue ?
+                new ObjectParameter("sal_Id", sal_Id) :
+                new ObjectParameter("sal_Id", typeof(int));
+    
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var sal_CantidadParameter = sal_Cantidad.HasValue ?
+                new ObjectParameter("sal_Cantidad", sal_Cantidad) :
+                new ObjectParameter("sal_Cantidad", typeof(decimal));
+    
+            var sald_UsuarioCreaParameter = sald_UsuarioCrea.HasValue ?
+                new ObjectParameter("sald_UsuarioCrea", sald_UsuarioCrea) :
+                new ObjectParameter("sald_UsuarioCrea", typeof(int));
+    
+            var sald_FechaCreaParameter = sald_FechaCrea.HasValue ?
+                new ObjectParameter("sald_FechaCrea", sald_FechaCrea) :
+                new ObjectParameter("sald_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalidaDetalle_Update_Result>("UDP_Inv_tbSalidaDetalle_Update", sald_IdParameter, sal_IdParameter, prod_CodigoParameter, sal_CantidadParameter, sald_UsuarioCreaParameter, sald_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbMunicipio_Update_Result> UDP_Gral_tbMunicipio_Update(string mun_Codigo, string dep_Codigo, string mun_Nombre, Nullable<int> mun_UsuarioCrea, Nullable<System.DateTime> mun_FechaCrea)
+        {
+            var mun_CodigoParameter = mun_Codigo != null ?
+                new ObjectParameter("mun_Codigo", mun_Codigo) :
+                new ObjectParameter("mun_Codigo", typeof(string));
+    
+            var dep_CodigoParameter = dep_Codigo != null ?
+                new ObjectParameter("dep_Codigo", dep_Codigo) :
+                new ObjectParameter("dep_Codigo", typeof(string));
+    
+            var mun_NombreParameter = mun_Nombre != null ?
+                new ObjectParameter("mun_Nombre", mun_Nombre) :
+                new ObjectParameter("mun_Nombre", typeof(string));
+    
+            var mun_UsuarioCreaParameter = mun_UsuarioCrea.HasValue ?
+                new ObjectParameter("mun_UsuarioCrea", mun_UsuarioCrea) :
+                new ObjectParameter("mun_UsuarioCrea", typeof(int));
+    
+            var mun_FechaCreaParameter = mun_FechaCrea.HasValue ?
+                new ObjectParameter("mun_FechaCrea", mun_FechaCrea) :
+                new ObjectParameter("mun_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbMunicipio_Update_Result>("UDP_Gral_tbMunicipio_Update", mun_CodigoParameter, dep_CodigoParameter, mun_NombreParameter, mun_UsuarioCreaParameter, mun_FechaCreaParameter);
         }
     }
 }

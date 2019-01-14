@@ -10,11 +10,10 @@
 namespace ERP_GMEDINA.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class UDV_Inv_Nombre_Empleado
+    public partial class spGetValue_Result
     {
-        public short emp_Id { get; set; }
-        public string Empleados { get; set; }
+        public int pscat_Id { get; set; }
+        public int pcat_Id { get; set; }
     }
 }

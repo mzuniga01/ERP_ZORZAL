@@ -286,7 +286,9 @@ namespace ERP_ZORZAL.Controllers
             {
 
                 IEnumerable<object> list = null;
-                list = db.UDP_Gral_tbMunicipio_Update(mun_Codigo, dep_Codigo, mun_Nombre);
+
+                tbMunicipio vMunicipio = db.tbMunicipio.Find(mun_Codigo);
+                list = db.UDP_Gral_tbMunicipio_Update(mun_Codigo, dep_Codigo, mun_Nombre, vMunicipio.mun_UsuarioCrea, vMunicipio.mun_FechaCrea);
 
                 foreach (UDP_Gral_tbMunicipio_Update_Result mun in list)
                     MsjError = (mun.MensajeError);

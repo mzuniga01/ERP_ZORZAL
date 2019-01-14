@@ -211,12 +211,14 @@ namespace ERP_ZORZAL.Controllers
             string Msj = "";
             try
             {
-                    IEnumerable<object> list = null;
+                tbBox vBox = db.tbBox.Find(ACTUALIZAR_tbSalidaDetalle.box_Codigo);
+                IEnumerable<object> list = null;
                     list = db.UDP_Inv_tbSalidaDetalle_Update(ACTUALIZAR_tbSalidaDetalle.sald_Id,
+                                                        ACTUALIZAR_tbSalidaDetalle.sal_Id,
                                                          ACTUALIZAR_tbSalidaDetalle.prod_Codigo,
-                                                         ACTUALIZAR_tbSalidaDetalle.tbProducto.prod_Descripcion,
-                                                         ACTUALIZAR_tbSalidaDetalle.tbProducto.pscat_Id,
-                                                         ACTUALIZAR_tbSalidaDetalle.sal_Cantidad
+                                                         ACTUALIZAR_tbSalidaDetalle.sal_Cantidad,
+                                                         vBox.box_UsuarioCrea,
+                                                         vBox.box_FechaCrea
                                                          );
                 foreach (UDP_Inv_tbSalidaDetalle_Update_Result Isd in list)
                     Msj = Isd.MensajeError;
