@@ -22,6 +22,7 @@ namespace ERP_GMEDINA.Models
     
         public int obj_Id { get; set; }
         public string obj_Pantalla { get; set; }
+        public string obj_Referencia { get; set; }
         public int obj_UsuarioCrea { get; set; }
         public System.DateTime obj_FechaCrea { get; set; }
         public Nullable<int> obj_UsuarioModifica { get; set; }

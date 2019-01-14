@@ -1,95 +1,88 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbPedidoDetalle>
-
-
-
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-          
+
                 <div class="ibox-content">
 
-<table class="table table-striped">
-    <thead>
-        <tr>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
 
-            <th>
-                @Html.DisplayNameFor(model => model.tbPedido.ped_Id)
-            </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbPedido.ped_Id)
+                                </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
-            </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
+                                </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.pedd_Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.pedd_Cantidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.pedd_CantidadFacturada)
-            </th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tbPedido.ped_Id)
-        </td>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pedd_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pedd_Cantidad)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pedd_CantidadFacturada)
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbPedido.ped_Id)
+                                    </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
-        </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                    </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.pedd_Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pedd_Cantidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pedd_CantidadFacturada)
-        </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pedd_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pedd_Cantidad)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pedd_CantidadFacturada)
+                                    </td>
 
-        <td>		
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.pedd_Id">
-                Editar
-            </button>
-        </td>
-        <td>
-           
-        </td>
-
-
-
-        <div class="modal fade" id="Editar_@item.pedd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Editar Solicitud Efectivo Detalle</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div id="EditarSolicitudEfectivoDetalle" class="modal-body">
-                        @Html.Partial("_PedidoDetalleEditar", new ERP_GMEDINA.Models.tbPedidoDetalle() { pedd_Id = item.pedd_Id, ped_Id = item.ped_Id, prod_Codigo = item.prod_Codigo, pedd_Descripcion = item.pedd_Descripcion, pedd_Cantidad = item.pedd_Cantidad, pedd_CantidadFacturada = item.pedd_CantidadFacturada, pedd_FechaCrea = item.pedd_FechaCrea, pedd_FechaModifica = item.pedd_FechaModifica, pedd_UsuarioCrea = item.pedd_UsuarioCrea, pedd_UsuarioModifica = item.pedd_UsuarioModifica })
-                    </div>
-                </div>
-            </div>
-        </div>
-    </tr>
-}
-        </tbody>
-</table>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.pedd_Id">
+                                            Editar
+                                        </button>
+                                    </td>
+                                </tr>
+                                <div class="modal fade" id="Editar_@item.pedd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Editar Pedido Detalle</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div id="EditarPed" class="modal-body">
+                                                @Html.Partial("_PedidoDetalleEditar", new ERP_GMEDINA.Models.tbPedidoDetalle() { pedd_Id = item.pedd_Id, ped_Id= item.ped_Id,prod_Codigo = item.prod_Codigo, pedd_Descripcion = item.pedd_Descripcion, pedd_Cantidad = item.pedd_Cantidad, pedd_CantidadFacturada = item.pedd_CantidadFacturada,pedd_UsuarioCrea = item.pedd_UsuarioCrea,pedd_FechaCrea = item.pedd_FechaCrea, pedd_UsuarioModifica = item.pedd_UsuarioModifica,pedd_FechaModifica= item.pedd_FechaModifica })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
- </div>
+</div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
+
+
 
 

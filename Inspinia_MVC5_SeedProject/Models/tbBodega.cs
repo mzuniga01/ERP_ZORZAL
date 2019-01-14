@@ -33,6 +33,7 @@ namespace ERP_GMEDINA.Models
         public string bod_Telefono { get; set; }
         public string mun_Codigo { get; set; }
         public byte bod_EsActiva { get; set; }
+        public Nullable<short> emp_Id { get; set; }
         public int bod_UsuarioCrea { get; set; }
         public System.DateTime bod_FechaCrea { get; set; }
         public Nullable<int> bod_UsuarioModifica { get; set; }

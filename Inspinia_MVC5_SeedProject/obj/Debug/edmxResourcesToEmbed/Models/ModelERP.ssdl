@@ -18,6 +18,7 @@
     </Key>
     <Property Name="obj_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="obj_Pantalla" Type="nvarchar" MaxLength="50" />
+    <Property Name="obj_Referencia" Type="varchar" MaxLength="100" />
     <Property Name="obj_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="obj_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="obj_UsuarioModifica" Type="int" />
@@ -243,6 +244,7 @@
     <Property Name="bod_Telefono" Type="varchar" MaxLength="13" />
     <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
     <Property Name="bod_EsActiva" Type="tinyint" Nullable="false" />
+    <Property Name="emp_Id" Type="smallint" />
     <Property Name="bod_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="bod_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="bod_UsuarioModifica" Type="int" />
@@ -282,8 +284,8 @@
     <Key>
       <PropertyRef Name="ent_Id" />
     </Key>
-    <Property Name="ent_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ent_NumeroFormato" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ent_Id" Type="int" Nullable="false" />
+    <Property Name="ent_NumeroFormato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ent_FechaElaboracion" Type="datetime" Nullable="false" />
     <Property Name="bod_Id" Type="int" Nullable="false" />
     <Property Name="estm_Id" Type="tinyint" Nullable="false" />
@@ -294,6 +296,8 @@
     <Property Name="ent_RazonDevolucion" Type="varchar" MaxLength="150" />
     <Property Name="ent_BodegaDestino" Type="int" />
     <Property Name="tent_Id" Type="tinyint" Nullable="false" />
+    <Property Name="entd_EsAnulada" Type="bit" />
+    <Property Name="entd_RazonAnulada" Type="varchar" MaxLength="100" />
     <Property Name="ent_SalidaOrigen" Type="int" Nullable="false" />
     <Property Name="ent_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="ent_FechaCrea" Type="datetime" Nullable="false" />
@@ -312,7 +316,6 @@
     <Property Name="entd_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="entd_UsuarioModifica" Type="int" />
     <Property Name="entd_FechaModifica" Type="datetime" />
-    <Property Name="uni_Id" Type="int" />
   </EntityType>
   <EntityType Name="tbEstadoInventarioFisico">
     <Key>
@@ -946,182 +949,6 @@
     <Property Name="tpa_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="tpa_UsuarioModifica" Type="int" />
     <Property Name="tpa_FechaModifica" Type="datetime" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDV_Inv_Nombre_Empleado">
-    <Key>
-      <PropertyRef Name="emp_Id" />
-      <PropertyRef Name="Empleados" />
-    </Key>
-    <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
-    <Key>
-      <PropertyRef Name="suc_Descripcion" />
-      <PropertyRef Name="prod_Descripcion" />
-      <PropertyRef Name="prod_Marca" />
-      <PropertyRef Name="bodd_CantidadMinima" />
-      <PropertyRef Name="bod_Id" />
-      <PropertyRef Name="prod_Codigo" />
-    </Key>
-    <Property Name="suc_Descripcion" Type="nvarchar" MaxLength="40" Nullable="false" />
-    <Property Name="bod_Nombre" Type="varchar" MaxLength="100" />
-    <Property Name="prod_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="prod_Marca" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="bodd_CantidadExistente" Type="decimal" Precision="10" Scale="2" />
-    <Property Name="bodd_CantidadMinima" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="bod_Id" Type="int" Nullable="false" />
-    <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalles_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDP_Vent_SolicituEfectivo_Detalles_Select">
-    <Key>
-      <PropertyRef Name="soled_Id" />
-      <PropertyRef Name="solef_Id" />
-      <PropertyRef Name="deno_Id" />
-      <PropertyRef Name="deno_Descripcion" />
-      <PropertyRef Name="deno_valor" />
-      <PropertyRef Name="soled_CantidadSolicitada" />
-      <PropertyRef Name="soled_CantidadEntregada" />
-      <PropertyRef Name="soled_UsuarioCrea" />
-      <PropertyRef Name="soled_FechaCrea" />
-    </Key>
-    <Property Name="soled_Id" Type="int" Nullable="false" />
-    <Property Name="solef_Id" Type="int" Nullable="false" />
-    <Property Name="deno_Id" Type="smallint" Nullable="false" />
-    <Property Name="deno_Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="deno_valor" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="soled_CantidadSolicitada" Type="smallint" Nullable="false" />
-    <Property Name="MontoSolicitado" Type="decimal" Precision="16" Scale="2" />
-    <Property Name="soled_CantidadEntregada" Type="smallint" Nullable="false" />
-    <Property Name="MontoEntregado" Type="decimal" Precision="21" Scale="4" />
-    <Property Name="soled_UsuarioCrea" Type="int" Nullable="false" />
-    <Property Name="soled_FechaCrea" Type="datetime" Nullable="false" />
-    <Property Name="soled_UsuarioModifica" Type="int" />
-    <Property Name="soled_FechaModifica" Type="datetime" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
-    <Key>
-      <PropertyRef Name="IdSolicitud" />
-      <PropertyRef Name="FechaSolicitud" />
-    </Key>
-    <Property Name="IdSolicitud" Type="int" Nullable="false" />
-    <Property Name="FechaSolicitud" Type="datetime" Nullable="false" />
-    <Property Name="Sucursal" Type="nvarchar" MaxLength="40" />
-    <Property Name="Caja" Type="nvarchar" MaxLength="10" />
-    <Property Name="Moneda" Type="nvarchar" MaxLength="100" />
-    <Property Name="MontoSolicitado" Type="decimal" Precision="38" Scale="2" />
-    <Property Name="MontoEntregado" Type="decimal" Precision="38" Scale="2" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDV_Vent_Busqueda_Clientes">
-    <Key>
-      <PropertyRef Name="clte_Id" />
-      <PropertyRef Name="tpi_Id" />
-      <PropertyRef Name="tpi_Descripcion" />
-      <PropertyRef Name="clte_Identificacion" />
-      <PropertyRef Name="clte_EsPersonaNatural" />
-      <PropertyRef Name="clte_Nombres" />
-      <PropertyRef Name="clte_Apellidos" />
-      <PropertyRef Name="clte_Nacionalidad" />
-      <PropertyRef Name="clte_Telefono" />
-      <PropertyRef Name="clte_NombreComercial" />
-      <PropertyRef Name="clte_RazonSocial" />
-      <PropertyRef Name="clte_ContactoNombre" />
-      <PropertyRef Name="clte_ContactoTelefono" />
-      <PropertyRef Name="mun_Codigo" />
-      <PropertyRef Name="clte_EsActivo" />
-      <PropertyRef Name="clte_ConCredito" />
-      <PropertyRef Name="clte_EsMinorista" />
-      <PropertyRef Name="clte_UsuarioCrea" />
-      <PropertyRef Name="clte_FechaCrea" />
-    </Key>
-    <Property Name="clte_Id" Type="int" Nullable="false" />
-    <Property Name="tpi_Id" Type="tinyint" Nullable="false" />
-    <Property Name="tpi_Descripcion" Type="nvarchar" MaxLength="25" Nullable="false" />
-    <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
-    <Property Name="clte_EsPersonaNatural" Type="bit" Nullable="false" />
-    <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="clte_Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="clte_FechaNacimiento" Type="date" />
-    <Property Name="clte_Nacionalidad" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="clte_Sexo" Type="char" MaxLength="1" />
-    <Property Name="clte_Telefono" Type="nvarchar" MaxLength="25" Nullable="false" />
-    <Property Name="clte_NombreComercial" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="clte_RazonSocial" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="clte_ContactoNombre" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="clte_ContactoEmail" Type="nvarchar" MaxLength="50" />
-    <Property Name="clte_ContactoTelefono" Type="nvarchar" MaxLength="25" Nullable="false" />
-    <Property Name="clte_FechaConstitucion" Type="date" />
-    <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
-    <Property Name="clte_Direccion" Type="nvarchar" MaxLength="100" />
-    <Property Name="clte_CorreoElectronico" Type="nvarchar" MaxLength="50" />
-    <Property Name="clte_EsActivo" Type="bit" Nullable="false" />
-    <Property Name="clte_RazonInactivo" Type="nvarchar" MaxLength="50" />
-    <Property Name="clte_ConCredito" Type="bit" Nullable="false" />
-    <Property Name="clte_EsMinorista" Type="bit" Nullable="false" />
-    <Property Name="clte_Observaciones" Type="nvarchar" MaxLength="250" />
-    <Property Name="clte_UsuarioCrea" Type="int" Nullable="false" />
-    <Property Name="clte_FechaCrea" Type="datetime" Nullable="false" />
-    <Property Name="clte_UsuarioModifica" Type="int" />
-    <Property Name="clte_FechaModifica" Type="datetime" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDV_Vent_Busqueda_Factura">
-    <Key>
-      <PropertyRef Name="fact_Id" />
-      <PropertyRef Name="fact_Codigo" />
-      <PropertyRef Name="fact_Fecha" />
-      <PropertyRef Name="esfac_Id" />
-      <PropertyRef Name="esfac_Descripcion" />
-      <PropertyRef Name="cja_Id" />
-      <PropertyRef Name="cja_Descripcion" />
-      <PropertyRef Name="suc_Id" />
-      <PropertyRef Name="clte_Id" />
-      <PropertyRef Name="pemi_NumeroCAI" />
-      <PropertyRef Name="fact_AlCredito" />
-      <PropertyRef Name="fact_DiasCredito" />
-      <PropertyRef Name="fact_PorcentajeDescuento" />
-      <PropertyRef Name="fact_Vendedor" />
-      <PropertyRef Name="clte_Identificacion" />
-      <PropertyRef Name="clte_Nombres" />
-      <PropertyRef Name="fact_UsuarioCrea" />
-      <PropertyRef Name="fact_FechaCrea" />
-    </Key>
-    <Property Name="fact_Id" Type="bigint" Nullable="false" />
-    <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
-    <Property Name="fact_Fecha" Type="datetime" Nullable="false" />
-    <Property Name="esfac_Id" Type="tinyint" Nullable="false" />
-    <Property Name="esfac_Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="cja_Id" Type="smallint" Nullable="false" />
-    <Property Name="cja_Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="suc_Id" Type="smallint" Nullable="false" />
-    <Property Name="clte_Id" Type="int" Nullable="false" />
-    <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="fact_AlCredito" Type="bit" Nullable="false" />
-    <Property Name="fact_DiasCredito" Type="int" Nullable="false" />
-    <Property Name="fact_PorcentajeDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="fact_Vendedor" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
-    <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="fact_IdentidadTE" Type="nvarchar" MaxLength="26" />
-    <Property Name="fact_NombresTE" Type="nvarchar" MaxLength="50" />
-    <Property Name="fact_FechaNacimientoTE" Type="date" />
-    <Property Name="fact_UsuarioAutoriza" Type="int" />
-    <Property Name="fact_FechaAutoriza" Type="datetime" />
-    <Property Name="fact_UsuarioCrea" Type="int" Nullable="false" />
-    <Property Name="fact_FechaCrea" Type="datetime" Nullable="false" />
-    <Property Name="fact_UsuarioModifica" Type="int" />
-    <Property Name="fact_FechaModifica" Type="datetime" />
   </EntityType>
   <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
     <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="1" />
@@ -2419,18 +2246,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inv_tbEntradaDetalle_tbUnidadMedida_uni_Id">
-    <End Role="tbUnidadMedida" Type="Self.tbUnidadMedida" Multiplicity="0..1" />
-    <End Role="tbEntradaDetalle" Type="Self.tbEntradaDetalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUnidadMedida">
-        <PropertyRef Name="uni_Id" />
-      </Principal>
-      <Dependent Role="tbEntradaDetalle">
-        <PropertyRef Name="uni_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
     <End Role="tbEstadoMovimiento" Type="Self.tbEstadoMovimiento" Multiplicity="*" />
@@ -3596,10 +3411,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
   </Function>
   <Function Name="UDP_Acce_tbObjeto_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
+    <Parameter Name="obj_Referencia" Type="varchar" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbObjeto_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="obj_Id" Type="int" Mode="In" />
     <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
+    <Parameter Name="obj_Referencia" Type="varchar" Mode="In" />
     <Parameter Name="obj_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="obj_FechaCrea" Type="datetime" Mode="In" />
   </Function>
@@ -4024,7 +3841,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="ent_Id" Type="int" Mode="In" />
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
-    <Parameter Name="uni_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbEntradaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="entd_Id" Type="int" Mode="In" />
@@ -4033,7 +3849,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
     <Parameter Name="entd_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="entd_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="uni_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbEstadoMovimiento_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="estm_Id" Type="int" Mode="In" />
@@ -4737,8 +4552,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Parameter Name="pedd_CantidadFacturada" Type="decimal" Mode="In" />
     <Parameter Name="pedd_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="pedd_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="pedd_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="pedd_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbPuntoEmision_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="pemi_NumeroCAI" Type="nvarchar" Mode="In" />
@@ -4945,114 +4758,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <EntitySet Name="tbSolicitudEfectivoDetalle" EntityType="Self.tbSolicitudEfectivoDetalle" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbSucursal" EntityType="Self.tbSucursal" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbTipoPago" EntityType="Self.tbTipoPago" Schema="Vent" store:Type="Tables" />
-    <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="Self.UDV_Inv_Nombre_Empleado" store:Type="Views" store:Schema="Gral">
-      <DefiningQuery>SELECT 
-    [UDV_Inv_Nombre_Empleado].[emp_Id] AS [emp_Id], 
-    [UDV_Inv_Nombre_Empleado].[Empleados] AS [Empleados]
-    FROM [Gral].[UDV_Inv_Nombre_Empleado] AS [UDV_Inv_Nombre_Empleado]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="UDV_Inv_Consultar_Existencias_Productos" EntityType="Self.UDV_Inv_Consultar_Existencias_Productos" store:Type="Views" store:Schema="Inv">
-      <DefiningQuery>SELECT 
-    [UDV_Inv_Consultar_Existencias_Productos].[suc_Descripcion] AS [suc_Descripcion], 
-    [UDV_Inv_Consultar_Existencias_Productos].[bod_Nombre] AS [bod_Nombre], 
-    [UDV_Inv_Consultar_Existencias_Productos].[prod_Descripcion] AS [prod_Descripcion], 
-    [UDV_Inv_Consultar_Existencias_Productos].[prod_Marca] AS [prod_Marca], 
-    [UDV_Inv_Consultar_Existencias_Productos].[bodd_CantidadExistente] AS [bodd_CantidadExistente], 
-    [UDV_Inv_Consultar_Existencias_Productos].[bodd_CantidadMinima] AS [bodd_CantidadMinima], 
-    [UDV_Inv_Consultar_Existencias_Productos].[bod_Id] AS [bod_Id], 
-    [UDV_Inv_Consultar_Existencias_Productos].[prod_Codigo] AS [prod_Codigo]
-    FROM [Inv].[UDV_Inv_Consultar_Existencias_Productos] AS [UDV_Inv_Consultar_Existencias_Productos]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="UDP_Vent_SolicituEfectivo_Detalles_Select" EntityType="Self.UDP_Vent_SolicituEfectivo_Detalles_Select" store:Type="Views" store:Schema="Vent">
-      <DefiningQuery>SELECT 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_Id] AS [soled_Id], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[solef_Id] AS [solef_Id], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[deno_Id] AS [deno_Id], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[deno_Descripcion] AS [deno_Descripcion], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[deno_valor] AS [deno_valor], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_CantidadSolicitada] AS [soled_CantidadSolicitada], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[MontoSolicitado] AS [MontoSolicitado], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_CantidadEntregada] AS [soled_CantidadEntregada], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[MontoEntregado] AS [MontoEntregado], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_UsuarioCrea] AS [soled_UsuarioCrea], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_FechaCrea] AS [soled_FechaCrea], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_UsuarioModifica] AS [soled_UsuarioModifica], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_FechaModifica] AS [soled_FechaModifica]
-    FROM [Vent].[UDP_Vent_SolicituEfectivo_Detalles_Select] AS [UDP_Vent_SolicituEfectivo_Detalles_Select]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="Self.UDP_Vent_SolicituEfectivo_Select" store:Type="Views" store:Schema="Vent">
-      <DefiningQuery>SELECT 
-    [UDP_Vent_SolicituEfectivo_Select].[IdSolicitud] AS [IdSolicitud], 
-    [UDP_Vent_SolicituEfectivo_Select].[FechaSolicitud] AS [FechaSolicitud], 
-    [UDP_Vent_SolicituEfectivo_Select].[Sucursal] AS [Sucursal], 
-    [UDP_Vent_SolicituEfectivo_Select].[Caja] AS [Caja], 
-    [UDP_Vent_SolicituEfectivo_Select].[Moneda] AS [Moneda], 
-    [UDP_Vent_SolicituEfectivo_Select].[MontoSolicitado] AS [MontoSolicitado], 
-    [UDP_Vent_SolicituEfectivo_Select].[MontoEntregado] AS [MontoEntregado]
-    FROM [Vent].[UDP_Vent_SolicituEfectivo_Select] AS [UDP_Vent_SolicituEfectivo_Select]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="UDV_Vent_Busqueda_Clientes" EntityType="Self.UDV_Vent_Busqueda_Clientes" store:Type="Views" store:Schema="Vent">
-      <DefiningQuery>SELECT 
-    [UDV_Vent_Busqueda_Clientes].[clte_Id] AS [clte_Id], 
-    [UDV_Vent_Busqueda_Clientes].[tpi_Id] AS [tpi_Id], 
-    [UDV_Vent_Busqueda_Clientes].[tpi_Descripcion] AS [tpi_Descripcion], 
-    [UDV_Vent_Busqueda_Clientes].[clte_Identificacion] AS [clte_Identificacion], 
-    [UDV_Vent_Busqueda_Clientes].[clte_EsPersonaNatural] AS [clte_EsPersonaNatural], 
-    [UDV_Vent_Busqueda_Clientes].[clte_Nombres] AS [clte_Nombres], 
-    [UDV_Vent_Busqueda_Clientes].[clte_Apellidos] AS [clte_Apellidos], 
-    [UDV_Vent_Busqueda_Clientes].[clte_FechaNacimiento] AS [clte_FechaNacimiento], 
-    [UDV_Vent_Busqueda_Clientes].[clte_Nacionalidad] AS [clte_Nacionalidad], 
-    [UDV_Vent_Busqueda_Clientes].[clte_Sexo] AS [clte_Sexo], 
-    [UDV_Vent_Busqueda_Clientes].[clte_Telefono] AS [clte_Telefono], 
-    [UDV_Vent_Busqueda_Clientes].[clte_NombreComercial] AS [clte_NombreComercial], 
-    [UDV_Vent_Busqueda_Clientes].[clte_RazonSocial] AS [clte_RazonSocial], 
-    [UDV_Vent_Busqueda_Clientes].[clte_ContactoNombre] AS [clte_ContactoNombre], 
-    [UDV_Vent_Busqueda_Clientes].[clte_ContactoEmail] AS [clte_ContactoEmail], 
-    [UDV_Vent_Busqueda_Clientes].[clte_ContactoTelefono] AS [clte_ContactoTelefono], 
-    [UDV_Vent_Busqueda_Clientes].[clte_FechaConstitucion] AS [clte_FechaConstitucion], 
-    [UDV_Vent_Busqueda_Clientes].[mun_Codigo] AS [mun_Codigo], 
-    [UDV_Vent_Busqueda_Clientes].[clte_Direccion] AS [clte_Direccion], 
-    [UDV_Vent_Busqueda_Clientes].[clte_CorreoElectronico] AS [clte_CorreoElectronico], 
-    [UDV_Vent_Busqueda_Clientes].[clte_EsActivo] AS [clte_EsActivo], 
-    [UDV_Vent_Busqueda_Clientes].[clte_RazonInactivo] AS [clte_RazonInactivo], 
-    [UDV_Vent_Busqueda_Clientes].[clte_ConCredito] AS [clte_ConCredito], 
-    [UDV_Vent_Busqueda_Clientes].[clte_EsMinorista] AS [clte_EsMinorista], 
-    [UDV_Vent_Busqueda_Clientes].[clte_Observaciones] AS [clte_Observaciones], 
-    [UDV_Vent_Busqueda_Clientes].[clte_UsuarioCrea] AS [clte_UsuarioCrea], 
-    [UDV_Vent_Busqueda_Clientes].[clte_FechaCrea] AS [clte_FechaCrea], 
-    [UDV_Vent_Busqueda_Clientes].[clte_UsuarioModifica] AS [clte_UsuarioModifica], 
-    [UDV_Vent_Busqueda_Clientes].[clte_FechaModifica] AS [clte_FechaModifica]
-    FROM [Vent].[UDV_Vent_Busqueda_Clientes] AS [UDV_Vent_Busqueda_Clientes]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="UDV_Vent_Busqueda_Factura" EntityType="Self.UDV_Vent_Busqueda_Factura" store:Type="Views" store:Schema="Vent">
-      <DefiningQuery>SELECT 
-    [UDV_Vent_Busqueda_Factura].[fact_Id] AS [fact_Id], 
-    [UDV_Vent_Busqueda_Factura].[fact_Codigo] AS [fact_Codigo], 
-    [UDV_Vent_Busqueda_Factura].[fact_Fecha] AS [fact_Fecha], 
-    [UDV_Vent_Busqueda_Factura].[esfac_Id] AS [esfac_Id], 
-    [UDV_Vent_Busqueda_Factura].[esfac_Descripcion] AS [esfac_Descripcion], 
-    [UDV_Vent_Busqueda_Factura].[cja_Id] AS [cja_Id], 
-    [UDV_Vent_Busqueda_Factura].[cja_Descripcion] AS [cja_Descripcion], 
-    [UDV_Vent_Busqueda_Factura].[suc_Id] AS [suc_Id], 
-    [UDV_Vent_Busqueda_Factura].[clte_Id] AS [clte_Id], 
-    [UDV_Vent_Busqueda_Factura].[pemi_NumeroCAI] AS [pemi_NumeroCAI], 
-    [UDV_Vent_Busqueda_Factura].[fact_AlCredito] AS [fact_AlCredito], 
-    [UDV_Vent_Busqueda_Factura].[fact_DiasCredito] AS [fact_DiasCredito], 
-    [UDV_Vent_Busqueda_Factura].[fact_PorcentajeDescuento] AS [fact_PorcentajeDescuento], 
-    [UDV_Vent_Busqueda_Factura].[fact_Vendedor] AS [fact_Vendedor], 
-    [UDV_Vent_Busqueda_Factura].[clte_Identificacion] AS [clte_Identificacion], 
-    [UDV_Vent_Busqueda_Factura].[clte_Nombres] AS [clte_Nombres], 
-    [UDV_Vent_Busqueda_Factura].[fact_IdentidadTE] AS [fact_IdentidadTE], 
-    [UDV_Vent_Busqueda_Factura].[fact_NombresTE] AS [fact_NombresTE], 
-    [UDV_Vent_Busqueda_Factura].[fact_FechaNacimientoTE] AS [fact_FechaNacimientoTE], 
-    [UDV_Vent_Busqueda_Factura].[fact_UsuarioAutoriza] AS [fact_UsuarioAutoriza], 
-    [UDV_Vent_Busqueda_Factura].[fact_FechaAutoriza] AS [fact_FechaAutoriza], 
-    [UDV_Vent_Busqueda_Factura].[fact_UsuarioCrea] AS [fact_UsuarioCrea], 
-    [UDV_Vent_Busqueda_Factura].[fact_FechaCrea] AS [fact_FechaCrea], 
-    [UDV_Vent_Busqueda_Factura].[fact_UsuarioModifica] AS [fact_UsuarioModifica], 
-    [UDV_Vent_Busqueda_Factura].[fact_FechaModifica] AS [fact_FechaModifica]
-    FROM [Vent].[UDV_Vent_Busqueda_Factura] AS [UDV_Vent_Busqueda_Factura]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" Association="Self.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
       <End Role="tbObjeto" EntitySet="tbObjeto" />
       <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
@@ -5483,10 +5188,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEntradaDetalle_tbProducto_prod_Codigo" Association="Self.FK_Inv_tbEntradaDetalle_tbProducto_prod_Codigo">
       <End Role="tbProducto" EntitySet="tbProducto" />
-      <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbEntradaDetalle_tbUnidadMedida_uni_Id" Association="Self.FK_Inv_tbEntradaDetalle_tbUnidadMedida_uni_Id">
-      <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
       <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica" Association="Self.FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">

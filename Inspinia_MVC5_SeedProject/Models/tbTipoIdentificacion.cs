@@ -19,7 +19,6 @@ namespace ERP_GMEDINA.Models
         {
             this.tbEmpleado = new HashSet<tbEmpleado>();
             this.tbIdentificacionCliente = new HashSet<tbIdentificacionCliente>();
-            this.tbCliente = new HashSet<tbCliente>();
         }
     
         public byte tpi_Id { get; set; }
@@ -35,7 +34,5 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbEmpleado> tbEmpleado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbIdentificacionCliente> tbIdentificacionCliente { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCliente> tbCliente { get; set; }
     }
 }
