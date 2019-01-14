@@ -797,13 +797,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PuntoEmisionDetalle.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ReportePuntoEmision.aspx.cs">
-      <DependentUpon>ReportePuntoEmision.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ReportePuntoEmision.aspx.designer.cs">
-      <DependentUpon>ReportePuntoEmision.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1042,7 +1035,6 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
       <LastGenOutput>ModelERP.cs</LastGenOutput>
     </Content>
-    <Content Include="ReportePuntoEmision.aspx" />
     <Content Include="Scripts\app\AceptarSolicitudCre.js" />
     <Content Include="Scripts\app\Activo.js" />
     <Content Include="Scripts\app\AnularDevolucion.js" />
