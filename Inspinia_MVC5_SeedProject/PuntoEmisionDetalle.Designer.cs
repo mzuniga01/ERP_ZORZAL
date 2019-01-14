@@ -20,9 +20,9 @@ namespace ERP_GMEDINA {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("PuntoEmisionDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("PuntoEmisionDetalle")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class PuntoEmisionDataSet : global::System.Data.DataSet {
+    public partial class PuntoEmisionDetalle : global::System.Data.DataSet {
         
         private DataTable1DataTable tableDataTable1;
         
@@ -30,7 +30,7 @@ namespace ERP_GMEDINA {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public PuntoEmisionDataSet() {
+        public PuntoEmisionDetalle() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace ERP_GMEDINA {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected PuntoEmisionDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected PuntoEmisionDetalle(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -127,7 +127,7 @@ namespace ERP_GMEDINA {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            PuntoEmisionDataSet cln = ((PuntoEmisionDataSet)(base.Clone()));
+            PuntoEmisionDetalle cln = ((PuntoEmisionDetalle)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -199,9 +199,9 @@ namespace ERP_GMEDINA {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "PuntoEmisionDataSet";
+            this.DataSetName = "PuntoEmisionDetalle";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/PuntoEmisionDataSet.xsd";
+            this.Namespace = "http://tempuri.org/PuntoEmisionDetalle.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableDataTable1 = new DataTable1DataTable();
@@ -225,7 +225,7 @@ namespace ERP_GMEDINA {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            PuntoEmisionDataSet ds = new PuntoEmisionDataSet();
+            PuntoEmisionDetalle ds = new PuntoEmisionDetalle();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -281,7 +281,7 @@ namespace ERP_GMEDINA {
             
             private global::System.Data.DataColumn columnpemid_Id;
             
-            private global::System.Data.DataColumn columnpemi_NumeroCAI;
+            private global::System.Data.DataColumn columnpemi_Id;
             
             private global::System.Data.DataColumn columndfisc_Descripcion;
             
@@ -342,9 +342,9 @@ namespace ERP_GMEDINA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn pemi_NumeroCAIColumn {
+            public global::System.Data.DataColumn pemi_IdColumn {
                 get {
-                    return this.columnpemi_NumeroCAI;
+                    return this.columnpemi_Id;
                 }
             }
             
@@ -449,11 +449,11 @@ namespace ERP_GMEDINA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string pemi_NumeroCAI, string dfisc_Descripcion, string pemid_RangoInicio, string pemid_RangoFinal, System.DateTime pemid_FechaLimite, string UsuarioCrea, System.DateTime pemid_FechaCrea, string UsuarioModifica, System.DateTime pemid_FechaModifica) {
+            public DataTable1Row AddDataTable1Row(int pemi_Id, string dfisc_Descripcion, string pemid_RangoInicio, string pemid_RangoFinal, System.DateTime pemid_FechaLimite, string UsuarioCrea, System.DateTime pemid_FechaCrea, string UsuarioModifica, System.DateTime pemid_FechaModifica) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        pemi_NumeroCAI,
+                        pemi_Id,
                         dfisc_Descripcion,
                         pemid_RangoInicio,
                         pemid_RangoFinal,
@@ -492,7 +492,7 @@ namespace ERP_GMEDINA {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnpemid_Id = base.Columns["pemid_Id"];
-                this.columnpemi_NumeroCAI = base.Columns["pemi_NumeroCAI"];
+                this.columnpemi_Id = base.Columns["pemi_Id"];
                 this.columndfisc_Descripcion = base.Columns["dfisc_Descripcion"];
                 this.columnpemid_RangoInicio = base.Columns["pemid_RangoInicio"];
                 this.columnpemid_RangoFinal = base.Columns["pemid_RangoFinal"];
@@ -508,8 +508,8 @@ namespace ERP_GMEDINA {
             private void InitClass() {
                 this.columnpemid_Id = new global::System.Data.DataColumn("pemid_Id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpemid_Id);
-                this.columnpemi_NumeroCAI = new global::System.Data.DataColumn("pemi_NumeroCAI", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpemi_NumeroCAI);
+                this.columnpemi_Id = new global::System.Data.DataColumn("pemi_Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpemi_Id);
                 this.columndfisc_Descripcion = new global::System.Data.DataColumn("dfisc_Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndfisc_Descripcion);
                 this.columnpemid_RangoInicio = new global::System.Data.DataColumn("pemid_RangoInicio", typeof(string), null, global::System.Data.MappingType.Element);
@@ -534,8 +534,7 @@ namespace ERP_GMEDINA {
                 this.columnpemid_Id.AllowDBNull = false;
                 this.columnpemid_Id.ReadOnly = true;
                 this.columnpemid_Id.Unique = true;
-                this.columnpemi_NumeroCAI.AllowDBNull = false;
-                this.columnpemi_NumeroCAI.MaxLength = 40;
+                this.columnpemi_Id.AllowDBNull = false;
                 this.columndfisc_Descripcion.AllowDBNull = false;
                 this.columndfisc_Descripcion.MaxLength = 60;
                 this.columnpemid_RangoInicio.AllowDBNull = false;
@@ -615,7 +614,7 @@ namespace ERP_GMEDINA {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                PuntoEmisionDataSet ds = new PuntoEmisionDataSet();
+                PuntoEmisionDetalle ds = new PuntoEmisionDetalle();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -701,12 +700,12 @@ namespace ERP_GMEDINA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string pemi_NumeroCAI {
+            public int pemi_Id {
                 get {
-                    return ((string)(this[this.tableDataTable1.pemi_NumeroCAIColumn]));
+                    return ((int)(this[this.tableDataTable1.pemi_IdColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.pemi_NumeroCAIColumn] = value;
+                    this[this.tableDataTable1.pemi_IdColumn] = value;
                 }
             }
             
@@ -885,7 +884,7 @@ namespace ERP_GMEDINA {
         }
     }
 }
-namespace ERP_GMEDINA.PuntoEmisionDataSetTableAdapters {
+namespace ERP_GMEDINA.PuntoEmisionDetalleTableAdapters {
     
     
     /// <summary>
@@ -1010,7 +1009,7 @@ namespace ERP_GMEDINA.PuntoEmisionDataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "DataTable1";
             tableMapping.ColumnMappings.Add("pemid_Id", "pemid_Id");
-            tableMapping.ColumnMappings.Add("pemi_NumeroCAI", "pemi_NumeroCAI");
+            tableMapping.ColumnMappings.Add("pemi_Id", "pemi_Id");
             tableMapping.ColumnMappings.Add("dfisc_Descripcion", "dfisc_Descripcion");
             tableMapping.ColumnMappings.Add("pemid_RangoInicio", "pemid_RangoInicio");
             tableMapping.ColumnMappings.Add("pemid_RangoFinal", "pemid_RangoFinal");
@@ -1035,11 +1034,10 @@ namespace ERP_GMEDINA.PuntoEmisionDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        PED.pemid_Id, E.pemi_NumeroCAI, DF.dfisc_Descripcion, PED.pemid_RangoInicio, PED.pemid_RangoFinal, PED.pemid_FechaLimite, UC.usu_Nombres + ' ' + UC.usu_Apellidos AS UsuarioCrea, 
+            this._commandCollection[0].CommandText = @"SELECT        PED.pemid_Id, PED.pemi_Id, DF.dfisc_Descripcion, PED.pemid_RangoInicio, PED.pemid_RangoFinal, PED.pemid_FechaLimite, UC.usu_Nombres + ' ' + UC.usu_Apellidos AS UsuarioCrea, 
                          PED.pemid_FechaCrea, UM.usu_Nombres + ' ' + UM.usu_Apellidos AS UsuarioModifica, PED.pemid_FechaModifica
 FROM            Vent.tbPuntoEmisionDetalle AS PED INNER JOIN
-                         Vent.tbDocumentoFiscal AS DF ON PED.dfisc_Id = DF.dfisc_Id INNER JOIN
-                         Vent.tbPuntoEmision AS E ON PED.pemi_Id = E.pemi_Id LEFT OUTER JOIN
+                         Vent.tbDocumentoFiscal AS DF ON PED.dfisc_Id = DF.dfisc_Id LEFT OUTER JOIN
                          Acce.tbUsuario AS UC ON PED.pemid_UsuarioCrea = UC.usu_Id LEFT OUTER JOIN
                          Acce.tbUsuario AS UM ON PED.pemid_UsuarioModifica = UM.usu_Id";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
@@ -1049,7 +1047,7 @@ FROM            Vent.tbPuntoEmisionDetalle AS PED INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(PuntoEmisionDataSet.DataTable1DataTable dataTable) {
+        public virtual int Fill(PuntoEmisionDetalle.DataTable1DataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1062,9 +1060,9 @@ FROM            Vent.tbPuntoEmisionDetalle AS PED INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual PuntoEmisionDataSet.DataTable1DataTable GetData() {
+        public virtual PuntoEmisionDetalle.DataTable1DataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            PuntoEmisionDataSet.DataTable1DataTable dataTable = new PuntoEmisionDataSet.DataTable1DataTable();
+            PuntoEmisionDetalle.DataTable1DataTable dataTable = new PuntoEmisionDetalle.DataTable1DataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1138,7 +1136,7 @@ FROM            Vent.tbPuntoEmisionDetalle AS PED INNER JOIN
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateUpdatedRows(PuntoEmisionDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(PuntoEmisionDetalle dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1148,7 +1146,7 @@ FROM            Vent.tbPuntoEmisionDetalle AS PED INNER JOIN
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateInsertedRows(PuntoEmisionDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(PuntoEmisionDetalle dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1158,7 +1156,7 @@ FROM            Vent.tbPuntoEmisionDetalle AS PED INNER JOIN
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateDeletedRows(PuntoEmisionDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(PuntoEmisionDetalle dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             return result;
         }
@@ -1192,7 +1190,7 @@ FROM            Vent.tbPuntoEmisionDetalle AS PED INNER JOIN
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public virtual int UpdateAll(PuntoEmisionDataSet dataSet) {
+        public virtual int UpdateAll(PuntoEmisionDetalle dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }
