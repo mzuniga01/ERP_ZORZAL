@@ -127,7 +127,7 @@ $('#AgregarTerceraEdad').click(function () {
             $("#MostrarTerceraEdad").prop("checked", true);
             $("#fact_AutorizarDescuento").prop("checked", true);
             $('#Cred2').show();
-            $('#fact_PorcentajeDescuento').val('');
+            $('#fact_PorcentajeDescuento').val('30');
             document.getElementById("MostrarTerceraEdad").disabled = true;
             document.getElementById("fact_AutorizarDescuento").disabled = true;
         });

@@ -124,7 +124,7 @@
                                 <div class="form-horizontal" name="Cred2" id="Cred2">
                                     @Html.LabelFor(model => model.fact_PorcentajeDescuento, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.fact_PorcentajeDescuento)
+                                        @Html.EditorFor(model => model.fact_PorcentajeDescuento, new { htmlAttributes = new {@class = "form-control", @readonly = "readonly", } })
                                     </div>
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_PorcentajeDescuento)</span>
                                 </div>                                
@@ -198,9 +198,15 @@
                         <div class="form-horizontal">
                             <form>
                                 <div class="form-group">
+                                    <label class="control-label col-md-4">Usuario</label>
+                                    <div class="col-md-6">
+                                        <input id="Username" type="text" name="Username" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label col-md-4">Contraseña</label>
                                     <div class="col-md-6">
-                                        <input id="pass"name="pass"  value="" class="form-control" autocomplete="on">
+                                        <input type="password" name="txtPassword" class="form-control" placeholder="Password" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -208,7 +214,11 @@
                                     <div class="col-md-6">
                                         <input id="PorcentajeDescuento" type="text" class="form-control" />
                                     </div>
-                                </div>  
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar">Guardar</button>
+                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="uncheck3()">Cancelar</button>
+                               </div>
                             </form>                                        
                         </div>
                     </div>
@@ -304,7 +314,11 @@
         document.getElementById("fact_AutorizarDescuento").checked = false;
         $('#Cred2').hide();
         $('#fact_PorcentajeDescuento').val(0);
-    });   
+    });
+
+    function uncheck3() {
+        document.getElementById("fact_AutorizarDescuento").checked = false;
+    }
 
     // add indicator to required fields
     jQuery('input,select').each(function () {

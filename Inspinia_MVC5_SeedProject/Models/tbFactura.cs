@@ -68,5 +68,6 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
         public virtual tbSucursal tbSucursal { get; set; }
+        public virtual tbUsuario tbUsuario2 { get; set; }
     }
 }

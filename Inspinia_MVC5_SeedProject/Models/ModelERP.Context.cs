@@ -4774,5 +4774,18 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Update_Result>("UDP_Vent_tbFactura_Update", fact_IdParameter, fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_IdentidadTEParameter, fact_NombresTEParameter, fact_FechaNacimientoTEParameter, fact_UsuarioAutorizaParameter, fact_FechaAutorizaParameter, fact_EsAnuladaParameter, fact_UsuarioCreaParameter, fact_FechaCreaParameter);
         }
+    
+        public virtual ObjectResult<UDP_Vent_tbFactura_ConsultaBodega_Result> UDP_Vent_tbFactura_ConsultaBodega(Nullable<short> iDSUCURSAL, string cODIGOPRODUCTO)
+        {
+            var iDSUCURSALParameter = iDSUCURSAL.HasValue ?
+                new ObjectParameter("IDSUCURSAL", iDSUCURSAL) :
+                new ObjectParameter("IDSUCURSAL", typeof(short));
+    
+            var cODIGOPRODUCTOParameter = cODIGOPRODUCTO != null ?
+                new ObjectParameter("CODIGOPRODUCTO", cODIGOPRODUCTO) :
+                new ObjectParameter("CODIGOPRODUCTO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_ConsultaBodega_Result>("UDP_Vent_tbFactura_ConsultaBodega", iDSUCURSALParameter, cODIGOPRODUCTOParameter);
+        }
     }
 }
