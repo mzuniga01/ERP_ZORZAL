@@ -16,12 +16,15 @@
 
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.ped_Id)
+                                        @Html.DisplayNameFor(model => model.pedd_Id)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.pedd_Descripcion)
                                     </th>
 
+                                    <th>
+                                        Producto
+                                    </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.pedd_Cantidad)
                                     </th>
@@ -33,9 +36,7 @@
                                         @Html.DisplayNameFor(model => model.pedd_CantidadFacturada)
                                     </th>
 
-                                    <th>
-                                     @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
-                                    </th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,11 +44,14 @@
                             {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.ped_Id)
+                                            @Html.DisplayFor(modelItem => item.pedd_Id)
                                         </td>
 
                                         <td>
                                             @Html.DisplayFor(modelItem => item.pedd_Descripcion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
                                         </td>
 
                                         <td>
@@ -57,9 +61,7 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.pedd_CantidadFacturada)
                                         </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
-                                        </td>
+                                     
                                     </tr>
                                 }
                                </tbody>

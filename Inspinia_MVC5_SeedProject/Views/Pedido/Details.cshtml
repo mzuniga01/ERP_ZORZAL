@@ -18,6 +18,12 @@
             </li>
         </ol>*@
     </div>
+
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Pedido")">Regresar</a>
+        </div>
+    </div>
 </div>
 
 
@@ -71,13 +77,22 @@
             @Html.DisplayFor(model => model.tbCliente.clte_Identificacion)
         </dd>
 
-        <dt>       
+        <dt>
             @Html.DisplayNameFor(model => model.tbCliente.clte_Nombres)
         </dt>
-        <dd>
-            @Html.DisplayFor(model => model.tbCliente.clte_Nombres)
-            @Html.DisplayFor(model => model.tbCliente.clte_Apellidos)
-        </dd>
+     @{ if (Convert.ToInt32(Model.tbCliente.clte_EsPersonaNatural) == 1)
+         {
+            <dd>
+                @Html.DisplayFor(model => model.tbCliente.clte_Nombres)
+            </dd>
+         }
+         else
+         {
+            <dd>
+                @Html.DisplayFor(model => model.tbCliente.clte_NombreComercial)
+            </dd>
+         }
+    }
 
         <dt> 
             @Html.DisplayNameFor(model => model.ped_FechaEntrega)
@@ -85,9 +100,17 @@
         <dd>
             @Html.DisplayFor(model => model.ped_FechaEntrega)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fact_Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.fact_Id)
+        </dd>
     </dl>
                     @Html.Partial("_DetailsPedidoDetalle", Model.tbPedidoDetalle, new ViewDataDictionary(new { clave = Model.ped_Id }))
                     @Html.ActionLink("Editar", "Edit", new { id = Model.ped_Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
 
                     <div class="ibox-content">
                         <table class="table table-striped">

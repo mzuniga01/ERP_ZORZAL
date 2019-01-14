@@ -19,45 +19,26 @@
 
                         <div class="form-horizontal">
                             <div class="form-group">
-                                <div class="col-md-offset-10 col-md-2">
-                                    <button type="button" class="btn btn-primary btn-sm" id="AñadirPedidoDetalle">Añadir Pedido Detalle</button>
-                                </div>
+                           
                             </div>
-
-
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Número Pedido Detalle</label>
-
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.pedd_Id)
-                                    @Html.ValidationMessageFor(model => model.pedd_Id)
-                                </div>
-
-                                <label class="control-label col-md-2">Número Pedido</label>
-
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.ped_Id)
-                                    @Html.ValidationMessageFor(model => model.ped_Id)
-                                </div>
-                            </div>
-
-
                             <div class="form-group">
                                 <label class="control-label col-md-2">Código Producto</label>
 
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.prod_Codigo)
+                                    @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.prod_Codigo)
-                                </div>
-                                <label class="control-label col-md-2">Producto</label>
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.tbProducto.prod_Descripcion)
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
+
+                                <label class="control-label col-md-1">Producto</label>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
+                                </div>
+                           
                             </div>
 
 
@@ -78,12 +59,12 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Precio Unitario</label>
+                                @*<label class="control-label col-md-2">Precio Unitario</label>
 
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.pedd_Cantidad)
                                     @Html.ValidationMessageFor(model => model.pedd_Cantidad)
-                                </div>
+                                </div>*@
                         
                                 <label class="control-label col-md-2">Cantidad Facturada</label>
 
@@ -91,8 +72,14 @@
                                     @Html.EditorFor(model => model.pedd_CantidadFacturada)
                                     @Html.ValidationMessageFor(model => model.pedd_CantidadFacturada)
                                 </div>
+
+                               
                             </div>
 
+                            <div class="col-md-offset-10 col-md-2">
+                                <button type="button" class="btn btn-primary btn-sm" id="AñadirPedidoDetalle">Añadir Pedido Detalle</button>
+                            </div>
+                         
                             <br />
                             <br />
 
@@ -122,7 +109,7 @@
                                 </div>
                             </div>
 
-                            }
+                            
 
                         </div>
                     </div>

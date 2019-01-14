@@ -862,3 +862,4 @@ C:\Users\Luis Barahona\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin
 C:\Users\Luis Barahona\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ru\Microsoft.SqlServer.Types.resources.dll
 C:\Users\Luis Barahona\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\zh-Hans\Microsoft.SqlServer.Types.resources.dll
 C:\Users\Luis Barahona\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\zh-Hant\Microsoft.SqlServer.Types.resources.dll
+C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microsoft.SqlServer.Types.dll
