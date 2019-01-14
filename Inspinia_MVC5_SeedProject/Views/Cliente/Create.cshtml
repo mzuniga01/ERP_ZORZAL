@@ -54,7 +54,7 @@
             <div class="form-group" id="identificacion" name="identificacion">
                 @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2", id = "label_identificacion" })
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)" } })
+                    @Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style="text-transform:capitalize;" } })
                     <p id="CIdentificacion" style="color:red">@Html.ValidationMessageFor(model => model.clte_Identificacion)</p>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @onkeyup = "format(this)" } })
+                        @Html.EditorFor(model => model.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;" } })
                         <p id="Nombres" style="color:red">@Html.ValidationMessageFor(model => model.clte_Nombres)</p>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.clte_Apellidos, new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.clte_Apellidos, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)" } })
+                        @Html.EditorFor(model => model.clte_Apellidos, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;" } })
                         <p id="Apellidos" style="color:red">@Html.ValidationMessageFor(model => model.clte_Apellidos)</p>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.clte_NombreComercial, new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.clte_NombreComercial, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)" } })
+                        @Html.EditorFor(model => model.clte_NombreComercial, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;" } })
                         <p id="NombreC" style="color:red">@Html.ValidationMessageFor(model => model.clte_NombreComercial)</p>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.clte_RazonSocial, new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.clte_RazonSocial, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)" } })
+                        @Html.EditorFor(model => model.clte_RazonSocial, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;" } })
                         <p id="RazonS" style="color:red">@Html.ValidationMessageFor(model => model.clte_RazonSocial)</p>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.clte_ContactoNombre, new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.clte_ContactoNombre, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)" } })
+                        @Html.EditorFor(model => model.clte_ContactoNombre, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style="text-transform:capitalize;" } })
                         <p id="ContactoN" style="color:red">@Html.ValidationMessageFor(model => model.clte_ContactoNombre)</p>
                     </div>
                 </div>
@@ -199,18 +199,20 @@
                     @Html.EditorFor(model => model.clte_EsActivo, new { htmlAttributes = new { @type = "checkbox", @checked = "true", @disabled = "disabled" } })
                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsActivo)</p>
                 </div>
-                @Html.LabelFor(model => model.clte_ConCredito, new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.clte_ConCredito)
-                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_ConCredito)</p>
+                <div>
+                    @Html.LabelFor(model => model.clte_ConCredito, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.clte_ConCredito, new { htmlAttributes = new { @type = "checkbox", @checked = "true", @disabled = "disabled" } })
+                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_ConCredito)</p>
+                    </div>
                 </div>
-                    @Html.LabelFor(model => model.clte_EsMinorista, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.clte_EsMinorista, new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.clte_EsMinorista, new { @type = "checkbox", @checked = "true" })
                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsMinorista)</p>
                     </div>
                 </div>
-            <div class="form-group" id="Credito" name="Credito">
+            @*<div class="form-group" id="Credito" name="Credito">
                 @Html.LabelFor(model => model.clte_MontoCredito, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
                     @Html.EditorFor(model => model.clte_MontoCredito, new { htmlAttributes = new { @autocomplete = "off" } })
@@ -221,7 +223,7 @@
                     @Html.EditorFor(model => model.clte_DiasCredito)
                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_DiasCredito)</p>
                 </div>
-            </div>
+            </div>*@
             <div class="form-group" id="RazonInactivo">
                 @Html.LabelFor(model => model.clte_RazonInactivo, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">

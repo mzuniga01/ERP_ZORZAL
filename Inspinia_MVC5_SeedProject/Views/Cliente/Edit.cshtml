@@ -45,6 +45,8 @@
                             @Html.Hidden("RedirectTo", Url.Action("Index", "Cliente"))
                             @Html.HiddenFor(model => model.clte_FechaCrea)
                             @Html.HiddenFor(model => model.clte_UsuarioCrea)
+                            @Html.HiddenFor(model => model.clte_EsActivo)
+                            @Html.HiddenFor(model => model.clte_ConCredito)
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.clte_EsPersonaNatural, new { @class = "control-label col-md-2" })
@@ -92,11 +94,7 @@
                                     </div>
                                     @Html.LabelFor(model => model.clte_Sexo, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        <select class="form-control" id="clte_Sexo" name="clte_Sexo">
-                                            <option value="" disabled>Seleccione Sexo</option>
-                                            <option value="H">Hombre</option>
-                                            <option value="M">Mujer</option>
-                                        </select>
+                                        @Html.DropDownList("clte_Sexo", (IEnumerable<SelectListItem>)ViewBag.GeneroList, new { @class = "form-control" })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Sexo)</p>
                                     </div>
                                 </div>
@@ -213,12 +211,19 @@
                                         <p>No</p>
                                         
                                     }
-                                    
                                 </div>
                                 @Html.LabelFor(model => model.clte_ConCredito, new { @class = "control-label col-md-2" })
                                 <div class="col-md-2">
-                                    @Html.EditorFor(model => model.clte_ConCredito)
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_ConCredito)</p>
+                                    @if (Model.clte_ConCredito)
+                                    {
+                                        <p>Si</p>
+
+                                    }
+                                    else
+                                    {
+                                        <p>No</p>
+
+                                    }
                                 </div>
 
                                 @Html.LabelFor(model => model.clte_EsMinorista, new { @class = "control-label col-md-2" })
@@ -227,35 +232,31 @@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsMinorista)</p>
                                 </div>
                             </div>
-                            <div class="form-group" id="Credito" name="Credito">
-                                @Html.LabelFor(model => model.clte_MontoCredito, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.clte_MontoCredito, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_MontoCredito)</p>
-                                </div>
-                                @Html.LabelFor(model => model.clte_DiasCredito, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.clte_DiasCredito)
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_DiasCredito)</p>
-                                </div>
-                            </div>
-                            @if (Model.clte_EsActivo)
+
+                            @if(Model.clte_ConCredito)
                             {
-                                
+                                <div class="form-group" id="Credito" name="Credito">
+                                    <label class="control-label col-md-2">Monto Crédito</label>
+                                    <div class="col-md-4">
+                                        <input class="form-control" value="@ViewData["Monto"]" id="clte_MontoCredito" name="clte_MontoCredito" readonly>
+                                    </div>
+                                    <label class="control-label col-md-2">Días Crédito</label>
+                                    <div class="col-md-4">
+                                        <input class="form-control" value="@ViewData["Dias"]" id="clte_DiasCredito" name="clte_DiasCredito" readonly>
+                                    </div>
+                                </div>
 
                             }
-                            else
+                            @if(!Model.clte_EsActivo)
                             {
                                 <div class="form-group">
                                     <label class="control-label col-md-2">Razon Inactivo</label>
                                     <div class="col-md-10">
-                                        <textarea class="form-control" id="clte_RazonInactivo" name="clte_RazonInactivo">@ViewData["Razon"]</textarea>
-                                     </div>
+                                        <textarea class="form-control" id="clte_RazonInactivo" name="clte_RazonInactivo" readonly>@ViewData["Razon"]</textarea>
+                                    </div>
                                 </div>
 
                             }
-                            
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.clte_Observaciones, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -373,16 +374,6 @@
 <script src="~/Scripts/app/InActivarCliente.js"></script>
 <script src="~/Scripts/app/MessageError.js"></script>
 <script src="~/Scripts/app/ComandoGuardar.js"></script>
-<script>
-
-    $(document).ready(function () {
-        if (clte_ConCredito.checked) {
-            $('#Credito').show();
-        } else {
-            $('#Credito').hide();
-        }
-    });
-</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/app/PersonaNatural.js"></script>

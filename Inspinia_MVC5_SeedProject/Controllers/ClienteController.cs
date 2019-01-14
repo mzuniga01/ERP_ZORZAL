@@ -187,7 +187,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include= "clte_Id,tpi_Id,clte_Identificacion,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica,clte_ConsumidorFinal")] tbCliente tbCliente, string dep_Codigo)
+        public ActionResult Create([Bind(Include= "clte_Id,tpi_Id,clte_Identificacion,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica,clte_MontoCredito,clte_DiasCredito")] tbCliente tbCliente, string dep_Codigo)
         {
             if (ModelState.IsValid)
             {
@@ -215,7 +215,7 @@ namespace ERP_GMEDINA.Controllers
                                                         tbCliente.clte_CorreoElectronico,
                                                         Helpers.ClienteActivo,
                                                         tbCliente.clte_RazonInactivo,
-                                                        tbCliente.clte_ConCredito,
+                                                        Helpers.ClienteCredito,
                                                         tbCliente.clte_EsMinorista,
                                                         tbCliente.clte_Observaciones,
                                                         tbCliente.clte_MontoCredito,
@@ -267,7 +267,9 @@ namespace ERP_GMEDINA.Controllers
                 return HttpNotFound();
             }
             ViewData["Razon"] = tbCliente.clte_RazonInactivo;
-           //.Razon = tbCliente.clte_RazonInactivo;
+            ViewData["Monto"] = tbCliente.clte_MontoCredito;
+            ViewData["Dias"] = tbCliente.clte_DiasCredito;
+            //.Razon = tbCliente.clte_RazonInactivo;
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre",tbCliente.tbMunicipio.tbDepartamento.dep_Codigo);
             var Departamento = tbCliente.tbMunicipio.tbDepartamento.dep_Codigo; ;
             ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
@@ -301,7 +303,8 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include= "clte_Id,tpi_Id,clte_Identificacion,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica,clte_ConsumidorFinal")] tbCliente tbCliente, string dep_Codigo)
+        public ActionResult Edit([Bind(Include= "clte_Id,tpi_Id,clte_Identificacion,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica,clte_MontoCredito,clte_DiasCredito")] tbCliente tbCliente, string dep_Codigo)
+
         {
             var Lista = cUtilities.GeneroList();
             if (ModelState.IsValid)

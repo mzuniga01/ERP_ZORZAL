@@ -44,8 +44,8 @@ $(document).ready(function () {
     valido = document.getElementById('label_identificacion');
     $('#identificacion').show();
     document.getElementById('label_identificacion').innerHTML = Identificacion;
-    // add indicator to required fields
-    jQuery('input,select').each(function () {
+     //add indicator to required fields
+    jQuery('input[type=text], select,input[type=email],input[type=datetime]').each(function () {
 
         var req = jQuery(this).attr('data-val-required');
         var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
@@ -55,6 +55,7 @@ $(document).ready(function () {
 
         }
     });
+ 
 
     //Maxlenght
     $("#clte_Identificacion")[0].maxLength = 26;
@@ -71,10 +72,10 @@ $(document).ready(function () {
     $("#clte_FechaConstitucion")[0].maxLength = 10;
     $("#clte_Direccion")[0].maxLength = 100;
     $("#clte_CorreoElectronico")[0].maxLength = 50;
-    $("#clte_RazonInactivo")[0].maxLength = 50;
     $("#clte_Observaciones")[0].maxLength = 250;
     $('#identificacion').hide();
     $('#consumidorfinal').hide();
+
     if (clte_EsPersonaNatural.checked) {
         $('#natural').show();
         $('#juridica').hide();
@@ -87,15 +88,6 @@ $(document).ready(function () {
         $("#clte_Telefono").val('**');
         $('#natural').hide();
     }
-    if (clte_ConCredito.checked) {
-        //Do stuff
-        $("#clte_MontoCredito").val(0);
-        $("#clte_DiasCredito").val(0);
-    }
-    else {
-        $("#clte_MontoCredito").val('');
-        $("#clte_DiasCredito").val('');
-    }
 
     var campo = $('#tpi_Id').val();
     if (campo === '') {
@@ -105,6 +97,7 @@ $(document).ready(function () {
     else {
         $('#identificacion').show();
     }
+
     var depto = $('#dep_Codigo').val();
     if (depto === '') {
         document.getElementById("mun_Codigo").disabled = true;
@@ -113,33 +106,8 @@ $(document).ready(function () {
         
     }
 
-
-    if (clte_ConCredito.checked) {
-        $('#Credito').show();
-    }
-    else {
-        $('#Credito').hide();
-    }
 });
 
-//$("#clte_ConCredito").change(function () {
-//    if (this.checked) {
-//        $('#Credito').show();
-//        //Ed = $("#clte_MontoCredito").data('')
-//        Valor = 10;
-//        Ed = $("#clte_MontoCredito").val();
-//        console.log(Ed)
-
-//        console.log(Valor)
-//        $("#clte_MontoCredito").val(Valor);
-//        //$("#clte_DiasCredito").val(0);
-//    }
-//    else {
-//        $('#Credito').hide();
-//        //$("#clte_MontoCredito").val('ddd');
-//        //$("#clte_DiasCredito").val('ddd');
-//    }
-//});
 
 $("#dep_Codigo").change(function () {
     var depto = $('#dep_Codigo').val();
@@ -198,13 +166,15 @@ $("#tpi_Id").on("change", function () {
 });
 
 $('#clte_EsPersonaNatural').on('click', function () {
+    var tpi_Id = $("#tpi_Id").val();
+    var Identificacion = $("#clte_Identificacion").val();
     if (this.checked) {
         var NombreC = $("#clte_NombreComercial").val();
         var RazonS = $("#clte_RazonSocial").val();
         var ContactoN = $("#clte_ContactoNombre").val();
         var Email = $("#clte_ContactoEmail").val();
         var ContactoTel = $("#clte_ContactoTelefono").val();
-        if (NombreC == '' && RazonS == '' && ContactoN == '' && Email == '' && ContactoTel == '') {
+        if (NombreC == '' && RazonS == '' && ContactoN == '' && Email == '' && ContactoTel == ''&& tpi_Id=='' && Identificacion=='') {
 
         }
         else {
@@ -223,7 +193,7 @@ $('#clte_EsPersonaNatural').on('click', function () {
         console.log(Sexo)
         var Telefono = $("#clte_Telefono").val();
         var Correo = $("#clte_CorreoElectronico").val();
-        if (Nombres == '' && Apellidos == '' && Sexo == null && Telefono == '' && Correo == '') {
+        if (Nombres == '' && Apellidos == '' && Sexo == null && Telefono == '' && Correo == '' && tpi_Id == '' && Identificacion == '') {
 
         }
         else {
@@ -315,8 +285,8 @@ function format(input) {
     $(input).on("keypress", function () {
         $input = $(this);
         setTimeout(function () {
-            $input.val($input.val().toUpperCase());
-        }, 50);
+        $input.val($input.val().toUpperCase());
+        }, 0);
     })
 }
 
