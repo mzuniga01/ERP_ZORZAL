@@ -22,12 +22,13 @@ $("#consumidorFinal").change(function () {
         //Do stuff     
         $("#clte_Identificacion").val('99999999999999');
         $("#clte_Nombres").val('Consumidor Final');
-        $("#clte_Id").val('');
+        $("#clte_Id").val(500);
 
     }
     else {
         $("#clte_Nombres").val('');
         $("#clte_Identificacion").val('');
+        $("#clte_Id").val('');
     }
 })
 
@@ -36,7 +37,7 @@ $("#consumidorFinal").ready(function () {
         //Do stuff     
         $("#clte_Identificacion").val('99999999999999');
         $("#clte_Nombres").val('Consumidor Final');
-        $("#clte_Id").val('');
+        $("#clte_Id").val(500);
 
     }
     else {
@@ -128,6 +129,7 @@ $('#AgregarTerceraEdad').click(function () {
             $("#fact_AutorizarDescuento").prop("checked", true);
             $('#Cred2').show();
             $('#fact_PorcentajeDescuento').val('30');
+            $("#clte_Id").val(500);
             document.getElementById("MostrarTerceraEdad").disabled = true;
             document.getElementById("fact_AutorizarDescuento").disabled = true;
         });

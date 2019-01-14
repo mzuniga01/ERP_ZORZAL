@@ -59,8 +59,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cred_MontoAprobado, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.cred_MontoAprobado,"0"/*, new { htmlAttributes = new { @type = "number", @min = "0"} }*/)
-                @Html.ValidationMessageFor(model => model.cred_MontoAprobado)
+                @Html.EditorFor(model => model.cred_MontoAprobado, new { htmlAttributes = new { } })
+                <p id="AcepSolicitud" style="color:red"> @Html.ValidationMessageFor(model => model.cred_MontoAprobado)</p>
             </div>
         </div>
 
@@ -90,6 +90,9 @@
 }
 
 
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+
 }
