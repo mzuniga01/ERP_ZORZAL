@@ -37,9 +37,10 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.obj_Pantalla)
                                 </th>
+                               
                                 <th>
-                                    @Html.DisplayNameFor(model => model.obj_Estado)
-                                </th>
+                                  @Html.DisplayNameFor(model => model.obj_Estado)
+                                 </th>
                                 <th>Actividad</th>
                             </tr>
                         </thead>
@@ -53,6 +54,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.obj_Pantalla)
                                     </td>
+                                    
                                     <td>
                                       @if (item.obj_Estado==true)
                                       {

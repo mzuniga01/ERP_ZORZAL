@@ -714,19 +714,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbTipoSalida_Update_Result>("UDP_Inv_tbTipoSalida_Update", tsal_IdParameter, tsal_DescripcionParameter, tsal_UsuarioCreaParameter, tsal_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Acce_tbObjeto_Insert_Result> UDP_Acce_tbObjeto_Insert(string obj_Pantalla, string obj_Referencia)
-        {
-            var obj_PantallaParameter = obj_Pantalla != null ?
-                new ObjectParameter("obj_Pantalla", obj_Pantalla) :
-                new ObjectParameter("obj_Pantalla", typeof(string));
-    
-            var obj_ReferenciaParameter = obj_Referencia != null ?
-                new ObjectParameter("obj_Referencia", obj_Referencia) :
-                new ObjectParameter("obj_Referencia", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbObjeto_Insert_Result>("UDP_Acce_tbObjeto_Insert", obj_PantallaParameter, obj_ReferenciaParameter);
-        }
-    
         public virtual ObjectResult<SDP_Acce_GetObjetos_Result> SDP_Acce_GetObjetos()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Acce_GetObjetos_Result>("SDP_Acce_GetObjetos");
@@ -1122,31 +1109,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("bod_Fechacrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodega_Update_Result>("UDP_Inv_tbBodega_Update", bod_IdParameter, bod_NombreParameter, bod_ResponsableBodegaParameter, bod_DireccionParameter, bod_CorreoParameter, bod_TelefonoParameter, mun_CodigoParameter, bod_UsuarioCreaParameter, bod_FechacreaParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Acce_tbObjeto_Update_Result> UDP_Acce_tbObjeto_Update(Nullable<int> obj_Id, string obj_Pantalla, string obj_Referencia, Nullable<int> obj_UsuarioCrea, Nullable<System.DateTime> obj_FechaCrea)
-        {
-            var obj_IdParameter = obj_Id.HasValue ?
-                new ObjectParameter("obj_Id", obj_Id) :
-                new ObjectParameter("obj_Id", typeof(int));
-    
-            var obj_PantallaParameter = obj_Pantalla != null ?
-                new ObjectParameter("obj_Pantalla", obj_Pantalla) :
-                new ObjectParameter("obj_Pantalla", typeof(string));
-    
-            var obj_ReferenciaParameter = obj_Referencia != null ?
-                new ObjectParameter("obj_Referencia", obj_Referencia) :
-                new ObjectParameter("obj_Referencia", typeof(string));
-    
-            var obj_UsuarioCreaParameter = obj_UsuarioCrea.HasValue ?
-                new ObjectParameter("obj_UsuarioCrea", obj_UsuarioCrea) :
-                new ObjectParameter("obj_UsuarioCrea", typeof(int));
-    
-            var obj_FechaCreaParameter = obj_FechaCrea.HasValue ?
-                new ObjectParameter("obj_FechaCrea", obj_FechaCrea) :
-                new ObjectParameter("obj_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbObjeto_Update_Result>("UDP_Acce_tbObjeto_Update", obj_IdParameter, obj_PantallaParameter, obj_ReferenciaParameter, obj_UsuarioCreaParameter, obj_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Acce_tbObjeto_Update_Estado_Result> UDP_Acce_tbObjeto_Update_Estado(Nullable<int> obj_Id, Nullable<bool> obj_Estado)
@@ -1944,6 +1906,44 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("entd_FechaCrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntradaDetalle_Update_Result>("UDP_Inv_tbEntradaDetalle_Update", entd_IdParameter, ent_IdParameter, prod_CodigoParameter, entd_CantidadParameter, entd_UsuarioCreaParameter, entd_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Acce_tbObjeto_Insert_Result> UDP_Acce_tbObjeto_Insert(string obj_Pantalla, string obj_Referencia)
+        {
+            var obj_PantallaParameter = obj_Pantalla != null ?
+                new ObjectParameter("obj_Pantalla", obj_Pantalla) :
+                new ObjectParameter("obj_Pantalla", typeof(string));
+    
+            var obj_ReferenciaParameter = obj_Referencia != null ?
+                new ObjectParameter("obj_Referencia", obj_Referencia) :
+                new ObjectParameter("obj_Referencia", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbObjeto_Insert_Result>("UDP_Acce_tbObjeto_Insert", obj_PantallaParameter, obj_ReferenciaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Acce_tbObjeto_Update_Result> UDP_Acce_tbObjeto_Update(Nullable<int> obj_Id, string obj_Pantalla, string obj_Referencia, Nullable<int> obj_UsuarioCrea, Nullable<System.DateTime> obj_FechaCrea)
+        {
+            var obj_IdParameter = obj_Id.HasValue ?
+                new ObjectParameter("obj_Id", obj_Id) :
+                new ObjectParameter("obj_Id", typeof(int));
+    
+            var obj_PantallaParameter = obj_Pantalla != null ?
+                new ObjectParameter("obj_Pantalla", obj_Pantalla) :
+                new ObjectParameter("obj_Pantalla", typeof(string));
+    
+            var obj_ReferenciaParameter = obj_Referencia != null ?
+                new ObjectParameter("obj_Referencia", obj_Referencia) :
+                new ObjectParameter("obj_Referencia", typeof(string));
+    
+            var obj_UsuarioCreaParameter = obj_UsuarioCrea.HasValue ?
+                new ObjectParameter("obj_UsuarioCrea", obj_UsuarioCrea) :
+                new ObjectParameter("obj_UsuarioCrea", typeof(int));
+    
+            var obj_FechaCreaParameter = obj_FechaCrea.HasValue ?
+                new ObjectParameter("obj_FechaCrea", obj_FechaCrea) :
+                new ObjectParameter("obj_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbObjeto_Update_Result>("UDP_Acce_tbObjeto_Update", obj_IdParameter, obj_PantallaParameter, obj_ReferenciaParameter, obj_UsuarioCreaParameter, obj_FechaCreaParameter);
         }
     }
 }

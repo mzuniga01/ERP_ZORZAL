@@ -19,6 +19,9 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Pantalla")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} es requerido")]
         public string obj_Pantalla { get; set; }
+        [Display(Name = "Referencia")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} es requerido")]
+        public string obj_Referencia { get; set; }
         [Display(Name = "Estado")]
         public bool obj_Estado { get; set; }
         //[Display(Name = "Creado  por")]

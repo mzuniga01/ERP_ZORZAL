@@ -4954,10 +4954,6 @@
             <Parameter Name="tsal_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="tsal_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbObjeto_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbObjeto_Insert_Result)">
-            <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
-            <Parameter Name="obj_Referencia" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="SDP_Acce_GetObjetos" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetos_Result)" />
           <FunctionImport Name="SDP_Acce_GetObjetosDisponibles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetosDisponibles_Result)">
           <Parameter Name="rol_Id" Mode="In" Type="Int32" />
@@ -5071,13 +5067,6 @@
             <Parameter Name="mun_Codigo" Mode="In" Type="String" />
             <Parameter Name="bod_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="bod_Fechacrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbObjeto_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbObjeto_Update_Result)">
-            <Parameter Name="obj_Id" Mode="In" Type="Int32" />
-            <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
-            <Parameter Name="obj_Referencia" Mode="In" Type="String" />
-            <Parameter Name="obj_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="obj_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbObjeto_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbObjeto_Update_Estado_Result)">
             <Parameter Name="obj_Id" Mode="In" Type="Int32" />
@@ -6181,6 +6170,17 @@
             <End Role="tbEntrada" EntitySet="tbEntrada" />
             <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
           </AssociationSet>
+          <FunctionImport Name="UDP_Acce_tbObjeto_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbObjeto_Insert_Result)">
+            <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
+            <Parameter Name="obj_Referencia" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Acce_tbObjeto_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbObjeto_Update_Result)">
+            <Parameter Name="obj_Id" Mode="In" Type="Int32" />
+            <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
+            <Parameter Name="obj_Referencia" Mode="In" Type="String" />
+            <Parameter Name="obj_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="obj_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -6251,9 +6251,6 @@
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="UDP_Inv_tbTipoSalida_Update_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="UDP_Acce_tbObjeto_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="SDP_Acce_GetObjetos_Result">
@@ -6329,9 +6326,6 @@
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="UDP_Acce_tbObjeto_Update_Estado_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="UDP_Acce_tbObjeto_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="UDP_Inv_tbProductoSubcategoria_Insert_Result">
@@ -10279,6 +10273,12 @@
         <ComplexType Name="UDP_Inv_tbEntradaDetalle_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Acce_tbObjeto_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbObjeto_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10434,13 +10434,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbObjeto_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbObjeto_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbObjeto_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SDP_Acce_GetObjetos" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetObjetos">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetObjetos_Result">
@@ -10587,13 +10580,6 @@
           <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbObjeto_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbObjeto_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbObjeto_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -11948,6 +11934,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbObjeto_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbObjeto_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbObjeto_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbObjeto_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbObjeto_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbObjeto_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

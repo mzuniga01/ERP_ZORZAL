@@ -46,32 +46,32 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include= "obj_Id,obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto tbObjeto)
+        public ActionResult Create([Bind(Include= "obj_Id,obj_Pantalla,obj_Referencia,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto tbObjeto)
         {
             if (ModelState.IsValid)
             {
-                //try
-                //{
-                //    IEnumerable<object> list = null;
-                //    var MsjError = "";
-                //    list = db.UDP_Acce_tbObjeto_Insert(tbObjeto.obj_Pantalla);
-                //    foreach (UDP_Acce_tbObjeto_Insert_Result obejto in list)
-                //        MsjError = obejto.MensajeError;
-                //    if (MsjError == "-1")
-                //    {
-                //        ModelState.AddModelError("", "No se Guardo el registro");
-                //    }
-                //    else
-                //    {
-                //        return RedirectToAction("Index");
-                //    }
+                try
+                {
+                    IEnumerable<object> list = null;
+                    var MsjError = "";
+                    list = db.UDP_Acce_tbObjeto_Insert(tbObjeto.obj_Pantalla,tbObjeto.obj_Referencia);
+                    foreach (UDP_Acce_tbObjeto_Insert_Result obejto in list)
+                        MsjError = obejto.MensajeError;
+                    if (MsjError == "-1")
+                    {
+                        ModelState.AddModelError("", "No se Guardo el registro");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
 
-                //}
-                //catch (Exception Ex)
-                //{
-                //    Ex.Message.ToString();
-                //    ModelState.AddModelError("", "No se Guardo el registro");
-                //}
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro");
+                }
                 return RedirectToAction("Index");
             }
             return View(tbObjeto);
@@ -111,39 +111,40 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id,[Bind(Include="obj_Id, obj_Pantalla,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto tbObjeto)
+        public ActionResult Edit(int? id,[Bind(Include="obj_Id, obj_Pantalla,obj_Referencia,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto tbObjeto)
         {
             if (ModelState.IsValid)
             {
-                //try
-                //{
-                //    tbObjeto obj = db.tbObjeto.Find(id);
-                //    IEnumerable<object> list = null;
-                //    var MsjError = "";
-                //    list = db.UDP_Acce_tbObjeto_Update(tbObjeto.obj_Id,
-                //                                         tbObjeto.obj_Pantalla
-                //                                         , tbObjeto.obj_UsuarioCrea
-                //                                         , tbObjeto.obj_FechaCrea 
-                //                                        );
-                //    foreach (UDP_Acce_tbObjeto_Update_Result obje in list)
-                //        MsjError = obje.MensajeError;
+                try
+                {
+                    tbObjeto obj = db.tbObjeto.Find(id);
+                    IEnumerable<object> list = null;
+                    var MsjError = "";
+                    list = db.UDP_Acce_tbObjeto_Update(tbObjeto.obj_Id,
+                                                         tbObjeto.obj_Pantalla,
+                                                         tbObjeto.obj_Referencia
+                                                         , tbObjeto.obj_UsuarioCrea
+                                                         , tbObjeto.obj_FechaCrea 
+                                                        );
+                    foreach (UDP_Acce_tbObjeto_Update_Result obje in list)
+                        MsjError = obje.MensajeError;
 
-                //    if (MsjError.Substring(0, 2) == "-1")
-                //    {
-                //        ModelState.AddModelError("", "No se Actualizo el registro");
-                //        return RedirectToAction("Index");
-                //    }
-                //    else
-                //    {
-                //        return RedirectToAction("Index");
-                //    }
-                //}
-                //catch (Exception Ex)
-                //{
-                //    Ex.Message.ToString();
-                //    ModelState.AddModelError("", "No se Actualizo el registro");
-                //    return RedirectToAction("Index");
-                //}
+                    if (MsjError.Substring(0, 2) == "-1")
+                    {
+                        ModelState.AddModelError("", "No se Actualizo el registro");
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+                    return RedirectToAction("Index");
+                }
                
             }
             ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
