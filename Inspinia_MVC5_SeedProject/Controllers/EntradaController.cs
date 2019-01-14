@@ -249,7 +249,7 @@ namespace ERP_ZORZAL.Controllers
 
         //para q actualize la tabla
         [HttpPost]
-        public JsonResult entradadetalle_actualizar(tbEntradaDetalle EditarDetalleEntrada)
+        public ActionResult entradadetalle_actualizar(tbEntradaDetalle EditarDetalleEntrada)
         {
             string Msj = "";
             try
@@ -270,21 +270,21 @@ namespace ERP_ZORZAL.Controllers
                 if (Msj == "-1")
                 {
                     ModelState.AddModelError("", "No se Actualizo el registro");
-                    //return PartialView("_EditarDetalleEntrada");
+                    return PartialView("_EditarDetalleEntrada");
 
                 }
                 else
                 {
-                    //return RedirectToAction("Index");
+                    return RedirectToAction("Index");
                 }
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se Actualizo el registro");
-                //return PartialView("_EditarDetalleEntrada", EditarDetalleEntrada);
+                return PartialView("_EditarDetalleEntrada", EditarDetalleEntrada);
             }
-            return Json("", JsonRequestBehavior.AllowGet);
+            //return Json("", JsonRequestBehavior.AllowGet);
         }
 
         //para borrar registros en la tabla temporal

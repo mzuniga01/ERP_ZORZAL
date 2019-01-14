@@ -16,7 +16,7 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult Index()
         {
 
-            return View(db.UDV_Inv_Consultar_Existencias_Productos);
+            return View(/*db.UDV_Inv_Consultar_Existencias_Productos*/);
         }
         //[HttpPost]
         //public ActionResult InsertPedido1(int IDBodega, string IDProducto, decimal CantidadSolicitada)

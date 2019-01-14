@@ -187,20 +187,20 @@
                         @* Llama la vista de detalle *@
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="ibox float-e-margins">
-                                    <div class="ibox-title">
+                                @*<div class="ibox float-e-margins">*@
+                                    @*<div class="ibox-title">*@
                                         <div class="title-action">
-                                            <div class="box-border">
+                                            @*<div class="box-border">*@
                                                 <h5>Detalle Entrada</h5>
                                                 <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#Crear"></button>
-                                            </div>
+                                            @*</div>*@
                                         </div>
-                                    </div>
+                                    @*</div>*@
                                     <div class="ibox-content collapse" id="Crear">
                                         @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
                                         @Html.Partial("_CrearDetalleEntrada", new tbEntradaDetalle())
                                     </div>
-                                </div>
+                                @*</div>*@
                             </div>
                         </div>
                         @*botones*@

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Transactions;
+using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
-using System.Transactions;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -141,6 +143,7 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
+            Session["tbProductoSubcategoria"] = null;
             return View(tbProductoCategoria);
         }
 
@@ -148,6 +151,7 @@ namespace ERP_ZORZAL.Controllers
         [HttpPost]
         public JsonResult GuardarSubCategoria(tbProductoSubcategoria tbsubcategoria)
         {
+            Session["tbProductoSubcategoria"] = null;
             List<tbProductoSubcategoria> sessionsubCate = new List<tbProductoSubcategoria>();
             var list = (List<tbProductoSubcategoria>)Session["tbProductoSubCategoria"];
             if (list == null)
@@ -166,6 +170,7 @@ namespace ERP_ZORZAL.Controllers
         [HttpPost]
         public JsonResult UpdateSubCategoria(tbProductoSubcategoria ActualizarSubCategoria)
         {
+            
             string Msj = "";
             try
             {
@@ -181,24 +186,27 @@ namespace ERP_ZORZAL.Controllers
                 foreach (UDP_Inv_tbProductoSubcategoria_Update_Result subcate in list)
                     Msj = subcate.MensajeError;
 
-                if (Msj.Substring(0, 2) == "-1")
+                if (Msj == "-1")
                 {
-                    ModelState.AddModelError("", "No se Actualizo el registro");
 
-
+                    ModelState.AddModelError("", "No se Guardo el Registro");
+                    return Json(Msj, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    //return View("Edit/" + pscat_Id);
-                    return Json("Index");
+                    db.Entry(ActualizarSubCategoria).State = EntityState.Modified;
+                    db.SaveChanges();
+                    Msj = "Exito";
+                    return Json(Msj, JsonRequestBehavior.AllowGet);
                 }
+
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro");
+                ModelState.AddModelError("", "No se Guardo el registro");
             }
-            return Json("Index");
+            return Json(Msj, JsonRequestBehavior.AllowGet);
         }
 
         // POST: /ProductoCategoria/Edit/5
@@ -206,7 +214,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, [Bind(Include= "pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica,pcat_EsActivo, tbUsuario, tbUsuario1")] tbProductoCategoria tbProductoCategoria)
+        public ActionResult Edit(int? id, [Bind(Include= "pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica,pcat_EsActivo")] tbProductoCategoria tbProductoCategoria)
         {
             IEnumerable<object> cate = null;
             IEnumerable<object> subcate = null;
@@ -247,19 +255,17 @@ namespace ERP_ZORZAL.Controllers
                                         subcategoria.pscat_UsuarioCrea = 1;
                                         subcategoria.pscat_FechaCrea = DateTime.Now;
 
-                                        subcate = db.UDP_Inv_tbProductoSubcategoria_Update(subcategoria.pscat_Id,
-                                                                  subcategoria.pscat_Descripcion,
-                                                                  idMaster,
-                                                                  subcategoria.pscat_UsuarioCrea,
-                                                                  subcategoria.pscat_FechaCrea,
-                                                                  subcategoria.pscat_ISV
-                                          );
-                                        foreach (UDP_Inv_tbProductoSubcategoria_Update_Result ProdSubCate in subcate)
+                                        subcate = db.UDP_Inv_tbProductoSubcategoria_Insert(subcategoria.pscat_Descripcion
+                                                                                    , idMaster,
+                                                                                    subcategoria.pscat_ISV
+                                                                                    );
+                                       
+                                        foreach (UDP_Inv_tbProductoSubcategoria_Insert_Result ProdSubCate in subcate)
 
                                         //if (MensajeError == "-1")
                                         {
                                             ModelState.AddModelError("", "No se Actualizó el Registro");
-                                            return View(tbProductoCategoria);
+                                           
                                             //}
                                             //else
                                             //{
@@ -282,12 +288,11 @@ namespace ERP_ZORZAL.Controllers
                     catch (Exception Ex)
                     {
                         Ex.Message.ToString();
-                        ModelState.AddModelError("", "No se Actualizó el Registro");
-                        return View(tbProductoCategoria);
-                        //MsjError = "-1";
-                    }
+
+                        MsjError = "-1";
+                    }
                 }
-                return RedirectToAction("Edit/" + id);
+                return RedirectToAction("Index");
             }
 
             return View(tbProductoCategoria);
@@ -305,11 +310,11 @@ namespace ERP_ZORZAL.Controllers
                 list.Remove(itemToRemove);
                 Session["tbProductoSubCategoria"] = list;
             }
+            
             return Json("", JsonRequestBehavior.AllowGet);
 
         }
         
-
         public ActionResult EliminarProductoCategoria(int? id)
          {
             

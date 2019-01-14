@@ -15,7 +15,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.pscat_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    <input type="text" id="pscat_Descripcion" placeholder="" class="form-control" />
+                                    <input type="text" onkeypress="return soloLetras(event)" id="pscat_Descripcion" placeholder="" class="form-control"  />
                                         <div id="ErroDescripcion_Create">
                                             <p style="color:red">
                                                 @Html.ValidationMessageFor(model => model.pscat_Descripcion)
@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-1">
-                                    <button class="btn btn-primary" type="button" id="AgregarSubCategoria">Añadir</button>
+                                    <button class="btn btn-primary" type="button" id="CrearSub">Añadir</button>
                                 </div>
                             </div>
                             @*<div class="form-group">
@@ -44,7 +44,7 @@
                                 </div>
                             </div>*@
 
-                            <table id="SubCategoria" class="table table table-striped">
+                            <table id="TablaSub" class="table table table-striped">
                                 <thead>
                                     <tr>
                                         <th>Descripción</th>

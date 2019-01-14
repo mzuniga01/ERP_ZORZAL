@@ -129,7 +129,7 @@ $('#AgregarDetalleEntrada').click(function () {
         .done(function (data) {
             $('#prod_Codigo').val('');
             $("#uni_Id").val('');
-            $('#entd_Cantidad').val('');
+            //$('#entd_Cantidad').val('');
              //
             $('#prod_Descripcion').val('');
             $('#pscat_Id').val('');

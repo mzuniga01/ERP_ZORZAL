@@ -68,7 +68,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.pcat_Nombre, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.pcat_Nombre)
+                                @Html.EditorFor(model => model.pcat_Nombre, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" } })
                                 <p style="color:red">
                                     @Html.ValidationMessageFor(model => model.pcat_Nombre)
                                 </p>
@@ -117,26 +117,33 @@
                   
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                @Html.Partial("_CreateSubCategoriaModal", new tbProductoSubcategoria())
-                            </div>
+                
+                
+            </div> 
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.Partial("_CreateSubCategoriaModal", new tbProductoSubcategoria())
                         </div>
                     </div>
                 </div>
-                
-            </div> 
+            </div>  
         </div>
     </div>
-    <div class="ibox float-e-margins">
-        <div class="ibox-content">
-            <div class="form-horizontal">
-                @Html.Partial("_ListSubCategoria", Model.tbProductoSubcategoria, new ViewDataDictionary { { "pcat_Id", Model.pcat_Id } })
+
+    <div class="row">
+        <div class="col-lg-14">
+            <div class="form-group">
+                <div class="col-md-14">
+                    @Html.Partial("_ListSubCategoria", Model.tbProductoSubcategoria, new ViewDataDictionary { { "pcat_Id", Model.pcat_Id } })
+                </div>
             </div>
         </div>
     </div>
+
+
     <div class="ibox-content">
         <table class="table table table-striped  table-bordered">
             <tr>
