@@ -1381,6 +1381,16 @@
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbRolesUsuario" EntitySet="tbRolesUsuario" />
     </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza" Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbFactura" EntitySet="tbFactura" />
+    </AssociationSet>
+    <FunctionImport Name="UDP_Inv_ValidacionCantidadExistente" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_ValidacionCantidadExistente_Result)">
+      <Parameter Name="CantidadSolicitadad" Mode="In" Type="Decimal" />
+      <Parameter Name="IDBodega" Mode="In" Type="Int32" />
+      <Parameter Name="IDProducto" Mode="In" Type="String" />
+      <Parameter Name="FechaElaboracion" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1834,6 +1844,7 @@
     <NavigationProperty Name="tbRolesUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbUsuario_rolu_UsuarioCrea" FromRole="tbUsuario" ToRole="tbRolesUsuario" />
     <NavigationProperty Name="tbRolesUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbUsuario_rolu_UsuarioModifica" FromRole="tbUsuario" ToRole="tbRolesUsuario" />
     <NavigationProperty Name="tbRolesUsuario2" Relationship="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbUsuario_usu_Id" FromRole="tbUsuario" ToRole="tbRolesUsuario" />
+    <NavigationProperty Name="tbFactura2" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza" FromRole="tbUsuario" ToRole="tbFactura" />
   </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
@@ -2616,6 +2627,7 @@
     <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPedido_fact_Id" FromRole="tbFactura" ToRole="tbPedido" />
     <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbFacturaDetalle" />
     <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" FromRole="tbFactura" ToRole="tbSucursal" />
+    <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza" FromRole="tbFactura" ToRole="tbUsuario" />
   </EntityType>
   <EntityType Name="tbFacturaDetalle">
     <Key>
@@ -5617,4 +5629,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbFactura">
+        <PropertyRef Name="fact_UsuarioAutoriza" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="UDP_Inv_ValidacionCantidadExistente_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
 </Schema>

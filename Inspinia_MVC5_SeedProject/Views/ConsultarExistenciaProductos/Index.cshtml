@@ -10,6 +10,11 @@
         <h2>Existencia Productos</h2>
       
     </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Producto")">Regresar a Productos</a>
+        </div>
+    </div>
 </div>
 
 
@@ -18,8 +23,10 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5></h5>
-				
+                    <div id="PedidoExitoso">
+                        <p style="color:red"></p>
+                        
+                    </div>
                 </div>
                 <div class="ibox-content">
 
@@ -31,6 +38,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.bod_Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prod_Codigo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.prod_Descripcion)
@@ -62,6 +72,9 @@
                 @Html.DisplayFor(modelItem => item.bod_Nombre)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.prod_Codigo)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.prod_Descripcion)
             </td>
             @*<td>
@@ -76,9 +89,70 @@
                 
             </td>
             <td>
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" @*data-target="" *@ value="Eliminar">Pedir</button>
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" id="btnSolicitarProducto" data-target="#SolicitarProductomodal" onclick="SolicitarProducto(@item.bod_Id, '@item.bod_Nombre', '@item.suc_Descripcion', '@item.prod_Codigo', '@item.prod_Descripcion', '@item.prod_Marca', @item.bodd_CantidadExistente, @item.bodd_CantidadMinima);">Pedir</button>
             </td>
         </tr>
+        <div class="modal fade" id="SolicitarProductomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Solicitar Producto</label></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-horizontal">
+                            <div class="form-group row">
+                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Sucursal</label>
+                                <div class="col-sm-7  input-group">
+                                    <input type="text" class="form-control" id="txt1" value="" readonly />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Bodega de Origen</label>
+                                <div class="col-sm-7  input-group">
+                                    <input type="text" class="form-control" id="txt2" value="" readonly />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Nombre delProducto</label>
+                                <div class="col-sm-7  input-group">
+                                    <input type="text" class="form-control" id="txt3" value="" readonly />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Marca del Producto</label>
+                                <div class="col-sm-7  input-group">
+                                    <input type="text" class="form-control" id="txt4" value="" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Cantidad a Pedir</label>
+                                <div class="col-sm-7  input-group">
+                                    <input type="number" class="form-control" id="txt5" required value="" />
+                                    <div id="validationCantidad">
+                                        <p id="alerta" style="color:red"></p> 
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit" id="btnGuardarSalida">Guardar</button>
+                        @*@Html.ActionLink("Test", "InsertPedido", new { IDBodega = item.bod_Id, IDProducto = item.prod_Codigo, CantidadSolicitada = "" })*@
+                        <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+                    </div>
+                </div>
+            </div>
+        </div>
         }
     </tbody>
 </table>
@@ -88,9 +162,23 @@
         </div>
     </div>
  </div>
+<!-- SOLICITAR PRODUCTO MODAL-->
 
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
-<script src="~/Scripts/app/DataFilter.js"></script>
+<script src="~/Scripts/app/SolicitarProducto.js"></script>
+<script>
+    jQuery('input,select').each(function () {
+        var req = jQuery(this).attr('data-val-required');
+        if (undefined != req) {
+            var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+            var text = label.text();
+            if (text.length > 0) {
+                label.append('<span style="color:red"> *</span>');
+            }
+        }
+    });
+
+</script>
 <script type="text/javascript">
     var contador = 0;
     $(document).ready(function () {
@@ -139,4 +227,3 @@
 
     });
 </script>
-
