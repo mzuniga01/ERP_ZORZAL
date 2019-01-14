@@ -4781,11 +4781,11 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Update_Result>("UDP_Vent_tbFactura_Update", fact_IdParameter, fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_IdentidadTEParameter, fact_NombresTEParameter, fact_FechaNacimientoTEParameter, fact_UsuarioAutorizaParameter, fact_FechaAutorizaParameter, fact_EsAnuladaParameter, fact_UsuarioCreaParameter, fact_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbFactura_ConsultaBodega_Result> UDP_Vent_tbFactura_ConsultaBodega(Nullable<int> iDSUCURSAL, string cODIGOPRODUCTO)
+        public virtual ObjectResult<UDP_Vent_tbFactura_ConsultaBodega_Result> UDP_Vent_tbFactura_ConsultaBodega(Nullable<short> iDSUCURSAL, string cODIGOPRODUCTO)
         {
             var iDSUCURSALParameter = iDSUCURSAL.HasValue ?
                 new ObjectParameter("IDSUCURSAL", iDSUCURSAL) :
-                new ObjectParameter("IDSUCURSAL", typeof(int));
+                new ObjectParameter("IDSUCURSAL", typeof(short));
     
             var cODIGOPRODUCTOParameter = cODIGOPRODUCTO != null ?
                 new ObjectParameter("CODIGOPRODUCTO", cODIGOPRODUCTO) :
@@ -4822,6 +4822,19 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("listp_EsActivo", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListaPrecio_Estado_Result>("UDP_Vent_tbListaPrecio_Estado", listp_IdParameter, listp_EsActivoParameter);
+        }
+    
+        public virtual ObjectResult<SDP_Acce_GetUserRols_Result> SDP_Acce_GetUserRols(Nullable<int> usu_Id, string obj_Pantalla)
+        {
+            var usu_IdParameter = usu_Id.HasValue ?
+                new ObjectParameter("usu_Id", usu_Id) :
+                new ObjectParameter("usu_Id", typeof(int));
+    
+            var obj_PantallaParameter = obj_Pantalla != null ?
+                new ObjectParameter("obj_Pantalla", obj_Pantalla) :
+                new ObjectParameter("obj_Pantalla", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Acce_GetUserRols_Result>("SDP_Acce_GetUserRols", usu_IdParameter, obj_PantallaParameter);
         }
     }
 }

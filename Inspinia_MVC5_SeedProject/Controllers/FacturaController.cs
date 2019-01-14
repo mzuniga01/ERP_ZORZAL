@@ -570,11 +570,11 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetCantidad(int CodSucursal, string CodProducto)
+        public JsonResult GetCantidad(short CodSucursal, string CodProducto)
         {
             var list = db.UDP_Vent_tbFactura_ConsultaBodega(CodSucursal, CodProducto).ToArray();
             return Json(list, JsonRequestBehavior.AllowGet);
-        }
+        }      
 
     }
 }

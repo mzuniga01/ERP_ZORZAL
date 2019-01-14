@@ -319,9 +319,9 @@
     function uncheck3() {
         document.getElementById("fact_AutorizarDescuento").checked = false;
     }
-
+   
     // add indicator to required fields
-    jQuery('input,select').each(function () {
+    jQuery('').each(function () {
         var req = jQuery(this).attr('data-val-required');
         if (undefined != req) {
             var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');

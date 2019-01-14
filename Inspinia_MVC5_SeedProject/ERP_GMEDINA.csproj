@@ -276,11 +276,13 @@
     <Compile Include="Models\fn_GetFacturaPago_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GeneralFunctions.cs" />
     <Compile Include="Models\GetPrecioUnitario_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ListadoPrecioDetalle.cs" />
     <Compile Include="Models\ListaPrecioDetalle.cs" />
     <Compile Include="Models\ListasPrecios.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
@@ -323,6 +325,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SDP_Acce_GetRoles_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SDP_Acce_GetUserRols_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SolicitudCreditos.cs" />

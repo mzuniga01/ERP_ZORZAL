@@ -3579,6 +3579,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
         <Function Name="SDP_Acce_GetRolesDisponibles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="usu_Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="SDP_Acce_GetUserRols" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+          <Parameter Name="usu_Id" Type="int" Mode="In" />
+          <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="UDF_Acce_GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" ReturnType="int" />
         <Function Name="UDP_Acce_tbAccesoRol_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="rol_Id" Type="int" Mode="In" />
@@ -4493,7 +4497,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="IDPRODUCTO" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbFactura_ConsultaBodega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-          <Parameter Name="IDSUCURSAL" Type="int" Mode="In" />
+          <Parameter Name="IDSUCURSAL" Type="smallint" Mode="In" />
           <Parameter Name="CODIGOPRODUCTO" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbFactura_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
@@ -8078,7 +8082,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <End Role="tbFactura" EntitySet="tbFactura" />
           </AssociationSet>
           <FunctionImport Name="UDP_Vent_tbFactura_ConsultaBodega" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_ConsultaBodega_Result)">
-            <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
+            <Parameter Name="IDSUCURSAL" Mode="In" Type="Int16" />
             <Parameter Name="CODIGOPRODUCTO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result)">
@@ -8091,6 +8095,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <FunctionImport Name="UDP_Vent_tbListaPrecio_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Estado_Result)">
             <Parameter Name="listp_Id" Mode="In" Type="Int32" />
             <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_Acce_GetUserRols" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetUserRols_Result)">
+            <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+            <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -12490,6 +12498,27 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
         <ComplexType Name="UDP_Vent_tbListaPrecio_Estado_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="SDP_Acce_GetUserRols_Result">
+          <Property Type="Int32" Name="rolu_Id" Nullable="false" />
+          <Property Type="Int32" Name="rol_Id" Nullable="false" />
+          <Property Type="Int32" Name="usu_Id" Nullable="false" />
+          <Property Type="Int32" Name="rolu_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="rolu_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="rolu_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="rolu_FechaModifica" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="acrol_Id" Nullable="false" />
+          <Property Type="Int32" Name="obj_Id" Nullable="false" />
+          <Property Type="Int32" Name="acrol_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="acrol_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="acrol_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="acrol_FechaModifica" Nullable="true" Precision="23" />
+          <Property Type="String" Name="obj_Pantalla" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="obj_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="obj_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="obj_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="obj_FechaModifica" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="obj_Estado" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14435,6 +14464,31 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Estado_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_Acce_GetUserRols" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetUserRols">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetUserRols_Result">
+                <ScalarProperty Name="rolu_Id" ColumnName="rolu_Id" />
+                <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
+                <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
+                <ScalarProperty Name="rolu_UsuarioCrea" ColumnName="rolu_UsuarioCrea" />
+                <ScalarProperty Name="rolu_FechaCrea" ColumnName="rolu_FechaCrea" />
+                <ScalarProperty Name="rolu_UsuarioModifica" ColumnName="rolu_UsuarioModifica" />
+                <ScalarProperty Name="rolu_FechaModifica" ColumnName="rolu_FechaModifica" />
+                <ScalarProperty Name="acrol_Id" ColumnName="acrol_Id" />
+                <ScalarProperty Name="obj_Id" ColumnName="obj_Id" />
+                <ScalarProperty Name="acrol_UsuarioCrea" ColumnName="acrol_UsuarioCrea" />
+                <ScalarProperty Name="acrol_FechaCrea" ColumnName="acrol_FechaCrea" />
+                <ScalarProperty Name="acrol_UsuarioModifica" ColumnName="acrol_UsuarioModifica" />
+                <ScalarProperty Name="acrol_FechaModifica" ColumnName="acrol_FechaModifica" />
+                <ScalarProperty Name="obj_Pantalla" ColumnName="obj_Pantalla" />
+                <ScalarProperty Name="obj_UsuarioCrea" ColumnName="obj_UsuarioCrea" />
+                <ScalarProperty Name="obj_FechaCrea" ColumnName="obj_FechaCrea" />
+                <ScalarProperty Name="obj_UsuarioModifica" ColumnName="obj_UsuarioModifica" />
+                <ScalarProperty Name="obj_FechaModifica" ColumnName="obj_FechaModifica" />
+                <ScalarProperty Name="obj_Estado" ColumnName="obj_Estado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -2207,7 +2207,7 @@
       <End Role="tbFactura" EntitySet="tbFactura" />
     </AssociationSet>
     <FunctionImport Name="UDP_Vent_tbFactura_ConsultaBodega" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_ConsultaBodega_Result)">
-      <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
+      <Parameter Name="IDSUCURSAL" Mode="In" Type="Int16" />
       <Parameter Name="CODIGOPRODUCTO" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result)">
@@ -2220,6 +2220,10 @@
     <FunctionImport Name="UDP_Vent_tbListaPrecio_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Estado_Result)">
       <Parameter Name="listp_Id" Mode="In" Type="Int32" />
       <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_Acce_GetUserRols" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetUserRols_Result)">
+      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+      <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -6618,5 +6622,26 @@
   </EntityType>
   <ComplexType Name="UDP_Vent_tbListaPrecio_Estado_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="SDP_Acce_GetUserRols_Result">
+    <Property Type="Int32" Name="rolu_Id" Nullable="false" />
+    <Property Type="Int32" Name="rol_Id" Nullable="false" />
+    <Property Type="Int32" Name="usu_Id" Nullable="false" />
+    <Property Type="Int32" Name="rolu_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="rolu_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="rolu_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="rolu_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="acrol_Id" Nullable="false" />
+    <Property Type="Int32" Name="obj_Id" Nullable="false" />
+    <Property Type="Int32" Name="acrol_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="acrol_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="acrol_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="acrol_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="String" Name="obj_Pantalla" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="obj_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="obj_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="obj_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="obj_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="obj_Estado" Nullable="false" />
   </ComplexType>
 </Schema>

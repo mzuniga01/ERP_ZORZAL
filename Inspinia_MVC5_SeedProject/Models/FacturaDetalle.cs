@@ -27,7 +27,6 @@ namespace ERP_GMEDINA.Models
         public decimal factd_Cantidad { get; set; }
         [Display(Name = "Monto Descuento")]
         [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal factd_MontoDescuento { get; set; }
         [Display(Name = "Porcentaje Descuento")]
         [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
@@ -35,10 +34,8 @@ namespace ERP_GMEDINA.Models
         public decimal factd_PorcentajeDescuento { get; set; }
         [Display(Name = "Impuesto")]
         [DisplayFormat(DataFormatString = "{0:F2}", ApplyFormatInEditMode = true)]        
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal factd_Impuesto { get; set; }
         [Display(Name = "Precio Unitario")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal factd_PrecioUnitario { get; set; }        
     }
 }
