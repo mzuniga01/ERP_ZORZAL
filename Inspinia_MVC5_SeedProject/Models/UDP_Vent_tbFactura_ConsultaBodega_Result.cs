@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Models
     
     public partial class UDP_Vent_tbFactura_ConsultaBodega_Result
     {
-        public Nullable<bool> SIEXISTE { get; set; }
+        public Nullable<bool> MENSAJE { get; set; }
         public decimal CANTIDAD { get; set; }
     }
 }

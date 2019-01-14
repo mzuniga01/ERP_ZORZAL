@@ -12349,7 +12349,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           </ReferentialConstraint>
         </Association>
         <ComplexType Name="UDP_Vent_tbFactura_ConsultaBodega_Result">
-          <Property Type="Boolean" Name="SIEXISTE" Nullable="true" />
+          <Property Type="Boolean" Name="MENSAJE" Nullable="true" />
           <Property Type="Decimal" Name="CANTIDAD" Nullable="false" Precision="10" Scale="2" />
         </ComplexType>
         </Schema>
@@ -14249,7 +14249,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_ConsultaBodega" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_ConsultaBodega">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_ConsultaBodega_Result">
-                <ScalarProperty Name="SIEXISTE" ColumnName="SIEXISTE" />
+                <ScalarProperty Name="MENSAJE" ColumnName="MENSAJE" />
                 <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
               </ComplexTypeMapping>
             </ResultMapping>
