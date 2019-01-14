@@ -12,7 +12,7 @@
                 <div class="form-horizontal">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
-                        <label class="control-label col-md-2">Número CAI</label>
+                        <label class="control-label col-md-2">Número CAI<span style="color:red"> *</span></label>
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.tbPuntoEmision.pemi_NumeroCAI, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         </div>
@@ -27,9 +27,9 @@
                             </div>
                         </div>
 
-                        <label class="control-label col-md-2">Fecha Límite Emisión</label>
+                        <label class="control-label col-md-2">Fecha Límite Emisión<span style="color:red"> *</span></label>
                         <div class="col-md-4">
-                            @Html.EditorFor(model => model.pemid_FechaLimite, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off", @readonly = "readonly", @class = "form-control",@id="txtFechaLimite" } })
+                            @Html.EditorFor(model => model.pemid_FechaLimite, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off", @readonly = "readonly", @class = "form-control" } })
                             <div id="validacionFechaLimiteCreate">
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_FechaLimite)</p>
                             </div>
@@ -68,10 +68,3 @@
         </div>
     </div>
 </div>
-
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-  
-}

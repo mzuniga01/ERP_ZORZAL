@@ -76,8 +76,8 @@
             @Html.LabelFor(model => model.cred_DiasAprobado, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.cred_DiasAprobado,"0", new { htmlAttributes = new { @type = "number", @min = "0" } })
-                <p id="AcepSolicitud" style="color:red"> @Html.ValidationMessageFor(model => model.cred_DiasAprobado)
-</div>
+                @Html.ValidationMessageFor(model => model.cred_DiasAprobado)
+            </div>
         </div>
 
         <div class="form-group">
