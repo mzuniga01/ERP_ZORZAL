@@ -19,7 +19,6 @@ namespace ERP_GMEDINA.Models
         [Required]
         public int cred_Id { get; set; }
         [Display(Name = "Número Cliente")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Los datos de Cliente son requeridos")]
         public int clte_Id { get; set; }
         [Display(Name = "Número Estado")]
         public byte escre_Id { get; set; }
@@ -39,9 +38,8 @@ namespace ERP_GMEDINA.Models
         //create
         [Display(Name = "Monto Solicitado")]
         [Required]
-        [Range(1, double.MaxValue, ErrorMessage = "El campo {0} permite números mayores que cero")]
-        // [RegularExpression("^\\d+$", ErrorMessage = "El campo {0} permite números mayores que cero")]
-         [RegularExpression("^[0-9]+(.[0-9]+)?$", ErrorMessage = "El campo {0} permite números mayores que cero")]
+        [Range(0, double.MaxValue, ErrorMessage = "El campo {0} permite números mayores que cero")]
+        [RegularExpression("^\\d+$", ErrorMessage = "El campo {0} permite números mayores que cero")]
         public decimal cred_MontoSolicitado { get; set; }
 
 
@@ -52,7 +50,7 @@ namespace ERP_GMEDINA.Models
         //create
         [Display(Name = "Días Solicitados")]
         [Required]
-       [Range(1, int.MaxValue, ErrorMessage = "El campo {0} permite números mayores que cero")]
+       // [Range(0, int.MaxValue, ErrorMessage = "El campo {0} permite números mayores que cero")]
         [RegularExpression("^\\d+$", ErrorMessage = "El campo {0} permite números iguales o mayores que cero")]
         public int cred_DiasSolicitado { get; set; }
 
@@ -61,18 +59,18 @@ namespace ERP_GMEDINA.Models
         //[Required]
         [RegularExpression("^\\d+$", ErrorMessage = "El campo {0} permite números iguales o mayores que cero")]
         public int cred_DiasAprobado { get; set; }
-        [Display(Name = "Usuario Crea")]
+        [Display(Name = "Usuario Creación")]
 
         public int cred_UsuarioCrea { get; set; }
 
-        [Display(Name = "Fecha Crea")]
+        [Display(Name = "Fecha Creación")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime cred_FechaCrea { get; set; }
 
-        [Display(Name = "Usuario Modifica")]
+        [Display(Name = "Usuario Modificación")]
         public Nullable<int> cred_UsuarioModifica { get; set; }
 
-        [Display(Name = "Fecha Modifica")]
+        [Display(Name = "Fecha Modificación")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> cred_FechaModifica { get; set; }
     }
