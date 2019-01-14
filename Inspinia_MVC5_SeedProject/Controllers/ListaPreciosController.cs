@@ -313,7 +313,19 @@ namespace ERP_GMEDINA.Controllers
         }
 
 
+        [HttpPost]
+        public JsonResult InactivarListaPrecio(int CodLp, bool Activo)
+        {
+            var list = db.UDP_Vent_tbListaPrecio_Estado(CodLp, Helpers.ListaPrecioInactivo).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
+        [HttpPost]
+        public JsonResult ActivarListaPrecio(int CodLp, bool Activo)
+        {
+            var list = db.UDP_Vent_tbListaPrecio_Estado(CodLp, Helpers.ListaPrecioActivo).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
 
         // GET: /ListaPrecios/Delete/5

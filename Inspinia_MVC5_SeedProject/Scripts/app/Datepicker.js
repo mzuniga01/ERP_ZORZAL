@@ -92,18 +92,17 @@
         dateFormat: 'dd-mm-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-        prevText: 'Ant',
-        nextText: 'Sig'
-    }).datepicker('setDate', new Date());
+        changeMonth: true,
+        changeYear: true,
+    }).datepicker('setDate', new Date()).datepicker("destroy");
 
     $("#listp_FechaFinalVigencia").datepicker({
         dateFormat: 'dd-mm-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-        prevText: 'Ant',
-        nextText: 'Sig'
-    }).datepicker('setDate', new Date());
-
+        changeMonth: true,
+        changeYear: true,
+    }).datepicker('setDate', new Date()).datepicker("destroy");
     //PuntoEmisionDetalle
     var FechaInicio = new Date();
     $("#pemid_FechaLimite").datepicker({

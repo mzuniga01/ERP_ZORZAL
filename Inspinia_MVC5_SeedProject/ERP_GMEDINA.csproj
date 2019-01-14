@@ -688,6 +688,9 @@
     <Compile Include="Models\UDP_Vent_tbListadoPrecioDetalle_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbListaPrecio_Estado_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbListaPrecio_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1481,6 +1484,7 @@
     <Content Include="Views\PagosArqueo\Edit.cshtml" />
     <Content Include="Views\PagosArqueo\Index.cshtml" />
     <Content Include="Views\SolicitudEfectivo\EditEntregaEfectivo.cshtml" />
+    <Content Include="Views\ListaPrecios\_IndexListaPrecioDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2217,6 +2217,10 @@
     </FunctionImport>
     <EntitySet Name="UDP_Vent_SolicituEfectivo_Detalles_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Detalles_Select" />
     <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" />
+    <FunctionImport Name="UDP_Vent_tbListaPrecio_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Estado_Result)">
+      <Parameter Name="listp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -6612,4 +6616,7 @@
     <Property Name="MontoSolicitado" Type="Decimal" Precision="38" Scale="2" />
     <Property Name="MontoEntregado" Type="Decimal" Precision="38" Scale="2" />
   </EntityType>
+  <ComplexType Name="UDP_Vent_tbListaPrecio_Estado_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
 </Schema>

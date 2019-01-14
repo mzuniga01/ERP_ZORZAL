@@ -14,10 +14,9 @@ namespace ERP_GMEDINA.Models
         //Estados Cliente 
         public const bool ClienteActivo = true;
         public const bool ClienteInactivo = false;
-        //Estados Pedido
-        public const int Pendiente = 1;
-        public const int Facturado = 2;
 
+        public const bool ListaPrecioActivo = true;
+        public const bool ListaPrecioInactivo = false;
 
         //Estado Solicitud Credito
         public const int SolicitudPendiente = 1;
