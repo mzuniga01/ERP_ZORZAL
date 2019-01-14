@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="PuntoEmisionDetalle" targetNamespace="http://tempuri.org/PuntoEmisionDetalle.xsd" xmlns:mstns="http://tempuri.org/PuntoEmisionDetalle.xsd" xmlns="http://tempuri.org/PuntoEmisionDetalle.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="PuntoEmisionDataSet" targetNamespace="http://tempuri.org/PuntoEmisionDataSet.xsd" xmlns:mstns="http://tempuri.org/PuntoEmisionDataSet.xsd" xmlns="http://tempuri.org/PuntoEmisionDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -9,13 +9,14 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_GMEDINAConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="ERP_GMEDINAConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        PED.pemid_Id, PED.pemi_Id, DF.dfisc_Descripcion, PED.pemid_RangoInicio, PED.pemid_RangoFinal, PED.pemid_FechaLimite, UC.usu_Nombres + ' ' + UC.usu_Apellidos AS UsuarioCrea, 
+                    <CommandText>SELECT        PED.pemid_Id, E.pemi_NumeroCAI, DF.dfisc_Descripcion, PED.pemid_RangoInicio, PED.pemid_RangoFinal, PED.pemid_FechaLimite, UC.usu_Nombres + ' ' + UC.usu_Apellidos AS UsuarioCrea, 
                          PED.pemid_FechaCrea, UM.usu_Nombres + ' ' + UM.usu_Apellidos AS UsuarioModifica, PED.pemid_FechaModifica
 FROM            Vent.tbPuntoEmisionDetalle AS PED INNER JOIN
-                         Vent.tbDocumentoFiscal AS DF ON PED.dfisc_Id = DF.dfisc_Id LEFT OUTER JOIN
+                         Vent.tbDocumentoFiscal AS DF ON PED.dfisc_Id = DF.dfisc_Id INNER JOIN
+                         Vent.tbPuntoEmision AS E ON PED.pemi_Id = E.pemi_Id LEFT OUTER JOIN
                          Acce.tbUsuario AS UC ON PED.pemid_UsuarioCrea = UC.usu_Id LEFT OUTER JOIN
                          Acce.tbUsuario AS UM ON PED.pemid_UsuarioModifica = UM.usu_Id</CommandText>
                     <Parameters />
@@ -25,7 +26,7 @@ FROM            Vent.tbPuntoEmisionDetalle AS PED INNER JOIN
             </MainSource>
             <Mappings>
               <Mapping SourceColumn="pemid_Id" DataSetColumn="pemid_Id" />
-              <Mapping SourceColumn="pemi_Id" DataSetColumn="pemi_Id" />
+              <Mapping SourceColumn="pemi_NumeroCAI" DataSetColumn="pemi_NumeroCAI" />
               <Mapping SourceColumn="dfisc_Descripcion" DataSetColumn="dfisc_Descripcion" />
               <Mapping SourceColumn="pemid_RangoInicio" DataSetColumn="pemid_RangoInicio" />
               <Mapping SourceColumn="pemid_RangoFinal" DataSetColumn="pemid_RangoFinal" />
@@ -42,14 +43,20 @@ FROM            Vent.tbPuntoEmisionDetalle AS PED INNER JOIN
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="PuntoEmisionDetalle" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PuntoEmisionDetalle" msprop:Generator_UserDSName="PuntoEmisionDetalle">
+  <xs:element name="PuntoEmisionDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PuntoEmisionDataSet" msprop:Generator_UserDSName="PuntoEmisionDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="pemid_Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnpemid_Id" msprop:Generator_ColumnPropNameInRow="pemid_Id" msprop:Generator_ColumnPropNameInTable="pemid_IdColumn" msprop:Generator_UserColumnName="pemid_Id" type="xs:int" />
-              <xs:element name="pemi_Id" msprop:Generator_ColumnVarNameInTable="columnpemi_Id" msprop:Generator_ColumnPropNameInRow="pemi_Id" msprop:Generator_ColumnPropNameInTable="pemi_IdColumn" msprop:Generator_UserColumnName="pemi_Id" type="xs:int" />
+              <xs:element name="pemi_NumeroCAI" msprop:Generator_ColumnVarNameInTable="columnpemi_NumeroCAI" msprop:Generator_ColumnPropNameInRow="pemi_NumeroCAI" msprop:Generator_ColumnPropNameInTable="pemi_NumeroCAIColumn" msprop:Generator_UserColumnName="pemi_NumeroCAI">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="dfisc_Descripcion" msprop:Generator_ColumnVarNameInTable="columndfisc_Descripcion" msprop:Generator_ColumnPropNameInRow="dfisc_Descripcion" msprop:Generator_ColumnPropNameInTable="dfisc_DescripcionColumn" msprop:Generator_UserColumnName="dfisc_Descripcion">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
