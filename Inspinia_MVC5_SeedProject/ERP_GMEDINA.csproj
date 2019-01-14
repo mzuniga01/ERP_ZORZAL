@@ -603,6 +603,12 @@
     <Compile Include="Models\UDP_Vent_FacturasPagoSelect_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_SolicituEfectivo_Detalles_Select.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_SolicituEfectivo_Select.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbCaja_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -784,6 +790,18 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbTipoPago_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDV_Inv_Consultar_Existencias_Productos.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDV_Inv_Nombre_Empleado.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDV_Vent_Busqueda_Clientes.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDV_Vent_Busqueda_Factura.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UnidadesMedida.cs" />
@@ -1081,6 +1099,7 @@
     <Content Include="Scripts\app\ProductoFactura.js" />
     <Content Include="Scripts\app\PuntoEmision.js" />
     <Content Include="Scripts\app\PuntoEmisionDetalle.js" />
+    <Content Include="Scripts\app\SaveDetallePedido.js" />
     <Content Include="Scripts\app\SavePedidoDetalle.js" />
     <Content Include="Scripts\app\SolicitudEfectivo.js" />
     <Content Include="Scripts\app\SolicitudEfectivoDetalles.js" />
@@ -1462,6 +1481,7 @@
     <Content Include="Views\ListaPrecios\_EditListaPrecioDetalle.cshtml" />
     <Content Include="Views\ListaPrecios\_IndexProducto.cshtml" />
     <Content Include="Views\SolicitudCredito\_AprobarSolicitudCredito.cshtml" />
+    <Content Include="Views\Pedido\_PedidoDetalleEditar.cshtml" />
     <Content Include="Views\Pedido\_IndexPedidoDetalle.cshtml" />
     <Content Include="Views\PagosArqueo\Create.cshtml" />
     <Content Include="Views\PagosArqueo\Delete.cshtml" />
@@ -1470,7 +1490,6 @@
     <Content Include="Views\PagosArqueo\Index.cshtml" />
     <Content Include="Views\SolicitudEfectivo\EditEntregaEfectivo.cshtml" />
     <Content Include="Views\ListaPrecios\_IndexListaPrecioDetalle.cshtml" />
-    <Content Include="Views\Pedido\_PedidoDetalleEditar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -21,7 +21,7 @@ namespace ERP_GMEDINA.Models
         }
     
         public int ent_Id { get; set; }
-        public int ent_NumeroFormato { get; set; }
+        public string ent_NumeroFormato { get; set; }
         public System.DateTime ent_FechaElaboracion { get; set; }
         public int bod_Id { get; set; }
         public byte estm_Id { get; set; }
@@ -32,8 +32,6 @@ namespace ERP_GMEDINA.Models
         public string ent_RazonDevolucion { get; set; }
         public Nullable<int> ent_BodegaDestino { get; set; }
         public byte tent_Id { get; set; }
-        public Nullable<bool> entd_EsAnulada { get; set; }
-        public string entd_RazonAnulada { get; set; }
         public int ent_SalidaOrigen { get; set; }
         public int ent_UsuarioCrea { get; set; }
         public System.DateTime ent_FechaCrea { get; set; }

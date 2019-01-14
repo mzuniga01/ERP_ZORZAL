@@ -10,9 +10,11 @@
 namespace ERP_GMEDINA.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class UDP_Vent_tbPedidoDetalle_Update_Result
+    public partial class UDV_Inv_Nombre_Empleado
     {
-        public string Column1 { get; set; }
+        public short emp_Id { get; set; }
+        public string Empleados { get; set; }
     }
 }

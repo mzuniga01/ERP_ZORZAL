@@ -220,10 +220,14 @@
         $.datepicker.setDefaults($.datepicker.regional['es']);
 
         $(function () {
-            $("#ped_FechaElaboracion").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
+            $("#ped_FechaElaboracion").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date());
             $("#ped_FechaEntrega").datepicker({ dateFormat: 'dd/mm/yy', minDate: 0 }).datepicker('setDate', new Date());
 
         });
+
+
+
+
         jQuery('input,select').each(function () {
             var req = jQuery(this).attr('data-val-required');
             if (undefined != req) {
@@ -234,6 +238,8 @@
                 }
             }
         });
+
+
     </script>
 
 }
