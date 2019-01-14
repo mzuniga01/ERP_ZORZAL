@@ -19,6 +19,19 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Entrada/
         public ActionResult Index()
         {
+            ////retorna, recupera el valor ala vista editar del lista de bodega
+            //List<tbBodega> listbodega = new List<tbBodega>();
+            //var bodega = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+            //ViewBag.Statuses = bodega;
+            ////retorna, recupera el valor ala vista editar del lista de Proveedor
+            //List<tbProveedor> listproveedor = new List<tbProveedor>();
+            //var proveedor = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre");
+            //ViewBag.Statuses = proveedor;
+            ////retorna, recupera el valor ala vista editar del lista de Tipo Entrada
+            //List<tbBodega> listtipo_Entrada = new List<tbBodega>();
+            //var tipo_Entrada = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion");
+            //ViewBag.Statuses = tipo_Entrada;
+
             var tbentrada = db.tbEntrada.Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbProveedor).Include(t => t.tbTipoEntrada);
             return View(tbentrada.ToList());
         }
@@ -82,7 +95,10 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
-
+            //*****PuntoEmisionDetalle
+            string cas = "uni_IdList";
+            System.Web.HttpContext.Current.Items[cas] = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+            
 
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbEntrada.tbEstadoMovimiento.estm_Id);
@@ -176,47 +192,99 @@ namespace ERP_ZORZAL.Controllers
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
 
+
+
+
+        //para guardar solo el detalles de la entrada En editar
+        //[HttpPost]
+        //public JsonResult GuardardetalleentradaEditar(tbEntradaDetalle EntradaDetalleEditar)
+        //{
+
+        //    var listaDetalle = (List<tbEntradaDetalle>)Session["CrearDetalleEntrada"];
+        //    var idMaster = EntradaDetalleEditar.ent_Id;
+        //    var MensajeError = "";
+        //    var MsjError = "";
+        //    IEnumerable<object> DETALLE = null;
+        //    try{
+
+        //        if (listaDetalle != null)
+        //        {
+        //            if (listaDetalle.Count > 0)
+        //            {
+        //                foreach (tbEntradaDetalle entd in listaDetalle)
+        //                {
+        //                    DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert(idMaster
+        //                                                                , entd.prod_Codigo
+        //                                                                , entd.entd_Cantidad
+        //                                                                , entd.uni_Id);
+        //                    foreach (UDP_Inv_tbEntradaDetalle_Insert_Result B_detalle in DETALLE)
+
+        //                    //if (MensajeError == "-1")
+        //                    {
+        //                        ModelState.AddModelError("", "No se Guardo el Registro");
+        //                        //return View(tbEntrada);
+        //                        //}
+        //                        //else
+        //                        //{
+        //                        //    _Tran.Complete();
+        //                        //    return RedirectToAction("Index");
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        Ex.Message.ToString();
+        //        ModelState.AddModelError("", "No se pudo registra el detalle ");
+        //        //return PartialView("_EditarDetalleEntrada", EditarDetalleEntrada);
+        //    }
+        //    return Json("", JsonRequestBehavior.AllowGet);
+        //}
+
+
+
+
+
+
         //para q actualize la tabla
         [HttpPost]
-        public JsonResult entradadetalle_actualizar(tbEntradaDetalle actualizarEntradaDetalle)
+        public JsonResult entradadetalle_actualizar(tbEntradaDetalle EditarDetalleEntrada)
         {
             string Msj = "";
             try
             {
                 
-                //tbBodegaDetalle obj = db.tbBodegaDetalle.Find(id);
                 IEnumerable<object> list = null;
-                //var MsjError = "";
-                list = db.UDP_Inv_tbEntradaDetalle_Update(actualizarEntradaDetalle.entd_Id
-                                            , actualizarEntradaDetalle.ent_Id
-                                           , actualizarEntradaDetalle.prod_Codigo
-                                           , actualizarEntradaDetalle.entd_Cantidad
-                                           , actualizarEntradaDetalle.entd_UsuarioCrea
-                                           , actualizarEntradaDetalle.entd_FechaCrea
-                                           , actualizarEntradaDetalle.uni_Id
+                list = db.UDP_Inv_tbEntradaDetalle_Update(EditarDetalleEntrada.entd_Id
+                                            , EditarDetalleEntrada.ent_Id
+                                           , EditarDetalleEntrada.prod_Codigo
+                                           , EditarDetalleEntrada.entd_Cantidad
+                                           , EditarDetalleEntrada.entd_UsuarioCrea
+                                           , EditarDetalleEntrada.entd_FechaCrea
+                                           , EditarDetalleEntrada.uni_Id
                                                                );
-                foreach (UDP_Inv_tbEntradaDetalle_Update_Result entrada in list)
-                    Msj = entrada.MensajeError;
+                foreach (UDP_Inv_tbEntradaDetalle_Update_Result EntradaDetalle in list)
+                    Msj = EntradaDetalle.MensajeError;
 
-                if (Msj.Substring(0, 2) == "-1")
+                if (Msj == "-1")
                 {
                     ModelState.AddModelError("", "No se Actualizo el registro");
-
+                    //return PartialView("_EditarDetalleEntrada");
 
                 }
                 else
                 {
-                    
-                    return Json("Index");
+                    //return RedirectToAction("Index");
                 }
-
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se Actualizo el registro");
+                //return PartialView("_EditarDetalleEntrada", EditarDetalleEntrada);
             }
-            return Json(Msj, JsonRequestBehavior.AllowGet);
+            return Json("", JsonRequestBehavior.AllowGet);
         }
 
         //para borrar registros en la tabla temporal
@@ -318,7 +386,7 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbEntrada.estm_Id);
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
             ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
-            ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbEntrada.ent_BodegaDestino);
+            //ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "ent_BodegaDestino", "bod_ResponsableBodega", tbEntrada.ent_BodegaDestino);
             ViewBag.Producto = db.tbProducto.ToList();
 
 

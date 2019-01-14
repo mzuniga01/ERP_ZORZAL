@@ -14,7 +14,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-responsive" style="width:100%" id="tbEntradaDetalle">
+                    <table class="table table-striped" id="tbEntradaDetalle">
                         <thead>
                             <tr>
                                 <th>
@@ -67,7 +67,7 @@
                                                     </button>
                                                     <h4 class="modal-title" id="myModalLabel">Editar Detalle Entrada</h4>
                                                 </div>
-                                                <div class="modal-body" id="frmAgregarCasoExito">
+                                                <div class="modal-body" id="EditarDetalleEntrada">
                                                     @Html.Partial("_EditarDetalleEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() {
                                                    entd_Id = item.entd_Id,
                                                    ent_Id = item.ent_Id,
@@ -75,14 +75,26 @@
                                                    entd_Cantidad =item.entd_Cantidad,
                                                    entd_UsuarioCrea = item.entd_UsuarioCrea,
                                                    entd_FechaCrea = item.entd_FechaCrea,
-                                                   uni_Id = item.uni_Id
+                                                   entd_UsuarioModifica = item.entd_UsuarioModifica,
+                                                   entd_FechaModifica = item.entd_FechaModifica,
+                                                   uni_Id = item.uni_Id,
                                                })
-                                                    <div class="form-group">
+                                                   
+                                                    @*<div class="form-group">
                                                         <div class="col-md-12 text-center">
-                                                            <button class="btn btn-primary" type="button" id="btnActualizarentrada" onclick="btnActualizarentrada(@item.entd_Id);">Guardar</button>
+                                                            <button class="btn btn-primary" type="button" id="btnActualizarentrada" onclick="btnActualizarentrada(
+                                                                    @item.entd_Id);
+                                                                    (@item.ent_Id);
+                                                                    (@item.prod_Codigo);
+                                                                   (@item.entd_Cantidad);
+                                                                   (@item.entd_UsuarioCrea);
+                                                                   (@item.entd_UsuarioModifica);
+                                                                   (@item.entd_FechaModifica);
+                                                                   (@item.uni_Id);"
+                                                                    >Guardar</button>
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                                         </div>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                             </div>
                                         </div>
@@ -103,7 +115,7 @@
 
                                                 <div class="form-group">
                                                     <div class="modal-body" id="frmAgregarCasoExito">
-                                                        @Html.Partial("_DetallesDeEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() { entd_UsuarioCrea = item.entd_UsuarioCrea,entd_FechaCrea=item.entd_FechaCrea,entd_UsuarioModifica=item.entd_UsuarioModifica,entd_FechaModifica=item.entd_FechaModifica,ent_Id=item.ent_Id, prod_Codigo = item.prod_Codigo, entd_Cantidad = item.entd_Cantidad, uni_Id = item.uni_Id, }))
+                                                        @Html.Partial("_DetallesDeEntrada", new ERP_GMEDINA.Models.tbEntradaDetalle() { entd_UsuarioCrea = item.entd_UsuarioCrea,entd_FechaCrea=item.entd_FechaCrea,entd_UsuarioModifica=item.entd_UsuarioModifica,entd_FechaModifica=item.entd_FechaModifica,ent_Id=item.ent_Id, prod_Codigo = item.prod_Codigo, entd_Cantidad = item.entd_Cantidad, uni_Id = item.uni_Id, })
                                                         <div class="col-md-12 text-center">
                                                             
                                                         </div>
@@ -142,6 +154,8 @@
         });
     });
 </script>
+
+
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@

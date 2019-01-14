@@ -1,77 +1,67 @@
 ﻿@model ERP_GMEDINA.Models.tbEntradaDetalle
 @using ERP_GMEDINA.Models
+@using (Ajax.BeginForm("entradadetalle_actualizar", "Entrada", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "EditarDetalleEntrada" }))
+{
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Editar Detalle Entrada</h5>
-                </div>
-                <div class="ibox-content">
-                    @Html.AntiForgeryToken()
-                    <div class="form-horizontal">
-                        @*<div id="validationSummaryEdit_@Model.bodd_Id">*@
+        @Html.HiddenFor(model => model.entd_Id)
+        @Html.HiddenFor(model => model.ent_Id)
+        @Html.HiddenFor(model => model.entd_UsuarioCrea)
+        @Html.HiddenFor(model => model.entd_FechaCrea)
+        @Html.HiddenFor(model => model.entd_UsuarioModifica)
+        @Html.HiddenFor(model => model.entd_FechaModifica)
+        @*</div>*@
 
-                        @*<p style="color:red">@Html.ValidationSummary(false)</p>*@
-                        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.ent_Id, "Numero Entrada", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.ent_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.ent_Id)
+            </div>
+            @Html.LabelFor(model => model.prod_Codigo, "Código Producto", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @class = "form-control", @id = "coProductoEdit" } })
+                @Html.ValidationMessageFor(model => model.prod_Codigo)
+            </div>
+        </div>
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.prod_Codigo, "Nombre Producto", new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, new { @class = "form-control",@id = "producto" })
+                    @Html.ValidationMessageFor(model => model.prod_Codigo)
+                </div>*@
+        </div>
 
-                        @Html.HiddenFor(model => model.entd_Id)
-                        @Html.HiddenFor(model => model.ent_Id)
-                        @Html.HiddenFor(model => model.prod_Codigo)
-
-                        @Html.HiddenFor(model => model.entd_Cantidad)
-                        @Html.HiddenFor(model => model.entd_UsuarioCrea)
-                        @Html.HiddenFor(model => model.entd_FechaCrea)
-                        @Html.HiddenFor(model => model.entd_UsuarioModifica)
-                        @Html.HiddenFor(model => model.entd_FechaModifica)
-                        @Html.HiddenFor(model => model.uni_Id)
-                        @*</div>*@
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ent_Id, "Numero Entrada", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.ent_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                @Html.ValidationMessageFor(model => model.ent_Id)
-                            </div>
-                            @Html.LabelFor(model => model.prod_Codigo, "Código Producto", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @class = "form-control", @id = "producto" } })
-                                @Html.ValidationMessageFor(model => model.prod_Codigo)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @*@Html.LabelFor(model => model.prod_Codigo, "Nombre Producto", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, new { @class = "form-control",@id = "producto" })
-                                    @Html.ValidationMessageFor(model => model.prod_Codigo)
-                                </div>*@
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.entd_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.entd_Cantidad, new { htmlAttributes = new { @class = "form-control", @id = "cantidad" } })
-                                @Html.ValidationMessageFor(model => model.entd_Cantidad)
-                            </div>
-                            @Html.LabelFor(model => model.uni_Id, "Unidad", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.uni_Id, new { htmlAttributes = new { @class = "form-control", @id = "unidad" } })
-                                @Html.ValidationMessageFor(model => model.uni_Id)
-                            </div>
-                            @*@Html.LabelFor(model => model.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, new { @class = "form-control", @id = "unidad" })
-                                    @Html.ValidationMessageFor(model => model.uni_Id)
-                                </div>*@
-                        </div>
-                    </div>
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.entd_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.entd_Cantidad, new { htmlAttributes = new { @class = "form-control", @id = "cantidadEdit" } })
+                @Html.ValidationMessageFor(model => model.entd_Cantidad)
+            </div>
+            @*@Html.LabelFor(model => model.uni_Id, "Unidad", new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.uni_Id, new { htmlAttributes = new { @class = "form-control", @id = "unidadEdit" } })
+                    @Html.ValidationMessageFor(model => model.uni_Id)
+                </div>*@
+            @Html.LabelFor(model => model.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @{string IdDrop = "uni_IdListEdit";}
+                @{ string Vie = "uni_IdList";}
+                @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)Context.Items[Vie], "Seleccione", new { @class = "form-control", id = @IdDrop })
+                @*@Html.DropDownListFor(model => model.uni_Id, (SelectList)ViewBag.unidad, new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(model => model.uni_Id)
+            </div>
+        </div>
+        <div class="form-group">
+            <hr />
+            <div class="col-md-12 text-right">
+                <input type="submit" id="modal" value="Guardar" class="btn btn-primary" />
+                @Html.ActionLink("Cancelar", "Edit", null, new { @class = "btn btn-white" })
             </div>
         </div>
     </div>
-</div>
-
+}
 
 
 @section Scripts {

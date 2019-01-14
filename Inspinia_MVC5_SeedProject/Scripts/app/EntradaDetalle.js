@@ -65,31 +65,31 @@ $(document).on("click", "#tbentrada tbody tr td button#Eliminardetalleentrada", 
         data: JSON.stringify({ EntradaDetalle: Eliminar }),
     });
 });
-
+//para añadir codigo ala tabla temporal(Create)
 $('#AgregarDetalleEntrada').click(function () {
     var entrada = $("#ent_Id").val();
     var codigoproducto = $("#prod_Codigo").val();
     var cantidad = $("#entd_Cantidad").val();
     var unimedida = $("#uni_Id").val();
 
-    //if (entrada == '') {
-    //    $('#Errorentrada').text('');
-    //    $('#Errorcodigoproducto').text('');
-    //    $('#Errorcantidad').text('');
-    //    console.log("entrada");
+    if (entrada == '') {
+        //$('#Errorentrada').text('');
+        //$('#Errorcodigoproducto').text('');
+        //$('#Errorcantidad').text('');
+        console.log("entrada");
     //}
     //else
-    if (codigoproducto == '') {
-        $('#Mensajecodigo').text('');
-        $('#Mensajecantidad').text('');
-        $('#validationcodigoproducto').after('<ul id="Mensajecodigo" class="validation-summary-errors text-danger">Campo codigo producto Requerido</ul>');
-        console.log("codigoproducto");
-    }
-    else if(cantidad == '') {
-        $('#Mensajecodigo').text('');
-        $('#Mensajecantidad').text('');
-        $('#validationcantidad').after('<ul id="Mensajecantidad" class="validation-summary-errors text-danger">Campo cantidad Requerido</ul>');
-        console.log("cantidad");
+    //if (codigoproducto == '') {
+    //    $('#Mensajecodigo').text('');
+    //    $('#Mensajecantidad').text('');
+    //    $('#validationcodigoproducto').after('<ul id="Mensajecodigo" class="validation-summary-errors text-danger">Campo codigo producto Requerido</ul>');
+    //    console.log("codigoproducto");
+    //}
+    //else if(cantidad == '') {
+    //    $('#Mensajecodigo').text('');
+    //    $('#Mensajecantidad').text('');
+    //    $('#validationcantidad').after('<ul id="Mensajecantidad" class="validation-summary-errors text-danger">Campo cantidad Requerido</ul>');
+    //    console.log("cantidad");
 
     //}
     //else if (unimedida == '') {
@@ -172,7 +172,12 @@ $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", 
 //actualizar Detalle Entrada
 function btnActualizarentrada(entd_Id) {
     console.log(entd_Id);
-    
+    var coProductoEdit = $("#coProductoEdit").val();
+    var cantidadEdit = $("#cantidadEdit").val();
+    var unidadEdit = $("#unidadEdit").val();
+    console.log(coProductoEdit);
+    console.log(cantidadEdit);
+    console.log(unidadEdit);
 
     var tbEntradaDetalle = Getentradadetalle_actualizar();
 
@@ -200,16 +205,14 @@ function Getentradadetalle_actualizar() {
 
     var actualizarEntradaDetalle = {
         ent_Id: $('#ent_Id').val(),
-        entd_Id: entd_Id,
-        prod_Codigo: $('#producto').val(),
-        //entd_Cantidad: $('#cantidad').val(),
-        entd_Cantidad: $("#cantidad").val(),
+        entd_Id: $('#entd_Id').val(),
+        prod_Codigo: $('#coProductoEdit').val(),
+        entd_Cantidad: $("#cantidadEdit").val(),
         entd_UsuarioCrea: $('#entd_UsuarioCrea').val(),
         entd_UsuarioModifica: $('#entd_UsuarioModifica').val(),
         entd_FechaCrea: $('#entd_FechaCrea').val(),
         entd_FechaModifica: $('#entd_FechaModifica').val(),
-        uni_Id: $('#unidad').val(),
-        unidad: $('#uni_Id').val(),
+        uni_Id: $('#unidadEdit').val(),
     };
     return actualizarEntradaDetalle;
 }
@@ -232,3 +235,38 @@ $('#btnImprimir').click(function () {
         $('[data-print-content]').printDiv();
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+//codigo para guardar detalle en la vista de editar
+//$('#GuardarDetalleEntrada').click(function () {
+
+//        var EntradaDetalle = GetEntradaDetalle();
+//        $.ajax({
+//            url: "/Entrada/GuardardetalleentradaEditar",
+//            method: "POST",
+//            dataType: 'json',
+//            contentType: "application/json; charset=utf-8",
+//            data: JSON.stringify({ entradadetalle: EntradaDetalle }),
+//        })
+//        .done(function (data) {
+//            $('#prod_Codigo').val('');
+//            $("#uni_Id").val('');
+//            $('#entd_Cantidad').val('');
+//            //
+//            $('#prod_Descripcion').val('');
+//            $('#pscat_Id').val('');
+
+//            $('#Mensajecodigo').text('');
+//            $('#Mensajecantidad').text('');
+
+//        });
+//})

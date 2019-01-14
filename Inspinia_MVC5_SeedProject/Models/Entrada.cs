@@ -35,7 +35,7 @@ namespace ERP_GMEDINA.Models
         public byte estm_Id { get; set; }
 
         [Display(Name = "Nombre Proveedor")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int prov_Id { get; set; }
 
         [Display(Name = "Factura Compra")]
