@@ -15,11 +15,19 @@ namespace ERP_GMEDINA.Controllers
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
 
-        // GET: /SolicitudEfectivo/
         public ActionResult Index()
         {
+            return View(db.UDP_Vent_SolicituEfectivo_Select);
+        }
 
-           
+        public ActionResult IndexDetails()
+        {
+            return View(db.UDP_Vent_SolicituEfectivo_Detalles_Select);
+        }
+        // GET: /SolicitudEfectivo/
+        public ActionResult IndexOriginal()
+        {
+    
             var tbsolicitudefectivo = db.tbSolicitudEfectivo.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbUsuario2).Include(t => t.tbMoneda).Include(t => t.tbMovimientoCaja);
             return View(tbsolicitudefectivo.ToList());
 
@@ -59,7 +67,23 @@ namespace ERP_GMEDINA.Controllers
         }
 
         // GET: /SolicitudEfectivo/Create
-        
+        public JsonResult GetModena()
+        {
+            ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+            var moneda = db.tbMoneda.Select(x => new { mnda_Id = x.mnda_Id, Text = x.mnda_Nombre }).Distinct();
+            return Json(moneda, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetDenominacion(short moneda)
+        {
+            ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+
+            db.Configuration.ProxyCreationEnabled = false;
+            List<tbDenominacion> Denomination = db.tbDenominacion.Where(x => x.mnda_Id == moneda).ToList();
+
+
+            return Json(Denomination, JsonRequestBehavior.AllowGet);
+        }
 
         public JsonResult GetDenominacionList(int mnda_Id)
         {

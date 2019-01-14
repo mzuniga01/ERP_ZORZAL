@@ -6,6 +6,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+<style>
+    #montosSolicitado{
+        font-family: Tahoma, Verdana, Arial;
+        font-size: 11px;
+        color: #707070;
+        background-color: #FFFFFF;
+        border-width: 0;
+    }
+
+     #montoEntregado {
+        font-family: Tahoma, Verdana, Arial;
+        font-size: 11px;
+        color: #707070;
+        background-color: #FFFFFF;
+        border-width: 0;
+    }
+</style>
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Solicitud Efectivo</h2>        
@@ -37,30 +56,30 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.solef_Id)
+
         </dd>
                         <dt>
-                            @*@Html.DisplayNameFor(model => model.tbMovimientoCaja.mocja_Id)*@
-                            Movimiento Caja
+                            @Html.DisplayNameFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
+                        </dd>
+        <dt>
+            @*@Html.DisplayNameFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)*@
+            Caja
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
+        </dd>
+                        <dt>
+                           @*@Html.DisplayNameFor(model => model.tbMovimientoCaja.mocja_Id)*@
+                            Id Apertura                            
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.tbMovimientoCaja.mocja_Id)
                         </dd>
-                        
-        <dt>
-            @Html.DisplayNameFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)                           
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
-        </dd>
-                                                
-
-                            <dt>
-                                @*@Html.DisplayNameFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)*@
-                                Caja
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
-                            </dd>
+      
+                           
         <dt>
             @*@Html.DisplayNameFor(model => model.tbMoneda.mnda_Nombre)*@
             Moneda
@@ -76,19 +95,40 @@
                         <dd>
                             @Html.DisplayFor(model => model.solef_FechaCrea)
                         </dd>
+                       
+
+                        <dt>
+                            Monto Solictud
+                        </dt>
+                        <dd>
+                            <input type="text" class="input" id="montosSolicitado" readonly size="50">
+                        </dd>
+
+
         <dt>
             @Html.DisplayNameFor(model => model.solef_FechaEntrega)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.solef_FechaEntrega)
         </dd>
-
                         <dt>
-                        @Html.DisplayNameFor(model => model.solef_EsApertura)
+                            Monto Entregado
                         </dt>
-                        <dd>
-                        @Html.DisplayFor(model => model.solef_EsApertura)
+
+                        <dd >
+                            <input type="text" class="input" id="montoEntregado" readonly size="50">
                         </dd>
+
+
+        @*<dt>
+        @Html.DisplayNameFor(model => model.solef_EsApertura)
+        </dt>
+        <dd>
+        @Html.DisplayFor(model => model.solef_EsApertura)
+        </dd>
+
+
+                       
 
        
         <dt>
@@ -97,28 +137,23 @@
 
         <dd>
             @Html.DisplayFor(model => model.solef_EsAnulada)
-        </dd>
-
-                        @*<dt>
-                           Monto Solictado
-                        </dt>
-                        <dd>                            
-                        </dd>
-
-        <dt>
-            Monto Entregado
-        </dt>
-        <dd>
         </dd>*@
+
+                       
+
+        
 
     </dl>
 
                    
 
 	    @Html.ActionLink("Editar", "Edit", new { id = Model.solef_Id }, new { @class = "btn btn-primary"})
-        @Html.ActionLink("Registrar Entrega Efectivo", "EditEntregaEfectivo", new { id = Model.solef_Id }, new { @class = "btn btn-white" })
-     @Html.Partial("_DetailsSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
+        
+                    @Html.Partial("_DetailsSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
 
+
+                    @*@Html.Partial("_IndexDetails", (List<UDP_Vent_SolicituEfectivo_Detalles_Select>)ViewBag.detalles)*@
+                    
                     
 
                 </div>
@@ -155,6 +190,41 @@
 
 
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        var MontoSolicitado = 0;
+        $("#mitabla tbody tr:nth-child(-n+3)").each(function () { 
+            MontoSolicitado += parseFloat($(this).children("td:eq(3)").html());
+        });
+
+        $("#montosSolicitado").val(MontoSolicitado);
+
+        //alert("Mi suma es: " + MontoSolicitado.toFixed(2));
+
+
+
+        var MontoEntregado = 0;
+        $("#mitabla tbody tr:nth-child(-n+5)").each(function () {
+            MontoEntregado += parseFloat($(this).children("td:eq(5)").html());
+        });
+
+        $("#montoEntregado").val(MontoEntregado);
+
+    </script>
+
+    <script>
+        $('mitabla').dataTable({
+            // display everything 
+            "iDisplayLength": -1,
+            "aaSorting": [[2, "desc"]] // Sort by first column descending 
+            
+        });
+
+    </script>
+}
 
 
 

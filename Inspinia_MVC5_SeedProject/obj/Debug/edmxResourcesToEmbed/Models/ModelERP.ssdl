@@ -978,6 +978,49 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalles_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDP_Vent_SolicituEfectivo_Detalles_Select">
+    <Key>
+      <PropertyRef Name="soled_Id" />
+      <PropertyRef Name="solef_Id" />
+      <PropertyRef Name="deno_Id" />
+      <PropertyRef Name="deno_Descripcion" />
+      <PropertyRef Name="deno_valor" />
+      <PropertyRef Name="soled_CantidadSolicitada" />
+      <PropertyRef Name="soled_CantidadEntregada" />
+      <PropertyRef Name="soled_UsuarioCrea" />
+      <PropertyRef Name="soled_FechaCrea" />
+    </Key>
+    <Property Name="soled_Id" Type="int" Nullable="false" />
+    <Property Name="solef_Id" Type="int" Nullable="false" />
+    <Property Name="deno_Id" Type="smallint" Nullable="false" />
+    <Property Name="deno_Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="deno_valor" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="soled_CantidadSolicitada" Type="smallint" Nullable="false" />
+    <Property Name="MontoSolicitado" Type="decimal" Precision="16" Scale="2" />
+    <Property Name="soled_CantidadEntregada" Type="smallint" Nullable="false" />
+    <Property Name="MontoEntregado" Type="decimal" Precision="21" Scale="4" />
+    <Property Name="soled_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="soled_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="soled_UsuarioModifica" Type="int" />
+    <Property Name="soled_FechaModifica" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
+    <Key>
+      <PropertyRef Name="IdSolicitud" />
+      <PropertyRef Name="FechaSolicitud" />
+    </Key>
+    <Property Name="IdSolicitud" Type="int" Nullable="false" />
+    <Property Name="FechaSolicitud" Type="datetime" Nullable="false" />
+    <Property Name="Sucursal" Type="nvarchar" MaxLength="40" />
+    <Property Name="Caja" Type="nvarchar" MaxLength="10" />
+    <Property Name="Moneda" Type="nvarchar" MaxLength="100" />
+    <Property Name="MontoSolicitado" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="MontoEntregado" Type="decimal" Precision="38" Scale="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Vent_Busqueda_Clientes">
     <Key>
@@ -4911,6 +4954,34 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     [UDV_Inv_Consultar_Existencias_Productos].[bod_Id] AS [bod_Id], 
     [UDV_Inv_Consultar_Existencias_Productos].[prod_Codigo] AS [prod_Codigo]
     FROM [Inv].[UDV_Inv_Consultar_Existencias_Productos] AS [UDV_Inv_Consultar_Existencias_Productos]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UDP_Vent_SolicituEfectivo_Detalles_Select" EntityType="Self.UDP_Vent_SolicituEfectivo_Detalles_Select" store:Type="Views" store:Schema="Vent">
+      <DefiningQuery>SELECT 
+    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_Id] AS [soled_Id], 
+    [UDP_Vent_SolicituEfectivo_Detalles_Select].[solef_Id] AS [solef_Id], 
+    [UDP_Vent_SolicituEfectivo_Detalles_Select].[deno_Id] AS [deno_Id], 
+    [UDP_Vent_SolicituEfectivo_Detalles_Select].[deno_Descripcion] AS [deno_Descripcion], 
+    [UDP_Vent_SolicituEfectivo_Detalles_Select].[deno_valor] AS [deno_valor], 
+    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_CantidadSolicitada] AS [soled_CantidadSolicitada], 
+    [UDP_Vent_SolicituEfectivo_Detalles_Select].[MontoSolicitado] AS [MontoSolicitado], 
+    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_CantidadEntregada] AS [soled_CantidadEntregada], 
+    [UDP_Vent_SolicituEfectivo_Detalles_Select].[MontoEntregado] AS [MontoEntregado], 
+    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_UsuarioCrea] AS [soled_UsuarioCrea], 
+    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_FechaCrea] AS [soled_FechaCrea], 
+    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_UsuarioModifica] AS [soled_UsuarioModifica], 
+    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_FechaModifica] AS [soled_FechaModifica]
+    FROM [Vent].[UDP_Vent_SolicituEfectivo_Detalles_Select] AS [UDP_Vent_SolicituEfectivo_Detalles_Select]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="Self.UDP_Vent_SolicituEfectivo_Select" store:Type="Views" store:Schema="Vent">
+      <DefiningQuery>SELECT 
+    [UDP_Vent_SolicituEfectivo_Select].[IdSolicitud] AS [IdSolicitud], 
+    [UDP_Vent_SolicituEfectivo_Select].[FechaSolicitud] AS [FechaSolicitud], 
+    [UDP_Vent_SolicituEfectivo_Select].[Sucursal] AS [Sucursal], 
+    [UDP_Vent_SolicituEfectivo_Select].[Caja] AS [Caja], 
+    [UDP_Vent_SolicituEfectivo_Select].[Moneda] AS [Moneda], 
+    [UDP_Vent_SolicituEfectivo_Select].[MontoSolicitado] AS [MontoSolicitado], 
+    [UDP_Vent_SolicituEfectivo_Select].[MontoEntregado] AS [MontoEntregado]
+    FROM [Vent].[UDP_Vent_SolicituEfectivo_Select] AS [UDP_Vent_SolicituEfectivo_Select]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDV_Vent_Busqueda_Clientes" EntityType="Self.UDV_Vent_Busqueda_Clientes" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 

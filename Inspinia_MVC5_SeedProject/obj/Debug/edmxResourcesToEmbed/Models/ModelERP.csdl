@@ -2215,6 +2215,8 @@
       <Parameter Name="mocja_FechaApertura" Mode="In" Type="DateTime" />
       <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="UDP_Vent_SolicituEfectivo_Detalles_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Detalles_Select" />
+    <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" />
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -6571,4 +6573,43 @@
   <ComplexType Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
+  <EntityType Name="UDP_Vent_SolicituEfectivo_Detalles_Select">
+    <Key>
+      <PropertyRef Name="soled_Id" />
+      <PropertyRef Name="solef_Id" />
+      <PropertyRef Name="deno_Id" />
+      <PropertyRef Name="deno_Descripcion" />
+      <PropertyRef Name="deno_valor" />
+      <PropertyRef Name="soled_CantidadSolicitada" />
+      <PropertyRef Name="soled_CantidadEntregada" />
+      <PropertyRef Name="soled_UsuarioCrea" />
+      <PropertyRef Name="soled_FechaCrea" />
+    </Key>
+    <Property Name="soled_Id" Type="Int32" Nullable="false" />
+    <Property Name="solef_Id" Type="Int32" Nullable="false" />
+    <Property Name="deno_Id" Type="Int16" Nullable="false" />
+    <Property Name="deno_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="deno_valor" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="soled_CantidadSolicitada" Type="Int16" Nullable="false" />
+    <Property Name="MontoSolicitado" Type="Decimal" Precision="16" Scale="2" />
+    <Property Name="soled_CantidadEntregada" Type="Int16" Nullable="false" />
+    <Property Name="MontoEntregado" Type="Decimal" Precision="21" Scale="4" />
+    <Property Name="soled_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="soled_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="soled_UsuarioModifica" Type="Int32" />
+    <Property Name="soled_FechaModifica" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
+    <Key>
+      <PropertyRef Name="IdSolicitud" />
+      <PropertyRef Name="FechaSolicitud" />
+    </Key>
+    <Property Name="IdSolicitud" Type="Int32" Nullable="false" />
+    <Property Name="FechaSolicitud" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sucursal" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Caja" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Moneda" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MontoSolicitado" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="MontoEntregado" Type="Decimal" Precision="38" Scale="2" />
+  </EntityType>
 </Schema>

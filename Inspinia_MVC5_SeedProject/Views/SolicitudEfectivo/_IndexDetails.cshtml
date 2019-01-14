@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.UDP_Vent_SolicituEfectivo_Detalles_Select>
+@using ERP_GMEDINA.Models
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>List of UDP_Vent_SolicituEfectivo_Detalles_Select</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.deno_Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soled_CantidadSolicitada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MontoSolicitado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soled_CantidadEntregada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MontoEntregado)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.deno_Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soled_CantidadSolicitada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MontoSolicitado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soled_CantidadEntregada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MontoEntregado)
+        </td>
+        
+        @*<td>
+			@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-primary btn-sm"})
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-white btn-sm"})
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-white btn-sm"})
+        </td>*@
+    </tr>
+}
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+

@@ -7,7 +7,7 @@
             <div class="ibox float-e-margins">               
                 <div class="ibox-content">
 
-<table class="table table-striped" id="">
+<table class="table table-striped" id="mitabla">
     <thead>
         <tr>
             <th class="hide">
@@ -27,7 +27,7 @@
                 @Html.DisplayNameFor(model => model.soled_CantidadEntregada)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.soled_MontoEntregado)
+                @Html.DisplayNameFor(model => model.soled_MontoEntregado)   
             </th>          
            
             
@@ -47,20 +47,57 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.soled_CantidadSolicitada)
                 </td>
+               
+                    @{
+                        decimal montoSolicitud = 0;
+                        montoSolicitud = Convert.ToDecimal(item.tbDenominacion.deno_valor) * Convert.ToDecimal(item.soled_CantidadSolicitada);
+                      
+                    }
+                
                 <td>
-                   
+                    @Html.DisplayFor(modelItem => montoSolicitud)
                 </td>
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.soled_CantidadEntregada)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.soled_MontoEntregado)
-                </td>                
 
+                @{
+                    decimal MontoEntregado = 0;
+                    MontoEntregado = Convert.ToDecimal(item.tbDenominacion.deno_valor) * Convert.ToDecimal(item.soled_CantidadEntregada);
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => MontoEntregado)
+                </td> 
+                               
+                <td></td>
             </tr>
         }
     </tbody>
 </table>
+
+                   
+
+
+
+                    @*@{
+                        float suma = 0;
+                        foreach (var item in Model)
+                        {
+                            float valor = float.Parse(item.soled_MontoEntregado.ToString());
+                            suma += valor;
+                        }
+                    }
+                    <label>Monto Entregado : @Html.DisplayFor(modelItem => suma) </label>
+
+                    
+
+                    <br />*@
+
+                    
+                  
+
+
 
                 </div>
             </div>

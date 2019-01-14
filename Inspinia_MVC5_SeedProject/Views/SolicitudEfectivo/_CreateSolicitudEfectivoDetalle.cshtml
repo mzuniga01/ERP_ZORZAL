@@ -26,34 +26,34 @@
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.soled_CantidadSolicitada, new { @class = "control-label col-md-2" })
-                            
-                            <div class="col-md-4">                                
-                                <input type="text"  id="soled_CantidadSolicitada"  class="form-control"  onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" />
+
+                            <div class="col-md-4">
+                                <input type="text" id="soled_CantidadSolicitada" class="form-control" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" />
                                 @*<input type="text" id="soled_CantidadSolicitada" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onpast="return false" />*@
                                 @*@Html.EditorFor(model => model.soled_CantidadSolicitada , new { htmlAttributes = new { @type = "number", onkeypress = "return disableEnterKey(event)" } })*@
                                 <div id="validationCantidadSolicitadaCreate">
                                     @*@Html.ValidationMessageFor(model => model.soled_CantidadSolicitada)*@
-                                </div>   
+                                </div>
                             </div>
                             <label class="control-label col-md-2">Monto Solicitado</label>
                             <div class="col-md-4">
-                                <input id="MontoSolicitado" type="text" class="form-control" readonly />
+                                <input id="MontoSolicitado" type="text" class="form-control" readonly=readonly />
                                 @*@Html.EditorFor(model => model.MontoSolicitado, new { htmlAttributes = new {  @Value = "0.00", @type = "number", @class = "form-control", @readonly = "readonly" } })
-                                <div id="validationMontosSolicitadoCreate">
-                                    @Html.ValidationMessageFor(model => model.MontoSolicitado)
-                                </div>*@
+                                    <div id="validationMontosSolicitadoCreate">
+                                        @Html.ValidationMessageFor(model => model.MontoSolicitado)
+                                    </div>*@
                                 <br />
                                 @*<input id="CantidadEntregada" value="0.00" type="text" class="form-control " readonly />
-                                <input id="MontoEntregado" value="0.00" type="text" class="form-control " readonly />*@
+                                    <input id="MontoEntregado" value="0.00" type="text" class="form-control " readonly />*@
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.soled_CantidadEntregada, new { style = "display: none;", htmlAttributes = new {  @Value = "0.00", @type = "number", @class = "form-control", @readonly = "readonly"}  })
+                                    @Html.TextBoxFor(model => model.soled_CantidadEntregada, new { style = "display: none;", htmlAttributes = new { @Value = "0.00", @type = "number", @class = "form-control", @readonly = "readonly" } })
                                     <div id="validationCantidadEntregadaCreate">
                                         @Html.ValidationMessageFor(model => model.soled_CantidadEntregada)
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.soled_MontoEntregado, new { style = "display: none;" , htmlAttributes = new {  @Value = "0.00", @type = "number", @class = "form-control", @readonly = "readonly" }  })
+                                    @Html.TextBoxFor(model => model.soled_MontoEntregado, new { style = "display: none;", htmlAttributes = new { @Value = "0.00", @type = "number", @class = "form-control", @readonly = "readonly" } })
                                     <div class="validationMontoEntregadoCreate">
                                         @Html.ValidationMessageFor(model => model.soled_MontoEntregado)
                                     </div>

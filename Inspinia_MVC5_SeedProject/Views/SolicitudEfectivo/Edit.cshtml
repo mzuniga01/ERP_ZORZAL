@@ -37,7 +37,7 @@
 
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.solef_Id)
-                            @Html.Hidden("RedirectTo", Url.Action("Index", "SolicitudEfectivo"))
+                            @Html.Hidden("RedirectTo", Url.Action("IndexDetalle", "SolicitudEfectivo"));
 
 
 
@@ -62,25 +62,26 @@
                                     @Html.EditorFor(model => model.solef_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.solef_Id)
                                 </div>
-                                @Html.LabelFor(model => model.mocja_Id, new { @class = "control-label col-md-2" })
-                                <div class="col-md-3">
-                                    @*@Html.DropDownList("mocja_Id",*@ @*String.Empty*@@*null, "Seleccione la Moneda", new { @class = "form-control" })*@
-                                    @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.mocja_Id, "", new { style = "Color:red" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
                                 @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
                                 </div>
 
+                            </div>
+
+                            <div class="form-group">
+
                                 @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
+                                </div>
+                                @Html.LabelFor(model => model.mocja_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @*@Html.DropDownList("mocja_Id",*@ @*String.Empty*@@*null, "Seleccione la Moneda", new { @class = "form-control" })*@
+                                    @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.mocja_Id, "", new { style = "Color:red" })
                                 </div>
                             </div>
 
@@ -92,22 +93,29 @@
                                     @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
                                 </div>
 
-                            </div>
-
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.solef_EsApertura, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.solef_FechaEntrega, "Fecha de Entrega", new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    @*@Html.EditorFor(model => model.solef_EsApertura)*@
-                                    @Html.DisplayFor(model => model.solef_EsApertura)
-                                    @Html.ValidationMessageFor(model => model.solef_EsApertura)
+                                    @Html.EditorFor(model => model.solef_FechaEntrega, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.solef_FechaEntrega, "", new { style = "Color:red" })
                                 </div>
+
                             </div>
+
+
+                            @*<div class="form-group">
+                                @Html.LabelFor(model => model.solef_EsApertura, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">*@
+                            @*@Html.EditorFor(model => model.solef_EsApertura)*@
+                            @*@Html.DisplayFor(model => model.solef_EsApertura)
+                                        @Html.ValidationMessageFor(model => model.solef_EsApertura)
+                                    </div>
+                                </div>*@
                             <div class="form-group">
-                                @Html.LabelFor(model => model.solef_EsAnulada, "Anulada", new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.solef_EsAnulada, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @*@Html.EditorFor(model => model.solef_EsApertura)*@
-                                    @Html.CheckBoxFor(model => model.solef_EsAnulada, new { onclick = "return false" })
+                                    @Html.DisplayFor(model => model.solef_EsAnulada)
+                                    @*@Html.EditorFor(model => model.solef_EsAnulada, new { onclick = "return false" })*@
                                     @Html.ValidationMessageFor(model => model.solef_EsAnulada)
                                 </div>
                             </div>
@@ -115,7 +123,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Total Solicitud</label>
                                 <div class="col-md-3">
-                                    <input id="total" type="text" class="form-control" readonly />
+                                    <input id="total"  class="form-control" readonly />
                                 </div>
                             </div>
 
@@ -246,53 +254,70 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script>
 
-        if (jQuery("#solef_EsAnulada").is(":checked")) {
-            $('#bottonAnular').hide();
+
+<script>
+        var MontoSolicitado = 0;
+        $("#mitabla tbody tr:nth-child(-n+4)").each(function () {
+            MontoSolicitado += parseFloat($(this).children("td:eq(4)").html());
+        });
+
+        $("#total").val(MontoSolicitado);
+
+</script>
+
+
+
+<script>
+    $(document).ready(function () {
+        if ($('#solef_FechaEntrega').val() == '') {
+
+            $("#solef_FechaEntrega").val('0000/00/00');
         }
-        else {
-            $('#bottonAnular').show();
-        }
-        //--------------------------------
 
-        if ($('#pruebacount >tbody >tr').length == 1) {
-            // $('#mnda_Id').hide().disabled = false;
-            //$('#mnda_Id').attr("readOnly", "true");
-            // document.getElementById("mnda_Id").disabled = true;
-            // $('#mnda_Id').attr("readOnly", "readOnly");
-            // alert("Puede!!");
-        }
-        else {
-            $('#mnda_Id').attr("disabled", "disabled");
-            //  alert('no puede');
-        }
+    });
 
 
-
-
-        // solef_Id
     </script>
-
 
 
     <script>
         $(document).ready(function () {
-            $("#mnda_Id").change(function () {
-                var valor = 0;
-                $.get("/SolicitudEfectivo/GetDenominacionList", { mnda_Id: $("#mnda_Id").val() }, function (data) {
-                    $("#deno_Id").empty("");
-                    $('#deno_Id').append("<option value='0'>Seleccione la Denominación</option>");
-                    $('#idinput').val(valor);
-                    $.each(data, function (index, row) {
-                        $("#deno_Id").append("<option value='" + row.deno_Id + "'>" + row.deno_Descripcion + "</option>")
-                        //$('#deno_Id').val('Please Select');
-                    });
-                });
 
-            })
+            if ($('#solef_FechaEntrega').val() == '0000/00/00') {
+                $('#bottonAnular').show();
+            }            
+
+            else {
+                $('#bottonAnular').hide();
+            }
         });
+
     </script>
+
+
+
+    @*<script>
+        $(document).ready(function () {
+            $("#soled_CantidadSolicitada")[0].maxLength = 7;
+            $("#ValorDeno")[0].maxLength = 12;
+        })
+
+        $(function () {
+            $("#soled_CantidadSolicitada").keyup(function (e) {
+                var Cantidad = $("#soled_CantidadSolicitada").val(),
+                    valores = $("#ValorDeno").val(),
+                    result = "";
+                if (Cantidad.length && valores.length > 0) {
+                    result += Cantidad * valores;
+                }
+                $("#MontoSolicitado").val(result);
+            });
+        });
+</script>*@
+
+
+
 
 
 }
