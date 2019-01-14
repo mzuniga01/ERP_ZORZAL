@@ -156,40 +156,23 @@
         var strDate = d.getDate() + "/" + (d.getMonth() + 1) + "/" + (d.getFullYear() + 1);
         $("#cdto_FechaVencimiento").val(strDate);
 
-
-        //---------------setear en cero-----------------
-        
-        $("#cdto_PorcentajeDescuento").keypress(function () {
-            $('#cdto_MontoDescuento').val('0.00');
-        });
-        $("#cdto_MontoDescuento").keypress(function () {
-            $('#cdto_PorcentajeDescuento').val('0.00');
-            $('#cdto_MaximoMontoDescuento').val('0.00');
-        });
-
-        $(document).ready(function () {
-            $('#cdto_MontoDescuento').val('0.00');
-            $('#cdto_CantidadCompraMinima').val('0.00');
-            $('#cdto_PorcentajeDescuento').val('0.00');
-            $('#cdto_MaximoMontoDescuento').val('0.00');
-        });
     </script>
 
-    @*<script type="text/javascript">
-        $(document).ready(function () {
-            $("#cdto_PorcentajeDescuento").keyup(function () {
-                $('#cdto_MaximoMontoDescuento').val();
-                $('#cdto_MontoDescuento').attr('readonly', 'readonly');
-                $('#cdto_CantidadCompraMinima').val('0.00').attr('readonly', 'readonly');
-            });
-
-            $("#cdto_MontoDescuento").keyup(function () {
-                $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly');
-                $('#cdto_PorcentajeDescuento').val('0.00').attr('readonly', 'readonly');
-                $('#cdto_CantidadCompraMinima').val();
-            });
+    <script>
+        $('#cdto_PorcentajeDescuento').click(function () {
+            $('#cdto_PorcentajeDescuento').removeAttr("readonly").val('');
+            $('#cdto_MaximoMontoDescuento').removeAttr("readonly").val('');
+            $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00');
+            $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
         });
-    </script>*@
+
+        $('#cdto_MontoDescuento').click(function () {
+            $('#cdto_MontoDescuento').removeAttr("readonly").val('');
+            $('#cdto_CantidadCompraMinima').removeAttr("readonly").val('');
+            $('#cdto_PorcentajeDescuento').attr('readonly', 'readonly').val('0.00');
+            $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
+        });
+    </script>
     <script type="text/javascript">
         jQuery('input,select').each(function () {
             var req = jQuery(this).attr('data-val-required');
