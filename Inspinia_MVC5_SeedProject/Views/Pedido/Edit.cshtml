@@ -7,6 +7,8 @@
 }
 
 
+@using (Html.BeginForm("Edit", "Pedido", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Editar Pedidos</h2>
@@ -31,14 +33,24 @@
                 </div>
                 <div class="ibox-content">
 
-    @using (Html.BeginForm())
-    {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
 
             @Html.ValidationSummary(true)
             @Html.HiddenFor(model => model.ped_Id)
+            @Html.HiddenFor(model => model.suc_Id)
+            @Html.HiddenFor(model => model.clte_Id)
+
+            @*Auditoria*@
+            @Html.HiddenFor(model => model.ped_UsuarioCrea)
+            @Html.HiddenFor(model => model.ped_FechaCrea)
+            @Html.HiddenFor(model => model.ped_UsuarioModifica)
+            @Html.HiddenFor(model => model.ped_FechaModifica)
+            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+            @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+            @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
 
 
@@ -49,13 +61,13 @@
                 <label class="control-label col-md-2">Sucursal</label>
 
                 <div class="col-md-3">
-                    @Html.EditorFor(model => model.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.EditorFor(model => model.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.suc_Id)
                 </div>
           
                 @Html.LabelFor(model => model.suc_Id, "Estado", new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
-                    @Html.DropDownList("esped_Id", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                    @Html.DropDownList("esped_Id", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.ped_Id)
                 </div>
             </div>
@@ -135,7 +147,7 @@
             </div>
         </div>
 
-    }
+ 
 
 
                 </div>
@@ -181,7 +193,7 @@
         </div>
     </div>
  </div>
-
+    }
 <script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
 
 @section Scripts {
