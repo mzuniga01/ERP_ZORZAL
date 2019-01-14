@@ -158,6 +158,7 @@
 
 
         //---------------setear en cero-----------------
+        
         $("#cdto_PorcentajeDescuento").keypress(function () {
             $('#cdto_MontoDescuento').val('0.00');
         });
@@ -174,6 +175,21 @@
         });
     </script>
 
+    @*<script type="text/javascript">
+        $(document).ready(function () {
+            $("#cdto_PorcentajeDescuento").keyup(function () {
+                $('#cdto_MaximoMontoDescuento').val();
+                $('#cdto_MontoDescuento').attr('readonly', 'readonly');
+                $('#cdto_CantidadCompraMinima').val('0.00').attr('readonly', 'readonly');
+            });
+
+            $("#cdto_MontoDescuento").keyup(function () {
+                $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly');
+                $('#cdto_PorcentajeDescuento').val('0.00').attr('readonly', 'readonly');
+                $('#cdto_CantidadCompraMinima').val();
+            });
+        });
+    </script>*@
     <script type="text/javascript">
         jQuery('input,select').each(function () {
             var req = jQuery(this).attr('data-val-required');

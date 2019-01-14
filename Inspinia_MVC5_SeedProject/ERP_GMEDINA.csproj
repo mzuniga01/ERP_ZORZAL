@@ -1042,6 +1042,7 @@
     <Content Include="Scripts\app\MessageError.js" />
     <Content Include="Scripts\app\MovientoCaja.js" />
     <Content Include="Scripts\app\NotaCredito.js" />
+    <Content Include="Scripts\app\NotaCreditoAnulado.js" />
     <Content Include="Scripts\app\PagosArqueo.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
     <Content Include="Scripts\app\ProductoDevolucion.js" />

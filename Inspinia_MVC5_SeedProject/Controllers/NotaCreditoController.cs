@@ -128,8 +128,8 @@ namespace ERP_ZORZAL.Controllers
             }
             //ViewBag.nocre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioCrea);
             //ViewBag.nocre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioModifica);
-            //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbNotaCredito.clte_Id);
-            //ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id", tbNotaCredito.dev_Id);
+            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbNotaCredito.clte_Id);
+            ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id", tbNotaCredito.dev_Id);
             ViewBag.Cliente = db.tbCliente.ToList();
             ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
             return View(tbNotaCredito);
@@ -209,9 +209,9 @@ namespace ERP_ZORZAL.Controllers
             base.Dispose(disposing);
         }
         [HttpPost]
-        public JsonResult AnularNotaCredito(int nocreId, bool Anulada)
+        public JsonResult AnularNotaCredito(Int16 nocreId, bool Anulado)
         {
-            var list = db.UDP_Vent_tbCuponDescuento_Anulado(nocreId, Anulada).ToList();
+            var list = db.UDP_Vent_tbNotaCredito_Anulado(nocreId, Anulado).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
     }

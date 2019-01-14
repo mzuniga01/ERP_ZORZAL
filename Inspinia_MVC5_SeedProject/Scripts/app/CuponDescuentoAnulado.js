@@ -8,15 +8,15 @@
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify({ cdtoId: cdtoId, Anulada: Anulada }),
-
     })
+
     .done(function (data) {
         if (data.length > 0) {
             var url = $("#RedirectTo").val();
             location.href = url;
         }
         else {
-            alert("Registro No Actualizado");
+            alert("Registro No Anulado");
         }
     });
 }
