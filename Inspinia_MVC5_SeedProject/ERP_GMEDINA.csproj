@@ -682,9 +682,6 @@
     <Compile Include="Models\UDP_Vent_tbListadoPrecioDetalle_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Vent_tbListaPrecio_Estado_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UDP_Vent_tbListaPrecio_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1047,6 +1044,7 @@
     <Content Include="Scripts\app\Banco.js" />
     <Content Include="Scripts\app\BCliente.js" />
     <Content Include="Scripts\app\CalculoFactura.js" />
+    <Content Include="Scripts\app\Cantidad.js" />
     <Content Include="Scripts\app\ClienteDevolucion.js" />
     <Content Include="Scripts\app\ClienteFactura.js" />
     <Content Include="Scripts\app\ClientePago.js" />
@@ -1475,7 +1473,6 @@
     <Content Include="Views\PagosArqueo\Edit.cshtml" />
     <Content Include="Views\PagosArqueo\Index.cshtml" />
     <Content Include="Views\SolicitudEfectivo\EditEntregaEfectivo.cshtml" />
-    <Content Include="Views\ListaPrecios\_IndexListaPrecioDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

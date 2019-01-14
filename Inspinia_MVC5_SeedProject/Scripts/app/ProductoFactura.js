@@ -45,11 +45,9 @@ $(document).ready(function () {
         var Cliente = $('#clte_Id').val();
         if (Cliente == '') {
             Cliente = 0;
-            console.log(Cliente)
             GetPrecio(Cliente,idItem);
         }
         else {
-            console.log(Cliente)
             GetPrecio(Cliente, idItem);
         }
        
@@ -63,7 +61,6 @@ $(document).ready(function () {
             })
             .done(function (data) {
                 var g = data;
-                console.log(g)
                 $("#factd_PrecioUnitario").val(g);
             });
         }

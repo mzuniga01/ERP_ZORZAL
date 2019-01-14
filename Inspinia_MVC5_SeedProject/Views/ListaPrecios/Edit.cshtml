@@ -36,11 +36,9 @@
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
-                            @Html.Hidden("RedirectTo", Url.Action("Index", "ListaPrecios"))
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.listp_Id)
                             @*Auditoria*@
-
                             @Html.HiddenFor(model => model.listp_UsuarioCrea)
                             @Html.HiddenFor(model => model.listp_FechaCrea)
                             @Html.HiddenFor(model => model.listp_UsuarioModifica)
@@ -60,22 +58,14 @@
                                     @Html.ValidationMessageFor(model => model.listp_Nombre)
                                 </div>
                             </div>
-                            <div class="form-group" id="Activo">
+                            <div class="form-group">
                                 @Html.LabelFor(model => model.listp_EsActivo, new { @class = "control-label col-md-2" })
-                                <div class="col-md-2">
-                                    @if (Model.listp_EsActivo)
-                                    {
-                                        <p>Si</p>
+                                <div class="col-md-3">
 
-                                    }
-                                    else
-                                    {
-                                        <p>No</p>
-
-                                    }
-
+                                    @Html.CheckBox("listp_EsActivo", true)
+                                    @*@Html.EditorFor(model => model.listp_EsActivo)
+                                        @Html.ValidationMessageFor(model => model.listp_EsActivo)*@
                                 </div>
-
                             </div>
 
                      
@@ -113,36 +103,13 @@
                                 </div>
                             </div>*@
                         </div>
-                        @*<div class="form-group">
+                        <div class="form-group">
                             <div class="col-md-offset-8 col-md-10">
                                 <input id="btnSave" type="submit" value="Guardar" class="btn btn-primary btn-sm" />
                                 <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
                                     Anular
                                 </button>
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
-                            </div>
-                        </div>*@
-
-
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Guardar" class="btn btn-primary" />
-                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                @if (Model.listp_EsActivo)
-                                {
-                                    <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
-                                        Inactivar
-                                    </button>
-                                }
-                                else
-                                {
-                                    <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
-                                        Activar
-                                    </button>
-                                }
-
-
-
                             </div>
                         </div>
 
@@ -210,55 +177,7 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="ModalAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title" id="exampleModalLabel">Inactivar Lista</h5>
-            </div>
-            <div class="modal-body">
-                <p>¿Está seguro de inactivar está Lista</p>
-              
-                <p id="Mensaje" style="color:red"></p>
-            </div>
-
-            <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="Inactivar">Guardar</button>
-                @*<button type="button" class="btn btn-primary" name="Si" id="Si" data-dismiss="modal" onclick="InactivarCliente();">Si</button>*@
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="ModalAnular1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title" id="exampleModalLabel">Activar  Lista</h5>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro de activar está Lista?
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="Activar">Guardar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <script src="~/Scripts/app/Datepicker.js"></script>
-<script src="~/Scripts/app/InactivarListaP.js"></script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

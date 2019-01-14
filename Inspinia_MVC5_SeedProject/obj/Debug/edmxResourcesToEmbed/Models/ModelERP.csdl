@@ -2215,10 +2215,6 @@
       <Parameter Name="mocja_FechaApertura" Mode="In" Type="DateTime" />
       <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbListaPrecio_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Estado_Result)">
-      <Parameter Name="listp_Id" Mode="In" Type="Int32" />
-      <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
-    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -6574,8 +6570,5 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbListaPrecio_Estado_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

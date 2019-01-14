@@ -4808,18 +4808,5 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result>("UDP_Vent_tbMovimientoCaja_Apertura_Insert", cja_IdParameter, mocja_FechaAperturaParameter, mocja_UsuarioAperturaParameter);
         }
-    
-        public virtual ObjectResult<UDP_Vent_tbListaPrecio_Estado_Result> UDP_Vent_tbListaPrecio_Estado(Nullable<int> listp_Id, Nullable<bool> listp_EsActivo)
-        {
-            var listp_IdParameter = listp_Id.HasValue ?
-                new ObjectParameter("listp_Id", listp_Id) :
-                new ObjectParameter("listp_Id", typeof(int));
-    
-            var listp_EsActivoParameter = listp_EsActivo.HasValue ?
-                new ObjectParameter("listp_EsActivo", listp_EsActivo) :
-                new ObjectParameter("listp_EsActivo", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListaPrecio_Estado_Result>("UDP_Vent_tbListaPrecio_Estado", listp_IdParameter, listp_EsActivoParameter);
-        }
     }
 }

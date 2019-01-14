@@ -44,6 +44,10 @@
                         @foreach (var item in Model)
                         {
                             <tr>
+
+
+
+
                                 <td>
                                     @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
                                 </td>
@@ -95,7 +99,7 @@
                                                 </button>
                                             </div>
                                             <div id="EditarListadoPrecioDetalle" class="modal-body">
-                                                @Html.Partial("_EditListaPrecioDetalle", new ERP_GMEDINA.Models.tbListadoPrecioDetalle() { lispd_Id = item.lispd_Id, listp_Id = item.listp_Id, prod_Codigo = item.prod_Codigo, lispd_PrecioMayorista = item.lispd_PrecioMayorista, lispd_PrecioMinorista = item.lispd_PrecioMinorista, lispd_DescCaja = item.lispd_DescCaja, lispd_DescGerente = item.lispd_DescGerente, lispd_UsuarioCrea = item.lispd_UsuarioCrea, lispd_FechaCrea = item.lispd_FechaCrea, lispd_UsuarioModifica = item.lispd_UsuarioModifica, lispd_FechaModifica = item.lispd_FechaModifica })
+                                                @Html.Partial("_EditListaPrecioDetalle", new ERP_GMEDINA.Models.tbListadoPrecioDetalle() { listp_Id = item.listp_Id, lispd_Id = item.lispd_Id, prod_Codigo = item.prod_Codigo, lispd_PrecioMayorista = item.lispd_PrecioMayorista, lispd_PrecioMinorista = item.lispd_PrecioMinorista, lispd_DescCaja = item.lispd_DescCaja, lispd_DescGerente = item.lispd_DescGerente, lispd_UsuarioCrea = item.lispd_UsuarioCrea, lispd_FechaCrea = item.lispd_FechaCrea, lispd_UsuarioModifica = item.lispd_UsuarioModifica, lispd_FechaModifica = item.lispd_FechaModifica })
                                             </div>
                                         </div>
                                     </div>

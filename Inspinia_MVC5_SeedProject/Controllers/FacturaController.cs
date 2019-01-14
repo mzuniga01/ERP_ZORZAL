@@ -568,5 +568,13 @@ namespace ERP_GMEDINA.Controllers
             var list = db.UDP_Vent_tbFactura_BuscarListaPrecio(Cliente, idItem).ToArray();
            return Json(list, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult GetCantidad(int CodSucursal, string CodProducto)
+        {
+            var list = db.UDP_Vent_tbFactura_ConsultaBodega(CodSucursal, CodProducto).ToArray();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
