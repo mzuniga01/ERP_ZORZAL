@@ -35,7 +35,7 @@
                                 @*@Html.LabelFor(model => model.cja_Id, "Número Caja", new { @class = "control-label col-md-2" })*@
                                 <label class="control-label col-md-2">Número Caja<span style="color:red"> *</span></label>
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.tbCaja.cja_Id, new { htmlAttributes = new { @class = "form-control" @*, @readonly = "readonly"*@} })
+                                    @Html.EditorFor(model => model.tbCaja.cja_Id, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly"} })
                                     @*<input type="text" class="form-control " id="cja_Id" Value="2" readonly>*@
                                     <p id="MensajeErrorDenominacion" style="color:red">@Html.ValidationMessageFor(model => model.cja_Id)</p>
                                     </div>
@@ -43,7 +43,7 @@
                             <div class="form-group col-md-7">
                                 @Html.LabelFor(model => model.tbCaja.cja_Descripcion, "Descripción Caja", new { @class = "control-label col-md-2" })
                                 <div class="col-md-7">
-                                    @Html.EditorFor(model => model.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control" @*, @readonly = "readonly"*@ } })
+                                    @Html.EditorFor(model => model.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } })
                                     @*<input type="text" class="form-control " id="cja_Descripcion" Value="Caja 2" readonly>*@
                                     @Html.ValidationMessageFor(model => model.tbCaja.cja_Descripcion)
                                 </div>
@@ -61,7 +61,7 @@
                             <div class="form-group col-md-7">
                                 @Html.LabelFor(model => model.mocja_UsuarioApertura, "Usuario Apertura", new { @class = "control-label col-md-2" })
                                 <div class="col-md-7">
-                                    @Html.EditorFor(model => model.mocja_UsuarioApertura, new { htmlAttributes = new { @class = "form-control" @*, @readonly = "readonly"*@ } })
+                                    @Html.EditorFor(model => model.mocja_UsuarioApertura, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } })
                                     @*<input type="text" class="form-control " id="mocja_UsuarioApertura" Value="brayan.interiano" readonly>*@
                                     @Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)
                                 </div>

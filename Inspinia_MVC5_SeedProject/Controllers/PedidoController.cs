@@ -53,7 +53,11 @@ namespace ERP_ZORZAL.Controllers
         }
 
 
-
+        public ActionResult Facturar(tbPedido Pedido)
+        {
+            ViewBag.ped_id = Pedido.ped_Id;
+            return View(db.tbPedido.ToList());
+        }
         // GET: /Pedido/Create
         public ActionResult Create()
         {
