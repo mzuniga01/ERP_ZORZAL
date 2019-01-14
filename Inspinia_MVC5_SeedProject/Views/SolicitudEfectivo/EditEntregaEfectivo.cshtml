@@ -1,6 +1,9 @@
 ﻿@model ERP_GMEDINA.Models.tbSolicitudEfectivo
 @using ERP_GMEDINA.Models
 
+@{
+    var sucursal = new ERP_GMEDINA.Models.tbSucursal();
+}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Solicitud de Efectivo</h2>
@@ -49,17 +52,17 @@
                                     @Html.DropDownList("mocja_Id", null, "Seleccione", new { @class = "form-control", @readonly = "readonly", @disabled = "true" })
                                     @Html.ValidationMessageFor(model => model.mocja_Id)
                                 </div>
-                                @Html.LabelFor(model => model.solef_EsApertura, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => sucursal.suc_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.solef_EsApertura,new { @readonly = "readonly", @disabled = "true" })
-                                    @Html.ValidationMessageFor(model => model.solef_EsApertura)
+                                    <input type="text" class="form-control " Value="San Pedro Sula" readonly>
+                                    @Html.ValidationMessageFor(model => sucursal.suc_Descripcion)
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.solef_EsAnulada, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.tbMovimientoCaja.cja_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.solef_EsAnulada, new { @readonly = "readonly", @disabled = "true" })
-                                    @Html.ValidationMessageFor(model => model.solef_EsAnulada)
+                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "true" } })
+                                    @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
                                 </div>
                                 @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
@@ -79,15 +82,30 @@
                                     @Html.ValidationMessageFor(model => model.solef_UsuarioEntrega)
                                 </div>
                             </div>
+
+                           
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                    
+                                <div class="col-md-12">
+                                    @Html.Partial("_EntregaEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
                                 </div>
                             </div>
-                            @Html.Partial("_IndexEditSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-content">
+                                            <div class="form-group">
+                                                <div class="col-md-12 text-center">
+                                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                                </div>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     }
                 </div>
             </div>
@@ -144,7 +162,7 @@
         });
 
 </script>
-
+<script src="~/Scripts/app/EntregaEfectivo.js"></script>
 <script type="text/javascript">
 jQuery('input,select').each(function() {
     var req = jQuery(this).attr('data-val-required');
