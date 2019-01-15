@@ -32,6 +32,7 @@ namespace ERP_ZORZAL.Controllers
         // GET: /SolicitudCredito/Details/5
         public ActionResult Details(int? id)
         {
+            ViewBag.SolicitudCreditoAprobar = db.tbSolicitudCredito.ToList();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

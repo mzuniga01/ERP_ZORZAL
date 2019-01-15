@@ -41,12 +41,12 @@ namespace ERP_GMEDINA.Models
         [Required]
         [Range(1, double.MaxValue, ErrorMessage = "El campo {0} permite números mayores que cero")]
         // [RegularExpression("^\\d+$", ErrorMessage = "El campo {0} permite números mayores que cero")]
-         [RegularExpression("^[0-9]+(.[0-9]+)?$", ErrorMessage = "El campo {0} permite números mayores que cero")]
+         //[RegularExpression(@"^(((\d{1,3})(,\d{3})*)|(\d+))(.\d+)?$", ErrorMessage = "El campo {0} permite números mayores que cero")]
         public decimal cred_MontoSolicitado { get; set; }
 
 
         [Display(Name = "Monto Aprobado")]
-        [RegularExpression("^\\d+$", ErrorMessage = "El campo {0} permite números iguales o mayores que cero")]
+      //  [RegularExpression("^\\d+$", ErrorMessage = "El campo {0} permite números iguales o mayores que cero")]
         public decimal cred_MontoAprobado { get; set; }
 
         //create

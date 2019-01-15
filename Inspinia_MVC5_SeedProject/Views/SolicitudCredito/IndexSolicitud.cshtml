@@ -98,14 +98,47 @@
                                             @Html.DisplayFor(modelItem => item.tbEstadoSolicitudCredito.escre_Descripcion)
                                         </td>
                                         <td>
-                                            @Html.ActionLink("Detalle", "Details", new { id = item.cred_Id }, new { @class = "btn btn-primary btn-xs" })
-                                            <button type="button"  id="autorizar" name="autorizar" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalAutorizar_@item.cred_Id">
+                                            @Html.ActionLink("Detalles", "Details", new { id = item.cred_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @*<button type="button"  id="autorizar" name="autorizar" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalAutorizar_@item.cred_Id">
                                                 Autorizar Crédito
-                                            </button>
+                                            </button>*@
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#AprobarSolicitud_@item.cred_Id">Aprobar</button>
                                           
                                         </td>
                                     </tr>
-                                    <div class="modal fade" id="ModalAutorizar_@item.cred_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    //modal Aprobar
+                                    <div>
+                                        <div class="modal fade" id="AprobarSolicitud_@item.cred_Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="myModalLabel">Aprobar Solicitud de Crédito</h4>
+                                                    </div>
+                                                    <div class="modal-body" id="frmEditarMunicipios">
+
+                                                        @Html.Partial("_AprobarSolicitudCredito", new ERP_GMEDINA.Models.tbSolicitudCredito()
+                                                   {
+                                                       cred_Id = item.cred_Id,
+                                                       escre_Id = item.escre_Id,
+                                                       cred_DiasAprobado = item.cred_DiasAprobado,
+                                                       cred_DiasSolicitado = item.cred_DiasSolicitado,
+                                                       cred_MontoAprobado = item.cred_MontoAprobado,
+                                                       cred_MontoSolicitado = item.cred_MontoSolicitado,
+                                                       cred_UsuarioCrea = item.cred_UsuarioCrea,
+                                                       cred_FechaCrea = item.cred_FechaCrea,
+                                                       cred_FechaAprobacion = item.cred_FechaAprobacion,
+                                                       cred_FechaModifica = item.cred_FechaModifica,
+                                                       cred_UsuarioModifica = item.cred_UsuarioModifica
+                                                   })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<div class="modal fade" id="ModalAutorizar_@item.cred_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -123,7 +156,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>*@
                                 }
 
                             }
@@ -142,3 +175,4 @@
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>
 <script src="~/Scripts/app/AceptarSolicitudCre.js"></script>
+<script src="~/Scripts/app/SolicitudCredito.js"></script>

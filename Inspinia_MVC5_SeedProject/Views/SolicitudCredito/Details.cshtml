@@ -34,7 +34,8 @@
 
 
                     <dl class="dl-horizontal">
-
+                        @Html.Hidden("RedirectTo", Url.Action("Index", "SolicitudCredito"))
+                        @Html.HiddenFor(model => model.escre_Id)
                         <dt>
                             @Html.DisplayNameFor(model => model.cred_Id)
                         </dt>
@@ -150,10 +151,18 @@
                         </dd>
                     </dl>
 
-
+@if (Model.escre_Id == 1)
+{
                     @Html.ActionLink("Editar", "Edit", new { id = Model.cred_Id }, new { @class = "btn btn-primary" })
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AprobarSolicitud">Aprobar</button>
+                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary" data-toggle="modal" data-target="#Anular">Denegar</button>
                     @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
+}
+else
+{
+    @*@Html.ActionLink("Editar", "Edit", new { id = Model.cred_Id }, new { @class = "btn btn-primary" })*@
 
+}
                 </div>
             </div>
 
@@ -185,6 +194,65 @@
         </div>
     </div>
 </div>
+@* modal aprobacion *@
+
+<div>
+    <div class="modal fade" id="AprobarSolicitud" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Aprobar Solicitud de Crédito</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @*@Html.Partial("_ListAprobacion", (List<tbSolicitudCredito>)ViewBag.Aprobacion)*@
+                    @Html.Partial("_AprobarSolicitudCredito", new ERP_GMEDINA.Models.tbSolicitudCredito()
+               {
+                   cred_Id = Model.cred_Id,
+                   escre_Id = Model.escre_Id,
+                   cred_DiasAprobado = Model.cred_DiasAprobado,
+                   cred_DiasSolicitado = Model.cred_DiasSolicitado,
+                   cred_MontoAprobado = Model.cred_MontoAprobado,
+                   cred_MontoSolicitado = Model.cred_MontoSolicitado,
+                   cred_FechaAprobacion = Model.cred_FechaAprobacion,
+                   cred_UsuarioCrea = Model.cred_UsuarioCrea,
+                   cred_FechaCrea = Model.cred_FechaCrea,
+                   cred_FechaModifica = Model.cred_FechaModifica,
+                   cred_UsuarioModifica = Model.cred_UsuarioModifica
+               })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*//---------------------------modal DENEGAR*@
+<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Denegar Solicitud Crédito</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de Denegar esta Solicitud De Crédito?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="AnularSolictud();" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*seccion de JS*@
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/SolicituCreditoDenegar.js"></script>
+<script src="~/Scripts/app/SolicitudCredito.js"></script>
 
 
 
