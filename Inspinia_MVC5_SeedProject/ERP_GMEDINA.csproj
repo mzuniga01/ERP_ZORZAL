@@ -1490,6 +1490,9 @@
     <Content Include="Views\PagosArqueo\Index.cshtml" />
     <Content Include="Views\SolicitudEfectivo\EditEntregaEfectivo.cshtml" />
     <Content Include="Views\ListaPrecios\_IndexListaPrecioDetalle.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\_EntregaEfectivoDetalle.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\_IndexDetails.cshtml" />
+    <Content Include="Views\SolicitudEfectivo\_ListaDenominaciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

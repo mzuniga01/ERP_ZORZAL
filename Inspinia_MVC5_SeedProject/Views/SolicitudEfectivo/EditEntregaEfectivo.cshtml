@@ -73,7 +73,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.solef_FechaEntrega, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.solef_FechaEntrega)
+                                    @Html.EditorFor(model => model.solef_FechaEntrega, new { @class = "form-control", @readonly = "readonly"})
                                     @Html.ValidationMessageFor(model => model.solef_FechaEntrega)
                                 </div>
                                 @Html.LabelFor(model => model.solef_UsuarioEntrega, new { @class = "control-label col-md-2" })
@@ -172,5 +172,13 @@ jQuery('input,select').each(function() {
       label.append('<span style="color:red"> *</span>');
     }
 });
+
+</script>
+<script type="text/javascript">
+    //Current Date
+    var d = new Date();
+    var n = d.toLocaleString([], { hour12: true });
+    var strDate = (d.getDate() + "/" + d.getMonth() + 1) + "/" +d.getFullYear() + ' ' +d.getHours() + ':'+ d.getMinutes()+ ':' + d.getSeconds();
+    $('#solef_FechaEntrega').val(n);
 </script>
 }
