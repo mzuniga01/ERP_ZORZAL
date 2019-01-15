@@ -178,3 +178,27 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 @*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+
+
+    
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        var FechaInicio = new Date();
+        $("#txtFechalimite").datepicker({
+            dateFormat: 'mm/dd/yy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            minDate: FechaInicio,
+            maxDate: '+3Y',
+            prevText: 'Ant',
+            nextText: 'Sig',
+            changeMonth: true,
+            changeYear: true,
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+        }).datepicker('setDate', new Date());
+    </script>
+}
