@@ -33,9 +33,11 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> dfisc_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modificación")]
-       
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> dfisc_FechaModifica { get; set; }
     }
 
 }
+
+

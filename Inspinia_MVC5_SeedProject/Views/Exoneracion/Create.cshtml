@@ -39,19 +39,35 @@
 
        
 
+       
+
+
         <div class="form-group">
-            @Html.LabelFor(model => model.clte_Id, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Id Cliente</label>
+            @*@Html.LabelFor(model => model.clte_Id, new { @class = "control-label col-md-2" })*@
             <div class="col-md-4">
-               @Html.EditorFor(model => model.clte_Id) 
-                <input type="hidden" name="" />
-            @Html.ValidationMessageFor(model => model.clte_Id)
+                @Html.EditorFor(model => model.clte_Id, new { htmlAttributes = new { @readonly = "readonly" } })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)
             </div>
-            <div class="col-md-">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
+
+            <div class="col-md-1">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </div>
-
-
+        <div class="form-group">
+            <label class="control-label col-md-2">Identificación</label>
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Nombre Cliente</label>
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.exo_Documento, new { @class = "control-label col-md-2" })
@@ -62,32 +78,35 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group" id="Activo">
             @Html.LabelFor(model => model.exo_ExoneracionActiva, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.exo_ExoneracionActiva)
-                @Html.ValidationMessageFor(model => model.exo_ExoneracionActiva)
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.exo_ExoneracionActiva, new { @readonly = "readonly"  })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.exo_ExoneracionActiva)</p>
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
+        <div class="form-group"  @*@name="entrada"*@>
             @Html.LabelFor(model => model.exo_FechaInicialVigencia, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.exo_FechaInicialVigencia@*, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechainicio" } }*@)
+                @*<input type="text" name="entrada" id="entrada" value="">*@
+                @Html.EditorFor(model => model.exo_FechaInicialVigencia, new { htmlAttributes = new { @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.exo_FechaInicialVigencia)
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" >
             @Html.LabelFor(model => model.exo_FechaIFinalVigencia, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.exo_FechaIFinalVigencia@*, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafin" } }*@)
+                @*<input type="text" name="salida" id="salida" value="">*@
+                @Html.EditorFor(model => model.exo_FechaIFinalVigencia, new { htmlAttributes = new { @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.exo_FechaIFinalVigencia)
             </div>
         </div>
 
         
-
+      
+       
        
 
         <div class="form-group">
@@ -105,16 +124,17 @@
     </div>
  </div>
 
- <div>
-    <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div>
+    <div class="modal fade" id="ModalAgregarClientes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Buscar Cliente</h4>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
                 </div>
+                @*ViewBag.Cliente = db.tbCliente.ToList();*@
                 <div class="modal-body" id="frmEditarMunicipios">
                     @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
                 </div>
@@ -128,31 +148,44 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
- $.datepicker.regional['es'] = {
- closeText: 'Cerrar',
- prevText: '< Ant',
- nextText: 'Sig >',
- currentText: 'Hoy',
- monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
- monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
- dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
- dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
- dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
- weekHeader: 'Sm',
- dateFormat: 'dd/mm/yy',
- firstDay: 1,
- isRTL: false,
- showMonthAfterYear: false,
- yearSuffix: ''
- };
- $.datepicker.setDefaults($.datepicker.regional['es']);
-$(function () {
-    $("#exo_FechaInicialVigencia").datepicker({ dateFormat: 'yy-mm-dd' });
-    $("#exo_FechaIFinalVigencia").datepicker({ dateFormat: 'yy-mm-dd' });
-});
-    </script>
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '< Ant',
+            nextText: 'Sig >',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
+
+        //-------------Fecha Actual-----------------------
+        $(function () {
+            $("#exo_FechaInicialVigencia").datepicker({ dateFormat: 'yy/mm/dd', maxDate: '+0d', minDate: 0 }).datepicker('setDate', new Date());
+            $("#exo_FechaIFinalVigencia").datepicker({ dateFormat: 'yy/mm/dd',minDate: 0 });
+
+        });
+
+        </script>
 }
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
-<script src="~/Scripts/app/Cliente.js"></script>
+<script src="~/Scripts/app/ClienteExoneracion.js"></script>
+
+
+
+
+
+
+
+
+

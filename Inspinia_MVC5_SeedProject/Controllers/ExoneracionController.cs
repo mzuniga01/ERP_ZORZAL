@@ -84,12 +84,14 @@ namespace ERP_ZORZAL.Controllers
             catch (Exception Ex)
             {
                 ModelState.AddModelError("", "Error al Agregar Registro " + Ex.Message.ToString());
+                ViewBag.Cliente = db.tbCliente.ToList();
                 return View(tbExoneracion);
             }
 
             ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioCrea);
             ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
+            ViewBag.Cliente = db.tbCliente.ToList();
             return View(tbExoneracion);
         }
 
@@ -153,11 +155,13 @@ namespace ERP_ZORZAL.Controllers
             catch (Exception Ex)
             {
                 ModelState.AddModelError("", "Error al Agregar Registro " + Ex.Message.ToString());
+                ViewBag.Cliente = db.tbCliente.ToList();
                 return View(tbExoneracion);
             }
             ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioCrea);
             ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
+            ViewBag.Cliente = db.tbCliente.ToList();
             return View(tbExoneracion);
         }
 
@@ -194,6 +198,21 @@ namespace ERP_ZORZAL.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        [HttpPost]
+        public JsonResult InactivarCliente(int CodExoneracion, bool Activo)
+        {
+            var list = db.UDP_Vent_tbExoneracion_Estado(CodExoneracion, Helpers.ClienteInactivo).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult ActivarCliente(int CodExoneracion, bool Activo)
+        {
+            var list = db.UDP_Vent_tbExoneracion_Estado(CodExoneracion, Helpers.ClienteActivo).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
 }

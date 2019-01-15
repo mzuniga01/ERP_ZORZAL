@@ -61,7 +61,7 @@ namespace ERP_GMEDINA.Controllers
                         MensajeError = Convert.ToInt32(DocumentoFiscal.MensajeError);
                     if (MensajeError == -1)
                     {
-                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        ModelState.AddModelError("", "No se pudo insertar el registro, Codigo Duplicado.");
                         return View(tbDocumentoFiscal);
                     }
                     else
@@ -72,7 +72,7 @@ namespace ERP_GMEDINA.Controllers
                 catch (Exception Ex)
                 {
                     Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                    ModelState.AddModelError("", "No se pudo insertar el registro, Codigo Duplicado.");
                     return View(tbDocumentoFiscal);
                 }
             }
@@ -115,7 +115,7 @@ namespace ERP_GMEDINA.Controllers
                         MensajeError = Convert.ToInt32(DocumentoFiscal.MensajeError);
                     if (MensajeError == -1)
                     {
-                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                        ModelState.AddModelError("", "No se pudo actualizar el registro, Codigo Duplicado.");
                         return View(tbDocumentoFiscal);
                     }
                     else
@@ -126,7 +126,7 @@ namespace ERP_GMEDINA.Controllers
                 catch (Exception Ex)
                 {
                     Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, Codigo Duplicado.");
                     return View(tbDocumentoFiscal);
                 }
             }
