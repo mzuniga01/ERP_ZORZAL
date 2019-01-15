@@ -18,7 +18,7 @@ namespace ERP_GMEDINA.Models
         public string bod_Nombre { get; set; }
         public string prod_Descripcion { get; set; }
         public string prod_Marca { get; set; }
-        public Nullable<decimal> bodd_CantidadExistente { get; set; }
+        public decimal bodd_CantidadExistente { get; set; }
         public decimal bodd_CantidadMinima { get; set; }
         public int bod_Id { get; set; }
         public string prod_Codigo { get; set; }

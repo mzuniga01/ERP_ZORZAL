@@ -402,44 +402,44 @@ namespace ERP_ZORZAL.Controllers
             return View(tbPedido);
         }
 
-        [HttpPost]
-        public ActionResult UpdatePedidoDetalle(tbPedidoDetalle EditPedidoDetalle)
-        {
-            try
-            {
-                var MensajeError = 0;
-                IEnumerable<object> list = null;
-                list = db.UDP_Vent_tbPedidoDetalle_Update(
-                            EditPedidoDetalle.pedd_Id,
-                            EditPedidoDetalle.prod_Codigo,
-                            EditPedidoDetalle.pedd_Descripcion,
-                            EditPedidoDetalle.pedd_Cantidad,
-                            EditPedidoDetalle.pedd_CantidadFacturada,
-                            EditPedidoDetalle.pedd_UsuarioCrea,
-                            EditPedidoDetalle.pedd_FechaCrea,
-                             EditPedidoDetalle.pedd_UsuarioModifica,
-                             EditPedidoDetalle.pedd_FechaModifica
-                    );
+        //[HttpPost]
+        //public ActionResult UpdatePedidoDetalle(tbPedidoDetalle EditPedidoDetalle)
+        //{
+        //    try
+        //    {
+        //        var MensajeError = 0;
+        //        IEnumerable<object> list = null;
+        //        list = db.UDP_Vent_tbPedidoDetalle_Update(
+        //                    EditPedidoDetalle.pedd_Id,
+        //                    EditPedidoDetalle.prod_Codigo,
+        //                    EditPedidoDetalle.pedd_Descripcion,
+        //                    EditPedidoDetalle.pedd_Cantidad,
+        //                    EditPedidoDetalle.pedd_CantidadFacturada,
+        //                    EditPedidoDetalle.pedd_UsuarioCrea,
+        //                    EditPedidoDetalle.pedd_FechaCrea,
+        //                     EditPedidoDetalle.pedd_UsuarioModifica,
+        //                     EditPedidoDetalle.pedd_FechaModifica
+        //            );
 
-                foreach (UDP_Vent_tbPuntoEmisionDetalle_Update_Result PedidoDetalle in list)
-                    MensajeError = PedidoDetalle.MensajeError;
-                if (MensajeError == -1)
-                {
-                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                    return PartialView("_PedidoDetalleEditar");
-                }
-                else
-                {
-                    return RedirectToAction("Index");
-                }
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al programador.");
-                return PartialView("_PedidoDetalleEditar", EditPedidoDetalle);
-            }
-        }
+        //        foreach (UDP_Vent_tbPuntoEmisionDetalle_Update_Result PedidoDetalle in list)
+        //            MensajeError = PedidoDetalle.MensajeError;
+        //        if (MensajeError == -1)
+        //        {
+        //            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+        //            return PartialView("_PedidoDetalleEditar");
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Index");
+        //        }
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        Ex.Message.ToString();
+        //        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al programador.");
+        //        return PartialView("_PedidoDetalleEditar", EditPedidoDetalle);
+        //    }
+        //}
 
 
 

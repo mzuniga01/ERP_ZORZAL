@@ -37,6 +37,7 @@ namespace ERP_GMEDINA.Models
         public System.DateTime bod_FechaCrea { get; set; }
         public Nullable<int> bod_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> bod_FechaModifica { get; set; }
+        public Nullable<short> emp_Id { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

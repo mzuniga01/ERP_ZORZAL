@@ -27,6 +27,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> obj_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> obj_FechaModifica { get; set; }
         public bool obj_Estado { get; set; }
+        public string obj_Referencia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbAccesoRol> tbAccesoRol { get; set; }

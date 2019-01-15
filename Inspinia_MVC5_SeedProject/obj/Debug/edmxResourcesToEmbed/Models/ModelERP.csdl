@@ -224,6 +224,7 @@
       <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
       <Parameter Name="cdto_FechaRedencion" Mode="In" Type="DateTime" />
       <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
+      <Parameter Name="cdto_EsImpreso" Mode="In" Type="Boolean" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbCuponDescuento_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Update_Result)">
       <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
@@ -237,6 +238,7 @@
       <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
       <Parameter Name="cdto_FechaRedencion" Mode="In" Type="DateTime" />
       <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
+      <Parameter Name="cdto_EsImpreso" Mode="In" Type="Boolean" />
       <Parameter Name="cdto_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="cdto_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
@@ -362,8 +364,6 @@
       <Parameter Name="pedd_CantidadFacturada" Mode="In" Type="Decimal" />
       <Parameter Name="pedd_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="pedd_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="pedd_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="pedd_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Update_Result)">
       <Parameter Name="cred_Id" Mode="In" Type="Int32" />
@@ -567,10 +567,12 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Acce_tbObjeto_Insert" ReturnType="Collection(String)">
       <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
+      <Parameter Name="obj_Referencia" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Acce_tbObjeto_Update" ReturnType="Collection(String)">
       <Parameter Name="obj_Id" Mode="In" Type="Int32" />
       <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
+      <Parameter Name="obj_Referencia" Mode="In" Type="String" />
       <Parameter Name="obj_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="obj_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
@@ -610,7 +612,7 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Acce_tbUsuario_PasswordUpdate" ReturnType="Collection(String)">
       <Parameter Name="usu_Id" Mode="In" Type="Int32" />
-      <Parameter Name="usu_Password" Mode="In" Type="Binary" />
+      <Parameter Name="usu_Password" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Acce_tbUsuario_Select" ReturnType="Collection(String)" />
     <FunctionImport Name="UDP_Acce_tbUsuario_Update" ReturnType="Collection(String)">
@@ -804,7 +806,6 @@
       <Parameter Name="box_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbEntrada_Insert" ReturnType="Collection(String)">
-      <Parameter Name="ent_NumeroFormato" Mode="In" Type="String" />
       <Parameter Name="ent_FechaElaboracion" Mode="In" Type="DateTime" />
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
       <Parameter Name="estm_Id" Mode="In" Type="Byte" />
@@ -818,7 +819,6 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbEntrada_Update" ReturnType="Collection(String)">
       <Parameter Name="ent_Id" Mode="In" Type="Int32" />
-      <Parameter Name="ent_NumeroFormato" Mode="In" Type="String" />
       <Parameter Name="ent_FechaElaboracion" Mode="In" Type="DateTime" />
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
       <Parameter Name="prov_Id" Mode="In" Type="Int32" />
@@ -839,7 +839,6 @@
       <Parameter Name="ent_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
       <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
-      <Parameter Name="uni_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Update" ReturnType="Collection(String)">
       <Parameter Name="entd_Id" Mode="In" Type="Int32" />
@@ -848,7 +847,6 @@
       <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
       <Parameter Name="entd_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="entd_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="uni_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Insert" ReturnType="Collection(String)">
       <Parameter Name="estm_Descripcion" Mode="In" Type="String" />
@@ -2648,6 +2646,7 @@
     <NavigationProperty Name="tbAccesoRol" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" FromRole="tbObjeto" ToRole="tbAccesoRol" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbObjeto_obj_UsuarioModifica" FromRole="tbObjeto" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" FromRole="tbObjeto" ToRole="tbUsuario" />
+    <Property Name="obj_Referencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="tbRol">
     <Key>
@@ -3056,6 +3055,7 @@
     <NavigationProperty Name="tbInventarioFisico" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisico_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbInventarioFisico" />
     <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_Inv_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbSalida" />
     <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbBodega_tbSucursal_bod_Id" FromRole="tbBodega" ToRole="tbSucursal" />
+    <Property Name="emp_Id" Type="Int16" />
   </EntityType>
   <EntityType Name="tbBodegaDetalle">
     <Key>
@@ -3098,7 +3098,7 @@
       <PropertyRef Name="ent_Id" />
     </Key>
     <Property Name="ent_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ent_NumeroFormato" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ent_NumeroFormato" Type="String" Nullable="false" />
     <Property Name="ent_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="bod_Id" Type="Int32" Nullable="false" />
     <Property Name="estm_Id" Type="Byte" Nullable="false" />
@@ -3123,6 +3123,8 @@
     <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbSalida_fact_Id" FromRole="tbEntrada" ToRole="tbSalida" />
     <NavigationProperty Name="tbTipoEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbTiposEntrada_tent_Id" FromRole="tbEntrada" ToRole="tbTipoEntrada" />
     <NavigationProperty Name="tbEntradaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbEntradaDetalle_tbEntrada_ent_Id" FromRole="tbEntrada" ToRole="tbEntradaDetalle" />
+    <Property Name="entd_EsAnulada" Type="Boolean" />
+    <Property Name="entd_RazonAnulada" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="tbEntradaDetalle">
     <Key>
@@ -3431,6 +3433,7 @@
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCuponDescuanto_cdto_UsuarioModifica" FromRole="tbCuponDescuento" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCuponDescuento_cdto_UsuarioCrea" FromRole="tbCuponDescuento" ToRole="tbUsuario" />
     <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_suc_Codigo" FromRole="tbCuponDescuento" ToRole="tbSucursal" />
+    <Property Name="cdto_EsImpreso" Type="Boolean" />
   </EntityType>
   <EntityType Name="tbDenominacionArqueo">
     <Key>
@@ -3930,7 +3933,7 @@
     <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="bodd_CantidadExistente" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="bodd_CantidadExistente" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="bodd_CantidadMinima" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
     <Property Name="bod_Id" Type="Int32" Nullable="false" />
     <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />

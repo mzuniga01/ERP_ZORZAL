@@ -809,6 +809,7 @@
     <EntitySetMapping Name="tbObjeto">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbObjeto">
         <MappingFragment StoreEntitySet="tbObjeto">
+          <ScalarProperty Name="obj_Referencia" ColumnName="obj_Referencia" />
           <ScalarProperty Name="obj_Estado" ColumnName="obj_Estado" />
           <ScalarProperty Name="obj_FechaModifica" ColumnName="obj_FechaModifica" />
           <ScalarProperty Name="obj_UsuarioModifica" ColumnName="obj_UsuarioModifica" />
@@ -1043,6 +1044,7 @@
     <EntitySetMapping Name="tbBodega">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbBodega">
         <MappingFragment StoreEntitySet="tbBodega">
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
           <ScalarProperty Name="bod_FechaModifica" ColumnName="bod_FechaModifica" />
           <ScalarProperty Name="bod_UsuarioModifica" ColumnName="bod_UsuarioModifica" />
           <ScalarProperty Name="bod_FechaCrea" ColumnName="bod_FechaCrea" />
@@ -1093,6 +1095,8 @@
     <EntitySetMapping Name="tbEntrada">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEntrada">
         <MappingFragment StoreEntitySet="tbEntrada">
+          <ScalarProperty Name="entd_RazonAnulada" ColumnName="entd_RazonAnulada" />
+          <ScalarProperty Name="entd_EsAnulada" ColumnName="entd_EsAnulada" />
           <ScalarProperty Name="ent_FechaModifica" ColumnName="ent_FechaModifica" />
           <ScalarProperty Name="ent_UsuarioModifica" ColumnName="ent_UsuarioModifica" />
           <ScalarProperty Name="ent_FechaCrea" ColumnName="ent_FechaCrea" />
@@ -1116,7 +1120,6 @@
     <EntitySetMapping Name="tbEntradaDetalle">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEntradaDetalle">
         <MappingFragment StoreEntitySet="tbEntradaDetalle">
-          <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
           <ScalarProperty Name="entd_FechaModifica" ColumnName="entd_FechaModifica" />
           <ScalarProperty Name="entd_UsuarioModifica" ColumnName="entd_UsuarioModifica" />
           <ScalarProperty Name="entd_FechaCrea" ColumnName="entd_FechaCrea" />
@@ -1343,6 +1346,7 @@
     <EntitySetMapping Name="tbCuponDescuento">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCuponDescuento">
         <MappingFragment StoreEntitySet="tbCuponDescuento">
+          <ScalarProperty Name="cdto_EsImpreso" ColumnName="cdto_EsImpreso" />
           <ScalarProperty Name="cdto_FechaModifica" ColumnName="cdto_FechaModifica" />
           <ScalarProperty Name="cdto_UsuarioModifica" ColumnName="cdto_UsuarioModifica" />
           <ScalarProperty Name="cdto_FechaCrea" ColumnName="cdto_FechaCrea" />

@@ -199,7 +199,37 @@
 
 
 
-@*@section Scripts {
+@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    
-}*@
+    <script>
+        $('#cdto_PorcentajeDescuento').focusout(function () {
+            var Porcentaje = $('#cdto_PorcentajeDescuento').val();
+
+            if (Porcentaje >= 1 ) {
+                $('#cdto_PorcentajeDescuento').removeAttr("readonly");
+                $('#cdto_MaximoMontoDescuento').removeAttr("readonly");
+                $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00');
+                $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
+
+            } else if (Porcentaje <= 0) {
+                $('#cdto_PorcentajeDescuento').attr('readonly', 'readonly').val('0.00');
+                $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
+                $("#cdto_MontoDescuento").removeAttr("readonly").focus();
+                $('#cdto_CantidadCompraMinima').removeAttr("readonly").val();
+
+                //$('#cdto_CantidadCompraMinima').focusout(function () {
+                //    var Monto = $('#cdto_MontoDescuento').val();
+                //    var CompraMinima = $('#cdto_CantidadCompraMinima').val();
+                //    if (CompraMinima > Monto) {
+                //        alert("La Compra Minima debe ser mayor al Monto Descuento.")
+                //        //$("#cdto_CantidadCompraMinima").removeAttr("readonly").focus();
+                //    }
+                //    else
+                //    {
+
+                //    }
+                //});
+            }
+        });
+</script>
+}

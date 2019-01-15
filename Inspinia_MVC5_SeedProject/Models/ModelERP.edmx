@@ -23,6 +23,7 @@
           </Key>
           <Property Name="obj_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="obj_Pantalla" Type="nvarchar" MaxLength="50" />
+          <Property Name="obj_Referencia" Type="varchar" MaxLength="100" />
           <Property Name="obj_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="obj_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="obj_UsuarioModifica" Type="int" />
@@ -248,6 +249,7 @@
           <Property Name="bod_Telefono" Type="varchar" MaxLength="13" />
           <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
           <Property Name="bod_EsActiva" Type="tinyint" Nullable="false" />
+          <Property Name="emp_Id" Type="smallint" />
           <Property Name="bod_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="bod_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="bod_UsuarioModifica" Type="int" />
@@ -287,8 +289,8 @@
           <Key>
             <PropertyRef Name="ent_Id" />
           </Key>
-          <Property Name="ent_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ent_NumeroFormato" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ent_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ent_NumeroFormato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ent_FechaElaboracion" Type="datetime" Nullable="false" />
           <Property Name="bod_Id" Type="int" Nullable="false" />
           <Property Name="estm_Id" Type="tinyint" Nullable="false" />
@@ -299,6 +301,8 @@
           <Property Name="ent_RazonDevolucion" Type="varchar" MaxLength="150" />
           <Property Name="ent_BodegaDestino" Type="int" />
           <Property Name="tent_Id" Type="tinyint" Nullable="false" />
+          <Property Name="entd_EsAnulada" Type="bit" />
+          <Property Name="entd_RazonAnulada" Type="varchar" MaxLength="100" />
           <Property Name="ent_SalidaOrigen" Type="int" Nullable="false" />
           <Property Name="ent_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="ent_FechaCrea" Type="datetime" Nullable="false" />
@@ -317,7 +321,6 @@
           <Property Name="entd_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="entd_UsuarioModifica" Type="int" />
           <Property Name="entd_FechaModifica" Type="datetime" />
-          <Property Name="uni_Id" Type="int" />
         </EntityType>
         <EntityType Name="tbEstadoInventarioFisico">
           <Key>
@@ -552,6 +555,7 @@
           <Property Name="cdto_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="cdto_UsuarioModifica" Type="int" />
           <Property Name="cdto_FechaModifica" Type="datetime" />
+          <Property Name="cdto_EsImpreso" Type="bit" />
         </EntityType>
         <EntityType Name="tbDenominacionArqueo">
           <Key>
@@ -966,18 +970,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
 warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
           <Key>
-            <PropertyRef Name="suc_Descripcion" />
             <PropertyRef Name="prod_Descripcion" />
             <PropertyRef Name="prod_Marca" />
+            
             <PropertyRef Name="bodd_CantidadMinima" />
             <PropertyRef Name="bod_Id" />
             <PropertyRef Name="prod_Codigo" />
+            <PropertyRef Name="suc_Descripcion" />
           </Key>
           <Property Name="suc_Descripcion" Type="nvarchar" MaxLength="40" Nullable="false" />
           <Property Name="bod_Nombre" Type="varchar" MaxLength="100" />
           <Property Name="prod_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="prod_Marca" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="bodd_CantidadExistente" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="bodd_CantidadExistente" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="bodd_CantidadMinima" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="bod_Id" Type="int" Nullable="false" />
           <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
@@ -2424,18 +2429,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inv_tbEntradaDetalle_tbUnidadMedida_uni_Id">
-          <End Role="tbUnidadMedida" Type="Self.tbUnidadMedida" Multiplicity="0..1" />
-          <End Role="tbEntradaDetalle" Type="Self.tbEntradaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUnidadMedida">
-              <PropertyRef Name="uni_Id" />
-            </Principal>
-            <Dependent Role="tbEntradaDetalle">
-              <PropertyRef Name="uni_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
           <End Role="tbEstadoMovimiento" Type="Self.tbEstadoMovimiento" Multiplicity="*" />
@@ -3601,10 +3594,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
         </Function>
         <Function Name="UDP_Acce_tbObjeto_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
+          <Parameter Name="obj_Referencia" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UDP_Acce_tbObjeto_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="obj_Id" Type="int" Mode="In" />
           <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
+          <Parameter Name="obj_Referencia" Type="varchar" Mode="In" />
           <Parameter Name="obj_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="obj_FechaCrea" Type="datetime" Mode="In" />
         </Function>
@@ -3644,7 +3639,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
         </Function>
         <Function Name="UDP_Acce_tbUsuario_PasswordUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="usu_Id" Type="int" Mode="In" />
-          <Parameter Name="usu_Password" Type="binary" Mode="In" />
+          <Parameter Name="usu_Password" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UDP_Acce_tbUsuario_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" />
         <Function Name="UDP_Acce_tbUsuario_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
@@ -3994,7 +3989,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="box_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbEntrada_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
-          <Parameter Name="ent_NumeroFormato" Type="varchar" Mode="In" />
           <Parameter Name="ent_FechaElaboracion" Type="datetime" Mode="In" />
           <Parameter Name="bod_Id" Type="int" Mode="In" />
           <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
@@ -4008,7 +4002,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
         </Function>
         <Function Name="UDP_Inv_tbEntrada_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="ent_Id" Type="int" Mode="In" />
-          <Parameter Name="ent_NumeroFormato" Type="varchar" Mode="In" />
           <Parameter Name="ent_FechaElaboracion" Type="datetime" Mode="In" />
           <Parameter Name="bod_Id" Type="int" Mode="In" />
           <Parameter Name="prov_Id" Type="int" Mode="In" />
@@ -4029,7 +4022,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="ent_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
-          <Parameter Name="uni_Id" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbEntradaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="entd_Id" Type="int" Mode="In" />
@@ -4038,7 +4030,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
           <Parameter Name="entd_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="entd_FechaCrea" Type="datetime" Mode="In" />
-          <Parameter Name="uni_Id" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbEstadoMovimiento_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="estm_Id" Type="int" Mode="In" />
@@ -4374,6 +4365,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="cdto_Redimido" Type="bit" Mode="In" />
           <Parameter Name="cdto_FechaRedencion" Type="date" Mode="In" />
           <Parameter Name="cdto_Anulado" Type="bit" Mode="In" />
+          <Parameter Name="cdto_EsImpreso" Type="bit" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbCuponDescuento_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="cdto_ID" Type="int" Mode="In" />
@@ -4387,6 +4379,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="cdto_Redimido" Type="bit" Mode="In" />
           <Parameter Name="cdto_FechaRedencion" Type="date" Mode="In" />
           <Parameter Name="cdto_Anulado" Type="bit" Mode="In" />
+          <Parameter Name="cdto_EsImpreso" Type="bit" Mode="In" />
           <Parameter Name="cdto_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="cdto_FechaCrea" Type="datetime" Mode="In" />
         </Function>
@@ -4742,8 +4735,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Parameter Name="pedd_CantidadFacturada" Type="decimal" Mode="In" />
           <Parameter Name="pedd_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="pedd_FechaCrea" Type="datetime" Mode="In" />
-          <Parameter Name="pedd_UsuarioModifica" Type="int" Mode="In" />
-          <Parameter Name="pedd_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbPuntoEmision_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="pemi_NumeroCAI" Type="nvarchar" Mode="In" />
@@ -5490,10 +5481,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <End Role="tbProducto" EntitySet="tbProducto" />
             <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbEntradaDetalle_tbUnidadMedida_uni_Id" Association="Self.FK_Inv_tbEntradaDetalle_tbUnidadMedida_uni_Id">
-            <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
-            <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
-          </AssociationSet>
           <AssociationSet Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica" Association="Self.FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbEstadoMovimiento" EntitySet="tbEstadoMovimiento" />
@@ -6099,6 +6086,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
             <Parameter Name="cdto_FechaRedencion" Mode="In" Type="DateTime" />
             <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
+            <Parameter Name="cdto_EsImpreso" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbCuponDescuento_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Update_Result)">
             <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
@@ -6112,6 +6100,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
             <Parameter Name="cdto_FechaRedencion" Mode="In" Type="DateTime" />
             <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
+            <Parameter Name="cdto_EsImpreso" Mode="In" Type="Boolean" />
             <Parameter Name="cdto_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="cdto_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
@@ -6237,8 +6226,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="pedd_CantidadFacturada" Mode="In" Type="Decimal" />
             <Parameter Name="pedd_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="pedd_FechaCrea" Mode="In" Type="DateTime" />
-            <Parameter Name="pedd_UsuarioModifica" Mode="In" Type="Int32" />
-            <Parameter Name="pedd_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Update_Result)">
             <Parameter Name="cred_Id" Mode="In" Type="Int32" />
@@ -6441,11 +6428,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="acrol_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbObjeto_Insert" ReturnType="Collection(String)">
-          <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
+            <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
+            <Parameter Name="obj_Referencia" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbObjeto_Update" ReturnType="Collection(String)">
             <Parameter Name="obj_Id" Mode="In" Type="Int32" />
             <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
+            <Parameter Name="obj_Referencia" Mode="In" Type="String" />
             <Parameter Name="obj_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="obj_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
@@ -6485,7 +6474,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbUsuario_PasswordUpdate" ReturnType="Collection(String)">
             <Parameter Name="usu_Id" Mode="In" Type="Int32" />
-            <Parameter Name="usu_Password" Mode="In" Type="Binary" />
+            <Parameter Name="usu_Password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbUsuario_Select" ReturnType="Collection(String)" />
           <FunctionImport Name="UDP_Acce_tbUsuario_Update" ReturnType="Collection(String)">
@@ -6679,7 +6668,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="box_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbEntrada_Insert" ReturnType="Collection(String)">
-            <Parameter Name="ent_NumeroFormato" Mode="In" Type="String" />
             <Parameter Name="ent_FechaElaboracion" Mode="In" Type="DateTime" />
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="estm_Id" Mode="In" Type="Byte" />
@@ -6693,7 +6681,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbEntrada_Update" ReturnType="Collection(String)">
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
-            <Parameter Name="ent_NumeroFormato" Mode="In" Type="String" />
             <Parameter Name="ent_FechaElaboracion" Mode="In" Type="DateTime" />
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="prov_Id" Mode="In" Type="Int32" />
@@ -6714,7 +6701,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
-            <Parameter Name="uni_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Update" ReturnType="Collection(String)">
             <Parameter Name="entd_Id" Mode="In" Type="Int32" />
@@ -6723,7 +6709,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
             <Parameter Name="entd_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="entd_FechaCrea" Mode="In" Type="DateTime" />
-            <Parameter Name="uni_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Insert" ReturnType="Collection(String)">
           <Parameter Name="estm_Descripcion" Mode="In" Type="String" />
@@ -8523,6 +8508,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <NavigationProperty Name="tbAccesoRol" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" FromRole="tbObjeto" ToRole="tbAccesoRol" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbObjeto_obj_UsuarioModifica" FromRole="tbObjeto" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" FromRole="tbObjeto" ToRole="tbUsuario" />
+          <Property Name="obj_Referencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tbRol">
           <Key>
@@ -8931,6 +8917,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <NavigationProperty Name="tbInventarioFisico" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisico_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbInventarioFisico" />
           <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_Inv_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbSalida" />
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbBodega_tbSucursal_bod_Id" FromRole="tbBodega" ToRole="tbSucursal" />
+          <Property Name="emp_Id" Type="Int16" />
         </EntityType>
         <EntityType Name="tbBodegaDetalle">
           <Key>
@@ -8973,7 +8960,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <PropertyRef Name="ent_Id" />
           </Key>
           <Property Name="ent_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ent_NumeroFormato" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ent_NumeroFormato" Type="String" Nullable="false" />
           <Property Name="ent_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="bod_Id" Type="Int32" Nullable="false" />
           <Property Name="estm_Id" Type="Byte" Nullable="false" />
@@ -8998,6 +8985,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbSalida_fact_Id" FromRole="tbEntrada" ToRole="tbSalida" />
           <NavigationProperty Name="tbTipoEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbTiposEntrada_tent_Id" FromRole="tbEntrada" ToRole="tbTipoEntrada" />
           <NavigationProperty Name="tbEntradaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbEntradaDetalle_tbEntrada_ent_Id" FromRole="tbEntrada" ToRole="tbEntradaDetalle" />
+          <Property Name="entd_EsAnulada" Type="Boolean" />
+          <Property Name="entd_RazonAnulada" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tbEntradaDetalle">
           <Key>
@@ -9306,6 +9295,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCuponDescuanto_cdto_UsuarioModifica" FromRole="tbCuponDescuento" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCuponDescuento_cdto_UsuarioCrea" FromRole="tbCuponDescuento" ToRole="tbUsuario" />
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_suc_Codigo" FromRole="tbCuponDescuento" ToRole="tbSucursal" />
+          <Property Name="cdto_EsImpreso" Type="Boolean" />
         </EntityType>
         <EntityType Name="tbDenominacionArqueo">
           <Key>
@@ -9805,7 +9795,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="bodd_CantidadExistente" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="bodd_CantidadExistente" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="bodd_CantidadMinima" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="bod_Id" Type="Int32" Nullable="false" />
           <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
@@ -13334,6 +13324,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <EntitySetMapping Name="tbObjeto">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbObjeto">
               <MappingFragment StoreEntitySet="tbObjeto">
+                <ScalarProperty Name="obj_Referencia" ColumnName="obj_Referencia" />
                 <ScalarProperty Name="obj_Estado" ColumnName="obj_Estado" />
                 <ScalarProperty Name="obj_FechaModifica" ColumnName="obj_FechaModifica" />
                 <ScalarProperty Name="obj_UsuarioModifica" ColumnName="obj_UsuarioModifica" />
@@ -13568,6 +13559,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <EntitySetMapping Name="tbBodega">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbBodega">
               <MappingFragment StoreEntitySet="tbBodega">
+                <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
                 <ScalarProperty Name="bod_FechaModifica" ColumnName="bod_FechaModifica" />
                 <ScalarProperty Name="bod_UsuarioModifica" ColumnName="bod_UsuarioModifica" />
                 <ScalarProperty Name="bod_FechaCrea" ColumnName="bod_FechaCrea" />
@@ -13618,6 +13610,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <EntitySetMapping Name="tbEntrada">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEntrada">
               <MappingFragment StoreEntitySet="tbEntrada">
+                <ScalarProperty Name="entd_RazonAnulada" ColumnName="entd_RazonAnulada" />
+                <ScalarProperty Name="entd_EsAnulada" ColumnName="entd_EsAnulada" />
                 <ScalarProperty Name="ent_FechaModifica" ColumnName="ent_FechaModifica" />
                 <ScalarProperty Name="ent_UsuarioModifica" ColumnName="ent_UsuarioModifica" />
                 <ScalarProperty Name="ent_FechaCrea" ColumnName="ent_FechaCrea" />
@@ -13641,7 +13635,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <EntitySetMapping Name="tbEntradaDetalle">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEntradaDetalle">
               <MappingFragment StoreEntitySet="tbEntradaDetalle">
-                <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
                 <ScalarProperty Name="entd_FechaModifica" ColumnName="entd_FechaModifica" />
                 <ScalarProperty Name="entd_UsuarioModifica" ColumnName="entd_UsuarioModifica" />
                 <ScalarProperty Name="entd_FechaCrea" ColumnName="entd_FechaCrea" />
@@ -13868,6 +13861,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <EntitySetMapping Name="tbCuponDescuento">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCuponDescuento">
               <MappingFragment StoreEntitySet="tbCuponDescuento">
+                <ScalarProperty Name="cdto_EsImpreso" ColumnName="cdto_EsImpreso" />
                 <ScalarProperty Name="cdto_FechaModifica" ColumnName="cdto_FechaModifica" />
                 <ScalarProperty Name="cdto_UsuarioModifica" ColumnName="cdto_UsuarioModifica" />
                 <ScalarProperty Name="cdto_FechaCrea" ColumnName="cdto_FechaCrea" />
