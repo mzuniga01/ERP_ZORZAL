@@ -124,7 +124,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include= "arqpg_Id,mocja_Id,tpa_Id,arqpg_PagosSistema,arqpg_PagosConteo,arqpg_UsuarioCrea,arqpg_FechaCrea,arqpg_UsuarioModifica,arqpg_FechaModifica")] tbPagosArqueo tbPagosArqueo)
+        public ActionResult Edit([Bind(Include= "arqpg_Id,mocja_Id,tpa_Id,arqpg_PagosSistema,arqpg_PagosConteo,arqpg_UsuarioCrea,arqpg_FechaCrea,arqpg_UsuarioModifica,arqpg_FechaModifica,tbUsuario,tbUsuario1")] tbPagosArqueo tbPagosArqueo)
         {
              ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbPagosArqueo.mocja_Id);
              ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion", tbPagosArqueo.tpa_Id);

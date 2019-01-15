@@ -33,6 +33,16 @@
 
 
 				    <dl class="dl-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.mocja_Id)
+        @Html.HiddenFor(model => model.mocja_UsuarioCrea)
+        @Html.HiddenFor(model => model.mocja_FechaCrea)
+        @Html.HiddenFor(model => model.mocja_UsuarioModifica)
+        @Html.HiddenFor(model => model.mocja_FechaModifica)
+        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+        @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+        @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
         <dt>
             @Html.DisplayNameFor(model => model.mocja_Id)
@@ -63,7 +73,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.mocja_UsuarioApertura)
+            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
         </dd>
 
         <dt>
@@ -79,7 +90,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.mocja_UsuarioArquea)
+            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
         </dd>
 
         <dt>
@@ -95,7 +107,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.mocja_UsuarioAceptacion)
+            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
         </dd>
 
         <dt>
@@ -104,37 +117,48 @@
             </div>
         </dt>
 
+        <dd>
+        </dd>
+
         <dt>
             Efectivo Inicial
         </dt>
 
-        <dd>                            
+        <dd>  
+            5000                          
         </dd>
-
+           
         <dt>
             Efectivo Recibido
         </dt>
 
-        <dd>                          
+        <dd>
+            4000                          
         </dd>
 
         <dt>
             Efectivo Pagos
         </dt>
 
-        <dd>                            
+        <dd>  
+            6000                          
         </dd>
 
         <dt>
             Efectivo Entregad
         </dt>
 
-        <dd>                            
+        <dd>
+            2000                            
         </dd>
 
         <dt>
             Total Efectivo
         </dt>
+
+        <dd>
+            13,000
+        </dd>
 
         <dt>
             <div class="ibox-title">
@@ -142,21 +166,23 @@
             </div>
         </dt>
 
-        <dd>                           
+        <dd>
         </dd>
 
         <dt>
             Pagos Efectivo
         </dt>
 
-        <dd>                           
+        <dd> 
+            6000                          
         </dd>
 
         <dt>
             Pagos TC o TD
         </dt>
 
-        <dd>                           
+        <dd>     
+            5500                      
         </dd>
 
         <dt>
@@ -164,6 +190,7 @@
         </dt>
 
         <dd>
+            2000
         </dd>
 
         <dt>
@@ -171,6 +198,7 @@
         </dt>
 
         <dd>
+            3800
         </dd>
 
         <dt>
@@ -178,6 +206,7 @@
         </dt>
 
         <dd>
+            1910
         </dd>
 
         <dt>
@@ -185,6 +214,7 @@
         </dt>
 
         <dd>
+            19,210.00
         </dd>
 
     </dl>

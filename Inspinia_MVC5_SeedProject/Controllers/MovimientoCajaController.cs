@@ -101,11 +101,12 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");           
             ViewBag.DenominacionArqueo = db.tbDenominacionArqueo.ToList();
 
-            
+
 
 
             tbMovimientoCaja MC = new tbMovimientoCaja();
             MC.cja_Id = 2;
+            MC.mocja_Id = 2;
             return View(MC);
 
         }

@@ -5,19 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Details</h2>
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Details</strong>
-            </li>
-        </ol>
+        <h2>Pagos Arqueo</h2>
+
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
     </div>
 </div>
+
 
 
 
@@ -27,59 +28,12 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Details tbPagosArqueo</h5>
+                    <h5>Detalle Pagos Arqueo</h5>
                 </div>
                 <div class="ibox-content">
 
 
 				    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.arqpg_PagosSistema)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.arqpg_PagosSistema)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.arqpg_PagosConteo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.arqpg_PagosConteo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.arqpg_FechaCrea)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.arqpg_FechaCrea)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.arqpg_FechaModifica)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.arqpg_FechaModifica)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuario1.usu_NombreUsuario)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.tbMovimientoCaja.mocja_Id)
@@ -97,13 +51,53 @@
             @Html.DisplayFor(model => model.tbTipoPago.tpa_Descripcion)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.arqpg_PagosSistema)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.arqpg_PagosSistema)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.arqpg_PagosConteo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.arqpg_PagosConteo)
+        </dd>
     </dl>
 
 
 	    @Html.ActionLink("Edit", "Edit", new { id = Model.arqpg_Id }, new { @class = "btn btn-primary"})
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
 
                 </div>
+            </div>
+
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.arqpg_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.arqpg_FechaModifica)</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

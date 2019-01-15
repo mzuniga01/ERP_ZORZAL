@@ -42,11 +42,11 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @*@Html.LabelFor(model => model.mocja_Id, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.mocja_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-2">
                 @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_Id)</span>
-            </div>*@
+            </div>
             @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
             <div class="col-md-2">
                 @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
@@ -261,14 +261,6 @@
                         <td>1</td>
                         <td>100</td>
                         <td>100</td>
-                    </tr>
-                    <tr>
-                        <td>L.</td>
-                        <td>Billete</td>
-                        <td>50 Lempiras</td>
-                        <td>50</td>
-                        <td>10</td>
-                        <td>500</td>
                     </tr>
                     <tr>
                         <th></th>

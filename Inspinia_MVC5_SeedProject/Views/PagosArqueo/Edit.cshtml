@@ -5,6 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+</style>
+
+
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -76,8 +84,8 @@
             @Html.LabelFor(model => model.arqpg_PagosConteo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.arqpg_PagosConteo)
-                @Html.ValidationMessageFor(model => model.arqpg_PagosConteo)
-            </div>
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.arqpg_PagosConteo)</span>
+</div>
         </div>
 
         <div class="form-group">
