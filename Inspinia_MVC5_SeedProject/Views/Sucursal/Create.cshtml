@@ -93,12 +93,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.suc_Telefono, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.suc_Telefono)
+                @Html.EditorFor(model => model.suc_Telefono, new { htmlAttributes = new { @autocomplete = "off", @Placeholder = "(Codigo Areá) Telefono" } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.suc_Telefono)</p>
             </div>
             @Html.LabelFor(model => model.suc_Correo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.suc_Correo)
+                @Html.EditorFor(model => model.suc_Correo, new { @autocomplete = "off", type = "email", @class = "form-control", @onkeyup = "formateo(this)" })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.suc_Correo)</p>
             </div>
         </div>
@@ -124,6 +124,7 @@
     @Scripts.Render("~/bundles/jqueryval")
 <script src="~/Scripts/app/Sucursal.js"></script>
 <script src="~/Scripts/app/Departamento.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 jQuery('input,select').each(function() {
     var req = jQuery(this).attr('data-val-required');
@@ -136,7 +137,17 @@ jQuery('input,select').each(function() {
 
 
 </script>
+    <script>
+        $("#suc_Telefono").on("keypress keyup blur", function (event) {
+    var Telefono = $(this).val();
+    console.log(Telefono)
+    if (Telefono == '') {
+        $(this).val('+');
+    }
+    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+});
 
+</script>
 
 
 
