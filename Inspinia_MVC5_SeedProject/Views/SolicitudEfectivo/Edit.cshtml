@@ -37,7 +37,7 @@
 
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.solef_Id)
-                            @Html.Hidden("RedirectTo", Url.Action("IndexDetalle", "SolicitudEfectivo"));
+                            @Html.Hidden("RedirectTo", Url.Action("Index", "SolicitudEfectivo"));
 
 
 
@@ -114,8 +114,8 @@
                                 @Html.LabelFor(model => model.solef_EsAnulada, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @*@Html.EditorFor(model => model.solef_EsApertura)*@
-                                    @Html.DisplayFor(model => model.solef_EsAnulada)
-                                    @*@Html.EditorFor(model => model.solef_EsAnulada, new { onclick = "return false" })*@
+                                    @*@Html.CheckBoxFor(model => model.solef_EsAnulada)*@
+                                    @Html.CheckBoxFor(model => model.solef_EsAnulada, new { onclick = "return false" })
                                     @Html.ValidationMessageFor(model => model.solef_EsAnulada)
                                 </div>
                             </div>
@@ -127,30 +127,7 @@
                                 </div>
                             </div>
 
-                            @**Importante campos Preguntar*@
-
-                            @*<div class="form-group">
-                                    @Html.LabelFor(model => model.solef_FechaEntrega, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-3">
-                                        @Html.EditorFor(model => model.solef_FechaEntrega)
-                                        @Html.ValidationMessageFor(model => model.solef_FechaEntrega)
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.solef_UsuarioEntrega, "solef_UsuarioEntrega", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-3">
-                                        @Html.DropDownList("solef_UsuarioEntrega", @*String.Empty*@        @*null, "Seleccione la Moneda", new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.solef_UsuarioEntrega)
-                                    </div>
-                                </div>
-                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.solef_EsAnulada, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-3">
-                                        @Html.EditorFor(model => model.solef_EsAnulada)
-                                        @Html.ValidationMessageFor(model => model.solef_EsAnulada)
-                                    </div>
-                                </div> *@
+                           
 
 
 
@@ -284,18 +261,37 @@
     <script>
         $(document).ready(function () {
 
-            if ($('#solef_FechaEntrega').val() == '0000/00/00') {
-                $('#bottonAnular').show();
+            if (jQuery("#solef_EsAnulada").is(":checked")) {
+                $('#bottonAnular').hide();
+                $('#AñadirDenominacion').hide();
+               
+                
+
             }            
 
             else {
-                $('#bottonAnular').hide();
+                $('#bottonAnular').show();
+                $('#AñadirDenominacion').show();
             }
         });
 
+        
+
     </script>
 
-
+    <script>
+        if ($('#mitabla >tbody >tr').length == 0) {
+            // $('#mnda_Id').hide().disabled = false;
+          // $('#mnda_Id').attr("readOnly", "False");
+             document.getElementById("mnda_Id").disabled = false
+            // $('#mnda_Id').attr("readOnly", "readOnly");
+           // alert("Puede!!");
+        }
+        else {
+            $('#mnda_Id').attr("disabled", "disabled");
+            // alert('no puede');
+        }
+    </script>
 
     @*<script>
         $(document).ready(function () {

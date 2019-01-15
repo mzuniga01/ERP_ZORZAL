@@ -91,12 +91,12 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
         public virtual DbSet<tbFactura> tbFactura { get; set; }
         public virtual DbSet<UDP_Vent_SolicituEfectivo_Detalles_Select> UDP_Vent_SolicituEfectivo_Detalles_Select { get; set; }
-        public virtual DbSet<UDP_Vent_SolicituEfectivo_Select> UDP_Vent_SolicituEfectivo_Select { get; set; }
         public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
         public virtual DbSet<tbBodega> tbBodega { get; set; }
         public virtual DbSet<tbSalida> tbSalida { get; set; }
         public virtual DbSet<tbEntradaDetalle> tbEntradaDetalle { get; set; }
         public virtual DbSet<tbEntrada> tbEntrada { get; set; }
+        public virtual DbSet<UDP_Vent_SolicituEfectivo_Select> UDP_Vent_SolicituEfectivo_Select { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {

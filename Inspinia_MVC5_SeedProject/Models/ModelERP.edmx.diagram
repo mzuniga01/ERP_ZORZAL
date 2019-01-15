@@ -247,7 +247,6 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbUsuario_rolu_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Detalles_Select" Width="3.75" PointX="7.375" PointY="3.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" Width="3.75" PointX="3.375" PointY="8.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.V_Vent_FacturaPago" Width="1.5" PointX="8.375" PointY="8.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbBodega" Width="1.5" PointX="11.5" PointY="99.125" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbSalida" Width="1.5" PointX="23" PointY="108.125" />
@@ -275,6 +274,7 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEntrada_tbSalida_fact_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEntrada_tbTiposEntrada_tent_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEntradaDetalle_tbEntrada_ent_Id" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" Width="1.5" PointX="3.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

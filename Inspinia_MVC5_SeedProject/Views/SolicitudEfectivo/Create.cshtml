@@ -74,6 +74,7 @@
                                     </select>
                                     <div id="validationMonedaCreate">
                                         @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -94,6 +95,7 @@
 
 
                                     @Html.Partial("_ListaDenominaciones", (List<tbDenominacion>)ViewBag.Denominacion)
+
 
 
 
@@ -164,13 +166,13 @@
                                          "<td>" + '<label type="text" id="CantidadEntregada" name="name" class="form-control" size="3">' + 0+ "</td>" +
                                         "<td >" + '<label type="text" id="MontoEntregado" name="name" class="form-control" size="3">' +0+ "</td>" +
                                        "<td hidden>" + item.deno_valor + "</td>" +
-                                     
+
                                        "</tr>";
-                            $('#example1 tbody').append(rows);                         
+                            $('#example1 tbody').append(rows);
                         });
 
                         //var contador = 0;
-                        $('#guardar').click(function () {                           
+                        $('#guardar').click(function () {
 
 
                             $('#example1> tbody > tr').each(function () {
@@ -180,58 +182,38 @@
                                 //var total = $(this).find("td:eq(1)").text();
                                 //console.log(total);
 
-                                var total0 = $(this).find("td:eq(0)").text();
-                                var total1 = $(this).find("td:eq(1)").text();
-                                var total2 = $(this).find("td:eq(2)").find("input").val();
-                                var total3 = $(this).find("td:eq(3)").text();
-                                var total4 = $(this).find("td:eq(4)").text();
-                                var total5 = $(this).find("td:eq(5)").text();
-                                var total6 = $(this).find("td:eq(6)").text();
+                                var denoId = $(this).find("td:eq(0)").text();
+                                var denoDescripcion = $(this).find("td:eq(1)").text();
+                                var soledCantidadSolicitada = $(this).find("td:eq(2)").find("input").val();
+                                var MontoEntrega = $(this).find("td:eq(3)").text();
+                                var soled_CantidadEntregada = $(this).find("td:eq(4)").text();
+                                var soled_MontoEntregado = $(this).find("td:eq(5)").text();
+                                var deno_valor = $(this).find("td:eq(6)").text();
 
+                                var procesoData = {
+                                    'items': [
+                                    {
+                                        denoId: denoId, soledCantidadSolicitada: soledCantidadSolicitada, soled_CantidadEntregada: soled_CantidadEntregada, soled_MontoEntregado: soled_MontoEntregado
+                                    },
 
-                                var procesoData =  
-                                    //'items': [
-                                    { total0: total0,  total2: total2, total3: total3, total4: total4, total5: total5 
-                                   
-                                    //]
+                                    ]
                                 };
 
                                 console.log(procesoData);
-                         
-                               
+
+
                                 $.ajax({
-                                    url: "/SolicitudEfectivo/SaveSolicitudEfectivoDetalle",
-                                    type: "POST",
+                                    type: 'POST',
+                                    url: '@Url.Action("InsertDetalleSolicitudDetalle", "SolicitudEfectivo")',
+                                    contentType: 'application/json;charset=utf-8',
                                     dataType: "json",
-                                    contentType: "application/json",
-                                    data: JSON.stringify({ pStrPermissions: JSON.stringify(procesoData) }),
-                                    success: function (response) {
-
-                                        if (response.success) {
-                                            showAlert("Permisos web", "Has actualizado correctamente los permisos web.", "success");
-                                            resetForm();
-                                        }
-                                        else {
-                                            showMessage("Permisos web", response.message, "error");
-                                        };
-                                    },
-                                    error: function (request, status, exception) {
-                                        showMessage("Permisos web", exception, "error");
-                                    }
+                                    data: "{procesoData: " + JSON.stringify(data) + "}"
+                                }).done(function (response) {
+                                    $('#result').text(JSON.stringify(response));
+                                }).fail(function (error) {
+                                    console.log('Error ' + error)
                                 });
-                                //$.ajax({
-                                //    url: "/SolicitudEfectivo/SaveSolicitudEfectivoDetalle",
-                                //    method: "POST",
-                                //    dataType: 'json',
-                                //    contentType: "application/json; charset=utf-8",
-                                //    data: JSON.stringify({ SolicitudEfeDetalleC: procesoData }),
-                                //})
-                                //  .done(function (data) {
-                                //      alert('Revisa');
-
-                                //  });
-                            
-                            });                 
+                            });
                         });
                     },
                     error: function (data) { alert(data.responseText); }
@@ -239,9 +221,9 @@
             });
         });
 
-        
-        
-        
+
+
+
 
     </script>
 

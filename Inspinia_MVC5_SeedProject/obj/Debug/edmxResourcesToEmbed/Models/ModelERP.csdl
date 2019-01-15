@@ -2114,7 +2114,6 @@
       <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
     </FunctionImport>
     <EntitySet Name="UDP_Vent_SolicituEfectivo_Detalles_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Detalles_Select" />
-    <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" />
     <FunctionImport Name="UDP_Vent_tbListaPrecio_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Estado_Result)">
       <Parameter Name="listp_Id" Mode="In" Type="Int32" />
       <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
@@ -2220,6 +2219,7 @@
       <End Role="tbEntrada" EntitySet="tbEntrada" />
       <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
     </AssociationSet>
+    <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" />
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -6217,19 +6217,6 @@
     <Property Name="soled_UsuarioModifica" Type="Int32" />
     <Property Name="soled_FechaModifica" Type="DateTime" Precision="3" />
   </EntityType>
-  <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
-    <Key>
-      <PropertyRef Name="IdSolicitud" />
-      <PropertyRef Name="FechaSolicitud" />
-    </Key>
-    <Property Name="IdSolicitud" Type="Int32" Nullable="false" />
-    <Property Name="FechaSolicitud" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Sucursal" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-    <Property Name="Caja" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="Moneda" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="MontoSolicitado" Type="Decimal" Precision="38" Scale="2" />
-    <Property Name="MontoEntregado" Type="Decimal" Precision="38" Scale="2" />
-  </EntityType>
   <ComplexType Name="UDP_Vent_tbListaPrecio_Estado_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
@@ -6641,4 +6628,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
+    <Key>
+      <PropertyRef Name="IdSolicitud" />
+      <PropertyRef Name="FechaSolicitud" />
+      <PropertyRef Name="Moneda" />
+    </Key>
+    <Property Name="IdSolicitud" Type="Int32" Nullable="false" />
+    <Property Name="FechaSolicitud" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sucursal" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Caja" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Moneda" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MontoSolicitado" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="MontoEntregado" Type="Decimal" Precision="38" Scale="2" />
+  </EntityType>
 </Schema>

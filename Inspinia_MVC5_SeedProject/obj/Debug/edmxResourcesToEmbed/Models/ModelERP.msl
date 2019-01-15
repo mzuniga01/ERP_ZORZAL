@@ -1851,19 +1851,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UDP_Vent_SolicituEfectivo_Select">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select">
-        <MappingFragment StoreEntitySet="UDP_Vent_SolicituEfectivo_Select">
-          <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
-          <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
-          <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-          <ScalarProperty Name="Caja" ColumnName="Caja" />
-          <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
-          <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
-          <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Estado">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Estado_Result">
@@ -1979,6 +1966,19 @@
           <ScalarProperty Name="ent_FechaElaboracion" ColumnName="ent_FechaElaboracion" />
           <ScalarProperty Name="ent_NumeroFormato" ColumnName="ent_NumeroFormato" />
           <ScalarProperty Name="ent_Id" ColumnName="ent_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDP_Vent_SolicituEfectivo_Select">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select">
+        <MappingFragment StoreEntitySet="UDP_Vent_SolicituEfectivo_Select">
+          <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
+          <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
+          <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+          <ScalarProperty Name="Caja" ColumnName="Caja" />
+          <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
+          <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+          <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

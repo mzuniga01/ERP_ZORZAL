@@ -28,6 +28,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.soled_MontoEntregado)   
+            </th> 
+            <th>
+                @Html.DisplayNameFor(model => model.tbDenominacion.deno_valor)
             </th>          
            
             
@@ -69,6 +72,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => MontoEntregado)
                 </td> 
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbDenominacion.deno_valor)
+                </td> 
                                
                 <td></td>
             </tr>
@@ -80,19 +86,7 @@
 
 
 
-                    @*@{
-                        float suma = 0;
-                        foreach (var item in Model)
-                        {
-                            float valor = float.Parse(item.soled_MontoEntregado.ToString());
-                            suma += valor;
-                        }
-                    }
-                    <label>Monto Entregado : @Html.DisplayFor(modelItem => suma) </label>
-
                     
-
-                    <br />*@
 
                     
                   

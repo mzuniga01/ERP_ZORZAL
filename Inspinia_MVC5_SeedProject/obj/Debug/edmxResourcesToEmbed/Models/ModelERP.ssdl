@@ -1014,6 +1014,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select'
     <Key>
       <PropertyRef Name="IdSolicitud" />
       <PropertyRef Name="FechaSolicitud" />
+      <PropertyRef Name="Moneda" />
     </Key>
     <Property Name="IdSolicitud" Type="int" Nullable="false" />
     <Property Name="FechaSolicitud" Type="datetime" Nullable="false" />

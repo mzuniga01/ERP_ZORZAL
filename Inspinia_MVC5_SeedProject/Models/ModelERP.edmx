@@ -1020,7 +1020,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select'
           <Key>
             <PropertyRef Name="IdSolicitud" />
             <PropertyRef Name="FechaSolicitud" />
-            
+            <PropertyRef Name="Moneda" />
           </Key>
           <Property Name="IdSolicitud" Type="int" Nullable="false" />
           <Property Name="FechaSolicitud" Type="datetime" Nullable="false" />
@@ -8001,7 +8001,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="UDP_Vent_SolicituEfectivo_Detalles_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Detalles_Select" />
-          <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" />
           <FunctionImport Name="UDP_Vent_tbListaPrecio_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Estado_Result)">
             <Parameter Name="listp_Id" Mode="In" Type="Int32" />
             <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
@@ -8107,6 +8106,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbEntrada" EntitySet="tbEntrada" />
             <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
           </AssociationSet>
+          <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" />
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -12104,19 +12104,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Name="soled_UsuarioModifica" Type="Int32" />
           <Property Name="soled_FechaModifica" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
-          <Key>
-            <PropertyRef Name="IdSolicitud" />
-            <PropertyRef Name="FechaSolicitud" />
-          </Key>
-          <Property Name="IdSolicitud" Type="Int32" Nullable="false" />
-          <Property Name="FechaSolicitud" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Sucursal" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-          <Property Name="Caja" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Moneda" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MontoSolicitado" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="MontoEntregado" Type="Decimal" Precision="38" Scale="2" />
-        </EntityType>
         <ComplexType Name="UDP_Vent_tbListaPrecio_Estado_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
@@ -12528,6 +12515,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
+          <Key>
+            <PropertyRef Name="IdSolicitud" />
+            <PropertyRef Name="FechaSolicitud" />
+            <PropertyRef Name="Moneda" />
+          </Key>
+          <Property Name="IdSolicitud" Type="Int32" Nullable="false" />
+          <Property Name="FechaSolicitud" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sucursal" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Caja" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Moneda" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MontoSolicitado" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="MontoEntregado" Type="Decimal" Precision="38" Scale="2" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14385,19 +14386,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UDP_Vent_SolicituEfectivo_Select">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select">
-              <MappingFragment StoreEntitySet="UDP_Vent_SolicituEfectivo_Select">
-                <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
-                <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
-                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-                <ScalarProperty Name="Caja" ColumnName="Caja" />
-                <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
-                <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
-                <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Estado" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Estado_Result">
@@ -14513,6 +14501,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
                 <ScalarProperty Name="ent_FechaElaboracion" ColumnName="ent_FechaElaboracion" />
                 <ScalarProperty Name="ent_NumeroFormato" ColumnName="ent_NumeroFormato" />
                 <ScalarProperty Name="ent_Id" ColumnName="ent_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UDP_Vent_SolicituEfectivo_Select">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select">
+              <MappingFragment StoreEntitySet="UDP_Vent_SolicituEfectivo_Select">
+                <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
+                <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="Caja" ColumnName="Caja" />
+                <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
+                <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+                <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

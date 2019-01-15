@@ -7,7 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Solicitud de Efectivo</h2>        
+        <h2>Solicitud Efectivo</h2>       
     </div>
 </div>
 
@@ -17,7 +17,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Solicitud Efectivo</h5>
+                    <h5>Listado de Solicitudes de Efectivo</h5>
 					<div class="ibox-tools">
 						@Html.ActionLink("Registrar Solicitud Efectivo", "Create", null, new { @class = "btn btn-primary"})
 					</div>
@@ -28,25 +28,26 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdSolicitud)
+                @*@Html.DisplayNameFor(model => model.IdSolicitud)*@
+                ID Solicitud
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaSolicitud)
+               Fecha Solicitud
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Sucursal)
+               Sucursal
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Caja)
+               Caja
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Moneda)
+                Moneda
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MontoSolicitado)
+               Monto Solicitado
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MontoEntregado)
+               Monto Entregado  
             </th>
             <th></th>
         </tr>
@@ -67,21 +68,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Caja)
                 </td>
-                @{ if (Convert.ToString(item.Moneda) == null)
-                    {
-                        <td>
-                          **
-                        </td>
-                    }
-                    else
-                    {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Moneda)
-                        </td>
-                    }
-                }
-
-                @{ if (Convert.ToString(item.Moneda) == null)
+                <td>
+                    @Html.DisplayFor(modelItem => item.Moneda)
+                </td>
+                @{ if (Convert.ToString(item.MontoSolicitado) == "")
                     {
                         <td>
                             0.00
@@ -94,8 +84,7 @@
                         </td>
                     }
                 }
-
-                @{ if (Convert.ToString(item.Moneda) == null)
+                @{ if (Convert.ToString(item.MontoEntregado) == "")
                     {
                         <td>
                             0.00
@@ -108,11 +97,14 @@
                         </td>
                     }
                 }
-                
+               
                 
                 <td>
-                    @Html.ActionLink("Detalles", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs" })
+                    @Html.ActionLink("Details", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs" })
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
+                        Imprimir
+                    </button>
                     @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-white btn-sm"})*@
                 </td>
             </tr>
@@ -125,7 +117,27 @@
         </div>
     </div>
  </div>
-
-<script src="~/Scripts/jquery-3.1.1.min.js"></script>
-
+<script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/SolicitudEfectivo.js"></script>
+
+<div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Imprimir Solicitud Efectivo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea Imprimir Esta Solicitud de Efectivo?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Index","SolicitudEfectivo")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
