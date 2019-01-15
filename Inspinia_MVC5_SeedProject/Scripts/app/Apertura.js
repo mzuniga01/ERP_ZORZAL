@@ -65,62 +65,61 @@ function GetDenominacion() {
 
 $(document).on("change", "#DenominacionDetalle tbody tr td input#name", function () {
     var Cantidad = $(this).val();
-    var total = parseFloat(document.getElementById("Total").innerHTML);
     var ValorDenominacion = $(this).parents("tr").find("td")[2].innerHTML;
-    var Subtotal = Cantidad * ValorDenominacion;    
+    var Subtotal = parseFloat(Cantidad * ValorDenominacion).toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+    var total = parseFloat(document.getElementById("Total").innerHTML);
+    console.log('Cantidad')
     console.log(Cantidad)
+    console.log('Valor')
     console.log(ValorDenominacion)
-
+    console.log('SubTotal')
+    console.log(Subtotal)
+    console.log('Total')
+    console.log(Total)
 
     $(this).parents("tr").find("td")[3].innerHTML = Subtotal;
     $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
         event.preventDefault();
     }
-
     //Grantotal
     if (document.getElementById("Total").innerHTML == '') {
-        document.getElementById("Total").innerHTML = parseFloat(0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+        document.getElementById("Total").innerHTML = parseFloat(0);
     }
     else {
-        var MontoInicial = document.getElementById("Total").innerHTML = parseFloat(total) + parseFloat(Subtotal);
-        document.getElementById('MontoInicial').value = MontoInicial.toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
-        
-
+        var MontoInicial = document.getElementById("Total").innerHTML = (parseFloat(total) + parseFloat(Subtotal)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+        document.getElementById('MontoInicial').value = MontoInicial;
     }
 
-   
 });
 
 $(document).on("keypress", "#DenominacionDetalle tbody tr td input#name", function () {
     var Cantidad = $(this).val();
-    var total = parseFloat(document.getElementById("Total").innerHTML);
     var ValorDenominacion = $(this).parents("tr").find("td")[2].innerHTML;
-    var Subtotal = Cantidad * ValorDenominacion;
-  
-
-
-    console.log(Cantidad)
-    console.log(ValorDenominacion)
+    var Subtotal = parseFloat(Cantidad * ValorDenominacion).toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+    var Cantidad = $(this).val();
+    var total = parseFloat(document.getElementById("Total").innerHTML);
 
     $(this).parents("tr").find("td")[3].innerHTML = Subtotal;
     $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
         event.preventDefault();
     }
-
-
     //Grantotal
     if (document.getElementById("Total").innerHTML == '') {
-        document.getElementById("Total").innerHTML = parseFloat(0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
-
+       document.getElementById("Total").innerHTML = parseFloat(0);
     }
     else {
-        var MontoInicial = document.getElementById("Total").innerHTML = parseFloat(total) + parseFloat(Subtotal);
-        document.getElementById('MontoInicial').value = MontoInicial.toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
-        
+        var MontoInicial = document.getElementById("Total").innerHTML = (parseFloat(total) + parseFloat(Subtotal)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+        document.getElementById('MontoInicial').value = MontoInicial;
     }
-
-   
 });
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
 
