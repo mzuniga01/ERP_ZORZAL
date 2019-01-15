@@ -22,7 +22,7 @@
                            
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2">Código Producto</label>
+                                @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
 
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
@@ -33,7 +33,7 @@
                                     <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
 
-                                <label class="control-label col-md-1">Producto</label>
+                                @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
@@ -43,7 +43,7 @@
 
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Descripción</label>
+                                @Html.LabelFor(model => model.pedd_Descripcion, new { @class = "control-label col-md-2" })
 
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.pedd_Descripcion)
@@ -51,9 +51,9 @@
                                         @Html.ValidationMessageFor(model => model.pedd_Descripcion)
                                     </div>
                                 </div>
-                                <label class="control-label col-md-2">Cantidad</label>
+                                @Html.LabelFor(model => model.pedd_Cantidad, new { @class = "control-label col-md-3" })
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.pedd_Cantidad)
+                                    @Html.EditorFor(model => model.pedd_Cantidad, new { @onkeyup = "soloNumeros(e)" })
                                     @Html.ValidationMessageFor(model => model.pedd_Cantidad)
                                 </div>
                             </div>
@@ -66,10 +66,10 @@
                                     @Html.ValidationMessageFor(model => model.pedd_Cantidad)
                                 </div>*@
                         
-                                <label class="control-label col-md-2">Cantidad Facturada</label>
+                                @Html.LabelFor(model => model.pedd_CantidadFacturada, new { @class = "control-label col-md-2" })
 
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.pedd_CantidadFacturada)
+                                    @Html.EditorFor(model => model.pedd_CantidadFacturada, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.pedd_CantidadFacturada)
                                 </div>
 
@@ -119,6 +119,7 @@
 
 <script src="~/Scripts/app/Producto.js"></script>
 
+
         <div>
             <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
@@ -141,5 +142,6 @@
     </div>
 </div>
 
+       
 
 <script src="~/Scripts/app/SaveDetallePedido.js"></script>

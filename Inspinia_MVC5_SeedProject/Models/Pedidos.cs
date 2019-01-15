@@ -15,32 +15,32 @@ namespace ERP_GMEDINA.Models
     public class PedidosMetaData
     {
         [Display(Name ="Número Pedido")]
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int ped_Id { get; set; }
 
         [Display(Name ="Estado")]
         public byte esped_Id { get; set; }
 
         [Display(Name = "Fecha Elaboración")]
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}", HtmlEncode = false)]
         public System.DateTime ped_FechaElaboracion { get; set; }
 
         [Display(Name = "Fecha Entrega")]
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}", HtmlEncode = false)]
         public System.DateTime ped_FechaEntrega { get; set; }
 
         [Display(Name = "Número Cliente")]
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int clte_Id { get; set; }
 
         [Display(Name = "Sucursal")]
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public short suc_Id { get; set; }
 
         [Display(Name = "Número Factura")]
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public long fact_Id { get; set; }
 
         [Display(Name = "Usuario Creación")]

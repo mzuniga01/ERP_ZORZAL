@@ -334,58 +334,58 @@ namespace ERP_ZORZAL.Controllers
         }
 
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int? id,[Bind(Include= "ped_Id,esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id,ped_UsuarioCrea,ped_FechaCrea")] tbPedido tbPedido)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            tbPedido vPedido = db.tbPedido.Find(id);
-        //            //db.tbTipoIdentificacion.Add(tbTipoIdentificacion);
-        //            //db.SaveChanges();
-        //            //return RedirectToAction("Index");
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPedido(int? id, [Bind(Include = "ped_Id,esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id,ped_UsuarioCrea,ped_FechaCrea")] tbPedido tbPedido)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    tbPedido vPedido = db.tbPedido.Find(id);
+                    //db.tbTipoIdentificacion.Add(tbTipoIdentificacion);
+                    //db.SaveChanges();
+                    //return RedirectToAction("Index");
 
-        //            var MensajeError = "";
-        //            IEnumerable<object> list = null;
-        //            list = db.UDP_Vent_tbPedido_Update(tbPedido.ped_Id,
-        //                                               tbPedido.esped_Id,
-        //                                               tbPedido.ped_FechaElaboracion,
-        //                                               tbPedido.ped_FechaEntrega,
-        //                                               tbPedido.clte_Id,
-        //                                               tbPedido.suc_Id,
-        //                                               tbPedido.fact_Id,
-        //                                               vPedido.ped_UsuarioCrea,
-        //                                               vPedido.ped_FechaCrea);
-        //            foreach (UDP_Vent_tbPedido_Update_Result Pedido in list)
-        //                MensajeError = Pedido.MensajeError;
-        //            if (MensajeError == "-1")
-        //            {
+                    var MensajeError = "";
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbPedido_Update(tbPedido.ped_Id,
+                                                       tbPedido.esped_Id,
+                                                       tbPedido.ped_FechaElaboracion,
+                                                       tbPedido.ped_FechaEntrega,
+                                                       tbPedido.clte_Id,
+                                                       tbPedido.suc_Id,
+                                                       tbPedido.fact_Id,
+                                                       vPedido.ped_UsuarioCrea,
+                                                       vPedido.ped_FechaCrea);
+                    foreach (UDP_Vent_tbPedido_Update_Result Pedido in list)
+                        MensajeError = Pedido.MensajeError;
+                    if (MensajeError == "-1")
+                    {
 
-        //            }
-        //            else
-        //            {
-        //                return RedirectToAction("Index");
-        //            }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
 
-        //        }
-        //        catch (Exception Ex)
-        //        {
-        //            var errors = ModelState.Values.SelectMany(v => v.Errors);
-        //            Ex.Message.ToString();
-        //        }
+                }
+                catch (Exception Ex)
+                {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                    Ex.Message.ToString();
+                }
 
-        //    }
-        //    ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
-        //    ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
-        //    ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
-        //    ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
-        //    ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
-        //    ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion", tbPedido.esped_Id);
-        //    ViewBag.Producto = db.tbProducto.ToList();
-        //    return View(tbPedido);
-        //}
+            }
+            ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
+            ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
+            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
+            ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
+            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
+            ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion", tbPedido.esped_Id);
+            ViewBag.Producto = db.tbProducto.ToList();
+            return View(tbPedido);
+        }
 
         // GET: /Pedido/Delete/5
         public ActionResult Delete(int? id)
@@ -402,44 +402,42 @@ namespace ERP_ZORZAL.Controllers
             return View(tbPedido);
         }
 
-        //[HttpPost]
-        //public ActionResult UpdatePedidoDetalle(tbPedidoDetalle EditPedidoDetalle)
-        //{
-        //    try
-        //    {
-        //        var MensajeError = 0;
-        //        IEnumerable<object> list = null;
-        //        list = db.UDP_Vent_tbPedidoDetalle_Update(
-        //                    EditPedidoDetalle.pedd_Id,
-        //                    EditPedidoDetalle.prod_Codigo,
-        //                    EditPedidoDetalle.pedd_Descripcion,
-        //                    EditPedidoDetalle.pedd_Cantidad,
-        //                    EditPedidoDetalle.pedd_CantidadFacturada,
-        //                    EditPedidoDetalle.pedd_UsuarioCrea,
-        //                    EditPedidoDetalle.pedd_FechaCrea,
-        //                     EditPedidoDetalle.pedd_UsuarioModifica,
-        //                     EditPedidoDetalle.pedd_FechaModifica
-        //            );
+        [HttpPost]
+        public ActionResult UpdatePedidoDetalle(tbPedidoDetalle EditPedidoDetalle)
+        {
+            try
+            {
+                var MensajeError = 0;
+                IEnumerable<object> list = null;
+                list = db.UDP_Vent_tbPedidoDetalle_Update(
+                            EditPedidoDetalle.pedd_Id,
+                            EditPedidoDetalle.prod_Codigo,
+                            EditPedidoDetalle.pedd_Descripcion,
+                            EditPedidoDetalle.pedd_Cantidad,
+                            EditPedidoDetalle.pedd_CantidadFacturada,
+                            EditPedidoDetalle.pedd_UsuarioCrea,
+                            EditPedidoDetalle.pedd_FechaCrea
+                    );
 
-        //        foreach (UDP_Vent_tbPuntoEmisionDetalle_Update_Result PedidoDetalle in list)
-        //            MensajeError = PedidoDetalle.MensajeError;
-        //        if (MensajeError == -1)
-        //        {
-        //            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-        //            return PartialView("_PedidoDetalleEditar");
-        //        }
-        //        else
-        //        {
-        //            return RedirectToAction("Index");
-        //        }
-        //    }
-        //    catch (Exception Ex)
-        //    {
-        //        Ex.Message.ToString();
-        //        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al programador.");
-        //        return PartialView("_PedidoDetalleEditar", EditPedidoDetalle);
-        //    }
-        //}
+                foreach (UDP_Vent_tbPuntoEmisionDetalle_Update_Result PedidoDetalle in list)
+                    MensajeError = PedidoDetalle.MensajeError;
+                if (MensajeError == -1)
+                {
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    return PartialView("_PedidoDetalleEditar");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al programador.");
+                return PartialView("_PedidoDetalleEditar", EditPedidoDetalle);
+            }
+        }
 
 
 

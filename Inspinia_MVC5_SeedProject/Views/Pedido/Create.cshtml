@@ -37,52 +37,53 @@
                             @Html.ValidationSummary(true)
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Sucursal</label>
+                                @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
-                                    <span style="color:red">@Html.ValidationMessageFor(model => model.suc_Id)
-                                </div>
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.suc_Id)</p>
+</div>
 
 
-                                <label class="control-label col-md-2">Fecha Elaboración</label>
+                                @Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-3" })
 
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.ped_FechaElaboracion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly"} })
-                                    <span style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
 </div>
 
                             </div>
                             <div class="form-group">
                                 <div class="col-md-4">
                                     @Html.HiddenFor(model => model.clte_Id)
-                                    <span style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)</span>
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)</p>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Identificación Cliente</label>
+
+                                @Html.LabelFor(model => model.tbCliente.clte_Identificacion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
-                                    <span style="color:red">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span>
+                                    <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
 
-                                <label class="control-label col-md-1">Nombres Cliente</label>
+                                @Html.LabelFor(model => model.tbCliente.clte_Nombres, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
-                                    <span style="color:red">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span>
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</p>
                                 </div>
 
                             </div>
                             <div class="form-group">
 
 
-                                <label class="control-label col-md-2">Fecha Entrega</label>
+                                @Html.LabelFor(model => model.ped_FechaEntrega, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.ped_FechaEntrega)
-                                    <span style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaEntrega)</span>
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaEntrega)</p>
                                 </div>
                             </div>
 
@@ -113,9 +114,22 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    jQuery('input,select').each(function() {
+        var req = jQuery(this).attr('data-val-required');
+         var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+         var text = label.text();
+         if (text.length > 0) {
+          label.append('<span style="color:red"> *</span>');
+        }
+    });
 
-
-
+    function validar(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[0-9\-]+$/.test(tecla);
+    }
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
@@ -136,43 +150,42 @@
             showMonthAfterYear: false,
             yearSuffix: ''
         };
-
-
         $.datepicker.setDefaults($.datepicker.regional['es']);
 
         $(function () {
             $("#ped_FechaElaboracion").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
             $("#ped_FechaEntrega").datepicker({ dateFormat: 'dd/mm/yy', minDate: 0 }).datepicker('setDate', new Date());
-
         });
 
-
-    </script>
-
-<script>
-        // add indicator to required fields
-        jQuery('input,select').each(function () {
-            var req = jQuery(this).attr('data-val-required');
-            if (undefined != req) {
-                var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
-                var text = label.text();
-                if (text.length > 0) {
-                    label.append('<span style="color:red"> *</span>');
-                }
-            }
-        });
 
 </script>
 
 
+<script src="~/Scripts/app/Producto.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/FacturaDetalle.js"></script>
+<script src="~/Scripts/app/ProductoFactura.js"></script>
+<script src="~/Scripts/app/Empleados.js"></script>
+<script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
+    <script>
+        $("#pedd_Cantidad").on("keypress keyup blur", function (event) {
+            this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+            this.value = this.value.replace(/[a-záéíóúüñ#/=\s-+*,.;]+/ig, "");
+        });
 
-    @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/app/Producto.js"></script>
-    <script src="~/Scripts/app/Datepicker.js"></script>
-    <script src="~/Scripts/app/FacturaDetalle.js"></script>
-    <script src="~/Scripts/app/ProductoFactura.js"></script>
-    <script src="~/Scripts/app/Empleados.js"></script>
-    <script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
-}
+    </script>
+
+
+<script>
+        $("#pedd_Cantidad").on("keypress keyup blur", function (event) {
+            this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+            this.value = this.value.replace(/[a-záéíóúüñ#/=\s-+*,.;]+/ig, "");
+        });
+
+</script>
+    }
+
+
+
 
 
