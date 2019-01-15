@@ -170,21 +170,43 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Factura/Create
         public ActionResult Create()
         {
-            int? id = (int)Session["IDCLIENTE"] ;
-            ViewBag.Iden = id;
-            string ident = "";
-            if (!string.IsNullOrEmpty(ViewBag.Identificacion))
-             ident = Convert.ToString(ViewBag.Identificacion);
-            ////GeneralFunctions GetID = new GeneralFunctions();
-            //if (ViewBag.Identificacion == null)
+            if (Session["IDCLIENTE"] == null)
+            {
+                ViewBag.Iden = 25;
+                ViewBag.Identificacion = "Nada";
+                ViewBag.Nombres = "Nada";
+            }
+            else
+            {
+                int? id = (int)Session["IDCLIENTE"];
+                ViewBag.Iden = id;
+                string identificacion = (string)Session["IDENTIFICACION"];
+                ViewBag.Identificacion = identificacion;
+                string nombres = (string)Session["NOMBRES"];
+                ViewBag.Nombres = nombres;
+
+                //string ident = "";
+                //if (!string.IsNullOrEmpty(ViewBag.Identificacion))
+                //ident = Convert.ToString(ViewBag.Identificacion);
+
+            }
+            //int? id = (int)Session["IDCLIENTE"];
+            //if (id == null)
             //{
-            //    ViewBag.Ident = "Hola";
+               
             //}
             //else
             //{
-            //    ViewBag.Ident = ViewBag.Identificacion;
-            //}
+            //    ViewBag.Iden = id;
+            //    string identificacion = (string)Session["IDENTIFICACION"];
+            //    ViewBag.Identificacion = identificacion;
+            //    string nombres = (string)Session["NOMBRES"];
+            //    ViewBag.Nombres = nombres;
 
+            //    //if (!string.IsNullOrEmpty(ViewBag.Identificacion))
+            //    //    ident = Convert.ToString(ViewBag.Identificacion);
+            //    //ViewBag.Identificacion = ident;
+            //}  
 
             ViewBag.fact_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.fact_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
@@ -645,7 +667,17 @@ namespace ERP_GMEDINA.Controllers
                     }
                     else
                     {
-                        Session["IDCLIENTE"] = MensajeError;                        
+                        Session["IDCLIENTE"] = MensajeError;
+                        Session["IDENTIFICACION"] =tbCliente.clte_Identificacion;
+                        if (tbCliente.clte_EsPersonaNatural)
+                        {
+                            Session["NOMBRES"] = tbCliente.clte_Nombres + tbCliente.clte_Apellidos ;
+                        }
+                        else
+                        {
+                            Session["NOMBRES"] = tbCliente.clte_NombreComercial;
+                        }
+
                         return RedirectToAction("Create", "Factura");
                     }
 
