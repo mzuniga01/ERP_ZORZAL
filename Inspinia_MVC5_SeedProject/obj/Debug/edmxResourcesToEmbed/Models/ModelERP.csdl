@@ -2223,6 +2223,7 @@
       <Parameter Name="usu_Id" Mode="In" Type="Int32" />
       <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="V_Vent_FacturaPago" EntityType="ERP_ZORZALModel.V_Vent_FacturaPago" />
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -6647,4 +6648,17 @@
     <Property Type="DateTime" Name="obj_FechaModifica" Nullable="true" Precision="23" />
     <Property Type="Boolean" Name="obj_Estado" Nullable="false" />
   </ComplexType>
+  <EntityType Name="V_Vent_FacturaPago">
+    <Key>
+      <PropertyRef Name="fact_Id" />
+      <PropertyRef Name="clte_Id" />
+      <PropertyRef Name="fact_Codigo" />
+    </Key>
+    <Property Name="fact_Id" Type="Int64" Nullable="false" />
+    <Property Name="clte_Id" Type="Int32" Nullable="false" />
+    <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="MontoFactura" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="TotalPagado" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="SaldoFactura" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

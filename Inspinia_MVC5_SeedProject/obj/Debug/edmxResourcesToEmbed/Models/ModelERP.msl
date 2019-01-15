@@ -1044,7 +1044,6 @@
     <EntitySetMapping Name="tbBodega">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbBodega">
         <MappingFragment StoreEntitySet="tbBodega">
-          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
           <ScalarProperty Name="bod_FechaModifica" ColumnName="bod_FechaModifica" />
           <ScalarProperty Name="bod_UsuarioModifica" ColumnName="bod_UsuarioModifica" />
           <ScalarProperty Name="bod_FechaCrea" ColumnName="bod_FechaCrea" />
@@ -1971,5 +1970,17 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="V_Vent_FacturaPago">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.V_Vent_FacturaPago">
+        <MappingFragment StoreEntitySet="V_Vent_FacturaPago">
+          <ScalarProperty Name="SaldoFactura" ColumnName="SaldoFactura" />
+          <ScalarProperty Name="TotalPagado" ColumnName="TotalPagado" />
+          <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

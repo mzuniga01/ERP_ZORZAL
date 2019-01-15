@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbPago>
 
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -25,7 +26,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-striped table-responsive" style="width:100%" id="DataTable">
+  <table class="table table-striped table-responsive table-bordered" id="DataTable">
                         <thead>
                             <tr>
                                 <th>
@@ -52,12 +53,12 @@
                                     Acciones
                                     @*@Html.DisplayNameFor(model => model.tbFactura.clte_Nombres)*@
                                 </th>
-                                
+
 
 
                                 <th></th>
                             </tr>
-                            </thead>
+                        </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
@@ -78,7 +79,7 @@
                                         @Html.DisplayFor(modelItem => item.pago_TotalPago)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbFactura.tbCliente.clte_Nombres)
+                                        @Html.DisplayFor(modelItem => item.tbFactura.clte_Nombres)
                                     </td>
 
 
@@ -100,7 +101,6 @@
         </div>
     </div>
  </div>
-
 
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>

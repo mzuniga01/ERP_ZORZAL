@@ -12,14 +12,13 @@ namespace ERP_GMEDINA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbFacturaHistorica
+    public partial class V_Vent_FacturaPago
     {
-        public byte facth_Id { get; set; }
         public long fact_Id { get; set; }
-        public byte esfac_Id { get; set; }
-        public Nullable<System.DateTime> facth_Fecha { get; set; }
-    
-        public virtual tbEstadoFactura tbEstadoFactura { get; set; }
-        public virtual tbFactura tbFactura { get; set; }
+        public int clte_Id { get; set; }
+        public string fact_Codigo { get; set; }
+        public string MontoFactura { get; set; }
+        public string TotalPagado { get; set; }
+        public string SaldoFactura { get; set; }
     }
 }

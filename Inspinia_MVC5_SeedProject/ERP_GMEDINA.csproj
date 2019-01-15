@@ -805,6 +805,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UnidadesMedida.cs" />
+    <Compile Include="Models\V_Vent_FacturaPago.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PuntoEmisionDetalle.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1093,7 +1096,9 @@
     <Content Include="Scripts\app\MovientoCaja.js" />
     <Content Include="Scripts\app\NotaCredito.js" />
     <Content Include="Scripts\app\NotaCreditoAnulado.js" />
+    <Content Include="Scripts\app\PagoClienteFacturas.js" />
     <Content Include="Scripts\app\PagosArqueo.js" />
+    <Content Include="Scripts\app\PagoTransacciones.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
     <Content Include="Scripts\app\ProductoDevolucion.js" />
     <Content Include="Scripts\app\ProductoFactura.js" />

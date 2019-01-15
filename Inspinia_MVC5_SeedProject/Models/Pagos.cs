@@ -32,50 +32,41 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public System.DateTime pago_FechaElaboracion { get; set; }
 
-        [Display(Name = "Saldo Anterior")]
+        [Display(Name = "Saldo ")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal pago_SaldoAnterior { get; set; }
 
-        [Display(Name = "Saldo Actual")]
+        [Display(Name = "Total Pago")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal pago_TotalPago { get; set; }
 
         [Display(Name = "Total Cambio")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal pago_TotalCambio { get; set; }
 
         [Display(Name = "Emisor")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string pago_Emisor { get; set; }
 
         [Display(Name = "Cuenta Bancaria")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public short bcta_Id { get; set; }
 
         [Display(Name = "Fecha de Vencimiento")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public Nullable<System.DateTime> pago_FechaVencimiento { get; set; }
 
         [Display(Name = "Titular")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string pago_Titular{ get; set; }
 
         [Display(Name = "Usuario Crea")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public int pago_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Crea")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public System.DateTime pago_FechaCrea { get; set; }
 
         [Display(Name = "Usuario Modifica")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public Nullable<int> pago_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modifica")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public Nullable<System.DateTime> pago_FechaModifica { get; set; }
 
 
