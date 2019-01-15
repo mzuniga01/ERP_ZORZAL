@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    var $rows = $('#DataTable tr');
+    var $rows = $('#DevFactura tr');
     $("#searchFactura").keyup(function () {
         var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 
@@ -12,7 +12,7 @@
 
 
 
-$(document).on("click", "#DataTable tbody tr td button#AgregarFactura", function () {
+$(document).on("click", "#DevFactura tbody tr td button#AgregarFactura", function () {
     idItem = $(this).closest('tr').data('id');
     CodigoItem = $(this).closest('tr').data('codigo');
     DescItem = $(this).closest('tr').data('desc');

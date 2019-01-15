@@ -104,7 +104,10 @@
                             <div class="col-md-12">
                                 @Html.Partial("_CreateDevolucionDetalle", new tbDevolucionDetalle())
 
-                                @Html.Hidden("RedirectTo", Url.Action("Create", "NotaCredito"))
+                                @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion"))
+
+
+
 
                             </div>
                         </div>
@@ -199,6 +202,7 @@
         </div>
     </div>
 </div>
+
 <script src="~/Scripts/app/EmitirNotaCredito.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
@@ -206,7 +210,6 @@
 <script src="~/Scripts/app/DevolucionDetalle.js"></script>
 <script src="~/Scripts/app/FacturaDevolucion.js"></script>
 <script src="~/Scripts/app/ClienteDevolucion.js"></script>
-
 <script>
  $(document).ready(function () {
      var x = document.getElementById("Factura").disabled;

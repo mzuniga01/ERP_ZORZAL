@@ -52,18 +52,35 @@
 
            
         </div>
-
+       
+        <div class="form-group">
+            <label class="control-label col-md-2">% Descuento</label>
+              <div class="col-md-3">
+                <input type="text" value="" class="form-control " id="Descuento" />
+            </div>
+            <label class="control-label col-md-2">Monto Descuento</label>
+            <div class="col-md-3">
+               <input type="text" value="" class="form-control " id="MontoDescuento" />
+            </div>
+        </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.devd_Monto, "Monto", new { @class = "control-label  col-md-offset-5 col-md-2" })
+            <label class="control-label col-md-2">Sub-Total</label>
+            <div class="col-md-3">
+                <input type="text" value="" class="form-control " id="Subtotal" />
+            </div>
+
+            @Html.LabelFor(model => model.devd_Monto, "Monto Total", new { @class = "control-label   col-md-2" })
             <div class="col-md-offset col-md-3">
-                @Html.EditorFor(model => model.devd_Monto ,new { htmlAttributes = new { @*@readonly = "readonly",*@ @class = "form-control" } })
+                @Html.EditorFor(model => model.devd_Monto, new { htmlAttributes = new { @*@readonly = "readonly"*@ @class = "form-control" } })
                 <div id="validationProductoDevolucionCreate">
                     @Html.ValidationMessageFor(model => model.devd_Monto)
                 </div>
 
             </div>
         </div>
+
+       
         <div class="form-group">
             @Html.LabelFor(model => model.devd_Descripcion, "Observaciones", new { @class = "control-label col-md-2" })
             <div class="col-md-8">

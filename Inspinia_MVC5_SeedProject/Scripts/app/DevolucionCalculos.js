@@ -4,7 +4,7 @@
 
         var Cantidad = $("#devd_CantidadProducto").val(),
             Precio = $("#PrecioUnitario").val(),
-            MontoDescuento = $("#test_factd_MontoDescuento").val(),
+            MontoDescuento = $("#MontoDescuento").val(),
             Subtotal = $("#Subtotal").val(),
             valorSubtotal = "";
         MontoTotal = "";

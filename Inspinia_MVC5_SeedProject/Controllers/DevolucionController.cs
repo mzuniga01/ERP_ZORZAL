@@ -18,8 +18,12 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Devolucion/
         public ActionResult Index()
         {
+            //db.Configuration.ProxyCreationEnabled = false;
+
             var tbdevolucion = db.tbDevolucion.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCaja).Include(t => t.tbFactura);
             return View(tbdevolucion.ToList());
+
+
         }
 
 
@@ -103,6 +107,7 @@ namespace ERP_ZORZAL.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "fact_Id, cja_Id, dev_Fecha, dev_Estado")] tbDevolucion tbDevolucion)
+
         {
             var list = (List<tbDevolucionDetalle>)Session["Devolucion"];
             var MensajeError = 0;
@@ -306,7 +311,9 @@ namespace ERP_ZORZAL.Controllers
         {
            
             var list = ViewBag.Factura = db.tbFactura.Where(a => a.clte_Identificacion == CodFactura).ToList();
-            return Json(list);
+            //ViewBag.Factura = list;
+            return Json(list.ToList());
+            //return Json(list);
         }
 
         public ActionResult CreateNotaCredito()

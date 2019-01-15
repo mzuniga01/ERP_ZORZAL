@@ -8,14 +8,14 @@ $(document).on("click", "#DataTable1 tbody tr td button#Agregar", function () {
     $("#prod_Codigo").val(idItem);
     $("#tbProducto_prod_Descripcion").val(DescItem);
     $("#PrecioUnitario").val(DescValor);
-    $("#test_factd_MontoDescuento").val(DescuentoItem);
-    $("#tbDevolucion_tbFactura_fact_PorcentajeDescuento").val(PorcentajeItem);
+    $("#MontoDescuento").val(DescuentoItem);
+    $("#Descuento").val(PorcentajeItem);
     $('#ModalBuscarProducto').modal('hide');
 });
 
 
 //Devolucion Agregar Producto
-$(document).on("click", "#DataTable1 tbody tr td button#Producto", function () {
+$(document).on("click", "#EditarDetalle tbody tr td button#Producto", function () {
     ProductoDescripcionItem = $(this).closest('tr').data('productodescripcion');
     CodigoFacturaItem = $(this).closest('tr').data('codigofactura');
     PorcentajeDescuentoItem = $(this).closest('tr').data('porcentajedescuento')
@@ -25,3 +25,4 @@ $(document).on("click", "#DataTable1 tbody tr td button#Producto", function () {
     $("#tbDevolucion_tbFactura_fact_PorcentajeDescuento").val(PorcentajeDescuentoItem);
     $("#test_factd_PrecioUnitario").val(PrecioUnitarioItem);
 });
+

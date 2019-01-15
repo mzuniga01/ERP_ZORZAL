@@ -17,7 +17,7 @@
                         </div>
                     </div>*@
                 <div class="ibox-content">
-                    <table class="table table table-striped  table-bordered" id="DataTable1">
+                    <table class="table table table-striped  table-bordered" id="EditarDetalle">
                         <thead>
                             <tr>
                                 <th>
@@ -58,7 +58,7 @@
                                         <button id="Producto" type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.devd_Id">
                                             Editar
                                         </button>
-                                       </td>
+                                    </td>
                                 </tr>
                                 <!-- Modal -->
                                 <div class="modal fade" id="Editar_@item.devd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -87,8 +87,29 @@
         </div>
     </div>
 </div>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/DataTable1.js"></script>
 <script src="~/Scripts/app/ProductoDevolucion.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#EditarDetalle').DataTable(
+        {
+            "searching": false,
+            "lengthChange": false,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+            }
+        });
+    });
+</script>
 
 
