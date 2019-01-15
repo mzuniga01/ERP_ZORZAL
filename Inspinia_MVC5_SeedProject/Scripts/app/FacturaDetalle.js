@@ -11,7 +11,7 @@ $('#AgregarDetalleFactura').click(function () {
     var Impuesto = $('#factd_Impuesto').val();
     var Total = $('#TotalProducto').val();
     
-    if (CodigoProducto == '')
+    if (CodigoProducto == '' )
     {
         $('#ErrorCodigoProductoCreate').text('');
         $('#ErrorMontoDescuentoCreate').text('');
@@ -166,15 +166,14 @@ $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDeta
 });
 
 //Validacion de numeros//
-function format(input) {
-    var num = input.value.replace(/\,/g, '');
-    if (!isNaN(num)) {
-        input.value = num;
-    }
-    else {
-        alert('Solo se permiten numeros');
-        input.value = input.value.replace(/[^\d\.]*/g, '');
-    }
+function soloNumeros(e) {
+    var key = window.Event ? e.which : e.keyCode;
+    return ((key >= 48 && key <= 57) || (key == 8))
+}
+
+function pierdeFoco(e) {
+    var valor = e.value.replace(/^0*/, '');
+    e.value = valor;
 }
 
 function ponerdecimales(numero) {

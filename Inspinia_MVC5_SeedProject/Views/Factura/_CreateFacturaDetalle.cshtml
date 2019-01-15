@@ -7,7 +7,7 @@
                 <div class="ibox-content">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-1"})
+                            @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label required col-md-1" })
                             <div class="col-md-3">
                                 @Html.EditorFor(model => model.prod_Codigo,  new { htmlAttributes = new { @autocomplete = "off", @class = "form-control" } })
                                 <div id="validationCodigoProductoCreate">
@@ -17,9 +17,9 @@
                             <div class="col-md-1">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
-                            @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label col-md-1" })
+                            @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label required col-md-1" })
                             <div class="col-md-2">
-                                @Html.EditorFor(model => model.factd_Cantidad, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
+                                @Html.EditorFor(model => model.factd_Cantidad, new { htmlAttributes = new { @Value = "", onKeyPress = "return soloNumeros(event)", @autocomplete = "off" } })
                                 <div id="validationCantidadProductoCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.factd_Cantidad)</p>
                                 </div>

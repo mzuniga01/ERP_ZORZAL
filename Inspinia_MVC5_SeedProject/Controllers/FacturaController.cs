@@ -123,7 +123,9 @@ namespace ERP_GMEDINA.Controllers
                         }
                     }
                 }
-
+                ViewBag.cliente = cliente;
+                ViewBag.fecha = fecha;
+                ViewBag.caja = caja;
                 return View(list);
             }
             catch (Exception ex)
@@ -168,6 +170,22 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Factura/Create
         public ActionResult Create()
         {
+            int? id = (int)Session["IDCLIENTE"] ;
+            ViewBag.Iden = id;
+            string ident = "";
+            if (!string.IsNullOrEmpty(ViewBag.Identificacion))
+             ident = Convert.ToString(ViewBag.Identificacion);
+            ////GeneralFunctions GetID = new GeneralFunctions();
+            //if (ViewBag.Identificacion == null)
+            //{
+            //    ViewBag.Ident = "Hola";
+            //}
+            //else
+            //{
+            //    ViewBag.Ident = ViewBag.Identificacion;
+            //}
+
+
             ViewBag.fact_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.fact_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
@@ -182,7 +200,6 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
-
             Session["Factura"] = null;
             Session["TerceraEdad"] = null;
             return View();
@@ -195,6 +212,7 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
         {
+
             var list = (List<tbFacturaDetalle>)Session["Factura"];
             var listTercera = (List<tbFactura>)Session["TerceraEdad"];
             long MensajeError = 0;
@@ -304,7 +322,6 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
                     ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
                     ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
-
                     ViewBag.Producto = db.tbProducto.ToList();
                     ViewBag.Cliente = db.tbCliente.ToList();
                 }
@@ -316,20 +333,15 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbFactura.clte_Id);
             ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion", tbFactura.esfac_Id);
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbFactura.suc_Id);
-
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
             ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
-
             ViewBag.Cliente = db.tbCliente.ToList();
             ViewBag.Producto = db.tbProducto.ToList();
 
-            Session["Factura"] = null;
-            Session["TerceraEdad"] = null;
-
-            return View(tbFactura);
+           return View(tbFactura);
         }
 
         // GET: /Factura/Edit/5
@@ -408,7 +420,6 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
                     ViewBag.Producto = db.tbProducto.ToList();
                     ViewBag.Cliente = db.tbCliente.ToList();
-                    ViewBag.Producto = db.tbProducto.ToList();
                 }
 
                 return RedirectToAction("Index");
@@ -421,6 +432,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbFactura.suc_Id);
             ViewBag.Cliente = db.tbCliente.ToList();
             ViewBag.Producto = db.tbProducto.ToList();
+
             return View(tbFactura);
         }
 
@@ -537,7 +549,7 @@ namespace ERP_GMEDINA.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit","Factura");
                 }
             }
             catch (Exception Ex)
@@ -574,7 +586,91 @@ namespace ERP_GMEDINA.Controllers
         {
             var list = db.UDP_Vent_tbFactura_ConsultaBodega(CodSucursal, CodProducto).ToArray();
             return Json(list, JsonRequestBehavior.AllowGet);
-        }      
+        }
+
+        // GET: /Cliente/Create
+        public ActionResult _CreateCliente()
+        {
+            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
+            ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
+            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
+            return View();
+        }
+
+        // POST: /Cliente/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult _CreateCliente([Bind(Include = "clte_Id,tpi_Id,clte_Identificacion,clte_EsPersonaNatural,clte_Nombres,clte_Apellidos,clte_FechaNacimiento,clte_Nacionalidad,clte_Sexo,clte_Telefono,clte_NombreComercial,clte_RazonSocial,clte_ContactoNombre,clte_ContactoEmail,clte_ContactoTelefono,clte_FechaConstitucion,mun_Codigo,clte_Direccion,clte_CorreoElectronico,clte_EsActivo,clte_RazonInactivo,clte_ConCredito,clte_EsMinorista,clte_Observaciones,clte_UsuarioCrea,clte_FechaCrea,clte_UsuarioModifica,clte_FechaModifica,clte_MontoCredito,clte_DiasCredito")] tbCliente tbCliente, string dep_Codigo)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbCliente_Insert(tbCliente.tpi_Id,
+                                                        tbCliente.clte_Identificacion,
+                                                        tbCliente.clte_EsPersonaNatural,
+                                                        tbCliente.clte_Nombres,
+                                                        tbCliente.clte_Apellidos,
+                                                        tbCliente.clte_FechaNacimiento,
+                                                        tbCliente.clte_Nacionalidad,
+                                                        tbCliente.clte_Sexo,
+                                                        tbCliente.clte_Telefono,
+                                                        tbCliente.clte_NombreComercial,
+                                                        tbCliente.clte_RazonSocial,
+                                                        tbCliente.clte_ContactoNombre,
+                                                        tbCliente.clte_ContactoEmail,
+                                                        tbCliente.clte_ContactoTelefono,
+                                                        tbCliente.clte_FechaConstitucion,
+                                                        tbCliente.mun_Codigo,
+                                                        tbCliente.clte_Direccion,
+                                                        tbCliente.clte_CorreoElectronico,
+                                                        Helpers.ClienteActivo,
+                                                        tbCliente.clte_RazonInactivo,
+                                                        Helpers.ClienteCredito,
+                                                        tbCliente.clte_EsMinorista,
+                                                        tbCliente.clte_Observaciones,
+                                                        tbCliente.clte_MontoCredito,
+                                                        tbCliente.clte_DiasCredito);
+                    foreach (UDP_Vent_tbCliente_Insert_Result cliente in list)
+                        MensajeError = cliente.MensajeError;
+                    if (MensajeError == -1)
+                    {
+
+                    }
+                    else
+                    {
+                        Session["IDCLIENTE"] = MensajeError;                        
+                        return RedirectToAction("Create", "Factura");
+                    }
+
+                }
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
+                    ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", dep_Codigo);
+                    //ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
+                    //ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
+                    ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
+                    ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+                    return View(tbCliente);
+                }
+                
+                return RedirectToAction("Index");
+            }
+            tbCliente Cliente = new tbCliente();
+            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", dep_Codigo);
+            //ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
+            //ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
+            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
+            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+            return View(tbCliente);
+        }
 
     }
 }

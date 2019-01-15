@@ -2,11 +2,10 @@
 $(document).ready(function () {
     var $rows = $('#ClienteTbody tr');
     $("#searchCliente").keyup(function () {
-        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-        console.log('val', val.length);
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toUpperCase();
         if (val.length >= 3) {
             $rows.show().filter(function () {
-                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                var text = $(this).text().replace(/\s+/g, ' ').toUpperCase();
                 return !~text.indexOf(val);
             }).hide();
         }

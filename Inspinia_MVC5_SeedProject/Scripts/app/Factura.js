@@ -23,12 +23,16 @@ $("#consumidorFinal").change(function () {
         $("#clte_Identificacion").val('99999999999999');
         $("#clte_Nombres").val('Consumidor Final');
         $("#clte_Id").val(500);
+        document.getElementById("fact_AlCredito").disabled = true;
+        document.getElementById("fact_AutorizarDescuento").disabled = true;
 
     }
     else {
         $("#clte_Nombres").val('');
         $("#clte_Identificacion").val('');
         $("#clte_Id").val('');
+        document.getElementById("fact_AlCredito").disabled = false;
+        document.getElementById("fact_AutorizarDescuento").disabled = false;
     }
 })
 
@@ -38,12 +42,15 @@ $("#consumidorFinal").ready(function () {
         $("#clte_Identificacion").val('99999999999999');
         $("#clte_Nombres").val('Consumidor Final');
         $("#clte_Id").val(500);
-
+        document.getElementById("fact_AlCredito").disabled = true;
+        document.getElementById("fact_AutorizarDescuento").disabled = true;
     }
     else {
         $("#clte_Nombres").val('');
         $("#clte_Identificacion").val('');
         $("#clte_Id").val('');
+        document.getElementById("fact_AlCredito").disabled = false;
+        document.getElementById("fact_AutorizarDescuento").disabled = false;
     }
 });
 
@@ -60,28 +67,13 @@ $("#fact_NombresTE").on("keypress", function () {
     }, 50);
 })
 
-
-$('#fact_IdentidadTE').on('input', function (e) {
-    if (!/^[ a-z0-9]*$/i.test(this.value)) {
-        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
-    }
-});
-
-
+$("#fact_IdentidadTE")[0].maxLength = 13;
 //Validacion de numeros//
-function format(input) {
-    $(input).change(function () {
-        var str = $(input).val();
-        var res = str.toUpperCase();
-        $(input).val(res);
-    });
-    $(input).on("keypress", function () {
-        $input = $(this);
-        setTimeout(function () {
-            $input.val($input.val().toUpperCase());
-        }, 50);
-    })
+function soloNumeros(e) {
+    var key = window.Event ? e.which : e.keyCode;
+    return ((key >= 48 && key <= 57) || (key == 8))
 }
+
 
 ////Tercera Edad
 $('#AgregarTerceraEdad').click(function () {
