@@ -311,8 +311,8 @@ namespace ERP_ZORZAL.Controllers
         {
            
             var list = ViewBag.Factura = db.tbFactura.Where(a => a.clte_Identificacion == CodFactura).ToList();
-            //ViewBag.Factura = list;
-            return Json(list.ToList());
+            ViewBag.Factura = list;
+            return Json(list);
             //return Json(list);
         }
 
