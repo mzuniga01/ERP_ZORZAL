@@ -100,7 +100,7 @@
                             <div><br /></div>
 
                             <div style="padding-left :100px">
-                                <input type="submit" value="Restaurar Contraseña" class="btn btn-primary" />
+                                @Html.ActionLink("RestaurarPassword", "RestaurarPassword", new { id = Model.usu_Id }, new { @class = "btn btn-primary" })
                                 @Html.ActionLink("Modificar Contraseña", "ModificarPass", new { id = Model.usu_Id }, new { @class = "btn btn-primary" })
                             </div>
                             <div><br /><br /><br /></div>

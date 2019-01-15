@@ -62,14 +62,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.usu_Password, new { @class = "control-label col-md-2" })
             <div class="col-md-2">
-                <input class="text-box single-line" data-val="true" data-val-required="El campo Password es requerido" id="usu_Password" maxlength="8" name="usu_Password" type="password" value="">
+                <input class="text-box single-line" data-val="true" data-val-required="El campo Password es requerido" id="usu_Password" maxlength="64" name="usu_Password" type="password" value="">
                 @Html.ValidationMessageFor(model => model.usu_Password, "", new { @class = "text-danger", id="Password" })
                 <label id="msg"></label><br>
             </div>
 
             @Html.LabelFor(model => model.ConfirmarPassword, new { @class = "control-label col-md-4" })
             <div class="col-md-2">
-                <input class="text-box single-line" data-val="true" data-val-required="El campo Confirmar Password es requerido" id="confirmar-pass" maxlength="8" name="ConfirmarPassword" type="password" value="">
+                <input class="text-box single-line" data-val="true" data-val-required="El campo Confirmar Password es requerido" id="confirmar-pass" maxlength="64" name="ConfirmarPassword" type="password" value="">
                 @Html.ValidationMessageFor(model => model.ConfirmarPassword, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -45,7 +45,7 @@ namespace ERP_GMEDINA.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ModificarPass([Bind(Include = "usu_Id,usu_NombreUsuario,usu_Password,usu_Nombres,usu_Apellidos,usu_Correo")] tbUsuario tbUsuario)
+        public ActionResult ModificarPass([Bind(Include = "usu_Id,usu_NombreUsuario,usu_Password,usu_Nombres,usu_Apellidos,usu_Correo")] tbUsuario tbUsuario,string usu_Password)
         {
             if (ModelState.IsValid)
             {
@@ -56,7 +56,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<object> List = null;
                     var MsjError = "0";
-                    List = db.UDP_Acce_tbUsuario_PasswordUpdate(tbUsuario.usu_Id, tbUsuario.usu_Password);
+                    List = db.UDP_Acce_tbUsuario_PasswordUpdate(tbUsuario.usu_Id,usu_Password);
                     foreach (UDP_Acce_tbUsuario_PasswordUpdate_Result Usuario in List)
                         MsjError = Usuario.MensajeError;
 
@@ -224,34 +224,33 @@ namespace ERP_GMEDINA.Controllers
             return View(tbUsuario);
         }
 
-        public ActionResult RestaurarPassword()
-        {
-            return View();
-        }
+        //public ActionResult RestaurarPassword()
+        //{
+        //    return View();
+        //}
 
-        [ValidateAntiForgeryToken]
-        [HttpPost]
-        public ActionResult RestaurarPassword(tbUsuario usuarioRecuperar)
+        
+        public ActionResult RestaurarPassword(int? id)
         {
             if (ModelState.IsValidField("usuario"))
             {
-                var usuario = db.tbUsuario.Where(item => item.usu_NombreUsuario == usuarioRecuperar.usu_NombreUsuario).FirstOrDefault();
-                if (usuario != null)
+                tbUsuario tbUsuario = db.tbUsuario.Find(id);
+                //var usuario = db.tbUsuario.Where(item => item.usu_NombreUsuario == usuarioRecuperar.usu_NombreUsuario).FirstOrDefault();
+                if (tbUsuario != null)
                 {
                     string emailsalida = "erpzorzal@gmail.com";
                     string passwordsalida = "sistemadeinventari0";
-                    string emaildestino = usuario.usu_Correo;
+                    string emaildestino = tbUsuario.usu_Correo;
 
                     //PasswordGroup.Special,
 
                     string passwordnueva = RandomPassword.Generate(8, PasswordGroup.Uppercase, PasswordGroup.Lowercase, PasswordGroup.Numeric);
-                    db.Entry(usuario).State = EntityState.Modified;
-                     var PassUser = Convert.FromBase64String(passwordnueva);
+                    db.Entry(tbUsuario).State = EntityState.Modified;
                     try
                     {
                         IEnumerable<object> List = null;
                         var MsjError = "0";
-                        List = db.UDP_Acce_tbUsuario_PasswordUpdate(usuario.usu_Id, PassUser);
+                        List = db.UDP_Acce_tbUsuario_PasswordUpdate(tbUsuario.usu_Id, passwordnueva);
                         foreach (UDP_Acce_tbUsuario_PasswordUpdate_Result Usuario in List)
                             MsjError = Usuario.MensajeError;
 
@@ -283,13 +282,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 ModelState.AddModelError("", "El usuario ingresado no existe");
             }
-            return View(usuarioRecuperar);
-        }
-
-        public String getString(byte[] text)
-        {
-            System.Text.ASCIIEncoding codificador = new System.Text.ASCIIEncoding();
-            return codificador.GetString(text);
+            return RedirectToAction("Index");
         }
         
         public void Email(string emailsalida, string passwordsalida, string emaildestino, string passwordnueva)

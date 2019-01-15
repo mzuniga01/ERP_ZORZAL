@@ -209,6 +209,7 @@
     <Compile Include="Controllers\TipoEntradaController.cs" />
     <Compile Include="Controllers\TipoSalidaController.cs" />
     <Compile Include="Controllers\UnidadMedidaController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1336,6 +1337,7 @@
     <Content Include="Views\Salida\_SalidaDetalle.cshtml" />
     <Content Include="Views\Box\_BoxDetalle.cshtml" />
     <Content Include="Views\Box\_IndexBoxDetalle.cshtml" />
+    <Content Include="Views\Usuario\RestaurarPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
