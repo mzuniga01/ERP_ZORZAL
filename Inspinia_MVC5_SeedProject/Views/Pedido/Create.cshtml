@@ -6,16 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    .validation-error {
-        color: red;
-        font-size: small;
-    }
 
-    .modal-lg {
-        max-width: 100% !important;
-    }
-</style>
 
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -49,7 +40,7 @@
                                 <label class="control-label col-md-2">Sucursal</label>
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.suc_Id)</span>
+                                    <span style="color:red">@Html.ValidationMessageFor(model => model.suc_Id)
                                 </div>
 
 
@@ -57,14 +48,14 @@
 
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.ped_FechaElaboracion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly"} })
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.ped_FechaElaboracion)</span>
-                                </div>
+                                    <span style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
+</div>
 
                             </div>
                             <div class="form-group">
                                 <div class="col-md-4">
                                     @Html.HiddenFor(model => model.clte_Id)
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Id)</span>
+                                    <span style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)</span>
                                 </div>
                             </div>
 
@@ -72,7 +63,7 @@
                                 <label class="control-label col-md-2">Identificación Cliente</label>
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span>
+                                    <span style="color:red">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span>
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
@@ -81,7 +72,7 @@
                                 <label class="control-label col-md-1">Nombres Cliente</label>
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span>
+                                    <span style="color:red">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span>
                                 </div>
 
                             </div>
@@ -91,7 +82,7 @@
                                 <label class="control-label col-md-2">Fecha Entrega</label>
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.ped_FechaEntrega)
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.ped_FechaEntrega)</span>
+                                    <span style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaEntrega)</span>
                                 </div>
                             </div>
 
@@ -155,6 +146,11 @@
 
         });
 
+
+    </script>
+
+<script>
+        // add indicator to required fields
         jQuery('input,select').each(function () {
             var req = jQuery(this).attr('data-val-required');
             if (undefined != req) {
@@ -165,9 +161,8 @@
                 }
             }
         });
-       
 
-    </script>
+</script>
 
 
 

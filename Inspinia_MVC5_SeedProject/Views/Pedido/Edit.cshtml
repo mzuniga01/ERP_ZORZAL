@@ -55,43 +55,24 @@
 
 
             <div class="form-group">
-       
-
-
                 <label class="control-label col-md-2">Sucursal</label>
 
                 <div class="col-md-3">
                     @Html.EditorFor(model => model.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     <span class="validation-error">@Html.ValidationMessageFor(model => model.suc_Id)</span>
-</div>
-          
-                @Html.LabelFor(model => model.suc_Id, "Estado", new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                    @Html.DropDownList("esped_Id", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.ped_Id)
                 </div>
-            </div>
-
-            <div class="form-group">
-
                 <label class="control-label col-md-2">Departamento</label>
-
                 <div class="col-md-3">
                     @Html.EditorFor(model => model.tbSucursal.tbMunicipio.tbDepartamento.dep_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.suc_Id)
                 </div>
-
-                @Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.ped_FechaElaboracion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
-                </div>
-               
             </div>
 
 
+
+
             <div class="form-group">
-            
+
                 <label class="control-label col-md-2">Indentificación Cliente</label>
                 <div class="col-md-3">
                     @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
@@ -110,8 +91,12 @@
             </div>
 
             <div class="form-group">
-              
 
+                @Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.ped_FechaElaboracion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
+                </div>
 
 
                 @Html.LabelFor(model => model.ped_FechaEntrega, new { @class = "control-label col-md-2" })
@@ -119,8 +104,10 @@
                     @Html.EditorFor(model => model.ped_FechaEntrega)
                     @Html.ValidationMessageFor(model => model.ped_FechaEntrega)
                 </div>
-          
+               
             </div>
+
+
 
             <div class="form-group">
             @*<label class="control-label col-md-2">Número Factura</label>*@
@@ -141,7 +128,7 @@
 
             
             <div class="form-group">
-                <div class="col-md-offset-4 col-md-10">
+                <div class="col-md-offset-5 col-md-10">
                     <input type="submit" value="Guardar" class="btn btn-primary" />
                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                 </div>
@@ -220,7 +207,7 @@
         $.datepicker.setDefaults($.datepicker.regional['es']);
 
         $(function () {
-            $("#ped_FechaElaboracion").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date());
+            $("#ped_FechaElaboracion").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
             $("#ped_FechaEntrega").datepicker({ dateFormat: 'dd/mm/yy', minDate: 0 }).datepicker('setDate', new Date());
 
         });

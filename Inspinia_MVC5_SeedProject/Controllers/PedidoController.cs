@@ -73,6 +73,7 @@ namespace ERP_ZORZAL.Controllers
             Session["tbPedidoDetalle"] = null;
             ViewBag.Producto = db.tbProducto.ToList();
             tbPedido Pedido = new tbPedido();
+            Pedido.esped_Id = Helpers.Pendiente;
             Pedido.suc_Id = 1;
             return View(Pedido);
 
@@ -237,6 +238,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion", tbPedido.esped_Id);
             ViewBag.Producto = db.tbProducto.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
+            tbPedido.esped_Id = Helpers.Pendiente;
             return View(tbPedido);
         }
         public ActionResult Edit(int? id)
@@ -276,6 +278,7 @@ namespace ERP_ZORZAL.Controllers
             {
                 try
                 {
+
                     ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
                     ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
                     ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
@@ -288,7 +291,7 @@ namespace ERP_ZORZAL.Controllers
                     var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbPedido_Update(tbPedido.ped_Id,
-                                                        tbPedido.esped_Id,
+                                                        tbPedido.esped_Id = 1,
                                                         tbPedido.ped_FechaElaboracion,
                                                         tbPedido.ped_FechaEntrega,
                                                         tbPedido.clte_Id,

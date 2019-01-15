@@ -16,14 +16,12 @@
 
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.pedd_Id)
+                                        @Html.DisplayNameFor(model => model.prod_Codigo)
                                     </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.pedd_Descripcion)
-                                    </th>
+                                  
 
                                     <th>
-                                        Producto
+                                      Descripción Producto
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.pedd_Cantidad)
@@ -44,12 +42,9 @@
                             {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.pedd_Id)
+                                            @Html.DisplayFor(modelItem => item.prod_Codigo)
                                         </td>
 
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.pedd_Descripcion)
-                                        </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
                                         </td>

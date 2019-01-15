@@ -40,6 +40,27 @@
 
 
 				    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbSucursal.suc_Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
+        </dd>
+
+        <dt>
+           Departamento
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tbSucursal.tbMunicipio.tbDepartamento.dep_Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.ped_Id)
         </dt>
@@ -55,13 +76,6 @@
             @Html.DisplayFor(model => model.tbEstadoPedido.esped_Descripcion)
         </dd>
 
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.ped_FechaElaboracion)

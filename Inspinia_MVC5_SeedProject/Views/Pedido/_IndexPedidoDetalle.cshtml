@@ -14,9 +14,9 @@
     <thead>
         <tr>
 
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.tbPedido.ped_Id)
-            </th>
+            </th>*@
 
             <th>
                 @Html.DisplayNameFor(model => model.prod_Codigo)
@@ -28,6 +28,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.pedd_Cantidad)
             </th>
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.pedd_CantidadFacturada)
+            </th>
            
             <th>Acciones</th>
         </tr>
@@ -35,9 +40,9 @@
     <tbody>
 @foreach (var item in Model) {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.tbPedido.ped_Id)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.prod_Codigo)
         </td>
@@ -47,6 +52,9 @@
 
         <td>
             @Html.DisplayFor(modelItem => item.pedd_Cantidad)
+        </td>
+       <td>
+            @Html.DisplayFor(modelItem => item.pedd_CantidadFacturada)
         </td>
         <td>		
             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.pedd_Id">
@@ -61,7 +69,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Editar Solicitud Efectivo Detalle</h5>
+                        <h3 class="modal-title" id="exampleModalLabel">Editar Pedido Detalle</h3>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
