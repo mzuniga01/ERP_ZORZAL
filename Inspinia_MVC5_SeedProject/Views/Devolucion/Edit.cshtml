@@ -138,9 +138,9 @@
                     }
                     
                     <div class="ibox-content">
-                        @*@Html.ActionLink("EmitirNotaCredito", "CreateNotaCredito", null, new { @class = "btn btn-primary btn-ms" })*@
                         @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion" ,new { id = Model.dev_Id }))
 
+                        @Html.Hidden("Redireccionar", Url.Action("Index", "Devolucion"))
                         <div class="form-group">
                            
                             <div class="col-md-offset col-md-11">

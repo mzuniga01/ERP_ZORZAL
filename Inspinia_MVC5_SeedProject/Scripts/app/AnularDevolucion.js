@@ -15,8 +15,9 @@
             alert("Registro No Actualizado");
         }
         else {
+            console.log('Redireccionar1')
             var url = $("#Redireccionar").val();
-            document.getElementById("btnEditar").disabled = true;
+            console.log(url)
             location.href = url;
         }
     });
