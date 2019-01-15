@@ -85,6 +85,7 @@
                                 <hr />
                                 <div class="col-md-12 text-right">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminarDetalle" value="Eliminar" />
                                     @Html.ActionLink("Cancelar", "Edit", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
@@ -99,6 +100,7 @@
     </div>
 
 }
+
     <script>
         //Validar Cantidades Bodega Detalle
         $(document).on('blur', '#bodd_PuntoReorden', function () {

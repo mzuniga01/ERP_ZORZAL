@@ -244,7 +244,6 @@
     <Property Name="bod_Telefono" Type="varchar" MaxLength="13" />
     <Property Name="mun_Codigo" Type="char" MaxLength="4" Nullable="false" />
     <Property Name="bod_EsActiva" Type="tinyint" Nullable="false" />
-    <Property Name="emp_Id" Type="smallint" />
     <Property Name="bod_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="bod_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="bod_UsuarioModifica" Type="int" />
@@ -550,6 +549,7 @@
     <Property Name="cdto_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="cdto_UsuarioModifica" Type="int" />
     <Property Name="cdto_FechaModifica" Type="datetime" />
+    <Property Name="cdto_EsImpreso" Type="bit" />
   </EntityType>
   <EntityType Name="tbDenominacionArqueo">
     <Key>
@@ -3460,7 +3460,7 @@
   </Function>
   <Function Name="UDP_Acce_tbUsuario_PasswordUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="usu_Id" Type="int" Mode="In" />
-    <Parameter Name="usu_Password" Type="binary" Mode="In" />
+    <Parameter Name="usu_Password" Type="varchar" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbUsuario_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" />
   <Function Name="UDP_Acce_tbUsuario_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">

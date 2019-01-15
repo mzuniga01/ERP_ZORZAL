@@ -35,7 +35,6 @@ namespace ERP_GMEDINA.Models
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
-        public virtual tbBodega tbBodega { get; set; }
         public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }
         public virtual tbFactura tbFactura { get; set; }
         public virtual tbTipoSalida tbTipoSalida { get; set; }
@@ -43,5 +42,6 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEntrada> tbEntrada { get; set; }
+        public virtual tbBodega tbBodega { get; set; }
     }
 }

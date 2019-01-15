@@ -7,13 +7,13 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                @*<div class="ibox-title">
                     <h5>Registrar Detalle Bodega</h5>
-                </div>
-                <div class="ibox-content">
+                </div>*@
+                @*<div class="ibox-content">*@
                     <div class="form-horizontal">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Producto<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                 <input type="text" id="prod_Codigo" placeholder="" class="form-control" />
                                 <div id="ErrorProducto_Create">
@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Producto", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 <input type="text" id="prod_Descripcion" placeholder="" class="form-control" readonly />
                                 @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
@@ -51,38 +51,38 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Cantidad Miníma<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.bodd_CantidadMinima, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
                                 <div id="ErrorCantidadMinima_Create">@Html.ValidationMessageFor(model => model.bodd_CantidadMinima)</div>
-                                
+
                             </div>
-                            @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Punto Reorden<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.bodd_PuntoReorden, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
                                 <div id="ErrorPuntoReorden_Create">@Html.ValidationMessageFor(model => model.bodd_PuntoReorden)</div>
-                               
+
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Cantidad Máxima<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.bodd_CantidadMaxima, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
                                 @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
                                 <div id="ErrorCantidadMaxima_Create">@Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)</div>
                             </div>
 
-                            @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Costo<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.bodd_Costo, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
                                 @Html.ValidationMessageFor(model => model.bodd_Costo)
                                 <div id="ErrorCosto_Create">@Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)</div>
-                               
+
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.bodd_CostoPromedio, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Costo Promedio<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.bodd_CostoPromedio, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
                                 <div id="ErrorCostoPromedio_Create"><p style="color:red">@Html.ValidationMessageFor(model => model.bodd_CostoPromedio)</p> </div>
@@ -91,15 +91,16 @@
 
                         </div>
                         <div class="ibox-tools">
-                            <input type="button" value="Agregar" id="AgregarBodegaDetalle" class="btn btn-primary" />
+                            <input type="button" value="Agregar" id="AgregarBodegaDetalle_Prueba" class="btn btn-primary" />
                         </div>
                         @*<div class="form-group col-md-1">
                                 <button class="btn btn-primary" type="button" id="AgregarBodegaDetalle">Añadir</button>
                             </div>*@
-                        <table id="tblBodegadetalle_Create" class="table table table-striped">
+                        <table id="tblBodega" class="table table table-striped">
                             <thead>
                                 <tr>
                                     <th>Producto</th>
+                                    <th>Descripcion</th>
                                     <th>Punto Reorden</th>
                                     <th>Cnt. Minima</th>
                                     <th>Cnt. Maxima</th>
@@ -127,7 +128,7 @@
             </div>
         </div>
     </div>
-</div>
+@*</div>*@
 
 <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">

@@ -72,8 +72,16 @@ namespace ERP_GMEDINA.Controllers
                 mun_Nombre = string.Concat(s.mun_Codigo + " - " + s.mun_Nombre)
             }).ToList();
 
+            var _EncargadoBodega = db.tbEmpleado.Select(s => new
+            {
+                emp_Nombres = s.emp_Nombres,
+                emp_Apellidos = string.Concat(s.emp_Nombres + " " + s.emp_Apellidos)
+            }).ToList();
+
             ViewBag.DepartamentoList = new SelectList(_departamentos, "dep_Codigo", "dep_Nombre", "Seleccione");
             ViewBag.MunicipioList = new SelectList(_Municipios, "mun_Codigo", "mun_Nombre" , "Seleccione");
+            ViewBag.ResponsableBodegaList = new SelectList(db.tbEmpleado, "emp_Id", "emp_Nombres", "emp_Apellidos"/*, "Seleccione"*/);
+            //ViewBag.ResponsableBodegaList = new SelectList(_EncargadoBodega, "emp_Nombres", "emp_Apellidos"/*, "emp_Apellidos"*//*, "Seleccione"*/);
             ////
             ///
         }
@@ -164,22 +172,22 @@ namespace ERP_GMEDINA.Controllers
                                                                                     , bodd.bodd_Costo
                                                                                     , bodd.bodd_CostoPromedio);
                                         foreach (UDP_Inv_tbBodegaDetalle_Insert_Result B_detalle in DETALLE)
-
-                                        //if (MensajeError == "-1")
-                                        {
+                                            MsjError = B_detalle.MensajeError;
+                                        if (MsjError == "-1")
+                                            {
                                             ModelState.AddModelError("", "No se Guardo el Registro");
-                                            //return View(tbBodega);
-                                        //}
-                                        //else
-                                        //{
-                                        //    _Tran.Complete();
-                                        //    return RedirectToAction("Index");
+                                                return View(tbBodega);
+                                            }
+                                        else
+                                        {
+                                            _Tran.Complete();
+                                            return RedirectToAction("Index");
                                         }
                                     }
                                 }
                             }
 
-                            //else
+                            else
                             {
                                 _Tran.Complete();
                                 //return RedirectToAction("Index");
@@ -297,8 +305,8 @@ namespace ERP_GMEDINA.Controllers
         {
             using (ERP_ZORZALEntities db = new ERP_ZORZALEntities())
             {
-                var resultado = db.tbProducto.Where(x => x.prod_Descripcion.Contains(term))
-                    .Select(x => x.prod_Descripcion).Take(5).ToList();
+                var resultado = db.tbProducto.Where(x => x.prod_Codigo.Contains(term))
+                    .Select(x => x.prod_Codigo).Take(5).ToList();
                 return Json(resultado, JsonRequestBehavior.AllowGet);
             }
         }
@@ -356,25 +364,24 @@ namespace ERP_GMEDINA.Controllers
                                                                                     , bodd.bodd_Costo
                                                                                     , bodd.bodd_CostoPromedio);
                                         foreach (UDP_Inv_tbBodegaDetalle_Insert_Result B_detalle in DETALLE)
-                                            MsjError = B_detalle.MensajeError;
+                                            //MsjError = B_detalle.MensajeError;
 
-                                        if (MsjError == "-1")
+                                        //if (MsjError == "-1")
                                         {
-                                            ViewBag.deparatamento_Edit = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
-                                            ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
+                                            //ViewBag.deparatamento_Edit = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
+                                            //ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
                                             ModelState.AddModelError("", "No se Actualizó el Registro");
-                                                return View(tbBodega);
-                                            }
-                                            else
-                                            {
-                                                _Tran.Complete();
-                                                return RedirectToAction("Index");
-                                            }
+                                        //        return View(tbBodega);
+                                        //}
+                                        //else
+                                        //{
+                                        //    _Tran.Complete();
+                                        //    return RedirectToAction("Index");
+                                        }
                                     }
                                 }
                             }
-
-                            else
+                            //else
                             {
                                 _Tran.Complete();
                                 return RedirectToAction("Index");
@@ -387,9 +394,9 @@ namespace ERP_GMEDINA.Controllers
                     {
                         Ex.Message.ToString();
                         ModelState.AddModelError("", "No se Actualizó el Registro");
-                        ViewBag.deparatamento_Edit = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
-                        ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
-                        return View(tbBodega);
+                        //ViewBag.deparatamento_Edit = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
+                        //ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
+                        //return View(tbBodega);
                         //MsjError = "-1";
                     }
                 }
@@ -398,7 +405,6 @@ namespace ERP_GMEDINA.Controllers
             this.AllLists();
             ViewBag.deparatamento_Edit= new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
             ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
-            
             return View(tbBodega);
         }
 
