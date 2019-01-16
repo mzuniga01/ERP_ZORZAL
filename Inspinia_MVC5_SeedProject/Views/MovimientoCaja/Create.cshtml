@@ -41,6 +41,8 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
 
+        @Html.HiddenFor(model => model.mocja_FechaApertura)
+
         <div class="form-group">
             @*@Html.LabelFor(model => model.mocja_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-2">
