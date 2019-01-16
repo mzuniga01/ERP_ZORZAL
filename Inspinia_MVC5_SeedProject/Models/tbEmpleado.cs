@@ -14,6 +14,12 @@ namespace ERP_GMEDINA.Models
     
     public partial class tbEmpleado
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbEmpleado()
+        {
+            this.tbBodega = new HashSet<tbBodega>();
+        }
+    
         public short emp_Id { get; set; }
         public string emp_Nombres { get; set; }
         public string emp_Apellidos { get; set; }
@@ -37,5 +43,7 @@ namespace ERP_GMEDINA.Models
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbTipoIdentificacion tbTipoIdentificacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbBodega> tbBodega { get; set; }
     }
 }

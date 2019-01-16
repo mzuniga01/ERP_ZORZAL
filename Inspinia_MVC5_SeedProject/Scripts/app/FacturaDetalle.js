@@ -182,3 +182,17 @@ function ponerdecimales(numero) {
     }
     return numero;
 }
+
+$('#AgregarDetalleFactura').click(function () {
+    console.log(total);
+    if (document.getElementById("total").innerHTML == '') {
+        totalProducto = $('#TotalProducto').val();
+        document.getElementById("total").innerHTML = parseFloat(totalProducto);
+    }
+    else {
+        document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
+    }
+
+})
+
+

@@ -151,7 +151,12 @@
                                     @Html.EditorFor(model => model.fact_Vendedor)
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Vendedor)</span>
                                 </div>
-
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Total</label>
+                                <div class="col-md-4">
+                                    <input id="TotalProducto1" type="text" value="" class="form-control" readonly />
+                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-4">
@@ -306,6 +311,7 @@
 <script src="~/Scripts/app/Factura.js"></script>
 <script src="~/Scripts/app/Cantidad.js"></script>
 <script src="~/Scripts/app/AutorizarDescuento.js"></script>
+<script src="~/Scripts/app/CalculoFactura.js"></script>
 
 <script>
     document.getElementById("esfac_Id").disabled = true;
