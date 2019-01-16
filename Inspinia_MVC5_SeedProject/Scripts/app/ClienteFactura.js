@@ -85,19 +85,22 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
     }
 });
 
-$("#clte_Identificacion").on("keypress keyup blur", function (event) {
-    var Identificacion = $('#clte_Identificacion').val();
+$("#cliente_Identificacion").on("keypress keyup blur change", function (event) {
+    var Identificacion = $('#cliente_Identificacion').val();
     if (Identificacion == '') {
         $('#TerceraEdad').show();
         $('#Alcredito').show();
         $('#clte_Nombres').val('');
         document.getElementById("MostrarTerceraEdad").disabled = false;
+        $("#fact_AlCredito").prop("checked", false);
+        $('#fact_DiasCredit').val('');
         document.getElementById("fact_AutorizarDescuento").disabled = false;
         $("#MostrarTerceraEdad").prop("checked", false);
         $("#fact_AutorizarDescuento").prop("checked", false);
     }
 
 })
+
 
 $('#consumidorFinal').change(function () {
     if (this.checked) {
