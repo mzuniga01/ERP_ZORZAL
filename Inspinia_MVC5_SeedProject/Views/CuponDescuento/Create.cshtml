@@ -1,7 +1,7 @@
 ﻿@model ERP_GMEDINA.Models.tbCuponDescuento
 
 @{
-    ViewBag.Title = "Ragistrar";
+    ViewBag.Title = "Registrar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -45,7 +45,9 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @*@type = "number",*@ @min = "0", @style = "text-align:right" } })
+                                    @*@Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @readonly = "readonly" } })*@
+                                   <input id="cdto_PorcentajeDescuentoH" name="cdto_PorcentajeDescuentoH" class="form-control" style="text-align:right" onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" />
+                                    <input type="hidden" id="cdto_PorcentajeDescuento" name="cdto_PorcentajeDescuento" />
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
                                 </div>
                             </div>
@@ -53,7 +55,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @*@type = "number",*@ @min = "0", @style = "text-align:right", @onkeypres= "MASK(this,this.value,'-L##,###,##0.00',1)", @onchange= "MASK(this,this.value,'-L##,###,##0.00',1)" } })
+                                   <input type="text" class="form-control validanumericos" data-val="true" data-val-number="The field Máximo Monto Descuento must be a number." data-val-required="*El campo Máximo Monto Descuento es requerido" id="cdto_MaximoMontoDescuentoH" min="0" name="cdto_MaximoMontoDescuentoH" onchange="MASK(this, this.value, '-##,###,##0.00', 1)" onkeypres="MASK(this, this.value, '-##,###,##0.00', 1); if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" onpaste="    return false" style="text-align:right" value>
+                                   <input type="hidden" id="cdto_MaximoMontoDescuento" name="cdto_MaximoMontoDescuento" />
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
                                 </div>
                             </div>
@@ -61,7 +64,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new { @*@type = "number",*@ @min = "0", @style = "text-align:right", @onkeypres= "MASK(this,this.value,'-L##,###,##0.00',1)", @onchange= "MASK(this,this.value,'-L##,###,##0.00',1)" } })
+                                    <input class="form-control validanumericos" data-val="true" data-val-number="The field Monto Descuento must be a number." data-val-required="*El campo Monto Descuento es requerido" id="cdto_MontoDescuentoH" min="0" name="cdto_MontoDescuentoH" onchange="MASK(this,this.value,'-##,###,##0.00',1)" onkeypres="MASK(this,this.value,'-##,###,##0.00',1)" style="text-align:right" type="text" value>
+                                    <input type="hidden" id="cdto_MontoDescuento" name="cdto_MontoDescuento" />
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MontoDescuento)</p>
                                 </div>
                             </div>
@@ -69,8 +73,9 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_CantidadCompraMinima, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new { @*@type = "number",*@ @min = "0", @style = "text-align:right", @onkeypres= "MASK(this,this.value,'-L##,###,##0.00',1)", @onchange= "MASK(this,this.value,'-L##,###,##0.00',1)" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
+                                    <input class="form-control validanumericos" data-val="true" data-val-number="The field Compra Mínima must be a number." data-val-required="*El campo Compra Mínima es requerido" id="cdto_CantidadCompraMinimaH" min="0" name="cdto_CantidadCompraMinimaH" onchange="MASK(this,this.value,'-##,###,##0.00',1)" onkeypres="MASK(this,this.value,'-##,###,##0.00',1)" style="text-align:right" type="text" value>
+                                     <input type="hidden" id="cdto_CantidadCompraMinima" name="cdto_CantidadCompraMinima" />
+                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
                                 </div>
                             </div>
 
@@ -102,7 +107,7 @@
                                 <div class="col-md-4">
                                     <input type="hidden" id="cdto_Redimido" name="cdto_Redimido" value="false" />
                                     <input type="hidden" id="cdto_Anulado" name="cdto_Anulado" value="false" />
-                                    <input type="text" id="cdto_EsImpreso" name="cdto_EsImpreso" value="false" />
+                                    <input type="hidden" id="cdto_EsImpreso" name="cdto_EsImpreso" value="false" />
                                 </div>
                             </div>
 
@@ -160,38 +165,60 @@
     </script>
 
     <script>
-        $('#cdto_PorcentajeDescuento').focusout(function () {
-            var Porcentaje = $('#cdto_PorcentajeDescuento').val();
+        //--------------------Digitar Datos--------------------------------
+        $('#cdto_PorcentajeDescuentoH').focusout(function () {
+            var Porcentaje = $('#cdto_PorcentajeDescuentoH').val();
 
             if (Porcentaje >= 1 ) {
-                $('#cdto_PorcentajeDescuento').removeAttr("readonly");
-                $('#cdto_MaximoMontoDescuento').removeAttr("readonly");
+                $('#cdto_PorcentajeDescuentoH').removeAttr("readonly").val(Porcentaje + " %");
+                $('#cdto_MaximoMontoDescuentoH').removeAttr("readonly");
+                $('#cdto_MontoDescuentoH').attr('readonly', 'readonly').val('0.00');
+                $('#cdto_CantidadCompraMinimaH').attr('readonly', 'readonly').val('0.00');
+                //---------------------insertar 0.00---------------------
                 $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00');
                 $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
+                //---------------------FIN insertar 0.00---------------------
 
             } else if (Porcentaje <= 0) {
+                //---------------------insertar 0.00---------------------
                 $('#cdto_PorcentajeDescuento').attr('readonly', 'readonly').val('0.00');
                 $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
-                $("#cdto_MontoDescuento").removeAttr("readonly").focus().val('');
-                $('#cdto_CantidadCompraMinima').removeAttr("readonly").val('');
+                //---------------------FIN insertar 0.00---------------------
 
-                //$('#cdto_CantidadCompraMinima').focusout(function () {
-                //    var Monto = $('#cdto_MontoDescuento').val();
-                //    var CompraMinima = $('#cdto_CantidadCompraMinima').val();
-                //    if (CompraMinima > Monto) {
-                //        alert("La Compra Minima debe ser mayor al Monto Descuento.")
-                //        //$("#cdto_CantidadCompraMinima").removeAttr("readonly").focus();
-                //    }
-                //    else
-                //    {
+                $('#cdto_PorcentajeDescuentoH').attr('readonly', 'readonly').val('0.00');
+                $('#cdto_MaximoMontoDescuentoH').attr('readonly', 'readonly').val('0.00');
 
-                //    }
-                //});
+                $("#cdto_MontoDescuentoH").removeAttr("readonly").focus().val('');
+                $('#cdto_CantidadCompraMinimaH').removeAttr("readonly").val('');
             }
         });
+        //--------------------FIN Digitar Datos--------------------------------
+
+
+        //--------------------------keyup----------------------
+            $('#cdto_PorcentajeDescuentoH').keydown(function () {
+                var value = $(this).val();
+                $('#cdto_PorcentajeDescuento').val(value);
+            });
+
+            $('#cdto_MaximoMontoDescuentoH').keydown(function () {
+                var value = $(this).val();
+                $('#cdto_MaximoMontoDescuento').val(value);
+            });
+
+            $('#cdto_MontoDescuentoH').keydown(function () {
+                var value = $(this).val();
+                $('#cdto_MontoDescuento').val(value);
+            });
+
+            $('#cdto_CantidadCompraMinimaH').keydown(function () {
+                var value = $(this).val();
+                $('#cdto_CantidadCompraMinima').val(value);
+            });
     </script>
 
     <script type="text/javascript">
+        //---------------------asteriscos Rojos-------------------------------
         jQuery('input,select').each(function () {
             var req = jQuery(this).attr('data-val-required');
             if (undefined != req) {
@@ -202,17 +229,19 @@
                 }
             }
         });
+
         //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
         $(document).keydown(function (e) {
             if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
                 e.preventDefault();
-                //alert("Ctrl-g pressed");
                 $("form").submit();
                 return false;
             }
             return true;
         });
+
         //--------------------Milecimas y decimales-------------------
+
         function MASK(form, n, mask, format) {
             if (format == "undefined") format = false;
             if (format || NUM(n)) {
@@ -239,7 +268,7 @@
                             y--;
                         }
                         XMASK = n.charAt(x - 1) + XMASK, x--;
-                    } else if (y && "L0".indexOf(mask.charAt(y - 1)) + 1) {
+                    } else if (y && "0".indexOf(mask.charAt(y - 1)) + 1) {
                         XMASK = mask.charAt(y - 1) + XMASK;
                     }
                     if (y) { y-- }
@@ -271,6 +300,18 @@
                 return parseInt(num * e + r) / e;
             } else {
                 return num;
+            }
+        }
+
+        //------------------validar solo numeros---------------------------
+        onload = function () {
+            var ele = document.querySelectorAll('.validanumericos')[0];
+            ele.onkeypress = function (e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            }
+            ele.onpaste = function (e) {
+                e.preventDefault();
             }
         }
     </script>

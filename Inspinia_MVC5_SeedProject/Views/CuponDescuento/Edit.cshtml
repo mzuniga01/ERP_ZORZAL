@@ -64,7 +64,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                                     @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @class = "form-control", @style = "text-align:right", @type = "number", @min = "0", @onkeypress = "if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                                    @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @class = "form-control", @style = "text-align:right", @type = "number", @min = "0" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                                    @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new { @class = "form-control", @style = "text-align:right", @type = "number", @min = "0" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MontoDescuento)</p>
                                 </div>
                             </div>
@@ -88,7 +88,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_CantidadCompraMinima, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new { @type = "number", @min = "0" } })
+                                    @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new { @class = "form-control", @style = "text-align:right", @type = "number", @min = "0"@*, @onchange = "MASK(this,this.value,'-##,###,##0.00',1)", @onkeypres = "MASK(this,this.value,'-##,###,##0.00',1)"*@ }
+                               })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
                                 </div>
                             </div>
@@ -125,17 +126,24 @@
                                 </div>
                             </div>
 
+                            @*<form action='procesar.php' method='post' onsubmit='cambiarValor(this);'>
+                                <input type='text' value='1.500.000' />
+                                <input type='submit' value='Enviar sin puntos' />
+                            </form>*@
+
                             @*-----Anular oculto-----*@
-                                    <input type="hidden" id="cdto_Anulado" name="cdto_Anulado" value="false" />
+                            <input type="hidden" id="cdto_Redimido" name="cdto_Redimido" value="false" />
+                            <input type="hidden" id="cdto_Anulado" name="cdto_Anulado" value="false" />
+                            <input type="hidden" id="cdto_EsImpreso" name="cdto_EsImpreso" value="false" />
                             @*-----FIN Anular oculto-----*@
 
 
                             @*---------------Botones---------------------*@
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    <input type="submit" value="Guardar" class="btn btn-primary"/>
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular">@*boton Anular Cupon Descuento*@
+                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular2">@*boton Anular Cupon Descuento*@
                                         Anular
                                     </button>
                                 </div>
@@ -174,7 +182,7 @@
         </div>
     </div>
 @* -------------------Modal Anular---------------- *@
-<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Anular2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -202,34 +210,140 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
+        //--------------------Digitar Datos--------------------------------
         $('#cdto_PorcentajeDescuento').focusout(function () {
             var Porcentaje = $('#cdto_PorcentajeDescuento').val();
 
-            if (Porcentaje >= 1 ) {
-                $('#cdto_PorcentajeDescuento').removeAttr("readonly");
+            if (Porcentaje >= 1) {
+                $('#cdto_PorcentajeDescuento').removeAttr("readonly").val();
                 $('#cdto_MaximoMontoDescuento').removeAttr("readonly");
                 $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00');
                 $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
+                //---------------------insertar 0.00---------------------
+                $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00');
+                $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
+                //---------------------FIN insertar 0.00---------------------
 
             } else if (Porcentaje <= 0) {
+                //---------------------insertar 0.00---------------------
                 $('#cdto_PorcentajeDescuento').attr('readonly', 'readonly').val('0.00');
                 $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
-                $("#cdto_MontoDescuento").removeAttr("readonly").focus();
-                $('#cdto_CantidadCompraMinima').removeAttr("readonly").val();
+                //---------------------FIN insertar 0.00---------------------
 
-                //$('#cdto_CantidadCompraMinima').focusout(function () {
-                //    var Monto = $('#cdto_MontoDescuento').val();
-                //    var CompraMinima = $('#cdto_CantidadCompraMinima').val();
-                //    if (CompraMinima > Monto) {
-                //        alert("La Compra Minima debe ser mayor al Monto Descuento.")
-                //        //$("#cdto_CantidadCompraMinima").removeAttr("readonly").focus();
-                //    }
-                //    else
-                //    {
+                $('#cdto_PorcentajeDescuento').attr('readonly', 'readonly').val('0.00');
+                $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
 
-                //    }
-                //});
+                $("#cdto_MontoDescuentoE").removeAttr("readonly").focus();
+                //$('#cdto_CantidadCompraMinima').removeAttr("readonly").val('');
             }
         });
+        //--------------------FIN Digitar Datos--------------------------------
+
+        //--------------------------keyup----------------------
+        $('#cdto_PorcentajeDescuentoE').keydown(function () {
+            var value = $(this).val();
+            $('#cdto_PorcentajeDescuento').val(value);
+        });
+
+        $('#cdto_MaximoMontoDescuentoE').keydown(function () {
+            var value = $(this).val();
+            $('#cdto_MaximoMontoDescuento').val(value);
+        });
+
+        $('#cdto_MontoDescuentoE').keydown(function () {
+            var value = $(this).val();
+            $('#cdto_MontoDescuento').val(value);
+        });
+
+        $('#cdto_CantidadCompraMinimaE').keydown(function () {
+            var value = $(this).val();
+            $('#cdto_CantidadCompraMinima').val(value);
+        });
+
+        //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
+        $(document).keydown(function (e) {
+            if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                $("form").submit();
+                return false;
+            }
+            return true;
+        });
+
+        //--------------------Milecimas y decimales-------------------
+
+        function MASK(form, n, mask, format) {
+            if (format == "undefined") format = false;
+            if (format || NUM(n)) {
+                dec = 0, point = 0;
+                x = mask.indexOf(".") + 1;
+                if (x) { dec = mask.length - x; }
+
+                if (dec) {
+                    n = NUM(n, dec) + "";
+                    x = n.indexOf(".") + 1;
+                    if (x) { point = n.length - x; } else { n += "."; }
+                } else {
+                    n = NUM(n, 0) + "";
+                }
+                for (var x = point; x < dec ; x++) {
+                    n += "0";
+                }
+                x = n.length, y = mask.length, XMASK = "";
+                while (x || y) {
+                    if (x) {
+                        while (y && "#0.".indexOf(mask.charAt(y - 1)) == -1) {
+                            if (n.charAt(x - 1) != "-")
+                                XMASK = mask.charAt(y - 1) + XMASK;
+                            y--;
+                        }
+                        XMASK = n.charAt(x - 1) + XMASK, x--;
+                    } else if (y && "0".indexOf(mask.charAt(y - 1)) + 1) {
+                        XMASK = mask.charAt(y - 1) + XMASK;
+                    }
+                    if (y) { y-- }
+                }
+            } else {
+                XMASK = "";
+            }
+            if (form) {
+                form.value = XMASK;
+                if (NUM(n) < 0) {
+                    form.style.color = "#FF0000";
+                } else {
+                    form.style.color = "#000000";
+                }
+            }
+            return XMASK;
+        }
+
+        function NUM(s, dec) {
+            for (var s = s + "", num = "", x = 0 ; x < s.length ; x++) {
+                c = s.charAt(x);
+                if (".-+/*".indexOf(c) + 1 || c != " " && !isNaN(c)) { num += c; }
+            }
+            if (isNaN(num)) { num = eval(num); }
+            if (num == "") { num = 0; } else { num = parseFloat(num); }
+            if (dec != undefined) {
+                r = .5; if (num < 0) r = -r;
+                e = Math.pow(10, (dec > 0) ? dec : 0);
+                return parseInt(num * e + r) / e;
+            } else {
+                return num;
+            }
+        }
+
+        //------------------validar solo numeros---------------------------
+        onload = function () {
+            var ele = document.querySelectorAll('.validanumericos')[0];
+            ele.onkeypress = function (e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            }
+            ele.onpaste = function (e) {
+                e.preventDefault();
+            }
+        }
 </script>
+ 
 }
