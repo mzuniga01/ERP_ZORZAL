@@ -50,13 +50,23 @@
                             @Html.DisplayFor(model => model.tbCliente.clte_Identificacion)
                         </dd>
                         <br />
-        <dt>
-            Nombres
-        </dt>
+                        <dt>
+                            Cliente
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbCliente.clte_Nombres)
-        </dd>
+                        @{ if (Convert.ToInt32(Model.tbCliente.clte_EsPersonaNatural) == 1)
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbCliente.clte_Nombres)
+                                </dd>
+                            }
+                            else
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbCliente.clte_NombreComercial)
+                                </dd>
+                            }
+                        }
                         <br />
         <dt>
             @Html.DisplayNameFor(model => model.exo_Documento)

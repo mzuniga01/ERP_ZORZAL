@@ -50,31 +50,53 @@
 
        
         <div class="form-group">
-            <label class="control-label col-md-2">Id Cliente</label>
-            @*@Html.LabelFor(model => model.clte_Id, new { @class = "control-label col-md-2" })*@
+            @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
+            <div class="col-md-5">
+                @*@Html.DropDownList("clte_RTN_Identidad_Pasaporte", String.Empty)*@
+                @Html.HiddenFor(model => model.clte_Id)
+                @Html.ValidationMessageFor(model => model.clte_Id)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbCliente.clte_Identificacion, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.clte_Id, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)
             </div>
-
             <div class="col-md-1">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Identificación</label>
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Nombre Cliente</label>
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
-            </div>
-        </div>
+
+
+
+
+        @{ if (Convert.ToInt32(Model.tbCliente.clte_EsPersonaNatural) == 1)
+            {
+                <div class="form-group">
+                    <label class="control-label col-md-2">Cliente</label>
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label class="control-label col-md-2">Cliente</label>
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.tbCliente.clte_NombreComercial)
+                    </div>
+                </div>
+            }
+        }
+
+
+
+
+      
 
             <div class="form-group">
                 @Html.LabelFor(model => model.exo_Documento, new { @class = "control-label col-md-2" })
