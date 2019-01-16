@@ -29,7 +29,7 @@
                                     @Html.DisplayNameFor(model => model.MontoFactura)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.TotalPago)
+                                    @Html.DisplayNameFor(model => model.TotalPagado)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.SaldoFactura)
@@ -40,7 +40,7 @@
                         <tbody id="FacturaPagoTbody">
                             @foreach (var item in Model)
                             {
-                                <tr data-id="@item.fact_Id" data-codigo="@item.fact_Codigo" data-monto="@item.MontoFactura" data-pago="@item.TotalPago" data-saldo="@item.SaldoFactura">
+                                <tr data-id="@item.fact_Id" data-codigo="@item.fact_Codigo" data-monto="@item.MontoFactura" data-pago="@item.TotalPagado" data-saldo="@item.SaldoFactura">
 
                                     <td>
                                         @Html.DisplayFor(modelItem => item.fact_Id)
@@ -52,7 +52,7 @@
                                         @Html.DisplayFor(modelItem => item.MontoFactura)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.TotalPago)
+                                        @Html.DisplayFor(modelItem => item.TotalPagado)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.SaldoFactura)
