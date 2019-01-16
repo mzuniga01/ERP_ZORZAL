@@ -41,7 +41,7 @@
                             @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Nombre Producto", new { @class = "control-label col-md-2" })
                             <div class="col-md-4 ">
                                 @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                <div id="validacionCodigoProductoCreate">
+                                <div id="validacionNombreProductoCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)</p>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
 
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja", new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja (%)", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
                                         <div id="validacionDescuentoCajaCreate">
@@ -84,7 +84,7 @@
 
                                     </div>
 
-                                    @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente", new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente (%)", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
                                         <div id="validacionDescuentoGerenteCreate">
@@ -111,8 +111,9 @@
     <thead>
         <tr>
             <th>Código Producto</th>
-            <th> Precio Mayorista</th>
-            <th> Precio Minorista</th>
+            <th>Descripción Producto</th>
+            <th>Precio Mayorista</th>
+            <th>Precio Minorista</th>
             <th>Descuento Caja</th>
             <th>Descuento Gerente</th>
             <th></th>
@@ -161,7 +162,7 @@
             var PMI = $('#lispd_PrecioMinorista').val();
             if (PMA<PMI)
             {
-                alert("El precio mayorista debe ser menor que el precio Minorista.");
+                alert("El precio mayorista debe ser menor que el precio minorista.");
                 return false;
             }
             return true;
