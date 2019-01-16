@@ -1501,6 +1501,7 @@
     <Content Include="Views\Devolucion\CreateNotaCredito.cshtml" />
     <Content Include="Views\Pago\_IndexFacturaPago.cshtml" />
     <Content Include="Views\Pago\_IndexPagoFactura.cshtml" />
+    <Content Include="Views\Pedido\_EditPedido.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
