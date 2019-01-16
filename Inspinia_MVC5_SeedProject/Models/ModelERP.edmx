@@ -8588,9 +8588,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_tbEstadoFactura_Update_Result">
           <Property Type="Byte" Name="MensajeError" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbMovimientoCaja_Insert_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="spGetBusquedaCliente_Result">
           <Property Type="String" Name="clte_Identificacion" Nullable="false" MaxLength="26" />
           <Property Type="String" Name="clte_Nombres" Nullable="false" MaxLength="50" />
@@ -12985,6 +12982,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbSucursal_Insert_Result">
           <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbMovimientoCaja_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>

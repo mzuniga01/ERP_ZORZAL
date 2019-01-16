@@ -172,9 +172,9 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Session["IDCLIENTE"] == null)
             {
-                ViewBag.Iden = 25;
-                ViewBag.Identificacion = "Nada";
-                ViewBag.Nombres = "Nada";
+                ViewBag.Iden = 0;
+                ViewBag.Identificacion = "";
+                ViewBag.Nombres = "";
             }
             else
             {
@@ -185,28 +185,8 @@ namespace ERP_GMEDINA.Controllers
                 string nombres = (string)Session["NOMBRES"];
                 ViewBag.Nombres = nombres;
 
-                //string ident = "";
-                //if (!string.IsNullOrEmpty(ViewBag.Identificacion))
-                //ident = Convert.ToString(ViewBag.Identificacion);
 
             }
-            //int? id = (int)Session["IDCLIENTE"];
-            //if (id == null)
-            //{
-               
-            //}
-            //else
-            //{
-            //    ViewBag.Iden = id;
-            //    string identificacion = (string)Session["IDENTIFICACION"];
-            //    ViewBag.Identificacion = identificacion;
-            //    string nombres = (string)Session["NOMBRES"];
-            //    ViewBag.Nombres = nombres;
-
-            //    //if (!string.IsNullOrEmpty(ViewBag.Identificacion))
-            //    //    ident = Convert.ToString(ViewBag.Identificacion);
-            //    //ViewBag.Identificacion = ident;
-            //}  
 
             ViewBag.fact_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.fact_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
@@ -241,6 +221,10 @@ namespace ERP_GMEDINA.Controllers
             var MensajeErrorDetalle = 0;
             IEnumerable<object> listFactura = null;
             IEnumerable<object> listFacturaDetalle = null;
+            if (db.tbFactura.Any(a => a.fact_Codigo == tbFactura.fact_Codigo))
+            {
+                ModelState.AddModelError("", "Ya existe este Número de Factura.");
+            }
             if (ModelState.IsValid)
             {
                 try

@@ -20,16 +20,16 @@
 $("#consumidorFinal").change(function () {
     if (this.checked) {
         //Do stuff     
-        $("#clte_Identificacion").val('99999999999999');
-        $("#clte_Nombres").val('Consumidor Final');
+        $("#cliente_Identificacion").val('99999999999999');
+        $("#cliente_Nombres").val('Consumidor Final');
         $("#clte_Id").val(500);
         document.getElementById("fact_AlCredito").disabled = true;
         document.getElementById("fact_AutorizarDescuento").disabled = true;
 
     }
     else {
-        $("#clte_Nombres").val('');
-        $("#clte_Identificacion").val('');
+        $("#cliente_Nombres").val('');
+        $("#cliente_Identificacion").val('');
         $("#clte_Id").val('');
         document.getElementById("fact_AlCredito").disabled = false;
         document.getElementById("fact_AutorizarDescuento").disabled = false;
@@ -39,20 +39,21 @@ $("#consumidorFinal").change(function () {
 $("#consumidorFinal").ready(function () {
     if (this.checked) {
         //Do stuff     
-        $("#clte_Identificacion").val('99999999999999');
-        $("#clte_Nombres").val('Consumidor Final');
+        $("#cliente_Identificacion").val('99999999999999');
+        $("#cliente_Nombres").val('Consumidor Final');
         $("#clte_Id").val(500);
         document.getElementById("fact_AlCredito").disabled = true;
         document.getElementById("fact_AutorizarDescuento").disabled = true;
     }
     else {
-        $("#clte_Nombres").val('');
-        $("#clte_Identificacion").val('');
+        $("#cliente_Nombres").val('');
+        $("#cliente_Identificacion").val('');
         $("#clte_Id").val('');
         document.getElementById("fact_AlCredito").disabled = false;
         document.getElementById("fact_AutorizarDescuento").disabled = false;
     }
 });
+
 
 $("#fact_NombresTE").change(function () {
     var str = $("#fact_NombresTE").val();

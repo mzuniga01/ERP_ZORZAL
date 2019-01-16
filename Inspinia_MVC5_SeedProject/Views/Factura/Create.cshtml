@@ -87,29 +87,31 @@
                             <div id="DatosCliente" name="DatosCliente" class="form-group">
                                 @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2", id = "label_identificacion" })
                                 <div class="col-md-3">
-                                 @*<input name="clte_Identificacion" type="text" class="form-control" value="@ViewBag.Identificacion" />*@
-                                 @Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", @Value = ViewBag.Identificacion } })
+                                 <input name="clte_Identificacion" id="cliente_Identificacion" type="text" class="form-control" value="@ViewBag.Identificacion" />
+                                 @*@Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", @Value = ViewBag.Identificacion } })*@
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Identificacion)</span>
                                 </div>
                                 <div class="col-md-1" style="width: 12.499999995%; padding:0">
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
-                                    <a class="btn btn-primary btn-sm" href="@Url.Action("_CreateCliente", "Factura")">
+                                    <button id="btnAgregarCliente" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
+                                    <a id="CrearCliente" class="btn btn-primary btn-sm" href="@Url.Action("_CreateCliente", "Factura")">
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </a>
                                 </div>
                                 @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2", style = "width: 12.499999995%" })
                                 <div class="col-md-4">
-                                    @*<input name="clte_Nombres" type="text" class="form-control" value="@ViewBag.Nombres" readonly />*@
-                                    @Html.EditorFor(model => model.clte_Nombres, new { htmlAttributes = new { @autocomplete = "off", @readonly = "readonly", @Value ="Hola"  } })
+                                    <input name="clte_Nombres" id="cliente_Nombres" type="text" class="form-control" value="@ViewBag.Nombres" readonly />
+                                   @* @Html.EditorFor(model => model.clte_Nombres, new { htmlAttributes = new { @autocomplete = "off", @readonly = "readonly", @Value ="Hola"  } })*@
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Nombres)</span>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.fact_AlCredito, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.fact_AlCredito)
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_AlCredito)</span>
+                            <div class="form-group" id="Completo" name="Completo">
+                                <div id="Alcredito" name="Alcredito">
+                                    @Html.LabelFor(model => model.fact_AlCredito, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.fact_AlCredito)
+                                        <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_AlCredito)</span>
+                                    </div>
                                 </div>
                                 <div id="TerceraEdad" name="TerceraEdad">
                                     <label class="control-label col-md-2">Descuento Tercera Edad</label>
@@ -123,7 +125,7 @@
                                     @Html.LabelFor(model => model.fact_DiasCredito, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.fact_DiasCredito)
-                                        <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_DiasCredito)</span>
+                                        <span id="DiasError" class="validation-error">@Html.ValidationMessageFor(model => model.fact_DiasCredito)</span>
                                     </div>
                                 </div>
                             </div>
@@ -158,7 +160,7 @@
                                     <input id="TotalProducto1" type="text" value="" class="form-control" readonly />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 <div class="col-md-4">
                                     @Html.HiddenFor(model => model.clte_Id)
                                     @{
@@ -166,7 +168,7 @@
                                     }
                                     <input name="Cliente" type="text" class="form-control" value="@Esto" />
                                 </div>
-                            </div>
+                            </div>*@
 
                             <div class="form-group">
                                 <div class="col-md-12">

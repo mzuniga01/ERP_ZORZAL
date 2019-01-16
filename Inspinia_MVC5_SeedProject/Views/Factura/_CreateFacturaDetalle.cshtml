@@ -19,14 +19,14 @@
                             </div>
                             @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label required col-md-1" })
                             <div class="col-md-2">
-                                @Html.EditorFor(model => model.factd_Cantidad, new { htmlAttributes = new { @Value = "", onKeyPress = "return soloNumeros(event)", @autocomplete = "off" } })
+                                @Html.EditorFor(model => model.factd_Cantidad, new { htmlAttributes = new { @Value = "", onKeyPress = "return soloNumeros(event)" , onKeyUp = "pierdeFoco(this)", @autocomplete = "off" } })
                                 <div id="validationCantidadProductoCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.factd_Cantidad)</p>
                                 </div>
                             </div>
                             @Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = " col-md-1" })
                             <div class="col-md-2">
-                                @Html.EditorFor(model => model.factd_PorcentajeDescuento, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" }  })
+                                @Html.EditorFor(model => model.factd_PorcentajeDescuento, new { htmlAttributes = new { @Value = "", onKeyPress = "return soloNumeros(event)", @autocomplete = "off" }  })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)</p>
                             </div>
                             <div class="col-md-1">
@@ -104,8 +104,18 @@
             <td></td>
             <td></td>
             <td></td>
+            <td>Descuento</td>
+            <td><p id="TotalDescuento" style="text-align:right"></p></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td>Sub-Total</td>
-            <td  class="text-right"><p id="Subtotal"></p></td>
+            <td><p id="Subtotal" style="text-align:right"></p></td>
             <td></td>
         </tr>
         <tr>
@@ -115,7 +125,7 @@
             <td></td>
             <td></td>
             <td>ISV</td>
-            <td  class="text-right"><p id="isv"></p></td>
+            <td><p id="isv" style="text-align:right"></p></td>
             <td></td>
         </tr>
         <tr>
@@ -125,7 +135,7 @@
             <td></td>
             <td></td>
             <td>Total a Pagar</td>
-            <td class="text-right"><p id="total"></p></td>
+            <td><p id="total" style="text-align:right"></p></td>
             <th></th>
         </tr>
     </tfoot>
