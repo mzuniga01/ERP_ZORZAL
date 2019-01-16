@@ -3652,6 +3652,9 @@
           <Parameter Name="uni_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="uni_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="SDP_tbProductoSubcategoria_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="pscat_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_Valores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="pcat_Id" Type="int" Mode="In" />
           <Parameter Name="pscat_Id" Type="int" Mode="In" />
@@ -6281,6 +6284,9 @@
             <Parameter Name="mun_Codigo" Mode="In" Type="String" />
             <Parameter Name="dep_Codigo" Mode="In" Type="String" />
             <Parameter Name="mun_Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_tbProductoSubcategoria_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbProductoSubcategoria_Select_Result)">
+            <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -10455,6 +10461,17 @@
         <ComplexType Name="UDP_Gral_tbMunicipio_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="SDP_tbProductoSubcategoria_Select_Result">
+          <Property Type="Int32" Name="pscat_Id" Nullable="false" />
+          <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="pcat_Id" Nullable="false" />
+          <Property Type="Byte" Name="pscat_EsActiva" Nullable="false" />
+          <Property Type="Int32" Name="pscat_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="pscat_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="pscat_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="pscat_FechaModifica" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="pscat_ISV" Nullable="false" Precision="5" Scale="2" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12126,6 +12143,21 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbMunicipio_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_tbProductoSubcategoria_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbProductoSubcategoria_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbProductoSubcategoria_Select_Result">
+                <ScalarProperty Name="pscat_Id" ColumnName="pscat_Id" />
+                <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+                <ScalarProperty Name="pcat_Id" ColumnName="pcat_Id" />
+                <ScalarProperty Name="pscat_EsActiva" ColumnName="pscat_EsActiva" />
+                <ScalarProperty Name="pscat_UsuarioCrea" ColumnName="pscat_UsuarioCrea" />
+                <ScalarProperty Name="pscat_FechaCrea" ColumnName="pscat_FechaCrea" />
+                <ScalarProperty Name="pscat_UsuarioModifica" ColumnName="pscat_UsuarioModifica" />
+                <ScalarProperty Name="pscat_FechaModifica" ColumnName="pscat_FechaModifica" />
+                <ScalarProperty Name="pscat_ISV" ColumnName="pscat_ISV" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

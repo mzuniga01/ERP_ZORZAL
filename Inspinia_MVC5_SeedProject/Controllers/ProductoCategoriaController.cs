@@ -167,11 +167,10 @@ namespace ERP_ZORZAL.Controllers
             }
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
-
+        [HttpPost]
         public JsonResult GetSubCate(int pscat_Id)
         {
-            
-            var list = db.tbProductoSubcategoria.Where(x => x.pscat_Id == pscat_Id).SingleOrDefault();
+            var list = db.SDP_tbProductoSubcategoria_Select(pscat_Id).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
@@ -193,25 +192,18 @@ namespace ERP_ZORZAL.Controllers
                 foreach (UDP_Inv_tbProductoSubcategoria_Update_Result subcate in list)
                     Msj = subcate.MensajeError;
 
-                if (Msj == "-1")
+                if (Msj.StartsWith("-1"))
                 {
-
-                    ModelState.AddModelError("", "No se Guardo el Registro");
-                   
+                    Msj = "-1";
                 }
-                else
-                {
-                    //return Json("Index");
-                    
-                }
-
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se Guardo el registro");
+                Msj = "-1";
             }
-            return Json("", JsonRequestBehavior.AllowGet); ;
+            return Json(Msj, JsonRequestBehavior.AllowGet); ;
         }
 
         // POST: /ProductoCategoria/Edit/5

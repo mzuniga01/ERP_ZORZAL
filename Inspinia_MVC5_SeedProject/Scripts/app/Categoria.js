@@ -20,44 +20,41 @@ function format(input) {
 //fin
 
 function EditStudentRecord(pscat_Id) {
-    var url = "/ProductoCategoria/GetSubCate?pscat_Id=" + pscat_Id;
-    $("#ModalTitle").html("Update Student Record");
-    $("#Editarmodal").modal();
-    $.ajax({
-        type: "GET",
-        url: url,
-        success: function (data) {
-            var obj = JSON.parse(data);
-            $("#pscat_Id").val(obj.pscat_Id);
-            console.log('hola')
-            //$("#StuName").val(obj.StudentName);
-            //$("#Email").val(obj.Email);
-            //$("#DropDwn option:selected").text(obj.tblDepartment.DepartmentName);
-            //$("#DropDwn option:selected").val(obj.DepartmentId);
+    $("#MsjError").text("");
 
-        }
-    })
-}
-
-$("#btnActualizar").click(function () {
-    var data = $("#SubmitForm").serialize();
     $.ajax({
-        url: "/ProductoCategoria/UpdateSubCategoria",
+        url: "/ProductoCategoria/GetSubCate",
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ ActualizarSubCategoria: tbProductoSubcategoria }),
-    }).done(function (data) {
-        if (data == '') {
-            location.reload();
-        }
-        else if (data == '-1') {
-            $('#MensajeError' + pscat_Id).text('');
-            $('#ValidationMessageFor' + pscat_Id).after('<ul id="MensajeError' + pscat_Id + '" class="validation-summary-errors text-danger">No se ha podido Actualizar el registro.</ul>');
-        }
-        else {
-            $('#MensajeError' + pscat_Id).text('');
-            $('#ValidationMessageFor' + pscat_Id).after('<ul id="MensajeError' + pscat_Id + '" class="validation-summary-errors text-danger">Campo Requerido</ul>');
+        data: JSON.stringify({ pscat_Id }),
+    })
+    .done(function (data) {
+        $.each(data, function (i, item) {
+            $("#pscat_Id").val(item.pscat_Id);
+            $("#pscat_Descripcion_edit").val(item.pscat_Descripcion);
+            $("#MyModal").modal();
+        })
+    })
+    .fail( function( jqXHR, textStatus, errorThrown ) {
+        console.log('jqXHR', jqXHR);
+        console.log('textStatus', textStatus);
+        console.log('errorThrown', errorThrown);
+    })
+}
+
+$("#Btnsubmit").click(function () {
+    var data = $("#SubmitForm").serializeArray();
+
+    $.ajax({
+        type: "Post",
+        url: "/ProductoCategoria/UpdateSubCategoria",
+        data: data,
+        success: function (result) {
+            if (result == '-1')
+                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+            else
+                $("#MyModal").modal("hide");
         }
     });
 

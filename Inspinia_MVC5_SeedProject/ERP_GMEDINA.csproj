@@ -286,6 +286,9 @@
     <Compile Include="Models\SDP_Acce_GetUserRols_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SDP_tbProductoSubcategoria_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\spGetCategoriaProducto_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

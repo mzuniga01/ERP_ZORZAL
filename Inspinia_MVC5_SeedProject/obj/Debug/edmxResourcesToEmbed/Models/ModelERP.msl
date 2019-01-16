@@ -935,6 +935,9 @@
     <EntitySetMapping Name="tbSalida">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSalida">
         <MappingFragment StoreEntitySet="tbSalida">
+          <ScalarProperty Name="sal_RazonAnulada" ColumnName="sal_RazonAnulada" />
+          <ScalarProperty Name="sal_EsAnulada" ColumnName="sal_EsAnulada" />
+          <ScalarProperty Name="sal_BodDestino" ColumnName="sal_BodDestino" />
           <ScalarProperty Name="sal_FechaModifica" ColumnName="sal_FechaModifica" />
           <ScalarProperty Name="sal_UsuarioModifica" ColumnName="sal_UsuarioModifica" />
           <ScalarProperty Name="sal_FechaCrea" ColumnName="sal_FechaCrea" />
@@ -1304,6 +1307,8 @@
     <EntitySetMapping Name="tbPago">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPago">
         <MappingFragment StoreEntitySet="tbPago">
+          <ScalarProperty Name="pago_EstaImpreso" ColumnName="pago_EstaImpreso" />
+          <ScalarProperty Name="pago_EstaAnulado" ColumnName="pago_EstaAnulado" />
           <ScalarProperty Name="pago_FechaModifica" ColumnName="pago_FechaModifica" />
           <ScalarProperty Name="pago_UsuarioModifica" ColumnName="pago_UsuarioModifica" />
           <ScalarProperty Name="pago_FechaCrea" ColumnName="pago_FechaCrea" />
@@ -1544,13 +1549,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Gral_tbMunicipio_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbMunicipio_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbMunicipio_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Insert">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Insert_Result">
@@ -1664,5 +1662,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Gral_tbMunicipio_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbMunicipio_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbMunicipio_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_tbProductoSubcategoria_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbProductoSubcategoria_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbProductoSubcategoria_Select_Result">
+          <ScalarProperty Name="pscat_Id" ColumnName="pscat_Id" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="pcat_Id" ColumnName="pcat_Id" />
+          <ScalarProperty Name="pscat_EsActiva" ColumnName="pscat_EsActiva" />
+          <ScalarProperty Name="pscat_UsuarioCrea" ColumnName="pscat_UsuarioCrea" />
+          <ScalarProperty Name="pscat_FechaCrea" ColumnName="pscat_FechaCrea" />
+          <ScalarProperty Name="pscat_UsuarioModifica" ColumnName="pscat_UsuarioModifica" />
+          <ScalarProperty Name="pscat_FechaModifica" ColumnName="pscat_FechaModifica" />
+          <ScalarProperty Name="pscat_ISV" ColumnName="pscat_ISV" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
