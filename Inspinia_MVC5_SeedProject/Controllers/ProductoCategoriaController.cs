@@ -8,6 +8,7 @@ using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using Newtonsoft.Json;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -167,21 +168,27 @@ namespace ERP_ZORZAL.Controllers
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public JsonResult UpdateSubCategoria(tbProductoSubcategoria ActualizarSubCategoria)
+        public JsonResult GetSubCate(int pscat_Id)
         {
             
+            var list = db.tbProductoSubcategoria.Where(x => x.pscat_Id == pscat_Id).SingleOrDefault();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateSubCategoria(tbProductoSubcategoria EditarSubCategoria)
+        {
             string Msj = "";
             try
             {
                 IEnumerable<object> list = null;
                 list = db.UDP_Inv_tbProductoSubcategoria_Update(
-                                                        ActualizarSubCategoria.pscat_Id,
-                                                        ActualizarSubCategoria.pscat_Descripcion,
-                                                       ActualizarSubCategoria.pcat_Id,
-                                                       ActualizarSubCategoria.pscat_UsuarioCrea,
-                                                      ActualizarSubCategoria.pscat_FechaCrea,
-                                                      ActualizarSubCategoria.pscat_ISV
+                                                        EditarSubCategoria.pscat_Id,
+                                                        EditarSubCategoria.pscat_Descripcion,
+                                                       EditarSubCategoria.pcat_Id,
+                                                       EditarSubCategoria.pscat_UsuarioCrea,
+                                                      EditarSubCategoria.pscat_FechaCrea,
+                                                      EditarSubCategoria.pscat_ISV
                     );
                 foreach (UDP_Inv_tbProductoSubcategoria_Update_Result subcate in list)
                     Msj = subcate.MensajeError;
@@ -190,14 +197,12 @@ namespace ERP_ZORZAL.Controllers
                 {
 
                     ModelState.AddModelError("", "No se Guardo el Registro");
-                    return Json(Msj, JsonRequestBehavior.AllowGet);
+                   
                 }
                 else
                 {
-                    db.Entry(ActualizarSubCategoria).State = EntityState.Modified;
-                    db.SaveChanges();
-                    Msj = "Exito";
-                    return Json(Msj, JsonRequestBehavior.AllowGet);
+                    //return Json("Index");
+                    
                 }
 
             }
@@ -206,7 +211,7 @@ namespace ERP_ZORZAL.Controllers
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se Guardo el registro");
             }
-            return Json(Msj, JsonRequestBehavior.AllowGet);
+            return Json("", JsonRequestBehavior.AllowGet); ;
         }
 
         // POST: /ProductoCategoria/Edit/5

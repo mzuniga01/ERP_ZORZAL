@@ -56,18 +56,40 @@
                                     <p>Inactivo</p>
                                 }
                             </dd>
-                            
+
                         </dl>
                         @Html.ActionLink("Editar", "Edit", new { id = Model.pcat_Id }, new { @class = "btn btn-primary" })
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado_@Model.pcat_Id">
+                            Eliminar
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <div class="modal fade" id="ModalEstado_@Model.pcat_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Categorìa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que quiere Eliminar esta Categoría?
+                </div>
+                <div class="modal-footer">
+                    @Html.ActionLink("Sí", "EliminarProductoCategoria", new { id = Model.pcat_Id }, new { @class = "btn btn-danger" })
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="ibox float-e-margins">
         <div class="ibox-content">
-            <div class="form-horizontal"> @* ListaSinAcciones *@
+            <div class="form-horizontal">
+                @* ListaSinAcciones *@
                 @Html.Partial("_IndexSubCategoria", Model.tbProductoSubcategoria, new ViewDataDictionary { { "pcat_Id", Model.pcat_Id } })
             </div>
         </div>
