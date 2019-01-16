@@ -24,55 +24,70 @@
             <div class="col-md-1">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalBuscarProducto"><span class="glyphicon glyphicon-search"></span></button>
             </div>
-            @Html.LabelFor(model => model.devd_CantidadProducto, "Cantidad", new { @class = "control-label col-md-2" })
+
+            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-2" })
             <div class="col-md-3">
-                <input type="text" id="devd_CantidadProducto" name="devd_CantidadProducto" value="" class="form-control " />
-                   <div id="validationCantidadCreate">
-                    @Html.ValidationMessageFor(model => model.devd_CantidadProducto)
+                @Html.EditorFor(model => model.tbProducto.prod_Descripcion)
+                <div id="validationProductoDevolucionCreate">
+                    @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
                 </div>
-             
+
             </div>
             <div class="col-md-1">
                 <button class="btn btn-primary" type="button" id="AgregarDetalleDevolucion">Agregar Producto</button>
             </div>
         </div>
+         
+        @*agregar cantidad facturada*@
         <div class="form-group">
-            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Cantidad Facturada</label>
             <div class="col-md-3">
-               @Html.EditorFor(model => model.tbProducto.prod_Descripcion)
-                <div id="validationProductoDevolucionCreate">
-                    @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
-                </div>
-              
+                <input type="text" value="" class="form-control " id="CantidadFacturada" />
             </div>
-            <label class="control-label col-md-2">Precio Unitario</label>
+         
+            @Html.LabelFor(model => model.devd_CantidadProducto, "Cantidad", new { @class = "control-label col-md-2" })
             <div class="col-md-3">
-                <input type="text" value="" class="form-control " id="PrecioUnitario"/>
+                <input type="text" id="devd_CantidadProducto"  name="devd_CantidadProducto" class="form-control " Value = "" onKeyPress ="return soloNumeros(event)" autocomplete = "off" />
+                <div id="validationCantidadCreate">
+                    <p id="smsCantidad" style="color:red">@Html.ValidationMessageFor(model => model.devd_CantidadProducto)</p>
+                </div>
+
             </div>
 
-           
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Precio Unitario</label>
+            <div class="col-md-3">
+                <input type="text" value="" class="form-control " id="PrecioUnitario" readonly />
+            </div>
+
+            <label class="control-label col-md-2">Impuesto</label>
+            <div class="col-md-3">
+                <input type="text" value="" class="form-control " id="Impuesto" readonly/>
+            </div>
         </div>
        
         <div class="form-group">
             <label class="control-label col-md-2">% Descuento</label>
               <div class="col-md-3">
-                <input type="text" value="" class="form-control " id="Descuento" />
+                <input type="text" value="" class="form-control " id="Descuento" readonly/>
             </div>
             <label class="control-label col-md-2">Monto Descuento</label>
             <div class="col-md-3">
-               <input type="text" value="" class="form-control " id="MontoDescuento" />
+               <input type="text" value="" class="form-control " id="MontoDescuento" readonly/>
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">Sub-Total</label>
             <div class="col-md-3">
-                <input type="text" value="" class="form-control " id="Subtotal" />
+                <input type="text" value="" class="form-control " id="Subtotal" readonly/>
             </div>
 
             @Html.LabelFor(model => model.devd_Monto, "Monto Total", new { @class = "control-label   col-md-2" })
             <div class="col-md-offset col-md-3">
-                @Html.EditorFor(model => model.devd_Monto, new { htmlAttributes = new { @*@readonly = "readonly"*@ @class = "form-control" } })
+                @Html.EditorFor(model => model.devd_Monto, new { htmlAttributes = new { @readonly = "readonly" , @class = "form-control" } })
                 <div id="validationProductoDevolucionCreate">
                     @Html.ValidationMessageFor(model => model.devd_Monto)
                 </div>

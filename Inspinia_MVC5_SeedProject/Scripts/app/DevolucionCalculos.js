@@ -6,12 +6,15 @@
             Precio = $("#PrecioUnitario").val(),
             MontoDescuento = $("#MontoDescuento").val(),
             Subtotal = $("#Subtotal").val(),
+            Impuesto = $("#Impuesto").val(),
             valorSubtotal = "";
-        MontoTotal = "";
-
+            MontoTotal = "";
+            Impuesto = parseFloat(Impuesto / 100)
+          
         if (Cantidad.length && Precio.length > 0) {
             valorSubtotal += Cantidad * Precio;
-            MontoTotal += parseFloat(valorSubtotal) - parseFloat(MontoDescuento)  ;
+            ValorImpuesto += parseFloat(valorSubtotal * Impuesto)
+            MontoTotal += (parseFloat(valorSubtotal) + parseFloat(ValorImpuesto)) - parseFloat(MontoDescuento);
 
         }
         $("#Subtotal").val(valorSubtotal);
