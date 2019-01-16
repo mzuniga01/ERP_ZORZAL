@@ -44,19 +44,15 @@ namespace ERP_GMEDINA.Models
         public string sal_RazonDevolucion { get; set; }
 
         [Display(Name = "Creado por")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int sal_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha de Creacion")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime sal_FechaCrea { get; set; }
 
         [Display(Name = "Modificado por")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<int> sal_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha de Modificaion")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<System.DateTime> sal_FechaModifica { get; set; }
    
 

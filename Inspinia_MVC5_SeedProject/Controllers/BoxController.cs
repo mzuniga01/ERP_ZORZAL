@@ -97,7 +97,7 @@ namespace ERP_ZORZAL.Controllers
                                             Detalle.box_Codigo = MensajeError;
                                             listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
                                                 Sal,
-                                                Detalle.prod_Codigo,
+                                                Detalle.bodd_Id,
                                                 Detalle.sal_Cantidad,
                                                 tbBox.box_Codigo
                                                 );
@@ -215,7 +215,7 @@ namespace ERP_ZORZAL.Controllers
                 IEnumerable<object> list = null;
                     list = db.UDP_Inv_tbSalidaDetalle_Update(ACTUALIZAR_tbSalidaDetalle.sald_Id,
                                                         ACTUALIZAR_tbSalidaDetalle.sal_Id,
-                                                         ACTUALIZAR_tbSalidaDetalle.prod_Codigo,
+                                                         ACTUALIZAR_tbSalidaDetalle.bodd_Id,
                                                          ACTUALIZAR_tbSalidaDetalle.sal_Cantidad,
                                                          vBox.box_UsuarioCrea,
                                                          vBox.box_FechaCrea

@@ -496,6 +496,7 @@ namespace ERP_ZORZAL.Controllers
                     {
 
                         ENTRADA = db.UDP_Inv_tbEntrada_Update(tbEntrada.ent_Id,
+                                                                tbEntrada.ent_NumeroFormato,
                                                                         tbEntrada.ent_FechaElaboracion,
                                                                         tbEntrada.bod_Id,
                                                                         tbEntrada.prov_Id,

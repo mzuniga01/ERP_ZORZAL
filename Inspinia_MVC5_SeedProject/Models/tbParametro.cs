@@ -36,5 +36,11 @@ namespace ERP_GMEDINA.Models
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbMoneda tbMoneda { get; set; }
+        public virtual tbRol tbRol { get; set; }
+        public virtual tbRol tbRol1 { get; set; }
+        public virtual tbRol tbRol2 { get; set; }
+        public virtual tbRol tbRol3 { get; set; }
+        public virtual tbRol tbRol4 { get; set; }
+        public virtual tbCliente tbCliente { get; set; }
     }
 }

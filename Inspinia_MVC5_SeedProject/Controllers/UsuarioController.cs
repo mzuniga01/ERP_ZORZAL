@@ -107,7 +107,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "usu_NombreUsuario,usu_Password,usu_Nombres,usu_Apellidos,usu_Correo,ConfirmarPassword")] tbUsuario tbUsuario, string usu_Password)
+        public ActionResult Create([Bind(Include = "usu_NombreUsuario,usu_Password,usu_Nombres,usu_Apellidos,usu_Correo,ConfirmarPassword,suc_Id, emp_Id")] tbUsuario tbUsuario, string usu_Password)
         {
             IEnumerable<object> List = null;
             IEnumerable<object> Roles = null;
@@ -121,7 +121,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     try
                     {
-                        List = db.UDP_Acce_tbUsuario_Insert(tbUsuario.usu_NombreUsuario, usu_Password, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo);
+                        List = db.UDP_Acce_tbUsuario_Insert(tbUsuario.usu_NombreUsuario, usu_Password, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.suc_Id, tbUsuario.emp_Id);
                         foreach (UDP_Acce_tbUsuario_Insert_Result Usuario in List)
                             MsjError = Usuario.MensajeError;
                         if (MsjError.StartsWith("-1"))

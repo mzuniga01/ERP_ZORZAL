@@ -21,7 +21,7 @@ namespace ERP_GMEDINA.Models
         }
     
         public int ent_Id { get; set; }
-        public int ent_NumeroFormato { get; set; }
+        public string ent_NumeroFormato { get; set; }
         public System.DateTime ent_FechaElaboracion { get; set; }
         public int bod_Id { get; set; }
         public byte estm_Id { get; set; }

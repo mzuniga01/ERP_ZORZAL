@@ -17,7 +17,6 @@ namespace ERP_GMEDINA.Models
         public int pedd_Id { get; set; }
         public int ped_Id { get; set; }
         public string prod_Codigo { get; set; }
-        public string pedd_Descripcion { get; set; }
         public decimal pedd_Cantidad { get; set; }
         public decimal pedd_CantidadFacturada { get; set; }
         public int pedd_UsuarioCrea { get; set; }

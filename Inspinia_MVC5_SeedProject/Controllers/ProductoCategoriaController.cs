@@ -185,8 +185,6 @@ namespace ERP_ZORZAL.Controllers
                                                         EditarSubCategoria.pscat_Id,
                                                         EditarSubCategoria.pscat_Descripcion,
                                                        EditarSubCategoria.pcat_Id,
-                                                       EditarSubCategoria.pscat_UsuarioCrea,
-                                                      EditarSubCategoria.pscat_FechaCrea,
                                                       EditarSubCategoria.pscat_ISV
                     );
                 foreach (UDP_Inv_tbProductoSubcategoria_Update_Result subcate in list)
