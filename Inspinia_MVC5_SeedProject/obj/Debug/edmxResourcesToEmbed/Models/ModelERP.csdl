@@ -27,12 +27,12 @@
     <FunctionImport Name="UDP_Vent_tbCaja_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCaja_Insert_Result)">
       <Parameter Name="cja_Id" Mode="In" Type="Int16" />
       <Parameter Name="cja_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbCaja_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCaja_Update_Result)">
       <Parameter Name="cja_Id" Mode="In" Type="Int16" />
       <Parameter Name="cja_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
       <Parameter Name="cja_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="cja_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
@@ -189,7 +189,7 @@
       <Parameter Name="dfisc_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbCuponDescuento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Insert_Result)">
-      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
       <Parameter Name="cdto_FechaEmision" Mode="In" Type="DateTime" />
       <Parameter Name="cdto_FechaVencimiento" Mode="In" Type="DateTime" />
       <Parameter Name="cdto_PorcentajeDescuento" Mode="In" Type="Decimal" />
@@ -203,7 +203,7 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbCuponDescuento_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Update_Result)">
       <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
-      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
       <Parameter Name="cdto_FechaEmision" Mode="In" Type="DateTime" />
       <Parameter Name="cdto_FechaVencimiento" Mode="In" Type="DateTime" />
       <Parameter Name="cdto_PorcentajeDescuento" Mode="In" Type="Decimal" />
@@ -218,7 +218,7 @@
       <Parameter Name="cdto_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbSucursal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSucursal_Insert_Result)">
-      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
       <Parameter Name="mun_Codigo" Mode="In" Type="String" />
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
       <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
@@ -228,7 +228,7 @@
       <Parameter Name="suc_Telefono" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbSucursal_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSucursal_Update_Result)">
-      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
       <Parameter Name="mun_Codigo" Mode="In" Type="String" />
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
       <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
@@ -317,7 +317,7 @@
       <Parameter Name="ped_FechaElaboracion" Mode="In" Type="DateTime" />
       <Parameter Name="ped_FechaEntrega" Mode="In" Type="DateTime" />
       <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbPedido_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedido_Update_Result)">
@@ -326,7 +326,7 @@
       <Parameter Name="ped_FechaElaboracion" Mode="In" Type="DateTime" />
       <Parameter Name="ped_FechaEntrega" Mode="In" Type="DateTime" />
       <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
       <Parameter Name="ped_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="ped_FechaCrea" Mode="In" Type="DateTime" />
@@ -367,7 +367,7 @@
       <Parameter Name="nocre_Codigo" Mode="In" Type="String" />
       <Parameter Name="dev_Id" Mode="In" Type="Int32" />
       <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
       <Parameter Name="nocre_Anulado" Mode="In" Type="Boolean" />
       <Parameter Name="nocre_FechaEmision" Mode="In" Type="DateTime" />
       <Parameter Name="nocre_MotivoEmision" Mode="In" Type="String" />
@@ -379,7 +379,7 @@
       <Parameter Name="nocre_Codigo" Mode="In" Type="String" />
       <Parameter Name="dev_Id" Mode="In" Type="Int32" />
       <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
       <Parameter Name="nocre_Anulado" Mode="In" Type="Boolean" />
       <Parameter Name="nocre_FechaEmision" Mode="In" Type="DateTime" />
       <Parameter Name="nocre_MotivoEmision" Mode="In" Type="String" />
@@ -1971,7 +1971,7 @@
       <Parameter Name="fact_Fecha" Mode="In" Type="DateTime" />
       <Parameter Name="esfac_Id" Mode="In" Type="Byte" />
       <Parameter Name="cja_Id" Mode="In" Type="Int16" />
-      <Parameter Name="suc_Id" Mode="In" Type="Int16" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
       <Parameter Name="clte_Id" Mode="In" Type="Int32" />
       <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
       <Parameter Name="fact_AlCredito" Mode="In" Type="Boolean" />
@@ -2057,7 +2057,7 @@
       <End Role="tbFactura" EntitySet="tbFactura" />
     </AssociationSet>
     <FunctionImport Name="UDP_Vent_tbFactura_ConsultaBodega" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_ConsultaBodega_Result)">
-      <Parameter Name="IDSUCURSAL" Mode="In" Type="Int16" />
+      <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
       <Parameter Name="CODIGOPRODUCTO" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result)">

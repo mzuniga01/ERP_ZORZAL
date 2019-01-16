@@ -27,7 +27,7 @@ namespace ERP_GMEDINA.Models
 
             [Display(Name = "Sucursal")]
             [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
-            public short suc_Id { get; set; }
+            public int suc_Id { get; set; }
 
 
 

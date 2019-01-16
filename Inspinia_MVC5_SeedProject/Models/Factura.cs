@@ -31,7 +31,7 @@ namespace ERP_GMEDINA.Models
         public short cja_Id { get; set; }
         [Display(Name = "Sucursal")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
-        public short suc_Id { get; set; }
+        public int suc_Id { get; set; }
         [Display(Name = "CAI")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string pemi_NumeroCAI { get; set; }

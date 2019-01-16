@@ -18,7 +18,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Sucursal")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
-        public short suc_Id { get; set; }
+        public int suc_Id { get; set; }
 
         [Display(Name = "Fecha Emisión")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
