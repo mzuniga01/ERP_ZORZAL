@@ -30,7 +30,7 @@ namespace ERP_GMEDINA.Models
         public System.DateTime fact_Fecha { get; set; }
         public byte esfac_Id { get; set; }
         public short cja_Id { get; set; }
-        public short suc_Id { get; set; }
+        public int suc_Id { get; set; }
         public int clte_Id { get; set; }
         public string pemi_NumeroCAI { get; set; }
         public bool fact_AlCredito { get; set; }

@@ -55,6 +55,10 @@ namespace ERP_GMEDINA.Models
         public Nullable<decimal> clte_MontoCredito { get; set; }
         public Nullable<int> clte_DiasCredito { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbMunicipio tbMunicipio { get; set; }
+        public virtual tbTipoIdentificacion tbTipoIdentificacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbExoneracion> tbExoneracion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -65,9 +69,5 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbNotaCredito> tbNotaCredito { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito { get; set; }
-        public virtual tbUsuario tbUsuario { get; set; }
-        public virtual tbUsuario tbUsuario1 { get; set; }
-        public virtual tbMunicipio tbMunicipio { get; set; }
-        public virtual tbTipoIdentificacion tbTipoIdentificacion { get; set; }
     }
 }

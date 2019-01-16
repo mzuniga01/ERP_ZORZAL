@@ -15,7 +15,7 @@ namespace ERP_GMEDINA.Models
     public partial class tbCuponDescuento
     {
         public int cdto_ID { get; set; }
-        public short suc_Id { get; set; }
+        public int suc_Id { get; set; }
         public System.DateTime cdto_FechaEmision { get; set; }
         public System.DateTime cdto_FechaVencimiento { get; set; }
         public Nullable<decimal> cdto_PorcentajeDescuento { get; set; }

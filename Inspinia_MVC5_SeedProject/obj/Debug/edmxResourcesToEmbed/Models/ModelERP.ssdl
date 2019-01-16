@@ -63,6 +63,8 @@
     <Property Name="usu_RazonInactivo" Type="varchar" MaxLength="150" />
     <Property Name="usu_EsAdministrador" Type="bit" Nullable="false" />
     <Property Name="usu_SesionesValidas" Type="tinyint" Nullable="false" />
+    <Property Name="suc_Id" Type="int" />
+    <Property Name="emp_Id" Type="smallint" />
   </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
@@ -1123,6 +1125,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Acce_tbUsuario_emp_Id">
+    <End Role="tbEmpleado" Type="Self.tbEmpleado" Multiplicity="0..1" />
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbEmpleado">
+        <PropertyRef Name="emp_Id" />
+      </Principal>
+      <Dependent Role="tbUsuario">
+        <PropertyRef Name="emp_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_suc_Id">
+    <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="0..1" />
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSucursal">
+        <PropertyRef Name="suc_Id" />
+      </Principal>
+      <Dependent Role="tbUsuario">
+        <PropertyRef Name="suc_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioCrea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbActividadEconomica" Type="Self.tbActividadEconomica" Multiplicity="*" />
@@ -2056,6 +2082,18 @@
       </Principal>
       <Dependent Role="tbUnidadMedida">
         <PropertyRef Name="uni_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbUsuario_suc_Id">
+    <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="0..1" />
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSucursal">
+        <PropertyRef Name="suc_Id" />
+      </Principal>
+      <Dependent Role="tbUsuario">
+        <PropertyRef Name="suc_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -4102,6 +4140,14 @@
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
     </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_emp_Id" Association="Self.FK_Acce_tbUsuario_emp_Id">
+      <End Role="tbEmpleado" EntitySet="tbEmpleado" />
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_suc_Id" Association="Self.FK_Acce_tbUsuario_suc_Id">
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+    </AssociationSet>
     <AssociationSet Name="FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioCrea" Association="Self.FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbActividadEconomica" EntitySet="tbActividadEconomica" />
@@ -4413,6 +4459,10 @@
     <AssociationSet Name="FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioModifica" Association="Self.FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbUsuario_suc_Id" Association="Self.FK_Gral_tbUsuario_suc_Id">
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbBodega_bod_ResponsableBodega" Association="Self.FK_Inv_tbBodega_bod_ResponsableBodega">
       <End Role="tbEmpleado" EntitySet="tbEmpleado" />

@@ -45,8 +45,11 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbParametro> tbParametro { get; set; }
         public virtual DbSet<tbTipoIdentificacion> tbTipoIdentificacion { get; set; }
         public virtual DbSet<tbUnidadMedida> tbUnidadMedida { get; set; }
+        public virtual DbSet<tbBodega> tbBodega { get; set; }
         public virtual DbSet<tbBodegaDetalle> tbBodegaDetalle { get; set; }
         public virtual DbSet<tbBox> tbBox { get; set; }
+        public virtual DbSet<tbEntrada> tbEntrada { get; set; }
+        public virtual DbSet<tbEntradaDetalle> tbEntradaDetalle { get; set; }
         public virtual DbSet<tbEstadoInventarioFisico> tbEstadoInventarioFisico { get; set; }
         public virtual DbSet<tbEstadoMovimiento> tbEstadoMovimiento { get; set; }
         public virtual DbSet<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
@@ -87,9 +90,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
-        public virtual DbSet<tbEntradaDetalle> tbEntradaDetalle { get; set; }
-        public virtual DbSet<tbEntrada> tbEntrada { get; set; }
-        public virtual DbSet<tbBodega> tbBodega { get; set; }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
         {
