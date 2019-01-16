@@ -904,35 +904,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProveedor_Update_Result>("UDP_Inv_tbProveedor_Update", prov_IdParameter, prov_NombreParameter, prov_NombreContactoParameter, prov_DireccionParameter, prov_EmailParameter, prov_TelefonoParameter, prov_UsuarioCreaParameter, prov_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbBodega_Insert_Result> UDP_Inv_tbBodega_Insert(string bod_Nombre, string bod_ResponsableBodega, string bod_Direccion, string bod_Correo, string bod_Telefono, string mun_Codigo)
-        {
-            var bod_NombreParameter = bod_Nombre != null ?
-                new ObjectParameter("bod_Nombre", bod_Nombre) :
-                new ObjectParameter("bod_Nombre", typeof(string));
-    
-            var bod_ResponsableBodegaParameter = bod_ResponsableBodega != null ?
-                new ObjectParameter("bod_ResponsableBodega", bod_ResponsableBodega) :
-                new ObjectParameter("bod_ResponsableBodega", typeof(string));
-    
-            var bod_DireccionParameter = bod_Direccion != null ?
-                new ObjectParameter("bod_Direccion", bod_Direccion) :
-                new ObjectParameter("bod_Direccion", typeof(string));
-    
-            var bod_CorreoParameter = bod_Correo != null ?
-                new ObjectParameter("bod_Correo", bod_Correo) :
-                new ObjectParameter("bod_Correo", typeof(string));
-    
-            var bod_TelefonoParameter = bod_Telefono != null ?
-                new ObjectParameter("bod_Telefono", bod_Telefono) :
-                new ObjectParameter("bod_Telefono", typeof(string));
-    
-            var mun_CodigoParameter = mun_Codigo != null ?
-                new ObjectParameter("mun_Codigo", mun_Codigo) :
-                new ObjectParameter("mun_Codigo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodega_Insert_Result>("UDP_Inv_tbBodega_Insert", bod_NombreParameter, bod_ResponsableBodegaParameter, bod_DireccionParameter, bod_CorreoParameter, bod_TelefonoParameter, mun_CodigoParameter);
-        }
-    
         public virtual int UDP_Acce_tbAccesoRol_Delete(Nullable<int> rol_Id, Nullable<int> obj_Id)
         {
             var rol_IdParameter = rol_Id.HasValue ?
@@ -1068,47 +1039,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pcat_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("spGetSubCategoria", pcat_IdParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Inv_tbBodega_Update_Result> UDP_Inv_tbBodega_Update(Nullable<int> bod_Id, string bod_Nombre, string bod_ResponsableBodega, string bod_Direccion, string bod_Correo, string bod_Telefono, string mun_Codigo, Nullable<int> bod_UsuarioCrea, Nullable<System.DateTime> bod_Fechacrea)
-        {
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var bod_NombreParameter = bod_Nombre != null ?
-                new ObjectParameter("bod_Nombre", bod_Nombre) :
-                new ObjectParameter("bod_Nombre", typeof(string));
-    
-            var bod_ResponsableBodegaParameter = bod_ResponsableBodega != null ?
-                new ObjectParameter("bod_ResponsableBodega", bod_ResponsableBodega) :
-                new ObjectParameter("bod_ResponsableBodega", typeof(string));
-    
-            var bod_DireccionParameter = bod_Direccion != null ?
-                new ObjectParameter("bod_Direccion", bod_Direccion) :
-                new ObjectParameter("bod_Direccion", typeof(string));
-    
-            var bod_CorreoParameter = bod_Correo != null ?
-                new ObjectParameter("bod_Correo", bod_Correo) :
-                new ObjectParameter("bod_Correo", typeof(string));
-    
-            var bod_TelefonoParameter = bod_Telefono != null ?
-                new ObjectParameter("bod_Telefono", bod_Telefono) :
-                new ObjectParameter("bod_Telefono", typeof(string));
-    
-            var mun_CodigoParameter = mun_Codigo != null ?
-                new ObjectParameter("mun_Codigo", mun_Codigo) :
-                new ObjectParameter("mun_Codigo", typeof(string));
-    
-            var bod_UsuarioCreaParameter = bod_UsuarioCrea.HasValue ?
-                new ObjectParameter("bod_UsuarioCrea", bod_UsuarioCrea) :
-                new ObjectParameter("bod_UsuarioCrea", typeof(int));
-    
-            var bod_FechacreaParameter = bod_Fechacrea.HasValue ?
-                new ObjectParameter("bod_Fechacrea", bod_Fechacrea) :
-                new ObjectParameter("bod_Fechacrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodega_Update_Result>("UDP_Inv_tbBodega_Update", bod_IdParameter, bod_NombreParameter, bod_ResponsableBodegaParameter, bod_DireccionParameter, bod_CorreoParameter, bod_TelefonoParameter, mun_CodigoParameter, bod_UsuarioCreaParameter, bod_FechacreaParameter);
         }
     
         public virtual ObjectResult<UDP_Acce_tbObjeto_Update_Estado_Result> UDP_Acce_tbObjeto_Update_Estado(Nullable<int> obj_Id, Nullable<bool> obj_Estado)
@@ -1945,6 +1875,89 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pscat_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbProductoSubcategoria_Select_Result>("SDP_tbProductoSubcategoria_Select", pscat_IdParameter);
+        }
+    
+        public virtual ObjectResult<spGetProducto_Result> spGetProducto(Nullable<int> bod_Id, string prod_CodigoBarras)
+        {
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var prod_CodigoBarrasParameter = prod_CodigoBarras != null ?
+                new ObjectParameter("prod_CodigoBarras", prod_CodigoBarras) :
+                new ObjectParameter("prod_CodigoBarras", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetProducto_Result>("spGetProducto", bod_IdParameter, prod_CodigoBarrasParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbBodega_Insert_Result> UDP_Inv_tbBodega_Insert(string bod_Nombre, Nullable<short> bod_ResponsableBodega, string bod_Direccion, string bod_Correo, string bod_Telefono, string mun_Codigo)
+        {
+            var bod_NombreParameter = bod_Nombre != null ?
+                new ObjectParameter("bod_Nombre", bod_Nombre) :
+                new ObjectParameter("bod_Nombre", typeof(string));
+    
+            var bod_ResponsableBodegaParameter = bod_ResponsableBodega.HasValue ?
+                new ObjectParameter("bod_ResponsableBodega", bod_ResponsableBodega) :
+                new ObjectParameter("bod_ResponsableBodega", typeof(short));
+    
+            var bod_DireccionParameter = bod_Direccion != null ?
+                new ObjectParameter("bod_Direccion", bod_Direccion) :
+                new ObjectParameter("bod_Direccion", typeof(string));
+    
+            var bod_CorreoParameter = bod_Correo != null ?
+                new ObjectParameter("bod_Correo", bod_Correo) :
+                new ObjectParameter("bod_Correo", typeof(string));
+    
+            var bod_TelefonoParameter = bod_Telefono != null ?
+                new ObjectParameter("bod_Telefono", bod_Telefono) :
+                new ObjectParameter("bod_Telefono", typeof(string));
+    
+            var mun_CodigoParameter = mun_Codigo != null ?
+                new ObjectParameter("mun_Codigo", mun_Codigo) :
+                new ObjectParameter("mun_Codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodega_Insert_Result>("UDP_Inv_tbBodega_Insert", bod_NombreParameter, bod_ResponsableBodegaParameter, bod_DireccionParameter, bod_CorreoParameter, bod_TelefonoParameter, mun_CodigoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbBodega_Update_Result> UDP_Inv_tbBodega_Update(Nullable<int> bod_Id, string bod_Nombre, Nullable<short> bod_ResponsableBodega, string bod_Direccion, string bod_Correo, string bod_Telefono, string mun_Codigo, Nullable<int> bod_UsuarioCrea, Nullable<System.DateTime> bod_Fechacrea)
+        {
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var bod_NombreParameter = bod_Nombre != null ?
+                new ObjectParameter("bod_Nombre", bod_Nombre) :
+                new ObjectParameter("bod_Nombre", typeof(string));
+    
+            var bod_ResponsableBodegaParameter = bod_ResponsableBodega.HasValue ?
+                new ObjectParameter("bod_ResponsableBodega", bod_ResponsableBodega) :
+                new ObjectParameter("bod_ResponsableBodega", typeof(short));
+    
+            var bod_DireccionParameter = bod_Direccion != null ?
+                new ObjectParameter("bod_Direccion", bod_Direccion) :
+                new ObjectParameter("bod_Direccion", typeof(string));
+    
+            var bod_CorreoParameter = bod_Correo != null ?
+                new ObjectParameter("bod_Correo", bod_Correo) :
+                new ObjectParameter("bod_Correo", typeof(string));
+    
+            var bod_TelefonoParameter = bod_Telefono != null ?
+                new ObjectParameter("bod_Telefono", bod_Telefono) :
+                new ObjectParameter("bod_Telefono", typeof(string));
+    
+            var mun_CodigoParameter = mun_Codigo != null ?
+                new ObjectParameter("mun_Codigo", mun_Codigo) :
+                new ObjectParameter("mun_Codigo", typeof(string));
+    
+            var bod_UsuarioCreaParameter = bod_UsuarioCrea.HasValue ?
+                new ObjectParameter("bod_UsuarioCrea", bod_UsuarioCrea) :
+                new ObjectParameter("bod_UsuarioCrea", typeof(int));
+    
+            var bod_FechacreaParameter = bod_Fechacrea.HasValue ?
+                new ObjectParameter("bod_Fechacrea", bod_Fechacrea) :
+                new ObjectParameter("bod_Fechacrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodega_Update_Result>("UDP_Inv_tbBodega_Update", bod_IdParameter, bod_NombreParameter, bod_ResponsableBodegaParameter, bod_DireccionParameter, bod_CorreoParameter, bod_TelefonoParameter, mun_CodigoParameter, bod_UsuarioCreaParameter, bod_FechacreaParameter);
         }
     }
 }

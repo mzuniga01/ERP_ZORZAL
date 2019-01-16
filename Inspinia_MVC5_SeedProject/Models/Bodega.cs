@@ -32,7 +32,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Responsable ")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
-        public string bod_ResponsableBodega { get; set; }
+        public short bod_ResponsableBodega { get; set; }
 
         [Display(Name = "Dirección ")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]

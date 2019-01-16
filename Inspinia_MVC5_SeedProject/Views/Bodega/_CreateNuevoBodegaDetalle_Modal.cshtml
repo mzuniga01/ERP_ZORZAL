@@ -3,6 +3,7 @@
 
 @{
     var prod_Codigo = new ERP_GMEDINA.Models.tbProducto();
+    var bod_id = new ERP_GMEDINA.Models.tbBodega();
 }
 
 @*<div class="wrapper wrapper-content animated fadeInRight">
@@ -12,18 +13,29 @@
                 <div class="ibox-title">
                     <h5>Registrar Detalle Bodega</h5>
                 </div>
-                @*<div class="ibox-content">
-                    <div class="form-horizontal">*@
+                <div class="ibox-content">
+                    @*@Html.ValidationSummary(true)
+                    @Html.HiddenFor(model => model.bodd_Id)
+                    @Html.HiddenFor(model => model.bod_Id)*@
+                    <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label col-md-2">Producto<span style="color:red">*</span></label>
+                            <label class="control-label col-md-2">Codigo De Barras<span style="color:red">*</span></label>
+                            <div class="col-md-4">
+                                <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control" />
+                                <div id="ErrorBarras_Create">
+                                    @Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)
+                                </div>
+                            </div>
+                            <div class="col-md-0">
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+
+                            <label class="control-label col-md-2">Codigo<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                 <input type="text" id="prod_Codigo" placeholder="" class="form-control" />
                                 <div id="ErrorProducto_Create">
                                     @Html.ValidationMessageFor(model => model.prod_Codigo)
                                 </div>
-                            </div>
-                            <div class="col-md-1">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
                         </div>
                         <div class="form-group">
@@ -68,8 +80,6 @@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bodd_PuntoReorden)</p>
                                 </div>
                             </div>
-
-                           
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2">Cantidad Máxima<span style="color:red">*</span></label>
@@ -100,9 +110,9 @@
                                 <input type="button" value="Agregar" id="AgregarBodegaDetalle" class="btn btn-sm btn-primary" />
                             </div>
                         </div>
-                    @*</div>
+                    </div>
                 </div>
-            </div>
+            @*</div>
         </div>
     </div>
 </div>*@

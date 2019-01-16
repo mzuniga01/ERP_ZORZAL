@@ -78,11 +78,11 @@
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsActivo)
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador)
                             @*<div class="form-group">
-                                    <label for="producto" class="control-label col-md-2">Produto</label>
-                                    <div class="col-md-10">
-                                        <input type="text" id="prod_Codigo" placeholder="" class="form-control" />
-                                    </div>
-                                </div>*@
+            <label for="producto" class="control-label col-md-2">Produto</label>
+            <div class="col-md-10">
+                <input type="text" id="prod_Codigo" placeholder="" class="form-control" />
+            </div>
+        </div>*@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Número<span style="color:red">*</span></label>
                                 <div class="col-md-4">
@@ -109,17 +109,17 @@
                                 </div>
                             </div>
                             @*<div class="form-group">
-                                    <label class="control-label col-md-2">Departamento<span style="color:red">*</span></label>
-                                    <div class="col-md-4">
-                                        @Html.DropDownList("dep_Codigo", (IEnumerable<SelectListItem>)ViewBag.deparatamento_Edit, new { @class = "form-control" })
-                                        <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => ListadoMunicipio.dep_Codigo)</p>
-                                    </div>
-                                    <label class="control-label col-md-2">Municipio<span style="color:red">*</span></label>
-                                    <div class="col-md-4">
-                                        @Html.DropDownList("mun_Codigo", (IEnumerable<SelectListItem>)ViewBag.muicipio_Edit, new { @class = "form-control" })
-                                        <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
-                                    </div>
-                                </div>*@
+                            <label class="control-label col-md-2">Departamento<span style="color:red">*</span></label>
+                            <div class="col-md-4">
+                                @Html.DropDownList("dep_Codigo", (IEnumerable<SelectListItem>)ViewBag.deparatamento_Edit, new { @class = "form-control" })
+                                <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => ListadoMunicipio.dep_Codigo)</p>
+                            </div>
+                            <label class="control-label col-md-2">Municipio<span style="color:red">*</span></label>
+                            <div class="col-md-4">
+                                @Html.DropDownList("mun_Codigo", (IEnumerable<SelectListItem>)ViewBag.muicipio_Edit, new { @class = "form-control" })
+                                <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
+                            </div>
+                        </div>*@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Departamento<span style="color:red">*</span></label>
                                 <div class="col-md-4">
@@ -132,17 +132,17 @@
                                     <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
                                 </div>
                             </div>
-
+                            
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Telefono, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Telefono)
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
                                 </div>
-                                @Html.LabelFor(model => model.bod_ResponsableBodega, new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2">Responsable Bodega<span style="color:red">*</span></label>
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_ResponsableBodega)
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bod_ResponsableBodega)</p>
+                                    @Html.DropDownList("bod_ResponsableBodega", (IEnumerable<SelectListItem>)ViewBag.ResponsableBodegaList, new { @class = "form-control" })
+                                    <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => Model.bod_ResponsableBodega)</p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -164,14 +164,14 @@
 
                             </div>
                             @*<div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group">*@
+        <div class="col-lg-12">
+            <div class="form-group">*@
                             @*<div class="ibox-content collapse" id="idModalCreate">
-                                    @Html.Partial("_CreateNuevoBodegaDetalle_Modal", new tbBodegaDetalle())
-                                </div>*@
+            @Html.Partial("_CreateNuevoBodegaDetalle_Modal", new tbBodegaDetalle())
+        </div>*@
                             @*</div>
-                                    </div>
-                                </div>*@
+            </div>
+        </div>*@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="ibox float-e-margins">
@@ -293,7 +293,7 @@
                 ¿Está seguro que quiere Inactivar esta Bodega?
             </div>
             <div class="modal-footer">
-                @Html.ActionLink("Sí", "", new { id = Model.bod_Id }, new { @class = "btn btn-danger" })
+                @*@Html.ActionLink("Sí", "", new { id = Model.bod_Id }, new { @class = "btn btn-danger" })*@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
@@ -307,6 +307,7 @@
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script src="~/Scripts/app/BusquedaGenerica.js"></script>
 <script src="~/Scripts/app/BodegaDetalle.js"></script>
+<script language="javascript" type="text/javascript" src="disableSubmits.js"></script>
 @*<script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
 @*<script src="~/Scripts/app/Municipio.js"></script>*@

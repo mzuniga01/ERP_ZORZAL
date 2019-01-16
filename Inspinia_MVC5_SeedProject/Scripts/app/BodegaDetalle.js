@@ -92,16 +92,20 @@ $(document).ready(function () {
         });
     });
 $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccionar", function () {
-    idItem = $(this).closest('tr').data('id');
+    idItem = $(this).closest('tr').data('animation');
     contentItem = $(this).closest('tr').data('content');
     uni_IdtItem = $(this).closest('tr').data('keyboard');
     psubctItem = $(this).closest('tr').data('container');
     pcatItem = $(this).closest('tr').data('interval');
+    pBarras = $(this).closest('tr').data('id');
+    $("#prod_CodigoBarras").val(pBarras);
     $("#prod_Codigo").val(idItem);
+    
     $("#prod_Descripcion").val(contentItem);
     $("#uni_Id").val(uni_IdtItem);
     $("#pscat_Id").val(psubctItem);
     $("#pcat_Id").val(pcatItem);
+
     //$("#cod").val(idItem);
 });
 ///Fin
@@ -110,8 +114,8 @@ $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccio
 //Agregar Detalle a Bodega
 $('#AgregarBodegaDetalle').click(function () {
     var Producto = $('#prod_Codigo').val();
-    var Preorden = $('#bodd_PuntoReorden').val();
     var Cminima = $('#bodd_CantidadMinima').val();
+    var Preorden = $('#bodd_PuntoReorden').val();
     var Cmaxima = $('#bodd_CantidadMaxima').val();
     var Costo = $('#bodd_Costo').val();
     var Cpromedio = $('#bodd_CostoPromedio').val();
@@ -124,19 +128,9 @@ $('#AgregarBodegaDetalle').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
-       
+        $('#ErrorProducto_Create').after('<ul id="Error_Producto" class="validation-summary-errors text-danger">*Campo Producto Requerido</ul>');
+
     }
-    else if (Preorden == '') {
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-       
-    }
-  
     else if (Cminima == '') {
 
         $('#MessageError').text('');
@@ -146,8 +140,20 @@ $('#AgregarBodegaDetalle').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
-        
+        $('#ErrorCantidadMinima_Create').after('<ul id="Error_CantidadMinima" class="validation-summary-errors text-danger">*Cantidad Miníma Requerido</ul>');
     }
+
+    else if (Preorden == '') {
+        $('#MessageError').text('');
+        $('#Error_Producto').text('');
+        $('#Error_PuntoReorden').text('');
+        $('#Error_CantidadMinima').text('');
+        $('#Error_CantidadMaxima').text('');
+        $('#Error_Costo').text('');
+        $('#Error_CostoPromedioo').text('');
+        $('#ErrorPuntoReorden_Create').after('<ul id="Error_PuntoReorden" class="validation-summary-errors text-danger">*Campo Punto Reorden Requerido</ul>');
+    }
+
    
     else if (Cmaxima == '') {
         $('#MessageError').text('');
@@ -157,9 +163,10 @@ $('#AgregarBodegaDetalle').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
-        
+        $('#ErrorCantidadMaxima_Create').after('<ul id="Error_CantidadMaxima" class="validation-summary-errors text-danger">*Cantidad Máxima Requerido</ul>');
+
     }
-   
+
     else if (Costo == '') {
         $('#MessageError').text('');
         $('#Error_Producto').text('');
@@ -168,7 +175,8 @@ $('#AgregarBodegaDetalle').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
-        
+        $('#ErrorCosto_Create').after('<ul id="Error_Costo" class="validation-summary-errors text-danger">*Campo Costo Requerido</ul>');
+
     }
     else if (Cpromedio == '') {
 
@@ -179,7 +187,7 @@ $('#AgregarBodegaDetalle').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
-        
+        $('#ErrorCostoPromedio_Create').after('<ul id="Error_CostoPromedioo" class="validation-summary-errors text-danger">*Campo Costo Promedio Requerido</ul>');
     }
 
     else {
@@ -248,7 +256,7 @@ function Getbodegadetalle() {
 //Fin
 
 //Remover Detalle
-$(document).on("click", "#tbBodega tbody tr td button#removeBodegaDetalle", function () {
+$(document).on("click", "#tblBodega tbody tr td button#removeBodegaDetalle", function () {
     $(this).closest('tr').remove();
     idItem = $(this).closest('tr').data('id');
     var BorrarItems = {
@@ -450,8 +458,8 @@ $(document).on('blur', '#bodd_CantidadMaxima', function () {
 //pruebaa
 $('#AgregarBodegaDetalle_Prueba').click(function () {
     var Producto = $('#prod_Codigo').val();
-    var Preorden = $('#bodd_PuntoReorden').val();
     var Cminima = $('#bodd_CantidadMinima').val();
+    var Preorden = $('#bodd_PuntoReorden').val();
     var Cmaxima = $('#bodd_CantidadMaxima').val();
     var Costo = $('#bodd_Costo').val();
     var Cpromedio = $('#bodd_CostoPromedio').val();
@@ -464,19 +472,9 @@ $('#AgregarBodegaDetalle_Prueba').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
+        $('#ErrorProducto_Create').after('<ul id="Error_Producto" class="validation-summary-errors text-danger">*Campo Producto Requerido</ul>');
 
     }
-    else if (Preorden == '') {
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-
-    }
-
     else if (Cminima == '') {
 
         $('#MessageError').text('');
@@ -486,8 +484,20 @@ $('#AgregarBodegaDetalle_Prueba').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
-
+        $('#ErrorCantidadMinima_Create').after('<ul id="Error_CantidadMinima" class="validation-summary-errors text-danger">*Cantidad Miníma Requerido</ul>');
     }
+    else if (Preorden == '') {
+        $('#MessageError').text('');
+        $('#Error_Producto').text('');
+        $('#Error_PuntoReorden').text('');
+        $('#Error_CantidadMinima').text('');
+        $('#Error_CantidadMaxima').text('');
+        $('#Error_Costo').text('');
+        $('#Error_CostoPromedioo').text('');
+        $('#ErrorPuntoReorden_Create').after('<ul id="Error_PuntoReorden" class="validation-summary-errors text-danger">*Campo Punto Reorden Requerido</ul>');
+    }
+
+   
 
     else if (Cmaxima == '') {
         $('#MessageError').text('');
@@ -497,6 +507,7 @@ $('#AgregarBodegaDetalle_Prueba').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
+        $('#ErrorCantidadMaxima_Create').after('<ul id="Error_CantidadMaxima" class="validation-summary-errors text-danger">*Cantidad Máxima Requerido</ul>');
 
     }
 
@@ -508,6 +519,7 @@ $('#AgregarBodegaDetalle_Prueba').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
+        $('#ErrorCosto_Create').after('<ul id="Error_Costo" class="validation-summary-errors text-danger">*Campo Costo Requerido</ul>');
 
     }
     else if (Cpromedio == '') {
@@ -519,7 +531,7 @@ $('#AgregarBodegaDetalle_Prueba').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
-
+        $('#ErrorCostoPromedio_Create').after('<ul id="Error_CostoPromedioo" class="validation-summary-errors text-danger">*Campo Costo Promedio Requerido</ul>');
     }
 
     else {
@@ -587,18 +599,93 @@ function Getbodegadetalle() {
 }
 //
 
-
-
-
-
-
-//Busqueda Producto AutoComplete
-$(function () {
-    $("#prod_Codigo").autocomplete({
-        source: "/Bodega/BuscarProductos"
+//Remover Detalle Ventana Create
+$(document).on("click", "#tbBodega tbody tr td button#removeBodegaDetalle", function () {
+    $(this).closest('tr').remove();
+    idItem = $(this).closest('tr').data('id');
+    var BorrarItems = {
+        bodd_Id: idItem,
+    };
+    $.ajax({
+        url: "/Bodega/removeBodegaDetalle",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ BorrarItem: BorrarItems }),
     });
 });
 //Fin
+
+//Busqueda Producto AutoComplete
+//$(function () {
+//    $("#prod_Codigo").autocomplete({
+//        source: "/Bodega/BuscarProductos"
+//    });
+//});
+//Fin
+
+
+//Simulador tecla enter
+//$('#prod_CodigoBarras').keypress(function (e) {
+//    var barras = length;
+//    if (e.keyCode == 13) { //alert('se preciono enter');
+//        $('#ErrorBarras').text('');
+//    }
+//    else if ('#prod_CodigoBarras') {
+//        this.style.backgroundColor = "LightPink";
+//        $('#ErrorBarras').text('');
+//        $('#ErrorBarras_Create').after('<ul id="ErrorBarras" class="validation-summary-errors text-danger">Campo Codigo Barras Rrequerido</ul>');
+//        $("#prod_CodigoBarras").focus();
+//    }
+//    else {
+//            var var_codigoBarras = GetCodigoBarras();
+//            $.ajax({
+//                url: "/Bodega/BuscarCodigoBarras",
+//                method: "POST",
+//                dataType: 'json',
+//                contentType: "application/json; charset=utf-8",
+//                data: JSON.stringify({ CODIGOBARRAS: var_codigoBarras }),
+//            })
+//                .done(function (data) {
+//                    if (barras.length > 0) {
+//                        this.style.backgroundColor = "LightPink";
+//                        $('#ErrorBarras').text('');
+//                        $('#ErrorBarras_Create').after('<ul id="ErrorBarras" class="validation-summary-errors text-danger">Código De Barras Existente</ul>');
+//                        $("#prod_CodigoBarras").focus();
+//                }
+//                else {
+//                        alert('se preciono enter');
+//                }
+//            });
+
+//         }
+//});
+
+//function GetCodigoBarras() {
+//    var CODIGOBARRAS = {
+//        prod_CodigoBarras : $('#prod_CodigoBarras').val(),
+//        bod_Id : $('#bod_Id').val(),
+//    };
+//    return CODIGOBARRAS;
+//}
+//Fin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //2da Opcion
 //$(function () {

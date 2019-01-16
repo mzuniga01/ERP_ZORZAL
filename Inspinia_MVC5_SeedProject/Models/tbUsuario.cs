@@ -133,10 +133,10 @@ namespace ERP_GMEDINA.Models
             this.tbPuntoEmisionDetalle1 = new HashSet<tbPuntoEmisionDetalle>();
             this.tbEntrada = new HashSet<tbEntrada>();
             this.tbEntrada1 = new HashSet<tbEntrada>();
-            this.tbBodega = new HashSet<tbBodega>();
-            this.tbBodega1 = new HashSet<tbBodega>();
             this.tbCliente = new HashSet<tbCliente>();
             this.tbCliente1 = new HashSet<tbCliente>();
+            this.tbBodega = new HashSet<tbBodega>();
+            this.tbBodega1 = new HashSet<tbBodega>();
         }
     
         public int usu_Id { get; set; }
@@ -383,12 +383,12 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEntrada> tbEntrada1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbBodega> tbBodega { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbBodega> tbBodega1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCliente> tbCliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCliente> tbCliente1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbBodega> tbBodega { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbBodega> tbBodega1 { get; set; }
     }
 }

@@ -238,7 +238,7 @@
     </Key>
     <Property Name="bod_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="bod_Nombre" Type="varchar" MaxLength="100" />
-    <Property Name="bod_ResponsableBodega" Type="varchar" MaxLength="100" />
+    <Property Name="bod_ResponsableBodega" Type="smallint" Nullable="false" />
     <Property Name="bod_Direccion" Type="varchar" MaxLength="200" />
     <Property Name="bod_Correo" Type="varchar(max)" />
     <Property Name="bod_Telefono" Type="varchar" MaxLength="13" />
@@ -2059,6 +2059,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbBodega_bod_ResponsableBodega">
+    <End Role="tbEmpleado" Type="Self.tbEmpleado" Multiplicity="1" />
+    <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbEmpleado">
+        <PropertyRef Name="emp_Id" />
+      </Principal>
+      <Dependent Role="tbBodega">
+        <PropertyRef Name="bod_ResponsableBodega" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
     <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="*" />
@@ -3661,6 +3673,10 @@
   <Function Name="spGetCategoriaProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="codsubcategoria" Type="int" Mode="In" />
   </Function>
+  <Function Name="spGetProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="spGetSubCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
   </Function>
@@ -3673,7 +3689,7 @@
   </Function>
   <Function Name="UDP_Inv_tbBodega_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bod_Nombre" Type="varchar" Mode="In" />
-    <Parameter Name="bod_ResponsableBodega" Type="varchar" Mode="In" />
+    <Parameter Name="bod_ResponsableBodega" Type="smallint" Mode="In" />
     <Parameter Name="bod_Direccion" Type="varchar" Mode="In" />
     <Parameter Name="bod_Correo" Type="varchar(max)" Mode="In" />
     <Parameter Name="bod_Telefono" Type="varchar" Mode="In" />
@@ -3682,7 +3698,7 @@
   <Function Name="UDP_Inv_tbBodega_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bod_Id" Type="int" Mode="In" />
     <Parameter Name="bod_Nombre" Type="varchar" Mode="In" />
-    <Parameter Name="bod_ResponsableBodega" Type="varchar" Mode="In" />
+    <Parameter Name="bod_ResponsableBodega" Type="smallint" Mode="In" />
     <Parameter Name="bod_Direccion" Type="varchar" Mode="In" />
     <Parameter Name="bod_Correo" Type="varchar(max)" Mode="In" />
     <Parameter Name="bod_Telefono" Type="varchar" Mode="In" />
@@ -4397,6 +4413,10 @@
     <AssociationSet Name="FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioModifica" Association="Self.FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbBodega_bod_ResponsableBodega" Association="Self.FK_Inv_tbBodega_bod_ResponsableBodega">
+      <End Role="tbEmpleado" EntitySet="tbEmpleado" />
+      <End Role="tbBodega" EntitySet="tbBodega" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica" Association="Self.FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />

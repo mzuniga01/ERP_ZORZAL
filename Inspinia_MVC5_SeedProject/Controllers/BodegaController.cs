@@ -80,8 +80,8 @@ namespace ERP_GMEDINA.Controllers
 
             ViewBag.DepartamentoList = new SelectList(_departamentos, "dep_Codigo", "dep_Nombre", "Seleccione");
             ViewBag.MunicipioList = new SelectList(_Municipios, "mun_Codigo", "mun_Nombre" , "Seleccione");
-            ViewBag.ResponsableBodegaList = new SelectList(db.tbEmpleado, "emp_Id", "emp_Nombres", "emp_Apellidos"/*, "Seleccione"*/);
-            //ViewBag.ResponsableBodegaList = new SelectList(_EncargadoBodega, "emp_Nombres", "emp_Apellidos"/*, "emp_Apellidos"*//*, "Seleccione"*/);
+            //ViewBag.ResponsableBodegaList = new SelectList(db.tbEmpleado, "emp_Id", "emp_Nombres", "emp_Apellidos"/*, "Seleccione"*/);
+            ViewBag.ResponsableBodegaList = new SelectList(_EncargadoBodega, "emp_Nombres", "emp_Apellidos"/*, "emp_Apellidos"*//*, "Seleccione"*/);
             ////
             ///
         }
@@ -311,6 +311,13 @@ namespace ERP_GMEDINA.Controllers
             }
         }
 
+        //public ActionResult BuscarCodigoBarras(int bod_Id ,  string prod_CodigoBarras)
+        //{
+        //    var list = db.spGetProducto(bod_Id, prod_CodigoBarras).ToList();
+        //    return Json(list, JsonRequestBehavior.AllowGet);
+
+        //}
+
         // POST: /Bodega/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -512,6 +519,9 @@ namespace ERP_GMEDINA.Controllers
 
             //return RedirectToAction("Index");
         }
+
+        // simulardor de tecla enter 
+      
 
     }
 }
