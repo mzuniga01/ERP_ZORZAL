@@ -330,10 +330,16 @@
     <Compile Include="Models\SDP_Acce_GetUserRols_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SDP_tbProductoSubcategoria_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SolicitudCreditos.cs" />
     <Compile Include="Models\SolicitudEfectivo.cs" />
     <Compile Include="Models\SolicitudEfectivoDetalle.cs" />
     <Compile Include="Models\spGetBusquedaCliente_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetCategoriaProducto_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\spGetCategoria_Result.cs">
@@ -348,7 +354,13 @@
     <Compile Include="Models\spGetMunicipios1_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\spGetProducto1_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SPGetResponsableBodega_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetSubCategoriaProducto_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\spGetTipoIdentificacion_Result.cs">
@@ -555,6 +567,9 @@
     </Compile>
     <Compile Include="Models\TipoPagos.cs" />
     <Compile Include="Models\TiposIdenticacion.cs" />
+    <Compile Include="Models\UDP_Acce_Login_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Gral_tbActividadEconomica_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -592,6 +607,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Gral_tbTipoIdentificacion_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Inv_CantidadExistente_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbBodegaDetalle_CantidadExistente_Result.cs">
@@ -667,6 +685,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbExoneracion_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbExoneracion_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbExoneracion_Update_Result.cs">
@@ -750,6 +771,9 @@
     <Compile Include="Models\UDP_Vent_tbPuntoEmision_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbPuntoEmision_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbPuntoEmision_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -805,6 +829,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UnidadesMedida.cs" />
+    <Compile Include="Models\V_Objetos.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\V_Vent_FacturaPago.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

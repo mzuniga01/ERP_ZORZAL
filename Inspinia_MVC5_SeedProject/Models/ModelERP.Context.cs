@@ -90,8 +90,13 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
+        public virtual DbSet<V_Objetos> V_Objetos { get; set; }
         public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
+        public virtual DbSet<UDV_Inv_Consultar_Existencias_Productos> UDV_Inv_Consultar_Existencias_Productos { get; set; }
+        public virtual DbSet<UDP_Vent_SolicituEfectivo_Detalles_Select> UDP_Vent_SolicituEfectivo_Detalles_Select { get; set; }
+        public virtual DbSet<UDP_Vent_SolicituEfectivo_Select> UDP_Vent_SolicituEfectivo_Select { get; set; }
         public virtual DbSet<UDV_Vent_Busqueda_Clientes> UDV_Vent_Busqueda_Clientes { get; set; }
+        public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
         public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
@@ -4832,6 +4837,155 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pago_EstaImpreso", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPago_Update_Result>("UDP_Vent_tbPago_Update", pago_IdParameter, fact_IdParameter, tpa_IdParameter, pago_FechaElaboracionParameter, pago_SaldoAnteriorParameter, pago_TotalPagoParameter, pago_TotalCambioParameter, pago_EmisorParameter, bcta_IdParameter, pago_FechaVencimientoParameter, pago_TitularParameter, pago_EstaAnuladoParameter, pago_EstaImpresoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Acce_Login_Result> UDP_Acce_Login(string usuarioId, string password)
+        {
+            var usuarioIdParameter = usuarioId != null ?
+                new ObjectParameter("UsuarioId", usuarioId) :
+                new ObjectParameter("UsuarioId", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_Login_Result>("UDP_Acce_Login", usuarioIdParameter, passwordParameter);
+        }
+    
+        public virtual int UDP_Acce_tbRolesUsuario_Delete(Nullable<int> usu_Id, Nullable<int> rol_Id)
+        {
+            var usu_IdParameter = usu_Id.HasValue ?
+                new ObjectParameter("usu_Id", usu_Id) :
+                new ObjectParameter("usu_Id", typeof(int));
+    
+            var rol_IdParameter = rol_Id.HasValue ?
+                new ObjectParameter("rol_Id", rol_Id) :
+                new ObjectParameter("rol_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Acce_tbRolesUsuario_Delete", usu_IdParameter, rol_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_CantidadExistente_Result> UDP_Inv_CantidadExistente(Nullable<int> bod_Id, string prod_Codigo)
+        {
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_CantidadExistente_Result>("UDP_Inv_CantidadExistente", bod_IdParameter, prod_CodigoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbPuntoEmision_Select_Result> UDP_Vent_tbPuntoEmision_Select(Nullable<int> pemi_Id)
+        {
+            var pemi_IdParameter = pemi_Id.HasValue ?
+                new ObjectParameter("pemi_Id", pemi_Id) :
+                new ObjectParameter("pemi_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPuntoEmision_Select_Result>("UDP_Vent_tbPuntoEmision_Select", pemi_IdParameter);
+        }
+    
+        public virtual ObjectResult<SDP_tbProductoSubcategoria_Select_Result> SDP_tbProductoSubcategoria_Select(Nullable<int> pscat_Id)
+        {
+            var pscat_IdParameter = pscat_Id.HasValue ?
+                new ObjectParameter("pscat_Id", pscat_Id) :
+                new ObjectParameter("pscat_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbProductoSubcategoria_Select_Result>("SDP_tbProductoSubcategoria_Select", pscat_IdParameter);
+        }
+    
+        public virtual ObjectResult<spGetCategoriaProducto_Result> spGetCategoriaProducto(Nullable<int> codsubcategoria)
+        {
+            var codsubcategoriaParameter = codsubcategoria.HasValue ?
+                new ObjectParameter("codsubcategoria", codsubcategoria) :
+                new ObjectParameter("codsubcategoria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetCategoriaProducto_Result>("spGetCategoriaProducto", codsubcategoriaParameter);
+        }
+    
+        public virtual ObjectResult<spGetProducto1_Result> spGetProducto1(Nullable<int> bod_Id, string prod_CodigoBarras)
+        {
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var prod_CodigoBarrasParameter = prod_CodigoBarras != null ?
+                new ObjectParameter("prod_CodigoBarras", prod_CodigoBarras) :
+                new ObjectParameter("prod_CodigoBarras", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetProducto1_Result>("spGetProducto1", bod_IdParameter, prod_CodigoBarrasParameter);
+        }
+    
+        public virtual ObjectResult<spGetSubCategoriaProducto_Result> spGetSubCategoriaProducto(Nullable<int> codCategoria)
+        {
+            var codCategoriaParameter = codCategoria.HasValue ?
+                new ObjectParameter("CodCategoria", codCategoria) :
+                new ObjectParameter("CodCategoria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetSubCategoriaProducto_Result>("spGetSubCategoriaProducto", codCategoriaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Inv_tbBodegaDetalle_Delete(string prod_Codigo)
+        {
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbBodegaDetalle_Delete", prod_CodigoParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Inv_tbEntrada_Update_Anular(Nullable<int> ent_Id, Nullable<byte> entd_EsAnulada, string entd_RazonAnulada)
+        {
+            var ent_IdParameter = ent_Id.HasValue ?
+                new ObjectParameter("ent_Id", ent_Id) :
+                new ObjectParameter("ent_Id", typeof(int));
+    
+            var entd_EsAnuladaParameter = entd_EsAnulada.HasValue ?
+                new ObjectParameter("entd_EsAnulada", entd_EsAnulada) :
+                new ObjectParameter("entd_EsAnulada", typeof(byte));
+    
+            var entd_RazonAnuladaParameter = entd_RazonAnulada != null ?
+                new ObjectParameter("entd_RazonAnulada", entd_RazonAnulada) :
+                new ObjectParameter("entd_RazonAnulada", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbEntrada_Update_Anular", ent_IdParameter, entd_EsAnuladaParameter, entd_RazonAnuladaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Inv_tbInventarioFisico_Update_Estado(Nullable<int> invf_Id, Nullable<byte> estif_Id)
+        {
+            var invf_IdParameter = invf_Id.HasValue ?
+                new ObjectParameter("invf_Id", invf_Id) :
+                new ObjectParameter("invf_Id", typeof(int));
+    
+            var estif_IdParameter = estif_Id.HasValue ?
+                new ObjectParameter("estif_Id", estif_Id) :
+                new ObjectParameter("estif_Id", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbInventarioFisico_Update_Estado", invf_IdParameter, estif_IdParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Inv_tbProducto_Estado(string prod_Codigo, Nullable<bool> prod_EsActivo, string prod_Razon_Inactivacion)
+        {
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var prod_EsActivoParameter = prod_EsActivo.HasValue ?
+                new ObjectParameter("prod_EsActivo", prod_EsActivo) :
+                new ObjectParameter("prod_EsActivo", typeof(bool));
+    
+            var prod_Razon_InactivacionParameter = prod_Razon_Inactivacion != null ?
+                new ObjectParameter("prod_Razon_Inactivacion", prod_Razon_Inactivacion) :
+                new ObjectParameter("prod_Razon_Inactivacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbProducto_Estado", prod_CodigoParameter, prod_EsActivoParameter, prod_Razon_InactivacionParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbExoneracion_Select_Result> UDP_Vent_tbExoneracion_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbExoneracion_Select_Result>("UDP_Vent_tbExoneracion_Select");
         }
     }
 }

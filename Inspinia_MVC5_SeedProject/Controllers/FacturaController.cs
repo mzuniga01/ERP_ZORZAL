@@ -671,7 +671,7 @@ namespace ERP_GMEDINA.Controllers
                         Session["IDENTIFICACION"] =tbCliente.clte_Identificacion;
                         if (tbCliente.clte_EsPersonaNatural)
                         {
-                            Session["NOMBRES"] = tbCliente.clte_Nombres + tbCliente.clte_Apellidos ;
+                            Session["NOMBRES"] = tbCliente.clte_Nombres +" "+ tbCliente.clte_Apellidos ;
                         }
                         else
                         {
