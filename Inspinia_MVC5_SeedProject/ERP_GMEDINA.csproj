@@ -201,6 +201,7 @@
     <Compile Include="Controllers\ObjetoController.cs" />
     <Compile Include="Controllers\ParametroController.cs" />
     <Compile Include="Controllers\ProductoCategoriaController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\SalidaController.cs" />
@@ -964,6 +965,7 @@
     <Content Include="Scripts\app\DatepickerEmpleado.js" />
     <Content Include="Scripts\app\Departamento.js" />
     <Content Include="Scripts\app\DetalleBox.js" />
+    <Content Include="Scripts\app\disableSubmits.js" />
     <Content Include="Scripts\app\emailvalidation.js" />
     <Content Include="Scripts\app\EntradaDetalle.js" />
     <Content Include="Scripts\app\inspinia.js" />

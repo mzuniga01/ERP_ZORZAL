@@ -458,6 +458,7 @@ $(document).on('blur', '#bodd_CantidadMaxima', function () {
 //pruebaa
 $('#AgregarBodegaDetalle_Prueba').click(function () {
     var Producto = $('#prod_Codigo').val();
+    var Barras = $('#prod_CodigoBarras').val();
     var Cminima = $('#bodd_CantidadMinima').val();
     var Preorden = $('#bodd_PuntoReorden').val();
     var Cmaxima = $('#bodd_CantidadMaxima').val();
@@ -467,6 +468,7 @@ $('#AgregarBodegaDetalle_Prueba').click(function () {
     if (Producto == '') {
         $('#MessageError').text('');
         $('#Error_Producto').text('');
+        $('#Error_Barras').text('');
         $('#Error_PuntoReorden').text('');
         $('#Error_CantidadMinima').text('');
         $('#Error_CantidadMaxima').text('');
@@ -475,10 +477,25 @@ $('#AgregarBodegaDetalle_Prueba').click(function () {
         $('#ErrorProducto_Create').after('<ul id="Error_Producto" class="validation-summary-errors text-danger">*Campo Producto Requerido</ul>');
 
     }
+    else if (Barras == '') {
+
+        $('#MessageError').text('');
+        $('#Error_Producto').text('');
+        $('#Error_Barras').text('');
+        $('#Error_PuntoReorden').text('');
+        $('#Error_CantidadMinima').text('');
+        $('#Error_CantidadMaxima').text('');
+        $('#Error_Costo').text('');
+        $('#Error_CostoPromedioo').text('');
+        $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Codigo De Barras Requerido</ul>');
+    }
+
+
     else if (Cminima == '') {
 
         $('#MessageError').text('');
         $('#Error_Producto').text('');
+        $('#Error_Barras').text('');
         $('#Error_PuntoReorden').text('');
         $('#Error_CantidadMinima').text('');
         $('#Error_CantidadMaxima').text('');
@@ -489,6 +506,7 @@ $('#AgregarBodegaDetalle_Prueba').click(function () {
     else if (Preorden == '') {
         $('#MessageError').text('');
         $('#Error_Producto').text('');
+        $('#Error_Barras').text('');
         $('#Error_PuntoReorden').text('');
         $('#Error_CantidadMinima').text('');
         $('#Error_CantidadMaxima').text('');
@@ -502,6 +520,7 @@ $('#AgregarBodegaDetalle_Prueba').click(function () {
     else if (Cmaxima == '') {
         $('#MessageError').text('');
         $('#Error_Producto').text('');
+        $('#Error_Barras').text('');
         $('#Error_PuntoReorden').text('');
         $('#Error_CantidadMinima').text('');
         $('#Error_CantidadMaxima').text('');
@@ -514,6 +533,7 @@ $('#AgregarBodegaDetalle_Prueba').click(function () {
     else if (Costo == '') {
         $('#MessageError').text('');
         $('#Error_Producto').text('');
+        $('#Error_Barras').text('');
         $('#Error_PuntoReorden').text('');
         $('#Error_CantidadMinima').text('');
         $('#Error_CantidadMaxima').text('');
@@ -526,6 +546,7 @@ $('#AgregarBodegaDetalle_Prueba').click(function () {
 
         $('#MessageError').text('');
         $('#Error_Producto').text('');
+        $('#Error_Barras').text('');
         $('#Error_PuntoReorden').text('');
         $('#Error_CantidadMinima').text('');
         $('#Error_CantidadMaxima').text('');
@@ -538,6 +559,7 @@ $('#AgregarBodegaDetalle_Prueba').click(function () {
         //Aqui importa el orden
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
+        copiar += "<td id = 'Barras'>" + $('#prod_CodigoBarras').val() + "</td>";
         copiar += "<td id = 'Producto'>" + $('#prod_Codigo').val() + "</td>";
         copiar += "<td id = 'Descripcion_P'>" + $('#prod_Descripcion').val() + "</td>";
         copiar += "<td id = 'Costo'>" + $('#bodd_Costo').val() + "</td>";
@@ -560,6 +582,7 @@ $('#AgregarBodegaDetalle_Prueba').click(function () {
         })
             .done(function (data) {
                 $('#prod_Codigo').val('');
+                $('#prod_CodigoBarras').val('');
                 $('#prod_Descripcion').val('');
                 $('#pcat_Id').val('');
                 $('#pscat_Id').val('');
@@ -572,6 +595,7 @@ $('#AgregarBodegaDetalle_Prueba').click(function () {
 
                 $('#MessageError').text('');
                 $('#Error_Producto').text('');
+                $('#Error_Barras').text('');
                 $('#Error_PuntoReorden').text('');
                 $('#Error_CantidadMinima').text('');
                 $('#Error_CantidadMaxima').text('');
@@ -586,6 +610,7 @@ $('#AgregarBodegaDetalle_Prueba').click(function () {
 function Getbodegadetalle() {
     var BODEGADETALLE = {
         prod_Codigo: $('#prod_Codigo').val(),
+        prod_CodigoBarras: $('#prod_CodigoBarras').val(),
         bodd_puntoReorden: $('#bodd_PuntoReorden').val(),
         bodd_cantidadMinima: $('#bodd_CantidadMinima').val(),
         bodd_cantidadMaxima: $('#bodd_CantidadMaxima').val(),
@@ -615,6 +640,123 @@ $(document).on("click", "#tbBodega tbody tr td button#removeBodegaDetalle", func
     });
 });
 //Fin
+
+
+//Simulador Tecla Enter
+$(function () {
+    $('#prod_CodigoBarras').keydown(function (e) {
+        if (e.keyCode == 13) {
+            
+            ///
+            var tbProducto = GetCodigoBarras();
+            console.log(tbProducto)
+            $.ajax({
+                url: "/Bodega/BuscarCodigoBarras",
+                method: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ GETCodigoBarras: tbProducto }),
+            }).done(function (data) {
+                if (data.length > 0) {
+                    $("#seleccionar").focus().click();
+                    //location.reload();
+                    $('#Error_Barras').text('');
+                    $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Codigo De Barras Existente</ul>');
+                }
+                else {
+                    $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccionar", function () {
+                        idItem = $(this).closest('tr').data('animation');
+                        contentItem = $(this).closest('tr').data('content');
+                        uni_IdtItem = $(this).closest('tr').data('keyboard');
+                        psubctItem = $(this).closest('tr').data('container');
+                        pcatItem = $(this).closest('tr').data('interval');
+                        pBarras = $(this).closest('tr').data('id');
+                        $("#prod_CodigoBarras").val(pBarras);
+                        $("#prod_Codigo").val(idItem);
+
+                        $("#prod_Descripcion").val(contentItem);
+                        $("#uni_Id").val(uni_IdtItem);
+                        $("#pscat_Id").val(psubctItem);
+                        $("#pcat_Id").val(pcatItem);
+
+                        //$("#cod").val(idItem);
+                    });
+
+                }
+            });
+            
+           
+            console.log('Hola');
+            $("#prod_CodigoBarras").val(pBarras);
+            $("#prod_Codigo").val(idItem);
+            $("#prod_Descripcion").val(contentItem);
+            $("#uni_Id").val(uni_IdtItem);
+            $("#pscat_Id").val(psubctItem);
+            $("#pcat_Id").val(pcatItem);
+            $("#entd_Cantidad").focus();
+            return false;
+        }
+    });
+});
+function GetCodigoBarras() {
+    var GETCodigoBarras = {
+        bod_Id: $('#bod_Id').val(),
+        prod_CodigoBarras: $('#prod_CodigoBarras').val(),
+    };
+    return GETCodigoBarras;
+}
+///Fin
+
+
+
+///Copia del Enter
+//$(function () {
+//    $('#prod_CodigoBarras').keydown(function (e) {
+//        if (e.keyCode == 13) {
+//            $("#seleccionar").focus().click();
+
+//            $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccionar", function () {
+//                idItem = $(this).closest('tr').data('animation');
+//                contentItem = $(this).closest('tr').data('content');
+//                uni_IdtItem = $(this).closest('tr').data('keyboard');
+//                psubctItem = $(this).closest('tr').data('container');
+//                pcatItem = $(this).closest('tr').data('interval');
+//                pBarras = $(this).closest('tr').data('id');
+//                $("#prod_CodigoBarras").val(pBarras);
+//                $("#prod_Codigo").val(idItem);
+
+//                $("#prod_Descripcion").val(contentItem);
+//                $("#uni_Id").val(uni_IdtItem);
+//                $("#pscat_Id").val(psubctItem);
+//                $("#pcat_Id").val(pcatItem);
+
+//                //$("#cod").val(idItem);
+//            });
+
+//            console.log('prueba');
+//            $("#prod_CodigoBarras").val(pBarras);
+//            $("#prod_Codigo").val(idItem);
+//            $("#prod_Descripcion").val(contentItem);
+//            $("#uni_Id").val(uni_IdtItem);
+//            $("#pscat_Id").val(psubctItem);
+//            $("#pcat_Id").val(pcatItem);
+//            $("#entd_Cantidad").focus();
+//            return false;
+//        }
+//    });
+//});
+///Fin
+
+
+
+
+
+
+
+
+
+
+
 
 //Busqueda Producto AutoComplete
 //$(function () {

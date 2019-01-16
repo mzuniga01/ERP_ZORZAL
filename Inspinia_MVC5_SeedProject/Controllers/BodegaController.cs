@@ -80,8 +80,8 @@ namespace ERP_GMEDINA.Controllers
 
             ViewBag.DepartamentoList = new SelectList(_departamentos, "dep_Codigo", "dep_Nombre", "Seleccione");
             ViewBag.MunicipioList = new SelectList(_Municipios, "mun_Codigo", "mun_Nombre" , "Seleccione");
-            //ViewBag.ResponsableBodegaList = new SelectList(db.tbEmpleado, "emp_Id", "emp_Nombres", "emp_Apellidos"/*, "Seleccione"*/);
-            ViewBag.ResponsableBodegaList = new SelectList(_EncargadoBodega, "emp_Nombres", "emp_Apellidos"/*, "emp_Apellidos"*//*, "Seleccione"*/);
+            ViewBag.ResponsableBodegaList = new SelectList(db.tbEmpleado, "emp_Id", "emp_Nombres");
+            //ViewBag.ResponsableBodegaList = new SelectList(_EncargadoBodega, "emp_Nombres", "emp_Apellidos"/*, "emp_Apellidos"*//*, "Seleccione"*/);
             ////
             ///
         }
@@ -173,21 +173,21 @@ namespace ERP_GMEDINA.Controllers
                                                                                     , bodd.bodd_CostoPromedio);
                                         foreach (UDP_Inv_tbBodegaDetalle_Insert_Result B_detalle in DETALLE)
                                             MsjError = B_detalle.MensajeError;
-                                        if (MsjError == "-1")
+                                        //if (MsjError == "-1")
                                             {
                                             ModelState.AddModelError("", "No se Guardo el Registro");
-                                                return View(tbBodega);
+                                            //return View(tbBodega);
+                                            //    }
+                                            //else
+                                            //{
+                                            //    _Tran.Complete();
+                                            //    return RedirectToAction("Index");
                                             }
-                                        else
-                                        {
-                                            _Tran.Complete();
-                                            return RedirectToAction("Index");
-                                        }
                                     }
                                 }
                             }
 
-                            else
+                            //else
                             {
                                 _Tran.Complete();
                                 //return RedirectToAction("Index");
@@ -310,6 +310,13 @@ namespace ERP_GMEDINA.Controllers
                 return Json(resultado, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public JsonResult BuscarCodigoBarras(int bod_Id, string prod_CodigoBarras)
+        {
+            var list = db.spGetProducto(bod_Id, prod_CodigoBarras).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
 
         //public ActionResult BuscarCodigoBarras(int bod_Id ,  string prod_CodigoBarras)
         //{
