@@ -29,6 +29,9 @@
                         <thead>
                             <tr>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.listp_Id)
+                                </th>
+                                <th>
                                     @Html.DisplayNameFor(model => model.listp_Nombre)
                                 </th>
                                 <th>
@@ -37,27 +40,12 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.listp_Prioridad)
                                 </th>
-                                @*<th>
-                            @Html.DisplayNameFor(model => model.listp_FechaCrea)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.listp_FechaModifica)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.listp_FechaInicioVigencia)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.listp_FechaFinalVigencia)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tbListadoPrecioDetalle.prod_Codigo)
-                        </th>*@
+                                <th>
+                                    @Html.DisplayNameFor(model => model.listp_FechaInicioVigencia)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.listp_FechaFinalVigencia)
+                                </th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -66,6 +54,11 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
+
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.listp_Id)
+                                    </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.listp_Nombre)
                                     </td>
@@ -81,10 +74,16 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.listp_Prioridad)
                                     </td>
-                                  
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.listp_FechaInicioVigencia)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.listp_FechaFinalVigencia)
+                                    </td>
+
                                     <td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.listp_Id }, new { @class = "btn btn-primary btn-sm" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.listp_Id }, new { @class = "btn btn-white btn-sm" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.listp_Id }, new { @class = "btn btn-white btn-ms" })
                              
                                     </td>
                                 </tr>

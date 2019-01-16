@@ -10,6 +10,14 @@
                     <table id="" class="table table table-striped  table-bordered">
                         <thead>
                             <tr>
+                                <th>
+                                    Código Producto
+                                    @*@Html.DisplayNameFor(model => model.lispd_PrecioMayorista)*@
+                                </th>
+                                <th>
+                                    Nombre Producto
+                                    @*@Html.DisplayNameFor(model => model.lispd_PrecioMayorista)*@
+                                </th>
                                 <th>Precio Mayorista
                                     @*@Html.DisplayNameFor(model => model.lispd_PrecioMayorista)*@
                                 </th>
@@ -31,6 +39,13 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
+                                   
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prod_Codigo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                    </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.lispd_PrecioMinorista)
                                     </td>

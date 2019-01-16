@@ -96,6 +96,24 @@
         changeYear: true,
     }).datepicker('setDate', new Date()).datepicker("destroy");
 
+
+    $("#FIV").datepicker({
+        dateFormat: 'dd-mm-yy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
+    }).datepicker("setDate", new Date());
+
+    $("#FFV").datepicker({
+        dateFormat: 'dd-mm-yy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
+    }).datepicker("setDate", new Date());
+
+
+
+
+
+
     $("#listp_FechaFinalVigencia").datepicker({
         dateFormat: 'dd-mm-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
