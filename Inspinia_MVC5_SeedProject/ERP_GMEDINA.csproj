@@ -1499,6 +1499,8 @@
     <Content Include="Views\SolicitudEfectivo\_IndexDetails.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_ListaDenominaciones.cshtml" />
     <Content Include="Views\Devolucion\CreateNotaCredito.cshtml" />
+    <Content Include="Views\Pago\_IndexFacturaPago.cshtml" />
+    <Content Include="Views\Pago\_IndexPagoFactura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -446,7 +446,10 @@
           <Property Name="sal_FechaElaboracion" Type="datetime" Nullable="false" />
           <Property Name="estm_Id" Type="tinyint" Nullable="false" />
           <Property Name="tsal_Id" Type="tinyint" Nullable="false" />
+          <Property Name="sal_BodDestino" Type="int" Nullable="false" />
+          <Property Name="sal_EsAnulada" Type="bit" Nullable="false" />
           <Property Name="sal_RazonDevolucion" Type="varchar" MaxLength="50" />
+          <Property Name="sal_RazonAnulada" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="sal_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="sal_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="sal_UsuarioModifica" Type="int" />
@@ -798,6 +801,8 @@
           <Property Name="bcta_Id" Type="smallint" />
           <Property Name="pago_FechaVencimiento" Type="datetime" />
           <Property Name="pago_Titular" Type="nvarchar" MaxLength="50" />
+          <Property Name="pago_EstaAnulado" Type="bit" Nullable="false" />
+          <Property Name="pago_EstaImpreso" Type="bit" Nullable="false" />
           <Property Name="pago_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="pago_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="pago_UsuarioModifica" Type="int" />
@@ -955,8 +960,8 @@
           <Property Name="tpa_UsuarioModifica" Type="int" />
           <Property Name="tpa_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDV_Inv_Nombre_Empleado">
           <Key>
             <PropertyRef Name="emp_Id" />
@@ -965,8 +970,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
           <Key>
             <PropertyRef Name="prod_Descripcion" />
@@ -986,8 +991,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Property Name="bod_Id" Type="int" Nullable="false" />
           <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalles_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalles_Select' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDP_Vent_SolicituEfectivo_Detalles_Select">
           <Key>
             <PropertyRef Name="soled_Id" />
@@ -1014,8 +1019,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalle
           <Property Name="soled_UsuarioModifica" Type="int" />
           <Property Name="soled_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
           <Key>
             <PropertyRef Name="IdSolicitud" />
@@ -1030,8 +1035,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select'
           <Property Name="MontoSolicitado" Type="decimal" Precision="38" Scale="2" />
           <Property Name="MontoEntregado" Type="decimal" Precision="38" Scale="2" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDV_Vent_Busqueda_Clientes">
           <Key>
             <PropertyRef Name="clte_Id" />
@@ -1084,8 +1089,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does 
           <Property Name="clte_UsuarioModifica" Type="int" />
           <Property Name="clte_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDV_Vent_Busqueda_Factura">
           <Key>
             <PropertyRef Name="fact_Id" />
@@ -1133,8 +1138,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Property Name="fact_UsuarioModifica" Type="int" />
           <Property Name="fact_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="V_Vent_FacturaPago">
           <Key>
             <PropertyRef Name="fact_Id" />
@@ -1144,9 +1149,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Name="fact_Id" Type="bigint" Nullable="false" />
           <Property Name="clte_Id" Type="int" Nullable="false" />
           <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
-          <Property Name="MontoFactura" Type="nvarchar" MaxLength="4000" />
-          <Property Name="TotalPagado" Type="nvarchar" MaxLength="4000" />
-          <Property Name="SaldoFactura" Type="nvarchar" MaxLength="4000" />
+          <Property Name="MontoFactura" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPagado" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SaldoFactura" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
           <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="1" />
@@ -2000,6 +2005,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Gral_tbCuentaBanco_bcta_Id">
+          <End Role="tbCuentasBanco" Type="Self.tbCuentasBanco" Multiplicity="0..1" />
+          <End Role="tbPago" Type="Self.tbPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCuentasBanco">
+              <PropertyRef Name="bcta_Id" />
+            </Principal>
+            <Dependent Role="tbPago">
+              <PropertyRef Name="bcta_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Crea">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
           <End Role="tbCuentasBanco" Type="Self.tbCuentasBanco" Multiplicity="*" />
@@ -2780,6 +2797,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inv_tbSalida_tbBodega_sal_BodDestino">
+          <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
+          <End Role="tbSalida" Type="Self.tbSalida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbBodega">
+              <PropertyRef Name="bod_Id" />
+            </Principal>
+            <Dependent Role="tbSalida">
+              <PropertyRef Name="sal_BodDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Inv_tbSalida_tbEstadoMovimiento_estm_Id">
           <End Role="tbEstadoMovimiento" Type="Self.tbEstadoMovimiento" Multiplicity="1" />
           <End Role="tbSalida" Type="Self.tbSalida" Multiplicity="*" />
@@ -3005,18 +3034,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Principal>
             <Dependent Role="tbPedido">
               <PropertyRef Name="clte_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Vent_tbCuentasBanco_tbPago_bcta_Id">
-          <End Role="tbCuentasBanco" Type="Self.tbCuentasBanco" Multiplicity="0..1" />
-          <End Role="tbPago" Type="Self.tbPago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbCuentasBanco">
-              <PropertyRef Name="bcta_Id" />
-            </Principal>
-            <Dependent Role="tbPago">
-              <PropertyRef Name="bcta_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3296,6 +3313,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
+          <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="1" />
+          <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMunicipio">
+              <PropertyRef Name="mun_Codigo" />
+            </Principal>
+            <Dependent Role="tbCliente">
+              <PropertyRef Name="mun_Codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
           <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="1" />
           <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="*" />
@@ -3548,6 +3577,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id">
+          <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="1" />
+          <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbTipoIdentificacion">
+              <PropertyRef Name="tpi_Id" />
+            </Principal>
+            <Dependent Role="tbCliente">
+              <PropertyRef Name="tpi_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vent_tbTipoPago_tbPago_tpa_Id">
           <End Role="tbTipoPago" Type="Self.tbTipoPago" Multiplicity="1" />
           <End Role="tbPago" Type="Self.tbPago" Multiplicity="*" />
@@ -3569,6 +3610,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Principal>
             <Dependent Role="tbPagosArqueo">
               <PropertyRef Name="tpa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Crea">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+          <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbCliente">
+              <PropertyRef Name="clte_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbCliente">
+              <PropertyRef Name="clte_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3861,8 +3926,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="mun_Codigo" Type="char" Mode="In" />
           <Parameter Name="dep_Codigo" Type="char" Mode="In" />
           <Parameter Name="mun_Nombre" Type="varchar" Mode="In" />
-          <Parameter Name="mun_UsuarioCrea" Type="int" Mode="In" />
-          <Parameter Name="mun_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Gral_tbParametro_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="par_Id" Type="tinyint" Mode="In" />
@@ -4684,6 +4747,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="bcta_Id" Type="smallint" Mode="In" />
           <Parameter Name="pago_FechaVencimiento" Type="datetime" Mode="In" />
           <Parameter Name="pago_Titular" Type="nvarchar" Mode="In" />
+          <Parameter Name="pago_EstaAnulado" Type="bit" Mode="In" />
+          <Parameter Name="pago_EstaImpreso" Type="bit" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbPago_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="pago_Id" Type="int" Mode="In" />
@@ -4697,6 +4762,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="bcta_Id" Type="smallint" Mode="In" />
           <Parameter Name="pago_FechaVencimiento" Type="datetime" Mode="In" />
           <Parameter Name="pago_Titular" Type="nvarchar" Mode="In" />
+          <Parameter Name="pago_EstaAnulado" Type="bit" Mode="In" />
+          <Parameter Name="pago_EstaImpreso" Type="bit" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbPagosArqueo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="mocja_Id" Type="int" Mode="In" />
@@ -5358,6 +5425,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbBanco" EntitySet="tbBanco" />
           </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbCuentaBanco_bcta_Id" Association="Self.FK_Gral_tbCuentaBanco_bcta_Id">
+            <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
+            <End Role="tbPago" EntitySet="tbPago" />
+          </AssociationSet>
           <AssociationSet Name="FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Crea" Association="Self.FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Crea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
@@ -5618,6 +5689,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbSalida" EntitySet="tbSalida" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbSalida_tbBodega_sal_BodDestino" Association="Self.FK_Inv_tbSalida_tbBodega_sal_BodDestino">
+            <End Role="tbBodega" EntitySet="tbBodega" />
+            <End Role="tbSalida" EntitySet="tbSalida" />
+          </AssociationSet>
           <AssociationSet Name="FK_Inv_tbSalida_tbEstadoMovimiento_estm_Id" Association="Self.FK_Inv_tbSalida_tbEstadoMovimiento_estm_Id">
             <End Role="tbEstadoMovimiento" EntitySet="tbEstadoMovimiento" />
             <End Role="tbSalida" EntitySet="tbSalida" />
@@ -5693,10 +5768,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <AssociationSet Name="FK_Vent_tbCliente_tbPedido_clte_id" Association="Self.FK_Vent_tbCliente_tbPedido_clte_id">
             <End Role="tbCliente" EntitySet="tbCliente" />
             <End Role="tbPedido" EntitySet="tbPedido" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbCuentasBanco_tbPago_bcta_Id" Association="Self.FK_Vent_tbCuentasBanco_tbPago_bcta_Id">
-            <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
-            <End Role="tbPago" EntitySet="tbPago" />
           </AssociationSet>
           <AssociationSet Name="FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id" Association="Self.FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id">
             <End Role="tbDenominacion" EntitySet="tbDenominacion" />
@@ -5790,6 +5861,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
             <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
           </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
+            <End Role="tbMunicipio" EntitySet="tbMunicipio" />
+            <End Role="tbCliente" EntitySet="tbCliente" />
+          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
             <End Role="tbMunicipio" EntitySet="tbMunicipio" />
             <End Role="tbSucursal" EntitySet="tbSucursal" />
@@ -5874,6 +5949,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbSucursal" EntitySet="tbSucursal" />
             <End Role="tbPedido" EntitySet="tbPedido" />
           </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id" Association="Self.FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id">
+            <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
+            <End Role="tbCliente" EntitySet="tbCliente" />
+          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbTipoPago_tbPago_tpa_Id" Association="Self.FK_Vent_tbTipoPago_tbPago_tpa_Id">
             <End Role="tbTipoPago" EntitySet="tbTipoPago" />
             <End Role="tbPago" EntitySet="tbPago" />
@@ -5881,6 +5960,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <AssociationSet Name="FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id" Association="Self.FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id">
             <End Role="tbTipoPago" EntitySet="tbTipoPago" />
             <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Crea" Association="Self.FK_Vent_tbUsuario_tbCliente_usu_Id_Crea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbCliente" EntitySet="tbCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica" Association="Self.FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbCliente" EntitySet="tbCliente" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -6031,31 +6118,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="tpa_Cuenta" Mode="In" Type="Boolean" />
             <Parameter Name="tpa_FechaVencimiento" Mode="In" Type="Boolean" />
             <Parameter Name="tpa_Titular" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbPago_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Insert_Result)">
-            <Parameter Name="fact_Id" Mode="In" Type="Int64" />
-            <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
-            <Parameter Name="pago_FechaElaboracion" Mode="In" Type="DateTime" />
-            <Parameter Name="pago_SaldoAnterior" Mode="In" Type="Decimal" />
-            <Parameter Name="pago_TotalPago" Mode="In" Type="Decimal" />
-            <Parameter Name="pago_TotalCambio" Mode="In" Type="Decimal" />
-            <Parameter Name="pago_Emisor" Mode="In" Type="String" />
-            <Parameter Name="bcta_Id" Mode="In" Type="Int16" />
-            <Parameter Name="pago_FechaVencimiento" Mode="In" Type="DateTime" />
-            <Parameter Name="pago_Titular" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbPago_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Update_Result)">
-            <Parameter Name="pago_Id" Mode="In" Type="Int32" />
-            <Parameter Name="fact_Id" Mode="In" Type="Int64" />
-            <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
-            <Parameter Name="pago_FechaElaboracion" Mode="In" Type="DateTime" />
-            <Parameter Name="pago_SaldoAnterior" Mode="In" Type="Decimal" />
-            <Parameter Name="pago_TotalPago" Mode="In" Type="Decimal" />
-            <Parameter Name="pago_TotalCambio" Mode="In" Type="Decimal" />
-            <Parameter Name="pago_Emisor" Mode="In" Type="String" />
-            <Parameter Name="bcta_Id" Mode="In" Type="Int16" />
-            <Parameter Name="pago_FechaVencimiento" Mode="In" Type="DateTime" />
-            <Parameter Name="pago_Titular" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbExoneracion_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Insert_Result)">
             <Parameter Name="exo_Documento" Mode="In" Type="String" />
@@ -6577,8 +6639,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="mun_Codigo" Mode="In" Type="String" />
             <Parameter Name="dep_Codigo" Mode="In" Type="String" />
             <Parameter Name="mun_Nombre" Mode="In" Type="String" />
-            <Parameter Name="mun_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="mun_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbParametro_Insert" ReturnType="Collection(String)">
             <Parameter Name="par_Id" Mode="In" Type="Byte" />
@@ -7202,7 +7262,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <EntitySet Name="tbListaPrecio" EntityType="ERP_ZORZALModel.tbListaPrecio" />
           <EntitySet Name="tbMovimientoCaja" EntityType="ERP_ZORZALModel.tbMovimientoCaja" />
           <EntitySet Name="tbNotaCredito" EntityType="ERP_ZORZALModel.tbNotaCredito" />
-          <EntitySet Name="tbPago" EntityType="ERP_ZORZALModel.tbPago" />
           <EntitySet Name="tbPagosArqueo" EntityType="ERP_ZORZALModel.tbPagosArqueo" />
           <EntitySet Name="tbPedido" EntityType="ERP_ZORZALModel.tbPedido" />
           <EntitySet Name="tbPedidoDetalle" EntityType="ERP_ZORZALModel.tbPedidoDetalle" />
@@ -7399,14 +7458,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <AssociationSet Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbPago" EntitySet="tbPago" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbPago" EntitySet="tbPago" />
           </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -7676,10 +7727,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbMoneda" EntitySet="tbMoneda" />
             <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbCuentasBanco_tbPago_bcta_Id" Association="ERP_ZORZALModel.FK_Vent_tbCuentasBanco_tbPago_bcta_Id">
-            <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
-            <End Role="tbPago" EntitySet="tbPago" />
-          </AssociationSet>
           <AssociationSet Name="FK_Gral_tbDenominacion_tbSolicitudEfectivoDetalle_deno_Id" Association="ERP_ZORZALModel.FK_Gral_tbDenominacion_tbSolicitudEfectivoDetalle_deno_Id">
             <End Role="tbDenominacion" EntitySet="tbDenominacion" />
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
@@ -7864,10 +7911,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbSucursal" EntitySet="tbSucursal" />
             <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbTipoPago_tbPago_tpa_Id" Association="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id">
-            <End Role="tbTipoPago" EntitySet="tbTipoPago" />
-            <End Role="tbPago" EntitySet="tbPago" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id" Association="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id">
             <End Role="tbTipoPago" EntitySet="tbTipoPago" />
             <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
@@ -7967,10 +8010,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbFactura" EntitySet="tbFactura" />
             <End Role="tbFacturaHistorica" EntitySet="tbFacturaHistorica" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbFactura_tbPago_fact_Id" Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id">
-            <End Role="tbFactura" EntitySet="tbFactura" />
-            <End Role="tbPago" EntitySet="tbPago" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbFactura_tbPedido_fact_Id" Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbPedido_fact_Id">
             <End Role="tbFactura" EntitySet="tbFactura" />
             <End Role="tbPedido" EntitySet="tbPedido" />
@@ -8009,7 +8048,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="usu_Id" Mode="In" Type="Int32" />
             <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="V_Vent_FacturaPago" EntityType="ERP_ZORZALModel.V_Vent_FacturaPago" />
           <EntitySet Name="tbBodega" EntityType="ERP_ZORZALModel.tbBodega" />
           <EntitySet Name="tbSalida" EntityType="ERP_ZORZALModel.tbSalida" />
           <AssociationSet Name="FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica">
@@ -8107,6 +8145,61 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
           </AssociationSet>
           <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" />
+          <AssociationSet Name="FK_Inv_tbSalida_tbBodega_sal_BodDestino" Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbBodega_sal_BodDestino">
+            <End Role="tbBodega" EntitySet="tbBodega" />
+            <End Role="tbSalida" EntitySet="tbSalida" />
+          </AssociationSet>
+          <FunctionImport Name="UDP_Vent_tbPago_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Insert_Result)">
+            <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+            <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
+            <Parameter Name="pago_FechaElaboracion" Mode="In" Type="DateTime" />
+            <Parameter Name="pago_SaldoAnterior" Mode="In" Type="Decimal" />
+            <Parameter Name="pago_TotalPago" Mode="In" Type="Decimal" />
+            <Parameter Name="pago_TotalCambio" Mode="In" Type="Decimal" />
+            <Parameter Name="pago_Emisor" Mode="In" Type="String" />
+            <Parameter Name="bcta_Id" Mode="In" Type="Int16" />
+            <Parameter Name="pago_FechaVencimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="pago_Titular" Mode="In" Type="String" />
+            <Parameter Name="pago_EstaAnulado" Mode="In" Type="Boolean" />
+            <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbPago_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Update_Result)">
+            <Parameter Name="pago_Id" Mode="In" Type="Int32" />
+            <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+            <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
+            <Parameter Name="pago_FechaElaboracion" Mode="In" Type="DateTime" />
+            <Parameter Name="pago_SaldoAnterior" Mode="In" Type="Decimal" />
+            <Parameter Name="pago_TotalPago" Mode="In" Type="Decimal" />
+            <Parameter Name="pago_TotalCambio" Mode="In" Type="Decimal" />
+            <Parameter Name="pago_Emisor" Mode="In" Type="String" />
+            <Parameter Name="bcta_Id" Mode="In" Type="Int16" />
+            <Parameter Name="pago_FechaVencimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="pago_Titular" Mode="In" Type="String" />
+            <Parameter Name="pago_EstaAnulado" Mode="In" Type="Boolean" />
+            <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <EntitySet Name="tbPago" EntityType="ERP_ZORZALModel.tbPago" />
+          <EntitySet Name="V_Vent_FacturaPago" EntityType="ERP_ZORZALModel.V_Vent_FacturaPago" />
+          <AssociationSet Name="FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbPago" EntitySet="tbPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbPago" EntitySet="tbPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbCuentaBanco_bcta_Id" Association="ERP_ZORZALModel.FK_Gral_tbCuentaBanco_bcta_Id">
+            <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
+            <End Role="tbPago" EntitySet="tbPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbFactura_tbPago_fact_Id" Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id">
+            <End Role="tbFactura" EntitySet="tbFactura" />
+            <End Role="tbPago" EntitySet="tbPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbTipoPago_tbPago_tpa_Id" Association="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id">
+            <End Role="tbTipoPago" EntitySet="tbTipoPago" />
+            <End Role="tbPago" EntitySet="tbPago" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -8197,12 +8290,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="Byte" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbTipoPago_Insert_Result">
-          <Property Type="Int16" Name="MensajeError" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbPago_Insert_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbPago_Update_Result">
           <Property Type="Int16" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbExoneracion_Insert_Result">
@@ -8621,8 +8708,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="tbMovimientoCaja4" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
           <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea" FromRole="tbUsuario" ToRole="tbNotaCredito" />
           <NavigationProperty Name="tbNotaCredito1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" FromRole="tbUsuario" ToRole="tbNotaCredito" />
-          <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea" FromRole="tbUsuario" ToRole="tbPago" />
-          <NavigationProperty Name="tbPago1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica" FromRole="tbUsuario" ToRole="tbPago" />
           <NavigationProperty Name="tbTipoPago" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioCrea" FromRole="tbUsuario" ToRole="tbTipoPago" />
           <NavigationProperty Name="tbTipoPago1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioModifica" FromRole="tbUsuario" ToRole="tbTipoPago" />
           <NavigationProperty Name="tbPagosArqueo" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioCrea" FromRole="tbUsuario" ToRole="tbPagosArqueo" />
@@ -8698,7 +8783,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="tbSalida1" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbUsuario_sal_UsuarioCrea" FromRole="tbUsuario" ToRole="tbSalida" />
           <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_UsuarioModifica" FromRole="tbUsuario" ToRole="tbEntrada" />
           <NavigationProperty Name="tbEntrada1" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEntrada" />
-        </EntityType>
+          <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea" FromRole="tbUsuario" ToRole="tbPago" />
+          <NavigationProperty Name="tbPago1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica" FromRole="tbUsuario" ToRole="tbPago" />
+          </EntityType>
         <EntityType Name="tbActividadEconomica">
           <Key>
             <PropertyRef Name="acte_Id" />
@@ -8748,7 +8835,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Modifica" FromRole="tbCuentasBanco" ToRole="tbUsuario" />
           <NavigationProperty Name="tbBanco" Relationship="ERP_ZORZALModel.FK_Gral_tbBanco_tbCuentasBanco_ban_Id" FromRole="tbCuentasBanco" ToRole="tbBanco" />
           <NavigationProperty Name="tbMoneda" Relationship="ERP_ZORZALModel.FK_Gral_tbMoneda_tbCuentasBanco_mnda_Id" FromRole="tbCuentasBanco" ToRole="tbMoneda" />
-          <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Vent_tbCuentasBanco_tbPago_bcta_Id" FromRole="tbCuentasBanco" ToRole="tbPago" />
+          <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Gral_tbCuentaBanco_bcta_Id" FromRole="tbCuentasBanco" ToRole="tbPago" />
         </EntityType>
         <EntityType Name="tbDenominacion">
           <Key>
@@ -9472,31 +9559,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbNotaCredito" ToRole="tbDevolucion" />
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbNotaCredito" ToRole="tbSucursal" />
         </EntityType>
-        <EntityType Name="tbPago">
-          <Key>
-            <PropertyRef Name="pago_Id" />
-          </Key>
-          <Property Name="pago_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fact_Id" Type="Int64" Nullable="false" />
-          <Property Name="tpa_Id" Type="Int16" Nullable="false" />
-          <Property Name="pago_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="pago_SaldoAnterior" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
-          <Property Name="pago_TotalPago" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="pago_TotalCambio" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="pago_Emisor" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="bcta_Id" Type="Int16" />
-          <Property Name="pago_FechaVencimiento" Type="DateTime" Precision="3" />
-          <Property Name="pago_Titular" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="pago_UsuarioCrea" Type="Int32" Nullable="false" />
-          <Property Name="pago_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="pago_UsuarioModifica" Type="Int32" />
-          <Property Name="pago_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea" FromRole="tbPago" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica" FromRole="tbPago" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbCuentasBanco" Relationship="ERP_ZORZALModel.FK_Vent_tbCuentasBanco_tbPago_bcta_Id" FromRole="tbPago" ToRole="tbCuentasBanco" />
-          <NavigationProperty Name="tbTipoPago" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id" FromRole="tbPago" ToRole="tbTipoPago" />
-          <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" FromRole="tbPago" ToRole="tbFactura" />
-        </EntityType>
         <EntityType Name="tbPagosArqueo">
           <Key>
             <PropertyRef Name="arqpg_Id" />
@@ -9699,8 +9761,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Name="tpa_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioCrea" FromRole="tbTipoPago" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioModifica" FromRole="tbTipoPago" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id" FromRole="tbTipoPago" ToRole="tbPago" />
           <NavigationProperty Name="tbPagosArqueo" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id" FromRole="tbTipoPago" ToRole="tbPagosArqueo" />
+          <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id" FromRole="tbTipoPago" ToRole="tbPago" />
         </EntityType>
         <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
           <Key>
@@ -10368,30 +10430,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Principal>
             <Dependent Role="tbNotaCredito">
               <PropertyRef Name="nocre_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbPago">
-              <PropertyRef Name="pago_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbPago">
-              <PropertyRef Name="pago_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11199,18 +11237,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vent_tbCuentasBanco_tbPago_bcta_Id">
-          <End Type="ERP_ZORZALModel.tbCuentasBanco" Role="tbCuentasBanco" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbCuentasBanco">
-              <PropertyRef Name="bcta_Id" />
-            </Principal>
-            <Dependent Role="tbPago">
-              <PropertyRef Name="bcta_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Gral_tbDenominacion_tbSolicitudEfectivoDetalle_deno_Id">
           <End Type="ERP_ZORZALModel.tbDenominacion" Role="tbDenominacion" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbSolicitudEfectivoDetalle" Role="tbSolicitudEfectivoDetalle" Multiplicity="*" />
@@ -11763,18 +11789,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vent_tbTipoPago_tbPago_tpa_Id">
-          <End Type="ERP_ZORZALModel.tbTipoPago" Role="tbTipoPago" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbTipoPago">
-              <PropertyRef Name="tpa_Id" />
-            </Principal>
-            <Dependent Role="tbPago">
-              <PropertyRef Name="tpa_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id">
           <End Type="ERP_ZORZALModel.tbTipoPago" Role="tbTipoPago" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbPagosArqueo" Role="tbPagosArqueo" Multiplicity="*" />
@@ -11908,12 +11922,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" FromRole="tbFactura" ToRole="tbDevolucion" />
           <NavigationProperty Name="tbEstadoFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo" FromRole="tbFactura" ToRole="tbEstadoFactura" />
           <NavigationProperty Name="tbFacturaHistorica" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbFacturaHistorica_fact_Id" FromRole="tbFactura" ToRole="tbFacturaHistorica" />
-          <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" FromRole="tbFactura" ToRole="tbPago" />
           <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPedido_fact_Id" FromRole="tbFactura" ToRole="tbPedido" />
           <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbFacturaDetalle" />
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" FromRole="tbFactura" ToRole="tbSucursal" />
           <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza" FromRole="tbFactura" ToRole="tbUsuario" />
           <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbSalida" />
+          <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" FromRole="tbFactura" ToRole="tbPago" />
         </EntityType>
         <Association Name="FK_Vent_tbFactura_tbUsuario_usu_Id_Crea">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
@@ -11995,18 +12009,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               <PropertyRef Name="fact_Id" />
             </Principal>
             <Dependent Role="tbFacturaHistorica">
-              <PropertyRef Name="fact_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Vent_tbFactura_tbPago_fact_Id">
-          <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbFactura">
-              <PropertyRef Name="fact_Id" />
-            </Principal>
-            <Dependent Role="tbPago">
               <PropertyRef Name="fact_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -12128,19 +12130,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="DateTime" Name="obj_FechaModifica" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="obj_Estado" Nullable="false" />
         </ComplexType>
-        <EntityType Name="V_Vent_FacturaPago">
-          <Key>
-            <PropertyRef Name="fact_Id" />
-            <PropertyRef Name="clte_Id" />
-            <PropertyRef Name="fact_Codigo" />
-          </Key>
-          <Property Name="fact_Id" Type="Int64" Nullable="false" />
-          <Property Name="clte_Id" Type="Int32" Nullable="false" />
-          <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
-          <Property Name="MontoFactura" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="TotalPagado" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="SaldoFactura" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="tbBodega">
           <Key>
             <PropertyRef Name="bod_Id" />
@@ -12166,6 +12155,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbBodega_tbSucursal_bod_Id" FromRole="tbBodega" ToRole="tbSucursal" />
           <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_BodegaDestino" FromRole="tbBodega" ToRole="tbEntrada" />
           <NavigationProperty Name="tbEntrada1" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbEntrada" />
+          <NavigationProperty Name="tbSalida1" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbBodega_sal_BodDestino" FromRole="tbBodega" ToRole="tbSalida" />
         </EntityType>
         <EntityType Name="tbSalida">
           <Key>
@@ -12190,6 +12180,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="tbTipoSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoSalida_tsal_Id" FromRole="tbSalida" ToRole="tbTipoSalida" />
           <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbSalida_sal_Id" FromRole="tbSalida" ToRole="tbSalidaDetalle" />
           <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbSalida_fact_Id" FromRole="tbSalida" ToRole="tbEntrada" />
+          <Property Name="sal_BodDestino" Type="Int32" Nullable="false" />
+          <Property Name="sal_EsAnulada" Type="Boolean" Nullable="false" />
+          <Property Name="sal_RazonAnulada" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbBodega1" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbBodega_sal_BodDestino" FromRole="tbSalida" ToRole="tbBodega" />
         </EntityType>
         <Association Name="FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
@@ -12529,6 +12523,124 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Name="MontoSolicitado" Type="Decimal" Precision="38" Scale="2" />
           <Property Name="MontoEntregado" Type="Decimal" Precision="38" Scale="2" />
         </EntityType>
+        <Association Name="FK_Inv_tbSalida_tbBodega_sal_BodDestino">
+          <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbSalida" Role="tbSalida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbBodega">
+              <PropertyRef Name="bod_Id" />
+            </Principal>
+            <Dependent Role="tbSalida">
+              <PropertyRef Name="sal_BodDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="UDP_Vent_tbPago_Insert_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbPago_Update_Result">
+          <Property Type="Int16" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="tbPago">
+          <Key>
+            <PropertyRef Name="pago_Id" />
+          </Key>
+          <Property Name="pago_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fact_Id" Type="Int64" Nullable="false" />
+          <Property Name="tpa_Id" Type="Int16" Nullable="false" />
+          <Property Name="pago_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="pago_SaldoAnterior" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <Property Name="pago_TotalPago" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="pago_TotalCambio" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="pago_Emisor" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="bcta_Id" Type="Int16" />
+          <Property Name="pago_FechaVencimiento" Type="DateTime" Precision="3" />
+          <Property Name="pago_Titular" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pago_EstaAnulado" Type="Boolean" Nullable="false" />
+          <Property Name="pago_EstaImpreso" Type="Boolean" Nullable="false" />
+          <Property Name="pago_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="pago_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="pago_UsuarioModifica" Type="Int32" />
+          <Property Name="pago_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea" FromRole="tbPago" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica" FromRole="tbPago" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbCuentasBanco" Relationship="ERP_ZORZALModel.FK_Gral_tbCuentaBanco_bcta_Id" FromRole="tbPago" ToRole="tbCuentasBanco" />
+          <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" FromRole="tbPago" ToRole="tbFactura" />
+          <NavigationProperty Name="tbTipoPago" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id" FromRole="tbPago" ToRole="tbTipoPago" />
+        </EntityType>
+        <EntityType Name="V_Vent_FacturaPago">
+          <Key>
+            <PropertyRef Name="fact_Id" />
+            <PropertyRef Name="clte_Id" />
+            <PropertyRef Name="fact_Codigo" />
+          </Key>
+          <Property Name="fact_Id" Type="Int64" Nullable="false" />
+          <Property Name="clte_Id" Type="Int32" Nullable="false" />
+          <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+          <Property Name="MontoFactura" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPagado" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SaldoFactura" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <Association Name="FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPago">
+              <PropertyRef Name="pago_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbPago">
+              <PropertyRef Name="pago_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tbCuentaBanco_bcta_Id">
+          <End Type="ERP_ZORZALModel.tbCuentasBanco" Role="tbCuentasBanco" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCuentasBanco">
+              <PropertyRef Name="bcta_Id" />
+            </Principal>
+            <Dependent Role="tbPago">
+              <PropertyRef Name="bcta_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbFactura_tbPago_fact_Id">
+          <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbFactura">
+              <PropertyRef Name="fact_Id" />
+            </Principal>
+            <Dependent Role="tbPago">
+              <PropertyRef Name="fact_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbTipoPago_tbPago_tpa_Id">
+          <End Type="ERP_ZORZALModel.tbTipoPago" Role="tbTipoPago" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbTipoPago">
+              <PropertyRef Name="tpa_Id" />
+            </Principal>
+            <Dependent Role="tbPago">
+              <PropertyRef Name="tpa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12697,20 +12809,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbTipoPago_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbTipoPago_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbTipoPago_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbPago_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPago_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPago_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbPago_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPago_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPago_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -14037,27 +14135,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbPago">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPago">
-              <MappingFragment StoreEntitySet="tbPago">
-                <ScalarProperty Name="pago_FechaModifica" ColumnName="pago_FechaModifica" />
-                <ScalarProperty Name="pago_UsuarioModifica" ColumnName="pago_UsuarioModifica" />
-                <ScalarProperty Name="pago_FechaCrea" ColumnName="pago_FechaCrea" />
-                <ScalarProperty Name="pago_UsuarioCrea" ColumnName="pago_UsuarioCrea" />
-                <ScalarProperty Name="pago_Titular" ColumnName="pago_Titular" />
-                <ScalarProperty Name="pago_FechaVencimiento" ColumnName="pago_FechaVencimiento" />
-                <ScalarProperty Name="bcta_Id" ColumnName="bcta_Id" />
-                <ScalarProperty Name="pago_Emisor" ColumnName="pago_Emisor" />
-                <ScalarProperty Name="pago_TotalCambio" ColumnName="pago_TotalCambio" />
-                <ScalarProperty Name="pago_TotalPago" ColumnName="pago_TotalPago" />
-                <ScalarProperty Name="pago_SaldoAnterior" ColumnName="pago_SaldoAnterior" />
-                <ScalarProperty Name="pago_FechaElaboracion" ColumnName="pago_FechaElaboracion" />
-                <ScalarProperty Name="tpa_Id" ColumnName="tpa_Id" />
-                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-                <ScalarProperty Name="pago_Id" ColumnName="pago_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbPagosArqueo">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPagosArqueo">
               <MappingFragment StoreEntitySet="tbPagosArqueo">
@@ -14418,18 +14495,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="V_Vent_FacturaPago">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.V_Vent_FacturaPago">
-              <MappingFragment StoreEntitySet="V_Vent_FacturaPago">
-                <ScalarProperty Name="SaldoFactura" ColumnName="SaldoFactura" />
-                <ScalarProperty Name="TotalPagado" ColumnName="TotalPagado" />
-                <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
-                <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
-                <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
-                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbBodega">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbBodega">
               <MappingFragment StoreEntitySet="tbBodega">
@@ -14451,6 +14516,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <EntitySetMapping Name="tbSalida">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSalida">
               <MappingFragment StoreEntitySet="tbSalida">
+                <ScalarProperty Name="sal_RazonAnulada" ColumnName="sal_RazonAnulada" />
+                <ScalarProperty Name="sal_EsAnulada" ColumnName="sal_EsAnulada" />
+                <ScalarProperty Name="sal_BodDestino" ColumnName="sal_BodDestino" />
                 <ScalarProperty Name="sal_FechaModifica" ColumnName="sal_FechaModifica" />
                 <ScalarProperty Name="sal_UsuarioModifica" ColumnName="sal_UsuarioModifica" />
                 <ScalarProperty Name="sal_FechaCrea" ColumnName="sal_FechaCrea" />
@@ -14514,6 +14582,55 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
                 <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
                 <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
                 <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbPago_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPago_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPago_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbPago_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPago_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPago_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tbPago">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPago">
+              <MappingFragment StoreEntitySet="tbPago">
+                <ScalarProperty Name="pago_FechaModifica" ColumnName="pago_FechaModifica" />
+                <ScalarProperty Name="pago_UsuarioModifica" ColumnName="pago_UsuarioModifica" />
+                <ScalarProperty Name="pago_FechaCrea" ColumnName="pago_FechaCrea" />
+                <ScalarProperty Name="pago_UsuarioCrea" ColumnName="pago_UsuarioCrea" />
+                <ScalarProperty Name="pago_EstaImpreso" ColumnName="pago_EstaImpreso" />
+                <ScalarProperty Name="pago_EstaAnulado" ColumnName="pago_EstaAnulado" />
+                <ScalarProperty Name="pago_Titular" ColumnName="pago_Titular" />
+                <ScalarProperty Name="pago_FechaVencimiento" ColumnName="pago_FechaVencimiento" />
+                <ScalarProperty Name="bcta_Id" ColumnName="bcta_Id" />
+                <ScalarProperty Name="pago_Emisor" ColumnName="pago_Emisor" />
+                <ScalarProperty Name="pago_TotalCambio" ColumnName="pago_TotalCambio" />
+                <ScalarProperty Name="pago_TotalPago" ColumnName="pago_TotalPago" />
+                <ScalarProperty Name="pago_SaldoAnterior" ColumnName="pago_SaldoAnterior" />
+                <ScalarProperty Name="pago_FechaElaboracion" ColumnName="pago_FechaElaboracion" />
+                <ScalarProperty Name="tpa_Id" ColumnName="tpa_Id" />
+                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+                <ScalarProperty Name="pago_Id" ColumnName="pago_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Vent_FacturaPago">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.V_Vent_FacturaPago">
+              <MappingFragment StoreEntitySet="V_Vent_FacturaPago">
+                <ScalarProperty Name="SaldoFactura" ColumnName="SaldoFactura" />
+                <ScalarProperty Name="TotalPagado" ColumnName="TotalPagado" />
+                <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
+                <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+                <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

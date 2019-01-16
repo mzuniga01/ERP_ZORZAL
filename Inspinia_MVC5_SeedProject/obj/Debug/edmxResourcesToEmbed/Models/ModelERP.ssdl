@@ -441,7 +441,10 @@
     <Property Name="sal_FechaElaboracion" Type="datetime" Nullable="false" />
     <Property Name="estm_Id" Type="tinyint" Nullable="false" />
     <Property Name="tsal_Id" Type="tinyint" Nullable="false" />
+    <Property Name="sal_BodDestino" Type="int" Nullable="false" />
+    <Property Name="sal_EsAnulada" Type="bit" Nullable="false" />
     <Property Name="sal_RazonDevolucion" Type="varchar" MaxLength="50" />
+    <Property Name="sal_RazonAnulada" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="sal_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="sal_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="sal_UsuarioModifica" Type="int" />
@@ -793,6 +796,8 @@
     <Property Name="bcta_Id" Type="smallint" />
     <Property Name="pago_FechaVencimiento" Type="datetime" />
     <Property Name="pago_Titular" Type="nvarchar" MaxLength="50" />
+    <Property Name="pago_EstaAnulado" Type="bit" Nullable="false" />
+    <Property Name="pago_EstaImpreso" Type="bit" Nullable="false" />
     <Property Name="pago_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="pago_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="pago_UsuarioModifica" Type="int" />
@@ -950,8 +955,8 @@
     <Property Name="tpa_UsuarioModifica" Type="int" />
     <Property Name="tpa_FechaModifica" Type="datetime" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="UDV_Inv_Nombre_Empleado">
     <Key>
       <PropertyRef Name="emp_Id" />
@@ -960,8 +965,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
     <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
     <Key>
       <PropertyRef Name="prod_Descripcion" />
@@ -980,8 +985,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Property Name="bod_Id" Type="int" Nullable="false" />
     <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalles_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalles_Select' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="UDP_Vent_SolicituEfectivo_Detalles_Select">
     <Key>
       <PropertyRef Name="soled_Id" />
@@ -1008,8 +1013,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalle
     <Property Name="soled_UsuarioModifica" Type="int" />
     <Property Name="soled_FechaModifica" Type="datetime" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
     <Key>
       <PropertyRef Name="IdSolicitud" />
@@ -1024,8 +1029,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select'
     <Property Name="MontoSolicitado" Type="decimal" Precision="38" Scale="2" />
     <Property Name="MontoEntregado" Type="decimal" Precision="38" Scale="2" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="UDV_Vent_Busqueda_Clientes">
     <Key>
       <PropertyRef Name="clte_Id" />
@@ -1078,8 +1083,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does 
     <Property Name="clte_UsuarioModifica" Type="int" />
     <Property Name="clte_FechaModifica" Type="datetime" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="UDV_Vent_Busqueda_Factura">
     <Key>
       <PropertyRef Name="fact_Id" />
@@ -1127,8 +1132,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Property Name="fact_UsuarioModifica" Type="int" />
     <Property Name="fact_FechaModifica" Type="datetime" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="V_Vent_FacturaPago">
     <Key>
       <PropertyRef Name="fact_Id" />
@@ -1138,9 +1143,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Property Name="fact_Id" Type="bigint" Nullable="false" />
     <Property Name="clte_Id" Type="int" Nullable="false" />
     <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
-    <Property Name="MontoFactura" Type="nvarchar" MaxLength="4000" />
-    <Property Name="TotalPagado" Type="nvarchar" MaxLength="4000" />
-    <Property Name="SaldoFactura" Type="nvarchar" MaxLength="4000" />
+    <Property Name="MontoFactura" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="TotalPagado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="SaldoFactura" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
     <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="1" />
@@ -1994,6 +1999,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Gral_tbCuentaBanco_bcta_Id">
+    <End Role="tbCuentasBanco" Type="Self.tbCuentasBanco" Multiplicity="0..1" />
+    <End Role="tbPago" Type="Self.tbPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCuentasBanco">
+        <PropertyRef Name="bcta_Id" />
+      </Principal>
+      <Dependent Role="tbPago">
+        <PropertyRef Name="bcta_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Crea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbCuentasBanco" Type="Self.tbCuentasBanco" Multiplicity="*" />
@@ -2774,6 +2791,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbSalida_tbBodega_sal_BodDestino">
+    <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
+    <End Role="tbSalida" Type="Self.tbSalida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbBodega">
+        <PropertyRef Name="bod_Id" />
+      </Principal>
+      <Dependent Role="tbSalida">
+        <PropertyRef Name="sal_BodDestino" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbSalida_tbEstadoMovimiento_estm_Id">
     <End Role="tbEstadoMovimiento" Type="Self.tbEstadoMovimiento" Multiplicity="1" />
     <End Role="tbSalida" Type="Self.tbSalida" Multiplicity="*" />
@@ -2999,18 +3028,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Principal>
       <Dependent Role="tbPedido">
         <PropertyRef Name="clte_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbCuentasBanco_tbPago_bcta_Id">
-    <End Role="tbCuentasBanco" Type="Self.tbCuentasBanco" Multiplicity="0..1" />
-    <End Role="tbPago" Type="Self.tbPago" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbCuentasBanco">
-        <PropertyRef Name="bcta_Id" />
-      </Principal>
-      <Dependent Role="tbPago">
-        <PropertyRef Name="bcta_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3290,6 +3307,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
+    <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="1" />
+    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbMunicipio">
+        <PropertyRef Name="mun_Codigo" />
+      </Principal>
+      <Dependent Role="tbCliente">
+        <PropertyRef Name="mun_Codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
     <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="1" />
     <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="*" />
@@ -3542,6 +3571,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id">
+    <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="1" />
+    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbTipoIdentificacion">
+        <PropertyRef Name="tpi_Id" />
+      </Principal>
+      <Dependent Role="tbCliente">
+        <PropertyRef Name="tpi_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbTipoPago_tbPago_tpa_Id">
     <End Role="tbTipoPago" Type="Self.tbTipoPago" Multiplicity="1" />
     <End Role="tbPago" Type="Self.tbPago" Multiplicity="*" />
@@ -3563,6 +3604,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Principal>
       <Dependent Role="tbPagosArqueo">
         <PropertyRef Name="tpa_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Crea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCliente">
+        <PropertyRef Name="clte_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCliente">
+        <PropertyRef Name="clte_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3855,8 +3920,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="mun_Codigo" Type="char" Mode="In" />
     <Parameter Name="dep_Codigo" Type="char" Mode="In" />
     <Parameter Name="mun_Nombre" Type="varchar" Mode="In" />
-    <Parameter Name="mun_UsuarioCrea" Type="int" Mode="In" />
-    <Parameter Name="mun_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbParametro_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="par_Id" Type="tinyint" Mode="In" />
@@ -4678,6 +4741,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="bcta_Id" Type="smallint" Mode="In" />
     <Parameter Name="pago_FechaVencimiento" Type="datetime" Mode="In" />
     <Parameter Name="pago_Titular" Type="nvarchar" Mode="In" />
+    <Parameter Name="pago_EstaAnulado" Type="bit" Mode="In" />
+    <Parameter Name="pago_EstaImpreso" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbPago_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="pago_Id" Type="int" Mode="In" />
@@ -4691,6 +4756,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="bcta_Id" Type="smallint" Mode="In" />
     <Parameter Name="pago_FechaVencimiento" Type="datetime" Mode="In" />
     <Parameter Name="pago_Titular" Type="nvarchar" Mode="In" />
+    <Parameter Name="pago_EstaAnulado" Type="bit" Mode="In" />
+    <Parameter Name="pago_EstaImpreso" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbPagosArqueo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="mocja_Id" Type="int" Mode="In" />
@@ -5352,6 +5419,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbBanco" EntitySet="tbBanco" />
     </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbCuentaBanco_bcta_Id" Association="Self.FK_Gral_tbCuentaBanco_bcta_Id">
+      <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
+      <End Role="tbPago" EntitySet="tbPago" />
+    </AssociationSet>
     <AssociationSet Name="FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Crea" Association="Self.FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Crea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
@@ -5612,6 +5683,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbSalida" EntitySet="tbSalida" />
     </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbSalida_tbBodega_sal_BodDestino" Association="Self.FK_Inv_tbSalida_tbBodega_sal_BodDestino">
+      <End Role="tbBodega" EntitySet="tbBodega" />
+      <End Role="tbSalida" EntitySet="tbSalida" />
+    </AssociationSet>
     <AssociationSet Name="FK_Inv_tbSalida_tbEstadoMovimiento_estm_Id" Association="Self.FK_Inv_tbSalida_tbEstadoMovimiento_estm_Id">
       <End Role="tbEstadoMovimiento" EntitySet="tbEstadoMovimiento" />
       <End Role="tbSalida" EntitySet="tbSalida" />
@@ -5687,10 +5762,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <AssociationSet Name="FK_Vent_tbCliente_tbPedido_clte_id" Association="Self.FK_Vent_tbCliente_tbPedido_clte_id">
       <End Role="tbCliente" EntitySet="tbCliente" />
       <End Role="tbPedido" EntitySet="tbPedido" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbCuentasBanco_tbPago_bcta_Id" Association="Self.FK_Vent_tbCuentasBanco_tbPago_bcta_Id">
-      <End Role="tbCuentasBanco" EntitySet="tbCuentasBanco" />
-      <End Role="tbPago" EntitySet="tbPago" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id" Association="Self.FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id">
       <End Role="tbDenominacion" EntitySet="tbDenominacion" />
@@ -5784,6 +5855,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
     </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
+      <End Role="tbMunicipio" EntitySet="tbMunicipio" />
+      <End Role="tbCliente" EntitySet="tbCliente" />
+    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
       <End Role="tbMunicipio" EntitySet="tbMunicipio" />
       <End Role="tbSucursal" EntitySet="tbSucursal" />
@@ -5868,6 +5943,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       <End Role="tbSucursal" EntitySet="tbSucursal" />
       <End Role="tbPedido" EntitySet="tbPedido" />
     </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id" Association="Self.FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id">
+      <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
+      <End Role="tbCliente" EntitySet="tbCliente" />
+    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbTipoPago_tbPago_tpa_Id" Association="Self.FK_Vent_tbTipoPago_tbPago_tpa_Id">
       <End Role="tbTipoPago" EntitySet="tbTipoPago" />
       <End Role="tbPago" EntitySet="tbPago" />
@@ -5875,6 +5954,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <AssociationSet Name="FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id" Association="Self.FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id">
       <End Role="tbTipoPago" EntitySet="tbTipoPago" />
       <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Crea" Association="Self.FK_Vent_tbUsuario_tbCliente_usu_Id_Crea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbCliente" EntitySet="tbCliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica" Association="Self.FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbCliente" EntitySet="tbCliente" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
