@@ -307,11 +307,17 @@ namespace ERP_ZORZAL.Controllers
         }
 
         [HttpPost]
-        public JsonResult FiltrarModal(string CodFactura)
+        public JsonResult FiltrarModal(string CodCliente)
         {
-           
-            var list = ViewBag.Factura = db.tbFactura.Where(a => a.clte_Identificacion == CodFactura).ToList();
-            ViewBag.Factura = list;
+
+            var list = ViewBag.Factura = db.tbFactura.Where(a => a.clte_Identificacion == CodCliente)
+           .Select(a => new
+            {
+                FactCodigo = a.fact_Codigo,
+                FactFecha = a.fact_Fecha,
+                CtleRTN = a.clte_Identificacion,
+                Nombre = a.clte_Nombres
+            });
             return Json(list);
             //return Json(list);
         }

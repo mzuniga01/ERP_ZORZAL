@@ -11,6 +11,7 @@
         
     })
     .done(function (data) {
+        console.log('anularEntra')
         if (data.length > 0) {
             alert("Registro No Actualizado");
         }
