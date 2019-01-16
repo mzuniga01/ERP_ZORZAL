@@ -84,7 +84,7 @@ namespace ERP_ZORZAL.Controllers
         //        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id")] tbPedido tbPedido)
+        public ActionResult Create([Bind(Include = "esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id,ped_EsAnulado,ped_RazonAnulado")] tbPedido tbPedido)
         {
             ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
             ViewBag.Producto = db.tbProducto.ToList();
@@ -104,9 +104,11 @@ namespace ERP_ZORZAL.Controllers
                                                 tbPedido.esped_Id,
                                                 tbPedido.ped_FechaElaboracion,
                                                 tbPedido.ped_FechaEntrega,
-                                                 tbPedido.clte_Id,
+                                                tbPedido.clte_Id,
                                                 tbPedido.suc_Id,
-                                                tbPedido.fact_Id);
+                                                tbPedido.fact_Id,
+                                                tbPedido.ped_EsAnulado,
+                                                tbPedido.ped_RazonAnulado);
                         foreach (UDP_Vent_tbPedido_Insert_Result Pedido in listPedido)
                             MensajeError = Pedido.MensajeError;
                         if (MensajeError == "-1")
@@ -131,7 +133,6 @@ namespace ERP_ZORZAL.Controllers
                                             listPedidoDetalle = db.UDP_Vent_tbPedidoDetalle_Insert(
                                                 PedDetalle.ped_Id,
                                                 PedDetalle.prod_Codigo,
-                                                PedDetalle.pedd_Descripcion,
                                                 PedDetalle.pedd_Cantidad,
                                                 PedDetalle.pedd_CantidadFacturada);
                                             foreach (UDP_Vent_tbPedidoDetalle_Insert_Result SPpedidodetalle in listPedidoDetalle)
@@ -272,7 +273,7 @@ namespace ERP_ZORZAL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, [Bind(Include = "ped_Id,esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id,ped_UsuarioCrea,ped_FechaCrea")] tbPedido tbPedido)
+        public ActionResult Edit(int? id, [Bind(Include = "ped_Id,esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id,ped_EsAnulado,ped_RazonAnulado,ped_UsuarioCrea,ped_FechaCrea")] tbPedido tbPedido)
         {
             if (ModelState.IsValid)
             {
@@ -297,6 +298,8 @@ namespace ERP_ZORZAL.Controllers
                                                         tbPedido.clte_Id,
                                                         tbPedido.suc_Id,
                                                         tbPedido.fact_Id,
+                                                        tbPedido.ped_EsAnulado,
+                                                        tbPedido.ped_RazonAnulado,
                                                         tbPedido.ped_UsuarioCrea,
                                                         tbPedido.ped_FechaCrea);
 
@@ -336,7 +339,7 @@ namespace ERP_ZORZAL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPedido(int? id, [Bind(Include = "ped_Id,esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id,ped_UsuarioCrea,ped_FechaCrea")] tbPedido tbPedido)
+        public ActionResult EditPedido(int? id, [Bind(Include = "ped_Id,esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id,ped_EsAnulado,ped_RazonAnulado,ped_UsuarioCrea,ped_FechaCrea")] tbPedido tbPedido)
         {
             if (ModelState.IsValid)
             {
@@ -356,6 +359,8 @@ namespace ERP_ZORZAL.Controllers
                                                        tbPedido.clte_Id,
                                                        tbPedido.suc_Id,
                                                        tbPedido.fact_Id,
+                                                       tbPedido.ped_EsAnulado,
+                                                       tbPedido.ped_RazonAnulado,
                                                        vPedido.ped_UsuarioCrea,
                                                        vPedido.ped_FechaCrea);
                     foreach (UDP_Vent_tbPedido_Update_Result Pedido in list)
@@ -412,7 +417,6 @@ namespace ERP_ZORZAL.Controllers
                 list = db.UDP_Vent_tbPedidoDetalle_Update(
                             EditPedidoDetalle.pedd_Id,
                             EditPedidoDetalle.prod_Codigo,
-                            EditPedidoDetalle.pedd_Descripcion,
                             EditPedidoDetalle.pedd_Cantidad,
                             EditPedidoDetalle.pedd_CantidadFacturada,
                             EditPedidoDetalle.pedd_UsuarioCrea,

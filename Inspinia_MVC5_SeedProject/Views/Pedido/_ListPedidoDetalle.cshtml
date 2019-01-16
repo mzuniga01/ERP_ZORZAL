@@ -45,12 +45,6 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.pedd_Descripcion, new { @class = "control-label col-md-2" })
 
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.pedd_Descripcion)
-                                    <div id="validationDescripcionProductoCreate">
-                                        @Html.ValidationMessageFor(model => model.pedd_Descripcion)
-                                    </div>
-                                </div>
                                 @Html.LabelFor(model => model.pedd_Cantidad, new { @class = "control-label col-md-3" })
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.pedd_Cantidad, new { @onkeyup = "soloNumeros(e)" })
@@ -90,7 +84,6 @@
                                 
                                         <th>Número Producto</th>
                                         <th>Producto</th>
-                                        <th>Descripción</th>
                                         <th>Cantidad</th>
                                         <th>Cantidad Facturada</th>
                                         <th></th>

@@ -31,6 +31,8 @@ namespace ERP_GMEDINA.Models
         public System.DateTime ped_FechaCrea { get; set; }
         public Nullable<int> ped_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> ped_FechaModifica { get; set; }
+        public bool ped_EsAnulado { get; set; }
+        public string ped_RazonAnulado { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

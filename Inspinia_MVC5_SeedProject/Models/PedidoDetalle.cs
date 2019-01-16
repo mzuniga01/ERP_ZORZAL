@@ -20,8 +20,6 @@ namespace ERP_GMEDINA.Models
         public int ped_Id { get; set; }
         [Display(Name = "Código Producto")]
         public string prod_Codigo { get; set; }
-        [Display(Name = "Descripción Pedido")]
-        public string pedd_Descripcion { get; set; }
         [Display(Name = "Cantidad")]
         public decimal pedd_Cantidad { get; set; }
         [Display(Name = "Cantidad Facturada ")]

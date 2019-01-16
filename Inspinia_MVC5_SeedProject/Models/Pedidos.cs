@@ -43,6 +43,17 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public long fact_Id { get; set; }
 
+
+
+        [Display(Name = "¿Es Anulado?")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public int ped_EsAnulado { get; set; }
+
+        [Display(Name = "Razon Anulado")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public int ped_RazonAnulado { get; set; }
+
+
         [Display(Name = "Usuario Creación")]
         public int ped_UsuarioCrea { get; set; }
 

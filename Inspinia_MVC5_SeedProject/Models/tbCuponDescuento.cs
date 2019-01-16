@@ -25,11 +25,11 @@ namespace ERP_GMEDINA.Models
         public bool cdto_Redimido { get; set; }
         public Nullable<System.DateTime> cdto_FechaRedencion { get; set; }
         public Nullable<bool> cdto_Anulado { get; set; }
+        public bool cdto_EsImpreso { get; set; }
         public int cdto_UsuarioCrea { get; set; }
         public System.DateTime cdto_FechaCrea { get; set; }
         public Nullable<int> cdto_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> cdto_FechaModifica { get; set; }
-        public Nullable<bool> cdto_EsImpreso { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
