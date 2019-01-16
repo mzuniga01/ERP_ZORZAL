@@ -29,10 +29,6 @@
                     @Html.AntiForgeryToken()
     
                     <div class="form-horizontal">
-                        @if (ViewBag.Validacion == "1")
-                        {
-                          <p style="color:red">No se puede actualizar el número CAI porque ya existe un documento fiscal con este número.</p>     
-                        }
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.pemi_Id)
                         @*Auditoria*@
@@ -52,7 +48,7 @@
                                 @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label col-md-2" })
                                 <div class="col-md-7">
                                     @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
-                                    @*<p style="color:red">No se puede actualizar el número CAI porque ya existe un documento fiscal con este número.</p>*@
+                                    <small style="color:red">No se puede actualizar el número CAI porque ya existe un documento fiscal con este número.</small>  
                                 </div>
                             </div>
                         }
@@ -104,7 +100,7 @@
                                     </div>
                                     <div id="tab-2" class="tab-pane">
                                         <div class="panel-body">
-                                            @Html.Partial("_IndexSucursal", Model.tbSucursal)
+                                            @*@Html.Partial("_IndexSucursal", Model.tbSucursal)*@
                                         </div>
                                     </div>
                                 </div>
@@ -154,51 +150,55 @@
 </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
-@*<script src="~/Scripts/app/Datepicker.js"></script>*@
+<script src="~/Scripts/app/CreateNumeracionDetails.js"></script>
 <script src="~/Scripts/app/PuntoEmision.js"></script>
+<script src="~/Scripts/app/EditNumeracion.js"></script>
 <script>
-    //Número CAI
+    //Get Número CAI
     $('#btnModalGuardarNumeracion').click(function () {
         var GetNumeroCAI = $('#pemi_NumeroCAI').val();
         $("#tbPuntoEmision_pemi_NumeroCAI").val(GetNumeroCAI);
     });
 
-    //Usuario Crea
+    //Get Usuario Crea
     $(document).on("click", "#PuntoEmision tbody tr td button#btnModalDetallesEdit", function () {
         UsuarioCreaItem = $(this).closest('tr').data('usuariocrea');
     });
 
-    //Sólo número y guiones
+
+    //Validación-Sólo número y guiones
     function validar(e) {
         tecla = (document.all) ? e.keyCode : e.which;
         tecla = String.fromCharCode(tecla)
         return /^[0-9\-]+$/.test(tecla);
     }
+
+    //Máximo de caracteres_Rangos
+    $(document).ready(function () {
+        $("#pemid_RangoInicio")[0].maxLength = 20;
+        $("#pemid_RangoFinal")[0].maxLength = 20;
+    });
 </script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-@*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
-
-
-    
-
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script>
-        var FechaInicio = new Date();
-        $("#txtFechalimite").datepicker({
-            dateFormat: 'mm/dd/yy',
-            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-            minDate: FechaInicio,
-            maxDate: '+3Y',
-            prevText: 'Ant',
-            nextText: 'Sig',
-            changeMonth: true,
-            changeYear: true,
-            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
-        }).datepicker('setDate', new Date());
+<script>
+    var FechaInicio = new Date();
+    $("#txtFechalimite").datepicker({
+        dateFormat: 'mm/dd/yy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        minDate: FechaInicio,
+        maxDate: '+3Y',
+        prevText: 'Ant',
+        nextText: 'Sig',
+        changeMonth: true,
+        changeYear: true,
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+    }).datepicker('setDate', new Date());
     </script>
+    
+
 }

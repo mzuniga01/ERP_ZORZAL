@@ -1094,6 +1094,7 @@
     <Content Include="Scripts\app\ClientePago.js" />
     <Content Include="Scripts\app\Clientes-Pedido-Credito.js" />
     <Content Include="Scripts\app\ComandoGuardar.js" />
+    <Content Include="Scripts\app\CreateNumeracionDetails.js" />
     <Content Include="Scripts\app\Credito.js" />
     <Content Include="Scripts\app\CreditoCambio.js" />
     <Content Include="Scripts\app\CuentaBanco.js" />
@@ -1106,6 +1107,7 @@
     <Content Include="Scripts\app\Departamento.js" />
     <Content Include="Scripts\app\DevolucionCalculos.js" />
     <Content Include="Scripts\app\DevolucionDetalle.js" />
+    <Content Include="Scripts\app\EditNumeracion.js" />
     <Content Include="Scripts\app\EmitirNotaCredito.js" />
     <Content Include="Scripts\app\Empleados.js" />
     <Content Include="Scripts\app\EntregaEfectivo.js" />
@@ -1498,7 +1500,6 @@
     <Content Include="Views\Pedido\_DetailsPedidoDetalle.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_EditarSolicitudEfectivoDetalle.cshtml" />
     <Content Include="Views\Pedido\_EditPedidoDetalle.cshtml" />
-    <Content Include="Views\PuntoEmision\_EditNumeracionDetails.cshtml" />
     <Content Include="Views\PuntoEmision\_CreateNumeracionDetails.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexNumeracionEdit.cshtml" />
     <Content Include="Views\Pedido\EditPedido.cshtml" />

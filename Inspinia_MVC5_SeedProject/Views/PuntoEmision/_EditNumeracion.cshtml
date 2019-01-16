@@ -22,7 +22,9 @@
                 @{string IdDrop = "dfisc_IdEdit";}
                 @{ string Vie = "dfisc_IdList";}
                 @Html.DropDownList("dfisc_Id", (IEnumerable<SelectListItem>)Context.Items[Vie], "Seleccione", new { @class = "form-control", id = @IdDrop })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.dfisc_Id)</p>
+                <div id="ValidacionDocumentoFiscalEdit">
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.dfisc_Id)</p>
+                </div>
             </div>
         </div>
 
@@ -30,7 +32,9 @@
             @Html.LabelFor(model => model.pemid_RangoInicio, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.pemid_RangoInicio)
-                <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoInicio)</p>
+                <div id="ValidacionRangoInicioEdit">
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoInicio)</p>
+                </div>
             </div>
         </div>
 
@@ -38,15 +42,20 @@
             @Html.LabelFor(model => model.pemid_RangoFinal, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.pemid_RangoFinal)
-                <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoFinal)</p>
+                <div id="ValidacionRangoFinalEdit">
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoFinal)</p>
+                </div>
             </div>
         </div>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.pemid_FechaLimite, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.pemid_FechaLimite, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off" } })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_FechaLimite)</p>
+                <div id="ValidacionFechaLimiteEdit">
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_FechaLimite)</p>
+                </div>
             </div>
         </div>
 
@@ -54,7 +63,7 @@
         <div class="form-group">
             <hr />
             <div class="col-md-12 text-right">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <input type="submit" id="btnEditNumeracion" value="Guardar" class="btn btn-primary" />
                 <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
             </div>
         </div>

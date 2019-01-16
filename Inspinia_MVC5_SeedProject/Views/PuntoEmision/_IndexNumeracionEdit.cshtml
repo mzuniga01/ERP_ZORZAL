@@ -49,7 +49,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.pemid_RangoFinal)
                                     </td>
-                                    <td>
+                                    <td id="pemid_FechaLimite">
                                         @Html.DisplayFor(modelItem => item.pemid_FechaLimite)
                                     </td>
                                     <td></td>
@@ -59,7 +59,7 @@
                                         <button type="button" id="btnModalDetallesEdit" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
                                             Detalles
                                         </button>
-                                        <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar_@item.pemid_Id">
+                                        <button type="button" id="btnModalEditarEdit_@item.pemid_Id" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar_@item.pemid_Id">
                                             Editar
                                         </button>
                                     </td>
