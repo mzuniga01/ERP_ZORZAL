@@ -1,5 +1,10 @@
 ﻿@model ERP_GMEDINA.Models.tbMovimientoCaja
 @using ERP_GMEDINA.Models
+
+
+@{
+    var test = new ERP_GMEDINA.Models.tbSucursal();
+}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Movimiento Caja</h2>
@@ -25,17 +30,18 @@
 
                             <div class="form-horizontal">
                                 <div class="form-group col-md-7">
-                                    <label class="control-label col-md-2">Sucursal</label>
+                                   @Html.LabelFor(model => test.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
                                     <div class="col-md-7">
-                                        <input type="text" class="form-control "  Value="San Pedro Sula" readonly>
+                                        @Html.EditorFor(model => test.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        <p style="color:red"> @Html.ValidationMessageFor(model => test.suc_Descripcion)</p>
                                     </div>
                                 </div>
                             </div>
+             
                             <div class="form-group col-md-5">
                                 @Html.LabelFor(model => model.cja_Id, "Número Caja", new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.tbCaja.cja_Id, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly"} })
-                                    @*<input type="text" class="form-control " id="cja_Id" Value="2" readonly>*@
+                                    @Html.EditorFor(model => model.tbCaja.cja_Id, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly"} })                              
                                     <p id="MensajeErrorDenominacion" style="color:red">@Html.ValidationMessageFor(model => model.cja_Id)</p>
                                     </div>
                             </div>
@@ -43,7 +49,6 @@
                                 @Html.LabelFor(model => model.tbCaja.cja_Descripcion, "Descripción Caja", new { @class = "control-label col-md-2" })
                                 <div class="col-md-7">
                                     @Html.EditorFor(model => model.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } })
-                                    @*<input type="text" class="form-control " id="cja_Descripcion" Value="Caja 2" readonly>*@
                                     @Html.ValidationMessageFor(model => model.tbCaja.cja_Descripcion)
                                 </div>
                             </div> 
@@ -60,10 +65,11 @@
                                 @Html.LabelFor(model => model.mocja_UsuarioApertura, "Usuario Apertura", new { @class = "control-label col-md-2" })
                                 <div class="col-md-7">
                                     @Html.EditorFor(model => model.mocja_UsuarioApertura, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } })
-                                    @*<input type="text" class="form-control " id="mocja_UsuarioApertura" Value="brayan.interiano" readonly>*@
                                     @Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)
                                 </div>
                             </div>
+
+
 
                             <div class="form-horizontal">
                                 <div class="form-group col-md-5">
@@ -79,7 +85,7 @@
 
                         <div class="form-group">
                             <div class="col-md-12">
-                                @Html.Partial("_CreateAperturaDetalle")
+                                @Html.Partial("_CreateAperturaDetalle", new tbSolicitudEfectivo())
                             </div>
                         </div>
                         <div class="row">
@@ -114,8 +120,8 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/app/Apertura.js"></script>
-    <script src="~/Scripts/app/AperturaDetalle.js"></script>
 
+    <script src="~/Scripts/app/AperturaDetalle.js"></script>
 
 
 <script type="text/javascript">
@@ -128,6 +134,4 @@
 
 
 }
-
-
 

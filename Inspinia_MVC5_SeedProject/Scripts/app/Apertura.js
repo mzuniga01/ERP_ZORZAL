@@ -1,5 +1,11 @@
-﻿////Funcion denominacion
+﻿var total = 0;
+var MontoInicial = 0;
+var Monto = 0;
+////Funcion denominacion
 $('#mnda_Id').on("change", function () {
+    total = 0;
+    MontoInicial = 0;
+    Monto = 0;
     GetDenominacion();
      $(function () {
          var $tabla = $('#DenominacionDetalle');
@@ -23,7 +29,6 @@ $('#mnda_Id').on("change", function () {
      });
 });
 
-
 function GetDenominacion() {
     var CodMoneda = $('#mnda_Id').val();
     if (CodMoneda != "") {
@@ -42,7 +47,7 @@ function GetDenominacion() {
                     contador = contador + 1;
                     copiar = "<tr data-id=" + contador + ">";
                     copiar += "<td id = 'DenominacionCreate'>" + val.deno_Descripcion + "</td>";
-                    copiar += "<td>" + '<input type="text" id="name" name="name" class="form-control" size="3">' + "</td>";
+                    copiar += "<td>" + '<input type="number" min="0" id="name" name="name" class="form-control" size="3">' + "</td>";
                     copiar += "<td id = 'ValorCreate'>" + val.deno_valor + "</td>";
                     copiar += "<td id = 'SuntotalCreate'></td>";
                     //copiar += "<td>" + '<button id="removeDenominacion" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
@@ -63,62 +68,37 @@ function GetDenominacion() {
 }
 
 
+//////Calculos
 $(document).on("change", "#DenominacionDetalle tbody tr td input#name", function () {
+    var row = $(this).closest("tr");
     var Cantidad = $(this).val();
     var ValorDenominacion = $(this).parents("tr").find("td")[2].innerHTML;
-    var Subtotal = parseFloat(Cantidad * ValorDenominacion).toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
-    var total = parseFloat(document.getElementById("Total").innerHTML);
-    console.log('Cantidad')
-    console.log(Cantidad)
-    console.log('Valor')
-    console.log(ValorDenominacion)
-    console.log('SubTotal')
-    console.log(Subtotal)
-    console.log('Total')
-    console.log(Total)
-
+    var Subtotal = parseFloat(Cantidad * ValorDenominacion);
+    
+    //row.find("td:eq(3)").val(isNaN(Subtotal) ? "" : Subtotal.toFixed(2));
     $(this).parents("tr").find("td")[3].innerHTML = Subtotal;
-    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
-    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-        event.preventDefault();
+    if (Subtotal != 0) {
+        MontoInicial += Subtotal;
     }
-    //Grantotal
-    if (document.getElementById("Total").innerHTML == '') {
-        document.getElementById("Total").innerHTML = parseFloat(0);
+    else
+    {
+        MontoInicial = 0;
+        $("#DenominacionDetalle tbody tr").each(function (index) {
+            //console.log('1', $(this).children("td:eq(3)").html());
+            Monto = $(this).children("td:eq(3)").html();
+            if (Monto != '')
+            {
+                Monto = parseFloat(Monto);
+                MontoInicial += Monto;
+            }
+        })
     }
-    else {
-        var MontoInicial = document.getElementById("Total").innerHTML = (parseFloat(total) + parseFloat(Subtotal)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
-        document.getElementById('MontoInicial').value = MontoInicial;
-    }
-
+    var totalfinal = document.getElementById("Total").innerHTML = parseFloat(MontoInicial)
+    document.getElementById("MontoInicial").innerHTML = parseFloat(MontoInicial);
+    
+   
 });
 
-$(document).on("keypress", "#DenominacionDetalle tbody tr td input#name", function () {
-    var Cantidad = $(this).val();
-    var ValorDenominacion = $(this).parents("tr").find("td")[2].innerHTML;
-    var Subtotal = parseFloat(Cantidad * ValorDenominacion).toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
-    var Cantidad = $(this).val();
-    var total = parseFloat(document.getElementById("Total").innerHTML);
-
-    $(this).parents("tr").find("td")[3].innerHTML = Subtotal;
-    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
-    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-        event.preventDefault();
-    }
-    //Grantotal
-    if (document.getElementById("Total").innerHTML == '') {
-       document.getElementById("Total").innerHTML = parseFloat(0);
-    }
-    else {
-        var MontoInicial = document.getElementById("Total").innerHTML = (parseFloat(total) + parseFloat(Subtotal)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
-        document.getElementById('MontoInicial').value = MontoInicial;
-    }
-});
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////
 
 
 

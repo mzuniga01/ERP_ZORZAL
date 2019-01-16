@@ -32,9 +32,8 @@ namespace ERP_GMEDINA.Controllers
         {
             var tbmovimientocaja = db.tbMovimientoCaja.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCaja);
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
-            ViewBag.deno_Id = new SelectList(db.tbDenominacion, "deno_Id", "deno_Descripcion");
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
-            ViewBag.DenominacionArqueo = db.tbDenominacionArqueo.ToList();
+            ViewBag.MovimientoCaja = db.tbMovimientoCaja.ToList();
             return View();
         }
 
@@ -45,6 +44,8 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateApertura([Bind(Include = "mocja_Id,cja_Id,mocja_FechaApeturamocja_UsuarioCrea,mocja_FechaCrea,mocja_UsuarioModifica,mocja_FechaModifica")] tbMovimientoCaja tbMovimientoCaja)
         {
+            ModelState.Remove("mocja_FechaArqueo");
+            ModelState.Remove("mocja_FechaAceptacion");
             if (ModelState.IsValid)
             {
                 try
@@ -67,11 +68,17 @@ namespace ERP_GMEDINA.Controllers
                 }
                 catch (Exception Ex)
                 {
+                    ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
+                    ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
+                    ViewBag.MovimientoCaja = db.tbMovimientoCaja.ToList();
                     Ex.Message.ToString();
                     ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                     return View(tbMovimientoCaja);
                 }
             }
+            ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
+            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
+            ViewBag.MovimientoCaja = db.tbMovimientoCaja.ToList();
             return View(tbMovimientoCaja);
         }
 
@@ -101,7 +108,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");           
             ViewBag.DenominacionArqueo = db.tbDenominacionArqueo.ToList();
 
-
+            
 
 
             tbMovimientoCaja MC = new tbMovimientoCaja();
@@ -117,54 +124,16 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="mocja_Id,cja_Id,mocja_FechaApetura,mocja_UsuarioApertura,mocja_FechaArqueo,mocja_UsuarioArquea,mocja_FechaAceptacion,mocja_UsuarioAceptacion,mocja_UsuarioCrea,mocja_FechaCrea,mocja_UsuarioModifica,mocja_FechaModifica")] tbMovimientoCaja tbMovimientoCaja)
         {
-
-            ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbMovimientoCaja.cja_Id);
-            ViewBag.deno_Id = new SelectList(db.tbDenominacionArqueo, "deno_Id", "deno_Descripcion", tbMovimientoCaja.cja_Id);
             if (ModelState.IsValid)
             {
-                try
-                {
-                    //////////Aqui va la lista//////////////
-                    var MensajeError = string.Empty;
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbMovimientoCaja_Insert(tbMovimientoCaja.cja_Id, tbMovimientoCaja.mocja_FechaApertura, tbMovimientoCaja.mocja_UsuarioApertura, tbMovimientoCaja.mocja_FechaArqueo, tbMovimientoCaja.mocja_UsuarioArquea, tbMovimientoCaja.mocja_FechaAceptacion, tbMovimientoCaja.mocja_UsuarioAceptacion);
-                    foreach (UDP_Vent_tbMovimientoCaja_Insert_Result denoarq in list)
-                        MensajeError = denoarq.MensajeError;
-                    if (MensajeError == "-1")
-                    {
-                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                        return View(tbMovimientoCaja);
-                    }
-                    else
-                    {
-
-                        return RedirectToAction("Index");
-                    }
-                }
-
-                catch (Exception Ex)
-                {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-
-
-                    return View(tbMovimientoCaja);
-                }
-
+                db.tbMovimientoCaja.Add(tbMovimientoCaja);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            else
-            {
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
-            }
-            //if (ModelState.IsValid)
-            //{
-            //    db.tbMovimientoCaja.Add(tbMovimientoCaja);
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
 
             ViewBag.mocja_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMovimientoCaja.mocja_UsuarioCrea);
             ViewBag.mocja_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMovimientoCaja.mocja_UsuarioModifica);
+            ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbMovimientoCaja.cja_Id);
             ViewBag.deno_Id = new SelectList(db.tbDenominacionArqueo, "deno_Id", "deno_Descripcion", tbMovimientoCaja.cja_Id);
             return View(tbMovimientoCaja);
         }
