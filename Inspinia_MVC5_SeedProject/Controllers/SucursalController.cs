@@ -72,8 +72,7 @@ namespace ERP_ZORZAL.Controllers
 
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbSucursal_Insert(tbSucursal.suc_Id,
-                                                            tbSucursal.mun_Codigo,
+                    list = db.UDP_Vent_tbSucursal_Insert( tbSucursal.mun_Codigo,
                                                             tbSucursal.bod_Id,
                                                             tbSucursal.pemi_Id,
                                                             tbSucursal.suc_Descripcion,

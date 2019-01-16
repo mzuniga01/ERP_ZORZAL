@@ -217,28 +217,6 @@
       <Parameter Name="cdto_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="cdto_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSucursal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSucursal_Insert_Result)">
-      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
-      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
-      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-      <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
-      <Parameter Name="suc_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="suc_Correo" Mode="In" Type="String" />
-      <Parameter Name="suc_Direccion" Mode="In" Type="String" />
-      <Parameter Name="suc_Telefono" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSucursal_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSucursal_Update_Result)">
-      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
-      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
-      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-      <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
-      <Parameter Name="suc_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="suc_Correo" Mode="In" Type="String" />
-      <Parameter Name="suc_Direccion" Mode="In" Type="String" />
-      <Parameter Name="suc_Telefono" Mode="In" Type="String" />
-      <Parameter Name="suc_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="suc_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbExoneracion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result)">
       <Parameter Name="exo_Id" Mode="In" Type="Int32" />
       <Parameter Name="exo_Documento" Mode="In" Type="String" />
@@ -421,8 +399,11 @@
     <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Insert_Result)">
       <Parameter Name="cja_Id" Mode="In" Type="Int16" />
       <Parameter Name="mocja_FechaApertura" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
       <Parameter Name="mocja_FechaArqueo" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioArquea" Mode="In" Type="Int32" />
       <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="spGetBusquedaCliente" ReturnType="Collection(ERP_ZORZALModel.spGetBusquedaCliente_Result)">
       <Parameter Name="Identificacion" Mode="In" Type="String" />
@@ -2277,6 +2258,39 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbExoneracion_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Select_Result)" />
     <EntitySet Name="UDV_Vent_Busqueda_Factura" EntityType="ERP_ZORZALModel.UDV_Vent_Busqueda_Factura" />
+    <AssociationSet Name="FK_Acce_tbUsuario_emp_Id" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_emp_Id">
+      <End Role="tbEmpleado" EntitySet="tbEmpleado" />
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_suc_Id" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_suc_Id">
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbUsuario_suc_Id" Association="ERP_ZORZALModel.FK_Gral_tbUsuario_suc_Id">
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+    </AssociationSet>
+    <FunctionImport Name="UDP_Vent_tbSucursal_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSucursal_Update_Result)">
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+      <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
+      <Parameter Name="suc_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="suc_Correo" Mode="In" Type="String" />
+      <Parameter Name="suc_Direccion" Mode="In" Type="String" />
+      <Parameter Name="suc_Telefono" Mode="In" Type="String" />
+      <Parameter Name="suc_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="suc_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSucursal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSucursal_Insert_Result)">
+      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+      <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
+      <Parameter Name="suc_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="suc_Correo" Mode="In" Type="String" />
+      <Parameter Name="suc_Direccion" Mode="In" Type="String" />
+      <Parameter Name="suc_Telefono" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -2396,12 +2410,6 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbDocumentoFiscal_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="2" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSucursal_Insert_Result">
-    <Property Type="Int16" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSucursal_Update_Result">
-    <Property Type="Int16" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbExoneracion_Update_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
@@ -2905,6 +2913,11 @@
     <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
     <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbCliente" />
     <NavigationProperty Name="tbCliente1" Relationship="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbCliente" />
+    <Property Name="suc_Id" Type="Int32" />
+    <Property Name="emp_Id" Type="Int16" />
+    <NavigationProperty Name="tbEmpleado2" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_emp_Id" FromRole="tbUsuario" ToRole="tbEmpleado" />
+    <NavigationProperty Name="tbSucursal2" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_suc_Id" FromRole="tbUsuario" ToRole="tbSucursal" />
+    <NavigationProperty Name="tbSucursal3" Relationship="ERP_ZORZALModel.FK_Gral_tbUsuario_suc_Id" FromRole="tbUsuario" ToRole="tbSucursal" />
   </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
@@ -3017,6 +3030,7 @@
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea" FromRole="tbEmpleado" ToRole="tbUsuario" />
     <NavigationProperty Name="tbTipoIdentificacion" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id" FromRole="tbEmpleado" ToRole="tbTipoIdentificacion" />
     <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_bod_ResponsableBodega" FromRole="tbEmpleado" ToRole="tbBodega" />
+    <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_emp_Id" FromRole="tbEmpleado" ToRole="tbUsuario" />
   </EntityType>
   <EntityType Name="tbIdentificacionCliente">
     <Key>
@@ -4038,6 +4052,8 @@
     <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbSucursal" ToRole="tbNotaCredito" />
     <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbPedido_suc_Id" FromRole="tbSucursal" ToRole="tbPedido" />
     <NavigationProperty Name="tbPuntoEmision" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" FromRole="tbSucursal" ToRole="tbPuntoEmision" />
+    <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_suc_Id" FromRole="tbSucursal" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbUsuario3" Relationship="ERP_ZORZALModel.FK_Gral_tbUsuario_suc_Id" FromRole="tbSucursal" ToRole="tbUsuario" />
   </EntityType>
   <EntityType Name="tbTipoPago">
     <Key>
@@ -6804,4 +6820,46 @@
     <Property Name="fact_UsuarioModifica" Type="Int32" />
     <Property Name="fact_FechaModifica" Type="DateTime" Precision="3" />
   </EntityType>
+  <Association Name="FK_Acce_tbUsuario_emp_Id">
+    <End Type="ERP_ZORZALModel.tbEmpleado" Role="tbEmpleado" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbEmpleado">
+        <PropertyRef Name="emp_Id" />
+      </Principal>
+      <Dependent Role="tbUsuario">
+        <PropertyRef Name="emp_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_suc_Id">
+    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSucursal">
+        <PropertyRef Name="suc_Id" />
+      </Principal>
+      <Dependent Role="tbUsuario">
+        <PropertyRef Name="suc_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbUsuario_suc_Id">
+    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSucursal">
+        <PropertyRef Name="suc_Id" />
+      </Principal>
+      <Dependent Role="tbUsuario">
+        <PropertyRef Name="suc_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="UDP_Vent_tbSucursal_Update_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSucursal_Insert_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
 </Schema>

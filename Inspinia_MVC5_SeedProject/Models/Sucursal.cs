@@ -16,7 +16,7 @@ namespace ERP_GMEDINA.Models
     {
         [Display(Name ="Código")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public short suc_Id { get; set; }
+        public int suc_Id { get; set; }
 
         [Display(Name ="Municipio")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]

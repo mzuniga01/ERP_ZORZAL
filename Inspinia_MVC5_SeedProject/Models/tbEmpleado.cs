@@ -18,6 +18,7 @@ namespace ERP_GMEDINA.Models
         public tbEmpleado()
         {
             this.tbBodega = new HashSet<tbBodega>();
+            this.tbUsuario2 = new HashSet<tbUsuario>();
         }
     
         public short emp_Id { get; set; }
@@ -45,5 +46,7 @@ namespace ERP_GMEDINA.Models
         public virtual tbTipoIdentificacion tbTipoIdentificacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodega> tbBodega { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbUsuario> tbUsuario2 { get; set; }
     }
 }

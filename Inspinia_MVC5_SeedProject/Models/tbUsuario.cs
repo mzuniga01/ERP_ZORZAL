@@ -149,6 +149,8 @@ namespace ERP_GMEDINA.Models
         public string usu_RazonInactivo { get; set; }
         public bool usu_EsAdministrador { get; set; }
         public byte usu_SesionesValidas { get; set; }
+        public Nullable<int> suc_Id { get; set; }
+        public Nullable<short> emp_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbAccesoRol> tbAccesoRol { get; set; }
@@ -390,5 +392,8 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbCliente> tbCliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCliente> tbCliente1 { get; set; }
+        public virtual tbEmpleado tbEmpleado2 { get; set; }
+        public virtual tbSucursal tbSucursal2 { get; set; }
+        public virtual tbSucursal tbSucursal3 { get; set; }
     }
 }
