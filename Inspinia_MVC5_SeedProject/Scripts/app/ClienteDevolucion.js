@@ -23,75 +23,42 @@ function GetIDCliente(CodCliente, idItem) {
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify({ CodCliente: CodCliente }),
+
         error: function () {
             console.log("si entrafiltrar1");
-            alert("No se puede filtr");
+            alert("No se puede filtrar");
         },
         success: function (list) {
-        //    document.getElementById("CodigoFactura").innerHTML = list[1].FactCodigo;
-        //    document.getElementById("FechaF").innerHTML = list[0].FactFecha;
-        //    document.getElementById("ClienteRTN").innerHTML = list[0].CtleRTN;
-        //    document.getElementById("NombreCliente").innerHTML = list[0].Nombre;
-
+            $('#BodyFactura').empty();
+            $.each(list, function (key, val) {
+                contador = contador + 1;
+                copiar = "<tr data-id=" + contador + ">";
+                copiar += "<td id = 'idItem'>" + val.FactCodigo + "</td>";
+                copiar += "<td id = 'b'>" + val.FactFecha + "</td>";
+                copiar += "<td id = 'c'>" + val.CtleRTN + "</td>";
+                copiar += "<td id = 'd'>" + val.Nombre + "</td>";
+                copiar += "<td>" + '<button id="AgregarFactura" class="btn btn-primary btn-xs" type="button">Añadir</button>' + "</td>";
+                copiar += "</tr>";
+                $('#BodyFactura').append(copiar);
+            });
             console.log(list);
-            response = list;
-
-            //$('#DevFactura > tbody > tr').each(function () {
-            //    FactCodigo = $(this).attr('data-id')
-            //    FactFecha = $(this).attr('data-fecha')
-            //    CtleRTN = $(this).attr('data-desc')
-            //    Nombre = $(this).attr('data-cliente')
-            //    console.log(FactCodigo);
-            //    console.log(FactFecha);
-            //    console.log(CtleRTN);
-            //    console.log(Nombre);
-                //idItem = FactCodigo
-                //FechaItem = FactFecha
-                //RTNItem = CtleRTN
-                //clienteItem = Nombre
-
-                //console.log('idItem', CtleRTN);
-            //});
         }
+
     });
 
+}
 
-//var CodCliente = $('#tbFactura_clte_Identificacion').val();
-//    console.log(CodCliente)
-//    function GetIDCliente(CodCliente, idItem) {
-//        $.ajax({
-//            url: "/Devolucion/FiltrarModal",
-//            method: "POST",
-//            dataType: 'json',
-//            contentType: "application/json; charset=utf-8",
-//            data: JSON.stringify({ CodCliente: CodCliente }),
+//$(document).on("click", "#DevFactura tbody tr td button#AgregarFactura", function () {
+//    idItem = $(this).closest('tr').data('id');
+//    CodigoItem = $(this).closest('tr').data('codigo');
+//    DescItem = $(this).closest('tr').data('desc');
+//    ClienteItem = $(this).closest('tr').data('cliente');
+//    console.log('Cliente', CodigoItem)
+//    $("#tbFactura_fact_Codigo").val(idItem);
+//    $("#fact_Id").val(CodigoItem);
+//    $("#tbFactura_clte_Identificacion").val(DescItem);
+//    $("#tbFactura_clte_Nombres").val(ClienteItem);
+//    $('#ModalAgregarFactura').modal('hide');
+//    //CargarAsignaciones();
 
-//        })
-//        .done(function (data) {
-//            console.log("si entrafiltrar1");
-//            var list = data.d;
-//            $.each(list, function (index, item) {
-//                console.log("si entrafiltrar");
-//            });
-//        });
-
-//var CodCliente = $('#tbFactura_clte_Identificacion').val();
-//        $.ajax({
-//            url: '@Url.Action("FiltrarModal")',
-//            type: 'POST',
-//            async: false,
-//            data: "{'clte_Identificacion': " + CodCliente + "}",
-//            dataType: 'json',
-//            contentType: 'application/json; charset=utf-8',
-//            error: function () {
-//                alert("Server access failure!");
-//            },
-//            success: function (result) {
-//                response = result;
-//            }
-//        });
-
-        //.done(function (data) {
-        //    console.log('Si entra done')
-        //});
-    };
+//});

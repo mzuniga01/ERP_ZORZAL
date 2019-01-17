@@ -318,7 +318,9 @@ namespace ERP_ZORZAL.Controllers
                 CtleRTN = a.clte_Identificacion,
                 Nombre = a.clte_Nombres
             });
-            return Json(list);
+
+            return  Json(list, JsonRequestBehavior.AllowGet);
+        
             //return Json(list);
         }
 

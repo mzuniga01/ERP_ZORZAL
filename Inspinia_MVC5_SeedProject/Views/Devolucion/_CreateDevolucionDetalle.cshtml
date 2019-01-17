@@ -45,7 +45,7 @@
                 <input type="text" value="" class="form-control " id="CantidadFacturada" readonly/>
             </div>
          
-            @Html.LabelFor(model => model.devd_CantidadProducto, "Cantidad", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.devd_CantidadProducto, "Cantidad Devolución", new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 <input type="text" id="devd_CantidadProducto"  name="devd_CantidadProducto" class="form-control " Value = "" onKeyPress ="return soloNumeros(event)" autocomplete = "off" />
                 <div id="validationCantidadCreate">
@@ -57,12 +57,17 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Precio Unitario</label>
+
+            @*<label class="control-label col-md-2">Precio Unitario</label>
             <div class="col-md-3">
                 <input type="text" value="" class="form-control " id="PrecioUnitario" readonly />
+            </div>*@
+            <label class="control-label col-md-2">% Impuesto</label>
+            <div class="col-md-3">
+                <input type="text" value="" class="form-control " id="Impuesto" readonly />
             </div>
 
-            <label class="control-label col-md-2">Impuesto</label>
+            <label class="control-label col-md-2">Monto Impuesto</label>
             <div class="col-md-3">
                 <input type="text" value="" class="form-control " id="Impuesto" readonly/>
             </div>

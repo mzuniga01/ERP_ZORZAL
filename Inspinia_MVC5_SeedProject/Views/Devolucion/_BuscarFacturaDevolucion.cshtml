@@ -38,7 +38,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="BodyFactura">
         @foreach (var item in Model)
         {
             <tr data-id="@item.fact_Codigo" data-Codigo="@item.fact_Id"  data-Fecha="@item.fact_Fecha" data-desc="@item.tbCliente.clte_Identificacion" data-Cliente="@item.clte_Nombres">

@@ -4,25 +4,28 @@
 
         var Cantidad = $("#devd_CantidadProducto").val(),
             Precio = $("#PrecioUnitario").val(),
-            MontoDescuento = $("#MontoDescuento").val(),
+            porcentajeDesc = $("#Descuento").val(),
             Subtotal = $("#Subtotal").val(),
             Impuesto = $("#Impuesto").val(),
-          
 
             valorSubtotal = "";
             MontoTotal = "";
             ValorImpuesto = "";
-            Impuesto1 = (parseFloat(Impuesto)/ 100)
-          
-        if (Cantidad.length && Precio.length > 0) {
-            valorSubtotal += Cantidad * Precio;
-            ValorImpuesto += (parseFloat(valorSubtotal) * parseFloat(Impuesto1));
-            MontoTotal += (parseFloat(valorSubtotal) + parseFloat(ValorImpuesto)) - parseFloat(MontoDescuento);
+            ValorDescuento = "";
+            Impuesto = (parseFloat(Impuesto)/ 100)
+            porcentajeDesc1 = (parseFloat(porcentajeDesc) / 100)
+            if (Cantidad.length && Precio.length > 0) {
+            valorSubtotal += (parseFloat(Cantidad) * parseFloat(Precio));
+            ValorImpuesto += (valorSubtotal * parseFloat(Impuesto));
+            ValorDescuento += (parseFloat(valorSubtotal) * parseFloat(porcentajeDesc1));
+            console.log(ValorDescuento)
+            MontoTotal += (parseFloat(valorSubtotal) + parseFloat(ValorImpuesto)) - parseFloat(ValorDescuento);
 
         }
         $("#Subtotal").val(valorSubtotal);
         $("#devd_Monto").val(MontoTotal);
         $("#Impuesto").val(ValorImpuesto);
+        $("#MontoDescuento").val(ValorDescuento);
     });
 
 });

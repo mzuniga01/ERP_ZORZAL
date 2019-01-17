@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.factd_Cantidad)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.factd_MontoDescuento)
+                @Html.DisplayNameFor(model => model.factd_PorcentajeDescuento)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.factd_PrecioUnitario)
@@ -27,7 +27,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr data-id="@item.prod_Codigo" data-desc="@item.tbProducto.prod_Descripcion" data-Valor="@item.factd_PrecioUnitario" data-Descuento="@item.factd_MontoDescuento" data-Impuesto="@item.factd_Impuesto" data-Porcentaje="@item.factd_PorcentajeDescuento" data-CantFacturada="@item.factd_Cantidad">
+            <tr data-id="@item.prod_Codigo" data-desc="@item.tbProducto.prod_Descripcion" data-Valor="@item.factd_PrecioUnitario" data-Impuesto="@item.factd_Impuesto" data-Porcentaje="@item.factd_PorcentajeDescuento" data-CantFacturada="@item.factd_Cantidad">
 
                 <td>
                     @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
@@ -37,7 +37,7 @@
                     @Html.DisplayFor(modelItem => item.factd_Cantidad)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.factd_MontoDescuento)
+                    @Html.DisplayFor(modelItem => item.factd_PorcentajeDescuento)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.factd_PrecioUnitario)
