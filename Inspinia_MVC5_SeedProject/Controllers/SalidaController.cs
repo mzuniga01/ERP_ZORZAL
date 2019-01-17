@@ -275,7 +275,10 @@ namespace ERP_GMEDINA.Controllers
                                                         tbSalida.sal_FechaElaboracion,
                                                         tbSalida.estm_Id,
                                                         tbSalida.tsal_Id,
+                                                        tbSalida.sal_BodDestino,
+                                                        tbSalida.sal_EsAnulada,
                                                         tbSalida.sal_RazonDevolucion,
+                                                        tbSalida.sal_RazonAnulada,
                                                         pSalida.sal_UsuarioCrea,
                                                         pSalida.sal_FechaCrea);
 

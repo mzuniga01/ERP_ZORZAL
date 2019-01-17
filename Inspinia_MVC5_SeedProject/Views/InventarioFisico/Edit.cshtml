@@ -18,6 +18,8 @@
     </div>
 </div>
 
+@Html.HiddenFor(model => model.invf_UsuarioModifica)
+@Html.HiddenFor(model => model.invf_FechaModifica)
 
 <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
@@ -28,8 +30,8 @@
                     </div>
                     <div class="ibox-content">
 
-                       @using (Html.BeginForm("Edit", "InventarioFisico", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                       {
+                        @using (Html.BeginForm("Edit", "InventarioFisico", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
                             @Html.AntiForgeryToken()
 
                             <div class="form-horizontal">
@@ -42,13 +44,13 @@
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.invf_FechaInventario, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                         <p style="color:red"> @Html.ValidationMessageFor(model => model.invf_FechaInventario)</p>
-</div>
+                                    </div>
 
                                     @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bodegas,  new { @class = "form-control" })
+                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bodegas, new { @class = "form-control" })
                                         <p style="color:red"> @Html.ValidationMessageFor(model => model.bod_Id)</p>
-</div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -56,90 +58,144 @@
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.invf_Descripcion)
                                         <p style="color:red">  @Html.ValidationMessageFor(model => model.invf_Descripcion) </p>
-</div>
+                                    </div>
 
                                     @Html.LabelFor(model => model.invf_ResponsableBodega, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.invf_ResponsableBodega)
+                                        @Html.EditorFor(model => model.invf_ResponsableBodega, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                         <p style="color:red">    @Html.ValidationMessageFor(model => model.invf_ResponsableBodega) </p>
-</div>
+                                    </div>
                                 </div>
-                              
+
+                                @Html.HiddenFor(model => model.invf_UsuarioCrea)
+                                @Html.HiddenFor(model => model.invf_FechaCrea)
+                                @Html.HiddenFor(model => model.estif_Id)
 
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" value="Guardar" class="btn btn-primary" id="aceptar"/>
-                                        <input type="button" value="Conciliar" class="btn btn-danger" id="conciliar" onclick="active()" />
+                                        <input type="submit" value="Guardar" class="btn btn-primary" id="aceptar" />
+                                        @{if (Model.estif_Id == 1)
+                                            {
+                                                <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalConciliar" value="Conciliar" />
+                                                @*@Html.ActionLink("Inactivar", "EstadoInactivar", new { id = Model.bod_Id }, new { @class = "btn btn-danger" })*@
+                                            }
+                                            else if (Model.estif_Id == 2)
+                                            {
+                                                @*@Html.ActionLink("Activar", "Estadoactivar", new { id = Model.ent_Id }, new { @class = "btn btn-primary" })*@
+
+                                            }
+                                        }
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        <input type="button" class="btn btn-group" id="Imprimir" value="Imprimir" />
+
                                     </div>
                                 </div>
                             </div>
                         }
 
-              @* Clase parcial de el index del Inventario Fisico Detalle *@
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        @Html.Partial("_IndexInvFisicoDetalle", Model.tbInventarioFisicoDetalle, new ViewDataDictionary { { "invf_Id", Model.invf_Id } })
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-content" id="Crear">
+                                        @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
+                                        @Html.Partial("_CreateInvFisicoDetalle", new ERP_GMEDINA.Models.tbInventarioFisicoDetalle())
                                     </div>
                                 </div>
                             </div>
-                        </div>
-     
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <div class="col-md-12" id="IndexdetalleBotones">
+                                            @Html.Partial("_IndexInvFisicoDetalle", Model.tbInventarioFisicoDetalle, new ViewDataDictionary { { "invf_Id", Model.invf_Id } })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                        @* Tabla de los datos de auditoria *@
-                        <div class="ibox-content">
-                            <table class="table table-striped">
-                                <tr>
-                                    <th>
-                                        Acción
-                                    </th>
-                                    <th>
-                                        Usuario
-                                    </th>
-                                    <th>
-                                        Fecha
-                                    </th>
-                                   
-                                </tr>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <div class="col-md-12" id="IndexDetalleConciliado">
+                                            @Html.Partial("_ListadoInventarioFisicoDetalleConciliado", Model.tbInventarioFisicoDetalle, new ViewDataDictionary { { "invf_Id", Model.invf_Id } })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                                <tr>
-                                    <td>
-                                        Creado
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.invf_FechaCrea)
-                                    </td>
-                       
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Modificado
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.invf_FechaModifica)
-                                    </td>
-                                  
-                                </tr>
 
-                            </table>
+                            @* Tabla de los datos de auditoria *@
+                            <div class="ibox-content">
+                                <table class="table table-striped">
+                                    <tr>
+                                        <th>
+                                            Acción
+                                        </th>
+                                        <th>
+                                            Usuario
+                                        </th>
+                                        <th>
+                                            Fecha
+                                        </th>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            Creado
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.invf_FechaCrea)
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Modificado
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.invf_FechaModifica)
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+                            </div>
                         </div>
-                        </div>
-                </div>
+                    </div>
             </div>
         </div>
     </div>
 
 
+    @* ESTADO CONCILIAR *@
+    <div class="modal fade" id="ModalConciliar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Inactivar Entrada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que quiere Conciliar el Inventario Fisico?
+                </div>
+                <div class="modal-footer">
+                    @Html.ActionLink("Sí", "Conciliar", new { id = Model.invf_Id }, new { @class = "btn btn-danger" })
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @* Modal Nuevo Detalle *@
-<div>
+@*<div>
     <div class="modal fade" id="RegistrarNuevoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -161,7 +217,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 
 @section Scripts {
@@ -172,3 +228,26 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/InvFisicoDetalle.js"></script>
+    <script>
+    window.onload = function () {
+        console.log('hola');
+        var valorid = document.getElementById("estif_Id").value;
+        console.log(valorid);
+            if (valorid == 1) {
+                document.getElementById("Imprimir").style.display = 'none';
+                document.getElementById("IndexDetalleConciliado").style.display = 'none';
+            }
+            else
+            {
+                $("#bod_Id").prop("disabled", true);
+                document.getElementById("invf_Descripcion").setAttribute("readonly", true);
+                document.getElementById("aceptar").style.display = 'none';
+                document.getElementById("Crear").style.display = 'none';
+                document.getElementById("IndexdetalleBotones").style.display = 'none';
+                document.getElementById("IndexDetalleConciliado").style.display = 'display';
+
+            }
+
+    };
+
+    </script>

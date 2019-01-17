@@ -30,7 +30,7 @@ namespace ERP_GMEDINA.Controllers
                     par = contarparametro.Conteo;
                 if(par > 0)
                 {
-                    return RedirectToAction("Edit/" + 1 , "Parametro");
+                    return RedirectToAction("Details/" + 1 , "Parametro");
                 }
                 else
                 {

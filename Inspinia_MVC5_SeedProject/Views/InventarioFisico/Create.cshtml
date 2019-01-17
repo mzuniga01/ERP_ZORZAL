@@ -36,7 +36,7 @@
                         @Html.ValidationSummary(true)
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.invf_FechaInventario, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Fecha del Inventario<span style="color:red">*</span></label>
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.invf_FechaInventario, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion" , @readonly = "readonly"} })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.invf_FechaInventario)</p>
@@ -44,23 +44,23 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tbBodega.bod_Id, "Bodega", new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Bodega<span style="color:red">*</span></label>
                             <div class="col-md-10">
-                                @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id,"Seleccione", new { @class = "form-control" })
+                                @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bodega_Id,"Seleccione",  new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.tbBodega.bod_Id)
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.invf_ResponsableBodega, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Responsable de Bodega<span style="color:red">*</span></label>
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.invf_ResponsableBodega)
+                                @Html.EditorFor(model => model.invf_ResponsableBodega, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.invf_ResponsableBodega)</p>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.invf_Descripcion, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Descripcion del Inventario Fisico<span style="color:red">*</span></label>
                             <div class="col-md-10">
                                 @Html.TextAreaFor(model => model.invf_Descripcion, new { @class = "form-control"})
                                <p style="color:red"> @Html.ValidationMessageFor(model => model.invf_Descripcion)</p>
@@ -70,7 +70,7 @@
                         <div class="form-group" hidden="hidden">
                             @Html.LabelFor(model => model.estif_Id, "Estado Inventario Fisico", new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.DropDownList("estif_Id", (IEnumerable<SelectListItem>)ViewBag.estif_Id, new { @class = "form-control"  })
+                                @Html.TextBoxFor(model => model.estif_Id, new { @Value = "1" })
                                 @Html.ValidationMessageFor(model => model.estif_Id)
                             </div>
                         </div>

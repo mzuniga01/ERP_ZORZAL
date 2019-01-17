@@ -18,6 +18,9 @@
                                             @Html.DisplayNameFor(model => model.prod_Marca)
                                         </th>
                                         <th>
+                                            @Html.DisplayNameFor(model => model.prod_CodigoBarras)
+                                        </th>
+                                        <th>
                                             @Html.DisplayNameFor(model => model.prod_Modelo)
                                         </th>
                                         <th>
@@ -31,12 +34,15 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.prod_Descripcion" , tr data-keyboard="@item.tbUnidadMedida.uni_Descripcion" , tr data-container="@item.tbUnidadMedida.uni_Id" >
+                                        <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.prod_Descripcion", tr data-delay="@item.prod_CodigoBarras" , tr data-keyboard="@item.tbUnidadMedida.uni_Descripcion" , tr data-container="@item.tbUnidadMedida.uni_Id" >
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.prod_Descripcion)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.prod_Marca)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.prod_CodigoBarras)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.prod_Modelo)
@@ -58,6 +64,7 @@
         </div>
     </div>
  </div>
+
 
 
 

@@ -230,6 +230,7 @@
     <Compile Include="Models\EstadoBodega.cs" />
     <Compile Include="Models\EstadoCategoria.cs" />
     <Compile Include="Models\EstadoEntrada.cs" />
+    <Compile Include="Models\EstadoInventario.cs" />
     <Compile Include="Models\EstadoInventariosFisico.cs" />
     <Compile Include="Models\estadomovimientos.cs" />
     <Compile Include="Models\Estados.cs" />
@@ -311,6 +312,15 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\spGetProducto_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SPGetResponsableBodega_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SPGetResponsableBodega_Result1.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SPGetResponsableBodega_Result2.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\spGetSubCategoriaProducto_Result.cs">
@@ -594,6 +604,9 @@
     <Compile Include="Models\UDP_Gral_tbUnidadMedida_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Inv_CantidadExistente_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Inv_tbBodegaDetalle_CantidadExistente_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -652,6 +665,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbInventarioFisico_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Inv_tbInventarioFisico_Update_Estado_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbInventarioFisico_Update_Result.cs">

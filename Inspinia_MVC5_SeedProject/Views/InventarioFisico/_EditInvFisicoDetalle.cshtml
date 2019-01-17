@@ -24,18 +24,12 @@
         @Html.HiddenFor(model => model.invfd_FechaCrea)
         @Html.HiddenFor(model => model.invfd_UsuarioModifica)
         @Html.HiddenFor(model => model.invfd_FechaModifica)
-        @Html.HiddenFor(model => model.prod_Codigo)
 
         <div class="form-group">
             @Html.LabelFor(model => model.prod_Codigo, "Codigo Producto", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.prod_Codigo, new { @class = "form-control" })
-                <div id="validationMINIMAEdit_@Model.invfd_Id">
                     @Html.ValidationMessageFor(model => model.prod_Codigo)
-                </div>
-            </div>
-            <div class="col-md-1">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalproductos"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </div>
 
@@ -43,19 +37,17 @@
             @Html.LabelFor(model => model.invfd_CantidadSistema, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.invfd_CantidadSistema)
-                <div id="validationMAXIMAEdit_@Model.invfd_Id">
                     @Html.ValidationMessageFor(model => model.invfd_CantidadSistema)
-                    </div>
                 </div>
         </div>
+
+        @Html.HiddenFor(model => model.uni_Id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.invfd_Cantidad,"Cantidad Fisica", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.invfd_Cantidad)
-                <div id="validationMAXIMAEdit_@Model.invfd_Id">
                     @Html.ValidationMessageFor(model => model.invfd_Cantidad)
-                    </div>
                 </div>
         </div>
 

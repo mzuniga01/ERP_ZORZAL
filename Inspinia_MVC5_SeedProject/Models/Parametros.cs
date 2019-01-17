@@ -24,18 +24,19 @@ namespace ERP_GMEDINA.Models
         public string par_CorreoEmpresa { get; set; }
         [Display(Name = "Logo")]
         public string par_PathLogo { get; set; }
+        [Display(Name = "Moneda")]
         public short mnda_Id { get; set; }
-        [Display(Name = "Gerente de Tienda")]
+        [Display(Name = "Rol Gerente de Tienda")]
         public int par_RolGerenteTienda { get; set; }
-        [Display(Name = "Credito-Cobranza")]
+        [Display(Name = "Rol Credito-Cobranza")]
         public int par_RolCreditoCobranza { get; set; }
-        [Display(Name = "Supervisor de Caja")]
+        [Display(Name = "Rol Supervisor de Caja")]
         public int par_RolSupervisorCaja { get; set; }
-        [Display(Name = "Cajero")]
+        [Display(Name = "Rol Cajero")]
         public int par_RolCajero { get; set; }
-        [Display(Name = "Auditor")]
+        [Display(Name = "Rol Auditor")]
         public int par_RolAuditor { get; set; }
-        [Display(Name = "Sucursal Principal")]
+        [Display(Name = "Rol Sucursal Principal")]
         public short par_SucursalPrincipal { get; set; }
         public int par_UsuarioCrea { get; set; }
         public System.DateTime par_FechaCrea { get; set; }

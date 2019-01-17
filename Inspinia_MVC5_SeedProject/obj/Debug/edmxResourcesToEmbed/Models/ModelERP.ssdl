@@ -674,7 +674,7 @@
     <Property Name="fact_AlCredito" Type="bit" Nullable="false" />
     <Property Name="fact_DiasCredito" Type="int" Nullable="false" />
     <Property Name="fact_PorcentajeDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="fact_Vendedor" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fact_Vendedor" Type="varchar" MaxLength="50" />
     <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
     <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="fact_IdentidadTE" Type="nvarchar" MaxLength="26" />
@@ -753,16 +753,16 @@
     </Key>
     <Property Name="mocja_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="cja_Id" Type="smallint" Nullable="false" />
-    <Property Name="mocja_FechaApertura" Type="datetime" Nullable="false" />
-    <Property Name="mocja_UsuarioApertura" Type="int" />
-    <Property Name="mocja_FechaArqueo" Type="datetime" Nullable="false" />
-    <Property Name="mocja_UsuarioArquea" Type="int" />
-    <Property Name="mocja_FechaAceptacion" Type="datetime" Nullable="false" />
-    <Property Name="mocja_UsuarioAceptacion" Type="int" />
-    <Property Name="mocja_UsuarioCrea" Type="int" />
+    <Property Name="mocja_FechaApertura" Type="datetime" />
+    <Property Name="mocja_UsuarioApertura" Type="int" Nullable="false" />
+    <Property Name="mocja_FechaArqueo" Type="datetime" />
+    <Property Name="mocja_UsuarioArquea" Type="int" Nullable="false" />
+    <Property Name="mocja_FechaAceptacion" Type="datetime" />
+    <Property Name="mocja_UsuarioAceptacion" Type="int" Nullable="false" />
+    <Property Name="mocja_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="mocja_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="mocja_UsuarioModifica" Type="int" />
-    <Property Name="mocja_FechaModifica" Type="datetime" Nullable="false" />
+    <Property Name="mocja_FechaModifica" Type="datetime" />
   </EntityType>
   <EntityType Name="tbNotaCredito">
     <Key>
@@ -886,6 +886,7 @@
     <Property Name="escre_Id" Type="tinyint" Nullable="false" />
     <Property Name="cred_FechaSolicitud" Type="datetime" Nullable="false" />
     <Property Name="cred_FechaAprobacion" Type="datetime" />
+    <Property Name="cred_FechaDenegacion" Type="datetime" />
     <Property Name="cred_MontoSolicitado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="cred_MontoAprobado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="cred_DiasSolicitado" Type="int" Nullable="false" />
@@ -1485,7 +1486,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioAceptacion">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbUsuario">
@@ -1497,7 +1498,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioApertura">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbUsuario">
@@ -1509,7 +1510,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioArquea">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbUsuario">
@@ -1521,7 +1522,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioCrea">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbUsuario">
@@ -3224,42 +3225,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id">
-    <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="1" />
-    <End Role="tbDenominacionArqueo" Type="Self.tbDenominacionArqueo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbMovimientoCaja">
-        <PropertyRef Name="mocja_Id" />
-      </Principal>
-      <Dependent Role="tbDenominacionArqueo">
-        <PropertyRef Name="mocja_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id">
-    <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="1" />
-    <End Role="tbPagosArqueo" Type="Self.tbPagosArqueo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbMovimientoCaja">
-        <PropertyRef Name="mocja_Id" />
-      </Principal>
-      <Dependent Role="tbPagosArqueo">
-        <PropertyRef Name="mocja_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
-    <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="1" />
-    <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbMovimientoCaja">
-        <PropertyRef Name="mocja_Id" />
-      </Principal>
-      <Dependent Role="tbSolicitudEfectivo">
-        <PropertyRef Name="mocja_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
     <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="1" />
     <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
@@ -3689,6 +3654,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="ConteoParametro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="conteo" Type="int" Mode="In" />
   </Function>
+  <Function Name="SPGetResponsableBodega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bod_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_CantidadExistente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="UDP_Gral_tbDepartamento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="dep_Codigo" Type="char" Mode="In" />
     <Parameter Name="dep_Nombre" Type="varchar" Mode="In" />
@@ -3793,9 +3765,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="uni_Abreviatura" Type="char" Mode="In" />
     <Parameter Name="uni_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="uni_FechaCrea" Type="datetime" Mode="In" />
-  </Function>
-  <Function Name="SDP_Inv_tbSalidaDetalle_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
-    <Parameter Name="sald_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="SDP_Inv_tbSalidaDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sald_Id" Type="int" Mode="In" />
@@ -3968,6 +3937,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="invf_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="invf_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Inv_tbInventarioFisico_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="invf_Id" Type="int" Mode="In" />
+    <Parameter Name="estif_Id" Type="tinyint" Mode="In" />
+  </Function>
   <Function Name="UDP_Inv_tbInventarioFisicoDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="invf_Id" Type="int" Mode="In" />
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
@@ -4030,7 +4003,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   </Function>
   <Function Name="UDP_Inv_tbProductoCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
-    <Parameter Name="pcat_EsActivo" Type="tinyint" Mode="In" />
+    <Parameter Name="ESTADO" Type="tinyint" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProductoSubCategoria_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pscat_Id" Type="int" Mode="In" />
@@ -4082,7 +4055,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="sal_FechaElaboracion" Type="datetime" Mode="In" />
     <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
     <Parameter Name="tsal_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="sal_BodDestino" Type="int" Mode="In" />
+    <Parameter Name="sal_EsAnulada" Type="bit" Mode="In" />
     <Parameter Name="sal_RazonDevolucion" Type="varchar" Mode="In" />
+    <Parameter Name="sal_RazonAnulada" Type="varchar" Mode="In" />
     <Parameter Name="sal_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="sal_FechaCrea" Type="datetime" Mode="In" />
   </Function>
@@ -4955,18 +4931,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <AssociationSet Name="FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id" Association="Self.FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id">
       <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
       <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" Association="Self.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id">
-      <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
-      <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id" Association="Self.FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id">
-      <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
-      <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" Association="Self.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
-      <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
-      <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
       <End Role="tbMunicipio" EntitySet="tbMunicipio" />

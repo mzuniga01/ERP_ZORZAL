@@ -53,7 +53,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.par_NombreEmpresa, new { @class = "control-label col-md-2" })
+                <label class="control-label col-md-2">Nombre Empresa<span style="color:red">*</span></label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.par_NombreEmpresa)
 <p style="color:red"> @Html.ValidationMessageFor(model => model.par_NombreEmpresa)</p>
@@ -61,7 +61,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.par_TelefonoEmpresa, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Telefono Empresa<span style="color:red">*</span></label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.par_TelefonoEmpresa)
                 <p style="color:red">   @Html.ValidationMessageFor(model => model.par_TelefonoEmpresa)</p>
@@ -69,7 +69,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.par_CorreoEmpresa, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Correo Empresa<span style="color:red">*</span></label>
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.par_CorreoEmpresa, new { @autocomplete = "off", type = "email", @class = "form-control" })
                 <p id="emailOK1" style="color:red"> @Html.ValidationMessageFor(model => model.par_CorreoEmpresa) </p>
@@ -77,7 +77,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.par_PathLogo, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Logo<span style="color:red">*</span></label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.par_PathLogo)
                 <p style="color:red">  @Html.ValidationMessageFor(model => model.par_PathLogo) </p>
@@ -85,7 +85,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mnda_Id, "mnda_Id", new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Moneda<span style="color:red">*</span></label>
             <div class="col-md-10">
                 @Html.DropDownList("mnda_Id", (IEnumerable<SelectListItem>)ViewBag.mnda_Id,"Seleccione", new { @class = "form-control" })
                 <p style="color:red">  @Html.ValidationMessageFor(model => model.mnda_Id) </p>
@@ -93,7 +93,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.par_RolGerenteTienda, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Gerente de Tienda<span style="color:red">*</span></label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.par_RolGerenteTienda)
                 <p style="color:red">  @Html.ValidationMessageFor(model => model.par_RolGerenteTienda)</p>
@@ -101,7 +101,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.par_RolCreditoCobranza, new { @class = "control-label col-md-2" })
+          <label class="control-label col-md-2">Credito-Cobranza<span style="color:red">*</span></label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.par_RolCreditoCobranza)
                 <p style="color:red">  @Html.ValidationMessageFor(model => model.par_RolCreditoCobranza) </p>
@@ -109,7 +109,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.par_RolSupervisorCaja, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Supervisor de Caja<span style="color:red">*</span></label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.par_RolSupervisorCaja)
                 <p style="color:red">  @Html.ValidationMessageFor(model => model.par_RolSupervisorCaja) </p>
@@ -117,7 +117,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.par_RolCajero, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Cajero<span style="color:red">*</span></label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.par_RolCajero)
                 <p style="color:red">   @Html.ValidationMessageFor(model => model.par_RolCajero)</p>
@@ -125,7 +125,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.par_RolAuditor, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Auditor<span style="color:red">*</span></label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.par_RolAuditor)
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.par_RolAuditor)</p>
@@ -133,7 +133,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.par_SucursalPrincipal, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Sucursal Principal<span style="color:red">*</span></label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.par_SucursalPrincipal)
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.par_SucursalPrincipal)</p>
@@ -141,7 +141,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.par_PorcentajeDescuentoTE, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Porcentaje Descuento TE<span style="color:red">*</span></label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.par_PorcentajeDescuentoTE)
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.par_PorcentajeDescuentoTE) </p>
@@ -149,7 +149,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.par_IdConsumidorFinal, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Consumidor Final<span style="color:red">*</span></label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.par_IdConsumidorFinal)
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.par_IdConsumidorFinal) </p>
