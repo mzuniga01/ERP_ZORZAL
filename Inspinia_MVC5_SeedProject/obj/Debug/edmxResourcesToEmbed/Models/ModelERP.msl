@@ -748,6 +748,7 @@
           <ScalarProperty Name="acrol_UsuarioModifica" ColumnName="acrol_UsuarioModifica" />
           <ScalarProperty Name="acrol_FechaModifica" ColumnName="acrol_FechaModifica" />
           <ScalarProperty Name="obj_Pantalla" ColumnName="obj_Pantalla" />
+          <ScalarProperty Name="obj_Referencia" ColumnName="obj_Referencia" />
           <ScalarProperty Name="obj_UsuarioCrea" ColumnName="obj_UsuarioCrea" />
           <ScalarProperty Name="obj_FechaCrea" ColumnName="obj_FechaCrea" />
           <ScalarProperty Name="obj_UsuarioModifica" ColumnName="obj_UsuarioModifica" />
@@ -783,6 +784,8 @@
           <ScalarProperty Name="usu_RazonInactivo" ColumnName="usu_RazonInactivo" />
           <ScalarProperty Name="usu_EsAdministrador" ColumnName="usu_EsAdministrador" />
           <ScalarProperty Name="usu_SesionesValidas" ColumnName="usu_SesionesValidas" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

@@ -23,5 +23,7 @@ namespace ERP_GMEDINA.Models
         public string usu_RazonInactivo { get; set; }
         public bool usu_EsAdministrador { get; set; }
         public byte usu_SesionesValidas { get; set; }
+        public Nullable<int> suc_Id { get; set; }
+        public Nullable<short> emp_Id { get; set; }
     }
 }

@@ -19,8 +19,25 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Cliente/
         public ActionResult Index()
         {
-            var tbcliente = db.UDV_Vent_Busqueda_Clientes;
-            return View(tbcliente.ToList());
+            //Validar Inicio de Sesión
+            GeneralFunctions Function = new GeneralFunctions();
+            List<tbUsuario> Usuario = Function.getUserID();
+            //
+            if (Usuario.Count > 0)
+            {
+                if(Function.GetUserRols("Cliente/Index"))
+                {
+                    var tbcliente = db.UDV_Vent_Busqueda_Clientes;
+                    return View(tbcliente.ToList());
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
+            }
+            else
+                return RedirectToAction("Index", "Login");
+            
         }
 
         [HttpPost]
@@ -159,27 +176,59 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Cliente/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            //Validar Inicio de Sesión
+            GeneralFunctions Function = new GeneralFunctions();
+            List<tbUsuario> Usuario = Function.getUserID();
+            //
+            if (Usuario.Count > 0)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Function.GetUserRols("Cliente/Details"))
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    tbCliente tbCliente = db.tbCliente.Find(id);
+                    if (tbCliente == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(tbCliente);
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
             }
-            tbCliente tbCliente = db.tbCliente.Find(id);
-            if (tbCliente == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbCliente);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /Cliente/Create
         public ActionResult Create()
         {
-            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
-            ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
-            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
-            return View();
+            //Validar Inicio de Sesión
+            GeneralFunctions Function = new GeneralFunctions();
+            List<tbUsuario> Usuario = Function.getUserID();
+            //
+            if (Usuario.Count > 0)
+            {
+                if (Function.GetUserRols("Cliente/Create"))
+                {
+                    ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
+                    ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                    ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                    ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
+                    ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // POST: /Cliente/Create
@@ -257,45 +306,61 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Cliente/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            //Validar Inicio de Sesión
+            GeneralFunctions Function = new GeneralFunctions();
+            List<tbUsuario> Usuario = Function.getUserID();
+            //
+            if (Usuario.Count > 0)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Function.GetUserRols("Cliente/Edit"))
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    tbCliente tbCliente = db.tbCliente.Find(id);
+                    if (tbCliente == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    ViewData["Razon"] = tbCliente.clte_RazonInactivo;
+                    ViewData["Monto"] = tbCliente.clte_MontoCredito;
+                    ViewData["Dias"] = tbCliente.clte_DiasCredito;
+                    //.Razon = tbCliente.clte_RazonInactivo;
+                    ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbCliente.tbMunicipio.tbDepartamento.dep_Codigo);
+                    var Departamento = tbCliente.tbMunicipio.tbDepartamento.dep_Codigo; ;
+                    ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
+                    ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
+                    //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
+                    var Municipio = db.tbMunicipio.Select(s => new
+                    {
+                        mun_Codigo = s.mun_Codigo,
+                        mun_Nombre = s.mun_Nombre,
+                        dep_Codigo = s.dep_Codigo
+                    }).Where(x => x.dep_Codigo == Departamento).ToList();
+                    ViewBag.mun_Codigo = new SelectList(Municipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
+                    if (tbCliente.clte_EsPersonaNatural)
+                        ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+                    else
+                    {
+                        var TipoIdentificacion = db.tbTipoIdentificacion.Select(s => new {
+                            tpi_Id = s.tpi_Id,
+                            tpi_Descripcion = s.tpi_Descripcion
+                        }).Where(x => x.tpi_Id == Helpers.RTN).ToList();
+                        ViewBag.tpi_Id = new SelectList(TipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+                    }
+
+                    var Lista = cUtilities.GeneroList();
+                    ViewBag.GeneroList = new SelectList(Lista, "ID_GENERO", "DESCRIPCION", tbCliente.clte_Sexo);
+                    return View(tbCliente);
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
             }
-            tbCliente tbCliente = db.tbCliente.Find(id);
-            if (tbCliente == null)
-            {
-                return HttpNotFound();
-            }
-            ViewData["Razon"] = tbCliente.clte_RazonInactivo;
-            ViewData["Monto"] = tbCliente.clte_MontoCredito;
-            ViewData["Dias"] = tbCliente.clte_DiasCredito;
-            //.Razon = tbCliente.clte_RazonInactivo;
-            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre",tbCliente.tbMunicipio.tbDepartamento.dep_Codigo);
-            var Departamento = tbCliente.tbMunicipio.tbDepartamento.dep_Codigo; ;
-            ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
-            ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
-            //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
-            var Municipio = db.tbMunicipio.Select(s => new
-            {
-                mun_Codigo = s.mun_Codigo,
-                mun_Nombre = s.mun_Nombre,
-                dep_Codigo=s.dep_Codigo
-            }).Where(x => x.dep_Codigo == Departamento).ToList();
-            ViewBag.mun_Codigo = new SelectList(Municipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
-            if (tbCliente.clte_EsPersonaNatural)
-                ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
             else
-            {
-                var TipoIdentificacion= db.tbTipoIdentificacion.Select(s => new {
-                    tpi_Id = s.tpi_Id,
-                    tpi_Descripcion = s.tpi_Descripcion
-                }).Where(x => x.tpi_Id == Helpers.RTN).ToList();
-                ViewBag.tpi_Id = new SelectList(TipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
-            }
-               
-            var Lista = cUtilities.GeneroList();
-            ViewBag.GeneroList = new SelectList(Lista, "ID_GENERO", "DESCRIPCION", tbCliente.clte_Sexo);
-            return View(tbCliente);
+                return RedirectToAction("Index", "Login");
         }
 
         // POST: /Cliente/Edit/5

@@ -2710,44 +2710,11 @@
   <ComplexType Name="UDP_Vent_tbListaPrecio_Estado_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
-  <ComplexType Name="SDP_Acce_GetUserRols_Result">
-    <Property Type="Int32" Name="rolu_Id" Nullable="false" />
-    <Property Type="Int32" Name="rol_Id" Nullable="false" />
-    <Property Type="Int32" Name="usu_Id" Nullable="false" />
-    <Property Type="Int32" Name="rolu_UsuarioCrea" Nullable="false" />
-    <Property Type="DateTime" Name="rolu_FechaCrea" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="rolu_UsuarioModifica" Nullable="true" />
-    <Property Type="DateTime" Name="rolu_FechaModifica" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="acrol_Id" Nullable="false" />
-    <Property Type="Int32" Name="obj_Id" Nullable="false" />
-    <Property Type="Int32" Name="acrol_UsuarioCrea" Nullable="false" />
-    <Property Type="DateTime" Name="acrol_FechaCrea" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="acrol_UsuarioModifica" Nullable="true" />
-    <Property Type="DateTime" Name="acrol_FechaModifica" Nullable="true" Precision="23" />
-    <Property Type="String" Name="obj_Pantalla" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="obj_UsuarioCrea" Nullable="false" />
-    <Property Type="DateTime" Name="obj_FechaCrea" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="obj_UsuarioModifica" Nullable="true" />
-    <Property Type="DateTime" Name="obj_FechaModifica" Nullable="true" Precision="23" />
-    <Property Type="Boolean" Name="obj_Estado" Nullable="false" />
-  </ComplexType>
   <ComplexType Name="UDP_Vent_tbPago_Insert_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbPago_Update_Result">
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_Login_Result">
-    <Property Type="Int32" Name="usu_Id" Nullable="false" />
-    <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
-    <Property Type="Binary" Name="usu_Password" Nullable="false" MaxLength="64" />
-    <Property Type="String" Name="usu_Nombres" Nullable="false" MaxLength="150" />
-    <Property Type="String" Name="usu_Apellidos" Nullable="false" MaxLength="150" />
-    <Property Type="String" Name="usu_Correo" Nullable="false" MaxLength="150" />
-    <Property Type="Boolean" Name="usu_EsActivo" Nullable="false" />
-    <Property Type="String" Name="usu_RazonInactivo" Nullable="true" MaxLength="150" />
-    <Property Type="Boolean" Name="usu_EsAdministrador" Nullable="false" />
-    <Property Type="Byte" Name="usu_SesionesValidas" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_CantidadExistente_Result">
     <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
@@ -7099,5 +7066,41 @@
     <Property Type="DateTime" Name="par_FechaModifica" Nullable="true" Precision="23" />
     <Property Type="Decimal" Name="par_PorcentajeDescuentoTE" Nullable="true" Precision="5" Scale="2" />
     <Property Type="Int32" Name="par_IdConsumidorFinal" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SDP_Acce_GetUserRols_Result">
+    <Property Type="Int32" Name="rolu_Id" Nullable="false" />
+    <Property Type="Int32" Name="rol_Id" Nullable="false" />
+    <Property Type="Int32" Name="usu_Id" Nullable="false" />
+    <Property Type="Int32" Name="rolu_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="rolu_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="rolu_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="rolu_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="acrol_Id" Nullable="false" />
+    <Property Type="Int32" Name="obj_Id" Nullable="false" />
+    <Property Type="Int32" Name="acrol_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="acrol_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="acrol_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="acrol_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="String" Name="obj_Pantalla" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="obj_Referencia" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="obj_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="obj_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="obj_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="obj_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="obj_Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_Login_Result">
+    <Property Type="Int32" Name="usu_Id" Nullable="false" />
+    <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
+    <Property Type="Binary" Name="usu_Password" Nullable="false" MaxLength="64" />
+    <Property Type="String" Name="usu_Nombres" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="usu_Apellidos" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="usu_Correo" Nullable="false" MaxLength="150" />
+    <Property Type="Boolean" Name="usu_EsActivo" Nullable="false" />
+    <Property Type="String" Name="usu_RazonInactivo" Nullable="true" MaxLength="150" />
+    <Property Type="Boolean" Name="usu_EsAdministrador" Nullable="false" />
+    <Property Type="Byte" Name="usu_SesionesValidas" Nullable="false" />
+    <Property Type="Int32" Name="suc_Id" Nullable="true" />
+    <Property Type="Int16" Name="emp_Id" Nullable="true" />
   </ComplexType>
 </Schema>

@@ -39,11 +39,11 @@ namespace ERP_GMEDINA.Models
 
         public List<tbUsuario> getUserID()
         {
-            int user = 1;
+            int user = 0;
             List<tbUsuario> UsuarioList = new List<tbUsuario>();
             try
             {
-                //user = (int)HttpContext.Current.Session["UserLogin"];
+                user = (int)HttpContext.Current.Session["UserLogin"];
                 if (user != 0)
                 {
                     UsuarioList = db.tbUsuario.Where(s => s.usu_Id == user).ToList();

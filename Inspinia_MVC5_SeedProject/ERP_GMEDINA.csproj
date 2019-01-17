@@ -1034,6 +1034,7 @@
     <Content Include="Content\img\Business_and_Commerce_Career_Prospects_and_Trends_Report_final_for_web2-1[1].jpg" />
     <Content Include="Content\img\Logo_GM.png" />
     <Content Include="Content\img\MicrosoftTeams-image.png" />
+    <Content Include="Content\img\stop.png" />
     <Content Include="Content\patterns\congruent_pentagon.png" />
     <Content Include="Content\patterns\header-profile-skin-1.png" />
     <Content Include="Content\patterns\header-profile-skin-2.png" />
@@ -1557,6 +1558,7 @@
     <Content Include="Views\Pago\_IndexPagoFactura.cshtml" />
     <Content Include="Views\Pedido\_EditPedido.cshtml" />
     <Content Include="Views\Factura\_CreateCliente.cshtml" />
+    <Content Include="Views\Login\SinAcceso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
