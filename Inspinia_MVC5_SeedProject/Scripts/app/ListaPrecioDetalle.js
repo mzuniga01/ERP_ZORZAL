@@ -3,7 +3,7 @@ var contador = 0;
 
 $('#AgregarListaPrecioDetalle').click(function () {
     var Producto = $('#prod_Codigo').val();
-    var DescripcionProducto = $('#prod_Descripcion').val();
+    var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
     var PrecioMayorista = $('#lispd_PrecioMayorista').val();
     var PrecioMinorista = $('#lispd_PrecioMinorista').val();
     var DescuentoCaja = $('#lispd_DescCaja').val();
@@ -77,7 +77,7 @@ $('#AgregarListaPrecioDetalle').click(function () {
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
         copiar += "<td id = 'prod_Codigo'>" + $('#prod_Codigo').val() + "</td>";
-        copiar += "<td id = 'prod_Descripcion'>" + $('#prod_Descripcion').val() + "</td>";
+        copiar += "<td id = 'prod_Descripcion'>" + $('#tbProducto_prod_Descripcion').val() + "</td>";
         copiar += "<td id = 'lispd_PrecioMayoristaCreate'>" + $('#lispd_PrecioMayorista').val() + "</td>";
         copiar += "<td id = 'lispd_PrecioMinoristaCreate'>" + $('#lispd_PrecioMinorista').val() + "</td>";
         copiar += "<td id = 'lispd_DescCajaCreate'>" + $('#lispd_DescCaja').val() + "</td>";
