@@ -3,7 +3,7 @@
 @{
     string UserName = "";
     GeneralFunctions Login = new GeneralFunctions();
-    List<tbUsuario> User = Login.getUserID();
+    List<tbUsuario> User = Login.getUserInformation();
     foreach (tbUsuario Usuario in User)
     {
         UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
