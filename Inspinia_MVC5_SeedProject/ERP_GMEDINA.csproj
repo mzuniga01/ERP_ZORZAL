@@ -307,9 +307,6 @@
     <Compile Include="Models\PedidoDetalle.cs" />
     <Compile Include="Models\Pedidos.cs" />
     <Compile Include="Models\Producto.cs" />
-    <Compile Include="Models\pruebaswilson.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\PuntoEmision.cs" />
     <Compile Include="Models\PuntoEmisionDetalle.cs" />
     <Compile Include="Models\SDP_Acce_GetObjetosAsignados_Result.cs">
@@ -760,9 +757,6 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbPedido_Insert_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UDP_Vent_tbPedido_Insert_Result1.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbPedido_Select_Result.cs">

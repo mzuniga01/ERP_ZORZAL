@@ -2,7 +2,6 @@
 $('#AñadirPedidoDetalle').click(function () {
     var prod_Codigo = $('#prod_Codigo').val();
     var prod_Descripcion = $('#tbProducto_prod_Descripcion').val();
-    var pedd_Descripcion = $('#pedd_Descripcion').val();
     var pedd_Cantidad = $('#pedd_Cantidad').val();
     var pedd_CantidadFacturada = $('#pedd_CantidadFacturada').val();
 
@@ -19,12 +18,7 @@ $('#AñadirPedidoDetalle').click(function () {
         $('#NombreError').text('');
         $('#ValidationDescripcionProductoCreate').after('<ul id="ErrorDescripcionProductoCreate" class="validation-summary-errors text-danger">Campo Descripcion Producto Requerido</ul>');
     }
-    else if (pedd_Descripcion == '') {
-        $('#MessageError').text('');
-        $('#CodigoError').text('');
-        $('#NombreError').text('');
-        $('#ValidationDescripcionPedidoCreate').after('<ul id="ErrorDescripcionPedidoCreate" class="validation-summary-errors text-danger">Campo Descripcion Pedido Requerido</ul>');
-    }
+
     else if (pedd_Cantidad == '') {
         $('#MessageError').text('');
         $('#CodigoError').text('');
@@ -44,11 +38,11 @@ $('#AñadirPedidoDetalle').click(function () {
         //copiar += "<td hidden id='MunCodigo'>" + $('#mun_Codigo option:selected').val() + "</td>";
         copiar += "<td id = 'prod_Codigo'>" + $('#prod_Codigo').val() + "</td>";
         copiar += "<td id = 'prod_Descripcion'>" + $('#tbProducto_prod_Descripcion').val() + "</td>";
-        copiar += "<td id = 'pedd_Descripcion'>" + $('#pedd_Descripcion').val() + "</td>";
         copiar += "<td id = 'pedd_Cantidad'>" + $('#pedd_Cantidad').val() + "</td>";
         copiar += "<td id = 'pedd_CantidadFacturada'>" + $('#pedd_CantidadFacturada').val() + "</td>";
 
         copiar += "<td>" + '<button id="QuitarDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+
         copiar += "</tr>";
         $('#tblPedidoDetalle').append(copiar);
 
@@ -64,7 +58,6 @@ $('#AñadirPedidoDetalle').click(function () {
                 .done(function (data) {
                     $('#prod_Codigo').val('');
                     $('#tbProducto_prod_Descripcion').val('');
-                    $('#pedd_Descripcion').val('');
                     $('#pedd_Cantidad').val('');
                     $('#pedd_CantidadFacturada').val('');
                     $('#MessageError').text('');

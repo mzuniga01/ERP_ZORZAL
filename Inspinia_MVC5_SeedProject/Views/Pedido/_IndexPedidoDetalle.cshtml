@@ -14,17 +14,12 @@
     <thead>
         <tr>
 
-            @*<th>
-                @Html.DisplayNameFor(model => model.tbPedido.ped_Id)
-            </th>*@
-
             <th>
                 @Html.DisplayNameFor(model => model.prod_Codigo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.pedd_Cantidad)
             </th>
-
 
             <th>
                 @Html.DisplayNameFor(model => model.pedd_CantidadFacturada)
@@ -36,9 +31,7 @@
     <tbody>
 @foreach (var item in Model) {
     <tr>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.tbPedido.ped_Id)
-        </td>*@
+
         <td>
             @Html.DisplayFor(modelItem => item.prod_Codigo)
         </td>

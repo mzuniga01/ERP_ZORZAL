@@ -69,6 +69,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
         public virtual DbSet<tbDocumentoFiscal> tbDocumentoFiscal { get; set; }
         public virtual DbSet<tbEstadoFactura> tbEstadoFactura { get; set; }
+        public virtual DbSet<tbEstadoPedido> tbEstadoPedido { get; set; }
         public virtual DbSet<tbEstadoSolicitudCredito> tbEstadoSolicitudCredito { get; set; }
         public virtual DbSet<tbExoneracion> tbExoneracion { get; set; }
         public virtual DbSet<tbFactura> tbFactura { get; set; }
@@ -90,7 +91,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
         public virtual DbSet<V_Objetos> V_Objetos { get; set; }
-        public virtual DbSet<pruebaswilson> pruebaswilson { get; set; }
         public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
         public virtual DbSet<UDV_Inv_Consultar_Existencias_Productos> UDV_Inv_Consultar_Existencias_Productos { get; set; }
         public virtual DbSet<UDP_Vent_listExoneracion_Select> UDP_Vent_listExoneracion_Select { get; set; }
@@ -99,7 +99,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_Busqueda_Clientes> UDV_Vent_Busqueda_Clientes { get; set; }
         public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
         public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
-        public virtual DbSet<tbEstadoPedido> tbEstadoPedido { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {
@@ -4684,92 +4683,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSucursal_Insert_Result>("UDP_Vent_tbSucursal_Insert", mun_CodigoParameter, bod_IdParameter, pemi_IdParameter, suc_DescripcionParameter, suc_CorreoParameter, suc_DireccionParameter, suc_TelefonoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbPedido_Insert_Result1> UDP_Vent_tbPedido_Insert(Nullable<byte> esped_Id, Nullable<System.DateTime> ped_FechaElaboracion, Nullable<System.DateTime> ped_FechaEntrega, Nullable<int> clte_Id, Nullable<int> suc_Id, Nullable<long> fact_Id, Nullable<bool> ped_EsAnulado, string ped_RazonAnulado)
-        {
-            var esped_IdParameter = esped_Id.HasValue ?
-                new ObjectParameter("esped_Id", esped_Id) :
-                new ObjectParameter("esped_Id", typeof(byte));
-    
-            var ped_FechaElaboracionParameter = ped_FechaElaboracion.HasValue ?
-                new ObjectParameter("ped_FechaElaboracion", ped_FechaElaboracion) :
-                new ObjectParameter("ped_FechaElaboracion", typeof(System.DateTime));
-    
-            var ped_FechaEntregaParameter = ped_FechaEntrega.HasValue ?
-                new ObjectParameter("ped_FechaEntrega", ped_FechaEntrega) :
-                new ObjectParameter("ped_FechaEntrega", typeof(System.DateTime));
-    
-            var clte_IdParameter = clte_Id.HasValue ?
-                new ObjectParameter("clte_Id", clte_Id) :
-                new ObjectParameter("clte_Id", typeof(int));
-    
-            var suc_IdParameter = suc_Id.HasValue ?
-                new ObjectParameter("suc_Id", suc_Id) :
-                new ObjectParameter("suc_Id", typeof(int));
-    
-            var fact_IdParameter = fact_Id.HasValue ?
-                new ObjectParameter("fact_Id", fact_Id) :
-                new ObjectParameter("fact_Id", typeof(long));
-    
-            var ped_EsAnuladoParameter = ped_EsAnulado.HasValue ?
-                new ObjectParameter("ped_EsAnulado", ped_EsAnulado) :
-                new ObjectParameter("ped_EsAnulado", typeof(bool));
-    
-            var ped_RazonAnuladoParameter = ped_RazonAnulado != null ?
-                new ObjectParameter("ped_RazonAnulado", ped_RazonAnulado) :
-                new ObjectParameter("ped_RazonAnulado", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedido_Insert_Result1>("UDP_Vent_tbPedido_Insert", esped_IdParameter, ped_FechaElaboracionParameter, ped_FechaEntregaParameter, clte_IdParameter, suc_IdParameter, fact_IdParameter, ped_EsAnuladoParameter, ped_RazonAnuladoParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbPedido_Update_Result1> UDP_Vent_tbPedido_Update(Nullable<int> ped_Id, Nullable<byte> esped_Id, Nullable<System.DateTime> ped_FechaElaboracion, Nullable<System.DateTime> ped_FechaEntrega, Nullable<int> clte_Id, Nullable<int> suc_Id, Nullable<long> fact_Id, Nullable<bool> ped_EsAnulado, string ped_RazonAnulado, Nullable<int> ped_UsuarioCrea, Nullable<System.DateTime> ped_FechaCrea)
-        {
-            var ped_IdParameter = ped_Id.HasValue ?
-                new ObjectParameter("ped_Id", ped_Id) :
-                new ObjectParameter("ped_Id", typeof(int));
-    
-            var esped_IdParameter = esped_Id.HasValue ?
-                new ObjectParameter("esped_Id", esped_Id) :
-                new ObjectParameter("esped_Id", typeof(byte));
-    
-            var ped_FechaElaboracionParameter = ped_FechaElaboracion.HasValue ?
-                new ObjectParameter("ped_FechaElaboracion", ped_FechaElaboracion) :
-                new ObjectParameter("ped_FechaElaboracion", typeof(System.DateTime));
-    
-            var ped_FechaEntregaParameter = ped_FechaEntrega.HasValue ?
-                new ObjectParameter("ped_FechaEntrega", ped_FechaEntrega) :
-                new ObjectParameter("ped_FechaEntrega", typeof(System.DateTime));
-    
-            var clte_IdParameter = clte_Id.HasValue ?
-                new ObjectParameter("clte_Id", clte_Id) :
-                new ObjectParameter("clte_Id", typeof(int));
-    
-            var suc_IdParameter = suc_Id.HasValue ?
-                new ObjectParameter("suc_Id", suc_Id) :
-                new ObjectParameter("suc_Id", typeof(int));
-    
-            var fact_IdParameter = fact_Id.HasValue ?
-                new ObjectParameter("fact_Id", fact_Id) :
-                new ObjectParameter("fact_Id", typeof(long));
-    
-            var ped_EsAnuladoParameter = ped_EsAnulado.HasValue ?
-                new ObjectParameter("ped_EsAnulado", ped_EsAnulado) :
-                new ObjectParameter("ped_EsAnulado", typeof(bool));
-    
-            var ped_RazonAnuladoParameter = ped_RazonAnulado != null ?
-                new ObjectParameter("ped_RazonAnulado", ped_RazonAnulado) :
-                new ObjectParameter("ped_RazonAnulado", typeof(string));
-    
-            var ped_UsuarioCreaParameter = ped_UsuarioCrea.HasValue ?
-                new ObjectParameter("ped_UsuarioCrea", ped_UsuarioCrea) :
-                new ObjectParameter("ped_UsuarioCrea", typeof(int));
-    
-            var ped_FechaCreaParameter = ped_FechaCrea.HasValue ?
-                new ObjectParameter("ped_FechaCrea", ped_FechaCrea) :
-                new ObjectParameter("ped_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedido_Update_Result1>("UDP_Vent_tbPedido_Update", ped_IdParameter, esped_IdParameter, ped_FechaElaboracionParameter, ped_FechaEntregaParameter, clte_IdParameter, suc_IdParameter, fact_IdParameter, ped_EsAnuladoParameter, ped_RazonAnuladoParameter, ped_UsuarioCreaParameter, ped_FechaCreaParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbFactura_Insert_Result> UDP_Vent_tbFactura_Insert(string fact_Codigo, Nullable<System.DateTime> fact_Fecha, Nullable<byte> esfac_Id, Nullable<short> cja_Id, Nullable<int> suc_Id, Nullable<int> clte_Id, string pemi_NumeroCAI, Nullable<bool> fact_AlCredito, Nullable<int> fact_DiasCredito, Nullable<decimal> fact_PorcentajeDescuento, string fact_Vendedor, string clte_Identificacion, string clte_Nombres, string fact_IdentidadTE, string fact_NombresTE, Nullable<System.DateTime> fact_FechaNacimientoTE, Nullable<bool> fact_EsAnulada)
         {
             var fact_CodigoParameter = fact_Codigo != null ?
@@ -5004,6 +4917,109 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("factd_FechaCrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFacturaDetalle_Update_Result>("UDP_Vent_tbFacturaDetalle_Update", factd_IdParameter, factd_CantidadParameter, factd_MontoDescuentoParameter, factd_PorcentajeDescuentoParameter, factd_ImpuestoParameter, factd_PrecioUnitarioParameter, factd_UsuarioAutorizaParameter, factd_FechaAutorizaParameter, factd_UsuarioCreaParameter, factd_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbPedido_Estado(Nullable<int> ped_Id, Nullable<bool> ped_EsAnulado, string ped_RazonAnulado)
+        {
+            var ped_IdParameter = ped_Id.HasValue ?
+                new ObjectParameter("ped_Id", ped_Id) :
+                new ObjectParameter("ped_Id", typeof(int));
+    
+            var ped_EsAnuladoParameter = ped_EsAnulado.HasValue ?
+                new ObjectParameter("ped_EsAnulado", ped_EsAnulado) :
+                new ObjectParameter("ped_EsAnulado", typeof(bool));
+    
+            var ped_RazonAnuladoParameter = ped_RazonAnulado != null ?
+                new ObjectParameter("ped_RazonAnulado", ped_RazonAnulado) :
+                new ObjectParameter("ped_RazonAnulado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbPedido_Estado", ped_IdParameter, ped_EsAnuladoParameter, ped_RazonAnuladoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbPedido_Insert_Result> UDP_Vent_tbPedido_Insert(Nullable<byte> esped_Id, Nullable<System.DateTime> ped_FechaElaboracion, Nullable<System.DateTime> ped_FechaEntrega, Nullable<int> clte_Id, Nullable<int> suc_Id, Nullable<long> fact_Id, Nullable<bool> ped_EsAnulado, string ped_RazonAnulado)
+        {
+            var esped_IdParameter = esped_Id.HasValue ?
+                new ObjectParameter("esped_Id", esped_Id) :
+                new ObjectParameter("esped_Id", typeof(byte));
+    
+            var ped_FechaElaboracionParameter = ped_FechaElaboracion.HasValue ?
+                new ObjectParameter("ped_FechaElaboracion", ped_FechaElaboracion) :
+                new ObjectParameter("ped_FechaElaboracion", typeof(System.DateTime));
+    
+            var ped_FechaEntregaParameter = ped_FechaEntrega.HasValue ?
+                new ObjectParameter("ped_FechaEntrega", ped_FechaEntrega) :
+                new ObjectParameter("ped_FechaEntrega", typeof(System.DateTime));
+    
+            var clte_IdParameter = clte_Id.HasValue ?
+                new ObjectParameter("clte_Id", clte_Id) :
+                new ObjectParameter("clte_Id", typeof(int));
+    
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(int));
+    
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(long));
+    
+            var ped_EsAnuladoParameter = ped_EsAnulado.HasValue ?
+                new ObjectParameter("ped_EsAnulado", ped_EsAnulado) :
+                new ObjectParameter("ped_EsAnulado", typeof(bool));
+    
+            var ped_RazonAnuladoParameter = ped_RazonAnulado != null ?
+                new ObjectParameter("ped_RazonAnulado", ped_RazonAnulado) :
+                new ObjectParameter("ped_RazonAnulado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedido_Insert_Result>("UDP_Vent_tbPedido_Insert", esped_IdParameter, ped_FechaElaboracionParameter, ped_FechaEntregaParameter, clte_IdParameter, suc_IdParameter, fact_IdParameter, ped_EsAnuladoParameter, ped_RazonAnuladoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbPedido_Update_Result1> UDP_Vent_tbPedido_Update(Nullable<int> ped_Id, Nullable<byte> esped_Id, Nullable<System.DateTime> ped_FechaElaboracion, Nullable<System.DateTime> ped_FechaEntrega, Nullable<int> clte_Id, Nullable<int> suc_Id, Nullable<long> fact_Id, Nullable<bool> ped_EsAnulado, string ped_RazonAnulado, Nullable<int> ped_UsuarioCrea, Nullable<System.DateTime> ped_FechaCrea)
+        {
+            var ped_IdParameter = ped_Id.HasValue ?
+                new ObjectParameter("ped_Id", ped_Id) :
+                new ObjectParameter("ped_Id", typeof(int));
+    
+            var esped_IdParameter = esped_Id.HasValue ?
+                new ObjectParameter("esped_Id", esped_Id) :
+                new ObjectParameter("esped_Id", typeof(byte));
+    
+            var ped_FechaElaboracionParameter = ped_FechaElaboracion.HasValue ?
+                new ObjectParameter("ped_FechaElaboracion", ped_FechaElaboracion) :
+                new ObjectParameter("ped_FechaElaboracion", typeof(System.DateTime));
+    
+            var ped_FechaEntregaParameter = ped_FechaEntrega.HasValue ?
+                new ObjectParameter("ped_FechaEntrega", ped_FechaEntrega) :
+                new ObjectParameter("ped_FechaEntrega", typeof(System.DateTime));
+    
+            var clte_IdParameter = clte_Id.HasValue ?
+                new ObjectParameter("clte_Id", clte_Id) :
+                new ObjectParameter("clte_Id", typeof(int));
+    
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(int));
+    
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(long));
+    
+            var ped_EsAnuladoParameter = ped_EsAnulado.HasValue ?
+                new ObjectParameter("ped_EsAnulado", ped_EsAnulado) :
+                new ObjectParameter("ped_EsAnulado", typeof(bool));
+    
+            var ped_RazonAnuladoParameter = ped_RazonAnulado != null ?
+                new ObjectParameter("ped_RazonAnulado", ped_RazonAnulado) :
+                new ObjectParameter("ped_RazonAnulado", typeof(string));
+    
+            var ped_UsuarioCreaParameter = ped_UsuarioCrea.HasValue ?
+                new ObjectParameter("ped_UsuarioCrea", ped_UsuarioCrea) :
+                new ObjectParameter("ped_UsuarioCrea", typeof(int));
+    
+            var ped_FechaCreaParameter = ped_FechaCrea.HasValue ?
+                new ObjectParameter("ped_FechaCrea", ped_FechaCrea) :
+                new ObjectParameter("ped_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedido_Update_Result1>("UDP_Vent_tbPedido_Update", ped_IdParameter, esped_IdParameter, ped_FechaElaboracionParameter, ped_FechaEntregaParameter, clte_IdParameter, suc_IdParameter, fact_IdParameter, ped_EsAnuladoParameter, ped_RazonAnuladoParameter, ped_UsuarioCreaParameter, ped_FechaCreaParameter);
         }
     }
 }

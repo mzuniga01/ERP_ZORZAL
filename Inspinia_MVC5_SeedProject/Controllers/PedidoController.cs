@@ -67,7 +67,9 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
             //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
 
+
             ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
+     
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
             ViewBag.Cliente = db.tbCliente.ToList();
             Session["tbPedidoDetalle"] = null;
@@ -84,8 +86,9 @@ namespace ERP_ZORZAL.Controllers
         //        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id,ped_EsAnulado,ped_RazonAnulado")] tbPedido tbPedido)
+        public ActionResult Create([Bind(Include = "esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id,ped_EsAnulado,ped_RazonAnulado,tbUsuario,tbUsuario1")] tbPedido tbPedido)
         {
+            ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
             ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
             ViewBag.Producto = db.tbProducto.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
@@ -175,7 +178,7 @@ namespace ERP_ZORZAL.Controllers
 
             }
             ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
-            ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
+    
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
@@ -448,6 +451,14 @@ namespace ERP_ZORZAL.Controllers
 
 
 
+
+
+         [HttpPost]
+        public JsonResult AnularPedido(int CodPedido, bool NoAnulado, string RazonAnulado)
+        {
+            var list = db.UDP_Vent_tbPedido_Estado(CodPedido, NoAnulado, RazonAnulado).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         // POST: /Pedido/Delete/5
         [HttpPost, ActionName("Delete")]

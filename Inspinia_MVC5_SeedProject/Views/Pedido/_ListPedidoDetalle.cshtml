@@ -43,33 +43,23 @@
 
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.pedd_Descripcion, new { @class = "control-label col-md-2" })
 
-                                @Html.LabelFor(model => model.pedd_Cantidad, new { @class = "control-label col-md-3" })
+                                @Html.LabelFor(model => model.pedd_Cantidad, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.pedd_Cantidad, new { @onkeyup = "soloNumeros(e)" })
                                     @Html.ValidationMessageFor(model => model.pedd_Cantidad)
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                @*<label class="control-label col-md-2">Precio Unitario</label>
 
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.pedd_Cantidad)
-                                    @Html.ValidationMessageFor(model => model.pedd_Cantidad)
-                                </div>*@
-                        
-                                @Html.LabelFor(model => model.pedd_CantidadFacturada, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.pedd_CantidadFacturada, new { @class = "control-label col-md-3" })
 
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.pedd_CantidadFacturada, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.pedd_CantidadFacturada)
                                 </div>
-
-                               
                             </div>
 
+                   
                             <div class="col-md-offset-10 col-md-2">
                                 <button type="button" class="btn btn-primary btn-sm" id="AñadirPedidoDetalle">Añadir Pedido Detalle</button>
                             </div>

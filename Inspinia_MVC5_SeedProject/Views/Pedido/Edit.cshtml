@@ -7,7 +7,7 @@
 }
 
 
-@using (Html.BeginForm("Edit", "Pedido", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm())
 {
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -41,6 +41,7 @@
             @Html.HiddenFor(model => model.ped_Id)
             @Html.HiddenFor(model => model.suc_Id)
             @Html.HiddenFor(model => model.clte_Id)
+            @Html.Hidden("RedirectTo", Url.Action("Index", "Pedido"))
             
             
 
@@ -150,6 +151,9 @@
                 <div class="col-md-offset-5 col-md-10">
                     <input type="submit" value="Guardar" class="btn btn-primary" />
                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                    <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
+                        Anular
+                    </button>
                 </div>
             </div>
         </div>
@@ -200,8 +204,35 @@
         </div>
     </div>
  </div>
-    }
+
+
+<div class="modal fade" id="ModalAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Anular Pedido</h5>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de anular este Pedido?</p>
+                <textarea rows="4" cols="50" placeholder="Ingrese la razon de anulación" id="razonInac" name="razonInac"></textarea>
+                <p id="Mensaje" style="color:red"></p>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" type="button"  onclick="AnularPedido();">Guardar</button>
+   
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+}
 <script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
+
+<script src="~/Scripts/app/AnularPedido.js"></script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
