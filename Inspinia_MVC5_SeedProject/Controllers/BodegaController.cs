@@ -301,29 +301,19 @@ namespace ERP_GMEDINA.Controllers
             }
         }
 
-        public JsonResult BuscarProductos(string term)
+        [HttpPost]
+        public JsonResult BuscarProductos(string GET_Barras_Nuevo)
         {
-            using (ERP_ZORZALEntities db = new ERP_ZORZALEntities())
-            {
-                var resultado = db.tbProducto.Where(x => x.prod_Codigo.Contains(term))
-                    .Select(x => x.prod_Codigo).Take(5).ToList();
-                return Json(resultado, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        public JsonResult BuscarCodigoBarras(int bod_Id, string prod_CodigoBarras)
-        {
-            var list = db.spGetProducto(bod_Id, prod_CodigoBarras).ToList();
+            var list = db.spGetProducto_BodegaDetalle(GET_Barras_Nuevo).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-
-
-        //public ActionResult BuscarCodigoBarras(int bod_Id ,  string prod_CodigoBarras)
-        //{
-        //    var list = db.spGetProducto(bod_Id, prod_CodigoBarras).ToList();
-        //    return Json(list, JsonRequestBehavior.AllowGet);
-
-        //}
+        
+        [HttpPost]
+        public ActionResult BuscarCodigoBarras(int GET_Bod, string GET_Barras /*tbProducto GET_Barras , tbBodegaDetalle GET_Bod*/)
+        {
+            var list = db.spGetProducto(GET_Bod, GET_Barras).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         // POST: /Bodega/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

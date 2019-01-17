@@ -427,70 +427,70 @@ namespace ERP_ZORZAL.Controllers
 
 
 
-        public ActionResult ActivarCate(int? id)
-        {
+        //public ActionResult ActivarCate(int? id)
+        //{
 
-            try
-            {
-                tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
-                IEnumerable<object> list = null;
-                var MsjError = "";
-                list = db.UDP_Inv_tbProductoCategoria_Update_Estado(id, EstadoCategoria.Activo);
-                foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
-                    MsjError = obje.MensajeError;
+        //    //try
+        //    //{
+        //    //    tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
+        //    //    IEnumerable<object> list = null;
+        //    //    var MsjError = "";
+        //    //    list = db.UDP_Inv_tbProductoCategoria_Update_Estado(id, EstadoCategoria.Activo);
+        //    //    foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
+        //    //        MsjError = obje.MensajeError;
 
-                if (MsjError == "-1")
-                {
-                    ModelState.AddModelError("", "No se Actualizo el registro");
-                    return RedirectToAction("Edit/" + id);
-                }
-                else
-                {
-                    return RedirectToAction("Edit/" + id);
-                }
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro");
-                return RedirectToAction("Edit/" + id);
-            }
-
-
-            //return RedirectToAction("Index");
-        }
+        //    //    if (MsjError == "-1")
+        //    //    {
+        //    //        ModelState.AddModelError("", "No se Actualizo el registro");
+        //    //        return RedirectToAction("Edit/" + id);
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        return RedirectToAction("Edit/" + id);
+        //    //    }
+        //    //}
+        //    //catch (Exception Ex)
+        //    //{
+        //    //    Ex.Message.ToString();
+        //    //    ModelState.AddModelError("", "No se Actualizo el registro");
+        //    //    return RedirectToAction("Edit/" + id);
+        //    //}
 
 
+        //    //return RedirectToAction("Index");
+        //}
 
-        public ActionResult InactivarCate(int? id)
-        {
 
-            try
-            {
-                tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
-                IEnumerable<object> list = null;
-                var MsjError = "";
-                list = db.UDP_Inv_tbProductoCategoria_Update_Estado(id, EstadoCategoria.Inactivo);
-                foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
-                    MsjError = obje.MensajeError;
 
-                if (MsjError == "-1")
-                {
-                    ModelState.AddModelError("", "No se Actualizo el registro");
-                    return RedirectToAction("Edit/" + id);
-                }
-                else
-                {
-                    return RedirectToAction("Edit/" + id);
-                }
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro");
-                return RedirectToAction("Edit/" + id);
-            }
-        }
+        //public ActionResult InactivarCate(int? id)
+        //{
+
+        //    //try
+        //    //{
+        //    //    tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
+        //    //    IEnumerable<object> list = null;
+        //    //    var MsjError = "";
+        //    //    list = db.UDP_Inv_tbProductoCategoria_Update_Estado(id, EstadoCategoria.Inactivo);
+        //    //    foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
+        //    //        MsjError = obje.MensajeError;
+
+        //    //    if (MsjError == "-1")
+        //    //    {
+        //    //        ModelState.AddModelError("", "No se Actualizo el registro");
+        //    //        return RedirectToAction("Edit/" + id);
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        return RedirectToAction("Edit/" + id);
+        //    //    }
+        //    //}
+        //    //catch (Exception Ex)
+        //    //{
+        //    //    Ex.Message.ToString();
+        //    //    ModelState.AddModelError("", "No se Actualizo el registro");
+        //    //    return RedirectToAction("Edit/" + id);
+        //    //}
+        //}
 
 
         public ActionResult ActivarSub(int? id)

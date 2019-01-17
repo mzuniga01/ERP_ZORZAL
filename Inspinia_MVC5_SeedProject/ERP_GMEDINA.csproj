@@ -302,6 +302,9 @@
     <Compile Include="Models\spGetMunicipios_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\spGetProducto_BodegaDetalle_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\spGetProducto_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

@@ -15,18 +15,20 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @*@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)*@
+                                    Código Barras
+                                </th>
+                                <th>
                                     Código Producto
                                 </th>
                                 <th>
-                                    @*@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)*@
                                     Producto
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.bodd_Costo)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.bodd_CostoPromedio)
+                                    @*@Html.DisplayNameFor(model => model.bodd_CostoPromedio)*@
+                                    Costo Prom.
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.bodd_CantidadExistente)
@@ -40,6 +42,9 @@
                             @foreach (var item in Model)
                             {
                             <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_CodigoBarras)
+                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
                                 </td>

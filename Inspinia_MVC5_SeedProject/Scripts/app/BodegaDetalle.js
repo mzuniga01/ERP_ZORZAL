@@ -58,23 +58,40 @@ $(document).ready(function () {
 
 ///Busqueda products
 $(document).ready(function () {
-    $('#Table_BuscarProductoBodega').DataTable(
-            {
-                "searching": false,
-                "lengthChange": false,
+    //$('#Table_BuscarProductoBodega').DataTable(
+    //        {
+    //            "searching": false,
+    //            "lengthChange": false,
 
-                "oLanguage": {
-                    "oPaginate": {
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior",
-                    },
-                    "sEmptyTable": "No hay registros",
-                    "sInfoEmpty": "Mostrando 0 de 0 Entradas",
-                    "sSearch": "Buscar",
-                    "sInfo": "Mostrando _START_ a _END_ Entradas",
+    //            "oLanguage": {
+    //                "oPaginate": {
+    //                    "sNext": "Siguiente",
+    //                    "sPrevious": "Anterior",
+    //                },
+    //                "sEmptyTable": "No hay registros",
+    //                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+    //                "sSearch": "Buscar",
+    //                "sInfo": "Mostrando _START_ a _END_ Entradas",
 
-                }
-            });
+    //            }
+    //    });
+
+
+    $('#Table_BuscarProductoBodega').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+        },
+
+    });
 
     var $rows = $('#Table_BuscarProductoBodega tr');
         $("#search").keyup(function () {
@@ -92,6 +109,7 @@ $(document).ready(function () {
         });
     });
 $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccionar", function () {
+    console.log('seleccionar');
     idItem = $(this).closest('tr').data('animation');
     contentItem = $(this).closest('tr').data('content');
     uni_IdtItem = $(this).closest('tr').data('keyboard');
@@ -113,6 +131,7 @@ $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccio
 
 //Agregar Detalle a Bodega
 $('#AgregarBodegaDetalle').click(function () {
+    console.log('boton');
     var Producto = $('#prod_Codigo').val();
     var Cminima = $('#bodd_CantidadMinima').val();
     var Preorden = $('#bodd_PuntoReorden').val();
@@ -643,68 +662,71 @@ $(document).on("click", "#tbBodega tbody tr td button#removeBodegaDetalle", func
 
 
 //Simulador Tecla Enter
-$(function () {
-    $('#prod_CodigoBarras').keydown(function (e) {
-        if (e.keyCode == 13) {
-            
-            ///
-            var tbProducto = GetCodigoBarras();
-            console.log(tbProducto)
-            $.ajax({
-                url: "/Bodega/BuscarCodigoBarras",
-                method: "POST",
-                dataType: 'json',
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ GETCodigoBarras: tbProducto }),
-            }).done(function (data) {
-                if (data.length > 0) {
-                    $("#seleccionar").focus().click();
-                    //location.reload();
-                    $('#Error_Barras').text('');
-                    $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Codigo De Barras Existente</ul>');
-                }
-                else {
-                    $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccionar", function () {
-                        idItem = $(this).closest('tr').data('animation');
-                        contentItem = $(this).closest('tr').data('content');
-                        uni_IdtItem = $(this).closest('tr').data('keyboard');
-                        psubctItem = $(this).closest('tr').data('container');
-                        pcatItem = $(this).closest('tr').data('interval');
-                        pBarras = $(this).closest('tr').data('id');
-                        $("#prod_CodigoBarras").val(pBarras);
-                        $("#prod_Codigo").val(idItem);
+//$(function () {
+//    $('#prod_CodigoBarras').keydown(function (e) {
+//        if (e.keyCode == 13) {
+//            $("#prod_CodigoBarras").val();
+//            $("#seleccionar").focus().click();
+//            ///
+//            var tbProducto = GetCodigoBarras();
+//            console.log(tbProducto)
+//            $.ajax({
+//                url: "/Bodega/BuscarCodigoBarras",
+//                method: "POST",
+//                dataType: 'json',
+//                contentType: "application/json; charset=utf-8",
+//                data: JSON.stringify({
+//                                        GETCodigoBarras_Bod: tbProducto,
+//                                        GETCodigoBarras_Barras: tbProducto
+//                                     }),
+//            }).done(function (data) {
+//                if (data.length > 0) {
+//                    $("#prod_CodigoBarras").val();
+//                    $("#prod_Codigo").val();
+//                    $("#prod_Descripcion").val();
+//                    $("#uni_Id").val();
+//                    $("#pscat_Id").val();
+//                    $("#pcat_Id").val();
+//                    //location.reload();
+//                    $('#Error_Barras').text('');
+//                    $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Codigo De Barras Existente</ul>');
+//                }
+//                else {
+//                    $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccionar", function () {
+//                        idItem = $(this).closest('tr').data('animation');
+//                        contentItem = $(this).closest('tr').data('content');
+//                        uni_IdtItem = $(this).closest('tr').data('keyboard');
+//                        psubctItem = $(this).closest('tr').data('container');
+//                        pcatItem = $(this).closest('tr').data('interval');
+//                        pBarras = $(this).closest('tr').data('id');
+//                        $('#prod_CodigoBarras').val(pBarras);
+//            $('#prod_Codigo').val(idItem);
 
-                        $("#prod_Descripcion").val(contentItem);
-                        $("#uni_Id").val(uni_IdtItem);
-                        $("#pscat_Id").val(psubctItem);
-                        $("#pcat_Id").val(pcatItem);
+//            $('#prod_Descripcion').val(contentItem);
+//            $('#uni_Id').val(uni_IdtItem);
+//            $('#pscat_Id').val(psubctItem);
+//            $('#pcat_Id').val(pcatItem);
 
-                        //$("#cod").val(idItem);
-                    });
+//                        //$("#cod").val(idItem);
+//                    });
 
-                }
-            });
-            
-           
-            console.log('Hola');
-            $("#prod_CodigoBarras").val(pBarras);
-            $("#prod_Codigo").val(idItem);
-            $("#prod_Descripcion").val(contentItem);
-            $("#uni_Id").val(uni_IdtItem);
-            $("#pscat_Id").val(psubctItem);
-            $("#pcat_Id").val(pcatItem);
-            $("#entd_Cantidad").focus();
-            return false;
-        }
-    });
-});
-function GetCodigoBarras() {
-    var GETCodigoBarras = {
-        bod_Id: $('#bod_Id').val(),
-        prod_CodigoBarras: $('#prod_CodigoBarras').val(),
-    };
-    return GETCodigoBarras;
-}
+//                }
+//            });
+
+
+//            console.log('Hola');
+//            $('#prod_CodigoBarras').val(pBarras);
+//            $('#prod_Codigo').val(idItem);
+
+//            $('#prod_Descripcion').val(contentItem);
+//            $('#uni_Id').val(uni_IdtItem);
+//            $('#pscat_Id').val(psubctItem);
+//            $('#pcat_Id').val(pcatItem);
+//            return false;
+//        }
+//    });
+//});
+
 ///Fin
 
 
