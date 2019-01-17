@@ -66,6 +66,16 @@
     <Property Name="suc_Id" Type="int" />
     <Property Name="emp_Id" Type="smallint" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
       <PropertyRef Name="acte_Id" />
@@ -674,7 +684,7 @@
     <Property Name="fact_AlCredito" Type="bit" Nullable="false" />
     <Property Name="fact_DiasCredito" Type="int" Nullable="false" />
     <Property Name="fact_PorcentajeDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="fact_Vendedor" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fact_Vendedor" Type="varchar" MaxLength="50" />
     <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
     <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="fact_IdentidadTE" Type="nvarchar" MaxLength="26" />
@@ -886,6 +896,7 @@
     <Property Name="escre_Id" Type="tinyint" Nullable="false" />
     <Property Name="cred_FechaSolicitud" Type="datetime" Nullable="false" />
     <Property Name="cred_FechaAprobacion" Type="datetime" />
+    <Property Name="cred_FechaDenegacion" Type="datetime" />
     <Property Name="cred_MontoSolicitado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="cred_MontoAprobado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="cred_DiasSolicitado" Type="int" Nullable="false" />
@@ -1011,9 +1022,17 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_listExoneracion_Select' 
     <Key>
       <PropertyRef Name="Id" />
       <PropertyRef Name="Nombre" />
+      <PropertyRef Name="RTN/Identificacion" />
+      <PropertyRef Name="persona natural" />
+      <PropertyRef Name="persona comercial" />
+      <PropertyRef Name="apellido" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RTN/Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
+    <Property Name="persona natural" Type="bit" Nullable="false" />
+    <Property Name="persona comercial" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalles_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -3958,6 +3977,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="cred_FechaModifica" Type="datetime" Mode="In" />
     <Parameter Name="VariableError" Type="int" Mode="InOut" />
   </Function>
+  <Function Name="SDP_tbMunicipio_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="mun_Codigo" Type="char" Mode="In" />
+  </Function>
   <Function Name="spGetDenominacionesMoneda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="CodMoneda" Type="int" Mode="In" />
   </Function>
@@ -4156,6 +4178,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   <Function Name="crud_tbProductoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="SDP_Inv_tbSalidaDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="sald_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SDP_tbProductoCategoria_tbProductoSubCategoria_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="pcat_Id" Type="int" Mode="In" />
+  </Function>
   <Function Name="SDP_tbProductoSubcategoria_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pscat_Id" Type="int" Mode="In" />
   </Function>
@@ -4172,6 +4200,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   </Function>
   <Function Name="spGetProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spGetProducto_BodegaDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
   </Function>
   <Function Name="spGetSubCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
@@ -4452,6 +4483,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="sal_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="sal_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Inv_tbSalidaDetalle_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="sald_Id" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_Inv_tbSalidaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sal_Id" Type="int" Mode="In" />
     <Parameter Name="bodd_Id" Type="int" Mode="In" />
@@ -4545,6 +4579,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   <Function Name="spGetMunicipios1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="CodDepartamento" Type="char" Mode="In" />
   </Function>
+  <Function Name="spGetParametro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" />
   <Function Name="spGetProducto1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" StoreFunctionName="spGetProducto">
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
   </Function>
@@ -4797,6 +4832,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="fact_NombresTE" Type="nvarchar" Mode="In" />
     <Parameter Name="fact_FechaNacimientoTE" Type="date" Mode="In" />
     <Parameter Name="fact_EsAnulada" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="IDSucursal" Type="int" Mode="In" />
+    <Parameter Name="IDCAJA" Type="smallint" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbFactura_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
@@ -5175,6 +5214,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <EntitySet Name="tbRol" EntityType="Self.tbRol" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbRolesUsuario" EntityType="Self.tbRolesUsuario" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbUsuario" EntityType="Self.tbUsuario" Schema="Acce" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbActividadEconomica" EntityType="Self.tbActividadEconomica" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbBanco" EntityType="Self.tbBanco" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbCuentasBanco" EntityType="Self.tbCuentasBanco" Schema="Gral" store:Type="Tables" />
@@ -5265,7 +5305,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <EntitySet Name="UDP_Vent_listExoneracion_Select" EntityType="Self.UDP_Vent_listExoneracion_Select" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 
     [UDP_Vent_listExoneracion_Select].[Id] AS [Id], 
-    [UDP_Vent_listExoneracion_Select].[Nombre] AS [Nombre]
+    [UDP_Vent_listExoneracion_Select].[Nombre] AS [Nombre], 
+    [UDP_Vent_listExoneracion_Select].[RTN/Identificacion] AS [RTN/Identificacion], 
+    [UDP_Vent_listExoneracion_Select].[persona natural] AS [persona natural], 
+    [UDP_Vent_listExoneracion_Select].[persona comercial] AS [persona comercial], 
+    [UDP_Vent_listExoneracion_Select].[apellido] AS [apellido]
     FROM [Vent].[UDP_Vent_listExoneracion_Select] AS [UDP_Vent_listExoneracion_Select]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDP_Vent_SolicituEfectivo_Detalles_Select" EntityType="Self.UDP_Vent_SolicituEfectivo_Detalles_Select" store:Type="Views" store:Schema="Vent">

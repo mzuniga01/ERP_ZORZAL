@@ -2322,6 +2322,27 @@
       <Parameter Name="soled_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="soled_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <EntitySet Name="sysdiagrams" EntityType="ERP_ZORZALModel.sysdiagrams" />
+    <FunctionImport Name="SDP_tbMunicipio_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbMunicipio_Select_Result)">
+      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_Inv_tbSalidaDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_tbSalidaDetalle_Select_Result)">
+      <Parameter Name="sald_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_tbProductoCategoria_tbProductoSubCategoria_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbProductoCategoria_tbProductoSubCategoria_Select_Result)">
+      <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetProducto_BodegaDetalle" ReturnType="Collection(ERP_ZORZALModel.spGetProducto_BodegaDetalle_Result)">
+      <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Delete" ReturnType="Collection(Int32)">
+      <Parameter Name="sald_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetParametro" ReturnType="Collection(ERP_ZORZALModel.spGetParametro_Result)" />
+    <FunctionImport Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" ReturnType="Collection(String)">
+      <Parameter Name="IDSucursal" Mode="In" Type="Int32" />
+      <Parameter Name="IDCAJA" Mode="In" Type="Int16" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -3782,7 +3803,7 @@
     <Property Name="fact_AlCredito" Type="Boolean" Nullable="false" />
     <Property Name="fact_DiasCredito" Type="Int32" Nullable="false" />
     <Property Name="fact_PorcentajeDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-    <Property Name="fact_Vendedor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fact_Vendedor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
     <Property Name="clte_Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="fact_IdentidadTE" Type="String" MaxLength="26" FixedLength="false" Unicode="true" />
@@ -4078,6 +4099,7 @@
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudCredito_cred_UsuarioModifica" FromRole="tbSolicitudCredito" ToRole="tbUsuario" />
     <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbSolicitudCredito_tbCliente_clte_Id" FromRole="tbSolicitudCredito" ToRole="tbCliente" />
     <NavigationProperty Name="tbEstadoSolicitudCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbSolicitudCredito_tbEstadoSolicitudCredito_escre_Id" FromRole="tbSolicitudCredito" ToRole="tbEstadoSolicitudCredito" />
+    <Property Name="cred_FechaDenegacion" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="tbSolicitudEfectivo">
     <Key>
@@ -6817,9 +6839,17 @@
     <Key>
       <PropertyRef Name="Id" />
       <PropertyRef Name="Nombre" />
+      <PropertyRef Name="RTN_Identificacion" />
+      <PropertyRef Name="persona_natural" />
+      <PropertyRef Name="persona_comercial" />
+      <PropertyRef Name="apellido" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RTN_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="persona_natural" Type="Boolean" Nullable="false" />
+    <Property Name="persona_comercial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="UDP_Vent_SolicituEfectivo_Detalles_Select">
     <Key>
@@ -6990,5 +7020,84 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <ComplexType Name="SDP_tbMunicipio_Select_Result">
+    <Property Type="String" Name="mun_Codigo" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="dep_Codigo" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="150" />
+    <Property Type="Int32" Name="mun_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="mun_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="mun_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="mun_FechaModifica" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="SDP_Inv_tbSalidaDetalle_Select_Result">
+    <Property Type="Int32" Name="sald_Id" Nullable="false" />
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="prod_Marca" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="prod_Modelo" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="prod_Talla" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Color" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+    <Property Type="Decimal" Name="sal_Cantidad" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="String" Name="box_Codigo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="SDP_tbProductoCategoria_tbProductoSubCategoria_Select_Result">
+    <Property Type="Int32" Name="pcat_Id" Nullable="false" />
+    <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="pcat_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="pcat_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="pcat_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="pcat_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="Byte" Name="pcat_EsActivo" Nullable="false" />
+    <Property Type="Int32" Name="pscat_Id" Nullable="false" />
+    <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="pcat_Id1" Nullable="false" />
+    <Property Type="Byte" Name="pscat_EsActiva" Nullable="false" />
+    <Property Type="Int32" Name="pscat_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="pscat_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="pscat_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="pscat_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="pscat_ISV" Nullable="false" Precision="5" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="spGetProducto_BodegaDetalle_Result">
+    <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spGetParametro_Result">
+    <Property Type="Byte" Name="par_Id" Nullable="false" />
+    <Property Type="String" Name="par_NombreEmpresa" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="par_TelefonoEmpresa" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="par_CorreoEmpresa" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="par_PathLogo" Nullable="false" MaxLength="100" />
+    <Property Type="Int16" Name="mnda_Id" Nullable="false" />
+    <Property Type="Int32" Name="par_RolGerenteTienda" Nullable="false" />
+    <Property Type="Int32" Name="par_RolCreditoCobranza" Nullable="false" />
+    <Property Type="Int32" Name="par_RolSupervisorCaja" Nullable="false" />
+    <Property Type="Int32" Name="par_RolCajero" Nullable="false" />
+    <Property Type="Int32" Name="par_RolAuditor" Nullable="false" />
+    <Property Type="Int16" Name="par_SucursalPrincipal" Nullable="false" />
+    <Property Type="Int32" Name="par_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="par_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="par_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="par_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="par_PorcentajeDescuentoTE" Nullable="true" Precision="5" Scale="2" />
+    <Property Type="Int32" Name="par_IdConsumidorFinal" Nullable="true" />
   </ComplexType>
 </Schema>

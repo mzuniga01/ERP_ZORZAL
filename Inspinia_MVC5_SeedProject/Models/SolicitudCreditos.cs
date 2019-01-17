@@ -29,6 +29,14 @@ namespace ERP_GMEDINA.Models
             DataFormatString = "{0:dd/MM/yyyy}",
             HtmlEncode = false)]
         public System.DateTime cred_FechaSolicitud { get; set; }
+        /// <summary>
+        /// //////////fecha denegacion
+        /// </summary>
+        /// 
+        [Display(Name = "Fecha Denegación")]
+        public Nullable<System.DateTime>cred_FechaDenegacion { get; set; }
+
+
         [Display(Name = "Fecha Aprobación")]
         //      [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true,

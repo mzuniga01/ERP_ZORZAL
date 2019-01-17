@@ -99,6 +99,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_Busqueda_Clientes> UDV_Vent_Busqueda_Clientes { get; set; }
         public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
         public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {
@@ -5016,6 +5017,69 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("soled_FechaCrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result>("UDP_Vent_tbSolicitudEfectivoDetalle_Update", soled_IdParameter, deno_IdParameter, soled_CantidadSolicitadaParameter, soled_CantidadEntregadaParameter, soled_MontoEntregadoParameter, soled_UsuarioCreaParameter, soled_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<SDP_tbMunicipio_Select_Result> SDP_tbMunicipio_Select(string mun_Codigo)
+        {
+            var mun_CodigoParameter = mun_Codigo != null ?
+                new ObjectParameter("mun_Codigo", mun_Codigo) :
+                new ObjectParameter("mun_Codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbMunicipio_Select_Result>("SDP_tbMunicipio_Select", mun_CodigoParameter);
+        }
+    
+        public virtual ObjectResult<SDP_Inv_tbSalidaDetalle_Select_Result> SDP_Inv_tbSalidaDetalle_Select(Nullable<int> sald_Id)
+        {
+            var sald_IdParameter = sald_Id.HasValue ?
+                new ObjectParameter("sald_Id", sald_Id) :
+                new ObjectParameter("sald_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_tbSalidaDetalle_Select_Result>("SDP_Inv_tbSalidaDetalle_Select", sald_IdParameter);
+        }
+    
+        public virtual ObjectResult<SDP_tbProductoCategoria_tbProductoSubCategoria_Select_Result> SDP_tbProductoCategoria_tbProductoSubCategoria_Select(Nullable<int> pcat_Id)
+        {
+            var pcat_IdParameter = pcat_Id.HasValue ?
+                new ObjectParameter("pcat_Id", pcat_Id) :
+                new ObjectParameter("pcat_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbProductoCategoria_tbProductoSubCategoria_Select_Result>("SDP_tbProductoCategoria_tbProductoSubCategoria_Select", pcat_IdParameter);
+        }
+    
+        public virtual ObjectResult<spGetProducto_BodegaDetalle_Result> spGetProducto_BodegaDetalle(string prod_CodigoBarras)
+        {
+            var prod_CodigoBarrasParameter = prod_CodigoBarras != null ?
+                new ObjectParameter("prod_CodigoBarras", prod_CodigoBarras) :
+                new ObjectParameter("prod_CodigoBarras", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetProducto_BodegaDetalle_Result>("spGetProducto_BodegaDetalle", prod_CodigoBarrasParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> UDP_Inv_tbSalidaDetalle_Delete(Nullable<int> sald_Id)
+        {
+            var sald_IdParameter = sald_Id.HasValue ?
+                new ObjectParameter("sald_Id", sald_Id) :
+                new ObjectParameter("sald_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Inv_tbSalidaDetalle_Delete", sald_IdParameter);
+        }
+    
+        public virtual ObjectResult<spGetParametro_Result> spGetParametro()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetParametro_Result>("spGetParametro");
+        }
+    
+        public virtual ObjectResult<string> UDP_Vent_tbFactura_ObtenerCai_CodigoFactura(Nullable<int> iDSucursal, Nullable<short> iDCAJA)
+        {
+            var iDSucursalParameter = iDSucursal.HasValue ?
+                new ObjectParameter("IDSucursal", iDSucursal) :
+                new ObjectParameter("IDSucursal", typeof(int));
+    
+            var iDCAJAParameter = iDCAJA.HasValue ?
+                new ObjectParameter("IDCAJA", iDCAJA) :
+                new ObjectParameter("IDCAJA", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Vent_tbFactura_ObtenerCai_CodigoFactura", iDSucursalParameter, iDCAJAParameter);
         }
     }
 }

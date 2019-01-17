@@ -17,6 +17,7 @@ namespace ERP_GMEDINA.Models
         public int cred_Id { get; set; }
         public int clte_Id { get; set; }
         public byte escre_Id { get; set; }
+        public Nullable<System.DateTime>cred_FechaDenegacion { get; set; }
         public System.DateTime cred_FechaSolicitud { get; set; }
         public Nullable<System.DateTime> cred_FechaAprobacion { get; set; }
         public decimal cred_MontoSolicitado { get; set; }

@@ -10,15 +10,15 @@
 namespace ERP_GMEDINA.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class UDP_Vent_listExoneracion_Select
+    public partial class SDP_tbMunicipio_Select_Result
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string RTN_Identificacion { get; set; }
-        public bool persona_natural { get; set; }
-        public string persona_comercial { get; set; }
-        public string apellido { get; set; }
+        public string mun_Codigo { get; set; }
+        public string dep_Codigo { get; set; }
+        public string mun_Nombre { get; set; }
+        public int mun_UsuarioCrea { get; set; }
+        public System.DateTime mun_FechaCrea { get; set; }
+        public Nullable<int> mun_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> mun_FechaModifica { get; set; }
     }
 }

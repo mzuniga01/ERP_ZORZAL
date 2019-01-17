@@ -330,6 +330,15 @@
     <Compile Include="Models\SDP_Acce_GetUserRols_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SDP_Inv_tbSalidaDetalle_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SDP_tbMunicipio_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SDP_tbProductoCategoria_tbProductoSubCategoria_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SDP_tbProductoSubcategoria_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -354,7 +363,13 @@
     <Compile Include="Models\spGetMunicipios1_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\spGetParametro_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\spGetProducto1_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetProducto_BodegaDetalle_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SPGetResponsableBodega_Result.cs">
@@ -376,6 +391,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sucursal.cs" />
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1141,6 +1159,8 @@
     <Content Include="Scripts\app\PuntoEmisionDetalle.js" />
     <Content Include="Scripts\app\SaveDetallePedido.js" />
     <Content Include="Scripts\app\SavePedidoDetalle.js" />
+    <Content Include="Scripts\app\SolicituCreditoDenegar.js" />
+    <Content Include="Scripts\app\SolicitudCredito.js" />
     <Content Include="Scripts\app\SolicitudEfectivo.js" />
     <Content Include="Scripts\app\SolicitudEfectivoDetalles.js" />
     <Content Include="Scripts\app\SolicitudEfectivoEsAnulada.js" />

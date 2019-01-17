@@ -10,15 +10,14 @@
 namespace ERP_GMEDINA.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class UDP_Vent_listExoneracion_Select
+    public partial class spGetProducto_BodegaDetalle_Result
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string RTN_Identificacion { get; set; }
-        public bool persona_natural { get; set; }
-        public string persona_comercial { get; set; }
-        public string apellido { get; set; }
+        public string prod_CodigoBarras { get; set; }
+        public string prod_Codigo { get; set; }
+        public string prod_Descripcion { get; set; }
+        public string pscat_Descripcion { get; set; }
+        public string uni_Descripcion { get; set; }
+        public string pcat_Nombre { get; set; }
     }
 }

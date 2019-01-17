@@ -16,37 +16,18 @@
         @Html.HiddenFor(model => model.cred_FechaModifica)
 
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("clte_Id", String.Empty)
-                    @Html.ValidationMessageFor(model => model.clte_Id)
-                </div>
-            </div>*@
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.escre_Id, "escre_Id", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("escre_Id", String.Empty)
-                    @Html.ValidationMessageFor(model => model.escre_Id)
-                </div>
-            </div>*@
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.cred_FechaSolicitud, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.cred_FechaSolicitud)
-                    @Html.ValidationMessageFor(model => model.cred_FechaSolicitud)
-                </div>
-            </div>*@
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.cred_FechaAprobacion, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.cred_FechaAprobacion)
-                    @Html.ValidationMessageFor(model => model.cred_FechaAprobacion)
-                </div>
-            </div>*@
+        <div class="form-group">
+            <label class="control-label col-md-2">Usuario</label>
+            <div class="col-md-10">
+                <input class="col-md-5 form-control" id="" type="text"  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Contraseña</label>
+            <div class="col-md-10">
+                <input class="col-md-5 form-control" id="" type="password"  />
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.cred_MontoSolicitado, new { @class = "control-label col-md-2" })

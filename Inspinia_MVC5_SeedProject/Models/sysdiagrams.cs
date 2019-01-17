@@ -12,13 +12,12 @@ namespace ERP_GMEDINA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UDP_Vent_listExoneracion_Select
+    public partial class sysdiagrams
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string RTN_Identificacion { get; set; }
-        public bool persona_natural { get; set; }
-        public string persona_comercial { get; set; }
-        public string apellido { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
