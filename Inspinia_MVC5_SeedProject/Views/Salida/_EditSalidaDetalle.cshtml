@@ -11,16 +11,16 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.prod_Codigo)
+                                    @Html.DisplayNameFor(model => model.bodd_Id)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
+                                    @Html.DisplayNameFor(model => model.tbBodegaDetalle.tbProducto.prod_Descripcion)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Marca)
+                                    @Html.DisplayNameFor(model => model.tbBodegaDetalle.tbProducto.prod_Marca)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Modelo)
+                                    @Html.DisplayNameFor(model => model.tbBodegaDetalle.tbProducto.prod_Modelo)
                                 </th>
                                 <th>
                                     Acciones
@@ -31,15 +31,15 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre">
+                                <tr tr data-id="@item.tbBodegaDetalle.prod_Codigo" , tr data-content="@item.tbBodegaDetalle.tbProducto.prod_Descripcion" , tr data-container="@item.tbBodegaDetalle.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbBodegaDetalle.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbBodegaDetalle.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre">
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                        @Html.DisplayFor(modelItem => item.tbBodegaDetalle.tbProducto.prod_Descripcion)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Marca)
+                                        @Html.DisplayFor(modelItem => item.tbBodegaDetalle.tbProducto.prod_Marca)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Modelo)
+                                        @Html.DisplayFor(modelItem => item.tbBodegaDetalle.tbProducto.prod_Modelo)
                                     </td>
                                     <th>
                                         @Html.DisplayFor(modelItem => item.sal_Cantidad)
@@ -60,7 +60,7 @@
                                                     </button>
                                                 </div>
                                                 <div id="EditarProductoSalidaDetalle" class="modal-body">
-                                                    @Html.Partial("_EditProductoSalidaDetalle", new ERP_GMEDINA.Models.tbSalidaDetalle() { sald_Id = item.sald_Id, sal_Cantidad = item.sal_Cantidad, prod_Codigo = item.prod_Codigo, sal_Id = item.sal_Id})
+                                                    @Html.Partial("_EditProductoSalidaDetalle", new ERP_GMEDINA.Models.tbSalidaDetalle() { sald_Id = item.sald_Id, sal_Cantidad = item.sal_Cantidad, bodd_Id = item.bodd_Id, sal_Id = item.sal_Id})
                                                 </div>
                                             </div>
                                         </div>

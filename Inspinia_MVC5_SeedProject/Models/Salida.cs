@@ -19,11 +19,11 @@ namespace ERP_GMEDINA.Models
         public int sal_Id { get; set; }
 
         [Display(Name = "Bodega")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int bod_Id { get; set; }
 
         [Display(Name = "N# de Factura")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public long fact_Id { get; set; }
 
         [Display(Name = "Fecha de Salida")]
@@ -43,6 +43,15 @@ namespace ERP_GMEDINA.Models
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string sal_RazonDevolucion { get; set; }
 
+        [Display(Name = "Bodega de Destino")]
+        public int sal_BodDestino { get; set; }
+
+        [Display(Name = "EsAnulado?")]
+        public bool sal_EsAnulada { get; set; }
+
+        [Display(Name = "Razon de Anulacion")]
+        public string sal_RazonAnulada { get; set; }
+        
         [Display(Name = "Creado por")]
         public int sal_UsuarioCrea { get; set; }
 

@@ -32,6 +32,6 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> sald_UsuarioModifica { get; set; }
         [Display(Name = "Modificado el")]
         public Nullable<System.DateTime> sald_FechaModifica { get; set; }
-        public virtual tbProducto tbProducto { get; set; }
+
     }
 }

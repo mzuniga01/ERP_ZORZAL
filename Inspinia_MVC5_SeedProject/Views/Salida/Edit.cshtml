@@ -120,8 +120,29 @@
                                     </div>
 
                                 </fieldset>
-                            </div>
 
+                                
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
+                                    <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular" value="Anular" />
+                                    @{
+                                        var Activo = Model.estm_Id;
+                                        if (Activo == 4)
+                                        {
+                                            <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalInactivar" value="Inactivar" />
+                                        }
+                                        else if (Activo == 3)
+                                        {
+                                            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalActivar" value="Activar" />
+                                        }
+                                    }
+
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
 
 
                             @* Llama la vista  *@
@@ -142,13 +163,6 @@
                             </div>
 
                             @*botones*@
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                </div>
-                            </div>
 
                             <br />
                     }
@@ -158,7 +172,80 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="ModalAplicar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Desea Aplicar la Salida</h4>
+            </div>
+            <div class="modal-body" id="frmBuscarProducto">
+                @Html.ActionLink("Si", "Aplicar", new { id = Model.sal_Id }, new { @class = "btn btn-primary btn-xs" });
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="modal fade" id="ModalAnular" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Desea Anular la Salida la Salida</h4>
+            </div>
+            <div class="modal-body" id="frmBuscarProducto">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sal_RazonAnulada, "Razon de Anulacion", new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.sal_RazonAnulada)
+                        @Html.ValidationMessageFor(model => model.sal_RazonAnulada)
+                    </div>
+                </div>
+                @Html.ActionLink("Si", "Anular", new { id = Model.sal_Id }, new { @class = "btn btn-primary btn-xs" });
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalActivar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Desea Anular la Salida la Salida</h4>
+            </div>
+            <div class="modal-body" id="frmBuscarProducto">
+                @Html.ActionLink("Si", "Activar", new { id = Model.sal_Id }, new { @class = "btn btn-primary btn-xs" });
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalInactivar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Desea Anular la Salida la Salida</h4>
+            </div>
+            <div class="modal-body" id="frmBuscarProducto">
+                @Html.ActionLink("Si", "Inactivar", new { id = Model.sal_Id }, new { @class = "btn btn-primary btn-xs" });
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>

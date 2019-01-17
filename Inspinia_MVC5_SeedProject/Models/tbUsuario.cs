@@ -54,6 +54,11 @@ namespace ERP_GMEDINA.Models
             this.tbListaPrecio1 = new HashSet<tbListaPrecio>();
             this.tbMoneda = new HashSet<tbMoneda>();
             this.tbMoneda1 = new HashSet<tbMoneda>();
+            this.tbMovimientoCaja = new HashSet<tbMovimientoCaja>();
+            this.tbMovimientoCaja1 = new HashSet<tbMovimientoCaja>();
+            this.tbMovimientoCaja2 = new HashSet<tbMovimientoCaja>();
+            this.tbMovimientoCaja3 = new HashSet<tbMovimientoCaja>();
+            this.tbMovimientoCaja4 = new HashSet<tbMovimientoCaja>();
             this.tbNotaCredito = new HashSet<tbNotaCredito>();
             this.tbNotaCredito1 = new HashSet<tbNotaCredito>();
             this.tbPago = new HashSet<tbPago>();
@@ -62,6 +67,8 @@ namespace ERP_GMEDINA.Models
             this.tbTipoPago1 = new HashSet<tbTipoPago>();
             this.tbPagosArqueo = new HashSet<tbPagosArqueo>();
             this.tbPagosArqueo1 = new HashSet<tbPagosArqueo>();
+            this.tbPedido = new HashSet<tbPedido>();
+            this.tbPedido1 = new HashSet<tbPedido>();
             this.tbPedidoDetalle = new HashSet<tbPedidoDetalle>();
             this.tbPedidoDetalle1 = new HashSet<tbPedidoDetalle>();
             this.tbSolicitudCredito = new HashSet<tbSolicitudCredito>();
@@ -130,13 +137,6 @@ namespace ERP_GMEDINA.Models
             this.tbPuntoEmisionDetalle1 = new HashSet<tbPuntoEmisionDetalle>();
             this.tbCliente = new HashSet<tbCliente>();
             this.tbCliente1 = new HashSet<tbCliente>();
-            this.tbPedido = new HashSet<tbPedido>();
-            this.tbPedido1 = new HashSet<tbPedido>();
-            this.tbMovimientoCaja = new HashSet<tbMovimientoCaja>();
-            this.tbMovimientoCaja1 = new HashSet<tbMovimientoCaja>();
-            this.tbMovimientoCaja2 = new HashSet<tbMovimientoCaja>();
-            this.tbMovimientoCaja3 = new HashSet<tbMovimientoCaja>();
-            this.tbMovimientoCaja4 = new HashSet<tbMovimientoCaja>();
         }
     
         public int usu_Id { get; set; }
@@ -229,6 +229,16 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbMoneda> tbMoneda1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbMovimientoCaja> tbMovimientoCaja { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbMovimientoCaja> tbMovimientoCaja1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbMovimientoCaja> tbMovimientoCaja2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbMovimientoCaja> tbMovimientoCaja3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbMovimientoCaja> tbMovimientoCaja4 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbNotaCredito> tbNotaCredito { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbNotaCredito> tbNotaCredito1 { get; set; }
@@ -244,6 +254,10 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbPagosArqueo> tbPagosArqueo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPagosArqueo> tbPagosArqueo1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPedido> tbPedido { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPedido> tbPedido1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedidoDetalle> tbPedidoDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -381,19 +395,5 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbCliente> tbCliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCliente> tbCliente1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbPedido> tbPedido { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbPedido> tbPedido1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbMovimientoCaja> tbMovimientoCaja { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbMovimientoCaja> tbMovimientoCaja1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbMovimientoCaja> tbMovimientoCaja2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbMovimientoCaja> tbMovimientoCaja3 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbMovimientoCaja> tbMovimientoCaja4 { get; set; }
     }
 }

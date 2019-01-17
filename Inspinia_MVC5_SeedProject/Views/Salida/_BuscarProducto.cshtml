@@ -30,9 +30,10 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
+                               
+                                    <tr tr data-boddid="@item.bodd_Id"  , tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre">
+                                     <td>
+                                        @Html.DisplayFor(modelItem => item.prod_Codigo)
                                     </td>
                                       <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)

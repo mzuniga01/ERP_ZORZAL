@@ -55,8 +55,8 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbFactura> tbFactura { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbNotaCredito> tbNotaCredito { get; set; }
-        public virtual tbPuntoEmision tbPuntoEmision { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedido> tbPedido { get; set; }
+        public virtual tbPuntoEmision tbPuntoEmision { get; set; }
     }
 }

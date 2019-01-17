@@ -40,7 +40,7 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Salida/Create
         public ActionResult Create()
         {
-            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+            ViewBag.sal_BodDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre");
             ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
@@ -51,7 +51,6 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.sal_Id = new SelectList(db.tbProductoSubcategoria, "sal_Id", "sal_Id");
             ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
-            ViewBag.bod_Idd = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             ViewBag.Producto = db.tbBodegaDetalle.ToList();
 
             return View();
@@ -75,13 +74,14 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "bod_Id,fact_Id,sal_FechaElaboracion,estm_Id,tsal_Id,sal_RazonDevolucion")] tbSalida tbSalida)
+        public ActionResult Create([Bind(Include = "bod_Id,fact_Id,sal_FechaElaboracion,estm_Id,tsal_Id,sal_RazonDevolucion, sal_BodDestino, sal_EsAnulada, sal_RazonAnulada")] tbSalida tbSalida)
         {
-            ViewBag.bod_Nombre = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+            ViewBag.sal_BodDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             ViewBag.box_Codigo = new SelectList(db.tbBox, "box_Codigo", "box_Descripcion");
             ViewBag.estm_Descripcion = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
             ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
+            ViewBag.Producto = db.tbBodegaDetalle.ToList();
 
             var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
             var MensajeError = "0";
@@ -94,7 +94,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     using (TransactionScope Tran = new TransactionScope())
                     {
-                        listSalida = db.UDP_Inv_tbSalida_Insert(tbSalida.bod_Id, tbSalida.fact_Id, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.tsal_Id, tbSalida.sal_RazonDevolucion);
+                        listSalida = db.UDP_Inv_tbSalida_Insert(tbSalida.bod_Id, tbSalida.fact_Id, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.tsal_Id, tbSalida.sal_BodDestino, tbSalida.sal_EsAnulada, tbSalida.sal_RazonAnulada, tbSalida.sal_RazonDevolucion);
                         foreach (UDP_Inv_tbSalida_Insert_Result Salida in listSalida)
                             MensajeError = Salida.MensajeError;
                         if (MensajeError == "-1")
@@ -148,20 +148,14 @@ namespace ERP_GMEDINA.Controllers
                 catch (Exception Ex)
                 {
                     ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
-                    ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-                    ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-                    ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
 
-                    ViewBag.Denominacion = db.tbDenominacion.ToList();
-                    List<tbMoneda> MonedaList = db.tbMoneda.ToList();
-                    ViewBag.MonedaList = new SelectList(MonedaList, "mnda_Id", "mnda_Nombre");
-
-                    ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
+                    ViewBag.Producto = db.tbBodegaDetalle.ToList();
                 }
 
             }
             else
             {
+                ViewBag.Producto = db.tbBodegaDetalle.ToList();
                 var errors = ModelState.Values.SelectMany(v => v.Errors);
             }
             return View(tbSalida);
@@ -270,17 +264,17 @@ namespace ERP_GMEDINA.Controllers
                     var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Inv_tbSalida_Update(tbSalida.sal_Id,
-                                                        tbSalida.bod_Id,
-                                                        tbSalida.fact_Id,
-                                                        tbSalida.sal_FechaElaboracion,
-                                                        tbSalida.estm_Id,
-                                                        tbSalida.tsal_Id,
-                                                        tbSalida.sal_BodDestino,
-                                                        tbSalida.sal_EsAnulada,
-                                                        tbSalida.sal_RazonDevolucion,
-                                                        tbSalida.sal_RazonAnulada,
-                                                        pSalida.sal_UsuarioCrea,
-                                                        pSalida.sal_FechaCrea);
+                                                    tbSalida.bod_Id, 
+                                                    tbSalida.fact_Id, 
+                                                    tbSalida.sal_FechaElaboracion, 
+                                                    tbSalida.estm_Id, 
+                                                    tbSalida.tsal_Id, 
+                                                    tbSalida.sal_BodDestino, 
+                                                    tbSalida.sal_EsAnulada, 
+                                                    tbSalida.sal_RazonAnulada, 
+                                                    tbSalida.sal_RazonDevolucion,
+                                                    pSalida.sal_UsuarioCrea,
+                                                    pSalida.sal_FechaCrea);
 
                     foreach (UDP_Inv_tbSalida_Update_Result ListaPrecio in list)
                         MensajeError = ListaPrecio.MensajeError;
@@ -315,8 +309,150 @@ namespace ERP_GMEDINA.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Aplicar(int? id)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var MensajeError = "";
+                    byte Estado = 2;
+                    IEnumerable<object> list = null;
+                    tbSalida tbSalida = db.tbSalida.Find(id);
+                    list = db.UDP_Inv_tbSalida_Update(tbSalida.sal_Id,
+                                                    tbSalida.bod_Id,
+                                                    tbSalida.fact_Id,
+                                                    tbSalida.sal_FechaElaboracion,
+                                                    Estado,
+                                                    tbSalida.tsal_Id,
+                                                    tbSalida.sal_BodDestino,
+                                                    tbSalida.sal_EsAnulada,
+                                                    tbSalida.sal_RazonAnulada,
+                                                    tbSalida.sal_RazonDevolucion,
+                                                    tbSalida.sal_UsuarioCrea,
+                                                    tbSalida.sal_FechaCrea);
+
+                    foreach (UDP_Inv_tbSalida_Update_Result Salida in list)
+                        MensajeError = Salida.MensajeError;
+                    if (MensajeError == "-1")
+                    {
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
+                }
+
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+
+        }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Imprimir(int? id)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var MensajeError = "";
+                    byte Estado = 3;
+                    IEnumerable<object> list = null;
+                    tbSalida tbSalida = db.tbSalida.Find(id);
+                    list = db.UDP_Inv_tbSalida_Update(tbSalida.sal_Id,
+                                                    tbSalida.bod_Id,
+                                                    tbSalida.fact_Id,
+                                                    tbSalida.sal_FechaElaboracion,
+                                                    Estado,
+                                                    tbSalida.tsal_Id,
+                                                    tbSalida.sal_BodDestino,
+                                                    tbSalida.sal_EsAnulada,
+                                                    tbSalida.sal_RazonAnulada,
+                                                    tbSalida.sal_RazonDevolucion,
+                                                    tbSalida.sal_UsuarioCrea,
+                                                    tbSalida.sal_FechaCrea);
+
+                    foreach (UDP_Inv_tbSalida_Update_Result Salida in list)
+                        MensajeError = Salida.MensajeError;
+                    if (MensajeError == "-1")
+                    {
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
+                }
+
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+
+        }
+
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Anular(int? id,[Bind(Include = "sal_Id, bod_Id,fact_Id,sal_FechaElaboracion,estm_Id,tsal_Id,sal_RazonDevolucion, sal_UsuarioCrea, sal_FechaCrea")] tbSalida tbSalida)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var MensajeError = "";
+                    bool EsAnulada = true;
+                    IEnumerable<object> list = null;
+                    tbSalida vSalida = db.tbSalida.Find(id);
+                    list = db.UDP_Inv_tbSalida_Update(vSalida.sal_Id,
+                                                    vSalida.bod_Id,
+                                                    vSalida.fact_Id,
+                                                    vSalida.sal_FechaElaboracion,
+                                                    vSalida.estm_Id,
+                                                    vSalida.tsal_Id,
+                                                    vSalida.sal_BodDestino,
+                                                    EsAnulada,
+                                                    tbSalida.sal_RazonAnulada,
+                                                    vSalida.sal_RazonDevolucion,
+                                                    vSalida.sal_UsuarioCrea,
+                                                    vSalida.sal_FechaCrea);
+
+                    foreach (UDP_Inv_tbSalida_Update_Result Salida in list)
+                        MensajeError = Salida.MensajeError;
+                    if (MensajeError == "-1")
+                    {
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
+                }
+
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+
+        }
 
         [HttpPost]
         public JsonResult SaveSalidaDetalle(tbSalidaDetalle SalidaDetalle)

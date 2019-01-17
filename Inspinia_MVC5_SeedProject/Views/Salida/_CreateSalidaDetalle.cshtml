@@ -11,32 +11,13 @@
                 </div>
                 <div class="ibox-content">
                     <div class="form-horizontal">
-                        @*<div class="form-group">
-                            @Html.LabelFor(model => model.ent_Id, "Salida", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.DropDownList("ent_Id", (IEnumerable<SelectListItem>)ViewBag.ent_Id, "Selecione", new { @class = "form-control", @readonly = "readonly" })
-                                <div id="validationSalida">
-                                    @Html.ValidationMessageFor(model => model.ent_Id)
-                                </div>
-
-                            </div>*@
-
-                        @*<div class="form-group">
-                                @Html.LabelFor(model => model.ent_Id, "Salida", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("ent_Id", (IEnumerable<SelectListItem>)ViewBag.ent_Id, "Selecione", new { @class = "form-control", @readonly = "readonly" })
-                                    <div id="validationSalida">
-                                        @Html.ValidationMessageFor(model => model.ent_Id)
-                                    </div>
-
-                                </div>
-                            </div>*@
                         <div class="form-group">
-                            @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
+                            <input type="text" id="bodd_Id" placeholder="" class="form-control" />
+                            @Html.LabelFor(model => model.tbBodegaDetalle.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 <input type="text" id="prod_Codigo" placeholder="" class="form-control" />
                                 <div id="validationcodigoproducto">
-                                    @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                    @Html.ValidationMessageFor(model => model.tbBodegaDetalle.prod_Codigo)
                                 </div>
                             </div>
                             <div class="col-md-1">
@@ -44,15 +25,15 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.tbBodegaDetalle.tbProducto.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 <input type="text" id="prod_Descripcion" placeholder="" class="form-control" readonly />
-                                @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
+                                @Html.ValidationMessageFor(model => model.tbBodegaDetalle.tbProducto.prod_Descripcion)
                             </div>
-                            @Html.LabelFor(model => model.tbProducto.pscat_Id, "Subcategoria", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.tbBodegaDetalle.tbProducto.pscat_Id, "Subcategoria", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 <input type="text" id="pscat_Id" placeholder="" class="form-control" readonly />
-                                @Html.ValidationMessageFor(model => model.tbProducto.pscat_Id)
+                                @Html.ValidationMessageFor(model => model.tbBodegaDetalle.tbProducto.pscat_Id)
                             </div>
                         </div>
                         <div class="form-group">
@@ -63,18 +44,18 @@
                                     @Html.ValidationMessageFor(model => model.sal_Cantidad)
                                 </div>
                             </div>
-                            @Html.LabelFor(model => model.tbProducto.tbProductoSubcategoria.tbProductoCategoria, "Categoria", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.tbBodegaDetalle.tbProducto.tbProductoSubcategoria.tbProductoCategoria, "Categoria", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 <input type="text" id="pcat_Id" placeholder="" class="form-control" readonly />
-                                @Html.ValidationMessageFor(model => model.tbProducto.pscat_Id)
+                                @Html.ValidationMessageFor(model => model.tbBodegaDetalle.tbProducto.pscat_Id)
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.tbBodegaDetalle.tbProducto.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @*@Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, "Seleccione", new { @class = "form-control" })*@
                                 <input type="text" id="uni_Id" placeholder="" class="form-control" readonly />
-                                @Html.ValidationMessageFor(model => model.tbProducto.uni_Id)
+                                @Html.ValidationMessageFor(model => model.tbBodegaDetalle.tbProducto.uni_Id)
                             </div>
                             <div class="form-group col-md-1">
                                 <button class="btn btn-primary" type="button" id="AgregarSalidaDetalle">Registrar</button>
@@ -109,8 +90,8 @@
                 </button>
                 <h4 class="modal-title" id="myModalLabel">Buscar Productos</h4>
             </div>
-            <div class="modal-body" id="frmEditarMunicipios">
-                @Html.Partial("_BuscarProducto", (List<tbBodegaDetalle>)ViewBag.Producto)
+            <div class="modal-body" id="frmBuscarProducto">
+                @Html.Partial("_BuscarProducto", (List<ERP_GMEDINA.Models.tbBodegaDetalle>)ViewBag.Producto)
             </div>
         </div>
     </div>

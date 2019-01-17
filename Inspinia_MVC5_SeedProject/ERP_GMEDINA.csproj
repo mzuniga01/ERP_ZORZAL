@@ -554,6 +554,9 @@
     <Compile Include="Models\UDP_Acce_tbRol_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Acce_tbUsuario_Estado_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Acce_tbUsuario_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -708,6 +711,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbProveedor_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Inv_tbSalidaDetalle_Delete_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbSalidaDetalle_Insert_Result.cs">
@@ -1012,6 +1018,7 @@
     <Content Include="Scripts\app\RolesUsuario.js" />
     <Content Include="Scripts\app\RolObjetosEdit.js" />
     <Content Include="Scripts\app\RolObjetos.js" />
+    <Content Include="Scripts\app\Salida.js" />
     <Content Include="Scripts\app\SalidaDetalle.js" />
     <Content Include="Scripts\app\search.js" />
     <Content Include="Scripts\app\SubCategoriaProducto.js" />
@@ -1397,11 +1404,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59911</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:59328/</IISUrl>
+          <IISUrl>http://localhost:59913/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

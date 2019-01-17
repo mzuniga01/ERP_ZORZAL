@@ -1,23 +1,47 @@
 ﻿var contador = 0;
 
-$().change(function () {
-    if($('tsal_Id').val('Devolucion'))
-    {
-        $('sal_RazonDevolucion').show;
-    }
-    else
-    {
-        $('sal_RazonDevolucion').hide;
-    }
+$(document).ready(function () {
+    $('#Table_BuscarProducto').DataTable(
+        {
+            "searching": false,
+            "lengthChange": false,
 
-})
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
 
+            }
+        });
+
+    var $rows = $('#Table_BuscarProducto tr');
+    $("#search").keyup(function () {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+        $rows.show().filter(function () {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
+        //$rows.show().filter(function () {
+        //    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        //    return !~text.indexOf(val);
+        //}).hide();
+
+    });
+});
 $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", function () {
+    bodd_IdItem = $(this).closest('tr').data('boddid');
     idItem = $(this).closest('tr').data('id');
     contentItem = $(this).closest('tr').data('content');
     uni_IdtItem = $(this).closest('tr').data('keyboard');
     psubctItem = $(this).closest('tr').data('container');
     pcatItem = $(this).closest('tr').data('pcat');
+    $("#bodd_Id").val(bodd_IdItem);
     $("#prod_Codigo").val(idItem);
     $("#prod_Descripcion").val(contentItem);
     $("#uni_Id").val(uni_IdtItem);
@@ -28,6 +52,8 @@ $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", 
 
 
 
+
+//DatePicker
 $(function () {
     $("#sal_FechaElaboracion").datepicker({
         dateFormat: 'yy-mm-dd',
@@ -38,7 +64,7 @@ $(function () {
 
 function GetSalidaDetalle() {
     var SalidaDetalle = {
-        prod_Codigo: $('#prod_Codigo').val(),
+        bodd_Id: $('#bodd_Id').val(),
         sal_Cantidad: $('#sal_Cantidad').val(),
         sald_UsuarioCrea: contador
     };
@@ -48,6 +74,7 @@ function GetSalidaDetalle() {
 
 
 $('#AgregarSalidaDetalle').click(function () {
+    var bodd_Id = $('#bodd_Id').val();
     var Cod_Producto = $('#prod_Codigo').val();
     var Producto = $('#prod_Descripcion').val();
     var Unidad_Medida = $('#pscat_Id').val();
@@ -76,7 +103,7 @@ $('#AgregarSalidaDetalle').click(function () {
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
         //copiar += "<td>" + $('#CodTipoCasoExitoCreate option:selected').text() + "</td>";
-        //copiar += "<td hidden id='MunCodigo'>" + $('#mun_Codigo option:selected').val() + "</td>";
+        copiar += "<td:first-child {display:none;} id = 'bodd_Id'>" + $('#bodd_Id').val() + "</td>";
         copiar += "<td id = 'Cod_Producto'>" + $('#prod_Codigo').val() + "</td>";
         copiar += "<td id = 'Producto'>" + $('#prod_Descripcion').val() + "</td>";
         copiar += "<td id = 'Unidad_Medida'>" + $('#pscat_Id').val() + "</td>";
@@ -94,7 +121,8 @@ $('#AgregarSalidaDetalle').click(function () {
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle }),
         })
-                .done(function (data) {
+            .done(function (data) {
+                    $("#bodd_Id").val('');
                     $('#prod_Codigo').val('');
                     $('#prod_Descripcion').val('');
                     $('#pscat_Id').val('');

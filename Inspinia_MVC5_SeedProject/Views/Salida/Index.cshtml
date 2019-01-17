@@ -27,7 +27,7 @@
 						@Html.ActionLink("Registrar Salida", "Create", null, new { @class = "btn btn-primary"})
 					</div>
                 </div>
-                <div class="ibox-content">
+                <p class="ibox-content">
 
                     <table class="table table-responsive" style="width:100%" id="Datatable">
                         <thead>
@@ -72,7 +72,16 @@
                                         @Html.DisplayFor(modelItem => item.tbBodega.bod_ResponsableBodega)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.sal_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @{  if (item.estm_Id == 1)
+                                            {
+                                                <p style="color:green"> Aplicada</p>;
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("Editar", "Edit", new { id = item.sal_Id }, new { @class = "btn btn-primary btn-xs" });
+                                                }
+                                            }
+
                                         @Html.ActionLink("Detalles", "Details", new { id = item.sal_Id }, new { @class = "btn btn-white btn-xs" })
                                     </td>
                                 </tr>
@@ -85,7 +94,7 @@
             </div>
         </div>
     </div>
- </div>
+ 
 
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>

@@ -670,11 +670,11 @@
     <Property Name="cja_Id" Type="smallint" Nullable="false" />
     <Property Name="suc_Id" Type="int" Nullable="false" />
     <Property Name="clte_Id" Type="int" Nullable="false" />
-    <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="40" Nullable="false" />
     <Property Name="fact_AlCredito" Type="bit" Nullable="false" />
     <Property Name="fact_DiasCredito" Type="int" Nullable="false" />
     <Property Name="fact_PorcentajeDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="fact_Vendedor" Type="varchar" MaxLength="50" />
+    <Property Name="fact_Vendedor" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
     <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="fact_IdentidadTE" Type="nvarchar" MaxLength="26" />
@@ -3626,6 +3626,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="rolu_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="rolu_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Acce_tbUsuario_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="usu_Id" Type="nvarchar" Mode="In" />
+    <Parameter Name="usu_EsActivo" Type="bit" Mode="In" />
+    <Parameter Name="usu_RazonInactivo" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="UDP_Acce_tbUsuario_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="usu_NombreUsuario" Type="varchar" Mode="In" />
     <Parameter Name="usu_Password" Type="varchar" Mode="In" />
@@ -4046,7 +4051,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="sal_FechaElaboracion" Type="datetime" Mode="In" />
     <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
     <Parameter Name="tsal_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="sal_BodDestino" Type="int" Mode="In" />
+    <Parameter Name="sal_EsAnulada" Type="bit" Mode="In" />
     <Parameter Name="sal_RazonDevolucion" Type="varchar" Mode="In" />
+    <Parameter Name="sal_RazonAnulada" Type="varchar" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbSalida_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sal_Id" Type="int" Mode="In" />
@@ -4061,6 +4069,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="sal_RazonAnulada" Type="varchar" Mode="In" />
     <Parameter Name="sal_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="sal_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbSalidaDetalle_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="sald_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbSalidaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sal_Id" Type="int" Mode="In" />
