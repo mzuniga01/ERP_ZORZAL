@@ -42,7 +42,7 @@ $(document).ready(function () {
         $('#ModalAgregarProducto').modal('hide');
 
 
-        var Cliente = $('#clte_Id').val();
+        var Cliente = $('#IDCliente').val();
         if (Cliente == '') {
             Cliente = 0;
             GetPrecio(Cliente,idItem);

@@ -50,7 +50,7 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
     else {
         $('#Alcredito').show();
     }
-    if (nuevaCadena == "Si" ) {
+    if (nuevaCadena == "Si") {
         $('#TerceraEdad').show();
         //Tercera Edad
         ms = Date.parse(Fecha);
@@ -78,35 +78,46 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
         }
     }
     else {
-        $('#TerceraEdad').hide(); 
+        $('#TerceraEdad').hide();
         document.getElementById("MostrarTerceraEdad").disabled = false;
         document.getElementById("fact_AutorizarDescuento").disabled = false;
         $('#Cred2').hide();
     }
 });
 
-$("#clte_Identificacion").on("keypress keyup blur", function (event) {
-    var Identificacion = $('#clte_Identificacion').val();
+$("#cliente_Identificacion").on("keypress keyup blur", function (event) {
+    var Identificacion = $('#cliente_Identificacion').val();
     if (Identificacion == '') {
         $('#TerceraEdad').show();
         $('#Alcredito').show();
-        $('#clte_Nombres').val('');
+        $('#cliente_Nombres').val('');
         document.getElementById("MostrarTerceraEdad").disabled = false;
+        $("#fact_AlCredito").prop("checked", false);
+
         document.getElementById("fact_AutorizarDescuento").disabled = false;
         $("#MostrarTerceraEdad").prop("checked", false);
         $("#fact_AutorizarDescuento").prop("checked", false);
     }
-
 })
 
 $('#consumidorFinal').change(function () {
     if (this.checked) {
         document.getElementById("btnAgregarCliente").disabled = true;
-        document.getElementById("CrearCliente").disabled = false;
+        document.getElementById("CrearCliente").disabled = true;
+        document.getElementById("cliente_Identificacion").disabled = true;
+        $('#Alcredito').hide();
+        $('#AutorizarD').hide();
+        $('#TerceraEdad').show();
+        $("#fact_AlCredito").prop("checked", false);
+        $('#fact_DiasCredit').val(0);
+        $('#Cred1').hide();
     }
     else {
         document.getElementById("btnAgregarCliente").disabled = false;
         document.getElementById("CrearCliente").disabled = false;
+        document.getElementById("cliente_Identificacion").disabled = false;
+        $('#Alcredito').show();
+        $('#AutorizarD').show();
     }
 
 })

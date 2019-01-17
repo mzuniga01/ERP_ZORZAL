@@ -17,38 +17,33 @@
                             <div class="col-md-1">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
-                            @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label required col-md-1" })
-                            <div class="col-md-2">
-                                @Html.EditorFor(model => model.factd_Cantidad, new { htmlAttributes = new { @Value = "", onKeyPress = "return soloNumeros(event)" , onKeyUp = "pierdeFoco(this)", @autocomplete = "off" } })
-                                <div id="validationCantidadProductoCreate">
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.factd_Cantidad)</p>
+                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-1" })
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly", } })
+                                <div id="validationDescripcionProductoCreate">
+                                    @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
                                 </div>
-                            </div>
-                            @Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = " col-md-1" })
-                            <div class="col-md-2">
-                                @Html.EditorFor(model => model.factd_PorcentajeDescuento, new { htmlAttributes = new { @Value = "", onKeyPress = "return soloNumeros(event)", @autocomplete = "off" }  })
-                                <p style="color:red">@Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)</p>
-                            </div>
+                            </div>                            
                             <div class="col-md-1">
                                 <button class="btn btn-primary btn-sm" type="button" id="AgregarDetalleFactura">Añadir</button>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-1" })
-                            <div class="col-md-3">
-                                @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly", } })
-                                <div id="validationDescripcionProductoCreate">
-                                    @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
-                                </div>
+                        <div class="form-group">                         
+
+                           @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label required col-md-1" })
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.factd_Cantidad, new { htmlAttributes = new { @Value = "", onKeyPress = "return soloNumeros(event)", onKeyUp = "pierdeFoco(this)", @autocomplete = "off" } })
+                            <div id="validationCantidadProductoCreate">
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.factd_Cantidad)</p>
                             </div>
-                            @Html.LabelFor(model => model.factd_PrecioUnitario, new { @class = "control-label col-md-2" })
+                        </div>
+                            @Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = "col-md-1 col-md-offset-1" })
                             <div class="col-md-2">
-                                @Html.EditorFor(model => model.factd_PrecioUnitario, new { htmlAttributes = new { @class = "form-control", @Value = "", @onkeyup = "format(this)", @autocomplete = "off", @readonly = "readonly" } })
-                                <div id="validationPrecioUnitarioCreate">
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.factd_PrecioUnitario)</p>
-                                </div>
+                                @Html.EditorFor(model => model.factd_PorcentajeDescuento, new { htmlAttributes = new { @Value = "", onKeyPress = "return soloNumeros(event)", @autocomplete = "off" } })
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)</p>
                             </div>
+
                             @Html.LabelFor(model => model.factd_MontoDescuento, new { @class = "col-md-1" })
                             <div class="col-md-2">
                                 @Html.EditorFor(model => model.factd_MontoDescuento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
@@ -56,24 +51,36 @@
                                     @Html.ValidationMessageFor(model => model.factd_MontoDescuento)
                                 </div>
                             </div>
+                           
                             <div class="col-md-1">
                                 <button type="button" class="btn btn-primary btn-sm" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoDetalle">Descuento</button>
                             </div>
                         </div>
-                        <div class="form-group">                            
-                            @Html.LabelFor(model => model.factd_Impuesto, new { @class = "control-label col-md-1" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.factd_PrecioUnitario, new { @class = "control-label col-md-1" })
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.factd_PrecioUnitario, new { htmlAttributes = new { @class = "form-control", @Value = "", @onkeyup = "format(this)", @autocomplete = "off", @readonly = "readonly" } })
+                                <div id="validationPrecioUnitarioCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.factd_PrecioUnitario)</p>
+                                </div>
+                            </div>
+                           
+                                  
+                            @Html.LabelFor(model => model.factd_Impuesto, new { @class = "control-label col-md-2" })
                             <div class="col-md-2">
                                 @Html.EditorFor(model => model.factd_Impuesto, new { htmlAttributes = new { @Value = "", @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
                                 <div id="validationImpuestoProductoCreate">
                                  @Html.ValidationMessageFor(model => model.factd_Impuesto)
                                 </div>
                             </div>
-                           <label class="control-label col-md-3">Subtotal</label>
+                           <label class="control-label col-md-1">Subtotal</label>
                             <div class="col-md-2">
                                 <input id="SubtotalProducto" type="text" class="form-control" readonly />
-                            </div>
+                            </div>                           
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-1">Total</label>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <input id="TotalProducto" type="text" value="" class="form-control" readonly />
                             </div>
                         </div>                   
