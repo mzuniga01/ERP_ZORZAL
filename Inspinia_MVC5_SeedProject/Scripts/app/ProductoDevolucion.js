@@ -6,7 +6,7 @@ $(document).on("click", "#DataTable1 tbody tr td button#Agregar", function () {
     DescuentoItem = $(this).closest('tr').data('descuento');
     PorcentajeItem = $(this).closest('tr').data('porcentaje');
     CantidadItem = $(this).closest('tr').data('cantfacturada');
-    console.log(CantidadItem)
+    //console.log(CantidadItem)
     ImpuestoItem = $(this).closest('tr').data('impuesto');
     $("#prod_Codigo").val(idItem);
     $("#tbProducto_prod_Descripcion").val(DescItem);
@@ -20,12 +20,9 @@ $(document).on("click", "#DataTable1 tbody tr td button#Agregar", function () {
 $("#devd_CantidadProducto")[0].maxLength = 10;
 
 //Validacion de numeros//
-function soloNumeros(e, obj) {
-    var CantFacturada = $('#CantidadFacturada').val();
-
+function soloNumeros(e) {
     var key = window.Event ? e.which : e.keyCode;
     return ((key >= 48 && key <= 57) || (key == 8))
-    if (obj.value.max >= CantFacturada) alert('ya no es menor a CantFacturada');
 }
 
 //Validacion de cantidad de producto devuelto
@@ -34,9 +31,14 @@ $("#devd_CantidadProducto").blur(function () {
     var CantFacturada = $('#CantidadFacturada').val();
     var CantDevolucion = $('#devd_CantidadProducto').val();
     
-    if (CantFacturada < CantDevolucion) {
+    if (parseFloat(CantFacturada) < parseFloat(CantDevolucion)) {
+        console.log("facturada",CantFacturada)
+        console.log(CantDevolucion)
+        console.log("if")
         valido.innerText = "El valor debe ser menor a la cantidad facturada";
-    } else {
+    }
+    else {
+        console.log("else")
         valido.innerText = "";
     }
 });

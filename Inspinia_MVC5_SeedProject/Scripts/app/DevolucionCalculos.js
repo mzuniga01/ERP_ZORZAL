@@ -7,18 +7,22 @@
             MontoDescuento = $("#MontoDescuento").val(),
             Subtotal = $("#Subtotal").val(),
             Impuesto = $("#Impuesto").val(),
+          
+
             valorSubtotal = "";
             MontoTotal = "";
-            Impuesto = parseFloat(Impuesto / 100)
+            ValorImpuesto = "";
+            Impuesto1 = (parseFloat(Impuesto)/ 100)
           
         if (Cantidad.length && Precio.length > 0) {
             valorSubtotal += Cantidad * Precio;
-            ValorImpuesto += parseFloat(valorSubtotal * Impuesto)
+            ValorImpuesto += (parseFloat(valorSubtotal) * parseFloat(Impuesto1));
             MontoTotal += (parseFloat(valorSubtotal) + parseFloat(ValorImpuesto)) - parseFloat(MontoDescuento);
 
         }
         $("#Subtotal").val(valorSubtotal);
         $("#devd_Monto").val(MontoTotal);
+        $("#Impuesto").val(ValorImpuesto);
     });
 
 });

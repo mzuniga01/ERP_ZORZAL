@@ -42,18 +42,18 @@
         @foreach (var item in Model)
         {
             <tr data-id="@item.fact_Codigo" data-Codigo="@item.fact_Id"  data-Fecha="@item.fact_Fecha" data-desc="@item.tbCliente.clte_Identificacion" data-Cliente="@item.clte_Nombres">
-                <td>
+                <td id="CodigoFactura">
                     @Html.DisplayFor(modelItem => item.fact_Codigo)
                 </td>
-                <td>
+                <td id="FechaF">
                     @Html.DisplayFor(modelItem => item.fact_Fecha)
                 </td>
-                <td>
+                <td id="ClienteRTN">
                     @Html.DisplayFor(modelItem => item.clte_Identificacion)
                 </td>
-                <th>
+                <td id="NombreCliente">
                     @Html.DisplayFor(model => item.clte_Nombres)
-                </th>
+                </td>
                 <td>
                     <button id="AgregarFactura" class="btn btn-primary btn-xs">Agregar</button>
                 </td>

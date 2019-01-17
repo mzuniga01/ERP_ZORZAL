@@ -21,7 +21,7 @@ namespace ERP_ZORZAL.Controllers
             //db.Configuration.ProxyCreationEnabled = false;
 
             var tbdevolucion = db.tbDevolucion.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCaja).Include(t => t.tbFactura);
-            return View(tbdevolucion.ToList());
+            return View(tbdevolucion.Where(a => a.dev_Estado == false).ToList());
 
 
         }

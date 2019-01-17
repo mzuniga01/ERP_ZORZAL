@@ -28,25 +28,30 @@ function GetIDCliente(CodCliente, idItem) {
             alert("No se puede filtr");
         },
         success: function (list) {
+        //    document.getElementById("CodigoFactura").innerHTML = list[1].FactCodigo;
+        //    document.getElementById("FechaF").innerHTML = list[0].FactFecha;
+        //    document.getElementById("ClienteRTN").innerHTML = list[0].CtleRTN;
+        //    document.getElementById("NombreCliente").innerHTML = list[0].Nombre;
+
             console.log(list);
             response = list;
 
-            $('#DevFactura > tbody > tr').each(function () {
-                FactCodigo = $(this).attr('data-id')
-                FactFecha = $(this).attr('data-fecha')
-                CtleRTN = $(this).attr('data-desc')
-                Nombre = $(this).attr('data-cliente')
-                console.log(FactCodigo);
-                console.log(FactFecha);
-                console.log(CtleRTN);
-                console.log(Nombre);
+            //$('#DevFactura > tbody > tr').each(function () {
+            //    FactCodigo = $(this).attr('data-id')
+            //    FactFecha = $(this).attr('data-fecha')
+            //    CtleRTN = $(this).attr('data-desc')
+            //    Nombre = $(this).attr('data-cliente')
+            //    console.log(FactCodigo);
+            //    console.log(FactFecha);
+            //    console.log(CtleRTN);
+            //    console.log(Nombre);
                 //idItem = FactCodigo
                 //FechaItem = FactFecha
                 //RTNItem = CtleRTN
                 //clienteItem = Nombre
 
                 //console.log('idItem', CtleRTN);
-            });
+            //});
         }
     });
 

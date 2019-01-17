@@ -25,9 +25,9 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalBuscarProducto"><span class="glyphicon glyphicon-search"></span></button>
             </div>
 
-            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new {  @class = "control-label col-md-2"})
             <div class="col-md-3">
-                @Html.EditorFor(model => model.tbProducto.prod_Descripcion)
+                @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
                 <div id="validationProductoDevolucionCreate">
                     @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
                 </div>
@@ -42,7 +42,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Cantidad Facturada</label>
             <div class="col-md-3">
-                <input type="text" value="" class="form-control " id="CantidadFacturada" />
+                <input type="text" value="" class="form-control " id="CantidadFacturada" readonly/>
             </div>
          
             @Html.LabelFor(model => model.devd_CantidadProducto, "Cantidad", new { @class = "control-label col-md-2" })
