@@ -56,7 +56,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_ID, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_ID, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.cdto_ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.cdto_ID)
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                     @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @class = "form-control", @style = "text-align:right", @type = "number", @min = "0", @onkeypress = "if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" } })
+                                     @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @type="number", @class = "form-control", @style = "text-align:right", @min = "0", @onkeypress = "if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @class = "form-control", @style = "text-align:right", @type = "number", @min = "0" } })
+                                    @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @type = "number", @class = "form-control", @style = "text-align:right", @min = "0" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new { @class = "form-control", @style = "text-align:right", @type = "number", @min = "0" } })
+                                    @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new { @type = "number", @class = "form-control", @style = "text-align:right", @min = "0" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MontoDescuento)</p>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_CantidadCompraMinima, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new { @class = "form-control", @style = "text-align:right", @type = "number", @min = "0"@*, @onchange = "MASK(this,this.value,'-##,###,##0.00',1)", @onkeypres = "MASK(this,this.value,'-##,###,##0.00',1)"*@ }
+                                    @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new {@type = "number", @class = "form-control", @style = "text-align:right", @min = "0"@*, @onchange = "MASK(this,this.value,'-##,###,##0.00',1)", @onkeypres = "MASK(this,this.value,'-##,###,##0.00',1)"*@ }
                                })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
                                 </div>
@@ -121,7 +121,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_FechaRedencion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.cdto_FechaRedencion)
                                 </div>
                             </div>
@@ -210,30 +210,42 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
+        //------------------------CantidadMinima > MontoDescuento------------------
+        $(document).ready(function () {
+            $('#cdto_CantidadCompraMinima').focusout(function () {
+                var montoE = $('#cdto_MontoDescuento').val();
+                var compraminimaE = $('#cdto_CantidadCompraMinima').val();
+
+                if (montoE >= compraminimaE) {
+                    $('#cdto_CantidadCompraMinima').val('').focus();
+                }
+            });
+        });
+        
         //--------------------Digitar Datos--------------------------------
         $('#cdto_PorcentajeDescuento').focusout(function () {
             var Porcentaje = $('#cdto_PorcentajeDescuento').val();
 
             if (Porcentaje >= 1) {
                 $('#cdto_PorcentajeDescuento').removeAttr("readonly").val();
-                $('#cdto_MaximoMontoDescuento').removeAttr("readonly");
+                $('#cdto_MaximoMontoDescuento').removeAttr("readonly").val();
                 $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00');
                 $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
                 //---------------------insertar 0.00---------------------
-                $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00');
-                $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
+                //$('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00');
+                //$('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
                 //---------------------FIN insertar 0.00---------------------
 
             } else if (Porcentaje <= 0) {
                 //---------------------insertar 0.00---------------------
-                $('#cdto_PorcentajeDescuento').attr('readonly', 'readonly').val('0.00');
-                $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
+                //$('#cdto_PorcentajeDescuento').attr('readonly', 'readonly').val('0.00');
+                //$('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
                 //---------------------FIN insertar 0.00---------------------
 
                 $('#cdto_PorcentajeDescuento').attr('readonly', 'readonly').val('0.00');
                 $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
 
-                $("#cdto_MontoDescuentoE").removeAttr("readonly").focus();
+                $("#cdto_MontoDescuento").removeAttr("readonly").focus().val();
                 //$('#cdto_CantidadCompraMinima').removeAttr("readonly").val('');
             }
         });

@@ -15,6 +15,10 @@
     </div>
 </div>
 
+<style>
+    .AsteriscoRojo:after { content:"*";
+    color:red;}
+</style>
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -43,26 +47,26 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2 AsteriscoRojo">% Descuento</label>
                                 <div class="col-md-4">
                                     @*@Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @readonly = "readonly" } })*@
-                                   <input id="cdto_PorcentajeDescuentoH" name="cdto_PorcentajeDescuentoH" class="form-control" style="text-align:right" onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" />
+                                   <input type="text" id="cdto_PorcentajeDescuentoH" name="cdto_PorcentajeDescuentoH" class="form-control validanumericos" style="text-align:right" />
                                     <input type="hidden" id="cdto_PorcentajeDescuento" name="cdto_PorcentajeDescuento" />
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2 AsteriscoRojo">Máximo Monto Descuento</label>
                                 <div class="col-md-4">
-                                   <input type="text" class="form-control validanumericos" data-val="true" data-val-number="The field Máximo Monto Descuento must be a number." data-val-required="*El campo Máximo Monto Descuento es requerido" id="cdto_MaximoMontoDescuentoH" min="0" name="cdto_MaximoMontoDescuentoH" onchange="MASK(this, this.value, '-##,###,##0.00', 1)" onkeypres="MASK(this, this.value, '-##,###,##0.00', 1); if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" onpaste="    return false" style="text-align:right" value>
+                                   <input type="text" class="form-control validanumericos" data-val="true" data-val-number="El campo Máximo Monto Descuento tiene que ser un Números." data-val-required="*El campo Máximo Monto Descuento es requerido" id="cdto_MaximoMontoDescuentoH" min="0" name="cdto_MaximoMontoDescuentoH" onchange="MASK(this, this.value, '-##,###,##0.00', 1)" onkeypres="MASK(this, this.value, '-##,###,##0.00', 1)" style="text-align:right">
                                    <input type="hidden" id="cdto_MaximoMontoDescuento" name="cdto_MaximoMontoDescuento" />
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2 AsteriscoRojo">Monto Descuento</label>
                                 <div class="col-md-4">
                                     <input class="form-control validanumericos" data-val="true" data-val-number="The field Monto Descuento must be a number." data-val-required="*El campo Monto Descuento es requerido" id="cdto_MontoDescuentoH" min="0" name="cdto_MontoDescuentoH" onchange="MASK(this,this.value,'-##,###,##0.00',1)" onkeypres="MASK(this,this.value,'-##,###,##0.00',1)" style="text-align:right" type="text" value>
                                     <input type="hidden" id="cdto_MontoDescuento" name="cdto_MontoDescuento" />
@@ -71,7 +75,7 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.cdto_CantidadCompraMinima, new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2 AsteriscoRojo">Compra Mínima</label>
                                 <div class="col-md-4">
                                     <input class="form-control validanumericos" data-val="true" data-val-number="The field Compra Mínima must be a number." data-val-required="*El campo Compra Mínima es requerido" id="cdto_CantidadCompraMinimaH" min="0" name="cdto_CantidadCompraMinimaH" onchange="MASK(this,this.value,'-##,###,##0.00',1)" onkeypres="MASK(this,this.value,'-##,###,##0.00',1)" style="text-align:right" type="text" value>
                                      <input type="hidden" id="cdto_CantidadCompraMinima" name="cdto_CantidadCompraMinima" />
@@ -98,7 +102,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_FechaRedencion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @class= "form-control", @readonly = "readonly" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_FechaRedencion)</p>
                                 </div>
                             </div>
@@ -165,6 +169,21 @@
     </script>
 
     <script>
+        //------------------------CantidadMinima > MontoDescuento------------------
+        $(document).ready(function () {
+            $('#cdto_CantidadCompraMinimaH').focusout(function () {
+                var monto = $('#cdto_MontoDescuento').val();
+                var compraminima = $('#cdto_CantidadCompraMinima').val();
+
+                if (monto >= compraminima) {
+                     $('#cdto_CantidadCompraMinimaH').val('').focus();
+                }
+            });
+        });
+
+
+
+
         //--------------------Digitar Datos--------------------------------
         $('#cdto_PorcentajeDescuentoH').focusout(function () {
             var Porcentaje = $('#cdto_PorcentajeDescuentoH').val();
