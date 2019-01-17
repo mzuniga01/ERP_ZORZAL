@@ -4463,6 +4463,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="sal_Id" Type="int" Mode="In" />
     <Parameter Name="bodd_Id" Type="int" Mode="In" />
     <Parameter Name="sal_Cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
     <Parameter Name="sald_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="sald_FechaCrea" Type="datetime" Mode="In" />
   </Function>
@@ -5119,8 +5120,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="solef_Id" Type="int" Mode="In" />
     <Parameter Name="deno_Id" Type="smallint" Mode="In" />
     <Parameter Name="soled_CantidadSolicitada" Type="smallint" Mode="In" />
-    <Parameter Name="soled_CantidadEntregada" Type="smallint" Mode="In" />
-    <Parameter Name="soled_MontoEntregado" Type="decimal" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" />
   <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">

@@ -137,12 +137,13 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "solef_Id,mocja_Id,solef_EsApertura,solef_FechaEntrega,solef_UsuarioEntrega,mnda_Id,solef_EsAnulada,solef_UsuarioCrea,solef_FechaCrea,solef_UsuarioModifica,solef_FechaModifica")] tbSolicitudEfectivo tbSolicitudEfectivo)
+        public ActionResult Create([Bind(Include = "solef_Id,mocja_Id,solef_EsApertura,solef_FechaEntrega,solef_UsuarioEntrega,mnda_Id,solef_EsAnulada,solef_UsuarioCrea,solef_FechaCrea,solef_UsuarioModifica,solef_FechaModifica")] tbSolicitudEfectivo tbSolicitudEfectivo, List<tbSolicitudEfectivoDetalle> procesoData)
         {
 
-            var list = (List<tbSolicitudEfectivoDetalle>)Session["Solicitud"];
-            var MensajeError = 0;
-            var MensajeErrorDetalle = 0;
+            ViewBag.Denominacion = db.tbDenominacion.ToList();
+            //var list = (List<tbSolicitudEfectivoDetalle>)Session["Solicitud"];
+            string MensajeError = "";
+            var MensajeErrorDetalle = "";
             IEnumerable<object> listSolicitudEfectivo = null;
             IEnumerable<object> listSolicitudEfectivoDetalle = null;
             if (ModelState.IsValid)
@@ -152,40 +153,38 @@ namespace ERP_GMEDINA.Controllers
                     using (TransactionScope Tran = new TransactionScope())
                     {
                         listSolicitudEfectivo = db.UDP_Vent_tbSolicitudEfectivo_Insert(
-                                                tbSolicitudEfectivo.mocja_Id,                                                
-                                                tbSolicitudEfectivo.mnda_Id                                              
+                                                tbSolicitudEfectivo.mocja_Id,
+                                                tbSolicitudEfectivo.mnda_Id
 
                                                 );
                         foreach (UDP_Vent_tbSolicitudEfectivo_Insert_Result SolicitudE in listSolicitudEfectivo)
                             MensajeError = SolicitudE.MensajeError;
-                        if (MensajeError == -1)
+                        if (MensajeError == "-1")
                         {
                             ModelState.AddModelError("", "No se pudo agregar el registro");
                             return View(tbSolicitudEfectivo);
                         }
                         else
                         {
-                            if (MensajeError > 0)
+                            if (MensajeError != "-1")
                             {
-                                if (list != null)
+                                if (procesoData != null)
                                 {
-                                    if (list.Count != 0)
+                                    if (procesoData.Count != 0)
                                     {
-                                        foreach (tbSolicitudEfectivoDetalle Detalle in list)
+                                        foreach (tbSolicitudEfectivoDetalle Detalle in procesoData)
                                         {
 
-                                            Detalle.solef_Id = MensajeError;
+                                            Detalle.solef_Id = Convert.ToInt32(MensajeError);
                                             listSolicitudEfectivoDetalle = db.UDP_Vent_tbSolicitudEfectivoDetalle_Insert(
                                                 Detalle.solef_Id,
                                                 Detalle.deno_Id,
-                                                Detalle.soled_CantidadSolicitada,
-                                                Detalle.soled_CantidadEntregada,
-                                                Detalle.soled_MontoEntregado
+                                                Detalle.soled_CantidadSolicitada
                                                 );
                                             foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result spDetalle in listSolicitudEfectivoDetalle)
                                             {
                                                 MensajeErrorDetalle = spDetalle.MensajeError;
-                                                if (MensajeError == -1)
+                                                if (MensajeError == "-1")
                                                 {
                                                     ModelState.AddModelError("", "No se pudo agregar el registro detalle");
                                                     return View(tbSolicitudEfectivo);
@@ -212,7 +211,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
                     ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
                     ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-
+                    ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
                     ViewBag.Denominacion = db.tbDenominacion.ToList();
                     List<tbMoneda> MonedaList = db.tbMoneda.ToList();
                     ViewBag.MonedaList = new SelectList(MonedaList, "mnda_Id", "mnda_Nombre");
@@ -229,7 +228,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbSolicitudEfectivo.mocja_Id);
 
             return View(tbSolicitudEfectivo);
-        
+
         }
 
 
@@ -304,7 +303,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 try
                 {
-                    var MensajeError = 0;
+                    string MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbSolicitudEfectivo_Update(
                         tbSolicitudEfectivo.solef_Id,
@@ -319,7 +318,7 @@ namespace ERP_GMEDINA.Controllers
                        );
                     foreach (UDP_Vent_tbSolicitudEfectivo_Update_Result solicitud in list)
                         MensajeError = solicitud.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError == "-1")
                     {
                         ModelState.AddModelError("", "No se pudo actualizar el registro detalle");
                         return View(tbSolicitudEfectivo);
@@ -442,9 +441,9 @@ namespace ERP_GMEDINA.Controllers
         {
             try
             {
-                var MensajeError = 0;
+                string MensajeError = "";
                 IEnumerable<object> list = null;
-                list = db.UDP_Vent_tbSolicitudEfectivoDetalle_Update(                            
+                list = db.UDP_Vent_tbSolicitudEfectivoDetalle_Update(
                             EditarSolicitudEfectivoDetalle.soled_Id,
                             EditarSolicitudEfectivoDetalle.deno_Id,
                             EditarSolicitudEfectivoDetalle.soled_CantidadSolicitada,
@@ -455,10 +454,10 @@ namespace ERP_GMEDINA.Controllers
                             );
                 foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result SolicitudDetalle in list)
                     MensajeError = SolicitudDetalle.MensajeError;
-                if (MensajeError == -1)
+                if (MensajeError == "-1")
                 {
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                   
+
                     return PartialView("_EditarSolicitudEfectivoDetalle");
                 }
                 else
@@ -483,6 +482,14 @@ namespace ERP_GMEDINA.Controllers
         {
             var list = db.UDP_Vent_tbSolicitudEfectivo_EsAnulada(solefId, Anulada).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult InsertDetalleSolicitudDetalle(List<tbSolicitudEfectivoDetalle> procesoData)
+        {
+
+
+            return Json("Exito", JsonRequestBehavior.AllowGet);
         }
 
     }
