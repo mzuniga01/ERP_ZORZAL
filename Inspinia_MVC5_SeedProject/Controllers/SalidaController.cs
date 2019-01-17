@@ -221,6 +221,7 @@ namespace ERP_GMEDINA.Controllers
                                                     pSalidaDetalle.sal_Id,
                                                     SalidaDetalle.bodd_Id,
                                                     SalidaDetalle.sal_Cantidad,
+                                                    SalidaDetalle.box_Codigo,
                                                     pSalidaDetalle.sald_UsuarioCrea,
                                                     pSalidaDetalle.sald_FechaCrea);
 

@@ -3,6 +3,10 @@ $(document).on("change", "#pcat_Id", function () {
     GetSubCategoriaProducto();
 });
 
+
+$(document).ready(function () {
+    GetSubCategoriaProducto();
+})
 function GetSubCategoriaProducto() {
     var CodCategoria = $('#pcat_Id').val();
     $.ajax({
@@ -28,41 +32,117 @@ function GetSubCategoriaProducto() {
     });
 }
 
-$(document).ready(function () {
-    $("#prod_Codigo")[0].maxLength = 15;
+//$(document).ready(function () {
+//    $("#prod_Codigo")[0].maxLength = 15;
 
-})
+//})
 
 //Fin
 
 
 
 //codigo Producto
-$(document).on("change", "#pcat_Id", "pscat_Id", function () {
-    GetValue();
-});
+//$(document).on("change", "#pcat_Id", "pscat_Id", function () {
+//    GetValue();
+//});
 
 //$(document).on('change', function () {
 //    var carbon = $('#pcat_Id').val();
 //    var fiver = $('#pscat_Id').val();
 //});
 
-function GetValue() {
-    console.log('Entra pero no hace nada');
+//$('#pcat_Id').change(function () {
+
+    
+//    console.log('Entra pero no hace nada');
+//    var cate = $('#pcat_Id').val();
+//    var subcate = $('#pscat_Id').val();
+//    //var subcatea = document.getElementById("#pcat_Id").val;
+//    var prodcod = $('#prod_Codigo').val();
+//    console.log(cate);
+//    console.log(subcate);
+        
+//    $.ajax({
+//        type: 'POST',
+//        url: '/Producto/GetValue',
+//        data: JSON.stringify({ pcat_Id: cate, pscat_Id: subcate }),
+//        contentType: 'application/json',
+//        success: function (data) {
+//            $('#CodigoPro').val(data);
+//            console.log(data);
+
+//        }
+    
+//    })
+
+//});
+
+//$('#pscat_Id').change(function () {
+
+    
+
+//    console.log('Entra pero no hace nada');
+//    var cate = $('#pcat_Id').val();
+//    var subcate = $('#pscat_Id').val();
+//    //var subcatea = document.getElementById("#pcat_Id").val;
+//    var prodcod = $('#prod_Codigo').val();
+//    console.log(cate);
+//    console.log(subcate);
+
+//    $.ajax({
+//        type: 'POST',
+//        url: '/Producto/GetValue',
+//        data: JSON.stringify({ pcat_Id: cate, pscat_Id: subcate }),
+//        contentType: 'application/json',
+//        success: function (data) {
+//            $('#CodigoPro').val(data);
+//            console.log(data);
+
+//        }
+//})
+//});
+
+$('#pscat_Id').change(function () {
+
+
+
+    //console.log('Entra pero no hace nada');
     var cate = $('#pcat_Id').val();
     var subcate = $('#pscat_Id').val();
+    //var subcatea = document.getElementById("#pcat_Id").val;
+    var prodcod = $('#prod_Codigo').val();
+    console.log(cate);
+    console.log(subcate);
+
     $.ajax({
-        url: "/Producto/GetValue",
-        method: "POST",
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ cate: pcat_Id, subcate: pscat_Id }),
+        type: 'POST',
+        url: '/Producto/GetValue',
+        data: JSON.stringify({ pcat_Id: cate, pscat_Id: subcate }),
+        contentType: 'application/json',
+        success: function (data) {
+            $('#CodigoPro').val(data);
+            console.log(data);
+
+        }
+
     })
-    .done(function (data) {
-        $('#pcat_Id').val('');
-        $('#pscat_Id').val('');
-    });
-}
+});
+//function GetValue() {
+//    console.log('Entra pero no hace nada');
+//    var cate = $('#pcat_Id').val();
+//    var subcate = $('#pscat_Id').val();
+//    $.ajax({
+//        url: "/Producto/GetValue",
+//        method: "POST",
+//        dataType: 'json',
+//        contentType: "application/json; charset=utf-8",
+//        data: JSON.stringify({ cate: pcat_Id, subcate: pscat_Id }),
+//    })
+//    .done(function (data) {
+//        $('#pcat_Id').val('');
+//        $('#pscat_Id').val('');
+//    });
+//}
 
 //$("#pscat_Id").on("click", GetValue);
 
@@ -111,12 +191,12 @@ function GetValue() {
 //    });
 //}
 
-$(document).ready(function () {
-    $.ajax({
-        url: "/Producto/GetValue",
-        method: "POST",
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ pcat_Id: $('#pcat_Id_Id').val(), pscat_Id: $('#pscat_Id_Id').val() }),
-    })
-});
+//$(document).ready(function () {
+//    $.ajax({
+//        url: "/Producto/GetValue",
+//        method: "POST",
+//        dataType: 'json',
+//        contentType: "application/json; charset=utf-8",
+//        data: JSON.stringify({ pcat_Id: $('#pcat_Id_Id').val(), pscat_Id: $('#pscat_Id_Id').val() }),
+//    })
+//});

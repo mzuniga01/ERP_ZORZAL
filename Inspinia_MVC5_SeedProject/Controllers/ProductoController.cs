@@ -37,6 +37,7 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult Index()
         {
             var tbproducto = db.tbProducto.Include(t => t.tbUsuario).Include(t => t.tbUnidadMedida).Include(t => t.tbProductoSubcategoria);
+            ViewBag.Producto = db.tbBodegaDetalle.ToList();
             return View(tbproducto.ToList());
         }
 
@@ -85,11 +86,18 @@ namespace ERP_GMEDINA.Controllers
             return View();
         }
 
-        public JsonResult GetValue(int pcat_Id,int pscat_Id,string prod_Codigo)
+        [HttpPost]
+        public JsonResult GetValue(string pcat_Id, string pscat_Id)
         {
-            ObjectParameter Output = new ObjectParameter("prod_Codigo", typeof(string));          
-            var list = db.SP_Valores(pcat_Id, pscat_Id, Output);
-            return Json(list, JsonRequestBehavior.AllowGet);
+            ObjectParameter Output = new ObjectParameter("prod_Codigo", typeof(string));
+            var Categoria = Convert.ToInt32(pcat_Id);
+            var SubCategoria = Convert.ToInt32(pscat_Id);
+            //var MsjError = "";
+            var list = db.SP_Valores(Categoria, SubCategoria, Output);
+            foreach (SP_Valores_Result Producto in list)
+            ViewBag.prod_Codigo = Producto.MensajeError;
+            //ViewBag.prod_Codigo = list;
+            return Json(ViewBag.prod_Codigo, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetSubCategoriaProducto(int CodCategoria)
@@ -98,12 +106,13 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetScatList(int pcat_Id)
-        {
-            db.Configuration.ProxyCreationEnabled = false;
-            List<tbProductoSubcategoria> tbProductoSubcategoriaList = db.tbProductoSubcategoria.Where(x => x.pcat_Id == pcat_Id).ToList();
-            return Json(tbProductoSubcategoriaList, JsonRequestBehavior.AllowGet);
-        }
+       
+        //public JsonResult GetScatList(int pcat_Id)
+        //{
+        //    db.Configuration.ProxyCreationEnabled = false;
+        //    List<tbProductoSubcategoria> tbProductoSubcategoriaList = db.tbProductoSubcategoria.Where(x => x.pcat_Id == pcat_Id).ToList();
+        //    return Json(tbProductoSubcategoriaList, JsonRequestBehavior.AllowGet);
+        //}
 
         
 
@@ -113,7 +122,7 @@ namespace ERP_GMEDINA.Controllers
 // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
 [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_CodigoBarras")] tbProducto tbProducto)
+        public ActionResult Create([Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_CodigoBarras,pcat_Id")] tbProducto tbProducto)
         {
             if (ModelState.IsValid)
             {
@@ -143,6 +152,11 @@ namespace ERP_GMEDINA.Controllers
                 {
                     Ex.Message.ToString();
                     ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
+                    ViewBag.prod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioCrea);
+                    ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
+                    ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion", tbProducto.pscat_Id);
+                    ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
                     return RedirectToAction("Index");
                 }
                 
@@ -151,14 +165,17 @@ namespace ERP_GMEDINA.Controllers
             {
                 var errors = ModelState.Values.SelectMany(v => v.Errors);
             }
-            
+
+
 
             ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
             ViewBag.prod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioCrea);
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
             ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion", tbProducto.pscat_Id);
-            ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
+            ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre", ViewBag.pcat_Id);
             return View(tbProducto);
+            //List<tbProductoCategoria> tbProductoCategoriaList = db.tbProductoCategoria.ToList();
+            //ViewBag.tbProductoCategoriaList = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre");
         }
 
         // GET: /Producto/Edit/5
@@ -174,13 +191,19 @@ namespace ERP_GMEDINA.Controllers
             {
                 return HttpNotFound();
             }
+            ViewData["Razon"] = tbProducto.prod_Razon_Inactivacion;
             ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
             ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", tbProducto.pscat_Id);
-            List<tbProductoCategoria> tbProductoCategoriaList = db.tbProductoCategoria.ToList();
-            ViewBag.tbProductoCategoriaList = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre");
-            ViewBag.pcat_Id = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre",tbProducto.pscat_Id);
+            //List<tbProductoCategoria> tbProductoCategoriaList = db.tbProductoCategoria.ToList();
+            //ViewBag.tbProductoCategoriaList = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre");
+            //ViewBag.pcat_Id = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre",tbProducto.pscat_Id);
+            ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre", tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id);
             return View(tbProducto);
+
+               
+           
+                    
         }
 
         public JsonResult GetCategoriaProducto(int codsubcategoria)
@@ -276,6 +299,19 @@ namespace ERP_GMEDINA.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        [HttpPost]
+        public JsonResult EstadoInactivar(string prod_Codigo, bool Activo, string Razon_Inactivacion)
+        {
+            var list = db.UDP_Inv_tbProducto_Estado(prod_Codigo, Activo, Razon_Inactivacion).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult Estadoactivar(string prod_Codigo, bool Activo, string Razon_Inactivacion)
+        {
+            var list = db.UDP_Inv_tbProducto_Estado(prod_Codigo, Activo, Razon_Inactivacion).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
 }

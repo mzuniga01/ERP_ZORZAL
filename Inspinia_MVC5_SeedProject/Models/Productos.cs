@@ -82,7 +82,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> listp_Id { get; set; }
 
         [Display(Name = "Codigo de Barras")]
-        [RegularExpression("^[A-Z0-9]{14}|^[A-Z0-9]{13}^[A-Z0-9]{12}$", ErrorMessage = "Debe ser Un Codigo de Barras")]
+        [RegularExpression("^[A-Z0-9]{14}$|^[A-Z0-9]{13}$|^[A-Z0-9]{12}$|^[A-Z0-9]{10}$|^[A-Z0-9]{8}$", ErrorMessage = "Debe ser Un Codigo de Barras")]
         public string prod_CodigoBarras { get; set; }
 
         [Display(Name = "Carrelativo")]
@@ -101,7 +101,7 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-      
+       
         public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }

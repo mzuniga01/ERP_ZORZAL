@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Transactions;
 using System.Web.Mvc;
+using Newtonsoft.Json;
+
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -206,42 +208,42 @@ namespace ERP_ZORZAL.Controllers
             return View(tbBox);
         }
 
-        public JsonResult UpdateSalidaDetalle(tbSalidaDetalle ACTUALIZAR_tbSalidaDetalle)
-        {
-            string Msj = "";
-            try
-            {
-                tbBox vBox = db.tbBox.Find(ACTUALIZAR_tbSalidaDetalle.box_Codigo);
-                IEnumerable<object> list = null;
-                    list = db.UDP_Inv_tbSalidaDetalle_Update(ACTUALIZAR_tbSalidaDetalle.sald_Id,
-                                                        ACTUALIZAR_tbSalidaDetalle.sal_Id,
-                                                         ACTUALIZAR_tbSalidaDetalle.bodd_Id,
-                                                         ACTUALIZAR_tbSalidaDetalle.sal_Cantidad,
-                                                         vBox.box_UsuarioCrea,
-                                                         vBox.box_FechaCrea
-                                                         );
-                foreach (UDP_Inv_tbSalidaDetalle_Update_Result Isd in list)
-                    Msj = Isd.MensajeError;
+        //public JsonResult UpdateSalidaDetalle(tbSalidaDetalle ACTUALIZAR_tbSalidaDetalle)
+        //{
+        //    string Msj = "";
+        //    try
+        //    {
+        //        tbBox vBox = db.tbBox.Find(ACTUALIZAR_tbSalidaDetalle.box_Codigo);
+        //        IEnumerable<object> list = null;
+        //            list = db.UDP_Inv_tbSalidaDetalle_Update(ACTUALIZAR_tbSalidaDetalle.sald_Id,
+        //                                                ACTUALIZAR_tbSalidaDetalle.sal_Id,
+        //                                                 ACTUALIZAR_tbSalidaDetalle.bodd_Id,
+        //                                                 ACTUALIZAR_tbSalidaDetalle.sal_Cantidad,
+        //                                                 vBox.box_UsuarioCrea,
+        //                                                 vBox.box_FechaCrea
+        //                                                 );
+        //        foreach (UDP_Inv_tbSalidaDetalle_Update_Result Isd in list)
+        //            Msj = Isd.MensajeError;
 
-                if (Msj.Substring(0, 2) == "-1")
-                {
-                    ModelState.AddModelError("", "No se Actualizo el registro");
+        //        if (Msj.Substring(0, 2) == "-1")
+        //        {
+        //            ModelState.AddModelError("", "No se Actualizo el registro");
 
 
-                }
-                else
-                {
-                    //return View("Edit/" + bod_Id);
-                    return Json("Index");
-                }
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro");
-            }
-            return Json("Index");
-        }
+        //        }
+        //        else
+        //        {
+        //            //return View("Edit/" + bod_Id);
+        //            return Json("Index");
+        //        }
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        Ex.Message.ToString();
+        //        ModelState.AddModelError("", "No se Actualizo el registro");
+        //    }
+        //    return Json("Index");
+        //}
         
         // GET: /Box/Delete/5
         public ActionResult Delete(string id)
@@ -298,6 +300,46 @@ namespace ERP_ZORZAL.Controllers
         }
 
         [HttpPost]
+        public JsonResult GetBox(int sald_Id)
+        {
+            var list = db.SDP_Inv_tbSalidaDetalle_Select(sald_Id).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult UpdateSalidaDetalle(tbSalidaDetalle EditarSalidaDetalle)
+        {
+            string Msj = "";
+            try
+            {
+                IEnumerable<object> list = null;
+                tbSalidaDetalle vSalidaDetalle = db.tbSalidaDetalle.Find(EditarSalidaDetalle.sald_Id);
+                list = db.UDP_Inv_tbSalidaDetalle_Update(
+                                                         EditarSalidaDetalle.sald_Id,
+                                                        EditarSalidaDetalle.sal_Id,
+                                                        EditarSalidaDetalle.bodd_Id,
+                                                        EditarSalidaDetalle.sal_Cantidad,
+                                                        EditarSalidaDetalle.box_Codigo,
+                                                        vSalidaDetalle.sald_UsuarioCrea,
+                                                        vSalidaDetalle.sald_FechaCrea
+                    );
+                foreach (UDP_Inv_tbSalidaDetalle_Update_Result salida in list)
+                    Msj = salida.MensajeError;
+
+                if (Msj.StartsWith("-1"))
+                {
+                    Msj = "-1";
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Guardo el registro");
+                Msj = "-1";
+            }
+            return Json(Msj, JsonRequestBehavior.AllowGet);
+
+        }
+        [HttpPost]
         public JsonResult RemoveSalidaDetalle(tbSalidaDetalle SalidaDetalle)
         {
             var list = (List<tbSalidaDetalle>)Session["tbSalidaDetalle"];
@@ -310,6 +352,36 @@ namespace ERP_ZORZAL.Controllers
             }
             return Json("", JsonRequestBehavior.AllowGet);
         }
+        //public ActionResult EliminarModal(int sal_Id)
+        //{
+        //    try
+        //    {
+        //        tbSalidaDetalle obj = db.tbSalidaDetalle.Find(sal_Id);
+        //        IEnumerable<object> list = null;
+        //        var MsjError = ""; list = db.UDP_Gral_tbMunicipio_Delete(sal_Id);
+        //        foreach (UDP_Gral_tbMunicipio_Delete_Result mun in list)
+        //            MsjError = mun.MensajeError;
+        //        if (MsjError.StartsWith("-1The DELETE statement conflicted with the REFERENCE constraint"))
+        //        {
+        //            TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia."; ViewBag.smserror = TempData["smserror"];
+        //            ModelState.AddModelError("", "No se puede borrar el registro");
+        //            return RedirectToAction("Edit/" + dep_Codigo);
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Edit/" + dep_Codigo);
+        //        }
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        Ex.Message.ToString();
+        //        ModelState.AddModelError("", "No se Actualizo el registro");
+        //        return RedirectToAction("Edit/" + dep_Codigo);
+        //    }
+
+            //return RedirectToAction("Index");
+        }
+
     }
-}
+//}
 

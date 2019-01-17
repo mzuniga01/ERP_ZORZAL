@@ -287,7 +287,13 @@
     <Compile Include="Models\SDP_Acce_GetUserRols_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SDP_Inv_tbSalidaDetalle_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SDP_tbProductoSubcategoria_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SDP_tbSalidaDetalle_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\spGetCategoriaProducto_Result.cs">
@@ -312,6 +318,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\spGetValue_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_Valores_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbAccesoRol.cs">
@@ -974,6 +983,7 @@
     <Content Include="Scripts\app\disableSubmits.js" />
     <Content Include="Scripts\app\emailvalidation.js" />
     <Content Include="Scripts\app\EntradaDetalle.js" />
+    <Content Include="Scripts\app\InActivarProducto.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\InvFisicoDetalle.js" />
     <Content Include="Scripts\app\letras.js" />
@@ -1351,6 +1361,8 @@
     <Content Include="Views\Box\_BoxDetalle.cshtml" />
     <Content Include="Views\Box\_IndexBoxDetalle.cshtml" />
     <Content Include="Views\Usuario\RestaurarPassword.cshtml" />
+    <Content Include="Views\Box\_EditarSalidaDetalle.cshtml" />
+    <Content Include="Views\Box\_ListSalidaDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

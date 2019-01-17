@@ -40,6 +40,7 @@
                         </dd>
                     </dl>
                     @Html.ActionLink("Editar", "Edit", new { id = Model.box_Codigo }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.box_Codigo }, new { @class = "btn btn-danger btn-xs" })
                 </div>
             </div>
             <div class="row">
@@ -117,20 +118,3 @@
         </div>
         </div>
     </div>
-
-@*@Html.ValidationSummary(true)
-@Html.HiddenFor(model => model.box_Codigo)*@
-
-@*Datos de Auditoria*@
-@*@Html.HiddenFor(model => model.box_UsuarioCrea)
-@Html.HiddenFor(model => model.box_FechaCrea)
-@Html.HiddenFor(model => model.box_UsuarioModifica)
-@Html.HiddenFor(model => model.box_FechaModifica)
-@Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
-@Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)*@
-
-@*@Html.HiddenFor(model => model.tbUsuario.usu_NombreUsuario)
-@Html.HiddenFor(model => model.tbUsuario.usu_Password)
-@Html.HiddenFor(model => model.tbUsuario.usu_Correo)
-@Html.HiddenFor(model => model.tbUsuario.usu_EsActivo)
-@Html.HiddenFor(model => model.tbUsuario.usu_EsAdministrador)*@

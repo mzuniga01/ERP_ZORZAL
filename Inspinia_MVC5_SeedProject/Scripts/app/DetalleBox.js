@@ -94,43 +94,56 @@ $(document).on("click", "#tbSalidaDetalle tbody tr td button#removeSalidaDetalle
     });
 });
 
-//Actualizar datos de detalle
-
-var tbSalidaDetalle = GetSalidaDetalle()();
-
-    $.ajax({
-        url: "/Box/UpdateSalidaDetalle",
-        method: "POST",
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ actualizar_tbSalidaDetalle: tbSalidaDetalle }),
-    }).done(function (data) {
-        if (data == '') {
-            location.reload();
-        }
-        else if (data == '-1') {
-            $('#MensajeError' + Isd_Id).text('');
-            $('#ValidationMessageFor' + Isd_Id).after('<ul id="MensajeError' + Isd_Id + '" class="validation-summary-errors text-danger">No se ha podido Actualizar el registro.</ul>');
-        }
-        else {
-            $('#MensajeError' + Isd_Id).text('');
-            $('#ValidationMessageFor' + Isd_Id).after('<ul id="MensajeError' + Isd_Id + '" class="validation-summary-errors text-danger">Campo Requerido</ul>');
-        }
-    });
 
 
-    function GetSalidaDetalle()
-    {
-        var guardar_SalidaDetalle = {
-            prod_Codigo:  $('#prod_Codigo').val(''),
-            prod_Descripcion: $('#prod_Descripcion').val(''),
-            pscat_Id: $('#pscat_Id').val(''),
-            sal_cantidad: $('#sal_Cantidad').val(''),
-            sald_UsuarioCrea: $('#sal_UsuarioCrea').val(''),
-            sald_UsuarioModifica: $('#sal_UsuarioModifica').val(''),
-            sald_FechaCrea: $('#sal_fechaCrea').val(''),
-            sald_FechaModifica: $('#sal_FechaModifica').val('')
-        };
-        return guardar_SalidaDetalle;
+    //SalidaDetalle *Editar
+
+    function EditSalidaDetalle(sald_Id) {
+        $("#MsjError").text("");
+        console.log("Sii");
+        $.ajax({
+            url: "/Box/GetBox",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ sald_Id }),
+        })
+        .done(function (data) {
+            $.each(data, function (i, item) {
+                $("#prod_Descripcion_edit").val(item.prod_Descripcion);
+                $("#prod_Marca_edit").val(item.prod_Marca);
+                $("#prod_Modelo_edit").val(item.prod_Modelo);
+                $("#prod_Talla_edit").val(item.prod_Talla);
+                $("#prod_Color_edit").val(item.prod_Color);
+                $("#uni_Descripcion_edit").val(item.uni_Descripcion);
+                $("#sal_Cantidad_edit").val(item.sal_Cantidad);
+                $("#prod_Codigo_edit").val(item.prod_Codigo);
+                $("#MyModal").modal();
+                console.log(data);
+            })
+        })
+
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('jqXHR', jqXHR);
+            console.log('textStatus', textStatus);
+            console.log('errorThrown', errorThrown);
+
+        })
     }
 
+
+    $("#Btnsubmit").click(function () {
+        var data = $("#SubmitForm").serializeArray();
+
+        $.ajax({
+            type: "Post",
+            url: "/Box/UpdateSalidaDetalle",
+            data: data,
+            success: function (result) {
+                if (result == '-1')
+                    $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+                else
+                    $("#MyModal").modal("hide");
+            }
+        });
+    })

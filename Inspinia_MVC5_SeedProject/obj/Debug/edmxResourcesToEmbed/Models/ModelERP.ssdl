@@ -3794,6 +3794,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="uni_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="uni_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="SDP_Inv_tbSalidaDetalle_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="sald_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SDP_Inv_tbSalidaDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="sald_Id" Type="int" Mode="In" />
+  </Function>
   <Function Name="SDP_tbProductoSubcategoria_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pscat_Id" Type="int" Mode="In" />
   </Function>
@@ -3979,6 +3985,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="invfd_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="invfd_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Inv_tbProducto_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="prod_EsActivo" Type="bit" Mode="In" />
+    <Parameter Name="prod_Razon_Inactivacion" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="UDP_Inv_tbProducto_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="prod_Descripcion" Type="varchar" Mode="In" />
@@ -4020,8 +4031,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="UDP_Inv_tbProductoCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
     <Parameter Name="pcat_EsActivo" Type="tinyint" Mode="In" />
-    <Parameter Name="pscat_Id" Type="int" Mode="In" />
-    <Parameter Name="pscat_EsActiva" Type="tinyint" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProductoSubCategoria_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pscat_Id" Type="int" Mode="In" />
@@ -4088,6 +4097,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="sal_Id" Type="int" Mode="In" />
     <Parameter Name="bodd_Id" Type="int" Mode="In" />
     <Parameter Name="sal_Cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
     <Parameter Name="sald_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="sald_FechaCrea" Type="datetime" Mode="In" />
   </Function>

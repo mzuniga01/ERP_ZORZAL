@@ -5,10 +5,10 @@
     ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@{
+@*@{
     var ListadoSuCategoria = new ERP_GMEDINA.Models.tbProductoSubcategoria();
     var ListadoCategoria = new ERP_GMEDINA.Models.tbProductoCategoria();
-}
+}*@
 
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -44,6 +44,7 @@
 
                         @Html.ValidationSummary(true)
                         @Html.HiddenFor(model => model.prod_Codigo)
+                        @Html.Hidden("RedirectTo", Url.Action("Index", "Producto"))
 
                         @Html.HiddenFor(model => model.prod_UsuarioCrea)
                         @Html.HiddenFor(model => model.prod_FechaCrea)
@@ -69,12 +70,27 @@
                         @Html.HiddenFor(model => model.tbUsuario1.usu_EsActivo)
                         @Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador)
 
-
                         <div class="form-group">
                             <label class="control-label col-md-2">Categoria<span style="color:red">*</span></label>
                             <div class="col-md-4">
-                                @Html.DropDownList("pcat_Id", (IEnumerable<SelectListItem>)ViewBag.tbProductoCategoriaList, new { @class = "form-control col-md-6"@*, @id = "pcat_Id"*@ })
-                                @*<p style="color:red">@Html.ValidationMessageFor(model => model.pscat_Id)</p>*@
+
+                                @Html.DropDownList("pcat_Id", null, "Seleccione una Categoria", new { @class = "form-control" })
+                            </div>
+                            <label class="control-label col-md-2">SubCategoria<span style="color:red">*</span></label>
+                            <div class="col-md-4">
+
+                                @Html.DropDownList("pscat_Id", null, "Seleccione una Subcategoria", new { @class = "form-control" })
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.pscat_Id)</p>
+                            </div>
+
+                        </div>
+
+                        @*<div class="form-group">
+                            <label class="control-label col-md-2">Categoria<span style="color:red">*</span></label>
+                            <div class="col-md-4">
+                                @Html.DropDownList("pcat_Id",null, "Seleccione una Categoria", new { @class = "form-control" })
+                           
+                               
                                 <p style="color:red">@Html.ValidationMessageFor(muni => ListadoCategoria.pcat_Id)</p>
                             </div>
 
@@ -83,12 +99,12 @@
                                 @Html.DropDownList("pscat_Id",null,"Seleccione", new { @class = "form-control" })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.pscat_Id)</p>
                             </div>
-                        </div>                       
+                        </div>*@                       
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new  { @class = "form - control" , @id = "Codigo" }  })
+                                @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new  { @class = "form-control", @readonly = "readonly" }})
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
                             </div>
 
@@ -145,10 +161,40 @@
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.uni_Id)</p>
                             </div>                                                                       
                         </div>    
+
+                        <div class="form-group" id="Activo" name="Activo">
+                            @Html.LabelFor(model => model.prod_EsActivo, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @if (Model.prod_EsActivo )
+                                {
+                                    <p> Si</p>
+                                }
+                                else
+                                {
+                                    <p>No</p>
+                                }
+                            </div>
+                                <p style="color:red">  @Html.ValidationMessageFor(model => model.prod_EsActivo)</p>                           
+
+                            @if (!Model.prod_EsActivo)
+                            {
+                                <div class="form-group" id="RazonInactivo">
+                                    @Html.LabelFor(model => model.prod_Razon_Inactivacion, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.prod_Razon_Inactivacion, new { htmlAttributes = new { @class = "form-control" } })
+
+                                        @*<textarea class="form-control" id="prod_Razon_Inactivacion" name="clte_RazonInactivo" >@ViewData["Razon"]</textarea>*@
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Razon_Inactivacion)</p>
+                                    </div>
+                                </div>
+
+                            }
+
+                        </div>
+
                         
                         
-                        
-                            <div class="form-group" id="Activo" name="Activo">
+                            @*<div class="form-group" id="Activo" name="Activo">
                                 @Html.LabelFor(model => model.prod_EsActivo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.prod_EsActivo, new { htmlAttributes = new { @type = "checkbox", @checked = "true" } })
@@ -163,7 +209,7 @@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Razon_Inactivacion)</p>
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
 
                             <div class="ibox-content">
                                 <table class="table table-striped">
@@ -188,9 +234,24 @@
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @if (Model.prod_EsActivo)
+                                    {
+                                        <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
+                                            Inactivar
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
+                                            Activar
+                                        </button>
+                                    }
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+
+
                                 </div>
                             </div>
+                        
                         </div>
                 }
                 </div>
@@ -198,6 +259,50 @@
         </div>
     </div>
  </div>
+
+<div class="modal fade" id="ModalAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Inactivar Producto</h5>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de inactivar este Producto?</p>
+                <textarea rows="4" cols="70" placeholder="Ingrese la razon de Inactivación" id="razonInac" name="razonInac"></textarea>
+                <p id="Mensaje" style="color:red"></p>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" type="button" id="Inactivar">Si</button>           
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="ModalAnular1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Activar Producto</h5>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de activar este Producto?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" type="button" id="Activar">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts{
 @Scripts.Render("~/bundles/jqueryval")
@@ -223,33 +328,35 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 @*<script src="~/Scripts/app/search.js"></script>*@
-<script src="~/Scripts/app/ActivoP.js"></script>
+@*<script src="~/Scripts/app/ActivoP.js"></script>*@
+<script src="~/Scripts/app/InActivarProducto.js"></script>
+<script src="~/Scripts/app/SubCategoriaProducto.js"></script>
 
 
-<script>
+@*<script>
  $(document).ready(function () {
-        if (prod_EsActivo.checked) {         
+        if (prod_EsActivo) {         
             $('#RazonInactivo').hide();           
         } else {           
             $('#RazonInactivo').show();
         }
  });
-</script>
+</script>*@
 
 <script>
-        console.log('Hla')
+        //console.log('Hla')
 
 
-        $(document).ready(function () {
-            var Mun = $('#pscat_Id').val();
+        //$(document).ready(function () {
+        //    var Mun = $('#pscat_Id').val();
 
-            console.log(Mun);
-            if (Mun != '') {
-                GetCategoriaProducto();
-                //GetMunicipios();
-            }
+        //    console.log(Mun);
+        //    if (Mun != '') {
+        //        GetCategoriaProducto();
+        //        //GetMunicipios();
+        //    }
 
-        });
+        //});
 
         function GetCategoriaProducto() {
             var codsubcategoria = $('#pscat_Id').val();
