@@ -14,9 +14,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         {
             //Validar Inicio de Sesión
             GeneralFunctions Function = new GeneralFunctions();
-            List<tbUsuario> Usuario = Function.getUserID();
-            //
-            if (Usuario.Count > 0)
+            if (Function.GetUserLogin())
             {
                 ViewData["SubTitle"] = "Welcome in ASP.NET MVC 5 INSPINIA SeedProject ";
                 ViewData["Message"] = "It is an application skeleton for a typical MVC 5 project. You can use it to quickly bootstrap your webapp projects.";

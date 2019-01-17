@@ -69,9 +69,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         {
             //Validar Inicio de Sesión
             GeneralFunctions Function = new GeneralFunctions();
-            List<tbUsuario> Usuario = Function.getUserID();
-            //
-            if (Usuario.Count > 0)
+            if (Function.GetUserLogin())
                 return View();
             else
                 return RedirectToAction("Index", "Login");
