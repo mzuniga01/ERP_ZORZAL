@@ -18,6 +18,9 @@
                                 <th hidden>
                                     pemid_Id
                                 </th>
+                                <th hidden>
+                                    Id Documento Fiscal
+                                </th>
                                 <th>
                                     Documento Fiscal
                                 </th>
@@ -40,6 +43,7 @@
                             {
                                 <tr data-usuariocrea="@item.tbUsuario.usu_Nombres" >
                                     <td hidden>@Html.DisplayFor(modelItem => item.pemid_Id)</td>
+                                    <td hidden>@Html.DisplayFor(modelItem => item.dfisc_Id)</td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbDocumentoFiscal.dfisc_Descripcion)
                                     </td>
@@ -49,14 +53,14 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.pemid_RangoFinal)
                                     </td>
-                                    <td id="pemid_FechaLimite">
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.pemid_FechaLimite)
                                     </td>
                                     <td></td>
                                     <td hidden>@Html.DisplayFor(modelItem => item.tbUsuario.usu_Nombres)</td>
 
                                     <td>
-                                        <button type="button" id="btnModalDetallesEdit" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
+                                        <button type="button" id="btnModalDetallesEdit_@item.pemid_Id" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
                                             Detalles
                                         </button>
                                         <button type="button" id="btnModalEditarEdit_@item.pemid_Id" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar_@item.pemid_Id">

@@ -2,7 +2,7 @@
     var DocumentoFiscal = $('#dfisc_Id').val();
     var RangoInicio = $('#txtRangoInicial').val();
     var RangoFinal = $('#txtRangoFinal').val();
-    var FechaLimite = $('#txtFechalimite').val();
+    var FechaLimite = $('#txtFechalimite').val(); 
 
     //Split Rango Inicial
     var divisiones = RangoInicio.split("-", 4);
@@ -19,13 +19,14 @@
     var RangoInicioLength = RangoInicio.length;
     var RangoFinalLength = RangoFinal.length;
 
-    //var length = RangoInicio.length;
-    //var RangoInicio = RangoInicio.substring(11);
-    //var RangoInicio = parseInt(RangoInicio);
+    //ValidaciónFecha
+    //var pemid_FechaLimiteEmision = $("#txtFechalimite").val();
+    //var p = new Date(pemid_FechaLimiteEmision);
+    //console.log(p);
+    ////Current date
+    //var GetCurrentDate = new Date();
+    //console.log(GetCurrentDate);
 
-    //var length = RangoFinal.length;
-    //var RangoFinal = RangoFinal.substring(11);
-    //var RangoFinal = parseInt(RangoFinal);
 
     if (DocumentoFiscal == '')
     {
@@ -69,7 +70,6 @@
         $('#validacionRangoFinalCreate').after('<p id="ErrorRangoFinalCreate" style="color:red">Campo Rango Final requerido</p>');
     }
     else if (rango1 <= rango) {
-        console.log("1","Split");
         $('#ErrorDocumentoFiscalCreate').text('');
         $('#ErrorRangoInicioCreate').text('');
         $('#ErrorRangoFinalCreate').text('');
@@ -99,8 +99,8 @@
         $('#ErrorFechaLimiteCreate').text('');
         $('#validacionFechaLimiteCreate').after('<p id="ErrorFechaLimiteCreate" style="color:red">Campo Fecha Limite requerido</p>');
     }
+       
     else {
-        console.log("2");
         var PuntoEmisionDetalle = GetPuntoEmisionDetalle();
         $.ajax({
             url: "/PuntoEmision/SaveCreateNumeracion",
@@ -130,20 +130,96 @@
 });
 
 
-//Máximo de caracteres_Rangos
-$(document).ready(function () {
-    $("#txtRangoInicial")[0].maxLength = 20;
-    $("#txtRangoFinal")[0].maxLength = 20;
+
+//Datepicker
+$(function () {
+    var StartDate = new Date();
+    $("#txtFechalimite").datepicker({
+        dateFormat: 'mm/dd/yy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        minDate: StartDate,
+        maxDate: '+3Y',
+        prevText: 'Ant',
+        nextText: 'Sig',
+        changeMonth: true,
+        changeYear: true,
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+    }).datepicker('setDate', new Date());
+
 });
 
-//Limpiar los mensajes de error
+
+//Mostrar Mensaje:Campo requerido en tiempo real
 $("#dfisc_Id").change(function () {
     var dfisc_Id = $("#dfisc_Id").val();
     if (dfisc_Id != '') {
-        valido = document.getElementById('ErrorDocumentoFiscalCreate');
-        valido.innerText = "";
+        $('#ErrorDocumentoFiscalCreateEventoChange').text('');
     }
     else {
-        $('#validacionDocumentoFiscalCreate').after('<p id="ErrorDocumentoFiscalCreate" style="color:red">Campo Documento Fiscal requerido</p>');
+        $('#ErrorDocumentoFiscalCreateEventoChange').text('');
+        $('#validacionDocumentoFiscalCreate').after('<p id="ErrorDocumentoFiscalCreateEventoChange" style="color:red">Campo Documento Fiscal requerido</p>');
     }
 });
+
+$("#txtRangoInicial").change(function () {
+    var pemid_RangoInicio = $("#txtRangoInicial").val();
+    if (pemid_RangoInicio != '') {
+        $('#ErrorRangoInicioCreateEventoChange').text('');
+    }
+    else {
+        $('#validacionRangoInicioCreate').after('<p id="ErrorRangoInicioCreateEventoChange" style="color:red">Campo Rango Inicio requerido</p>');
+    }
+});
+
+$("#txtRangoFinal").change(function () {
+    var pemid_RangoFinal = $("#txtRangoFinal").val();
+    if (pemid_RangoFinal != '') {
+        $('#ErrorRangoFinalCreateEventoChange').text('');
+    }
+    else {
+        $('#validacionRangoFinalCreate').after('<p id="ErrorRangoFinalCreateEventoChange" style="color:red">Campo Rango Final requerido</p>');
+    }
+
+});
+
+$(document).ready(function () {
+    //Máximo de caracteres_Rangos
+    $("#txtRangoInicial")[0].maxLength = 20;
+    $("#txtRangoFinal")[0].maxLength = 20;
+
+    var CurrentDate = new Date();
+
+    $("#btnModalGuardarNumeracion").click(function () {
+        $("#PuntoEmision tbody tr").each(function () {
+            //Documento Fiscal
+            var DocumentoFiscal = $(this).children("td:eq(1)").text();
+            console.log("DocumentoFiscal: " , DocumentoFiscal);
+
+            //FechaLimiteEmision
+            var FechaLimiteEmision = $(this).children("td:eq(5)").text();
+            var f = new Date(FechaLimiteEmision);
+            console.log("FechaLimiteEmision: ", f);
+
+            //if (f > CurrentDate) {
+            //    console.log('FechaMayor');
+            //}
+            //else {
+            //    console.log('FechaMenor');
+            //}
+
+         
+
+            //if (DocumentoFiscal > 3) {
+            //    console.log('Vigente');
+            //}
+            //else {
+            //    console.log('No vigente');
+            //}
+
+
+        });
+    });
+});
+
+

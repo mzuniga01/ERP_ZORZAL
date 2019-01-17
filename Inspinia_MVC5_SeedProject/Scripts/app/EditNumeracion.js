@@ -3,11 +3,11 @@
         var d = new Date();
 
     $("#PuntoEmision tbody tr").each(function () {
-        
+        //Id PuntoEmisionDetalle
         var ID = $(this).children("td:eq(0)").text();
 
         //FechaLimiteEmision
-        var FechaLimiteEmsion = $(this).children("td:eq(4)").text();
+        var FechaLimiteEmsion = $(this).children("td:eq(5)").text();
         var i = new Date(FechaLimiteEmsion);
 
         if (i <= d) {

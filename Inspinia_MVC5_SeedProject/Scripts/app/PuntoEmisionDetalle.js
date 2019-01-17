@@ -168,36 +168,33 @@ $(document).ready(function () {
 });
 
 
-//Limpiar los mensajes de error
+//Mostrar Mensaje:Campo requerido en tiempo real
 $("#dfisc_Id").change(function () {
     var dfisc_Id = $("#dfisc_Id").val();
     if (dfisc_Id != '') {
-        valido = document.getElementById('ErrorDocumentoFiscalCreate');
-        valido.innerText = "";
+        $('#ErrorDocumentoFiscalCreateEventoChange').text('');
     }
     else {
-        $('#validacionDocumentoFiscalCreate').after('<p id="ErrorDocumentoFiscalCreate" style="color:red">Campo Documento Fiscal requerido</p>');
+        $('#validacionDocumentoFiscalCreate').after('<p id="ErrorDocumentoFiscalCreateEventoChange" style="color:red">Campo Documento Fiscal requerido</p>');
     }
 });
 $("#pemid_RangoInicio").change(function () {
     var pemid_RangoInicio = $("#pemid_RangoInicio").val();
     if (pemid_RangoInicio != '') {
-        valido = document.getElementById('ErrorRangoInicioCreate');
-        valido.innerText = "";
+        $('#ErrorRangoInicioCreateEventoChange').text('');
     }
     else {
-        $('#validacionRangoInicioCreate').after('<p id="ErrorRangoInicioCreate" style="color:red">Campo Rango Inicio requerido</p>');
+        $('#validacionRangoInicioCreate').after('<p id="ErrorRangoInicioCreateEventoChange" style="color:red">Campo Rango Inicio requerido</p>');
     }
 });
 
 $("#pemid_RangoFinal").change(function () {
     var pemid_RangoFinal = $("#pemid_RangoFinal").val();
     if (pemid_RangoFinal != '') {
-        valido = document.getElementById('ErrorRangoFinalCreate');
-        valido.innerText = "";
+        $('#ErrorRangoFinalCreateEventoChange').text('');
     }
     else {
-        $('#validacionRangoFinalCreate').after('<p id="ErrorRangoFinalCreate" style="color:red">Campo Rango Final requerido</p>');
+        $('#validacionRangoFinalCreate').after('<p id="ErrorRangoFinalCreateEventoChange" style="color:red">Campo Rango Final requerido</p>');
     }
 
 });
@@ -205,10 +202,9 @@ $("#pemid_RangoFinal").change(function () {
 $("#pemid_FechaLimite").change(function () {
     var pemid_FechaLimite = $("#pemid_FechaLimite").val();
     if (pemid_FechaLimite != '') {
-        valido = document.getElementById('ErrorFechaLimiteCreate');
-        valido.innerText = "";
+        $('#ErrorFechaLimiteCreateEventoChange').text('');
     }
     else {
-        $('#validacionFechaLimiteCreate').after('<p id="ErrorFechaLimiteCreate" style="color:red">Campo Fecha Limite requerido</p>');
+        $('#validacionFechaLimiteCreate').after('<p id="ErrorFechaLimiteCreateEventoChange" style="color:red">Campo Fecha Limite requerido</p>');
     }
 });
