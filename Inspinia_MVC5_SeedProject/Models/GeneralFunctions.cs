@@ -17,7 +17,7 @@ namespace ERP_GMEDINA.Models
             int UserID = 0;
             bool EsAdmin = false;
             bool Retorno = false;
-            List<tbUsuario> Usuario = getUserID();
+            List<tbUsuario> Usuario = getUserInformation();
             
             foreach(tbUsuario User in Usuario)
             {
@@ -37,7 +37,7 @@ namespace ERP_GMEDINA.Models
             return Retorno;
         }
 
-        public List<tbUsuario> getUserID()
+        public List<tbUsuario> getUserInformation()
         {
             int user = 0;
             List<tbUsuario> UsuarioList = new List<tbUsuario>();
@@ -55,6 +55,29 @@ namespace ERP_GMEDINA.Models
                 Ex.Message.ToString();
                 return UsuarioList;
             }
+        }
+
+        public bool GetUserLogin()
+        {
+            bool state = false;
+            int user = 0;
+            List<tbUsuario> UsuarioList = new List<tbUsuario>();
+            try
+            {
+                user = (int)HttpContext.Current.Session["UserLogin"];
+                if (user != 0)
+                {
+                    UsuarioList = db.tbUsuario.Where(s => s.usu_Id == user).ToList();
+                    if (UsuarioList.Count > 0)
+                        state = true;
+                }
+            }
+            catch(Exception Ex)
+            {
+                Ex.Message.ToString();
+                state = false;
+            }
+            return state;
         }
     }
 }

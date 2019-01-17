@@ -21,9 +21,7 @@ namespace ERP_GMEDINA.Controllers
         {
             //Validar Inicio de Sesión
             GeneralFunctions Function = new GeneralFunctions();
-            List<tbUsuario> Usuario = Function.getUserID();
-            //
-            if (Usuario.Count > 0)
+            if (Function.GetUserLogin())
             {
                 if(Function.GetUserRols("Cliente/Index"))
                 {
@@ -178,9 +176,7 @@ namespace ERP_GMEDINA.Controllers
         {
             //Validar Inicio de Sesión
             GeneralFunctions Function = new GeneralFunctions();
-            List<tbUsuario> Usuario = Function.getUserID();
-            //
-            if (Usuario.Count > 0)
+            if (Function.GetUserLogin())
             {
                 if (Function.GetUserRols("Cliente/Details"))
                 {
@@ -209,9 +205,7 @@ namespace ERP_GMEDINA.Controllers
         {
             //Validar Inicio de Sesión
             GeneralFunctions Function = new GeneralFunctions();
-            List<tbUsuario> Usuario = Function.getUserID();
-            //
-            if (Usuario.Count > 0)
+            if (Function.GetUserLogin())
             {
                 if (Function.GetUserRols("Cliente/Create"))
                 {
@@ -308,9 +302,7 @@ namespace ERP_GMEDINA.Controllers
         {
             //Validar Inicio de Sesión
             GeneralFunctions Function = new GeneralFunctions();
-            List<tbUsuario> Usuario = Function.getUserID();
-            //
-            if (Usuario.Count > 0)
+            if (Function.GetUserLogin())
             {
                 if (Function.GetUserRols("Cliente/Edit"))
                 {
