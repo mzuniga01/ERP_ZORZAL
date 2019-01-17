@@ -64,23 +64,25 @@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.factd_PrecioUnitario)</p>
                                 </div>
                             </div>
-                           
-                                  
-                            @Html.LabelFor(model => model.factd_Impuesto, new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.factd_Impuesto, "% Impuesto", new { @class = "control-label col-md-2" })
                             <div class="col-md-2">
                                 @Html.EditorFor(model => model.factd_Impuesto, new { htmlAttributes = new { @Value = "", @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
                                 <div id="validationImpuestoProductoCreate">
-                                 @Html.ValidationMessageFor(model => model.factd_Impuesto)
+                                    @Html.ValidationMessageFor(model => model.factd_Impuesto)
                                 </div>
                             </div>
-                           <label class="control-label col-md-1">Subtotal</label>
+                            <label class="control-label col-md-1">Impuesto</label>
                             <div class="col-md-2">
-                                <input id="SubtotalProducto" type="text" class="form-control" readonly />
-                            </div>                           
+                                <input id="Impuesto" type="text" class="form-control" readonly />
+                            </div>                                                                          
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-1">Total</label>
-                            <div class="col-md-3">
+                            <label class="control-label col-md-1">Subtotal</label>
+                            <div class="col-md-2">
+                                <input id="SubtotalProducto" type="text" class="form-control" readonly />
+                            </div>   
+                            <label class="control-label col-md-3">Total</label>
+                            <div class="col-md-2">
                                 <input id="TotalProducto" type="text" value="" class="form-control" readonly />
                             </div>
                         </div>                   

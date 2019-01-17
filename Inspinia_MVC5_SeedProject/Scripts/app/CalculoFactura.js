@@ -9,60 +9,60 @@ $(function () {
 
         var Cantidad = $("#factd_Cantidad").val(),
             Precio = $("#factd_PrecioUnitario").val(),
+            Impuesto = $("#factd_Impuesto").val(),
+            Subtotal = $("#SubtotalProducto").val(),
+            PorcentajeImpuesto = ((parseFloat(Impuesto) / 100) * Subtotal);
             result = "";
+            result1 = "";
 
         if (Cantidad && Precio > 0) {
-            result += Cantidad * Precio;
+            result += Cantidad * Precio ;
         }
 
         $("#SubtotalProducto").val(result);
 
+         result1 += PorcentajeImpuesto;
+
+         $("#Impuesto").val(result1);
+         var Descuento = $("#factd_PorcentajeDescuento").val();
+         var Subtotal = $("#SubtotalProducto").val();
+         var impuesto = $("#factd_Impuesto").val();
+         var PorcentajeDescuento = (parseFloat(Descuento) / 100);
+         var PorcentajeImpuesto = (parseFloat(impuesto) / 100);
+         var DescuentoTotal = (parseFloat(Subtotal) * parseFloat(PorcentajeDescuento));
+         var impuestotal = (Subtotal * PorcentajeImpuesto);
+         result = "";
+
+         if (PorcentajeDescuento && Cantidad == '') {
+             result += (parseFloat(Subtotal) + parseFloat(impuestotal));
+         }
+         else if (DescuentoTotal && Cantidad == 0) {
+             result += (parseFloat(Subtotal) + parseFloat(impuestotal));
+         }
+         else {
+             result += (parseFloat(Subtotal) - parseFloat(DescuentoTotal) + parseFloat(impuestotal));
+         }
+         if (Descuento && Cantidad == '') {
+             $("#factd_MontoDescuento").val('');
+         }
+         else {
+             $("#factd_MontoDescuento").val(DescuentoTotal);
+         }
+         if (Descuento && Cantidad == '') {
+             $("#TotalProducto").val('');
+         }
+         else {
+             $("#TotalProducto").val(result);
+         }
+
+         if ($("#factd_Cantidad").val(), $("#factd_PrecioUnitario").val() == '') {
+             $("#factd_MontoDescuento").val('');
+             $("#TotalProducto").val('');
+         }
     });
 
 });
 
-$(function () {
-
-    $("#factd_PorcentajeDescuento").keyup(function (e) {
-        var Descuento = $("#factd_PorcentajeDescuento").val();
-        var Subtotal = $("#SubtotalProducto").val();
-        var impuesto = $("#factd_Impuesto").val();        
-        var PorcentajeDescuento = (parseFloat(Descuento) / 100);
-        var PorcentajeImpuesto = (parseFloat(impuesto) / 100);
-        var DescuentoTotal = (parseFloat(Subtotal) * parseFloat(PorcentajeDescuento));
-        var impuestotal = (Subtotal * PorcentajeImpuesto);
-        result = "";
-
-        if (PorcentajeDescuento == '') {
-            result += (parseFloat(Subtotal) + parseFloat(impuestotal));
-        }
-        else if (DescuentoTotal == 0) {
-            result += (parseFloat(Subtotal) + parseFloat(impuestotal));
-        }
-        else {
-            result += (parseFloat(Subtotal) - parseFloat(DescuentoTotal) + parseFloat(impuestotal));
-        }
-        if (Descuento == '')
-        {
-            $("#factd_MontoDescuento").val('');
-        }
-        else {
-            $("#factd_MontoDescuento").val(DescuentoTotal);
-        }
-        if (Descuento == '')
-        {
-            $("#TotalProducto").val('');
-        }
-        else {
-            $("#TotalProducto").val(result);
-        }
-
-        if ($("#factd_Cantidad").val(), $("#factd_PrecioUnitario").val() == '') {
-            $("#factd_MontoDescuento").val('');
-            $("#TotalProducto").val('');
-        }        
-    });
-});
 
 
 

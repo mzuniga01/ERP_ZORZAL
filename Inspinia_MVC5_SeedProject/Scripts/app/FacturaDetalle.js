@@ -116,7 +116,8 @@ $('#AgregarDetalleFactura').click(function () {
             //Input
             $('#prod_Codigo').val('');
             $('#factd_PorcentajeDescuento').val('');
-            $('#factd_MontoDescuento').val('');
+            $('#factd_MontoDescuento').val();
+            $('#Impuesto').val('');
             $('#tbProducto_prod_Descripcion').val('');
             $('#factd_Cantidad').val('');
             $('#SubtotalProducto').val('');
