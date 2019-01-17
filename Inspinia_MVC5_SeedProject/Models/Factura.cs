@@ -32,6 +32,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Sucursal")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public int suc_Id { get; set; }
+        public int clte_Id { get; set; }
         [Display(Name = "CAI")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string pemi_NumeroCAI { get; set; }
@@ -45,10 +46,8 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Vendedor")]
         public string fact_Vendedor { get; set; }
         [Display(Name = "RTN")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string clte_Identificacion { get; set; }
         [Display(Name = "Cliente")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string clte_Nombres { get; set; }
         [Display(Name = "Identidad")]
         public string fact_IdentidadTE { get; set; }
@@ -56,5 +55,6 @@ namespace ERP_GMEDINA.Models
         public string fact_NombresTE { get; set; }
         [Display(Name = "Fecha Nacimiento")]
         public Nullable<System.DateTime> fact_FechaNacimientoTE { get; set; }
-    }
+
+  }
 }

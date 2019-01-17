@@ -53,6 +53,17 @@ $('#AgregarDetalleFactura').click(function () {
         copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
         copiar += "</tr>";
         $('#tblDetalleFactura').append(copiar);
+        //Descuento 
+        var Descuento = $('#factd_MontoDescuento').val();
+        var TotalDescuento = parseFloat(document.getElementById("TotalDescuento").innerHTML);
+
+        if (document.getElementById("TotalDescuento").innerHTML == '') {
+            totalProducto = $('#factd_MontoDescuento').val();
+            document.getElementById("TotalDescuento").innerHTML = parseFloat(totalProducto);
+        }
+        else {
+            document.getElementById("TotalDescuento").innerHTML = parseFloat(TotalDescuento) + parseFloat(Descuento);
+        }
 
         //Subtotal 
         var totalProducto = $('#TotalProducto').val();
@@ -134,6 +145,12 @@ function GetFacturaDetalle() {
 };
 
 $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDetalle", function () {
+
+    //Descuento
+    var Descuento = $(this).parents("tr").find("td")[5].innerHTML;
+    var TotalDescuento = parseFloat(document.getElementById("TotalDescuento").innerHTML);
+    document.getElementById("TotalDescuento").innerHTML = parseFloat(TotalDescuento) - parseFloat(Descuento);
+
     //Subtotal
     var SubtotalProducto = $(this).parents("tr").find("td")[6].innerHTML;
     var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
@@ -183,16 +200,16 @@ function ponerdecimales(numero) {
     return numero;
 }
 
-$('#AgregarDetalleFactura').click(function () {
-    console.log(total);
-    if (document.getElementById("total").innerHTML == '') {
-        totalProducto = $('#TotalProducto').val();
-        document.getElementById("total").innerHTML = parseFloat(totalProducto);
-    }
-    else {
-        document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
-    }
+//$('#AgregarDetalleFactura').click(function () {
+//    console.log(total);
+//    if (document.getElementById("total").innerHTML == '') {
+//        totalProducto = $('#TotalProducto').val();
+//        document.getElementById("total").innerHTML = parseFloat(totalProducto);
+//    }
+//    else {
+//        document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
+//    }
 
-})
+//})
 
 

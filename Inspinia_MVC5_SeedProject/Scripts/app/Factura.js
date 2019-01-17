@@ -22,7 +22,7 @@ $("#consumidorFinal").change(function () {
         //Do stuff     
         $("#cliente_Identificacion").val('99999999999999');
         $("#cliente_Nombres").val('Consumidor Final');
-        $("#clte_Id").val(500);
+        $("#IDCliente").val(500);
         document.getElementById("fact_AlCredito").disabled = true;
         document.getElementById("fact_AutorizarDescuento").disabled = true;
 

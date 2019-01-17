@@ -974,6 +974,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Acce.V_Objetos' does not have a primar
     <Property Name="obj_FechaModifica" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.dbo.pruebaswilson' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="pruebaswilson">
+    <Key>
+      <PropertyRef Name="cja_Id" />
+      <PropertyRef Name="suc_Id" />
+      <PropertyRef Name="fact_Id" />
+      <PropertyRef Name="pemi_Id" />
+      <PropertyRef Name="pemi_NumeroCAI" />
+      <PropertyRef Name="pemid_RangoInicio" />
+      <PropertyRef Name="pemid_RangoFinal" />
+      <PropertyRef Name="pemid_FechaLimite" />
+      <PropertyRef Name="dfisc_Id" />
+    </Key>
+    <Property Name="cja_Id" Type="smallint" Nullable="false" />
+    <Property Name="suc_Id" Type="int" Nullable="false" />
+    <Property Name="fact_Id" Type="bigint" Nullable="false" />
+    <Property Name="pemi_Id" Type="int" Nullable="false" />
+    <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="pemid_RangoInicio" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="pemid_RangoFinal" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
+    <Property Name="dfisc_Id" Type="char" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Inv_Nombre_Empleado">
     <Key>
@@ -5238,6 +5262,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     [V_Objetos].[obj_UsuarioModifica] AS [obj_UsuarioModifica], 
     [V_Objetos].[obj_FechaModifica] AS [obj_FechaModifica]
     FROM [Acce].[V_Objetos] AS [V_Objetos]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="pruebaswilson" EntityType="Self.pruebaswilson" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [pruebaswilson].[cja_Id] AS [cja_Id], 
+    [pruebaswilson].[suc_Id] AS [suc_Id], 
+    [pruebaswilson].[fact_Id] AS [fact_Id], 
+    [pruebaswilson].[pemi_Id] AS [pemi_Id], 
+    [pruebaswilson].[pemi_NumeroCAI] AS [pemi_NumeroCAI], 
+    [pruebaswilson].[pemid_RangoInicio] AS [pemid_RangoInicio], 
+    [pruebaswilson].[pemid_RangoFinal] AS [pemid_RangoFinal], 
+    [pruebaswilson].[pemid_FechaLimite] AS [pemid_FechaLimite], 
+    [pruebaswilson].[dfisc_Id] AS [dfisc_Id]
+    FROM [dbo].[pruebaswilson] AS [pruebaswilson]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="Self.UDV_Inv_Nombre_Empleado" store:Type="Views" store:Schema="Gral">
       <DefiningQuery>SELECT 

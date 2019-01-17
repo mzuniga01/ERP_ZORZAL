@@ -217,8 +217,8 @@ namespace ERP_GMEDINA.Controllers
 
             var list = (List<tbFacturaDetalle>)Session["Factura"];
             var listTercera = (List<tbFactura>)Session["TerceraEdad"];
-            long MensajeError = 0;
-            var MensajeErrorDetalle = 0;
+            string MensajeError = "";
+            var MensajeErrorDetalle = "";
             IEnumerable<object> listFactura = null;
             IEnumerable<object> listFacturaDetalle = null;
             if (db.tbFactura.Any(a => a.fact_Codigo == tbFactura.fact_Codigo))
@@ -266,14 +266,14 @@ namespace ERP_GMEDINA.Controllers
                                                 tbFactura.fact_EsAnulada);
                         foreach (UDP_Vent_tbFactura_Insert_Result Factura in listFactura)
                             MensajeError = Factura.MensajeError;
-                        if (MensajeError == -1)
+                        if (MensajeError == "-1")
                         {
                             ModelState.AddModelError("", "No se pudo agregar el registro");
                             return View(tbFactura);
                         }
                         else
                         {
-                            if (MensajeError > 0)
+                            if (MensajeError != "-1")
                             {
                                 if (list != null)
                                 {
@@ -281,8 +281,8 @@ namespace ERP_GMEDINA.Controllers
                                     {
                                         foreach (tbFacturaDetalle Detalle in list)
                                         {
-
-                                            Detalle.fact_Id = MensajeError;
+                                            var FacturaD_Id = Convert.ToInt64(MensajeError);
+                                            Detalle.fact_Id = FacturaD_Id;
                                             listFacturaDetalle = db.UDP_Vent_tbFacturaDetalle_Insert(
                                                 Detalle.fact_Id,
                                                 Detalle.prod_Codigo,
@@ -295,7 +295,7 @@ namespace ERP_GMEDINA.Controllers
                                             foreach (UDP_Vent_tbFacturaDetalle_Insert_Result SPfacturadet in listFacturaDetalle)
                                             {
                                                 MensajeErrorDetalle = SPfacturadet.MensajeError;
-                                                if (MensajeError == -1)
+                                                if (MensajeError.StartsWith("-1"))
                                                 {
                                                     ModelState.AddModelError("", "No se pudo agregar el registro detalle");
                                                     return View(tbFactura);
@@ -384,7 +384,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 try
                 {
-                    long MensajeError = 0;
+                    string MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbFactura_Update(
                         tbFactura.fact_Id,
@@ -409,7 +409,7 @@ namespace ERP_GMEDINA.Controllers
                         tbFactura.fact_FechaCrea);
                     foreach (UDP_Vent_tbFactura_Update_Result Factura in list)
                         MensajeError = Factura.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError == "-1")
                     {
 
                     }
@@ -533,7 +533,7 @@ namespace ERP_GMEDINA.Controllers
         {
             try
             {
-                var MensajeError = 0;
+                var MensajeError = "";
                 IEnumerable<object> list = null;
                 list = db.UDP_Vent_tbFacturaDetalle_Update(
                             EditFacturaDetalle.factd_Id,
@@ -548,7 +548,7 @@ namespace ERP_GMEDINA.Controllers
                             EditFacturaDetalle.factd_FechaCrea);
                 foreach (UDP_Vent_tbFacturaDetalle_Update_Result FacturaDetalle in list)
                     MensajeError = FacturaDetalle.MensajeError;
-                if (MensajeError == -1)
+                if (MensajeError == "-1")
                 {
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                     return PartialView("_EditFacturaDetalle");

@@ -69,7 +69,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
         public virtual DbSet<tbDocumentoFiscal> tbDocumentoFiscal { get; set; }
         public virtual DbSet<tbEstadoFactura> tbEstadoFactura { get; set; }
-        public virtual DbSet<tbEstadoPedido> tbEstadoPedido { get; set; }
         public virtual DbSet<tbEstadoSolicitudCredito> tbEstadoSolicitudCredito { get; set; }
         public virtual DbSet<tbExoneracion> tbExoneracion { get; set; }
         public virtual DbSet<tbFactura> tbFactura { get; set; }
@@ -91,6 +90,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
         public virtual DbSet<V_Objetos> V_Objetos { get; set; }
+        public virtual DbSet<pruebaswilson> pruebaswilson { get; set; }
         public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
         public virtual DbSet<UDV_Inv_Consultar_Existencias_Productos> UDV_Inv_Consultar_Existencias_Productos { get; set; }
         public virtual DbSet<UDP_Vent_listExoneracion_Select> UDP_Vent_listExoneracion_Select { get; set; }
@@ -99,6 +99,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_Busqueda_Clientes> UDV_Vent_Busqueda_Clientes { get; set; }
         public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
         public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
+        public virtual DbSet<tbEstadoPedido> tbEstadoPedido { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {
@@ -1345,84 +1346,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("nocre_Estado", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Update_Result>("UDP_Vent_tbNotaCredito_Update", nocre_IdParameter, nocre_CodigoParameter, dev_IdParameter, clte_IdParameter, suc_IdParameter, nocre_AnuladoParameter, nocre_FechaEmisionParameter, nocre_MotivoEmisionParameter, nocre_MontoParameter, nocre_UsuarioCreaParameter, nocre_FechaCreaParameter, nocre_EstadoParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbFacturaDetalle_Insert_Result> UDP_Vent_tbFacturaDetalle_Insert(Nullable<long> fact_Id, string prod_Codigo, Nullable<decimal> factd_Cantidad, Nullable<decimal> factd_MontoDescuento, Nullable<decimal> factd_PorcentajeDescuento, Nullable<decimal> factd_Impuesto, Nullable<decimal> factd_PrecioUnitario)
-        {
-            var fact_IdParameter = fact_Id.HasValue ?
-                new ObjectParameter("fact_Id", fact_Id) :
-                new ObjectParameter("fact_Id", typeof(long));
-    
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            var factd_CantidadParameter = factd_Cantidad.HasValue ?
-                new ObjectParameter("factd_Cantidad", factd_Cantidad) :
-                new ObjectParameter("factd_Cantidad", typeof(decimal));
-    
-            var factd_MontoDescuentoParameter = factd_MontoDescuento.HasValue ?
-                new ObjectParameter("factd_MontoDescuento", factd_MontoDescuento) :
-                new ObjectParameter("factd_MontoDescuento", typeof(decimal));
-    
-            var factd_PorcentajeDescuentoParameter = factd_PorcentajeDescuento.HasValue ?
-                new ObjectParameter("factd_PorcentajeDescuento", factd_PorcentajeDescuento) :
-                new ObjectParameter("factd_PorcentajeDescuento", typeof(decimal));
-    
-            var factd_ImpuestoParameter = factd_Impuesto.HasValue ?
-                new ObjectParameter("factd_Impuesto", factd_Impuesto) :
-                new ObjectParameter("factd_Impuesto", typeof(decimal));
-    
-            var factd_PrecioUnitarioParameter = factd_PrecioUnitario.HasValue ?
-                new ObjectParameter("factd_PrecioUnitario", factd_PrecioUnitario) :
-                new ObjectParameter("factd_PrecioUnitario", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFacturaDetalle_Insert_Result>("UDP_Vent_tbFacturaDetalle_Insert", fact_IdParameter, prod_CodigoParameter, factd_CantidadParameter, factd_MontoDescuentoParameter, factd_PorcentajeDescuentoParameter, factd_ImpuestoParameter, factd_PrecioUnitarioParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbFacturaDetalle_Update_Result> UDP_Vent_tbFacturaDetalle_Update(Nullable<short> factd_Id, Nullable<decimal> factd_Cantidad, Nullable<decimal> factd_MontoDescuento, Nullable<decimal> factd_PorcentajeDescuento, Nullable<decimal> factd_Impuesto, Nullable<decimal> factd_PrecioUnitario, Nullable<int> factd_UsuarioAutoriza, Nullable<System.DateTime> factd_FechaAutoriza, Nullable<int> factd_UsuarioCrea, Nullable<System.DateTime> factd_FechaCrea)
-        {
-            var factd_IdParameter = factd_Id.HasValue ?
-                new ObjectParameter("factd_Id", factd_Id) :
-                new ObjectParameter("factd_Id", typeof(short));
-    
-            var factd_CantidadParameter = factd_Cantidad.HasValue ?
-                new ObjectParameter("factd_Cantidad", factd_Cantidad) :
-                new ObjectParameter("factd_Cantidad", typeof(decimal));
-    
-            var factd_MontoDescuentoParameter = factd_MontoDescuento.HasValue ?
-                new ObjectParameter("factd_MontoDescuento", factd_MontoDescuento) :
-                new ObjectParameter("factd_MontoDescuento", typeof(decimal));
-    
-            var factd_PorcentajeDescuentoParameter = factd_PorcentajeDescuento.HasValue ?
-                new ObjectParameter("factd_PorcentajeDescuento", factd_PorcentajeDescuento) :
-                new ObjectParameter("factd_PorcentajeDescuento", typeof(decimal));
-    
-            var factd_ImpuestoParameter = factd_Impuesto.HasValue ?
-                new ObjectParameter("factd_Impuesto", factd_Impuesto) :
-                new ObjectParameter("factd_Impuesto", typeof(decimal));
-    
-            var factd_PrecioUnitarioParameter = factd_PrecioUnitario.HasValue ?
-                new ObjectParameter("factd_PrecioUnitario", factd_PrecioUnitario) :
-                new ObjectParameter("factd_PrecioUnitario", typeof(decimal));
-    
-            var factd_UsuarioAutorizaParameter = factd_UsuarioAutoriza.HasValue ?
-                new ObjectParameter("factd_UsuarioAutoriza", factd_UsuarioAutoriza) :
-                new ObjectParameter("factd_UsuarioAutoriza", typeof(int));
-    
-            var factd_FechaAutorizaParameter = factd_FechaAutoriza.HasValue ?
-                new ObjectParameter("factd_FechaAutoriza", factd_FechaAutoriza) :
-                new ObjectParameter("factd_FechaAutoriza", typeof(System.DateTime));
-    
-            var factd_UsuarioCreaParameter = factd_UsuarioCrea.HasValue ?
-                new ObjectParameter("factd_UsuarioCrea", factd_UsuarioCrea) :
-                new ObjectParameter("factd_UsuarioCrea", typeof(int));
-    
-            var factd_FechaCreaParameter = factd_FechaCrea.HasValue ?
-                new ObjectParameter("factd_FechaCrea", factd_FechaCrea) :
-                new ObjectParameter("factd_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFacturaDetalle_Update_Result>("UDP_Vent_tbFacturaDetalle_Update", factd_IdParameter, factd_CantidadParameter, factd_MontoDescuentoParameter, factd_PorcentajeDescuentoParameter, factd_ImpuestoParameter, factd_PrecioUnitarioParameter, factd_UsuarioAutorizaParameter, factd_FechaAutorizaParameter, factd_UsuarioCreaParameter, factd_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbEstadoFactura_Insert_Result> UDP_Vent_tbEstadoFactura_Insert(string esfac_Descripcion)
@@ -4368,164 +4291,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivoDetalle_Select_Result>("UDP_Vent_tbSolicitudEfectivoDetalle_Select");
         }
     
-        public virtual ObjectResult<UDP_Vent_tbFactura_Insert_Result> UDP_Vent_tbFactura_Insert(string fact_Codigo, Nullable<System.DateTime> fact_Fecha, Nullable<byte> esfac_Id, Nullable<short> cja_Id, Nullable<int> suc_Id, Nullable<int> clte_Id, string pemi_NumeroCAI, Nullable<bool> fact_AlCredito, Nullable<int> fact_DiasCredito, Nullable<decimal> fact_PorcentajeDescuento, string fact_Vendedor, string clte_Identificacion, string clte_Nombres, string fact_IdentidadTE, string fact_NombresTE, Nullable<System.DateTime> fact_FechaNacimientoTE, Nullable<bool> fact_EsAnulada)
-        {
-            var fact_CodigoParameter = fact_Codigo != null ?
-                new ObjectParameter("fact_Codigo", fact_Codigo) :
-                new ObjectParameter("fact_Codigo", typeof(string));
-    
-            var fact_FechaParameter = fact_Fecha.HasValue ?
-                new ObjectParameter("fact_Fecha", fact_Fecha) :
-                new ObjectParameter("fact_Fecha", typeof(System.DateTime));
-    
-            var esfac_IdParameter = esfac_Id.HasValue ?
-                new ObjectParameter("esfac_Id", esfac_Id) :
-                new ObjectParameter("esfac_Id", typeof(byte));
-    
-            var cja_IdParameter = cja_Id.HasValue ?
-                new ObjectParameter("cja_Id", cja_Id) :
-                new ObjectParameter("cja_Id", typeof(short));
-    
-            var suc_IdParameter = suc_Id.HasValue ?
-                new ObjectParameter("suc_Id", suc_Id) :
-                new ObjectParameter("suc_Id", typeof(int));
-    
-            var clte_IdParameter = clte_Id.HasValue ?
-                new ObjectParameter("clte_Id", clte_Id) :
-                new ObjectParameter("clte_Id", typeof(int));
-    
-            var pemi_NumeroCAIParameter = pemi_NumeroCAI != null ?
-                new ObjectParameter("pemi_NumeroCAI", pemi_NumeroCAI) :
-                new ObjectParameter("pemi_NumeroCAI", typeof(string));
-    
-            var fact_AlCreditoParameter = fact_AlCredito.HasValue ?
-                new ObjectParameter("fact_AlCredito", fact_AlCredito) :
-                new ObjectParameter("fact_AlCredito", typeof(bool));
-    
-            var fact_DiasCreditoParameter = fact_DiasCredito.HasValue ?
-                new ObjectParameter("fact_DiasCredito", fact_DiasCredito) :
-                new ObjectParameter("fact_DiasCredito", typeof(int));
-    
-            var fact_PorcentajeDescuentoParameter = fact_PorcentajeDescuento.HasValue ?
-                new ObjectParameter("fact_PorcentajeDescuento", fact_PorcentajeDescuento) :
-                new ObjectParameter("fact_PorcentajeDescuento", typeof(decimal));
-    
-            var fact_VendedorParameter = fact_Vendedor != null ?
-                new ObjectParameter("fact_Vendedor", fact_Vendedor) :
-                new ObjectParameter("fact_Vendedor", typeof(string));
-    
-            var clte_IdentificacionParameter = clte_Identificacion != null ?
-                new ObjectParameter("clte_Identificacion", clte_Identificacion) :
-                new ObjectParameter("clte_Identificacion", typeof(string));
-    
-            var clte_NombresParameter = clte_Nombres != null ?
-                new ObjectParameter("clte_Nombres", clte_Nombres) :
-                new ObjectParameter("clte_Nombres", typeof(string));
-    
-            var fact_IdentidadTEParameter = fact_IdentidadTE != null ?
-                new ObjectParameter("fact_IdentidadTE", fact_IdentidadTE) :
-                new ObjectParameter("fact_IdentidadTE", typeof(string));
-    
-            var fact_NombresTEParameter = fact_NombresTE != null ?
-                new ObjectParameter("fact_NombresTE", fact_NombresTE) :
-                new ObjectParameter("fact_NombresTE", typeof(string));
-    
-            var fact_FechaNacimientoTEParameter = fact_FechaNacimientoTE.HasValue ?
-                new ObjectParameter("fact_FechaNacimientoTE", fact_FechaNacimientoTE) :
-                new ObjectParameter("fact_FechaNacimientoTE", typeof(System.DateTime));
-    
-            var fact_EsAnuladaParameter = fact_EsAnulada.HasValue ?
-                new ObjectParameter("fact_EsAnulada", fact_EsAnulada) :
-                new ObjectParameter("fact_EsAnulada", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Insert_Result>("UDP_Vent_tbFactura_Insert", fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, cja_IdParameter, suc_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_IdentidadTEParameter, fact_NombresTEParameter, fact_FechaNacimientoTEParameter, fact_EsAnuladaParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbFactura_Update_Result> UDP_Vent_tbFactura_Update(Nullable<long> fact_Id, string fact_Codigo, Nullable<System.DateTime> fact_Fecha, Nullable<byte> esfac_Id, Nullable<int> clte_Id, string pemi_NumeroCAI, Nullable<bool> fact_AlCredito, Nullable<int> fact_DiasCredito, Nullable<decimal> fact_PorcentajeDescuento, string fact_Vendedor, string clte_Identificacion, string clte_Nombres, string fact_IdentidadTE, string fact_NombresTE, Nullable<System.DateTime> fact_FechaNacimientoTE, Nullable<int> fact_UsuarioAutoriza, Nullable<System.DateTime> fact_FechaAutoriza, Nullable<bool> fact_EsAnulada, Nullable<int> fact_UsuarioCrea, Nullable<System.DateTime> fact_FechaCrea)
-        {
-            var fact_IdParameter = fact_Id.HasValue ?
-                new ObjectParameter("fact_Id", fact_Id) :
-                new ObjectParameter("fact_Id", typeof(long));
-    
-            var fact_CodigoParameter = fact_Codigo != null ?
-                new ObjectParameter("fact_Codigo", fact_Codigo) :
-                new ObjectParameter("fact_Codigo", typeof(string));
-    
-            var fact_FechaParameter = fact_Fecha.HasValue ?
-                new ObjectParameter("fact_Fecha", fact_Fecha) :
-                new ObjectParameter("fact_Fecha", typeof(System.DateTime));
-    
-            var esfac_IdParameter = esfac_Id.HasValue ?
-                new ObjectParameter("esfac_Id", esfac_Id) :
-                new ObjectParameter("esfac_Id", typeof(byte));
-    
-            var clte_IdParameter = clte_Id.HasValue ?
-                new ObjectParameter("clte_Id", clte_Id) :
-                new ObjectParameter("clte_Id", typeof(int));
-    
-            var pemi_NumeroCAIParameter = pemi_NumeroCAI != null ?
-                new ObjectParameter("pemi_NumeroCAI", pemi_NumeroCAI) :
-                new ObjectParameter("pemi_NumeroCAI", typeof(string));
-    
-            var fact_AlCreditoParameter = fact_AlCredito.HasValue ?
-                new ObjectParameter("fact_AlCredito", fact_AlCredito) :
-                new ObjectParameter("fact_AlCredito", typeof(bool));
-    
-            var fact_DiasCreditoParameter = fact_DiasCredito.HasValue ?
-                new ObjectParameter("fact_DiasCredito", fact_DiasCredito) :
-                new ObjectParameter("fact_DiasCredito", typeof(int));
-    
-            var fact_PorcentajeDescuentoParameter = fact_PorcentajeDescuento.HasValue ?
-                new ObjectParameter("fact_PorcentajeDescuento", fact_PorcentajeDescuento) :
-                new ObjectParameter("fact_PorcentajeDescuento", typeof(decimal));
-    
-            var fact_VendedorParameter = fact_Vendedor != null ?
-                new ObjectParameter("fact_Vendedor", fact_Vendedor) :
-                new ObjectParameter("fact_Vendedor", typeof(string));
-    
-            var clte_IdentificacionParameter = clte_Identificacion != null ?
-                new ObjectParameter("clte_Identificacion", clte_Identificacion) :
-                new ObjectParameter("clte_Identificacion", typeof(string));
-    
-            var clte_NombresParameter = clte_Nombres != null ?
-                new ObjectParameter("clte_Nombres", clte_Nombres) :
-                new ObjectParameter("clte_Nombres", typeof(string));
-    
-            var fact_IdentidadTEParameter = fact_IdentidadTE != null ?
-                new ObjectParameter("fact_IdentidadTE", fact_IdentidadTE) :
-                new ObjectParameter("fact_IdentidadTE", typeof(string));
-    
-            var fact_NombresTEParameter = fact_NombresTE != null ?
-                new ObjectParameter("fact_NombresTE", fact_NombresTE) :
-                new ObjectParameter("fact_NombresTE", typeof(string));
-    
-            var fact_FechaNacimientoTEParameter = fact_FechaNacimientoTE.HasValue ?
-                new ObjectParameter("fact_FechaNacimientoTE", fact_FechaNacimientoTE) :
-                new ObjectParameter("fact_FechaNacimientoTE", typeof(System.DateTime));
-    
-            var fact_UsuarioAutorizaParameter = fact_UsuarioAutoriza.HasValue ?
-                new ObjectParameter("fact_UsuarioAutoriza", fact_UsuarioAutoriza) :
-                new ObjectParameter("fact_UsuarioAutoriza", typeof(int));
-    
-            var fact_FechaAutorizaParameter = fact_FechaAutoriza.HasValue ?
-                new ObjectParameter("fact_FechaAutoriza", fact_FechaAutoriza) :
-                new ObjectParameter("fact_FechaAutoriza", typeof(System.DateTime));
-    
-            var fact_EsAnuladaParameter = fact_EsAnulada.HasValue ?
-                new ObjectParameter("fact_EsAnulada", fact_EsAnulada) :
-                new ObjectParameter("fact_EsAnulada", typeof(bool));
-    
-            var fact_UsuarioCreaParameter = fact_UsuarioCrea.HasValue ?
-                new ObjectParameter("fact_UsuarioCrea", fact_UsuarioCrea) :
-                new ObjectParameter("fact_UsuarioCrea", typeof(int));
-    
-            var fact_FechaCreaParameter = fact_FechaCrea.HasValue ?
-                new ObjectParameter("fact_FechaCrea", fact_FechaCrea) :
-                new ObjectParameter("fact_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Update_Result>("UDP_Vent_tbFactura_Update", fact_IdParameter, fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_IdentidadTEParameter, fact_NombresTEParameter, fact_FechaNacimientoTEParameter, fact_UsuarioAutorizaParameter, fact_FechaAutorizaParameter, fact_EsAnuladaParameter, fact_UsuarioCreaParameter, fact_FechaCreaParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbFactura_ConsultaBodega_Result> UDP_Vent_tbFactura_ConsultaBodega(Nullable<int> iDSUCURSAL, string cODIGOPRODUCTO)
         {
             var iDSUCURSALParameter = iDSUCURSAL.HasValue ?
@@ -5003,6 +4768,242 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("ped_FechaCrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedido_Update_Result1>("UDP_Vent_tbPedido_Update", ped_IdParameter, esped_IdParameter, ped_FechaElaboracionParameter, ped_FechaEntregaParameter, clte_IdParameter, suc_IdParameter, fact_IdParameter, ped_EsAnuladoParameter, ped_RazonAnuladoParameter, ped_UsuarioCreaParameter, ped_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbFactura_Insert_Result> UDP_Vent_tbFactura_Insert(string fact_Codigo, Nullable<System.DateTime> fact_Fecha, Nullable<byte> esfac_Id, Nullable<short> cja_Id, Nullable<int> suc_Id, Nullable<int> clte_Id, string pemi_NumeroCAI, Nullable<bool> fact_AlCredito, Nullable<int> fact_DiasCredito, Nullable<decimal> fact_PorcentajeDescuento, string fact_Vendedor, string clte_Identificacion, string clte_Nombres, string fact_IdentidadTE, string fact_NombresTE, Nullable<System.DateTime> fact_FechaNacimientoTE, Nullable<bool> fact_EsAnulada)
+        {
+            var fact_CodigoParameter = fact_Codigo != null ?
+                new ObjectParameter("fact_Codigo", fact_Codigo) :
+                new ObjectParameter("fact_Codigo", typeof(string));
+    
+            var fact_FechaParameter = fact_Fecha.HasValue ?
+                new ObjectParameter("fact_Fecha", fact_Fecha) :
+                new ObjectParameter("fact_Fecha", typeof(System.DateTime));
+    
+            var esfac_IdParameter = esfac_Id.HasValue ?
+                new ObjectParameter("esfac_Id", esfac_Id) :
+                new ObjectParameter("esfac_Id", typeof(byte));
+    
+            var cja_IdParameter = cja_Id.HasValue ?
+                new ObjectParameter("cja_Id", cja_Id) :
+                new ObjectParameter("cja_Id", typeof(short));
+    
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(int));
+    
+            var clte_IdParameter = clte_Id.HasValue ?
+                new ObjectParameter("clte_Id", clte_Id) :
+                new ObjectParameter("clte_Id", typeof(int));
+    
+            var pemi_NumeroCAIParameter = pemi_NumeroCAI != null ?
+                new ObjectParameter("pemi_NumeroCAI", pemi_NumeroCAI) :
+                new ObjectParameter("pemi_NumeroCAI", typeof(string));
+    
+            var fact_AlCreditoParameter = fact_AlCredito.HasValue ?
+                new ObjectParameter("fact_AlCredito", fact_AlCredito) :
+                new ObjectParameter("fact_AlCredito", typeof(bool));
+    
+            var fact_DiasCreditoParameter = fact_DiasCredito.HasValue ?
+                new ObjectParameter("fact_DiasCredito", fact_DiasCredito) :
+                new ObjectParameter("fact_DiasCredito", typeof(int));
+    
+            var fact_PorcentajeDescuentoParameter = fact_PorcentajeDescuento.HasValue ?
+                new ObjectParameter("fact_PorcentajeDescuento", fact_PorcentajeDescuento) :
+                new ObjectParameter("fact_PorcentajeDescuento", typeof(decimal));
+    
+            var fact_VendedorParameter = fact_Vendedor != null ?
+                new ObjectParameter("fact_Vendedor", fact_Vendedor) :
+                new ObjectParameter("fact_Vendedor", typeof(string));
+    
+            var clte_IdentificacionParameter = clte_Identificacion != null ?
+                new ObjectParameter("clte_Identificacion", clte_Identificacion) :
+                new ObjectParameter("clte_Identificacion", typeof(string));
+    
+            var clte_NombresParameter = clte_Nombres != null ?
+                new ObjectParameter("clte_Nombres", clte_Nombres) :
+                new ObjectParameter("clte_Nombres", typeof(string));
+    
+            var fact_IdentidadTEParameter = fact_IdentidadTE != null ?
+                new ObjectParameter("fact_IdentidadTE", fact_IdentidadTE) :
+                new ObjectParameter("fact_IdentidadTE", typeof(string));
+    
+            var fact_NombresTEParameter = fact_NombresTE != null ?
+                new ObjectParameter("fact_NombresTE", fact_NombresTE) :
+                new ObjectParameter("fact_NombresTE", typeof(string));
+    
+            var fact_FechaNacimientoTEParameter = fact_FechaNacimientoTE.HasValue ?
+                new ObjectParameter("fact_FechaNacimientoTE", fact_FechaNacimientoTE) :
+                new ObjectParameter("fact_FechaNacimientoTE", typeof(System.DateTime));
+    
+            var fact_EsAnuladaParameter = fact_EsAnulada.HasValue ?
+                new ObjectParameter("fact_EsAnulada", fact_EsAnulada) :
+                new ObjectParameter("fact_EsAnulada", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Insert_Result>("UDP_Vent_tbFactura_Insert", fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, cja_IdParameter, suc_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_IdentidadTEParameter, fact_NombresTEParameter, fact_FechaNacimientoTEParameter, fact_EsAnuladaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbFactura_Update_Result> UDP_Vent_tbFactura_Update(Nullable<long> fact_Id, string fact_Codigo, Nullable<System.DateTime> fact_Fecha, Nullable<byte> esfac_Id, Nullable<int> clte_Id, string pemi_NumeroCAI, Nullable<bool> fact_AlCredito, Nullable<int> fact_DiasCredito, Nullable<decimal> fact_PorcentajeDescuento, string fact_Vendedor, string clte_Identificacion, string clte_Nombres, string fact_IdentidadTE, string fact_NombresTE, Nullable<System.DateTime> fact_FechaNacimientoTE, Nullable<int> fact_UsuarioAutoriza, Nullable<System.DateTime> fact_FechaAutoriza, Nullable<bool> fact_EsAnulada, Nullable<int> fact_UsuarioCrea, Nullable<System.DateTime> fact_FechaCrea)
+        {
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(long));
+    
+            var fact_CodigoParameter = fact_Codigo != null ?
+                new ObjectParameter("fact_Codigo", fact_Codigo) :
+                new ObjectParameter("fact_Codigo", typeof(string));
+    
+            var fact_FechaParameter = fact_Fecha.HasValue ?
+                new ObjectParameter("fact_Fecha", fact_Fecha) :
+                new ObjectParameter("fact_Fecha", typeof(System.DateTime));
+    
+            var esfac_IdParameter = esfac_Id.HasValue ?
+                new ObjectParameter("esfac_Id", esfac_Id) :
+                new ObjectParameter("esfac_Id", typeof(byte));
+    
+            var clte_IdParameter = clte_Id.HasValue ?
+                new ObjectParameter("clte_Id", clte_Id) :
+                new ObjectParameter("clte_Id", typeof(int));
+    
+            var pemi_NumeroCAIParameter = pemi_NumeroCAI != null ?
+                new ObjectParameter("pemi_NumeroCAI", pemi_NumeroCAI) :
+                new ObjectParameter("pemi_NumeroCAI", typeof(string));
+    
+            var fact_AlCreditoParameter = fact_AlCredito.HasValue ?
+                new ObjectParameter("fact_AlCredito", fact_AlCredito) :
+                new ObjectParameter("fact_AlCredito", typeof(bool));
+    
+            var fact_DiasCreditoParameter = fact_DiasCredito.HasValue ?
+                new ObjectParameter("fact_DiasCredito", fact_DiasCredito) :
+                new ObjectParameter("fact_DiasCredito", typeof(int));
+    
+            var fact_PorcentajeDescuentoParameter = fact_PorcentajeDescuento.HasValue ?
+                new ObjectParameter("fact_PorcentajeDescuento", fact_PorcentajeDescuento) :
+                new ObjectParameter("fact_PorcentajeDescuento", typeof(decimal));
+    
+            var fact_VendedorParameter = fact_Vendedor != null ?
+                new ObjectParameter("fact_Vendedor", fact_Vendedor) :
+                new ObjectParameter("fact_Vendedor", typeof(string));
+    
+            var clte_IdentificacionParameter = clte_Identificacion != null ?
+                new ObjectParameter("clte_Identificacion", clte_Identificacion) :
+                new ObjectParameter("clte_Identificacion", typeof(string));
+    
+            var clte_NombresParameter = clte_Nombres != null ?
+                new ObjectParameter("clte_Nombres", clte_Nombres) :
+                new ObjectParameter("clte_Nombres", typeof(string));
+    
+            var fact_IdentidadTEParameter = fact_IdentidadTE != null ?
+                new ObjectParameter("fact_IdentidadTE", fact_IdentidadTE) :
+                new ObjectParameter("fact_IdentidadTE", typeof(string));
+    
+            var fact_NombresTEParameter = fact_NombresTE != null ?
+                new ObjectParameter("fact_NombresTE", fact_NombresTE) :
+                new ObjectParameter("fact_NombresTE", typeof(string));
+    
+            var fact_FechaNacimientoTEParameter = fact_FechaNacimientoTE.HasValue ?
+                new ObjectParameter("fact_FechaNacimientoTE", fact_FechaNacimientoTE) :
+                new ObjectParameter("fact_FechaNacimientoTE", typeof(System.DateTime));
+    
+            var fact_UsuarioAutorizaParameter = fact_UsuarioAutoriza.HasValue ?
+                new ObjectParameter("fact_UsuarioAutoriza", fact_UsuarioAutoriza) :
+                new ObjectParameter("fact_UsuarioAutoriza", typeof(int));
+    
+            var fact_FechaAutorizaParameter = fact_FechaAutoriza.HasValue ?
+                new ObjectParameter("fact_FechaAutoriza", fact_FechaAutoriza) :
+                new ObjectParameter("fact_FechaAutoriza", typeof(System.DateTime));
+    
+            var fact_EsAnuladaParameter = fact_EsAnulada.HasValue ?
+                new ObjectParameter("fact_EsAnulada", fact_EsAnulada) :
+                new ObjectParameter("fact_EsAnulada", typeof(bool));
+    
+            var fact_UsuarioCreaParameter = fact_UsuarioCrea.HasValue ?
+                new ObjectParameter("fact_UsuarioCrea", fact_UsuarioCrea) :
+                new ObjectParameter("fact_UsuarioCrea", typeof(int));
+    
+            var fact_FechaCreaParameter = fact_FechaCrea.HasValue ?
+                new ObjectParameter("fact_FechaCrea", fact_FechaCrea) :
+                new ObjectParameter("fact_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Update_Result>("UDP_Vent_tbFactura_Update", fact_IdParameter, fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_IdentidadTEParameter, fact_NombresTEParameter, fact_FechaNacimientoTEParameter, fact_UsuarioAutorizaParameter, fact_FechaAutorizaParameter, fact_EsAnuladaParameter, fact_UsuarioCreaParameter, fact_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbFacturaDetalle_Insert_Result> UDP_Vent_tbFacturaDetalle_Insert(Nullable<long> fact_Id, string prod_Codigo, Nullable<decimal> factd_Cantidad, Nullable<decimal> factd_MontoDescuento, Nullable<decimal> factd_PorcentajeDescuento, Nullable<decimal> factd_Impuesto, Nullable<decimal> factd_PrecioUnitario)
+        {
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(long));
+    
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var factd_CantidadParameter = factd_Cantidad.HasValue ?
+                new ObjectParameter("factd_Cantidad", factd_Cantidad) :
+                new ObjectParameter("factd_Cantidad", typeof(decimal));
+    
+            var factd_MontoDescuentoParameter = factd_MontoDescuento.HasValue ?
+                new ObjectParameter("factd_MontoDescuento", factd_MontoDescuento) :
+                new ObjectParameter("factd_MontoDescuento", typeof(decimal));
+    
+            var factd_PorcentajeDescuentoParameter = factd_PorcentajeDescuento.HasValue ?
+                new ObjectParameter("factd_PorcentajeDescuento", factd_PorcentajeDescuento) :
+                new ObjectParameter("factd_PorcentajeDescuento", typeof(decimal));
+    
+            var factd_ImpuestoParameter = factd_Impuesto.HasValue ?
+                new ObjectParameter("factd_Impuesto", factd_Impuesto) :
+                new ObjectParameter("factd_Impuesto", typeof(decimal));
+    
+            var factd_PrecioUnitarioParameter = factd_PrecioUnitario.HasValue ?
+                new ObjectParameter("factd_PrecioUnitario", factd_PrecioUnitario) :
+                new ObjectParameter("factd_PrecioUnitario", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFacturaDetalle_Insert_Result>("UDP_Vent_tbFacturaDetalle_Insert", fact_IdParameter, prod_CodigoParameter, factd_CantidadParameter, factd_MontoDescuentoParameter, factd_PorcentajeDescuentoParameter, factd_ImpuestoParameter, factd_PrecioUnitarioParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbFacturaDetalle_Update_Result> UDP_Vent_tbFacturaDetalle_Update(Nullable<short> factd_Id, Nullable<decimal> factd_Cantidad, Nullable<decimal> factd_MontoDescuento, Nullable<decimal> factd_PorcentajeDescuento, Nullable<decimal> factd_Impuesto, Nullable<decimal> factd_PrecioUnitario, Nullable<int> factd_UsuarioAutoriza, Nullable<System.DateTime> factd_FechaAutoriza, Nullable<int> factd_UsuarioCrea, Nullable<System.DateTime> factd_FechaCrea)
+        {
+            var factd_IdParameter = factd_Id.HasValue ?
+                new ObjectParameter("factd_Id", factd_Id) :
+                new ObjectParameter("factd_Id", typeof(short));
+    
+            var factd_CantidadParameter = factd_Cantidad.HasValue ?
+                new ObjectParameter("factd_Cantidad", factd_Cantidad) :
+                new ObjectParameter("factd_Cantidad", typeof(decimal));
+    
+            var factd_MontoDescuentoParameter = factd_MontoDescuento.HasValue ?
+                new ObjectParameter("factd_MontoDescuento", factd_MontoDescuento) :
+                new ObjectParameter("factd_MontoDescuento", typeof(decimal));
+    
+            var factd_PorcentajeDescuentoParameter = factd_PorcentajeDescuento.HasValue ?
+                new ObjectParameter("factd_PorcentajeDescuento", factd_PorcentajeDescuento) :
+                new ObjectParameter("factd_PorcentajeDescuento", typeof(decimal));
+    
+            var factd_ImpuestoParameter = factd_Impuesto.HasValue ?
+                new ObjectParameter("factd_Impuesto", factd_Impuesto) :
+                new ObjectParameter("factd_Impuesto", typeof(decimal));
+    
+            var factd_PrecioUnitarioParameter = factd_PrecioUnitario.HasValue ?
+                new ObjectParameter("factd_PrecioUnitario", factd_PrecioUnitario) :
+                new ObjectParameter("factd_PrecioUnitario", typeof(decimal));
+    
+            var factd_UsuarioAutorizaParameter = factd_UsuarioAutoriza.HasValue ?
+                new ObjectParameter("factd_UsuarioAutoriza", factd_UsuarioAutoriza) :
+                new ObjectParameter("factd_UsuarioAutoriza", typeof(int));
+    
+            var factd_FechaAutorizaParameter = factd_FechaAutoriza.HasValue ?
+                new ObjectParameter("factd_FechaAutoriza", factd_FechaAutoriza) :
+                new ObjectParameter("factd_FechaAutoriza", typeof(System.DateTime));
+    
+            var factd_UsuarioCreaParameter = factd_UsuarioCrea.HasValue ?
+                new ObjectParameter("factd_UsuarioCrea", factd_UsuarioCrea) :
+                new ObjectParameter("factd_UsuarioCrea", typeof(int));
+    
+            var factd_FechaCreaParameter = factd_FechaCrea.HasValue ?
+                new ObjectParameter("factd_FechaCrea", factd_FechaCrea) :
+                new ObjectParameter("factd_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFacturaDetalle_Update_Result>("UDP_Vent_tbFacturaDetalle_Update", factd_IdParameter, factd_CantidadParameter, factd_MontoDescuentoParameter, factd_PorcentajeDescuentoParameter, factd_ImpuestoParameter, factd_PrecioUnitarioParameter, factd_UsuarioAutorizaParameter, factd_FechaAutorizaParameter, factd_UsuarioCreaParameter, factd_FechaCreaParameter);
         }
     }
 }
