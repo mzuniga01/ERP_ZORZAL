@@ -112,7 +112,7 @@ namespace ERP_GMEDINA.Controllers
 
 
             tbMovimientoCaja MC = new tbMovimientoCaja();
-            MC.cja_Id = 2;
+            MC.cja_Id = 1;
             return View(MC);
 
         }
