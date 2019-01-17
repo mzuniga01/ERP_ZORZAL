@@ -19,7 +19,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Solicitudes de Efectivo</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Solicitud Efectivo", "Create", null, new { @class = "btn btn-primary"})
+						@Html.ActionLink("Registrar Solicitud Efectivo", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -100,8 +100,9 @@
                
                 
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Edit", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs" })
+                    @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs" })
+                    @Html.ActionLink("Entregar Efectivo", "EditEntregaEfectivo", new { id = item.IdSolicitud }, new { @class = "btn btn-danger btn-xs" })
                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
                         Imprimir
                     </button>
