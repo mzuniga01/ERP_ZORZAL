@@ -202,7 +202,7 @@
                 </div>
                 @*ViewBag.Cliente = db.tbCliente.ToList();*@
                 <div class="modal-body" id="frmEditarMunicipios">
-                    @Html.Partial("_IndexCliente", (IEnumerable<tbCliente>)ViewBag.Cliente)
+                    @Html.Partial("ClientesnoExonerado", (List<UDP_Vent_listExoneracion_Select>)ViewBag.noExonerado)
                 </div>
             </div>
         </div>

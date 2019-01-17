@@ -14,10 +14,18 @@ namespace ERP_ZORZAL.Controllers
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
 
+        public ActionResult ClientesnoExonerado()
+        {
+
+            return View(db.UDP_Vent_listExoneracion_Select);
+        }
+
+
         // GET: /Exoneracion/
         public ActionResult Index()
         {
             var tbexoneracion = db.tbExoneracion.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente);
+
             return View(tbexoneracion.ToList());
         }
 
@@ -44,6 +52,7 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte");
             //return View();
             ViewBag.Cliente = db.tbCliente.ToList();
+            ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
             return View();
         }
 
@@ -85,6 +94,7 @@ namespace ERP_ZORZAL.Controllers
             {
                 ModelState.AddModelError("", "Error al Agregar Registro " + Ex.Message.ToString());
                 ViewBag.Cliente = db.tbCliente.ToList();
+                ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
                 return View(tbExoneracion);
             }
 
@@ -92,6 +102,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
             ViewBag.Cliente = db.tbCliente.ToList();
+            ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
             return View(tbExoneracion);
         }
 
@@ -111,6 +122,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
             ViewBag.Cliente = db.tbCliente.ToList();
+            ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
             return View(tbExoneracion);
             
             //return View();
@@ -156,12 +168,14 @@ namespace ERP_ZORZAL.Controllers
             {
                 ModelState.AddModelError("", "Error al Agregar Registro " + Ex.Message.ToString());
                 ViewBag.Cliente = db.tbCliente.ToList();
+                ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
                 return View(tbExoneracion);
             }
             ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioCrea);
             ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
             ViewBag.Cliente = db.tbCliente.ToList();
+            ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
             return View(tbExoneracion);
         }
 

@@ -59,12 +59,12 @@ namespace ERP_GMEDINA.Models
 
 
         [Display(Name = "Usuario Crea")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public Nullable<int> mocja_UsuarioCrea { get; set; }
 
 
         [Display(Name = "Fecha Crea")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime mocja_FechaCrea { get; set; }
 
