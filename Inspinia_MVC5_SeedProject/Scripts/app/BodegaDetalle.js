@@ -294,6 +294,7 @@ $(document).on("click", "#tblBodega tbody tr td button#removeBodegaDetalle", fun
 
 //Actualizar Detalle Bodega
 function btnActualizarBodegaDetalle(bodd_Id) {
+    console.log('actualizar btn')
     console.log(bodd_Id);
 
         var tbBodegaDetalle = Getbodegadetalle_UPDATE();

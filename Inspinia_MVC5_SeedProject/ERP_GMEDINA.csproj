@@ -209,7 +209,6 @@
     <Compile Include="Controllers\TipoEntradaController.cs" />
     <Compile Include="Controllers\TipoSalidaController.cs" />
     <Compile Include="Controllers\UnidadMedidaController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

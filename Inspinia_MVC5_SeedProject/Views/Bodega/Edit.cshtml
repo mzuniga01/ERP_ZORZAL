@@ -353,6 +353,7 @@
 
     }
 
+    var contador = 0;
     $(document).keypress(function (e) {
         console.log('Hola', e.target.id);
         var IDInput = e.target.id;
@@ -401,15 +402,35 @@
                             }).done(function (data) {
                                 if (data.length > 0) {
                                     alert('aqui');
+                                    console.log(data);
+                                    //$("#seleccionar").focus().click();
+
+                                    $.each(data, function (key, val) {
+                                        console.log('each')
+                                        data_producto = val.prod_Codigo;
+                                        data_categoria = val.pcat_Nombre;
+                                        data_subcate = val.pscat_Descripcion;
+                                        data_unidad = val.uni_Descripcion;
+                                        data_pDescripcion = val.prod_Descripcion;
+                                        console.log(data_producto)
+                                        $('#prod_Codigo').val(data_producto);
+                                        $('#pcat_Id').val(data_categoria);
+                                        $('#pscat_Id').val(data_subcate);
+                                        $('#uni_Id').val(data_unidad);
+                                        $('#prod_Descripcion').val(data_pDescripcion);
+                                            })
+                                  
+                                   
                                     $('#AgregarBodegaDetalle').click(function () {
                                         console.log('boton');
-                                        var Producto = $('#prod_CodigoBarras').val();
+                                        var Producto = $('#prod_Codigo').val();
                                         var Cminima = $('#bodd_CantidadMinima').val();
                                         var Preorden = $('#bodd_PuntoReorden').val();
                                         var Cmaxima = $('#bodd_CantidadMaxima').val();
                                         var Costo = $('#bodd_Costo').val();
                                         var Cpromedio = $('#bodd_CostoPromedio').val();
-
+                                        var Cbarras = $('#prod_CodigoBarras').val();
+                                        
                                         if (Producto == '') {
                                             $('#MessageError').text('');
                                             $('#Error_Producto').text('');
@@ -418,8 +439,20 @@
                                             $('#Error_CantidadMaxima').text('');
                                             $('#Error_Costo').text('');
                                             $('#Error_CostoPromedioo').text('');
-                                            $('#ErrorBarras_Create').after('<ul id="Error_Producto" class="validation-summary-errors text-danger">*Codigo De Barra Requerido</ul>');
+                                            $('#ErrorProducto_Create').after('<ul id="Error_Producto" class="validation-summary-errors text-danger">*Codigo De Barra Requerido</ul>');
 
+                                        }
+                                        else if (Cbarras == '') {
+
+                                            $('#MessageError').text('');
+                                            $('#Error_Producto').text('');
+                                            $('#Error_PuntoReorden').text('');
+                                            $('#Error_CantidadMinima').text('');
+                                            $('#Error_CantidadMaxima').text('');
+                                            $('#Error_Costo').text('');
+                                            $('#Error_CostoPromedioo').text('');
+                                            $('#Error_Barras').text('');
+                                            $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Codigo De Barras Requerido</ul>');
                                         }
                                         else if (Cminima == '') {
 
@@ -484,6 +517,7 @@
                                             //Aqui importa el orden
                                             contador = contador + 1;
                                             copiar = "<tr data-id=" + contador + ">";
+                                            copiar += "<td id = 'Cbarras'>" + $('#prod_CodigoBarras').val() + "</td>";
                                             copiar += "<td id = 'Producto'>" + $('#prod_Codigo').val() + "</td>";
                                             copiar += "<td id = 'Descripcion_P'>" + $('#prod_Descripcion').val() + "</td>";
                                             copiar += "<td id = 'Costo'>" + $('#bodd_Costo').val() + "</td>";
@@ -589,4 +623,27 @@
                 return false;
         }
     });
+
+
+
+
+
+    $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccionar", function () {
+    console.log('seleccionar');
+    idItem = $(this).closest('tr').data('animation');
+    contentItem = $(this).closest('tr').data('content');
+    uni_IdtItem = $(this).closest('tr').data('keyboard');
+    psubctItem = $(this).closest('tr').data('container');
+    pcatItem = $(this).closest('tr').data('interval');
+    pBarras = $(this).closest('tr').data('id');
+    $("#prod_CodigoBarras").val(pBarras);
+    $("#prod_Codigo").val(idItem);
+    
+    $("#prod_Descripcion").val(contentItem);
+    $("#uni_Id").val(uni_IdtItem);
+    $("#pscat_Id").val(psubctItem);
+    $("#pcat_Id").val(pcatItem);
+
+    //$("#cod").val(idItem);
+});
 </script>

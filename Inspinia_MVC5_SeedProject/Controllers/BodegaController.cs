@@ -304,6 +304,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult BuscarProductos(string GET_Barras_Nuevo)
         {
+            Session["tbBodegaDetalle"] = null;
             var list = db.spGetProducto_BodegaDetalle(GET_Barras_Nuevo).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
@@ -311,6 +312,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public ActionResult BuscarCodigoBarras(int GET_Bod, string GET_Barras /*tbProducto GET_Barras , tbBodegaDetalle GET_Bod*/)
         {
+            Session["tbBodegaDetalle"] = null;
             var list = db.spGetProducto(GET_Bod, GET_Barras).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
