@@ -64,5 +64,15 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 return HttpContext.GetOwinContext().Authentication;
             }
         }
+
+        public ActionResult SinAcceso()
+        {
+            //Validar Inicio de Sesión
+            GeneralFunctions Function = new GeneralFunctions();
+            if (Function.GetUserLogin())
+                return View();
+            else
+                return RedirectToAction("Index", "Login");
+        }
     }
 }

@@ -186,7 +186,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BancoController.cs" />
     <Compile Include="Controllers\BodegaController.cs" />
     <Compile Include="Controllers\BoxController.cs" />
     <Compile Include="Controllers\ConsultarExistenciaProductosController.cs" />
@@ -215,7 +214,6 @@
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\accesorol.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Banco.cs" />
     <Compile Include="Models\Bodega.cs" />
     <Compile Include="Models\BodegaDetalle.cs" />
     <Compile Include="Models\Box.cs" />
@@ -914,6 +912,7 @@
     <Content Include="Content\img\Business_and_Commerce_Career_Prospects_and_Trends_Report_final_for_web2-1[1].jpg" />
     <Content Include="Content\img\Logo_GM.png" />
     <Content Include="Content\img\MicrosoftTeams-image.png" />
+    <Content Include="Content\img\stop.png" />
     <Content Include="Content\patterns\congruent_pentagon.png" />
     <Content Include="Content\patterns\header-profile-skin-1.png" />
     <Content Include="Content\patterns\header-profile-skin-2.png" />
@@ -1220,11 +1219,6 @@
     <Content Include="Views\Municipio\Edit.cshtml" />
     <Content Include="Views\Municipio\EditarPrueba.cshtml" />
     <Content Include="Views\Municipio\Index.cshtml" />
-    <Content Include="Views\Banco\Create.cshtml" />
-    <Content Include="Views\Banco\Delete.cshtml" />
-    <Content Include="Views\Banco\Details.cshtml" />
-    <Content Include="Views\Banco\Edit.cshtml" />
-    <Content Include="Views\Banco\Index.cshtml" />
     <Content Include="Views\UnidadMedida\Create.cshtml" />
     <Content Include="Views\UnidadMedida\Delete.cshtml" />
     <Content Include="Views\UnidadMedida\Details.cshtml" />
@@ -1378,6 +1372,7 @@
     <Content Include="Views\Usuario\RestaurarPassword.cshtml" />
     <Content Include="Views\Box\_EditarSalidaDetalle.cshtml" />
     <Content Include="Views\Box\_ListSalidaDetalle.cshtml" />
+    <Content Include="Views\Login\SinAcceso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
