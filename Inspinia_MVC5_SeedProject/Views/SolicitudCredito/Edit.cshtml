@@ -83,10 +83,28 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2">Cliente</label>
+                                @*<label class="control-label col-md-2">Cliente</label>
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
+                                </div>*@
+
+                                
+                                @Html.LabelFor(model => model.tbCliente.clte_Nombres, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @if (Model.tbCliente.clte_EsPersonaNatural == true)
+                                {
+                                        @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        <p style="color:red"> @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)&nbsp;
+                                            @Html.ValidationMessageFor(model => model.tbCliente.clte_Apellidos)</p>
+                                        @Html.HiddenFor(model => model.tbCliente.clte_NombreComercial)
+                                    }
+                                    else
+                                    {
+                                        @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_NombreComercial)</span></p>
+                                        @Html.HiddenFor(model => model.tbCliente.clte_Nombres)
+                                    }
                                 </div>
                             </div>
                             <div class="form-group">
