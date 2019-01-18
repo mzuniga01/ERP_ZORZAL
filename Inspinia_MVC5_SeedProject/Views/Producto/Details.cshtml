@@ -117,10 +117,7 @@
                                 <p>No</p>
                             }
                         </dd>
-
-        @*<dd>
-            @Html.DisplayFor(model => model.prod_EsActivo)
-       </dd>*@
+      
        @if (Model.prod_EsActivo == true)
        {
         <dt>
@@ -159,19 +156,7 @@
                         }
                        
                     }
-
-                    @*@if (Model.prod_EsActivo)
-                    {
-                        <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
-                            Inactivar
-                        </button>
-                    }
-                    else
-                    {
-                        <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
-                            Activar
-                        </button>
-                    }*@                
+                                  
 
                     <div class="ibox-content">
                         <table class="table table-striped">
@@ -202,56 +187,7 @@
     </div>
  </div>
 
-@*<div class="modal fade" id="ModalAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title" id="exampleModalLabel">Inactivar Producto</h5>
-            </div>
-            <div class="modal-body">
-                <p>¿Está seguro de inactivar este Producto?</p>
-                <textarea rows="4" cols="50" placeholder="Ingrese la razon de Inactivación" id="razonInac" name="razonInac"></textarea>
-                <p id="Mensaje" style="color:red"></p>
-            </div>
 
-            <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="Inactivar">Guardar</button>
-                
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="ModalAnular1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title" id="exampleModalLabel">Activar Producto</h5>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro de activar este Producto?
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="Activar">Guardar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
-<script src="~/Scripts/app/InActivarProducto.js"></script>*@
 
 
 

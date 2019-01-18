@@ -82,6 +82,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> listp_Id { get; set; }
 
         [Display(Name = "Codigo de Barras")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [RegularExpression("^[A-Z0-9]{14}$|^[A-Z0-9]{13}$|^[A-Z0-9]{12}$|^[A-Z0-9]{10}$|^[A-Z0-9]{8}$", ErrorMessage = "Debe ser Un Codigo de Barras")]
         public string prod_CodigoBarras { get; set; }
 

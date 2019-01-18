@@ -5,10 +5,10 @@
     ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*@{
+@{
     var ListadoSuCategoria = new ERP_GMEDINA.Models.tbProductoSubcategoria();
     var ListadoCategoria = new ERP_GMEDINA.Models.tbProductoCategoria();
-}*@
+}
 
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -270,7 +270,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Inactivar Producto</h5>
             </div>
             <div class="modal-body">
-                <p>¿Está seguro de inactivar este Producto?</p>
+                <p>¿Está Seguro de Inactivar Este Producto?</p>
                 <textarea rows="4" cols="70" placeholder="Ingrese la razon de Inactivación" id="razonInac" name="razonInac"></textarea>
                 <p id="Mensaje" style="color:red"></p>
             </div>
@@ -294,7 +294,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Activar Producto</h5>
             </div>
             <div class="modal-body">
-                ¿Está seguro de activar este Producto?
+                ¿Está seguro de Volver a activar este Producto?
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary btn-sm" type="button" id="Activar">Guardar</button>
@@ -327,36 +327,11 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-@*<script src="~/Scripts/app/search.js"></script>*@
-@*<script src="~/Scripts/app/ActivoP.js"></script>*@
 <script src="~/Scripts/app/InActivarProducto.js"></script>
 <script src="~/Scripts/app/SubCategoriaProducto.js"></script>
 
 
-@*<script>
- $(document).ready(function () {
-        if (prod_EsActivo) {         
-            $('#RazonInactivo').hide();           
-        } else {           
-            $('#RazonInactivo').show();
-        }
- });
-</script>*@
-
 <script>
-        //console.log('Hla')
-
-
-        //$(document).ready(function () {
-        //    var Mun = $('#pscat_Id').val();
-
-        //    console.log(Mun);
-        //    if (Mun != '') {
-        //        GetCategoriaProducto();
-        //        //GetMunicipios();
-        //    }
-
-        //});
 
         function GetCategoriaProducto() {
             var codsubcategoria = $('#pscat_Id').val();
@@ -382,31 +357,5 @@
                 });
 
         }
-
-
-                //function GetMunicipios() {
-                //    var CodDepartamento = $('#dep_Codigo').val();
-                //    $.ajax({
-                //        url: "/Bodega/GetMunicipios",
-                //        method: "POST",
-                //        dataType: 'json',
-                //        contentType: "application/json; charset=utf-8",
-                //        data: JSON.stringify({ CodDepartamento: CodDepartamento }),
-                //    })
-                //        .done(function (data) {
-                //            if (data.length > 0) {
-                //                $('#mun_Codigo').empty();
-                //                $('#mun_Codigo').append("<option value=''>Seleccione</option>");
-                //                $.each(data, function (key, val) {
-                //                    $('#mun_Codigo').append("<option value=" + val.mun_Codigo + ">" + val.mun_Nombre + "</option>");
-                //                });
-                //                $('#mun_Codigo').trigger("chosen:updated");
-                //            }
-                //            else {
-                //                $('#mun_Codigo').empty();
-                //                $('#mun_Codigo').append("<option value=" + val.mun_Codigo + ">" + " Seleccione </option>");
-                //            }
-                //        });
-                //}
-
 </script>
+

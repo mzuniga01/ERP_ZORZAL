@@ -79,9 +79,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.usu_Correo)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.usu_EsActivo)
-                </td>
+                @if (item.usu_EsActivo)
+                {
+                    <td>Sí</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
                 @*<td>
                         @Html.DisplayFor(modelItem => item.usu_RazonInactivo)
                     </td>*@

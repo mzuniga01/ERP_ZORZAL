@@ -33,6 +33,8 @@
 
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.usu_Id)
+                            @Html.Hidden("RedirectTo", Url.Action("Index", "Usuario"))
+                            @Html.Hidden("ConfirmarPassword", (string)ViewBag.ConfirmarPassword)
                             <div><br /><br /></div>
                             <div class="form-group" style="padding-right:220px">
                                 @Html.LabelFor(model => model.usu_NombreUsuario, new { @class = "control-label col-md-2" })
@@ -64,25 +66,43 @@
 
                                 </div>
 
-                            <div class="form-group" style="padding-right:220px">
+                            <div class="form-group" style="padding-right:220px" id="Activo" name="Activo">
                                 @Html.LabelFor(model => model.usu_EsActivo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.usu_EsActivo, new {  @id = "usu_EsActivo" })
-                                    @Html.ValidationMessageFor(model => model.usu_EsActivo)
+                                    @if (Model.usu_EsActivo)
+                                    {
+                                        <p> Si</p>
+                                    }
+                                    else
+                                    {
+                                        <p>No</p>
+                                    }
                                 </div>
-                               
+
+
+                                <p style="color:red">  @Html.ValidationMessageFor(model => model.usu_EsActivo)</p>
+
+
+                                @if (!Model.usu_EsActivo)
+                                {
+                                    <div class="form-group" id="RazonInactivo">
+                                        @Html.LabelFor(model => model.usu_RazonInactivo, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-4">
+                                            @Html.EditorFor(model => model.usu_RazonInactivo, new { htmlAttributes = new { @class = "form-control" } })
+
+                                            @*<textarea class="form-control" id="prod_Razon_Inactivacion" name="clte_RazonInactivo" >@ViewData["Razon"]</textarea>*@
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.usu_RazonInactivo)</p>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+
+                            <div class="form-group" style="padding-right:220px" id="">
                                 @Html.LabelFor(model => model.usu_EsAdministrador, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.usu_EsAdministrador, new { htmlAttributes = new { @class = "checkbox-inline" } })
                                     @Html.ValidationMessageFor(model => model.usu_EsAdministrador)
-                                </div>
-                            </div>
-
-                            <div class="form-group" style="padding-right:220px" id="usu_RazonInactivo">
-                                @Html.LabelFor(model => model.usu_RazonInactivo, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.usu_RazonInactivo)
-                                    @Html.ValidationMessageFor(model => model.usu_RazonInactivo)
                                 </div>
                             </div>
 
@@ -100,65 +120,91 @@
                             <div><br /></div>
 
                             <div style="padding-left :100px">
-                                @Html.ActionLink("RestaurarPassword", "RestaurarPassword", new { id = Model.usu_Id }, new { @class = "btn btn-primary" })
+                                
+                                <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalRestaurarPass" value="Restaurar Contraseña" />
                                 @Html.ActionLink("Modificar Contraseña", "ModificarPass", new { id = Model.usu_Id }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Modificar Cuenta", "ModificarCuenta", new { id = Model.usu_Id }, new { @class = "btn btn-primary" })
+
+
+                                <div class="modal fade" id="ModalRestaurarPass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Restaurar Contraseña</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ¿Está seguro que quiere restaurar la contraseña de este usuario?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="form-actions no-color">
+                                                    @* Aqui va el botn *@
+                                                    @Html.ActionLink("RestaurarPassword", "RestaurarPassword", new { id = Model.usu_Id }, new { @class = "btn btn-primary" })
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div><br /><br /><br /></div>
 
-                            <div class="col-md-5">
-                                <label class="col-md-10" style="text-align:center">Roles No Asignados</label>
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <td style="color:white" bgcolor="#1ab394">Rol</td>
-                                        <td bgcolor="#1ab394"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jefe de Bodega</td>
-                                        <td><input name="id03" type="checkbox" id="id03" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cajero</td>
-                                        <td><input name="id03" type="checkbox" id="id03" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Auditor Interno</td>
-                                        <td><input name="id03" type="checkbox" id="id03" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td><input name="id03" type="checkbox" id="id03" /></td>
-                                    </tr>
-                                </table>
-                            </div>
+                            <div class="ibox-content">
+                                <div class="col-md-5">
+                                    <label class="col-md-10" style="text-align:center">Roles No Asignados</label>
 
-                            <div class="col-md-2" align="center">
-                                <br /><br /><br>
-                                <input type="button" value="&#9668; Quitar &nbsp;&nbsp;" class="btn btn-primary btn-xs" />
+                                    <table class="table table-responsive" style="width:100%" id="NoAsignadosEdit">
+                                        <thead>
+                                            <tr>
+                                                <td id="RegistrosNoAsignadosEdit" style="background-color:#1ab394;color:white">Pantallas</td>
+                                                <td style="background-color:#1ab394"></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
 
-                                <input type="button" value="Agregar &#9658;" class="btn btn-primary btn-xs" />
+                                <div class="col-md-2" align="center">
+                                    <br /><br /><br>
+                                    <div>
+                                        <input id="Add" type="button" value="Agregar &#9658;" class="btn btn-primary btn-xs" />
+                                    </div>
+                                    <div>
+                                        <input id="Remove" type="button" value="&#9668; Quitar &nbsp;&nbsp;" class="btn btn-primary btn-xs" />
+                                    </div>
+                                </div>
 
-                            </div>
-
-                            <div class="col-md-5">
-                                <label class="col-md-10" style="text-align:center">Roles Asignados</label>
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <td style="color:white" bgcolor="#1ab394">Rol</td>
-                                        <td bgcolor="#1ab394"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Encargado de Bodega</td>
-                                        <td><input name="id02" type="checkbox" id="id02" /></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="col-md-9"></div>
-
-                            <div class="form-group">
-                                <div class="col-md-3">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @*@Html.ActionLink("Guardar", "Index", null, new { @class = "btn btn-primary" })*@
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                <div class="col-md-5">
+                                    <label class="col-md-10" style="text-align:center">Roles Asignados</label>
+                                    <table class="table table-responsive" style="width:100%" id="AsignadosEdit">
+                                        <thead>
+                                            <tr>
+                                                <td id="RegistrosAsignadosEdit" style="background-color:#1ab394;color:white">Pantallas</td>
+                                                <td style="background-color:#1ab394"></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" id="btnActualizarRol" class="btn btn-primary">Guardar</button>
+                                        @if (Model.usu_EsActivo)
+                                        {
+                                            <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
+                                                Inactivar
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
+                                                Activar
+                                            </button>
+                                        }
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    </div>
                                 </div>
                             </div>
 
@@ -173,21 +219,55 @@
 </div>
 
 
+<div class="modal fade" id="ModalAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Inactivar Usuario</h5>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de inactivar este Usuario?</p>
+                <textarea rows="4" cols="50" placeholder="Ingrese la razon de Inactivación" id="razonInac" name="razonInac"></textarea>
+                <p id="Mensaje" style="color:red"></p>
+            </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" type="button" id="Inactivar">Guardar</button>
+                @*<button type="button" class="btn btn-primary" name="Si" id="Si" data-dismiss="modal" onclick="InactivarCliente();">Si</button>*@
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<script src="~/Scripts/app/MostrarOcultar.js"></script>
-    @*<script>
-$(document).ready(function () {
-    $("#usu_RazonInactivo").hide(),
-    $('#usu_EsActivo').on('change', function () {
 
-        if (this.checked) {
-            $("#usu_RazonInactivo").show();
-        } else {
-            $("#usu_RazonInactivo").hide();
-        }
-    })
-});</script>*@
-}
+<div class="modal fade" id="ModalAnular1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Activar Usuario</h5>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de activar este Usuario?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" type="button" id="Activar">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+@*<script src="~/Scripts/app/MostrarOcultar.js"></script>*@
+<script src="~/Scripts/app/InanctivarUsuario.js"></script>
+<script src="~/Scripts/app/RolesUsuarioEdit.js"></script>

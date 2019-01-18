@@ -58,13 +58,20 @@ namespace ERP_GMEDINA.Models
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public bool usu_EsAdministrador { get; set; }
 
-        
+        public byte usu_SesionesValidas { get; set; }
+
+        [Display(Name = "Sucursal")]
+        public Nullable<int> suc_Id { get; set; }
+
+        public Nullable<short> emp_Id { get; set; }
+
+
 
         //[NotMapped]
         //public byte[] PasswordActual { get; set; }
 
-        
 
-       
+
+
     }
 }

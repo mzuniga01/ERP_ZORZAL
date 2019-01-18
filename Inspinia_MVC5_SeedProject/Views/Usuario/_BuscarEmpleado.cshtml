@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbEmpleado>
+@using ERP_GMEDINA.Models
+
+@{
+    tbEmpleado empleado = new tbEmpleado();
+}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <input type="text" id="search" placeholder="Buscar Empleado" class="form-control" />
+                    <table id="Table_BuscarEmpleado" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.emp_Nombres)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.emp_Apellidos)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.emp_Correoelectronico)
+                                </th>
+                                <th>
+                                    Actividades
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr tr data-id="@item.emp_Id" , tr data-name="@item.emp_Nombres " , tr data-apellidos="@item.emp_Apellidos" , tr data-email="@item.emp_Correoelectronico">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.emp_Nombres)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.emp_Apellidos)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.emp_Correoelectronico)
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary btn-xs" value="@item.emp_Id" id="seleccionar" data-dismiss="modal">Seleccionar</button>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

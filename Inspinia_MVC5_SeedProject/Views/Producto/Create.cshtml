@@ -6,10 +6,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{
+@*@{
     var ListadoSubCategoria = new ERP_GMEDINA.Models.tbProductoSubcategoria();
     var ListadoCategoria = new ERP_GMEDINA.Models.tbProductoCategoria();
-}
+}*@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Producto</h2>
@@ -63,7 +63,7 @@
                                     </div>
 
                                 <label class="control-label col-md-2">Codigo de Barras<span style="color:red">*</span></label>
-                                    @*@Html.LabelFor(model => model.prod_CodigoBarras, new { @class = "control-label col-md-2 " })*@
+                                  
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.prod_CodigoBarras, new { @class = "form-control" })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.prod_CodigoBarras)</p>
@@ -134,8 +134,10 @@
     </div>
 </div>
 
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    @*<script src="~/Scripts/app/search.js"></script>*@
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script src="~/Scripts/app/SubCategoriaProducto.js"></script>
 
 
@@ -164,67 +166,4 @@
         });
 
 </script>
-@*<script>
-    $(document).ready(function () {
-    $('#pcat_Id').change(function () {
-        
-        $.get('/Producto/GetScatList', { pcat_Id: $('#pcat_Id').val() }, function (data) {
-            if ($("#pscat_Id").val('')) {             
-                $("#pscat_Id").empty();
-                $('#pscat_Id').append("<option value='0'>Seleccione la SubCategoria</option>");
-                $.each(data, function (index, row) {
-                    $("#pscat_Id").append("<option value='" + row.pscat_Id + "'>" + row.pscat_Descripcion + "</option>")
-                   
-                });
-                
-            }
-
-            else {
-                $.each(data, function (index, row) {
-                    $("#pscat_Id").append("<option value='0'>No Hay SubCategorias</option>")
-                });
-            };
-        });
-    })
-    });
-</script>*@
-
-@*<script>
-    $(document).ready(function () {
-    $('#prod_Codigo').change(function () {
-
-        $.get('/Producto/GetValue', { pcat_Id: $('#pcat_Id').val(), pscat_Id: $('#pscat_Id').val() }, function (data) {
-            if ($("#pscat_Id").val('')) {
-                $("#pscat_Id").empty();
-                $.each(data, function (index, row) {
-                    $("#prod_Codigo").append("<option value='" + row.pscat_Id + "'>" + row.pscat_Descripcion + "</option>")
-
-                });
-
-            };
-        });
-    })
-    });
-</script>*@
-
-@*<script>
-        $(document).ready(function () {
-            $('#pcat_Id').change(function () {
-                $('#CodigoPro').val($('#pcat_Id option:selected').val());
-            })
-        });
-
-        $(document).ready(function () {
-            $('#pscat_Id').change(function () {
-                $('#CodigoPro').val($('#pscat_Id option:selected').val());
-            })
-        });
-
-        $(document).ready(function () {
-            $('#CodigoPro').change(function () {
-                $('#CodigoPro').val($('#pscat_Id option:selected').val());
-            })
-        });
-
-</script>*@
-        }
+    }

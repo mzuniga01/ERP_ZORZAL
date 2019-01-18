@@ -11,20 +11,6 @@ using ERP_GMEDINA.Models;
 using System.Data.Entity.Core.Objects;
 using System.Data.SqlClient;
 
-//using (SqlConnection conexion = new SqlConnection(conexionString))
-//{
-//   SqlCommand cmd = new SqlCommand("SP_Valores", conexion);
-//cmd.CommandType = CommandType.StoredProcedure;
-//   cmd.Parameters.Add(new SqlParameter("@IDMATERIA", 1));
-//   SqlParameter NroInscritosParametro = new SqlParameter("@NROINSCRITOS", 0);
-//NroInscritosParametro.Direction = ParameterDirection.Output;
-//   cmd.Parameters.Add(NroInscritosParametro);
-//   conexion.Open();
-//   cmd.ExecuteNonQuery();                                       
-//   int nroInscritos = Int32.Parse(cmd.Parameters["@NROINSCRITOS"].Value.ToString());
-//conexion.Close();
-//   return nroInscritos;
-//}
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -106,23 +92,23 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-       
-        //public JsonResult GetScatList(int pcat_Id)
-        //{
-        //    db.Configuration.ProxyCreationEnabled = false;
-        //    List<tbProductoSubcategoria> tbProductoSubcategoriaList = db.tbProductoSubcategoria.Where(x => x.pcat_Id == pcat_Id).ToList();
-        //    return Json(tbProductoSubcategoriaList, JsonRequestBehavior.AllowGet);
-        //}
 
-        
+        public JsonResult GetScatList(int pcat_Id)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            List<tbProductoSubcategoria> tbProductoSubcategoriaList = db.tbProductoSubcategoria.Where(x => x.pcat_Id == pcat_Id).ToList();
+            return Json(tbProductoSubcategoriaList, JsonRequestBehavior.AllowGet);
+        }
 
 
-// POST: /Producto/Create
-// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-[HttpPost]
+
+
+        // POST: /Producto/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_CodigoBarras,pcat_Id")] tbProducto tbProducto)
+        public ActionResult Create([Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_CodigoBarras,pcat_Id")] tbProducto tbProducto, int pcat_Id)
         {
             if (ModelState.IsValid)
             {
@@ -165,17 +151,15 @@ namespace ERP_GMEDINA.Controllers
             {
                 var errors = ModelState.Values.SelectMany(v => v.Errors);
             }
-
-
+            
 
             ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
             ViewBag.prod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioCrea);
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
             ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion", tbProducto.pscat_Id);
-            ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre", ViewBag.pcat_Id);
+            ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");            
+
             return View(tbProducto);
-            //List<tbProductoCategoria> tbProductoCategoriaList = db.tbProductoCategoria.ToList();
-            //ViewBag.tbProductoCategoriaList = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre");
         }
 
         // GET: /Producto/Edit/5
@@ -195,9 +179,6 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
             ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", tbProducto.pscat_Id);
-            //List<tbProductoCategoria> tbProductoCategoriaList = db.tbProductoCategoria.ToList();
-            //ViewBag.tbProductoCategoriaList = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre");
-            //ViewBag.pcat_Id = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre",tbProducto.pscat_Id);
             ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre", tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id);
             return View(tbProducto);
 
@@ -206,11 +187,13 @@ namespace ERP_GMEDINA.Controllers
                     
         }
 
+        //[HttpPost]
         public JsonResult GetCategoriaProducto(int codsubcategoria)
         {
             var list = db.spGetCategoriaProducto(codsubcategoria).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+
 
 
 
@@ -222,10 +205,7 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult Edit(string id,[Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_UsuarioCrea,prod_FechaCrea,prod_EsActivo,prod_Razon_Inactivacion,prod_CodigoBarras")] tbProducto tbProducto)
         {
             if (ModelState.IsValid)
-            {
-                //db.Entry(tbProducto).State = EntityState.Modified;
-                //db.SaveChanges();
-                //return RedirectToAction("Index");
+            {               
 
                 try
                 {
