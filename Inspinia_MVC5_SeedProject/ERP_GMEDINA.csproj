@@ -1024,7 +1024,9 @@
     <Content Include="Scripts\app\Salida.js" />
     <Content Include="Scripts\app\SalidaDetalle.js" />
     <Content Include="Scripts\app\search.js" />
+    <Content Include="Scripts\app\SolicitarProducto.js" />
     <Content Include="Scripts\app\SubCategoriaProducto.js" />
+    <Content Include="Scripts\app\ValidacionProveedor.js" />
     <Content Include="Scripts\app\ValidationEmail.js" />
     <Content Include="Scripts\app\ValidationNumber.js" />
     <Content Include="Scripts\bootstrap.js" />

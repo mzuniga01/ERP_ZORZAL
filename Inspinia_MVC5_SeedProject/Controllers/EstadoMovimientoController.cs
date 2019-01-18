@@ -18,8 +18,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         public ActionResult Index()
         {
            
-try { ViewBag.smserror = TempData["smserror"].ToString();
-    } catch { }
+
             return View(db.tbEstadoMovimiento.ToList());
         }
         
@@ -89,21 +88,18 @@ try { ViewBag.smserror = TempData["smserror"].ToString();
         // GET: /EstadoMovimiento/Edit/5
         public ActionResult Edit(byte? id)
         {
+            try
+            {
+                ViewBag.smserror = TempData["smserror"].ToString();
+            }
+            catch { }
+         
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbEstadoMovimiento tbEstadoMovimiento = db.tbEstadoMovimiento.Find(id);
-            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbEstadoMovimiento.estm_UsuarioCrea).usu_NombreUsuario;
-            var UsuarioModfica = tbEstadoMovimiento.estm_UsuarioModifica;
-            if (UsuarioModfica == null)
-            {
-                ViewBag.UsuarioModifica = "";
-            }
-            else
-            {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
-            };
+        
             if (tbEstadoMovimiento == null)
             {
                 return HttpNotFound();
@@ -188,12 +184,7 @@ try { ViewBag.smserror = TempData["smserror"].ToString();
                 foreach (UDP_Inv_tbEstadoMovimiento_Delete_Result Estm in list)
                     MsjError = Estm.MensajeError;
 
-                //if(MsjError.StartsWith("-1The DELETE statement conflicted with the REFERENCE constraint"))
-                //{
-                //    ViewBag.Error = "Registro Tiene Dependencia";
-                //   return RedirectToAction("Index");
-                //}
-
+       
 
                 if (MsjError.StartsWith("-1The DELETE statement conflicted with the REFERENCE constraint"))
                 {
@@ -201,7 +192,7 @@ try { ViewBag.smserror = TempData["smserror"].ToString();
                     ViewBag.smserror = TempData["smserror"];
 
                     ModelState.AddModelError("", "No se puede borrar el registro");
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit/" + id);
                 }
 
                 else

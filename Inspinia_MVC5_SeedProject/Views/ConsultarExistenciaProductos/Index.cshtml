@@ -5,14 +5,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="modal fade" id="mensaje">
+    <div id="dialog" title="Exito" class="dialog">
+    </div>
+</div>
+<div class="modal fade" id="mensaje1">
+    <div id="dialogfail" title="Fallo" class="dialog">
+    </div>
+</div>
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Existencia Productos</h2>
+        <h2>Consultar Existencias</h2>
       
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="@Url.Action("Index","Producto")">Regresar a Productos</a>
+          
         </div>
     </div>
 </div>
@@ -33,9 +42,7 @@
 <table id="example" class="display" style="width:100%">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.suc_Descripcion)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.bod_Nombre)
             </th>
@@ -45,9 +52,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.prod_Descripcion)
             </th>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.prod_Marca)
-            </th>*@
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.bodd_CantidadExistente)
             </th>
@@ -65,9 +72,7 @@
         {
         <tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.suc_Descripcion)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.bod_Nombre)
             </td>
@@ -77,9 +82,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.prod_Descripcion)
             </td>
-            @*<td>
+            <td>
                 @Html.DisplayFor(modelItem => item.prod_Marca)
-            </td>*@
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.bodd_CantidadExistente)
              
@@ -89,7 +94,7 @@
                 
             </td>
             <td>
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" id="btnSolicitarProducto" data-target="#SolicitarProductomodal" onclick="SolicitarProducto(@item.bod_Id, '@item.bod_Nombre', '@item.suc_Descripcion', '@item.prod_Codigo', '@item.prod_Descripcion', '@item.prod_Marca', @item.bodd_CantidadExistente, @item.bodd_CantidadMinima);">Pedir</button>
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" id="btnSolicitarProducto" data-target="#SolicitarProductomodal" onclick="SolicitarProducto(@item.bod_Id, '@item.bod_Nombre', '@item.suc_Descripcion', '@item.prod_Codigo', '@item.prod_Descripcion', '@item.prod_Marca', @item.bodd_CantidadExistente, @item.bodd_CantidadMinima, @item.bodd_Id);">Solicitar</button>
             </td>
         </tr>
         <div class="modal fade" id="SolicitarProductomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -119,7 +124,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Nombre delProducto</label>
+                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Nombre del Producto</label>
                                 <div class="col-sm-7  input-group">
                                     <input type="text" class="form-control" id="txt3" value="" readonly />
                                 </div>
@@ -146,9 +151,10 @@
                     </div>
                     
                     <div class="modal-footer">
-                            @*@Html.ActionLink("Test", "InsertPedido", new { IDBodega = item.bod_Id, IDProducto = item.prod_Codigo, CantidadSolicitada = "" })*@
-                            <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
-                        </div>
+                        <button class="btn btn-primary" type="submit" id="btnGuardarSalida">Guardar</button>
+                        @*@Html.ActionLink("Test", "InsertPedido", new { IDBodega = item.bod_Id, IDProducto = item.prod_Codigo, CantidadSolicitada = "" })*@
+                        <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+                    </div>
                 </div>
             </div>
         </div>

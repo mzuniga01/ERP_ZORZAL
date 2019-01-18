@@ -5,6 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (ViewBag.smserror != "" && ViewBag.smserror != null)
+{     <div class="col-md-12" id="mensaje">
+        <div class="alert alert-warning alert-danger">
+            <button type="button" class="close" data-dissmiss="alert" aria-hidden="true">@Html.ActionLink("X", "Edit/" + Model.estm_Id, new { @class = "btn btn-primary " })</button>             
+            <h4><i class="icon fa fa-warning"></i>Alerta</h4>             
+            <h2>@ViewBag.smserror</h2>
+        </div>
+    </div> }
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Estado Movimiento</h2>
@@ -83,6 +92,27 @@
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    <button type="button" class="btn btn-danger btn" data-toggle="modal" data-target="#ModalEstado_@Model.estm_Id" value="Eliminar">Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="ModalEstado_@Model.estm_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Estado</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Está seguro que quiere Eliminar?
+                                    </div>
+                                    <div class="modal-footer">
+                                        @Html.ActionLink("Sí", "Eliminar", new { id = Model.estm_Id }, new { @class = "btn btn-danger" })
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

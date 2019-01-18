@@ -1,5 +1,5 @@
 ﻿
-function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, prod_Descripcion, prod_Marca, bodd_CantidadExistente, bodd_CantidadMinima) {
+function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, prod_Descripcion, prod_Marca, bodd_CantidadExistente, bodd_CantidadMinima, bodd_Id) {
     $('#txt1').val(suc_Descripcion);
     $('#txt2').val(bod_Nombre);
     $('#txt3').val(prod_Descripcion);
@@ -17,10 +17,10 @@ function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, pro
             $('#errorCantidad').text('');
             $('#validationCantidad').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">Favor de Enviar una cantidad</ul>');
         }
-        else if (CantidadDisponible <= bodd_CantidadMinima) {
+        else if (CantidadDisponible < bodd_CantidadMinima) {
             $('#validationCantidad').text('');
             $('#errorCantidad').text('');
-            $('#validationCantidad').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No puede pedir esa Cantidad</ul>');
+            $('#validationCantidad').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No puede pedir esa Cantidad, porque sobrepasa la cantidad minima, Intente con una cantidad menor.</ul>');
         }
         else {
             $.ajax({
@@ -28,7 +28,7 @@ function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, pro
                 method: "POST",
                 dataType: 'json',
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ IDBodega: bod_Id, IDProducto: prod_Codigo, CantidadSolicitada: CantidadSolicitada }),
+                data: JSON.stringify({ IDBodega: bod_Id, IDProducto: prod_Codigo, CantidadSolicitada: CantidadSolicitada, IDBodegaDetalle: bodd_Id}),
                 success: function (json) {
                 },
                 error: function () {
@@ -37,20 +37,48 @@ function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, pro
                 }
             })
             .done(function (data) {
-                if (data == '') {
-                    $('#PedidoExitoso').after('<ul id="errorDescripcionRol" class="validation-summary-errors text-danger">No se pudo eviar la solicitud de Producto</ul>')
+                if (data == '-1') {
+                    $("#dialog").dialog({
+                        modal: true,
+                        title: "Fallo",
+                        buttons: [
+                          {
+                              text: "No se pudo hacer el pedido, Contacte con el administración"
+                          }
+                        ]
+                    }).prev(".ui-widget-header").css("background", "red");
                 }
                 else {
-
+                    //alert("El Pedido ha sido enviado correctamente. Codigo de referencia de la salidad Generada es: " + data);
+                    $("#dialog").dialog({
+                        modal: true,
+                        title: "Exito",
+                        buttons: [
+                          {
+                              text: "El Pedido ha sido enviado correctamente. Codigo de referencia de la salida Generada es: " + data
+                          }
+                        ]
+                    }).prev(".ui-widget-header").css("background", "green");
+                    //$('#dialog').after('<p>El Pedido ha sido enviado correctamente. Codigo de referencia de la salida Generada es: ' + data + '</p>');
+                    $("#ErrorValidacionGeneral").remove();
+                    $("#errorDescripcionRol").remove();
                 }
             })
             $('#SolicitarProductomodal').modal('hide');
             var fecha = new Date();
-            $('#PedidoExitoso').after('<ul id="errorDescripcionRol" class="validation-summary-errors text-danger">Solicitud de Pedido realiazada Satisfactoriamente ' + "Hora: " + fecha.getHours() + ",\nMinuto: " + fecha.getMinutes() + ",\nSegundos: " + fecha.getSeconds() + ",\nDía: " + fecha.getDate() + ",\nMes: " + (fecha.getMonth() + 1) + ",\nAño: " + fecha.getFullYear() + '</ul>')
+            //$('#PedidoExitoso').after('<ul id="errorDescripcionRol" class="validation-summary-errors text-danger">Solicitud de Pedido realiazada Satisfactoriamente ' + "Hora: " + fecha.getHours() + ",\nMinuto: " + fecha.getMinutes() + ",\nSegundos: " + fecha.getSeconds() + ",\nDía: " + fecha.getDate() + ",\nMes: " + (fecha.getMonth() + 1) + ",\nAño: " + fecha.getFullYear() + '</ul>')
+            
             $('#txt5').val("");
         }
     })
     $('#btnCerrar').click(function () {
+        $("#ErrorValidacionGeneral").remove();
+        $("#errorDescripcionRol").remove();
+        $('#txt5').val("");
+    })
+    $('#CerrarX').click(function () {
+        $("#ErrorValidacionGeneral").remove();
+        $("#errorDescripcionRol").remove();
         $('#txt5').val("");
     })
     
