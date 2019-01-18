@@ -204,6 +204,9 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
             Session["Factura"] = null;
             Session["TerceraEdad"] = null;
+            Session["IDCLIENTE"] = null;
+            Session["IDENTIFICACION"] = null;
+            Session["NOMBRES"] = null;
             return View();
         }
 
@@ -349,8 +352,11 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
             ViewBag.Cliente = db.tbCliente.ToList();
             ViewBag.Producto = db.tbProducto.ToList();
+            Session["IDCLIENTE"] = null;
+            Session["IDENTIFICACION"] = null;
+            Session["NOMBRES"] = null;
 
-           return View(tbFactura);
+            return View(tbFactura);
         }
 
         // GET: /Factura/Edit/5
