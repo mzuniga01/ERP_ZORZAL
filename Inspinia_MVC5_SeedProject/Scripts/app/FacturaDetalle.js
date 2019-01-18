@@ -93,10 +93,13 @@ $('#AgregarDetalleFactura').click(function () {
 
         //Grantotal
         if (document.getElementById("total").innerHTML == '') {
-            document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos);
+            var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos);
+            console.log(TotalEncabezado)
+           $("#TotalProductoEncabezado").val(TotalEncabezado);
         }
         else {
-            document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos);
+            var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos);
+            $("#TotalProductoEncabezado").val(TotalEncabezado);
         }
                   
 

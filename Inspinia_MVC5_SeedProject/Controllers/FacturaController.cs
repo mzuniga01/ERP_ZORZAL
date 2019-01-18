@@ -204,9 +204,6 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
             Session["Factura"] = null;
             Session["TerceraEdad"] = null;
-            Session["IDCLIENTE"] = null;
-            Session["IDENTIFICACION"] = null;
-            Session["NOMBRES"] = null;
             return View();
         }
 
@@ -352,11 +349,8 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
             ViewBag.Cliente = db.tbCliente.ToList();
             ViewBag.Producto = db.tbProducto.ToList();
-            Session["IDCLIENTE"] = null;
-            Session["IDENTIFICACION"] = null;
-            Session["NOMBRES"] = null;
 
-            return View(tbFactura);
+           return View(tbFactura);
         }
 
         // GET: /Factura/Edit/5
@@ -606,7 +600,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult GetNumeroFact(int CodSucursal, short CodCaja)
         {
-            var list = db.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura(CodSucursal, CodCaja).ToString();
+            var list = db.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura(CodSucursal, CodCaja).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

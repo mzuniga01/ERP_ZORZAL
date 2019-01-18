@@ -36,8 +36,8 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
     nuevaCadena = Persona1.trim();
     ConCredito1 = ConCredito.trim();
     $("#IDCliente").val(idItem);
-    $("#cliente_Identificacionx").val(rtnItem);
-    $("#cliente_Nombresx").val(nombreItem);
+    $("#cliente_Identificacion").val(rtnItem);
+    $("#cliente_Nombres").val(nombreItem);
     $("#tpi_Id").val(tpid);
     $("#clte_Fecha").val(Fecha);
     $('#ModalAgregarCliente').modal('hide');

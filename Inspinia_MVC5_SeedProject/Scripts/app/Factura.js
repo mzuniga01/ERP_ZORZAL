@@ -1,15 +1,15 @@
 ﻿$("#consumidorFinal").change(function () {
     if (this.checked) {
         //Do stuff     
-        $("#cliente_Identificacionx").val('99999999999999');
-        $("#cliente_Nombresx").val('Consumidor Final');
+        $("#cliente_Identificacion").val('99999999999999');
+        $("#cliente_Nombres").val('Consumidor Final');
         document.getElementById("fact_AlCredito").disabled = true;
         document.getElementById("fact_AutorizarDescuento").disabled = true;
 
     }
     else {
-        $("#cliente_Nombresx").val('');
-        $("#cliente_Identificacionx").val('');
+        $("#cliente_Nombres").val('');
+        $("#cliente_Identificacion").val('');
         $("#IDCliente").val('');
         document.getElementById("MostrarTerceraEdad").disabled = false;
         $("#MostrarTerceraEdad").prop("checked", false);
@@ -24,14 +24,14 @@
 $("#consumidorFinal").ready(function () {
     if (this.checked) {
         //Do stuff     
-        $("#cliente_Identificacionx").val('99999999999999');
-        $("#cliente_Nombresx").val('Consumidor Final');
+        $("#cliente_Identificacion").val('99999999999999');
+        $("#cliente_Nombres").val('Consumidor Final');
         document.getElementById("fact_AlCredito").disabled = true;
         document.getElementById("fact_AutorizarDescuento").disabled = true;
     }
     else {
-        $("#cliente_Nombresx").val('');
-        $("#cliente_Identificacionx").val('');
+        $("#cliente_Nombres").val('');
+        $("#cliente_Identificacion").val('');
         $("#IDCliente").val('');
         document.getElementById("fact_AlCredito").disabled = false;
         document.getElementById("fact_AutorizarDescuento").disabled = false;
