@@ -95,7 +95,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.dev_Fecha, new { @class = "control-label col-md-1" })
                                     <div class="col-md-3">
-                                        @Html.EditorFor(model => model.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafactura" } })
+                                        @Html.EditorFor(model => model.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaDevolucion" } })
                                         @Html.ValidationMessageFor(model => model.dev_Fecha)
                                     </div>
                                 </div>
@@ -106,9 +106,6 @@
                                 @Html.Partial("_CreateDevolucionDetalle", new tbDevolucionDetalle())
 
                                 @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion"))
-
-
-
 
                             </div>
                         </div>
@@ -218,6 +215,9 @@
          document.getElementById("tbFactura_fact_Codigo").title = "Primero debe seleccionar un cliente";
      }
      else {
+         //console.log('else')
+         //document.getElementById("Factura").title = "";
+         //document.getElementById("tbFactura_fact_Codigo").title = "";
      }
  });
  </script>

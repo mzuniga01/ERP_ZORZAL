@@ -110,6 +110,7 @@ namespace ERP_ZORZAL.Controllers
                                                 Detalle.dfisc_Id,
                                                 Detalle.pemid_RangoInicio,
                                                 Detalle.pemid_RangoFinal,
+                                                Detalle.pemid_NumeroActual,
                                                 Detalle.pemid_FechaLimite
                                                 );
                                             foreach (UDP_Vent_tbPuntoEmisionDetalle_Insert_Result SPpuntoemisiondet in listPuntoEmisionDetalle)
@@ -291,6 +292,7 @@ namespace ERP_ZORZAL.Controllers
                                     EditPuntoEmisionDetalle.dfisc_Id,
                                     EditPuntoEmisionDetalle.pemid_RangoInicio,
                                     EditPuntoEmisionDetalle.pemid_RangoFinal,
+                                    EditPuntoEmisionDetalle.pemid_NumeroActual,
                                     EditPuntoEmisionDetalle.pemid_FechaLimite,
                                     EditPuntoEmisionDetalle.pemid_UsuarioCrea,
                                     EditPuntoEmisionDetalle.pemid_FechaCrea);
@@ -343,6 +345,7 @@ namespace ERP_ZORZAL.Controllers
                             CreatePuntoEmisionDetalle.dfisc_Id,
                             CreatePuntoEmisionDetalle.pemid_RangoInicio,
                             CreatePuntoEmisionDetalle.pemid_RangoFinal,
+                            CreatePuntoEmisionDetalle.pemid_NumeroActual,
                             CreatePuntoEmisionDetalle.pemid_FechaLimite);
                 foreach (UDP_Vent_tbPuntoEmisionDetalle_Insert_Result puntoemisiondetalle in list)
                     MensajeError = puntoemisiondetalle.MensajeError;

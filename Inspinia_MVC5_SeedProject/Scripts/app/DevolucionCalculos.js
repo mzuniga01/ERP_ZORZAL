@@ -12,11 +12,11 @@
             MontoTotal = "";
             ValorImpuesto = "";
             ValorDescuento = "";
-            Impuesto = (parseFloat(Impuesto)/ 100)
+            Impuesto1 = (parseFloat(Impuesto)/ 100)
             porcentajeDesc1 = (parseFloat(porcentajeDesc) / 100)
             if (Cantidad.length && Precio.length > 0) {
             valorSubtotal += (parseFloat(Cantidad) * parseFloat(Precio));
-            ValorImpuesto += (valorSubtotal * parseFloat(Impuesto));
+            ValorImpuesto += (valorSubtotal * parseFloat(Impuesto1));
             ValorDescuento += (parseFloat(valorSubtotal) * parseFloat(porcentajeDesc1));
             console.log(ValorDescuento)
             MontoTotal += (parseFloat(valorSubtotal) + parseFloat(ValorImpuesto)) - parseFloat(ValorDescuento);
@@ -24,7 +24,7 @@
         }
         $("#Subtotal").val(valorSubtotal);
         $("#devd_Monto").val(MontoTotal);
-        $("#Impuesto").val(ValorImpuesto);
+        $("#ValorImpuesto").val(ValorImpuesto);
         $("#MontoDescuento").val(ValorDescuento);
     });
 

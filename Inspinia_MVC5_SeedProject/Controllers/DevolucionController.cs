@@ -84,8 +84,8 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.dev_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             //ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
             //ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "Codigo Factura");
-           
-           tbFacturaDetalle FacturaDetalle = new tbFacturaDetalle();
+
+            tbFacturaDetalle FacturaDetalle = new tbFacturaDetalle();
 
 
             ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
@@ -163,10 +163,12 @@ namespace ERP_ZORZAL.Controllers
                                     }
                                 }
                             }
-                            else { ModelState.AddModelError("", "No se pudo agregar el registro");
-                                    return View(tbDevolucion);
+                            else
+                            {
+                                ModelState.AddModelError("", "No se pudo agregar el registro");
+                                return View(tbDevolucion);
                             }
-                         }
+                        }
                         Tran.Complete();
                         return RedirectToAction("Create");
                     }
@@ -226,7 +228,7 @@ namespace ERP_ZORZAL.Controllers
             return View(tbDevolucion);
         }
 
-        
+
         [HttpPost]
         public ActionResult UpdateDevolucionDetalle(tbDevolucionDetalle EditDevolucionDetalle)
         {
@@ -298,7 +300,7 @@ namespace ERP_ZORZAL.Controllers
             }
             base.Dispose(disposing);
         }
-        
+
         [HttpPost]
         public JsonResult AnularDevolucion(int CodDevolucion, bool Estado)
         {
@@ -312,15 +314,38 @@ namespace ERP_ZORZAL.Controllers
 
             var list = ViewBag.Factura = db.tbFactura.Where(a => a.clte_Identificacion == CodCliente)
            .Select(a => new
-            {
-                FactCodigo = a.fact_Codigo,
-                FactFecha = a.fact_Fecha,
-                CtleRTN = a.clte_Identificacion,
-                Nombre = a.clte_Nombres
-            });
+           {
+               FactId = a.fact_Id,
+               FactCodigo = a.fact_Codigo,
+               FactFecha = a.fact_Fecha,
+               CtleRTN = a.clte_Identificacion,
+               Nombre = a.clte_Nombres
 
-            return  Json(list, JsonRequestBehavior.AllowGet);
-        
+
+           });
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+
+            //return Json(list);
+        }
+
+        [HttpPost]
+        public JsonResult FiltrarModalProducto(int FacturaID)
+        {
+
+            var list = ViewBag.Factura = db.tbFacturaDetalle.Where(a => a.fact_Id == FacturaID)
+           .Select(a => new
+           {
+               CodigoProducto = a.prod_Codigo,
+               Descripcion = a.tbProducto.prod_Descripcion,
+               CantidadFacturada = a.factd_Cantidad,
+               PorcentajeDesc = a.factd_PorcentajeDescuento,
+               PorcentajeImpu = a.factd_Impuesto,
+               PrecioUnitario = a.factd_PrecioUnitario
+           });
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+
             //return Json(list);
         }
 
@@ -334,24 +359,25 @@ namespace ERP_ZORZAL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateNotaCredito([Bind(Include = "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_Redimido,nocre_FechaRedimido,nocre_EsImpreso,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica,nocre_Estado")] tbNotaCredito tbNotaCredito)
+        public ActionResult CreateNotaCredito([Bind(Include = "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,,nocre_Redimido,nocre_FechaRedimido,nocre_EsImpreso,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica")] tbNotaCredito tbNotaCredito)
         {
             if (ModelState.IsValid)
+
             {
                 try
                 {
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbNotaCredito_Insert(tbNotaCredito.nocre_Codigo,
-                                                            tbNotaCredito.dev_Id,
-                                                            tbNotaCredito.clte_Id,
-                                                            tbNotaCredito.suc_Id,
-                                                            tbNotaCredito.nocre_Anulado,
-                                                            tbNotaCredito.nocre_FechaEmision,
-                                                            tbNotaCredito.nocre_MotivoEmision,
-                                                            tbNotaCredito.nocre_Monto,
-                                                            tbNotaCredito.nocre_Redimido,
-                                                            tbNotaCredito.nocre_FechaRedimido,
+                    list = db.UDP_Vent_tbNotaCredito_Insert(tbNotaCredito.nocre_Codigo, 
+                                                            tbNotaCredito.dev_Id, 
+                                                            tbNotaCredito.clte_Id, 
+                                                            tbNotaCredito.suc_Id, 
+                                                            tbNotaCredito.nocre_Anulado, 
+                                                            tbNotaCredito.nocre_FechaEmision, 
+                                                            tbNotaCredito.nocre_MotivoEmision, 
+                                                            tbNotaCredito.nocre_Monto, 
+                                                            tbNotaCredito.nocre_Redimido, 
+                                                            tbNotaCredito.nocre_FechaRedimido, 
                                                             tbNotaCredito.nocre_EsImpreso);
                     foreach (UDP_Vent_tbNotaCredito_Insert_Result NotaCredito in list)
                         MensajeError = NotaCredito.MensajeError;

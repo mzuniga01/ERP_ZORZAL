@@ -78,6 +78,10 @@ $('#AgregarDetalleDevolucion').click(function () {
             $('#tbDevolucion_tbFactura_fact_PorcentajeDescuento').val('');
             $('#test_factd_MontoDescuento').val('');
             $('#Subtotal').val('');
+            $('#CantidadFacturada').val('');
+            $('#Impuesto').val('');
+            $('#ValorImpuesto').val('');
+            $('#Descuento').val('');
         });
     }
 });

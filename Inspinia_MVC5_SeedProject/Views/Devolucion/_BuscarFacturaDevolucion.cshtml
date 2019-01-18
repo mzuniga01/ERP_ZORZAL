@@ -9,7 +9,7 @@
                 <div class="ibox-title">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input id="searchFactura" type="text" class="form-control" placeholder="Ingresar Factura" />
+                            <input id="searchFactura" type="text" class="form-control" placeholder="Buscar Factura" />
                             <br />
                         </div>
                     </div>
@@ -41,7 +41,7 @@
     <tbody id="BodyFactura">
         @foreach (var item in Model)
         {
-            <tr data-id="@item.fact_Codigo" data-Codigo="@item.fact_Id"  data-Fecha="@item.fact_Fecha" data-desc="@item.tbCliente.clte_Identificacion" data-Cliente="@item.clte_Nombres">
+            <tr data-Codigo="@item.fact_Codigo" data-idFact="@item.fact_Id"  @*data-Fecha="@item.fact_Fecha"*@ @*data-desc="@item.tbCliente.clte_Identificacion" data-Cliente="@item.clte_Nombres"*@>
                 <td id="CodigoFactura">
                     @Html.DisplayFor(modelItem => item.fact_Codigo)
                 </td>
@@ -68,6 +68,27 @@
     </div>
  </div>
 
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#DevFactura').DataTable(
+        {
+            "searching": false,
+            "lengthChange": false,
 
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+            }
+        });
+    });
+</script>
 
 
