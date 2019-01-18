@@ -5065,7 +5065,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetParametro_Result>("spGetParametro");
         }
     
-        public virtual ObjectResult<string> UDP_Vent_tbFactura_ObtenerCai_CodigoFactura(Nullable<int> iDSucursal, Nullable<short> iDCAJA)
+        public virtual ObjectResult<UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result> UDP_Vent_tbFactura_ObtenerCai_CodigoFactura(Nullable<int> iDSucursal, Nullable<short> iDCAJA)
         {
             var iDSucursalParameter = iDSucursal.HasValue ?
                 new ObjectParameter("IDSucursal", iDSucursal) :
@@ -5075,7 +5075,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("IDCAJA", iDCAJA) :
                 new ObjectParameter("IDCAJA", typeof(short));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Vent_tbFactura_ObtenerCai_CodigoFactura", iDSucursalParameter, iDCAJAParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result>("UDP_Vent_tbFactura_ObtenerCai_CodigoFactura", iDSucursalParameter, iDCAJAParameter);
         }
     
         public virtual ObjectResult<sp_GetDetallePedido_Result> sp_GetDetallePedido(Nullable<int> ped_Id)

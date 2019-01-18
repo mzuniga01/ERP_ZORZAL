@@ -2111,7 +2111,14 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" />
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result">
+          <ScalarProperty Name="CODFACTURA" ColumnName="CODFACTURA" />
+          <ScalarProperty Name="CAI" ColumnName="CAI" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <EntitySetMapping Name="tbCuponDescuento">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCuponDescuento">
         <MappingFragment StoreEntitySet="tbCuponDescuento">

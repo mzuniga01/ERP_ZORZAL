@@ -1808,7 +1808,7 @@
       <Parameter Name="sald_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="spGetParametro" ReturnType="Collection(ERP_ZORZALModel.spGetParametro_Result)" />
-    <FunctionImport Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" ReturnType="Collection(String)">
+    <FunctionImport Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result)">
       <Parameter Name="IDSucursal" Mode="In" Type="Int32" />
       <Parameter Name="IDCAJA" Mode="In" Type="Int16" />
     </FunctionImport>
@@ -7150,5 +7150,9 @@
     <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
     <Property Type="Decimal" Name="pedd_Cantidad" Nullable="false" Precision="10" Scale="2" />
     <Property Type="Decimal" Name="pedd_CantidadFacturada" Nullable="false" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result">
+    <Property Type="String" Name="CODFACTURA" Nullable="true" MaxLength="19" />
+    <Property Type="String" Name="CAI" Nullable="true" MaxLength="40" />
   </ComplexType>
 </Schema>

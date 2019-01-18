@@ -8137,7 +8137,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="sald_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spGetParametro" ReturnType="Collection(ERP_ZORZALModel.spGetParametro_Result)" />
-          <FunctionImport Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result)">
             <Parameter Name="IDSucursal" Mode="In" Type="Int32" />
             <Parameter Name="IDCAJA" Mode="In" Type="Int16" />
           </FunctionImport>
@@ -13480,6 +13480,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="Decimal" Name="pedd_Cantidad" Nullable="false" Precision="10" Scale="2" />
           <Property Type="Decimal" Name="pedd_CantidadFacturada" Nullable="false" Precision="10" Scale="2" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result">
+          <Property Type="String" Name="CODFACTURA" Nullable="true" MaxLength="19" />
+          <Property Type="String" Name="CAI" Nullable="true" MaxLength="40" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -15597,7 +15601,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result">
+                <ScalarProperty Name="CODFACTURA" ColumnName="CODFACTURA" />
+                <ScalarProperty Name="CAI" ColumnName="CAI" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="tbCuponDescuento">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCuponDescuento">
               <MappingFragment StoreEntitySet="tbCuponDescuento">
