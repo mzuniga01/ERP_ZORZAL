@@ -302,7 +302,7 @@ namespace ERP_ZORZAL.Controllers
         [HttpPost]
         public JsonResult GetBox(int sald_Id)
         {
-            var list = db.SDP_tbSalidaDetalle_Select(sald_Id).ToList();
+            var list = db.SDP_Inv_tbSalidaDetalle_Select(sald_Id).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
@@ -312,17 +312,15 @@ namespace ERP_ZORZAL.Controllers
             try
             {
                 IEnumerable<object> list = null;
-               
 
-                list = db.UDP_Inv_tbSalidaDetalle_Update(
-                                                         EditarSalidaDetalle.tbBodegaDetalle.tbProducto.prod_Descripcion,
-                                                        EditarSalidaDetalle.tbBodegaDetalle.tbProducto.prod_Marca,
-                                                        EditarSalidaDetalle.tbBodegaDetalle.tbProducto.prod_Modelo,
-                                                        EditarSalidaDetalle.tbBodegaDetalle.tbProducto.prod_Talla,
-                                                        EditarSalidaDetalle.tbBodegaDetalle.tbProducto.prod_Color,
-                                                        EditarSalidaDetalle.tbBodegaDetalle.tbProducto.tbUnidadMedida.uni_Descripcion,
-                                                        EditarSalidaDetalle.sal_Cantidad
-                    );
+                tbSalidaDetalle vsalida = db.tbSalidaDetalle.Find(EditarSalidaDetalle.sald_Id);
+                list = db.UDP_Inv_tbSalidaDetalle_Update(EditarSalidaDetalle.sald_Id,
+                                                         EditarSalidaDetalle.sald_Id, 
+                                                         EditarSalidaDetalle.bodd_Id,
+                                                        EditarSalidaDetalle.sal_Cantidad, 
+                                                        EditarSalidaDetalle.box_Codigo, 
+                                                        vsalida.sald_UsuarioCrea, 
+                                                        vsalida.sald_FechaCrea );
                 foreach (UDP_Inv_tbSalidaDetalle_Update_Result salida in list)
                     Msj = salida.MensajeError;
 

@@ -2090,5 +2090,18 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Update_Estado_Result>("UDP_Inv_tbProductoCategoria_Update_Estado", pcat_IdParameter, eSTADOParameter);
         }
+    
+        public virtual int UDP_Acce_tbRolesUsuario_Delete(Nullable<int> usu_Id, Nullable<int> rol_Id)
+        {
+            var usu_IdParameter = usu_Id.HasValue ?
+                new ObjectParameter("usu_Id", usu_Id) :
+                new ObjectParameter("usu_Id", typeof(int));
+    
+            var rol_IdParameter = rol_Id.HasValue ?
+                new ObjectParameter("rol_Id", rol_Id) :
+                new ObjectParameter("rol_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Acce_tbRolesUsuario_Delete", usu_IdParameter, rol_IdParameter);
+        }
     }
 }

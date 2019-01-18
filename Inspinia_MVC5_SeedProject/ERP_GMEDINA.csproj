@@ -208,6 +208,7 @@
     <Compile Include="Controllers\TipoEntradaController.cs" />
     <Compile Include="Controllers\TipoSalidaController.cs" />
     <Compile Include="Controllers\UnidadMedidaController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -997,6 +998,7 @@
     <Content Include="Scripts\app\BodegaDetalle.js" />
     <Content Include="Scripts\app\BusquedaGenerica.js" />
     <Content Include="Scripts\app\Categoria.js" />
+    <Content Include="Scripts\app\Comparar.js" />
     <Content Include="Scripts\app\CrearActualizarEliminar.js" />
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\Datepicker.js" />
@@ -1019,6 +1021,7 @@
     <Content Include="Scripts\app\PersonaNatural.js" />
     <Content Include="Scripts\app\ProductoCodigo.js" />
     <Content Include="Scripts\app\RolesUsuario.js" />
+    <Content Include="Scripts\app\RolesUsuarioEdit.js" />
     <Content Include="Scripts\app\RolObjetosEdit.js" />
     <Content Include="Scripts\app\RolObjetos.js" />
     <Content Include="Scripts\app\Salida.js" />
@@ -1385,6 +1388,8 @@
     <Content Include="Views\Box\_EditarSalidaDetalle.cshtml" />
     <Content Include="Views\Box\_ListSalidaDetalle.cshtml" />
     <Content Include="Views\Login\SinAcceso.cshtml" />
+    <Content Include="Views\Usuario\ModificarCuenta.cshtml" />
+    <Content Include="Views\Usuario\_BuscarEmpleado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
