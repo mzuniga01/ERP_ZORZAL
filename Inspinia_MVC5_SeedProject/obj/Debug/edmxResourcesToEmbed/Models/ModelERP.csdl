@@ -1512,6 +1512,9 @@
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
       <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
     </FunctionImport>
+    <FunctionImport Name="SDP_tbInventarioFisicoDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbInventarioFisicoDetalle_Select_Result)">
+      <Parameter Name="invfd_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -5948,5 +5951,17 @@
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbEntrada_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="SDP_tbInventarioFisicoDetalle_Select_Result">
+    <Property Type="Int32" Name="invfd_Id" Nullable="false" />
+    <Property Type="Int32" Name="invf_Id" Nullable="false" />
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="Decimal" Name="invfd_Cantidad" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="invfd_CantidadSistema" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="uni_Id" Nullable="false" />
+    <Property Type="Int32" Name="invfd_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="invfd_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="invfd_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="invfd_FechaModifica" Nullable="true" Precision="23" />
   </ComplexType>
 </Schema>

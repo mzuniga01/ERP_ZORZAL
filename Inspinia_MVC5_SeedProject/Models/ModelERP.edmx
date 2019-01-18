@@ -3825,6 +3825,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
         <Function Name="SDP_tbentradadetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="entd_Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="SDP_tbInventarioFisicoDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="invfd_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="SDP_tbProductoSubcategoria_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="pscat_Id" Type="int" Mode="In" />
         </Function>
@@ -6581,7 +6584,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <Parameter Name="rol_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SDP_tbentradadetalle_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbentradadetalle_Select_Result)">
-            <Parameter Name="entd_Id" Mode="In" Type="Int32" />
+          <Parameter Name="entd_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbEntrada_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Insert_Result)">
             <Parameter Name="ent_FechaElaboracion" Mode="In" Type="DateTime" />
@@ -6629,6 +6632,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_tbInventarioFisicoDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbInventarioFisicoDetalle_Select_Result)">
+            <Parameter Name="invfd_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -11067,6 +11073,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
         <ComplexType Name="UDP_Inv_tbEntrada_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="SDP_tbInventarioFisicoDetalle_Select_Result">
+          <Property Type="Int32" Name="invfd_Id" Nullable="false" />
+          <Property Type="Int32" Name="invf_Id" Nullable="false" />
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="Decimal" Name="invfd_Cantidad" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="invfd_CantidadSistema" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="uni_Id" Nullable="false" />
+          <Property Type="Int32" Name="invfd_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="invfd_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="invfd_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="invfd_FechaModifica" Nullable="true" Precision="23" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12884,6 +12902,22 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_tbInventarioFisicoDetalle_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbInventarioFisicoDetalle_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbInventarioFisicoDetalle_Select_Result">
+                <ScalarProperty Name="invfd_Id" ColumnName="invfd_Id" />
+                <ScalarProperty Name="invf_Id" ColumnName="invf_Id" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="invfd_Cantidad" ColumnName="invfd_Cantidad" />
+                <ScalarProperty Name="invfd_CantidadSistema" ColumnName="invfd_CantidadSistema" />
+                <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
+                <ScalarProperty Name="invfd_UsuarioCrea" ColumnName="invfd_UsuarioCrea" />
+                <ScalarProperty Name="invfd_FechaCrea" ColumnName="invfd_FechaCrea" />
+                <ScalarProperty Name="invfd_UsuarioModifica" ColumnName="invfd_UsuarioModifica" />
+                <ScalarProperty Name="invfd_FechaModifica" ColumnName="invfd_FechaModifica" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

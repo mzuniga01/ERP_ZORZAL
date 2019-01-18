@@ -1815,5 +1815,21 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_tbInventarioFisicoDetalle_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbInventarioFisicoDetalle_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbInventarioFisicoDetalle_Select_Result">
+          <ScalarProperty Name="invfd_Id" ColumnName="invfd_Id" />
+          <ScalarProperty Name="invf_Id" ColumnName="invf_Id" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="invfd_Cantidad" ColumnName="invfd_Cantidad" />
+          <ScalarProperty Name="invfd_CantidadSistema" ColumnName="invfd_CantidadSistema" />
+          <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
+          <ScalarProperty Name="invfd_UsuarioCrea" ColumnName="invfd_UsuarioCrea" />
+          <ScalarProperty Name="invfd_FechaCrea" ColumnName="invfd_FechaCrea" />
+          <ScalarProperty Name="invfd_UsuarioModifica" ColumnName="invfd_UsuarioModifica" />
+          <ScalarProperty Name="invfd_FechaModifica" ColumnName="invfd_FechaModifica" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

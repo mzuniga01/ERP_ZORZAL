@@ -5,6 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+    <div id="dialog" title="Exito" class="no-close success-dialog" hidden="hidden">
+        <p>Este Producto no existe en esta Bodega</p>
+    </div>
+
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -38,7 +42,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">Fecha del Inventario<span style="color:red">*</span></label>
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.invf_FechaInventario, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion" , @readonly = "readonly"} })
+                                @Html.EditorFor(model => model.invf_FechaInventario,  new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion" , @readonly = "readonly"} })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.invf_FechaInventario)</p>
                             </div>
                         </div>

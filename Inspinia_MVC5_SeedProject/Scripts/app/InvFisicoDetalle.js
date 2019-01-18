@@ -225,47 +225,50 @@ function GetInventarioFisicoDetalle() {
 
 
 //Actualizar detalle
-function btnActualizarDetalle(invfd_Id) {
-    var tbInventarioFisicoDetalle = getdetalle();
-    var producto = $("#prod_Codigo").val();
-    console.log(producto);
+function EditarDetalle(invfd_Id) {
+    $("#MsjError").text("");
 
     $.ajax({
-        url: "/InventarioFisico/UpdateInvFisicoDetalle",
+        url: "/InventarioFisico/GetInventarioDetalle",
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ actualizardetalle: tbInventarioFisicoDetalle }),
-    }).done(function (data) {
-        if (data == '') {
-            location.reload();
-        }
-        else if (data == '-1') {
-            $('#MensajeError' + invfd_Id).text('');
-            $('#ValidationMessageFor' + invfd_Id).after('<ul id="MensajeError' + invfd_Id + '" class="validation-summary-errors text-danger">No se ha podido Actualizar el registro.</ul>');
-        }
-        else {
-            $('#MensajeError' + invfd_Id).text('');
-            $('#ValidationMessageFor' + invfd_Id).after('<ul id="MensajeError' + invfd_Id + '" class="validation-summary-errors text-danger">Campo Requerido</ul>');
-        }
-    });
-}
-function getdetalle() {
-    var guardar_detalle = {
-        prod_Codigo: $('#codigo').val(),
-        uni_Id: $('#uni_Ids').val(),
-        invfd_Cantidad: $('#CantidadFisica').val(),
-        invfd_CantidadSistema: $('#CantidadSistema').val(),
-        invf_Id: $('#invf_Id').val(),
-        invfd_Id: $('#invfd_Id').val(),
-        invfd_UsuarioCrea: $('#invfd_UsuarioCrea').val(),
-        invfd_UsuarioModifica: $('#invfd_UsuarioModifica').val(),
-        invfd_FechaCrea: $('#invfd_FechaCrea').val(),
-        invfd_FechaModifica: $('#invfd_FechaModifica').val()
-    };
-    return guardar_detalle;
+        data: JSON.stringify({ invfd_Id }),
+    })
+    .done(function (data) {
+        $.each(data, function (i, item) {
+            $("#invfd_Id").val(item.invfd_Id);
+            $("#invf_Id_edit").val(item.invf_Id);
+            $("#prod_Codigo_edit").val(item.prod_Codigo);
+            $("#invfd_Cantidad_edit").val(item.invfd_Cantidad);
+            $("#invfd_CantidadSistema_edit").val(item.invfd_CantidadSistema);
+            $("#uni_Id_edit").val(item.uni_Id);
+            $("#Modaleditar").modal();
+        })
+    })
+    .fail( function( jqXHR, textStatus, errorThrown ) {
+        console.log('jqXHR', jqXHR);
+        console.log('textStatus', textStatus);
+        console.log('errorThrown', errorThrown);
+    })
 }
 
+$("#submit").click(function () {
+    var data = $("#form").serializeArray();
+
+    $.ajax({
+        type: "Post",
+        url: "/InventarioFisico/UpdateInvFisicoDetalle",
+        data: data,
+        success: function (result) {
+            if (result == '-1')
+                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+            else
+
+            location.reload();
+        }
+    });
+})
 
 //Encargado de Bodega
 $(document).change("#bod_Id", function () {
@@ -316,14 +319,28 @@ function seleccionar(prod_Codigo) {
         if (data.length > 0) {
             $('#invfd_CantidadSistema').empty();
             $.each(data, function (key, val) {
+                if (data.length > 0) {
                     $('#invfd_CantidadSistema').val(val.bodd_CantidadExistente);
-                
+                } else {
+                    $("#dialog").dialog({
+                        modal: true
+                          
+                        
+                    });
+                }
             });
             $('#invfd_CantidadSistema').trigger("chosen:updated");
         }
         else {
             $('#invfd_CantidadSistema').empty();
+            if (data.length > 0) {
                 $('#invfd_CantidadSistema').val(val.bodd_CantidadExistente);
+            } else {
+                $("#dialog").dialog({
+                    modal: true
+                      
+                });
+            }
        
         }
     });

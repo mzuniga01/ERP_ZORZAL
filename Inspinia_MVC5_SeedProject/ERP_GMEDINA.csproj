@@ -292,6 +292,9 @@
     <Compile Include="Models\SDP_tbentradadetalle_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SDP_tbInventarioFisicoDetalle_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SDP_tbProductoSubcategoria_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
