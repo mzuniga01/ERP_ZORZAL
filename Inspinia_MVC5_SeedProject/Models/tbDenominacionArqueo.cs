@@ -24,9 +24,8 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> arqde_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> arqde_FechaModifica { get; set; }
     
+        public virtual tbDenominacion tbDenominacion { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
-        public virtual tbDenominacion tbDenominacion { get; set; }
-        public virtual tbMovimientoCaja tbMovimientoCaja { get; set; }
     }
 }

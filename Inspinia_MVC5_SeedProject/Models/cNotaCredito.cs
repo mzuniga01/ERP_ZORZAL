@@ -34,7 +34,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Anulada")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
-        public Nullable<bool> nocre_Anulado { get; set; }
+        public bool nocre_Anulado { get; set; }
 
         [Display(Name = "Fecha Emisión")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
@@ -50,6 +50,15 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Monto")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public Nullable<decimal> nocre_Monto { get; set; }
+
+        [Display(Name = "Redimido")]
+        public bool nocre_Redimido { get; set; }
+
+        [Display(Name = "Fecha Redención")]
+        public Nullable<DateTime> nocre_FechaRedimido { get; set; }
+
+        [Display(Name = "Impreso")]
+       public bool nocre_EsImpreso { get; set; }
 
         [Display(Name = "Usuario Crea")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
@@ -67,10 +76,7 @@ namespace ERP_GMEDINA.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> nocre_FechaModifica { get; set; }
 
-        [Display(Name = "Estado")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
-        public byte nocre_Estado { get; set; }
-
+       
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbCliente tbCliente { get; set; }

@@ -40,8 +40,6 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> ent_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> ent_FechaModifica { get; set; }
     
-        public virtual tbUsuario tbUsuario { get; set; }
-        public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbBodega tbBodega { get; set; }
         public virtual tbBodega tbBodega1 { get; set; }
         public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }
@@ -50,5 +48,7 @@ namespace ERP_GMEDINA.Models
         public virtual tbTipoEntrada tbTipoEntrada { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEntradaDetalle> tbEntradaDetalle { get; set; }
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
     }
 }

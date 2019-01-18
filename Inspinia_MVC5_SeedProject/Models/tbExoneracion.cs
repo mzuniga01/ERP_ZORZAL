@@ -25,8 +25,8 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> exo_UsuarioModifa { get; set; }
         public Nullable<System.DateTime> exo_FechaModifica { get; set; }
     
+        public virtual tbCliente tbCliente { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
-        public virtual tbCliente tbCliente { get; set; }
     }
 }

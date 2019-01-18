@@ -680,11 +680,11 @@
     <Property Name="cja_Id" Type="smallint" Nullable="false" />
     <Property Name="suc_Id" Type="int" Nullable="false" />
     <Property Name="clte_Id" Type="int" Nullable="false" />
-    <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="40" Nullable="false" />
     <Property Name="fact_AlCredito" Type="bit" Nullable="false" />
     <Property Name="fact_DiasCredito" Type="int" Nullable="false" />
     <Property Name="fact_PorcentajeDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="fact_Vendedor" Type="varchar" MaxLength="50" />
+    <Property Name="fact_Vendedor" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
     <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="fact_IdentidadTE" Type="nvarchar" MaxLength="26" />
@@ -763,16 +763,16 @@
     </Key>
     <Property Name="mocja_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="cja_Id" Type="smallint" Nullable="false" />
-    <Property Name="mocja_FechaApertura" Type="datetime" Nullable="false" />
-    <Property Name="mocja_UsuarioApertura" Type="int" />
-    <Property Name="mocja_FechaArqueo" Type="datetime" Nullable="false" />
-    <Property Name="mocja_UsuarioArquea" Type="int" />
-    <Property Name="mocja_FechaAceptacion" Type="datetime" Nullable="false" />
-    <Property Name="mocja_UsuarioAceptacion" Type="int" />
-    <Property Name="mocja_UsuarioCrea" Type="int" />
+    <Property Name="mocja_FechaApertura" Type="datetime" />
+    <Property Name="mocja_UsuarioApertura" Type="int" Nullable="false" />
+    <Property Name="mocja_FechaArqueo" Type="datetime" />
+    <Property Name="mocja_UsuarioArquea" Type="int" Nullable="false" />
+    <Property Name="mocja_FechaAceptacion" Type="datetime" />
+    <Property Name="mocja_UsuarioAceptacion" Type="int" Nullable="false" />
+    <Property Name="mocja_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="mocja_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="mocja_UsuarioModifica" Type="int" />
-    <Property Name="mocja_FechaModifica" Type="datetime" Nullable="false" />
+    <Property Name="mocja_FechaModifica" Type="datetime" />
   </EntityType>
   <EntityType Name="tbNotaCredito">
     <Key>
@@ -787,11 +787,13 @@
     <Property Name="nocre_FechaEmision" Type="datetime" Nullable="false" />
     <Property Name="nocre_MotivoEmision" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="nocre_Monto" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="nocre_Redimido" Type="bit" Nullable="false" />
+    <Property Name="nocre_FechaRedimido" Type="date" />
+    <Property Name="nocre_EsImpreso" Type="bit" Nullable="false" />
     <Property Name="nocre_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="nocre_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="nocre_UsuarioModifica" Type="int" />
     <Property Name="nocre_FechaModifica" Type="datetime" />
-    <Property Name="nocre_Estado" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="tbPago">
     <Key>
@@ -881,6 +883,7 @@
     <Property Name="dfisc_Id" Type="char" MaxLength="2" Nullable="false" />
     <Property Name="pemid_RangoInicio" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="pemid_RangoFinal" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="pemid_NumeroActual" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
     <Property Name="pemid_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="pemid_FechaCrea" Type="datetime" Nullable="false" />
@@ -1701,7 +1704,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioAceptacion">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbUsuario">
@@ -1713,7 +1716,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioApertura">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbUsuario">
@@ -1725,7 +1728,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioArquea">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbUsuario">
@@ -1737,7 +1740,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioCrea">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbUsuario">
@@ -3440,42 +3443,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id">
-    <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="1" />
-    <End Role="tbDenominacionArqueo" Type="Self.tbDenominacionArqueo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbMovimientoCaja">
-        <PropertyRef Name="mocja_Id" />
-      </Principal>
-      <Dependent Role="tbDenominacionArqueo">
-        <PropertyRef Name="mocja_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id">
-    <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="1" />
-    <End Role="tbPagosArqueo" Type="Self.tbPagosArqueo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbMovimientoCaja">
-        <PropertyRef Name="mocja_Id" />
-      </Principal>
-      <Dependent Role="tbPagosArqueo">
-        <PropertyRef Name="mocja_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
-    <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="1" />
-    <End Role="tbSolicitudEfectivo" Type="Self.tbSolicitudEfectivo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbMovimientoCaja">
-        <PropertyRef Name="mocja_Id" />
-      </Principal>
-      <Dependent Role="tbSolicitudEfectivo">
-        <PropertyRef Name="mocja_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
     <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="1" />
     <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
@@ -4249,7 +4216,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbBodegaDetalle_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
-    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="bodd_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbBodegaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
@@ -4329,8 +4296,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="ent_Id" Type="int" Mode="In" />
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
-    <Parameter Name="entd_UsuarioCrea" Type="int" Mode="In" />
-    <Parameter Name="entd_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbEstadoMovimiento_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="estm_Id" Type="int" Mode="In" />
@@ -4379,8 +4344,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="invfd_Cantidad" Type="decimal" Mode="In" />
     <Parameter Name="invfd_CantidadSistema" Type="decimal" Mode="In" />
     <Parameter Name="uni_Id" Type="int" Mode="In" />
-    <Parameter Name="invfd_UsuarioCrea" Type="int" Mode="In" />
-    <Parameter Name="invfd_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProducto_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
@@ -4427,7 +4390,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   </Function>
   <Function Name="UDP_Inv_tbProductoCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
-    <Parameter Name="pcat_EsActivo" Type="tinyint" Mode="In" />
+    <Parameter Name="ESTADO" Type="tinyint" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProductoSubCategoria_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pscat_Id" Type="int" Mode="In" />
@@ -4470,7 +4433,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="sal_FechaElaboracion" Type="datetime" Mode="In" />
     <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
     <Parameter Name="tsal_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="sal_BodDestino" Type="int" Mode="In" />
+    <Parameter Name="sal_EsAnulada" Type="bit" Mode="In" />
     <Parameter Name="sal_RazonDevolucion" Type="varchar" Mode="In" />
+    <Parameter Name="sal_RazonAnulada" Type="varchar" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbSalida_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sal_Id" Type="int" Mode="In" />
@@ -4479,7 +4445,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="sal_FechaElaboracion" Type="datetime" Mode="In" />
     <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
     <Parameter Name="tsal_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="sal_BodDestino" Type="int" Mode="In" />
+    <Parameter Name="sal_EsAnulada" Type="bit" Mode="In" />
     <Parameter Name="sal_RazonDevolucion" Type="varchar" Mode="In" />
+    <Parameter Name="sal_RazonAnulada" Type="varchar" Mode="In" />
     <Parameter Name="sal_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="sal_FechaCrea" Type="datetime" Mode="In" />
   </Function>
@@ -4544,15 +4513,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="suc_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="fn_GetFacturaPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-    <Parameter Name="fact_Id" Type="int" Mode="In" />
+    <Parameter Name="clte_Id" Type="int" Mode="In" />
     <ReturnType>
       <CollectionType>
         <RowType>
           <Property Name="fact_Id" Type="bigint" Nullable="false" />
+          <Property Name="clte_Id" Type="int" Nullable="false" />
           <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
-          <Property Name="MontoFactura" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="pago_TotalPago" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="pago_SaldoAnterior" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="MontoFactura" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPagado" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SaldoFactura" Type="decimal" Precision="18" Scale="2" />
         </RowType>
       </CollectionType>
     </ReturnType>
@@ -4932,6 +4902,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="cja_Id" Type="smallint" Mode="In" />
     <Parameter Name="mocja_FechaApertura" Type="datetime" Mode="In" />
     <Parameter Name="mocja_UsuarioApertura" Type="int" Mode="In" />
+    <Parameter Name="mocja_FechaArqueo" Type="datetime" Mode="In" />
+    <Parameter Name="mocja_UsuarioArquea" Type="int" Mode="In" />
+    <Parameter Name="mocja_FechaAceptacion" Type="datetime" Mode="In" />
+    <Parameter Name="mocja_UsuarioAceptacion" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbMovimientoCaja_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="cja_Id" Type="smallint" Mode="In" />
@@ -4965,7 +4939,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="nocre_FechaEmision" Type="datetime" Mode="In" />
     <Parameter Name="nocre_MotivoEmision" Type="nvarchar" Mode="In" />
     <Parameter Name="nocre_Monto" Type="decimal" Mode="In" />
-    <Parameter Name="nocre_Estado" Type="bit" Mode="In" />
+    <Parameter Name="nocre_Redimido" Type="bit" Mode="In" />
+    <Parameter Name="nocre_FechaRedimido" Type="date" Mode="In" />
+    <Parameter Name="nocre_EsImpreso" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbNotaCredito_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="nocre_Id" Type="smallint" Mode="In" />
@@ -4977,9 +4953,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="nocre_FechaEmision" Type="datetime" Mode="In" />
     <Parameter Name="nocre_MotivoEmision" Type="nvarchar" Mode="In" />
     <Parameter Name="nocre_Monto" Type="decimal" Mode="In" />
+    <Parameter Name="nocre_Redimido" Type="bit" Mode="In" />
+    <Parameter Name="nocre_FechaRedimido" Type="date" Mode="In" />
+    <Parameter Name="nocre_EsImpreso" Type="bit" Mode="In" />
     <Parameter Name="nocre_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="nocre_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="nocre_Estado" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbPago_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
@@ -5084,6 +5062,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="dfisc_Id" Type="char" Mode="In" />
     <Parameter Name="pemid_RangoInicio" Type="varchar" Mode="In" />
     <Parameter Name="pemid_RangoFinal" Type="varchar" Mode="In" />
+    <Parameter Name="pemid_NumeroActual" Type="varchar" Mode="In" />
     <Parameter Name="pemid_FechaLimite" Type="date" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbPuntoEmisionDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
@@ -5091,6 +5070,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="dfisc_Id" Type="char" Mode="In" />
     <Parameter Name="pemid_RangoInicio" Type="varchar" Mode="In" />
     <Parameter Name="pemid_RangoFinal" Type="varchar" Mode="In" />
+    <Parameter Name="pemid_NumeroActual" Type="varchar" Mode="In" />
     <Parameter Name="pemid_FechaLimite" Type="date" Mode="In" />
     <Parameter Name="pemid_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="pemid_FechaCrea" Type="datetime" Mode="In" />
@@ -6159,18 +6139,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <AssociationSet Name="FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id" Association="Self.FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id">
       <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
       <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" Association="Self.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id">
-      <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
-      <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id" Association="Self.FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id">
-      <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
-      <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" Association="Self.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
-      <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
-      <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
       <End Role="tbMunicipio" EntitySet="tbMunicipio" />

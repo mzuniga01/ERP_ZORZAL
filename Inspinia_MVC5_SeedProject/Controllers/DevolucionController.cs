@@ -334,7 +334,7 @@ namespace ERP_ZORZAL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateNotaCredito([Bind(Include = "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica,nocre_Estado")] tbNotaCredito tbNotaCredito)
+        public ActionResult CreateNotaCredito([Bind(Include = "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_Redimido,nocre_FechaRedimido,nocre_EsImpreso,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica,nocre_Estado")] tbNotaCredito tbNotaCredito)
         {
             if (ModelState.IsValid)
             {
@@ -349,7 +349,10 @@ namespace ERP_ZORZAL.Controllers
                                                             tbNotaCredito.nocre_Anulado,
                                                             tbNotaCredito.nocre_FechaEmision,
                                                             tbNotaCredito.nocre_MotivoEmision,
-                        tbNotaCredito.nocre_Monto, tbNotaCredito.nocre_Estado);
+                                                            tbNotaCredito.nocre_Monto,
+                                                            tbNotaCredito.nocre_Redimido,
+                                                            tbNotaCredito.nocre_FechaRedimido,
+                                                            tbNotaCredito.nocre_EsImpreso);
                     foreach (UDP_Vent_tbNotaCredito_Insert_Result NotaCredito in list)
                         MensajeError = NotaCredito.MensajeError;
                     if (MensajeError == -1)

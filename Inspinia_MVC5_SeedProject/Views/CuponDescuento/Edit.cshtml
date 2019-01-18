@@ -90,7 +90,8 @@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new {@type = "number", @class = "form-control", @style = "text-align:right", @min = "0"@*, @onchange = "MASK(this,this.value,'-##,###,##0.00',1)", @onkeypres = "MASK(this,this.value,'-##,###,##0.00',1)"*@ }
                                })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
+                                    <p id="smsCantidadMinima1" style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
+                                    @*<p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>*@
                                 </div>
                             </div>
 
@@ -211,15 +212,18 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         //------------------------CantidadMinima > MontoDescuento------------------
-        $(document).ready(function () {
-            $('#cdto_CantidadCompraMinima').focusout(function () {
-                var montoE = $('#cdto_MontoDescuento').val();
-                var compraminimaE = $('#cdto_CantidadCompraMinima').val();
+        $('#cdto_CantidadCompraMinima').blur(function () {
+            valido = document.getElementById('smsCantidadMinima1');
+            var monto1 = $('#cdto_MontoDescuento').val();
+            console.log(monto1)
+            var compraminima1 = $('#cdto_CantidadCompraMinima').val();
+            console.log(compraminima1)
 
-                if (montoE >= compraminimaE) {
-                    $('#cdto_CantidadCompraMinima').val('').focus();
-                }
-            });
+            if (parseFloat(monto1) >= parseFloat(compraminima1)) {
+                $('#cdto_CantidadCompraMinima').val('').focus();
+                valido.innerText = "El valor debe ser Mayor al Monto Descuento";
+            } else
+                valido.innerText = "";
         });
         
         //--------------------Digitar Datos--------------------------------

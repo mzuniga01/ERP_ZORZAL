@@ -79,7 +79,8 @@
                                 <div class="col-md-4">
                                     <input class="form-control validanumericos" data-val="true" data-val-number="The field Compra Mínima must be a number." data-val-required="*El campo Compra Mínima es requerido" id="cdto_CantidadCompraMinimaH" min="0" name="cdto_CantidadCompraMinimaH" onchange="MASK(this,this.value,'-##,###,##0.00',1)" onkeypres="MASK(this,this.value,'-##,###,##0.00',1)" style="text-align:right" type="text" value>
                                      <input type="hidden" id="cdto_CantidadCompraMinima" name="cdto_CantidadCompraMinima" />
-                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
+                                    <p id="smsCantidadMinima" style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
+                                     @*<p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>*@
                                 </div>
                             </div>
 
@@ -170,18 +171,19 @@
 
     <script>
         //------------------------CantidadMinima > MontoDescuento------------------
-        $(document).ready(function () {
-            $('#cdto_CantidadCompraMinimaH').focusout(function () {
-                var monto = $('#cdto_MontoDescuento').val();
-                var compraminima = $('#cdto_CantidadCompraMinima').val();
+        $('#cdto_CantidadCompraMinimaH').blur(function () {
+            valido = document.getElementById('smsCantidadMinima');
+            var monto = $('#cdto_MontoDescuento').val();
+            console.log(monto)
+            var compraminima = $('#cdto_CantidadCompraMinima').val();
+            console.log(monto)
 
-                if (monto >= compraminima) {
-                     $('#cdto_CantidadCompraMinimaH').val('').focus();
-                }
-            });
+            if (parseFloat(monto) >= parseFloat(compraminima)) {
+                $('#cdto_CantidadCompraMinimaH').val('').focus();
+                valido.innerText = "El valor debe ser Mayor al Monto Descuento";
+            }else
+                valido.innerText = "";
         });
-
-
 
 
         //--------------------Digitar Datos--------------------------------

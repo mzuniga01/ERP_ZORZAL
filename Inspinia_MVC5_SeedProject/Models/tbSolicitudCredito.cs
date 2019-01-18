@@ -29,9 +29,9 @@ namespace ERP_GMEDINA.Models
         public Nullable<System.DateTime> cred_FechaModifica { get; set; }
         public Nullable<System.DateTime> cred_FechaDenegacion { get; set; }
     
-        public virtual tbUsuario tbUsuario { get; set; }
-        public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbCliente tbCliente { get; set; }
         public virtual tbEstadoSolicitudCredito tbEstadoSolicitudCredito { get; set; }
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
     }
 }

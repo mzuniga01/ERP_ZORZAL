@@ -91,13 +91,13 @@
             @Html.DisplayFor(model => model.tbDevolucion.dev_Id)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.nocre_Estado)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.nocre_Estado)
-        </dd>
+        </dd>*@
         <dt>
             @Html.DisplayNameFor(model => model.nocre_Anulado)
         </dt>
@@ -116,9 +116,9 @@
 }
 else
 {
-    <button id="bottonAnularCD" name="bottonAnulado" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btnAnuladoNC">
-        Editar
-    </button>
+    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
+        <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Editar</button>
+    </span>
 }
 
 	    
@@ -172,6 +172,13 @@ else
     </div>
 </div>
 
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+
+</script>
 
 
 

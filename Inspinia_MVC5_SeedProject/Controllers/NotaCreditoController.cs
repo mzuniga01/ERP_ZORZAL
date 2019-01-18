@@ -70,7 +70,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica,nocre_Estado")] tbNotaCredito tbNotaCredito)
+        public ActionResult Create([Bind(Include= "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_Redimido,nocre_FechaRedimido,nocre_EsImpreso,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica,nocre_Estado")] tbNotaCredito tbNotaCredito)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,10 @@ namespace ERP_ZORZAL.Controllers
                                                             tbNotaCredito.nocre_Anulado, 
                                                             tbNotaCredito.nocre_FechaEmision, 
                                                             tbNotaCredito.nocre_MotivoEmision,
-                        tbNotaCredito.nocre_Monto, tbNotaCredito.nocre_Estado);
+                                                            tbNotaCredito.nocre_Monto, 
+                                                            tbNotaCredito.nocre_Redimido,
+                                                            tbNotaCredito.nocre_FechaRedimido,
+                                                            tbNotaCredito.nocre_EsImpreso);
                     foreach (UDP_Vent_tbNotaCredito_Insert_Result NotaCredito in list)
                         MensajeError = NotaCredito.MensajeError;
                     if (MensajeError == -1)
@@ -140,7 +143,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include= "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica,nocre_Estado, tbUsuario, tbUsuario1")] tbNotaCredito tbNotaCredito)
+        public ActionResult Edit([Bind(Include= "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_Redimido,nocre_FechaRedimido,nocre_EsImpreso,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica,nocre_Estado, tbUsuario, tbUsuario1")] tbNotaCredito tbNotaCredito)
         {
             if (ModelState.IsValid)
             {
@@ -151,7 +154,8 @@ namespace ERP_ZORZAL.Controllers
                     list = db.UDP_Vent_tbNotaCredito_Update(tbNotaCredito.nocre_Id, tbNotaCredito.nocre_Codigo, 
                         tbNotaCredito.dev_Id, tbNotaCredito.clte_Id, tbNotaCredito.suc_Id, tbNotaCredito.nocre_Anulado,
                         tbNotaCredito.nocre_FechaEmision, tbNotaCredito.nocre_MotivoEmision, tbNotaCredito.nocre_Monto,
-                        tbNotaCredito.nocre_UsuarioCrea, tbNotaCredito.nocre_FechaCrea, tbNotaCredito.nocre_Estado);
+                        tbNotaCredito.nocre_Redimido, tbNotaCredito.nocre_FechaRedimido, tbNotaCredito.nocre_EsImpreso,
+                        tbNotaCredito.nocre_UsuarioCrea, tbNotaCredito.nocre_FechaCrea);
                     foreach (UDP_Vent_tbNotaCredito_Update_Result NotaCredito in list)
                         MensajeError = NotaCredito.MensajeError;
                     if (MensajeError == -1)

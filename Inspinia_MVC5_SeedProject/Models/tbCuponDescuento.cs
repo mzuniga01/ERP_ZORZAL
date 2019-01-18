@@ -31,8 +31,8 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> cdto_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> cdto_FechaModifica { get; set; }
     
+        public virtual tbSucursal tbSucursal { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
-        public virtual tbSucursal tbSucursal { get; set; }
     }
 }

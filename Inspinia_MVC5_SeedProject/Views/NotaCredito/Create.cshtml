@@ -1,6 +1,7 @@
 ﻿@model ERP_GMEDINA.Models.tbNotaCredito
 @using ERP_GMEDINA.Models
 @{
+    var vtbMvimientoCaja = new ERP_GMEDINA.Models.tbMovimientoCaja();
     ViewBag.Title = "Registrar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -43,6 +44,30 @@
                             </div>
 
                             <div class="form-group">
+                                @Html.LabelFor(model => model.tbDevolucion.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)
+                                    @*<p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)</span></p>*@
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbDevolucion.tbCaja.cja_Descripcion, "Cajero", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)
+                                    @*<p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)</span></p>*@
+                                </div>
+                            </div>
+
+                            @*<div class="form-group">
+                                @Html.LabelFor(model => model.tbDevolucion.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)
+                                    <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)</span></p>
+                                </div>
+                            </div>*@
+
+                            <div class="form-group">
                                 @Html.LabelFor(model => model.nocre_Codigo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.nocre_Codigo)
@@ -54,11 +79,11 @@
                             <div class="form-group">
                                 <label class = "control-label col-md-2">Por Devolución</label>
                                 <div class="col-md-1">
-                                    <input type="radio" id="radioBtnDev" name="devolucion" click="check()" checked/>
+                                    <input type="radio" id="radioBtnDev" name="devolucion" click="check()" onclick="devolucionNC()" checked/>
                                 </div>
                                 <label class="control-label col-md-2">Otros</label>
                                 <div class="col-md-1">
-                                    <input type="radio" id="radioBtn" name="otros" click="check()"/>
+                                    <input type="radio" id="radioBtn" name="otros" data-toggle="modal" data-target="#ModalAutorizarNC" @*click="check()"*@/>
                                 </div>
                             </div>
 
@@ -132,7 +157,7 @@
                             @*clte_Id NotaCredito*@
                             <div class="form-group">
                                 <input type="hidden" id="clte_Id" name="clte_Id" />
-                                <input type="hidden" id="nocre_Estado" name="nocre_Estado" value="true" />
+                                @*<input type="hidden" id="nocre_Estado" name="nocre_Estado" value="true" />*@
                                 <input type="hidden" id="cdto_Anulado" name="nocre_Anulado" value="false" />
                             </div>
                             @*clte_Id NotaCredito fin*@
@@ -187,10 +212,38 @@
     </div>
 </div>
 
+@*------------------------------------------MODAL AUTORIZAR NOTA CREDITO--------------------------------------*@
+    <div class="modal fade" id="ModalAutorizarNC">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Autorizar Nota Crédito</h3>
+                </div>
+                <!-- body -->
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nombre Usuario" />
+                            <input type="password" class="form-control" placeholder="Contraseña" />
+                        </div>
+                    </form>
+                </div>
+                <!-- footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="otros();" data-dismiss="modal">Autorizar</button>
+                        <button type="button" class="btn btn-secondary" onclick="devolucionNC();" data-dismiss="modal">Cancelar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    @*------------------------------------------FINAL MODAL AUTORIZAR NOTA CREDITO--------------------------------------*@
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
     <script>
         $.datepicker.regional['es'] = {
             closeText: 'Cerrar',
@@ -224,30 +277,35 @@
 
 @*------------------------radiobutton--------------------------*@
    <script>
+       function devolucionNC() {
+           //$('#radioBtnDev').click(function () {
+               $("#radioBtnDev").prop("checked", true);
+               $("#radioBtn").prop("checked", false);
+               $("#buscarclte").hide();
+               $('#tbCliente_clte_Identificacion').prop('readonly', true);
+               $('#tbCliente_clte_Nombres').prop('readonly', true);
+               $('#nocre_Monto').prop('readonly', true);
+               $('#divDevolucion').show();
+               $('#cltesearch').hide();         //prop("disabled", true);
+               $('#dev_Id').val('');
+               $("#divFechaDev").show();
 
-       $('#radioBtnDev').click(function () {
-           $("#radioBtnDev").prop("checked", true);
-           $("#radioBtn").prop("checked", false);
-           $("#buscarclte").hide();
-           $('#tbCliente_clte_Identificacion').prop('readonly', true);
-           $('#tbCliente_clte_Nombres').prop('readonly', true); 
-           $('#nocre_Monto').prop('readonly', true);
-           $('#divDevolucion').show();
-           $('#cltesearch').prop("disabled", true);
-           $('#dev_Id').val('');
-           $("#divFechaDev").show();
-           
-       });
-
-       $('#radioBtn').click(function () {
-           $("#radioBtn").prop("checked", true);
-           $("#radioBtnDev").prop("checked", false);
-           $('#cltesearch').prop("disabled", false);
-           $('#divDevolucion').hide();
-           $('#nocre_Monto').prop('readonly', false);
-           $('#nocre_Monto').val('');
-           $("#divFechaDev").hide();
-       });
+           //});
+       }
+       
+       function otros() {
+           //$('#radioBtn').click(function () {
+               $("#radioBtn").prop("checked", true);
+               $("#radioBtnDev").prop("checked", false);
+               
+               $('#cltesearch').prop("disabled", false);
+               $('#divDevolucion').hide();
+               $('#nocre_Monto').prop('readonly', false);
+               $('#nocre_Monto').val('');
+               $("#divFechaDev").hide();
+           //});
+       }
+       
 
        //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
        $(document).keydown(function (e) {
