@@ -32,9 +32,13 @@
 
 $(document).ready(function () {
     var Cliente = $('#tbFactura_clte_Identificacion').val();
+    var Factura = $('#tbFactura_fact_Codigo').val();
 if (Cliente === '') {
     document.getElementById("Factura").disabled = true;
     document.getElementById("tbFactura_fact_Codigo").disabled = true;
 }
+if (Factura === '') {
+    document.getElementById("btnProducto").disabled = true;
+    document.getElementById("prod_Codigo").disabled = true;
+}
 });
-

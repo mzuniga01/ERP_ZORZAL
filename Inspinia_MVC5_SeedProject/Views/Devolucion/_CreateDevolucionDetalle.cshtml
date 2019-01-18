@@ -17,12 +17,12 @@
                 <input type="hidden" id="fact_Id" name="fact_Id" value="" class="form-control " />
                 <input type="text" id="prod_Codigo" name="prod_Codigo" value="" class="form-control " />
                 <div id="validationCodigoProductoCreate">
-                    @Html.ValidationMessageFor(model => model.prod_Codigo)
+                    <p id="smsProducto" style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
                 </div>
               
             </div>
             <div class="col-md-1">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalBuscarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                <button type="button" id="btnProducto" class="btn btn-primary" data-toggle="modal" data-target="#ModalBuscarProducto"><span class="glyphicon glyphicon-search"></span></button>
             </div>
 
             @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new {  @class = "control-label col-md-2"})
@@ -166,3 +166,18 @@
     </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DevolucionCalculos.js"></script>
+
+<script>
+ $(document).ready(function () {
+     var x = document.getElementById("Factura").disabled;
+     if (x == true) {
+         document.getElementById("btnProducto").title = "Primero debe seleccionar una factura";
+         document.getElementById("prod_Codigo").title = "Primero debe seleccionar un factura";
+     }
+     else {
+         //console.log('else')
+         //document.getElementById("Factura").title = "";
+         //document.getElementById("tbFactura_fact_Codigo").title = "";
+     }
+ });
+</script>

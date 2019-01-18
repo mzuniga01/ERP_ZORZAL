@@ -25,7 +25,13 @@ $(document).on("click", "#DevFactura tbody tr td button#AgregarFactura", functio
     $("#fact_Id").val(idFactitem);
     console.log('facturaid1', idFactitem)
     $('#ModalAgregarFactura').modal('hide');
-    GetIDFactura(idFactitem);
+    $(document).ready(function () {
+        if (descItem != '') {
+            document.getElementById("btnProducto").disabled = false;
+            document.getElementById("prod_Codigo").disabled = false;
+            GetIDFactura(idFactitem);
+        }
+    });
 })
 
 
@@ -45,9 +51,12 @@ function GetIDFactura(FacturaID, idFactitem) {
             alert("No se puede filtrar");
         },
         success: function (list) {
+           
+
             $('#BodyProducto').empty();
             $.each(list, function (key, val) {
                 contador = contador + 1;
+                console.log(val.CodigoProducto)
                 copiar = "<tr data-idCont=" + contador + " data-id=" + val.CodigoProducto + " data-desc=" + val.Descripcion + " data-valor=" + val.PrecioUnitario + " data-impuesto=" + val.PorcentajeImpu + " data-porcentaje=" + val.PorcentajeDesc + " data-cantfacturada=" + val.CantidadFacturada + ">";
                 copiar += "<td id = 'idItem'>" + val.Descripcion + "</td>";
                 copiar += "<td id = 'b'>" + val.CantidadFacturada + "</td>";
@@ -56,6 +65,20 @@ function GetIDFactura(FacturaID, idFactitem) {
                 copiar += "<td>" + '<button id="Agregar" class="btn btn-primary btn-xs" type="button">Añadir</button>' + "</td>";
                 copiar += "</tr>";
                 $('#BodyProducto').append(copiar);
+
+                //$("#prod_Codigo").blur(function (list) {
+                //    validacion = document.getElementById('smsProducto');
+                //    console.log(list.CodigoProducto)
+                //    var CodProductoIngresado = $('#prod_Codigo').val();
+                //    if (CodProductoIngresado == val.CodigoProducto) {
+
+                //        validacion.innerText = "";
+                //    }
+                //    else {
+                //        console.log("else")
+                //        validacion.innerText = "Codigo de Producto Incorrecto";
+                //    }
+                //});
             });
 
             console.log(list);
@@ -82,14 +105,6 @@ $("#devd_CantidadProducto").blur(function () {
         console.log("else")
         valido.innerText = "";
     }
-
-    if (CodProducto != CodigoProducto) {
-        Console.log(CodigoProducto)
-        valido.innerText = "Codigo de Producto Incorrecto";
-    }
-    else {
-        valido.innerText = "";
-    }
 });
 
 //Devolucion Seleccionar Producto
@@ -99,7 +114,6 @@ $(document).on("click", "#DataTable1 tbody tr td button#Agregar", function () {
     DescValor = $(this).closest('tr').data('valor');
     PorcentajeItem = $(this).closest('tr').data('porcentaje');
     CantidadItem = $(this).closest('tr').data('cantfacturada');
-    //console.log(CantidadItem)
     ImpuestoItem = $(this).closest('tr').data('impuesto');
     $("#prod_Codigo").val(idItem);
     $("#tbProducto_prod_Descripcion").val(DescItem);
@@ -109,3 +123,4 @@ $(document).on("click", "#DataTable1 tbody tr td button#Agregar", function () {
     $("#Impuesto").val(ImpuestoItem);
     $('#ModalBuscarProducto').modal('hide');
 });
+

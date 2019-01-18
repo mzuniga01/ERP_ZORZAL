@@ -46,6 +46,9 @@
         @Html.ValidationSummary(true)
 
         @Html.HiddenFor(model => model.mocja_FechaApertura)
+        @Html.HiddenFor(model => model.mocja_FechaCrea)
+        @Html.HiddenFor(model => model.mocja_UsuarioCrea)
+        
 
         <div class="form-group">
             @*@Html.LabelFor(model => model.mocja_Id, new { @class = "control-label col-md-2" })

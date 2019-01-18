@@ -26,11 +26,11 @@ $(document).on("click", "#ClienteModal tbody tr td button#AgregarCliente", funct
     $("#tbFactura_clte_Nombres").val(descItem);
     $('#ModalAgregarCliente').modal('hide');
     $(document).ready(function () {
-    if (descItem != '') {
-        document.getElementById("Factura").disabled = false;
-        document.getElementById("tbFactura_fact_Codigo").disabled = false;
-        GetIDCliente(idItem);
-    }
+        if (descItem != '') {
+            document.getElementById("Factura").disabled = false;
+            document.getElementById("tbFactura_fact_Codigo").disabled = false;
+            GetIDCliente(idItem);
+        }
     });
 });
 
@@ -71,9 +71,9 @@ function GetIDCliente(CodCliente, idItem) {
             console.log(list);
         }
 
-         
+
     });
-  
+
 }
 
 

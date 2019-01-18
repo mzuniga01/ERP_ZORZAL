@@ -53,14 +53,7 @@ namespace ERP_GMEDINA.Controllers
                     //////////Aqui va la lista//////////////
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbMovimientoCaja_Apertura_Insert(
-                        tbMovimientoCaja.cja_Id,
-                        tbMovimientoCaja.mocja_FechaApertura,
-                        tbMovimientoCaja.mocja_UsuarioApertura,
-                        tbMovimientoCaja.mocja_FechaArqueo,
-                        tbMovimientoCaja.mocja_UsuarioArquea,
-                        tbMovimientoCaja.mocja_FechaAceptacion,
-                        tbMovimientoCaja.mocja_UsuarioAceptacion);
+                    list = db.UDP_Vent_tbMovimientoCaja_Apertura_Insert(tbMovimientoCaja.cja_Id,tbMovimientoCaja.mocja_FechaApertura,tbMovimientoCaja.mocja_UsuarioApertura);
                     foreach (UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result banco in list)
                         MensajeError = banco.MensajeError;
                     if (MensajeError == -1)
@@ -119,7 +112,7 @@ namespace ERP_GMEDINA.Controllers
 
 
             tbMovimientoCaja MC = new tbMovimientoCaja();
-            MC.cja_Id = 4;
+            MC.cja_Id = 1;
             return View(MC);
 
         }
@@ -131,8 +124,8 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="mocja_Id,cja_Id,mocja_FechaApetura,mocja_UsuarioApertura,mocja_FechaArqueo,mocja_UsuarioArquea,mocja_FechaAceptacion,mocja_UsuarioAceptacion,mocja_UsuarioCrea,mocja_FechaCrea,mocja_UsuarioModifica,mocja_FechaModifica")] tbMovimientoCaja tbMovimientoCaja)
         {
-            ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbMovimientoCaja.cja_Id);
-            ViewBag.deno_Id = new SelectList(db.tbDenominacionArqueo, "deno_Id", "deno_Descripcion", tbMovimientoCaja.cja_Id);
+            
+            
             if (ModelState.IsValid)
             {
                 try
@@ -178,6 +171,7 @@ namespace ERP_GMEDINA.Controllers
 
             ViewBag.mocja_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMovimientoCaja.mocja_UsuarioCrea);
             ViewBag.mocja_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMovimientoCaja.mocja_UsuarioModifica);
+            ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbMovimientoCaja.cja_Id);
             ViewBag.deno_Id = new SelectList(db.tbDenominacionArqueo, "deno_Id", "deno_Descripcion", tbMovimientoCaja.cja_Id);
             return View(tbMovimientoCaja);
         }
