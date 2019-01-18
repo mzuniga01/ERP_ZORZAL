@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
-using Newtonsoft.Json;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -56,9 +55,19 @@ namespace ERP_ZORZAL.Controllers
 
         public ActionResult Facturar(tbPedido Pedido)
         {
-            ViewBag.ped_id = Pedido.ped_Id;
-            return View(db.tbPedido.ToList());
+            Session["IDCLIENTE"] = Session["ID"];
+            Session["IDENTIFICACION"] = Session["IDENT"];
+            Session["NOMBRES"] = Session["NOM"];
+            Session["DETALLE"] = Session["DETALLES"];
+            //Session["PRODUCTO"] = Session["PRO"];
+            //Session["CANTIDAD"] = Session["CANT"];
+            //Session["DESCRIPCION"] = Session["DESC"];
+            //Session["PRECIOUNI"] = Session["PRECIO"];
+            //Session["IMPUESTO"] = Session["IMP"];
+            return RedirectToAction("Create", "Factura");
         }
+
+
         // GET: /Pedido/Create
         public ActionResult Create()
         {
@@ -244,7 +253,22 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.Producto = db.tbProducto.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
             tbPedido.esped_Id = Helpers.Pendiente;
+
+            Session["ID"] = tbPedido.ped_Id;
+            Session["IDENT"] = tbPedido.tbCliente.clte_Identificacion;
+
+            if (tbPedido.tbCliente.clte_EsPersonaNatural)
+            {
+                Session["NOM"] = tbPedido.tbCliente.clte_Nombres + " " + tbPedido.tbCliente.clte_Apellidos;
+            }
+            else
+            {
+                Session["NOM"] = tbPedido.tbCliente.clte_NombreComercial;
+            }
+            Session["DETALLES"]=tbPedido.ped_Id;
+
             return View(tbPedido);
+
         }
         public ActionResult Edit(int? id)
         {
@@ -436,7 +460,7 @@ namespace ERP_ZORZAL.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Edit","Pedido");
+                    return RedirectToAction("Index");
                 }
             }
             catch (Exception Ex)
@@ -450,24 +474,12 @@ namespace ERP_ZORZAL.Controllers
 
 
 
-        public JsonResult GetPedidoDetalleById(string pedd_Id)
-        {
-            var spedd_Id = Convert.ToInt32(pedd_Id);
-            tbPedidoDetalle model = db.tbPedidoDetalle.Where(x => x.pedd_Id == spedd_Id).SingleOrDefault();
-            string value = string.Empty;
-            value = JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            });
-            return Json(value, JsonRequestBehavior.AllowGet);
-        }
 
 
         [HttpPost]
-        public JsonResult GetPedidoDetalle(string Pedido)
+        public JsonResult GetDetallePedido(int pedido)
         {
-            var peds = Convert.ToInt32(Pedido); 
-            var list = db.SDP_Vent_tbPedidoDetalle_tbPedido_Select(peds).ToList();
+            var list = db.sp_GetDetallePedido(pedido).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

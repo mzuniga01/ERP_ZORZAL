@@ -115,7 +115,8 @@
                                 <div class="col-md-offset-5 col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                    <a href="@Url.Action("Facturar", "Pedido" , new {id =  Model.ped_Id })" class="btn btn-danger">Facturar</a>
+                                    @Html.ActionLink("Facturar", "Facturar", null, new { @class = "btn btn-danger" })
+                             @*       <a type="submit" href="@Url.Action("Facturar", "Pedido")" class="btn btn-danger">Facturar</a>*@
                                 </div>
                             </div>
                         </div>
