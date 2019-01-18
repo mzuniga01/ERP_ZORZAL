@@ -208,13 +208,13 @@
     <Compile Include="Controllers\TipoEntradaController.cs" />
     <Compile Include="Controllers\TipoSalidaController.cs" />
     <Compile Include="Controllers\UnidadMedidaController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\accesorol.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AnularEntrada.cs" />
     <Compile Include="Models\Bodega.cs" />
     <Compile Include="Models\BodegaDetalle.cs" />
     <Compile Include="Models\Box.cs" />
@@ -287,6 +287,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SDP_Inv_tbSalidaDetalle_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SDP_tbentradadetalle_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SDP_tbProductoSubcategoria_Select_Result.cs">

@@ -36,18 +36,87 @@ $(document).ready(function () {
     });
 });
 $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", function () {
+
+    prod_CodigoBarrasItem = $(this).closest('tr').data('html');
     idItem = $(this).closest('tr').data('id');
     contentItem = $(this).closest('tr').data('content');
     uni_IdtItem = $(this).closest('tr').data('keyboard');
     psubctItem = $(this).closest('tr').data('container');
     pcatItem = $(this).closest('tr').data('interval');
+    $("#prod_CodigoBarras").val(prod_CodigoBarrasItem);
     $("#prod_Codigo").val(idItem);
     $("#prod_Descripcion").val(contentItem);
     $("#uni_Id").val(uni_IdtItem);
     $("#pscat_Id").val(psubctItem);
     $("#pcat_Id").val(pcatItem);
+    $("#entd_Cantidad").focus();
     //$("#cod").val(idItem);
+
 });
+
+//prueba de enter
+$(function () {
+    $('#prod_CodigoBarras').keydown(function (e) {
+        if (e.keyCode == 13) {
+            $("#seleccionar").focus().click();
+            
+                $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", function () {
+                    prod_CodigoBarrasItem = $(this).closest('tr').data('html');
+                    idItem = $(this).closest('tr').data('id');
+                    contentItem = $(this).closest('tr').data('content');
+                    uni_IdtItem = $(this).closest('tr').data('keyboard');
+                    psubctItem = $(this).closest('tr').data('container');
+                    pcatItem = $(this).closest('tr').data('interval');
+                    $("#prod_CodigoBarras").val(prod_CodigoBarrasItem);
+                    $("#prod_Codigo").val(idItem);
+                    $("#prod_Descripcion").val(contentItem);
+                    $("#uni_Id").val(uni_IdtItem);
+                    $("#pscat_Id").val(psubctItem);
+                    $("#pcat_Id").val(pcatItem);
+                    $("#entd_Cantidad").focus();
+                    //$("#cod").val(idItem);
+
+                });
+                console.log('prueba');
+                $("#prod_CodigoBarras").val(prod_CodigoBarrasItem);
+                $("#prod_Codigo").val(idItem);
+                $("#prod_Descripcion").val(contentItem);
+                $("#uni_Id").val(uni_IdtItem);
+                $("#pscat_Id").val(psubctItem);
+                $("#pcat_Id").val(pcatItem);
+                $("#entd_Cantidad").focus();
+                return false;
+        }
+    });
+});
+
+//Para mostrar datos en el modal de editar detalle entrada
+
+$('#seleccionarModal').click(function () {
+    console.log('ayo');
+    $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", function () {
+
+        prod_CodigoBarrasItem = $(this).closest('tr').data('html');
+        idItem = $(this).closest('tr').data('id');
+        contentItem = $(this).closest('tr').data('content');
+        uni_IdtItem = $(this).closest('tr').data('keyboard');
+        psubctItem = $(this).closest('tr').data('container');
+        pcatItem = $(this).closest('tr').data('interval');
+        $("#prod_CodigoBarras").val(prod_CodigoBarrasItem);
+        $("#prod_Codigo").val(idItem);
+        $("#prod_Descripcion").val(contentItem);
+        $("#uni_Id").val(uni_IdtItem);
+        $("#pscat_Id").val(psubctItem);
+        $("#pcat_Id").val(pcatItem);
+        $("#entd_Cantidad").focus();
+        //$("#cod").val(idItem);
+
+    });
+});
+
+
+
+
 
 //para eliminar
 $(document).on("click", "#tbentrada tbody tr td button#Eliminardetalleentrada", function () {
@@ -65,12 +134,13 @@ $(document).on("click", "#tbentrada tbody tr td button#Eliminardetalleentrada", 
         data: JSON.stringify({ EntradaDetalle: Eliminar }),
     });
 });
-//para añadir codigo ala tabla temporal(Create)
+//para añadir codigo a la tabla temporal(Create)
 $('#AgregarDetalleEntrada').click(function () {
+    var codigobarra = $("#prod_CodigoBarras").val();
     var entrada = $("#ent_Id").val();
     var codigoproducto = $("#prod_Codigo").val();
     var cantidad = $("#entd_Cantidad").val();
-    var unimedida = $("#uni_Id").val();
+    var unimedida = $("#uni_IdtItem").val();
 
     if (entrada == '') {
         //$('#Errorentrada').text('');
@@ -106,11 +176,10 @@ $('#AgregarDetalleEntrada').click(function () {
 
         copiar += "<td id = 'codigoproducto'>" + $('#prod_Codigo').val() + "</td>";
 
-        copiar += "<td>" + $('#uni_Id option:selected').text() + "</td>";
-        copiar += "<td hidden id='uni_Id'>" + $('#unimedida option:selected').val() + "</td>";
+        //copiar += "<td>" + $('#uni_Id option:selected').text() + "</td>";
+        //copiar += "<td hidden id='uni_Id'>" + $('#unimedida option:selected').val() + "</td>";
 
-        //copiar += "<td id = 'unimedida'>" + $('#uni_Id').val() + "</td>";
-
+        copiar += "<td id = 'Código Barra'>" + $('#prod_CodigoBarras').val() + "</td>";
 
         copiar += "<td id = 'cantidad'>" + $('#entd_Cantidad').val() + "</td>";
 
@@ -127,6 +196,7 @@ $('#AgregarDetalleEntrada').click(function () {
             data: JSON.stringify({ entradadetalle: EntradaDetalle }),
         })
         .done(function (data) {
+            $('#prod_CodigoBarras').val('');
             $('#prod_Codigo').val('');
             $("#uni_Id").val('');
             //$('#entd_Cantidad').val('');
@@ -143,7 +213,6 @@ $('#AgregarDetalleEntrada').click(function () {
 function GetEntradaDetalle() {
     var EntradaDetalle = {
         prod_Codigo: $('#prod_Codigo').val(),
-        uni_Id: $('#uni_Id').val(),
         entd_Cantidad: $('#entd_Cantidad').val(),
         ent_UsuarioCrea: contador,
         ent_Id: contador,
@@ -170,52 +239,103 @@ $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", 
 
 
 //actualizar Detalle Entrada
-function btnActualizarentrada(entd_Id) {
-    console.log(entd_Id);
-    var coProductoEdit = $("#coProductoEdit").val();
-    var cantidadEdit = $("#cantidadEdit").val();
-    var unidadEdit = $("#unidadEdit").val();
-    console.log(coProductoEdit);
-    console.log(cantidadEdit);
-    console.log(unidadEdit);
 
-    var tbEntradaDetalle = Getentradadetalle_actualizar();
+function EditStudentRecord(entd_Id) {
+
+
+    $("#MsjError").text("");
 
     $.ajax({
-        url: "/Entrada/entradadetalle_actualizar",
+        url: "/Entrada/GetDetalleEntrada",
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ actualizarEntradaDetalle: tbEntradaDetalle }),
-    }).done(function (data) {
-        if (data == '') {
+        data: JSON.stringify({ entd_Id }),
+    })
+    .done(function (data) {
+        $.each(data, function (i, item) {
+            $("#entd_Id").val(item.entd_Id);
+            $("#ent_Id_Edit").val(item.ent_Id);
+            $("#coProductoEdit").val(item.prod_Codigo);
+            $("#cantidadEdit").val(item.entd_Cantidad);
+
+            $("#MyModal").modal();
+
+        })
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+        console.log('jqXHR', jqXHR);
+        console.log('textStatus', textStatus);
+        console.log('errorThrown', errorThrown);
+    })
+}
+
+$("#Btnsubmit").click(function () {
+    var data = $("#SubmitForm").serializeArray();
+   
+
+    $.ajax({
+        type: "Post",
+        url: "/Entrada/UpdateEntradaDetalle",
+        data: data,
+        success: function (result) {
+            if (result == '-1')
+                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+            else
+                $("#MyModal").modal("hide");
             location.reload();
         }
-        else if (data == '-1') {
-            $('#MensajeError' + entd_Id).text('');
-            $('#ValidationMessageFor' + entd_Id).after('<ul id="MensajeError' + entd_Id + '" class="validation-summary-errors text-danger">No se ha podido Actualizar el registro.</ul>');
-        }
-        else {
-            $('#MensajeError' + entd_Id).text('');
-            $('#ValidationMessageFor' + entd_Id).after('<ul id="MensajeError' + entd_Id + '" class="validation-summary-errors text-danger">Campo Requerido</ul>');
-        }
     });
-}
-function Getentradadetalle_actualizar() {
+})
 
-    var actualizarEntradaDetalle = {
-        ent_Id: $('#ent_Id').val(),
-        entd_Id: $('#entd_Id').val(),
-        prod_Codigo: $('#coProductoEdit').val(),
-        entd_Cantidad: $("#cantidadEdit").val(),
-        entd_UsuarioCrea: $('#entd_UsuarioCrea').val(),
-        entd_UsuarioModifica: $('#entd_UsuarioModifica').val(),
-        entd_FechaCrea: $('#entd_FechaCrea').val(),
-        entd_FechaModifica: $('#entd_FechaModifica').val(),
-        uni_Id: $('#unidadEdit').val(),
-    };
-    return actualizarEntradaDetalle;
-}
+//function btnActualizarentrada(entd_Id) {
+//    console.log(entd_Id);
+//    //var coProductoEdit = $("#coProductoEdit").val();
+//    //var cantidadEdit = $("#cantidadEdit").val();
+//    //var unidadEdit = $("#unidadEdit").val();
+//    //console.log(coProductoEdit);
+//    //console.log(cantidadEdit);
+//    //console.log(unidadEdit);
+
+//    var tbEntradaDetalle = Getentradadetalle_actualizar();
+
+//    $.ajax({
+//        url: "/Entrada/entradadetalle_actualizar",
+//        method: "POST",
+//        dataType: 'json',
+//        contentType: "application/json; charset=utf-8",
+//        data: JSON.stringify({ actualizarEntradaDetalle: tbEntradaDetalle }),
+//    }).done(function (data) {
+//        if (data == '') {
+//            location.reload();
+//        }
+//        else if (data == '-1') {
+//            $('#MensajeError' + entd_Id).text('');
+//            $('#ValidationMessageFor' + entd_Id).after('<ul id="MensajeError' + entd_Id + '" class="validation-summary-errors text-danger">No se ha podido Actualizar el registro.</ul>');
+//        }
+//        else {
+//            $('#MensajeError' + entd_Id).text('');
+//            $('#ValidationMessageFor' + entd_Id).after('<ul id="MensajeError' + entd_Id + '" class="validation-summary-errors text-danger">Campo Requerido</ul>');
+            
+//        }
+        
+//    });
+//}
+//function Getentradadetalle_actualizar() {
+
+//    var actualizarEntradaDetalle = {
+//        ent_Id: $('#ent_Id_Edit').val(),
+//        entd_Id: $('#entd_Id').val(),
+//        prod_Codigo: $('#coProductoEdit').val(),
+//        entd_Cantidad: $("#cantidadEdit").val(),
+//        entd_UsuarioCrea: $('#entd_UsuarioCrea').val(),
+//        entd_UsuarioModifica: $('#entd_UsuarioModifica').val(),
+//        entd_FechaCrea: $('#entd_FechaCrea').val(),
+//        entd_FechaModifica: $('#entd_FechaModifica').val(),
+//        uni_Id: $('#unidadEdit').val(),
+//    };
+//    return actualizarEntradaDetalle;
+//}
 
 //para inprimir
 $('#btnImprimir').click(function () {
@@ -246,27 +366,30 @@ $('#btnImprimir').click(function () {
 
 
 
-//codigo para guardar detalle en la vista de editar
-//$('#GuardarDetalleEntrada').click(function () {
+//codigo para anular entradad(retorna razon)
+$('#AnularEntrada').click(function () {
+    var anular = $("#entd_RazonAnulada").val();
+    console.log(anular);
+    
+        var anularentrada = GetAnualarEntrada();
+        $.ajax({
+            url: "/Entrada/EstadoAnular",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ cambiaAnular: anularentrada }),
+        })
+        .done(function (data) {
+            $("#entd_RazonAnulada").val('');
+            $('#ent_Id').val('');
 
-//        var EntradaDetalle = GetEntradaDetalle();
-//        $.ajax({
-//            url: "/Entrada/GuardardetalleentradaEditar",
-//            method: "POST",
-//            dataType: 'json',
-//            contentType: "application/json; charset=utf-8",
-//            data: JSON.stringify({ entradadetalle: EntradaDetalle }),
-//        })
-//        .done(function (data) {
-//            $('#prod_Codigo').val('');
-//            $("#uni_Id").val('');
-//            $('#entd_Cantidad').val('');
-//            //
-//            $('#prod_Descripcion').val('');
-//            $('#pscat_Id').val('');
+        });
+})
+function GetAnualarEntrada() {
 
-//            $('#Mensajecodigo').text('');
-//            $('#Mensajecantidad').text('');
-
-//        });
-//})
+    var cambiaAnular = {
+        entd_RazonAnulada: $("#entd_RazonAnulada").val(),
+        ent_Id: $('#ent_Id').val(),
+    };
+    return cambiaAnular;
+}

@@ -11,13 +11,13 @@
                 </div>
                 <div class="ibox-content">
                     <dl class="dl-horizontal">
-                        <dt>
+                        @*<dt>
                             Codigó Detalle
                         </dt>
 
                         <dd>
                             @Html.DisplayFor(model => model.entd_Id)
-                        </dd>
+                        </dd>*@
 
                         <dt>
                             Codigó Entrada
@@ -35,13 +35,13 @@
                             @Html.DisplayFor(model => model.prod_Codigo)
                         </dd>
 
-                        @*<dt>
+                        <dt>
                             Unidad Medida
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.uni_Id)
-                        </dd>*@
+                            @Html.DisplayFor(model => model.tbProducto.tbUnidadMedida.uni_Descripcion)
+                        </dd>
                         <dt>
                             Cantidad
                         </dt>

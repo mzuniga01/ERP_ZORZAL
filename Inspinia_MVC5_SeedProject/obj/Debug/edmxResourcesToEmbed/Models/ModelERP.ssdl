@@ -3654,6 +3654,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="rol_Id" Type="int" Mode="In" />
     <Parameter Name="rol_Estado" Type="bit" Mode="In" />
   </Function>
+  <Function Name="UDP_Acce_tbRolesUsuario_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="usu_Id" Type="int" Mode="In" />
+    <Parameter Name="rol_Id" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_Acce_tbRolesUsuario_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rol_Id" Type="int" Mode="In" />
     <Parameter Name="usu_Id" Type="int" Mode="In" />
@@ -3812,6 +3816,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   </Function>
   <Function Name="SDP_Inv_tbSalidaDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sald_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SDP_tbentradadetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="entd_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="SDP_tbProductoSubcategoria_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pscat_Id" Type="int" Mode="In" />

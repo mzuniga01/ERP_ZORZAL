@@ -44,8 +44,7 @@
                             <fieldset class="box-border">
                                 <legend class="box-border">Datos Generales</legend>
                                 <div class="form-group">
-
-                                    @Html.LabelFor(model => model.bod_Id, "Bodega", new { @class = "control-label col-md-2" })
+                                    <label class="control-label col-md-2">Bodega<span style="color:red">*</span></label>
                                     <div class="col-md-4">
                                         @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, "Seleccione", new { @class = "form-control" })
 
@@ -53,26 +52,24 @@
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
                                         </div>
                                     </div>
-                                    @Html.LabelFor(model => model.ent_NumeroFormato, new { @class = "control-label col-md-2" })
+                                    @*<label class="control-label col-md-2">Numero Fórmato<span style="color:red">*</span></label>
                                     <div class="col-md-4">
-                                        <input type="hidden" id="hdf_Formato_Placa" value="0" />
-                                        @Html.EditorFor(model => model.ent_NumeroFormato, new { htmlAttributes = new { @onKeyUp = "verificaFormatoPlaca(this.value)" } })
+                                        @Html.EditorFor(model => model.ent_NumeroFormato, new { htmlAttributes = new { @class = "form-control" } })
                                         <div class="col-md-10">
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.ent_NumeroFormato)</p>
                                         </div>
-                                    </div>
+                                    </div>*@
                                 </div>
 
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.ent_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion" } })
+                                        @Html.EditorFor(model => model.ent_FechaElaboracion, "{0:yyyy-MM-dd hh:mm:ss}", new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion" } })
                                         <div class="col-md-10">
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.ent_FechaElaboracion)</p>
                                         </div>
                                     </div>
-
-                                    @Html.LabelFor(model => model.prov_Id, "Nombre Proveedor", new { @class = "control-label col-md-2" })
+                                    <label class="control-label col-md-2">Proveedor<span style="color:red">*</span></label>
                                     <div class="col-md-4">
                                         @Html.DropDownList("prov_Id", (IEnumerable<SelectListItem>)ViewBag.prov_Id, "Seleccione", new { @class = "form-control" })
 
@@ -83,7 +80,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.tent_Id, "Tipo Entrada", new { @class = "control-label col-md-2" })
+                                    <label class="control-label col-md-2">Tipo Entrada<span style="color:red">*</span></label>
                                     <div class="col-md-4">
                                         @Html.DropDownList("tent_Id", (IEnumerable<SelectListItem>)ViewBag.tent_Id, "Seleccione", new { @class = "form-control" })
 
@@ -100,15 +97,7 @@
                                 <legend class="box-border">Compra</legend>
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.EditorFor(model => model.fact_Id)
-
-                                        <div class="col-md-10">
-                                            <p style="color:red">@Html.ValidationMessageFor(model => model.fact_Id)</p>
-                                        </div>
-                                    </div>
-                                    @Html.LabelFor(model => model.ent_FacturaCompra, new { @class = "control-label col-md-2" })
+                                    <label class="control-label col-md-2">Factura Compra<span style="color:red">*</span></label>
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.ent_FacturaCompra)
 
@@ -116,9 +105,7 @@
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.ent_FacturaCompra)</p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.ent_FechaCompra, new { @class = "control-label col-md-2" })
+                                    <label class="control-label col-md-2">Fecha Compra<span style="color:red">*</span></label>
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.ent_FechaCompra, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaCompra" } })
 
@@ -126,12 +113,6 @@
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.ent_FechaCompra)</p>
                                         </div>
                                     </div>
-
-                                    @*@Html.LabelFor(model => model.tbProveedor.prov_Nombre, "Proveedor", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("prov_Id", (IEnumerable<SelectListItem>)ViewBag.prov_Id, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.prov_Id)
-                                </div>*@
                                 </div>
 
                             </fieldset>
@@ -141,7 +122,7 @@
                             <fieldset class="box-border">
                                 <legend class="box-border">Traslado</legend>
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.ent_BodegaDestino, "Bodega Destino", new { @class = "control-label col-md-2" })
+                                    <label class="control-label col-md-2">Bodega Destino<span style="color:red">*</span></label>
                                     <div class="col-md-4">
                                         @Html.DropDownList("ent_BodegaDestino", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
 
@@ -149,12 +130,6 @@
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.ent_BodegaDestino)</p>
                                         </div>
                                     </div>
-                                    @*@Html.LabelFor(model => model.tbBodega.bod_Nombre, "Bodega Responsable", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("bod_Nombre", (IEnumerable<SelectListItem>)ViewBag.bod_Nombre, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.tbBodega.bod_Nombre)
-                                </div>*@
-
                                 </div>
                             </fieldset>
                         </div>
@@ -163,7 +138,7 @@
                             <fieldset class="box-border">
                                 <legend class="box-border">Devolucion</legend>
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.ent_RazonDevolucion, new { @class = "control-label col-md-2" })
+                                    <label class="control-label col-md-2">Razon Devolucion<span style="color:red">*</span></label>
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.ent_RazonDevolucion)
 
@@ -171,8 +146,7 @@
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.ent_RazonDevolucion)</p>
                                         </div>
                                     </div>
-
-                                    @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
+                                    <label class="control-label col-md-2">Código Factura<span style="color:red">*</span></label>
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.fact_Id)
                                         <div class="col-md-10">
@@ -236,88 +210,3 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-<script type="text/javascript">
-jQuery('input,select').each(function() {
-    var req = jQuery(this).attr('data-val-required');
-     var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
-     var text = label.text();
-     if (text.length > 0) {
-      label.append('<span style="color:red"> *</span>');
-    }
-});
-</script>
-<script>
-
-
-    //para el texbos codigo formato
-    function validBoard(board, formato) {
-        var sizeBoard = 8;
-
-        if (board.length > sizeBoard) {
-            board = board.substr(0, sizeBoard);
-        } else {
-            //verifica se é fomato novo
-            if (formato == 1) {
-                for (i = 0; i < board.length; i++) {
-                    //verifica se é a posição do -
-                    if (i == 3) {
-                        var digitado = board.substr(3, board.length)
-                        board = board.substr(0, 3) + '-' + digitado;
-                    }
-                        //senao é alfanumérico
-                    else if (validaAlfanumerico(board.charAt(i)) == false) {
-                        board = board.substr(0, i) + board.substr(i + 1, board.length - 1);
-                    }
-                }
-            }
-                //senao é formato antigo
-            else {
-                for (i = 0; i < board.length; i++) {
-                    //verifica se é a posição do -
-                    if (i == 3 && board.charAt(3) != '-') {
-                        var digitado = board.substr(3, board.length);
-                        if (validaNumero(board.charAt(i)) == false) {
-                            board = board.substr(0, 3) + '-';
-                        } else {
-                            board = board.substr(0, 3) + '-' + digitado;
-                        }
-                    }
-                        //senao é letras e numeros
-                    else {
-                        if (i < 3) {
-                            if (validaLetra(board.charAt(i)) == false) {
-                                board = board.substr(0, i);
-                            }
-                        }
-                        else if (i > 3 && validaNumero(board.charAt(i)) == false) {
-                            //alert('entrou aqui');
-                            board = board.substr(0, i) + board.substr(i + 1, board.length - 1);
-                        }
-                    }
-                }
-            }
-        }
-
-        //var regex = /^(?=(?:.*[0-9]){3})(?=(?:.*[A-Z]){4})[A-Z0-9]{7}$/;
-        //var result = regex.test(board);
-        document.getElementById('ent_NumeroFormato').value = board.toUpperCase();
-    }
-
-    function validaAlfanumerico(char) {
-        return /^[a-zA-Z0-9]*$/.test(char);
-    }
-
-    function validaLetra(char) {
-        return /^[a-zA-Z]*$/.test(char);
-    }
-
-    function validaNumero(char) {
-        return /^[0-9]*$/.test(char);
-    }
-
-    function verificaFormatoPlaca(board) {
-        //alert(document.getElementById('ctl00$cph_Form$hdf_Formato_Placa').value);
-        var formato = document.getElementById('hdf_Formato_Placa').value;
-        validBoard(board, formato);
-    }
-</script>

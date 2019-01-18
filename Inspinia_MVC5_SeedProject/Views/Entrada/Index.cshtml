@@ -72,24 +72,24 @@
                                     <td>
                                         @if (item.estm_Id == 2)
                                         {
-                                            <p> Activo</p>
+                                            <p>Emitida</p>
                                         }
                                         else if (item.estm_Id == 36)
                                         {
-                                            <p>Inactivo</p>
+                                            <p>Inactiva</p>
                                         }
                                         else if (item.estm_Id == 1)
                                         {
-                                            <p style="color:maroon">Aplicado</p>
+                                            <p style="color:maroon">Aplicada</p>
                                         }
                                         else if (item.estm_Id == 24)
                                         {
-                                            <p style="color:maroon">Anulado</p>
+                                            <p style="color:maroon">Anulada</p>
                                         }
                                     </td>
 
                                     <td>
-                                        @if (item.estm_Id == 24)
+                                        @if (item.entd_EsAnulada == true)
                                         {
                                             <p style="color:maroon">No Habilitado</p>
                                         }
@@ -97,7 +97,7 @@
                                         {
                                             <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
                                         }
-                                        else
+                                        else 
                                         {
                                             @Html.ActionLink("Detalles", "Details", new { id = item.ent_Id }, new { @class = "btn btn-primary btn-xs" })
                                             @Html.ActionLink("Editar", "Edit", new { id = item.ent_Id }, new { @class = "btn btn-white btn-xs" })

@@ -79,6 +79,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
             ViewBag.bod_Idd = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             ViewBag.Producto = db.tbProducto.ToList();
+            Session["CrearDetalleEntrada"] =null;
             return View();
         }
         
@@ -242,51 +243,46 @@ namespace ERP_ZORZAL.Controllers
         //    return Json("", JsonRequestBehavior.AllowGet);
         //}
 
-
-
-
+            //para actualizar detalle de la entrada del modal
+        [HttpPost]
+        public ActionResult GetDetalleEntrada(int? entd_Id)
+        {
+            var list = db.SDP_tbentradadetalle_Select(entd_Id).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
 
         //para q actualize la tabla
         [HttpPost]
-        public JsonResult entradadetalle_actualizar(tbEntradaDetalle EditarDetalleEntrada)
+        public JsonResult UpdateEntradaDetalle(tbEntradaDetalle Editardetalle)
         {
             string Msj = "";
-            //try
-            //{
-                
-            //    IEnumerable<object> list = null;
-            //    list = db.UDP_Inv_tbEntradaDetalle_Update(EditarDetalleEntrada.entd_Id
-            //                                , EditarDetalleEntrada.ent_Id
-            //                               , EditarDetalleEntrada.prod_Codigo
-            //                               , EditarDetalleEntrada.entd_Cantidad
-            //                               , EditarDetalleEntrada.entd_UsuarioCrea
-            //                               , EditarDetalleEntrada.entd_FechaCrea
-                                           
-            //                                                   );
-            //    foreach (UDP_Inv_tbEntradaDetalle_Update_Result EntradaDetalle in list)
-            //        Msj = EntradaDetalle.MensajeError;
+            try
+            {
+                IEnumerable<object> list = null;
 
-            //    if (Msj == "-1")
-            //    {
-            //        ModelState.AddModelError("", "No se Actualizo el registro");
-            //        //return PartialView("_EditarDetalleEntrada");
+                list = db.UDP_Inv_tbEntradaDetalle_Update(Editardetalle.entd_Id
+                                                            , Editardetalle.ent_Id
+                                                           , Editardetalle.prod_Codigo
+                                                           , Editardetalle.entd_Cantidad
+                                    );
+                 foreach (UDP_Inv_tbEntradaDetalle_Update_Result detalle in list)
+                    Msj = detalle.MensajeError;
 
-            //    }
-            //    else
-            //    {
-            //        //return RedirectToAction("Index");
-            //    }
-            //}
-            //catch (Exception Ex)
-            //{
-            //    Ex.Message.ToString();
-            //    ModelState.AddModelError("", "No se Actualizo el registro");
-            //    //return PartialView("_EditarDetalleEntrada", EditarDetalleEntrada);
-            //}
-            return Json("", JsonRequestBehavior.AllowGet);
+                if (Msj.StartsWith("-1"))
+                {
+                    Msj = "-1";
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Guardo el registro");
+                Msj = "-1";
+            }
+            return Json(Msj, JsonRequestBehavior.AllowGet);
+
         }
-
         //para borrar registros en la tabla temporal
         [HttpPost]
         public JsonResult Eliminardetalleentrada(tbEntradaDetalle eliminardetalle)
@@ -386,7 +382,7 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbEntrada.estm_Id);
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
             ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
-            //ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "ent_BodegaDestino", "bod_ResponsableBodega", tbEntrada.ent_BodegaDestino);
+            ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.ent_BodegaDestino);
             ViewBag.Producto = db.tbProducto.ToList();
 
 
@@ -469,7 +465,7 @@ namespace ERP_ZORZAL.Controllers
         //Para q edite la master y el detalle
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, [Bind(Include = "ent_Id,ent_FechaElaboracion,bod_Id,prov_Id,ent_FacturaCompra,ent_FechaCompra,fact_Id,ent_RazonDevolucion,ent_BodegaDestino,tent_Id,ent_usuarioCrea,ent_FechaCrea,ent_UsuarioModifica,ent_FechaModifica")] tbEntrada tbEntrada)
+        public ActionResult Edit(int? id, [Bind(Include = "ent_Id,ent_NumeroFormato,ent_FechaElaboracion,bod_Id,prov_Id,ent_FacturaCompra,ent_FechaCompra,fact_Id,ent_RazonDevolucion,ent_BodegaDestino,tent_Id,ent_usuarioCrea,ent_FechaCrea,ent_UsuarioModifica,ent_FechaModifica")] tbEntrada tbEntrada)
         {
             
             IEnumerable<object> ENTRADA = null;
@@ -483,7 +479,7 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbEntrada.estm_Id);
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
             ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
-            ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbEntrada.ent_BodegaDestino);
+            ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.ent_BodegaDestino);
             ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
             ViewBag.Producto = db.tbProducto.ToList();
@@ -496,7 +492,7 @@ namespace ERP_ZORZAL.Controllers
                     {
 
                         ENTRADA = db.UDP_Inv_tbEntrada_Update(tbEntrada.ent_Id,
-                                                                tbEntrada.ent_NumeroFormato,
+                                                                        tbEntrada.ent_NumeroFormato,
                                                                         tbEntrada.ent_FechaElaboracion,
                                                                         tbEntrada.bod_Id,
                                                                         tbEntrada.prov_Id,
@@ -588,7 +584,7 @@ namespace ERP_ZORZAL.Controllers
                 tbEntrada obj = db.tbEntrada.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbEntrada_Update_Estado(id, EstadoEntrada.Inactivo);
+                list = db.UDP_Inv_tbEntrada_Update_Estado(id, EstadoEntrada.Inactivada);
                 foreach (UDP_Inv_tbEntrada_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 
@@ -621,7 +617,7 @@ namespace ERP_ZORZAL.Controllers
                 tbEntrada obj = db.tbEntrada.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbEntrada_Update_Estado(id, EstadoEntrada.Activo);
+                list = db.UDP_Inv_tbEntrada_Update_Estado(id, EstadoEntrada.Emitida);
                 foreach (UDP_Inv_tbEntrada_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 
@@ -651,22 +647,21 @@ namespace ERP_ZORZAL.Controllers
 
 
         //para que Anular una entrada
-        public ActionResult EstadoAnular(int? id)
+        public ActionResult EstadoAnular(tbEntrada cambiaAnular)
         {
 
             try
             {
-                tbEntrada obj = db.tbEntrada.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbEntrada_Update_Estado(id, EstadoEntrada.Anulado);
-                foreach (UDP_Inv_tbEntrada_Update_Estado_Result obje in list)
+                list = db.UDP_Inv_tbEntrada_Update_Anular(cambiaAnular.ent_Id,AnularEntrada.Anulado, cambiaAnular.entd_RazonAnulada);
+                foreach (UDP_Inv_tbEntrada_Update_Anular_Result obje in list)
                     MsjError = obje.MensajeError;
 
                 if (MsjError == "-1")
                 {
                     ModelState.AddModelError("", "No se Actualizo el registro");
-                    return RedirectToAction("Edit/" + id);
+                    return RedirectToAction("Edit/" + cambiaAnular.ent_Id);
                 }
                 else
                 {
@@ -677,7 +672,7 @@ namespace ERP_ZORZAL.Controllers
             {
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se Actualizo el registro");
-                return RedirectToAction("Edit/" + id);
+                return RedirectToAction("Edit/" + cambiaAnular.ent_Id);
             }
             //return RedirectToAction("Index");
         }
@@ -690,7 +685,7 @@ namespace ERP_ZORZAL.Controllers
                 tbEntrada obj = db.tbEntrada.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbEntrada_Update_Estado(id, EstadoEntrada.Aplicado);
+                list = db.UDP_Inv_tbEntrada_Update_Estado(id, EstadoEntrada.Aplicada);
                 foreach (UDP_Inv_tbEntrada_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 

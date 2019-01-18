@@ -18,12 +18,12 @@ namespace ERP_GMEDINA.Models
         public int ent_Id { get; set; }
 
         [Display(Name = "Numero Formato")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string ent_NumeroFormato { get; set; }
 
         [Display(Name = "Fecha Elaboracion")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime ent_FechaElaboracion { get; set; }
 
         [Display(Name = "Nombre Bodega")]

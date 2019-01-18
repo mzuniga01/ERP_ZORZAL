@@ -28,7 +28,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.prod_Descripcion" , tr data-container="@item.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbUnidadMedida.uni_Descripcion">
+                                <tr tr data-html="@item.prod_CodigoBarras", tr data-id="@item.prod_Codigo" , tr data-content="@item.prod_Descripcion" , tr data-container="@item.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbUnidadMedida.uni_Descripcion">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.prod_Descripcion)
                                     </td>
@@ -39,7 +39,7 @@
                                         @Html.DisplayFor(modelItem => item.prod_Modelo)
                                     </td>
                                     <td>
-                                        <button class="btn btn-primary btn-xs" value="@item.prod_Codigo" id="seleccionar" data-dismiss="modal">Seleccionar</button>
+                                        <button class="btn btn-primary btn-xs" value="@item.prod_CodigoBarras" id="seleccionar" data-dismiss="modal">Seleccionar</button>
                                         @*@Html.ActionLink("", "_DetallesProductos", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-xs" })*@
                                     </td>
                                 </tr>

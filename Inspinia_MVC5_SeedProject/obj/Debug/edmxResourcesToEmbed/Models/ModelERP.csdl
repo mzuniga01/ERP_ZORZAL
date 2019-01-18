@@ -356,53 +356,6 @@
       <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
       <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbEntrada_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Insert_Result)">
-      <Parameter Name="ent_FechaElaboracion" Mode="In" Type="DateTime" />
-      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-      <Parameter Name="estm_Id" Mode="In" Type="Byte" />
-      <Parameter Name="prov_Id" Mode="In" Type="Int32" />
-      <Parameter Name="ent_FacturaCompra" Mode="In" Type="String" />
-      <Parameter Name="ent_FechaCompra" Mode="In" Type="DateTime" />
-      <Parameter Name="fact_Id" Mode="In" Type="Int32" />
-      <Parameter Name="ent_RazonDevolucion" Mode="In" Type="String" />
-      <Parameter Name="ent_BodegaDestino" Mode="In" Type="Int32" />
-      <Parameter Name="tent_Id" Mode="In" Type="Byte" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbEntrada_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Result)">
-      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
-      <Parameter Name="ent_NumeroFormato" Mode="In" Type="String" />
-      <Parameter Name="ent_FechaElaboracion" Mode="In" Type="DateTime" />
-      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prov_Id" Mode="In" Type="Int32" />
-      <Parameter Name="ent_FacturaCompra" Mode="In" Type="String" />
-      <Parameter Name="ent_FechaCompra" Mode="In" Type="DateTime" />
-      <Parameter Name="fact_Id" Mode="In" Type="Int32" />
-      <Parameter Name="ent_RazonDevolucion" Mode="In" Type="String" />
-      <Parameter Name="ent_BodegaDestino" Mode="In" Type="Int32" />
-      <Parameter Name="tent_Id" Mode="In" Type="Byte" />
-      <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbEntrada_Update_Anular" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Anular_Result)">
-      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
-      <Parameter Name="entd_EsAnulada" Mode="In" Type="Byte" />
-      <Parameter Name="entd_RazonAnulada" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbEntrada_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Estado_Result)">
-      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
-      <Parameter Name="estm_Id" Mode="In" Type="Byte" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Insert_Result)">
-      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Update_Result)">
-      <Parameter Name="entd_Id" Mode="In" Type="Int32" />
-      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Acce_tbObjeto_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbObjeto_Insert_Result)">
       <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
       <Parameter Name="obj_Referencia" Mode="In" Type="String" />
@@ -1505,6 +1458,60 @@
       <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
       <Parameter Name="ESTADO" Mode="In" Type="Byte" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Acce_tbRolesUsuario_Delete">
+      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+      <Parameter Name="rol_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_tbentradadetalle_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbentradadetalle_Select_Result)">
+      <Parameter Name="entd_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbEntrada_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Insert_Result)">
+      <Parameter Name="ent_FechaElaboracion" Mode="In" Type="DateTime" />
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+      <Parameter Name="estm_Id" Mode="In" Type="Byte" />
+      <Parameter Name="prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="ent_FacturaCompra" Mode="In" Type="String" />
+      <Parameter Name="ent_FechaCompra" Mode="In" Type="DateTime" />
+      <Parameter Name="fact_Id" Mode="In" Type="Int32" />
+      <Parameter Name="ent_RazonDevolucion" Mode="In" Type="String" />
+      <Parameter Name="ent_BodegaDestino" Mode="In" Type="Int32" />
+      <Parameter Name="tent_Id" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbEntrada_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Result)">
+      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
+      <Parameter Name="ent_NumeroFormato" Mode="In" Type="String" />
+      <Parameter Name="ent_FechaElaboracion" Mode="In" Type="DateTime" />
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prov_Id" Mode="In" Type="Int32" />
+      <Parameter Name="ent_FacturaCompra" Mode="In" Type="String" />
+      <Parameter Name="ent_FechaCompra" Mode="In" Type="DateTime" />
+      <Parameter Name="fact_Id" Mode="In" Type="Int32" />
+      <Parameter Name="ent_RazonDevolucion" Mode="In" Type="String" />
+      <Parameter Name="ent_BodegaDestino" Mode="In" Type="Int32" />
+      <Parameter Name="tent_Id" Mode="In" Type="Byte" />
+      <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbEntrada_Update_Anular" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Anular_Result)">
+      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
+      <Parameter Name="entd_EsAnulada" Mode="In" Type="Byte" />
+      <Parameter Name="entd_RazonAnulada" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbEntrada_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Estado_Result)">
+      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
+      <Parameter Name="estm_Id" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Insert_Result)">
+      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Update_Result)">
+      <Parameter Name="entd_Id" Mode="In" Type="Int32" />
+      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1777,24 +1784,6 @@
     <Property Type="Int32" Name="pcat_Id" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Gral_tbMunicipio_Delete_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbEntrada_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbEntrada_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbEntrada_Update_Anular_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbEntrada_Update_Estado_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbEntradaDetalle_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbEntradaDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Acce_tbObjeto_Update_Result">
@@ -5930,6 +5919,34 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbProductoCategoria_Update_Estado_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="SDP_tbentradadetalle_Select_Result">
+    <Property Type="Int32" Name="entd_Id" Nullable="false" />
+    <Property Type="Int32" Name="ent_Id" Nullable="false" />
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="Decimal" Name="entd_Cantidad" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="entd_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="entd_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="entd_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="entd_FechaModifica" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbEntradaDetalle_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbEntradaDetalle_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbEntrada_Update_Estado_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbEntrada_Update_Anular_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbEntrada_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbEntrada_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

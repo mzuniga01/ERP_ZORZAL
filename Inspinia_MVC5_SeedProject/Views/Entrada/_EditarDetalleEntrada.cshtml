@@ -1,5 +1,6 @@
 ﻿@model ERP_GMEDINA.Models.tbEntradaDetalle
 @using ERP_GMEDINA.Models
+
 @using (Ajax.BeginForm("entradadetalle_actualizar", "Entrada", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "EditarDetalleEntrada" }))
 {
     <div class="form-horizontal">
@@ -19,45 +20,42 @@
                 @Html.EditorFor(model => model.ent_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.ent_Id)
             </div>
+            @*@Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                <input type="text" id="prod_Descripcion" placeholder="" class="form-control" readonly />
+                @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
+            </div>*@
+        </div>
+        <div class="form-group">
             @Html.LabelFor(model => model.prod_Codigo, "Código Producto", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @class = "form-control", @id = "coProductoEdit" } })
                 @Html.ValidationMessageFor(model => model.prod_Codigo)
             </div>
-        </div>
-        <div class="form-group">
-            @*@Html.LabelFor(model => model.prod_Codigo, "Nombre Producto", new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, new { @class = "form-control",@id = "producto" })
+            @*<div class="col-md-4">
+                <label class="control-label col-md-2">Código Barra</label>
+                <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control"readonly />
+                <div id="validationcodigoproducto">
                     @Html.ValidationMessageFor(model => model.prod_Codigo)
-                </div>*@
+                </div>
+            </div>*@
         </div>
-
+        @*@Html.Partial("_BuscarProducto", (List<tbProducto>)ViewBag.Producto)*@
         <div class="form-group">
             @Html.LabelFor(model => model.entd_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.entd_Cantidad, new { htmlAttributes = new { @class = "form-control", @id = "cantidadEdit" } })
                 @Html.ValidationMessageFor(model => model.entd_Cantidad)
             </div>
-            @Html.LabelFor(model => model.tbProducto.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.tbProducto.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 <input type="text" id="uni_Id" placeholder="" class="form-control" readonly />
                 @Html.ValidationMessageFor(model => model.tbProducto.uni_Id)
-            </div>s
-            @*@Html.LabelFor(model => model.uni_Id, "Unidad", new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.uni_Id, new { htmlAttributes = new { @class = "form-control", @id = "unidadEdit" } })
-                    @Html.ValidationMessageFor(model => model.uni_Id)
-                </div>*@
-            @*@Html.LabelFor(model => model.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @{string IdDrop = "uni_IdListEdit";}
-                @{ string Vie = "uni_IdList";}
-                @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)Context.Items[Vie], "Seleccione", new { @class = "form-control", id = @IdDrop })
-                @Html.DropDownListFor(model => model.uni_Id, (SelectList)ViewBag.unidad, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.uni_Id)
             </div>*@
         </div>
+        @*<div class="form-group">
+            @Html.Partial("_ProductoEntradaEditarModal", new ERP_GMEDINA.Models.tbEntradaDetalle())
+        </div>*@
         <div class="form-group">
             <hr />
             <div class="col-md-12 text-right">

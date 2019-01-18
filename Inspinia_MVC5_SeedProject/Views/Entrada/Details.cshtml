@@ -41,11 +41,11 @@
                     <dl class="dl-horizontal">
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)
+                            Nombre Bodega
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.tbBodega.bod_ResponsableBodega)
+                            @Html.DisplayFor(model => model.tbBodega1.bod_Nombre)
                         </dd>
                         <dt>
                             @Html.DisplayNameFor(model => model.ent_NumeroFormato)
@@ -78,19 +78,19 @@
                             @*@Html.DisplayFor(model => model.tbEstadoMovimiento.estm_Descripcion)*@
                             @if (Model.estm_Id == 2)
                             {
-                                <p> Activo</p>
+                                <p>Emitida</p>
                             }
                             else if (Model.estm_Id == 16)
                             {
-                                <p>Inactivo</p>
+                                <p>Inactiva</p>
                             }
                             else if (Model.estm_Id == 1)
                             {
-                                <p>Aplicado</p>
+                                <p>Aplicada</p>
                             }
                             else if (Model.estm_Id == 15)
                             {
-                                <p>Anulado</p>
+                                <p>Anulada</p>
                             }
                         </dd>
                         <dt>
@@ -150,16 +150,16 @@
                             {
                                 @Html.DisplayFor(model => model.tbTipoEntrada.tent_Descripcion)
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.ent_BodegaDestino)
+                                    Bodega Destino
+                                    @*@Html.DisplayNameFor(model => model.ent_BodegaDestino)*@
                                 </dt>
 
                                     <dd>
-                                        @Html.DisplayFor(model => model.ent_BodegaDestino)
+                                        @Html.DisplayFor(model =>model.tbBodega.bod_Nombre)
                                     </dd>
 
                             }
-                            </dd>
-
+                            
                         </dl>
 
                         @*@Html.HiddenFor(model => model.ent_FacturaCompra)
