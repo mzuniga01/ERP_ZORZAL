@@ -35,6 +35,9 @@ namespace ERP_GMEDINA.Models
         [StringLength(20, MinimumLength = 19, ErrorMessage = "El campo {0} debe tener el mismo formato de Rango Inicial")]
         public string pemid_RangoFinal { get; set; }
 
+        [Display(Name = "Número Actual")]
+        public string pemid_NumeroActual { get; set; }
+
         [Display(Name = "Fecha Límite Emisión")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]

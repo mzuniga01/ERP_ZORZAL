@@ -4,12 +4,14 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
     var DocumentoFiscal = $('#dfisc_Id').val();
     var RangoInicio = $('#pemid_RangoInicio').val();
     var RangoFinal = $('#pemid_RangoFinal').val();
+    var NumeroActual = $('#pemid_NumeroActual').val();
     var FechaLimite = $('#pemid_FechaLimite').val();
 
     //Split Rango Inicial
     var divisiones = RangoInicio.split("-", 4);
     var ultimo = divisiones[3]
     var rango = parseInt(ultimo)
+
 
     //Split Rango Final
     var divisiones1 = RangoFinal.split("-", 4);
@@ -102,6 +104,7 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
         copiar += "<td hidden id='dfisc_IdCreate'>" + $('#dfisc_Id option:selected').val() + "</td>";
         copiar += "<td id = 'pemid_RangoInicioCreate'>" + $('#pemid_RangoInicio').val() + "</td>";
         copiar += "<td id = 'pemid_RangoFinalCreate'>" + $('#pemid_RangoFinal').val() + "</td>";
+        copiar += "<td id = 'pemid_NumeroActualCreate'>" + $('#pemid_NumeroActual').val() + "</td>";
         copiar += "<td id = 'pemid_FechaLimiteCreate'>" + $('#pemid_FechaLimite').val() + "</td>";
         copiar += "<td>" + '<button id="removePuntoEmisionDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
         copiar += "</tr>";
@@ -128,6 +131,7 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
             $('#dfisc_Id').val('');
             $('#pemid_RangoInicio').val('');
             $('#pemid_RangoFinal').val('');
+            $('#pemid_NumeroActual').val('');
             $('#pemid_FechaLimite').val('');
 
         });
@@ -140,6 +144,7 @@ function GetPuntoEmisionDetalle() {
         dfisc_Id: $('#dfisc_Id').val(),
         pemid_RangoInicio: $('#pemid_RangoInicio').val(),
         pemid_RangoFinal: $('#pemid_RangoFinal').val(),
+        pemid_NumeroActual: $('#pemid_NumeroActual').val(),
         pemid_FechaLimite: new Date($('#pemid_FechaLimite').val()),
         pemid_Id: contador
     }

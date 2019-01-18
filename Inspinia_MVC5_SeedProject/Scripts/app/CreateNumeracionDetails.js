@@ -2,12 +2,15 @@
     var DocumentoFiscal = $('#dfisc_Id').val();
     var RangoInicio = $('#txtRangoInicial').val();
     var RangoFinal = $('#txtRangoFinal').val();
+    var NumeroActual = $('#txtNumeroActual').val();
     var FechaLimite = $('#txtFechalimite').val(); 
 
     //Split Rango Inicial
     var divisiones = RangoInicio.split("-", 4);
     var ultimo = divisiones[3]
     var rango = parseInt(ultimo)
+
+   
 
     //Split Rango Final
     var divisiones1 = RangoFinal.split("-", 4);
@@ -123,6 +126,7 @@
             dfisc_Id: $('#dfisc_Id').val(),
             pemid_RangoInicio: $('#txtRangoInicial').val(),
             pemid_RangoFinal: $('#txtRangoFinal').val(),
+            pemid_NumeroActual: $('#txtNumeroActual').val(),
             pemid_FechaLimite: new Date($('#txtFechalimite').val())
         }
         return PuntoEmisionDetalle
