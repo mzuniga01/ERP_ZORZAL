@@ -9,8 +9,7 @@
         var ID = $(this).children("td:eq(0)").text();
 
         //FechaLimiteEmision
-        var FechaLimiteEmsion = $(this).children("td:eq(7)").text();
-        console.log(FechaLimiteEmsion);
+        var FechaLimiteEmsion = $(this).children("td:eq(6)").text();
         var i = new Date(FechaLimiteEmsion);
         console.log(i);
 
