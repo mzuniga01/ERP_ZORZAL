@@ -40,7 +40,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cred_MontoAprobado, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.cred_MontoAprobado, new { htmlAttributes = new { @onkeyup = "format(this)"} })
+                @Html.EditorFor(model => model.cred_MontoAprobado, new { htmlAttributes = new { onKeyPress = "return soloNumeros(event)"} })
                 <p id="AcepSolicitud2" style="color:red"> @Html.ValidationMessageFor(model => model.cred_MontoAprobado)</p>
             </div>
         </div>

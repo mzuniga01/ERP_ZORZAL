@@ -57,9 +57,7 @@ $('#AceptarAprobacion').click(function () {
         //    $('#cred_MontoAprobado').val(MontoAprobado);
         //}
         
-    }
-
-    else if (MSstring == '') {
+    }    else if (MSstring == '') {
         {
             // alert('El valor Monto Aprobado no puede ser cero');
            document.getElementById('AceptarAprobacion').disabled = true
@@ -69,3 +67,47 @@ $('#AceptarAprobacion').click(function () {
     }
 
 });
+
+
+
+$("#cred_MontoAprobado").blur(function () {
+    var MontoAprobado = $('#cred_MontoAprobado').val();
+    var MSF = parseInt(MontoAprobado);
+    var MSstring = MontoAprobado;
+
+
+    if (MSF <= 0) {
+        // alert('El valor Monto Aprobado no puede ser cero');
+        document.getElementById('AceptarAprobacion').disabled = true;
+        valido = document.getElementById('AcepSolicitud2');
+        valido.innerText = "El valor Monto Aprobado no puede ser cero";
+        $('#cred_MontoAprobado').val(MontoAprobado);
+
+        //if (document.getElementById('AceptarAprobacion').disabled = true /*&& MSF > 0*/)
+        //{
+        //    document.getElementById('AceptarAprobacion').disabled = false;
+        //    $('#cred_MontoAprobado').val(MontoAprobado);
+        //}
+
+    } else {
+        document.getElementById('AceptarAprobacion').disabled =false;
+    }
+    if (MSstring == '') {
+        {
+            // alert('El valor Monto Aprobado no puede ser cero');
+            document.getElementById('AceptarAprobacion').disabled = true
+            valido = document.getElementById('AcepSolicitud2');
+            valido.innerText = "El valor Monto Aprobado no puede ser vacio";
+        }
+    }
+    else {
+        document.getElementById('AceptarAprobacion').disabled = false;
+    }
+});
+
+
+
+//Validacion de numeros//
+function soloNumeros(e) {
+    if ((car < '0' || car > '9') && (car < ',' || car > '.')) evt.consume();
+}
