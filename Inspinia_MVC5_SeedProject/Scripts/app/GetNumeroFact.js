@@ -1,5 +1,7 @@
 ﻿$(document).ready(function(){
-    GetNumeroFact(1,4)
+    GetNumeroFact(1, 4)
+    $("#suc_Id").val(1);
+    $("#cja_Id").val(4);
 })
     function GetNumeroFact(CodSucursal,CodCaja) {
         //var CodSucursal = $('#suc_Id').val();
@@ -24,9 +26,6 @@
                     $('#pemi_NumeroCAI').val(data[0]['CAI']);
                     $('#fact_Codigo').val(data[0]['CODFACTURA']);
                 }
-                
-
-
                 //$.each(data, function (key, val) {
                    
                 //});

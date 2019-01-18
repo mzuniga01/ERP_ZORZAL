@@ -94,7 +94,6 @@ $('#AgregarDetalleFactura').click(function () {
         //Grantotal
         if (document.getElementById("total").innerHTML == '') {
             var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos);
-            console.log(TotalEncabezado)
            $("#TotalProductoEncabezado").val(TotalEncabezado);
         }
         else {
@@ -167,8 +166,8 @@ $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDeta
     document.getElementById("isv").innerHTML = parseFloat(impuestotal) - parseFloat(impuestos);
 
     //GranTotal
-    document.getElementById("total").innerHTML = (parseFloat(subtotal) - parseFloat(SubtotalProducto)) + (parseFloat(impuestotal) - parseFloat(impuestos));
-
+    var TotalEncabezado = document.getElementById("total").innerHTML = (parseFloat(subtotal) - parseFloat(SubtotalProducto)) + (parseFloat(impuestotal) - parseFloat(impuestos));
+    $("#TotalProductoEncabezado").val(TotalEncabezado);
 
     $(this).closest('tr').remove();
     idItem = $(this).closest('tr').data('id');
