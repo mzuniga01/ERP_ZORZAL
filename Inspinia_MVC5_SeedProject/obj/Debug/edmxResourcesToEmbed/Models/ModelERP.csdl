@@ -2369,6 +2369,9 @@
       <Parameter Name="soled_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="soled_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="SDP_Vent_tbPedidoDetalle_tbPedido_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result)">
+      <Parameter Name="ped_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -7140,5 +7143,12 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result">
+    <Property Type="Int32" Name="pedd_Id" Nullable="false" />
+    <Property Type="Int32" Name="ped_Id" Nullable="false" />
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="Decimal" Name="pedd_Cantidad" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="pedd_CantidadFacturada" Nullable="false" Precision="10" Scale="2" />
   </ComplexType>
 </Schema>

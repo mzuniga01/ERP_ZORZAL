@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
+using Newtonsoft.Json;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -435,7 +436,7 @@ namespace ERP_ZORZAL.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit","Pedido");
                 }
             }
             catch (Exception Ex)
@@ -449,11 +450,28 @@ namespace ERP_ZORZAL.Controllers
 
 
 
+        public JsonResult GetPedidoDetalleById(string pedd_Id)
+        {
+            var spedd_Id = Convert.ToInt32(pedd_Id);
+            tbPedidoDetalle model = db.tbPedidoDetalle.Where(x => x.pedd_Id == spedd_Id).SingleOrDefault();
+            string value = string.Empty;
+            value = JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            return Json(value, JsonRequestBehavior.AllowGet);
+        }
 
 
+        [HttpPost]
+        public JsonResult GetPedidoDetalle(string Pedido)
+        {
+            var peds = Convert.ToInt32(Pedido); 
+            var list = db.SDP_Vent_tbPedidoDetalle_tbPedido_Select(peds).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
-
-         [HttpPost]
+        [HttpPost]
         public JsonResult AnularPedido(int CodPedido, bool NoAnulado, string RazonAnulado)
         {
             var list = db.UDP_Vent_tbPedido_Estado(CodPedido, NoAnulado, RazonAnulado).ToList();

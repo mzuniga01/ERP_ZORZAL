@@ -5181,5 +5181,14 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert", solef_IdParameter, deno_IdParameter, soled_CantidadSolicitadaParameter, soled_CantidadEntregadaParameter, soled_MontoEntregadoParameter, soled_UsuarioCreaParameter, soled_FechaCreaParameter);
         }
+    
+        public virtual ObjectResult<SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result> SDP_Vent_tbPedidoDetalle_tbPedido_Select(Nullable<int> ped_Id)
+        {
+            var ped_IdParameter = ped_Id.HasValue ?
+                new ObjectParameter("ped_Id", ped_Id) :
+                new ObjectParameter("ped_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result>("SDP_Vent_tbPedidoDetalle_tbPedido_Select", ped_IdParameter);
+        }
     }
 }

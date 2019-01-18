@@ -3,7 +3,7 @@ $('#AñadirPedidoDetalle').click(function () {
     var prod_Codigo = $('#prod_Codigo').val();
     var prod_Descripcion = $('#tbProducto_prod_Descripcion').val();
     var pedd_Cantidad = $('#pedd_Cantidad').val();
-    var pedd_CantidadFacturada = $('#pedd_CantidadFacturada').val();
+    //var pedd_CantidadFacturada = $('#pedd_CantidadFacturada').val();
 
 
     if (prod_Codigo == '') {
@@ -25,12 +25,12 @@ $('#AñadirPedidoDetalle').click(function () {
         $('#NombreError').text('');
         $('#ValidationCantidadCreate').after('<ul id="ErrorCantidadCreate" class="validation-summary-errors text-danger">Campo Cantidad Requerido</ul>');
     }
-    else if (pedd_CantidadFacturada == '') {
-        $('#MessageError').text('');
-        $('#CodigoError').text('');
-        $('#NombreError').text('');
-        $('#ValidationCantidadFacturadaCreate').after('<ul id="ErrorCantidadFacturadaCreate" class="validation-summary-errors text-danger">Campo Cantidad Facturada Requerido</ul>');
-    }
+    //else if (pedd_CantidadFacturada == '') {
+    //    $('#MessageError').text('');
+    //    $('#CodigoError').text('');
+    //    $('#NombreError').text('');
+    //    $('#ValidationCantidadFacturadaCreate').after('<ul id="ErrorCantidadFacturadaCreate" class="validation-summary-errors text-danger">Campo Cantidad Facturada Requerido</ul>');
+    //}
     else {
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
@@ -59,7 +59,6 @@ $('#AñadirPedidoDetalle').click(function () {
                     $('#prod_Codigo').val('');
                     $('#tbProducto_prod_Descripcion').val('');
                     $('#pedd_Cantidad').val('');
-                    $('#pedd_CantidadFacturada').val('');
                     $('#MessageError').text('');
                     $('#NombreError').text('');
                     console.log('Hola');
@@ -100,3 +99,129 @@ $(document).on("click", "#tblPedidoDetalle tbody tr td button#QuitarDetalle", fu
         data: JSON.stringify({ PedidoDetalle: PedidoDetalle }),
     });
 });
+
+
+//function EditStudentRecord(pedd_Id) {
+//    $("#MsjError").text("");
+
+//    $.ajax({
+//        url: "/Pedido/GetPedidoDetalle",
+//        method: "POST",
+//        dataType: 'json',
+//        contentType: "application/json; charset=utf-8",
+//        data: JSON.stringify({ pedd_Id }),
+//    })
+//    .done(function (data) {
+//        $.each(data, function (i, item) {
+//            $("#pedd_Id").val(item.pedd_Id);
+//            $("#prod_Codigo").val(item.prod_Codigo);
+//            $("#pedd_Cantidad").val(item.pedd_Cantidad);
+//            $("#pedd_CantidadFacturada").val(item.pedd_CantidadFacturada);
+//            $("#MyModal").modal();
+
+//            console.log('Holaaaa');
+//        })
+//    })
+//    .fail( function( jqXHR, textStatus, errorThrown ) {
+//        console.log('jqXHR', jqXHR);
+//        console.log('textStatus', textStatus);
+//        console.log('errorThrown', errorThrown);
+//    })
+//}
+
+$("#Btnsubmit").click(function () {
+    var data = $("#SubmitForm").serializeArray();
+
+    $.ajax({
+        type: "Post",
+        url: "/Pedido/UpdatePedidoDetalle",
+        data: data,
+        success: function (result) {
+            if (result == '-1')
+                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+            else
+                $("#MyModal").modal("hide");
+        }
+    });
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$(document).ready(function () {
+
+    var ped_Id = $('#ped_Id').val();
+    console.log(ped_Id)
+
+    $.ajax({
+        url: "/Pedido/GetPedidoDetalle",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ Pedido: ped_Id }),
+    })
+        .done(function (data) {
+            console.log(data);
+            $("#LoadingStatus").html("Cargando....");
+            var SetData = $("#SetDetalleList");
+            $.each(data, function (key, val) {
+                var Data = "<tr class='row_" + val.pedd_Id + "'>" +
+                    "<td>" + val.pedd_Id + "</td>" +
+                    "<td>" + val.prod_Codigo + "</td>" +
+                    "<td>" + val.pedd_Cantidad + "</td>" +
+                    "<td>" + val.pedd_CantidadFacturada + "</td>" +
+                    //"<td>" + DetalleSalida[i].DepartmentName + "</td>" +
+                    "<td>" + "<a href='#' class='btn btn-warning' onclick='EditPedidoDetalleM(" + val.pedd_Id + ")' ><span class='glyphicon glyphicon-edit'></span></a>" + "</td>" +
+                    "<td>" + "<a href='#' class='btn btn-danger' onclick='DeleteStudentRecord(" + val.pedd_Id + ")'><span class='glyphicon glyphicon-trash'></span></a>" + "</td>" +
+                    "</tr>";
+                SetData.append(Data);
+                $("#LoadingStatus").html(" ");;
+                //$('#pscat_Id').trigger("chosen:updated");
+                console.log(data);
+            });
+
+
+
+        });
+
+});
+
+
+function EditPedidoDetalleM(pedd_Id) {
+    var url = "/Pedido/GetPedidoDetalleById=" + pedd_Id;
+    $("#ModalTitle").html("Actualizar Pedido Detalle");
+    $("#MyModal").modal();
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function (data) {
+            var obj = JSON.parse(data);
+            $("#Ppedd_Id").val(obj.ped_Id);
+            $("#Pprod_Codigo").val(obj.prod_Codigo);
+            $("#Ppdd_Cantidad").val(obj.pedd_Cantidad);
+            $("#Ppdd_CantidadFacturada").val(obj.pedd_CantidadFacturada);
+
+
+        }
+    })
+}
+
+
+
+
+
