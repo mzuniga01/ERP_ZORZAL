@@ -110,7 +110,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cred_MontoSolicitado, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.cred_MontoSolicitado, new { htmlAttributes = new { @onkeypres = "MASK(this,this.value,'-##,###,##0.00',1)", @onchange = "MASK(this,this.value,'-##,###,##0.00',1)" } })
+                                    @Html.EditorFor(model => model.cred_MontoSolicitado/*, new { htmlAttributes = new { @onkeypres = "MASK(this,this.value,'-##,###,##0.00',1)", @onchange = "MASK(this,this.value,'-##,###,##0.00',1)" } }*/)
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
 </div>
                             </div>
