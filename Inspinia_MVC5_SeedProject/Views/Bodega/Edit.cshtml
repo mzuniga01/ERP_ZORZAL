@@ -42,7 +42,7 @@
             @*@using (Html.BeginForm("Edit", "Bodega", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {*@
             @using (Html.BeginForm())
-                {
+            {
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>Editar Bodega</h5>
@@ -78,11 +78,11 @@
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsActivo)
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador)
                             @*<div class="form-group">
-            <label for="producto" class="control-label col-md-2">Produto</label>
-            <div class="col-md-10">
-                <input type="text" id="prod_Codigo" placeholder="" class="form-control" />
-            </div>
-        </div>*@
+                                    <label for="producto" class="control-label col-md-2">Produto</label>
+                                    <div class="col-md-10">
+                                        <input type="text" id="prod_Codigo" placeholder="" class="form-control" />
+                                    </div>
+                                </div>*@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Número<span style="color:red">*</span></label>
                                 <div class="col-md-4">
@@ -109,17 +109,17 @@
                                 </div>
                             </div>
                             @*<div class="form-group">
-                            <label class="control-label col-md-2">Departamento<span style="color:red">*</span></label>
-                            <div class="col-md-4">
-                                @Html.DropDownList("dep_Codigo", (IEnumerable<SelectListItem>)ViewBag.deparatamento_Edit, new { @class = "form-control" })
-                                <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => ListadoMunicipio.dep_Codigo)</p>
-                            </div>
-                            <label class="control-label col-md-2">Municipio<span style="color:red">*</span></label>
-                            <div class="col-md-4">
-                                @Html.DropDownList("mun_Codigo", (IEnumerable<SelectListItem>)ViewBag.muicipio_Edit, new { @class = "form-control" })
-                                <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
-                            </div>
-                        </div>*@
+                                    <label class="control-label col-md-2">Departamento<span style="color:red">*</span></label>
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("dep_Codigo", (IEnumerable<SelectListItem>)ViewBag.deparatamento_Edit, new { @class = "form-control" })
+                                        <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => ListadoMunicipio.dep_Codigo)</p>
+                                    </div>
+                                    <label class="control-label col-md-2">Municipio<span style="color:red">*</span></label>
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("mun_Codigo", (IEnumerable<SelectListItem>)ViewBag.muicipio_Edit, new { @class = "form-control" })
+                                        <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
+                                    </div>
+                                </div>*@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Departamento<span style="color:red">*</span></label>
                                 <div class="col-md-4">
@@ -132,7 +132,7 @@
                                     <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Telefono, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
@@ -164,14 +164,14 @@
 
                             </div>
                             @*<div class="row">
-        <div class="col-lg-12">
-            <div class="form-group">*@
+                                <div class="col-lg-12">
+                                    <div class="form-group">*@
                             @*<div class="ibox-content collapse" id="idModalCreate">
-            @Html.Partial("_CreateNuevoBodegaDetalle_Modal", new tbBodegaDetalle())
-        </div>*@
+                                    @Html.Partial("_CreateNuevoBodegaDetalle_Modal", new tbBodegaDetalle())
+                                </div>*@
                             @*</div>
-            </div>
-        </div>*@
+                                    </div>
+                                </div>*@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="ibox float-e-margins">
@@ -200,7 +200,7 @@
                             </div>
                             <div class="form-group ">
                                 <div class="col-md-offset-8 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" id="btnGuardar"/>
+                                    <input type="submit" value="Guardar" class="btn btn-primary" id="btnGuardar" />
                                     @{if (Model.bod_EsActiva == 1)
                                         {
                                             <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
@@ -279,7 +279,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="ModalEliminarDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -293,12 +292,32 @@
                 ¿Está seguro que quiere Inactivar esta Bodega?
             </div>
             <div class="modal-footer">
-                @*@Html.ActionLink("Sí", "", new { id = Model.bod_Id }, new { @class = "btn btn-danger" })*@
+                @*@Html.ActionLink("Sí", "DeleteDetalle", new { id = Model.tbBodegaDetalle }, new { @class = "btn btn-danger" })*@
+                @Html.ActionLink("Sí", "DeleteDetalle", new {id = Model.bod_Id}, new { @class = "btn btn-danger" })
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
 </div>
+@*<div class="modal fade" id="ModalEliminarDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Inactivar Bodega</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que quiere Inactivar esta Bodega?
+                </div>
+                <div class="modal-footer">
+                    @Html.ActionLink("Sí", "DeleteDetalle", new { id = Model.tbBodegaDetalle.bodd_Id }, new { @class = "btn btn-danger" })
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>*@
 
 
 @section Scripts {
@@ -363,31 +382,31 @@
                 $(function () {
                     console.log('1')
                     //$('#prod_CodigoBarras').keydown(function (e) {
-                        console.log('2')
-                        //if (e.keyCode == 13) {
-                            $("#prod_CodigoBarras").val();
-                            //$("#seleccionar").focus().click();
-                            ///
-                            var Bod_Id = $('#bod_Id').val();
-                            var Barras = $('#prod_CodigoBarras').val();
-                           
+                    console.log('2')
+                    //if (e.keyCode == 13) {
+                    $("#prod_CodigoBarras").val();
+                    //$("#seleccionar").focus().click();
+                    ///
+                    var Bod_Id = $('#bod_Id').val();
+                    var Barras = $('#prod_CodigoBarras').val();
 
-                            console.log(Barras);
-                            console.log(Bod_Id);
+
+                    console.log(Barras);
+                    console.log(Bod_Id);
                     $.ajax({
-                                type: 'POST',
-                                url: '/Bodega/BuscarCodigoBarras',
-                                data: JSON.stringify({ GET_Barras: Barras , GET_Bod: Bod_Id }),
-                                contentType: 'application/json;',
-                                dataType: 'json',
-                               
-                                
+                        type: 'POST',
+                        url: '/Bodega/BuscarCodigoBarras',
+                        data: JSON.stringify({ GET_Barras: Barras, GET_Bod: Bod_Id }),
+                        contentType: 'application/json;',
+                        dataType: 'json',
+
+
                     }).done(function (data) {
                         if (data.length > 0) {
                             //location.reload();
                             $('#Error_Barras').text('');
                             $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Codigo De Barras Existente</ul>');
-                          
+
                         }
                         else {
                             var CBarras_Nuevo = $("#prod_CodigoBarras").val();
@@ -418,9 +437,9 @@
                                         $('#pscat_Id').val(data_subcate);
                                         $('#uni_Id').val(data_unidad);
                                         $('#prod_Descripcion').val(data_pDescripcion);
-                                            })
-                                  
-                                   
+                                    })
+
+
                                     $('#AgregarBodegaDetalle').click(function () {
                                         console.log('boton');
                                         var Producto = $('#prod_Codigo').val();
@@ -430,7 +449,7 @@
                                         var Costo = $('#bodd_Costo').val();
                                         var Cpromedio = $('#bodd_CostoPromedio').val();
                                         var Cbarras = $('#prod_CodigoBarras').val();
-                                        
+
                                         if (Producto == '') {
                                             $('#MessageError').text('');
                                             $('#Error_Producto').text('');
@@ -585,9 +604,9 @@
                                     //$('#uni_Id').val('3');
                                     ////$('#prod_Codigo').val('4');
                                     //$('#prod_Descripcion').val('5');
-                                    
+
                                 }
-                                
+
 
 
                                 //$('#prod_Codigo').val('');
@@ -596,26 +615,26 @@
                                 //$('#bodd_CantidadMaxima').val('');
                                 //$('#bodd_Costo').val('');
                                 //$('#bodd_CostoPromedio').val('');
-                                        
+
                             });
 
                         }
                     });
 
 
-                        //console.log('Hola');
-                        //$('#prod_CodigoBarras').val(pBarras);
-                        //$('#prod_Codigo').val(idItem);
+                    //console.log('Hola');
+                    //$('#prod_CodigoBarras').val(pBarras);
+                    //$('#prod_Codigo').val(idItem);
 
-                        //$('#prod_Descripcion').val(contentItem);
-                        //$('#uni_Id').val(uni_IdtItem);
-                        //$('#pscat_Id').val(psubctItem);
-                        //$('#pcat_Id').val(pcatItem);
-                        return false;
+                    //$('#prod_Descripcion').val(contentItem);
+                    //$('#uni_Id').val(uni_IdtItem);
+                    //$('#pscat_Id').val(psubctItem);
+                    //$('#pcat_Id').val(pcatItem);
+                    return false;
                     //}
-                //});
+                    //});
                 });
-              
+
                 ////
                 return false;
             }
@@ -629,21 +648,21 @@
 
 
     $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccionar", function () {
-    console.log('seleccionar');
-    idItem = $(this).closest('tr').data('animation');
-    contentItem = $(this).closest('tr').data('content');
-    uni_IdtItem = $(this).closest('tr').data('keyboard');
-    psubctItem = $(this).closest('tr').data('container');
-    pcatItem = $(this).closest('tr').data('interval');
-    pBarras = $(this).closest('tr').data('id');
-    $("#prod_CodigoBarras").val(pBarras);
-    $("#prod_Codigo").val(idItem);
-    
-    $("#prod_Descripcion").val(contentItem);
-    $("#uni_Id").val(uni_IdtItem);
-    $("#pscat_Id").val(psubctItem);
-    $("#pcat_Id").val(pcatItem);
+        console.log('seleccionar');
+        idItem = $(this).closest('tr').data('animation');
+        contentItem = $(this).closest('tr').data('content');
+        uni_IdtItem = $(this).closest('tr').data('keyboard');
+        psubctItem = $(this).closest('tr').data('container');
+        pcatItem = $(this).closest('tr').data('interval');
+        pBarras = $(this).closest('tr').data('id');
+        $("#prod_CodigoBarras").val(pBarras);
+        $("#prod_Codigo").val(idItem);
 
-    //$("#cod").val(idItem);
-});
+        $("#prod_Descripcion").val(contentItem);
+        $("#uni_Id").val(uni_IdtItem);
+        $("#pscat_Id").val(psubctItem);
+        $("#pcat_Id").val(pcatItem);
+
+        //$("#cod").val(idItem);
+    });
 </script>

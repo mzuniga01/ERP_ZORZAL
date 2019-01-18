@@ -777,11 +777,13 @@
     <Property Name="nocre_FechaEmision" Type="datetime" Nullable="false" />
     <Property Name="nocre_MotivoEmision" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="nocre_Monto" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="nocre_Redimido" Type="bit" Nullable="false" />
+    <Property Name="nocre_FechaRedimido" Type="date" />
+    <Property Name="nocre_EsImpreso" Type="bit" Nullable="false" />
     <Property Name="nocre_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="nocre_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="nocre_UsuarioModifica" Type="int" />
     <Property Name="nocre_FechaModifica" Type="datetime" />
-    <Property Name="nocre_Estado" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="tbPago">
     <Key>
@@ -871,6 +873,7 @@
     <Property Name="dfisc_Id" Type="char" MaxLength="2" Nullable="false" />
     <Property Name="pemid_RangoInicio" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="pemid_RangoFinal" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="pemid_NumeroActual" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
     <Property Name="pemid_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="pemid_FechaCrea" Type="datetime" Nullable="false" />
@@ -3832,6 +3835,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="bod_Id" Type="int" Mode="In" />
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="UDP_Inv_tbBodegaDetalle_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="bodd_Id" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_Inv_tbBodegaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="bod_Id" Type="int" Mode="In" />
@@ -3910,8 +3916,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="ent_Id" Type="int" Mode="In" />
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
-    <Parameter Name="entd_UsuarioCrea" Type="int" Mode="In" />
-    <Parameter Name="entd_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbEstadoMovimiento_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="estm_Id" Type="int" Mode="In" />
@@ -3960,8 +3964,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="invfd_Cantidad" Type="decimal" Mode="In" />
     <Parameter Name="invfd_CantidadSistema" Type="decimal" Mode="In" />
     <Parameter Name="uni_Id" Type="int" Mode="In" />
-    <Parameter Name="invfd_UsuarioCrea" Type="int" Mode="In" />
-    <Parameter Name="invfd_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProducto_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />

@@ -85,7 +85,7 @@
                                 <hr />
                                 <div class="col-md-12 text-right">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminarDetalle" value="Eliminar" />
+                                    <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminarDetalle" value="Eliminar" id="btnEliminar" />
                                     @Html.ActionLink("Cancelar", "Edit", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
@@ -101,80 +101,82 @@
 
 }
 
-    <script>
-        //Validar Cantidades Bodega Detalle
-        $(document).on('blur', '#bodd_PuntoReorden', function () {
-            var Mn = $('#bodd_CantidadMinima').val();
-            var Pr = $('#bodd_PuntoReorden').val();
-            console.log(Mn)
-            console.log(Pr)
-            if (Mn)
+
+<script>
+    //Validar Cantidades Bodega Detalle
+    $(document).on('blur', '#bodd_PuntoReorden', function () {
+        var Mn = $('#bodd_CantidadMinima').val();
+        var Pr = $('#bodd_PuntoReorden').val();
+        console.log(Mn)
+        console.log(Pr)
+        if (Mn)
 
 
-                if (Pr != '' && Mn != '') {
+            if (Pr != '' && Mn != '') {
 
-                    if (parseFloat(Mn) > parseFloat(Pr)) {
+                if (parseFloat(Mn) > parseFloat(Pr)) {
 
-                        $('#Error_PuntoReorden').text('');
-                        $('#ErrorPuntoReorden_Create').after('<ul id="Error_PuntoReorden" class="validation-summary-errors text-danger">Punto Reorden debe ser Mayor de Cantidad Minima</ul>');
-                        console.log('1')
-                    }
-                    else {
-                        $('#Error_PuntoReorden').text('');
-                        console.log('2')
-                    }
+                    $('#Error_PuntoReorden').text('');
+                    $('#ErrorPuntoReorden_Create').after('<ul id="Error_PuntoReorden" class="validation-summary-errors text-danger">Punto Reorden debe ser Mayor de Cantidad Minima</ul>');
+                    console.log('1')
                 }
-
-
-        })
-
-        $(document).on('blur', '#bodd_CantidadMinima', function () {
-            var Mn = $('#bodd_CantidadMinima').val();
-            var Pr = $('#bodd_PuntoReorden').val();
-            console.log(Mn)
-            console.log(Pr)
-            if (Mn)
-
-
-                if (Pr != '' && Mn != '') {
-
-                    if (parseFloat(Mn) > parseFloat(Pr)) {
-
-                        $('#Error_CantidadMinima').text('');
-                        $('#ErrorCantidadMinima_Create').after('<ul id="Error_CantidadMinima" class="validation-summary-errors text-danger">Cantidad Minima debe ser Menor que Punto Reorden</ul>');
-                        console.log('1')
-                    }
-                    else {
-                        $('#Error_CantidadMinima').text('');
-                        console.log('2')
-                    }
+                else {
+                    $('#Error_PuntoReorden').text('');
+                    console.log('2')
                 }
+            }
 
 
-        })
+    })
 
-        $(document).on('blur', '#bodd_CantidadMaxima', function () {
-            var Mx = $('#bodd_CantidadMaxima').val();
-            var Pr = $('#bodd_PuntoReorden').val();
-            console.log(Mx)
-            console.log(Pr)
-            if (Mx)
+    $(document).on('blur', '#bodd_CantidadMinima', function () {
+        var Mn = $('#bodd_CantidadMinima').val();
+        var Pr = $('#bodd_PuntoReorden').val();
+        console.log(Mn)
+        console.log(Pr)
+        if (Mn)
 
 
-                if (Pr != '' && Mx != '') {
+            if (Pr != '' && Mn != '') {
 
-                    if (parseFloat(Mx) < parseFloat(Pr)) {
+                if (parseFloat(Mn) > parseFloat(Pr)) {
 
-                        $('#Error_CantidadMaxima').text('');
-                        $('#ErrorCantidadMaxima_Create').after('<ul id="Error_CantidadMaxima" class="validation-summary-errors text-danger">Cantidad Maxima debe ser Mayor que Punto Reorden</ul>');
-                        console.log('1')
-                    }
-                    else {
-                        $('#Error_CantidadMaxima').text('');
-                        console.log('2')
-                    }
+                    $('#Error_CantidadMinima').text('');
+                    $('#ErrorCantidadMinima_Create').after('<ul id="Error_CantidadMinima" class="validation-summary-errors text-danger">Cantidad Minima debe ser Menor que Punto Reorden</ul>');
+                    console.log('1')
                 }
+                else {
+                    $('#Error_CantidadMinima').text('');
+                    console.log('2')
+                }
+            }
 
 
-        })
-    </script>
+    })
+
+    $(document).on('blur', '#bodd_CantidadMaxima', function () {
+        var Mx = $('#bodd_CantidadMaxima').val();
+        var Pr = $('#bodd_PuntoReorden').val();
+        console.log(Mx)
+        console.log(Pr)
+        if (Mx)
+
+
+            if (Pr != '' && Mx != '') {
+
+                if (parseFloat(Mx) < parseFloat(Pr)) {
+
+                    $('#Error_CantidadMaxima').text('');
+                    $('#ErrorCantidadMaxima_Create').after('<ul id="Error_CantidadMaxima" class="validation-summary-errors text-danger">Cantidad Maxima debe ser Mayor que Punto Reorden</ul>');
+                    console.log('1')
+                }
+                else {
+                    $('#Error_CantidadMaxima').text('');
+                    console.log('2')
+                }
+            }
+
+
+    })
+
+</script>

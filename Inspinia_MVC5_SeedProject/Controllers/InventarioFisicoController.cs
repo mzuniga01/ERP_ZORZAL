@@ -360,38 +360,38 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         public JsonResult UpdateInvFisicoDetalle(tbInventarioFisicoDetalle actualizardetalle)
         {
             string Msj = "";
-            try
-            {
-                IEnumerable<object> list = null;
-                list = db.UDP_Inv_tbInventarioFisicoDetalle_Update(actualizardetalle.invfd_Id
-                                                        , actualizardetalle.invf_Id
-                                                        , actualizardetalle.prod_Codigo
-                                                        , actualizardetalle.invfd_Cantidad
-                                                        , actualizardetalle.invfd_CantidadSistema
-                                                        , actualizardetalle.uni_Id
-                                                        , actualizardetalle.invfd_UsuarioCrea
-                                                        , actualizardetalle.invfd_FechaCrea
-                                                                            );
-                foreach (UDP_Inv_tbInventarioFisicoDetalle_Update_Result invfd in list)
-                    Msj = invfd.MensajeError;
+            //try
+            //{
+            //    IEnumerable<object> list = null;
+            //    list = db.UDP_Inv_tbInventarioFisicoDetalle_Update(actualizardetalle.invfd_Id
+            //                                            , actualizardetalle.invf_Id
+            //                                            , actualizardetalle.prod_Codigo
+            //                                            , actualizardetalle.invfd_Cantidad
+            //                                            , actualizardetalle.invfd_CantidadSistema
+            //                                            , actualizardetalle.uni_Id
+            //                                            , actualizardetalle.invfd_UsuarioCrea
+            //                                            , actualizardetalle.invfd_FechaCrea
+            //                                                                );
+            //    foreach (UDP_Inv_tbInventarioFisicoDetalle_Update_Result invfd in list)
+            //        Msj = invfd.MensajeError;
 
-                if (Msj.Substring(0, 2) == "-1")
-                {
-                    ModelState.AddModelError("", "No se Actualizo el registro");
-                    this.listas();
+            //    if (Msj.Substring(0, 2) == "-1")
+            //    {
+            //        ModelState.AddModelError("", "No se Actualizo el registro");
+            //        this.listas();
 
-                }
-                else
-                {
-                    //return View("Edit/" + bod_Id);
-                    return Json("Index");
-                }
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro");
-            }
+            //    }
+            //    else
+            //    {
+            //        //return View("Edit/" + bod_Id);
+            //        return Json("Index");
+            //    }
+            //}
+            //catch (Exception Ex)
+            //{
+            //    Ex.Message.ToString();
+            //    ModelState.AddModelError("", "No se Actualizo el registro");
+            //}
             return Json("Index");
         }
 

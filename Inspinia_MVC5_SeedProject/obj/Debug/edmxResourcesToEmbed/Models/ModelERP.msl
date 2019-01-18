@@ -1568,26 +1568,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbNotaCredito">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbNotaCredito">
-        <MappingFragment StoreEntitySet="tbNotaCredito">
-          <ScalarProperty Name="nocre_Estado" ColumnName="nocre_Estado" />
-          <ScalarProperty Name="nocre_FechaModifica" ColumnName="nocre_FechaModifica" />
-          <ScalarProperty Name="nocre_UsuarioModifica" ColumnName="nocre_UsuarioModifica" />
-          <ScalarProperty Name="nocre_FechaCrea" ColumnName="nocre_FechaCrea" />
-          <ScalarProperty Name="nocre_UsuarioCrea" ColumnName="nocre_UsuarioCrea" />
-          <ScalarProperty Name="nocre_Monto" ColumnName="nocre_Monto" />
-          <ScalarProperty Name="nocre_MotivoEmision" ColumnName="nocre_MotivoEmision" />
-          <ScalarProperty Name="nocre_FechaEmision" ColumnName="nocre_FechaEmision" />
-          <ScalarProperty Name="nocre_Anulado" ColumnName="nocre_Anulado" />
-          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
-          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
-          <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
-          <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
-          <ScalarProperty Name="nocre_Id" ColumnName="nocre_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbPago">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPago">
         <MappingFragment StoreEntitySet="tbPago">
@@ -1675,6 +1655,7 @@
     <EntitySetMapping Name="tbPuntoEmisionDetalle">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPuntoEmisionDetalle">
         <MappingFragment StoreEntitySet="tbPuntoEmisionDetalle">
+          <ScalarProperty Name="pemid_NumeroActual" ColumnName="pemid_NumeroActual" />
           <ScalarProperty Name="pemid_FechaModifica" ColumnName="pemid_FechaModifica" />
           <ScalarProperty Name="pemid_UsuarioModifica" ColumnName="pemid_UsuarioModifica" />
           <ScalarProperty Name="pemid_FechaCrea" ColumnName="pemid_FechaCrea" />
@@ -1790,5 +1771,34 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbNotaCredito">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbNotaCredito">
+        <MappingFragment StoreEntitySet="tbNotaCredito">
+          <ScalarProperty Name="nocre_FechaModifica" ColumnName="nocre_FechaModifica" />
+          <ScalarProperty Name="nocre_UsuarioModifica" ColumnName="nocre_UsuarioModifica" />
+          <ScalarProperty Name="nocre_FechaCrea" ColumnName="nocre_FechaCrea" />
+          <ScalarProperty Name="nocre_UsuarioCrea" ColumnName="nocre_UsuarioCrea" />
+          <ScalarProperty Name="nocre_EsImpreso" ColumnName="nocre_EsImpreso" />
+          <ScalarProperty Name="nocre_FechaRedimido" ColumnName="nocre_FechaRedimido" />
+          <ScalarProperty Name="nocre_Redimido" ColumnName="nocre_Redimido" />
+          <ScalarProperty Name="nocre_Monto" ColumnName="nocre_Monto" />
+          <ScalarProperty Name="nocre_MotivoEmision" ColumnName="nocre_MotivoEmision" />
+          <ScalarProperty Name="nocre_FechaEmision" ColumnName="nocre_FechaEmision" />
+          <ScalarProperty Name="nocre_Anulado" ColumnName="nocre_Anulado" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+          <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
+          <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
+          <ScalarProperty Name="nocre_Id" ColumnName="nocre_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Delete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Delete_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

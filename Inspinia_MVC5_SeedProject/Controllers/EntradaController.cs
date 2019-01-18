@@ -252,38 +252,38 @@ namespace ERP_ZORZAL.Controllers
         public JsonResult entradadetalle_actualizar(tbEntradaDetalle EditarDetalleEntrada)
         {
             string Msj = "";
-            try
-            {
+            //try
+            //{
                 
-                IEnumerable<object> list = null;
-                list = db.UDP_Inv_tbEntradaDetalle_Update(EditarDetalleEntrada.entd_Id
-                                            , EditarDetalleEntrada.ent_Id
-                                           , EditarDetalleEntrada.prod_Codigo
-                                           , EditarDetalleEntrada.entd_Cantidad
-                                           , EditarDetalleEntrada.entd_UsuarioCrea
-                                           , EditarDetalleEntrada.entd_FechaCrea
+            //    IEnumerable<object> list = null;
+            //    list = db.UDP_Inv_tbEntradaDetalle_Update(EditarDetalleEntrada.entd_Id
+            //                                , EditarDetalleEntrada.ent_Id
+            //                               , EditarDetalleEntrada.prod_Codigo
+            //                               , EditarDetalleEntrada.entd_Cantidad
+            //                               , EditarDetalleEntrada.entd_UsuarioCrea
+            //                               , EditarDetalleEntrada.entd_FechaCrea
                                            
-                                                               );
-                foreach (UDP_Inv_tbEntradaDetalle_Update_Result EntradaDetalle in list)
-                    Msj = EntradaDetalle.MensajeError;
+            //                                                   );
+            //    foreach (UDP_Inv_tbEntradaDetalle_Update_Result EntradaDetalle in list)
+            //        Msj = EntradaDetalle.MensajeError;
 
-                if (Msj == "-1")
-                {
-                    ModelState.AddModelError("", "No se Actualizo el registro");
-                    //return PartialView("_EditarDetalleEntrada");
+            //    if (Msj == "-1")
+            //    {
+            //        ModelState.AddModelError("", "No se Actualizo el registro");
+            //        //return PartialView("_EditarDetalleEntrada");
 
-                }
-                else
-                {
-                    //return RedirectToAction("Index");
-                }
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro");
-                //return PartialView("_EditarDetalleEntrada", EditarDetalleEntrada);
-            }
+            //    }
+            //    else
+            //    {
+            //        //return RedirectToAction("Index");
+            //    }
+            //}
+            //catch (Exception Ex)
+            //{
+            //    Ex.Message.ToString();
+            //    ModelState.AddModelError("", "No se Actualizo el registro");
+            //    //return PartialView("_EditarDetalleEntrada", EditarDetalleEntrada);
+            //}
             return Json("", JsonRequestBehavior.AllowGet);
         }
 
