@@ -411,3 +411,9 @@ C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.
 C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.Optimization.xml
 C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.dll
 C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.pdb
+C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll.config
+C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll
+C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.pdb
+C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.dll
+C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.pdb
+C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojResolveAssemblyReference.cache

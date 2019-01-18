@@ -519,39 +519,84 @@ namespace ERP_GMEDINA.Controllers
             //return RedirectToAction("Index");
         }
 
-        // Eliminar Detalle 
         public ActionResult DeleteDetalle(int? id)
         {
-
+          
             try
             {
                 tbBodega obj = db.tbBodega.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbBodegaDetalle_Delete (id);
+                list = db.UDP_Inv_tbBodegaDetalle_Delete(id);
                 foreach (UDP_Inv_tbBodegaDetalle_Delete_Result obje in list)
                     MsjError = obje.MensajeError;
 
-                if (MsjError == "-1")
+                if (MsjError.StartsWith("-2"))
                 {
-                    ModelState.AddModelError("", "No se Actualizo el registro");
-                    return RedirectToAction("Edit/" + id);
+                    TempData["smserror"] = "Nose puede eliminar el detalle tiene Cantidad Esistente en bodega.";
+                    ViewBag.smserror = TempData["smserror"];
+
+                    ModelState.AddModelError("", "No se puede Borrar el registro");
+                    return RedirectToAction("Index");
                 }
                 else
                 {
-                    return RedirectToAction("Edit/" + id);
+                    ViewBag.smserror = "";
+                    return RedirectToAction("Index");
                 }
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro");
-                return RedirectToAction("Edit/" + id);
+                ModelState.AddModelError("", "No se puede Borrar el registro");
+                return RedirectToAction("Index");
             }
-
-
-            //return RedirectToAction("Index");
+            
+          
         }
+
+
+
+
+
+
+
+
+
+
+        // Eliminar Detalle 
+        //public ActionResult DeleteDetalle(int? id)
+        //{
+
+        //    try
+        //    {
+        //        tbBodega obj = db.tbBodega.Find(id);
+        //        IEnumerable<object> list = null;
+        //        var MsjError = "";
+        //        list = db.UDP_Inv_tbBodegaDetalle_Delete (id);
+        //        foreach (UDP_Inv_tbBodegaDetalle_Delete_Result obje in list)
+        //            MsjError = obje.MensajeError;
+
+        //        if (MsjError == "-1")
+        //        {
+        //            ModelState.AddModelError("", "No se Actualizo el registro");
+        //            return RedirectToAction("Edit/" + id);
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Edit/" + id);
+        //        }
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        Ex.Message.ToString();
+        //        ModelState.AddModelError("", "No se Actualizo el registro");
+        //        return RedirectToAction("Edit/" + id);
+        //    }
+
+
+        //    //return RedirectToAction("Index");
+        //}
 
     }
 }

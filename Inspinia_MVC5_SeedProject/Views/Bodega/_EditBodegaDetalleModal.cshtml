@@ -20,6 +20,15 @@
                             @Html.HiddenFor(model => model.bodd_FechaModifica)
                             @Html.HiddenFor(model => model.prod_Codigo)
 
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bodd_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                  
+                                        @Html.ValidationMessageFor(model => model.bodd_Id)
+                              
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
@@ -85,7 +94,7 @@
                                 <hr />
                                 <div class="col-md-12 text-right">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminarDetalle" value="Eliminar" id="btnEliminar" />
+                                    <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminarDetalle_@Model.bodd_Id" value="Eliminar" id="btnEliminar" />
                                     @Html.ActionLink("Cancelar", "Edit", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
@@ -100,7 +109,26 @@
     </div>
 
 }
-
+    <div class="modal fade" id="ModalEliminarDetalle_@Model.bodd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Inactivar Bodega</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que quiere Eliminar este Detalle?
+                </div>
+                <div class="modal-footer">
+                    @Html.ActionLink("Sí", "DeleteDetalle", new { id = Model.bodd_Id }, new { @class = "btn btn-danger" })
+                    @*<input type="button" value="Si" id="btnDeleteDetalle" class="btn btn-danger" />*@
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <script>
     //Validar Cantidades Bodega Detalle
@@ -178,5 +206,49 @@
 
 
     })
+
+
+    ////Agregar Detalle a Bodega
+    //$('#btnDeleteDetalle').click(function () {
+    //console.log('boton');
+    //var BodegaDetalle = $('#bodd_Id').val();
+   
+    //    console.log(BodegaDetalle);
+       
+
+        //var tbBodegaDetalle = Getbodegadetalle();
+        //$.ajax({
+        //    url: "/Bodega/SaveBodegaDetalle",
+        //    method: "POST",
+        //    dataType: 'json',
+        //    contentType: "application/json; charset=utf-8",
+        //    data: JSON.stringify({ BODEGADETALLE: tbBodegaDetalle }),
+        //})
+        //    .done(function (data) {
+        //        $('#prod_Codigo').val('');
+        //        $('#prod_Descripcion').val('');
+        //        $('#pcat_Id').val('');
+        //        $('#pscat_Id').val('');
+        //        $('#uni_Id').val('');
+        //        $('#bodd_PuntoReorden').val('');
+        //        $('#bodd_CantidadMinima').val('');
+        //        $('#bodd_CantidadMaxima').val('');
+        //        $('#bodd_Costo').val('');
+        //        $('#bodd_CostoPromedio').val('');
+
+        //        $('#MessageError').text('');
+        //        $('#Error_Producto').text('');
+        //        $('#Error_PuntoReorden').text('');
+        //        $('#Error_CantidadMinima').text('');
+        //        $('#Error_CantidadMaxima').text('');
+        //        $('#Error_Costo').text('');
+        //        $('#Error_CostoPromedioo').text('');
+        //    });
+       
+//});
+
+////Fin
+
+
 
 </script>
