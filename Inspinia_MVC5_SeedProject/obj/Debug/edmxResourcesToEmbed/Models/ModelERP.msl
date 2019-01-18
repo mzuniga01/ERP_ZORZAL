@@ -671,28 +671,6 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoMovimiento_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoMovimiento_Delete" />
     <FunctionImportMapping FunctionImportName="UDP_Inv_ValidacionCantidadExistente" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_ValidacionCantidadExistente" />
-    <FunctionImportMapping FunctionImportName="fn_GetFacturaPago" FunctionName="ERP_ZORZALModel.Store.fn_GetFacturaPago">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.fn_GetFacturaPago_Result">
-          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
-          <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
-          <ScalarProperty Name="pago_TotalPago" ColumnName="pago_TotalPago" />
-          <ScalarProperty Name="pago_SaldoAnterior" ColumnName="pago_SaldoAnterior" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_FacturasPagoSelect" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_FacturasPagoSelect">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_FacturasPagoSelect_Result">
-          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
-          <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
-          <ScalarProperty Name="TotalPago" ColumnName="TotalPago" />
-          <ScalarProperty Name="SaldoFactura" ColumnName="SaldoFactura" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Estado" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_BuscarListaPrecio" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_BuscarListaPrecio" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Anulado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Anulado" />

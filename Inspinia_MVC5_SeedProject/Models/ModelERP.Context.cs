@@ -4160,25 +4160,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_ValidacionCantidadExistente", cantidadSolicitadadParameter, iDBodegaParameter, iDProductoParameter, fechaElaboracionParameter);
         }
     
-        [DbFunction("ERP_ZORZALEntities", "fn_GetFacturaPago")]
-        public virtual IQueryable<fn_GetFacturaPago_Result> fn_GetFacturaPago(Nullable<int> clte_Id)
-        {
-            var clte_IdParameter = clte_Id.HasValue ?
-                new ObjectParameter("clte_Id", clte_Id) :
-                new ObjectParameter("clte_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fn_GetFacturaPago_Result>("[ERP_ZORZALEntities].[fn_GetFacturaPago](@clte_Id)", clte_IdParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_FacturasPagoSelect_Result> UDP_Vent_FacturasPagoSelect(Nullable<int> fact_Id)
-        {
-            var fact_IdParameter = fact_Id.HasValue ?
-                new ObjectParameter("fact_Id", fact_Id) :
-                new ObjectParameter("fact_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_FacturasPagoSelect_Result>("UDP_Vent_FacturasPagoSelect", fact_IdParameter);
-        }
-    
         public virtual ObjectResult<Nullable<int>> UDP_Vent_tbExoneracion_Estado(Nullable<int> exo_Id, Nullable<bool> exo_ExoneracionActiva)
         {
             var exo_IdParameter = exo_Id.HasValue ?

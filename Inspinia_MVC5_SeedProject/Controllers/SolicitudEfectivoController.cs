@@ -28,7 +28,7 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult IndexOriginal()
         {
     
-            var tbsolicitudefectivo = db.tbSolicitudEfectivo.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbUsuario2).Include(t => t.tbMoneda).Include(t => t.tbMovimientoCaja);
+            var tbsolicitudefectivo = db.tbSolicitudEfectivo.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbUsuario2).Include(t => t.tbMoneda)/*.Include(t => t.tbMovimientoCaja)*/;
             return View(tbsolicitudefectivo.ToList());
 
         }

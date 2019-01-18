@@ -1142,12 +1142,6 @@
       <Parameter Name="IDProducto" Mode="In" Type="String" />
       <Parameter Name="FechaElaboracion" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="fn_GetFacturaPago" IsComposable="true" ReturnType="Collection(ERP_ZORZALModel.fn_GetFacturaPago_Result)">
-      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_FacturasPagoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_FacturasPagoSelect_Result)">
-      <Parameter Name="fact_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbExoneracion_Estado" ReturnType="Collection(Int32)">
       <Parameter Name="exo_Id" Mode="In" Type="Int32" />
       <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />

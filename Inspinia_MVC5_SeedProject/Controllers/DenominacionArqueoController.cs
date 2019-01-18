@@ -17,7 +17,7 @@ namespace ERP_GMEDINA.Controllers
         // GET: /DenominacionArqueo/
         public ActionResult Index()
         {
-            var tbdenominacionarqueo = db.tbDenominacionArqueo.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbDenominacion).Include(t => t.tbMovimientoCaja);
+            var tbdenominacionarqueo = db.tbDenominacionArqueo.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbDenominacion)/*.Include(t => t.tbMovimientoCaja)*/;
             return View(tbdenominacionarqueo.ToList());
         }
 

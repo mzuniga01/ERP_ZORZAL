@@ -53,7 +53,7 @@ namespace ERP_GMEDINA.Controllers
                     //////////Aqui va la lista//////////////
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbMovimientoCaja_Apertura_Insert(tbMovimientoCaja.cja_Id,tbMovimientoCaja.mocja_FechaApertura,tbMovimientoCaja.mocja_UsuarioApertura);
+                    list = db.UDP_Vent_tbMovimientoCaja_Apertura_Insert(tbMovimientoCaja.cja_Id,tbMovimientoCaja.mocja_FechaApertura,tbMovimientoCaja.mocja_UsuarioApertura, tbMovimientoCaja.mocja_FechaArqueo, tbMovimientoCaja.mocja_UsuarioArquea, tbMovimientoCaja.mocja_FechaAceptacion, tbMovimientoCaja.mocja_UsuarioAceptacion);
                     foreach (UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result banco in list)
                         MensajeError = banco.MensajeError;
                     if (MensajeError == -1)

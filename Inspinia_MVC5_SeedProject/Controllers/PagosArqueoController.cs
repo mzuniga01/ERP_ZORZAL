@@ -17,7 +17,7 @@ namespace ERP_GMEDINA.Controllers
         // GET: /PagosArqueo/
         public ActionResult Index()
         {
-            var tbpagosarqueo = db.tbPagosArqueo.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbMovimientoCaja).Include(t => t.tbTipoPago);
+            var tbpagosarqueo = db.tbPagosArqueo.Include(t => t.tbUsuario).Include(t => t.tbUsuario1)/*.Include(t => t.tbMovimientoCaja)*/.Include(t => t.tbTipoPago);
             return View(tbpagosarqueo.ToList());
         }
 

@@ -7400,12 +7400,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="IDProducto" Mode="In" Type="String" />
             <Parameter Name="FechaElaboracion" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="fn_GetFacturaPago" IsComposable="true" ReturnType="Collection(ERP_ZORZALModel.fn_GetFacturaPago_Result)">
-          <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_FacturasPagoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_FacturasPagoSelect_Result)">
-          <Parameter Name="fact_Id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbExoneracion_Estado" ReturnType="Collection(Int32)">
             <Parameter Name="exo_Id" Mode="In" Type="Int32" />
             <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />
@@ -13999,28 +13993,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoMovimiento_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoMovimiento_Delete" />
           <FunctionImportMapping FunctionImportName="UDP_Inv_ValidacionCantidadExistente" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_ValidacionCantidadExistente" />
-          <FunctionImportMapping FunctionImportName="fn_GetFacturaPago" FunctionName="ERP_ZORZALModel.Store.fn_GetFacturaPago">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.fn_GetFacturaPago_Result">
-                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-                <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
-                <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
-                <ScalarProperty Name="pago_TotalPago" ColumnName="pago_TotalPago" />
-                <ScalarProperty Name="pago_SaldoAnterior" ColumnName="pago_SaldoAnterior" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_FacturasPagoSelect" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_FacturasPagoSelect">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_FacturasPagoSelect_Result">
-                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-                <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
-                <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
-                <ScalarProperty Name="TotalPago" ColumnName="TotalPago" />
-                <ScalarProperty Name="SaldoFactura" ColumnName="SaldoFactura" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Estado" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_BuscarListaPrecio" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_BuscarListaPrecio" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Anulado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Anulado" />
