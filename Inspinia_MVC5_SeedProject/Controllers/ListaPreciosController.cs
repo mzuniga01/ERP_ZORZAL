@@ -91,6 +91,8 @@ namespace ERP_GMEDINA.Controllers
                         if (MensajeError == "-1")
                         {
                             ModelState.AddModelError("", "No se pudo agregar el registro");
+                           
+                            TempData["message"] = "No se pudo agregar el registro,ya existe nombre de lista";
                             return View(tbListaPrecio);
                         }
                         else
@@ -342,6 +344,109 @@ namespace ERP_GMEDINA.Controllers
             }
             return View(tbListaPrecio);
         }
+
+
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult CreateEdit([Bind(Include = "listp_Id,prod_Codigo,lispd_PrecioMayorista,lispd_PrecioMinorista,lispd_DescCaja,lispd_DescGerente);")] tbListadoPrecioDetalle ListadoPrecioDetalle)
+        //{
+        //    var list = (List<tbListadoPrecioDetalle>)Session["ListadoPrecio"];
+        //    string MensajeError = "";
+        //    var MensajeErrorDetalle = "";
+        //    IEnumerable<object> listPrecioDetalle = null;
+
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            var liistp_Id = Convert.ToInt32(MensajeError);
+        //            ListadoPrecioDetalle.listp_Id = liistp_Id;
+        //            ListadoPrecioDetalle.listp_Id = liistp_Id;
+        //            listPrecioDetalle = db.UDP_Vent_tbListadoPrecioDetalle_Insert(
+        //              ListadoPrecioDetalle.listp_Id,
+        //              ListadoPrecioDetalle.prod_Codigo,
+        //              ListadoPrecioDetalle.lispd_PrecioMayorista,
+        //              ListadoPrecioDetalle.lispd_PrecioMinorista,
+        //              ListadoPrecioDetalle.lispd_DescCaja,
+        //              ListadoPrecioDetalle.lispd_DescGerente);
+
+        //            foreach (UDP_Vent_tbListadoPrecioDetalle_Insert_Result SPpreciodetalle in listPrecioDetalle)
+
+        //                MensajeErrorDetalle = SPpreciodetalle.MensajeError;
+        //                if (MensajeError == "-1")
+        //                {
+        //                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+
+        //                }
+
+        //                else
+        //                {
+        //                    ModelState.AddModelError("", "No se pudo agregar el registro");
+        //                }
+        //            }
+        //               catch (Exception Ex)
+        //        {
+        //            ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
+        //            ViewBag.Producto = db.tbProducto.ToList();
+        //            ViewBag.lispd_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListadoPrecioDetalle.lispd_UsuarioCrea);
+        //            ViewBag.lispd_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListadoPrecioDetalle.lispd_UsuarioModifica);
+        //            ViewBag.lispd_Id = new SelectList(db.tbListadoPrecioDetalle, "listp_Id", "prod_Codigo", tbListadoPrecioDetalle.listp_Id);
+
+        //        }
+
+        //    }
+
+        //    ViewBag.Producto = db.tbProducto.ToList();
+        //    ViewBag.listp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioCrea);
+        //    ViewBag.listp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioModifica);
+        //    ViewBag.listp_Id = new SelectList(db.tbListadoPrecioDetalle, "listp_Id", "prod_Codigo", tbListaPrecio.listp_Id);
+        //    return View(tbListaPrecio);
+        //}
+
+
+        //public JsonResult SaveDataInDatabase(tbListadoPrecioDetalle model)
+        //{
+        //    var result = false;
+        //    try
+        //    {
+        //        if (model.lispd_Id > 0)
+        //        {
+        //            tbListadoPrecioDetalle Precio = db.tbListadoPrecioDetalle.SingleOrDefault(x => x.IsDeleted == false && x.lispd_Id == model.lispd_Id);
+        //            Precio.prod_Codigo = model.prod_Codigo;
+        //            Precio.lispd_PrecioMayorista = model.lispd_PrecioMayorista;
+        //            Precio.lispd_PrecioMinorista = model.lispd_PrecioMinorista;
+        //            Precio.lispd_DescCaja = model.lispd_DescCaja;
+        //            Precio.lispd_DescGerente = model.lispd_DescGerente;
+
+        //            db.SaveChanges();
+        //            result = true;
+        //        }
+        //        else
+        //        {
+        //            tbListadoPrecioDetalle Precio = new tbListadoPrecioDetalle();
+        //            Precio.prod_Codigo = model.prod_Codigo;
+        //            Precio.lispd_PrecioMayorista = model.lispd_PrecioMayorista;
+        //            Precio.lispd_PrecioMinorista = model.lispd_PrecioMinorista;
+        //            Precio.lispd_DescCaja = model.lispd_DescCaja;
+        //            Precio.lispd_DescGerente = model.lispd_DescGerente;
+        //            Precio.IsDeleted = false;
+        //            db.tbListadoPrecioDetalle.Add(Precio);
+        //            db.SaveChanges();
+        //            result = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    }
+
+
+
+
+
 
         // POST: /ListaPrecios/Delete/5
         [HttpPost, ActionName("Delete")]

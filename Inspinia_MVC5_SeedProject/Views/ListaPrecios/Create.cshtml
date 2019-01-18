@@ -78,7 +78,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.listp_Prioridad, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.listp_Prioridad, new { htmlAttributes = new { @maxlength = "1", @onkeypress = "return validar(event)" } })
+                                    @Html.EditorFor(model => model.listp_Prioridad, new { htmlAttributes = new { @maxlength = "1", @min = "1", @max = "3", @onkeypress = "return validar(event)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.listp_Prioridad)</p>
                                 </div>
                             </div>
@@ -142,7 +142,13 @@ jQuery('input,select').each(function() {
     }*@
 
 
-
+@{
+    if (TempData["message"] != null) {
+    <script type="text/javascript">
+        alert(@Html.Raw(Json.Encode(TempData["message"])));
+    </script>
+}
+    }
 
 
 

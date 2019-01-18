@@ -9,10 +9,12 @@
                     <thead>
                         <tr>
                             <th>
-                                Producto Codigo
-                                @*@Html.DisplayNameFor(model => model.lispd_PrecioMayorista)*@
+                                 Código Producto                                @*@Html.DisplayNameFor(model => model.lispd_PrecioMayorista)*@
                             </th>
 
+                            <th>
+                                Descripción Producto                                @*@Html.DisplayNameFor(model => model.lispd_PrecioMayorista)*@
+                            </th>
                             <th>
                                 Precio Mayorista 
                                 @*@Html.DisplayNameFor(model => model.lispd_PrecioMayorista)*@                   
@@ -50,6 +52,10 @@
                                     @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
                                 </td>
 
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                </td>
 
                                 <td>
                                     @Html.DisplayFor(modelItem => item.lispd_PrecioMayorista)

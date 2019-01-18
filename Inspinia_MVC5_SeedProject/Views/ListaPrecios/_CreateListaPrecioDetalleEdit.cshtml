@@ -11,13 +11,13 @@
                     </div>
                 </div>
 
-                <div class="ibox-content">
+                <div class="ibox-content" id="Tabla">
 
 
                     <div class="form-horizontal">
                         @*@Html.ValidationSummary(true)*@
 
-
+                    
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.prod_Codigo, "Código Producto", new { @class = "control-label col-md-2" })
@@ -38,7 +38,7 @@
 
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripción Producto", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Nombre Producto", new { @class = "control-label col-md-2" })
                             <div class="col-md-4 ">
                                 @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <div id="validacionNombreProductoCreate">
@@ -73,39 +73,42 @@
 
 
 
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja (%)", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
-                                        <div id="validacionDescuentoCajaCreate">
-                                           @Html.ValidationMessageFor(model => model.lispd_DescCaja)
-                                        </div>
-
-
-                                    </div>
-
-                                    @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente (%)", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
-                                        <div id="validacionDescuentoGerenteCreate">
-                                           @Html.ValidationMessageFor(model => model.lispd_DescGerente)
-                                        </div>
-
-                                    </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja (%)", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                <div id="validacionDescuentoCajaCreate">
+                                    @Html.ValidationMessageFor(model => model.lispd_DescCaja)
                                 </div>
+
 
                             </div>
 
+                            @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente (%)", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                <div id="validacionDescuentoGerenteCreate">
+                                    @Html.ValidationMessageFor(model => model.lispd_DescGerente)
+                                </div>
 
+                            </div>
                         </div>
+                        <div class="form-group">
+                            <a href="#" class="btn btn-block btn-danger" id="GuardarRegistro">Save</a>
+                        </div>
+
                     </div>
+
+
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-    @*</div>
+@*</div>
 
-</div>*@
+    </div>*@
 
 <table id="tbListaPrecioDetalle" class="table table table-striped">
     <thead>
@@ -147,6 +150,8 @@
         </div>
     </div>
 </div>
+
+                        
 <script type="text/javascript">
         $(document).ready(function () {
             $('#lispd_DescGerente').val('0.00')
@@ -157,7 +162,7 @@
 <script>
     function comprobar()
     {
-       
+
             var PMA = $('#lispd_PrecioMayorista').val();
             var PMI = $('#lispd_PrecioMinorista').val();
             if (PMA<PMI)
@@ -167,5 +172,21 @@
             }
             return true;
         }
-        
+
 </script>
+<script>
+  $("#GuardarRegistro").click(function () {
+      var data = $("#Tabla").serialize();
+        $.ajax({
+            type: "Post",
+            url: "/ListaPrecios/SaveDataInDatabase",
+            data: data,
+            success: function (result) {
+                alert("Success!..");
+                window.location.href = "/Home/index";
+                $("#MyModal").modal("hide");
+            }
+        })
+  })
+</script>
+

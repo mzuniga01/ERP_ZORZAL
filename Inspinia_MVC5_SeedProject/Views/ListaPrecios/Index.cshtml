@@ -19,11 +19,11 @@
                 <div class="ibox-title">
                     <h5>Listado Precios</h5>
                     <div class="ibox-tools">
-                        @Html.ActionLink("Registrar Lista Precio", "Create", null, new { @class = "btn btn-primary btn-xs" })
+                        @Html.ActionLink("Registrar Lista Precio", "Create", null, new { @class = "btn btn-primary btn-sm" })
                     </div>
                 </div>
                 <div class="ibox-content">
-
+                  
 
                     <table class="table table-striped table-bordered table-hover" id="DataTable">
                         <thead>
@@ -82,8 +82,8 @@
                                     </td>
 
                                     <td>
-                                        @Html.ActionLink("Detalles", "Details", new { id = item.listp_Id }, new { @class = "btn btn-primary btn-sm" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.listp_Id }, new { @class = "btn btn-white btn-ms" })
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.listp_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.listp_Id }, new { @class = "btn btn-primary btn-xs" })
                              
                                     </td>
                                 </tr>
