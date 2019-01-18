@@ -2,6 +2,9 @@
 @using ERP_GMEDINA.Models
 
 @{
+    var test = new ERP_GMEDINA.Models.tbDenominacion();
+}
+@{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -77,7 +80,7 @@
                                     @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
                                 </div>
-                                @Html.LabelFor(model => model.mocja_Id, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.mocja_Id,"Id Apertura", new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @*@Html.DropDownList("mocja_Id",*@ @*String.Empty*@@*null, "Seleccione la Moneda", new { @class = "form-control" })*@
                                     @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
@@ -102,14 +105,14 @@
                             </div>
 
 
-                            @*<div class="form-group">
+                            <div class="form-group">
                                 @Html.LabelFor(model => model.solef_EsApertura, new { @class = "control-label col-md-2" })
-                                <div class="col-md-3">*@
-                            @*@Html.EditorFor(model => model.solef_EsApertura)*@
-                            @*@Html.DisplayFor(model => model.solef_EsApertura)
+                                <div class="col-md-3">
+                            @Html.CheckBoxFor(model => model.solef_EsApertura, new { onclick = "return false" })
+                            @*@Html.DisplayFor(model => model.solef_EsApertura)*@
                                         @Html.ValidationMessageFor(model => model.solef_EsApertura)
                                     </div>
-                                </div>*@
+                                </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.solef_EsAnulada, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
@@ -147,9 +150,6 @@
                                         </div>
                                         @Html.Partial("_IndexEditSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
                                     </div>
-
-
-
                     }
 
 
@@ -195,10 +195,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Denominación</h4>
                 </div>
                 <div class="modal-body" id="frmEditarMunicipios">
-                    @Html.Partial("_CreateSolicitudEfectivoDetalle", new tbSolicitudEfectivoDetalle())
+                    <div>
+                        @*@Html.Partial("_IndexEditSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)*@
+                        @*@Html.Partial("_AddDetalle", Model.tbMoneda.tbDenominacion)*@
+                    </div>
+                    @*@Html.Partial("_CreateSolicitudEfectivoDetalle", new tbSolicitudEfectivoDetalle())*@
                 </div>
             </div>
         </div>
@@ -235,7 +239,7 @@
 
 <script>
         var MontoSolicitado = 0;
-        $("#mitabla tbody tr:nth-child(-n+4)").each(function () {
+        $("#mitabla tbody tr:nth-child(-n+20)").each(function () {
             MontoSolicitado += parseFloat($(this).children("td:eq(4)").html());
         });
 
@@ -249,11 +253,10 @@
     $(document).ready(function () {
         if ($('#solef_FechaEntrega').val() == '') {
 
-            $("#solef_FechaEntrega").val('0000/00/00');
+            $("#solef_FechaEntrega").val();
         }
 
     });
-
 
     </script>
 
@@ -263,19 +266,17 @@
 
             if (jQuery("#solef_EsAnulada").is(":checked")) {
                 $('#bottonAnular').hide();
-                $('#AñadirDenominacion').hide();
-               
-                
-
-            }            
-
+                $('#AñadirDenominacion').hide();            
+            }  
+            else if (jQuery("#solef_EsApertura").is(":checked")){
+                $('#bottonAnular').hide();
+                $('#AñadirDenominacion').hide();  
+            }
             else {
                 $('#bottonAnular').show();
                 $('#AñadirDenominacion').show();
             }
         });
-
-        
 
     </script>
 
@@ -293,25 +294,50 @@
         }
     </script>
 
-    @*<script>
-        $(document).ready(function () {
-            $("#soled_CantidadSolicitada")[0].maxLength = 7;
-            $("#ValorDeno")[0].maxLength = 12;
-        })
+ <script type="text/javascript">
+        //$(document).ready(function () {
+        //    $.ajax({
+        //        type: 'GET',
+        //        url: '/SolicitudEfectivo/GetDenominacions',
+        //        datatype: 'JSON',
+        //        data: {},
+        //        success: function (data) {
+        //            $('#mnda_Id').empty();
+        //            $('#mnda_Id').append("<option value='0'>Seleccione la Moneda</option>");
+        //            $.each(data, function (i, item) {
+        //                $('#mnda_Id').append("<option value='" + item.mnda_Id + "'>" + item.Text + "</option>");
+        //            });
+        //        },
+        //        error: function (data) { alert(data.responseText); }
+        //    });
 
-        $(function () {
-            $("#soled_CantidadSolicitada").keyup(function (e) {
-                var Cantidad = $("#soled_CantidadSolicitada").val(),
-                    valores = $("#ValorDeno").val(),
-                    result = "";
-                if (Cantidad.length && valores.length > 0) {
-                    result += Cantidad * valores;
-                }
-                $("#MontoSolicitado").val(result);
-            });
-        });
-</script>*@
+            //$("#solef_Id").ready(function () {
+            //    $.ajax({
+            //        type: 'GET',
+            //        url: '/SolicitudEfectivo/detalle',
+            //        datatype: 'JSON',
+            //        data: { 'moneda': $(this).val() },
+            //        success: function (data) {
+            //            $('#example1 tbody').empty();
+            //            $.each(data, function (i, item) {
+            //                var rows = "<tr data-id=" + item.deno_Id + ">" +
+            //                           "<td hidden>" + item.deno_Id + "</td>" +
+            //                           "<td>" + item.deno_Descripcion + "</td>" +
+            //                            "<td>" + '<input type="text" id="cantidad" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
+            //                            "<td>" +  0 + "</td>" +
+            //                             "<td>" +  0 +   "</td>" +
+            //                            "<td >" + 0+ "</td>" +
+            //                           "<td hidden>" + item.deno_valor + "</td>" +
 
+            //                           "</tr>";
+            //                $('#example1 tbody').append(rows);
+            //            });
+            //        },
+            //        error: function (data) { alert(data.responseText); }
+            //    });
+            //});
+        //});
+</script>
 
 
 

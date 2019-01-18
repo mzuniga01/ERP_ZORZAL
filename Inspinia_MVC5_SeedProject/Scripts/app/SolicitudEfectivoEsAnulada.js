@@ -12,8 +12,7 @@
     })
     .done(function (data) {
         if (data.length > 0) {
-            var url = $("#RedirectTo").val();
-            location.href = url;
+            window.location.href = "/SolicitudEfectivo/Index";
         }
         else {
             alert("Registro No Actualizado");

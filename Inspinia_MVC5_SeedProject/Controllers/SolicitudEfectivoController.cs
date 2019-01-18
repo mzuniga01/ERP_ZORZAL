@@ -33,6 +33,23 @@ namespace ERP_GMEDINA.Controllers
 
         }
 
+        public JsonResult detalle(int soleid)
+        {
+
+            var items = (from a in db.tbDenominacion
+                         join b in db.tbMoneda on a.mnda_Id equals b.mnda_Id
+                         join c in db.tbSolicitudEfectivo on b.mnda_Id equals c.mnda_Id
+                         where c.solef_Id == soleid
+                         select new
+                         {
+                             a.deno_Id,
+                             a.deno_Descripcion,
+                             a.deno_valor
+                         }).Distinct().ToList();
+
+
+            return Json(items, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpGet]
         public JsonResult BuscarDenoId(int denoid)
@@ -141,7 +158,7 @@ namespace ERP_GMEDINA.Controllers
         {
 
             ViewBag.Denominacion = db.tbDenominacion.ToList();
-            //var list = (List<tbSolicitudEfectivoDetalle>)Session["Solicitud"];
+            var list = (List<tbSolicitudEfectivoDetalle>)Session["Solicitud"];
             string MensajeError = "";
             var MensajeErrorDetalle = "";
             IEnumerable<object> listSolicitudEfectivo = null;
@@ -168,11 +185,11 @@ namespace ERP_GMEDINA.Controllers
                         {
                             if (MensajeError != "-1")
                             {
-                                if (procesoData != null)
+                                if (list != null)
                                 {
-                                    if (procesoData.Count != 0)
+                                    if (list.Count != 0)
                                     {
-                                        foreach (tbSolicitudEfectivoDetalle Detalle in procesoData)
+                                        foreach (tbSolicitudEfectivoDetalle Detalle in list)
                                         {
 
                                             Detalle.solef_Id = Convert.ToInt32(MensajeError);
@@ -215,8 +232,10 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.Denominacion = db.tbDenominacion.ToList();
                     List<tbMoneda> MonedaList = db.tbMoneda.ToList();
                     ViewBag.MonedaList = new SelectList(MonedaList, "mnda_Id", "mnda_Nombre");
-
+                    ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
                     ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
+
+                    ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
                 }
 
             }
@@ -227,6 +246,10 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
             ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbSolicitudEfectivo.mocja_Id);
 
+
+            List<tbMoneda> MonedaLists = db.tbMoneda.ToList();
+            ViewBag.MonedaLists = new SelectList(MonedaLists, "mnda_Id", "mnda_Nombre");
+            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
             return View(tbSolicitudEfectivo);
 
         }
@@ -487,9 +510,20 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult InsertDetalleSolicitudDetalle(List<tbSolicitudEfectivoDetalle> procesoData)
         {
+            if (procesoData == null)
+            {
+                Session["Solicitud"] = procesoData;
+            }
+            else
+            {
+                Session["Solicitud"] = procesoData;
+            }
 
 
             return Json("Exito", JsonRequestBehavior.AllowGet);
+       
+
+          
         }
 
     }

@@ -1,5 +1,10 @@
 ﻿@model ERP_GMEDINA.Models.tbSolicitudEfectivo
 @using ERP_GMEDINA.Models
+
+@{
+    var sucursal = new ERP_GMEDINA.Models.tbSucursal();
+}
+
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -37,44 +42,34 @@
 
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => sucursal.suc_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @Value = "San Pedro Sula", @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
                                 </div>
 
-                                @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.tbMovimientoCaja.cja_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, new { htmlAttributes = new { @Value = "Caja 2", @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, new { htmlAttributes = new { @Value = "Caja 1", @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.mocja_Id, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.tbMovimientoCaja.mocja_Id,"Id Apertura", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @Value = "12", @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @Value = "6", @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.mocja_Id, "", new { style = "Color:red" })
                                 </div>
-                                @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @if (ViewBag.MonedaList != null)
-                                    {
-                                        @Html.DropDownListFor(model => model.mnda_Id, ViewBag.MonedaList as SelectList, "Selccione la Moneda", new { @class = "form-control" })
-                                    }
-                                    else
-                                    {
-                                        @Html.DropDownListFor(model => model.mnda_Id, ViewBag.MonedaList as SelectList, "Selccione la Moneda", new { @class = "form-control" })
-
-                                    }
-                                  
-                                    @*<select id="mnda_Id" name="mnda_Id" class="form-control select2 select2-hidden-accessible"
+                                @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion,"Moneda", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">          
+                                                       
+                                    <select id="mnda_Id" name="mnda_Id" class="form-control select2 select2-hidden-accessible"
                                             style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option value="0">Seleccione la Moneda</option>
-                                    </select>*@
-                                    <div id="validationMonedaCreate">
+                                    </select>
+                                    <div class="validationMonedaCreate">
                                         @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
-                                       
                                     </div>
                                 </div>
                             </div>
@@ -90,8 +85,8 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-5 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    <input type="button" value="prueba" id="guardar" class="btn btn-primary" />
+                                    <input type="submit" value="Guardar" id="guardar" class="btn btn-primary" />
+                                    @*<input type="button" value="prueba"  class="btn btn-primary" />*@
 
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
@@ -219,41 +214,52 @@
 </script>
 
 
-<script>
-        $('#guardar').click(function () {
-            var Detail = [];
-            $('#example1 > tbody  > tr').each(function () {
-                idItem = $(this).data('id');
-                var soledCantidadSolicitada = $(this).find("td:eq(2)").find("input").val();
-                if (soledCantidadSolicitada != '' && soledCantidadSolicitada != 0)
-                {
-                    console.log('idItem', idItem);
-                    console.log('soledCantidadSolicitada', soledCantidadSolicitada);
-                    var item = {
-                        deno_Id: idItem,
-                        soled_CantidadSolicitada: parseInt(soledCantidadSolicitada),
-                    }
-                    Detail.push(item);
-                }
-            });
-            console.log(Detail);
-            $.ajax({
-                url: "/SolicitudEfectivo/InsertDetalleSolicitudDetalle",
-                method: 'POST',
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ procesoData: Detail }),
-            })
-            .done(function (data) {
-                if (data == 'Error') {
-                    alert('No Enviado');
-                }
-                else {
-                    console.log(procesoData);
-                    console.log(cantisoli);
-                }
+   
 
-            });
+
+<script>
+    $('#guardar').click(function () {
+               
+         
+
+                var idmovimiento 
+            
+                var Detail = [];
+               
+
+                    $('#example1 > tbody  > tr').each(function () {
+                        idItem = $(this).data('id');
+                        var soledCantidadSolicitada = $(this).find("td:eq(2)").find("input").val();
+                        if (soledCantidadSolicitada != '' && soledCantidadSolicitada != 0) {
+                            console.log('idItem', idItem);
+                            console.log('soledCantidadSolicitada', soledCantidadSolicitada);
+                            var item = {
+                                deno_Id: idItem,
+                                soled_CantidadSolicitada: parseInt(soledCantidadSolicitada),
+                            }
+                            Detail.push(item);
+                        }
+                    });
+                    console.log(Detail);
+                    $.ajax({
+                        url: "/SolicitudEfectivo/InsertDetalleSolicitudDetalle",
+                        method: 'POST',
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({ procesoData: Detail }),
+                    })
+                    .done(function (data) {
+                        if (data == 'Error') {
+                            alert('No Enviado');
+                        }
+                        else {
+
+                            console.log(procesoData);
+                            console.log(cantisoli);
+                        }
+
+                    });
+                
         });
 </script>
    
