@@ -1159,15 +1159,6 @@
       <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
       <Parameter Name="CODIGOPRODUCTO" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result)">
-      <Parameter Name="cja_Id" Mode="In" Type="Int16" />
-      <Parameter Name="mocja_FechaApertura" Mode="In" Type="DateTime" />
-      <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_FechaArqueo" Mode="In" Type="DateTime" />
-      <Parameter Name="mocja_UsuarioArquea" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
-      <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbListaPrecio_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Estado_Result)">
       <Parameter Name="listp_Id" Mode="In" Type="Int32" />
       <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
@@ -2337,6 +2328,47 @@
       <End Role="tbCaja" EntitySet="tbCaja" />
       <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
     </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" Association="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id">
+      <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+      <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id" Association="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id">
+      <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+      <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" Association="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
+      <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+      <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
+    </AssociationSet>
+    <FunctionImport Name="sp_GetDetallePedido" ReturnType="Collection(ERP_ZORZALModel.sp_GetDetallePedido_Result)">
+      <Parameter Name="ped_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result)">
+      <Parameter Name="cja_Id" Mode="In" Type="Int16" />
+      <Parameter Name="mocja_FechaApertura" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_FechaArqueo" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioArquea" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Apertura_Insert" ReturnType="Collection(Int32)">
+      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+      <Parameter Name="solef_EsApertura" Mode="In" Type="Boolean" />
+      <Parameter Name="solef_FechaEntrega" Mode="In" Type="DateTime" />
+      <Parameter Name="solef_UsuarioEntrega" Mode="In" Type="Int32" />
+      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+      <Parameter Name="solef_EsAnulada" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" ReturnType="Collection(Int32)">
+      <Parameter Name="solef_Id" Mode="In" Type="Int32" />
+      <Parameter Name="deno_Id" Mode="In" Type="Int16" />
+      <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
+      <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
+      <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
+      <Parameter Name="soled_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="soled_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -2697,9 +2729,6 @@
   <ComplexType Name="UDP_Vent_tbFactura_ConsultaBodega_Result">
     <Property Type="Boolean" Name="MENSAJE" Nullable="true" />
     <Property Type="Decimal" Name="CANTIDAD" Nullable="false" Precision="10" Scale="2" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbListaPrecio_Estado_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -3470,6 +3499,7 @@
     <NavigationProperty Name="tbDenominacion" Relationship="ERP_ZORZALModel.FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id" FromRole="tbDenominacionArqueo" ToRole="tbDenominacion" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioCrea" FromRole="tbDenominacionArqueo" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica" FromRole="tbDenominacionArqueo" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" FromRole="tbDenominacionArqueo" ToRole="tbMovimientoCaja" />
   </EntityType>
   <EntityType Name="tbDevolucion">
     <Key>
@@ -3743,6 +3773,7 @@
     <NavigationProperty Name="tbTipoPago" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id" FromRole="tbPagosArqueo" ToRole="tbTipoPago" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioCrea" FromRole="tbPagosArqueo" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagosArqueo_arqpg_UsuarioModifica" FromRole="tbPagosArqueo" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id" FromRole="tbPagosArqueo" ToRole="tbMovimientoCaja" />
   </EntityType>
   <EntityType Name="tbPedido">
     <Key>
@@ -3867,6 +3898,7 @@
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioCrea" FromRole="tbSolicitudEfectivo" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioEntrega" FromRole="tbSolicitudEfectivo" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioModifica" FromRole="tbSolicitudEfectivo" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" FromRole="tbSolicitudEfectivo" ToRole="tbMovimientoCaja" />
   </EntityType>
   <EntityType Name="tbSolicitudEfectivoDetalle">
     <Key>
@@ -5569,6 +5601,9 @@
     <NavigationProperty Name="tbUsuario3" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioCrea" FromRole="tbMovimientoCaja" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario4" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica" FromRole="tbMovimientoCaja" ToRole="tbUsuario" />
     <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbMovimientoCaja_cja_Id" FromRole="tbMovimientoCaja" ToRole="tbCaja" />
+    <NavigationProperty Name="tbDenominacionArqueo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbDenominacionArqueo" />
+    <NavigationProperty Name="tbPagosArqueo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbPagosArqueo" />
+    <NavigationProperty Name="tbSolicitudEfectivo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbSolicitudEfectivo" />
   </EntityType>
   <Association Name="FK_Acce_tbAccesoRol_acrol_UsuarioModifica">
     <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
@@ -7058,4 +7093,52 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id">
+    <End Type="ERP_ZORZALModel.tbMovimientoCaja" Role="tbMovimientoCaja" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbDenominacionArqueo" Role="tbDenominacionArqueo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbMovimientoCaja">
+        <PropertyRef Name="mocja_Id" />
+      </Principal>
+      <Dependent Role="tbDenominacionArqueo">
+        <PropertyRef Name="mocja_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id">
+    <End Type="ERP_ZORZALModel.tbMovimientoCaja" Role="tbMovimientoCaja" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbPagosArqueo" Role="tbPagosArqueo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbMovimientoCaja">
+        <PropertyRef Name="mocja_Id" />
+      </Principal>
+      <Dependent Role="tbPagosArqueo">
+        <PropertyRef Name="mocja_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
+    <End Type="ERP_ZORZALModel.tbMovimientoCaja" Role="tbMovimientoCaja" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbSolicitudEfectivo" Role="tbSolicitudEfectivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbMovimientoCaja">
+        <PropertyRef Name="mocja_Id" />
+      </Principal>
+      <Dependent Role="tbSolicitudEfectivo">
+        <PropertyRef Name="mocja_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_GetDetallePedido_Result">
+    <Property Type="Int32" Name="ped_Id" Nullable="false" />
+    <Property Type="Int32" Name="pedd_Id" Nullable="false" />
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="Decimal" Name="pedd_Cantidad" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="lispd_PrecioMayorista" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="pscat_ISV" Nullable="false" Precision="5" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
 </Schema>

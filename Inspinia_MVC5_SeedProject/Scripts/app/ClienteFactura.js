@@ -66,6 +66,7 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
             $('#fact_PorcentajeDescuento').val('');
             document.getElementById("MostrarTerceraEdad").disabled = true;
             document.getElementById("fact_AutorizarDescuento").disabled = true;
+
         }
         else {
             $("#MostrarTerceraEdad").prop("checked", false);
@@ -101,22 +102,42 @@ $("#cliente_Identificacion").on("keypress keyup blur", function (event) {
 })
 
 $('#consumidorFinal').change(function () {
+    //GetParametro
+ 
     if (this.checked) {
         document.getElementById("btnAgregarCliente").disabled = true;
         document.getElementById("CrearCliente").disabled = true;
-        document.getElementById("cliente_Identificacion").disabled = true;
         $('#Alcredito').hide();
         $('#AutorizarD').hide();
         $('#TerceraEdad').show();
         $("#fact_AlCredito").prop("checked", false);
         $('#fact_DiasCredit').val(0);
         $('#Cred1').hide();
+        GetParametro();
+        function GetParametro() {
+            $.ajax({
+                url: "/Factura/GetParametro",
+                method: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({}),
+            })
+            .done(function (data) {
+                $.each(data, function (key, val) {
+                    $('#IDCliente').val(val.par_IdConsumidorFinal);
+                });
+
+                console.log(data)
+            });
+        }
+
     }
     else {
         document.getElementById("btnAgregarCliente").disabled = false;
         document.getElementById("CrearCliente").disabled = false;
         document.getElementById("cliente_Identificacion").disabled = false;
         $('#Alcredito').show();
+        $('#IDCliente').val('');
         $('#AutorizarD').show();
     }
 

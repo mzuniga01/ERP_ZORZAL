@@ -59,7 +59,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.factd_PrecioUnitario, new { @class = "control-label col-md-1" })
                             <div class="col-md-3">
-                                @Html.EditorFor(model => model.factd_PrecioUnitario, new { htmlAttributes = new { @class = "form-control", @Value = "", @onkeyup = "format(this)", @autocomplete = "off", @readonly = "readonly" } })
+                                @Html.EditorFor(model => model.factd_PrecioUnitario, new { htmlAttributes = new { @class = "form-control", @Value = "", @autocomplete = "off", @readonly = "readonly" } })
                                 <div id="validationPrecioUnitarioCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.factd_PrecioUnitario)</p>
                                 </div>

@@ -4217,39 +4217,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_ConsultaBodega_Result>("UDP_Vent_tbFactura_ConsultaBodega", iDSUCURSALParameter, cODIGOPRODUCTOParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result> UDP_Vent_tbMovimientoCaja_Apertura_Insert(Nullable<short> cja_Id, Nullable<System.DateTime> mocja_FechaApertura, Nullable<int> mocja_UsuarioApertura, Nullable<System.DateTime> mocja_FechaArqueo, Nullable<int> mocja_UsuarioArquea, Nullable<System.DateTime> mocja_FechaAceptacion, Nullable<int> mocja_UsuarioAceptacion)
-        {
-            var cja_IdParameter = cja_Id.HasValue ?
-                new ObjectParameter("cja_Id", cja_Id) :
-                new ObjectParameter("cja_Id", typeof(short));
-    
-            var mocja_FechaAperturaParameter = mocja_FechaApertura.HasValue ?
-                new ObjectParameter("mocja_FechaApertura", mocja_FechaApertura) :
-                new ObjectParameter("mocja_FechaApertura", typeof(System.DateTime));
-    
-            var mocja_UsuarioAperturaParameter = mocja_UsuarioApertura.HasValue ?
-                new ObjectParameter("mocja_UsuarioApertura", mocja_UsuarioApertura) :
-                new ObjectParameter("mocja_UsuarioApertura", typeof(int));
-    
-            var mocja_FechaArqueoParameter = mocja_FechaArqueo.HasValue ?
-                new ObjectParameter("mocja_FechaArqueo", mocja_FechaArqueo) :
-                new ObjectParameter("mocja_FechaArqueo", typeof(System.DateTime));
-    
-            var mocja_UsuarioArqueaParameter = mocja_UsuarioArquea.HasValue ?
-                new ObjectParameter("mocja_UsuarioArquea", mocja_UsuarioArquea) :
-                new ObjectParameter("mocja_UsuarioArquea", typeof(int));
-    
-            var mocja_FechaAceptacionParameter = mocja_FechaAceptacion.HasValue ?
-                new ObjectParameter("mocja_FechaAceptacion", mocja_FechaAceptacion) :
-                new ObjectParameter("mocja_FechaAceptacion", typeof(System.DateTime));
-    
-            var mocja_UsuarioAceptacionParameter = mocja_UsuarioAceptacion.HasValue ?
-                new ObjectParameter("mocja_UsuarioAceptacion", mocja_UsuarioAceptacion) :
-                new ObjectParameter("mocja_UsuarioAceptacion", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result>("UDP_Vent_tbMovimientoCaja_Apertura_Insert", cja_IdParameter, mocja_FechaAperturaParameter, mocja_UsuarioAperturaParameter, mocja_FechaArqueoParameter, mocja_UsuarioArqueaParameter, mocja_FechaAceptacionParameter, mocja_UsuarioAceptacionParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbListaPrecio_Estado_Result> UDP_Vent_tbListaPrecio_Estado(Nullable<int> listp_Id, Nullable<bool> listp_EsActivo)
         {
             var listp_IdParameter = listp_Id.HasValue ?
@@ -5109,6 +5076,110 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("IDCAJA", typeof(short));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Vent_tbFactura_ObtenerCai_CodigoFactura", iDSucursalParameter, iDCAJAParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetDetallePedido_Result> sp_GetDetallePedido(Nullable<int> ped_Id)
+        {
+            var ped_IdParameter = ped_Id.HasValue ?
+                new ObjectParameter("ped_Id", ped_Id) :
+                new ObjectParameter("ped_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetDetallePedido_Result>("sp_GetDetallePedido", ped_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result> UDP_Vent_tbMovimientoCaja_Apertura_Insert(Nullable<short> cja_Id, Nullable<System.DateTime> mocja_FechaApertura, Nullable<int> mocja_UsuarioApertura, Nullable<System.DateTime> mocja_FechaArqueo, Nullable<int> mocja_UsuarioArquea, Nullable<System.DateTime> mocja_FechaAceptacion, Nullable<int> mocja_UsuarioAceptacion)
+        {
+            var cja_IdParameter = cja_Id.HasValue ?
+                new ObjectParameter("cja_Id", cja_Id) :
+                new ObjectParameter("cja_Id", typeof(short));
+    
+            var mocja_FechaAperturaParameter = mocja_FechaApertura.HasValue ?
+                new ObjectParameter("mocja_FechaApertura", mocja_FechaApertura) :
+                new ObjectParameter("mocja_FechaApertura", typeof(System.DateTime));
+    
+            var mocja_UsuarioAperturaParameter = mocja_UsuarioApertura.HasValue ?
+                new ObjectParameter("mocja_UsuarioApertura", mocja_UsuarioApertura) :
+                new ObjectParameter("mocja_UsuarioApertura", typeof(int));
+    
+            var mocja_FechaArqueoParameter = mocja_FechaArqueo.HasValue ?
+                new ObjectParameter("mocja_FechaArqueo", mocja_FechaArqueo) :
+                new ObjectParameter("mocja_FechaArqueo", typeof(System.DateTime));
+    
+            var mocja_UsuarioArqueaParameter = mocja_UsuarioArquea.HasValue ?
+                new ObjectParameter("mocja_UsuarioArquea", mocja_UsuarioArquea) :
+                new ObjectParameter("mocja_UsuarioArquea", typeof(int));
+    
+            var mocja_FechaAceptacionParameter = mocja_FechaAceptacion.HasValue ?
+                new ObjectParameter("mocja_FechaAceptacion", mocja_FechaAceptacion) :
+                new ObjectParameter("mocja_FechaAceptacion", typeof(System.DateTime));
+    
+            var mocja_UsuarioAceptacionParameter = mocja_UsuarioAceptacion.HasValue ?
+                new ObjectParameter("mocja_UsuarioAceptacion", mocja_UsuarioAceptacion) :
+                new ObjectParameter("mocja_UsuarioAceptacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result>("UDP_Vent_tbMovimientoCaja_Apertura_Insert", cja_IdParameter, mocja_FechaAperturaParameter, mocja_UsuarioAperturaParameter, mocja_FechaArqueoParameter, mocja_UsuarioArqueaParameter, mocja_FechaAceptacionParameter, mocja_UsuarioAceptacionParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbSolicitudEfectivo_Apertura_Insert(Nullable<int> mocja_Id, Nullable<bool> solef_EsApertura, Nullable<System.DateTime> solef_FechaEntrega, Nullable<int> solef_UsuarioEntrega, Nullable<short> mnda_Id, Nullable<bool> solef_EsAnulada)
+        {
+            var mocja_IdParameter = mocja_Id.HasValue ?
+                new ObjectParameter("mocja_Id", mocja_Id) :
+                new ObjectParameter("mocja_Id", typeof(int));
+    
+            var solef_EsAperturaParameter = solef_EsApertura.HasValue ?
+                new ObjectParameter("solef_EsApertura", solef_EsApertura) :
+                new ObjectParameter("solef_EsApertura", typeof(bool));
+    
+            var solef_FechaEntregaParameter = solef_FechaEntrega.HasValue ?
+                new ObjectParameter("solef_FechaEntrega", solef_FechaEntrega) :
+                new ObjectParameter("solef_FechaEntrega", typeof(System.DateTime));
+    
+            var solef_UsuarioEntregaParameter = solef_UsuarioEntrega.HasValue ?
+                new ObjectParameter("solef_UsuarioEntrega", solef_UsuarioEntrega) :
+                new ObjectParameter("solef_UsuarioEntrega", typeof(int));
+    
+            var mnda_IdParameter = mnda_Id.HasValue ?
+                new ObjectParameter("mnda_Id", mnda_Id) :
+                new ObjectParameter("mnda_Id", typeof(short));
+    
+            var solef_EsAnuladaParameter = solef_EsAnulada.HasValue ?
+                new ObjectParameter("solef_EsAnulada", solef_EsAnulada) :
+                new ObjectParameter("solef_EsAnulada", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbSolicitudEfectivo_Apertura_Insert", mocja_IdParameter, solef_EsAperturaParameter, solef_FechaEntregaParameter, solef_UsuarioEntregaParameter, mnda_IdParameter, solef_EsAnuladaParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert(Nullable<int> solef_Id, Nullable<short> deno_Id, Nullable<short> soled_CantidadSolicitada, Nullable<short> soled_CantidadEntregada, Nullable<decimal> soled_MontoEntregado, Nullable<int> soled_UsuarioCrea, Nullable<System.DateTime> soled_FechaCrea)
+        {
+            var solef_IdParameter = solef_Id.HasValue ?
+                new ObjectParameter("solef_Id", solef_Id) :
+                new ObjectParameter("solef_Id", typeof(int));
+    
+            var deno_IdParameter = deno_Id.HasValue ?
+                new ObjectParameter("deno_Id", deno_Id) :
+                new ObjectParameter("deno_Id", typeof(short));
+    
+            var soled_CantidadSolicitadaParameter = soled_CantidadSolicitada.HasValue ?
+                new ObjectParameter("soled_CantidadSolicitada", soled_CantidadSolicitada) :
+                new ObjectParameter("soled_CantidadSolicitada", typeof(short));
+    
+            var soled_CantidadEntregadaParameter = soled_CantidadEntregada.HasValue ?
+                new ObjectParameter("soled_CantidadEntregada", soled_CantidadEntregada) :
+                new ObjectParameter("soled_CantidadEntregada", typeof(short));
+    
+            var soled_MontoEntregadoParameter = soled_MontoEntregado.HasValue ?
+                new ObjectParameter("soled_MontoEntregado", soled_MontoEntregado) :
+                new ObjectParameter("soled_MontoEntregado", typeof(decimal));
+    
+            var soled_UsuarioCreaParameter = soled_UsuarioCrea.HasValue ?
+                new ObjectParameter("soled_UsuarioCrea", soled_UsuarioCrea) :
+                new ObjectParameter("soled_UsuarioCrea", typeof(int));
+    
+            var soled_FechaCreaParameter = soled_FechaCrea.HasValue ?
+                new ObjectParameter("soled_FechaCrea", soled_FechaCrea) :
+                new ObjectParameter("soled_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert", solef_IdParameter, deno_IdParameter, soled_CantidadSolicitadaParameter, soled_CantidadEntregadaParameter, soled_MontoEntregadoParameter, soled_UsuarioCreaParameter, soled_FechaCreaParameter);
         }
     }
 }

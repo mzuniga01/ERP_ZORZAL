@@ -1,28 +1,8 @@
-﻿$(document).ready(function () {
-    $('#DataTable1').DataTable(
-    {
-        "searching": false,
-
-        "oLanguage": {
-            "oPaginate": {
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior",
-            },
-            "sEmptyTable": "No hay registros",
-            "sInfoEmpty": "Mostrando 0 de 0 Entradas",
-            "sSearch": "Buscar",
-            "sLengthMenu": "Mostrar _MENU_ registros por página",
-            "sInfo": "Mostrando _START_ a _END_ Entradas",
-        }
-    });
-});
-
-$("#consumidorFinal").change(function () {
+﻿$("#consumidorFinal").change(function () {
     if (this.checked) {
         //Do stuff     
         $("#cliente_Identificacion").val('99999999999999');
         $("#cliente_Nombres").val('Consumidor Final');
-        $("#IDCliente").val(500);
         document.getElementById("fact_AlCredito").disabled = true;
         document.getElementById("fact_AutorizarDescuento").disabled = true;
 
@@ -30,7 +10,12 @@ $("#consumidorFinal").change(function () {
     else {
         $("#cliente_Nombres").val('');
         $("#cliente_Identificacion").val('');
-        $("#clte_Id").val('');
+        $("#IDCliente").val('');
+        document.getElementById("MostrarTerceraEdad").disabled = false;
+        $("#MostrarTerceraEdad").prop("checked", false);
+        $("#fact_AutorizarDescuento").prop("checked", false);
+        $('#Cred2').hide();
+        ///Aqui tengo que borrar variables de session
         document.getElementById("fact_AlCredito").disabled = false;
         document.getElementById("fact_AutorizarDescuento").disabled = false;
     }
@@ -41,14 +26,13 @@ $("#consumidorFinal").ready(function () {
         //Do stuff     
         $("#cliente_Identificacion").val('99999999999999');
         $("#cliente_Nombres").val('Consumidor Final');
-        $("#clte_Id").val(500);
         document.getElementById("fact_AlCredito").disabled = true;
         document.getElementById("fact_AutorizarDescuento").disabled = true;
     }
     else {
         $("#cliente_Nombres").val('');
         $("#cliente_Identificacion").val('');
-        $("#clte_Id").val('');
+        $("#IDCliente").val('');
         document.getElementById("fact_AlCredito").disabled = false;
         document.getElementById("fact_AutorizarDescuento").disabled = false;
     }
@@ -121,8 +105,24 @@ $('#AgregarTerceraEdad').click(function () {
             $("#MostrarTerceraEdad").prop("checked", true);
             $("#fact_AutorizarDescuento").prop("checked", true);
             $('#Cred2').show();
-            $('#fact_PorcentajeDescuento').val('30');
-            $("#clte_Id").val(500);
+            GetParametro();
+            function GetParametro() {
+                $.ajax({
+                    url: "/Factura/GetParametro",
+                    method: "POST",
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({}),
+                })
+                .done(function (data) {
+                    $.each(data, function (key, val) {
+                        $('#fact_PorcentajeDescuento').val(val.par_PorcentajeDescuentoTE);
+                        $('#factd_PorcentajeDescuento').val(val.par_PorcentajeDescuentoTE);
+                    });
+
+                    console.log(data)
+                });
+            }
             document.getElementById("MostrarTerceraEdad").disabled = true;
             document.getElementById("fact_AutorizarDescuento").disabled = true;
         });

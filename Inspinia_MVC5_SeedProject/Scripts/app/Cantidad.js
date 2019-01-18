@@ -1,10 +1,14 @@
 ﻿////Get Municipio
-$(document).on("change", "#factd_Cantidad", function () {
-    GetCantidad();
-});
-//$("#factd_Cantidad").on("keypress keyup blur", function (event) {
+//$(document).on("change", "#factd_Cantidad", function () {
 //    GetCantidad();
 //});
+//$("#factd_Cantidad").blur(function () {
+//    GetCantidad();
+
+//});
+$("#factd_Cantidad").on("blur", function (event) {
+    GetCantidad();
+});
 
 function GetCantidad() {
     var CodSucursal = $('#suc_Id').val();
@@ -27,7 +31,8 @@ function GetCantidad() {
         if (data.length > 0) {
            $.each(data, function (key, val) {
             var MENSAJE = data[0]['MENSAJE'];
-               console.log(MENSAJE)
+            console.log(MENSAJE)
+
                if (MENSAJE) {
                    var can = data[0]['CANTIDAD'];
                    var CANTIDAD = parseFloat(can)
@@ -36,15 +41,23 @@ function GetCantidad() {
                        alert('La cantidad de productos no esta disponible, Cantidad disponible: ' + CANTIDAD)
                        $('#factd_Cantidad').val('');
                    }
-                   if (CANTIDAD == 10) {
+                   else if (CANTIDAD == 10) {
                        alert('Pocos productos en exitencia, cantidad existente: '+CANTIDAD)
+                   } else {
+                       document.getElementById("AgregarDetalleFactura").disabled = false;
                    }
+
                }
                else {
                    var can = data[0]['CANTIDAD'];
                    var CANTIDAD = parseFloat(can)
                    alert('No hay productos en existencia')
                    $('#factd_Cantidad').val('');
+                   $('#factd_MontoDescuento').val('');
+                   $('#factd_Cantidad').val('');
+                   $('#SubtotalProducto').val('');
+                   $('#Impuesto').val('');
+                   $('#TotalProducto').val('');                   
                }   
            });
         }

@@ -87,7 +87,7 @@
                             <div id="DatosCliente" name="DatosCliente" class="form-group">
                                 @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2", id = "label_identificacion" })
                                 <div class="col-md-3">
-                                 <input name="clte_Identificacion" id="cliente_Identificacion" type="text" class="form-control" value="@ViewBag.Identificacion" />
+                                 <input name="clte_Identificacion" id="cliente_Identificacion" type="text" class="form-control" value="@ViewBag.Identificacion" readonly />
                                  @*@Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", @Value = ViewBag.Identificacion } })*@
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Identificacion)</span>
                                 </div>
@@ -340,6 +340,8 @@
     function uncheck3() {
         document.getElementById("fact_AutorizarDescuento").checked = false;
     }
+
+    document.getElementById("AgregarDetalleFactura").disabled = true;
 </script>
 
 @section Scripts {

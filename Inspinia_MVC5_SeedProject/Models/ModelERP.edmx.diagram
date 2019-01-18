@@ -286,6 +286,9 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Crea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbMovimientoCaja_cja_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

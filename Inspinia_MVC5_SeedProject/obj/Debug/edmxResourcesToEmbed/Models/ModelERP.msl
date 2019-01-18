@@ -695,13 +695,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Apertura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Apertura_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_Estado">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Estado_Result">
@@ -2199,5 +2192,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetDetallePedido" FunctionName="ERP_ZORZALModel.Store.sp_GetDetallePedido">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.sp_GetDetallePedido_Result">
+          <ScalarProperty Name="ped_Id" ColumnName="ped_Id" />
+          <ScalarProperty Name="pedd_Id" ColumnName="pedd_Id" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="pedd_Cantidad" ColumnName="pedd_Cantidad" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="lispd_PrecioMayorista" ColumnName="lispd_PrecioMayorista" />
+          <ScalarProperty Name="pscat_ISV" ColumnName="pscat_ISV" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Apertura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Apertura_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_Apertura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_Apertura_Insert" />
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" />
   </EntityContainerMapping>
 </Mapping>

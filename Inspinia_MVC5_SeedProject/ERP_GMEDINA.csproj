@@ -384,6 +384,9 @@
     <Compile Include="Models\spGetValue_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_GetDetallePedido_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

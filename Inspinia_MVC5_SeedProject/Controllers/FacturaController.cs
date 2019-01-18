@@ -313,6 +313,9 @@ namespace ERP_GMEDINA.Controllers
 
                         }
                         Tran.Complete();
+                        Session["IDCLIENTE"] = null;
+                        Session["IDENTIFICACION"] = null;
+                        Session["NOMBRES"] = null;
                         return RedirectToAction("Index");
                     }
                 }
@@ -591,6 +594,20 @@ namespace ERP_GMEDINA.Controllers
         public JsonResult GetCantidad(short CodSucursal, string CodProducto)
         {
             var list = db.UDP_Vent_tbFactura_ConsultaBodega(CodSucursal, CodProducto).ToArray();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult GetNumeroFact(int CodSucursal, short CodCaja)
+        {
+            var list = db.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura(CodSucursal, CodCaja).ToString();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult GetParametro()
+        {
+            var list = db.spGetParametro().ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

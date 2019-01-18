@@ -5,7 +5,7 @@
 
 $(function () {
 
-    $("#factd_Cantidad,#factd_PrecioUnitario").keyup(function (e) {
+    $("#factd_Cantidad").keyup(function (e) {
 
         var Cantidad = $("#factd_Cantidad").val(),
             Precio = $("#factd_PrecioUnitario").val(),
@@ -42,7 +42,10 @@ $(function () {
          else {
              result += (parseFloat(Subtotal) - parseFloat(DescuentoTotal) + parseFloat(impuestotal));
          }
-         if (Descuento && Cantidad == '') {
+         if (Descuento == '') {
+             $("#factd_PorcentajeDescuento").val(0);
+         }
+         if (Cantidad == '') {
              $("#factd_MontoDescuento").val('');
          }
          else {
