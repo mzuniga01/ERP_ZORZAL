@@ -1515,6 +1515,9 @@
     <FunctionImport Name="SDP_tbInventarioFisicoDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbInventarioFisicoDetalle_Select_Result)">
       <Parameter Name="invfd_Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SDP_tbMunicipio_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbMunicipio_Select_Result)">
+      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -5963,5 +5966,14 @@
     <Property Type="DateTime" Name="invfd_FechaCrea" Nullable="false" Precision="23" />
     <Property Type="Int32" Name="invfd_UsuarioModifica" Nullable="true" />
     <Property Type="DateTime" Name="invfd_FechaModifica" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="SDP_tbMunicipio_Select_Result">
+    <Property Type="String" Name="mun_Codigo" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="dep_Codigo" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="150" />
+    <Property Type="Int32" Name="mun_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="mun_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="mun_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="mun_FechaModifica" Nullable="true" Precision="23" />
   </ComplexType>
 </Schema>

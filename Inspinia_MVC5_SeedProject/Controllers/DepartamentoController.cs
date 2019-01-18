@@ -57,7 +57,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
+        public ActionResult Create([Bind(Include = "dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
         {
             IEnumerable<object> list = null;
             IEnumerable<object> lista = null;
@@ -82,7 +82,7 @@ namespace ERP_ZORZAL.Controllers
                         }
                         else
                         {
-                            if (listMunicipios != null )
+                            if (listMunicipios != null)
                             {
                                 if (listMunicipios.Count > 0)
                                 {
@@ -90,7 +90,7 @@ namespace ERP_ZORZAL.Controllers
                                     {
                                         lista = db.UDP_Gral_tbMunicipio_Insert(mun.mun_Codigo, tbDepartamento.dep_Codigo, mun.mun_Nombre);
                                         foreach (UDP_Gral_tbMunicipio_Insert_Result municipios in lista)
-                                           
+
                                         {
                                             MensajeError = (municipios.MensajeError);
                                         }
@@ -100,13 +100,13 @@ namespace ERP_ZORZAL.Controllers
 
                             {
                                 _Tran.Complete();
-                               
+
                             }
-                            
+
                         }
 
                     }
-                    catch (Exception )
+                    catch (Exception)
                     {
                         MsjError = "-1";
                     }
@@ -121,13 +121,14 @@ namespace ERP_ZORZAL.Controllers
 
                 }
             }
-            
+
             return View(tbDepartamento);
         }
 
         // GET: /Departamento/Edit/5
         public ActionResult Edit(string id)
         {
+            Session["tbMunicipio"] = null;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -164,9 +165,9 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(string id,[Bind(Include="dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
+        public ActionResult Edit(string id, [Bind(Include = "dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
         {
-           
+
             if (ModelState.IsValid)
             {
                 IEnumerable<object> list = null;
@@ -257,7 +258,7 @@ namespace ERP_ZORZAL.Controllers
             }
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
-        
+
 
         [HttpPost]
         public JsonResult RemoveMunicipios(tbMunicipio Municipios)
@@ -270,53 +271,35 @@ namespace ERP_ZORZAL.Controllers
                 list.Remove(itemToRemove);
                 Session["tbMunicipio"] = list;
             }
-            return Json("", JsonRequestBehavior.AllowGet);
+            return Json("Exito", JsonRequestBehavior.AllowGet);
         }
-        
+
 
         [HttpPost]
-        public JsonResult ActualizarMunicipio(string mun_Codigo, string dep_Codigo, string mun_Nombre)
-
+        public JsonResult ActualizarMunicipio(tbMunicipio Municipio)
         {
-
             string MsjError = "";
-
+            string depCodigo = Municipio.mun_Codigo.Substring(0, 2);
             try
-
             {
-
                 IEnumerable<object> list = null;
-
-                tbMunicipio vMunicipio = db.tbMunicipio.Find(mun_Codigo);
-                list = db.UDP_Gral_tbMunicipio_Update(mun_Codigo, dep_Codigo, mun_Nombre);
-
+                list = db.UDP_Gral_tbMunicipio_Update(Municipio.mun_Codigo, depCodigo, Municipio.mun_Nombre);
                 foreach (UDP_Gral_tbMunicipio_Update_Result mun in list)
                     MsjError = (mun.MensajeError);
-
-                if (MsjError.Substring(0, 2) == "-1")
-                {
-
-                    ModelState.AddModelError("", "No se Actualizo el registro");
-
-                }
-                else
-                {
-                    return Json("Index");
-                }
-
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se Actualizo el registro");
             }
-            return Json("Index");
+            return Json(MsjError, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult GuardarMun(tbMunicipio GuardarMunicipios)
         {
-            { string MsjError = "";
+            {
+                string MsjError = "";
 
                 try
                 {
@@ -347,7 +330,7 @@ namespace ERP_ZORZAL.Controllers
             }
         }
 
-       
+
         [HttpPost]
         public JsonResult GuardarMunicipioModal([Bind(Include = "dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbMunicipio tbMunicipio)
         {
@@ -368,8 +351,7 @@ namespace ERP_ZORZAL.Controllers
                 }
                 else
                 {
-                    //return View("Edit/" + bod_Id);
-                    return Json("Index");
+                    return Json(Msj);
                 }
             }
             catch (Exception Ex)
@@ -380,7 +362,7 @@ namespace ERP_ZORZAL.Controllers
             return Json("Index");
         }
 
-        
+
         public ActionResult EliminarMunicipio(string id, string dep_Codigo)
         {
             try
@@ -389,7 +371,7 @@ namespace ERP_ZORZAL.Controllers
                 IEnumerable<object> list = null;
                 var MsjError = ""; list = db.UDP_Gral_tbMunicipio_Delete(id);
                 foreach (UDP_Gral_tbMunicipio_Delete_Result mun in list)
-                MsjError = mun.MensajeError;
+                    MsjError = mun.MensajeError;
                 if (MsjError.StartsWith("-1The DELETE statement conflicted with the REFERENCE constraint"))
                 {
                     TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia."; ViewBag.smserror = TempData["smserror"];
@@ -397,9 +379,9 @@ namespace ERP_ZORZAL.Controllers
                     return RedirectToAction("Edit/" + dep_Codigo);
                 }
                 else
-                {           
+                {
                     return RedirectToAction("Edit/" + dep_Codigo);
-                } 
+                }
             }
             catch (Exception Ex)
             {
@@ -407,9 +389,54 @@ namespace ERP_ZORZAL.Controllers
                 ModelState.AddModelError("", "No se Actualizo el registro");
                 return RedirectToAction("Edit/" + dep_Codigo);
             }
-                                     
+
             //return RedirectToAction("Index");
-          }
+        }
+
+        [HttpPost]
+        public JsonResult GuardarMuninicipio(string depCodigo)
+        {
+            string MsjError = "";
+            var listMunicipios = (List<tbMunicipio>)Session["tbMunicipio"];
+            IEnumerable<object> list = null;
+            try
+            {
+                if(listMunicipios.Count>0 && listMunicipios != null)
+                {
+                    foreach (tbMunicipio mun in listMunicipios)
+                    {
+                        list = db.UDP_Gral_tbMunicipio_Insert(mun.mun_Codigo, depCodigo, mun.mun_Nombre);
+                        foreach (UDP_Gral_tbMunicipio_Insert_Result municipios in list)
+                        {
+                            MsjError = municipios.MensajeError;
+                        }
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                MsjError = "-1";
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Guardo el registro");
+            }
+            return Json(MsjError, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        public JsonResult getMunicipio(string munCodigo)
+        {
+            IEnumerable<object> list = null;
+            try
+            {
+                list = db.SDP_tbMunicipio_Select(munCodigo).ToList();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
+}
 

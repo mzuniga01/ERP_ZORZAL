@@ -1,11 +1,10 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbMunicipio>
-
+@{ string depCodigo = "";}
 @using ERP_GMEDINA.Models;
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="ibox-tools">
-
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalregistro">Registrar Municipio</button>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalregistro">Registrar Municipio</button>
         </div>
                 <table class="table table-responsive" style="width:100%" id="DataTable">
                     <thead>
@@ -26,8 +25,8 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
+                            depCodigo = item.dep_Codigo;
                             <tr>
-                              
                                 <td>
                                     @Html.DisplayFor(modelItem => item.mun_Codigo)
                                 </td>
@@ -39,60 +38,8 @@
                                 </td>
                                 <td>
 
-                                    <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editarmodal_@item.mun_Codigo">Editar</button>
+                                    <button type="button" class="btn btn-white btn-xs" onclick="EditMunicipioRecord('@item.mun_Codigo')">Editar</button>
                                     <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modalEliminar_@item.mun_Codigo">Eliminar</button>
-
-
-                                    
-                                 
-                                    <!-- CREAR REGISTRO MODAL-->
-                                    <div class="modal fade" id="modalregistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Registrar Municipio</label></h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-
-                                                    <div class="form-horizontal">
-                                                        @Html.Partial("_CreateModalMun", new ERP_GMEDINA.Models.tbMunicipio(){ dep_Codigo = item.dep_Codigo })
-                                                    </div>
-                                                            
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="btnNuevo" onclick="btnNuevo";>Guardar</button>
-                                                    <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Editar MODAL MUNICIPIO-->
-                                    <div class="modal fade" id="Editarmodal_@item.mun_Codigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Editar Municipio</label></h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-
-                                                    <div class="form-horizontal">
-                                                        @Html.Partial("_EditMunicipio", new ERP_GMEDINA.Models.tbMunicipio() {  mun_Codigo = item.mun_Codigo, dep_Codigo = item.dep_Codigo, mun_Nombre= item.mun_Nombre})
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="btnActualizar" onclick="btnActualizar(@item.mun_Codigo);">Guardar</button>
-                                                    <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <!-- ELIMINAR MODAL MUNICIPIO-->
 
@@ -115,20 +62,13 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </td>
                             </tr>
-
-                            
                         }
-                      
                     </tbody>
                 </table>
-
             </div>
         </div>
-
-
         
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script src="~/Scripts/app/letras.js"></script>

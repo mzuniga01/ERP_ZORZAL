@@ -2121,5 +2121,14 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbInventarioFisicoDetalle_Select_Result>("SDP_tbInventarioFisicoDetalle_Select", invfd_IdParameter);
         }
+    
+        public virtual ObjectResult<SDP_tbMunicipio_Select_Result> SDP_tbMunicipio_Select(string mun_Codigo)
+        {
+            var mun_CodigoParameter = mun_Codigo != null ?
+                new ObjectParameter("mun_Codigo", mun_Codigo) :
+                new ObjectParameter("mun_Codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbMunicipio_Select_Result>("SDP_tbMunicipio_Select", mun_CodigoParameter);
+        }
     }
 }

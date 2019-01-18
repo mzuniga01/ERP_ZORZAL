@@ -5,7 +5,6 @@
     <div class="row">
         <table class="table table-responsive" style="width:100%" id="DataTable">
             <thead>
-
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.mun_Codigo)
@@ -13,113 +12,22 @@
                     <th>
                         @Html.DisplayNameFor(model => model.mun_Nombre)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.tbDepartamento.dep_Nombre)
-                    </th>
-                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-
                         <td>
                             @Html.DisplayFor(modelItem => item.mun_Codigo)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.mun_Nombre)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.tbDepartamento.dep_Nombre)
-                        </td>
-                        <td>
-
-                            <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editarmodal_@item.mun_Codigo">Editar</button>
-                            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modalEliminar_@item.mun_Codigo">Eliminar</button>
-
-
-
-
-                            <!-- CREAR REGISTRO MODAL-->
-                            <div class="modal fade" id="modalregistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Registrar Municipio</label></h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            <div class="form-horizontal">
-                                                @Html.Partial("_CreateModalMun", new ERP_GMEDINA.Models.tbMunicipio() { dep_Codigo = item.dep_Codigo })
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="btnNuevo" onclick="btnNuevo">Guardar</button>
-                                            <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Editar MODAL MUNICIPIO-->
-                            <div class="modal fade" id="Editarmodal_@item.mun_Codigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Editar Municipio</label></h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            <div class="form-horizontal">
-                                                @Html.Partial("_EditMunicipio", new ERP_GMEDINA.Models.tbMunicipio() { mun_Codigo = item.mun_Codigo, dep_Codigo = item.dep_Codigo, mun_Nombre = item.mun_Nombre })
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="btnActualizar" onclick="btnActualizar(@item.mun_Codigo);">Guardar</button>
-                                            <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- ELIMINAR MODAL MUNICIPIO-->
-                            <div class="modal fade" id="modalEliminar_@item.mun_Codigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Eliminar Municipio</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            ¿Esta seguro de Eliminar el Registro Municipios?
-                                        </div>
-                                        <div class="modal-footer">
-                                            @Html.ActionLink("Sí", "DeleteMunicipios", new { id = item.mun_Codigo }, new { @class = "btn btn-danger" })
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
                     </tr>
-
-
                 }
-
             </tbody>
         </table>
-
     </div>
 </div>
 

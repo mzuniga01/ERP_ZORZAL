@@ -3714,6 +3714,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Parameter Name="bod_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="SDP_tbMunicipio_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="mun_Codigo" Type="char" Mode="In" />
+        </Function>
         <Function Name="UDP_Gral_tbDepartamento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="dep_Codigo" Type="char" Mode="In" />
           <Parameter Name="dep_Nombre" Type="varchar" Mode="In" />
@@ -6634,7 +6637,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SDP_tbInventarioFisicoDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbInventarioFisicoDetalle_Select_Result)">
-            <Parameter Name="invfd_Id" Mode="In" Type="Int32" />
+          <Parameter Name="invfd_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_tbMunicipio_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbMunicipio_Select_Result)">
+            <Parameter Name="mun_Codigo" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -11085,6 +11091,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Property Type="Int32" Name="invfd_UsuarioModifica" Nullable="true" />
           <Property Type="DateTime" Name="invfd_FechaModifica" Nullable="true" Precision="23" />
         </ComplexType>
+        <ComplexType Name="SDP_tbMunicipio_Select_Result">
+          <Property Type="String" Name="mun_Codigo" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="dep_Codigo" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="mun_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="mun_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="mun_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="mun_FechaModifica" Nullable="true" Precision="23" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12918,6 +12933,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
                 <ScalarProperty Name="invfd_FechaCrea" ColumnName="invfd_FechaCrea" />
                 <ScalarProperty Name="invfd_UsuarioModifica" ColumnName="invfd_UsuarioModifica" />
                 <ScalarProperty Name="invfd_FechaModifica" ColumnName="invfd_FechaModifica" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_tbMunicipio_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbMunicipio_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbMunicipio_Select_Result">
+                <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
+                <ScalarProperty Name="dep_Codigo" ColumnName="dep_Codigo" />
+                <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
+                <ScalarProperty Name="mun_UsuarioCrea" ColumnName="mun_UsuarioCrea" />
+                <ScalarProperty Name="mun_FechaCrea" ColumnName="mun_FechaCrea" />
+                <ScalarProperty Name="mun_UsuarioModifica" ColumnName="mun_UsuarioModifica" />
+                <ScalarProperty Name="mun_FechaModifica" ColumnName="mun_FechaModifica" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

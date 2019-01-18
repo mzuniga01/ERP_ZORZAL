@@ -2,7 +2,6 @@
 {
     $("#dep_Nombre")[0].maxLength = 50;
     $("#dep_Codigo")[0].maxLength = 2;
-
 })
 
 $("#dep_Nombre").change(function () {
@@ -11,17 +10,11 @@ $("#dep_Nombre").change(function () {
     $("#dep_Nombre").val(res);
 });
 
-$(dep_Nombre).on("keypress", function () {
+$("#dep_Nombre").on("keypress", function () {
     $input = $(this);
     setTimeout(function () {
         $input.val($input.val().toUpperCase());
     }, 50);
-})
-
-
-$(document).ready(function () {
-    $("#mun_Codigo")[0].maxLength = 4;
-
 })
 
 $("#mun_Nombre").change(function () {
@@ -30,7 +23,7 @@ $("#mun_Nombre").change(function () {
     $("#mun_Nombre").val(res);
 });
 
-$(mun_Nombre).on("keypress", function () {
+$("#mun_Nombre").on("keypress", function () {
     $input = $(this);
     setTimeout(function () {
         $input.val($input.val().toUpperCase());
@@ -46,7 +39,7 @@ $("#MunNombre_" + codigo).change(function () {
     $("#MunNombre_" + codigo).val(res);
 });
 
-$(mun_Nombre).on("keypress", function () {
+$("#MunNombre").on("keypress", function () {
     $input = $(this);
     setTimeout(function () {
         $input.val($input.val().toUpperCase());
