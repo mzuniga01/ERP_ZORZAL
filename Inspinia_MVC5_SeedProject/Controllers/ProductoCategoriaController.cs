@@ -42,7 +42,22 @@ namespace ERP_ZORZAL.Controllers
             return View(tbProductoCategoria);
         }
 
+        [HttpPost]
+        public JsonResult removeSubCategoria(tbProductoSubcategoria subcate)
+        {
+            var list = (List<tbProductoSubcategoria>)Session["tbProductoSubCategorias"];
 
+            if (list != null)
+            {
+                var itemToRemove = list.Single(r => r.pscat_Id == subcate.pscat_Id);
+                list.Remove(itemToRemove);
+                Session["tbProductoSubCategoriass"] = list;
+            }
+
+            return Json("", JsonRequestBehavior.AllowGet);
+
+        }
+       
         // GET: /ProductoCategoria/Create
         public ActionResult Create()
         {
@@ -147,12 +162,10 @@ namespace ERP_ZORZAL.Controllers
             Session["tbProductoSubcategoria"] = null;
             return View(tbProductoCategoria);
         }
-
-
         [HttpPost]
         public JsonResult GuardarSubCategoria(tbProductoSubcategoria tbsubcategoria)
         {
-            Session["tbProductoSubcategoria"] = null;
+            
             List<tbProductoSubcategoria> sessionsubCate = new List<tbProductoSubcategoria>();
             var list = (List<tbProductoSubcategoria>)Session["tbProductoSubCategoria"];
             if (list == null)
@@ -167,6 +180,7 @@ namespace ERP_ZORZAL.Controllers
             }
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public JsonResult GetSubCate(int pscat_Id)
         {
@@ -181,10 +195,13 @@ namespace ERP_ZORZAL.Controllers
             try
             {
                 IEnumerable<object> list = null;
+                
+                    
                 list = db.UDP_Inv_tbProductoSubcategoria_Update(
                                                         EditarSubCategoria.pscat_Id,
                                                         EditarSubCategoria.pscat_Descripcion,
                                                        EditarSubCategoria.pcat_Id,
+                                                      
                                                       EditarSubCategoria.pscat_ISV
                     );
                 foreach (UDP_Inv_tbProductoSubcategoria_Update_Result subcate in list)
@@ -201,7 +218,8 @@ namespace ERP_ZORZAL.Controllers
                 ModelState.AddModelError("", "No se Guardo el registro");
                 Msj = "-1";
             }
-            return Json(Msj, JsonRequestBehavior.AllowGet); ;
+            return Json(Msj, JsonRequestBehavior.AllowGet);
+          
         }
 
         // POST: /ProductoCategoria/Edit/5
@@ -294,22 +312,6 @@ namespace ERP_ZORZAL.Controllers
 
         }
 
-        [HttpPost]
-        public JsonResult removeSubCategoria(tbProductoSubcategoria subcate)
-        {
-            var list = (List<tbProductoSubcategoria>)Session["tbProductoSubCategoria"];
-
-            if (list != null)
-            {
-                var itemToRemove = list.Single(r => r.pscat_Id == subcate.pscat_Id);
-                list.Remove(itemToRemove);
-                Session["tbProductoSubCategoria"] = list;
-            }
-            
-            return Json("", JsonRequestBehavior.AllowGet);
-
-        }
-        
         public ActionResult EliminarProductoCategoria(int? id)
          {
             
@@ -423,86 +425,16 @@ namespace ERP_ZORZAL.Controllers
 
         }
 
-
-
-
-
-        //public ActionResult ActivarCate(int? id)
-        //{
-
-        //    //try
-        //    //{
-        //    //    tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
-        //    //    IEnumerable<object> list = null;
-        //    //    var MsjError = "";
-        //    //    list = db.UDP_Inv_tbProductoCategoria_Update_Estado(id, EstadoCategoria.Activo);
-        //    //    foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
-        //    //        MsjError = obje.MensajeError;
-
-        //    //    if (MsjError == "-1")
-        //    //    {
-        //    //        ModelState.AddModelError("", "No se Actualizo el registro");
-        //    //        return RedirectToAction("Edit/" + id);
-        //    //    }
-        //    //    else
-        //    //    {
-        //    //        return RedirectToAction("Edit/" + id);
-        //    //    }
-        //    //}
-        //    //catch (Exception Ex)
-        //    //{
-        //    //    Ex.Message.ToString();
-        //    //    ModelState.AddModelError("", "No se Actualizo el registro");
-        //    //    return RedirectToAction("Edit/" + id);
-        //    //}
-
-
-        //    //return RedirectToAction("Index");
-        //}
-
-
-
-        //public ActionResult InactivarCate(int? id)
-        //{
-
-        //    //try
-        //    //{
-        //    //    tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
-        //    //    IEnumerable<object> list = null;
-        //    //    var MsjError = "";
-        //    //    list = db.UDP_Inv_tbProductoCategoria_Update_Estado(id, EstadoCategoria.Inactivo);
-        //    //    foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
-        //    //        MsjError = obje.MensajeError;
-
-        //    //    if (MsjError == "-1")
-        //    //    {
-        //    //        ModelState.AddModelError("", "No se Actualizo el registro");
-        //    //        return RedirectToAction("Edit/" + id);
-        //    //    }
-        //    //    else
-        //    //    {
-        //    //        return RedirectToAction("Edit/" + id);
-        //    //    }
-        //    //}
-        //    //catch (Exception Ex)
-        //    //{
-        //    //    Ex.Message.ToString();
-        //    //    ModelState.AddModelError("", "No se Actualizo el registro");
-        //    //    return RedirectToAction("Edit/" + id);
-        //    //}
-        //}
-
-
-        public ActionResult ActivarSub(int? id)
+        public ActionResult ActivarCate(int? id)
         {
 
             try
             {
-                tbProductoSubcategoria obj = db.tbProductoSubcategoria.Find(id);
+                tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbProductoSubCategoria_Update_Estado(id, EstadoSubCategoria.Activo);
-                foreach (UDP_Inv_tbProductoSubCategoria_Update_Estado_Result obje in list)
+                list = db.UDP_Inv_tbProductoCategoria_Update_Estado(id, EstadoCategoria.Activo);
+                foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 
                 if (MsjError == "-1")
@@ -512,7 +444,7 @@ namespace ERP_ZORZAL.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Edit/" + id); ;
+                    return RedirectToAction("Edit/" + id);
                 }
             }
             catch (Exception Ex)
@@ -525,7 +457,38 @@ namespace ERP_ZORZAL.Controllers
 
             //return RedirectToAction("Index");
         }
-       
+
+
+
+        public ActionResult InactivarCate(int? id)
+        {
+
+            try
+            {
+                tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Inv_tbProductoCategoria_Update_Estado(id, EstadoCategoria.Inactivo);
+                foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError == "-1")
+                {
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+                    return RedirectToAction("Edit/" + id);
+                }
+                else
+                {
+                    return RedirectToAction("Edit/" + id);
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+                return RedirectToAction("Edit/" + id);
+            }
+        }
 
         public ActionResult InactivarSub(int? id)
         {
@@ -542,18 +505,48 @@ namespace ERP_ZORZAL.Controllers
                 if (MsjError == "-1")
                 {
                     ModelState.AddModelError("", "No se Actualizo el registro");
-                    return RedirectToAction("Edit/" + id);
+                    return RedirectToAction("Index");
                 }
                 else
                 {
-                    return RedirectToAction("Edit/" + id);
+                    return RedirectToAction("Index");
                 }
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se Actualizo el registro");
-                return RedirectToAction("Edit/" + id);
+                return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult ActivarSub(int? id)
+        {
+
+            try
+            {
+                tbProductoSubcategoria obj = db.tbProductoSubcategoria.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Inv_tbProductoSubCategoria_Update_Estado(id, EstadoSubCategoria.Activo);
+                foreach (UDP_Inv_tbProductoSubCategoria_Update_Estado_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError == "-1")
+                {
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+                return RedirectToAction("Index");
             }
           }
 

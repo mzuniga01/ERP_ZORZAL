@@ -81,15 +81,19 @@
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
                                                             <div class="col-md-12">
-                                                                @Html.Partial("_DetailsSubCategoria", new ERP_GMEDINA.Models.tbProductoSubcategoria() { pscat_Id = item.pscat_Id, pscat_Descripcion = item.pscat_Descripcion, pscat_EsActiva = item.pscat_EsActiva, pcat_Id = item.pcat_Id })
+                                                                @Html.Partial("_DetailsSubCategoria", new ERP_GMEDINA.Models.tbProductoSubcategoria() {
+                                                               pscat_Id = item.pscat_Id,
+                                                               pscat_Descripcion = item.pscat_Descripcion,
+                                                               pscat_EsActiva = item.pscat_EsActiva,
+                                                               pcat_Id = item.pcat_Id,
+                                                               pscat_ISV = item.pscat_ISV
+                                                           })
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -144,6 +148,8 @@
                     <fieldset id="SubmitForm">
                         <div class="form-horizontal">
                             <div class="form-group">
+                               
+
                                 @Html.LabelFor(m => subcategoria.pscat_Id, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
                                     <input type="text" id="pscat_Id" name="pscat_Id" class="form-control" readonly />
@@ -154,8 +160,23 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => subcategoria.pscat_Descripcion, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
-                                    <input type="text" id="pscat_Descripcion_edit" name="pscat_Descripcion" class="form-control" />
+                                    <input type="text"  onkeypress="return soloLetras(event)" id="pscat_Descripcion_edit" name="pscat_Descripcion" class="form-control" />
                                     @Html.ValidationMessageFor(m => subcategoria.pscat_Descripcion)
+                                </div>
+                            </div>
+
+                            
+                            <input  type="hidden" id="pcat_id_Edit"  name="pcat_Id"/>
+
+                            <input type="hidden" id="pscat_UsuarioCrea_Edit" name="pscat_UsuarioCrea" />
+
+                            <input type="hidden" id="pscat_FechaCrea_Edit" name="pscat_FechaCrea"  {dd-mm-yyyy hh:mm:ss}/>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => subcategoria.pscat_ISV, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="number" id="pscat_ISV_Edit" name="pscat_ISV" class="form-control" />
+                                    @Html.ValidationMessageFor(m => subcategoria.pscat_ISV)
                                 </div>
                             </div>
                             <div class="form-group">

@@ -220,13 +220,13 @@
                 ¿Está seguro que quiere Inactivar esta Categoría?
             </div>
             <div class="modal-footer">
-                @Html.ActionLink("Sí", "InactivarCate", new { id = Model.pcat_Id }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Sí", "InactivarCate", new { id = Model.pcat_Id}, new { @class = "btn btn-danger" })
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
 </div>
-}
+                              }
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
