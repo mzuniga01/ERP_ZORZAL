@@ -1112,15 +1112,20 @@
     </Content>
     <Content Include="Scripts\app\AceptarSolicitudCre.js" />
     <Content Include="Scripts\app\Activo.js" />
+    <Content Include="Scripts\app\ActivoExoneracion.js" />
     <Content Include="Scripts\app\AnularDevolucion.js" />
     <Content Include="Scripts\app\AnularFactura.js" />
+    <Content Include="Scripts\app\AnularPedido.js" />
     <Content Include="Scripts\app\Apertura.js" />
     <Content Include="Scripts\app\AperturaDetalle.js" />
+    <Content Include="Scripts\app\ArqueoCaja.js" />
+    <Content Include="Scripts\app\AutorizarDescuento.js" />
     <Content Include="Scripts\app\Banco.js" />
     <Content Include="Scripts\app\BCliente.js" />
     <Content Include="Scripts\app\CalculoFactura.js" />
     <Content Include="Scripts\app\Cantidad.js" />
     <Content Include="Scripts\app\ClienteDevolucion.js" />
+    <Content Include="Scripts\app\ClienteExoneracion.js" />
     <Content Include="Scripts\app\ClienteFactura.js" />
     <Content Include="Scripts\app\ClientePago.js" />
     <Content Include="Scripts\app\Clientes-Pedido-Credito.js" />
@@ -1146,9 +1151,12 @@
     <Content Include="Scripts\app\FacturaDetalle.js" />
     <Content Include="Scripts\app\FacturaDevolucion.js" />
     <Content Include="Scripts\app\FacturaPagar.js" />
+    <Content Include="Scripts\app\fechaExoneracion.js" />
     <Content Include="Scripts\app\FuncionResta.js" />
+    <Content Include="Scripts\app\GetNumeroFact.js" />
     <Content Include="Scripts\app\Identificacion.js" />
     <Content Include="Scripts\app\InActivarCliente.js" />
+    <Content Include="Scripts\app\InactivarExoneracion.js" />
     <Content Include="Scripts\app\InactivarListaP.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\ListaPrecioDetalle.js" />
@@ -1159,6 +1167,7 @@
     <Content Include="Scripts\app\PagoClienteFacturas.js" />
     <Content Include="Scripts\app\PagosArqueo.js" />
     <Content Include="Scripts\app\PagoTransacciones.js" />
+    <Content Include="Scripts\app\PedidosFacturar.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
     <Content Include="Scripts\app\ProductoDevolucion.js" />
     <Content Include="Scripts\app\ProductoFactura.js" />
@@ -1168,6 +1177,7 @@
     <Content Include="Scripts\app\SavePedidoDetalle.js" />
     <Content Include="Scripts\app\SolicituCreditoDenegar.js" />
     <Content Include="Scripts\app\SolicitudCredito.js" />
+    <Content Include="Scripts\app\SolicitudEfectipoDetalless.js" />
     <Content Include="Scripts\app\SolicitudEfectivo.js" />
     <Content Include="Scripts\app\SolicitudEfectivoDetalles.js" />
     <Content Include="Scripts\app\SolicitudEfectivoEsAnulada.js" />

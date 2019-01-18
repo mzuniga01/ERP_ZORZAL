@@ -14,11 +14,23 @@
         })
         .done(function (data) {
             if (data.length > 0) {
-                $.each(data, function (key, val) {
+                var Mensaje = data;
+                if (Mensaje == -1) {
+                    alert("El Numero CAI no tiene numeracion")
+                    var url = $("#RedirectTo").val();
+                    location.href = url;
+                }
+                else {
                     $('#pemi_NumeroCAI').val(data[0]['CAI']);
                     $('#fact_Codigo').val(data[0]['CODFACTURA']);
-                });
-                console.log(data)
+                }
+                
+
+
+                //$.each(data, function (key, val) {
+                   
+                //});
+                //console.log(data)
             }
             else {
             

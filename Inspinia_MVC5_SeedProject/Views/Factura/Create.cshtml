@@ -43,7 +43,7 @@
                     @using (Html.BeginForm("Create", "Factura", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-
+                        @Html.Hidden("RedirectTo", Url.Action("Index", "Factura"))
                         <div class="form-horizontal">
                             @*@Html.ValidationSummary(true)*@
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -310,7 +310,7 @@
 <script src="~/Scripts/app/Cantidad.js"></script>
 <script src="~/Scripts/app/AutorizarDescuento.js"></script>
 <script src="~/Scripts/app/CalculoFactura.js"></script>
-
+<script src="~/Scripts/app/GetNumeroFact.js"></script>
 <script>
     document.getElementById("esfac_Id").disabled = true;
     // Open Modal Edad
