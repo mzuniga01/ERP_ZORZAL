@@ -20,7 +20,7 @@ namespace ERP_GMEDINA.Models
         public int sal_Id { get; set; }
         [Display(Name = "N# Producto")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public string bodd_Id { get; set; }
+        public string prod_Codigo { get; set; }
         [Display(Name = "Cantidad")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public decimal sal_Cantidad { get; set; }

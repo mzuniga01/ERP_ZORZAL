@@ -1399,6 +1399,7 @@
     <Content Include="Views\Login\SinAcceso.cshtml" />
     <Content Include="Views\Usuario\ModificarCuenta.cshtml" />
     <Content Include="Views\Usuario\_BuscarEmpleado.cshtml" />
+    <Content Include="Views\Salida\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

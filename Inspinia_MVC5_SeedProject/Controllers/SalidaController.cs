@@ -117,7 +117,7 @@ namespace ERP_GMEDINA.Controllers
                                             Detalle.box_Codigo = MensajeError;
                                             listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
                                                 MsjError,
-                                                Detalle.bodd_Id,
+                                                Detalle.prod_Codigo,
                                                 Detalle.sal_Cantidad,
                                                 box_Codigo
                                                 );
@@ -213,7 +213,7 @@ namespace ERP_GMEDINA.Controllers
                 IEnumerable<object> list = null;
                 list = db.UDP_Inv_tbSalidaDetalle_Update(SalidaDetalle.sald_Id,
                                                     pSalidaDetalle.sal_Id,
-                                                    SalidaDetalle.bodd_Id,
+                                                    SalidaDetalle.prod_Codigo,
                                                     SalidaDetalle.sal_Cantidad,
                                                     SalidaDetalle.box_Codigo,
                                                     pSalidaDetalle.sald_UsuarioCrea,
