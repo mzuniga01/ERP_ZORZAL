@@ -8,9 +8,7 @@
     //Split Rango Inicial
     var divisiones = RangoInicio.split("-", 4);
     var ultimo = divisiones[3]
-    var rango = parseInt(ultimo)
-
-   
+    var rango = parseInt(ultimo)   
 
     //Split Rango Final
     var divisiones1 = RangoFinal.split("-", 4);
@@ -21,14 +19,6 @@
     var Length = 19;
     var RangoInicioLength = RangoInicio.length;
     var RangoFinalLength = RangoFinal.length;
-
-    //ValidaciónFecha
-    //var pemid_FechaLimiteEmision = $("#txtFechalimite").val();
-    //var p = new Date(pemid_FechaLimiteEmision);
-    //console.log(p);
-    ////Current date
-    //var GetCurrentDate = new Date();
-    //console.log(GetCurrentDate);
 
 
     if (DocumentoFiscal == '')
@@ -192,38 +182,13 @@ $(document).ready(function () {
     $("#txtRangoInicial")[0].maxLength = 20;
     $("#txtRangoFinal")[0].maxLength = 20;
 
-    var CurrentDate = new Date();
+    $("#txtRangoInicial").blur(function () {
+        var RangoInicio = $('#txtRangoInicial').val();
 
-    $("#btnModalGuardarNumeracion").click(function () {
-        $("#PuntoEmision tbody tr").each(function () {
-            //Documento Fiscal
-            var DocumentoFiscal = $(this).children("td:eq(1)").text();
-            console.log("DocumentoFiscal: " , DocumentoFiscal);
+        //Split Rango Inicial
+        var divisiones = RangoInicio.split("-", 4);
+        var ultimo = divisiones[3]
 
-            //FechaLimiteEmision
-            var FechaLimiteEmision = $(this).children("td:eq(5)").text();
-            var f = new Date(FechaLimiteEmision);
-            console.log("FechaLimiteEmision: ", f);
-
-            //if (f > CurrentDate) {
-            //    console.log('FechaMayor');
-            //}
-            //else {
-            //    console.log('FechaMenor');
-            //}
-
-         
-
-            //if (DocumentoFiscal > 3) {
-            //    console.log('Vigente');
-            //}
-            //else {
-            //    console.log('No vigente');
-            //}
-
-
-        });
+        var NumeroActual = $('#txtNumeroActual').val(ultimo);
     });
 });
-
-

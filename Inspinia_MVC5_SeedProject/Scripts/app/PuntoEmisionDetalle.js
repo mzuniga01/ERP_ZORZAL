@@ -12,7 +12,6 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
     var ultimo = divisiones[3]
     var rango = parseInt(ultimo)
 
-
     //Split Rango Final
     var divisiones1 = RangoFinal.split("-", 4);
     var ultimo1 = divisiones1[3]
@@ -212,4 +211,16 @@ $("#pemid_FechaLimite").change(function () {
     else {
         $('#validacionFechaLimiteCreate').after('<p id="ErrorFechaLimiteCreateEventoChange" style="color:red">Campo Fecha Limite requerido</p>');
     }
+});
+
+$(document).ready(function () {
+    $("#pemid_RangoInicio").blur(function () {
+        var RangoInicio = $('#pemid_RangoInicio').val();        
+
+        //Split Rango Inicial
+        var divisiones = RangoInicio.split("-", 4);
+        var ultimo = divisiones[3]
+
+        var NumeroActual = $('#pemid_NumeroActual').val(ultimo);
+    });
 });

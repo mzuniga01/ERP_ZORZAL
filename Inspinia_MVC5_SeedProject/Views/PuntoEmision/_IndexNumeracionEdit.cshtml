@@ -62,10 +62,13 @@
                         <thead>
                             <tr>
                                 <th hidden>
-                                    pemid_Id
+                                    @Html.DisplayNameFor(model => model.pemid_Id)
                                 </th>
                                 <th hidden>
-                                    Id Documento Fiscal
+                                    @Html.DisplayNameFor(model => model.pemi_Id)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.dfisc_Id)
                                 </th>
                                 <th>
                                     Documento Fiscal
@@ -76,12 +79,16 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.pemid_RangoFinal)
                                 </th>
-                                <th>@Html.DisplayNameFor(model => model.pemid_NumeroActual)</th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pemid_NumeroActual)
+                                </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.pemid_FechaLimite)
                                 </th>
                                 <th>Status</th>
-                                <th hidden>@Html.DisplayNameFor(model => model.tbUsuario.usu_Nombres)</th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.tbUsuario.usu_Nombres)
+                                </th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -90,11 +97,17 @@
                             @foreach (var item in Model)
                             {
                                 DateTime today = DateTime.Now;
-
-
-                                <tr data-usuariocrea="@item.tbUsuario.usu_Nombres" >
-                                    <td hidden>@Html.DisplayFor(modelItem => item.pemid_Id)</td>
-                                    <td hidden>@Html.DisplayFor(modelItem => item.dfisc_Id)</td>
+                                
+                                <tr data-usuariocrea="@item.tbUsuario.usu_Nombres">
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.pemid_Id)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.pemi_Id)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.dfisc_Id)
+                                    </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbDocumentoFiscal.dfisc_Descripcion)
                                     </td>
@@ -125,16 +138,35 @@
 
                                         }
                                     } 
-                                    <td hidden>@Html.DisplayFor(modelItem => item.tbUsuario.usu_Nombres)</td>
-
-                                    <td>
-                                        <button type="button" id="btnModalDetallesEdit_@item.pemid_Id" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
-                                            Detalles
-                                        </button>
-                                        <button type="button" id="btnModalEditarEdit_@item.pemid_Id" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar_@item.pemid_Id">
-                                            Editar
-                                        </button>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_Nombres)
                                     </td>
+                                    @{
+                                        if (item.pemid_FechaLimite > today)
+                                        {
+                                            <td>
+                                                <button type="button" id="btnModalDetallesEdit_@item.pemid_Id" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
+                                                    Detalles
+                                                </button>
+                                                <button type="button"  id="btnModalEditarEdit_@item.pemid_Id" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar_@item.pemid_Id" onclick="FechaLimite(@item.pemid_Id);">
+                                                    Editar
+                                                </button>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <button type="button" id="btnModalDetallesEdit_@item.pemid_Id" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
+                                                    Detalles
+                                                </button>
+                                                <button type="button" disabled id="btnModalEditarEdit_@item.pemid_Id" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar_@item.pemid_Id" onclick="FechaLimite(@item.pemid_Id);">
+                                                    Editar
+                                                </button>
+                                            </td>
+
+                                        }
+                                    } 
+                                    
                                 </tr>
                                 <div class="modal fade" id="Editar_@item.pemid_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -147,6 +179,10 @@
                                             </div>
                                             <div class="modal-body" id="mdlEditNumeracion">
                                                 @Html.Partial("_EditNumeracion", new ERP_GMEDINA.Models.tbPuntoEmisionDetalle() { pemid_Id = item.pemid_Id, pemi_Id = item.pemi_Id, dfisc_Id = item.dfisc_Id, pemid_RangoInicio = item.pemid_RangoInicio, pemid_RangoFinal = item.pemid_RangoFinal, pemid_NumeroActual = item.pemid_NumeroActual, pemid_FechaLimite = item.pemid_FechaLimite, pemid_UsuarioCrea = item.pemid_UsuarioCrea, pemid_FechaCrea = item.pemid_FechaCrea, pemid_UsuarioModifica = item.pemid_UsuarioModifica, pemid_FechaModifica = item.pemid_FechaModifica })                                               
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-primary" type="button" id="btnGuardarEditNumeracion" onclick="GuardarEditNumeracion(@item.pemid_Id);">Guardar</button>
+                                                <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
                                             </div>
                                         </div>
                                     </div>
