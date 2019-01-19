@@ -11,14 +11,12 @@ namespace ERP_GMEDINA.Models
     public class GeneralFunctions
     {
         ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
         public bool GetUserRols(string sPantalla)
         {
             int UserID = 0;
             bool EsAdmin = false;
             bool Retorno = false;
-            List<tbUsuario> Usuario = getUserInformation();
-            
+            List<tbUsuario> Usuario = getUserInformation(); 
             foreach(tbUsuario User in Usuario)
             {
                 UserID = User.usu_Id;

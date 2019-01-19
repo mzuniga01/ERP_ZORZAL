@@ -44,7 +44,7 @@ namespace ERP_GMEDINA.Controllers
                     {
                         var IDSalida = Convert.ToInt32(MensajeError);
                         var IDObjeto = "0";
-                        listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(IDSalida, IDBodegaDetalle, CantidadSolicitada, IDObjeto);
+                        listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(IDSalida, IDProducto, CantidadSolicitada, IDObjeto);
 
                         foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
                         {

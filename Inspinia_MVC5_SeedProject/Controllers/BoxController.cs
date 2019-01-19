@@ -99,7 +99,7 @@ namespace ERP_ZORZAL.Controllers
                                             Detalle.box_Codigo = MensajeError;
                                             listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
                                                 Sal,
-                                                Detalle.bodd_Id,
+                                                Detalle.prod_Codigo,
                                                 Detalle.sal_Cantidad,
                                                 tbBox.box_Codigo
                                                 );
@@ -316,11 +316,9 @@ namespace ERP_ZORZAL.Controllers
                 tbSalidaDetalle vsalida = db.tbSalidaDetalle.Find(EditarSalidaDetalle.sald_Id);
                 list = db.UDP_Inv_tbSalidaDetalle_Update(EditarSalidaDetalle.sald_Id,
                                                          EditarSalidaDetalle.sald_Id, 
-                                                         EditarSalidaDetalle.bodd_Id,
+                                                         EditarSalidaDetalle.prod_Codigo,
                                                         EditarSalidaDetalle.sal_Cantidad, 
-                                                        EditarSalidaDetalle.box_Codigo, 
-                                                        vsalida.sald_UsuarioCrea, 
-                                                        vsalida.sald_FechaCrea );
+                                                        EditarSalidaDetalle.box_Codigo);
                 foreach (UDP_Inv_tbSalidaDetalle_Update_Result salida in list)
                     Msj = salida.MensajeError;
 

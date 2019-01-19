@@ -187,6 +187,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BodegaController.cs" />
+    <Compile Include="Controllers\BoxController.cs" />
+    <Compile Include="Controllers\ConsultarExistenciaProductosController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\EntradaController.cs" />
@@ -925,6 +927,7 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\img\404.png" />
     <Content Include="Content\img\Business_and_Commerce_Career_Prospects_and_Trends_Report_final_for_web2-1[1].jpg" />
     <Content Include="Content\img\Logo_GM.png" />
     <Content Include="Content\img\MicrosoftTeams-image.png" />
@@ -1213,9 +1216,7 @@
     <Content Include="Views\Departamento\Create.cshtml" />
     <Content Include="Views\Departamento\Delete.cshtml" />
     <Content Include="Views\Departamento\Details.cshtml" />
-    <Content Include="Views\Departamento\Detalle.cshtml" />
     <Content Include="Views\Departamento\Edit.cshtml" />
-    <Content Include="Views\Departamento\Editar.cshtml" />
     <Content Include="Views\Departamento\Index.cshtml" />
     <Content Include="Views\EstadoMovimiento\CrearPrueba.cshtml" />
     <Content Include="Views\EstadoMovimiento\Create.cshtml" />
@@ -1397,6 +1398,8 @@
     <Content Include="Views\Usuario\ModificarCuenta.cshtml" />
     <Content Include="Views\Usuario\_BuscarEmpleado.cshtml" />
     <Content Include="Views\Salida\View.cshtml" />
+    <Content Include="Views\Login\NotFound.cshtml" />
+    <Content Include="Views\Departamento\_DeleteMunicipio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

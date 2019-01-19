@@ -74,5 +74,15 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             else
                 return RedirectToAction("Index", "Login");
         }
+
+        public ActionResult NotFound()
+        {
+            //Validar Inicio de Sesión
+            GeneralFunctions Function = new GeneralFunctions();
+            if (Function.GetUserLogin())
+                return View();
+            else
+                return RedirectToAction("Index", "Login");
+        }
     }
 }
