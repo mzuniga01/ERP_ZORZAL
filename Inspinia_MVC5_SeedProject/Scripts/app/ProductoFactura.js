@@ -15,14 +15,18 @@ $(document).ready(function () {
         }
 
     })
-});
+}); 
 
 // Factura Seleccionar Producto
 $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", function () {
+    idCBItem = $(this).closest('tr').data('cbarra');
     idItem = $(this).closest('tr').data('id');
     DescItem = $(this).closest('tr').data('desc');
     ISVItem = $(this).closest('tr').data('isv');
+    
+    $("#prod_CodigoBarras").val(idCBItem);
     $("#prod_Codigo").val(idItem);
+    
     $("#tbProducto_prod_Descripcion").val(DescItem);
     $("#factd_Impuesto").val(ISVItem);
     $('#ModalAgregarProducto').modal('hide');
@@ -33,9 +37,12 @@ $(document).ready(function () {
     var table = $('#tbProductoFactura').DataTable();
 
     $('#tbProductoFactura tbody').on('click', 'tr', function () {
+        idCBItem = $(this).closest('tr').data('cbarra');
         idItem = $(this).closest('tr').data('id');
         DescItem = $(this).closest('tr').data('desc');
         ISVItem = $(this).closest('tr').data('isv');
+        
+        $("#prod_CodigoBarras").val(idCBItem);
         $("#prod_Codigo").val(idItem);
         $("#tbProducto_prod_Descripcion").val(DescItem);
         $("#factd_Impuesto").val(ISVItem);

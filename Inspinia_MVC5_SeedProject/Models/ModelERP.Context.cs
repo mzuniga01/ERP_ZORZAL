@@ -1150,35 +1150,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCliente_Update_Result>("UDP_Vent_tbCliente_Update", clte_IdParameter, tpi_IdParameter, clte_IdentificacionParameter, clte_EsPersonaNaturalParameter, clte_NombresParameter, clte_ApellidosParameter, clte_FechaNacimientoParameter, clte_NacionalidadParameter, clte_SexoParameter, clte_TelefonoParameter, clte_NombreComercialParameter, clte_RazonSocialParameter, clte_ContactoNombreParameter, clte_ContactoEmailParameter, clte_ContactoTelefonoParameter, clte_FechaConstitucionParameter, mun_CodigoParameter, clte_DireccionParameter, clte_CorreoElectronicoParameter, clte_EsActivoParameter, clte_RazonInactivoParameter, clte_ConCreditoParameter, clte_EsMinoristaParameter, clte_ObservacionesParameter, clte_UsuarioCreaParameter, clte_FechaCreaParameter, clte_MontoCreditoParameter, clte_DiasCreditoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbPedidoDetalle_Update_Result> UDP_Vent_tbPedidoDetalle_Update(Nullable<int> pedd_Id, string prod_Codigo, Nullable<decimal> pedd_Cantidad, Nullable<decimal> pedd_CantidadFacturada, Nullable<int> pedd_UsuarioCrea, Nullable<System.DateTime> pedd_FechaCrea)
-        {
-            var pedd_IdParameter = pedd_Id.HasValue ?
-                new ObjectParameter("pedd_Id", pedd_Id) :
-                new ObjectParameter("pedd_Id", typeof(int));
-    
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            var pedd_CantidadParameter = pedd_Cantidad.HasValue ?
-                new ObjectParameter("pedd_Cantidad", pedd_Cantidad) :
-                new ObjectParameter("pedd_Cantidad", typeof(decimal));
-    
-            var pedd_CantidadFacturadaParameter = pedd_CantidadFacturada.HasValue ?
-                new ObjectParameter("pedd_CantidadFacturada", pedd_CantidadFacturada) :
-                new ObjectParameter("pedd_CantidadFacturada", typeof(decimal));
-    
-            var pedd_UsuarioCreaParameter = pedd_UsuarioCrea.HasValue ?
-                new ObjectParameter("pedd_UsuarioCrea", pedd_UsuarioCrea) :
-                new ObjectParameter("pedd_UsuarioCrea", typeof(int));
-    
-            var pedd_FechaCreaParameter = pedd_FechaCrea.HasValue ?
-                new ObjectParameter("pedd_FechaCrea", pedd_FechaCrea) :
-                new ObjectParameter("pedd_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedidoDetalle_Update_Result>("UDP_Vent_tbPedidoDetalle_Update", pedd_IdParameter, prod_CodigoParameter, pedd_CantidadParameter, pedd_CantidadFacturadaParameter, pedd_UsuarioCreaParameter, pedd_FechaCreaParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbSolicitudCredito_Update_Result> UDP_Vent_tbSolicitudCredito_Update(Nullable<int> cred_Id, Nullable<int> clte_Id, Nullable<byte> escre_Id, Nullable<System.DateTime> cred_FechaSolicitud, Nullable<System.DateTime> cred_FechaAprobacion, Nullable<decimal> cred_MontoSolicitado, Nullable<decimal> cred_MontoAprobado, Nullable<int> cred_DiasSolicitado, Nullable<int> cred_DiasAprobado, Nullable<int> cred_UsuarioCrea, Nullable<System.DateTime> cred_FechaCrea, Nullable<int> cred_UsuarioModifica, Nullable<System.DateTime> cred_FechaModifica)
         {
             var cred_IdParameter = cred_Id.HasValue ?
@@ -1262,7 +1233,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbCliente_Estado", clte_IdParameter, clte_EsActivoParameter, clte_RazonInactivoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Insert_Result> UDP_Vent_tbNotaCredito_Insert(string nocre_Codigo, Nullable<int> dev_Id, Nullable<int> clte_Id, Nullable<int> suc_Id, Nullable<bool> nocre_Anulado, Nullable<System.DateTime> nocre_FechaEmision, string nocre_MotivoEmision, Nullable<decimal> nocre_Monto, Nullable<bool> nocre_Redimido, Nullable<System.DateTime> nocre_FechaRedimido, Nullable<bool> nocre_EsImpreso)
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Insert_Result> UDP_Vent_tbNotaCredito_Insert(string nocre_Codigo, Nullable<int> dev_Id, Nullable<int> clte_Id, Nullable<int> suc_Id, Nullable<short> cja_Id, Nullable<bool> nocre_Anulado, Nullable<System.DateTime> nocre_FechaEmision, string nocre_MotivoEmision, Nullable<decimal> nocre_Monto, Nullable<bool> nocre_Redimido, Nullable<System.DateTime> nocre_FechaRedimido, Nullable<bool> nocre_EsImpreso)
         {
             var nocre_CodigoParameter = nocre_Codigo != null ?
                 new ObjectParameter("nocre_Codigo", nocre_Codigo) :
@@ -1279,6 +1250,10 @@ namespace ERP_GMEDINA.Models
             var suc_IdParameter = suc_Id.HasValue ?
                 new ObjectParameter("suc_Id", suc_Id) :
                 new ObjectParameter("suc_Id", typeof(int));
+    
+            var cja_IdParameter = cja_Id.HasValue ?
+                new ObjectParameter("cja_Id", cja_Id) :
+                new ObjectParameter("cja_Id", typeof(short));
     
             var nocre_AnuladoParameter = nocre_Anulado.HasValue ?
                 new ObjectParameter("nocre_Anulado", nocre_Anulado) :
@@ -1308,10 +1283,10 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("nocre_EsImpreso", nocre_EsImpreso) :
                 new ObjectParameter("nocre_EsImpreso", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Insert_Result>("UDP_Vent_tbNotaCredito_Insert", nocre_CodigoParameter, dev_IdParameter, clte_IdParameter, suc_IdParameter, nocre_AnuladoParameter, nocre_FechaEmisionParameter, nocre_MotivoEmisionParameter, nocre_MontoParameter, nocre_RedimidoParameter, nocre_FechaRedimidoParameter, nocre_EsImpresoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Insert_Result>("UDP_Vent_tbNotaCredito_Insert", nocre_CodigoParameter, dev_IdParameter, clte_IdParameter, suc_IdParameter, cja_IdParameter, nocre_AnuladoParameter, nocre_FechaEmisionParameter, nocre_MotivoEmisionParameter, nocre_MontoParameter, nocre_RedimidoParameter, nocre_FechaRedimidoParameter, nocre_EsImpresoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Update_Result> UDP_Vent_tbNotaCredito_Update(Nullable<short> nocre_Id, string nocre_Codigo, Nullable<int> dev_Id, Nullable<int> clte_Id, Nullable<int> suc_Id, Nullable<bool> nocre_Anulado, Nullable<System.DateTime> nocre_FechaEmision, string nocre_MotivoEmision, Nullable<decimal> nocre_Monto, Nullable<bool> nocre_Redimido, Nullable<System.DateTime> nocre_FechaRedimido, Nullable<bool> nocre_EsImpreso, Nullable<int> nocre_UsuarioCrea, Nullable<System.DateTime> nocre_FechaCrea)
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Update_Result> UDP_Vent_tbNotaCredito_Update(Nullable<short> nocre_Id, string nocre_Codigo, Nullable<int> dev_Id, Nullable<int> clte_Id, Nullable<int> suc_Id, Nullable<short> cja_Id, Nullable<bool> nocre_Anulado, Nullable<System.DateTime> nocre_FechaEmision, string nocre_MotivoEmision, Nullable<decimal> nocre_Monto, Nullable<bool> nocre_Redimido, Nullable<System.DateTime> nocre_FechaRedimido, Nullable<bool> nocre_EsImpreso, Nullable<int> nocre_UsuarioCrea, Nullable<System.DateTime> nocre_FechaCrea)
         {
             var nocre_IdParameter = nocre_Id.HasValue ?
                 new ObjectParameter("nocre_Id", nocre_Id) :
@@ -1332,6 +1307,10 @@ namespace ERP_GMEDINA.Models
             var suc_IdParameter = suc_Id.HasValue ?
                 new ObjectParameter("suc_Id", suc_Id) :
                 new ObjectParameter("suc_Id", typeof(int));
+    
+            var cja_IdParameter = cja_Id.HasValue ?
+                new ObjectParameter("cja_Id", cja_Id) :
+                new ObjectParameter("cja_Id", typeof(short));
     
             var nocre_AnuladoParameter = nocre_Anulado.HasValue ?
                 new ObjectParameter("nocre_Anulado", nocre_Anulado) :
@@ -1369,7 +1348,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("nocre_FechaCrea", nocre_FechaCrea) :
                 new ObjectParameter("nocre_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Update_Result>("UDP_Vent_tbNotaCredito_Update", nocre_IdParameter, nocre_CodigoParameter, dev_IdParameter, clte_IdParameter, suc_IdParameter, nocre_AnuladoParameter, nocre_FechaEmisionParameter, nocre_MotivoEmisionParameter, nocre_MontoParameter, nocre_RedimidoParameter, nocre_FechaRedimidoParameter, nocre_EsImpresoParameter, nocre_UsuarioCreaParameter, nocre_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Update_Result>("UDP_Vent_tbNotaCredito_Update", nocre_IdParameter, nocre_CodigoParameter, dev_IdParameter, clte_IdParameter, suc_IdParameter, cja_IdParameter, nocre_AnuladoParameter, nocre_FechaEmisionParameter, nocre_MotivoEmisionParameter, nocre_MontoParameter, nocre_RedimidoParameter, nocre_FechaRedimidoParameter, nocre_EsImpresoParameter, nocre_UsuarioCreaParameter, nocre_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbEstadoFactura_Insert_Result> UDP_Vent_tbEstadoFactura_Insert(string esfac_Descripcion)
@@ -5165,6 +5144,35 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("ped_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result>("SDP_Vent_tbPedidoDetalle_tbPedido_Select", ped_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbPedidoDetalle_Update_Result> UDP_Vent_tbPedidoDetalle_Update(Nullable<int> ped_Id, string prod_Codigo, Nullable<decimal> pedd_Cantidad, Nullable<decimal> pedd_CantidadFacturada, Nullable<int> pedd_UsuarioCrea, Nullable<System.DateTime> pedd_FechaCrea)
+        {
+            var ped_IdParameter = ped_Id.HasValue ?
+                new ObjectParameter("ped_Id", ped_Id) :
+                new ObjectParameter("ped_Id", typeof(int));
+    
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var pedd_CantidadParameter = pedd_Cantidad.HasValue ?
+                new ObjectParameter("pedd_Cantidad", pedd_Cantidad) :
+                new ObjectParameter("pedd_Cantidad", typeof(decimal));
+    
+            var pedd_CantidadFacturadaParameter = pedd_CantidadFacturada.HasValue ?
+                new ObjectParameter("pedd_CantidadFacturada", pedd_CantidadFacturada) :
+                new ObjectParameter("pedd_CantidadFacturada", typeof(decimal));
+    
+            var pedd_UsuarioCreaParameter = pedd_UsuarioCrea.HasValue ?
+                new ObjectParameter("pedd_UsuarioCrea", pedd_UsuarioCrea) :
+                new ObjectParameter("pedd_UsuarioCrea", typeof(int));
+    
+            var pedd_FechaCreaParameter = pedd_FechaCrea.HasValue ?
+                new ObjectParameter("pedd_FechaCrea", pedd_FechaCrea) :
+                new ObjectParameter("pedd_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedidoDetalle_Update_Result>("UDP_Vent_tbPedidoDetalle_Update", ped_IdParameter, prod_CodigoParameter, pedd_CantidadParameter, pedd_CantidadFacturadaParameter, pedd_UsuarioCreaParameter, pedd_FechaCreaParameter);
         }
     }
 }

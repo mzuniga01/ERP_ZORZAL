@@ -17,6 +17,10 @@
                         <table id="tbProductoFactura" class="table table table-striped  table-bordered">
                             <thead>
                                 <tr>
+                                 
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.prod_Codigo)
+                                    </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.prod_Descripcion)
                                     </th>
@@ -33,7 +37,12 @@
                             <tbody id="ProductoTbody">
                                 @foreach (var item in Model)
                                 {
-                                    <tr data-id="@item.prod_Codigo" data-desc="@item.prod_Descripcion" data-isv="@item.tbProductoSubcategoria.pscat_ISV">
+                                    <tr data-cbarra=@item.prod_CodigoBarras data-id="@item.prod_Codigo" data-desc="@item.prod_Descripcion" data-isv="@item.tbProductoSubcategoria.pscat_ISV">
+                                     
+                                        
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prod_Codigo)
+                                        </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.prod_Descripcion)
                                         </td>
