@@ -61,17 +61,17 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.listp_FechaInicioVigencia, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FIV", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)
-                                </div>
+                                    @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "FIV", } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)</p>
+</div>
                             </div>
                             <br /><br />
                             <div class="form-group">
                                 @Html.LabelFor(model => model.listp_FechaFinalVigencia, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FFV" } })
-                                    @Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)
-                                </div>
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)</p>
+</div>
                             </div>
 
                             <br /><br />
@@ -113,6 +113,9 @@
             </div>
         </div>
     </div>
+</div>
+<div id="validationSummary">
+    <p style="color:red"></p>
 </div>
 <script type="text/javascript">
 jQuery('input,select').each(function() {

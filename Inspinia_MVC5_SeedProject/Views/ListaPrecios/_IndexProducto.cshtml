@@ -36,7 +36,7 @@
                             <tbody id="ProductoTbody">
                                 @foreach (var item in Model)
                                 {
-                                    <tr data-id="@item.prod_Codigo" data-desc="@item.prod_Descripcion" data-isv="@item.tbProductoSubcategoria.pscat_ISV">
+                                    <tr data-idbarra="@item.prod_CodigoBarras" data-id="@item.prod_Codigo" data-desc="@item.prod_Descripcion" data-isv="@item.tbProductoSubcategoria.pscat_ISV">
                                         <td>
                                             @Html.DisplayFor(modelItem => item.prod_Codigo)
                                         </td>

@@ -2,6 +2,7 @@
 var contador = 0;
 
 $('#AgregarListaPrecioDetalle').click(function () {
+    var CodigoBarra = $('tbProducto_prod_CodigoBarras').val();
     var Producto = $('#prod_Codigo').val();
     var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
     var PrecioMayorista = $('#lispd_PrecioMayorista').val();
@@ -96,7 +97,6 @@ $('#AgregarListaPrecioDetalle').click(function () {
         })
         .done(function (data) {
 
-
             $('#ErrorPrecioMayoristaCreate').text('');
             $('#ErrorPrecioMinoristaCreate').text('');
             $('#ErrorDescuentoCajaCreate').text('');
@@ -105,11 +105,12 @@ $('#AgregarListaPrecioDetalle').click(function () {
 
             //Input
             $('#prod_Codigo').val('');
-           
-            $('#lispd_PrecioMayorista').val('');
-            $('#lispd_PrecioMinorista').val('');
-            $('#lispd_DescCaja').val('');
-            $('#lispd_DescGerente').val('');
+            $('#tbProducto_prod_CodigoBarras').val('');
+            $('#tbProducto_prod_Descripcion').val('');
+            $('#lispd_PrecioMayorista').val('0.00');
+            $('#lispd_PrecioMinorista').val('0.00');
+            $('#lispd_DescCaja').val('0.00');
+            $('#lispd_DescGerente').val('0.00');
           
 
         });
@@ -121,6 +122,7 @@ $('#AgregarListaPrecioDetalle').click(function () {
 function GetListaPrecioDetalle() {
     var ListaDetalle = {
         prod_Codigo: $('#prod_Codigo').val(),
+        prod_CodigoBarra: $('#tbProducto_prod_CodigoBarras').val(),
         lispd_PrecioMayorista: $('#lispd_PrecioMayorista').val(),
         lispd_PrecioMinorista: $('#lispd_PrecioMinorista').val(),
         lispd_DescCaja: $('#lispd_DescCaja').val(),
