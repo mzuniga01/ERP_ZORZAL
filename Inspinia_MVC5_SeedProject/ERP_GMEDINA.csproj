@@ -1599,6 +1599,8 @@
     <Content Include="Views\Pedido\_EditPedido.cshtml" />
     <Content Include="Views\Factura\_CreateCliente.cshtml" />
     <Content Include="Views\Login\SinAcceso.cshtml" />
+    <Content Include="Views\ListaPrecios\_CreateListaPrecioDetalleEdit.cshtml" />
+    <Content Include="Views\ListaPrecios\_CreateListaPrecioEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
