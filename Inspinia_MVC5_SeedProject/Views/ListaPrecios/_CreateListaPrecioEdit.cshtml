@@ -29,11 +29,9 @@
 
                             </div>
                             <div class="col-md-3">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto" id="buscar"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
-                            <div class="form-group col-md-1">
-                                <button class="btn btn-primary" type="button" id="AgregarListaPrecioDetalle">Añadir</button>
-                            </div>
+
                         </div>
 
 
@@ -73,48 +71,59 @@
 
 
 
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja (%)", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
-                                        <div id="validacionDescuentoCajaCreate">
-                                           @Html.ValidationMessageFor(model => model.lispd_DescCaja)
-                                        </div>
-
-
-                                    </div>
-
-                                    @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente (%)", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
-                                        <div id="validacionDescuentoGerenteCreate">
-                                           @Html.ValidationMessageFor(model => model.lispd_DescGerente)
-                                        </div>
-
-                                    </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja (%)", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                <div id="validacionDescuentoCajaCreate">
+                                    @Html.ValidationMessageFor(model => model.lispd_DescCaja)
                                 </div>
+
 
                             </div>
 
+                            @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente (%)", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                <div id="validacionDescuentoGerenteCreate">
+                                    @Html.ValidationMessageFor(model => model.lispd_DescGerente)
+                                </div>
 
+                            </div>
                         </div>
+
                     </div>
+
+
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-    @*</div>
+@*</div>
 
-</div>*@
+    </div>*@
+
+
 
 <div id="validationSummary">
     <p style="color:red"></p>
 </div>
 
-
-
+<center>
+    <div class="form-group">
+        <div>
+            <hr />
+            <div class="col-md-12 text-right">
+                <input type="submit" onclick="btnCreateListaPrecioDetalle();" value="Guardar" class="btn btn-primary" />
+                <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</center>
 <div>
-    <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="overflow-y: scroll";>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -122,11 +131,20 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+                  
                 </div>
                 <div class="modal-body" id="frmEditarMunicipios">
                     @Html.Partial("_IndexProducto", (List<tbProducto>)ViewBag.Producto)
                 </div>
+              
             </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <hr />
+          
         </div>
     </div>
 </div>
@@ -137,10 +155,20 @@
         })
 </script>
 
+<script type="text/javascript">
+    $(document).on('click', '#buscar', function () {
+        $('#ModalAgregarDetalle').modal('hide');
+    });
+
+    $(document).on('click', '#seleccionar', function () {
+        $('#ModalAgregarDetalle').modal('show');
+    });
+
+</script>
 <script>
     function comprobar()
     {
-       
+
             var PMA = $('#lispd_PrecioMayorista').val();
             var PMI = $('#lispd_PrecioMinorista').val();
             if (PMA<PMI)
@@ -150,5 +178,5 @@
             }
             return true;
         }
-        
+
 </script>

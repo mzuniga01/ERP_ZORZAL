@@ -22,7 +22,7 @@
 
 
 
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
@@ -149,27 +149,10 @@
                                         <div class="panel-body">
                                             <div class="ibox-title">
                                                 <div class="col-md-offset-11">
-                                                    <button id="AddProducto" value="Mostrar" onclick="mostrar()" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Nuevo</span></button>
+                                                    <button id="AddProducto" value="Mostrar"  type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Nuevo</span></button>
                                                 </div>
                                             </div>
-                                            <div class="ibox-content" id="create" style="display: none">
-                                                @Html.Partial("_CreateListaPrecioDetalle", new tbListadoPrecioDetalle())
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="ibox float-e-margins">
-                                                            <div class="ibox-content">
-                                                                <div class="form-group">
-                                                                    <div class="col-md-12 text-center">
-                                                                        <input type="submit" value="Guardar" class="btn btn-primary" />
-                                                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                                                    </div>
-                                                                </div>
-                                                                <br />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        
                                           
                                             <div class="ibox-content" div="Indexdetalle" ">
                                                 @Html.Partial("_IndexListaPrecioDetalle", Model.tbListadoPrecioDetalle)
@@ -250,7 +233,7 @@
 </div>
 
 
-<div class="modal fade" id="ModalAnular1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ModalAnular1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow-y: scroll";>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -269,7 +252,7 @@
         </div>
     </div>
 </div>
-@*<div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  style="overflow-y: scroll;">
     <div class="modal-dialog modal-lg " role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -279,11 +262,11 @@
                 <h4 class="modal-title" id="myModalLabe2">Agregar Lista Precio Detalle</h4>
             </div>
             <div class="modal-body" id="frmEditarMunicipios">
-                @Html.Partial("_CreateListaPrecioDetalleModal", new tbListadoPrecioDetalle())
+                @Html.Partial("_CreateListaPrecioEdit", new tbListadoPrecioDetalle())
             </div>
         </div>
     </div>
-</div>*@
+</div>
 
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/InactivarListaP.js"></script>
@@ -294,13 +277,11 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 <script type="text/javascript">
-    $(document).on('click', '#myModalLabel', function () {
-        $('#ModalAgregarProducto').modal('show');
-    });
-
-    $(document).on('click', '#myModalLabe2', function () {
+    $(document).on('click', '#seleccionar', function () {
         $('#ModalAgregarDetalle').modal('show');
     });
+  
+
 </script>
 
 <script type="text/javascript">
