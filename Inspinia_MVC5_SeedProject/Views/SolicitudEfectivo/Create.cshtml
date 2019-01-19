@@ -68,9 +68,10 @@
                                             style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option value="0">Seleccione la Moneda</option>
                                     </select>
-                                    <div class="validationMonedaCreate">
+                                    <p id="mone" style="color:red"> @Html.ValidationMessageFor(model => model.mnda_Id)</p>
+                                    @*<div class="validationMonedaCreate">
                                         @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
-                                    </div>
+                                    </div>*@
                                 </div>
                             </div>
 
@@ -213,7 +214,7 @@
 
 </script>
 
-
+    
    
 
 
@@ -226,7 +227,16 @@
             
                 var Detail = [];
                
+                var monedas = $('#mnda_Id').val();
 
+                if (monedas <= 0) {
+                    valido = document.getElementById('mone');
+                    valido.innerText = "El Campo Moneda es Requierido";
+                    return false;
+                }
+                else if (monedas > 0) {
+                   
+                
                     $('#example1 > tbody  > tr').each(function () {
                         idItem = $(this).data('id');
                         var soledCantidadSolicitada = $(this).find("td:eq(2)").find("input").val();
@@ -251,15 +261,16 @@
                     .done(function (data) {
                         if (data == 'Error') {
                             alert('No Enviado');
+
                         }
                         else {
-
+                            
                             console.log(procesoData);
                             console.log(cantisoli);
                         }
 
                     });
-                
+                }
         });
 </script>
    

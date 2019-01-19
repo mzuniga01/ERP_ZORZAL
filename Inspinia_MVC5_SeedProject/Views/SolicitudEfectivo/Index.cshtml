@@ -1,123 +1,143 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.UDP_Vent_SolicituEfectivo_Select>
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-sm-4">
-        <h2>Solicitud Efectivo</h2>       
-    </div>
-</div>
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Solicitudes de Efectivo</h5>
+                    <h5>Listado de Solicitus de Eectivo</h5>
 					<div class="ibox-tools">
 						@Html.ActionLink("Registrar Solicitud Efectivo", "Create", null, new { @class = "btn btn-primary btn-xs"})
 					</div>
                 </div>
                 <div class="ibox-content">
+                    <div class="table table-responsive">
+                        <table class="table table-striped" id="SolicitudEfectivo">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @*@Html.DisplayNameFor(model => model.IdSolicitud)*@
+                                        ID Solicitud
+                                    </th>
+                                    <th>
+                                        Fecha Solicitud
+                                    </th>
+                                    <th>
+                                        Sucursal
+                                    </th>
+                                    <th>
+                                        Caja
+                                    </th>
+                                    <th>
+                                        Moneda
+                                    </th>
+                                    <th>
+                                        Monto Solicitado
+                                    </th>
+                                    <th>
+                                        Monto Entregado
+                                    </th>
 
-<table class="table table-striped" id="SolicitudEfectivo">
-    <thead>
-        <tr>
-            <th>
-                @*@Html.DisplayNameFor(model => model.IdSolicitud)*@
-                ID Solicitud
-            </th>
-            <th>
-               Fecha Solicitud
-            </th>
-            <th>
-               Sucursal
-            </th>
-            <th>
-               Caja
-            </th>
-            <th>
-                Moneda
-            </th>
-            <th>
-               Monto Solicitado
-            </th>
-            <th>
-               Monto Entregado  
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdSolicitud)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaSolicitud)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sucursal)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Caja)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Moneda)
-                </td>
-                @{ if (Convert.ToString(item.MontoSolicitado) == "")
-                    {
-                        <td>
-                            0.00
-                        </td>
-                    }
-                    else
-                    {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MontoSolicitado)
-                        </td>
-                    }
-                }
-                @{ if (Convert.ToString(item.MontoEntregado) == "")
-                    {
-                        <td>
-                            0.00
-                        </td>
-                    }
-                    else
-                    {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MontoEntregado)
-                        </td>
-                    }
-                }
-               
-                
-                <td>
-                    @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs" })
-                    @Html.ActionLink("Entregar Efectivo", "EditEntregaEfectivo", new { id = item.IdSolicitud }, new { @class = "btn btn-danger btn-xs" })
-                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
-                        Imprimir
-                    </button>
-                    @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-white btn-sm"})*@
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                                    <th class="hide">
+                                        Apertura
+                                    </th>
+                                    <th>
+                                        Acciones
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IdSolicitud)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FechaSolicitud)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Sucursal)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Caja)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Moneda)
+                                        </td>
+                                        @{ if (Convert.ToString(item.MontoSolicitado) == "")
+                                            {
+                                                <td>
+                                                    0.00
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.MontoSolicitado)
+                                                </td>
+                                            }
+                                        }
+                                        @{ if (Convert.ToString(item.MontoEntregado) == "")
+                                            {
+                                                <td>
+                                                    0.00
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.MontoEntregado)
+                                                </td>
+                                            }
+                                        }
 
+                                        
+
+                                        <td class="hidden">
+                                            @Html.DisplayFor(modelItem => item.Apertura)
+                                        </td>
+
+                                        @{
+                                            string Editar = "btnEditar";}
+                                        @{
+                                            if (item.Apertura == true)
+                                            {
+                                                <td>
+                                                    @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
+                                                    @Html.ActionLink("Entregar Efectivo", "EditEntregaEfectivo", new { id = item.IdSolicitud }, new { @class = "btn btn-danger btn-xs" })
+                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
+                                                        Imprimir
+                                                    </button>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
+                                                    @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs", id = Editar })
+                                                    @Html.ActionLink("Entregar Efectivo", "EditEntregaEfectivo", new { id = item.IdSolicitud }, new { @class = "btn btn-danger btn-xs" })
+                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
+                                                        Imprimir
+                                                    </button>
+                                                </td>
+                                            }
+
+                                        }
+
+                                    </tr>
+                                            }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
  </div>
+
+
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/SolicitudEfectivo.js"></script>
 
@@ -140,5 +160,3 @@
         </div>
     </div>
 </div>
-
-

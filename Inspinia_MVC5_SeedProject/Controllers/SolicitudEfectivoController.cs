@@ -17,7 +17,7 @@ namespace ERP_GMEDINA.Controllers
 
         public ActionResult Index()
         {
-            return View(db.UDP_Vent_SolicituEfectivo_Select);
+            return View(db.UDP_Vent_SolicituEfectivo_Select.Where(a => a.Anulada == false).ToList());
         }
 
         public ActionResult IndexDetails()
@@ -96,7 +96,7 @@ namespace ERP_GMEDINA.Controllers
             ERP_ZORZALEntities db = new ERP_ZORZALEntities();
 
             db.Configuration.ProxyCreationEnabled = false;
-            List<tbDenominacion> Denomination = db.tbDenominacion.Where(x => x.mnda_Id == moneda).ToList();
+            List<tbDenominacion> Denomination = db.tbDenominacion.Where(x => x.mnda_Id == moneda).OrderByDescending(x => x.deno_valor).ToList();
 
 
             return Json(Denomination, JsonRequestBehavior.AllowGet);
