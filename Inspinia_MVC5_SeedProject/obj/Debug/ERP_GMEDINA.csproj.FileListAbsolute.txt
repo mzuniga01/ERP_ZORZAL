@@ -884,3 +884,5 @@ C:\Users\joshu\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\R
 C:\Users\joshu\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\RdlCompile.compiled
 C:\Users\joshu\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.dll
 C:\Users\joshu\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.pdb
+C:\Users\User\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\EntityFramework.xml
+C:\Users\User\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\EntityFramework.SqlServer.xml

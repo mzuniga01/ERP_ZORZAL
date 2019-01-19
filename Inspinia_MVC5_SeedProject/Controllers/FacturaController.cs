@@ -621,7 +621,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult GetNumeroFact(int CodSucursal, short CodCaja)
         {
-            var list = db.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura(CodSucursal, CodCaja).ToString();
+            var list = db.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura(CodSucursal, CodCaja).ToArray();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
