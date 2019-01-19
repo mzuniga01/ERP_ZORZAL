@@ -14,12 +14,6 @@ namespace ERP_GMEDINA.Models
     
     public partial class tbBodegaDetalle
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbBodegaDetalle()
-        {
-            this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
-        }
-    
         public int bodd_Id { get; set; }
         public string prod_Codigo { get; set; }
         public int bod_Id { get; set; }
@@ -36,8 +30,6 @@ namespace ERP_GMEDINA.Models
     
         public virtual tbBodega tbBodega { get; set; }
         public virtual tbProducto tbProducto { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
     }

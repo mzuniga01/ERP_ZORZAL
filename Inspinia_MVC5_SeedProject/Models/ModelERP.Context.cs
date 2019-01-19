@@ -57,7 +57,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }
         public virtual DbSet<tbProveedor> tbProveedor { get; set; }
         public virtual DbSet<tbSalida> tbSalida { get; set; }
-        public virtual DbSet<tbSalidaDetalle> tbSalidaDetalle { get; set; }
         public virtual DbSet<tbTipoEntrada> tbTipoEntrada { get; set; }
         public virtual DbSet<tbTipoSalida> tbTipoSalida { get; set; }
         public virtual DbSet<tbCaja> tbCaja { get; set; }
@@ -100,6 +99,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbMovimientoCaja> tbMovimientoCaja { get; set; }
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<UDP_Vent_SolicituEfectivo_Select> UDP_Vent_SolicituEfectivo_Select { get; set; }
+        public virtual DbSet<tbSalidaDetalle> tbSalidaDetalle { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {

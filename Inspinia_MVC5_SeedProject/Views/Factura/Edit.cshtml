@@ -10,6 +10,16 @@
         color: red;
         font-size: small;
     }
+
+    .modal-lg {
+        max-width: 100% !important;
+    }
+
+    .required:after {
+        content: "*";
+        color: red;
+        padding-left: 5px;
+    }
 </style>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -53,55 +63,45 @@
                             @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.suc_Id, new { @class = " required control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.suc_Id)</span>
                                 </div>
-                                @Html.LabelFor(model => model.cja_Id, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.cja_Id, new { @class = "required control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.pemi_NumeroCAI)</span>
                                 </div>
-                                @Html.LabelFor(model => model.fact_Codigo, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.fact_Codigo, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Codigo)</span>
                                 </div>
                             </div>
-
                             <div class="form-group">
-                                @Html.LabelFor(model => model.fact_Fecha, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.fact_Fecha, new { @class = "required control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.fact_Fecha, new { htmlAttributes = new { @class = "form-control", @id = "fechafacturaEdit" } })
+                                    @Html.EditorFor(model => model.fact_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "fechafacturaEdit" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Fecha)</span>
                                 </div>
-                                @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2", id= "label_identificacion" })
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.clte_Identificacion)
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Identificacion)</span>
-                                </div>
-                                <div class="col-md-1">
-                                    <button id="AddCliente" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
-                                </div>
                             </div>
-
                             <div class="form-group">
-                                @Html.LabelFor(model => model.fact_AlCredito, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2", id = "label_identificacion" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.fact_AlCredito)
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_AlCredito)</span>
+                                    @Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Identificacion)</span>
                                 </div>
                                 @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.clte_Nombres)
+                                    @Html.EditorFor(model => model.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Nombres)</span>
                                 </div>
                             </div>
@@ -114,6 +114,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                @Html.LabelFor(model => model.fact_AlCredito, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.fact_AlCredito)
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_AlCredito)</span>
+                                </div>
                                 <div class="form-horizontal" name="Credito" id="Credito">
                                     @Html.LabelFor(model => model.fact_DiasCredito, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
@@ -290,6 +295,9 @@
 <script src="~/Scripts/app/Credito.js"></script>
 <script src="~/Scripts/app/ClienteFactura.js"></script>
 <script src="~/Scripts/app/AnularFactura.js"></script>
+<script>
+    document.getElementById("consumidorFinal").disabled = true;
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/app/Empleados.js"></script>

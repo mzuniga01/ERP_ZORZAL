@@ -2,10 +2,9 @@
     if (this.checked) {
         //Do stuff     
         $("#cliente_Identificacion").val('99999999999999');
-        $("#cliente_Nombres").val('Consumidor Final');
+        $("#cliente_Nombres").val('CONSUMIDOR FINAL');
         document.getElementById("fact_AlCredito").disabled = true;
         document.getElementById("fact_AutorizarDescuento").disabled = true;
-
     }
     else {
         $("#cliente_Nombres").val('');
@@ -25,7 +24,7 @@ $("#consumidorFinal").ready(function () {
     if (this.checked) {
         //Do stuff     
         $("#cliente_Identificacion").val('99999999999999');
-        $("#cliente_Nombres").val('Consumidor Final');
+        $("#cliente_Nombres").val('CONSUMIDOR FINAL');
         document.getElementById("fact_AlCredito").disabled = true;
         document.getElementById("fact_AutorizarDescuento").disabled = true;
     }

@@ -105,8 +105,7 @@ $('#consumidorFinal').change(function () {
     //GetParametro
  
     if (this.checked) {
-        document.getElementById('btnAgregarCliente').style.display = 'none';
-        document.getElementById('CrearCliente').style.display = 'none';
+        $('#ocultar').hide();
         $('#Alcredito').hide();
         $('#AutorizarD').hide();
         $('#TerceraEdad').show();
@@ -133,11 +132,8 @@ $('#consumidorFinal').change(function () {
 
     }
     else {
-        document.getElementById("btnAgregarCliente").disabled = false;
-        document.getElementById("CrearCliente").disabled = false;
         document.getElementById("cliente_Identificacion").disabled = false;
-        document.getElementById('btnAgregarCliente').style.display = 'hidden';
-        document.getElementById('CrearCliente').style.display = 'hidden';
+        $('#ocultar').show();
         $('#Alcredito').show();
         $('#IDCliente').val('');
         $('#AutorizarD').show();

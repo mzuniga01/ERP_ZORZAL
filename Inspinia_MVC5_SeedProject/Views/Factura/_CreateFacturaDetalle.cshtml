@@ -12,9 +12,6 @@
                             <div class="col-md-3">
                                 <input id="prod_CodigoBarras" type="text" class="form-control" />
                             </div>
-                            <div class="col-md-1">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
-                            </div>
                             @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-1" })
                             <div class="col-md-5">
                                 @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly", } })
@@ -34,6 +31,9 @@
                                 @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control" } })
                                 <div id="validationCodigoProductoCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
                             </div>
 
@@ -153,7 +153,7 @@
             <td><p id="total" style="text-align:right"></p></td>
             <th></th>
         </tr>
-    </tfoot>
+        
 </table>
 <div id="validationSummary">
     <p style="color:red"></p>

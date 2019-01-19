@@ -34,7 +34,6 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbProductoSubcategoria" Width="1.5" PointX="9.75" PointY="91.625" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbProveedor" Width="1.5" PointX="7.5" PointY="167.125" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbSalida" Width="1.5" PointX="25.5" PointY="106" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbSalidaDetalle" Width="1.5" PointX="17.25" PointY="116.875" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbTipoEntrada" Width="1.5" PointX="7.5" PointY="171.375" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbTipoSalida" Width="1.5" PointX="7.5" PointY="110.125" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbCaja" Width="1.5" PointX="18" PointY="100.875" />
@@ -94,8 +93,6 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalida_Inv_tbBodega_bod_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbBodega_sal_BodDestino" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbBodegaDetalle_bodd_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_box_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEntrada_tbEstadoMovimiento_estm_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEntrada_tbProveedor_prov_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEntrada_tbSalida_fact_Id" />
@@ -114,7 +111,6 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbFactura_fact_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoSalida_tsal_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbSalida_sal_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbExoneracion_clte_Id" />
@@ -252,7 +248,6 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalida_Sal_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbUsuario_sal_UsuarioCrea" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbTipoEntrada_tent_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbTipoEntrada_tent_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbTipoSalida_tbUsuario_tsal_UsuarioCrea" />
@@ -290,7 +285,11 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbPedido_suc_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbSalidaDetalle" Width="1.5" PointX="30.75" PointY="109.875" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_box_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbSalida_sal_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

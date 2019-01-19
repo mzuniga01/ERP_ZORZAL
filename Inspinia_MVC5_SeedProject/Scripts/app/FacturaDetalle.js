@@ -94,7 +94,7 @@ $('#AgregarDetalleFactura').click(function () {
         //Grantotal
         if (document.getElementById("total").innerHTML == '') {
             var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos);
-           $("#TotalProductoEncabezado").val(TotalEncabezado);
+            $("#TotalProductoEncabezado").val(TotalEncabezado);
         }
         else {
             var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos);

@@ -1330,21 +1330,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbSalidaDetalle">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSalidaDetalle">
-        <MappingFragment StoreEntitySet="tbSalidaDetalle">
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="sald_FechaModifica" ColumnName="sald_FechaModifica" />
-          <ScalarProperty Name="sald_UsuarioModifica" ColumnName="sald_UsuarioModifica" />
-          <ScalarProperty Name="sald_FechaCrea" ColumnName="sald_FechaCrea" />
-          <ScalarProperty Name="sald_UsuarioCrea" ColumnName="sald_UsuarioCrea" />
-          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
-          <ScalarProperty Name="sal_Cantidad" ColumnName="sal_Cantidad" />
-          <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
-          <ScalarProperty Name="sald_Id" ColumnName="sald_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbTipoEntrada">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTipoEntrada">
         <MappingFragment StoreEntitySet="tbTipoEntrada">
@@ -2243,5 +2228,20 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="tbSalidaDetalle">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSalidaDetalle">
+        <MappingFragment StoreEntitySet="tbSalidaDetalle">
+          <ScalarProperty Name="sald_FechaModifica" ColumnName="sald_FechaModifica" />
+          <ScalarProperty Name="sald_UsuarioModifica" ColumnName="sald_UsuarioModifica" />
+          <ScalarProperty Name="sald_FechaCrea" ColumnName="sald_FechaCrea" />
+          <ScalarProperty Name="sald_UsuarioCrea" ColumnName="sald_UsuarioCrea" />
+          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
+          <ScalarProperty Name="sal_Cantidad" ColumnName="sal_Cantidad" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
+          <ScalarProperty Name="sald_Id" ColumnName="sald_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
