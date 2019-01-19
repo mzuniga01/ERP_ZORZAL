@@ -195,7 +195,7 @@ namespace ERP_GMEDINA.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ModificarCuenta([Bind(Include = "usu_Id,usu_NombreUsuario,usu_Nombres,usu_Apellidos,usu_Correo,usu_EsActivo,usu_RazonInactivo,usu_EsAdministrador,usu_Password,ConfirmarPassword,suc_Id")] tbUsuario tbUsuario)
+        public ActionResult ModificarCuenta([Bind(Include = "usu_Id,usu_NombreUsuario,usu_Nombres,usu_Apellidos,usu_Correo,usu_EsActivo,usu_RazonInactivo,usu_EsAdministrador,usu_Password,ConfirmarPassword,suc_Id,emp_Id")] tbUsuario tbUsuario)
         {
             if (ModelState.IsValid)
             {
@@ -206,7 +206,8 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<object> List = null;
                     var MsjError = "0";
-                    List = db.UDP_Acce_tbUsuario_Update(tbUsuario.usu_Id, tbUsuario.usu_NombreUsuario, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.usu_EsActivo, tbUsuario.usu_RazonInactivo, tbUsuario.usu_EsAdministrador, tbUsuario.usu_SesionesValidas);
+                    List = db.UDP_Acce_tbUsuario_Update(tbUsuario.usu_Id, tbUsuario.usu_NombreUsuario, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.usu_EsActivo, tbUsuario.usu_RazonInactivo, tbUsuario.usu_EsAdministrador, tbUsuario.usu_SesionesValidas,
+                        tbUsuario.suc_Id, tbUsuario.emp_Id);
                     foreach (UDP_Acce_tbUsuario_Update_Result Usuario in List)
                         MsjError = Usuario.MensajeError;
 
@@ -246,6 +247,7 @@ namespace ERP_GMEDINA.Controllers
             tbUsuario tbUsuario = db.tbUsuario.Find(id);
             ViewBag.User_ID = id;
             ViewBag.ConfirmarPassword = "Password";
+            ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
             if (tbUsuario == null)
             {
                 return HttpNotFound();
@@ -260,7 +262,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "usu_Id,usu_NombreUsuario,usu_Nombres,usu_Apellidos,usu_Correo,usu_EsActivo,usu_RazonInactivo,usu_EsAdministrador,usu_Password,ConfirmarPassword,suc_Id")] tbUsuario tbUsuario)
+        public ActionResult Edit([Bind(Include = "usu_Id,usu_NombreUsuario,usu_Nombres,usu_Apellidos,usu_Correo,usu_EsActivo,usu_RazonInactivo,usu_EsAdministrador,usu_Password,ConfirmarPassword,suc_Id,emp_Id")] tbUsuario tbUsuario)
         {
             if (ModelState.IsValid)
             {
@@ -271,7 +273,8 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<object> List = null;
                     var MsjError = "0";
-                    List = db.UDP_Acce_tbUsuario_Update(tbUsuario.usu_Id, tbUsuario.usu_NombreUsuario, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.usu_EsActivo, tbUsuario.usu_RazonInactivo, tbUsuario.usu_EsAdministrador,tbUsuario.usu_SesionesValidas);
+                    List = db.UDP_Acce_tbUsuario_Update(tbUsuario.usu_Id, tbUsuario.usu_NombreUsuario, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.usu_EsActivo, tbUsuario.usu_RazonInactivo, tbUsuario.usu_EsAdministrador,tbUsuario.usu_SesionesValidas,
+                        tbUsuario.suc_Id, tbUsuario.emp_Id);
                     foreach (UDP_Acce_tbUsuario_Update_Result Usuario in List)
                         MsjError = Usuario.MensajeError;
 
@@ -540,7 +543,7 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult QuitarRol(int idRol, ICollection<tbRolesUsuario> RolUsuario)
+        public JsonResult QuitarRol(int usu_Id, ICollection<tbRolesUsuario> RolUsuario)
         {
             var Msj = "";
             //IEnumerable<Object> Acceso = null;
@@ -560,7 +563,7 @@ namespace ERP_GMEDINA.Controllers
                         {
                             foreach (tbRolesUsuario vRolUsuario in RolUsuario)
                             {
-                                db.UDP_Acce_tbRolesUsuario_Delete(idRol, vRolUsuario.rol_Id);
+                                db.UDP_Acce_tbRolesUsuario_Delete(usu_Id, vRolUsuario.rol_Id);
 
                             }
                         }

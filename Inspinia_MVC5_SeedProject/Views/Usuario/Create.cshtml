@@ -82,6 +82,7 @@
             <div class="col-md-2">
                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-4" })
                 @Html.DropDownList("suc_Id", (IEnumerable<SelectListItem>)ViewBag.Sucursal, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.suc_Id, "", new { @class = "text-danger" })
             </div>
             </div>
         <div><br /><br /><br /></div>

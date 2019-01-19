@@ -28,7 +28,7 @@
                         </thead>
 
                         <tbody>
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Where(x => x.bod_Id == 11))
                             {
                                
                                     <tr tr data-boddid="@item.bodd_Id"  , tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre">

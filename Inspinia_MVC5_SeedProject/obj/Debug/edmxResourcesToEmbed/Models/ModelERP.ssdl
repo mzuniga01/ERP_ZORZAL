@@ -963,8 +963,8 @@
     <Property Name="tpa_UsuarioModifica" Type="int" />
     <Property Name="tpa_FechaModifica" Type="datetime" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
     <Key>
       <PropertyRef Name="prod_Descripcion" />
@@ -4152,6 +4152,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="sal_Cantidad" Type="decimal" Mode="In" />
     <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbSalidaDetalleD_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="sald_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbTipoEntrada_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="tent_Descripcion" Type="nvarchar" Mode="In" />

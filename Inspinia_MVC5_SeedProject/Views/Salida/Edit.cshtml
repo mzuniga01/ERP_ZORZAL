@@ -59,7 +59,7 @@
                                     @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.DropDownList("estm_Id", null, htmlAttributes: new { @class = "form-control" })
-                                       @Html.ValidationMessageFor(model => model.estm_Id)
+                                        @Html.ValidationMessageFor(model => model.estm_Id)
                                     </div>
                                 </div>
 
@@ -107,64 +107,64 @@
                             </fieldset>
                         </div>
 
-                            <div class="form-horizontal" name="compra" id="compra" style="display:none">
-                                <fieldset class="box-border">
-                                    <legend class="box-border">Compra</legend>
+                        <div class="form-horizontal" name="compra" id="compra" style="display:none">
+                            <fieldset class="box-border">
+                                <legend class="box-border">Compra</legend>
 
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
-                                        <div class="col-md-4">
-                                            @Html.EditorFor(model => model.fact_Id)
-                                            @Html.ValidationMessageFor(model => model.fact_Id)
-                                        </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.fact_Id)
+                                        @Html.ValidationMessageFor(model => model.fact_Id)
                                     </div>
+                                </div>
 
-                                </fieldset>
+                            </fieldset>
 
-                                
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
-                                    <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular" value="Anular" />
-                                    @{
-                                        var Activo = Model.estm_Id;
-                                        if (Activo == 4)
-                                        {
-                                            <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalInactivar" value="Inactivar" />
-                                        }
-                                        else if (Activo == 3)
-                                        {
-                                            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalActivar" value="Activar" />
-                                        }
+
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
+                                <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular" value="Anular" />
+                                @{
+                                    var Activo = Model.estm_Id;
+                                    if (Activo == 4)
+                                    {
+                                        <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalInactivar" value="Inactivar" />
                                     }
+                                    else if (Activo == 3)
+                                    {
+                                        <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalActivar" value="Activar" />
+                                    }
+                                }
 
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                </div>
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                             </div>
+                        </div>
 
 
-                            @* Llama la vista  *@
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-content">
+                        @* Llama la vista  *@
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-content">
 
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="ibox-content">
-                                                <fieldset class="box-border">
-                                                    <legend class="box-border">SalidaDetalle</legend>
-                                                    @Html.Partial("_EditSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.sal_Id }))
-                                                </fieldset>
-                                            </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="ibox-content">
+                                            <fieldset class="box-border">
+                                                <legend class="box-border">SalidaDetalle</legend>
+                                                @Html.Partial("_EditSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.sal_Id }))
+                                            </fieldset>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            @*botones*@
+                        @*botones*@
 
-                            <br />
+                        <br />
                     }
 
                 </div>
@@ -172,89 +172,15 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="ModalAplicar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Desea Aplicar la Salida</h4>
-            </div>
-            <div class="modal-body" id="frmBuscarProducto">
-                @Html.ActionLink("Si", "Aplicar", new { id = Model.sal_Id }, new { @class = "btn btn-primary btn-xs" });
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            </div>
-        </div>
-    </div>
-</div>
+@Html.Partial("_Modales")
 
-<div class="modal fade" id="ModalAnular" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Desea Anular la Salida la Salida</h4>
-            </div>
-            <div class="modal-body" id="frmBuscarProducto">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.sal_RazonAnulada, "Razon de Anulacion", new { @class = "control-label col-md-2" })
-                    <div class="col-md-4">
-                        @Html.EditorFor(model => model.sal_RazonAnulada)
-                        @Html.ValidationMessageFor(model => model.sal_RazonAnulada)
-                    </div>
-                </div>
-                @Html.ActionLink("Si", "Anular", new { id = Model.sal_Id }, new { @class = "btn btn-primary btn-xs" });
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="ModalActivar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Desea Anular la Salida la Salida</h4>
-            </div>
-            <div class="modal-body" id="frmBuscarProducto">
-                @Html.ActionLink("Si", "Activar", new { id = Model.sal_Id }, new { @class = "btn btn-primary btn-xs" });
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="ModalInactivar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Desea Anular la Salida la Salida</h4>
-            </div>
-            <div class="modal-body" id="frmBuscarProducto">
-                @Html.ActionLink("Si", "Inactivar", new { id = Model.sal_Id }, new { @class = "btn btn-primary btn-xs" });
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
-<script src="~/Scripts/app/BusquedaGenerica.js"></script>
 <script src="~/Scripts/app/SalidaDetalle.js"></script>
-<script src="~/Scripts/app/Producto.js"></script>
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     var contadorp = 0;
     $(document).ready(function () {
         $.get('/Salida/GetProdList', function (data) {
@@ -267,14 +193,14 @@
                 copy += "<td id = 'Producto'>" + row.data(tbProducto) + "</td>";
                 copy += "<td id = 'Unidad_Medida'>" + row.prod_Codigo + "</td>";
                 copy += "<td id = 'Cantidad'>" + row.prod_Codigo + "</td>";
-                copy += "<td>" + '<button class="btn btn-primary btn-xs" value="'+row.prod_Codigo+'" id="seleccionar" data-dismiss="modal">Seleccionar</button>' + "</td>";
+                copy += "<td>" + '<button class="btn btn-primary btn-xs" value="' + row.prod_Codigo + '" id="seleccionar" data-dismiss="modal">Seleccionar</button>' + "</td>";
                 copy += "</tr>";
                 $('#cuerpo').append(copy);
             });
 
-            })
         })
-</script>
+    })
+</script>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

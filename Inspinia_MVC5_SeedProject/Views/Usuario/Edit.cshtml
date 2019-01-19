@@ -98,11 +98,18 @@
                             </div>
 
 
+                            
+
                             <div class="form-group" style="padding-right:220px" id="">
                                 @Html.LabelFor(model => model.usu_EsAdministrador, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.usu_EsAdministrador, new { htmlAttributes = new { @class = "checkbox-inline" } })
                                     @Html.ValidationMessageFor(model => model.usu_EsAdministrador)
+                                </div>
+                                @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("suc_Id", (IEnumerable<SelectListItem>)ViewBag.Sucursal, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.suc_Id)
                                 </div>
                             </div>
 
@@ -158,7 +165,7 @@
                                     <table class="table table-responsive" style="width:100%" id="NoAsignadosEdit">
                                         <thead>
                                             <tr>
-                                                <td id="RegistrosNoAsignadosEdit" style="background-color:#1ab394;color:white">Pantallas</td>
+                                                <td id="RegistrosNoAsignadosEdit" style="background-color:#1ab394;color:white">Roles</td>
                                                 <td style="background-color:#1ab394"></td>
                                             </tr>
                                         </thead>
@@ -181,7 +188,7 @@
                                     <table class="table table-responsive" style="width:100%" id="AsignadosEdit">
                                         <thead>
                                             <tr>
-                                                <td id="RegistrosAsignadosEdit" style="background-color:#1ab394;color:white">Pantallas</td>
+                                                <td id="RegistrosAsignadosEdit" style="background-color:#1ab394;color:white">Roles</td>
                                                 <td style="background-color:#1ab394"></td>
                                             </tr>
                                         </thead>
@@ -269,5 +276,5 @@
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 @*<script src="~/Scripts/app/MostrarOcultar.js"></script>*@
-<script src="~/Scripts/app/InanctivarUsuario.js"></script>
+<script src="~/Scripts/app/InActivarUsuario.js"></script>
 <script src="~/Scripts/app/RolesUsuarioEdit.js"></script>

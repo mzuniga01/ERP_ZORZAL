@@ -34,6 +34,8 @@
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.usu_Id)
                             @Html.HiddenFor(model => model.usu_NombreUsuario)
+                            @Html.HiddenFor(model => model.suc_Id)
+                            @Html.HiddenFor(model => model.emp_Id)
                             @Html.Hidden("ConfirmarPassword", (string)ViewBag.ConfirmarPassword)
                             <div><br /><br /></div>
                             <div class="form-group" style="padding-right:220px">

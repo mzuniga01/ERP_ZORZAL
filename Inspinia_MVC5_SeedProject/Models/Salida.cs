@@ -23,7 +23,6 @@ namespace ERP_GMEDINA.Models
         public int bod_Id { get; set; }
 
         [Display(Name = "N# de Factura")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public long fact_Id { get; set; }
 
         [Display(Name = "Fecha de Salida")]

@@ -1,5 +1,5 @@
 ﻿var contador = 0;
-
+//Tabla de Busqueda Generica
 $(document).ready(function () {
     $('#Table_BuscarProducto').DataTable(
         {
@@ -35,13 +35,11 @@ $(document).ready(function () {
     });
 });
 $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", function () {
-    bodd_IdItem = $(this).closest('tr').data('boddid');
     idItem = $(this).closest('tr').data('id');
     contentItem = $(this).closest('tr').data('content');
     uni_IdtItem = $(this).closest('tr').data('keyboard');
     psubctItem = $(this).closest('tr').data('container');
     pcatItem = $(this).closest('tr').data('pcat');
-    $("#bodd_Id").val(bodd_IdItem);
     $("#prod_Codigo").val(idItem);
     $("#prod_Descripcion").val(contentItem);
     $("#uni_Id").val(uni_IdtItem);
@@ -49,8 +47,44 @@ $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", 
     $("#pcat_Id").val(pcatItem);
     //$("#cod").val(idItem);
 });
+//
 
+//Tabla del Detalle
+$(document).ready(function () {
+    $('#tblSalidaDetalle1').DataTable(
+        {
+            "searching": false,
+            "lengthChange": false,
 
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "Agregue un Producdo",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+            }
+        });
+
+    var $rows = $('#tblSalidaDetalle1 tr');
+    $("#search").keyup(function () {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+        $rows.show().filter(function () {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
+        //$rows.show().filter(function () {
+        //    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        //    return !~text.indexOf(val);
+        //}).hide();
+
+    });
+});
+//
 
 
 //DatePicker
@@ -103,7 +137,6 @@ $('#AgregarSalidaDetalle').click(function () {
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
         //copiar += "<td>" + $('#CodTipoCasoExitoCreate option:selected').text() + "</td>";
-        copiar += "<td:first-child {display:none;} id = 'bodd_Id'>" + $('#bodd_Id').val() + "</td>";
         copiar += "<td id = 'Cod_Producto'>" + $('#prod_Codigo').val() + "</td>";
         copiar += "<td id = 'Producto'>" + $('#prod_Descripcion').val() + "</td>";
         copiar += "<td id = 'Unidad_Medida'>" + $('#pscat_Id').val() + "</td>";
@@ -122,11 +155,11 @@ $('#AgregarSalidaDetalle').click(function () {
             data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle }),
         })
             .done(function (data) {
-                    $("#bodd_Id").val('');
                     $('#prod_Codigo').val('');
                     $('#prod_Descripcion').val('');
-                    $('#pscat_Id').val('');
-                    $('#sal_Cantidad').val('');
+                $('#pscat_Id').val(''); 
+                $('#sal_Cantidad').val(''); 
+                $('#uni_Id').val(''); 
                     $('#MessageError').text('');
                     $('#NombreError').text('');
                     console.log('Hola');

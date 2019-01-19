@@ -55,7 +55,6 @@
                         @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
                         @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
-                        @*Esto lo agregó Mágdaly Zúniga*@
                         @*Extras usuario crea*@
                         @Html.HiddenFor(model => model.tbUsuario.usu_NombreUsuario)
                         @Html.HiddenFor(model => model.tbUsuario.usu_Password)
@@ -83,23 +82,7 @@
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.pscat_Id)</p>
                             </div>
 
-                        </div>
-
-                        @*<div class="form-group">
-                            <label class="control-label col-md-2">Categoria<span style="color:red">*</span></label>
-                            <div class="col-md-4">
-                                @Html.DropDownList("pcat_Id",null, "Seleccione una Categoria", new { @class = "form-control" })
-                           
-                               
-                                <p style="color:red">@Html.ValidationMessageFor(muni => ListadoCategoria.pcat_Id)</p>
-                            </div>
-
-                            <label class="control-label col-md-2">SubCategoria<span style="color:red">*</span></label>
-                            <div class="col-md-4">
-                                @Html.DropDownList("pscat_Id",null,"Seleccione", new { @class = "form-control" })
-                                <p style="color:red">@Html.ValidationMessageFor(model => model.pscat_Id)</p>
-                            </div>
-                        </div>*@                       
+                        </div>                                           
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
@@ -191,26 +174,7 @@
                             }
 
                         </div>
-
-                        
-                        
-                            @*<div class="form-group" id="Activo" name="Activo">
-                                @Html.LabelFor(model => model.prod_EsActivo, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_EsActivo, new { htmlAttributes = new { @type = "checkbox", @checked = "true" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prod_EsActivo)</p>
-                                </div>
-                            
-
-                            <div class="form-group" id="RazonInactivo">
-                                @Html.LabelFor(model => model.prod_Razon_Inactivacion, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Razon_Inactivacion, new { @class = "form-control" })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Razon_Inactivacion)</p>
-                                </div>
-                            </div>
-                        </div>*@
-
+                                                                       
                             <div class="ibox-content">
                                 <table class="table table-striped">
                                     <tr>
@@ -233,8 +197,46 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @if (Model.prod_EsActivo)
+                                    @{
+                                        ERP_ZORZALEntities db2 = new ERP_ZORZALEntities();
+                                        var id2 = Model.prod_Codigo;
+                                        string query = "SELECT COUNT(prod_Codigo) FROM Inv.tbBodegaDetalle WHERE prod_Codigo ='" + id2 + "'";
+                                        var count = db2.Database.SqlQuery<int>(query, id2).Single();
+
+                                        if (count > 0)
+                                        {
+                                            <input type="submit" value="Guardar" class="btn btn-primary" disabled/>
+                                            if (Model.prod_EsActivo) {
+                                            <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular" disabled>
+                                                Inactivar
+                                            </button>
+                                            }
+                                            else
+                                            {
+                                                <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1" disabled>
+                                                    Activar
+                                                </button>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                                            if (Model.prod_EsActivo)
+                                            {
+                                                <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
+                                                    Inactivar
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
+                                                    Activar
+                                                </button>
+                                            }
+                                        }
+
+                                    }                                                                     
+                                    @*@if (Model.prod_EsActivo)
                                     {
                                         <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
                                             Inactivar
@@ -245,7 +247,7 @@
                                         <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
                                             Activar
                                         </button>
-                                    }
+                                    }*@
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
 
 
@@ -331,7 +333,7 @@
 <script src="~/Scripts/app/SubCategoriaProducto.js"></script>
 
 
-<script>
+@*<script>
 
         function GetCategoriaProducto() {
             var codsubcategoria = $('#pscat_Id').val();
@@ -357,5 +359,5 @@
                 });
 
         }
-</script>
+</script>*@
 

@@ -104,7 +104,7 @@
 
 });
 $('#Add').click(function () {
-    var idUsu = $('#usu_Id').val()
+    var idRol = $('#usu_Id').val()
     var RolUsuario = []
     $('#NoAsignadosEdit> tbody > tr').each(function () {
         idItem = $(this).data('id');
@@ -129,7 +129,7 @@ $('#Add').click(function () {
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ idUsu: idUsu, RolUsuario: RolUsuario }),
+        data: JSON.stringify({ idRol: idRol, RolUsuario: RolUsuario }),
         success: function (json) {
             //Recargar();
         },
@@ -153,7 +153,7 @@ $('#Add').click(function () {
 })
 
 $('#Remove').click(function () {
-    var idUsu = $('#usu_Id').val()
+    var usu_Id = $('#usu_Id').val()
     var RolUsuario = []
     $('#AsignadosEdit> tbody > tr').each(function () {
         idItem = $(this).data('id');
@@ -175,7 +175,7 @@ $('#Remove').click(function () {
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ idUsu: idUsu, RolUsuario: RolUsuario }),
+        data: JSON.stringify({ usu_Id: usu_Id, RolUsuario: RolUsuario }),
     })
                 .done(function (data) {
                     if (data == '') {

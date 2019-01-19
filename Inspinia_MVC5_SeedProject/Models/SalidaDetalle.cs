@@ -9,6 +9,7 @@ namespace ERP_GMEDINA.Models
     [MetadataType(typeof(SalidaDetalleMetaData))]
     public partial class tbSalidaDetalle
     {
+
     }
     public class SalidaDetalleMetaData
     {

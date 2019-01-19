@@ -104,9 +104,8 @@
       <HintPath>..\packages\Microsoft.VisualStudio.QualityTools.WebTestFramework.12.0.40629.1\lib\net40\Microsoft.VisualStudio.QualityTools.WebTestFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SimpleCrypto, Version=26.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleCrypto.0.3.30.26\lib\SimpleCrypto.dll</HintPath>
@@ -725,6 +724,9 @@
     <Compile Include="Models\UDP_Inv_tbProveedor_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Inv_tbSalidaDetalleD_Delete_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Inv_tbSalidaDetalle_Delete_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1018,6 +1020,7 @@
     <Content Include="Scripts\app\emailvalidation.js" />
     <Content Include="Scripts\app\EntradaDetalle.js" />
     <Content Include="Scripts\app\InActivarProducto.js" />
+    <Content Include="Scripts\app\InActivarUsuario.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\InvFisicoDetalle.js" />
     <Content Include="Scripts\app\letras.js" />
@@ -1398,6 +1401,7 @@
     <Content Include="Views\Entrada\_ProductoEntradaEditarModal.cshtml" />
     <Content Include="Views\InventarioFisico\_CreateInvFisicoDetalle_nuevo.cshtml" />
     <Content Include="Views\InventarioFisico\_ListadoInventarioFisicoDetalleConciliado.cshtml" />
+    <Content Include="Views\Salida\_Modales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

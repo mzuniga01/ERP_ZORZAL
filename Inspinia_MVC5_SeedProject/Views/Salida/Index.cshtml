@@ -23,17 +23,17 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado de Salida</h5>
-					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Salida", "Create", null, new { @class = "btn btn-primary"})
-					</div>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Registrar Salida", "Create", null, new { @class = "btn btn-primary" })
+                    </div>
                 </div>
-                <p class="ibox-content">
+                <div class="ibox-content">
 
                     <table class="table table-responsive" style="width:100%" id="Datatable">
                         <thead>
                             <tr>
                                 <th>
-                                   @Html.DisplayNameFor(model => model.sal_FechaElaboracion)
+                                    @Html.DisplayNameFor(model => model.sal_FechaElaboracion)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.tbBodega.bod_Nombre)
@@ -45,7 +45,7 @@
                                     @Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)
                                 </th>
                                 <th>
-                                   @Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)
+                                    @Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)
                                 </th>
                                 <th>
                                     Acciones
@@ -72,15 +72,15 @@
                                         @Html.DisplayFor(modelItem => item.tbBodega.bod_ResponsableBodega)
                                     </td>
                                     <td>
-                                        @{  if (item.estm_Id == 1)
+                                        @{ if (item.estm_Id == 1)
                                             {
                                                 <p style="color:green"> Aplicada</p>;
                                             }
                                             else
                                             {
                                                 @Html.ActionLink("Editar", "Edit", new { id = item.sal_Id }, new { @class = "btn btn-primary btn-xs" });
-                                                }
                                             }
+                                        }
 
                                         @Html.ActionLink("Detalles", "Details", new { id = item.sal_Id }, new { @class = "btn btn-white btn-xs" })
                                     </td>
@@ -94,8 +94,7 @@
             </div>
         </div>
     </div>
- 
-
+</div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>

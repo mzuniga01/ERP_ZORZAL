@@ -18,7 +18,7 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Salida/
         public ActionResult Index()
         {
-            var tbsalida = db.tbSalida.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbFactura).Include(t => t.tbTipoSalida);
+            var tbsalida = db.tbSalida.Include(t => t.tbUsuario).Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbTipoSalida);
             return View(tbsalida.ToList());
         }
 
@@ -215,9 +215,7 @@ namespace ERP_GMEDINA.Controllers
                                                     pSalidaDetalle.sal_Id,
                                                     SalidaDetalle.prod_Codigo,
                                                     SalidaDetalle.sal_Cantidad,
-                                                    SalidaDetalle.box_Codigo,
-                                                    pSalidaDetalle.sald_UsuarioCrea,
-                                                    pSalidaDetalle.sald_FechaCrea);
+                                                    SalidaDetalle.box_Codigo);
 
                 foreach (UDP_Inv_tbSalidaDetalle_Update_Result RSSalidaDetalle in list)
                     MensajeError = RSSalidaDetalle.MensajeError;
