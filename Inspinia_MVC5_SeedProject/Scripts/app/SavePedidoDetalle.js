@@ -1,6 +1,7 @@
 ﻿var contador = 0;
 $('#AñadirPedidoDetalle').click(function () {
     var prod_Codigo = $('#prod_Codigo').val();
+    var CodigoBarra = $('#tbProducto_prod_CodigoBarras').val();
     var prod_Descripcion = $('#tbProducto_prod_Descripcion').val();
     var pedd_Descripcion = $('#pedd_Descripcion').val();
     var pedd_Cantidad = $('#pedd_Cantidad').val();
@@ -63,6 +64,7 @@ $('#AñadirPedidoDetalle').click(function () {
         })
                 .done(function (data) {
                     $('#prod_Codigo').val('');
+                    $('#tbProducto_prod_CodigoBarras').val('');
                     $('#tbProducto_prod_Descripcion').val('');
                     $('#pedd_Descripcion').val('');
                     $('#pedd_Cantidad').val('');
@@ -80,7 +82,8 @@ $('#AñadirPedidoDetalle').click(function () {
 
 function GetPedidoDetalle() {
     var PedidoDetalle = {
-         prod_Codigo : $('#prod_Codigo').val(),
+        prod_Codigo: $('#prod_Codigo').val(),
+        CodigoBarra : $('#tbProducto_prod_CodigoBarras').val(),
          prod_Descripcion : $('#tbProducto_prod_Descripcion').val(),
          pedd_Descripcion : $('#pedd_Descripcion').val(),
          pedd_Cantidad : $('#pedd_Cantidad').val(),

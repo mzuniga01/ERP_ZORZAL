@@ -36,7 +36,7 @@
         @foreach (var item in Model)
         {
 
-            <tr data-id="@item.prod_Codigo" data-desc="@item.prod_Descripcion">
+            <tr data-idbarra="@item.prod_CodigoBarras" data-id="@item.prod_Codigo" data-desc="@item.prod_Descripcion">
                 <td>
                     @Html.DisplayFor(modelItem => item.prod_Codigo)
                 </td>
