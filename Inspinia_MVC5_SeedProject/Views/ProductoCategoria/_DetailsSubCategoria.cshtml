@@ -63,16 +63,7 @@
                                 Eliminar
                             </button>*@
                             
-                            @{if (Model.pscat_EsActiva == 1)
-                                {
-                                    <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstadoSub" value="Inactivar" />
-                                        @*@Html.ActionLink("Inactivar", "InactivarCate", new { id = Model.pcat_Id }, new { @class = "btn btn-danger" })*@
-                                }
-                                else
-                                {
-                                    @Html.ActionLink("Activar", "ActivarSub", new { id = Model.pscat_Id }, new { @class = "btn btn-primary" })
-                                }
-                            }
+                          
                             @Html.ActionLink("Cancelar", "Edit", null, new { @class = "btn btn-white" })
                         </div>
                     </div>
@@ -107,25 +98,7 @@
 </div>*@
 
 
-<div class="modal fade" id="ModalEstadoSub" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Inactivar SubCategoría</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro que quiere Inactivar esta SubCategoría?
-            </div>
-            <div class="modal-footer">
-                @Html.ActionLink("Sí", "InactivarSub", new { id = Model.pscat_Id }, new { @class = "btn btn-danger" })
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 

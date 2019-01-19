@@ -43,18 +43,18 @@ namespace ERP_ZORZAL.Controllers
         }
 
         [HttpPost]
-        public JsonResult removeSubCategoria(tbProductoSubcategoria subcate)
+        public JsonResult removeSubCategoria(tbProductoSubcategoria borrado)
         {
-            var list = (List<tbProductoSubcategoria>)Session["tbProductoSubCategorias"];
+            var list = (List<tbProductoSubcategoria>)Session["tbProductoSubCategoria"];
 
             if (list != null)
             {
-                var itemToRemove = list.Single(r => r.pscat_Id == subcate.pscat_Id);
+                var itemToRemove = list.Single(r => r.pscat_Id == borrado.pscat_Id);
                 list.Remove(itemToRemove);
-                Session["tbProductoSubCategoriass"] = list;
+                Session["tbProductoSubCategoria"] = list;
             }
 
-            return Json("", JsonRequestBehavior.AllowGet);
+            return Json(list, JsonRequestBehavior.AllowGet);
 
         }
        

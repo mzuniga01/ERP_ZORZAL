@@ -10,7 +10,7 @@
     <div class="col-md-12" id="mensaje">
         <div class="alert alert-warning alert-danger">
             
-            <button type="button" class="close"  data-dissmiss="alert" aria-hidden="true">@Html.ActionLink("X", "index", new { @class = "btn btn-primary " })</button>
+            <button type="button" class="close"  data-dissmiss="alert" aria-hidden="true">@Html.ActionLink("x", "index", new { @class = "btn btn-primary " })</button>
             <h4><i class="icon fa fa-warning"></i>Alerta</h4>
             <h2>@ViewBag.smserror</h2>
 
@@ -78,9 +78,21 @@
                                             }
                                         }
                                     </td>
+
                                     <td style="width:10%">
-                                        @Html.ActionLink("Detalles", "Details", new { id = item.pcat_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.pcat_Id }, new { @class = "btn btn-white btn-xs" })
+                                        @{
+                                            if (item.pcat_EsActivo == 1)
+                                            {
+                                                @Html.ActionLink("Detalles", "Details", new { id = item.pcat_Id }, new { @class = "btn btn-primary btn-xs" })
+                                                @Html.ActionLink("Editar", "Edit", new { id = item.pcat_Id }, new { @class = "btn btn-white btn-xs" })
+
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("Detalles", "Details", new { id = item.pcat_Id }, new { @class = "btn btn-primary btn-xs" })
+                                                @Html.ActionLink("Editar", "Edit", new { id = item.pcat_Id }, new { @class = "btn btn-white btn-xs", disabled = "disabled" })
+                                            }
+                                        }
                                         
                                         @*@Html.ActionLink("Eliminar", "Delete", new { id=item.pcat_Id }, new { @class = "btn btn-danger btn-xs"})*@
                                     </td>
