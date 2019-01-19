@@ -169,17 +169,21 @@ namespace ERP_GMEDINA.Controllers
 
         // GET: /Factura/Create
         public ActionResult Create()
-        {
+         {
             if (Session["IDCLIENTE"] == null)
             {
                 ViewBag.Iden = 0;
                 ViewBag.Identificacion = "";
                 ViewBag.Nombres = "";
+                ViewBag.Pedid = 0;
+                Session["PEDIDO"] = 0;
             }
             else
             {
                 int? id = (int)Session["IDCLIENTE"];
                 ViewBag.Iden = id;
+                int? idped = (int)Session["PEDIDO"];
+                ViewBag.Pedid = idped;
                 string identificacion = (string)Session["IDENTIFICACION"];
                 ViewBag.Identificacion = identificacion;
                 string nombres = (string)Session["NOMBRES"];
@@ -204,7 +208,21 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
             Session["Factura"] = null;
             Session["TerceraEdad"] = null;
+            Session["IDCLIENTE"] = null;
+            Session["IDENTIFICACION"] = null;
+            Session["NOMBRES"] = null;
             return View();
+        }
+        [HttpPost]
+        public JsonResult Validar()
+
+
+
+        {
+            int? idped = (int)Session["PEDIDO"];
+            ViewBag.Pedid = idped;
+            var PedidoId = ViewBag.Pedid;
+            return Json(PedidoId);
         }
 
         // POST: /Factura/Create
@@ -349,8 +367,11 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
             ViewBag.Cliente = db.tbCliente.ToList();
             ViewBag.Producto = db.tbProducto.ToList();
+            Session["IDCLIENTE"] = null;
+            Session["IDENTIFICACION"] = null;
+            Session["NOMBRES"] = null;
 
-           return View(tbFactura);
+            return View(tbFactura);
         }
 
         // GET: /Factura/Edit/5
@@ -600,7 +621,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult GetNumeroFact(int CodSucursal, short CodCaja)
         {
-            var list = db.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura(CodSucursal, CodCaja).ToArray();
+            var list = db.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura(CodSucursal, CodCaja).ToString();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
@@ -608,6 +629,13 @@ namespace ERP_GMEDINA.Controllers
         public JsonResult GetParametro()
         {
             var list = db.spGetParametro().ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult GetDetallePedido(int CodPedido)
+        {
+            var list = db.sp_GetDetallePedido(CodPedido).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

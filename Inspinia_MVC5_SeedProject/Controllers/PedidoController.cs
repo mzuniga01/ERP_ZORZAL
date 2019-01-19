@@ -58,6 +58,7 @@ namespace ERP_ZORZAL.Controllers
             Session["IDCLIENTE"] = Session["ID"];
             Session["IDENTIFICACION"] = Session["IDENT"];
             Session["NOMBRES"] = Session["NOM"];
+            Session["PEDIDO"] = Session["PEDID"];
             Session["DETALLE"] = Session["DETALLES"];
             //Session["PRODUCTO"] = Session["PRO"];
             //Session["CANTIDAD"] = Session["CANT"];
@@ -234,6 +235,7 @@ namespace ERP_ZORZAL.Controllers
 
         // GET: /Pedido/Edit/5
         public ActionResult EditPedido(int? id)
+
         {
             if (id == null)
             {
@@ -254,7 +256,8 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.Cliente = db.tbCliente.ToList();
             tbPedido.esped_Id = Helpers.Pendiente;
 
-            Session["ID"] = tbPedido.ped_Id;
+            Session["ID"] = tbPedido.tbCliente.clte_Id;
+            Session["PEDID"] = tbPedido.ped_Id;
             Session["IDENT"] = tbPedido.tbCliente.clte_Identificacion;
 
             if (tbPedido.tbCliente.clte_EsPersonaNatural)
