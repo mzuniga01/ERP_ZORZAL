@@ -111,7 +111,7 @@ namespace ERP_GMEDINA.Controllers
                 list.Remove(itemToRemove);
                 Session["tbBodegaDetalless"] = list;
             }
-            return Json("", JsonRequestBehavior.AllowGet);
+            return Json(list, JsonRequestBehavior.AllowGet);
 
         }
         
@@ -213,6 +213,11 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Bodega/Edit/5
         public ActionResult Edit(int? id)
         {
+            try
+            {
+                ViewBag.smserror = TempData["smserror"].ToString();
+            }
+            catch { }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -524,7 +529,9 @@ namespace ERP_GMEDINA.Controllers
           
             try
             {
-                tbBodega obj = db.tbBodega.Find(id);
+                
+                tbBodegaDetalle obj = db.tbBodegaDetalle.Find(id);
+                var idbodega = obj.bod_Id;
                 IEnumerable<object> list = null;
                 var MsjError = "";
                 list = db.UDP_Inv_tbBodegaDetalle_Delete(id);
@@ -537,12 +544,14 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.smserror = TempData["smserror"];
 
                     ModelState.AddModelError("", "No se puede Borrar el registro");
-                    return RedirectToAction("Index");
+                    //return RedirectToAction("Index");
+                    return RedirectToAction("Edit/" + idbodega);
                 }
                 else
                 {
                     ViewBag.smserror = "";
-                    return RedirectToAction("Index");
+                    //return RedirectToAction("Index");
+                    return RedirectToAction("Edit/" + idbodega);
                 }
             }
             catch (Exception Ex)

@@ -61,12 +61,29 @@
                                     @Html.DisplayFor(modelItem => item.bodd_CantidadExistente)
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalles_@item.bodd_Id">
-                                        Detalles
-                                    </button>
-                                    <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalEditar_@item.bodd_Id">
-                                        Editar
-                                    </button>
+                                    @{if (item.tbBodega.bod_EsActiva == 1)
+                                        {
+
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalles_@item.bodd_Id">
+                                                Detalles
+                                            </button>
+                                            <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalEditar_@item.bodd_Id">
+                                                Editar
+                                            </button>
+                                            <input type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEliminarDetalle_@item.bodd_Id" value="Eliminar" id="btnEliminar" />
+                                        }
+                                        else
+                                        {
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalles_@item.bodd_Id" disabled>
+                                                Detalles
+                                            </button>
+                                            <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalEditar_@item.bodd_Id" disabled>
+                                                Editar
+                                            </button>
+                                            <input type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEliminarDetalle_@item.bodd_Id" value="Eliminar" id="btnEliminar" disabled />
+                                        }
+                                    }
+                                   
                                 </td>
                             </tr>
 

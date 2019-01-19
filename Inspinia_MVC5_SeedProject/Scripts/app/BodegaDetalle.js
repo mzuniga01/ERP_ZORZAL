@@ -11,7 +11,7 @@ $('#bod_Correo').change(function (e) {
        
     else
     {
-        this.style.backgroundColor = "LightPink";
+       
         $('#ErrorCorreo').text('');
         $('#MessageForCorreo').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">Correo Electronico Es Incorrecto </ul>');
         $("#bod_Correo").focus();

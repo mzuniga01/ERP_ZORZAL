@@ -187,8 +187,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BodegaController.cs" />
-    <Compile Include="Controllers\BoxController.cs" />
-    <Compile Include="Controllers\ConsultarExistenciaProductosController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\EntradaController.cs" />
@@ -203,7 +201,6 @@
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RolController.cs" />
-    <Compile Include="Controllers\SalidaController.cs" />
     <Compile Include="Controllers\tbProveedorsController.cs" />
     <Compile Include="Controllers\TipoEntradaController.cs" />
     <Compile Include="Controllers\TipoSalidaController.cs" />

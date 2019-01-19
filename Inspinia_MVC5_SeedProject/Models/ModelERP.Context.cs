@@ -411,17 +411,17 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbTipoEntrada_Update_Result>("UDP_Inv_tbTipoEntrada_Update", tent_IdParameter, tent_DescripcionParameter, tent_UsuarioCreaParameter, tent_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Acce_tbRolesUsuario_Insert_Result> UDP_Acce_tbRolesUsuario_Insert(Nullable<int> rol_Id, Nullable<int> usu_Id)
+        public virtual ObjectResult<UDP_Acce_tbRolesUsuario_Insert_Result> UDP_Acce_tbRolesUsuario_Insert(Nullable<int> usu_Id, Nullable<int> rol_Id)
         {
-            var rol_IdParameter = rol_Id.HasValue ?
-                new ObjectParameter("rol_Id", rol_Id) :
-                new ObjectParameter("rol_Id", typeof(int));
-    
             var usu_IdParameter = usu_Id.HasValue ?
                 new ObjectParameter("usu_Id", usu_Id) :
                 new ObjectParameter("usu_Id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRolesUsuario_Insert_Result>("UDP_Acce_tbRolesUsuario_Insert", rol_IdParameter, usu_IdParameter);
+            var rol_IdParameter = rol_Id.HasValue ?
+                new ObjectParameter("rol_Id", rol_Id) :
+                new ObjectParameter("rol_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRolesUsuario_Insert_Result>("UDP_Acce_tbRolesUsuario_Insert", usu_IdParameter, rol_IdParameter);
         }
     
         public virtual ObjectResult<UDP_Acce_tbRolesUsuario_Update_Result> UDP_Acce_tbRolesUsuario_Update(Nullable<int> rolu_Id, Nullable<int> rol_Id, Nullable<int> usu_Id, Nullable<int> rolu_UsuarioCrea, Nullable<System.DateTime> rolu_FechaCrea)
@@ -1508,28 +1508,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Valores_Result>("SP_Valores", pcat_IdParameter, pscat_IdParameter, prod_Codigo);
         }
     
-        public virtual ObjectResult<spGetProducto_Result> spGetProducto(Nullable<int> bod_Id, string prod_CodigoBarras)
-        {
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var prod_CodigoBarrasParameter = prod_CodigoBarras != null ?
-                new ObjectParameter("prod_CodigoBarras", prod_CodigoBarras) :
-                new ObjectParameter("prod_CodigoBarras", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetProducto_Result>("spGetProducto", bod_IdParameter, prod_CodigoBarrasParameter);
-        }
-    
-        public virtual ObjectResult<spGetProducto_BodegaDetalle_Result> spGetProducto_BodegaDetalle(string prod_CodigoBarras)
-        {
-            var prod_CodigoBarrasParameter = prod_CodigoBarras != null ?
-                new ObjectParameter("prod_CodigoBarras", prod_CodigoBarras) :
-                new ObjectParameter("prod_CodigoBarras", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetProducto_BodegaDetalle_Result>("spGetProducto_BodegaDetalle", prod_CodigoBarrasParameter);
-        }
-    
         public virtual ObjectResult<Nullable<int>> SDP_Inv_tbSalidaDetalle_Delete(Nullable<int> sald_Id)
         {
             var sald_IdParameter = sald_Id.HasValue ?
@@ -2121,6 +2099,28 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("box_Codigo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalidaDetalle_Update_Result>("UDP_Inv_tbSalidaDetalle_Update", sald_IdParameter, sal_IdParameter, prod_CodigoParameter, sal_CantidadParameter, box_CodigoParameter);
+        }
+    
+        public virtual ObjectResult<spGetProducto_Result> spGetProducto(Nullable<int> bod_Id, string prod_CodigoBarras)
+        {
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var prod_CodigoBarrasParameter = prod_CodigoBarras != null ?
+                new ObjectParameter("prod_CodigoBarras", prod_CodigoBarras) :
+                new ObjectParameter("prod_CodigoBarras", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetProducto_Result>("spGetProducto", bod_IdParameter, prod_CodigoBarrasParameter);
+        }
+    
+        public virtual ObjectResult<spGetProducto_BodegaDetalle_Result> spGetProducto_BodegaDetalle(string prod_CodigoBarras)
+        {
+            var prod_CodigoBarrasParameter = prod_CodigoBarras != null ?
+                new ObjectParameter("prod_CodigoBarras", prod_CodigoBarras) :
+                new ObjectParameter("prod_CodigoBarras", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetProducto_BodegaDetalle_Result>("spGetProducto_BodegaDetalle", prod_CodigoBarrasParameter);
         }
     }
 }

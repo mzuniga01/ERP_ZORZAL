@@ -458,7 +458,7 @@
     </Key>
     <Property Name="sald_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="sal_Id" Type="int" Nullable="false" />
-    <Property Name="bodd_Id" Type="int" Nullable="false" />
+    <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="sal_Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="box_Codigo" Type="varchar" MaxLength="20" />
     <Property Name="sald_UsuarioCrea" Type="int" Nullable="false" />
@@ -769,10 +769,11 @@
       <PropertyRef Name="nocre_Id" />
     </Key>
     <Property Name="nocre_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nocre_Codigo" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="nocre_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
     <Property Name="dev_Id" Type="int" />
     <Property Name="clte_Id" Type="int" Nullable="false" />
-    <Property Name="suc_Id" Type="int" Nullable="false" />
+    <Property Name="suc_Id" Type="int" />
+    <Property Name="cja_Id" Type="smallint" />
     <Property Name="nocre_Anulado" Type="bit" />
     <Property Name="nocre_FechaEmision" Type="datetime" Nullable="false" />
     <Property Name="nocre_MotivoEmision" Type="nvarchar" MaxLength="250" Nullable="false" />
@@ -2820,15 +2821,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inv_tbSalidaDetalle_tbBodegaDetalle_bodd_Id">
-    <End Role="tbBodegaDetalle" Type="Self.tbBodegaDetalle" Multiplicity="1" />
+  <Association Name="FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo">
+    <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="1" />
     <End Role="tbSalidaDetalle" Type="Self.tbSalidaDetalle" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="tbBodegaDetalle">
-        <PropertyRef Name="bodd_Id" />
+      <Principal Role="tbProducto">
+        <PropertyRef Name="prod_Codigo" />
       </Principal>
       <Dependent Role="tbSalidaDetalle">
-        <PropertyRef Name="bodd_Id" />
+        <PropertyRef Name="prod_Codigo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3288,6 +3289,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbNotaCredito_tbCaja_cja_Id">
+    <End Role="tbCaja" Type="Self.tbCaja" Multiplicity="0..1" />
+    <End Role="tbNotaCredito" Type="Self.tbNotaCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCaja">
+        <PropertyRef Name="cja_Id" />
+      </Principal>
+      <Dependent Role="tbNotaCredito">
+        <PropertyRef Name="cja_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbNotaCredito_tbCliente_clte_Id">
     <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="1" />
     <End Role="tbNotaCredito" Type="Self.tbNotaCredito" Multiplicity="*" />
@@ -3505,7 +3518,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
-    <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="1" />
+    <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="0..1" />
     <End Role="tbNotaCredito" Type="Self.tbNotaCredito" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbSucursal">
@@ -3659,8 +3672,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="rol_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbRolesUsuario_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
-    <Parameter Name="rol_Id" Type="int" Mode="In" />
     <Parameter Name="usu_Id" Type="int" Mode="In" />
+    <Parameter Name="rol_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbRolesUsuario_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rolu_Id" Type="int" Mode="In" />
@@ -3856,6 +3869,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="spGetValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
     <Parameter Name="pscat_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="InOut" />
   </Function>
   <Function Name="UDP_Inv_tbBodega_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bod_Nombre" Type="varchar" Mode="In" />
@@ -4126,18 +4140,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   </Function>
   <Function Name="UDP_Inv_tbSalidaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sal_Id" Type="int" Mode="In" />
-    <Parameter Name="bodd_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="sal_Cantidad" Type="decimal" Mode="In" />
     <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbSalidaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sald_Id" Type="int" Mode="In" />
     <Parameter Name="sal_Id" Type="int" Mode="In" />
-    <Parameter Name="bodd_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="sal_Cantidad" Type="decimal" Mode="In" />
     <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
-    <Parameter Name="sald_UsuarioCrea" Type="int" Mode="In" />
-    <Parameter Name="sald_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbTipoEntrada_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="tent_Descripcion" Type="nvarchar" Mode="In" />
@@ -4858,8 +4870,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       <End Role="tbBox" EntitySet="tbBox" />
       <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
     </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbSalidaDetalle_tbBodegaDetalle_bodd_Id" Association="Self.FK_Inv_tbSalidaDetalle_tbBodegaDetalle_bodd_Id">
-      <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
+    <AssociationSet Name="FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" Association="Self.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo">
+      <End Role="tbProducto" EntitySet="tbProducto" />
       <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbSalidaDetalle_tbSalida_sal_Id" Association="Self.FK_Inv_tbSalidaDetalle_tbSalida_sal_Id">
@@ -5013,6 +5025,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <AssociationSet Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
       <End Role="tbMunicipio" EntitySet="tbMunicipio" />
       <End Role="tbSucursal" EntitySet="tbSucursal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbNotaCredito_tbCaja_cja_Id" Association="Self.FK_Vent_tbNotaCredito_tbCaja_cja_Id">
+      <End Role="tbCaja" EntitySet="tbCaja" />
+      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbNotaCredito_tbCliente_clte_Id" Association="Self.FK_Vent_tbNotaCredito_tbCliente_clte_Id">
       <End Role="tbCliente" EntitySet="tbCliente" />
