@@ -84,14 +84,12 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSolicitudCredito> tbSolicitudCredito { get; set; }
         public virtual DbSet<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
         public virtual DbSet<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
-        public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
         public virtual DbSet<V_Objetos> V_Objetos { get; set; }
         public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
         public virtual DbSet<UDV_Inv_Consultar_Existencias_Productos> UDV_Inv_Consultar_Existencias_Productos { get; set; }
         public virtual DbSet<UDP_Vent_listExoneracion_Select> UDP_Vent_listExoneracion_Select { get; set; }
         public virtual DbSet<UDP_Vent_SolicituEfectivo_Detalles_Select> UDP_Vent_SolicituEfectivo_Detalles_Select { get; set; }
-        public virtual DbSet<UDP_Vent_SolicituEfectivo_Select> UDP_Vent_SolicituEfectivo_Select { get; set; }
         public virtual DbSet<UDV_Vent_Busqueda_Clientes> UDV_Vent_Busqueda_Clientes { get; set; }
         public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
         public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
@@ -100,6 +98,8 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbNotaCredito> tbNotaCredito { get; set; }
         public virtual DbSet<tbUsuario> tbUsuario { get; set; }
         public virtual DbSet<tbMovimientoCaja> tbMovimientoCaja { get; set; }
+        public virtual DbSet<tbSucursal> tbSucursal { get; set; }
+        public virtual DbSet<UDP_Vent_SolicituEfectivo_Select> UDP_Vent_SolicituEfectivo_Select { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {
@@ -3286,7 +3286,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbSalidaDetalle_Insert", sal_IdParameter, bodd_IdParameter, sal_CantidadParameter, box_CodigoParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Inv_tbSalidaDetalle_Update(Nullable<int> sald_Id, Nullable<int> sal_Id, Nullable<int> bodd_Id, Nullable<decimal> sal_Cantidad, string box_Codigo, Nullable<int> sald_UsuarioCrea, Nullable<System.DateTime> sald_FechaCrea)
+        public virtual ObjectResult<string> UDP_Inv_tbSalidaDetalle_Update(Nullable<int> sald_Id, Nullable<int> sal_Id, Nullable<decimal> sal_Cantidad)
         {
             var sald_IdParameter = sald_Id.HasValue ?
                 new ObjectParameter("sald_Id", sald_Id) :
@@ -3296,27 +3296,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("sal_Id", sal_Id) :
                 new ObjectParameter("sal_Id", typeof(int));
     
-            var bodd_IdParameter = bodd_Id.HasValue ?
-                new ObjectParameter("bodd_Id", bodd_Id) :
-                new ObjectParameter("bodd_Id", typeof(int));
-    
             var sal_CantidadParameter = sal_Cantidad.HasValue ?
                 new ObjectParameter("sal_Cantidad", sal_Cantidad) :
                 new ObjectParameter("sal_Cantidad", typeof(decimal));
     
-            var box_CodigoParameter = box_Codigo != null ?
-                new ObjectParameter("box_Codigo", box_Codigo) :
-                new ObjectParameter("box_Codigo", typeof(string));
-    
-            var sald_UsuarioCreaParameter = sald_UsuarioCrea.HasValue ?
-                new ObjectParameter("sald_UsuarioCrea", sald_UsuarioCrea) :
-                new ObjectParameter("sald_UsuarioCrea", typeof(int));
-    
-            var sald_FechaCreaParameter = sald_FechaCrea.HasValue ?
-                new ObjectParameter("sald_FechaCrea", sald_FechaCrea) :
-                new ObjectParameter("sald_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbSalidaDetalle_Update", sald_IdParameter, sal_IdParameter, bodd_IdParameter, sal_CantidadParameter, box_CodigoParameter, sald_UsuarioCreaParameter, sald_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbSalidaDetalle_Update", sald_IdParameter, sal_IdParameter, sal_CantidadParameter);
         }
     
         public virtual ObjectResult<string> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
@@ -4083,7 +4067,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetCategoria_Result>("spGetCategoria", pcat_idParameter);
         }
     
-        public virtual ObjectResult<spGetValue_Result> spGetValue(Nullable<int> pcat_Id, Nullable<int> pscat_Id)
+        public virtual ObjectResult<spGetValue_Result> spGetValue(Nullable<int> pcat_Id, Nullable<int> pscat_Id, ObjectParameter prod_Codigo)
         {
             var pcat_IdParameter = pcat_Id.HasValue ?
                 new ObjectParameter("pcat_Id", pcat_Id) :
@@ -4093,7 +4077,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pscat_Id", pscat_Id) :
                 new ObjectParameter("pscat_Id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetValue_Result>("spGetValue", pcat_IdParameter, pscat_IdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetValue_Result>("spGetValue", pcat_IdParameter, pscat_IdParameter, prod_Codigo);
         }
     
         public virtual int UDP_Inv_ConsultarExistenciaProductos(string sucursal, string bodega, string producto, string marca)
@@ -5149,7 +5133,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbSolicitudEfectivo_Apertura_Insert", mocja_IdParameter, solef_EsAperturaParameter, solef_FechaEntregaParameter, solef_UsuarioEntregaParameter, mnda_IdParameter, solef_EsAnuladaParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert(Nullable<int> solef_Id, Nullable<short> deno_Id, Nullable<short> soled_CantidadSolicitada, Nullable<short> soled_CantidadEntregada, Nullable<decimal> soled_MontoEntregado, Nullable<int> soled_UsuarioCrea, Nullable<System.DateTime> soled_FechaCrea)
+        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert(Nullable<int> solef_Id, Nullable<short> deno_Id, Nullable<short> soled_CantidadSolicitada, Nullable<short> soled_CantidadEntregada, Nullable<decimal> soled_MontoEntregado)
         {
             var solef_IdParameter = solef_Id.HasValue ?
                 new ObjectParameter("solef_Id", solef_Id) :
@@ -5171,15 +5155,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("soled_MontoEntregado", soled_MontoEntregado) :
                 new ObjectParameter("soled_MontoEntregado", typeof(decimal));
     
-            var soled_UsuarioCreaParameter = soled_UsuarioCrea.HasValue ?
-                new ObjectParameter("soled_UsuarioCrea", soled_UsuarioCrea) :
-                new ObjectParameter("soled_UsuarioCrea", typeof(int));
-    
-            var soled_FechaCreaParameter = soled_FechaCrea.HasValue ?
-                new ObjectParameter("soled_FechaCrea", soled_FechaCrea) :
-                new ObjectParameter("soled_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert", solef_IdParameter, deno_IdParameter, soled_CantidadSolicitadaParameter, soled_CantidadEntregadaParameter, soled_MontoEntregadoParameter, soled_UsuarioCreaParameter, soled_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert", solef_IdParameter, deno_IdParameter, soled_CantidadSolicitadaParameter, soled_CantidadEntregadaParameter, soled_MontoEntregadoParameter);
         }
     
         public virtual ObjectResult<SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result> SDP_Vent_tbPedidoDetalle_tbPedido_Select(Nullable<int> ped_Id)

@@ -1,4 +1,4 @@
-﻿$(function () {
+﻿$(document).ready(function () {
     console.log('devd_CantidadProducto');
     $("#devd_CantidadProducto,#PrecioUnitario").keyup(function (e) {
 

@@ -779,10 +779,11 @@
       <PropertyRef Name="nocre_Id" />
     </Key>
     <Property Name="nocre_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nocre_Codigo" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="nocre_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
     <Property Name="dev_Id" Type="int" />
     <Property Name="clte_Id" Type="int" Nullable="false" />
-    <Property Name="suc_Id" Type="int" Nullable="false" />
+    <Property Name="suc_Id" Type="int" />
+    <Property Name="cja_Id" Type="smallint" />
     <Property Name="nocre_Anulado" Type="bit" />
     <Property Name="nocre_FechaEmision" Type="datetime" Nullable="false" />
     <Property Name="nocre_MotivoEmision" Type="nvarchar" MaxLength="250" Nullable="false" />
@@ -1072,6 +1073,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select'
       <PropertyRef Name="IdSolicitud" />
       <PropertyRef Name="FechaSolicitud" />
       <PropertyRef Name="Moneda" />
+      <PropertyRef Name="Apertura" />
+      <PropertyRef Name="Anulada" />
     </Key>
     <Property Name="IdSolicitud" Type="int" Nullable="false" />
     <Property Name="FechaSolicitud" Type="datetime" Nullable="false" />
@@ -1080,6 +1083,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select'
     <Property Name="Moneda" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="MontoSolicitado" Type="decimal" Precision="38" Scale="2" />
     <Property Name="MontoEntregado" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="Apertura" Type="bit" Nullable="false" />
+    <Property Name="Anulada" Type="bit" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -3503,6 +3508,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbNotaCredito_tbCaja_cja_Id">
+    <End Role="tbCaja" Type="Self.tbCaja" Multiplicity="0..1" />
+    <End Role="tbNotaCredito" Type="Self.tbNotaCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCaja">
+        <PropertyRef Name="cja_Id" />
+      </Principal>
+      <Dependent Role="tbNotaCredito">
+        <PropertyRef Name="cja_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbNotaCredito_tbCliente_clte_Id">
     <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="1" />
     <End Role="tbNotaCredito" Type="Self.tbNotaCredito" Multiplicity="*" />
@@ -3720,7 +3737,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
-    <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="1" />
+    <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="0..1" />
     <End Role="tbNotaCredito" Type="Self.tbNotaCredito" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbSucursal">
@@ -4214,6 +4231,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   <Function Name="spGetValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
     <Parameter Name="pscat_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="InOut" />
   </Function>
   <Function Name="UDP_Inv_ConsultarExistenciaProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sucursal" Type="varchar" Mode="In" />
@@ -4497,11 +4515,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   <Function Name="UDP_Inv_tbSalidaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sald_Id" Type="int" Mode="In" />
     <Parameter Name="sal_Id" Type="int" Mode="In" />
-    <Parameter Name="bodd_Id" Type="int" Mode="In" />
     <Parameter Name="sal_Cantidad" Type="decimal" Mode="In" />
-    <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
-    <Parameter Name="sald_UsuarioCrea" Type="int" Mode="In" />
-    <Parameter Name="sald_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbTipoEntrada_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="tent_Descripcion" Type="nvarchar" Mode="In" />
@@ -5191,8 +5205,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="soled_CantidadSolicitada" Type="smallint" Mode="In" />
     <Parameter Name="soled_CantidadEntregada" Type="smallint" Mode="In" />
     <Parameter Name="soled_MontoEntregado" Type="decimal" Mode="In" />
-    <Parameter Name="soled_UsuarioCrea" Type="int" Mode="In" />
-    <Parameter Name="soled_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="solef_Id" Type="int" Mode="In" />
@@ -5376,7 +5388,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     [UDP_Vent_SolicituEfectivo_Select].[Caja] AS [Caja], 
     [UDP_Vent_SolicituEfectivo_Select].[Moneda] AS [Moneda], 
     [UDP_Vent_SolicituEfectivo_Select].[MontoSolicitado] AS [MontoSolicitado], 
-    [UDP_Vent_SolicituEfectivo_Select].[MontoEntregado] AS [MontoEntregado]
+    [UDP_Vent_SolicituEfectivo_Select].[MontoEntregado] AS [MontoEntregado], 
+    [UDP_Vent_SolicituEfectivo_Select].[Apertura] AS [Apertura], 
+    [UDP_Vent_SolicituEfectivo_Select].[Anulada] AS [Anulada]
     FROM [Vent].[UDP_Vent_SolicituEfectivo_Select] AS [UDP_Vent_SolicituEfectivo_Select]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDV_Vent_Busqueda_Clientes" EntityType="Self.UDV_Vent_Busqueda_Clientes" store:Type="Views" store:Schema="Vent">
@@ -6218,6 +6232,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <AssociationSet Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
       <End Role="tbMunicipio" EntitySet="tbMunicipio" />
       <End Role="tbSucursal" EntitySet="tbSucursal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbNotaCredito_tbCaja_cja_Id" Association="Self.FK_Vent_tbNotaCredito_tbCaja_cja_Id">
+      <End Role="tbCaja" EntitySet="tbCaja" />
+      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbNotaCredito_tbCliente_clte_Id" Association="Self.FK_Vent_tbNotaCredito_tbCliente_clte_Id">
       <End Role="tbCliente" EntitySet="tbCliente" />

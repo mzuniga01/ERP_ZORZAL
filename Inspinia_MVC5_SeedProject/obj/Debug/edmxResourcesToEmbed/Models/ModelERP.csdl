@@ -892,11 +892,7 @@
     <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Update" ReturnType="Collection(String)">
       <Parameter Name="sald_Id" Mode="In" Type="Int32" />
       <Parameter Name="sal_Id" Mode="In" Type="Int32" />
-      <Parameter Name="bodd_Id" Mode="In" Type="Int32" />
       <Parameter Name="sal_Cantidad" Mode="In" Type="Decimal" />
-      <Parameter Name="box_Codigo" Mode="In" Type="String" />
-      <Parameter Name="sald_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="sald_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbTipoEntrada_Insert" ReturnType="Collection(String)">
       <Parameter Name="tent_Descripcion" Mode="In" Type="String" />
@@ -1122,6 +1118,7 @@
     <FunctionImport Name="spGetValue" ReturnType="Collection(ERP_ZORZALModel.spGetValue_Result)">
       <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
       <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="InOut" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_ConsultarExistenciaProductos">
       <Parameter Name="sucursal" Mode="In" Type="String" />
@@ -1381,7 +1378,6 @@
     <EntitySet Name="tbSolicitudCredito" EntityType="ERP_ZORZALModel.tbSolicitudCredito" />
     <EntitySet Name="tbSolicitudEfectivo" EntityType="ERP_ZORZALModel.tbSolicitudEfectivo" />
     <EntitySet Name="tbSolicitudEfectivoDetalle" EntityType="ERP_ZORZALModel.tbSolicitudEfectivoDetalle" />
-    <EntitySet Name="tbSucursal" EntityType="ERP_ZORZALModel.tbSucursal" />
     <EntitySet Name="tbTipoPago" EntityType="ERP_ZORZALModel.tbTipoPago" />
     <AssociationSet Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
       <End Role="tbObjeto" EntitySet="tbObjeto" />
@@ -1471,10 +1467,6 @@
       <End Role="tbMunicipio" EntitySet="tbMunicipio" />
       <End Role="tbCliente" EntitySet="tbCliente" />
     </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" Association="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
-      <End Role="tbMunicipio" EntitySet="tbMunicipio" />
-      <End Role="tbSucursal" EntitySet="tbSucursal" />
-    </AssociationSet>
     <AssociationSet Name="FK_Gral_tbParametro_tbCliente_clte_Id" Association="ERP_ZORZALModel.FK_Gral_tbParametro_tbCliente_clte_Id">
       <End Role="tbCliente" EntitySet="tbCliente" />
       <End Role="tbParametro" EntitySet="tbParametro" />
@@ -1514,10 +1506,6 @@
     <AssociationSet Name="FK_Inv_tbSalida_tbBodega_sal_BodDestino" Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbBodega_sal_BodDestino">
       <End Role="tbBodega" EntitySet="tbBodega" />
       <End Role="tbSalida" EntitySet="tbSalida" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbBodega_tbSucursal_bod_Id" Association="ERP_ZORZALModel.FK_Vent_tbBodega_tbSucursal_bod_Id">
-      <End Role="tbBodega" EntitySet="tbBodega" />
-      <End Role="tbSucursal" EntitySet="tbSucursal" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo" Association="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo">
       <End Role="tbProducto" EntitySet="tbProducto" />
@@ -1623,10 +1611,6 @@
       <End Role="tbCaja" EntitySet="tbCaja" />
       <End Role="tbFactura" EntitySet="tbFactura" />
     </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbSucursal_tbCaja_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id">
-      <End Role="tbSucursal" EntitySet="tbSucursal" />
-      <End Role="tbCaja" EntitySet="tbCaja" />
-    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbCliente_tbExoneracion_clte_Id" Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbExoneracion_clte_Id">
       <End Role="tbCliente" EntitySet="tbCliente" />
       <End Role="tbExoneracion" EntitySet="tbExoneracion" />
@@ -1687,10 +1671,6 @@
       <End Role="tbFactura" EntitySet="tbFactura" />
       <End Role="tbFacturaDetalle" EntitySet="tbFacturaDetalle" />
     </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbSucursal_tbfactura_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id">
-      <End Role="tbSucursal" EntitySet="tbSucursal" />
-      <End Role="tbFactura" EntitySet="tbFactura" />
-    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id" Association="ERP_ZORZALModel.FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id">
       <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
       <End Role="tbListadoPrecioDetalle" EntitySet="tbListadoPrecioDetalle" />
@@ -1707,17 +1687,9 @@
       <End Role="tbPedido" EntitySet="tbPedido" />
       <End Role="tbPedidoDetalle" EntitySet="tbPedidoDetalle" />
     </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbSucursal_tbPedido_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbPedido_suc_Id">
-      <End Role="tbSucursal" EntitySet="tbSucursal" />
-      <End Role="tbPedido" EntitySet="tbPedido" />
-    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbPuntoEmision_tbPuntoEmisionDetalle_pemi_Id" Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbPuntoEmisionDetalle_pemi_Id">
       <End Role="tbPuntoEmision" EntitySet="tbPuntoEmision" />
       <End Role="tbPuntoEmisionDetalle" EntitySet="tbPuntoEmisionDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id">
-      <End Role="tbPuntoEmision" EntitySet="tbPuntoEmision" />
-      <End Role="tbSucursal" EntitySet="tbSucursal" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbPuntoEmisionDetalle_tbPuntoEmision_pemi_Id" Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbPuntoEmision_pemi_Id">
       <End Role="tbPuntoEmision" EntitySet="tbPuntoEmision" />
@@ -1732,7 +1704,6 @@
     <EntitySet Name="UDV_Inv_Consultar_Existencias_Productos" EntityType="ERP_ZORZALModel.UDV_Inv_Consultar_Existencias_Productos" />
     <EntitySet Name="UDP_Vent_listExoneracion_Select" EntityType="ERP_ZORZALModel.UDP_Vent_listExoneracion_Select" />
     <EntitySet Name="UDP_Vent_SolicituEfectivo_Detalles_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Detalles_Select" />
-    <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" />
     <EntitySet Name="UDV_Vent_Busqueda_Clientes" EntityType="ERP_ZORZALModel.UDV_Vent_Busqueda_Clientes" />
     <EntitySet Name="UDV_Vent_Busqueda_Factura" EntityType="ERP_ZORZALModel.UDV_Vent_Busqueda_Factura" />
     <EntitySet Name="V_Vent_FacturaPago" EntityType="ERP_ZORZALModel.V_Vent_FacturaPago" />
@@ -1818,16 +1789,8 @@
       <End Role="tbCliente" EntitySet="tbCliente" />
       <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
     </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbSucursal_tbCuponDescuento_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_suc_Id">
-      <End Role="tbSucursal" EntitySet="tbSucursal" />
-      <End Role="tbCuponDescuento" EntitySet="tbCuponDescuento" />
-    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
       <End Role="tbDevolucion" EntitySet="tbDevolucion" />
-      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
-      <End Role="tbSucursal" EntitySet="tbSucursal" />
       <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
     </AssociationSet>
     <EntitySet Name="tbUsuario" EntityType="ERP_ZORZALModel.tbUsuario" />
@@ -1878,10 +1841,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_Acce_tbUsuario_emp_Id" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_emp_Id">
       <End Role="tbEmpleado" EntitySet="tbEmpleado" />
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Acce_tbUsuario_suc_Id" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_suc_Id">
-      <End Role="tbSucursal" EntitySet="tbSucursal" />
       <End Role="tbUsuario" EntitySet="tbUsuario" />
     </AssociationSet>
     <AssociationSet Name="FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioCrea">
@@ -2084,14 +2043,6 @@
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
     </AssociationSet>
-    <AssociationSet Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbSucursal" EntitySet="tbSucursal" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuarioModifica">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbSucursal" EntitySet="tbSucursal" />
-    </AssociationSet>
     <AssociationSet Name="FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
@@ -2155,10 +2106,6 @@
     <AssociationSet Name="FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioModifica" Association="ERP_ZORZALModel.FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbUnidadMedida" EntitySet="tbUnidadMedida" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Gral_tbUsuario_suc_Id" Association="ERP_ZORZALModel.FK_Gral_tbUsuario_suc_Id">
-      <End Role="tbSucursal" EntitySet="tbSucursal" />
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -2366,12 +2313,64 @@
       <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
       <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
       <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
-      <Parameter Name="soled_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="soled_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="SDP_Vent_tbPedidoDetalle_tbPedido_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result)">
       <Parameter Name="ped_Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <AssociationSet Name="FK_Vent_tbNotaCredito_tbCaja_cja_Id" Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id">
+      <End Role="tbCaja" EntitySet="tbCaja" />
+      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+    </AssociationSet>
+    <EntitySet Name="tbSucursal" EntityType="ERP_ZORZALModel.tbSucursal" />
+    <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" />
+    <AssociationSet Name="FK_Acce_tbUsuario_suc_Id" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_suc_Id">
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbUsuario_suc_Id" Association="ERP_ZORZALModel.FK_Gral_tbUsuario_suc_Id">
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" Association="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
+      <End Role="tbMunicipio" EntitySet="tbMunicipio" />
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbBodega_tbSucursal_bod_Id" Association="ERP_ZORZALModel.FK_Vent_tbBodega_tbSucursal_bod_Id">
+      <End Role="tbBodega" EntitySet="tbBodega" />
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbSucursal_tbCaja_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id">
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+      <End Role="tbCaja" EntitySet="tbCaja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbSucursal_tbCuponDescuento_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_suc_Id">
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+      <End Role="tbCuponDescuento" EntitySet="tbCuponDescuento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbSucursal_tbfactura_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id">
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+      <End Role="tbFactura" EntitySet="tbFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbSucursal_tbPedido_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbPedido_suc_Id">
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+      <End Role="tbPedido" EntitySet="tbPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id">
+      <End Role="tbPuntoEmision" EntitySet="tbPuntoEmision" />
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -3033,9 +3032,9 @@
     <NavigationProperty Name="tbDepartamento" Relationship="ERP_ZORZALModel.FK_Gral_tbMunicipio_dep_Codigo" FromRole="tbMunicipio" ToRole="tbDepartamento" />
     <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_tbMunicipio_mun_Id" FromRole="tbMunicipio" ToRole="tbBodega" />
     <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbCliente_mun_Codigo" FromRole="tbMunicipio" ToRole="tbCliente" />
-    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" FromRole="tbMunicipio" ToRole="tbSucursal" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Gral_tbMunicipio_mun_UsuarioModifica" FromRole="tbMunicipio" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Gral_tbMunicipio_tbUsuario_mun_UsuarioCrea" FromRole="tbMunicipio" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" FromRole="tbMunicipio" ToRole="tbSucursal" />
   </EntityType>
   <EntityType Name="tbParametro">
     <Key>
@@ -3125,9 +3124,9 @@
     <NavigationProperty Name="tbInventarioFisico" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisico_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbInventarioFisico" />
     <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_Inv_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbSalida" />
     <NavigationProperty Name="tbSalida1" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbBodega_sal_BodDestino" FromRole="tbBodega" ToRole="tbSalida" />
-    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbBodega_tbSucursal_bod_Id" FromRole="tbBodega" ToRole="tbSucursal" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica" FromRole="tbBodega" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea" FromRole="tbBodega" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbBodega_tbSucursal_bod_Id" FromRole="tbBodega" ToRole="tbSucursal" />
   </EntityType>
   <EntityType Name="tbBodegaDetalle">
     <Key>
@@ -3436,10 +3435,11 @@
     <Property Name="cja_FechaModifica" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" FromRole="tbCaja" ToRole="tbDevolucion" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" FromRole="tbCaja" ToRole="tbFactura" />
-    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id" FromRole="tbCaja" ToRole="tbSucursal" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCaja_cja_UsuarioCrea" FromRole="tbCaja" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCaja_cja_UsuarioModifica" FromRole="tbCaja" ToRole="tbUsuario" />
     <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbMovimientoCaja_cja_Id" FromRole="tbCaja" ToRole="tbMovimientoCaja" />
+    <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id" FromRole="tbCaja" ToRole="tbNotaCredito" />
+    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id" FromRole="tbCaja" ToRole="tbSucursal" />
   </EntityType>
   <EntityType Name="tbCliente">
     <Key>
@@ -3654,10 +3654,10 @@
     <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" FromRole="tbFactura" ToRole="tbPago" />
     <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPedido_fact_Id" FromRole="tbFactura" ToRole="tbPedido" />
     <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbFacturaDetalle" />
-    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" FromRole="tbFactura" ToRole="tbSucursal" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Autoriza" FromRole="tbFactura" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Crea" FromRole="tbFactura" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Modifica" FromRole="tbFactura" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" FromRole="tbFactura" ToRole="tbSucursal" />
   </EntityType>
   <EntityType Name="tbFacturaDetalle">
     <Key>
@@ -3799,9 +3799,9 @@
     <NavigationProperty Name="tbEstadoPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbPedido_tbEstadoPedido_esped_Id" FromRole="tbPedido" ToRole="tbEstadoPedido" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPedido_fact_Id" FromRole="tbPedido" ToRole="tbFactura" />
     <NavigationProperty Name="tbPedidoDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbPedidoDetalle_tbPedido_ped_Id" FromRole="tbPedido" ToRole="tbPedidoDetalle" />
-    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbPedido_suc_Id" FromRole="tbPedido" ToRole="tbSucursal" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPedido_ped_UsuarioCrea" FromRole="tbPedido" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPedido_ped_UsuarioModifica" FromRole="tbPedido" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbPedido_suc_Id" FromRole="tbPedido" ToRole="tbSucursal" />
   </EntityType>
   <EntityType Name="tbPedidoDetalle">
     <Key>
@@ -3832,10 +3832,10 @@
     <Property Name="pemi_UsuarioModifica" Type="Int32" />
     <Property Name="pemi_FechaModifica" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tbPuntoEmisionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbPuntoEmisionDetalle_pemi_Id" FromRole="tbPuntoEmision" ToRole="tbPuntoEmisionDetalle" />
-    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" FromRole="tbPuntoEmision" ToRole="tbSucursal" />
     <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbPuntoEmision_pemi_Id" FromRole="tbPuntoEmision" ToRole="tbPuntoEmisionDetalle" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbUsuario_usu_Id_Crea" FromRole="tbPuntoEmision" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbUsuario_usu_Id_Modifica" FromRole="tbPuntoEmision" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" FromRole="tbPuntoEmision" ToRole="tbSucursal" />
   </EntityType>
   <EntityType Name="tbPuntoEmisionDetalle">
     <Key>
@@ -3921,35 +3921,6 @@
     <NavigationProperty Name="tbSolicitudEfectivo" Relationship="ERP_ZORZALModel.FK_Vent_tbSolicitudEfectivo_tbSolicitudEfectivoDetalle_solef_Id" FromRole="tbSolicitudEfectivoDetalle" ToRole="tbSolicitudEfectivo" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioCrea" FromRole="tbSolicitudEfectivoDetalle" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioModifica" FromRole="tbSolicitudEfectivoDetalle" ToRole="tbUsuario" />
-  </EntityType>
-  <EntityType Name="tbSucursal">
-    <Key>
-      <PropertyRef Name="suc_Id" />
-    </Key>
-    <Property Name="suc_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="mun_Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
-    <Property Name="bod_Id" Type="Int32" Nullable="false" />
-    <Property Name="pemi_Id" Type="Int32" Nullable="false" />
-    <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
-    <Property Name="suc_Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="suc_Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="suc_Telefono" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
-    <Property Name="suc_UsuarioCrea" Type="Int32" Nullable="false" />
-    <Property Name="suc_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="suc_UsuarioModifica" Type="Int32" />
-    <Property Name="suc_FechaModifica" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="tbMunicipio" Relationship="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" FromRole="tbSucursal" ToRole="tbMunicipio" />
-    <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Vent_tbBodega_tbSucursal_bod_Id" FromRole="tbSucursal" ToRole="tbBodega" />
-    <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id" FromRole="tbSucursal" ToRole="tbCaja" />
-    <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" FromRole="tbSucursal" ToRole="tbFactura" />
-    <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbPedido_suc_Id" FromRole="tbSucursal" ToRole="tbPedido" />
-    <NavigationProperty Name="tbPuntoEmision" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" FromRole="tbSucursal" ToRole="tbPuntoEmision" />
-    <NavigationProperty Name="tbCuponDescuento" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_suc_Id" FromRole="tbSucursal" ToRole="tbCuponDescuento" />
-    <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbSucursal" ToRole="tbNotaCredito" />
-    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_suc_Id" FromRole="tbSucursal" ToRole="tbUsuario" />
-    <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea" FromRole="tbSucursal" ToRole="tbUsuario" />
-    <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuarioModifica" FromRole="tbSucursal" ToRole="tbUsuario" />
-    <NavigationProperty Name="tbUsuario3" Relationship="ERP_ZORZALModel.FK_Gral_tbUsuario_suc_Id" FromRole="tbSucursal" ToRole="tbUsuario" />
   </EntityType>
   <EntityType Name="tbTipoPago">
     <Key>
@@ -4234,18 +4205,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
-    <End Type="ERP_ZORZALModel.tbMunicipio" Role="tbMunicipio" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbMunicipio">
-        <PropertyRef Name="mun_Codigo" />
-      </Principal>
-      <Dependent Role="tbSucursal">
-        <PropertyRef Name="mun_Codigo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Gral_tbParametro_tbCliente_clte_Id">
     <End Type="ERP_ZORZALModel.tbCliente" Role="tbCliente" Multiplicity="0..1" />
     <End Type="ERP_ZORZALModel.tbParametro" Role="tbParametro" Multiplicity="*" />
@@ -4363,18 +4322,6 @@
       </Principal>
       <Dependent Role="tbSalida">
         <PropertyRef Name="sal_BodDestino" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbBodega_tbSucursal_bod_Id">
-    <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbBodega">
-        <PropertyRef Name="bod_Id" />
-      </Principal>
-      <Dependent Role="tbSucursal">
-        <PropertyRef Name="bod_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -4690,18 +4637,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbSucursal_tbCaja_suc_Id">
-    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbSucursal">
-        <PropertyRef Name="suc_Id" />
-      </Principal>
-      <Dependent Role="tbCaja">
-        <PropertyRef Name="suc_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbCliente_tbExoneracion_clte_Id">
     <End Type="ERP_ZORZALModel.tbCliente" Role="tbCliente" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbExoneracion" Role="tbExoneracion" Multiplicity="*" />
@@ -4882,18 +4817,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbSucursal_tbfactura_suc_Id">
-    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbSucursal">
-        <PropertyRef Name="suc_Id" />
-      </Principal>
-      <Dependent Role="tbFactura">
-        <PropertyRef Name="suc_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbListaPrecio_tblistadoPrecioDetalle_listp_Id">
     <End Type="ERP_ZORZALModel.tbListaPrecio" Role="tbListaPrecio" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbListadoPrecioDetalle" Role="tbListadoPrecioDetalle" Multiplicity="*" />
@@ -4942,18 +4865,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbSucursal_tbPedido_suc_Id">
-    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbPedido" Role="tbPedido" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbSucursal">
-        <PropertyRef Name="suc_Id" />
-      </Principal>
-      <Dependent Role="tbPedido">
-        <PropertyRef Name="suc_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbPuntoEmision_tbPuntoEmisionDetalle_pemi_Id">
     <End Type="ERP_ZORZALModel.tbPuntoEmision" Role="tbPuntoEmision" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbPuntoEmisionDetalle" Role="tbPuntoEmisionDetalle" Multiplicity="*" />
@@ -4962,18 +4873,6 @@
         <PropertyRef Name="pemi_Id" />
       </Principal>
       <Dependent Role="tbPuntoEmisionDetalle">
-        <PropertyRef Name="pemi_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id">
-    <End Type="ERP_ZORZALModel.tbPuntoEmision" Role="tbPuntoEmision" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbPuntoEmision">
-        <PropertyRef Name="pemi_Id" />
-      </Principal>
-      <Dependent Role="tbSucursal">
         <PropertyRef Name="pemi_Id" />
       </Dependent>
     </ReferentialConstraint>
@@ -5084,20 +4983,6 @@
     <Property Name="soled_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="soled_UsuarioModifica" Type="Int32" />
     <Property Name="soled_FechaModifica" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
-    <Key>
-      <PropertyRef Name="IdSolicitud" />
-      <PropertyRef Name="FechaSolicitud" />
-      <PropertyRef Name="Moneda" />
-    </Key>
-    <Property Name="IdSolicitud" Type="Int32" Nullable="false" />
-    <Property Name="FechaSolicitud" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Sucursal" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-    <Property Name="Caja" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="Moneda" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="MontoSolicitado" Type="Decimal" Precision="38" Scale="2" />
-    <Property Name="MontoEntregado" Type="Decimal" Precision="38" Scale="2" />
   </EntityType>
   <EntityType Name="UDV_Vent_Busqueda_Clientes">
     <Key>
@@ -5364,19 +5249,19 @@
     <Property Name="cdto_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="cdto_UsuarioModifica" Type="Int32" />
     <Property Name="cdto_FechaModifica" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_suc_Id" FromRole="tbCuponDescuento" ToRole="tbSucursal" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCuponDescuanto_cdto_UsuarioModifica" FromRole="tbCuponDescuento" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCuponDescuento_cdto_UsuarioCrea" FromRole="tbCuponDescuento" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_suc_Id" FromRole="tbCuponDescuento" ToRole="tbSucursal" />
   </EntityType>
   <EntityType Name="tbNotaCredito">
     <Key>
       <PropertyRef Name="nocre_Id" />
     </Key>
     <Property Name="nocre_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nocre_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="nocre_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
     <Property Name="dev_Id" Type="Int32" />
     <Property Name="clte_Id" Type="Int32" Nullable="false" />
-    <Property Name="suc_Id" Type="Int32" Nullable="false" />
+    <Property Name="suc_Id" Type="Int32" />
     <Property Name="nocre_Anulado" Type="Boolean" />
     <Property Name="nocre_FechaEmision" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="nocre_MotivoEmision" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -5390,9 +5275,11 @@
     <Property Name="nocre_FechaModifica" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbNotaCredito" ToRole="tbCliente" />
     <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbNotaCredito" ToRole="tbDevolucion" />
-    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbNotaCredito" ToRole="tbSucursal" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea" FromRole="tbNotaCredito" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" FromRole="tbNotaCredito" ToRole="tbUsuario" />
+    <Property Name="cja_Id" Type="Int16" />
+    <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id" FromRole="tbNotaCredito" ToRole="tbCaja" />
+    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbNotaCredito" ToRole="tbSucursal" />
   </EntityType>
   <Association Name="FK_Vent_tbNotaCredito_tbCliente_clte_Id">
     <End Type="ERP_ZORZALModel.tbCliente" Role="tbCliente" Multiplicity="1" />
@@ -5406,18 +5293,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbSucursal_tbCuponDescuento_suc_Id">
-    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbCuponDescuento" Role="tbCuponDescuento" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbSucursal">
-        <PropertyRef Name="suc_Id" />
-      </Principal>
-      <Dependent Role="tbCuponDescuento">
-        <PropertyRef Name="suc_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
     <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="0..1" />
     <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
@@ -5427,18 +5302,6 @@
       </Principal>
       <Dependent Role="tbNotaCredito">
         <PropertyRef Name="dev_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
-    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbSucursal">
-        <PropertyRef Name="suc_Id" />
-      </Principal>
-      <Dependent Role="tbNotaCredito">
-        <PropertyRef Name="suc_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -5470,7 +5333,6 @@
     <NavigationProperty Name="tbBodegaDetalle" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_bodd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBodegaDetalle" />
     <NavigationProperty Name="tbBodegaDetalle1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_bodd_UsuarioModifica" FromRole="tbUsuario" ToRole="tbBodegaDetalle" />
     <NavigationProperty Name="tbEmpleado" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_emp_Id" FromRole="tbUsuario" ToRole="tbEmpleado" />
-    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_suc_Id" FromRole="tbUsuario" ToRole="tbSucursal" />
     <NavigationProperty Name="tbActividadEconomica" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioCrea" FromRole="tbUsuario" ToRole="tbActividadEconomica" />
     <NavigationProperty Name="tbActividadEconomica1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioModifica" FromRole="tbUsuario" ToRole="tbActividadEconomica" />
     <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCaja_cja_UsuarioCrea" FromRole="tbUsuario" ToRole="tbCaja" />
@@ -5521,8 +5383,6 @@
     <NavigationProperty Name="tbSolicitudEfectivo2" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivo_solef_UsuarioModifica" FromRole="tbUsuario" ToRole="tbSolicitudEfectivo" />
     <NavigationProperty Name="tbSolicitudEfectivoDetalle" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioCrea" FromRole="tbUsuario" ToRole="tbSolicitudEfectivoDetalle" />
     <NavigationProperty Name="tbSolicitudEfectivoDetalle1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSolicitudEfectivoDetalle_soled_UsuarioModifica" FromRole="tbUsuario" ToRole="tbSolicitudEfectivoDetalle" />
-    <NavigationProperty Name="tbSucursal1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea" FromRole="tbUsuario" ToRole="tbSucursal" />
-    <NavigationProperty Name="tbSucursal2" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuarioModifica" FromRole="tbUsuario" ToRole="tbSucursal" />
     <NavigationProperty Name="tbTipoIdentificacion" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioCrea" FromRole="tbUsuario" ToRole="tbTipoIdentificacion" />
     <NavigationProperty Name="tbTipoIdentificacion1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioModifica" FromRole="tbUsuario" ToRole="tbTipoIdentificacion" />
     <NavigationProperty Name="tbBanco" Relationship="ERP_ZORZALModel.FK_Gral_tbBanco_tbUsuario_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbBanco" />
@@ -5539,7 +5399,6 @@
     <NavigationProperty Name="tbParametro1" Relationship="ERP_ZORZALModel.FK_Gral_tbParametro_tbUsuario_par_UsuarioCrea" FromRole="tbUsuario" ToRole="tbParametro" />
     <NavigationProperty Name="tbUnidadMedida" Relationship="ERP_ZORZALModel.FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioCrea" FromRole="tbUsuario" ToRole="tbUnidadMedida" />
     <NavigationProperty Name="tbUnidadMedida1" Relationship="ERP_ZORZALModel.FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioModifica" FromRole="tbUsuario" ToRole="tbUnidadMedida" />
-    <NavigationProperty Name="tbSucursal3" Relationship="ERP_ZORZALModel.FK_Gral_tbUsuario_suc_Id" FromRole="tbUsuario" ToRole="tbSucursal" />
     <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica" FromRole="tbUsuario" ToRole="tbBodega" />
     <NavigationProperty Name="tbBodega1" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBodega" />
     <NavigationProperty Name="tbBox" Relationship="ERP_ZORZALModel.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBox" />
@@ -5581,6 +5440,10 @@
     <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
     <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbCliente" />
     <NavigationProperty Name="tbCliente1" Relationship="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbCliente" />
+    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_suc_Id" FromRole="tbUsuario" ToRole="tbSucursal" />
+    <NavigationProperty Name="tbSucursal1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea" FromRole="tbUsuario" ToRole="tbSucursal" />
+    <NavigationProperty Name="tbSucursal2" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuarioModifica" FromRole="tbUsuario" ToRole="tbSucursal" />
+    <NavigationProperty Name="tbSucursal3" Relationship="ERP_ZORZALModel.FK_Gral_tbUsuario_suc_Id" FromRole="tbUsuario" ToRole="tbSucursal" />
   </EntityType>
   <EntityType Name="tbMovimientoCaja">
     <Key>
@@ -5749,18 +5612,6 @@
       </Principal>
       <Dependent Role="tbUsuario">
         <PropertyRef Name="emp_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Acce_tbUsuario_suc_Id">
-    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="0..1" />
-    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbSucursal">
-        <PropertyRef Name="suc_Id" />
-      </Principal>
-      <Dependent Role="tbUsuario">
-        <PropertyRef Name="suc_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -6364,30 +6215,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea">
-    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbSucursal">
-        <PropertyRef Name="suc_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuarioModifica">
-    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbSucursal">
-        <PropertyRef Name="suc_UsuarioModifica" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioCrea">
     <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbTipoIdentificacion" Role="tbTipoIdentificacion" Multiplicity="*" />
@@ -6577,18 +6404,6 @@
       </Principal>
       <Dependent Role="tbUnidadMedida">
         <PropertyRef Name="uni_UsuarioModifica" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Gral_tbUsuario_suc_Id">
-    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="0..1" />
-    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbSucursal">
-        <PropertyRef Name="suc_Id" />
-      </Principal>
-      <Dependent Role="tbUsuario">
-        <PropertyRef Name="suc_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -7155,4 +6970,207 @@
     <Property Type="String" Name="CODFACTURA" Nullable="true" MaxLength="19" />
     <Property Type="String" Name="CAI" Nullable="true" MaxLength="40" />
   </ComplexType>
+  <Association Name="FK_Vent_tbNotaCredito_tbCaja_cja_Id">
+    <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCaja">
+        <PropertyRef Name="cja_Id" />
+      </Principal>
+      <Dependent Role="tbNotaCredito">
+        <PropertyRef Name="cja_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tbSucursal">
+    <Key>
+      <PropertyRef Name="suc_Id" />
+    </Key>
+    <Property Name="suc_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mun_Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="bod_Id" Type="Int32" Nullable="false" />
+    <Property Name="pemi_Id" Type="Int32" Nullable="false" />
+    <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="suc_Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="suc_Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="suc_Telefono" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+    <Property Name="suc_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="suc_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="suc_UsuarioModifica" Type="Int32" />
+    <Property Name="suc_FechaModifica" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_suc_Id" FromRole="tbSucursal" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea" FromRole="tbSucursal" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuarioModifica" FromRole="tbSucursal" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbUsuario3" Relationship="ERP_ZORZALModel.FK_Gral_tbUsuario_suc_Id" FromRole="tbSucursal" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbMunicipio" Relationship="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" FromRole="tbSucursal" ToRole="tbMunicipio" />
+    <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Vent_tbBodega_tbSucursal_bod_Id" FromRole="tbSucursal" ToRole="tbBodega" />
+    <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id" FromRole="tbSucursal" ToRole="tbCaja" />
+    <NavigationProperty Name="tbCuponDescuento" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_suc_Id" FromRole="tbSucursal" ToRole="tbCuponDescuento" />
+    <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" FromRole="tbSucursal" ToRole="tbFactura" />
+    <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbSucursal" ToRole="tbNotaCredito" />
+    <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbPedido_suc_Id" FromRole="tbSucursal" ToRole="tbPedido" />
+    <NavigationProperty Name="tbPuntoEmision" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" FromRole="tbSucursal" ToRole="tbPuntoEmision" />
+  </EntityType>
+  <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
+    <Key>
+      <PropertyRef Name="IdSolicitud" />
+      <PropertyRef Name="FechaSolicitud" />
+      <PropertyRef Name="Moneda" />
+      <PropertyRef Name="Apertura" />
+      <PropertyRef Name="Anulada" />
+    </Key>
+    <Property Name="IdSolicitud" Type="Int32" Nullable="false" />
+    <Property Name="FechaSolicitud" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sucursal" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Caja" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Moneda" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MontoSolicitado" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="MontoEntregado" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="Apertura" Type="Boolean" Nullable="false" />
+    <Property Name="Anulada" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Acce_tbUsuario_suc_Id">
+    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSucursal">
+        <PropertyRef Name="suc_Id" />
+      </Principal>
+      <Dependent Role="tbUsuario">
+        <PropertyRef Name="suc_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuariocrea">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbSucursal">
+        <PropertyRef Name="suc_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbSucursal_tpa_sucUsuarioModifica">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbSucursal">
+        <PropertyRef Name="suc_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbUsuario_suc_Id">
+    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSucursal">
+        <PropertyRef Name="suc_Id" />
+      </Principal>
+      <Dependent Role="tbUsuario">
+        <PropertyRef Name="suc_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
+    <End Type="ERP_ZORZALModel.tbMunicipio" Role="tbMunicipio" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbMunicipio">
+        <PropertyRef Name="mun_Codigo" />
+      </Principal>
+      <Dependent Role="tbSucursal">
+        <PropertyRef Name="mun_Codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbBodega_tbSucursal_bod_Id">
+    <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbBodega">
+        <PropertyRef Name="bod_Id" />
+      </Principal>
+      <Dependent Role="tbSucursal">
+        <PropertyRef Name="bod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbSucursal_tbCaja_suc_Id">
+    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSucursal">
+        <PropertyRef Name="suc_Id" />
+      </Principal>
+      <Dependent Role="tbCaja">
+        <PropertyRef Name="suc_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbSucursal_tbCuponDescuento_suc_Id">
+    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbCuponDescuento" Role="tbCuponDescuento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSucursal">
+        <PropertyRef Name="suc_Id" />
+      </Principal>
+      <Dependent Role="tbCuponDescuento">
+        <PropertyRef Name="suc_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbSucursal_tbfactura_suc_Id">
+    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSucursal">
+        <PropertyRef Name="suc_Id" />
+      </Principal>
+      <Dependent Role="tbFactura">
+        <PropertyRef Name="suc_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
+    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSucursal">
+        <PropertyRef Name="suc_Id" />
+      </Principal>
+      <Dependent Role="tbNotaCredito">
+        <PropertyRef Name="suc_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbSucursal_tbPedido_suc_Id">
+    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbPedido" Role="tbPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSucursal">
+        <PropertyRef Name="suc_Id" />
+      </Principal>
+      <Dependent Role="tbPedido">
+        <PropertyRef Name="suc_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id">
+    <End Type="ERP_ZORZALModel.tbPuntoEmision" Role="tbPuntoEmision" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbPuntoEmision">
+        <PropertyRef Name="pemi_Id" />
+      </Principal>
+      <Dependent Role="tbSucursal">
+        <PropertyRef Name="pemi_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

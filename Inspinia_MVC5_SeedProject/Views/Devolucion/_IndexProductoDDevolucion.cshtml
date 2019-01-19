@@ -40,7 +40,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr data-ProductoDescripcion="@item.tbProducto.prod_Descripcion" data-CodigoFactura="@item.tbDevolucion.tbFactura.fact_Codigo" data-PorcentajeDescuento="@item.tbDevolucion.tbFactura.fact_PorcentajeDescuento" data-PrecioUnitario="@test.factd_PrecioUnitario">
+                                <tr  data-FactID="@item.tbDevolucion.fact_Id" data-CantidadDev="@item.devd_CantidadProducto" data-ProductoDescripcion="@item.tbProducto.prod_Descripcion" data-CodigoFactura="@item.tbDevolucion.tbFactura.fact_Codigo" data-PorcentajeDescuento="@item.tbDevolucion.tbFactura.fact_PorcentajeDescuento" data-PrecioUnitario="@test.factd_PrecioUnitario">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
 
@@ -51,9 +51,8 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.devd_Descripcion)
                                     </td>
-                                    <td hidden>@Html.DisplayFor(modelItem => item.tbDevolucion.tbFactura.fact_PorcentajeDescuento)</td>
+                                    <td id="factID" hidden>@Html.DisplayFor(modelItem => item.tbDevolucion.fact_Id)</td>
                                     <td hidden>@Html.DisplayFor(modelItem => item.tbDevolucion.tbFactura.fact_Codigo)</td>
-                                    <td hidden>@Html.DisplayFor(modelItem => test.factd_PrecioUnitario)</td>
                                     <td>
                                         <button id="Producto" type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.devd_Id">
                                             Editar

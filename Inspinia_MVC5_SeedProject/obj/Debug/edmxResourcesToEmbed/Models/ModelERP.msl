@@ -1776,24 +1776,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbSucursal">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSucursal">
-        <MappingFragment StoreEntitySet="tbSucursal">
-          <ScalarProperty Name="suc_FechaModifica" ColumnName="suc_FechaModifica" />
-          <ScalarProperty Name="suc_UsuarioModifica" ColumnName="suc_UsuarioModifica" />
-          <ScalarProperty Name="suc_FechaCrea" ColumnName="suc_FechaCrea" />
-          <ScalarProperty Name="suc_UsuarioCrea" ColumnName="suc_UsuarioCrea" />
-          <ScalarProperty Name="suc_Telefono" ColumnName="suc_Telefono" />
-          <ScalarProperty Name="suc_Direccion" ColumnName="suc_Direccion" />
-          <ScalarProperty Name="suc_Correo" ColumnName="suc_Correo" />
-          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
-          <ScalarProperty Name="pemi_Id" ColumnName="pemi_Id" />
-          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
-          <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
-          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbTipoPago">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbTipoPago">
         <MappingFragment StoreEntitySet="tbTipoPago">
@@ -1873,19 +1855,6 @@
           <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
           <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
           <ScalarProperty Name="soled_Id" ColumnName="soled_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UDP_Vent_SolicituEfectivo_Select">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select">
-        <MappingFragment StoreEntitySet="UDP_Vent_SolicituEfectivo_Select">
-          <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
-          <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
-          <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-          <ScalarProperty Name="Caja" ColumnName="Caja" />
-          <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
-          <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
-          <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2144,6 +2113,7 @@
     <EntitySetMapping Name="tbNotaCredito">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbNotaCredito">
         <MappingFragment StoreEntitySet="tbNotaCredito">
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
           <ScalarProperty Name="nocre_FechaModifica" ColumnName="nocre_FechaModifica" />
           <ScalarProperty Name="nocre_UsuarioModifica" ColumnName="nocre_UsuarioModifica" />
           <ScalarProperty Name="nocre_FechaCrea" ColumnName="nocre_FechaCrea" />
@@ -2232,5 +2202,38 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="tbSucursal">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSucursal">
+        <MappingFragment StoreEntitySet="tbSucursal">
+          <ScalarProperty Name="suc_FechaModifica" ColumnName="suc_FechaModifica" />
+          <ScalarProperty Name="suc_UsuarioModifica" ColumnName="suc_UsuarioModifica" />
+          <ScalarProperty Name="suc_FechaCrea" ColumnName="suc_FechaCrea" />
+          <ScalarProperty Name="suc_UsuarioCrea" ColumnName="suc_UsuarioCrea" />
+          <ScalarProperty Name="suc_Telefono" ColumnName="suc_Telefono" />
+          <ScalarProperty Name="suc_Direccion" ColumnName="suc_Direccion" />
+          <ScalarProperty Name="suc_Correo" ColumnName="suc_Correo" />
+          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+          <ScalarProperty Name="pemi_Id" ColumnName="pemi_Id" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDP_Vent_SolicituEfectivo_Select">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select">
+        <MappingFragment StoreEntitySet="UDP_Vent_SolicituEfectivo_Select">
+          <ScalarProperty Name="Anulada" ColumnName="Anulada" />
+          <ScalarProperty Name="Apertura" ColumnName="Apertura" />
+          <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
+          <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
+          <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+          <ScalarProperty Name="Caja" ColumnName="Caja" />
+          <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
+          <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+          <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

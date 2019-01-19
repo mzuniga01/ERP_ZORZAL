@@ -21,5 +21,7 @@ namespace ERP_GMEDINA.Models
         public string Moneda { get; set; }
         public Nullable<decimal> MontoSolicitado { get; set; }
         public Nullable<decimal> MontoEntregado { get; set; }
+        public bool Apertura { get; set; }
+        public bool Anulada { get; set; }
     }
 }

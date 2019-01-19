@@ -56,7 +56,6 @@ function GetIDFactura(FacturaID, idFactitem) {
             $('#BodyProducto').empty();
             $.each(list, function (key, val) {
                 contador = contador + 1;
-                console.log(val.CodigoProducto)
                 copiar = "<tr data-idCont=" + contador + " data-id=" + val.CodigoProducto + " data-desc=" + val.Descripcion + " data-valor=" + val.PrecioUnitario + " data-impuesto=" + val.PorcentajeImpu + " data-porcentaje=" + val.PorcentajeDesc + " data-cantfacturada=" + val.CantidadFacturada + ">";
                 copiar += "<td id = 'idItem'>" + val.Descripcion + "</td>";
                 copiar += "<td id = 'b'>" + val.CantidadFacturada + "</td>";
@@ -65,20 +64,19 @@ function GetIDFactura(FacturaID, idFactitem) {
                 copiar += "<td>" + '<button id="Agregar" class="btn btn-primary btn-xs" type="button">Añadir</button>' + "</td>";
                 copiar += "</tr>";
                 $('#BodyProducto').append(copiar);
-
-                //$("#prod_Codigo").blur(function (list) {
-                //    validacion = document.getElementById('smsProducto');
-                //    console.log(list.CodigoProducto)
-                //    var CodProductoIngresado = $('#prod_Codigo').val();
-                //    if (CodProductoIngresado == val.CodigoProducto) {
-
-                //        validacion.innerText = "";
-                //    }
-                //    else {
-                //        console.log("else")
-                //        validacion.innerText = "Codigo de Producto Incorrecto";
-                //    }
-                //});
+//Validacion que el producto ingresado exista en la factura a devolver-----------------------------------------------------
+                $("#prod_Codigo").blur(function (list) {
+                    var cod = document.getElementById("id");
+                    validacion = document.getElementById('smsProducto');
+                    var CodProductoIngresado = $('#prod_Codigo').val();
+                    if (CodProductoIngresado != val.CodigoProducto) {
+                        validacion.innerText = "Codigo de Producto Incorrecto";
+                    }
+                    else {
+                        console.log("else")
+                        validacion.innerText = "";
+                    }
+                });
             });
 
             console.log(list);

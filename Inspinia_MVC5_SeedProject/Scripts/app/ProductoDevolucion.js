@@ -19,49 +19,51 @@ $(document).ready(function () {
 
 //Devolucion Agregar Producto en el editar devolucion
 $(document).on("click", "#EditarDetalle tbody tr td button#Producto", function () {
+    FactIDItem = $(this).closest('tr').data('factid');
     ProductoDescripcionItem = $(this).closest('tr').data('productodescripcion');
     CodigoFacturaItem = $(this).closest('tr').data('codigofactura');
     PorcentajeDescuentoItem = $(this).closest('tr').data('porcentajedescuento')
-    PrecioUnitarioItem = $(this).closest('tr').data('preciounitario')
+    CantidadDevItem = $(this).closest('tr').data('cantidaddev')
     $("#tbProducto_prod_Descripcion").val(ProductoDescripcionItem);
     $("#tbDevolucion_tbFactura_fact_Codigo").val(CodigoFacturaItem);
     $("#tbDevolucion_tbFactura_fact_PorcentajeDescuento").val(PorcentajeDescuentoItem);
-    $("#test_factd_PrecioUnitario").val(PrecioUnitarioItem);
-
+    $("#devd_CantidadProducto").val(CantidadDevItem);
+    GetIDFactura(FactIDItem);
 });
 
+
+//Añadir productos en modal editar producto----------------------------------------------------------------------------
+var FacturaID = $('#factID').val();
+console.log('facturaid', FacturaID)
+function GetIDFactura(FacturaID, FactIDItem) {
+    $.ajax({
+        url: "/Devolucion/FiltrarModalProducto",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ FacturaID: FacturaID }),
+
+        error: function () {
+            alert("No se puede añadir");
+        },
+        success: function (list) {
+            $.each(list, function (key, val) {
+                $('#CantidadFacturada').val(val.CantidadFacturada);
+                $('#PrecioUnitario').val(val.PrecioUnitario);
+                $('#Descuento').val(val.PorcentajeDesc);
+                $('#Impuesto').val(val.PorcentajeImpu);
+            });
+            console.log(list);
+        }
+
+    });
+}
 
 //Validacion de numeros//
 function soloNumeros(e) {
     var key = window.Event ? e.which : e.keyCode;
     return ((key >= 48 && key <= 57) || (key == 8))
 }
-
-////Validacion de cantidad de producto devuelto
-//$("#devd_CantidadProducto").blur(function () {
-//    valido = document.getElementById('smsCantidad');
-//    var CantFacturada = $('#CantidadFacturada').val();
-//    var CantDevolucion = $('#devd_CantidadProducto').val();
-//    var CodigoProducto = $('#prod_Codigo').val();
-    
-//    if (parseFloat(CantFacturada) < parseFloat(CantDevolucion)) {
-//        console.log("facturada",CantFacturada)
-//        console.log(CantDevolucion)
-//        console.log("if")
-//        valido.innerText = "El valor debe ser menor a la cantidad facturada";
-//    }
-//    else {
-//        console.log("else")
-//        valido.innerText = "";
-//    }
-
-//    if (CodigoProducto != CantDevolucion) {
-//        valido.innerText = "Codigo de Producto Incorrecto";
-//    }
-//    else {
-//        valido.innerText = "";
-//    }
-//});
 
 $("#devd_CantidadProducto")[0].maxLength = 10;
 
