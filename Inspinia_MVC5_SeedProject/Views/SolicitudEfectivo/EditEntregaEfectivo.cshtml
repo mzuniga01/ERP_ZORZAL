@@ -1,8 +1,10 @@
 ﻿@model ERP_GMEDINA.Models.tbSolicitudEfectivo
 @using ERP_GMEDINA.Models
 
+
 @{
     var sucursal = new ERP_GMEDINA.Models.tbSucursal();
+    var detalle = new ERP_GMEDINA.Models.tbSolicitudEfectivoDetalle();
 }
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -24,8 +26,9 @@
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm())
-                    {
+                   @using (Ajax.BeginForm("UpdateSolicitudEfectivoDetalle", "SolicitudEfectivo", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "EditarSolicitudEfectivoDetalle" }))
+                   {
+
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
@@ -47,7 +50,7 @@
                             @Html.HiddenFor(model => model.tbUsuario2.usu_Apellidos)
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.mocja_Id,  new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.mocja_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.DropDownList("mocja_Id", null, "Seleccione", new { @class = "form-control", @readonly = "readonly", @disabled = "true" })
                                     @Html.ValidationMessageFor(model => model.mocja_Id)
@@ -73,7 +76,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.solef_FechaEntrega, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.solef_FechaEntrega, new { @class = "form-control", @readonly = "readonly"})
+                                    @Html.EditorFor(model => model.solef_FechaEntrega, new { @class = "form-control", @readonly = "readonly" })
                                     @Html.ValidationMessageFor(model => model.solef_FechaEntrega)
                                 </div>
                                 @Html.LabelFor(model => model.solef_UsuarioEntrega, new { @class = "control-label col-md-2" })
@@ -82,7 +85,18 @@
                                     @Html.ValidationMessageFor(model => model.solef_UsuarioEntrega)
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                @Html.LabelFor(model => detalle.soled_CantidadEntregada, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => detalle.soled_CantidadEntregada,  new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => detalle.soled_CantidadEntregada)
+                                </div>
+                                @Html.LabelFor(model => detalle.soled_MontoEntregado, "Monto Entregado", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => detalle.soled_MontoEntregado, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => detalle.soled_MontoEntregado)
+                                </div>
+                            </div>
                            
                             <div class="form-group">
                                 <div class="col-md-12">

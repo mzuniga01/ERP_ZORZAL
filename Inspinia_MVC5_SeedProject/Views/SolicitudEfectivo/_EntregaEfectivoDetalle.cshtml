@@ -8,33 +8,34 @@
                 <div class="ibox-content">
 
                     <table class="table table-striped table-bordered table-hover dataTables-example" id="Entrega">
-                        <tr>
-                            <th class="hidden">
-                                @Html.DisplayNameFor(model => model.tbSolicitudEfectivo.solef_Id)
-                            </th>
-                            <th class="hidden">
-                                @Html.DisplayNameFor(model => model.soled_Id)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.tbDenominacion.deno_Descripcion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.tbDenominacion.deno_valor)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.soled_CantidadSolicitada)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.soled_CantidadEntregada)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.soled_MontoEntregado)
-                            </th>
-                        </tr>
-
-                        @foreach (var item in Model)
+                        <thead>
+                            <tr>
+                                <th class="hidden">
+                                    @Html.DisplayNameFor(model => model.tbSolicitudEfectivo.solef_Id)
+                                </th>
+                                <th class="hidden">
+                                    @Html.DisplayNameFor(model => model.soled_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbDenominacion.deno_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbDenominacion.deno_valor)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.soled_CantidadSolicitada)
+                                </th>
+                                <th>
+                                   Cantidad Entregada
+                                </th>
+                                <th>
+                                   Monto Entregado
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>                       
+                          @foreach (var item in Model)
                         {
-
                             <tr>
                                 <td class="hidden">
                                     @Html.DisplayFor(modelItem => item.tbSolicitudEfectivo.solef_Id)
@@ -55,14 +56,23 @@
                                     <input type="text" class="form-control" size="2" id="CantidadE">
                                 </td>
                                 <td>
-                                    <label id="soled_MontoEntregado"></label>
-                                </td>
+                                    <label id="MontoE"></label>
+                                </td> 
                             </tr>
+                          }
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total</td>
+                                    <td id="total" style="text-align:right"></td>
+                                </tr>
 
-
-                        }
-
-                    </table>
+                            </tfoot>
+                               
+                        </tbody>
+                        </table>
 
                 </div>
             </div>
