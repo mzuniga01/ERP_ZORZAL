@@ -35,14 +35,7 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
-            //***PuntoEmisionDetalle
-            //tbPuntoEmisionDetalle ped = new tbPuntoEmisionDetalle();
-            //string cas = "dfisc_IdList_"+ Convert.ToString(ped.pemid_Id);
-            //System.Web.HttpContext.Current.Items[cas] = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
 
-
-            string cas = "dfisc_IdList";
-            System.Web.HttpContext.Current.Items[cas] = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
             return View(tbPuntoEmision);
         }
 
@@ -166,7 +159,7 @@ namespace ERP_ZORZAL.Controllers
                 return HttpNotFound();
             }
             //*****PuntoEmisionDetalle
-            string cas = "dfisc_IdList";
+            string cas = "dfisc_IdList_";
             System.Web.HttpContext.Current.Items[cas] = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
 
             var ValidacionRegistro = db.tbPuntoEmisionDetalle.Where(x => x.pemi_Id == tbPuntoEmision.pemi_Id).ToList();
@@ -293,6 +286,7 @@ namespace ERP_ZORZAL.Controllers
         public JsonResult SaveEditNumeracion (tbPuntoEmisionDetalle EditPuntoEmisionDetalle)
         {
             string MensajeEdit = "";
+            
             try
                 {
                         var MensajeError = 0;
@@ -328,6 +322,7 @@ namespace ERP_ZORZAL.Controllers
         public JsonResult SaveCreateNumeracion(tbPuntoEmisionDetalle CreatePuntoEmisionDetalle)
         {
             string Msj = "";
+
             try
             {
                 var MensajeError = 0;

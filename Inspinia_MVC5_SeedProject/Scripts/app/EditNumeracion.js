@@ -1,11 +1,14 @@
 ﻿function GuardarEditNumeracion(IdPuntoEmisionDetalle) {
+   
     var IdPuntoEmisionDetalle = $('#pemid_Id_' + IdPuntoEmisionDetalle).val();
     var IdPuntoEmision = $('#pemi_Id').val();
-
+    var DocumentoFiscal = $('#dfisc_IdEdit_' + IdPuntoEmisionDetalle).val();
     var RangoInicial = $('#RangoInicial_' + IdPuntoEmisionDetalle).val();
     var RangoFinal = $('#RangoFinal_' + IdPuntoEmisionDetalle).val();
     var NumeroActual = $('#NumeroActual_' + IdPuntoEmisionDetalle).val();
     var FechaLimite = $('#FechaLimite_' + IdPuntoEmisionDetalle).val();
+    var UsuarioCrea = $('#pemid_UsuarioCreaEdit_' + IdPuntoEmisionDetalle).val();
+    var FechaCrea = $('#pemid_FechaCreaEdit_' + IdPuntoEmisionDetalle).val();
 
     //Split Rango Inicial
     var divisiones = RangoInicial.split("-", 4);
@@ -21,8 +24,17 @@
     var Length = 19;
     var RangoInicioLength = RangoInicial.length;
     var RangoFinalLength = RangoFinal.length;
-
-    if (RangoInicial == '') {
+    if (DocumentoFiscal == '') {
+        $('#ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoFinalSplitEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoFinalLengthEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ValidacionDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).after('<p id="ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle + '" style="color:red">Campo Documento Fiscal requerido</p>');
+    }
+    else if (RangoInicial == '') {
+        $('#ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
@@ -31,6 +43,7 @@
         $('#ValidacionRangoInicioEdit_' + IdPuntoEmisionDetalle).after('<p id="ErrorRangoInicioEdit_'+ IdPuntoEmisionDetalle+'" style="color:red">Campo Rango Inicial requerido</p>');
     }
     else if (RangoInicioLength < Length) {
+        $('#ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
@@ -40,6 +53,7 @@
     }
     else if (RangoFinal == '')
     {
+        $('#ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
@@ -48,6 +62,7 @@
         $('#ValidacionRangoFinalEdit_' + IdPuntoEmisionDetalle).after('<p id="ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle + '" style="color:red">Campo Rango Final requerido</p>');
     }
     else if (rangof <= rangoi) {
+        $('#ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
@@ -56,6 +71,7 @@
         $('#ValidacionRangoFinalEdit_' + IdPuntoEmisionDetalle).after('<p id="ErrorRangoFinalSplitEdit_' + IdPuntoEmisionDetalle + '" style="color:red">El Rango Final debe ser mayor al Rango Inicial</p>');
     }
     else if (RangoFinalLength < Length) {
+        $('#ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
@@ -67,10 +83,13 @@
         var GetPuntoEmisionDetalleEdit = {
             pemid_Id: IdPuntoEmisionDetalle,
             pemi_Id: IdPuntoEmision,
+            dfisc_Id: DocumentoFiscal,
             pemid_RangoInicio: RangoInicial,
             pemid_RangoFinal: RangoFinal,
             pemid_NumeroActual: NumeroActual,
-            pemid_FechaLimite:  new Date(FechaLimite).val()
+            pemid_FechaLimite: new Date(FechaLimite),
+            pemid_UsuarioCrea: UsuarioCrea,
+            pemid_FechaCrea: FechaCrea
         };
 
         $.ajax({
@@ -79,10 +98,17 @@
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ EditPuntoEmisionDetalle: GetPuntoEmisionDetalleEdit }),
+            success: function (data) {
+            }
         })
         .done(function (data) {
             if (data == 'El registro se guardó exitosamente') {
                 location.reload();
+                swal("El registro se almacenó exitosamente!", "", "success"); 
+            }
+            else {
+                location.reload();
+                swal("El registro  no se almacenó!", "", "error");
             }
         });
     }

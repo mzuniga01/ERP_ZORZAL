@@ -101,10 +101,17 @@
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ CreatePuntoEmisionDetalle: PuntoEmisionDetalle }),
+            success: function (data) {
+            }
         })
         .done(function (data) {
             if (data == 'El registro se guardo exitosamente') {
                 location.reload();
+                swal("El registro se almacenó exitosamente!", "", "success");
+            }
+            else {
+                location.reload();
+                swal("El registro  no se almacenó!", "", "error");
             }
         });
     }

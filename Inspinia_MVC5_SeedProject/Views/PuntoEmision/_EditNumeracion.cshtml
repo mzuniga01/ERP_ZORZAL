@@ -3,16 +3,14 @@
 @{
     IEnumerable<SelectListItem> listItems = (IEnumerable<SelectListItem>)Model.tbDocumentoFiscal;
 }
-
+ 
   
     <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <input name="pemi_Id" id="pemi_Id" type="hidden" value="@ViewBag.IdPuntoEmisionEdit">
+         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <input type="hidden" name="pemi_Id" id="pemi_Id"  value="@ViewBag.IdPuntoEmisionEdit">
         <input type="hidden" name="pemid_Id" id="pemid_Id_@Model.pemid_Id" value="@Model.pemid_Id" />
-           
-        @*Auditoria*@
-        @Html.HiddenFor(model => model.pemid_UsuarioCrea)
-        @Html.HiddenFor(model => model.pemid_FechaCrea)
+        <input type="hidden" name="pemid_UsuarioCrea" id="pemid_UsuarioCreaEdit_@Model.pemid_Id" value="@Model.pemid_UsuarioCrea" />
+        <input type="hidden" name="pemid_FechaCrea" id="pemid_FechaCreaEdit_@Model.pemid_Id" value="@Model.pemid_FechaCrea" />
         @Html.HiddenFor(model => model.pemid_UsuarioModifica)
         @Html.HiddenFor(model => model.pemid_FechaModifica)
         @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
@@ -23,8 +21,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.dfisc_Id, "Documento Fiscal", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @{string IdDrop = "dfisc_IdEdit";}
-                @{ string Vie = "dfisc_IdList";}
+                @{string IdDrop = "dfisc_IdEdit_" + @Model.pemid_Id;}
+                @{ string Vie = "dfisc_IdList_";}
                 @Html.DropDownList("dfisc_Id", (IEnumerable<SelectListItem>)Context.Items[Vie], "Seleccione", new { @class = "form-control", id = @IdDrop })
                 <div id="ValidacionDocumentoFiscalEdit_@Model.pemid_Id">
                     <p style="color:red">@Html.ValidationMessageFor(model => model.dfisc_Id)</p>
@@ -76,8 +74,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
 
