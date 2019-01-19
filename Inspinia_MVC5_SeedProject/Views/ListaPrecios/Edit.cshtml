@@ -51,7 +51,7 @@
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.listp_Id)
 
-                    @using (Html.BeginForm("CreateEdit", "ListaPrecios", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("Create", "ListaPrecios", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
 

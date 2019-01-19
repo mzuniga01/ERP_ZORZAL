@@ -346,6 +346,43 @@ namespace ERP_GMEDINA.Controllers
         }
 
 
+        [HttpPost]
+        public JsonResult SaveCreateEdit(tbListadoPrecioDetalle PrecioDetalle)
+        {
+            string Msj = "";
+            try
+            {
+                var MensajeError = "";
+                IEnumerable<object> list = null;
+                list = db.UDP_Vent_tbListadoPrecioDetalle_Insert(
+                                              PrecioDetalle.listp_Id,
+                                              PrecioDetalle.prod_Codigo,
+                                              PrecioDetalle.lispd_PrecioMayorista,
+                                              PrecioDetalle.lispd_PrecioMinorista,
+                                              PrecioDetalle.lispd_DescCaja,
+                                              PrecioDetalle.lispd_DescGerente);
+                foreach (UDP_Vent_tbListadoPrecioDetalle_Insert_Result listadetalle in list)
+                    MensajeError = listadetalle.MensajeError;
+                Msj = "El registro se guardo exitosamente";
+                if (MensajeError == "-1")
+                {
+                    Msj = "No se pudo actualizar el registro, favor contacte al administrador.";
+                    ModelState.AddModelError("", Msj);
+                }
+                else
+                {
+                    //Msj = "El registro se guardo exitosamente";
+                    //return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Msj = Ex.Message.ToString();
+                ViewBag.Producto = db.tbProducto.ToList();
+                ModelState.AddModelError("", Msj);
+            }
+            return Json(Msj, JsonRequestBehavior.AllowGet);
+        }
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         //[HttpPost]
         //[ValidateAntiForgeryToken]
