@@ -26,7 +26,7 @@ namespace ERP_GMEDINA.Models
 
 
         [Display(Name = "Fecha Apertura")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime mocja_FechaApertura { get; set; }
 
