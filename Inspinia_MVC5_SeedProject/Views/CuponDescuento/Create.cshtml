@@ -199,8 +199,8 @@
                 if (Porcentaje >= 1) {
                     $('#cdto_PorcentajeDescuentoH').removeAttr("readonly").val(Porcentaje + " %");
                     $('#cdto_MaximoMontoDescuentoH').removeAttr("readonly");
-                    $('#cdto_MontoDescuentoH').attr('readonly', 'readonly').val('0.00');
-                    $('#cdto_CantidadCompraMinimaH').attr('readonly', 'readonly').val('0.00');
+                    $('#cdto_MontoDescuentoH').attr('readonly', 'readonly').prop( "disabled", true ).val('0.00');
+                    $('#cdto_CantidadCompraMinimaH').attr('readonly', 'readonly').prop("disabled", true).val('0.00');
                     //---------------------insertar 0.00---------------------
                     $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00');
                     $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
@@ -226,8 +226,8 @@
                     //---------------------FIN insertar 0.00---------------------
 
                     $('#cdto_MaximoMontoDescuentoH').attr('readonly', 'readonly').val('0.00');
-                    $("#cdto_MontoDescuentoH").removeAttr("readonly").focus().val('');
-                    $('#cdto_CantidadCompraMinimaH').removeAttr("readonly").val('');
+                    $("#cdto_MontoDescuentoH").removeAttr("readonly").prop( "disabled", false ).focus().val('');
+                    $('#cdto_CantidadCompraMinimaH').removeAttr("readonly").prop("disabled", false).val('');
 
                     //--------------------- < 0.00 -------------------------
                     $('#cdto_MontoDescuentoH').blur(function () {
