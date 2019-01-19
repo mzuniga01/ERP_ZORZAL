@@ -104,8 +104,8 @@
       <HintPath>..\packages\Microsoft.VisualStudio.QualityTools.WebTestFramework.12.0.40629.1\lib\net40\Microsoft.VisualStudio.QualityTools.WebTestFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SimpleCrypto, Version=26.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -1229,9 +1229,7 @@
     <Content Include="Views\InventarioFisico\Create.cshtml" />
     <Content Include="Views\InventarioFisico\Delete.cshtml" />
     <Content Include="Views\InventarioFisico\Details.cshtml" />
-    <Content Include="Views\InventarioFisico\Detalle.cshtml" />
     <Content Include="Views\InventarioFisico\Edit.cshtml" />
-    <Content Include="Views\InventarioFisico\Editar.cshtml" />
     <Content Include="Views\InventarioFisico\Index.cshtml" />
     <Content Include="Views\Municipio\CrearPrueba.cshtml" />
     <Content Include="Views\Municipio\Create.cshtml" />
@@ -1368,8 +1366,6 @@
     <Content Include="Views\Parametro\Edit.cshtml" />
     <Content Include="Views\Parametro\Index.cshtml" />
     <Content Include="Views\Rol\_IndexAccesoRol.cshtml" />
-    <Content Include="Views\InventarioFisico\_CreateNuevoInvFisicoDetalle_Modal.cshtml" />
-    <Content Include="Views\InventarioFisico\_EditInvFisicoDetalles.cshtml" />
     <Content Include="Views\InventarioFisico\_ListadoInventarioFisicoDetalle.cshtml" />
     <Content Include="Views\Usuario\_IndexRolesUsuario.cshtml" />
     <Content Include="Views\Entrada\_CrearDetalleEntradaEditar.cshtml" />
@@ -1400,6 +1396,8 @@
     <Content Include="Views\Login\NotFound.cshtml" />
     <Content Include="Views\Departamento\_DeleteMunicipio.cshtml" />
     <Content Include="Views\Entrada\_ProductoEntradaEditarModal.cshtml" />
+    <Content Include="Views\InventarioFisico\_CreateInvFisicoDetalle_nuevo.cshtml" />
+    <Content Include="Views\InventarioFisico\_ListadoInventarioFisicoDetalleConciliado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

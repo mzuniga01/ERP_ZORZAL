@@ -1,5 +1,5 @@
 ﻿
-function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, prod_Descripcion, prod_Marca, bodd_CantidadExistente, bodd_CantidadMinima, bodd_Id) {
+function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, prod_Descripcion, prod_Marca, bodd_CantidadExistente, bodd_CantidadMinima, BodegaDestino) {
     $('#txt1').val(suc_Descripcion);
     $('#txt2').val(bod_Nombre);
     $('#txt3').val(prod_Descripcion);
@@ -28,7 +28,7 @@ function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, pro
                 method: "POST",
                 dataType: 'json',
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ IDBodega: bod_Id, IDProducto: prod_Codigo, CantidadSolicitada: CantidadSolicitada, IDBodegaDetalle: bodd_Id}),
+                data: JSON.stringify({ IDBodega: bod_Id, IDProducto: prod_Codigo, CantidadSolicitada: CantidadSolicitada, BodegaDestino: BodegaDestino }),
                 success: function (json) {
                 },
                 error: function () {
@@ -46,7 +46,7 @@ function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, pro
                               text: "No se pudo hacer el pedido, Contacte con el administración"
                           }
                         ]
-                    }).prev(".ui-widget-header").css("background", "red");
+                    }).prev(".ui-widget-header").css("background", "#FF3232");
                 }
                 else {
                     //alert("El Pedido ha sido enviado correctamente. Codigo de referencia de la salidad Generada es: " + data);
@@ -58,7 +58,7 @@ function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, pro
                               text: "El Pedido ha sido enviado correctamente. Codigo de referencia de la salida Generada es: " + data
                           }
                         ]
-                    }).prev(".ui-widget-header").css("background", "green");
+                    }).prev(".ui-widget-header").css("background", "#64FF00");
                     //$('#dialog').after('<p>El Pedido ha sido enviado correctamente. Codigo de referencia de la salida Generada es: ' + data + '</p>');
                     $("#ErrorValidacionGeneral").remove();
                     $("#errorDescripcionRol").remove();

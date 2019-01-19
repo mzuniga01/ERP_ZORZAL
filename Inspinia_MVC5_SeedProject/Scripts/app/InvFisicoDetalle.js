@@ -57,6 +57,7 @@ $('#AgregarInvFisicoDetalle').click(function () {
             data: JSON.stringify({ invfd: InventarioFisicoDetalle }),
         })
         .done(function (data) {
+        
             $('#prod_CodigoBarras').val('');
             $('#invfd_CantidadSistema').val('');
             $('#prod_Descripcion').val('');
@@ -84,6 +85,32 @@ function GetInventarioFisicoDetalle() {
     };
     return invfd;
 }
+
+
+
+//enter
+$(function () {
+    $('#prod_CodigoBarras').keydown(function (e) {
+        if (e.keyCode == 13) {
+            $("#seleccionar").focus().click();
+
+            $(document).on("click", "#BuscarProducto tbody tr td button#seleccionar", function () {
+                id = $(this).closest('tr').data('id');
+                descripcion = $(this).closest('tr').data('content');
+                barras = $(this).closest('tr').data('delay');
+                uni = $(this).closest('tr').data('keyboard');
+                uniid = $(this).closest('tr').data('container');
+                $("#prod_Codigo").val(id);
+                $("#prod_Descripcion").val(descripcion);
+                $("#prod_CodigoBarras").val(barras);
+                $("#uni_Id").val(uni);
+                $("#uni_Ids").val(uniid);
+             
+            });
+        }
+    });
+});
+
 
 
 //eliminar datos agregados a la tabla
@@ -150,7 +177,7 @@ $(document).on("click", "#BuscarProducto tbody tr td button#seleccionar", functi
 
 
 //Crear nuevo detalle modal
-$('#GuardarNuevoDetalle').click(function () {
+$('#aceptar').click(function () {
     var producto = $("#prod_Codigo").val();
     var UnidadMedida = $("#uni_Id").val();
     var uni = $('#uni_Ids').val();
@@ -182,19 +209,20 @@ $('#GuardarNuevoDetalle').click(function () {
    
     } else
     {
-            var InventarioFisicoDetalle = GetInventarioFisicoDetalle();
+        var InventarioFisicoDetalle = GetInventarioFisicoDetalle();
             $.ajax({
-                url: "/InventarioFisico/NuevoDetallemodal",
+                url: "/InventarioFisico/GuardarInventarioDetalle",
                 method: "POST",
                 dataType: 'json',
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ guardar_detalle: InventarioFisicoDetalle }),
+                data: JSON.stringify({ invfd: InventarioFisicoDetalle }),
             })
             .done(function (data) {
-                $('#prod_Codigo').text('');
-                $('#invfd_Cantidad').text('');
-                $('#invfd_CantidadSistema').text('');
-                $('#uni_Ids').text('');
+                $('#prod_Codigo').val('');
+                $('#invfd_Cantidad').val('');
+                $('#invfd_CantidadSistema').val('');
+                $('#invfd_Cantidad').val('1');
+                $('#uni_Ids').val('');
 
                 $('#MessageError').text('');
                 $('#errorproducto').text('');
@@ -327,6 +355,11 @@ function seleccionar(prod_Codigo) {
                           
                         
                     });
+                    $('#prod_CodigoBarras').val('');
+                    $('#invfd_CantidadSistema').val('');
+                    $('#prod_Descripcion').val('');
+                    $('#uni_Id').val('');
+                    $('#invfd_Cantidad').val(1);
                 }
             });
             $('#invfd_CantidadSistema').trigger("chosen:updated");
@@ -340,6 +373,11 @@ function seleccionar(prod_Codigo) {
                     modal: true
                       
                 });
+                $('#prod_CodigoBarras').val('');
+                $('#invfd_CantidadSistema').val('');
+                $('#prod_Descripcion').val('');
+                $('#uni_Id').val('');
+                $('#invfd_Cantidad').val(1);
             }
        
         }

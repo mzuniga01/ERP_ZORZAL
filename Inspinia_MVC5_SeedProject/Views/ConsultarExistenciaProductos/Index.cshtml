@@ -1,8 +1,17 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.UDV_Inv_Consultar_Existencias_Productos>
-
+@using ERP_GMEDINA.Models
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    int BodegaDestino = 0;
+    GeneralFunctions Login = new GeneralFunctions();
+    List<tbUsuario> User = Login.getUserInformation();
+    foreach (tbUsuario Usuario in User)
+    {
+        BodegaDestino = Usuario.tbSucursal.tbBodega.bod_Id ;
+    }
 }
 
 <div class="modal fade" id="mensaje">
@@ -94,7 +103,7 @@
                 
             </td>
             <td>
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" id="btnSolicitarProducto" data-target="#SolicitarProductomodal" onclick="SolicitarProducto(@item.bod_Id, '@item.bod_Nombre', '@item.suc_Descripcion', '@item.prod_Codigo', '@item.prod_Descripcion', '@item.prod_Marca', @item.bodd_CantidadExistente, @item.bodd_CantidadMinima, @item.bodd_Id);">Solicitar</button>
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" id="btnSolicitarProducto" data-target="#SolicitarProductomodal" onclick="SolicitarProducto(@item.bod_Id, '@item.bod_Nombre', '@item.suc_Descripcion', '@item.prod_Codigo', '@item.prod_Descripcion', '@item.prod_Marca', @item.bodd_CantidadExistente, @item.bodd_CantidadMinima, @BodegaDestino);">Solicitar</button>
             </td>
         </tr>
         <div class="modal fade" id="SolicitarProductomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

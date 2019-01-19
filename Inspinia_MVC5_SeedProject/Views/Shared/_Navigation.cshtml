@@ -89,6 +89,12 @@
                         <a href="@Url.Action("Index", "Empleado")"><i class="fa fa-user"></i>Empleado <span class="nav-label"></span> </a>
                     </li>
                     }
+                    @if (Login.GetUserRols("ConsultarExistenciaProductos/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "ConsultarExistenciaProductos")"><i class="fa fa-search"></i>Consultar Existencias <span class="nav-label"></span> </a>
+                        </li>
+                    }
                 </ul>
             </li>
             

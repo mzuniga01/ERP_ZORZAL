@@ -219,9 +219,9 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 Session["tbInventarioFisicoDetalle"] = sessionInventarioFisicoDetalle;
             }
             else
-            {
-                list.Add(invfd);
-                Session["tbInventarioFisicoDetalle"] = list;
+            { 
+                    list.Add(invfd);
+                    Session["tbInventarioFisicoDetalle"] = list;
             }
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }

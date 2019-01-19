@@ -6,6 +6,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div id="dialog" title="Exito" class="no-close success-dialog" hidden="hidden">
+    <p>Este Producto no existe en esta Bodega</p>
+</div>
+
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -93,15 +97,27 @@
                             </div>
                         }
 
+
+
+
+
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="ibox float-e-margins">
-                                    <div class="ibox-content" id="Crear">
-                                        @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
-                                        @Html.Partial("_CreateInvFisicoDetalle", new ERP_GMEDINA.Models.tbInventarioFisicoDetalle())
+                                @*<div class="ibox float-e-margins">*@
+                                <div class="ibox-title">
+                                    <div class="title-action">
+                                        @*<div class="box-border">*@
+                                        @*<h5>Registrar Detalle Bodega</h5>*@
+                                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#Crear">Nuevo Detalle</button>
+                                        @*</div>*@
                                     </div>
                                 </div>
+                                <div class="ibox-content collapse" id="Crear">
+                                  @Html.Partial("_CreateInvFisicoDetalle_nuevo", new ERP_GMEDINA.Models.tbInventarioFisicoDetalle())
+                                    @*</div>*@
+                                </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">

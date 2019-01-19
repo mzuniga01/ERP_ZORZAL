@@ -625,13 +625,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisicoDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisicoDetalle_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbInventarioFisicoDetalle_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisicoDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisicoDetalle_Update">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbInventarioFisicoDetalle_Update_Result">
@@ -1842,6 +1835,13 @@
           <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
           <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
           <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisicoDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisicoDetalle_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbInventarioFisicoDetalle_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

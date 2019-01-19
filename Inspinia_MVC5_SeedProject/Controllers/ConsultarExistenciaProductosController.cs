@@ -20,7 +20,7 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult InsertPedido(int IDBodega, string IDProducto, decimal CantidadSolicitada, int IDBodegaDetalle)
+        public JsonResult InsertPedido(int IDBodega, string IDProducto, decimal CantidadSolicitada, int BodegaDestino)
         {
             var MensajeError = "0";
             var MensajeErrorDetalle = "0";
@@ -33,7 +33,7 @@ namespace ERP_GMEDINA.Controllers
                 using (TransactionScope Tran = new TransactionScope())
                 {
                     var FechaPedido = DateTime.Now;
-                    listSalida = db.UDP_Inv_ValidacionCantidadExistente(CantidadSolicitada, IDBodega, IDProducto, FechaPedido);
+                    listSalida = db.UDP_Inv_ValidacionCantidadExistente(CantidadSolicitada, IDBodega, IDProducto, FechaPedido, BodegaDestino);
                     foreach (UDP_Inv_ValidacionCantidadExistente_Result Salida in listSalida)
                         MensajeError = Salida.MensajeError;
                     if (MensajeError == "-1")

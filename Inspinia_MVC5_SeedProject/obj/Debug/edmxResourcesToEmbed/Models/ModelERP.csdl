@@ -291,6 +291,8 @@
       <Parameter Name="usu_RazonInactivo" Mode="In" Type="String" />
       <Parameter Name="usu_EsAdministrador" Mode="In" Type="Boolean" />
       <Parameter Name="usu_SesionesValidas" Mode="In" Type="Byte" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+      <Parameter Name="emp_Id" Mode="In" Type="Int16" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbBodegaDetalle_CantidadExistente" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_CantidadExistente_Result)">
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
@@ -342,6 +344,7 @@
       <Parameter Name="IDBodega" Mode="In" Type="Int32" />
       <Parameter Name="IDProducto" Mode="In" Type="String" />
       <Parameter Name="FechaElaboracion" Mode="In" Type="DateTime" />
+      <Parameter Name="BodegaDestino" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbMunicipio_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbMunicipio_Delete_Result)">
       <Parameter Name="mun_Codigo" Mode="In" Type="String" />
@@ -444,13 +447,6 @@
     <FunctionImport Name="UDP_Inv_tbInventarioFisico_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_Update_Estado_Result)">
       <Parameter Name="invf_Id" Mode="In" Type="Int32" />
       <Parameter Name="estif_Id" Mode="In" Type="Byte" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbInventarioFisicoDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisicoDetalle_Insert_Result)">
-      <Parameter Name="invf_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="invfd_Cantidad" Mode="In" Type="Decimal" />
-      <Parameter Name="invfd_CantidadSistema" Mode="In" Type="Decimal" />
-      <Parameter Name="uni_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbInventarioFisicoDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisicoDetalle_Update_Result)">
       <Parameter Name="invfd_Id" Mode="In" Type="Int32" />
@@ -1521,6 +1517,13 @@
     <FunctionImport Name="spGetProducto_BodegaDetalle" ReturnType="Collection(ERP_ZORZALModel.spGetProducto_BodegaDetalle_Result)">
       <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbInventarioFisicoDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisicoDetalle_Insert_Result)">
+      <Parameter Name="invf_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="invfd_Cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="invfd_CantidadSistema" Mode="In" Type="Decimal" />
+      <Parameter Name="uni_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1870,9 +1873,6 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbInventarioFisico_Update_Estado_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbInventarioFisicoDetalle_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbInventarioFisicoDetalle_Update_Result">
@@ -5993,5 +5993,8 @@
     <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
     <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
     <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbInventarioFisicoDetalle_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>
