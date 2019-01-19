@@ -150,6 +150,8 @@
                 }
             });
         });
+
+
         //Esto lo agrego Mirian
         var contador = 0;
         $(document).keypress(function (e) {
@@ -166,28 +168,7 @@
                         $("#prod_CodigoBarras").val();
                         //$("#seleccionar").focus().click();
                         ///
-                        var Bod_Id = $('#bod_Id').val();
-                        var Barras = $('#prod_CodigoBarras').val();
-
-
-                        console.log(Barras);
-                        console.log(Bod_Id);
-                        $.ajax({
-                            type: 'POST',
-                            url: '/Bodega/BuscarCodigoBarras',
-                            data: JSON.stringify({ GET_Barras: Barras, GET_Bod: Bod_Id }),
-                            contentType: 'application/json;',
-                            dataType: 'json',
-
-
-                        }).done(function (data) {
-                            if (data.length > 0) {
-                                //location.reload();
-                                $('#Error_Barras').text('');
-                                $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Codigo De Barras Existente</ul>');
-
-                            }
-                            else {
+                     
                                 var CBarras_Nuevo = $("#prod_CodigoBarras").val();
                                 $.ajax({
                                     url: "/Bodega/BuscarProductos",
@@ -217,9 +198,9 @@
                                             $('#uni_Id').val(data_unidad);
                                             $('#prod_Descripcion').val(data_pDescripcion);
                                         })
+                                        $("#bodd_CantidadMinima").focus();
 
-
-                                        $('#AgregarBodegaDetalle').keypress(function () {
+                                        $('#AgregarBodegaDetalle_Prueba').keypress(function () {
                                             console.log('boton');
                                             var Producto = $('#prod_Codigo').val();
                                             var Cminima = $('#bodd_CantidadMinima').val();
@@ -320,14 +301,13 @@
                                                 copiar += "<td id = 'Descripcion_P'>" + $('#prod_Descripcion').val() + "</td>";
                                                 copiar += "<td id = 'Costo'>" + $('#bodd_Costo').val() + "</td>";
                                                 copiar += "<td id = 'Cpromedio'>" + $('#bodd_CostoPromedio').val() + "</td>";
-                                                copiar += "<td id = ''></td>";
-                                                copiar += "<td id = 'Preorden' hidden >" + $('#bodd_PuntoReorden').val() + "</td>";// aqui va el campo y luego se llena con el id del mismo, que ya ha capturado el valor
-                                                copiar += "<td id = 'Cminima' hidden>" + $('#bodd_CantidadMinima').val() + "</td>";
-                                                copiar += "<td id = 'Cmaxima' hidden >" + $('#bodd_CantidadMaxima').val() + "</td>";
+                                                copiar += "<td id = 'Preorden'  >" + $('#bodd_PuntoReorden').val() + "</td>";// aqui va el campo y luego se llena con el id del mismo, que ya ha capturado el valor
+                                                copiar += "<td id = 'Cminima' >" + $('#bodd_CantidadMinima').val() + "</td>";
+                                                copiar += "<td id = 'Cmaxima'  >" + $('#bodd_CantidadMaxima').val() + "</td>";
                                                 copiar += "<td>" + '<button id="removeBodegaDetalle" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
                                                 copiar += "</tr>";
-                                                $('#tbBodega').append(copiar);
-
+                                                $('#tblBodega').append(copiar);
+                                                
                                                 var tbBodegaDetalle = Getbodegadetalle();
                                                 $.ajax({
                                                     url: "/Bodega/SaveBodegaDetalle",
@@ -381,28 +361,9 @@
                                         $('#Error_Barras').text('');
                                         $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Producto no existe</ul>');
                                     }
-
-
                                 });
-
-                            }
-                        });
-
-
-                        //console.log('Hola');
-                        //$('#prod_CodigoBarras').val(pBarras);
-                        //$('#prod_Codigo').val(idItem);
-
-                        //$('#prod_Descripcion').val(contentItem);
-                        //$('#uni_Id').val(uni_IdtItem);
-                        //$('#pscat_Id').val(psubctItem);
-                        //$('#pcat_Id').val(pcatItem);
                         return false;
-                        //}
-                        //});
                     });
-
-                    ////
                     return false;
                 }
                 else

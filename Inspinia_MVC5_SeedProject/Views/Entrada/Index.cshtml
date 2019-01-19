@@ -89,20 +89,11 @@
                                     </td>
 
                                     <td>
-                                        @if (item.entd_EsAnulada == true)
-                                        {
-                                            <p style="color:maroon">No Habilitado</p>
-                                        }
-                                        else if (item.estm_Id == 1)
-                                        {
-                                            <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
-                                        }
-                                        else 
-                                        {
+                                        
                                             @Html.ActionLink("Detalles", "Details", new { id = item.ent_Id }, new { @class = "btn btn-primary btn-xs" })
                                             @Html.ActionLink("Editar", "Edit", new { id = item.ent_Id }, new { @class = "btn btn-white btn-xs" })
                                             <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
-                                        }
+                                        
                                     </td>
                                 </tr>
                             }

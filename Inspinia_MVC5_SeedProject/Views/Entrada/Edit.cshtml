@@ -114,6 +114,14 @@
                                         {
                                             <p>Inactiva</p>
                                         }
+                                        else if (Model.estm_Id == 1)
+                                        {
+                                            <p style="color:maroon">Aplicada</p>
+                                        }
+                                        else if (Model.estm_Id == 24)
+                                        {
+                                            <p style="color:maroon">Anulada</p>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -172,24 +180,55 @@
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
 
-                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                
                                 @{if (Model.estm_Id == 2)
                                     {
+                                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                                        <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular" value="Anular"/>
                                         <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
+                                        <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                             @*@Html.ActionLink("Inactivar", "EstadoInactivar", new { id = Model.bod_Id }, new { @class = "btn btn-danger" })*@
                                     }
                                     else if (Model.estm_Id == 36)
                                     {
                                         @Html.ActionLink("Emitir", "Estadoactivar", new { id = Model.ent_Id }, new { @class = "btn btn-primary" })
-                                        
+                                        <input type="submit" value="Guardar" disabled class="btn btn-primary" />
+                                        <input type="button" class="btn btn-danger" disabled value="Anular" />
+                                        <input type="button" class="btn btn-danger" disabled value="Aplicar" />
+                                    }
+                                    else if (Model.estm_Id == 24)
+                                    {
+                                        <input type="submit" value="Guardar" disabled class="btn btn-primary" />
+                                        <input type="button" class="btn btn-danger" disabled value="Anular" />
+                                    }
+                                    else
+                                    {
+                                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                                        <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular" value="Anular" />
+                                        <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                     }
                                 }
-                                <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular" value="Anular" />
-                                <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
-                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                
 
                             </div>
                         </div>
+
+                        @*@{ if (Model.estm_Id == 36)
+                            {
+                                <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
+                                    @Html.Partial("_CrearDetalleEntrada", new tbEntradaDetalle())
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
+                                    @Html.Partial("_CrearDetalleEntrada", new tbEntradaDetalle())
+                                </div>
+                            }
+                        }*@
                         <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
                             @Html.Partial("_CrearDetalleEntrada", new tbEntradaDetalle())
                         </div>
@@ -322,7 +361,7 @@
 
 @*modal para agregar un nuevo detalle en editar*@
 <div>
-    <div class="modal fade" id="RegistrarNuevoDetalleEntrada" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="RegistrarNuevoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">

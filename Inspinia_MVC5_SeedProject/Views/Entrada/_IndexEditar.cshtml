@@ -56,10 +56,30 @@
                                         @Html.DisplayFor(modelItem => item.entd_Cantidad)
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalle_@item.ent_Id">Detalles</button>
-                                        <button type="button" class="btn btn-white btn-xs" id="Editarmodal" onclick='EditStudentRecord(@item.entd_Id)'>
-                                            Editar
-                                        </button>
+                                        @{if (item.tbEntrada.estm_Id == 36)
+                                            {
+                                                <button type="button" class="btn btn-primary btn-xs" disabled>Detalles</button>
+                                                <button type="button" class="btn btn-white btn-xs" disabled>
+                                                    Editar
+                                                </button>
+                                            }
+                                            else if (item.tbEntrada.estm_Id == 24)
+                                            {
+                                                <button type="button" class="btn btn-primary btn-xs" disabled>Detalles</button>
+                                                <button type="button" class="btn btn-white btn-xs" disabled>
+                                                    Editar
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalle_@item.ent_Id">Detalles</button>
+                                                <button type="button" class="btn btn-white btn-xs" id="Editarmodal" onclick='EditStudentRecord(@item.entd_Id)'>
+                                                    Editar
+                                                </button>
+                                            }
+                                        }
+
+                                        
                                         @*@Html.ActionLink("Editar", "_CrearDetalleEntrada", new { id = item.ent_Id }, new { @class = "btn btn-primary btn-xs" })*@
                                     </td>
                                 </tr>
@@ -111,7 +131,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Editar Sub Categoría</h4>
+                <h4 class="modal-title" id="myModalLabel">Editar Entrada Detalle</h4>
             </div>
             <div class="modal-body">
                 <form id="form">

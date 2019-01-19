@@ -257,6 +257,7 @@ namespace ERP_ZORZAL.Controllers
         public JsonResult UpdateEntradaDetalle(tbEntradaDetalle Editardetalle)
         {
             string Msj = "";
+            var maestro = Editardetalle.ent_Id;
             try
             {
                 IEnumerable<object> list = null;
@@ -280,7 +281,8 @@ namespace ERP_ZORZAL.Controllers
                 ModelState.AddModelError("", "No se Guardo el registro");
                 Msj = "-1";
             }
-            return Json(Msj, JsonRequestBehavior.AllowGet);
+            //return Json(Msj, JsonRequestBehavior.AllowGet);
+            return Json("Edit/" + maestro);
 
         }
         //para borrar registros en la tabla temporal
@@ -295,7 +297,7 @@ namespace ERP_ZORZAL.Controllers
                 list.Remove(itemToRemove);
                 Session["_CrearDetalleEntrada"] = list;
             }
-            return Json("", JsonRequestBehavior.AllowGet);
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
         
         // POST: /Entrada/Create
@@ -649,9 +651,11 @@ namespace ERP_ZORZAL.Controllers
         //para que Anular una entrada
         public ActionResult EstadoAnular(tbEntrada cambiaAnular)
         {
-
+            //var maestro = cambiaAnular.ent_Id;
+            tbEntrada obj = db.tbEntrada.Find(cambiaAnular.ent_Id);
             try
             {
+                
                 IEnumerable<object> list = null;
                 var MsjError = "";
                 list = db.UDP_Inv_tbEntrada_Update_Anular(cambiaAnular.ent_Id,AnularEntrada.Anulado, cambiaAnular.entd_RazonAnulada);
@@ -661,19 +665,20 @@ namespace ERP_ZORZAL.Controllers
                 if (MsjError == "-1")
                 {
                     ModelState.AddModelError("", "No se Actualizo el registro");
-                    return RedirectToAction("Edit/" + cambiaAnular.ent_Id);
+                    //return RedirectToAction("Edit/" + cambiaAnular.ent_Id);
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit/" + obj);
                 }
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se Actualizo el registro");
-                return RedirectToAction("Edit/" + cambiaAnular.ent_Id);
+                return RedirectToAction("Edit/" + obj);
             }
+            return RedirectToAction("Edit/" + obj);
             //return RedirectToAction("Index");
         }
         //para Aplicar una entrada

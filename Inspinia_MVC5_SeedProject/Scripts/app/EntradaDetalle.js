@@ -154,12 +154,12 @@ $('#AgregarDetalleEntrada').click(function () {
     //    $('#Mensajecantidad').text('');
     //    $('#validationcodigoproducto').after('<ul id="Mensajecodigo" class="validation-summary-errors text-danger">Campo codigo producto Requerido</ul>');
     //    console.log("codigoproducto");
-    //}
-    //else if(cantidad == '') {
-    //    $('#Mensajecodigo').text('');
-    //    $('#Mensajecantidad').text('');
-    //    $('#validationcantidad').after('<ul id="Mensajecantidad" class="validation-summary-errors text-danger">Campo cantidad Requerido</ul>');
-    //    console.log("cantidad");
+    }
+    else if(cantidad == '') {
+        $('#Mensajecodigo').text('');
+        $('#Mensajecantidad').text('');
+        $('#validationcantidad').after('<ul id="Mensajecantidad" class="validation-summary-errors text-danger">Campo cantidad Requerido</ul>');
+        console.log("cantidad");
 
     //}
     //else if (unimedida == '') {
@@ -199,13 +199,13 @@ $('#AgregarDetalleEntrada').click(function () {
             $('#prod_CodigoBarras').val('');
             $('#prod_Codigo').val('');
             $("#uni_Id").val('');
-            //$('#entd_Cantidad').val('');
+            $('#entd_Cantidad').val('0.00');
              //
             $('#prod_Descripcion').val('');
             $('#pscat_Id').val('');
 
             $('#Mensajecodigo').text('');
-            $('#Mensajecantidad').text('');
+            //$('#Mensajecantidad').text('');
 
         });
     }
@@ -282,7 +282,7 @@ $("#Btnsubmit").click(function () {
             if (result == '-1')
                 $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
             else
-                $("#MyModal").modal("hide");
+                //$("#MyModal").modal("hide");
             location.reload();
         }
     });
@@ -381,9 +381,12 @@ $('#AnularEntrada').click(function () {
         })
         .done(function (data) {
             $("#entd_RazonAnulada").val('');
-            $('#ent_Id').val('');
-
+            //$('#ent_Id').val('');
+            location.reload();
+            //window.location.reload();
         });
+        
+            window.location.reload();
 })
 function GetAnualarEntrada() {
 

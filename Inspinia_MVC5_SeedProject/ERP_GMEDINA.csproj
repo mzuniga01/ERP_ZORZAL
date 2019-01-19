@@ -1346,7 +1346,6 @@
     <Content Include="Views\Objeto\Details.cshtml" />
     <Content Include="Views\Objeto\Edit.cshtml" />
     <Content Include="Views\Objeto\Index.cshtml" />
-    <Content Include="Views\Bodega\_Pruebaaaa.cshtml" />
     <Content Include="Views\Empleado\Create.cshtml" />
     <Content Include="Views\Empleado\Delete.cshtml" />
     <Content Include="Views\Empleado\Details.cshtml" />
@@ -1400,6 +1399,7 @@
     <Content Include="Views\Salida\View.cshtml" />
     <Content Include="Views\Login\NotFound.cshtml" />
     <Content Include="Views\Departamento\_DeleteMunicipio.cshtml" />
+    <Content Include="Views\Entrada\_ProductoEntradaEditarModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
