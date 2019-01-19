@@ -108,8 +108,8 @@
             <div class="col-md-4">
              
                 @Html.EditorFor(model => model.exo_FechaInicialVigencia, new { htmlAttributes = new { @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.exo_FechaInicialVigencia)
-            </div>
+                <p id="cc" style="color:red">@Html.ValidationMessageFor(model => model.exo_FechaInicialVigencia)</p>
+</div>
         </div>
 
         <div class="form-group" >
@@ -117,8 +117,8 @@
             <div class="col-md-4">
               
                 @Html.EditorFor(model => model.exo_FechaIFinalVigencia, new { htmlAttributes = new { @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.exo_FechaIFinalVigencia)
-            </div>
+                <p id="exo_FechaIFinalVigencia" style="color:red">@Html.ValidationMessageFor(model => model.exo_FechaIFinalVigencia)</p>
+</div>
         </div>
 
         
@@ -186,18 +186,20 @@
 
         //-------------Fecha Actual-----------------------
         $(function () {
-            $("#exo_FechaInicialVigencia").datepicker({ dateFormat: 'yy/mm/dd', maxDate: '+0d', minDate: 0 }).datepicker('setDate', new Date());
-            $("#exo_FechaIFinalVigencia").datepicker({ dateFormat: 'yy/mm/dd',minDate: 0 });
+            $("#exo_FechaInicialVigencia").datepicker({ dateFormat: 'dd/mm/yy' });
+            $("#exo_FechaIFinalVigencia").datepicker({ dateFormat: 'dd/mm/yy' });
 
         });
 
         </script>
+
+
+
 }
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
 <script src="~/Scripts/app/ClienteExoneracion.js"></script>
-
 
 
 

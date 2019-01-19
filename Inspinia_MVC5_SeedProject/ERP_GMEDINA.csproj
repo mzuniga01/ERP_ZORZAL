@@ -1601,6 +1601,7 @@
     <Content Include="Views\Login\SinAcceso.cshtml" />
     <Content Include="Views\ListaPrecios\_CreateListaPrecioDetalleEdit.cshtml" />
     <Content Include="Views\ListaPrecios\_CreateListaPrecioEdit.cshtml" />
+    <Content Include="Views\Exoneracion\ClientesnoExonerado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

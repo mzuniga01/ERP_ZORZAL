@@ -120,7 +120,7 @@
                     @*<input type="text" name="entrada" id="entrada" value="">*@
                      
                      @Html.EditorFor(model => model.exo_FechaInicialVigencia, new { htmlAttributes = new { @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.exo_FechaInicialVigencia)
+                    <p id="cc" style="color:red">@Html.ValidationMessageFor(model => model.exo_FechaInicialVigencia)</p>
                 </div>
             </div>
 
@@ -277,8 +277,8 @@
  };
  $.datepicker.setDefaults($.datepicker.regional['es']);
 $(function () {
-    $("#exo_FechaInicialVigencia").datepicker({ dateFormat: 'yy-mm-dd', maxDate: '+0d', minDate: 0 });
-    $("#exo_FechaIFinalVigencia").datepicker({ dateFormat: 'yy-mm-dd', minDate: 0 });
+    $("#exo_FechaInicialVigencia").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#exo_FechaIFinalVigencia").datepicker({ dateFormat: 'dd/mm/yy'});
 });
 
       
