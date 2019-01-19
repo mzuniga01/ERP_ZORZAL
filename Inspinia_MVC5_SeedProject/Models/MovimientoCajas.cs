@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Models
     }
 
     public class MovimientoCajasMetaData
-    {
+    {   
 
         [Display(Name = "Número Movimiento")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
@@ -27,7 +27,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Apertura")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime mocja_FechaApertura { get; set; }
 
 

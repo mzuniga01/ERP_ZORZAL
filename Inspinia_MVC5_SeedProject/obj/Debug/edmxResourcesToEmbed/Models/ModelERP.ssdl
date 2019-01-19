@@ -4842,6 +4842,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="fact_Id" Type="int" Mode="In" />
     <Parameter Name="esfac_Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="IDSUCURSAL" Type="int" Mode="In" />
+    <Parameter Name="CODIGOBARRAS" Type="varchar" Mode="In" />
+    <Parameter Name="IDCLIENTE" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbFactura_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="fact_Fecha" Type="datetime" Mode="In" />

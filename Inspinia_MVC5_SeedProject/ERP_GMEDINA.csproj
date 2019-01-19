@@ -729,6 +729,9 @@
     <Compile Include="Models\UDP_Vent_tbFactura_ConsultaBodega_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbFactura_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -828,6 +831,9 @@
     <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -835,6 +841,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result.cs">
@@ -1130,6 +1139,7 @@
     <Content Include="Scripts\app\AnularPedido.js" />
     <Content Include="Scripts\app\Apertura.js" />
     <Content Include="Scripts\app\AperturaDetalle.js" />
+    <Content Include="Scripts\app\AperturaSolicitudEfectivoDetalle.js" />
     <Content Include="Scripts\app\ArqueoCaja.js" />
     <Content Include="Scripts\app\AutorizarDescuento.js" />
     <Content Include="Scripts\app\Banco.js" />

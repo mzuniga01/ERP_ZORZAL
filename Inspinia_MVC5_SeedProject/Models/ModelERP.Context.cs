@@ -5120,7 +5120,46 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result>("UDP_Vent_tbMovimientoCaja_Apertura_Insert", cja_IdParameter, mocja_FechaAperturaParameter, mocja_UsuarioAperturaParameter, mocja_FechaArqueoParameter, mocja_UsuarioArqueaParameter, mocja_FechaAceptacionParameter, mocja_UsuarioAceptacionParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbSolicitudEfectivo_Apertura_Insert(Nullable<int> mocja_Id, Nullable<bool> solef_EsApertura, Nullable<System.DateTime> solef_FechaEntrega, Nullable<int> solef_UsuarioEntrega, Nullable<short> mnda_Id, Nullable<bool> solef_EsAnulada)
+        public virtual ObjectResult<SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result> SDP_Vent_tbPedidoDetalle_tbPedido_Select(Nullable<int> ped_Id)
+        {
+            var ped_IdParameter = ped_Id.HasValue ?
+                new ObjectParameter("ped_Id", ped_Id) :
+                new ObjectParameter("ped_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result>("SDP_Vent_tbPedidoDetalle_tbPedido_Select", ped_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result2> UDP_Vent_tbNotaCredito_CodigoNotaCredito(Nullable<int> iDSucursal, Nullable<short> iDCAJA)
+        {
+            var iDSucursalParameter = iDSucursal.HasValue ?
+                new ObjectParameter("IDSucursal", iDSucursal) :
+                new ObjectParameter("IDSucursal", typeof(int));
+    
+            var iDCAJAParameter = iDCAJA.HasValue ?
+                new ObjectParameter("IDCAJA", iDCAJA) :
+                new ObjectParameter("IDCAJA", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result2>("UDP_Vent_tbNotaCredito_CodigoNotaCredito", iDSucursalParameter, iDCAJAParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result> UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente(Nullable<int> iDSUCURSAL, string cODIGOBARRAS, Nullable<int> iDCLIENTE)
+        {
+            var iDSUCURSALParameter = iDSUCURSAL.HasValue ?
+                new ObjectParameter("IDSUCURSAL", iDSUCURSAL) :
+                new ObjectParameter("IDSUCURSAL", typeof(int));
+    
+            var cODIGOBARRASParameter = cODIGOBARRAS != null ?
+                new ObjectParameter("CODIGOBARRAS", cODIGOBARRAS) :
+                new ObjectParameter("CODIGOBARRAS", typeof(string));
+    
+            var iDCLIENTEParameter = iDCLIENTE.HasValue ?
+                new ObjectParameter("IDCLIENTE", iDCLIENTE) :
+                new ObjectParameter("IDCLIENTE", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result>("UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente", iDSUCURSALParameter, cODIGOBARRASParameter, iDCLIENTEParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result> UDP_Vent_tbSolicitudEfectivo_Apertura_Insert(Nullable<int> mocja_Id, Nullable<bool> solef_EsApertura, Nullable<System.DateTime> solef_FechaEntrega, Nullable<int> solef_UsuarioEntrega, Nullable<short> mnda_Id, Nullable<bool> solef_EsAnulada)
         {
             var mocja_IdParameter = mocja_Id.HasValue ?
                 new ObjectParameter("mocja_Id", mocja_Id) :
@@ -5146,10 +5185,10 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("solef_EsAnulada", solef_EsAnulada) :
                 new ObjectParameter("solef_EsAnulada", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbSolicitudEfectivo_Apertura_Insert", mocja_IdParameter, solef_EsAperturaParameter, solef_FechaEntregaParameter, solef_UsuarioEntregaParameter, mnda_IdParameter, solef_EsAnuladaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result>("UDP_Vent_tbSolicitudEfectivo_Apertura_Insert", mocja_IdParameter, solef_EsAperturaParameter, solef_FechaEntregaParameter, solef_UsuarioEntregaParameter, mnda_IdParameter, solef_EsAnuladaParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert(Nullable<int> solef_Id, Nullable<short> deno_Id, Nullable<short> soled_CantidadSolicitada, Nullable<short> soled_CantidadEntregada, Nullable<decimal> soled_MontoEntregado)
+        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result> UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert(Nullable<int> solef_Id, Nullable<short> deno_Id, Nullable<short> soled_CantidadSolicitada, Nullable<short> soled_CantidadEntregada, Nullable<decimal> soled_MontoEntregado)
         {
             var solef_IdParameter = solef_Id.HasValue ?
                 new ObjectParameter("solef_Id", solef_Id) :
@@ -5171,29 +5210,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("soled_MontoEntregado", soled_MontoEntregado) :
                 new ObjectParameter("soled_MontoEntregado", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert", solef_IdParameter, deno_IdParameter, soled_CantidadSolicitadaParameter, soled_CantidadEntregadaParameter, soled_MontoEntregadoParameter);
-        }
-    
-        public virtual ObjectResult<SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result> SDP_Vent_tbPedidoDetalle_tbPedido_Select(Nullable<int> ped_Id)
-        {
-            var ped_IdParameter = ped_Id.HasValue ?
-                new ObjectParameter("ped_Id", ped_Id) :
-                new ObjectParameter("ped_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result>("SDP_Vent_tbPedidoDetalle_tbPedido_Select", ped_IdParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result2> UDP_Vent_tbNotaCredito_CodigoNotaCredito(Nullable<int> iDSucursal, Nullable<short> iDCAJA)
-        {
-            var iDSucursalParameter = iDSucursal.HasValue ?
-                new ObjectParameter("IDSucursal", iDSucursal) :
-                new ObjectParameter("IDSucursal", typeof(int));
-    
-            var iDCAJAParameter = iDCAJA.HasValue ?
-                new ObjectParameter("IDCAJA", iDCAJA) :
-                new ObjectParameter("IDCAJA", typeof(short));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result2>("UDP_Vent_tbNotaCredito_CodigoNotaCredito", iDSucursalParameter, iDCAJAParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result>("UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert", solef_IdParameter, deno_IdParameter, soled_CantidadSolicitadaParameter, soled_CantidadEntregadaParameter, soled_MontoEntregadoParameter);
         }
     }
 }

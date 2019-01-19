@@ -4847,6 +4847,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="fact_Id" Type="int" Mode="In" />
           <Parameter Name="esfac_Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="IDSUCURSAL" Type="int" Mode="In" />
+          <Parameter Name="CODIGOBARRAS" Type="varchar" Mode="In" />
+          <Parameter Name="IDCLIENTE" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbFactura_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="fact_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="fact_Fecha" Type="datetime" Mode="In" />
@@ -8641,21 +8646,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
             <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Apertura_Insert" ReturnType="Collection(Int32)">
-            <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
-            <Parameter Name="solef_EsApertura" Mode="In" Type="Boolean" />
-            <Parameter Name="solef_FechaEntrega" Mode="In" Type="DateTime" />
-            <Parameter Name="solef_UsuarioEntrega" Mode="In" Type="Int32" />
-            <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
-            <Parameter Name="solef_EsAnulada" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" ReturnType="Collection(Int32)">
-            <Parameter Name="solef_Id" Mode="In" Type="Int32" />
-            <Parameter Name="deno_Id" Mode="In" Type="Int16" />
-            <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
-            <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
-            <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
-          </FunctionImport>
           <FunctionImport Name="SDP_Vent_tbPedidoDetalle_tbPedido_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result)">
           <Parameter Name="ped_Id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -8734,6 +8724,26 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbSalida" EntitySet="tbSalida" />
             <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
           </AssociationSet>
+          <FunctionImport Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result)">
+            <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
+            <Parameter Name="CODIGOBARRAS" Mode="In" Type="String" />
+            <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result)">
+            <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+            <Parameter Name="solef_EsApertura" Mode="In" Type="Boolean" />
+            <Parameter Name="solef_FechaEntrega" Mode="In" Type="DateTime" />
+            <Parameter Name="solef_UsuarioEntrega" Mode="In" Type="Int32" />
+            <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+            <Parameter Name="solef_EsAnulada" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result)">
+            <Parameter Name="solef_Id" Mode="In" Type="Int32" />
+            <Parameter Name="deno_Id" Mode="In" Type="Int16" />
+            <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
+            <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
+            <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -13548,6 +13558,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result">
+          <Property Type="String" Name="DESCRIPCIONPRODUCTO" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CODIGOPRODUCTO" Nullable="true" MaxLength="15" />
+          <Property Type="Decimal" Name="IMPUESTOPRODUCTO" Nullable="true" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="PRECIOUNITARIO" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Boolean" Name="EXISTE" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -15728,8 +15751,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_Apertura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_Apertura_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" />
           <FunctionImportMapping FunctionImportName="SDP_Vent_tbPedidoDetalle_tbPedido_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Vent_tbPedidoDetalle_tbPedido_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result">
@@ -15797,6 +15818,31 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result">
+                <ScalarProperty Name="DESCRIPCIONPRODUCTO" ColumnName="DESCRIPCIONPRODUCTO" />
+                <ScalarProperty Name="CODIGOPRODUCTO" ColumnName="CODIGOPRODUCTO" />
+                <ScalarProperty Name="IMPUESTOPRODUCTO" ColumnName="IMPUESTOPRODUCTO" />
+                <ScalarProperty Name="PRECIOUNITARIO" ColumnName="PRECIOUNITARIO" />
+                <ScalarProperty Name="EXISTE" ColumnName="EXISTE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_Apertura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_Apertura_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

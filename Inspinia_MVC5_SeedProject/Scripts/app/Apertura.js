@@ -9,7 +9,6 @@ $('#mnda_Id').on("change", function () {
     GetDenominacion();
      $(function () {
          var $tabla = $('#DenominacionDetalle');
-
          $('#mnda_Id').change(function () {
              var value = $(this).val();
              if (this.value != "") {
@@ -46,10 +45,11 @@ function GetDenominacion() {
                 $.each(data, function (key, val) {
                     contador = contador + 1;
                     copiar = "<tr data-id=" + contador + ">";
-                    copiar += "<td id = 'DenominacionCreate'>" + val.deno_Descripcion + "</td>";
+                    copiar += "<td id = 'DenominacionCreate'>"  + val.deno_Descripcion + "</td>";
                     copiar += "<td>" + '<input type="number" min="0" id="name" name="name" class="form-control" size="3">' + "</td>";
                     copiar += "<td id = 'ValorCreate'>" + val.deno_valor + "</td>";
                     copiar += "<td id = 'SuntotalCreate'></td>";
+                    copiar += "<td id = deno_Id' hidden>" + val.deno_Id + "</td>";
                     //copiar += "<td>" + '<button id="removeDenominacion" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
                     copiar += "</tr>";
                     $('#DenominacionDetalle').append(copiar);
@@ -93,13 +93,14 @@ $(document).on("change", "#DenominacionDetalle tbody tr td input#name", function
             }
         })
     }
-    var totalfinal = document.getElementById("Total").innerHTML = parseFloat(MontoInicial)
-    document.getElementById("MontoInicial").innerHTML = parseFloat(MontoInicial);
-    
+    var totalfinal = document.getElementById("Total").innerHTML = parseFloat(MontoInicial);
+     document.getElementById("Monto").innerHTML = parseFloat(MontoInicial);
+
+
+    //console.log('MontoInicial', MontoInicial);
+    //console.log('Subtotal', Subtotal);
+    //console.log('Total', Total);
+    //console.log('totalfinal', totalfinal);
    
 });
-
-
-
-
 

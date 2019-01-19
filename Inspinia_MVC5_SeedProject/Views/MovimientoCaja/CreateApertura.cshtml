@@ -9,6 +9,11 @@
     <div class="col-sm-4">
         <h2>Movimiento Caja</h2>
     </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "IndexApertura")
+        </div>
+    </div>
 </div>
 
 <div class="wrapper wrapper-content">
@@ -26,59 +31,62 @@
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
-                            @Html.ValidationSummary(true)
+                            <div>
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            </div>
 
                             <div class="form-horizontal">
                                 <div class="form-group col-md-7">
                                    @Html.LabelFor(model => test.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
                                     <div class="col-md-7">
-                                        @Html.EditorFor(model => test.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.EditorFor(model => test.suc_Descripcion, new { htmlAttributes = new { @class = "form-control" @*, @readonly = "readonly"*@ } })
                                         <p style="color:red"> @Html.ValidationMessageFor(model => test.suc_Descripcion)</p>
                                     </div>
                                 </div>
                             </div>
              
                             <div class="form-group col-md-5">
-                                @Html.LabelFor(model => model.cja_Id, "Número Caja", new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.tbCaja.cja_Id, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly"} })                              
-                                    <p id="MensajeErrorDenominacion" style="color:red">@Html.ValidationMessageFor(model => model.cja_Id)</p>
-                                    </div>
+                                    @Html.DropDownList("cja_Id", null, "Seleccione Caja", new { @class = "form-control" })
+                                    <div id="validacioncajacreate">
+                                        <p id="MensajeErrorDenominacion" style="color:red">@Html.ValidationMessageFor(model => model.cja_Id)</p>
+                                    </div>                                                                                   
+                                </div>
                             </div>
                             <div class="form-group col-md-7">
-                                @Html.LabelFor(model => model.tbCaja.cja_Descripcion, "Descripción Caja", new { @class = "control-label col-md-2" })
+                              @Html.LabelFor(model => model.mocja_FechaApertura, "Fecha Apertura", new { @class = "control-label col-md-2" })
                                 <div class="col-md-7">
-                                    @Html.EditorFor(model => model.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.tbCaja.cja_Descripcion)
-                                </div>
+                                    @Html.EditorFor(model => model.mocja_FechaApertura, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @maxlength = "10", @class = "form-control" , @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.mocja_FechaApertura)</p>
+                                    </div>
                             </div> 
 
                             <div class="form-group col-md-5">
-                                @Html.LabelFor(model => model.mocja_FechaApertura, "Fecha Apertura", new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.mocja_FechaApertura, new { htmlAttributes = new { @id = "fechaapertura", maxlength = 10 , @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.mocja_FechaApertura)
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-7">
                                 @Html.LabelFor(model => model.mocja_UsuarioApertura, "Usuario Apertura", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.mocja_UsuarioApertura, new { htmlAttributes = new { @class = "form-control" @*, @readonly = "readonly"*@ } })
+                                   <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)</p>
+                                </div>
+                            </div>
+                             
+                            <div class="form-group col-md-7">
+                                <label class="control-label col-md-2">Monto Inicial</label>
                                 <div class="col-md-7">
-                                    @Html.EditorFor(model => model.mocja_UsuarioApertura, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)
+                                    <input type="text" class="form-control " id="Monto" readonly>
                                 </div>
                             </div>
 
 
 
-                            <div class="form-horizontal">
+                            @*<div class="form-horizontal">
                                 <div class="form-group col-md-5">
                                     <label class="control-label col-md-2">Monto Inicial</label>
                                     <div class="col-md-10">
                                         <input type="text" class="form-control " id="MontoInicial" readonly>
                                     </div>
                                 </div>
-                            </div>
+                            </div>*@
 
                             
                         </div>
@@ -94,8 +102,8 @@
                                     <div class="ibox-content">
                                         <div class="form-group">
                                             <div class="col-md-12 text-center">
-                                                <input type="submit" value="Guardar" class="btn btn-primary" />
-                                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                                <input type="submit" value="Guardar" class="btn btn-primary"  id="guardar"/>
+                                                @Html.ActionLink("Cancelar", "IndexApertura", null, new { @class = "btn btn-white" })
                                             </div>
                                         </div>
                                         <br />
@@ -108,7 +116,7 @@
 
                 </div>
             </div>
-        </div>
+        </div>guardar
     </div>
 </div>
 
@@ -120,17 +128,17 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/app/Apertura.js"></script>
-
+    <script src="~/Scripts/app/Datepicker.js"></script>
     <script src="~/Scripts/app/AperturaDetalle.js"></script>
+    <script src="~/Scripts/app/AperturaSolicitudEfectivoDetalle.js"></script>
 
-
-<script type="text/javascript">
+@*<script type="text/javascript">
     //Current Date
     var d = new Date();
     var n = d.toLocaleString([], { hour12: true });
-    var strDate = (d.getDate() + "/" + d.getMonth() + 1) + "/" +d.getFullYear() + ' ' +d.getHours() + ':'+ d.getMinutes()+ ':' + d.getSeconds();
-    $('#fechaapertura').val(n);
-</script>
+    var strDate = (d.getDate() + "/" + d.getMonth() + 1) + "/" +d.getFullYear();
+    $('#fechaapertura').val(strDate);
+</script>*@
 
 
 }

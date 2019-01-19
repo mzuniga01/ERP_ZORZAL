@@ -152,9 +152,9 @@
     }).datepicker('setDate', new Date());
 
 
-    ///////AperturaCaja
-    $("#mocja_FechaApetura").datepicker({
-        dateFormat: 'dd-mm-yy',
+    //Apertura
+    $('#mocja_FechaApertura').datepicker({
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         prevText: 'Ant',
@@ -162,7 +162,6 @@
     }).datepicker('setDate', new Date());
 
     //Grupo1
-
 
 
 

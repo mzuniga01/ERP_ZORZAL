@@ -2286,21 +2286,6 @@
       <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
       <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Apertura_Insert" ReturnType="Collection(Int32)">
-      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
-      <Parameter Name="solef_EsApertura" Mode="In" Type="Boolean" />
-      <Parameter Name="solef_FechaEntrega" Mode="In" Type="DateTime" />
-      <Parameter Name="solef_UsuarioEntrega" Mode="In" Type="Int32" />
-      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
-      <Parameter Name="solef_EsAnulada" Mode="In" Type="Boolean" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" ReturnType="Collection(Int32)">
-      <Parameter Name="solef_Id" Mode="In" Type="Int32" />
-      <Parameter Name="deno_Id" Mode="In" Type="Int16" />
-      <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
-      <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
-      <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
-    </FunctionImport>
     <FunctionImport Name="SDP_Vent_tbPedidoDetalle_tbPedido_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result)">
       <Parameter Name="ped_Id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -2379,6 +2364,26 @@
       <End Role="tbSalida" EntitySet="tbSalida" />
       <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
     </AssociationSet>
+    <FunctionImport Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result)">
+      <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
+      <Parameter Name="CODIGOBARRAS" Mode="In" Type="String" />
+      <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result)">
+      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+      <Parameter Name="solef_EsApertura" Mode="In" Type="Boolean" />
+      <Parameter Name="solef_FechaEntrega" Mode="In" Type="DateTime" />
+      <Parameter Name="solef_UsuarioEntrega" Mode="In" Type="Int32" />
+      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+      <Parameter Name="solef_EsAnulada" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result)">
+      <Parameter Name="solef_Id" Mode="In" Type="Int32" />
+      <Parameter Name="deno_Id" Mode="In" Type="Int16" />
+      <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
+      <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
+      <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -7193,4 +7198,17 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result">
+    <Property Type="String" Name="DESCRIPCIONPRODUCTO" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CODIGOPRODUCTO" Nullable="true" MaxLength="15" />
+    <Property Type="Decimal" Name="IMPUESTOPRODUCTO" Nullable="true" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="PRECIOUNITARIO" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Boolean" Name="EXISTE" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result">
+    <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
 </Schema>
