@@ -633,6 +633,13 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
+        public ActionResult BuscarCodigoBarras(int IDSucursal, string CodBarra, int IDCliente)
+        {
+            var list = db.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente(IDSucursal, CodBarra, IDCliente).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public JsonResult GetDetallePedido(int CodPedido)
         {
             var list = db.sp_GetDetallePedido(CodPedido).ToList();

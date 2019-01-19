@@ -26,6 +26,9 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.prod_Modelo)
                                 </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.prod_CodigoBarras)
+                                </th>
                                 <th>Acción</th>
                             </tr>
                         </thead>
@@ -33,7 +36,7 @@
                         <tbody id="ProductoTbody">
                             @foreach (var item in Model)
                             {
-                                <tr data-id="@item.prod_Codigo" data-desc="@item.prod_Descripcion" data-isv="@item.tbProductoSubcategoria.pscat_ISV">
+                                <tr data-barra="@item.prod_CodigoBarras" data-id="@item.prod_Codigo" data-desc="@item.prod_Descripcion" data-isv="@item.tbProductoSubcategoria.pscat_ISV">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.prod_Descripcion)
                                     </td>
@@ -42,6 +45,9 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.prod_Modelo)
+                                    </td>
+                                    <td hidden>
+                                        @Html.DisplayFor(modelItem => item.prod_CodigoBarras)
                                     </td>
                                     <td>
                                         <button id="SelectProduct" type="button" class="btn btn-primary btn-xs">Agregar</button>

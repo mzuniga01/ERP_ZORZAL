@@ -19,10 +19,11 @@ $(document).ready(function () {
 
 // Factura Seleccionar Producto
 $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", function () {
-    idbarraItem = $(this).closest('tr').data('idbarra');
+    idbarraItem = $(this).closest('tr').data('barra');
     idItem = $(this).closest('tr').data('id');
     DescItem = $(this).closest('tr').data('desc');
     ISVItem = $(this).closest('tr').data('isv');
+    $("#prod_CodigoBarras").val(idbarraItem);
     $("#prod_Codigo").val(idItem);
     $("#tbProducto_prod_CodigoBarras").val(idCbItem);
     $("#tbProducto_prod_Descripcion").val(DescItem);
@@ -35,17 +36,15 @@ $(document).ready(function () {
     var table = $('#tbProductoFactura').DataTable();
 
     $('#tbProductoFactura tbody').on('click', 'tr', function () {
-        idCbItem = $(this).closest('tr').data('idbarra');
+        idbarraItem = $(this).closest('tr').data('barra');
         idItem = $(this).closest('tr').data('id');
         DescItem = $(this).closest('tr').data('desc');
         ISVItem = $(this).closest('tr').data('isv');
+        $("#prod_CodigoBarras").val(idbarraItem);
         $("#prod_Codigo").val(idItem);
-        $("#tbProducto_prod_CodigoBarras").val(idCbItem);
         $("#tbProducto_prod_Descripcion").val(DescItem);
         $("#factd_Impuesto").val(ISVItem);
         $('#ModalAgregarProducto').modal('hide');
-
-
         var Cliente = $('#IDCliente').val();
         if (Cliente == '') {
             Cliente = 0;
