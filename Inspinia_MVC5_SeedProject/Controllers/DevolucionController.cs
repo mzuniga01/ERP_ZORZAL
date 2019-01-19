@@ -372,6 +372,7 @@ namespace ERP_ZORZAL.Controllers
                                                             tbNotaCredito.dev_Id, 
                                                             tbNotaCredito.clte_Id, 
                                                             tbNotaCredito.suc_Id, 
+                                                            tbNotaCredito.cja_Id,
                                                             tbNotaCredito.nocre_Anulado, 
                                                             tbNotaCredito.nocre_FechaEmision, 
                                                             tbNotaCredito.nocre_MotivoEmision, 

@@ -49,9 +49,8 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 AsteriscoRojo">% Descuento</label>
                                 <div class="col-md-4">
-                                    @*@Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @readonly = "readonly" } })*@
                                    <input type="text" id="cdto_PorcentajeDescuentoH" name="cdto_PorcentajeDescuentoH" class="form-control validanumericos" style="text-align:right" />
-                                    <input type="hidden" id="cdto_PorcentajeDescuento" name="cdto_PorcentajeDescuento" />
+                                    <input type="text" id="cdto_PorcentajeDescuento" name="cdto_PorcentajeDescuento" />
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
                                 </div>
                             </div>
@@ -60,8 +59,8 @@
                                 <label class="control-label col-md-2 AsteriscoRojo">Máximo Monto Descuento</label>
                                 <div class="col-md-4">
                                    <input type="text" class="form-control validanumericos" data-val="true" data-val-number="El campo Máximo Monto Descuento tiene que ser un Números." data-val-required="*El campo Máximo Monto Descuento es requerido" id="cdto_MaximoMontoDescuentoH" min="0" name="cdto_MaximoMontoDescuentoH" onchange="MASK(this, this.value, '-##,###,##0.00', 1)" onkeypres="MASK(this, this.value, '-##,###,##0.00', 1)" style="text-align:right">
-                                   <input type="hidden" id="cdto_MaximoMontoDescuento" name="cdto_MaximoMontoDescuento" />
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
+                                   <input type="text" id="cdto_MaximoMontoDescuento" name="cdto_MaximoMontoDescuento" />
+                                    <p id="msjMaximoMonto" style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
                                 </div>
                             </div>
 
@@ -69,8 +68,8 @@
                                 <label class="control-label col-md-2 AsteriscoRojo">Monto Descuento</label>
                                 <div class="col-md-4">
                                     <input class="form-control validanumericos" data-val="true" data-val-number="The field Monto Descuento must be a number." data-val-required="*El campo Monto Descuento es requerido" id="cdto_MontoDescuentoH" min="0" name="cdto_MontoDescuentoH" onchange="MASK(this,this.value,'-##,###,##0.00',1)" onkeypres="MASK(this,this.value,'-##,###,##0.00',1)" style="text-align:right" type="text" value>
-                                    <input type="hidden" id="cdto_MontoDescuento" name="cdto_MontoDescuento" />
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MontoDescuento)</p>
+                                    <input type="text" id="cdto_MontoDescuento" name="cdto_MontoDescuento" />
+                                    <p id="msjMontoDescuento" style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
                                 </div>
                             </div>
 
@@ -78,9 +77,8 @@
                                 <label class="control-label col-md-2 AsteriscoRojo">Compra Mínima</label>
                                 <div class="col-md-4">
                                     <input class="form-control validanumericos" data-val="true" data-val-number="The field Compra Mínima must be a number." data-val-required="*El campo Compra Mínima es requerido" id="cdto_CantidadCompraMinimaH" min="0" name="cdto_CantidadCompraMinimaH" onchange="MASK(this,this.value,'-##,###,##0.00',1)" onkeypres="MASK(this,this.value,'-##,###,##0.00',1)" style="text-align:right" type="text" value>
-                                     <input type="hidden" id="cdto_CantidadCompraMinima" name="cdto_CantidadCompraMinima" />
+                                     <input type="text" id="cdto_CantidadCompraMinima" name="cdto_CantidadCompraMinima" />
                                     <p id="smsCantidadMinima" style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
-                                     @*<p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>*@
                                 </div>
                             </div>
 
@@ -132,7 +130,7 @@
     </div>
 </div>
 
-
+<input onkeypress="hola();" />
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -178,7 +176,7 @@
             var compraminima = $('#cdto_CantidadCompraMinima').val();
             console.log(monto)
 
-            if (parseFloat(monto) >= parseFloat(compraminima)) {
+            if (parseFloat(monto) >= parseFloat(compraminima) || $('#cdto_CantidadCompraMinimaH').val()=="") {
                 $('#cdto_CantidadCompraMinimaH').val('').focus();
                 valido.innerText = "El valor debe ser Mayor al Monto Descuento";
             }else
@@ -188,30 +186,65 @@
 
         //--------------------Digitar Datos--------------------------------
         $('#cdto_PorcentajeDescuentoH').focusout(function () {
-            var Porcentaje = $('#cdto_PorcentajeDescuentoH').val();
-
-            if (Porcentaje >= 1 ) {
-                $('#cdto_PorcentajeDescuentoH').removeAttr("readonly").val(Porcentaje + " %");
-                $('#cdto_MaximoMontoDescuentoH').removeAttr("readonly");
-                $('#cdto_MontoDescuentoH').attr('readonly', 'readonly').val('0.00');
-                $('#cdto_CantidadCompraMinimaH').attr('readonly', 'readonly').val('0.00');
-                //---------------------insertar 0.00---------------------
-                $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00');
-                $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
-                //---------------------FIN insertar 0.00---------------------
-
-            } else if (Porcentaje <= 0) {
-                //---------------------insertar 0.00---------------------
-                $('#cdto_PorcentajeDescuento').attr('readonly', 'readonly').val('0.00');
-                $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
-                //---------------------FIN insertar 0.00---------------------
-
-                $('#cdto_PorcentajeDescuentoH').attr('readonly', 'readonly').val('0.00');
-                $('#cdto_MaximoMontoDescuentoH').attr('readonly', 'readonly').val('0.00');
-
-                $("#cdto_MontoDescuentoH").removeAttr("readonly").focus().val('');
-                $('#cdto_CantidadCompraMinimaH').removeAttr("readonly").val('');
+            if ($('#cdto_PorcentajeDescuentoH').val() == "" || $('#cdto_PorcentajeDescuentoH').val() == 0 || $('#cdto_PorcentajeDescuentoH').val() <= 0) {
+                $('#cdto_PorcentajeDescuentoH').val('0.00')
+                $('#cdto_PorcentajeDescuento').val('0.00')
             }
+            else if ($('#cdto_MontoDescuentoH').val() == "") {
+                $('#cdto_MontoDescuentoH').val('0.00')
+                $('#cdto_MontoDescuento').val('0.00')
+            }
+                var Porcentaje = $('#cdto_PorcentajeDescuentoH').val();
+
+                if (Porcentaje >= 1) {
+                    $('#cdto_PorcentajeDescuentoH').removeAttr("readonly").val(Porcentaje + " %");
+                    $('#cdto_MaximoMontoDescuentoH').removeAttr("readonly");
+                    $('#cdto_MontoDescuentoH').attr('readonly', 'readonly').val('0.00');
+                    $('#cdto_CantidadCompraMinimaH').attr('readonly', 'readonly').val('0.00');
+                    //---------------------insertar 0.00---------------------
+                    $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00');
+                    $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
+                    //---------------------FIN insertar 0.00---------------------
+
+                    //--------------------- > 0.00-------------------------
+                    $('#cdto_MaximoMontoDescuentoH').blur(function () {
+                        valido1 = document.getElementById('msjMaximoMonto');
+                        var monto = $('#cdto_MaximoMontoDescuento').val();
+                        console.log(monto)
+
+                        if (parseFloat(monto) <= 0 || $('#cdto_MaximoMontoDescuentoH').val()=="") {
+                            $('#cdto_MaximoMontoDescuentoH').val('').focus();
+                            valido1.innerText = "El valor debe ser Mayor a 0.";
+                        } else
+                            valido1.innerText = "";
+                    });
+                    //---------------------FIN > 0.00-------------------------
+
+                } else if (Porcentaje <= 0) {
+                    //---------------------insertar 0.00---------------------
+                    $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
+                    //---------------------FIN insertar 0.00---------------------
+
+                    $('#cdto_MaximoMontoDescuentoH').attr('readonly', 'readonly').val('0.00');
+                    $("#cdto_MontoDescuentoH").removeAttr("readonly").focus().val('');
+                    $('#cdto_CantidadCompraMinimaH').removeAttr("readonly").val('');
+
+                    //--------------------- < 0.00 -------------------------
+                    $('#cdto_MontoDescuentoH').blur(function () {
+                        valido2 = document.getElementById('msjMontoDescuento');
+                        var montodesc = $('#cdto_MontoDescuento').val();
+                        console.log(montodesc)
+
+                        if (parseFloat(montodesc) <= 0 || $('#cdto_MontoDescuentoH').val() == "") {
+                            $('#cdto_MontoDescuentoH').val('').focus();
+                            valido2.innerText = "El valor debe ser Mayor a 0.";
+                        } else {
+                            valido2.innerText = "";
+                        }
+                    });
+                    //---------------------FIN > 0.00-------------------------
+
+                }
         });
         //--------------------FIN Digitar Datos--------------------------------
 

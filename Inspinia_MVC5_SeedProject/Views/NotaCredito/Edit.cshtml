@@ -56,10 +56,10 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.tbDevolucion.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.tbDevolucion.tbCaja.cja_Descripcion, new { htmlAttributes = new { @readonly = "readonly"} })
-                                    <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)</span></p>
+                                    @Html.EditorFor(model => model.cja_Id)
+                                    @*<p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)</span></p>*@
                                 </div>
                             </div>
 

@@ -473,7 +473,7 @@
           </Key>
           <Property Name="sald_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="sal_Id" Type="int" Nullable="false" />
-          <Property Name="bodd_Id" Type="int" Nullable="false" />
+          <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="sal_Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="box_Codigo" Type="varchar" MaxLength="20" />
           <Property Name="sald_UsuarioCrea" Type="int" Nullable="false" />
@@ -3045,15 +3045,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inv_tbSalidaDetalle_tbBodegaDetalle_bodd_Id">
-          <End Role="tbBodegaDetalle" Type="Self.tbBodegaDetalle" Multiplicity="1" />
+        <Association Name="FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo">
+          <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="1" />
           <End Role="tbSalidaDetalle" Type="Self.tbSalidaDetalle" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbBodegaDetalle">
-              <PropertyRef Name="bodd_Id" />
+            <Principal Role="tbProducto">
+              <PropertyRef Name="prod_Codigo" />
             </Principal>
             <Dependent Role="tbSalidaDetalle">
-              <PropertyRef Name="bodd_Id" />
+              <PropertyRef Name="prod_Codigo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4513,14 +4513,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         </Function>
         <Function Name="UDP_Inv_tbSalidaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="sal_Id" Type="int" Mode="In" />
-          <Parameter Name="bodd_Id" Type="int" Mode="In" />
+          <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="sal_Cantidad" Type="decimal" Mode="In" />
           <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbSalidaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="sald_Id" Type="int" Mode="In" />
           <Parameter Name="sal_Id" Type="int" Mode="In" />
+          <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="sal_Cantidad" Type="decimal" Mode="In" />
+          <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbTipoEntrada_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="tent_Descripcion" Type="nvarchar" Mode="In" />
@@ -4991,11 +4993,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="nocre_Id" Type="smallint" Mode="In" />
           <Parameter Name="nocre_Anulado" Type="bit" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="IDSucursal" Type="int" Mode="In" />
+          <Parameter Name="IDCAJA" Type="smallint" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbNotaCredito_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="nocre_Codigo" Type="varchar" Mode="In" />
           <Parameter Name="dev_Id" Type="int" Mode="In" />
           <Parameter Name="clte_Id" Type="int" Mode="In" />
           <Parameter Name="suc_Id" Type="int" Mode="In" />
+          <Parameter Name="cja_Id" Type="smallint" Mode="In" />
           <Parameter Name="nocre_Anulado" Type="bit" Mode="In" />
           <Parameter Name="nocre_FechaEmision" Type="datetime" Mode="In" />
           <Parameter Name="nocre_MotivoEmision" Type="nvarchar" Mode="In" />
@@ -5010,6 +5017,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="dev_Id" Type="int" Mode="In" />
           <Parameter Name="clte_Id" Type="int" Mode="In" />
           <Parameter Name="suc_Id" Type="int" Mode="In" />
+          <Parameter Name="cja_Id" Type="smallint" Mode="In" />
           <Parameter Name="nocre_Anulado" Type="bit" Mode="In" />
           <Parameter Name="nocre_FechaEmision" Type="datetime" Mode="In" />
           <Parameter Name="nocre_MotivoEmision" Type="nvarchar" Mode="In" />
@@ -5102,7 +5110,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="pedd_CantidadFacturada" Type="decimal" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbPedidoDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-          <Parameter Name="pedd_Id" Type="int" Mode="In" />
+          <Parameter Name="ped_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="pedd_Cantidad" Type="decimal" Mode="In" />
           <Parameter Name="pedd_CantidadFacturada" Type="decimal" Mode="In" />
@@ -6082,8 +6090,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbBox" EntitySet="tbBox" />
             <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbSalidaDetalle_tbBodegaDetalle_bodd_Id" Association="Self.FK_Inv_tbSalidaDetalle_tbBodegaDetalle_bodd_Id">
-            <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
+          <AssociationSet Name="FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" Association="Self.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo">
+            <End Role="tbProducto" EntitySet="tbProducto" />
             <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
           </AssociationSet>
           <AssociationSet Name="FK_Inv_tbSalidaDetalle_tbSalida_sal_Id" Association="Self.FK_Inv_tbSalidaDetalle_tbSalida_sal_Id">
@@ -6640,7 +6648,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="clte_DiasCredito" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbPedidoDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedidoDetalle_Update_Result)">
-            <Parameter Name="pedd_Id" Mode="In" Type="Int32" />
+            <Parameter Name="ped_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="pedd_Cantidad" Mode="In" Type="Decimal" />
             <Parameter Name="pedd_CantidadFacturada" Mode="In" Type="Decimal" />
@@ -6675,6 +6683,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="dev_Id" Mode="In" Type="Int32" />
             <Parameter Name="clte_Id" Mode="In" Type="Int32" />
             <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+            <Parameter Name="cja_Id" Mode="In" Type="Int16" />
             <Parameter Name="nocre_Anulado" Mode="In" Type="Boolean" />
             <Parameter Name="nocre_FechaEmision" Mode="In" Type="DateTime" />
             <Parameter Name="nocre_MotivoEmision" Mode="In" Type="String" />
@@ -6689,6 +6698,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="dev_Id" Mode="In" Type="Int32" />
             <Parameter Name="clte_Id" Mode="In" Type="Int32" />
             <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+            <Parameter Name="cja_Id" Mode="In" Type="Int16" />
             <Parameter Name="nocre_Anulado" Mode="In" Type="Boolean" />
             <Parameter Name="nocre_FechaEmision" Mode="In" Type="DateTime" />
             <Parameter Name="nocre_MotivoEmision" Mode="In" Type="String" />
@@ -7232,14 +7242,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Insert" ReturnType="Collection(String)">
             <Parameter Name="sal_Id" Mode="In" Type="Int32" />
-            <Parameter Name="bodd_Id" Mode="In" Type="Int32" />
+            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="sal_Cantidad" Mode="In" Type="Decimal" />
             <Parameter Name="box_Codigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Update" ReturnType="Collection(String)">
             <Parameter Name="sald_Id" Mode="In" Type="Int32" />
             <Parameter Name="sal_Id" Mode="In" Type="Int32" />
+            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="sal_Cantidad" Mode="In" Type="Decimal" />
+            <Parameter Name="box_Codigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbTipoEntrada_Insert" ReturnType="Collection(String)">
           <Parameter Name="tent_Descripcion" Mode="In" Type="String" />
@@ -8718,6 +8730,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbPuntoEmision" EntitySet="tbPuntoEmision" />
             <End Role="tbSucursal" EntitySet="tbSucursal" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo">
+            <End Role="tbProducto" EntitySet="tbProducto" />
+            <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
+          </AssociationSet>
+          <FunctionImport Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result2)">
+            <Parameter Name="IDSucursal" Mode="In" Type="Int32" />
+            <Parameter Name="IDCAJA" Mode="In" Type="Int16" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -9641,6 +9661,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="tbPedidoDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbPedidoDetalle" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_prod_UsuarioModifica" FromRole="tbProducto" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea" FromRole="tbProducto" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbSalidaDetalle" />
         </EntityType>
         <EntityType Name="tbProductoCategoria">
           <Key>
@@ -9740,6 +9761,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="tbBox" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_box_Codigo" FromRole="tbSalidaDetalle" ToRole="tbBox" />
           <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbSalida_sal_Id" FromRole="tbSalidaDetalle" ToRole="tbSalida" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea" FromRole="tbSalidaDetalle" ToRole="tbUsuario" />
+          <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" FromRole="tbSalidaDetalle" ToRole="tbProducto" />
         </EntityType>
         <EntityType Name="tbTipoEntrada">
           <Key>
@@ -13520,6 +13543,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo">
+          <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbSalidaDetalle" Role="tbSalidaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProducto">
+              <PropertyRef Name="prod_Codigo" />
+            </Principal>
+            <Dependent Role="tbSalidaDetalle">
+              <PropertyRef Name="prod_Codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result">
+          <Property Type="String" Name="CODNOTACREDITO" Nullable="true" MaxLength="19" />
+          <Property Type="String" Name="CAI" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result1">
+          <Property Type="String" Name="CODNOTACREDITO" Nullable="true" MaxLength="19" />
+          <Property Type="String" Name="CAI" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result2">
+          <Property Type="String" Name="CODNOTACREDITO" Nullable="true" MaxLength="19" />
+          <Property Type="String" Name="CAI" Nullable="true" MaxLength="40" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14859,13 +14906,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <EntitySetMapping Name="tbSalidaDetalle">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSalidaDetalle">
               <MappingFragment StoreEntitySet="tbSalidaDetalle">
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
                 <ScalarProperty Name="sald_FechaModifica" ColumnName="sald_FechaModifica" />
                 <ScalarProperty Name="sald_UsuarioModifica" ColumnName="sald_UsuarioModifica" />
                 <ScalarProperty Name="sald_FechaCrea" ColumnName="sald_FechaCrea" />
                 <ScalarProperty Name="sald_UsuarioCrea" ColumnName="sald_UsuarioCrea" />
                 <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
                 <ScalarProperty Name="sal_Cantidad" ColumnName="sal_Cantidad" />
-                <ScalarProperty Name="bodd_Id" ColumnName="bodd_Id" />
                 <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
                 <ScalarProperty Name="sald_Id" ColumnName="sald_Id" />
               </MappingFragment>
@@ -15761,6 +15808,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_CodigoNotaCredito" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_CodigoNotaCredito">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result2">
+                <ScalarProperty Name="CODNOTACREDITO" ColumnName="CODNOTACREDITO" />
+                <ScalarProperty Name="CAI" ColumnName="CAI" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

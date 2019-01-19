@@ -1333,13 +1333,13 @@
     <EntitySetMapping Name="tbSalidaDetalle">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSalidaDetalle">
         <MappingFragment StoreEntitySet="tbSalidaDetalle">
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
           <ScalarProperty Name="sald_FechaModifica" ColumnName="sald_FechaModifica" />
           <ScalarProperty Name="sald_UsuarioModifica" ColumnName="sald_UsuarioModifica" />
           <ScalarProperty Name="sald_FechaCrea" ColumnName="sald_FechaCrea" />
           <ScalarProperty Name="sald_UsuarioCrea" ColumnName="sald_UsuarioCrea" />
           <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
           <ScalarProperty Name="sal_Cantidad" ColumnName="sal_Cantidad" />
-          <ScalarProperty Name="bodd_Id" ColumnName="bodd_Id" />
           <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
           <ScalarProperty Name="sald_Id" ColumnName="sald_Id" />
         </MappingFragment>
@@ -2235,5 +2235,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_CodigoNotaCredito" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_CodigoNotaCredito">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result2">
+          <ScalarProperty Name="CODNOTACREDITO" ColumnName="CODNOTACREDITO" />
+          <ScalarProperty Name="CAI" ColumnName="CAI" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

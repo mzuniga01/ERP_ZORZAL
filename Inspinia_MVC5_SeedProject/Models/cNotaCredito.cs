@@ -29,8 +29,12 @@ namespace ERP_GMEDINA.Models
         public int clte_Id { get; set; }
 
         [Display(Name = "Sucursal")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public int suc_Id { get; set; }
+
+        [Display(Name = "Caja")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
+        public short cja_Id { get; set; }
 
         [Display(Name = "Anulada")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]

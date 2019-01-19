@@ -73,7 +73,7 @@
                                 @Html.LabelFor(model => model.cdto_MaximoMontoDescuento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.cdto_MaximoMontoDescuento, new { htmlAttributes = new { @type = "number", @class = "form-control", @style = "text-align:right", @min = "0" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
+                                    <p id="msjMaximoMonto" style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
                                 </div>
                             </div>
 
@@ -81,7 +81,7 @@
                                 @Html.LabelFor(model => model.cdto_MontoDescuento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.cdto_MontoDescuento, new { htmlAttributes = new { @type = "number", @class = "form-control", @style = "text-align:right", @min = "0" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_MontoDescuento)</p>
+                                    <p id="msjMonto" style="color:red">@Html.ValidationMessageFor(model => model.cdto_MontoDescuento)</p>
                                 </div>
                             </div>
 
@@ -91,7 +91,6 @@
                                     @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new {@type = "number", @class = "form-control", @style = "text-align:right", @min = "0"@*, @onchange = "MASK(this,this.value,'-##,###,##0.00',1)", @onkeypres = "MASK(this,this.value,'-##,###,##0.00',1)"*@ }
                                })
                                     <p id="smsCantidadMinima1" style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
-                                    @*<p style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>*@
                                 </div>
                             </div>
 
@@ -127,10 +126,6 @@
                                 </div>
                             </div>
 
-                            @*<form action='procesar.php' method='post' onsubmit='cambiarValor(this);'>
-                                <input type='text' value='1.500.000' />
-                                <input type='submit' value='Enviar sin puntos' />
-                            </form>*@
 
                             @*-----Anular oculto-----*@
                             <input type="hidden" id="cdto_Redimido" name="cdto_Redimido" value="false" />
@@ -219,7 +214,7 @@
             var compraminima1 = $('#cdto_CantidadCompraMinima').val();
             console.log(compraminima1)
 
-            if (parseFloat(monto1) >= parseFloat(compraminima1)) {
+            if (parseFloat(monto1) >= parseFloat(compraminima1 || $('#cdto_CantidadCompraMinima').val() == " ")) {
                 $('#cdto_CantidadCompraMinima').val('').focus();
                 valido.innerText = "El valor debe ser Mayor al Monto Descuento";
             } else
@@ -235,23 +230,48 @@
                 $('#cdto_MaximoMontoDescuento').removeAttr("readonly").val();
                 $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00');
                 $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
-                //---------------------insertar 0.00---------------------
-                //$('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00');
-                //$('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
-                //---------------------FIN insertar 0.00---------------------
 
             } else if (Porcentaje <= 0) {
-                //---------------------insertar 0.00---------------------
-                //$('#cdto_PorcentajeDescuento').attr('readonly', 'readonly').val('0.00');
-                //$('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
-                //---------------------FIN insertar 0.00---------------------
-
-                $('#cdto_PorcentajeDescuento').attr('readonly', 'readonly').val('0.00');
+                $('#cdto_PorcentajeDescuento').val('0.00');
                 $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
-
                 $("#cdto_MontoDescuento").removeAttr("readonly").focus().val();
-                //$('#cdto_CantidadCompraMinima').removeAttr("readonly").val('');
+                $('#cdto_CantidadCompraMinima').removeAttr("readonly").val();
+
             }
+            
+        });
+
+        $('#cdto_MaximoMontoDescuento').blur(function () {
+            valido1 = document.getElementById('msjMaximoMonto');
+            var monto = $('#cdto_MaximoMontoDescuento').val();
+            console.log(monto)
+            if (parseFloat(monto) <= 0 || $('#cdto_MaximoMontoDescuento').val() == "") {
+                $('#cdto_MaximoMontoDescuento').val('').focus();
+                valido1.innerText = "El valor debe ser Mayor a 0.";
+            } else
+                valido1.innerText = "";
+        });
+
+        $('#cdto_MontoDescuento').blur(function () {
+            valido1 = document.getElementById('msjMonto');
+            var monto = $('#cdto_MontoDescuento').val();
+            console.log(monto)
+            if (parseFloat(monto) <= 0 || $('#cdto_MontoDescuento').val() == "") {
+                $('#cdto_MontoDescuento').val('').focus();
+                valido1.innerText = "El valor debe ser Mayor a 0.";
+            } else
+                valido1.innerText = "";
+        });
+
+        $('#cdto_CantidadCompraMinima').blur(function () {
+            valido1 = document.getElementById('smsCantidadMinima1');
+            var monto = $('#cdto_CantidadCompraMinima').val();
+            console.log(monto)
+            if ($('#cdto_CantidadCompraMinima').val() == "") {
+                $('#cdto_CantidadCompraMinima').val('').focus();
+                valido1.innerText = "El valor debe ser Mayor al Monto Descuento.";
+            } else
+                valido1.innerText = "";
         });
         //--------------------FIN Digitar Datos--------------------------------
 
