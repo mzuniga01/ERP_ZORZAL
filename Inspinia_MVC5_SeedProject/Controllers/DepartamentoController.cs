@@ -14,11 +14,10 @@ namespace ERP_ZORZAL.Controllers
     public class DepartamentoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /Departamento/
         public ActionResult Index()
         {
-            GeneralFunctions Function = new GeneralFunctions();
             if (Function.GetUserLogin())
             {
                 if (Function.GetUserRols("Departamento/Index"))
@@ -54,7 +53,6 @@ namespace ERP_ZORZAL.Controllers
         public ActionResult Details(string id)
         {
             //Validar Inicio de Sesión
-            GeneralFunctions Function = new GeneralFunctions();
             if (Function.GetUserLogin())
             {
                 if (Function.GetUserRols("Departamento/Details"))
@@ -82,7 +80,6 @@ namespace ERP_ZORZAL.Controllers
         public ActionResult Create()
         {
             //Validar Inicio de Sesión
-            GeneralFunctions Function = new GeneralFunctions();
             if (Function.GetUserLogin())
             {
                 if (Function.GetUserRols("Departamento/Create"))
@@ -107,15 +104,14 @@ namespace ERP_ZORZAL.Controllers
         public ActionResult Create([Bind(Include = "dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
         {
             //Validar Inicio de Sesión
-            GeneralFunctions Function = new GeneralFunctions();
             if (Function.GetUserLogin())
             {
                 if (Function.GetUserRols("Departamento/Create"))
                 {
                     IEnumerable<object> list = null;
                     IEnumerable<object> lista = null;
-                    string MensajeError = "0";
-                    string MsjError = "0";
+                    string MensajeError = "";
+                    string MsjError = "";
                     var listMunicipios = (List<tbMunicipio>)Session["tbMunicipio"];
                     if (ModelState.IsValid)
                     {
@@ -123,12 +119,12 @@ namespace ERP_ZORZAL.Controllers
                         {
                             try
                             {
-                                list = db.UDP_Gral_tbDepartamento_Insert(tbDepartamento.dep_Codigo, tbDepartamento.dep_Nombre);
+                                list = db.UDP_Gral_tbDepartamento_Insert(tbDepartamento.dep_Codigo, tbDepartamento.dep_Nombre, Function.GetUser(), DateTime.Now);
                                 foreach (UDP_Gral_tbDepartamento_Insert_Result departamento in list)
-                                    MsjError = (departamento.MensajeError);
-                                if (MsjError.Substring(0, 1) == "-")
+                                    MsjError = departamento.MensajeError;
+                                if (MsjError.StartsWith("-1"))
                                 {
-                                    ModelState.AddModelError("", "No se Guardo el Registro");
+                                    ModelState.AddModelError("", "No se guardó el registro, contacte al Administrador.");
                                     return View(tbDepartamento);
                                 }
                                 else
@@ -139,11 +135,13 @@ namespace ERP_ZORZAL.Controllers
                                         {
                                             foreach (tbMunicipio mun in listMunicipios)
                                             {
-                                                lista = db.UDP_Gral_tbMunicipio_Insert(mun.mun_Codigo, tbDepartamento.dep_Codigo, mun.mun_Nombre);
+                                                lista = db.UDP_Gral_tbMunicipio_Insert(mun.mun_Codigo, tbDepartamento.dep_Codigo, mun.mun_Nombre, Function.GetUser(), DateTime.Now);
                                                 foreach (UDP_Gral_tbMunicipio_Insert_Result municipios in lista)
-
+                                                    MensajeError = municipios.MensajeError;
+                                                if (MsjError.StartsWith("-1"))
                                                 {
-                                                    MensajeError = (municipios.MensajeError);
+                                                    ModelState.AddModelError("", "No se guardó el registro, contacte al aAdministrador.");
+                                                    return View(tbDepartamento);
                                                 }
                                             }
                                         }
@@ -151,9 +149,11 @@ namespace ERP_ZORZAL.Controllers
                                     _Tran.Complete();
                                 }
                             }
-                            catch (Exception)
+                            catch (Exception Ex)
                             {
-                                MsjError = "-1";
+                                Ex.Message.ToString();
+                                ModelState.AddModelError("", "No se guardó el registro, contacte al aAdministrador.");
+                                return View(tbDepartamento);
                             }
                         }
                         return RedirectToAction("Index");
@@ -173,7 +173,6 @@ namespace ERP_ZORZAL.Controllers
         public ActionResult Edit(string id)
         {
             //Validar Inicio de Sesión
-            GeneralFunctions Function = new GeneralFunctions();
             if (Function.GetUserLogin())
             {
                 if (Function.GetUserRols("Departamento/Edit"))
@@ -214,7 +213,6 @@ namespace ERP_ZORZAL.Controllers
         public ActionResult Edit(string id, [Bind(Include = "dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
         {
             //Validar Inicio de Sesión
-            GeneralFunctions Function = new GeneralFunctions();
             if (Function.GetUserLogin())
             {
                 if (Function.GetUserRols("Departamento/Edit"))
@@ -222,26 +220,28 @@ namespace ERP_ZORZAL.Controllers
                     if (ModelState.IsValid)
                     {
                         IEnumerable<object> list = null;
-                        string MsjError = "0";
+                        string MsjError = "";
                         {
                             try
                             {
-                                list = db.UDP_Gral_tbDepartamento_Update(tbDepartamento.dep_Codigo, tbDepartamento.dep_Nombre, tbDepartamento.dep_UsuarioCrea, tbDepartamento.dep_FechaCrea);
-                                foreach (UDP_Gral_tbDepartamento_Update_Result departamento in list)
-                                    MsjError = (departamento.MensajeError);
+                                list = db.UDP_Gral_tbDepartamento_Update(tbDepartamento.dep_Codigo, tbDepartamento.dep_Nombre, tbDepartamento.dep_UsuarioCrea, tbDepartamento.dep_FechaCrea, Function.GetUser(), DateTime.Now);
+                                foreach (UDP_Gral_tbDepartamento_Update_Result dep in list)
+                                    MsjError = dep.MensajeError;
                                 if (MsjError.StartsWith("-1"))
                                 {
-                                    ModelState.AddModelError("", "No se Guardo el Registro");
+                                    ModelState.AddModelError("", "No se guardó el registro, contacte al aAdministrador.");
                                     return View(tbDepartamento);
                                 }
                                 else
                                 {
-                                    return RedirectToAction("Edit");
+                                    return RedirectToAction("Edit/"+ tbDepartamento.dep_Codigo);
                                 }
                             }
-                            catch (Exception)
+                            catch (Exception Ex)
                             {
-                                MsjError = "-1";
+                                Ex.Message.ToString();
+                                ModelState.AddModelError("", "No se guardó el registro, contacte al aAdministrador.");
+                                                    return View(tbDepartamento);
                             }
                         }
                     }
@@ -334,7 +334,7 @@ namespace ERP_ZORZAL.Controllers
             try
             {
                 IEnumerable<object> list = null;
-                list = db.UDP_Gral_tbMunicipio_Update(Municipio.mun_Codigo, depCodigo, Municipio.mun_Nombre);
+                list = db.UDP_Gral_tbMunicipio_Update(Municipio.mun_Codigo, depCodigo, Municipio.mun_Nombre, Function.GetUser(), DateTime.Now);
                 foreach (UDP_Gral_tbMunicipio_Update_Result mun in list)
                     MsjError = (mun.MensajeError);
             }
@@ -351,26 +351,21 @@ namespace ERP_ZORZAL.Controllers
         {
             {
                 string MsjError = "";
-
                 try
                 {
                     IEnumerable<object> list = null;
-                    list = db.UDP_Gral_tbMunicipio_Insert(GuardarMunicipios.mun_Codigo, GuardarMunicipios.dep_Codigo, GuardarMunicipios.mun_Nombre);
-
-
+                    list = db.UDP_Gral_tbMunicipio_Insert(GuardarMunicipios.mun_Codigo, GuardarMunicipios.dep_Codigo, GuardarMunicipios.mun_Nombre, Function.GetUser(), DateTime.Now);
                     foreach (UDP_Gral_tbMunicipio_Insert_Result mun in list)
                         MsjError = (mun.MensajeError);
 
                     if (MsjError.Substring(0, 1) == "-1")
                     {
-
                         ModelState.AddModelError("", "No se Guardo el Registro");
                     }
                     else
                     {
                         return Json("Index");
                     }
-
                 }
                 catch (Exception Ex)
                 {
@@ -389,7 +384,7 @@ namespace ERP_ZORZAL.Controllers
             try
             {
                 IEnumerable<object> list = null;
-                list = db.UDP_Gral_tbMunicipio_Insert(tbMunicipio.mun_Codigo, tbMunicipio.dep_Codigo, tbMunicipio.mun_Nombre);
+                list = db.UDP_Gral_tbMunicipio_Insert(tbMunicipio.mun_Codigo, tbMunicipio.dep_Codigo, tbMunicipio.mun_Nombre, Function.GetUser(), DateTime.Now);
 
                 foreach (UDP_Gral_tbMunicipio_Insert_Result Municipio in list)
                     Msj = Municipio.MensajeError;
@@ -468,7 +463,7 @@ namespace ERP_ZORZAL.Controllers
                 {
                     foreach (tbMunicipio mun in listMunicipios)
                     {
-                        list = db.UDP_Gral_tbMunicipio_Insert(mun.mun_Codigo, depCodigo, mun.mun_Nombre);
+                        list = db.UDP_Gral_tbMunicipio_Insert(mun.mun_Codigo, depCodigo, mun.mun_Nombre, Function.GetUser(), DateTime.Now);
                         foreach (UDP_Gral_tbMunicipio_Insert_Result municipios in list)
                         {
                             MsjError = municipios.MensajeError;

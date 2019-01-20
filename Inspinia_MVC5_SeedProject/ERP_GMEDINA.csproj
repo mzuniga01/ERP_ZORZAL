@@ -195,17 +195,18 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioFisicoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\MunicipioController.cs" />
     <Compile Include="Controllers\ObjetoController.cs" />
     <Compile Include="Controllers\ParametroController.cs" />
     <Compile Include="Controllers\ProductoCategoriaController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RolController.cs" />
+    <Compile Include="Controllers\SalidaController.cs" />
     <Compile Include="Controllers\tbProveedorsController.cs" />
     <Compile Include="Controllers\TipoEntradaController.cs" />
     <Compile Include="Controllers\TipoSalidaController.cs" />
     <Compile Include="Controllers\UnidadMedidaController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -604,9 +605,6 @@
     <Compile Include="Models\UDP_Gral_tbParametro_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Gral_tbParametro_Update_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UDP_Gral_tbUnidadMedida_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -757,11 +755,17 @@
     <Compile Include="Models\UDP_Inv_ValidacionCantidadExistente_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDV_Acce_Usuario_Roles.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDV_Inv_Consultar_Existencias_Productos.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UnidadMedida.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\V_Objetos.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1234,14 +1238,6 @@
     <Content Include="Views\InventarioFisico\Details.cshtml" />
     <Content Include="Views\InventarioFisico\Edit.cshtml" />
     <Content Include="Views\InventarioFisico\Index.cshtml" />
-    <Content Include="Views\Municipio\CrearPrueba.cshtml" />
-    <Content Include="Views\Municipio\Create.cshtml" />
-    <Content Include="Views\Municipio\Delete.cshtml" />
-    <Content Include="Views\Municipio\Details.cshtml" />
-    <Content Include="Views\Municipio\DetallePrueba.cshtml" />
-    <Content Include="Views\Municipio\Edit.cshtml" />
-    <Content Include="Views\Municipio\EditarPrueba.cshtml" />
-    <Content Include="Views\Municipio\Index.cshtml" />
     <Content Include="Views\UnidadMedida\Create.cshtml" />
     <Content Include="Views\UnidadMedida\Delete.cshtml" />
     <Content Include="Views\UnidadMedida\Details.cshtml" />

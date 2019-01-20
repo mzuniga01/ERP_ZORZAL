@@ -16,23 +16,47 @@ namespace ERP_GMEDINA.Models
             int UserID = 0;
             bool EsAdmin = false;
             bool Retorno = false;
-            List<tbUsuario> Usuario = getUserInformation(); 
-            foreach(tbUsuario User in Usuario)
+            
+            try
             {
-                UserID = User.usu_Id;
-                EsAdmin = User.usu_EsAdministrador;
-            }
-            if (EsAdmin)
-                Retorno = true;
-            else
-            {
-                var Roles = db.SDP_Acce_GetUserRols(UserID, sPantalla);
-                if(Roles.Count()>0)
+                UserID = (int)HttpContext.Current.Session["UserLogin"];
+                EsAdmin = (bool)HttpContext.Current.Session["UserLoginEsAdmin"];
+                if(EsAdmin)
                 {
                     Retorno = true;
                 }
+                else
+                {
+                    var list = (IEnumerable<SDP_Acce_GetUserRols_Result>)HttpContext.Current.Session["UserLoginRols"];
+                    var BuscarList = list.Where(x=> x.obj_Referencia == sPantalla);
+                    int Conteo = BuscarList.Count();
+                    if (Conteo>0)
+                        Retorno = true;
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                Retorno = false;
             }
             return Retorno;
+            //List<tbUsuario> Usuario = getUserInformation(); 
+            //foreach(tbUsuario User in Usuario)
+            //{
+            //    UserID = User.usu_Id;
+            //    EsAdmin = User.usu_EsAdministrador;
+            //}
+            //if (EsAdmin)
+            //    Retorno = true;
+            //else
+            //{
+            //    var Roles = db.SDP_Acce_GetUserRols(UserID, sPantalla);
+            //    if (Roles.Count() > 0)
+            //    {
+            //        Retorno = true;
+            //    }
+            //}
+
         }
 
         public List<tbUsuario> getUserInformation()
@@ -59,16 +83,11 @@ namespace ERP_GMEDINA.Models
         {
             bool state = false;
             int user = 0;
-            List<tbUsuario> UsuarioList = new List<tbUsuario>();
             try
             {
                 user = (int)HttpContext.Current.Session["UserLogin"];
                 if (user != 0)
-                {
-                    UsuarioList = db.tbUsuario.Where(s => s.usu_Id == user).ToList();
-                    if (UsuarioList.Count > 0)
-                        state = true;
-                }
+                   state = true;
             }
             catch(Exception Ex)
             {
@@ -76,6 +95,20 @@ namespace ERP_GMEDINA.Models
                 state = false;
             }
             return state;
+        }
+
+        public int GetUser()
+        {
+            int user = 0;
+            try
+            {
+                user = (int)HttpContext.Current.Session["UserLogin"];
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+            return user;            
         }
     }
 }

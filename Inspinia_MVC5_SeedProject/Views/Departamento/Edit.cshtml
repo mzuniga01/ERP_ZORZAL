@@ -7,7 +7,11 @@
 @{
     tbMunicipio Municipio = new tbMunicipio();
 }
-
+<style type="text/css">
+#dep_Nombre, #mun_NombreEdit, #mun_NombreEdit_ {
+        text-transform: uppercase;
+    }
+</style>
 @if (ViewBag.smserror != "" && ViewBag.smserror != null)
 {     <div class="col-md-12" id="mensaje">
         <div class="alert alert-warning alert-danger">
@@ -201,7 +205,6 @@
                     <fieldset id="SubmitForm">
                         <div class="form-horizontal">
                             <label id="MsjError">
-
                             </label>
                             <div class="form-group">
                                 @Html.LabelFor(m => Municipio.mun_Codigo, new { @class = "control-label col-sm-2" })
@@ -226,6 +229,30 @@
                         </div>
                     </fieldset>
                 </form>
+                @*<div class="form-group">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th> Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado por  </td>
+                            <td id="UsuarioCreaEdit">
+                            </td>
+                            <td id="FechaCreaEdit"></td>
+
+                        </tr>
+                        <tr>
+                            <td>Modificado por</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.dep_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>*@
             </div>
         </div>
     </div>

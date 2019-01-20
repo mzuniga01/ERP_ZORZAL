@@ -4,24 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e3cdae754a7b458288829a69167bdea2" Name="Diagram1" ZoomLevel="64">
+      <Diagram DiagramId="e3cdae754a7b458288829a69167bdea2" Name="Diagram1" ZoomLevel="83">
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbAccesoRol" Width="1.5" PointX="12.75" PointY="133.125" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbObjeto" Width="1.5" PointX="10.5" PointY="161.25" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbRol" Width="1.5" PointX="10.5" PointY="173" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbRolesUsuario" Width="1.5" PointX="15.75" PointY="136.125" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbUsuario" Width="1.5" PointX="8.25" PointY="92.125" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbUsuario" Width="2.375" PointX="5.75" PointY="75.875" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbActividadEconomica" Width="1.5" PointX="10.5" PointY="154.375" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbBanco" Width="1.5" PointX="10.5" PointY="135.375" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbCuentasBanco" Width="1.5" PointX="12.75" PointY="103.5" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbDenominacion" Width="1.5" PointX="15.75" PointY="91.125" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbDepartamento" Width="1.5" PointX="10.5" PointY="177.875" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbEmpleado" Width="1.5" PointX="6" PointY="102.875" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbIdentificacionCliente" Width="1.5" PointX="3" PointY="104.875" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbMoneda" Width="1.5" PointX="10.5" PointY="72.875" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbMunicipio" Width="1.5" PointX="12.75" PointY="137.625" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbParametro" Width="1.5" PointX="15.75" PointY="118.875" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbTipoIdentificacion" Width="1.5" PointX="0.75" PointY="104.125" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbUnidadMedida" Width="1.5" PointX="10.5" PointY="77.125" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbBodega" Width="1.5" PointX="18" PointY="113.875" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbBodegaDetalle" Width="1.5" PointX="18" PointY="100.5" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbBox" Width="1.5" PointX="10.5" PointY="169.5" />
@@ -68,12 +64,9 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbSucursal" Width="1.5" PointX="15.75" PointY="102.875" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbTipoPago" Width="1.5" PointX="10.5" PointY="165.125" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_Consultar_Existencias_Productos" Width="1.5" PointX="2.75" PointY="0.75" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_acrol_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbRoles_Rol_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbObjeto_obj_UsuarioModifica" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbRol_rol_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbRol_tbUsuario_rol_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbRol_rol_Id" />
@@ -147,16 +140,10 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbBanco_tbUsuario_usu_Id_Modifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Crea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Modifica" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbDepartamento_dep_UsuarioModifica" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbDepartamento_tbUsuario_dep_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbEmpleado_emp_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbMunicipio_mun_UsuarioModifica" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbMunicipio_tbUsuario_mun_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbParametro_par_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbParametro_tbUsuario_par_UsuarioCrea" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioCrea" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbUsuario_suc_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea" />
@@ -203,19 +190,13 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbDenominacion_tbSolicitudEfectivoDetalle_deno_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbMoneda_tbDenominacion_mnda_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbMunicipio_dep_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBodega_bod_ResponsableBodega" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbTipoIdentificacion_tbIdentificacionCliente_tpi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbMoneda_tbSolicitudEfectivo_mnda_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbParametro_tbMoneda_mnda_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBodega_tbMunicipio_mun_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbCliente_mun_Codigo" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbParametro_tbCliente_clte_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbUnidadesMedida_uni_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbProducto_Gral_tbUnidadesMedida_uni_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbBodega_bod_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_BodegaDestino" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEntrada_tbBodega_bod_Id" />
@@ -281,6 +262,27 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbPuntoEmision_pemi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSolicitudEfectivo_tbSolicitudEfectivoDetalle_solef_Id" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbDepartamento" Width="1.5" PointX="10.5" PointY="100.25" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbDepartamento_dep_UsuarioModifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbDepartamento_tbUsuario_dep_UsuarioCrea" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbObjeto" Width="1.5" PointX="11.375" PointY="89.125" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbUnidadMedida" Width="1.5" PointX="11.375" PointY="65" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbObjeto_obj_UsuarioModifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioCrea" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbUnidadMedida_tbUsuario_uni_UsuarioModifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbUnidadesMedida_uni_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbProducto_Gral_tbUnidadesMedida_uni_Id" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbMunicipio" Width="1.5" PointX="13.75" PointY="86.625" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbMunicipio_mun_UsuarioModifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbMunicipio_tbUsuario_mun_UsuarioCrea" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbMunicipio_dep_Codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBodega_tbMunicipio_mun_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbCliente_mun_Codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Acce_Usuario_Roles" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.V_Objetos" Width="1.5" PointX="2.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

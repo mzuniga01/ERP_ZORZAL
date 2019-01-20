@@ -141,9 +141,9 @@ namespace ERP_GMEDINA.Controllers
 
                     IEnumerable<object> List = null;
                     var MsjError = "";
-                    List = db.UDP_Gral_tbParametro_Update(tbParametro.par_Id,tbParametro.par_NombreEmpresa,tbParametro.par_TelefonoEmpresa, tbParametro.par_CorreoEmpresa, tbParametro.par_PathLogo, tbParametro.mnda_Id, tbParametro.par_RolGerenteTienda, tbParametro.par_RolCreditoCobranza, tbParametro.par_RolSupervisorCaja, tbParametro.par_RolCajero, tbParametro.par_RolAuditor, tbParametro.par_SucursalPrincipal, tbParametro.par_UsuarioCrea, tbParametro.par_FechaCrea, tbParametro.par_PorcentajeDescuentoTE, tbParametro.par_IdConsumidorFinal);
-                    foreach (UDP_Gral_tbParametro_Update_Result parametro in List)
-                        MsjError = parametro.MensajeError;
+                    //List = db.UDP_Gral_tbParametro_Update(tbParametro.par_Id,tbParametro.par_NombreEmpresa,tbParametro.par_TelefonoEmpresa, tbParametro.par_CorreoEmpresa, tbParametro.par_PathLogo, tbParametro.mnda_Id, tbParametro.par_RolGerenteTienda, tbParametro.par_RolCreditoCobranza, tbParametro.par_RolSupervisorCaja, tbParametro.par_RolCajero, tbParametro.par_RolAuditor, tbParametro.par_SucursalPrincipal, tbParametro.par_UsuarioCrea, tbParametro.par_FechaCrea, tbParametro.par_PorcentajeDescuentoTE, tbParametro.par_IdConsumidorFinal);
+                    //foreach (UDP_Gral_tbParametro_Update_Result parametro in List)
+                        //MsjError = parametro.MensajeError;
                     if (MsjError == "-1")
                     {
                         ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");

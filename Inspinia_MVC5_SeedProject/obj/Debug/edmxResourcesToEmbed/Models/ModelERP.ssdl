@@ -964,6 +964,59 @@
     <Property Name="tpa_FechaModifica" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Acce.UDV_Acce_Usuario_Roles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDV_Acce_Usuario_Roles">
+    <Key>
+      <PropertyRef Name="rolu_Id" />
+      <PropertyRef Name="rol_Id" />
+      <PropertyRef Name="usu_Id" />
+      <PropertyRef Name="rolu_UsuarioCrea" />
+      <PropertyRef Name="rolu_FechaCrea" />
+      <PropertyRef Name="acrol_Id" />
+      <PropertyRef Name="obj_Id" />
+      <PropertyRef Name="acrol_UsuarioCrea" />
+      <PropertyRef Name="acrol_FechaCrea" />
+      <PropertyRef Name="obj_UsuarioCrea" />
+      <PropertyRef Name="obj_FechaCrea" />
+      <PropertyRef Name="obj_Estado" />
+    </Key>
+    <Property Name="rolu_Id" Type="int" Nullable="false" />
+    <Property Name="rol_Id" Type="int" Nullable="false" />
+    <Property Name="usu_Id" Type="int" Nullable="false" />
+    <Property Name="rolu_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="rolu_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="rolu_UsuarioModifica" Type="int" />
+    <Property Name="rolu_FechaModifica" Type="datetime" />
+    <Property Name="acrol_Id" Type="int" Nullable="false" />
+    <Property Name="obj_Id" Type="int" Nullable="false" />
+    <Property Name="acrol_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="acrol_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="acrol_UsuarioModifica" Type="int" />
+    <Property Name="acrol_FechaModifica" Type="datetime" />
+    <Property Name="obj_Pantalla" Type="nvarchar" MaxLength="50" />
+    <Property Name="obj_Referencia" Type="varchar" MaxLength="100" />
+    <Property Name="obj_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="obj_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="obj_UsuarioModifica" Type="int" />
+    <Property Name="obj_FechaModifica" Type="datetime" />
+    <Property Name="obj_Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Acce.V_Objetos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_Objetos">
+    <Key>
+      <PropertyRef Name="obj_Id" />
+      <PropertyRef Name="usu_NombreUsuario" />
+      <PropertyRef Name="obj_FechaCrea" />
+    </Key>
+    <Property Name="obj_Id" Type="int" Nullable="false" />
+    <Property Name="obj_Pantalla" Type="nvarchar" MaxLength="50" />
+    <Property Name="usu_NombreUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="obj_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="obj_UsuarioModifica" Type="int" />
+    <Property Name="obj_FechaModifica" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
     <Key>
@@ -3643,6 +3696,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="UDP_Acce_tbObjeto_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
     <Parameter Name="obj_Referencia" Type="varchar" Mode="In" />
+    <Parameter Name="obj_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="obj_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbObjeto_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="obj_Id" Type="int" Mode="In" />
@@ -3650,10 +3705,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="obj_Referencia" Type="varchar" Mode="In" />
     <Parameter Name="obj_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="obj_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="obj_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="obj_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbObjeto_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="obj_Id" Type="int" Mode="In" />
     <Parameter Name="obj_Estado" Type="bit" Mode="In" />
+    <Parameter Name="obj_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="obj_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbRol_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rol_Descripcion" Type="varchar" Mode="In" />
@@ -3730,12 +3789,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="UDP_Gral_tbDepartamento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="dep_Codigo" Type="char" Mode="In" />
     <Parameter Name="dep_Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="dep_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="dep_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbDepartamento_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="dep_Codigo" Type="char" Mode="In" />
     <Parameter Name="dep_Nombre" Type="varchar" Mode="In" />
     <Parameter Name="dep_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="dep_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="dep_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="dep_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbEmpleado_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="emp_Id" Type="int" Mode="In" />
@@ -3781,11 +3844,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="mun_Codigo" Type="char" Mode="In" />
     <Parameter Name="dep_Codigo" Type="char" Mode="In" />
     <Parameter Name="mun_Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="mun_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="mun_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbMunicipio_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="mun_Codigo" Type="char" Mode="In" />
     <Parameter Name="dep_Codigo" Type="char" Mode="In" />
     <Parameter Name="mun_Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="mun_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="mun_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbParametro_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="par_Id" Type="tinyint" Mode="In" />
@@ -3824,6 +3891,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="UDP_Gral_tbUnidadMedida_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="uni_Descripcion" Type="varchar" Mode="In" />
     <Parameter Name="uni_Abreviatura" Type="char" Mode="In" />
+    <Parameter Name="uni_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="uni_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbUnidadMedida_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="uni_Id" Type="int" Mode="In" />
@@ -3831,6 +3900,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="uni_Abreviatura" Type="char" Mode="In" />
     <Parameter Name="uni_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="uni_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="uni_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="uni_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="SDP_Inv_tbSalidaDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sald_Id" Type="int" Mode="In" />
@@ -3872,6 +3943,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
     <Parameter Name="pscat_Id" Type="int" Mode="In" />
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="UDP_Inv_ConsultarExistenciaProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="sucursal" Type="varchar" Mode="In" />
+    <Parameter Name="bodega" Type="varchar" Mode="In" />
+    <Parameter Name="Producto" Type="varchar" Mode="In" />
+    <Parameter Name="Marca" Type="varchar" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbBodega_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bod_Nombre" Type="varchar" Mode="In" />
@@ -4251,6 +4328,40 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <EntitySet Name="tbSolicitudEfectivoDetalle" EntityType="Self.tbSolicitudEfectivoDetalle" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbSucursal" EntityType="Self.tbSucursal" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbTipoPago" EntityType="Self.tbTipoPago" Schema="Vent" store:Type="Tables" />
+    <EntitySet Name="UDV_Acce_Usuario_Roles" EntityType="Self.UDV_Acce_Usuario_Roles" store:Type="Views" store:Schema="Acce">
+      <DefiningQuery>SELECT 
+    [UDV_Acce_Usuario_Roles].[rolu_Id] AS [rolu_Id], 
+    [UDV_Acce_Usuario_Roles].[rol_Id] AS [rol_Id], 
+    [UDV_Acce_Usuario_Roles].[usu_Id] AS [usu_Id], 
+    [UDV_Acce_Usuario_Roles].[rolu_UsuarioCrea] AS [rolu_UsuarioCrea], 
+    [UDV_Acce_Usuario_Roles].[rolu_FechaCrea] AS [rolu_FechaCrea], 
+    [UDV_Acce_Usuario_Roles].[rolu_UsuarioModifica] AS [rolu_UsuarioModifica], 
+    [UDV_Acce_Usuario_Roles].[rolu_FechaModifica] AS [rolu_FechaModifica], 
+    [UDV_Acce_Usuario_Roles].[acrol_Id] AS [acrol_Id], 
+    [UDV_Acce_Usuario_Roles].[obj_Id] AS [obj_Id], 
+    [UDV_Acce_Usuario_Roles].[acrol_UsuarioCrea] AS [acrol_UsuarioCrea], 
+    [UDV_Acce_Usuario_Roles].[acrol_FechaCrea] AS [acrol_FechaCrea], 
+    [UDV_Acce_Usuario_Roles].[acrol_UsuarioModifica] AS [acrol_UsuarioModifica], 
+    [UDV_Acce_Usuario_Roles].[acrol_FechaModifica] AS [acrol_FechaModifica], 
+    [UDV_Acce_Usuario_Roles].[obj_Pantalla] AS [obj_Pantalla], 
+    [UDV_Acce_Usuario_Roles].[obj_Referencia] AS [obj_Referencia], 
+    [UDV_Acce_Usuario_Roles].[obj_UsuarioCrea] AS [obj_UsuarioCrea], 
+    [UDV_Acce_Usuario_Roles].[obj_FechaCrea] AS [obj_FechaCrea], 
+    [UDV_Acce_Usuario_Roles].[obj_UsuarioModifica] AS [obj_UsuarioModifica], 
+    [UDV_Acce_Usuario_Roles].[obj_FechaModifica] AS [obj_FechaModifica], 
+    [UDV_Acce_Usuario_Roles].[obj_Estado] AS [obj_Estado]
+    FROM [Acce].[UDV_Acce_Usuario_Roles] AS [UDV_Acce_Usuario_Roles]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_Objetos" EntityType="Self.V_Objetos" store:Type="Views" store:Schema="Acce">
+      <DefiningQuery>SELECT 
+    [V_Objetos].[obj_Id] AS [obj_Id], 
+    [V_Objetos].[obj_Pantalla] AS [obj_Pantalla], 
+    [V_Objetos].[usu_NombreUsuario] AS [usu_NombreUsuario], 
+    [V_Objetos].[obj_FechaCrea] AS [obj_FechaCrea], 
+    [V_Objetos].[obj_UsuarioModifica] AS [obj_UsuarioModifica], 
+    [V_Objetos].[obj_FechaModifica] AS [obj_FechaModifica]
+    FROM [Acce].[V_Objetos] AS [V_Objetos]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="UDV_Inv_Consultar_Existencias_Productos" EntityType="Self.UDV_Inv_Consultar_Existencias_Productos" store:Type="Views" store:Schema="Inv">
       <DefiningQuery>SELECT 
     [UDV_Inv_Consultar_Existencias_Productos].[suc_Descripcion] AS [suc_Descripcion], 

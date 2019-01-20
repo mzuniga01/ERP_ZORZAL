@@ -256,4 +256,17 @@ $("#BtnsubmitMunicipio").click(function () {
         }
     });
 })
+
+$("#mun_NombreEdit_").change(function () {
+    var str = $("#mun_NombreEdit").val();
+    var res = str.toUpperCase();
+    $("#mun_NombreEdit").val(res);
+});
+
+$("#mun_NombreEdit_").on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50);
+})
 /////////////////////////////////////////

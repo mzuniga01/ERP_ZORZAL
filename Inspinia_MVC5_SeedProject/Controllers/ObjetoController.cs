@@ -13,32 +13,68 @@ namespace ERP_ZORZAL.Controllers
     public class ObjetoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /Objeto/
         public ActionResult Index()
         {
-             return View(db.tbObjeto.ToList());
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetUserRols("Objeto/Index"))
+                {
+                    return View(db.tbObjeto.ToList());
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /Objeto/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Function.GetUserRols("Objeto/Details"))
+                {
+                    if (id == null)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    tbObjeto tbObjeto = db.tbObjeto.Find(id);
+                    if (tbObjeto == null)
+                    {
+                        return RedirectToAction("NotFound", "Login");
+                    }
+                    return View(tbObjeto);
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
             }
-            tbObjeto tbObjeto = db.tbObjeto.Find(id);
-            if (tbObjeto == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbObjeto);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /Objeto/Create
         public ActionResult Create()
         {
-            return View();
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetUserRols("Objeto/Create"))
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // POST: /Objeto/Create
@@ -48,62 +84,75 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include= "obj_Id,obj_Pantalla,obj_Referencia,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto tbObjeto)
         {
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                try
+                if (Function.GetUserRols("Objeto/Create"))
                 {
-                    IEnumerable<object> list = null;
-                    var MsjError = "";
-                    list = db.UDP_Acce_tbObjeto_Insert(tbObjeto.obj_Pantalla,tbObjeto.obj_Referencia);
-                    foreach (UDP_Acce_tbObjeto_Insert_Result obejto in list)
-                        MsjError = obejto.MensajeError;
-                    if (MsjError == "-1")
+                    if (ModelState.IsValid)
                     {
-                        ModelState.AddModelError("", "No se Guardo el registro");
-                    }
-                    else
-                    {
+                        try
+                        {
+                            IEnumerable<object> list = null;
+                            var MsjError = "";
+                            list = db.UDP_Acce_tbObjeto_Insert(tbObjeto.obj_Pantalla, tbObjeto.obj_Referencia, Function.GetUser(), DateTime.Now);
+                            foreach (UDP_Acce_tbObjeto_Insert_Result obejto in list)
+                                MsjError = obejto.MensajeError;
+                            if (MsjError.StartsWith("-1"))
+                            {
+                                ModelState.AddModelError("", "No se guardó el registro");
+                            }
+                            else
+                            {
+                                return RedirectToAction("Index");
+                            }
+                        }
+                        catch (Exception Ex)
+                        {
+                            Ex.Message.ToString();
+                            ModelState.AddModelError("", "No se guardó el registro");
+                            return View(tbObjeto);
+                        }
                         return RedirectToAction("Index");
                     }
-
+                    return View(tbObjeto);
                 }
-                catch (Exception Ex)
+                else
                 {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro");
+                    return RedirectToAction("SinAcceso", "Login");
                 }
-                return RedirectToAction("Index");
             }
-            return View(tbObjeto);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
 
         // GET: /Objeto/Edit/5
         public ActionResult Edit(int? id)
         {
-            //ViewBag.id = id;
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Function.GetUserRols("Objeto/Edit"))
+                {
+                    if (id == null)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    tbObjeto tbObjeto = db.tbObjeto.Find(id);
+                    if (tbObjeto == null)
+                    {
+                        return RedirectToAction("NotFound", "Login");
+                    }
+                    ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
+                    ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
+                    return View(tbObjeto);
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
             }
-            tbObjeto tbObjeto = db.tbObjeto.Find(id);
-            //ViewBag.UsuarioCrea = db.tbUsuario.Find(tbObjeto.obj_UsuarioCrea).usu_NombreUsuario;
-            //var UsuarioModfica = tbObjeto.obj_UsuarioModifica;
-            //if (UsuarioModfica == null)
-            //{
-            //   ViewBag.UsuarioModifica = "";
-            //}
-            //else
-            //{
-            //   ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
-            //};
-            if (tbObjeto == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
-            ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
-            return View(tbObjeto);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // POST: /Objeto/Edit/5
@@ -113,113 +162,142 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int? id,[Bind(Include="obj_Id, obj_Pantalla,obj_Referencia,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto tbObjeto)
         {
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                try
+                if (Function.GetUserRols("Objeto/Edit"))
                 {
-                    tbObjeto obj = db.tbObjeto.Find(id);
-                    IEnumerable<object> list = null;
-                    var MsjError = "";
-                    list = db.UDP_Acce_tbObjeto_Update(tbObjeto.obj_Id,
-                                                         tbObjeto.obj_Pantalla,
-                                                         tbObjeto.obj_Referencia
-                                                         , tbObjeto.obj_UsuarioCrea
-                                                         , tbObjeto.obj_FechaCrea 
-                                                        );
-                    foreach (UDP_Acce_tbObjeto_Update_Result obje in list)
-                        MsjError = obje.MensajeError;
-
-                    if (MsjError.Substring(0, 2) == "-1")
+                    if (ModelState.IsValid)
                     {
-                        ModelState.AddModelError("", "No se Actualizo el registro");
-                        return RedirectToAction("Index");
+                        try
+                        {
+                            tbObjeto obj = db.tbObjeto.Find(id);
+                            IEnumerable<object> list = null;
+                            var MsjError = "";
+                            list = db.UDP_Acce_tbObjeto_Update(tbObjeto.obj_Id,
+                                                                 tbObjeto.obj_Pantalla,
+                                                                 tbObjeto.obj_Referencia
+                                                                 ,tbObjeto.obj_UsuarioCrea
+                                                                 ,tbObjeto.obj_FechaCrea
+                                                                ,Function.GetUser()
+                                                                ,DateTime.Now);
+                            foreach (UDP_Acce_tbObjeto_Update_Result obje in list)
+                                MsjError = obje.MensajeError;
+
+                            if (MsjError.StartsWith("-1"))
+                            {
+                                ModelState.AddModelError("", "No se actualizó el registro");
+                                ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
+                                ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
+                                return View(tbObjeto);
+                            }
+                            else
+                            {
+                                return RedirectToAction("Index");
+                            }
+                        }
+                        catch (Exception Ex)
+                        {
+                            Ex.Message.ToString();
+                            ModelState.AddModelError("", "No se actualizó el registro");
+                            ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
+                            ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
+                            return View(tbObjeto);
+                        }
+
                     }
-                    else
-                    {
-                        return RedirectToAction("Index");
-                    }
-                }
-                catch (Exception Ex)
-                {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Actualizo el registro");
-                    return RedirectToAction("Index");
-                }
-               
-            }
-            ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
-            ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
-            return View(tbObjeto);
-
-        }
-        //para que cambie estado a activar
-        public ActionResult EstadoInactivar(int? id)
-
-        {
-            
-                try
-                {
-                    tbObjeto obj = db.tbObjeto.Find(id);
-                    IEnumerable<object> list = null;
-                    var MsjError = "";
-                    list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.Inactivo);
-                    foreach (UDP_Acce_tbObjeto_Update_Estado_Result obje in list)
-                        MsjError = obje.MensajeError;
-
-                if (MsjError == "-1")
-                {
-                        ModelState.AddModelError("", "No se Actualizo el registro");
-                    return RedirectToAction("Edit/" + id);
-                    //return View(Objeto);
+                    ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
+                    ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
+                    return View(tbObjeto);
                 }
                 else
                 {
-                    return RedirectToAction("Edit/" + id);
-
+                    return RedirectToAction("SinAcceso", "Login");
                 }
-                }
-                catch (Exception Ex)
-                {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Actualizo el registro");
-                return RedirectToAction("Edit/" + id);
             }
+            else
+                return RedirectToAction("Index", "Login");
+        }
+        //para que cambie estado a activar
+        public ActionResult EstadoInactivar(int? id)
+        {
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetUserRols("Objeto/Edit"))
+                {
+                    try
+                    {
+                        tbObjeto obj = db.tbObjeto.Find(id);
+                        IEnumerable<object> list = null;
+                        var MsjError = "";
+                        list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.Inactivo, Function.GetUser(), DateTime.Now);
+                        foreach (UDP_Acce_tbObjeto_Update_Estado_Result obje in list)
+                            MsjError = obje.MensajeError;
 
-
-            //return View(tbObjeto);
+                        if (MsjError.StartsWith("-1"))
+                        {
+                            ModelState.AddModelError("", "No se actualizó el registro");
+                            return RedirectToAction("Edit/" + id);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Edit/" + id);
+                        }
+                    }
+                    catch (Exception Ex)
+                    {
+                        Ex.Message.ToString();
+                        ModelState.AddModelError("", "No se actualizó el registro");
+                        return RedirectToAction("Edit/" + id);
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
         //para que cambie estado a inactivar
         public ActionResult Estadoactivar(int? id)
         {
-
-            try
+            if (Function.GetUserLogin())
             {
-                tbObjeto obj = db.tbObjeto.Find(id);
-                IEnumerable<object> list = null;
-                var MsjError = "";
-                list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.Activo);
-                foreach (UDP_Acce_tbObjeto_Update_Estado_Result obje in list)
-                    MsjError = obje.MensajeError;
-
-                if (MsjError == "-1")
+                if (Function.GetUserRols("Objeto/Edit"))
                 {
-                    ModelState.AddModelError("", "No se Actualizo el registro");               
-                    return RedirectToAction("Edit/" + id);
+                    try
+                    {
+                        tbObjeto obj = db.tbObjeto.Find(id);
+                        IEnumerable<object> list = null;
+                        var MsjError = "";
+                        list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.Activo, Function.GetUser(), DateTime.Now);
+                        foreach (UDP_Acce_tbObjeto_Update_Estado_Result obje in list)
+                            MsjError = obje.MensajeError;
+
+                        if (MsjError == "-1")
+                        {
+                            ModelState.AddModelError("", "No se Actualizo el registro");
+                            return RedirectToAction("Edit/" + id);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Edit/" + id);
+                        }
+                    }
+                    catch (Exception Ex)
+                    {
+                        Ex.Message.ToString();
+                        ModelState.AddModelError("", "No se Actualizo el registro");
+                        return RedirectToAction("Edit/" + id);
+                    }
                 }
                 else
                 {
-                    return RedirectToAction("Edit/" + id);
+                    return RedirectToAction("SinAcceso", "Login");
                 }
             }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro");
-                return RedirectToAction("Edit/" + id);
-            }
-
-
-            //return RedirectToAction("Index");
+            else
+                return RedirectToAction("Index", "Login");
         }
 
 

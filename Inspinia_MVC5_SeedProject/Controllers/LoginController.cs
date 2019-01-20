@@ -28,7 +28,17 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 if(Usuario.Count>0)
                 {
                     foreach (UDP_Acce_Login_Result UserLogin in Usuario)
+                    {
+                        var Listado = db.SDP_Acce_GetUserRols(UserLogin.usu_Id, "").ToList();
                         Session["UserLogin"] = UserLogin.usu_Id;
+                        Session["UserLoginRols"] = Listado;
+                        Session["UserLoginEsAdmin"] = UserLogin.usu_EsAdministrador;
+                        if (!UserLogin.usu_EsActivo)
+                        {
+                            ModelState.AddModelError("usu_NombreUsuario", "Usuario inactivo, contacte al Administrador");
+                            return View(Login);
+                        }
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -54,6 +64,9 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             Response.CacheControl = "no-cache";
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             AuthenticationManager.SignOut();
+            Session["UserLogin"] = null;
+            Session["UserLoginRols"] = null;
+            Session["UserLoginEsAdmin"] = null;
             return RedirectToAction("Index", "Login");
         }
 

@@ -4,12 +4,14 @@
     ViewBag.Title = "Crear";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-    @using (Html.BeginForm("Create", "Departamento", FormMethod.Post, new { enctype = "multipart/form-data" }))
-
-    {
-
-        @Html.AntiForgeryToken()
+<style type="text/css">
+    #dep_Nombre, #mun_Nombre {
+          text-transform: uppercase;
+        }
+</style>
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Departamento</h2>
