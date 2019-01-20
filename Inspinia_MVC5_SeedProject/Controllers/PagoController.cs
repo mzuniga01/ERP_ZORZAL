@@ -123,14 +123,15 @@ namespace ERP_GMEDINA.Controllers
                 }
                 catch (Exception Ex)
                 {
-                    ModelState.AddModelError("", "Error al agregar el registro " + Ex.Message.ToString());
-                    return View(tbPago);
                     ViewBag.bcta_Id = new SelectList(db.tbCuentasBanco, "bcta_Id", "bcta_Numero");
                     ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
                     ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion");
-        
+
                     ViewBag.Factura = db.tbFactura.ToList();
                     ViewBag.Cliente = db.tbCliente.ToList();
+                    ModelState.AddModelError("", "Error al agregar el registro " + Ex.Message.ToString());
+                    return View(tbPago);
+                  
                 }
               
             }
