@@ -37,7 +37,7 @@ namespace ERP_ZORZAL.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("UnidadMedida/Index"))
+                if (Function.GetUserRols("UnidadMedida/Details"))
                 {
                     if (id == null)
                     {
@@ -64,7 +64,7 @@ namespace ERP_ZORZAL.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("UnidadMedida/Index"))
+                if (Function.GetUserRols("UnidadMedida/Create"))
                 {
                     return View();
                 }
@@ -83,7 +83,7 @@ namespace ERP_ZORZAL.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("UnidadMedida/Index"))
+                if (Function.GetUserRols("UnidadMedida/Create"))
                 {
                     if (ModelState.IsValid)
                     {
@@ -128,7 +128,7 @@ namespace ERP_ZORZAL.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("UnidadMedida/Index"))
+                if (Function.GetUserRols("UnidadMedida/Edit"))
                 {
                     if (id == null)
                     {
@@ -152,11 +152,11 @@ namespace ERP_ZORZAL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id,[Bind(Include= "uni_Id,uni_Descripcion,uni_Abreviatura,uni_UsuarioCrea, uni_FechaCrea,uni_UsuarioModifica,uni_FechaModifica,tbUsuario,tbUsuario1")] tbUnidadMedida tbUnidadMedida)
+        public ActionResult Edit(int? id,[Bind(Include= "uni_Id,uni_Descripcion,uni_Abreviatura,uni_UsuarioCrea, uni_FechaCrea,uni_UsuarioModifica,uni_FechaModifica")] tbUnidadMedida tbUnidadMedida)
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("UnidadMedida/Index"))
+                if (Function.GetUserRols("UnidadMedida/Edit"))
                 {
                     if (ModelState.IsValid)
                     {
@@ -174,7 +174,7 @@ namespace ERP_ZORZAL.Controllers
                             foreach (UDP_Gral_tbUnidadMedida_Update_Result uni in List)
                                 MsjError = uni.MensajeError;
 
-                            if (MsjError.Substring(0, 2) == "-1")
+                            if (MsjError.StartsWith("-1"))
                             {
                                 ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
                                 return View(tbUnidadMedida);

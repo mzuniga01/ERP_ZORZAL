@@ -16,31 +16,51 @@ namespace ERP_GMEDINA.Controllers
     public class UsuarioController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /Usuario/
         public ActionResult Index()
         {
-            return View(db.tbUsuario.ToList());
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetUserRols("Usuario/Index"))
+                {
+                    return View(db.tbUsuario.ToList());
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
-        public ActionResult ModificarPass(int? id)
+        public ActionResult ModificarPass(int? id) 
         {
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Function.GetUserRols("Usuario/Index"))
+                {
+                    if (id == null)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    tbUsuario tbUsuario = db.tbUsuario.Find(id);
+                    ViewBag.User_ID = id;
+                    ViewBag.ConfirmarPassword = "Password";
+                    if (tbUsuario == null)
+                    {
+                        return RedirectToAction("NotFound", "Login");
+                    }
+                    return View(tbUsuario);
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
             }
-            tbUsuario tbUsuario = db.tbUsuario.Find(id);
-            ViewBag.User_ID = id;
-            ViewBag.ConfirmarPassword = "Password";
-            if (tbUsuario == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbUsuario);
-
-            //ViewBag.UserID = id;
-            //return View();
-
+            else
+                return RedirectToAction("Index", "Login");
 
         }
 
@@ -48,67 +68,98 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ModificarPass([Bind(Include = "usu_Id,usu_NombreUsuario,usu_Password,usu_Nombres,usu_Apellidos,usu_Correo,ConfirmarPassword,suc_Id")] tbUsuario tbUsuario, string usu_Password)
         {
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                //db.Entry(tbUsuario).State = EntityState.Modified;
-                //db.SaveChanges();
-                //return RedirectToAction("Index");
-                try
+                if (Function.GetUserRols("Usuario/Index"))
                 {
-                    IEnumerable<object> List = null;
-                    var MsjError = "0";
-                    List = db.UDP_Acce_tbUsuario_PasswordUpdate(tbUsuario.usu_Id, usu_Password);
-                    foreach (UDP_Acce_tbUsuario_PasswordUpdate_Result Usuario in List)
-                        MsjError = Usuario.MensajeError;
-
-                    if (MsjError == "-1")
+                    if (ModelState.IsValid)
                     {
+                        try
+                        {
+                            IEnumerable<object> List = null;
+                            var MsjError = "0";
+                            List = db.UDP_Acce_tbUsuario_PasswordUpdate(tbUsuario.usu_Id, usu_Password);
+                            foreach (UDP_Acce_tbUsuario_PasswordUpdate_Result Usuario in List)
+                                MsjError = Usuario.MensajeError;
 
+                            if (MsjError.StartsWith("-1"))
+                            {
+                                ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                                return View(tbUsuario);
+                            }
+                            else
+                            {
+                                return RedirectToAction("Index");
+                            }
+                        }
+                        catch (Exception Ex)
+                        {
+                            Ex.Message.ToString();
+                            ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                            return View(tbUsuario);
+                        }
                     }
                     else
                     {
-                        return RedirectToAction("Index");
+                        var errors = ModelState.Values.SelectMany(v => v.Errors);
                     }
-
-
+                    return View(tbUsuario);
                 }
-                catch (Exception Ex)
+                else
                 {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    return RedirectToAction("SinAcceso", "Login");
                 }
             }
             else
-            {
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
-            }
-
-            return View(tbUsuario);
-        
-    }
+                return RedirectToAction("Index", "Login");
+        }
 
         // GET: /Usuario/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Function.GetUserRols("Usuario/Index"))
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    tbUsuario tbUsuario = db.tbUsuario.Find(id);
+                    if (tbUsuario == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(tbUsuario);
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
             }
-            tbUsuario tbUsuario = db.tbUsuario.Find(id);
-            if (tbUsuario == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbUsuario);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /Usuario/Create
         public ActionResult Create()
         {
-            Session["tbRolesUsuario"]=null;
-            ViewBag.Empleado = db.tbEmpleado.ToList();
-            ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id","suc_Descripcion");
-            return View();
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetUserRols("Usuario/Index"))
+                {
+                    Session["tbRolesUsuario"] = null;
+                    ViewBag.Empleado = db.SDP_tbEmpleado_Select().ToList();
+                    ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // POST: /Usuario/Create
@@ -116,145 +167,197 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "usu_NombreUsuario,usu_Password,usu_Nombres,usu_Apellidos,usu_Correo,ConfirmarPassword,suc_Id, emp_Id")] tbUsuario tbUsuario, string usu_Password)
+        public ActionResult Create([Bind(Include = "usu_NombreUsuario,usu_Nombres,usu_Apellidos,usu_Correo,ConfirmarPassword,suc_Id, emp_Id")] tbUsuario tbUsuario, string usu_Password)
         {
-            IEnumerable<object> List = null;
-            IEnumerable<object> Roles = null;
-            var listRoles = (List<tbRolesUsuario>)Session["tbRolesUsuario"];
-            var MsjError = "0";
-            var MsjErrorRoles = "0";
-            
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                using (TransactionScope _Tran = new TransactionScope())
+                if (Function.GetUserRols("Usuario/Index"))
                 {
-                    try
+                    IEnumerable<object> List = null;
+                    IEnumerable<object> Roles = null;
+                    var listRoles = (List<tbRolesUsuario>)Session["tbRolesUsuario"];
+                    var MsjError = "0";
+                    var MsjErrorRoles = "0";
+                    ModelState.Remove("usu_Password");
+                    if (ModelState.IsValid)
                     {
-                        List = db.UDP_Acce_tbUsuario_Insert(tbUsuario.usu_NombreUsuario, usu_Password, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.suc_Id, tbUsuario.emp_Id);
-                        foreach (UDP_Acce_tbUsuario_Insert_Result Usuario in List)
-                            MsjError = Usuario.MensajeError;
-                        if (MsjError.StartsWith("-1"))
+                        using (TransactionScope _Tran = new TransactionScope())
                         {
-                            ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
-                            return View(tbUsuario);
-                        }
-                        else
-                        {
-                            if (listRoles != null)
+                            try
                             {
-                                if (listRoles.Count > 0)
+                                List = db.UDP_Acce_tbUsuario_Insert(tbUsuario.usu_NombreUsuario, usu_Password, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.suc_Id, tbUsuario.emp_Id);
+                                foreach (UDP_Acce_tbUsuario_Insert_Result Usuario in List)
+                                    MsjError = Usuario.MensajeError;
+                                if (MsjError.StartsWith("-1"))
                                 {
-                                    foreach(tbRolesUsuario URoles in listRoles)
+                                    ViewBag.Empleado = db.SDP_tbEmpleado_Select().ToList();
+                                    ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
+                                    ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                                    return View(tbUsuario);
+                                }
+                                else
+                                {
+                                    if (listRoles != null)
                                     {
-                                        Roles = db.UDP_Acce_tbRolesUsuario_Insert(URoles.rol_Id, Convert.ToInt32(MsjError));
-                                        foreach (UDP_Acce_tbRolesUsuario_Insert_Result Resultado in Roles)
-                                            MsjErrorRoles = Resultado.MensajeError;
-                                        if (MsjError.StartsWith("-1"))
+                                        if (listRoles.Count > 0)
                                         {
-                                            ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
-                                            return View(tbUsuario);
+                                            foreach (tbRolesUsuario URoles in listRoles)
+                                            {
+                                                Roles = db.UDP_Acce_tbRolesUsuario_Insert(URoles.rol_Id, Convert.ToInt32(MsjError));
+                                                foreach (UDP_Acce_tbRolesUsuario_Insert_Result Resultado in Roles)
+                                                    MsjErrorRoles = Resultado.MensajeError;
+                                                if (MsjError.StartsWith("-1"))
+                                                {
+                                                    ViewBag.Empleado = db.SDP_tbEmpleado_Select().ToList();
+                                                    ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
+                                                    ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                                                    return View(tbUsuario);
+                                                }
+                                            }
                                         }
                                     }
                                 }
+                                _Tran.Complete();
+
+                                return RedirectToAction("Index");
+                            }
+                            catch (Exception Ex)
+                            {
+                                Ex.Message.ToString();
+                                ViewBag.Empleado = db.SDP_tbEmpleado_Select().ToList();
+                                ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
+                                ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                                return View(tbUsuario);
                             }
                         }
-                        _Tran.Complete();
-
-                        return RedirectToAction("Index");
                     }
-                    catch (Exception Ex)
+                    else
                     {
-                        Ex.Message.ToString();
-                        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                        ModelState.AddModelError("ConfirmarPassword", "El campo Password es requerido");
+                        ModelState.AddModelError("usu_Password", "El campo Password es requerido");
+                        ViewBag.Empleado = db.tbEmpleado.ToList();
+                        ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
                     }
+                    return View(tbUsuario);
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
                 }
             }
             else
-            {
-                ModelState.AddModelError("ConfirmarPassword", "El campo Password es requerido");
-                ModelState.AddModelError("usu_Password", "El campo Password es requerido");
-            }
-            return View(tbUsuario);
+                return RedirectToAction("Index", "Login");
         }
 
         public ActionResult ModificarCuenta(int? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Function.GetUserRols("Usuario/Index"))
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    tbUsuario tbUsuario = db.tbUsuario.Find(id);
+                    ViewBag.User_ID = id;
+                    ViewBag.ConfirmarPassword = "Password";
+                    if (tbUsuario == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(tbUsuario);
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
             }
-            tbUsuario tbUsuario = db.tbUsuario.Find(id);
-            ViewBag.User_ID = id;
-            ViewBag.ConfirmarPassword = "Password";
-            if (tbUsuario == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbUsuario);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ModificarCuenta([Bind(Include = "usu_Id,usu_NombreUsuario,usu_Nombres,usu_Apellidos,usu_Correo,usu_EsActivo,usu_RazonInactivo,usu_EsAdministrador,usu_Password,ConfirmarPassword,suc_Id,emp_Id")] tbUsuario tbUsuario)
         {
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                //db.Entry(tbUsuario).State = EntityState.Modified;
-                //db.SaveChanges();
-                //return RedirectToAction("Index");
-                try
+                if (Function.GetUserRols("Usuario/Index"))
                 {
-                    IEnumerable<object> List = null;
-                    var MsjError = "0";
-                    List = db.UDP_Acce_tbUsuario_Update(tbUsuario.usu_Id, tbUsuario.usu_NombreUsuario, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.usu_EsActivo, tbUsuario.usu_RazonInactivo, tbUsuario.usu_EsAdministrador, tbUsuario.usu_SesionesValidas,
-                        tbUsuario.suc_Id, tbUsuario.emp_Id);
-                    foreach (UDP_Acce_tbUsuario_Update_Result Usuario in List)
-                        MsjError = Usuario.MensajeError;
-
-                    if (MsjError == "-1")
+                    if (ModelState.IsValid)
                     {
+                        try
+                        {
+                            IEnumerable<object> List = null;
+                            var MsjError = "0";
+                            List = db.UDP_Acce_tbUsuario_Update(tbUsuario.usu_Id, tbUsuario.usu_NombreUsuario, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.usu_EsActivo, tbUsuario.usu_RazonInactivo, tbUsuario.usu_EsAdministrador, tbUsuario.usu_SesionesValidas,
+                                tbUsuario.suc_Id, tbUsuario.emp_Id);
+                            foreach (UDP_Acce_tbUsuario_Update_Result Usuario in List)
+                                MsjError = Usuario.MensajeError;
 
+                            if (MsjError.StartsWith("-1"))
+                            {
+                                ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                                return View(tbUsuario);
+                            }
+                            else
+                            {
+                                return RedirectToAction("Index");
+                            }                        }
+                        catch (Exception Ex)
+                        {
+                            Ex.Message.ToString();
+                            ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                            return View(tbUsuario);
+                        }
                     }
                     else
                     {
-                        return RedirectToAction("Index");
+                        var errors = ModelState.Values.SelectMany(v => v.Errors);
                     }
-
-
+                    return View(tbUsuario);
                 }
-                catch (Exception Ex)
+                else
                 {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    return RedirectToAction("SinAcceso", "Login");
                 }
             }
             else
-            {
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
-            }
-
-            return View(tbUsuario);
+                return RedirectToAction("Index", "Login");
         }
 
 
         // GET: /Usuario/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Function.GetUserRols("Usuario/Index"))
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    tbUsuario tbUsuario = db.tbUsuario.Find(id);
+                    ViewBag.User_ID = id;
+                    ViewBag.ConfirmarPassword = "Password";
+                    ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
+                    if (tbUsuario == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+                    ViewData["Razon"] = tbUsuario.usu_RazonInactivo;
+                    return View(tbUsuario);
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
             }
-            tbUsuario tbUsuario = db.tbUsuario.Find(id);
-            ViewBag.User_ID = id;
-            ViewBag.ConfirmarPassword = "Password";
-            ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
-            if (tbUsuario == null)
-            {
-                return HttpNotFound();
-            }
-            
-            ViewData["Razon"] = tbUsuario.usu_RazonInactivo;
-            return View(tbUsuario);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // POST: /Usuario/Edit/5
@@ -264,104 +367,114 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "usu_Id,usu_NombreUsuario,usu_Nombres,usu_Apellidos,usu_Correo,usu_EsActivo,usu_RazonInactivo,usu_EsAdministrador,usu_Password,ConfirmarPassword,suc_Id,emp_Id")] tbUsuario tbUsuario)
         {
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                //db.Entry(tbUsuario).State = EntityState.Modified;
-                //db.SaveChanges();
-                //return RedirectToAction("Index");
-                try
+                if (Function.GetUserRols("Usuario/Index"))
                 {
-                    IEnumerable<object> List = null;
-                    var MsjError = "0";
-                    List = db.UDP_Acce_tbUsuario_Update(tbUsuario.usu_Id, tbUsuario.usu_NombreUsuario, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.usu_EsActivo, tbUsuario.usu_RazonInactivo, tbUsuario.usu_EsAdministrador,tbUsuario.usu_SesionesValidas,
-                        tbUsuario.suc_Id, tbUsuario.emp_Id);
-                    foreach (UDP_Acce_tbUsuario_Update_Result Usuario in List)
-                        MsjError = Usuario.MensajeError;
-
-                    if (MsjError == "-1")
+                    if (ModelState.IsValid)
                     {
+                        try
+                        {
+                            IEnumerable<object> List = null;
+                            var MsjError = "0";
+                            List = db.UDP_Acce_tbUsuario_Update(tbUsuario.usu_Id, tbUsuario.usu_NombreUsuario, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.usu_EsActivo, tbUsuario.usu_RazonInactivo, tbUsuario.usu_EsAdministrador, tbUsuario.usu_SesionesValidas,
+                                tbUsuario.suc_Id, tbUsuario.emp_Id);
+                            foreach (UDP_Acce_tbUsuario_Update_Result Usuario in List)
+                                MsjError = Usuario.MensajeError;
 
+                            if (MsjError.StartsWith("-1"))
+                            {
+                                ViewBag.ConfirmarPassword = "Password";
+                                ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
+                                ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                                return View(tbUsuario);
+                            }
+                            else
+                            {
+                                return RedirectToAction("Index");
+                            }
+                        }
+                        catch (Exception Ex)
+                        {
+                            Ex.Message.ToString();
+                            ViewBag.ConfirmarPassword = "Password";
+                            ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
+                            ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                            return View(tbUsuario);
+                        }
                     }
                     else
                     {
-                        return RedirectToAction("Index");
+                        var errors = ModelState.Values.SelectMany(v => v.Errors);
                     }
-
-
+                    return View(tbUsuario);
                 }
-                catch (Exception Ex)
+                else
                 {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    return RedirectToAction("SinAcceso", "Login");
                 }
             }
             else
-            {
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
-            }
-            
-            return View(tbUsuario);
+                return RedirectToAction("Index", "Login");
         }
-
-        //public ActionResult RestaurarPassword()
-        //{
-        //    return View();
-        //}
-
-        
+    
         public ActionResult RestaurarPassword(int? id)
         {
-            if (ModelState.IsValidField("usuario"))
+            if (Function.GetUserLogin())
             {
-                tbUsuario tbUsuario = db.tbUsuario.Find(id);
-                //var usuario = db.tbUsuario.Where(item => item.usu_NombreUsuario == usuarioRecuperar.usu_NombreUsuario).FirstOrDefault();
-                if (tbUsuario != null)
+                if (Function.GetUserRols("Usuario/Index"))
                 {
-                    string emailsalida = "erpzorzal@gmail.com";
-                    string passwordsalida = "sistemadeinventari0";
-                    string emaildestino = tbUsuario.usu_Correo;
-
-                    //PasswordGroup.Special,
-
-                    string passwordnueva = RandomPassword.Generate(8, PasswordGroup.Uppercase, PasswordGroup.Lowercase, PasswordGroup.Numeric);
-                    db.Entry(tbUsuario).State = EntityState.Modified;
-                    try
+                    if (ModelState.IsValidField("usuario"))
                     {
-                        IEnumerable<object> List = null;
-                        var MsjError = "0";
-                        List = db.UDP_Acce_tbUsuario_PasswordUpdate(tbUsuario.usu_Id, passwordnueva);
-                        foreach (UDP_Acce_tbUsuario_PasswordUpdate_Result Usuario in List)
-                            MsjError = Usuario.MensajeError;
-
-                        Email(emailsalida, passwordsalida, emaildestino, passwordnueva);
-
-                        if (MsjError == "-1")
+                        tbUsuario tbUsuario = db.tbUsuario.Find(id);
+                        if (tbUsuario != null)
                         {
+                            string emailsalida = "erpzorzal@gmail.com";
+                            string passwordsalida = "sistemadeinventari0";
+                            string emaildestino = tbUsuario.usu_Correo;
+                            string passwordnueva = RandomPassword.Generate(8, PasswordGroup.Uppercase, PasswordGroup.Lowercase, PasswordGroup.Numeric);
+                            db.Entry(tbUsuario).State = EntityState.Modified;
+                            try
+                            {
+                                IEnumerable<object> List = null;
+                                var MsjError = "0";
+                                List = db.UDP_Acce_tbUsuario_PasswordUpdate(tbUsuario.usu_Id, passwordnueva);
+                                foreach (UDP_Acce_tbUsuario_PasswordUpdate_Result Usuario in List)
+                                    MsjError = Usuario.MensajeError;
 
+                                Email(emailsalida, passwordsalida, emaildestino, passwordnueva);
+
+                                if (MsjError.StartsWith("-1"))
+                                {
+                                    ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                                    return View(tbUsuario);
+                                }
+                                else
+                                {
+                                    return RedirectToAction("Index");
+                                }
+                            }
+                            catch (Exception Ex)
+                            {
+                                Ex.Message.ToString();
+                                ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                                return View(tbUsuario);
+                            }
                         }
-                        else
-                        {
-                            return RedirectToAction("Index");
-                        }
-
-
                     }
-                    catch (Exception Ex)
+                    else
                     {
-                        Ex.Message.ToString();
-                        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                        ModelState.AddModelError("", "El usuario ingresado no existe");
                     }
-                    //usuario.usu_Password = PassUser;
-                    //db.SaveChanges();
-
-                  
-
+                    return RedirectToAction("Index");
                 }
-            } else
-            {
-                ModelState.AddModelError("", "El usuario ingresado no existe");
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
             }
-            return RedirectToAction("Index");
+            else
+                return RedirectToAction("Index", "Login");
         }
         
         public void Email(string emailsalida, string passwordsalida, string emaildestino, string passwordnueva)
@@ -507,76 +620,63 @@ namespace ERP_GMEDINA.Controllers
         {
             var Msj = "";
             IEnumerable<Object> Rol = null;
-            using (TransactionScope Tran = new TransactionScope())
+            try
             {
-
-                try
+                if (RolUsuario != null)
                 {
-                    //Rol = db.UDP_Acce_tbAccesoRol_Insert(idRol, AccesoRol);
-                    //foreach (UDP_Acce_tbAccesoRol_Update_Result vRol in Rol)
-                    //    Msj1 = vRol.MensajeError;
-                    //if (Msj1.Substring(0, 1) != "-")
-                    //{
-                    if (RolUsuario != null)
+                    if (RolUsuario.Count > 0)
                     {
-                        if (RolUsuario.Count > 0)
+                        foreach (tbRolesUsuario vRolUsuario in RolUsuario)
                         {
-                            foreach (tbRolesUsuario vRolUsuario in RolUsuario)
+                            Rol = db.UDP_Acce_tbRolesUsuario_Insert(idRol, vRolUsuario.rol_Id);
+                            foreach (UDP_Acce_tbRolesUsuario_Insert_Result item in Rol)
                             {
-                                Rol = db.UDP_Acce_tbRolesUsuario_Insert(idRol, vRolUsuario.rol_Id);
-                                foreach (UDP_Acce_tbRolesUsuario_Insert_Result item in Rol)
-                                {
-                                    Msj = Convert.ToString(item.MensajeError);
-                                }
+                                Msj = Convert.ToString(item.MensajeError);
                             }
                         }
+                        var Listado = db.SDP_Acce_GetUserRols(Function.GetUser(), "").ToList();
+                        Session["UserLoginRols"] = Listado;
                     }
-                    Tran.Complete();
                 }
-                catch (Exception)
-                {
-                    Msj = "-1";
-                }
-                return Json(Msj, JsonRequestBehavior.AllowGet);
-
             }
+            catch (Exception)
+            {
+                Msj = "-1";
+            }
+            return Json(Msj, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult QuitarRol(int usu_Id, ICollection<tbRolesUsuario> RolUsuario)
         {
             var Msj = "";
-            //IEnumerable<Object> Acceso = null;
-            using (TransactionScope Tran = new TransactionScope())
+            try
             {
-
-                try
+                if (RolUsuario != null)
                 {
-                    //Rol = db.UDP_Acce_tbAccesoRol_Insert(idRol, AccesoRol);
-                    //foreach (UDP_Acce_tbAccesoRol_Update_Result vRol in Rol)
-                    //    Msj1 = vRol.MensajeError;
-                    //if (Msj1.Substring(0, 1) != "-")
-                    //{
-                    if (RolUsuario != null)
+                    if (RolUsuario.Count > 0)
                     {
-                        if (RolUsuario.Count > 0)
+                        foreach (tbRolesUsuario vRolUsuario in RolUsuario)
                         {
-                            foreach (tbRolesUsuario vRolUsuario in RolUsuario)
-                            {
-                                db.UDP_Acce_tbRolesUsuario_Delete(usu_Id, vRolUsuario.rol_Id);
-
-                            }
+                            db.UDP_Acce_tbRolesUsuario_Delete(usu_Id, vRolUsuario.rol_Id);
                         }
+                        var Listado = db.SDP_Acce_GetUserRols(Function.GetUser(), "").ToList();
+                        Session["UserLoginRols"] = Listado;
                     }
-                    Tran.Complete();
                 }
-                catch (Exception)
-                {
-                    Msj = "-1";
-                }
-                return Json(Msj, JsonRequestBehavior.AllowGet);
-
             }
+            catch (Exception)
+            {
+                Msj = "-1";
+            }
+            return Json(Msj, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult getEmpleado(int EmpleadoID)
+        {
+            var EmpleadoList = db.SDP_Gral_tbEmpleado_Select((short)EmpleadoID).ToList();
+            return Json(EmpleadoList, JsonRequestBehavior.AllowGet);
         }
 
     }

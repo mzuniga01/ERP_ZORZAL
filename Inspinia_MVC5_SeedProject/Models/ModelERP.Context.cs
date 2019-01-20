@@ -29,6 +29,7 @@ namespace ERP_GMEDINA.Models
     
         public virtual DbSet<tbInventarioFisico> tbInventarioFisico { get; set; }
         public virtual DbSet<tbAccesoRol> tbAccesoRol { get; set; }
+        public virtual DbSet<tbObjeto> tbObjeto { get; set; }
         public virtual DbSet<tbRol> tbRol { get; set; }
         public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
         public virtual DbSet<tbUsuario> tbUsuario { get; set; }
@@ -36,11 +37,14 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbBanco> tbBanco { get; set; }
         public virtual DbSet<tbCuentasBanco> tbCuentasBanco { get; set; }
         public virtual DbSet<tbDenominacion> tbDenominacion { get; set; }
+        public virtual DbSet<tbDepartamento> tbDepartamento { get; set; }
         public virtual DbSet<tbEmpleado> tbEmpleado { get; set; }
         public virtual DbSet<tbIdentificacionCliente> tbIdentificacionCliente { get; set; }
         public virtual DbSet<tbMoneda> tbMoneda { get; set; }
+        public virtual DbSet<tbMunicipio> tbMunicipio { get; set; }
         public virtual DbSet<tbParametro> tbParametro { get; set; }
         public virtual DbSet<tbTipoIdentificacion> tbTipoIdentificacion { get; set; }
+        public virtual DbSet<tbUnidadMedida> tbUnidadMedida { get; set; }
         public virtual DbSet<tbBodega> tbBodega { get; set; }
         public virtual DbSet<tbBodegaDetalle> tbBodegaDetalle { get; set; }
         public virtual DbSet<tbBox> tbBox { get; set; }
@@ -87,12 +91,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
         public virtual DbSet<UDV_Inv_Consultar_Existencias_Productos> UDV_Inv_Consultar_Existencias_Productos { get; set; }
-        public virtual DbSet<tbDepartamento> tbDepartamento { get; set; }
-        public virtual DbSet<tbObjeto> tbObjeto { get; set; }
-        public virtual DbSet<tbUnidadMedida> tbUnidadMedida { get; set; }
-        public virtual DbSet<tbMunicipio> tbMunicipio { get; set; }
-        public virtual DbSet<UDV_Acce_Usuario_Roles> UDV_Acce_Usuario_Roles { get; set; }
-        public virtual DbSet<V_Objetos> V_Objetos { get; set; }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
         {
@@ -2237,6 +2235,20 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("obj_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbObjeto_Update_Estado_Result>("UDP_Acce_tbObjeto_Update_Estado", obj_IdParameter, obj_EstadoParameter, obj_UsuarioModificaParameter, obj_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<SDP_Gral_tbEmpleado_Select_Result> SDP_Gral_tbEmpleado_Select(Nullable<short> emp_Id)
+        {
+            var emp_IdParameter = emp_Id.HasValue ?
+                new ObjectParameter("emp_Id", emp_Id) :
+                new ObjectParameter("emp_Id", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Gral_tbEmpleado_Select_Result>("SDP_Gral_tbEmpleado_Select", emp_IdParameter);
+        }
+    
+        public virtual ObjectResult<SDP_tbEmpleado_Select_Result> SDP_tbEmpleado_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbEmpleado_Select_Result>("SDP_tbEmpleado_Select");
         }
     }
 }

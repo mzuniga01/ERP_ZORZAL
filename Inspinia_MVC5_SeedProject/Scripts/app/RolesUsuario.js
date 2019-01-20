@@ -66,6 +66,34 @@
             })
         }
     })
+
+    $('#Table_BuscarEmpleado').DataTable(
+        {
+            "searching": false,
+            "lengthChange": false,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+            }
+        });
+
+    var $rows = $('#Table_BuscarEmpleado tr');
+    $("#search").keyup(function () {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+        $rows.show().filter(function () {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
+    });
 });
 
 $(document).on('keyup', '#usu_Password, #confirmar-pass', function () {
@@ -74,7 +102,7 @@ $(document).on('keyup', '#usu_Password, #confirmar-pass', function () {
     valido = document.getElementById('Password');
     if (usu_Password != '' && bar != '') {
         if (usu_Password.length < 8) {
-            valido.innerText = "Longitud debe ser de 8 caracteres";
+            valido.innerText = "Longitud debe ser mínimo de 8 caracteres";
             $('#AgregarRol').prop('disabled', false);
             $('#QuitarRol').prop('disabled', false);
             $('#btnGuardarUsuario').prop('disabled', false);
@@ -102,33 +130,31 @@ $(document).on('keyup', '#usu_Password, #confirmar-pass', function () {
     }
 });
 
-$(document).on('blur', '#usu_NombreUsuario', function () {
-    valido = document.getElementById('NombreUsuario');
-    $.ajax({
-        url: "/Usuario/GetUserExist",
-        method: "POST",
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ user: $('#usu_NombreUsuario').val() }),
-    })
-    .done(function (data) {
-        if (data.length >= 1) {
-            valido.innerText = "Usuario ya existe";
-            $('#usu_NombreUsuario').focus();
-        }
-        else {
-            valido.innerText = "";
-        }
-    })
-});
+//$(document).on('blur', '#usu_NombreUsuario', function () {
+//    valido = document.getElementById('NombreUsuario');
+//    $.ajax({
+//        url: "/Usuario/GetUserExist",
+//        method: "POST",
+//        dataType: 'json',
+//        contentType: "application/json; charset=utf-8",
+//        data: JSON.stringify({ user: $('#usu_NombreUsuario').val() }),
+//    })
+//    .done(function (data) {
+//        if (data.length >= 1) {
+//            valido.innerText = "Usuario ya existe";
+//        }
+//        else {
+//            valido.innerText = "";
+//        }
+//    })
+//});
 
 $(document).on('blur', '#usu_Password', function () {
     var usu_Password = $('#usu_Password').val().trim();
     valido = document.getElementById('Password');
     if (usu_Password.length < 8) {
-        //$('#msg').removeClass('text-success').addClass('text-danger').text('Longitud debe ser de 8 caracteres.');
         valido.innerText = "Longitud debe ser de 8 caracteres.";
-        $('#usu_Password').focus();
+        //$('#usu_Password').focus();
     }
 });
 
@@ -147,7 +173,6 @@ $("#usu_Correo").blur(function () {
 
     } else {
         valido.innerText = "Direccion de Correo Electronico Incorrecta";
-        $("#usu_Correo").focus();
     }
 });
 
@@ -212,3 +237,52 @@ $('#QuitarRol').click(function () {
         }
     })
 })
+
+//////////////////////////////////////////////////////////
+function Seleccionar(emp_Id)
+{
+    $.ajax({
+        url: "/Usuario/getEmpleado",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ EmpleadoID: emp_Id }),
+    })
+    .done(function (data) {
+        if(data.length>0)
+        {
+            $.each(data, function (i, item) {
+                $('#usu_Nombres').val(item.emp_Nombres);
+                $('#usu_Apellidos').val(item.emp_Apellidos);
+                $('#usu_Correo').val(item.emp_Correoelectronico);
+                $('#emp_Id').val(item.emp_Id);
+                separador = " ", // un espacio en blanco
+                cadena = $('#usu_Nombres').val();
+                cadena2 = $('#usu_Apellidos').val();
+                arregloDeSubCadenas = Reemplazar(cadena);
+                arregloDeSubCadenas2 = Reemplazar(cadena2);
+                arregloDeSubCadenas = arregloDeSubCadenas.split(separador);
+                arregloDeSubCadenas2 = arregloDeSubCadenas2.split(separador);
+                $('#usu_NombreUsuario').val(arregloDeSubCadenas + "." + arregloDeSubCadenas2);
+                $("#ModalAgregarEmpleado").modal('hide');
+            })
+        }
+    })
+}
+
+function Reemplazar(s) {
+    var r = s.toLowerCase();
+    r = r.replace(new RegExp("\\s", 'g'), "");
+    r = r.replace(new RegExp("[àáâãäå]", 'g'), "a");
+    r = r.replace(new RegExp("æ", 'g'), "ae");
+    r = r.replace(new RegExp("ç", 'g'), "c");
+    r = r.replace(new RegExp("[èéêë]", 'g'), "e");
+    r = r.replace(new RegExp("[ìíîï]", 'g'), "i");
+    r = r.replace(new RegExp("ñ", 'g'), "n");
+    r = r.replace(new RegExp("[òóôõö]", 'g'), "o");
+    r = r.replace(new RegExp("œ", 'g'), "oe");
+    r = r.replace(new RegExp("[ùúûü]", 'g'), "u");
+    r = r.replace(new RegExp("[ýÿ]", 'g'), "y");
+    r = r.replace(new RegExp("\\W", 'g'), "");
+    return r;
+};

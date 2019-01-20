@@ -14,7 +14,7 @@ namespace ERP_ZORZAL.Controllers
     public class RolController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /Rol/
         public ActionResult Index()
         {
@@ -264,6 +264,8 @@ namespace ERP_ZORZAL.Controllers
                                     Msj = Convert.ToString(item.MensajeError);
                                 }
                             }
+                            var Listado = db.SDP_Acce_GetUserRols(Function.GetUser(), "").ToList();
+                            Session["UserLoginRols"] = Listado;
                         }
                     }
                     Tran.Complete();
@@ -395,6 +397,8 @@ namespace ERP_ZORZAL.Controllers
                                 
                             }
                         }
+                        var Listado = db.SDP_Acce_GetUserRols(Function.GetUser(), "").ToList();
+                        Session["UserLoginRols"] = Listado;
                     }
                     Tran.Complete();
                 }

@@ -45,6 +45,7 @@ namespace ERP_GMEDINA.Models
         public virtual tbUsuario tbUsuario2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbUsuario> tbUsuario3 { get; set; }
+        public virtual tbMunicipio tbMunicipio { get; set; }
         public virtual tbBodega tbBodega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCaja> tbCaja { get; set; }
@@ -57,6 +58,5 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedido> tbPedido { get; set; }
         public virtual tbPuntoEmision tbPuntoEmision { get; set; }
-        public virtual tbMunicipio tbMunicipio { get; set; }
     }
 }
