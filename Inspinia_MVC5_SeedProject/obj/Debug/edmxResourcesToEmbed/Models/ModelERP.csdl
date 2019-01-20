@@ -376,10 +376,6 @@
       <Parameter Name="Nombre" Mode="In" Type="String" />
       <Parameter Name="Telefono" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbFactura_Estado" ReturnType="Collection(Int64)">
-      <Parameter Name="fact_Id" Mode="In" Type="Int32" />
-      <Parameter Name="esfac_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Estado" ReturnType="Collection(Int32)">
       <Parameter Name="cred_Id" Mode="In" Type="Int32" />
       <Parameter Name="escre_Id" Mode="In" Type="Int32" />
@@ -2405,6 +2401,10 @@
       <Parameter Name="fact_EsAnulada" Mode="In" Type="Boolean" />
       <Parameter Name="fact_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="fact_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbFactura_Estado" ReturnType="Collection(Int64)">
+      <Parameter Name="fact_Id" Mode="In" Type="Int32" />
+      <Parameter Name="fact_EsAnulada" Mode="In" Type="Boolean" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -5031,6 +5031,7 @@
       <PropertyRef Name="clte_Nombres" />
       <PropertyRef Name="fact_UsuarioCrea" />
       <PropertyRef Name="fact_FechaCrea" />
+      <PropertyRef Name="fact_EsAnulada" />
     </Key>
     <Property Name="fact_Id" Type="Int64" Nullable="false" />
     <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
@@ -5041,7 +5042,7 @@
     <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="suc_Id" Type="Int32" Nullable="false" />
     <Property Name="clte_Id" Type="Int32" Nullable="false" />
-    <Property Name="pemi_NumeroCAI" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="pemi_NumeroCAI" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
     <Property Name="fact_AlCredito" Type="Boolean" Nullable="false" />
     <Property Name="fact_DiasCredito" Type="Int32" Nullable="false" />
     <Property Name="fact_PorcentajeDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
@@ -5057,6 +5058,7 @@
     <Property Name="fact_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="fact_UsuarioModifica" Type="Int32" />
     <Property Name="fact_FechaModifica" Type="DateTime" Precision="3" />
+    <Property Name="fact_EsAnulada" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="V_Vent_FacturaPago">
     <Key>

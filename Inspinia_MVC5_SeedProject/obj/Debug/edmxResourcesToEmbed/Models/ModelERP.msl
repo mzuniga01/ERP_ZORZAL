@@ -318,7 +318,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Estado" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Estado" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_Update">
       <ResultMapping>
@@ -1867,6 +1866,7 @@
     <EntitySetMapping Name="UDV_Vent_Busqueda_Factura">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_Busqueda_Factura">
         <MappingFragment StoreEntitySet="UDV_Vent_Busqueda_Factura">
+          <ScalarProperty Name="fact_EsAnulada" ColumnName="fact_EsAnulada" />
           <ScalarProperty Name="fact_FechaModifica" ColumnName="fact_FechaModifica" />
           <ScalarProperty Name="fact_UsuarioModifica" ColumnName="fact_UsuarioModifica" />
           <ScalarProperty Name="fact_FechaCrea" ColumnName="fact_FechaCrea" />
@@ -2271,5 +2271,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Estado" />
   </EntityContainerMapping>
 </Mapping>

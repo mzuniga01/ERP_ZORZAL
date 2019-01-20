@@ -1165,6 +1165,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
             <PropertyRef Name="fact_Vendedor" />
             <PropertyRef Name="clte_Identificacion" />
             <PropertyRef Name="clte_Nombres" />
+            <PropertyRef Name="fact_EsAnulada" />
             <PropertyRef Name="fact_UsuarioCrea" />
             <PropertyRef Name="fact_FechaCrea" />
           </Key>
@@ -1177,7 +1178,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Property Name="cja_Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="suc_Id" Type="int" Nullable="false" />
           <Property Name="clte_Id" Type="int" Nullable="false" />
-          <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="40" Nullable="false" />
           <Property Name="fact_AlCredito" Type="bit" Nullable="false" />
           <Property Name="fact_DiasCredito" Type="int" Nullable="false" />
           <Property Name="fact_PorcentajeDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
@@ -1189,6 +1190,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Property Name="fact_FechaNacimientoTE" Type="date" />
           <Property Name="fact_UsuarioAutoriza" Type="int" />
           <Property Name="fact_FechaAutoriza" Type="datetime" />
+          <Property Name="fact_EsAnulada" Type="bit" Nullable="false" />
           <Property Name="fact_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="fact_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="fact_UsuarioModifica" Type="int" />
@@ -4866,7 +4868,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         </Function>
         <Function Name="UDP_Vent_tbFactura_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="fact_Id" Type="int" Mode="In" />
-          <Parameter Name="esfac_Id" Type="int" Mode="In" />
+          <Parameter Name="fact_EsAnulada" Type="bit" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="IDSUCURSAL" Type="int" Mode="In" />
@@ -5489,6 +5491,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     [UDV_Vent_Busqueda_Factura].[fact_FechaNacimientoTE] AS [fact_FechaNacimientoTE], 
     [UDV_Vent_Busqueda_Factura].[fact_UsuarioAutoriza] AS [fact_UsuarioAutoriza], 
     [UDV_Vent_Busqueda_Factura].[fact_FechaAutoriza] AS [fact_FechaAutoriza], 
+    [UDV_Vent_Busqueda_Factura].[fact_EsAnulada] AS [fact_EsAnulada], 
     [UDV_Vent_Busqueda_Factura].[fact_UsuarioCrea] AS [fact_UsuarioCrea], 
     [UDV_Vent_Busqueda_Factura].[fact_FechaCrea] AS [fact_FechaCrea], 
     [UDV_Vent_Busqueda_Factura].[fact_UsuarioModifica] AS [fact_UsuarioModifica], 
@@ -6757,10 +6760,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="Identificacion" Mode="In" Type="String" />
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Telefono" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbFactura_Estado" ReturnType="Collection(Int64)">
-            <Parameter Name="fact_Id" Mode="In" Type="Int32" />
-            <Parameter Name="esfac_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Estado" ReturnType="Collection(Int32)">
             <Parameter Name="cred_Id" Mode="In" Type="Int32" />
@@ -8745,7 +8744,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbFactura_GetDetalle" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Result)">
-            <Parameter Name="FACTURA_ID" Mode="In" Type="Int64" />
+          <Parameter Name="FACTURA_ID" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbFactura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Insert_Result)">
             <Parameter Name="fact_Codigo" Mode="In" Type="String" />
@@ -8787,6 +8786,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="fact_EsAnulada" Mode="In" Type="Boolean" />
             <Parameter Name="fact_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="fact_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbFactura_Estado" ReturnType="Collection(Int64)">
+            <Parameter Name="fact_Id" Mode="In" Type="Int32" />
+            <Parameter Name="fact_EsAnulada" Mode="In" Type="Boolean" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -11413,6 +11416,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <PropertyRef Name="clte_Nombres" />
             <PropertyRef Name="fact_UsuarioCrea" />
             <PropertyRef Name="fact_FechaCrea" />
+            <PropertyRef Name="fact_EsAnulada" />
           </Key>
           <Property Name="fact_Id" Type="Int64" Nullable="false" />
           <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
@@ -11423,7 +11427,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="suc_Id" Type="Int32" Nullable="false" />
           <Property Name="clte_Id" Type="Int32" Nullable="false" />
-          <Property Name="pemi_NumeroCAI" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="pemi_NumeroCAI" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
           <Property Name="fact_AlCredito" Type="Boolean" Nullable="false" />
           <Property Name="fact_DiasCredito" Type="Int32" Nullable="false" />
           <Property Name="fact_PorcentajeDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
@@ -11439,6 +11443,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Name="fact_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="fact_UsuarioModifica" Type="Int32" />
           <Property Name="fact_FechaModifica" Type="DateTime" Precision="3" />
+          <Property Name="fact_EsAnulada" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="V_Vent_FacturaPago">
           <Key>
@@ -13939,7 +13944,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Estado" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Estado" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_Update" >
             <ResultMapping>
@@ -15488,6 +15492,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <EntitySetMapping Name="UDV_Vent_Busqueda_Factura">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_Busqueda_Factura">
               <MappingFragment StoreEntitySet="UDV_Vent_Busqueda_Factura">
+                <ScalarProperty Name="fact_EsAnulada" ColumnName="fact_EsAnulada" />
                 <ScalarProperty Name="fact_FechaModifica" ColumnName="fact_FechaModifica" />
                 <ScalarProperty Name="fact_UsuarioModifica" ColumnName="fact_UsuarioModifica" />
                 <ScalarProperty Name="fact_FechaCrea" ColumnName="fact_FechaCrea" />
@@ -15893,6 +15898,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Estado" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -74,6 +74,10 @@
 
                             @foreach (var item in Model)
                             {
+                                if (item.fact_EsAnulada)
+                                {
+                                    item.esfac_Descripcion = "Anulada";
+                                }
                                 <tr>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.fact_Codigo)
@@ -101,6 +105,7 @@
                                         </button>
                                     </td>
                                 </tr>
+
                             }
                         </tbody>
                     </table>

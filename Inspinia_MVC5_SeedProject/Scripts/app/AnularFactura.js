@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
-    var Estado = $('#esfac_Id').val();
+    var Estado = $('#fact_EsAnulada').val();
     document.getElementById("esfac_Id").disabled = true;
-    if (Estado == 4) {
+    if (Estado == 1) {
         $('#bottonAnular').hide();
         document.getElementById("esfac_Id").disabled = true;
         document.getElementById("fechafacturaEdit").disabled = true;
@@ -16,15 +16,16 @@
    }
 });
 
+
 function AnularFactura() {
     var CodFactura = $('#fact_Id').val();
-    var Estado = 4
+    var FacturaAnulado = 1
     $.ajax({
         url: "/Factura/AnularFactura",
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ CodFactura: CodFactura, Estado: Estado }),
+        data: JSON.stringify({ CodFactura: CodFactura, FacturaAnulado: FacturaAnulado }),
 
     })
     .done(function (data) {

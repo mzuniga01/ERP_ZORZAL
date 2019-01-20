@@ -39,5 +39,6 @@ namespace ERP_GMEDINA.Models
         public System.DateTime fact_FechaCrea { get; set; }
         public Nullable<int> fact_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> fact_FechaModifica { get; set; }
+        public bool fact_EsAnulada { get; set; }
     }
 }

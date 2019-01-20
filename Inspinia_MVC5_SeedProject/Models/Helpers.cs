@@ -7,7 +7,7 @@ namespace ERP_GMEDINA.Models
 {
     public class Helpers
     {
-        public const int Anulado = 4;
+        public const bool AnuladoFactura = true;
         public const int RTN = 3;
         public const int ID = 2;
 

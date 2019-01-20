@@ -1456,19 +1456,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetBusquedaCliente_Result>("spGetBusquedaCliente", identificacionParameter, nombreParameter, telefonoParameter);
         }
     
-        public virtual ObjectResult<Nullable<long>> UDP_Vent_tbFactura_Estado(Nullable<int> fact_Id, Nullable<int> esfac_Id)
-        {
-            var fact_IdParameter = fact_Id.HasValue ?
-                new ObjectParameter("fact_Id", fact_Id) :
-                new ObjectParameter("fact_Id", typeof(int));
-    
-            var esfac_IdParameter = esfac_Id.HasValue ?
-                new ObjectParameter("esfac_Id", esfac_Id) :
-                new ObjectParameter("esfac_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("UDP_Vent_tbFactura_Estado", fact_IdParameter, esfac_IdParameter);
-        }
-    
         public virtual ObjectResult<Nullable<int>> UDP_Vent_tbSolicitudCredito_Estado(Nullable<int> cred_Id, Nullable<int> escre_Id)
         {
             var cred_IdParameter = cred_Id.HasValue ?
@@ -5296,6 +5283,19 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("fact_FechaCrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Update_Result>("UDP_Vent_tbFactura_Update", fact_IdParameter, fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_IdentidadTEParameter, fact_NombresTEParameter, fact_FechaNacimientoTEParameter, fact_UsuarioAutorizaParameter, fact_FechaAutorizaParameter, fact_EsAnuladaParameter, fact_UsuarioCreaParameter, fact_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<long>> UDP_Vent_tbFactura_Estado(Nullable<int> fact_Id, Nullable<bool> fact_EsAnulada)
+        {
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(int));
+    
+            var fact_EsAnuladaParameter = fact_EsAnulada.HasValue ?
+                new ObjectParameter("fact_EsAnulada", fact_EsAnulada) :
+                new ObjectParameter("fact_EsAnulada", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("UDP_Vent_tbFactura_Estado", fact_IdParameter, fact_EsAnuladaParameter);
         }
     }
 }

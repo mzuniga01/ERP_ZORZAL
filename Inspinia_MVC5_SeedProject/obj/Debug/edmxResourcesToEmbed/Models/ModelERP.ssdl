@@ -1160,6 +1160,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
       <PropertyRef Name="fact_Vendedor" />
       <PropertyRef Name="clte_Identificacion" />
       <PropertyRef Name="clte_Nombres" />
+      <PropertyRef Name="fact_EsAnulada" />
       <PropertyRef Name="fact_UsuarioCrea" />
       <PropertyRef Name="fact_FechaCrea" />
     </Key>
@@ -1172,7 +1173,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Property Name="cja_Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="suc_Id" Type="int" Nullable="false" />
     <Property Name="clte_Id" Type="int" Nullable="false" />
-    <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="40" Nullable="false" />
     <Property Name="fact_AlCredito" Type="bit" Nullable="false" />
     <Property Name="fact_DiasCredito" Type="int" Nullable="false" />
     <Property Name="fact_PorcentajeDescuento" Type="decimal" Precision="10" Scale="2" Nullable="false" />
@@ -1184,6 +1185,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Property Name="fact_FechaNacimientoTE" Type="date" />
     <Property Name="fact_UsuarioAutoriza" Type="int" />
     <Property Name="fact_FechaAutoriza" Type="datetime" />
+    <Property Name="fact_EsAnulada" Type="bit" Nullable="false" />
     <Property Name="fact_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="fact_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="fact_UsuarioModifica" Type="int" />
@@ -4861,7 +4863,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   </Function>
   <Function Name="UDP_Vent_tbFactura_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="int" Mode="In" />
-    <Parameter Name="esfac_Id" Type="int" Mode="In" />
+    <Parameter Name="fact_EsAnulada" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="IDSUCURSAL" Type="int" Mode="In" />
@@ -5484,6 +5486,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     [UDV_Vent_Busqueda_Factura].[fact_FechaNacimientoTE] AS [fact_FechaNacimientoTE], 
     [UDV_Vent_Busqueda_Factura].[fact_UsuarioAutoriza] AS [fact_UsuarioAutoriza], 
     [UDV_Vent_Busqueda_Factura].[fact_FechaAutoriza] AS [fact_FechaAutoriza], 
+    [UDV_Vent_Busqueda_Factura].[fact_EsAnulada] AS [fact_EsAnulada], 
     [UDV_Vent_Busqueda_Factura].[fact_UsuarioCrea] AS [fact_UsuarioCrea], 
     [UDV_Vent_Busqueda_Factura].[fact_FechaCrea] AS [fact_FechaCrea], 
     [UDV_Vent_Busqueda_Factura].[fact_UsuarioModifica] AS [fact_UsuarioModifica], 
