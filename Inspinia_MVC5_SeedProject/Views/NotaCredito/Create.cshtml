@@ -124,8 +124,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0", @readonly="readonly" } })
-                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
+                                    @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @style = "text-align:right", @type = "number", @min = "0", @step = "0.01", @value = "0", @readonly="readonly" } })
+                                    <p id="smsMontoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
                                 </div>
                             </div>
 
@@ -157,7 +157,6 @@
                             @*clte_Id NotaCredito*@
                             <div class="form-group">
                                 <input type="hidden" id="clte_Id" name="clte_Id" />
-                                @*<input type="hidden" id="nocre_Estado" name="nocre_Estado" value="true" />*@
                                 <input type="hidden" id="cdto_Anulado" name="nocre_Anulado" value="false" />
                             </div>
                             @*clte_Id NotaCredito fin*@
@@ -213,32 +212,44 @@
 </div>
 
 @*------------------------------------------MODAL AUTORIZAR NOTA CREDITO--------------------------------------*@
-    <div class="modal fade" id="ModalAutorizarNC">
-        <div class="modal-dialog">
+<div>
+    <div class="modal fade" id="ModalAutorizarNC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <!-- header -->
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title">Autorizar Nota Crédito</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Autorizar Nota de Crédito</h4>
                 </div>
-                <!-- body -->
-                <div class="modal-body">
-                    <form role="form">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Nombre Usuario" />
-                            <input type="password" class="form-control" placeholder="Contraseña" />
+                <div class="modal-body" id="frmAutorizarDescuento">
+                    <div class="ibox-content">
+                        <div class="form-horizontal">
+                            <form>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Usuario</label>
+                                    <div class="col-md-6">
+                                        <input id="Username" type="text" name="Username" class="form-control" placeholder="Usuario">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Contraseña</label>
+                                    <div class="col-md-6">
+                                        <input name="txtPassword" class="form-control" type="text" placeholder="Contraseña" />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal" onclick="otros();" id="Autorizar">Autorizar</button>
+                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="devolucionNC();">Cancelar</button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                </div>
-                <!-- footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="otros();" data-dismiss="modal">Autorizar</button>
-                        <button type="button" class="btn btn-secondary" onclick="devolucionNC();" data-dismiss="modal">Cancelar</button>
                     </div>
-
                 </div>
             </div>
         </div>
+    </div>
+</div>
     @*------------------------------------------FINAL MODAL AUTORIZAR NOTA CREDITO--------------------------------------*@
 
 
@@ -317,6 +328,8 @@
            return true;
        });
 
+
+       //--------------------------------Asterisco Rojo---------------------------------
        jQuery('input,select').each(function () {
            var req = jQuery(this).attr('data-val-required');
            if (undefined != req) {
@@ -328,7 +341,21 @@
            }
        });
 
+
+       $('#nocre_Monto').blur(function () {
+           valido = document.getElementById('smsMontoNC');
+           var montoNC = $('#nocre_Monto').val();
+           if (montoNC<=0) {
+               $('#nocre_Monto').val('').focus();
+               valido.innerText = "El valor debe ser mayor a 0.";
+           }else{
+               valido.innerText = "";
+           }
+       });
       
+
+       //--------------------mascara-----------------------------
+       
 </script>
 
 }

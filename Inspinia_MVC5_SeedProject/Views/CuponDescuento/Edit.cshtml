@@ -228,8 +228,12 @@
             if (Porcentaje >= 1) {
                 $('#cdto_PorcentajeDescuento').removeAttr("readonly").val();
                 $('#cdto_MaximoMontoDescuento').removeAttr("readonly").val();
-                $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00');
+                $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00').unbind("click");
                 $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
+                $('#cdto_MaximoMontoDescuento').focusout(function () {
+                    $('#cdto_FechaEmision').focus();
+                });
+               
 
             } else if (Porcentaje <= 0) {
                 $('#cdto_PorcentajeDescuento').val('0.00');
@@ -253,15 +257,16 @@
         });
 
         $('#cdto_MontoDescuento').blur(function () {
-            valido1 = document.getElementById('msjMonto');
-            var monto = $('#cdto_MontoDescuento').val();
-            console.log(monto)
-            if (parseFloat(monto) <= 0 || $('#cdto_MontoDescuento').val() == "") {
-                $('#cdto_MontoDescuento').val('').focus();
-                valido1.innerText = "El valor debe ser Mayor a 0.";
-            } else
-                valido1.innerText = "";
-        });
+                valido1 = document.getElementById('msjMonto');
+                var monto = $('#cdto_MontoDescuento').val();
+                console.log(monto)
+                if (parseFloat(monto) <= 0 || $('#cdto_MontoDescuento').val() == "") {
+                    $('#cdto_MontoDescuento').val('').focus();
+                    valido1.innerText = "El valor debe ser Mayor a 0.";
+                } else
+                    valido1.innerText = "";
+            });
+        
 
         $('#cdto_CantidadCompraMinima').blur(function () {
             valido1 = document.getElementById('smsCantidadMinima1');

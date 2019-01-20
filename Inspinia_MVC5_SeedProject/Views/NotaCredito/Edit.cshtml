@@ -124,8 +124,8 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @readonly="readonly", @type = "number", @min = "0", @step = "0.01", @value = "0", maxlength = "4" } })
-                                        <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
+                                        @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @style = "text-align:right", @readonly ="readonly", @type = "number", @min = "0", @step = "0.01", @value = "0", maxlength = "4" } })
+                                        <p id="smsMontoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
                                     </div>
                                 </div>
 
@@ -188,8 +188,8 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0", maxlength = "4" } })
-                                        <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
+                                        @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @style = "text-align:right", @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0", maxlength = "4" } })
+                                        <p id="smsMontoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
                                     </div>
                                 </div>
 
@@ -335,6 +335,17 @@
         $('#ModalAgregarClientes').modal('hide');
         $("#tbCliente_clte_Nombres").val(nombreItem)
         $("#tbCliente_clte_NombreComercial").val(nombreItem);
+    });
+
+    $('#nocre_Monto').blur(function () {
+        valido = document.getElementById('smsMontoNC');
+        var montoNC = $('#nocre_Monto').val();
+        if (montoNC <= 0 || ('#nocre_Monto').val() == "") {
+            $('#nocre_Monto').val('').focus();
+            valido.innerText = "El valor debe ser mayor a 0.";
+        } else {
+            valido.innerText = "";
+        }
     });
 </script>
 

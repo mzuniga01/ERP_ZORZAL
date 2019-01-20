@@ -25,104 +25,118 @@
                 <div class="ibox-content">
 
 
-				    <dl class="dl-horizontal">
+                    <dl class="dl-horizontal">
 
 
-        <dt>
-            @Html.DisplayNameFor(model => model.suc_Id)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.suc_Id)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.nocre_Codigo)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nocre_Codigo)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nocre_Codigo)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.nocre_Codigo)
+                        </dd>
 
-        <dt>
-            Cliente
-        </dt>
-       @if (Model.tbCliente.clte_EsPersonaNatural == true)
-       {
-        <dd>
-            @Html.DisplayFor(model => model.tbCliente.clte_Nombres)
-            @Html.DisplayFor(model => model.tbCliente.clte_Apellidos)
-        </dd>
-       }
-       else
-       {
-           <dd>
-               @Html.DisplayFor(model => model.tbCliente.clte_NombreComercial)
-           </dd>
-       }
+                        <dt>
+                            Cliente
+                        </dt>
+                        @if (Model.tbCliente.clte_EsPersonaNatural == true)
+                        {
+                            <dd>
+                                @Html.DisplayFor(model => model.tbCliente.clte_Nombres)
+                                @Html.DisplayFor(model => model.tbCliente.clte_Apellidos)
+                            </dd>
+                        }
+                        else
+                        {
+                            <dd>
+                                @Html.DisplayFor(model => model.tbCliente.clte_NombreComercial)
+                            </dd>
+                        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.nocre_FechaEmision)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nocre_FechaEmision)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nocre_FechaEmision)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.nocre_Monto)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.nocre_FechaEmision)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nocre_Monto)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nocre_Monto)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.nocre_Monto)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.nocre_MotivoEmision)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nocre_MotivoEmision)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nocre_MotivoEmision)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.nocre_MotivoEmision)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)
+                        </dt>
+                        @if (Model.dev_Id == null)
+                        {
+                            <dd>
+                               ----
+                            </dd>
+                        }
+                        else
+                        {
+                            <dd>
+                                @Html.DisplayFor(model => model.tbDevolucion.dev_Id)
+                            </dd>
+                        }
+                        
 
-        <dd>
-            @Html.DisplayFor(model => model.tbDevolucion.dev_Id)
-        </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.nocre_Estado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nocre_Estado)
-        </dd>*@
-        <dt>
-            @Html.DisplayNameFor(model => model.nocre_Anulado)
-        </dt>
-        @if(Model.nocre_Anulado==true)
-        {
-            <dd>Si</dd>
-        }
-        else
-        {
-            <dd>No</dd>
-        }
-    </dl>
-@if (Model.nocre_Anulado == false)
-{
-    @Html.ActionLink("Editar", "Edit", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
-}
-else
-{
-    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
-        <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Editar</button>
-    </span>
-}
-
-	    
-
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nocre_Redimido)
+                        </dt>
+                        @if (Model.nocre_Redimido == true)
+                        {
+                            <dd>
+                                Si
+                            </dd>
+                        }
+                        else
+                        {
+                            <dd>
+                                No
+                            </dd>
+                        }
+                        <dt>
+                            @Html.DisplayNameFor(model => model.nocre_Anulado)
+                        </dt>
+                        @if (Model.nocre_Anulado == true)
+                        {
+                            <dd>Si</dd>
+                        }
+                        else
+                        {
+                            <dd>No</dd>
+                        }
+                    </dl>
+                    @if (Model.nocre_Anulado == false)
+                    {
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
+                    }
+                    else
+                    {
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
+                            <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Editar</button>
+                        </span>
+                    }
                 </div>
             </div>
             <div class="ibox-content">
@@ -152,7 +166,7 @@ else
             </div>
         </div>
     </div>
- </div>
+</div>
 <div class="modal fade" id="btnAnuladoNC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

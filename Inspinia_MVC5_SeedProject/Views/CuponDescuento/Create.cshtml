@@ -196,7 +196,7 @@
             }
                 var Porcentaje = $('#cdto_PorcentajeDescuentoH').val();
 
-                if (Porcentaje >= 1) {
+                if (Porcentaje >= 1 || Porcentaje > 100) {
                     $('#cdto_PorcentajeDescuentoH').removeAttr("readonly").val(Porcentaje + " %");
                     $('#cdto_MaximoMontoDescuentoH').removeAttr("readonly");
                     $('#cdto_MontoDescuentoH').attr('readonly', 'readonly').prop( "disabled", true ).val('0.00');
@@ -220,7 +220,7 @@
                     });
                     //---------------------FIN > 0.00-------------------------
 
-                } else if (Porcentaje <= 0) {
+                } else if ((Porcentaje <= 0) || (Porcentaje > 100)) {
                     //---------------------insertar 0.00---------------------
                     $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
                     //---------------------FIN insertar 0.00---------------------

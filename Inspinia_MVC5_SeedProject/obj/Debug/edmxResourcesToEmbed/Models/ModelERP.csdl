@@ -2343,7 +2343,7 @@
       <End Role="tbPuntoEmision" EntitySet="tbPuntoEmision" />
       <End Role="tbSucursal" EntitySet="tbSucursal" />
     </AssociationSet>
-    <FunctionImport Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result2)">
+    <FunctionImport Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito">
       <Parameter Name="IDSucursal" Mode="In" Type="Int32" />
       <Parameter Name="IDCAJA" Mode="In" Type="Int16" />
     </FunctionImport>
@@ -7121,14 +7121,6 @@
     </ReferentialConstraint>
   </Association>
   <ComplexType Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result">
-    <Property Type="String" Name="CODNOTACREDITO" Nullable="true" MaxLength="19" />
-    <Property Type="String" Name="CAI" Nullable="true" MaxLength="40" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result1">
-    <Property Type="String" Name="CODNOTACREDITO" Nullable="true" MaxLength="19" />
-    <Property Type="String" Name="CAI" Nullable="true" MaxLength="40" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result2">
     <Property Type="String" Name="CODNOTACREDITO" Nullable="true" MaxLength="19" />
     <Property Type="String" Name="CAI" Nullable="true" MaxLength="40" />
   </ComplexType>

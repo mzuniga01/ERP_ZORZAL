@@ -5129,7 +5129,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result>("SDP_Vent_tbPedidoDetalle_tbPedido_Select", ped_IdParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result2> UDP_Vent_tbNotaCredito_CodigoNotaCredito(Nullable<int> iDSucursal, Nullable<short> iDCAJA)
+        public virtual int UDP_Vent_tbNotaCredito_CodigoNotaCredito(Nullable<int> iDSucursal, Nullable<short> iDCAJA)
         {
             var iDSucursalParameter = iDSucursal.HasValue ?
                 new ObjectParameter("IDSucursal", iDSucursal) :
@@ -5139,7 +5139,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("IDCAJA", iDCAJA) :
                 new ObjectParameter("IDCAJA", typeof(short));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result2>("UDP_Vent_tbNotaCredito_CodigoNotaCredito", iDSucursalParameter, iDCAJAParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Vent_tbNotaCredito_CodigoNotaCredito", iDSucursalParameter, iDCAJAParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result> UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente(Nullable<int> iDSUCURSAL, string cODIGOBARRAS, Nullable<int> iDCLIENTE)

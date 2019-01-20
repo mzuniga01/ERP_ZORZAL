@@ -2218,14 +2218,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_CodigoNotaCredito" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_CodigoNotaCredito">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result2">
-          <ScalarProperty Name="CODNOTACREDITO" ColumnName="CODNOTACREDITO" />
-          <ScalarProperty Name="CAI" ColumnName="CAI" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_CodigoNotaCredito" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_CodigoNotaCredito" />
     <EntitySetMapping Name="tbSalidaDetalle">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSalidaDetalle">
         <MappingFragment StoreEntitySet="tbSalidaDetalle">
