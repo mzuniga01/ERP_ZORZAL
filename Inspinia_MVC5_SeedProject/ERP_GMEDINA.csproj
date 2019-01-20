@@ -738,6 +738,9 @@
     <Compile Include="Models\UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbFactura_GetDetalle_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbFactura_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1178,6 +1181,7 @@
     <Content Include="Scripts\app\FacturaPagar.js" />
     <Content Include="Scripts\app\fechaExoneracion.js" />
     <Content Include="Scripts\app\FuncionResta.js" />
+    <Content Include="Scripts\app\GetDetalleFactura.js" />
     <Content Include="Scripts\app\GetNumeroFact.js" />
     <Content Include="Scripts\app\Identificacion.js" />
     <Content Include="Scripts\app\InActivarCliente.js" />

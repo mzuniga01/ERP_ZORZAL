@@ -108,8 +108,6 @@ namespace ERP_GMEDINA.Controllers
                                     listSolicitudEfectivo = db.UDP_Vent_tbSolicitudEfectivo_Apertura_Insert(
                                             efectivo.mocja_Id,
                                             efectivo.solef_EsApertura,
-                                            efectivo.solef_FechaEntrega,
-                                            efectivo.solef_UsuarioEntrega,
                                             efectivo.mnda_Id,
                                             efectivo.solef_EsAnulada
                                             );

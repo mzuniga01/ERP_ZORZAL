@@ -303,7 +303,7 @@
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-@*<script src="~/Scripts/app/FacturaDetalle.js"></script>*@
+<script src="~/Scripts/app/FacturaDetalle.js"></script>
 <script src="~/Scripts/app/ProductoFactura.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Credito.js"></script>
@@ -380,6 +380,7 @@
                                 $('#tbProducto_prod_Descripcion').val(data_descripcion);
                                 $('#factd_Impuesto').val(data_impuesto);
                                 $('#factd_PrecioUnitario').val(data_precio);
+                                $('#factd_Cantidad').val(1);
 
                                 var Cantidad= 1,
                                     Precio = $("#factd_PrecioUnitario").val(),

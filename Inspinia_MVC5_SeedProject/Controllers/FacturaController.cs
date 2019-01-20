@@ -579,7 +579,7 @@ namespace ERP_GMEDINA.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Edit","Factura");
+                    return RedirectToAction("Index","Factura");
                 }
             }
             catch (Exception Ex)
@@ -638,6 +638,14 @@ namespace ERP_GMEDINA.Controllers
             var list = db.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente(IDSucursal, CodBarra, IDCliente).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult GetFacturaDetalle(long factID)
+        {
+            var list = db.UDP_Vent_tbFactura_GetDetalle(factID).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
 
         [HttpPost]
         public JsonResult GetDetallePedido(int CodPedido)
