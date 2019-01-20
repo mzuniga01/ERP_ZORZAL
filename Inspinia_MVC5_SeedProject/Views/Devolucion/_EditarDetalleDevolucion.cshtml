@@ -64,7 +64,7 @@
             </div>
 
             @Html.LabelFor(model => model.devd_CantidadProducto, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <input type="text" id="devd_CantidadProducto" name="devd_CantidadProducto" class="form-control col-md-2" Value="" onKeyPress="return soloNumeros(event)" autocomplete="off" />
                 <p id="smsCantidad" style="color:red">@Html.ValidationMessageFor(model => model.devd_CantidadProducto)</p>
                  @*@Html.EditorFor(model => model.devd_CantidadProducto, new { @class = "control-label col-md-2" @onKeyPre="return soloNumeros(event)", @autocomplete = "off" })*@ 
@@ -79,7 +79,7 @@
        
 
             <label class="control-label col-md-2">Sub-Total</label>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <input type="text" value="" class="form-control " id="Subtotal" readonly />
             </div>
         </div>
@@ -92,7 +92,7 @@
             </div>
 
             <label class="control-label col-md-2">Monto Impuesto</label>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <input type="text" value="" class="form-control " id="ValorImpuesto" readonly />
             </div>
         </div>
@@ -103,7 +103,7 @@
                 <input type="text" value="" class="form-control " id="Descuento" readonly />
             </div>
             <label class="control-label col-md-2">Monto Descuento</label>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <input type="text" value="" class="form-control " id="MontoDescuento" readonly />
             </div>
         </div>

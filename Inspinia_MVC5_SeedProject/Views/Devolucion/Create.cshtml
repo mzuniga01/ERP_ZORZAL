@@ -52,6 +52,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">¿Es Consumidor Final?</label>
+                                <div class="col-md-4">
+                                    <input id="consumidorFinal" type="checkbox" class="check-box" />
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbFactura.clte_Identificacion, "RTN Cliente", new { @class = "control-label col-md-2" })
@@ -62,7 +68,7 @@
                                 </div>
 
                                 <div class="col-md-1">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
+                                    <button type="button" id="btnCliente" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
 
 

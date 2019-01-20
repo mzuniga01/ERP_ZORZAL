@@ -13,7 +13,10 @@
     .done(function (data) {
         console.log('anularEntra')
         if (data.length > 0) {
-            alert("Registro No Actualizado");
+            var url = $("#Redireccionar").val();
+            console.log(url)
+            location.href = url;
+            //alert("Registro No Anulado");
         }
         else {
             console.log('Redireccionar1')

@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     console.log('devd_CantidadProducto');
     $("#devd_CantidadProducto,#PrecioUnitario").keyup(function (e) {
-
+        console.log("sii",'devd_CantidadProducto');
         var Cantidad = $("#devd_CantidadProducto").val(),
             Precio = $("#PrecioUnitario").val(),
             porcentajeDesc = $("#Descuento").val(),
@@ -12,6 +12,7 @@
             MontoTotal = "";
             ValorImpuesto = "";
             ValorDescuento = "";
+            console.log("sii22", Precio);
             Impuesto1 = (parseFloat(Impuesto)/ 100)
             porcentajeDesc1 = (parseFloat(porcentajeDesc) / 100)
             if (Cantidad.length && Precio.length > 0) {

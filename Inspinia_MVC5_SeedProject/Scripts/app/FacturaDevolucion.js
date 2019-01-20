@@ -26,7 +26,7 @@ $(document).on("click", "#DevFactura tbody tr td button#AgregarFactura", functio
     console.log('facturaid1', idFactitem)
     $('#ModalAgregarFactura').modal('hide');
     $(document).ready(function () {
-        if (descItem != '') {
+        if (idItem != '') {
             document.getElementById("btnProducto").disabled = false;
             document.getElementById("prod_Codigo").disabled = false;
             GetIDFactura(idFactitem);
@@ -77,6 +77,30 @@ function GetIDFactura(FacturaID, idFactitem) {
                         validacion.innerText = "";
                     }
                 });
+
+                $("#prod_Codigo").blur(function (data) {
+                    var cod = document.getElementById("id");
+                    validacion = document.getElementById('smsProducto');
+                    var CodProductoIngresado = $('#prod_Codigo').val();
+                    if (CodProductoIngresado != val.CodigoProducto) {
+                        validacion.innerText = "Codigo de Producto Incorrecto";
+                    }
+                    else {
+                        console.log("else")
+                        validacion.innerText = "";
+                        data_Codproducto = val.CodigoProducto;
+                        data_Descripcion = val.Descripcion;
+                        data_CatFacturada = val.CantidadFacturada;
+                        data_PorcentajeDesc = val.PorcentajeDesc;
+                        data_PUnitario = val.PrecioUnitario;
+                        console.log(data_Codproducto)
+                        $('#prod_Codigo').val(data_producto);
+                        $('#pcat_Id').val(data_categoria);
+                        $('#pscat_Id').val(data_subcate);
+                        $('#uni_Id').val(data_unidad);
+                        $('#prod_Descripcion').val(data_pDescripcion)
+                        }
+                });
             });
 
             console.log(list);
@@ -85,6 +109,7 @@ function GetIDFactura(FacturaID, idFactitem) {
     });
 
 }
+
 
 //Validacion de cantidad de producto devuelto
 $("#devd_CantidadProducto").blur(function () {

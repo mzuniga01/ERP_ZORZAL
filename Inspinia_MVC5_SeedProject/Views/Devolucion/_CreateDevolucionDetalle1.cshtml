@@ -20,7 +20,7 @@
                 </div>
                 @Html.LabelFor(model => model.devd_Descripcion, "Descripción", new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
-                    @Html.EditorFor(model => model.devd_Descripcion, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+                    @Html.EditorFor(model => model.devd_Descripcion, new { htmlAttributes = new { @*@readonly = "readonly",*@ @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.devd_Descripcion)
                 </div>
 
@@ -34,7 +34,8 @@
                 </div>
                 @Html.LabelFor(model => model.devd_CantidadProducto, "Cantidad Devolución", new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
-                    @Html.EditorFor(model => model.devd_CantidadProducto)
+                    <input type="text" value="" id="CantidadDevolucion" class="form-control " />
+                    @*@Html.EditorFor(model => model.devd_CantidadProducto)*@
                     @Html.ValidationMessageFor(model => model.devd_CantidadProducto)
                 </div>
 
@@ -43,13 +44,13 @@
 
                 <label class="control-label col-md-2">Valor Unitario</label>
                 <div class="col-md-3">
-                    <input type="text" value="" class="form-control " readonly/>
+                    <input type="text" value="" id="PrecioUnitario" class="form-control " />
                 </div>
 
 
                 <label class="control-label col-md-2">Sub-Total</label>
                 <div class="col-md-3">
-                    <input type="text" value="" class="form-control " id="Subtotal" readonly />
+                    <input type="text" value="" class="form-control " id="Subtotal"  />
                 </div>
             </div>
 
@@ -58,30 +59,30 @@
 
                 <label class="control-label col-md-2">% Impuesto</label>
                 <div class="col-md-3">
-                    <input type="text" value="" class="form-control " id="Impuesto" readonly />
+                    <input type="text" value="" class="form-control " id="Impuesto"  />
                 </div>
 
                 <label class="control-label col-md-2">Monto Impuesto</label>
                 <div class="col-md-3">
-                    <input type="text" value="" class="form-control " id="ValorImpuesto" readonly />
+                    <input type="text" value="" class="form-control " id="ValorImpuesto"  />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-md-2">% Descuento</label>
                 <div class="col-md-3">
-                    <input type="text" value="" class="form-control " id="Descuento" readonly />
+                    <input type="text" value="" class="form-control " id="Descuento"  />
                 </div>
                 <label class="control-label col-md-2">Monto Descuento</label>
                 <div class="col-md-3">
-                    <input type="text" value="" class="form-control " id="MontoDescuento" readonly />
+                    <input type="text" value="" class="form-control " id="MontoDescuento"  />
                 </div>
             </div>
             <div class="form-group">
 
                 @Html.LabelFor(model => model.devd_Monto, "Monto Total", new { @class = "control-label   col-md-2" })
                 <div class="col-md-offset col-md-3">
-                    @Html.EditorFor(model => model.devd_Monto, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+                    @Html.EditorFor(model => model.devd_Monto, new { htmlAttributes = new { @*@readonly = "readonly",*@ @class = "form-control" } })
                     <div id="validationProductoDevolucionCreate">
                         @Html.ValidationMessageFor(model => model.devd_Monto)
                     </div>
@@ -131,3 +132,7 @@
         @Html.ActionLink("Cancelar", "Edit", null, new { @class = "btn btn-white" })
     </div>
 </div>
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DevolucionEditar_Calculo.js"></script>

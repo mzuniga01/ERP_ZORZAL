@@ -123,7 +123,7 @@
 
                         @Html.Partial("_IndexDetalleDevolucion", Model.tbDevolucionDetalle)
 
-                        @*@Html.Hidden("Redireccionar", Url.Action("Index", "Devolucion"))*@
+                        @Html.Hidden("Redireccionar", Url.Action("Index", "Devolucion"))
 
                         @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion", new { id = Model.dev_Id }))
 
