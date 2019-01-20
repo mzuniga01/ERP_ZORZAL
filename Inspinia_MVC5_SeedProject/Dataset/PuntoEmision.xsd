@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PuntoEmision" targetNamespace="http://tempuri.org/PuntoEmision.xsd" xmlns:mstns="http://tempuri.org/PuntoEmision.xsd" xmlns="http://tempuri.org/PuntoEmision.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ERP_GMEDINAConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_GMEDINAConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ERP_GMEDINAConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_GMEDINAConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        PED.pemid_Id, E.pemi_NumeroCAI, DF.dfisc_Descripcion, PED.pemid_RangoInicio, PED.pemid_RangoFinal, PED.pemid_FechaLimite, UC.usu_Nombres + ' ' + UC.usu_Apellidos AS UsuarioCrea, 
+                         PED.pemid_FechaCrea, UM.usu_Nombres + ' ' + UM.usu_Apellidos AS UsuarioModifica, PED.pemid_FechaModifica
+FROM            Vent.tbPuntoEmisionDetalle AS PED INNER JOIN
+                         Vent.tbDocumentoFiscal AS DF ON PED.dfisc_Id = DF.dfisc_Id INNER JOIN
+                         Vent.tbPuntoEmision AS E ON PED.pemi_Id = E.pemi_Id LEFT OUTER JOIN
+                         Acce.tbUsuario AS UC ON PED.pemid_UsuarioCrea = UC.usu_Id LEFT OUTER JOIN
+                         Acce.tbUsuario AS UM ON PED.pemid_UsuarioModifica = UM.usu_Id</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="pemid_Id" DataSetColumn="pemid_Id" />
+              <Mapping SourceColumn="pemi_NumeroCAI" DataSetColumn="pemi_NumeroCAI" />
+              <Mapping SourceColumn="dfisc_Descripcion" DataSetColumn="dfisc_Descripcion" />
+              <Mapping SourceColumn="pemid_RangoInicio" DataSetColumn="pemid_RangoInicio" />
+              <Mapping SourceColumn="pemid_RangoFinal" DataSetColumn="pemid_RangoFinal" />
+              <Mapping SourceColumn="pemid_FechaLimite" DataSetColumn="pemid_FechaLimite" />
+              <Mapping SourceColumn="UsuarioCrea" DataSetColumn="UsuarioCrea" />
+              <Mapping SourceColumn="pemid_FechaCrea" DataSetColumn="pemid_FechaCrea" />
+              <Mapping SourceColumn="UsuarioModifica" DataSetColumn="UsuarioModifica" />
+              <Mapping SourceColumn="pemid_FechaModifica" DataSetColumn="pemid_FechaModifica" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PuntoEmision" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PuntoEmision" msprop:Generator_UserDSName="PuntoEmision">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pemid_Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnpemid_Id" msprop:Generator_ColumnPropNameInRow="pemid_Id" msprop:Generator_ColumnPropNameInTable="pemid_IdColumn" msprop:Generator_UserColumnName="pemid_Id" type="xs:int" />
+              <xs:element name="pemi_NumeroCAI" msprop:Generator_ColumnVarNameInTable="columnpemi_NumeroCAI" msprop:Generator_ColumnPropNameInRow="pemi_NumeroCAI" msprop:Generator_ColumnPropNameInTable="pemi_NumeroCAIColumn" msprop:Generator_UserColumnName="pemi_NumeroCAI">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dfisc_Descripcion" msprop:Generator_ColumnVarNameInTable="columndfisc_Descripcion" msprop:Generator_ColumnPropNameInRow="dfisc_Descripcion" msprop:Generator_ColumnPropNameInTable="dfisc_DescripcionColumn" msprop:Generator_UserColumnName="dfisc_Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pemid_RangoInicio" msprop:Generator_ColumnVarNameInTable="columnpemid_RangoInicio" msprop:Generator_ColumnPropNameInRow="pemid_RangoInicio" msprop:Generator_ColumnPropNameInTable="pemid_RangoInicioColumn" msprop:Generator_UserColumnName="pemid_RangoInicio">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pemid_RangoFinal" msprop:Generator_ColumnVarNameInTable="columnpemid_RangoFinal" msprop:Generator_ColumnPropNameInRow="pemid_RangoFinal" msprop:Generator_ColumnPropNameInTable="pemid_RangoFinalColumn" msprop:Generator_UserColumnName="pemid_RangoFinal">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pemid_FechaLimite" msprop:Generator_ColumnVarNameInTable="columnpemid_FechaLimite" msprop:Generator_ColumnPropNameInRow="pemid_FechaLimite" msprop:Generator_ColumnPropNameInTable="pemid_FechaLimiteColumn" msprop:Generator_UserColumnName="pemid_FechaLimite" type="xs:dateTime" />
+              <xs:element name="UsuarioCrea" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnUsuarioCrea" msprop:Generator_ColumnPropNameInRow="UsuarioCrea" msprop:Generator_ColumnPropNameInTable="UsuarioCreaColumn" msprop:Generator_UserColumnName="UsuarioCrea" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="301" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pemid_FechaCrea" msprop:Generator_ColumnVarNameInTable="columnpemid_FechaCrea" msprop:Generator_ColumnPropNameInRow="pemid_FechaCrea" msprop:Generator_ColumnPropNameInTable="pemid_FechaCreaColumn" msprop:Generator_UserColumnName="pemid_FechaCrea" type="xs:dateTime" />
+              <xs:element name="UsuarioModifica" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnUsuarioModifica" msprop:Generator_ColumnPropNameInRow="UsuarioModifica" msprop:Generator_ColumnPropNameInTable="UsuarioModificaColumn" msprop:Generator_UserColumnName="UsuarioModifica" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="301" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pemid_FechaModifica" msprop:Generator_ColumnVarNameInTable="columnpemid_FechaModifica" msprop:Generator_ColumnPropNameInRow="pemid_FechaModifica" msprop:Generator_ColumnPropNameInTable="pemid_FechaModificaColumn" msprop:Generator_UserColumnName="pemid_FechaModifica" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTable1" />
+      <xs:field xpath="mstns:pemid_Id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -9,7 +9,7 @@
               <Width>1.94437cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>3.74354cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -338,7 +338,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -378,21 +377,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="pemi_Id">
+                    <Textbox Name="pemi_NumeroCAI">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!pemi_Id.Value</Value>
+                              <Value>=Fields!pemi_NumeroCAI.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>pemi_Id</rd:DefaultName>
+                      <rd:DefaultName>pemi_NumeroCAI</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -678,7 +677,7 @@
         <Top>0.96063cm</Top>
         <Left>0.84891cm</Left>
         <Height>1.2cm</Height>
-        <Width>25.05292cm</Width>
+        <Width>26.29645cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -689,7 +688,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>10.36424in</Width>
+  <Width>10.68715in</Width>
   <Page>
     <PageHeader>
       <Height>2.76682cm</Height>
@@ -790,9 +789,9 @@
           <DataField>pemid_Id</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="pemi_Id">
-          <DataField>pemi_Id</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="pemi_NumeroCAI">
+          <DataField>pemi_NumeroCAI</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="dfisc_Descripcion">
           <DataField>dfisc_Descripcion</DataField>
@@ -828,8 +827,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>PuntoEmisionDetalle</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Cs\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\PuntoEmisionDetalle.xsd</rd:SchemaPath>
+        <rd:DataSetName>PuntoEmision</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\Cs\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\Dataset\PuntoEmision.xsd</rd:SchemaPath>
         <rd:TableName>DataTable1</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

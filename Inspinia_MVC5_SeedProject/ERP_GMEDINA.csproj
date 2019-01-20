@@ -118,6 +118,7 @@
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
       <Private>True</Private>
@@ -233,6 +234,11 @@
     <Compile Include="Controllers\SucursalController.cs" />
     <Compile Include="Controllers\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\TipoPagoController.cs" />
+    <Compile Include="Dataset\PuntoEmision.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PuntoEmision.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -887,12 +893,13 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PuntoEmisionDetalle.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PuntoEmisionDetalle.xsd</DependentUpon>
+    <Compile Include="ReportViewer\PuntoEmision.aspx.cs">
+      <DependentUpon>PuntoEmision.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="ReportViewer\PuntoEmision.aspx.designer.cs">
+      <DependentUpon>PuntoEmision.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1131,6 +1138,7 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
       <LastGenOutput>ModelERP.cs</LastGenOutput>
     </Content>
+    <Content Include="ReportViewer\PuntoEmision.aspx" />
     <Content Include="Scripts\app\AceptarSolicitudCre.js" />
     <Content Include="Scripts\app\Activo.js" />
     <Content Include="Scripts\app\ActivoExoneracion.js" />
@@ -1253,6 +1261,17 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Dataset\PuntoEmision.xsc">
+      <DependentUpon>PuntoEmision.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\PuntoEmision.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PuntoEmision.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\PuntoEmision.xss">
+      <DependentUpon>PuntoEmision.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\HostDemo.pubxml" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -1331,17 +1350,6 @@
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
-    <Content Include="PuntoEmisionDetalle.xsc">
-      <DependentUpon>PuntoEmisionDetalle.xsd</DependentUpon>
-    </Content>
-    <None Include="PuntoEmisionDetalle.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>PuntoEmisionDetalle.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="PuntoEmisionDetalle.xss">
-      <DependentUpon>PuntoEmisionDetalle.xsd</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1357,11 +1365,6 @@
     <Content Include="Scripts\plugins\metisMenu\metisMenu.min.js" />
     <Content Include="Scripts\plugins\pace\pace.min.js" />
     <Content Include="Scripts\plugins\slimscroll\jquery.slimscroll.min.js" />
-    <Content Include="SqlServerTypes\readme.htm" />
-    <Content Include="SqlServerTypes\x64\msvcr120.dll" />
-    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll" />
-    <Content Include="SqlServerTypes\x86\msvcr120.dll" />
-    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
