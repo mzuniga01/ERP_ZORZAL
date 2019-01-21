@@ -1,5 +1,8 @@
 ﻿
+$(document).ready(function () {
+    $("#pago_TotalPago")[0].maxLength = 12;
 
+})
 
 $(function () {
 
@@ -15,11 +18,38 @@ $(function () {
 
         result = 0.00;
 
-        if (totalpagar != '' && totalpagar > 0 && totalpagar >= saldoAnterior && pagado >= montofactura) {
+        if (totalpagar == '') {
+            alert('Monto Incorrecto2');
+            $("#pago_SaldoAnterior").val(saldoAnterior);
+            if (isNaN($("#TotalPagado").val(pagado))) {
+                $("#TotalPagado").val(0.00);
+            }
+            else if ($("#TotalPagado").val(pagado) > 0) {
+                $("#TotalPagado").val(parseFloat(pagado) - parseFloat(pagoActual));
+            }
+        }
+       else if (totalpagar < 0) {
+           alert('Monto menor a cero');
+           $("#pago_TotalPago").val('');
+            $("#pago_SaldoAnterior").val(saldoAnterior);
+            if (isNaN($("#TotalPagado").val(pagado))) {
+                $("#TotalPagado").val(0.00);
+            }
+            else if ($("#TotalPagado").val(pagado) > 0) {
+                $("#TotalPagado").val(parseFloat(pagado) - parseFloat(pagoActual));
+            }
+        }
+      
+
+        else if ( totalpagar > saldoAnterior && pagado > montofactura) {
            
            
             alert('Monto Incorrecto');
+            $("#pago_SaldoAnterior").val(saldoAnterior);
+            $("#TotalPagado").val(pagado - pagoActual);
+
         }
+   
 
        
 
@@ -27,11 +57,11 @@ $(function () {
             var saldoActualizado = (parseFloat(saldoAnterior) - parseFloat(totalpagar));
             var pagoActual = (parseFloat(pagado) + parseFloat(totalpagar));
             $("#pago_SaldoAnterior").val(saldoActualizado);
-            $("#TotalPagado").val(pagoActual);
-           
-          
-            
+            $("#TotalPagado").val(pagoActual);     
         }
+       
+     
+    
    
     });
 });

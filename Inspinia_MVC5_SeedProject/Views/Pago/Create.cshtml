@@ -44,7 +44,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.pago_FechaElaboracion, new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
-                    @Html.EditorFor(model => model.pago_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaPago", @readonly = "readonly" } })
+                    @Html.EditorFor(model => model.pago_FechaElaboracion, "{0:yyyy-MM-dd H:mm:ss tt}", new { htmlAttributes = new { @class = "form-control", @id = "FechaPago", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.pago_FechaElaboracion, "", new { @style = "color:red" })
                 </div>
             </div>

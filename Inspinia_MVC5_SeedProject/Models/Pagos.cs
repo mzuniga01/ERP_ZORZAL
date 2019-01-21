@@ -28,7 +28,7 @@ namespace ERP_GMEDINA.Models
         public short tpa_Id { get; set; }
 
         [Display(Name = "Fecha ")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public System.DateTime pago_FechaElaboracion { get; set; }
 
@@ -36,7 +36,7 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal pago_SaldoAnterior { get; set; }
 
-        [Display(Name = "Total Pago")]
+        [Display(Name = "Monto Pago")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal pago_TotalPago { get; set; }
 
@@ -59,14 +59,14 @@ namespace ERP_GMEDINA.Models
         public int pago_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Crea")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime pago_FechaCrea { get; set; }
 
         [Display(Name = "Usuario Modifica")]
         public Nullable<int> pago_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modifica")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> pago_FechaModifica { get; set; }
 
 

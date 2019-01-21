@@ -83,7 +83,7 @@ $(document).on("click", "#V_FacturaPago tbody tr td button#seleccionar", functio
     $("#MontoFactura").val(montoItem);
     $("#TotalPagado").val(pagoItem);
     $("#pago_SaldoAnterior").val(saldoItem);
-    $("#pago_TotalPago").val(saldoItem);
+    $("#SaldoAnterior").val(saldoItem);
     $('#ModalAgregaFacturaPago').modal('hide');
 
 });
@@ -103,7 +103,7 @@ $(document).ready(function () {
         $("#MontoFactura").val(montoItem);
         $("#TotalPagado").val(pagoItem);
        $("#pago_SaldoAnterior").val(saldoItem);
-        $("#pago_TotalPago").val(saldoItem);
+       $("#SaldoAnterior").val(saldoItem);
         $('#ModalAgregarCliente').modal('hide');
     });
 });

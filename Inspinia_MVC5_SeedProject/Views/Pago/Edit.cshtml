@@ -55,7 +55,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.pago_FechaElaboracion, new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
-                    @Html.EditorFor(model => model.pago_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "FechaPago" } })
+                    @Html.EditorFor(model => model.pago_FechaElaboracion, "{0:yyyy-MM-dd H:mm:ss tt}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "FechaPago" } })
                     @Html.ValidationMessageFor(model => model.pago_FechaElaboracion)
                 </div>
             </div>
@@ -234,23 +234,24 @@
 
         $("#pago_TotalPago").change(function (e) {
             var totalpagar = $("#pago_TotalPago").val();
-  
+
             var saldoActual = $("#pago_SaldoAnterior").val();
-   
+
 
             result = 0.00;
 
-            if (totalpagar != '' && totalpagar > 0 && totalpagar >= saldoActual) {
+            if (totalpagar == '' || totalpagar < 0 || totalpagar >= saldoActual) {
 
 
                 alert('Monto Incorrecto');
+                $("#pago_SaldoAnterior").val(parseFloat(saldoActual) + parseFloat(totalpagar));
             }
 
 
 
             else {
                 var saldoActualizado = (parseFloat(saldoActual) - parseFloat(totalpagar));
-                var pagoActual =  parseFloat(totalpagar);
+                var pagoActual = parseFloat(totalpagar);
                 $("#pago_SaldoAnterior").val(saldoActualizado);
                 $("#TotalPagado").val(pagoActual);
 
