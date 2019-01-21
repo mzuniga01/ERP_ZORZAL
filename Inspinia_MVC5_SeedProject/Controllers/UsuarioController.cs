@@ -39,7 +39,7 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("Usuario/Index"))
+                if (Function.GetUserRols("Usuario/ModificarPass"))
                 {
                     if (id == null)
                     {
@@ -70,7 +70,7 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("Usuario/Index"))
+                if (Function.GetUserRols("Usuario/ModificarPass"))
                 {
                     if (ModelState.IsValid)
                     {
@@ -119,7 +119,7 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("Usuario/Index"))
+                if (Function.GetUserRols("Usuario/Details"))
                 {
                     if (id == null)
                     {
@@ -146,7 +146,7 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("Usuario/Index"))
+                if (Function.GetUserRols("Usuario/Create"))
                 {
                     Session["tbRolesUsuario"] = null;
                     ViewBag.Empleado = db.SDP_tbEmpleado_Select().ToList();
@@ -171,7 +171,7 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("Usuario/Index"))
+                if (Function.GetUserRols("Usuario/Create"))
                 {
                     IEnumerable<object> List = null;
                     IEnumerable<object> Roles = null;
@@ -235,7 +235,7 @@ namespace ERP_GMEDINA.Controllers
                     {
                         ModelState.AddModelError("ConfirmarPassword", "El campo Password es requerido");
                         ModelState.AddModelError("usu_Password", "El campo Password es requerido");
-                        ViewBag.Empleado = db.tbEmpleado.ToList();
+                        ViewBag.Empleado = db.SDP_tbEmpleado_Select().ToList();
                         ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
                     }
                     return View(tbUsuario);
@@ -253,7 +253,7 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("Usuario/Index"))
+                if (Function.GetUserRols("Usuario/ModificarCuenta"))
                 {
                     if (id == null)
                     {
@@ -283,7 +283,7 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("Usuario/Index"))
+                if (Function.GetUserRols("Usuario/ModificarCuenta"))
                 {
                     if (ModelState.IsValid)
                     {
@@ -333,7 +333,7 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("Usuario/Index"))
+                if (Function.GetUserRols("Usuario/Edit"))
                 {
                     if (id == null)
                     {
@@ -369,7 +369,7 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("Usuario/Index"))
+                if (Function.GetUserRols("Usuario/Edit"))
                 {
                     if (ModelState.IsValid)
                     {
@@ -422,7 +422,7 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("Usuario/Index"))
+                if (Function.GetUserRols("Usuario/RestaurarPassword"))
                 {
                     if (ModelState.IsValidField("usuario"))
                     {
