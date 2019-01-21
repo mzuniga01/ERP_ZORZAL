@@ -19,10 +19,12 @@ $(document).ready(function () {
 
 // Factura Seleccionar Producto
 $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", function () {
+    idbarraItem = $(this).closest('tr').data('idbarra');
     idbarraItem = $(this).closest('tr').data('barra');
     idItem = $(this).closest('tr').data('id');
     DescItem = $(this).closest('tr').data('desc');
     ISVItem = $(this).closest('tr').data('isv');
+
     $("#prod_CodigoBarras").val(idbarraItem);
     $("#prod_Codigo").val(idItem);
     $("#tbProducto_prod_CodigoBarras").val(idCbItem);
@@ -36,31 +38,33 @@ $(document).ready(function () {
     var table = $('#tbProductoFactura').DataTable();
 
     $('#tbProductoFactura tbody').on('click', 'tr', function () {
+        idCbItem = $(this).closest('tr').data('idbarra');
         idbarraItem = $(this).closest('tr').data('barra');
         idItem = $(this).closest('tr').data('id');
         DescItem = $(this).closest('tr').data('desc');
         ISVItem = $(this).closest('tr').data('isv');
         $("#prod_CodigoBarras").val(idbarraItem);
         $("#prod_Codigo").val(idItem);
+        $("#tbProducto_prod_CodigoBarras").val(idCbItem);
         $("#tbProducto_prod_Descripcion").val(DescItem);
         $("#factd_Impuesto").val(ISVItem);
         $('#ModalAgregarProducto').modal('hide');
         var Cliente = $('#IDCliente').val();
         if (Cliente == '') {
             Cliente = 0;
-            GetPrecio(Cliente,idItem);
+            GetPrecio(Cliente, idItem);
         }
         else {
             GetPrecio(Cliente, idItem);
         }
-       
+
         function GetPrecio(Cliente, idItem) {
             $.ajax({
                 url: "/Factura/GetPrecio",
                 method: "POST",
                 dataType: 'json',
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ Cliente: Cliente,idItem:idItem }),
+                data: JSON.stringify({ Cliente: Cliente, idItem: idItem }),
             })
             .done(function (data) {
                 var g = data;
@@ -79,6 +83,3 @@ $(document).on("click", "#DataTable1 tbody tr td button#Agregar", function () {
     $('#ModalBuscarProducto').modal('hide');
     //CargarAsignaciones();
 });
-
-
-
