@@ -74,14 +74,15 @@ namespace ERP_GMEDINA.Controllers
 
             var _EncargadoBodega = db.tbEmpleado.Select(s => new
             {
+                emp_Id = s.emp_Id,
                 emp_Nombres = s.emp_Nombres,
                 emp_Apellidos = string.Concat(s.emp_Nombres + " " + s.emp_Apellidos)
             }).ToList();
 
             ViewBag.DepartamentoList = new SelectList(_departamentos, "dep_Codigo", "dep_Nombre", "Seleccione");
             ViewBag.MunicipioList = new SelectList(_Municipios, "mun_Codigo", "mun_Nombre" , "Seleccione");
-            ViewBag.ResponsableBodegaList = new SelectList(db.tbEmpleado, "emp_Id", "emp_Nombres");
-            //ViewBag.ResponsableBodegaList = new SelectList(_EncargadoBodega, "emp_Nombres", "emp_Apellidos"/*, "emp_Apellidos"*//*, "Seleccione"*/);
+            ViewBag.ResponsableBodegaList = new SelectList(_EncargadoBodega, "emp_Id", "emp_Apellidos");
+            //ViewBag.ResponsableBodegaList = new SelectList(_EncargadoBodega, "emp_Id", "emp_Apellidos"/*, "emp_Apellidos"*//*, "Seleccione"*/);
             ////
             ///
         }

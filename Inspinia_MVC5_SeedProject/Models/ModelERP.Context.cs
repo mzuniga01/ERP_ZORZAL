@@ -2250,5 +2250,14 @@ namespace ERP_GMEDINA.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbEmpleado_Select_Result>("SDP_tbEmpleado_Select");
         }
+    
+        public virtual ObjectResult<UDP_Inv_tbProductoSubCategoria_Delete_test_Result> UDP_Inv_tbProductoSubCategoria_Delete_test(Nullable<int> pscat_Id)
+        {
+            var pscat_IdParameter = pscat_Id.HasValue ?
+                new ObjectParameter("pscat_Id", pscat_Id) :
+                new ObjectParameter("pscat_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoSubCategoria_Delete_test_Result>("UDP_Inv_tbProductoSubCategoria_Delete_test", pscat_IdParameter);
+        }
     }
 }

@@ -312,6 +312,7 @@ namespace ERP_ZORZAL.Controllers
 
         }
 
+        //funciona 
         public ActionResult EliminarProductoCategoria(int? id)
          {
             
@@ -351,6 +352,42 @@ namespace ERP_ZORZAL.Controllers
           
         }
 
+        public ActionResult DeteleSub(int? id)
+        {
+
+            try
+            {
+                tbProductoSubcategoria obj = db.tbProductoSubcategoria.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Inv_tbProductoSubCategoria_Delete_test(id);
+                foreach (UDP_Inv_tbProductoSubCategoria_Delete_test_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError.StartsWith("-2 The DELETE statement conflicted with the REFERENCE constraint"))
+                {
+                    TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia.";
+                    ViewBag.smserror = TempData["smserror"];
+
+                    ModelState.AddModelError("", "No se puede borrar el registro");
+                    return RedirectToAction("Index");
+                }
+
+                else
+                {
+                    ViewBag.smserror = "";
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se puede borrar el registro");
+                return RedirectToAction("Index");
+            }
+
+        }
+
 
         public ActionResult EliminarProductoSubCategoria(int? id)
         {
@@ -384,6 +421,14 @@ namespace ERP_ZORZAL.Controllers
             //return RedirectToAction("Index");
 
         }
+
+
+       
+
+
+
+
+
 
 
 

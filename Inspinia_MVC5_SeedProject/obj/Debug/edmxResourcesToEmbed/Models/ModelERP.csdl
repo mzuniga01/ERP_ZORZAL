@@ -1555,6 +1555,9 @@
       <Parameter Name="emp_Id" Mode="In" Type="Int16" />
     </FunctionImport>
     <FunctionImport Name="SDP_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Select_Result)" />
+    <FunctionImport Name="UDP_Inv_tbProductoSubCategoria_Delete_test" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Delete_test_Result)">
+      <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -6069,5 +6072,8 @@
     <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
     <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
     <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbProductoSubCategoria_Delete_test_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
   </ComplexType>
 </Schema>
