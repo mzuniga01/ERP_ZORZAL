@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
-    var Estado = $('#fact_EsAnulada').val();
+    var Estado = $('#fact_EsAnulada').val(true);
     document.getElementById("esfac_Id").disabled = true;
-    if (Estado == 1) {
+    if (Estado) {
         $('#bottonAnular').hide();
         document.getElementById("esfac_Id").disabled = true;
         document.getElementById("fechafacturaEdit").disabled = true;
@@ -9,8 +9,6 @@
         document.getElementById("fact_AlCredito").disabled = true;
         document.getElementById("clte_Nombres").disabled = true;
         document.getElementById("fact_AutorizarDescuento").disabled = true;
-        document.getElementById("fact_Vendedor").disabled = true;
-        document.getElementById("AddCliente").disabled = true;
         document.getElementById("btnSave").disabled = true;
         document.getElementById("AddProducto").disabled = true;
    }

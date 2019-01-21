@@ -19,6 +19,13 @@ $(document).ready(function () {
 
 //Factura Seleccionar Cliente
 $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function () {
+    $("#fact_AlCredito").prop("checked", false);
+    $('#Cred1').hide();
+    $('#fact_DiasCredito').val('');
+    valido = document.getElementById('DiasError');
+    valido.innerText = "";
+    $("#factd_PorcentajeDescuento").val(0);
+
     idItem = $(this).closest('tr').data('id');
     rtnItem = $(this).closest('tr').data('rtn');
     nombreItem = $(this).closest('tr').data('nombrecliente');
@@ -28,8 +35,19 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
     ConCredito = $(this).parents("tr").find("td")[6].innerHTML;
     DiasCred = $(this).parents("tr").find("td")[7].innerHTML;
     DiasCredito = parseInt(DiasCred.trim())
-    //callback(DiasCredito)
     console.log(DiasCredito)
+    $('#fact_DiasCredito').change(function () {
+        var Dias = $('#fact_DiasCredito').val()
+        if (Dias > DiasCredito) {
+            valido = document.getElementById('DiasError');
+            valido.innerText = "Dias de Crédito Autorizado, " + DiasCredito;
+        }
+        else {
+            valido = document.getElementById('DiasError');
+            valido.innerText = "";
+        }
+    })
+
     LabelIdentificacion = $(this).parents("tr").find("td")[3].innerHTML;
     valido = document.getElementById('label_identificacion');
     document.getElementById('label_identificacion').innerHTML = LabelIdentificacion + '<span style="color:red"> *</span>';
@@ -141,10 +159,3 @@ $('#consumidorFinal').change(function () {
 
 })
 
-//$('#fact_DiasCredito').change(function () {
-//    var Dias = $('#fact_DiasCredito').val()
-//    if (Dias > DiasCredito) {
-//        valido = document.getElementById('DiasError');
-//        valido.innerText = "Dias de Crédito Autorizado", DiasCredito;
-//    }
-//})

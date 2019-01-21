@@ -232,7 +232,14 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
         {
+            if (tbFactura.fact_Vendedor == null)
+            {
+                tbFactura.fact_Vendedor = "Ninguno";
+            }
+            else
+            {
 
+            }
             var list = (List<tbFacturaDetalle>)Session["Factura"];
             var listTercera = (List<tbFactura>)Session["TerceraEdad"];
             string MensajeError = "";
@@ -340,17 +347,30 @@ namespace ERP_GMEDINA.Controllers
                 catch (Exception Ex)
                 {
                     ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
-                    ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
-                    ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion");
-                    ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
+                    //ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
+                    //ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion");
+                    //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
 
+                    //ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
+                    //ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                    //ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                    //ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
+                    //ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
+                    //ViewBag.Producto = db.tbProducto.ToList();
+                    //ViewBag.Cliente = db.tbCliente.ToList();
+                    ViewBag.fact_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbFactura.fact_UsuarioCrea);
+                    ViewBag.fact_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbFactura.fact_UsuarioModifica);
+                    ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbFactura.cja_Id);
+                    ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbFactura.clte_Id);
+                    ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion", tbFactura.esfac_Id);
+                    ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbFactura.suc_Id);
                     ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
                     ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
                     ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
                     ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
                     ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
-                    ViewBag.Producto = db.tbProducto.ToList();
                     ViewBag.Cliente = db.tbCliente.ToList();
+                    ViewBag.Producto = db.tbProducto.ToList();
                 }
 
             }
@@ -414,7 +434,7 @@ namespace ERP_GMEDINA.Controllers
                         tbFactura.fact_Id,
                         tbFactura.fact_Codigo,
                         tbFactura.fact_Fecha,
-                        tbFactura.esfac_Id= 1,
+                        tbFactura.esfac_Id,
                         tbFactura.clte_Id,
                         tbFactura.pemi_NumeroCAI,
                         tbFactura.fact_AlCredito,

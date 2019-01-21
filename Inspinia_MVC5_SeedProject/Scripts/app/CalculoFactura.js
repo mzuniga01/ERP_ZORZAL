@@ -11,7 +11,6 @@ $(function () {
             Precio = $("#factd_PrecioUnitario").val(),
             Impuesto = $("#factd_Impuesto").val(),
             Subtotal = $("#SubtotalProducto").val(),
-            PorcentajeImpuesto = ((parseFloat(Impuesto) / 100) * Subtotal);
             result = "";
             result1 = "";
 
@@ -20,6 +19,7 @@ $(function () {
         }
 
         $("#SubtotalProducto").val(result);
+        PorcentajeImpuesto = ((parseFloat(Impuesto) / 100) * Subtotal);
 
          result1 += PorcentajeImpuesto;
 

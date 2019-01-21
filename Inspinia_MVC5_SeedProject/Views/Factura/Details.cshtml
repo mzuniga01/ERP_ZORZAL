@@ -110,12 +110,28 @@
                         <dd>
                             @Html.DisplayFor(model => model.fact_PorcentajeDescuento)
                         </dd>
-                        <dt>
-                            @Html.DisplayNameFor(model => model.esfac_Id)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.tbEstadoFactura.esfac_Descripcion)
-                        </dd>
+                        @{
+                            if (Model.fact_EsAnulada == true)
+                            {
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.esfac_Id)
+                                </dt>
+                                <dd>
+                                    Anulada
+                                </dd>
+                            }
+                            else
+                            {
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.esfac_Id)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbEstadoFactura.esfac_Descripcion)
+                                </dd>
+
+                            }
+                        }
+                        
                         <dt>
                             @Html.DisplayNameFor(model => model.clte_Identificacion)
                         </dt>
@@ -147,13 +163,22 @@
                         <dd>
                             @Html.DisplayFor(model => model.fact_Vendedor)
                         </dd>
-                        <dt>
-                           Usuario Autoriza
-                        </dt>
+                        @{ if (Model.fact_PorcentajeDescuento == 1)
+                            {
+                                <dt>
+                                    Usuario Autoriza
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                        </dd>
+                            }
+                            else
+                            {
+
+                            }
+
+                        }              
 
                     </dl>
 

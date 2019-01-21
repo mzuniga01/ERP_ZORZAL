@@ -39,10 +39,16 @@ function GetCantidad() {
                    console.log(CANTIDAD)
                    if (CANTIDAD < CantidadIngresada) {
                        alert('La cantidad de productos no esta disponible, Cantidad disponible: ' + CANTIDAD)
+                       $('#factd_Impuesto').val(0.00);
+                       $('#factd_Cantidad').val(''),
+                       $("#SubtotalProducto").val(0.00),
+                       $("#factd_PorcentajeDescuento").val(0.00),
+                       $("#TotalProducto").val(0.00)
+                       $('#Impuesto').val(0.00);
                        $('#factd_Cantidad').val('');
                    }
                    else if (CANTIDAD == 10) {
-                       alert('Pocos productos en exitencia, cantidad existente: '+CANTIDAD)
+                       alert('Pocos productos en exitencia, cantidad existente: ' + CANTIDAD)
                    } else {
                        document.getElementById("AgregarDetalleFactura").disabled = false;
                    }

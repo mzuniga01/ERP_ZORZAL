@@ -116,6 +116,7 @@ $('#AgregarDetalleFactura').click(function () {
             $('#ErrorCantidadCreate').text('');
             $('#ErrorImpuestoCreate').text('');
             //Input
+            $('#prod_CodigoBarras').val('');
             $('#prod_Codigo').val('');
             $('#factd_MontoDescuento').val('');
             $('#Impuesto').val('');

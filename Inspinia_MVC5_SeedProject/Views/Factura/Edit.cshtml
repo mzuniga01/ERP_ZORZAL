@@ -146,11 +146,22 @@
                                         <span class="validation-error"> @Html.ValidationMessageFor(model => model.fact_PorcentajeDescuento)</span>
                                     </div>
                                 </div>
+                                @*@if(Model.fact_EsAnulada) { 
+                                    <label class="control-label col-md-2">Estado</label>
+                                    <input id="esfac_Id" class="form-control" name="esfac_Id" value="Anulada"/>
+                                }
+                                else
+                                {
+                                  <label class="control-label col-md-2">Estado</label>
+                                  <input id="esfac_Id" class="form-control" name="esfac_Id" value="Anulada" />
+                                }*@
+
                                 @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.DropDownList("esfac_Id", null, new { @class = "form-control" })
                                     <span class="validation-error"> @Html.ValidationMessageFor(model => model.esfac_Id)</span>
                                 </div>
+
                             </div>
                             <div class="form-group">
                                 <div class="col-md-4">
@@ -301,9 +312,6 @@
 <script src="~/Scripts/app/Credito.js"></script>
 <script src="~/Scripts/app/ClienteFactura.js"></script>
 <script src="~/Scripts/app/AnularFactura.js"></script>
-<script>
-    document.getElementById("consumidorFinal").disabled = true;
-</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/app/Empleados.js"></script>
