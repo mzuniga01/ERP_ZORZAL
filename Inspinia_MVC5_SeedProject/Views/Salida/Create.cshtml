@@ -50,7 +50,8 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.bod_Id)
+                                        @*@Html.EditorFor(model => model.bod_Id, new { htmlAttributes = new { @value = "Bodega Central" } }))*@
+                                        <input type="text" value="Bodega Central" class="form-control" readonly/>
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
                                     </div>
                                 </div>

@@ -94,7 +94,8 @@ namespace ERP_GMEDINA.Controllers
                 {
                     using (TransactionScope Tran = new TransactionScope())
                     {
-                        listSalida = db.UDP_Inv_tbSalida_Insert(tbSalida.bod_Id, tbSalida.fact_Id, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.tsal_Id, tbSalida.sal_BodDestino, tbSalida.sal_EsAnulada, tbSalida.sal_RazonAnulada, tbSalida.sal_RazonDevolucion);
+                        //tbSalida.bod_Id
+                           listSalida = db.UDP_Inv_tbSalida_Insert(4, tbSalida.fact_Id, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.tsal_Id, tbSalida.sal_BodDestino, tbSalida.sal_EsAnulada, tbSalida.sal_RazonAnulada, tbSalida.sal_RazonDevolucion);
                         foreach (UDP_Inv_tbSalida_Insert_Result Salida in listSalida)
                             MensajeError = Salida.MensajeError;
                         if (MensajeError == "-1")
@@ -485,6 +486,38 @@ namespace ERP_GMEDINA.Controllers
         }
 
 
+        [HttpPost]
+        public JsonResult SaveCreateSalidaDetalle(tbSalidaDetalle tbSalidaDetalle)
+        {
+            var MensajeError = "";
+            IEnumerable<object> listSalidaDetalle = null;
+            try
+            {
+                var box_Codigo = "0";
+                listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
+                    tbSalidaDetalle.sal_Id,
+                    tbSalidaDetalle.prod_Codigo,
+                    tbSalidaDetalle.sal_Cantidad,
+                    box_Codigo
+                    );
+                foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
+                {
+                    MensajeError = spDetalle.MensajeError;
+                    if (MensajeError == "-1")
+                    {
+                        ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                        //return View(tbSalidaDetalle);
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                MensajeError = Ex.Message.ToString();
+                //ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", CreatePuntoEmisionDetalle.dfisc_Id);
+                ModelState.AddModelError("", MensajeError);
+            }
+            return Json(MensajeError, JsonRequestBehavior.AllowGet);
+        }
 
         // GET: /Salida/Delete/5
         public ActionResult Delete(int? id)

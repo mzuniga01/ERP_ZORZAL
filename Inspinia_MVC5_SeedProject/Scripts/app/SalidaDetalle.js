@@ -160,6 +160,8 @@ $('#AgregarSalidaDetalle').click(function () {
                 $('#pscat_Id').val(''); 
                 $('#sal_Cantidad').val(''); 
                 $('#uni_Id').val(''); 
+                $('#pcat_Id').val(''); 
+                
                     $('#MessageError').text('');
                     $('#NombreError').text('');
                     console.log('Hola');

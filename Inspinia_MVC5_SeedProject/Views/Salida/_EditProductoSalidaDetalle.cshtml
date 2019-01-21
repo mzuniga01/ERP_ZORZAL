@@ -1,6 +1,8 @@
 ﻿@model ERP_GMEDINA.Models.tbSalidaDetalle
 @using ERP_GMEDINA.Models
-
+@{ 
+    tbProducto tbProducto = new tbProducto();
+}
 
 @using (Ajax.BeginForm("EditSalidaDetalle", "Salida", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "EditarProductoSalidaDetalle" }))
 {
