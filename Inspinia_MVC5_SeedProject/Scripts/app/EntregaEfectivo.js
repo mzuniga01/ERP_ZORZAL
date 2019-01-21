@@ -7,12 +7,6 @@ $(document).on("change", "#Entrega tbody tr td input#CantidadE", function () {
     var ValorDenominacion = $(this).parents("tr").find("td")[3].innerHTML;
     var Subtotal = parseFloat(Cantidad * ValorDenominacion);
 
-    //Monto Entregado
-    $(this).parents("tr").find("td")[6].innerHTML = Subtotal;
-    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
-    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-        event.preventDefault();
-    }
     if (Subtotal != 0) {
         MontoEntregado += Subtotal;
     }
@@ -27,9 +21,16 @@ $(document).on("change", "#Entrega tbody tr td input#CantidadE", function () {
             }
         })
     }
+
+    //Monto Entregado
+    $(this).parents("tr").find("td")[6].innerHTML = Subtotal;
+    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+
     var total = document.getElementById("total").innerHTML = parseFloat(MontoEntregado);
     $("#detalle_soled_MontoEntregado").val(total);
-    $("#detalle_soled_CantidadEntregada").val(total);
     console.log(total);
   
 });
