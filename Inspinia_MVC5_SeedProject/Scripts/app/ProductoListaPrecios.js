@@ -1,4 +1,4 @@
-﻿//Factura Buscar Producto
+﻿//LP Buscar Producto
 $(document).ready(function () {
     var $rows = $('#ProductoTbody tr');
     $("#search").keyup(function () {
@@ -17,10 +17,10 @@ $(document).ready(function () {
     })
 });
 
-// Factura Seleccionar Producto
+// LP Seleccionar Producto
 $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", function () {
     idbarraItem = $(this).closest('tr').data('idbarra');
-    idbarraItem = $(this).closest('tr').data('barra');
+    //idbarraItem = $(this).closest('tr').data('barra');
     idItem = $(this).closest('tr').data('id');
     DescItem = $(this).closest('tr').data('desc');
     ISVItem = $(this).closest('tr').data('isv');
@@ -33,7 +33,7 @@ $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", fun
     $('#ModalAgregarProducto').modal('hide');
 });
 
-//Facturar RowSeleccionar Producto
+//LP RowSeleccionar Producto
 $(document).ready(function () {
     var table = $('#tbProductoFactura').DataTable();
 

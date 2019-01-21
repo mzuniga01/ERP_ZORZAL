@@ -39,9 +39,7 @@
                             </th>
 
 
-                            <th>                    
-                                @Html.DisplayNameFor(model => model.tbListaPrecio.listp_Nombre)
-                            </th>
+                           
                             <th>
                                 Acción
                             </th>
@@ -53,7 +51,7 @@
                             <tr>
                             
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
+                                    @Html.DisplayFor(modelItem => item.prod_Codigo)
                                 </td>
 
 
@@ -77,9 +75,7 @@
                                     @Html.DisplayFor(modelItem => item.lispd_DescGerente)
                                 </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tbListaPrecio.listp_Nombre)
-                                </td>
+                              
                                 <td>
                                     @if (item.tbListaPrecio.listp_Id != 4)
                                     {

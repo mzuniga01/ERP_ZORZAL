@@ -85,7 +85,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja (%)", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new {@type = "number", @min = "0", @step = "0.01", @value = "0" } })
                                 <div id="validacionDescuentoCajaCreate">
                                     <p style="color:red"> @Html.ValidationMessageFor(model => model.lispd_DescCaja)</p>
 </div>
@@ -95,7 +95,7 @@
 
                             @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente (%)", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new {  @type = "number", @min = "0", @step = "0.01", @value = "0" } })
                                 <div id="validacionDescuentoGerenteCreate">
                                     @Html.ValidationMessageFor(model => model.lispd_DescGerente)
                                 </div>

@@ -20,11 +20,11 @@
 
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.prod_Codigo, "Código Producto", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.tbProducto.prod_Codigo, "Código Producto", new { @class = "control-label col-md-2" })
                             <div class="col-md-4 ">
-                                @Html.EditorFor(model => model.prod_Codigo)
+                                @Html.EditorFor(model => model.tbProducto.prod_Codigo)
                                 <div id="validacionCodigoProductoCreate">
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_Codigo)</p>
                                 </div>
 
                             </div>
@@ -160,8 +160,10 @@
           
         </div>
     </div>
+  
 </div>
-<script src="~/Scripts/app/ProductoFactura.js"></script>
+<script src="~/Scripts/app/ProductoListaPrecios.js"></script>
+@*<script src="~/Scripts/app/ProductoFactura.js"></script>*@
 <script type="text/javascript">
         $(document).ready(function () {
             $('#lispd_DescGerente').val('0.00')

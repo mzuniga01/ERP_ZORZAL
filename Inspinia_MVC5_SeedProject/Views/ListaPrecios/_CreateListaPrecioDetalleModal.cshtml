@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Lista Precio Detalle </h5>
+                    <h5>Lista Precio Detallesssssssssss </h5>
                     <div class="form-group">
 
                     </div>
@@ -29,16 +29,26 @@
 
                             </div>
                             <div class="col-md-3">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto" id="buscar"><span class="glyphicon glyphicon-search"></span></button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
                             <div class="form-group col-md-1">
                                 <button class="btn btn-primary" type="button" id="AgregarListaPrecioDetalle">Añadir</button>
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Código Producto Barra", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4 ">
+                                @Html.EditorFor(model => model.tbProducto.prod_CodigoBarras, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <div id="validacionNombreProductoCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)</p>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Nombre Producto", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripción Producto", new { @class = "control-label col-md-2" })
                             <div class="col-md-4 ">
                                 @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <div id="validacionCodigoProductoCreate">
@@ -86,7 +96,7 @@
 
                             @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new {@type = "number", @min = "0", @step = "0.01", @value = "0" } })
                                 <div id="validacionDescuentoGerenteCreate">
                                     @Html.ValidationMessageFor(model => model.lispd_DescGerente)
                                 </div>
@@ -110,12 +120,12 @@
 <table id="tbListaPrecioDetalle" class="table table table-striped">
     <thead>
         <tr>
-            <th>Código Producto</th>
-            <th> Precio Mayorista</th>
-            <th> Precio Minorista</th>
+            <th>Código Productos</th>
+            <th>Precio Mayorista</th>
+            <th>Precio Minorista</th>
             <th>Descuento Caja</th>
             <th>Descuento Gerente</th>
-            <th></th>
+            
 
         </tr>
     </thead>
