@@ -951,3 +951,4 @@ C:\Users\joshu\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\E
 C:\Users\Luis Barahona\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\RdlCompile.cache
 C:\Users\Luis Barahona\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\RdlCompile.compiled
 C:\Users\Luis Barahona\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microsoft.ReportViewer.WebForms.dll
+C:\Users\Pauli\Documents\GitHub\Inspinia_MVC5_SeedProject\bin\Microsoft.ReportViewer.WebForms.dll
