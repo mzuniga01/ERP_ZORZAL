@@ -24,31 +24,48 @@
     var Length = 19;
     var RangoInicioLength = RangoInicial.length;
     var RangoFinalLength = RangoFinal.length;
-    if (DocumentoFiscal == '') {
+
+    //ValidaciónFecha < GetCurrentDate
+    var pemid_FechaLimiteEmision = $('#FechaLimite_' + IdPuntoEmisionDetalle).val();
+    var p = new Date(pemid_FechaLimiteEmision);
+
+    ////Current date
+    var GetCurrentDate = new Date();
+
+    if (DocumentoFiscal == '')
+    {
         $('#ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalSplitEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalLengthEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteVacioEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteMenorEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ValidacionDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).after('<p id="ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle + '" style="color:red">Campo Documento Fiscal requerido</p>');
     }
-    else if (RangoInicial == '') {
+    else if (RangoInicial == '')
+    {
         $('#ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalSplitEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalLengthEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteVacioEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteMenorEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ValidacionRangoInicioEdit_' + IdPuntoEmisionDetalle).after('<p id="ErrorRangoInicioEdit_'+ IdPuntoEmisionDetalle+'" style="color:red">Campo Rango Inicial requerido</p>');
     }
-    else if (RangoInicioLength < Length) {
+    else if (RangoInicioLength < Length)
+    {
         $('#ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalSplitEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalLengthEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteVacioEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteMenorEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ValidacionRangoInicioEdit_' + IdPuntoEmisionDetalle).after('<p id="ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle + '" style="color:red">Campo Rango Inicio debe  tener 19 caracteres</p>');
     }
     else if (RangoFinal == '')
@@ -59,25 +76,56 @@
         $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalSplitEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalLengthEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteVacioEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteMenorEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ValidacionRangoFinalEdit_' + IdPuntoEmisionDetalle).after('<p id="ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle + '" style="color:red">Campo Rango Final requerido</p>');
     }
-    else if (rangof <= rangoi) {
+    else if (rangof <= rangoi)
+    {
         $('#ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalSplitEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalLengthEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteVacioEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteMenorEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ValidacionRangoFinalEdit_' + IdPuntoEmisionDetalle).after('<p id="ErrorRangoFinalSplitEdit_' + IdPuntoEmisionDetalle + '" style="color:red">El Rango Final debe ser mayor al Rango Inicial</p>');
     }
-    else if (RangoFinalLength < Length) {
+    else if (RangoFinalLength < Length)
+    {
         $('#ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalSplitEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoFinalLengthEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteVacioEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteMenorEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ValidacionRangoFinalEdit_' + IdPuntoEmisionDetalle).after('<p id="ErrorRangoFinalLengthEdit_' + IdPuntoEmisionDetalle + '" style="color:red">El Rango Final debe tener el mismo formato de Rango Inicial</p>');
+    }
+    else if (FechaLimite == '')
+    {
+        $('#ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoFinalSplitEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoFinalLengthEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteVacioEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteMenorEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ValidacionFechaLimiteEdit_' + IdPuntoEmisionDetalle).after('<p id="ErrorFechaLimiteVacioEdit_' + IdPuntoEmisionDetalle + '" style="color:red">El campo Fecha Límite es requerido</p>');
+    }
+    else if (p < GetCurrentDate) {
+        $('#ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoFinalSplitEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoFinalLengthEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteVacioEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteMenorEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ValidacionFechaLimiteEdit_' + IdPuntoEmisionDetalle).after('<p id="ErrorFechaLimiteMenorEdit_' + IdPuntoEmisionDetalle + '" style="color:red">El campo Fecha Límite debe ser mayor a la actual</p>');
     }
     else {
         var GetPuntoEmisionDetalleEdit = {
@@ -104,11 +152,11 @@
         .done(function (data) {
             if (data == 'El registro se guardó exitosamente') {
                 location.reload();
-                swal("El registro se almacenó exitosamente!", "", "success"); 
+                swal("El registro se editó exitosamente!", "", "success"); 
             }
             else {
                 location.reload();
-                swal("El registro  no se almacenó!", "", "error");
+                swal("El registro  no se editó exitosamente!", "", "error");
             }
         });
     }
