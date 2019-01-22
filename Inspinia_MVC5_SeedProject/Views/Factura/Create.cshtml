@@ -305,9 +305,9 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/FacturaDetalle.js"></script>
 <script src="~/Scripts/app/ProductoFactura.js"></script>
+<script src="~/Scripts/app/ClienteFactura.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Credito.js"></script>
-<script src="~/Scripts/app/ClienteFactura.js"></script>
 <script src="~/Scripts/app/Factura.js"></script>
 <script src="~/Scripts/app/Cantidad.js"></script>
 <script src="~/Scripts/app/AutorizarDescuento.js"></script>
@@ -352,7 +352,7 @@
 }
 <script>
 
-    
+
     $("#prod_CodigoBarras").on("keypress keyup blur", function (event) {
         var Value = $(this).val();
         if (Value == '') {
@@ -420,7 +420,7 @@
                                     var Subtotal = $("#SubtotalProducto").val();
                                     var impuesto = $("#factd_Impuesto").val();
                                     if (Descuento == '') {
-                                        Descuento=0
+                                        Descuento = 0
                                     }
                                     var PorcentajeDescuento = (parseFloat(Descuento) / 100);
                                     var PorcentajeImpuesto = (parseFloat(impuesto) / 100);
@@ -451,7 +451,15 @@
                                     }
                                     else {
                                         $("#TotalProducto").val(result);
-
+                                        var CodigoProducto = $('#prod_Codigo').val();
+                                        var PorcentajeDescuento = $('#factd_PorcentajeDescuento').val();
+                                        var MontoDescuento = $('#factd_MontoDescuento').val();
+                                        var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
+                                        var CantidadProducto = $('#factd_Cantidad').val();
+                                        var Subtotal = $('#SubtotalProducto').val();
+                                        var PrecioUnitario = $('#factd_PrecioUnitario').val();
+                                        var Impuesto = $('#factd_Impuesto').val();
+                                        var Total = $('#TotalProducto').val();
                                         //Prueba
                                         contador = contador + 1;
                                         copiar = "<tr data-id=" + contador + ">";
@@ -478,22 +486,23 @@
                                         }
 
                                         //Subtotal
-                                        var totalProducto = $('#TotalProducto').val();
+                                        var totalProducto = $('#SubtotalProducto').val();
                                         var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
 
                                         if (document.getElementById("Subtotal").innerHTML == '') {
-                                            totalProducto = $('#TotalProducto').val();
+                                            totalProducto = $('#SubtotalProducto').val();
                                             document.getElementById("Subtotal").innerHTML = parseFloat(totalProducto);
                                         }
                                         else {
                                             document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
                                         }
                                         //Impuesto
-                                        var totalProducto = document.getElementById("TotalProducto").value;
+                                        var Cantidad = CantidadProducto
+                                        var Precio = PrecioUnitario
                                         var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
                                         var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
                                         var porcentaje = parseFloat(impuesto / 100);
-                                        var impuestos = (totalProducto * porcentaje);
+                                        var impuestos = (Cantidad * Precio) * porcentaje;
 
                                         if (document.getElementById("isv").innerHTML == '') {
                                             impuesto = document.getElementById("factd_Impuesto").value;
@@ -505,14 +514,13 @@
 
                                         //Grantotal
                                         if (document.getElementById("total").innerHTML == '') {
-                                            var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos);
+                                            var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos) - parseFloat(Descuento);
                                             $("#TotalProductoEncabezado").val(TotalEncabezado);
                                         }
                                         else {
-                                            var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos);
+                                            var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos) - parseFloat(TotalDescuento) - parseFloat(Descuento);
                                             $("#TotalProductoEncabezado").val(TotalEncabezado);
                                         }
-
 
                                         var FacturaDetalle = GetFacturaDetalle();
                                         $.ajax({
@@ -538,7 +546,7 @@
                                             //$('#factd_Impuesto').val('');
                                             //$('#TotalProducto').val('');
                                         });
-                                        //Fin Prueba 
+                                        //Fin Prueba
 
 
 
@@ -623,22 +631,24 @@
                                     }
 
                                     //Subtotal
-                                    var totalProducto = $('#TotalProducto').val();
+                                    var totalProducto = $('#SubtotalProducto').val();
                                     var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
 
                                     if (document.getElementById("Subtotal").innerHTML == '') {
-                                        totalProducto = $('#TotalProducto').val();
+                                        totalProducto = $('#SubtotalProducto').val();
                                         document.getElementById("Subtotal").innerHTML = parseFloat(totalProducto);
                                     }
                                     else {
                                         document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
                                     }
                                     //Impuesto
-                                    var totalProducto = document.getElementById("TotalProducto").value;
+                                    var Cantidad = CantidadProducto
+                                    var Precio = PrecioUnitario
                                     var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
                                     var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
                                     var porcentaje = parseFloat(impuesto / 100);
-                                    var impuestos = (totalProducto * porcentaje);
+                                    var impuestos = (Cantidad * Precio) * porcentaje;
+                                    console.log(impuestos)
 
                                     if (document.getElementById("isv").innerHTML == '') {
                                         impuesto = document.getElementById("factd_Impuesto").value;
@@ -650,11 +660,11 @@
 
                                     //Grantotal
                                     if (document.getElementById("total").innerHTML == '') {
-                                        var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos);
+                                        var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos) - parseFloat(Descuento);
                                         $("#TotalProductoEncabezado").val(TotalEncabezado);
                                     }
                                     else {
-                                        var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos);
+                                        var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos) - parseFloat(TotalDescuento) - parseFloat(Descuento);
                                         $("#TotalProductoEncabezado").val(TotalEncabezado);
                                     }
 

@@ -1,9 +1,16 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbFacturaDetalle>
+<style>
+    @@media (min-width: 1200px) {
+        .modal-xll {
+            width: 80%;
+        }
+    }
+</style>
 <div class="wrapper">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
-                <table id="" class="table table table-striped table-bordered">
+                <table id="EditarDetalle" class="table table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>
@@ -32,7 +39,7 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
+                            <tr data-ProductoDescripcion="@item.tbProducto.prod_Descripcion">
                                 <td>
                                     @Html.DisplayFor(modelItem => item.prod_Codigo)
                                 </td>
@@ -52,23 +59,23 @@
                                     @Html.DisplayFor(modelItem => item.factd_Impuesto)
                                 </td>
                                 <td>
-                                @if (item.tbFactura.esfac_Id != 4 )
-                                {
-                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.factd_Id">
-                                        Editar
-                                    </button>
-                                }
-                                else
-                                {
-                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal">
-                                        Editar
-                                    </button>
-                                }                                    
+                                    @if (item.tbFactura.esfac_Id != 4)
+                                    {
+                                        <button id="AddProducto" type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.factd_Id">
+                                            Editar
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button id="AddProducto" type="button" class="btn btn-primary btn-xs" data-toggle="modal">
+                                            Editar
+                                        </button>
+                                    }
                                 </td>
                             </tr>
                             <!-- Modal -->
                             <div class="modal fade" id="Editar_@item.factd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
+                                <div class="modal-dialog modal-xll" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Editar Factura Detalle</h5>
@@ -92,6 +99,14 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>
 <script src="~/Scripts/app/AnularFactura.js"></script>
+
+<script>
+    $(document).on("click", "#EditarDetalle tbody tr td button#AddProducto", function () {
+        ProductoDescripcionItem = $(this).closest('tr').data('productodescripcion');
+        $("#tbProducto_prod_Descripcion").val(ProductoDescripcionItem);
+    });
+</script>
+
 
 
 

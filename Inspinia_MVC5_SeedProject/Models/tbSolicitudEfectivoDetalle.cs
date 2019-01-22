@@ -25,9 +25,9 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> soled_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> soled_FechaModifica { get; set; }
     
-        public virtual tbDenominacion tbDenominacion { get; set; }
-        public virtual tbSolicitudEfectivo tbSolicitudEfectivo { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbDenominacion tbDenominacion { get; set; }
+        public virtual tbSolicitudEfectivo tbSolicitudEfectivo { get; set; }
     }
 }

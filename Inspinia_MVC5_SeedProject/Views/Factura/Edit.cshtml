@@ -20,6 +20,14 @@
         color: red;
         padding-left: 5px;
     }
+
+    @@media (min-width: 1200px) {
+   .modal-xlg {
+      width: 85%; 
+   }
+
+}
+
 </style>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -146,16 +154,6 @@
                                         <span class="validation-error"> @Html.ValidationMessageFor(model => model.fact_PorcentajeDescuento)</span>
                                     </div>
                                 </div>
-                                @*@if(Model.fact_EsAnulada) { 
-                                    <label class="control-label col-md-2">Estado</label>
-                                    <input id="esfac_Id" class="form-control" name="esfac_Id" value="Anulada"/>
-                                }
-                                else
-                                {
-                                  <label class="control-label col-md-2">Estado</label>
-                                  <input id="esfac_Id" class="form-control" name="esfac_Id" value="Anulada" />
-                                }*@
-
                                 @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.DropDownList("esfac_Id", null, new { @class = "form-control" })
@@ -171,6 +169,11 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-4">
+                                    <input id="IDCliente" name="clte_Id" type="hidden" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
                                     @Html.HiddenFor(model => model.fact_EsAnulada)
                                     @Html.ValidationMessageFor(model => model.fact_EsAnulada)
                                 </div>
@@ -179,7 +182,7 @@
                             <div class="form-group">
                                 <div class="col-md-offset-8 col-md-10">
                                     <input id="btnSave" type="submit" value="Guardar" class="btn btn-primary btn-sm" />
-                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
                                         Anular
                                     </button>
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
@@ -202,7 +205,7 @@
                                                     <button id="AddProducto" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Nuevo</span></button>
                                                 </div>
                                             </div>
-                                            <div class="ibox-content">
+                                           <div class="ibox-content">
                                                 @Html.Partial("_IndexFacturaDetalle", Model.tbFacturaDetalle)
                                             </div>
                                         </div>
@@ -261,18 +264,20 @@
                 </button>
             </div>
             <div class="modal-body">
-                ¿Está seguro de anular esta factura?
+                <p>¿Está seguro de anular esta factura?</p>
+                <textarea rows="4" cols="50" placeholder="Ingrese la razon de Anular" id="razonAnular" name="razonAnular"></textarea>
+                <p id="Mensaje" style="color:red"></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="AnularFactura();" data-dismiss="modal">Si</button>
+                <button class="btn btn-primary btn-sm" type="button" id="Anular">Guardar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
 </div>
-<div>
+@*<div>
     <div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg " role="document">
+        <div class="modal-dialog modal-xlg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -286,7 +291,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <div>
     <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -310,11 +315,29 @@
 <script src="~/Scripts/app/ProductoFactura.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Credito.js"></script>
-<script src="~/Scripts/app/ClienteFactura.js"></script>
+<script src="~/Scripts/app/Cantidad.js"></script>
+<script src="~/Scripts/app/AutorizarDescuento.js"></script>
 <script src="~/Scripts/app/AnularFactura.js"></script>
+
+
+<script>
+    var CodigoProducto = $('#prod_Codigo').val();
+    var PorcentajeDescuento = $('#factd_PorcentajeDescuento').val();
+    var MontoDescuento = $('#factd_MontoDescuento').val();
+    var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
+    var CantidadProducto = $('#factd_Cantidad').val();
+    var Subtotal = $('#SubtotalProducto').val();
+    var PrecioUnitario = $('#factd_PrecioUnitario').val();
+    var Impuesto = $('#factd_Impuesto').val();
+    var Total = $('#TotalProducto').val();
+    var Subtotal = (CantidadProducto * PrecioUnitario);
+
+
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/app/Empleados.js"></script>
 }
+
 
 

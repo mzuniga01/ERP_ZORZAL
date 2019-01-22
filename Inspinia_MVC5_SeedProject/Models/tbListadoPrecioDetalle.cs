@@ -26,9 +26,9 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> lispd_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> lispd_FechaModifica { get; set; }
     
-        public virtual tbProducto tbProducto { get; set; }
-        public virtual tbListaPrecio tbListaPrecio { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbProducto tbProducto { get; set; }
+        public virtual tbListaPrecio tbListaPrecio { get; set; }
     }
 }

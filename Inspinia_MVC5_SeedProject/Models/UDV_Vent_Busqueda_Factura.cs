@@ -35,10 +35,10 @@ namespace ERP_GMEDINA.Models
         public Nullable<System.DateTime> fact_FechaNacimientoTE { get; set; }
         public Nullable<int> fact_UsuarioAutoriza { get; set; }
         public Nullable<System.DateTime> fact_FechaAutoriza { get; set; }
+        public bool fact_EsAnulada { get; set; }
         public int fact_UsuarioCrea { get; set; }
         public System.DateTime fact_FechaCrea { get; set; }
         public Nullable<int> fact_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> fact_FechaModifica { get; set; }
-        public bool fact_EsAnulada { get; set; }
     }
 }

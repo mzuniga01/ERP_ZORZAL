@@ -39,6 +39,8 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> bod_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> bod_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbEmpleado tbEmpleado { get; set; }
         public virtual tbMunicipio tbMunicipio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -53,8 +55,6 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbSalida> tbSalida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalida> tbSalida1 { get; set; }
-        public virtual tbUsuario tbUsuario { get; set; }
-        public virtual tbUsuario tbUsuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSucursal> tbSucursal { get; set; }
     }

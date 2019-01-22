@@ -34,13 +34,13 @@ namespace ERP_GMEDINA.Models
         public bool ped_EsAnulado { get; set; }
         public string ped_RazonAnulado { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbCliente tbCliente { get; set; }
         public virtual tbEstadoPedido tbEstadoPedido { get; set; }
         public virtual tbFactura tbFactura { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedidoDetalle> tbPedidoDetalle { get; set; }
-        public virtual tbUsuario tbUsuario { get; set; }
-        public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbSucursal tbSucursal { get; set; }
     }
 }

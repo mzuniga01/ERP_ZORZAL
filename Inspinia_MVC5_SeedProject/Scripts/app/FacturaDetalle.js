@@ -66,22 +66,24 @@ $('#AgregarDetalleFactura').click(function () {
         }
 
         //Subtotal 
-        var totalProducto = $('#TotalProducto').val();
+        var totalProducto = $('#SubtotalProducto').val();
         var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
 
         if (document.getElementById("Subtotal").innerHTML == '') {
-            totalProducto = $('#TotalProducto').val();
+            totalProducto = $('#SubtotalProducto').val();
             document.getElementById("Subtotal").innerHTML = parseFloat(totalProducto);
         }
         else {
             document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
         }
         //Impuesto
-        var totalProducto = document.getElementById("TotalProducto").value;
+        var Cantidad = CantidadProducto
+        var Precio = PrecioUnitario
         var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
         var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
         var porcentaje = parseFloat(impuesto / 100);
-        var impuestos = (totalProducto * porcentaje);
+        var impuestos = (Cantidad * Precio) * porcentaje;
+        console.log(impuestos)
 
         if (document.getElementById("isv").innerHTML == '') {
             impuesto = document.getElementById("factd_Impuesto").value;
@@ -93,11 +95,11 @@ $('#AgregarDetalleFactura').click(function () {
 
         //Grantotal
         if (document.getElementById("total").innerHTML == '') {
-            var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos);
+            var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos) - parseFloat(Descuento);
             $("#TotalProductoEncabezado").val(TotalEncabezado);
         }
         else {
-            var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos);
+            var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos)- parseFloat(TotalDescuento) - parseFloat(Descuento);
             $("#TotalProductoEncabezado").val(TotalEncabezado);
         }
                   
@@ -155,7 +157,9 @@ $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDeta
     document.getElementById("TotalDescuento").innerHTML = parseFloat(TotalDescuento) - parseFloat(Descuento);
 
     //Subtotal
-    var SubtotalProducto = $(this).parents("tr").find("td")[6].innerHTML;
+    var Cantidad = $(this).parents("tr").find("td")[2].innerHTML;
+    var Precio = $(this).parents("tr").find("td")[3].innerHTML;
+    var SubtotalProducto = Cantidad * Precio;
     var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
     document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) - parseFloat(SubtotalProducto);
 

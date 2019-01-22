@@ -288,7 +288,8 @@ namespace ERP_GMEDINA.Controllers
                                                 tbFactura.fact_IdentidadTE,
                                                 tbFactura.fact_NombresTE,
                                                 tbFactura.fact_FechaNacimientoTE,
-                                                tbFactura.fact_EsAnulada);
+                                                tbFactura.fact_EsAnulada,
+                                                tbFactura.fact_RazonAnulado);
                         foreach (UDP_Vent_tbFactura_Insert_Result Factura in listFactura)
                             MensajeError = Factura.MensajeError;
                         if (MensajeError == "-1")
@@ -449,6 +450,7 @@ namespace ERP_GMEDINA.Controllers
                         tbFactura.fact_UsuarioAutoriza,
                         tbFactura.fact_FechaAutoriza,
                         tbFactura.fact_EsAnulada,
+                        tbFactura.fact_RazonAnulado,
                         tbFactura.fact_UsuarioCrea,
                         tbFactura.fact_FechaCrea);
                     foreach (UDP_Vent_tbFactura_Update_Result Factura in list)
@@ -618,9 +620,9 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult AnularFactura(int CodFactura, bool FacturaAnulado)
+        public JsonResult AnularFactura(int CodFactura, bool FacturaAnulado ,string RazonAnulado)
         {
-            var list = db.UDP_Vent_tbFactura_Estado(CodFactura, Helpers.AnuladoFactura).ToList();
+            var list = db.UDP_Vent_tbFactura_Estado(CodFactura, Helpers.AnuladoFactura, RazonAnulado).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

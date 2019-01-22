@@ -32,6 +32,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbObjeto> tbObjeto { get; set; }
         public virtual DbSet<tbRol> tbRol { get; set; }
         public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
+        public virtual DbSet<tbUsuario> tbUsuario { get; set; }
         public virtual DbSet<tbActividadEconomica> tbActividadEconomica { get; set; }
         public virtual DbSet<tbBanco> tbBanco { get; set; }
         public virtual DbSet<tbCuentasBanco> tbCuentasBanco { get; set; }
@@ -57,10 +58,12 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }
         public virtual DbSet<tbProveedor> tbProveedor { get; set; }
         public virtual DbSet<tbSalida> tbSalida { get; set; }
+        public virtual DbSet<tbSalidaDetalle> tbSalidaDetalle { get; set; }
         public virtual DbSet<tbTipoEntrada> tbTipoEntrada { get; set; }
         public virtual DbSet<tbTipoSalida> tbTipoSalida { get; set; }
         public virtual DbSet<tbCaja> tbCaja { get; set; }
         public virtual DbSet<tbCliente> tbCliente { get; set; }
+        public virtual DbSet<tbCuponDescuento> tbCuponDescuento { get; set; }
         public virtual DbSet<tbDenominacionArqueo> tbDenominacionArqueo { get; set; }
         public virtual DbSet<tbDevolucion> tbDevolucion { get; set; }
         public virtual DbSet<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
@@ -74,6 +77,8 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbFacturaHistorica> tbFacturaHistorica { get; set; }
         public virtual DbSet<tbListadoPrecioDetalle> tbListadoPrecioDetalle { get; set; }
         public virtual DbSet<tbListaPrecio> tbListaPrecio { get; set; }
+        public virtual DbSet<tbMovimientoCaja> tbMovimientoCaja { get; set; }
+        public virtual DbSet<tbNotaCredito> tbNotaCredito { get; set; }
         public virtual DbSet<tbPago> tbPago { get; set; }
         public virtual DbSet<tbPagosArqueo> tbPagosArqueo { get; set; }
         public virtual DbSet<tbPedido> tbPedido { get; set; }
@@ -83,23 +88,22 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSolicitudCredito> tbSolicitudCredito { get; set; }
         public virtual DbSet<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
         public virtual DbSet<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
+        public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
+        public virtual DbSet<UDV_Acce_Usuario_Roles> UDV_Acce_Usuario_Roles { get; set; }
         public virtual DbSet<V_Objetos> V_Objetos { get; set; }
+        public virtual DbSet<CARLOS> CARLOS { get; set; }
+        public virtual DbSet<UDV_Vent_FacturaPuntoEmision> UDV_Vent_FacturaPuntoEmision { get; set; }
         public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
         public virtual DbSet<UDV_Inv_Consultar_Existencias_Productos> UDV_Inv_Consultar_Existencias_Productos { get; set; }
         public virtual DbSet<UDP_Vent_listExoneracion_Select> UDP_Vent_listExoneracion_Select { get; set; }
         public virtual DbSet<UDP_Vent_SolicituEfectivo_Detalles_Select> UDP_Vent_SolicituEfectivo_Detalles_Select { get; set; }
+        public virtual DbSet<UDP_Vent_SolicituEfectivo_Select> UDP_Vent_SolicituEfectivo_Select { get; set; }
+        public virtual DbSet<UDP_Vent_SolicituEfectivoDetalle_Denominacion> UDP_Vent_SolicituEfectivoDetalle_Denominacion { get; set; }
         public virtual DbSet<UDV_Vent_Busqueda_Clientes> UDV_Vent_Busqueda_Clientes { get; set; }
         public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
+        public virtual DbSet<UDV_Vent_FacturaPuntoEmision1> UDV_Vent_FacturaPuntoEmision1 { get; set; }
         public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<tbCuponDescuento> tbCuponDescuento { get; set; }
-        public virtual DbSet<tbNotaCredito> tbNotaCredito { get; set; }
-        public virtual DbSet<tbUsuario> tbUsuario { get; set; }
-        public virtual DbSet<tbMovimientoCaja> tbMovimientoCaja { get; set; }
-        public virtual DbSet<tbSucursal> tbSucursal { get; set; }
-        public virtual DbSet<UDP_Vent_SolicituEfectivo_Select> UDP_Vent_SolicituEfectivo_Select { get; set; }
-        public virtual DbSet<tbSalidaDetalle> tbSalidaDetalle { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {
@@ -5127,7 +5131,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_GetDetalle_Result>("UDP_Vent_tbFactura_GetDetalle", fACTURA_IDParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbFactura_Insert_Result> UDP_Vent_tbFactura_Insert(string fact_Codigo, Nullable<System.DateTime> fact_Fecha, Nullable<byte> esfac_Id, Nullable<short> cja_Id, Nullable<int> suc_Id, Nullable<int> clte_Id, string pemi_NumeroCAI, Nullable<bool> fact_AlCredito, Nullable<int> fact_DiasCredito, Nullable<decimal> fact_PorcentajeDescuento, string fact_Vendedor, string clte_Identificacion, string clte_Nombres, string fact_IdentidadTE, string fact_NombresTE, Nullable<System.DateTime> fact_FechaNacimientoTE, Nullable<bool> fact_EsAnulada)
+        public virtual ObjectResult<UDP_Vent_tbFactura_Insert_Result> UDP_Vent_tbFactura_Insert(string fact_Codigo, Nullable<System.DateTime> fact_Fecha, Nullable<byte> esfac_Id, Nullable<short> cja_Id, Nullable<int> suc_Id, Nullable<int> clte_Id, string pemi_NumeroCAI, Nullable<bool> fact_AlCredito, Nullable<int> fact_DiasCredito, Nullable<decimal> fact_PorcentajeDescuento, string fact_Vendedor, string clte_Identificacion, string clte_Nombres, string fact_IdentidadTE, string fact_NombresTE, Nullable<System.DateTime> fact_FechaNacimientoTE, Nullable<bool> fact_EsAnulada, string fact_RazonAnulado)
         {
             var fact_CodigoParameter = fact_Codigo != null ?
                 new ObjectParameter("fact_Codigo", fact_Codigo) :
@@ -5197,10 +5201,14 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("fact_EsAnulada", fact_EsAnulada) :
                 new ObjectParameter("fact_EsAnulada", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Insert_Result>("UDP_Vent_tbFactura_Insert", fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, cja_IdParameter, suc_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_IdentidadTEParameter, fact_NombresTEParameter, fact_FechaNacimientoTEParameter, fact_EsAnuladaParameter);
+            var fact_RazonAnuladoParameter = fact_RazonAnulado != null ?
+                new ObjectParameter("fact_RazonAnulado", fact_RazonAnulado) :
+                new ObjectParameter("fact_RazonAnulado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Insert_Result>("UDP_Vent_tbFactura_Insert", fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, cja_IdParameter, suc_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_IdentidadTEParameter, fact_NombresTEParameter, fact_FechaNacimientoTEParameter, fact_EsAnuladaParameter, fact_RazonAnuladoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbFactura_Update_Result> UDP_Vent_tbFactura_Update(Nullable<long> fact_Id, string fact_Codigo, Nullable<System.DateTime> fact_Fecha, Nullable<byte> esfac_Id, Nullable<int> clte_Id, string pemi_NumeroCAI, Nullable<bool> fact_AlCredito, Nullable<int> fact_DiasCredito, Nullable<decimal> fact_PorcentajeDescuento, string fact_Vendedor, string clte_Identificacion, string clte_Nombres, string fact_IdentidadTE, string fact_NombresTE, Nullable<System.DateTime> fact_FechaNacimientoTE, Nullable<int> fact_UsuarioAutoriza, Nullable<System.DateTime> fact_FechaAutoriza, Nullable<bool> fact_EsAnulada, Nullable<int> fact_UsuarioCrea, Nullable<System.DateTime> fact_FechaCrea)
+        public virtual ObjectResult<UDP_Vent_tbFactura_Update_Result> UDP_Vent_tbFactura_Update(Nullable<long> fact_Id, string fact_Codigo, Nullable<System.DateTime> fact_Fecha, Nullable<byte> esfac_Id, Nullable<int> clte_Id, string pemi_NumeroCAI, Nullable<bool> fact_AlCredito, Nullable<int> fact_DiasCredito, Nullable<decimal> fact_PorcentajeDescuento, string fact_Vendedor, string clte_Identificacion, string clte_Nombres, string fact_IdentidadTE, string fact_NombresTE, Nullable<System.DateTime> fact_FechaNacimientoTE, Nullable<int> fact_UsuarioAutoriza, Nullable<System.DateTime> fact_FechaAutoriza, Nullable<bool> fact_EsAnulada, string fact_RazonAnulado, Nullable<int> fact_UsuarioCrea, Nullable<System.DateTime> fact_FechaCrea)
         {
             var fact_IdParameter = fact_Id.HasValue ?
                 new ObjectParameter("fact_Id", fact_Id) :
@@ -5274,6 +5282,10 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("fact_EsAnulada", fact_EsAnulada) :
                 new ObjectParameter("fact_EsAnulada", typeof(bool));
     
+            var fact_RazonAnuladoParameter = fact_RazonAnulado != null ?
+                new ObjectParameter("fact_RazonAnulado", fact_RazonAnulado) :
+                new ObjectParameter("fact_RazonAnulado", typeof(string));
+    
             var fact_UsuarioCreaParameter = fact_UsuarioCrea.HasValue ?
                 new ObjectParameter("fact_UsuarioCrea", fact_UsuarioCrea) :
                 new ObjectParameter("fact_UsuarioCrea", typeof(int));
@@ -5282,10 +5294,10 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("fact_FechaCrea", fact_FechaCrea) :
                 new ObjectParameter("fact_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Update_Result>("UDP_Vent_tbFactura_Update", fact_IdParameter, fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_IdentidadTEParameter, fact_NombresTEParameter, fact_FechaNacimientoTEParameter, fact_UsuarioAutorizaParameter, fact_FechaAutorizaParameter, fact_EsAnuladaParameter, fact_UsuarioCreaParameter, fact_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Update_Result>("UDP_Vent_tbFactura_Update", fact_IdParameter, fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_IdentidadTEParameter, fact_NombresTEParameter, fact_FechaNacimientoTEParameter, fact_UsuarioAutorizaParameter, fact_FechaAutorizaParameter, fact_EsAnuladaParameter, fact_RazonAnuladoParameter, fact_UsuarioCreaParameter, fact_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<Nullable<long>> UDP_Vent_tbFactura_Estado(Nullable<int> fact_Id, Nullable<bool> fact_EsAnulada)
+        public virtual ObjectResult<Nullable<long>> UDP_Vent_tbFactura_Estado(Nullable<int> fact_Id, Nullable<bool> fact_EsAnulada, string fact_RazonAnulado)
         {
             var fact_IdParameter = fact_Id.HasValue ?
                 new ObjectParameter("fact_Id", fact_Id) :
@@ -5295,7 +5307,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("fact_EsAnulada", fact_EsAnulada) :
                 new ObjectParameter("fact_EsAnulada", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("UDP_Vent_tbFactura_Estado", fact_IdParameter, fact_EsAnuladaParameter);
+            var fact_RazonAnuladoParameter = fact_RazonAnulado != null ?
+                new ObjectParameter("fact_RazonAnulado", fact_RazonAnulado) :
+                new ObjectParameter("fact_RazonAnulado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("UDP_Vent_tbFactura_Estado", fact_IdParameter, fact_EsAnuladaParameter, fact_RazonAnuladoParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivoDetalle_Detalle_Result1> UDP_Vent_tbSolicitudEfectivoDetalle_Detalle(Nullable<int> sOLICITUD_ID)

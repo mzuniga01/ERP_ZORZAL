@@ -27,9 +27,9 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> dep_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> dep_FechaModifica { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbMunicipio> tbMunicipio { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbMunicipio> tbMunicipio { get; set; }
     }
 }

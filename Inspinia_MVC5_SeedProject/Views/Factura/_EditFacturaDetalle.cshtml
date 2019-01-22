@@ -1,4 +1,6 @@
 ﻿@model ERP_GMEDINA.Models.tbFacturaDetalle
+@using ERP_GMEDINA.Models
+
 @using (Ajax.BeginForm("UpdateFacturaDetalle", "Factura", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "EditarFacturaDetalle" }))
 {
     @*@Html.AntiForgeryToken()*@
@@ -18,55 +20,67 @@
         @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
         @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
-
-
         <div class="form-group">
-            @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-4" })
-            <div class="col-md-5">
+            @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.prod_Codigo)
                 @Html.ValidationMessageFor(model => model.prod_Codigo)
             </div>
+            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-1" })
+            <div class="col-md-5">
+                <input type="text" id="tbProducto_prod_Descripcion" name="tbProducto_prod_Descripcion" class="form-control col-md-2" autocomplete="off" />
+                @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
+            </div>           
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label col-md-4" })
-            <div class="col-md-5">
+
+            @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.factd_Cantidad)
                 @Html.ValidationMessageFor(model => model.factd_Cantidad)
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.factd_MontoDescuento, new { @class = "control-label col-md-4" })
-            <div class="col-md-5">
+           
+            @Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = " control-label col-md-1" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.factd_PorcentajeDescuento)
+                @Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)
+            </div>
+            @Html.LabelFor(model => model.factd_MontoDescuento, new { @class = "control-label col-md-1" })
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.factd_MontoDescuento)
                 @Html.ValidationMessageFor(model => model.factd_MontoDescuento)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = " control-label col-md-4" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.factd_PorcentajeDescuento)
-                @Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.factd_Impuesto, new { @class = "control-label col-md-4" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.factd_Impuesto)
-                @Html.ValidationMessageFor(model => model.factd_Impuesto)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.factd_PrecioUnitario, new { @class = "control-label col-md-4" })
-            <div class="col-md-5">
+            @Html.LabelFor(model => model.factd_PrecioUnitario, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.factd_PrecioUnitario)
                 @Html.ValidationMessageFor(model => model.factd_PrecioUnitario)
             </div>
+            @Html.LabelFor(model => model.factd_Impuesto, new { @class = "control-label col-md-1" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.factd_Impuesto)
+                @Html.ValidationMessageFor(model => model.factd_Impuesto)
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-1">Impuesto</label>
+                <div class="col-md-2">
+                    <input id="Impuesto" type="text" class="form-control" readonly />
+                </div>
+            </div>          
         </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Subtotal</label>
+            <div class="col-md-3">
+                <input id="SubtotalProducto" type="text" class="form-control" readonly />
+            </div>
+            <label class="control-label col-md-1">Total</label>
+            <div class="col-md-2">
+                <input id="TotalProducto" type="text" value="" class="form-control" readonly />
+            </div>
+        </div>        
 
         <div class="form-group">
             <hr />
@@ -77,7 +91,6 @@
         </div>
     </div>
 }
-
 
 
 

@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     var Estado = $('#fact_EsAnulada').val(true);
     document.getElementById("esfac_Id").disabled = true;
-    if (Estado) {
+    if (Estado == true) {
         $('#bottonAnular').hide();
         document.getElementById("esfac_Id").disabled = true;
         document.getElementById("fechafacturaEdit").disabled = true;
@@ -15,27 +15,35 @@
 });
 
 
-function AnularFactura() {
+$('#Anular').click(function () {
     var CodFactura = $('#fact_Id').val();
     var FacturaAnulado = 1
-    $.ajax({
-        url: "/Factura/AnularFactura",
-        method: "POST",
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ CodFactura: CodFactura, FacturaAnulado: FacturaAnulado }),
+    var RazonAnulado = $('#razonAnular').val();
+    if (RazonAnulado == "") {
+        valido = document.getElementById('Mensaje');
+        valido.innerText = "La razón Anular es requerida";
+    }else
+    {
+        $.ajax({
+            url: "/Factura/AnularFactura",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ CodFactura: CodFactura, FacturaAnulado: FacturaAnulado, RazonAnulado: RazonAnulado }),
 
-    })
-    .done(function (data) {
-        if (data.length > 0) {
-            var url = $("#RedirectTo").val();
-            location.href = url;
-        }
-        else {
-            alert("Registro No Actualizado");
-        }
-    });
-}
+        })
+            .done(function (data) {
+                if (data.length > 0) {
+                    var url = $("#RedirectTo").val();
+                    location.href = url;
+                }
+                else {
+                    alert("Registro No Actualizado");
+                }
+            });
+    }
+    
+})
 
 
 

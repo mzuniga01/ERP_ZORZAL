@@ -21,8 +21,8 @@ namespace ERP_GMEDINA.Models
             this.tbExoneracion = new HashSet<tbExoneracion>();
             this.tbFactura = new HashSet<tbFactura>();
             this.tbPedido = new HashSet<tbPedido>();
-            this.tbSolicitudCredito = new HashSet<tbSolicitudCredito>();
             this.tbNotaCredito = new HashSet<tbNotaCredito>();
+            this.tbSolicitudCredito = new HashSet<tbSolicitudCredito>();
         }
     
         public int clte_Id { get; set; }
@@ -56,6 +56,8 @@ namespace ERP_GMEDINA.Models
         public Nullable<decimal> clte_MontoCredito { get; set; }
         public Nullable<int> clte_DiasCredito { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
         public virtual tbMunicipio tbMunicipio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbParametro> tbParametro { get; set; }
@@ -67,10 +69,8 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedido> tbPedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbNotaCredito> tbNotaCredito { get; set; }
-        public virtual tbUsuario tbUsuario { get; set; }
-        public virtual tbUsuario tbUsuario1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSolicitudCredito> tbSolicitudCredito { get; set; }
     }
 }

@@ -45,11 +45,15 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> fact_UsuarioAutoriza { get; set; }
         public Nullable<System.DateTime> fact_FechaAutoriza { get; set; }
         public bool fact_EsAnulada { get; set; }
+        public string fact_RazonAnulado { get; set; }
         public int fact_UsuarioCrea { get; set; }
         public System.DateTime fact_FechaCrea { get; set; }
         public Nullable<int> fact_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> fact_FechaModifica { get; set; }
     
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
+        public virtual tbUsuario tbUsuario2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalida> tbSalida { get; set; }
         public virtual tbCaja tbCaja { get; set; }
@@ -65,9 +69,6 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbPedido> tbPedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
-        public virtual tbUsuario tbUsuario { get; set; }
-        public virtual tbUsuario tbUsuario1 { get; set; }
-        public virtual tbUsuario tbUsuario2 { get; set; }
         public virtual tbSucursal tbSucursal { get; set; }
     }
 }
