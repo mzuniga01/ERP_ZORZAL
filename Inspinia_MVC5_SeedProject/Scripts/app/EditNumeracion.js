@@ -156,7 +156,7 @@
             }
             else {
                 location.reload();
-                swal("El registro  no se editó exitosamente!", "", "error");
+                swal("El registro  no se editó!", "", "error");
             }
         });
     }

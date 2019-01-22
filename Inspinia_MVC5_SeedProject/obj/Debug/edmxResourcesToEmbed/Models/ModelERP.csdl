@@ -1466,7 +1466,7 @@
       <Parameter Name="fact_RazonAnulado" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Detalle" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Detalle_Result1)">
-      <Parameter Name="SOLICITUD_ID" Mode="In" Type="Int32" />
+      <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
     </FunctionImport>
     <EntitySet Name="tbAccesoRol" EntityType="ERP_ZORZALModel.tbAccesoRol" />
     <EntitySet Name="tbObjeto" EntityType="ERP_ZORZALModel.tbObjeto" />
@@ -2546,12 +2546,6 @@
   <ComplexType Name="spGetMunicipios1_Result">
     <Property Type="String" Name="mun_Codigo" Nullable="false" MaxLength="4" />
     <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="150" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbCliente_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbCliente_Update_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbSolicitudCredito_Update_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
@@ -4204,6 +4198,7 @@
     <NavigationProperty Name="tbCuentasBanco" Relationship="ERP_ZORZALModel.FK_Gral_tbCuentaBanco_bcta_Id" FromRole="tbPago" ToRole="tbCuentasBanco" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" FromRole="tbPago" ToRole="tbFactura" />
     <NavigationProperty Name="tbTipoPago" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id" FromRole="tbPago" ToRole="tbTipoPago" />
+    <Property Name="pago_RazonAnulado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tbPagosArqueo">
     <Key>
@@ -7346,4 +7341,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="UDP_Vent_tbCliente_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbCliente_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
 </Schema>

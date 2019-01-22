@@ -33,7 +33,7 @@
 
                         <div class="form-horizontal">
 
-                            @Html.ValidationSummary(true)
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @Html.HiddenFor(model => model.solef_Id)
                             @Html.Hidden("RedirectTo", Url.Action("Index", "SolicitudEfectivo"))
 
@@ -89,8 +89,8 @@
                                 @Html.LabelFor(model => detalle.soled_MontoEntregado, "Monto Entregado", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => detalle.soled_MontoEntregado, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => detalle.soled_MontoEntregado)
-                                </div>
+                                    <p style="color:red">@Html.ValidationMessageFor(model => detalle.soled_MontoEntregado)</p>
+                            </div>
                             </div>
                            
                             <div class="form-group">
@@ -171,7 +171,7 @@
         });
 
 </script>
-<script src="~/Scripts/app/EntregaEfectivo.js"></script>
+@*<script src="~/Scripts/app/EntregaEfectivo.js"></script>*@
 
 <script type="text/javascript">
         $.datepicker.regional['es'] = {

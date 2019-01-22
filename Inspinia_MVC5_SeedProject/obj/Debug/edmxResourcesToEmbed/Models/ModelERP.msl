@@ -1926,6 +1926,7 @@
     <EntitySetMapping Name="tbPago">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPago">
         <MappingFragment StoreEntitySet="tbPago">
+          <ScalarProperty Name="pago_RazonAnulado" ColumnName="pago_RazonAnulado" />
           <ScalarProperty Name="pago_FechaModifica" ColumnName="pago_FechaModifica" />
           <ScalarProperty Name="pago_UsuarioModifica" ColumnName="pago_UsuarioModifica" />
           <ScalarProperty Name="pago_FechaCrea" ColumnName="pago_FechaCrea" />

@@ -215,9 +215,6 @@ namespace ERP_GMEDINA.Controllers
         }
         [HttpPost]
         public JsonResult Validar()
-
-
-
         {
             int? idped = (int)Session["PEDIDO"];
             ViewBag.Pedid = idped;
@@ -236,10 +233,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 tbFactura.fact_Vendedor = "Ninguno";
             }
-            else
-            {
 
-            }
             var list = (List<tbFacturaDetalle>)Session["Factura"];
             var listTercera = (List<tbFactura>)Session["TerceraEdad"];
             string MensajeError = "";
@@ -542,6 +536,37 @@ namespace ERP_GMEDINA.Controllers
         }
 
 
+
+        [HttpPost]
+        public JsonResult IncrementarProducto(string data_producto)
+        {
+
+            //IEnumerable<object> Datos = null;
+            //if (Session["Factura"] == null)
+            //{
+
+            //}
+            //else
+            //{
+            //    Datos = (List<tbFacturaDetalle>)Session["Factura"];
+            //}
+
+            //return Json(Datos, JsonRequestBehavior.AllowGet);
+
+            var Datos = "";
+            if (Session["Factura"] == null)
+            {
+
+            }
+            else
+            {
+                Datos = ((List<tbFacturaDetalle>)Session["Factura"])[0].prod_Codigo;
+            }
+
+            return Json(Datos);
+        }
+
+
         [HttpPost]
         public JsonResult SaveTerceraEdad(tbFactura TerceraEdadC)
         {
@@ -620,7 +645,7 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult AnularFactura(int CodFactura, bool FacturaAnulado ,string RazonAnulado)
+        public JsonResult AnularFactura(int CodFactura, bool FacturaAnulado, string RazonAnulado)
         {
             var list = db.UDP_Vent_tbFactura_Estado(CodFactura, Helpers.AnuladoFactura, RazonAnulado).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
@@ -698,7 +723,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 try
                 {
-                    var MensajeError = 0;
+                    string MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbCliente_Insert(tbCliente.tpi_Id,
                                                         tbCliente.clte_Identificacion,
@@ -727,7 +752,7 @@ namespace ERP_GMEDINA.Controllers
                                                         tbCliente.clte_DiasCredito);
                     foreach (UDP_Vent_tbCliente_Insert_Result cliente in list)
                         MensajeError = cliente.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError == "-1")
                     {
 
                     }

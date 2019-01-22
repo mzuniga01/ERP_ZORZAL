@@ -130,11 +130,11 @@
         .done(function (data) {
             if (data == 'El registro se guardo exitosamente') {
                 location.reload();
-                swal("El registro se almacenó exitosamente!", "", "success");
+                swal("El registro se guardó exitosamente!", "", "success");
             }
             else {
                 location.reload();
-                swal("El registro  no se almacenó!", "", "error");
+                swal("El registro  no se guardó!", "", "error");
             }
         });
     }

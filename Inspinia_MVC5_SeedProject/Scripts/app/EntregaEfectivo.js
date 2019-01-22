@@ -1,38 +1,35 @@
-﻿var total = 0;
-var MontoEntregado = 0;
+﻿var MontoEntregado = 0;
 var Monto = 0;
-$(document).on("change", "#Entrega tbody tr td input#CantidadE", function () {
+$(document).on("change", "#EntregaEfectivo tbody tr td input#CantidadE", function () {
     var row = $(this).closest("tr");
     var Cantidad = $(this).val();
     var ValorDenominacion = $(this).parents("tr").find("td")[3].innerHTML;
     var Subtotal = parseFloat(Cantidad * ValorDenominacion);
-
-    if (Subtotal != 0) {
-        MontoEntregado += Subtotal;
-    }
-    else {
-        MontoEntregado = 0;
-        $("#Entrega tbody tr").each(function (index) {
-            Monto = $(this).children("td:eq(3)").html();
-            console.log('Monto', Monto);
-            if (Monto != '') {
-                Monto = parseFloat(Monto);
-                MontoEntregado += Monto;
-            }
-        })
-    }
-
     //Monto Entregado
     $(this).parents("tr").find("td")[6].innerHTML = Subtotal;
-    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
-    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-        event.preventDefault();
+    console.log('Subtotal', Subtotal);
+    console.log('Monto Entregado', MontoEntregado);
+    if (Subtotal != 0) {
+        MontoEntregado += parseFloat(Subtotal);
     }
+    else {
+         MontoEntregado = 0;
+         $("#EntregaEfectivo tbody tr").each(function (index) {
+             Monto = $(this).children("td:eq(6)").html();
+             console.log('Monto', Monto);
+             if (Monto != '') {
+                 Monto = parseFloat(Monto);
+                 MontoEntregado += Monto;
+             }
+         });
+    }
+    var TotalFinal = document.getElementById("Total").innerHTML = parseFloat(MontoEntregado);
+    $("#detalle_soled_MontoEntregado").val(MontoEntregado)
+    //document.getElementById("soled_MontoEntregado").innerHTML = parseFloat(MontoEntregado);
 
-    var total = document.getElementById("total").innerHTML = parseFloat(MontoEntregado);
-    $("#detalle_soled_MontoEntregado").val(total);
-    console.log(total);
-  
+    //document.getElementById("Monto").innerHTML = parseFloat(MontoEntregado);
+    //$("#detalle_soled_MontoEntregado").val(Total);
+    //document.getElementById("detalle_soled_MontoEntregado").innerHTML = Total
 });
 
 //$(document).on("keypress", "#Entrega tbody tr td input#CantidadE", function () {
@@ -50,3 +47,11 @@ $(document).on("change", "#Entrega tbody tr td input#CantidadE", function () {
 //    document.getElementById("#soled_MontoEntregado").innerHTML = parseFloat(MontoEntregado);
 //});
 
+//$(document).change(function () {
+//    $("#EntregaEfectivo tbody tr").each(function () {
+//        //Id PuntoEmisionDetalle
+//        var ID = $(this).children("td:eq(1)").text();
+//        console.log(ID);
+
+//    });
+//});
