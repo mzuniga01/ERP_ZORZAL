@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.suc_Id,"1", new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly"} })
+                                    @Html.EditorFor(model => model.suc_Id, "1", new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.suc_Id)</p>
                                 </div>
 
@@ -89,7 +89,7 @@
 
                             @*--------------------OCULTOS--------------------*@
 
-                            <input type="hidden" id="ped_EsAnulado" name="ped_EsAnulado" value="false"/>
+                            <input type="hidden" id="ped_EsAnulado" name="ped_EsAnulado" value="false" />
                             <input type="hidden" id="esped_Id" name="esped_Id" value="1" />
                             <input type="hidden" id="ped_RazonAnulado" name="ped_RazonAnulado" value="" />
                             <input type="hidden" id="suc_Id" name="suc_Id" value="1" />
@@ -173,7 +173,8 @@
     <script src="~/Scripts/app/Producto.js"></script>
     <script src="~/Scripts/app/Datepicker.js"></script>
     <script src="~/Scripts/app/FacturaDetalle.js"></script>
-    <script src="~/Scripts/app/ProductoFactura.js"></script>
+    <script src="~/Scripts/app/ProductoListaPrecios.js"></script>
+
     <script src="~/Scripts/app/Empleados.js"></script>
     <script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
     <script>

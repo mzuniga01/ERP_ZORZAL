@@ -1,172 +1,101 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbPedidoDetalle>
-@using ERP_GMEDINA.Models
-@{
-    tbPedidoDetalle Detalle = new tbPedidoDetalle();
-}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
 
-<div class="container" style="margin-top:3%">
-    <a href="#" class="btn btn-info" @*onclick="AddNewStudent(0)"*@data-toggle="modal"  data-target="#MyModal">Añadir Pedido Detalle</a> <br /><br />
-
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Codigo Producto</th>
-                <th>Descripción Producto</th>
-                <th>Cantidad</th>
-                <th>Cantidad Facturada</th>
-                <th>Acción(Editar)</th>
-                <th>Acción(Quitar)</th>
-
-            </tr>
-        </thead>
-        <tbody id="SetDetalleList">
-            <tr id="LoadingStatus" style="color:red"></tr>
-        </tbody>
-    </table>
-
-    @*Create A Popup Modal With Registration Form For Add Or Edit Student Record*@
-
-    <div class="modal fade" id="MyModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <a href="#" class="close" data-dismiss="modal">&times;</a>
-                    <h4 id="ModalTitle"></h4>
+                <div class="ibox-tools">
+                    <div class="col-md-offset-11">
+                        <button id="AddProducto" value="Mostrar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Añadir Pedido Detalle</span></button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form id="form">
-                        <fieldset id="SubmitForm">
-                            @Html.HiddenFor(m => Detalle.pedd_Id, new { @id = "Ppedd_Id" })
-                            <div class="form-group">
-                                @Html.TextBoxFor(m => Detalle.prod_Codigo, new { @id = "Pprod_Codigo", @class = "form-control", @placeholder = "Codigo Producto*" })
-                            </div>
-                            <div class="form-group">
-                                @Html.TextBoxFor(m => Detalle.pedd_Cantidad, new { @id = "Ppdd_Cantidad", @class = "form-control", @placeholder = "Cantidad*" })
-                            </div>
-                            <div class="form-group">
-                                @Html.TextBoxFor(m => Detalle.pedd_CantidadFacturada, new { @id = "Ppdd_CantidadFacturada", @class = "form-control", @placeholder = "Email*" })
-                            </div>
-                            <div class="form-group">
-                                <a href="#" class="btn btn-block btn-danger" id="SaveStudentRecord">Guardar</a>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                <div class="ibox-content">
 
-    @*Create A PopUp Modal For DeleteConfirmation*@
+                    <table class="table table-striped" id="PedidoDetalle">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Codigo)
+                                </th>
 
-    <div class="modal fade" id="DeleteConfirmation">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <a href="#" class="close" data-dismiss="modal">&times;</a>
-                    <h4>Delete Student Record</h4>
-                </div>
-                <div class="modal-body">
-                    <h4>Are You Sure? You Want To Delete This Record.</h4>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-primary" data-dismiss="modal" id="r">Cancle</a>
-                    <a href="#" class="btn btn-danger" onclick="ConfirmDelete()">Confirm</a>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
+                                </th>
+
+                    
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pedd_Cantidad)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pedd_CantidadFacturada)
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                    </td>
+                       
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pedd_Cantidad)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pedd_CantidadFacturada)
+                                    </td>
+
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.pedd_Id">
+                                            Editar
+                                        </button>
+                                    </td>
+                                </tr>
+                                <div class="modal fade" id="Editar_@item.pedd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Editar  Pedido Detalle</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div id="EditarSolicitudEfectivoDetalle" class="modal-body">
+                                                @Html.Partial("_PedidoDetalleEditar", new ERP_GMEDINA.Models.tbPedidoDetalle() { pedd_Id = item.pedd_Id, ped_Id = item.ped_Id, prod_Codigo = item.prod_Codigo, pedd_Cantidad = item.pedd_Cantidad, pedd_CantidadFacturada = item.pedd_CantidadFacturada, pedd_UsuarioCrea = item.pedd_UsuarioCrea, pedd_FechaCrea = item.pedd_FechaCrea, pedd_UsuarioModifica = item.pedd_UsuarioModifica, pedd_FechaModifica = item.pedd_FechaModifica })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-@*<script>
-    $("#LoadingStatus").html("Cargando....");
-    $.get("/Pedido/GetPedidoDetalle", null, DataBind);
-    function DataBind(StudentList) {
-        var SetData = $("#SetStudentList");
-        for (var i = 0; i < StudentList.length; i++) {
-            var Data = "<tr class='row_" + StudentList[i].StudentId + "'>" +
-                "<td>" + StudentList[i].pedd_Id + "</td>" +
-                "<td>" + StudentList[i].prod_Codigo + "</td>" +
-                "<td>" + StudentList[i].pedd_Cantidad + "</td>" +
-                "<td>" + StudentList[i].pedd_CantidadFacturada + "</td>" +
-                "<td>" + "<a href='#' class='btn btn-warning' onclick='EditStudentRecord(" + StudentList[i].StudentId + ")' ><span class='glyphicon glyphicon-edit'></span></a>" + "</td>" +
-                "<td>" + "<a href='#' class='btn btn-danger' onclick='DeleteStudentRecord(" + StudentList[i].StudentId + ")'><span class='glyphicon glyphicon-trash'></span></a>" + "</td>" +
-                "</tr>";
-            SetData.append(Data);
-            $("#LoadingStatus").html(" ");
-
-        }
-    }*@
-
-    @*//Mostrar el modo emergente para agregar nuevo estudiante
-
-    function AddNewStudent(StudentId) {
-        $("#form")[0].reset();
-        $("#StuId").val(0);
-        $("#DropDwn option:selected").text("--Select Dept--");
-        $("#ModalTitle").html("Add New Student");
-        $("#MyModal").modal();
-
-    }
-
-    //Show The Popup Modal For Edit Student Record
-
-    function EditStudentRecord(StudentId) {
-        var url = "/Home/GetStudentById?StudentId=" + StudentId;
-        $("#ModalTitle").html("Update Student Record");
-        $("#MyModal").modal();
-        $.ajax({
-            type: "GET",
-            url: url,
-            success: function (data) {
-                var obj = JSON.parse(data);
-                $("#StuId").val(obj.StudentId);
-                $("#StuName").val(obj.StudentName);
-                $("#Email").val(obj.Email);
-                $("#DropDwn option:selected").text(obj.tblDepartment.DepartmentName);
-                $("#DropDwn option:selected").val(obj.DepartmentId);
-
-            }
-        })
-    }
-
-    $("#SaveStudentRecord").click(function () {
-        var data = $("#SubmitForm").serialize();
-        $.ajax({
-            type: "Post",
-            url: "/Home/SaveDataInDatabase",
-            data: data,
-            success: function (result) {
-                alert("Success!..");
-                window.location.href = "/Home/index";
-                $("#MyModal").modal("hide");
-            }
-        })
-    })
-
-    //Show The Popup Modal For DeleteComfirmation
-    var DeleteStudentRecord = function (StudentId) {
-        $("#StuId").val(StudentId);
-        $("#DeleteConfirmation").modal("show");
-    }
-    var ConfirmDelete = function () {
-        var StuId = $("#StuId").val();
-        $.ajax({
-            type: "POST",
-            url: "/Home/DeleteStudentRecord?StudentId=" + StuId,
-            success: function (result) {
-                $("#DeleteConfirmation").modal("hide");
-                $(".row_" + StuId).remove();
-            }
-        })
-    }
-</script>*@
+<div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Añador Pedido Detalle</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="AjaxCreatePedidoDetalle">
+                @Html.Partial("_CreateDetallePedido", new ERP_GMEDINA.Models.tbPedidoDetalle())
+            </div>
+        </div>
+    </div>
+</div>
