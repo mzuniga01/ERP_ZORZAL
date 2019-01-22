@@ -37,7 +37,8 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Código Producto Barra", new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2 AsteriscoRojo">Código Barra Producto</label>
+                            @*@Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Código Producto Barra", new { @class = "control-label col-md-2" })*@
                             <div class="col-md-4 ">
                                 @Html.EditorFor(model => model.tbProducto.prod_CodigoBarras, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <div id="validacionNombreProductoCreate">
@@ -47,7 +48,8 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Nombre Producto", new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2 AsteriscoRojo">Nombre Producto</label>
+                            @*@Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Nombre Producto", new { @class = "control-label col-md-2" })*@
                             <div class="col-md-4 ">
                                 @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <div id="validacionNombreProductoCreate">
@@ -57,7 +59,8 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.lispd_PrecioMayorista, "Precio Mayorista", new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2 AsteriscoRojo">Precio Mayorista</label>
+                            @*@Html.LabelFor(model => model.lispd_PrecioMayorista, "Precio Mayorista", new { @class = "control-label col-md-2" })*@
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.lispd_PrecioMayorista, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
                                 <div id="validacionPrecioMayoristaCreate">
@@ -68,7 +71,8 @@
 
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.lispd_PrecioMinorista, "Precio Minorista", new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2 AsteriscoRojo">Precio Minorista</label>
+                               @* @Html.LabelFor(model => model.lispd_PrecioMinorista, "Precio Minorista", new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.lispd_PrecioMinorista, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0",@style="text-align:right" } })
                                     <div id="validacionPrecioMinoristaCreate">
@@ -85,9 +89,9 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja (%)", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new {@type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new {@type = "number", @min = "0", @max = 100, @step = "0.01", @value = "0" } })
                                 <div id="validacionDescuentoCajaCreate">
-                                    <p style="color:red"> @Html.ValidationMessageFor(model => model.lispd_DescCaja)</p>
+                                    <p id ="smsCantidad" style="color:red"> @Html.ValidationMessageFor(model => model.lispd_DescCaja)</p>
 </div>
 
 
@@ -97,8 +101,8 @@
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new {  @type = "number", @min = "0", @step = "0.01", @value = "0" } })
                                 <div id="validacionDescuentoGerenteCreate">
-                                    @Html.ValidationMessageFor(model => model.lispd_DescGerente)
-                                </div>
+                                    <p id="desccaja" style="color:red">@Html.ValidationMessageFor(model => model.lispd_DescGerente)</p>
+</div>
 
                             </div>
                         </div>
@@ -176,5 +180,76 @@
             }
             return true;
         }
+
+
+
+    $("#lispd_DescCaja").blur(function () {
+        valido = document.getElementById('smsCantidad');
+  
+        var DescuentoCaja = $('#lispd_DescCaja').val();
+    
+        
+
+        if (parseFloat(DescuentoCaja) < 0 || parseFloat(DescuentoCaja)> 100) {
+            //console.log("facturada", CantFacturada)
+            //console.log(CantDevolucion)
+            //console.log("if")
+            valido.innerText = "El valor debe estar entre 0 a 100";
+            $('#lispd_DescCaja').val("");
+            $('#lispd_DescCaja').focus();
+        }
+        else {
+            //console.log("else")
+            valido.innerText = "";
+        }
+
+
+    });
+
+    $("#lispd_DescGerente").blur(function () {
+
+        valido1 = document.getElementById('desccaja');
+     
+        var DescuentoGerente = $('#lispd_DescGerente').val();
+
+
+
+
+        if (parseFloat(DescuentoGerente) < 0 || parseFloat(DescuentoGerente) > 100) {
+            //console.log("facturada", CantFacturada)
+            //console.log(CantDevolucion)
+            //console.log("if")
+            valido1.innerText = "El valor debe estar entre 0 a 100";
+            $('#lispd_DescGerente').val("");
+            $('#lispd_DescGerente').focus();
+        }
+        else {
+            //console.log("else")
+            valido1.innerText = "";
+        }
+
+
+   
+
+
+    });
+
+
+
+
+
+    //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
+    $(document).keydown(function (e) {
+        if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            $("form").submit();
+            return false;
+        }
+        return true;
+    });
+
+
+
+
 
 </script>

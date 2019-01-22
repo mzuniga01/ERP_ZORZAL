@@ -20,13 +20,16 @@ $(document).ready(function () {
 // LP Seleccionar Producto
 $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", function () {
     idbarraItem = $(this).closest('tr').data('idbarra');
+    console.log(idbarraItem)
     //idbarraItem = $(this).closest('tr').data('barra');
     idItem = $(this).closest('tr').data('id');
+    console.log(idItem)
     DescItem = $(this).closest('tr').data('desc');
+    console.log(DescItem)
     ISVItem = $(this).closest('tr').data('isv');
 
     $("#prod_CodigoBarras").val(idbarraItem);
-    $("#prod_Codigo").val(idItem);
+    $("#tbProducto_prod_Codigo").val(idItem);
     $("#tbProducto_prod_CodigoBarras").val(idCbItem);
     $("#tbProducto_prod_Descripcion").val(DescItem);
     $("#factd_Impuesto").val(ISVItem);

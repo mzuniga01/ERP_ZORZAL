@@ -30,9 +30,11 @@ namespace ERP_GMEDINA.Models
         public decimal lispd_PrecioMinorista { get; set; }
 
         [Display(Name = "Descuento Caja")]
+        [Range(0, 100)]
         public Nullable<decimal> lispd_DescCaja { get; set; }
 
         [Display(Name = "Descuento Gerente")]
+        [Range(0, 100)]
         public Nullable<decimal> lispd_DescGerente { get; set; }
 
 

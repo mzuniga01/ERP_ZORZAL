@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .AsteriscoRojo:after {
+        content: "*";
+        color: red;
+    }
+</style>
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -36,42 +42,42 @@
                         @Html.AntiForgeryToken()
 
                         <div class="form-group">
-                            <label class="control-label col-md-2">Nombre Lista</label>
+                            <label class="control-label col-md-2 AsteriscoRojo">Nombre Lista</label>
                             @*@Html.LabelFor(model => model.listp_EsActivo, new { @class = "control-label col-md-2" })*@
                             <div class="col-md-8">
                                 @Html.EditorFor(model => model.listp_Nombre)
-                                <p style="color:red">@Html.ValidationMessageFor(model => model.listp_Nombre)
+                                @Html.ValidationMessageFor(model => model.listp_Nombre)
                             </div>
 
                             <br /><br /><br />
 
-
-
-
                             <br /><br />
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.listp_FechaInicioVigencia, new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2 AsteriscoRojo">Fecha Inicio Vigencia</label>
+                                @*@Html.LabelFor(model => model.listp_FechaInicioVigencia, new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "FIV", } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)</p>
+                                   @Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)
 </div>
                             </div>
                             <br /><br />
                             <div class="form-group">
-                                @Html.LabelFor(model => model.listp_FechaFinalVigencia, new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2 AsteriscoRojo">Fecha Final Vigencia</label>
+                                @*@Html.LabelFor(model => model.listp_FechaFinalVigencia, new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FFV" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)</p>
+                                    @Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)
 </div>
                             </div>
 
                             <br /><br />
                             <div class="form-group">
-                                @Html.LabelFor(model => model.listp_Prioridad, new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2 AsteriscoRojo">Prioridad</label>
+                               @* @Html.LabelFor(model => model.listp_Prioridad, new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.listp_Prioridad, new { htmlAttributes = new { @maxlength = "1", @onkeypress = "return validar(event)" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.listp_Prioridad)</p>
+                                    <p id="nprioridad" style="color:red">@Html.ValidationMessageFor(model => model.listp_Prioridad)
                                 </div>
                             </div>
 
@@ -115,9 +121,52 @@ jQuery('input,select').each(function() {
      var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
      var text = label.text();
      if (text.length > 0) {
-      label.append('<span style="color:red"> *</span>');
+      label.append('<span style="color:red"> </span>');
     }
 });
+
+
+
+
+$("#listp_Prioridad").blur(function () {
+
+    valido = document.getElementById('nprioridad');
+    var Prioridad = $('#listp_Prioridad').val();
+
+
+
+
+
+    if (parseFloat(Prioridad) < 1 || parseFloat(Prioridad) > 3) {
+
+        valido.innerText = "El valor debe estar entre 1 a 3";
+        $('#listp_Prioridad').val("");
+        $('#listp_Prioridad').focus();
+    }
+    else {
+        //console.log("else")
+        valido.innerText = "";
+       
+    }
+
+
+
+
+
+});
+
+
+
+//---------------------------------Ctrl + G (GuardarRegistro)------------------------------
+$(document).keydown(function (e) {
+    if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        $("form").submit();
+        return false;
+    }
+    return true;
+});
+
 </script>
 
 <script src="~/Scripts/app/Datepicker.js"></script>
