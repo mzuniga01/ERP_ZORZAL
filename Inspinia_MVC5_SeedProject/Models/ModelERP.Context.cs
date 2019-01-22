@@ -5297,5 +5297,14 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("UDP_Vent_tbFactura_Estado", fact_IdParameter, fact_EsAnuladaParameter);
         }
+    
+        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivoDetalle_Detalle_Result1> UDP_Vent_tbSolicitudEfectivoDetalle_Detalle(Nullable<int> sOLICITUD_ID)
+        {
+            var sOLICITUD_IDParameter = sOLICITUD_ID.HasValue ?
+                new ObjectParameter("SOLICITUD_ID", sOLICITUD_ID) :
+                new ObjectParameter("SOLICITUD_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivoDetalle_Detalle_Result1>("UDP_Vent_tbSolicitudEfectivoDetalle_Detalle", sOLICITUD_IDParameter);
+        }
     }
 }

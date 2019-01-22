@@ -456,7 +456,7 @@
     <Property Name="sal_BodDestino" Type="int" Nullable="false" />
     <Property Name="sal_EsAnulada" Type="bit" Nullable="false" />
     <Property Name="sal_RazonDevolucion" Type="varchar" MaxLength="50" />
-    <Property Name="sal_RazonAnulada" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="sal_RazonAnulada" Type="nvarchar" MaxLength="150" />
     <Property Name="sal_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="sal_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="sal_UsuarioModifica" Type="int" />
@@ -5242,6 +5242,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="soled_CantidadSolicitada" Type="smallint" Mode="In" />
     <Parameter Name="soled_CantidadEntregada" Type="smallint" Mode="In" />
     <Parameter Name="soled_MontoEntregado" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_Detalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="SOLICITUD_ID" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="solef_Id" Type="int" Mode="In" />

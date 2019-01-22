@@ -579,11 +579,89 @@ namespace ERP_GMEDINA.Controllers
             }
 
 
-            return Json("Exito", JsonRequestBehavior.AllowGet);
-       
+            return Json("Exito", JsonRequestBehavior.AllowGet);     
 
           
         }
+
+
+        //______________________________Añadir Detalle_______________________________________//
+        [HttpGet]
+        public ActionResult GetAddDenominacion(short DENOID)
+        {
+            var list = db.UDP_Vent_tbSolicitudEfectivoDetalle_Detalle(DENOID).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult AddDetalleSolicitudDetalle(List<tbSolicitudEfectivoDetalle> procesoData)
+        {
+            if (procesoData == null)
+            {
+                Session["AddDetalle"] = procesoData;
+            }
+            else
+            {
+                Session["AddDetalle"] = procesoData;
+            }
+            return Json("Exito", JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult AddDetalle(List<tbSolicitudEfectivoDetalle> procesoData, tbSolicitudEfectivo tbSolicitudEfectivo)
+        {
+            //var list = (List<tbSolicitudEfectivoDetalle>)Session["AddDetalle"];
+            try
+            {
+
+
+                var MensajeErrorDetalle = "";
+
+                IEnumerable<object> listSolicitudEfectivoDetalle = null;
+
+                if (MensajeErrorDetalle != "-1")
+                {
+                    if (procesoData != null)
+                    {
+                        if (procesoData.Count != 0)
+                        {
+                            foreach (tbSolicitudEfectivoDetalle Detalle in procesoData)
+                            {
+
+                                listSolicitudEfectivoDetalle = db.UDP_Vent_tbSolicitudEfectivoDetalle_Insert(
+                                    Detalle.solef_Id,
+                                    Detalle.deno_Id,
+                                    Detalle.soled_CantidadSolicitada
+                                    );
+                                foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result spDetalle in listSolicitudEfectivoDetalle)
+                                {
+                                    MensajeErrorDetalle = spDetalle.MensajeError;
+                                    if (MensajeErrorDetalle == "-1")
+                                    {
+                                        ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+
+
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+            }
+
+            return Json("Exito", JsonRequestBehavior.AllowGet);
+
+
+        }
+
+
 
     }
 }

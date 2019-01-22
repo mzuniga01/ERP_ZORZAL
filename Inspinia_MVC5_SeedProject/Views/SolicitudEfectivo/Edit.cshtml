@@ -80,7 +80,7 @@
                                     @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
                                 </div>
-                                @Html.LabelFor(model => model.mocja_Id,"Id Apertura", new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.mocja_Id, "Id Apertura", new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @*@Html.DropDownList("mocja_Id",*@ @*String.Empty*@@*null, "Seleccione la Moneda", new { @class = "form-control" })*@
                                     @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
@@ -108,11 +108,11 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.solef_EsApertura, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                            @Html.CheckBoxFor(model => model.solef_EsApertura, new { onclick = "return false" })
-                            @*@Html.DisplayFor(model => model.solef_EsApertura)*@
-                                        @Html.ValidationMessageFor(model => model.solef_EsApertura)
-                                    </div>
+                                    @Html.CheckBoxFor(model => model.solef_EsApertura, new { onclick = "return false" })
+                                    @*@Html.DisplayFor(model => model.solef_EsApertura)*@
+                                    @Html.ValidationMessageFor(model => model.solef_EsApertura)
                                 </div>
+                            </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.solef_EsAnulada, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
@@ -126,30 +126,30 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Total Solicitud</label>
                                 <div class="col-md-3">
-                                    <input id="total"  class="form-control" readonly />
+                                    <input id="total" class="form-control" readonly />
                                 </div>
                             </div>
 
-                           
 
 
 
 
-                                        <div class="form-group">
-                                            <div class="col-md-offset-2 col-md-10">
-                                                <input type="submit" value="Guardar" class="btn btn-primary" />
-                                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
 
-                                                <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Anular">
-                                                    Anular
-                                                </button>
-                                                <div class="col-md-offset-10">
-                                                    <button id="AñadirDenominacion" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Agregar Denominación</span></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @Html.Partial("_IndexEditSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" id="guardaencabezado" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+
+                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Anular">
+                                        Anular
+                                    </button>
+                                    <div class="col-md-offset-10">
+                                        <button id="AñadirDenominacion" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarDetalle" data-backdrop="static" data-keyboard="false"><span>Agregar Denominación</span></button>
                                     </div>
+                                </div>
+                            </div>
+                            @Html.Partial("_IndexEditSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
+                        </div>
                     }
 
 
@@ -236,8 +236,13 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
+    @* validación Readonly *@
 
-<script>
+
+
+
+
+    <script>
         var MontoSolicitado = 0;
         $("#mitabla tbody tr:nth-child(-n+20)").each(function () {
             MontoSolicitado += parseFloat($(this).children("td:eq(4)").html());
@@ -245,11 +250,11 @@
 
         $("#total").val(MontoSolicitado);
 
-</script>
+    </script>
 
 
 
-<script>
+    <script>
     $(document).ready(function () {
         if ($('#solef_FechaEntrega').val() == '') {
 
@@ -266,11 +271,11 @@
 
             if (jQuery("#solef_EsAnulada").is(":checked")) {
                 $('#bottonAnular').hide();
-                $('#AñadirDenominacion').hide();            
-            }  
+                $('#AñadirDenominacion').hide();
+            }
             else if (jQuery("#solef_EsApertura").is(":checked")){
                 $('#bottonAnular').hide();
-                $('#AñadirDenominacion').hide();  
+                $('#AñadirDenominacion').hide();
             }
             else {
                 $('#bottonAnular').show();
@@ -290,54 +295,157 @@
         }
         else {
             $('#mnda_Id').attr("disabled", "disabled");
+            document.getElementById("guardaencabezado").disabled = true
+
             // alert('no puede');
         }
     </script>
 
- <script type="text/javascript">
-        //$(document).ready(function () {
-        //    $.ajax({
-        //        type: 'GET',
-        //        url: '/SolicitudEfectivo/GetDenominacions',
-        //        datatype: 'JSON',
-        //        data: {},
-        //        success: function (data) {
-        //            $('#mnda_Id').empty();
-        //            $('#mnda_Id').append("<option value='0'>Seleccione la Moneda</option>");
-        //            $.each(data, function (i, item) {
-        //                $('#mnda_Id').append("<option value='" + item.mnda_Id + "'>" + item.Text + "</option>");
-        //            });
-        //        },
-        //        error: function (data) { alert(data.responseText); }
-        //    });
+    @* ________________________Remplazar Ceros por espacio y bloquiar letras_________________________________________ *@
+    <script>
+    function soloNumeros(e) {
+        var key = window.Event ? e.which : e.keyCode;
+        return ((key >= 48 && key <= 57) || (key == 8))
+    }
 
-            //$("#solef_Id").ready(function () {
-            //    $.ajax({
-            //        type: 'GET',
-            //        url: '/SolicitudEfectivo/detalle',
-            //        datatype: 'JSON',
-            //        data: { 'moneda': $(this).val() },
-            //        success: function (data) {
-            //            $('#example1 tbody').empty();
-            //            $.each(data, function (i, item) {
-            //                var rows = "<tr data-id=" + item.deno_Id + ">" +
-            //                           "<td hidden>" + item.deno_Id + "</td>" +
-            //                           "<td>" + item.deno_Descripcion + "</td>" +
-            //                            "<td>" + '<input type="text" id="cantidad" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
-            //                            "<td>" +  0 + "</td>" +
-            //                             "<td>" +  0 +   "</td>" +
-            //                            "<td >" + 0+ "</td>" +
-            //                           "<td hidden>" + item.deno_valor + "</td>" +
+    function pierdeFoco(e) {
+        var valor = e.value.replace(/^0*/, '');
+        e.value = valor;
+    }
+    </script>
 
-            //                           "</tr>";
-            //                $('#example1 tbody').append(rows);
-            //            });
-            //        },
-            //        error: function (data) { alert(data.responseText); }
-            //    });
-            //});
-        //});
-</script>
+
+    @* ___________________________Tabla de Add Detalle_______________________________________________ *@
+    <script type="text/javascript">
+     $(document).ready(function () {
+         GetDenominacion()
+
+
+     });
+         function GetDenominacion() {
+             var DENOID = $("#solef_Id").val();
+             var idSolicitud = $("#solef_Id").val();
+                $.ajax({
+                    type: 'GET',
+                    url: '/SolicitudEfectivo/GetAddDenominacion',
+                    datatype: 'JSON',
+                    data: { 'DENOID': DENOID },
+                    success: function (data) {
+                        $('#example1 tbody').empty();
+                        $.each(data, function (i, item) {
+                            var rows = "<tr data-id=" + item.denoId + ">" +
+                                       "<td hidden>" + item.denoId + "</td>" +
+                                       "<td>" + item.DenoDescripcion + "</td>" +
+                                        "<td>" + '<input type="text" id="cantidad" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
+                                        "<td>" +  0 + "</td>" +
+                                         "<td>" +  0 +   "</td>" +
+                                        "<td >" + 0+ "</td>" +
+                                       "<td hidden>" + item.valor + "</td>" +
+                                       "<td hidden>" + idSolicitud + "</td>" +
+
+                                       "</tr>";
+                            $('#example1 tbody').append(rows);
+                        });
+                    },
+                    error: function (data) { alert(data.responseText); }
+                });
+        };
+    </script>
+    @* ________________________________________Calculos_____________________________________ *@
+    <script>
+        $(document).on("keyup", "#example1 tbody tr td input#cantidad", function () {
+            var row = $(this).closest("tr");
+            var Cantidad = $(this).val();
+            var ValorDenominacion = $(this).parents("tr").find("td")[6].innerHTML;
+            var montosoli = parseFloat(Cantidad * ValorDenominacion);
+            MontoInicial = 0;
+
+            $(this).parents("tr").find("td")[3].innerHTML = montosoli;
+            if (montosoli != 0) {
+                MontoInicial += montosoli;
+            }
+            else {
+                MontoInicial = 0;
+                $("#example1 tbody tr  td label#MontoSolicitado").each(function (index) {
+                    Monto = $(this).children("td:eq(3)").html();
+                    if (Monto != '') {
+                        Monto = parseFloat(Monto);
+                        MontoInicial += Monto;
+                    }
+                })
+            }
+        });
+    </script>
+    @* ___________________________________________Guardar mas Detalle Denominación________________________________ *@
+
+    <script>
+    $('#guardar').click(function () {
+
+                var idmovimiento
+                var Detail = [];
+                var monedas = $('#mnda_Id').val();
+
+                if (monedas <= 0) {
+                    valido = document.getElementById('mone');
+                    valido.innerText = "El Campo Moneda es Requierido";
+                    return false;
+                }
+                else if (monedas > 0) {
+
+
+                    $('#example1 > tbody  > tr').each(function () {
+                        idItem = $(this).data('id');
+                        var soledCantidadSolicitada = $(this).find("td:eq(2)").find("input").val();
+
+                        var idSolicitud = ($(this).children("td:eq(7)").html());
+
+                        if (soledCantidadSolicitada != '' && soledCantidadSolicitada != 0) {
+                            console.log('idItem', idItem);
+                            console.log('soledCantidadSolicitada', soledCantidadSolicitada);
+                            var item = {
+                                deno_Id: idItem,
+                                soled_CantidadSolicitada: parseInt(soledCantidadSolicitada),
+                                solef_Id: parseInt(idSolicitud),
+                            }
+                            Detail.push(item);
+                        }
+                    });
+                    console.log(Detail);
+                    $.ajax({
+                        url: "/SolicitudEfectivo/AddDetalle",
+                        method: 'POST',
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({ procesoData: Detail }),
+                    })
+                    .done(function (data) {
+                        if (data == 'Error') {
+                            alert('No Enviado');
+
+                        }
+                        else {
+                            location.reload();
+                            alert('Detalle Añadido CorrectaMnete');
+                            console.log(procesoData);
+                            console.log(cantisoli);
+                        }
+
+                    });
+                }
+    });
+
+
+    </script>
+    @* ______________________Cerrar Modal______________________________________ *@
+
+    @*<script type="text/javascript">
+            $(document).on('click', '#Cancelar', function () {
+
+                $('#ModalAgregarDetalle').modal('hide');
+            });
+
+        </script>*@
+
 
 
 

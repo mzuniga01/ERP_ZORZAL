@@ -2272,5 +2272,14 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Estado" />
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Detalle" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Detalle">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Detalle_Result1">
+          <ScalarProperty Name="denoId" ColumnName="denoId" />
+          <ScalarProperty Name="DenoDescripcion" ColumnName="DenoDescripcion" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
