@@ -1558,6 +1558,29 @@
     <FunctionImport Name="UDP_Inv_tbProductoSubCategoria_Delete_test" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Delete_test_Result)">
       <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SDP_Inv_tbProducto_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_tbProducto_Select_Result)" />
+    <FunctionImport Name="UDP_Inv_tbTipoDevolucion_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbTipoDevolucion_Insert_Result)">
+      <Parameter Name="tdev_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="tdev_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="tdev_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbTipoDevolucion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbTipoDevolucion_Update_Result)">
+      <Parameter Name="tdev_Id" Mode="In" Type="Int32" />
+      <Parameter Name="tdev_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="tdev_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="tdev_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="tdev_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="tdev_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <EntitySet Name="tbTipoDevolucion" EntityType="ERP_ZORZALModel.tbTipoDevolucion" />
+    <AssociationSet Name="FK_Inv_tbTipoDevolucion_tdev_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbTipoDevolucion_tdev_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbTipoDevolucion" EntitySet="tbTipoDevolucion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbTipoDevolucion_tdev_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbTipoDevolucion_tdev_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbTipoDevolucion" EntitySet="tbTipoDevolucion" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -2224,6 +2247,8 @@
     <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
     <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbCliente" />
     <NavigationProperty Name="tbCliente1" Relationship="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbCliente" />
+    <NavigationProperty Name="tbTipoDevolucion" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoDevolucion_tdev_UsuarioCrea" FromRole="tbUsuario" ToRole="tbTipoDevolucion" />
+    <NavigationProperty Name="tbTipoDevolucion1" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoDevolucion_tdev_UsuarioModifica" FromRole="tbUsuario" ToRole="tbTipoDevolucion" />
   </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
@@ -2694,6 +2719,7 @@
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioCrea" FromRole="tbProveedor" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioModifica" FromRole="tbProveedor" ToRole="tbUsuario" />
     <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbProveedor_prov_Id" FromRole="tbProveedor" ToRole="tbEntrada" />
+    <Property Name="prov_RTN" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tbSalida">
     <Key>
@@ -2708,7 +2734,7 @@
     <Property Name="sal_BodDestino" Type="Int32" Nullable="false" />
     <Property Name="sal_EsAnulada" Type="Boolean" Nullable="false" />
     <Property Name="sal_RazonDevolucion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="sal_RazonAnulada" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="sal_RazonAnulada" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="sal_UsuarioCrea" Type="Int32" Nullable="false" />
     <Property Name="sal_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="sal_UsuarioModifica" Type="Int32" />
@@ -3029,6 +3055,7 @@
     <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPedido_fact_Id" FromRole="tbFactura" ToRole="tbPedido" />
     <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbFacturaDetalle" />
     <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" FromRole="tbFactura" ToRole="tbSucursal" />
+    <Property Name="fact_RazonAnulado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tbFacturaDetalle">
     <Key>
@@ -3184,6 +3211,7 @@
     <NavigationProperty Name="tbCuentasBanco" Relationship="ERP_ZORZALModel.FK_Gral_tbCuentaBanco_bcta_Id" FromRole="tbPago" ToRole="tbCuentasBanco" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" FromRole="tbPago" ToRole="tbFactura" />
     <NavigationProperty Name="tbTipoPago" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id" FromRole="tbPago" ToRole="tbTipoPago" />
+    <Property Name="pago_RazonAnulado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tbPagosArqueo">
     <Key>
@@ -6076,4 +6104,59 @@
   <ComplexType Name="UDP_Inv_tbProductoSubCategoria_Delete_test_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
   </ComplexType>
+  <ComplexType Name="SDP_Inv_tbProducto_Select_Result">
+    <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="prod_Marca" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="prod_Modelo" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="prod_Talla" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Color" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbTipoDevolucion_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbTipoDevolucion_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <EntityType Name="tbTipoDevolucion">
+    <Key>
+      <PropertyRef Name="tdev_Id" />
+    </Key>
+    <Property Name="tdev_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tdev_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tdev_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="tdev_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tdev_UsuarioModifica" Type="Int32" />
+    <Property Name="tdev_FechaModifica" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoDevolucion_tdev_UsuarioCrea" FromRole="tbTipoDevolucion" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoDevolucion_tdev_UsuarioModifica" FromRole="tbTipoDevolucion" ToRole="tbUsuario" />
+  </EntityType>
+  <Association Name="FK_Inv_tbTipoDevolucion_tdev_UsuarioCrea">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbTipoDevolucion" Role="tbTipoDevolucion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbTipoDevolucion">
+        <PropertyRef Name="tdev_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbTipoDevolucion_tdev_UsuarioModifica">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbTipoDevolucion" Role="tbTipoDevolucion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbTipoDevolucion">
+        <PropertyRef Name="tdev_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -57,7 +57,7 @@ namespace ERP_GMEDINA.Controllers
         
         private void AllLists()
         {
-            ViewBag.Producto = db.tbProducto.ToList();
+            ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
             ViewBag.Depto = db.tbDepartamento.ToList();
             ViewBag.Muni = db.tbMunicipio.ToList();
             var _departamentos = db.tbDepartamento.Select(s => new

@@ -31,6 +31,7 @@ namespace ERP_GMEDINA.Models
         public System.DateTime pago_FechaCrea { get; set; }
         public Nullable<int> pago_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> pago_FechaModifica { get; set; }
+        public string pago_RazonAnulado { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

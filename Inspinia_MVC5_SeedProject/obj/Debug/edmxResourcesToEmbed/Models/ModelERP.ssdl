@@ -432,6 +432,7 @@
     <Property Name="prov_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="prov_UsuarioModifica" Type="int" />
     <Property Name="prov_FechaModifica" Type="datetime" />
+    <Property Name="prov_RTN" Type="nvarchar" MaxLength="14" />
   </EntityType>
   <EntityType Name="tbSalida">
     <Key>
@@ -446,7 +447,7 @@
     <Property Name="sal_BodDestino" Type="int" Nullable="false" />
     <Property Name="sal_EsAnulada" Type="bit" Nullable="false" />
     <Property Name="sal_RazonDevolucion" Type="varchar" MaxLength="50" />
-    <Property Name="sal_RazonAnulada" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="sal_RazonAnulada" Type="nvarchar" MaxLength="150" />
     <Property Name="sal_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="sal_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="sal_UsuarioModifica" Type="int" />
@@ -465,6 +466,17 @@
     <Property Name="sald_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="sald_UsuarioModifica" Type="int" />
     <Property Name="sald_FechaModifica" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbTipoDevolucion">
+    <Key>
+      <PropertyRef Name="tdev_Id" />
+    </Key>
+    <Property Name="tdev_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tdev_Descripcion" Type="varchar" MaxLength="100" />
+    <Property Name="tdev_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="tdev_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="tdev_UsuarioModifica" Type="int" />
+    <Property Name="tdev_FechaModifica" Type="datetime" />
   </EntityType>
   <EntityType Name="tbTipoEntrada">
     <Key>
@@ -683,6 +695,7 @@
     <Property Name="fact_UsuarioAutoriza" Type="int" />
     <Property Name="fact_FechaAutoriza" Type="datetime" />
     <Property Name="fact_EsAnulada" Type="bit" Nullable="false" />
+    <Property Name="fact_RazonAnulado" Type="nvarchar" MaxLength="50" />
     <Property Name="fact_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="fact_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="fact_UsuarioModifica" Type="int" />
@@ -807,6 +820,7 @@
     <Property Name="pago_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="pago_UsuarioModifica" Type="int" />
     <Property Name="pago_FechaModifica" Type="datetime" />
+    <Property Name="pago_RazonAnulado" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="tbPagosArqueo">
     <Key>
@@ -2857,6 +2871,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbTipoDevolucion_tdev_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbTipoDevolucion" Type="Self.tbTipoDevolucion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbTipoDevolucion">
+        <PropertyRef Name="tdev_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbTipoDevolucion_tdev_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbTipoDevolucion" Type="Self.tbTipoDevolucion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbTipoDevolucion">
+        <PropertyRef Name="tdev_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbTipoEntrada_tent_UsuarioCrea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbTipoEntrada" Type="Self.tbTipoEntrada" Multiplicity="*" />
@@ -3854,6 +3892,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="uni_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="uni_FechaModifica" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="SDP_Inv_tbProducto_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv" />
   <Function Name="SDP_Inv_tbSalidaDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sald_Id" Type="int" Mode="In" />
   </Function>
@@ -4108,9 +4147,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="UDP_Inv_tbProductoSubCategoria_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pscat_Id" Type="int" Mode="In" />
   </Function>
-  <Function Name="UDP_Inv_tbProductoSubCategoria_Delete_test" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
-    <Parameter Name="pscat_Id" Type="int" Mode="In" />
-  </Function>
   <Function Name="UDP_Inv_tbProductoSubcategoria_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pscat_Descripcion" Type="varchar" Mode="In" />
     <Parameter Name="pcat_Id" Type="int" Mode="In" />
@@ -4187,6 +4223,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="UDP_Inv_tbSalidaDetalleD_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sald_Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="UDP_Inv_tbTipoDevolucion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="tdev_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="tdev_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="tdev_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbTipoDevolucion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="tdev_Id" Type="int" Mode="In" />
+    <Parameter Name="tdev_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="tdev_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="tdev_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="tdev_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="tdev_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="UDP_Inv_tbTipoEntrada_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="tent_Descripcion" Type="nvarchar" Mode="In" />
   </Function>
@@ -4251,6 +4300,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <EntitySet Name="tbProveedor" EntityType="Self.tbProveedor" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbSalida" EntityType="Self.tbSalida" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbSalidaDetalle" EntityType="Self.tbSalidaDetalle" Schema="Inv" store:Type="Tables" />
+    <EntitySet Name="tbTipoDevolucion" EntityType="Self.tbTipoDevolucion" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbTipoEntrada" EntityType="Self.tbTipoEntrada" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbTipoSalida" EntityType="Self.tbTipoSalida" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbCaja" EntityType="Self.tbCaja" Schema="Vent" store:Type="Tables" />
@@ -4918,6 +4968,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <AssociationSet Name="FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea" Association="Self.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbTipoDevolucion_tdev_UsuarioCrea" Association="Self.FK_Inv_tbTipoDevolucion_tdev_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbTipoDevolucion" EntitySet="tbTipoDevolucion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbTipoDevolucion_tdev_UsuarioModifica" Association="Self.FK_Inv_tbTipoDevolucion_tdev_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbTipoDevolucion" EntitySet="tbTipoDevolucion" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbTipoEntrada_tent_UsuarioCrea" Association="Self.FK_Inv_tbTipoEntrada_tent_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />

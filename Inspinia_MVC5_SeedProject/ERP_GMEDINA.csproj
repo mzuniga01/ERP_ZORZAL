@@ -203,6 +203,7 @@
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\SalidaController.cs" />
     <Compile Include="Controllers\tbProveedorsController.cs" />
+    <Compile Include="Controllers\TipoDevolucionController.cs" />
     <Compile Include="Controllers\TipoEntradaController.cs" />
     <Compile Include="Controllers\TipoSalidaController.cs" />
     <Compile Include="Controllers\UnidadMedidaController.cs" />
@@ -286,6 +287,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SDP_Gral_tbEmpleado_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SDP_Inv_tbProducto_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SDP_Inv_tbSalidaDetalle_Select_Result.cs">
@@ -516,6 +520,9 @@
     <Compile Include="Models\tbSucursal.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbTipoDevolucion.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbTipoEntrada.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -534,6 +541,7 @@
     <Compile Include="Models\tbUsuario.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TipoDevolucion.cs" />
     <Compile Include="Models\TipoEntrada.cs" />
     <Compile Include="Models\TipoSalida.cs" />
     <Compile Include="Models\UDP_Acce_Login_Result.cs">
@@ -747,6 +755,12 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbSalida_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Inv_tbTipoDevolucion_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Inv_tbTipoDevolucion_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbTipoEntrada_Insert_Result.cs">
@@ -1401,6 +1415,11 @@
     <Content Include="Views\InventarioFisico\_CreateInvFisicoDetalle_nuevo.cshtml" />
     <Content Include="Views\InventarioFisico\_ListadoInventarioFisicoDetalleConciliado.cshtml" />
     <Content Include="Views\Salida\_Modales.cshtml" />
+    <Content Include="Views\TipoDevolucion\Create.cshtml" />
+    <Content Include="Views\TipoDevolucion\Delete.cshtml" />
+    <Content Include="Views\TipoDevolucion\Details.cshtml" />
+    <Content Include="Views\TipoDevolucion\Edit.cshtml" />
+    <Content Include="Views\TipoDevolucion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_GMEDINA.Models.tbProducto>
+﻿@model IEnumerable<ERP_GMEDINA.Models.SDP_Inv_tbProducto_Select_Result>
 @using ERP_GMEDINA.Models
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -28,7 +28,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr tr data-html="@item.prod_CodigoBarras", tr data-id="@item.prod_Codigo" , tr data-content="@item.prod_Descripcion" , tr data-container="@item.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbUnidadMedida.uni_Descripcion">
+                                <tr tr data-html="@item.prod_CodigoBarras", tr data-id="@item.prod_Codigo" , tr data-content="@item.prod_Descripcion" , tr data-container="@item.pscat_Descripcion" , tr data-keyboard="@item.uni_Descripcion">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.prod_Descripcion)
                                     </td>

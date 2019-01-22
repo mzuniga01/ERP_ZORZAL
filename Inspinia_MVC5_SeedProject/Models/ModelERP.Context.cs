@@ -91,6 +91,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
         public virtual DbSet<UDV_Inv_Consultar_Existencias_Productos> UDV_Inv_Consultar_Existencias_Productos { get; set; }
+        public virtual DbSet<tbTipoDevolucion> tbTipoDevolucion { get; set; }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
         {
@@ -2258,6 +2259,57 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pscat_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoSubCategoria_Delete_test_Result>("UDP_Inv_tbProductoSubCategoria_Delete_test", pscat_IdParameter);
+        }
+    
+        public virtual ObjectResult<SDP_Inv_tbProducto_Select_Result> SDP_Inv_tbProducto_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_tbProducto_Select_Result>("SDP_Inv_tbProducto_Select");
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbTipoDevolucion_Insert_Result> UDP_Inv_tbTipoDevolucion_Insert(string tdev_Descripcion, Nullable<int> tdev_UsuarioCrea, Nullable<System.DateTime> tdev_FechaCrea)
+        {
+            var tdev_DescripcionParameter = tdev_Descripcion != null ?
+                new ObjectParameter("tdev_Descripcion", tdev_Descripcion) :
+                new ObjectParameter("tdev_Descripcion", typeof(string));
+    
+            var tdev_UsuarioCreaParameter = tdev_UsuarioCrea.HasValue ?
+                new ObjectParameter("tdev_UsuarioCrea", tdev_UsuarioCrea) :
+                new ObjectParameter("tdev_UsuarioCrea", typeof(int));
+    
+            var tdev_FechaCreaParameter = tdev_FechaCrea.HasValue ?
+                new ObjectParameter("tdev_FechaCrea", tdev_FechaCrea) :
+                new ObjectParameter("tdev_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbTipoDevolucion_Insert_Result>("UDP_Inv_tbTipoDevolucion_Insert", tdev_DescripcionParameter, tdev_UsuarioCreaParameter, tdev_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbTipoDevolucion_Update_Result> UDP_Inv_tbTipoDevolucion_Update(Nullable<int> tdev_Id, string tdev_Descripcion, Nullable<int> tdev_UsuarioCrea, Nullable<System.DateTime> tdev_FechaCrea, Nullable<int> tdev_UsuarioModifica, Nullable<System.DateTime> tdev_FechaModifica)
+        {
+            var tdev_IdParameter = tdev_Id.HasValue ?
+                new ObjectParameter("tdev_Id", tdev_Id) :
+                new ObjectParameter("tdev_Id", typeof(int));
+    
+            var tdev_DescripcionParameter = tdev_Descripcion != null ?
+                new ObjectParameter("tdev_Descripcion", tdev_Descripcion) :
+                new ObjectParameter("tdev_Descripcion", typeof(string));
+    
+            var tdev_UsuarioCreaParameter = tdev_UsuarioCrea.HasValue ?
+                new ObjectParameter("tdev_UsuarioCrea", tdev_UsuarioCrea) :
+                new ObjectParameter("tdev_UsuarioCrea", typeof(int));
+    
+            var tdev_FechaCreaParameter = tdev_FechaCrea.HasValue ?
+                new ObjectParameter("tdev_FechaCrea", tdev_FechaCrea) :
+                new ObjectParameter("tdev_FechaCrea", typeof(System.DateTime));
+    
+            var tdev_UsuarioModificaParameter = tdev_UsuarioModifica.HasValue ?
+                new ObjectParameter("tdev_UsuarioModifica", tdev_UsuarioModifica) :
+                new ObjectParameter("tdev_UsuarioModifica", typeof(int));
+    
+            var tdev_FechaModificaParameter = tdev_FechaModifica.HasValue ?
+                new ObjectParameter("tdev_FechaModifica", tdev_FechaModifica) :
+                new ObjectParameter("tdev_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbTipoDevolucion_Update_Result>("UDP_Inv_tbTipoDevolucion_Update", tdev_IdParameter, tdev_DescripcionParameter, tdev_UsuarioCreaParameter, tdev_FechaCreaParameter, tdev_UsuarioModificaParameter, tdev_FechaModificaParameter);
         }
     }
 }
