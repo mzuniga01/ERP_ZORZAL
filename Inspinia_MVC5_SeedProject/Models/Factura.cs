@@ -55,6 +55,8 @@ namespace ERP_GMEDINA.Models
         public string fact_NombresTE { get; set; }
         [Display(Name = "Fecha Nacimiento")]
         public Nullable<System.DateTime> fact_FechaNacimientoTE { get; set; }
+        [Display(Name = "Razón Anulada")]
+        public string fact_RazonAnulado { get; set; }
 
-  }
+    }
 }

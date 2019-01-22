@@ -16,7 +16,8 @@ function GetDetalle() {
               Descuento = (val.factd_MontoDescuento * val.factd_Cantidad);
               ImpuestoTotal = ((val.factd_Impuesto / 100) * val.factd_PrecioUnitario) * val.factd_Cantidad;
               Subtotal = ((val.factd_Cantidad * val.factd_PrecioUnitario) + ImpuestoTotal);
-              Total = (Subtotal + ImpuestoTotal) - Descuento;
+              GranSubtotal = (val.factd_Cantidad * val.factd_PrecioUnitario);
+              Total = (GranSubtotal + ImpuestoTotal) - Descuento;
               contador = contador + 1;
               copiar = "<tr data-id=" + contador + ">";
               copiar += "<td id = 'prod_CodigoCreate'>" + val.prod_Codigo + "</td>";
@@ -29,7 +30,7 @@ function GetDetalle() {
               copiar += "</tr>";
               $('#tblDetalleFactura').append(copiar);
               document.getElementById("TotalDescuento").innerHTML = parseFloat(Descuento) ;
-              document.getElementById("Subtotal").innerHTML = parseFloat(Subtotal);
+              document.getElementById("Subtotal").innerHTML = parseFloat(GranSubtotal);
               document.getElementById("isv").innerHTML = parseFloat(ImpuestoTotal);
               document.getElementById("total").innerHTML = parseFloat(Total);
           });         

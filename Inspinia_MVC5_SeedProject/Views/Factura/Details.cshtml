@@ -131,7 +131,21 @@
 
                             }
                         }
-                        
+                        @{
+                            if (Model.fact_EsAnulada == true)
+                            {
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.fact_RazonAnulado)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.fact_RazonAnulado)
+                                </dd>
+                            }
+                            else
+                            {
+                               
+                            }
+                        }
                         <dt>
                             @Html.DisplayNameFor(model => model.clte_Identificacion)
                         </dt>
