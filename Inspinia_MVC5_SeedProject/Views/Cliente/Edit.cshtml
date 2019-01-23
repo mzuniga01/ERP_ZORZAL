@@ -200,7 +200,7 @@
                             </div>
                             <div class="form-group" id="Activo">
                                 @Html.LabelFor(model => model.clte_EsActivo, new { @class = "control-label col-md-2" })
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                     @if(Model.clte_EsActivo)
                                     {
                                         <p>Si</p>
@@ -212,8 +212,8 @@
                                         
                                     }
                                 </div>
-                                @Html.LabelFor(model => model.clte_ConCredito, new { @class = "control-label col-md-2" })
-                                <div class="col-md-2">
+                                @Html.LabelFor(model => model.clte_ConCredito, new { @class = "control-label col-md-1" })
+                                <div class="col-md-1">
                                     @if (Model.clte_ConCredito)
                                     {
                                         <p>Si</p>
@@ -226,8 +226,22 @@
                                     }
                                 </div>
 
-                                @Html.LabelFor(model => model.clte_EsMinorista, new { @class = "control-label col-md-2" })
-                                <div class="col-md-2">
+                                @Html.LabelFor(model => model.clte_Exonerado, new { @class = "control-label col-md-1" })
+                                <div class="col-md-1">
+                                    @if (Model.clte_Exonerado)
+                                    {
+                                        <p>Si</p>
+
+                                    }
+                                    else
+                                    {
+                                        <p>No</p>
+
+                                    }
+                                </div>
+
+                                @Html.LabelFor(model => model.clte_EsMinorista, new { @class = "control-label col-md-1" })
+                                <div class="col-md-1">
                                     @Html.EditorFor(model => model.clte_EsMinorista)
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsMinorista)</p>
                                 </div>

@@ -15,6 +15,7 @@ namespace ERP_GMEDINA.Models
         public const bool ClienteActivo = true;
         public const bool ClienteCredito = false;
         public const bool ClienteInactivo = false;
+        public const bool ClienteExonerado = false;
 
         //Lista Precios
         public const bool ListaPrecioActivo = true;

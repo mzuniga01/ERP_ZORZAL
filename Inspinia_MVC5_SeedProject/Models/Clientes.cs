@@ -140,7 +140,9 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Fecha Modificación")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
-        
+
+        [Display(Name = "¿Exonerado?")]
+        public bool clte_Exonerado { get; set; }
 
     }
 
